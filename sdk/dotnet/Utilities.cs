@@ -6,7 +6,7 @@ using System.IO;
 using System.Reflection;
 using Pulumi;
 
-namespace Pulumi.Xyz
+namespace Pulumi.Render
 {
     static class Utilities
     {
@@ -67,7 +67,7 @@ namespace Pulumi.Xyz
         static Utilities()
         {
             var assembly = typeof(Utilities).GetTypeInfo().Assembly;
-            using var stream = assembly.GetManifestResourceStream("Pulumi.Xyz.version.txt");
+            using var stream = assembly.GetManifestResourceStream("Pulumi.Render.version.txt");
             using var reader = new StreamReader(stream ?? throw new NotSupportedException("Missing embedded version.txt file"));
             version = reader.ReadToEnd().Trim();
             var parts = version.Split("\n");
@@ -79,9 +79,9 @@ namespace Pulumi.Xyz
         }
     }
 
-    internal sealed class XyzResourceTypeAttribute : Pulumi.ResourceTypeAttribute
+    internal sealed class RenderResourceTypeAttribute : Pulumi.ResourceTypeAttribute
     {
-        public XyzResourceTypeAttribute(string type) : base(type, Utilities.Version)
+        public RenderResourceTypeAttribute(string type) : base(type, Utilities.Version)
         {
         }
     }

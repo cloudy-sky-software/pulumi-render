@@ -1,3 +1,3 @@
-// Package xyz exports types, functions, subpackages for provisioning xyz resources.
+// Package render exports types, functions, subpackages for provisioning render resources.
 //
-package xyz
+package render

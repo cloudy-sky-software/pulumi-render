@@ -13,12 +13,16 @@ export class Random extends pulumi.CustomResource {
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, opts?: pulumi.CustomResourceOptions): Random {
+    public static get(
+        name: string,
+        id: pulumi.Input<pulumi.ID>,
+        opts?: pulumi.CustomResourceOptions
+    ): Random {
         return new Random(name, undefined as any, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'xyz:index:Random';
+    public static readonly __pulumiType = "render:index:Random";
 
     /**
      * Returns true if the given object is an instance of Random.  This is designed to work even
@@ -28,11 +32,11 @@ export class Random extends pulumi.CustomResource {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === Random.__pulumiType;
+        return obj["__pulumiType"] === Random.__pulumiType;
     }
 
     public readonly length!: pulumi.Output<number>;
-    public /*out*/ readonly result!: pulumi.Output<string>;
+    public readonly /*out*/ result!: pulumi.Output<string>;
 
     /**
      * Create a Random resource with the given unique name, arguments, and options.
@@ -41,7 +45,11 @@ export class Random extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: RandomArgs, opts?: pulumi.CustomResourceOptions) {
+    constructor(
+        name: string,
+        args: RandomArgs,
+        opts?: pulumi.CustomResourceOptions
+    ) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {

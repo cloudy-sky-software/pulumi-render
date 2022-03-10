@@ -1,8 +1,8 @@
 {
-    "name": "xyz",
+    "name": "render",
     "version": "0.0.1",
     "resources": {
-        "xyz:index:Random": {
+        "render:index:Random": {
             "properties": {
                 "length": {
                     "type": "integer"
@@ -11,18 +11,13 @@
                     "type": "string"
                 }
             },
-            "required": [
-                "length",
-                "result"
-            ],
+            "required": ["length", "result"],
             "inputProperties": {
                 "length": {
                     "type": "integer"
                 }
             },
-            "requiredInputs": [
-                "length"
-            ]
+            "requiredInputs": ["length"]
         }
     },
     "language": {
@@ -33,7 +28,7 @@
         },
         "go": {
             "generateResourceContainerTypes": true,
-            "importBasePath": "github.com/pulumi/pulumi-xyz/sdk/go/xyz"
+            "importBasePath": "github.com/pulumi/pulumi-render/sdk/go/render"
         },
         "nodejs": {
             "dependencies": {

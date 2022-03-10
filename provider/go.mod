@@ -1,4 +1,4 @@
-module github.com/pulumi/pulumi-render/provider
+module github.com/praneetloke/pulumi-render/provider
 
 go 1.16
 

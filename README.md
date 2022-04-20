@@ -30,10 +30,14 @@ $ pulumi stack init test
 $ pulumi up
 ```
 
+## OpenAPI Spec
+
+There is no official OpenAPI spec file published by Render. However, they do have a public [Postman Collection](https://www.postman.com/render/workspace/15c863fd-6a54-4b38-bea6-4df5d1dab623/collection/13100934-74fa79b0-3276-445b-9d26-2848f525a4d7?action=share&creator=29781) that can be exported and converted to an OpenAPI spec using https://joolfe.github.io/postman-to-openapi/.
+
 ## References
 
 Other resources for learning about the Pulumi resource model:
 
--   [Pulumi Kubernetes provider](https://github.com/pulumi/pulumi-kubernetes/blob/master/provider/pkg/provider/provider.go)
--   [Pulumi Terraform Remote State provider](https://github.com/pulumi/pulumi-terraform/blob/master/provider/cmd/pulumi-resource-terraform/provider.go)
--   [Dynamic Providers](https://www.pulumi.com/docs/intro/concepts/programming-model/#dynamicproviders)
+- [Pulumi Kubernetes provider](https://github.com/pulumi/pulumi-kubernetes/blob/master/provider/pkg/provider/provider.go)
+- [Pulumi Terraform Remote State provider](https://github.com/pulumi/pulumi-terraform/blob/master/provider/cmd/pulumi-resource-terraform/provider.go)
+- [Dynamic Providers](https://www.pulumi.com/docs/intro/concepts/programming-model/#dynamicproviders)

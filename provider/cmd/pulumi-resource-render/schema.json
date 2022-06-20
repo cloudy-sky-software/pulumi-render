@@ -28,7 +28,7 @@
         },
         "go": {
             "generateResourceContainerTypes": true,
-            "importBasePath": "github.com/praneetloke/pulumi-render/sdk/go/render"
+            "importBasePath": "github.com/cloudy-sky-software/pulumi-render/sdk/go/render"
         },
         "nodejs": {
             "dependencies": {

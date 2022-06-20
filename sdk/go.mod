@@ -1,4 +1,4 @@
-module github.com/praneetloke/pulumi-render/sdk/v3
+module github.com/cloudy-sky-software/pulumi-render/sdk/v3
 
 go 1.17
 

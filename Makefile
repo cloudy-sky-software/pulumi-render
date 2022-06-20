@@ -2,7 +2,7 @@ PROJECT_NAME := Pulumi Render Resource Provider
 
 PACK             := render
 PACKDIR          := sdk
-PROJECT          := github.com/praneetloke/pulumi-render
+PROJECT          := github.com/cloudy-sky-software/pulumi-render
 NODE_MODULE_NAME := @pulumi/render
 NUGET_PKG_NAME   := Pulumi.Render
 

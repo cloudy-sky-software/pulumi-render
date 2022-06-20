@@ -15,8 +15,8 @@
 package main
 
 import (
-	"github.com/praneetloke/pulumi-render/provider/pkg/provider"
-	"github.com/praneetloke/pulumi-render/provider/pkg/version"
+	"github.com/cloudy-sky-software/pulumi-render/provider/pkg/provider"
+	"github.com/cloudy-sky-software/pulumi-render/provider/pkg/version"
 )
 
 var providerName = "render"

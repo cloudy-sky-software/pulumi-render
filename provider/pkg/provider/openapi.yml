@@ -1,0 +1,4621 @@
+openapi: 3.0.0
+info:
+  title: Render Public API
+  description: |-
+    [https://render.com/docs/api](https://render.com/docs/api)
+
+    Contact Support:  
+    Name: Render API  
+    Email: [support@render.com](mailto:support@render.com)
+  version: 1.0.0
+servers:
+  - url: https://api.render.com
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    owner:
+      title: "Owner"
+      description: "The owner object represents an authorized user or team. The `type` property indicates if the owner is a user or team."
+      type: object
+      x-isResource: true
+      x-isReadOnlyResource: true
+      properties:
+        id:
+          description: The owner ID.
+          readOnly: true
+          type: string
+        name:
+          description: The name of the owner.
+          type: string
+        email:
+          description: The email of the owner.
+          type: string
+        type:
+          description: The type of the authorized user.
+          type: object
+          enum: ["user", "team"]
+    listOwnersResponse:
+      type: object
+      properties:
+        cursor:
+          type: string
+        owner:
+          type: object
+          $ref: "#/components/schemas/owner"
+    serviceHeader:
+      description: "A service header object"
+      type: object
+      x-isResource: true
+      x-isReadOnlyResource: false
+      properties:
+        path:
+          type: string
+        name:
+          type: string
+        value:
+          type: string
+      required: ["path", "name", "value"]
+    listServiceHeadersResponse:
+      type: object
+      properties:
+        cursor:
+          type: string
+        header:
+          type: object
+          $ref: "#/components/schemas/serviceHeader"
+    staticSiteRoute:
+      description: "A route object for a static site"
+      type: object
+      x-isResource: true
+      x-isReadOnlyResource: false
+      properties:
+        type:
+          type: object
+          enum: ["redirect", "rewrite"]
+        source:
+          type: string
+        destination:
+          type: string
+      required: ["type", "source", "destination"]
+    listStaticSiteRoutesResponse:
+      type: object
+      properties:
+        cursor:
+          type: string
+        route:
+          type: object
+          $ref: "#/components/schemas/staticSiteRoute"
+    staticSite:
+      title: "Static Site"
+      description: "A static website service"
+      type: object
+      properties:
+        buildCommand:
+          type: string
+        headers:
+          type: array
+          items:
+            $ref: "#/components/schemas/serviceHeader"
+        publishPath:
+          type: string
+          default: "public"
+        pullRequestPreviewsEnabled:
+          type: string
+          default: "no"
+          enum: ["yes", "no"]
+        routes:
+          type: array
+          items:
+            $ref: "#/components/schemas/staticSiteRoute"
+    service:
+      title: "Service"
+      description: "The service object represents a service. The type of service is discriminated by the type property which determines the type of object in the serviceDetails property."
+      type: object
+      x-isResource: true
+      x-isReadOnlyResource: false
+      properties:
+        id:
+          description: The owner ID.
+          readOnly: true
+          type: string
+        autoDeploy:
+          description: Whether to auto deploy the service or not upon git push.
+          type: boolean
+        branch:
+          type: string
+          description: "If left empty, this will fall back to the default branch of the repository"
+        createdAt:
+          type: string
+        name:
+          type: string
+        notifyOnFail:
+          description: The notification setting for this service upon deployment failure.
+          type: object
+          enum: ["default", "notify", "ignore"]
+        ownerId:
+          type: string
+        repo:
+          type: string
+          description: "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+        slug:
+          type: string
+        suspended:
+          type: object
+          enum: ["suspended", "not_suspended"]
+        suspenders:
+          type: array
+          items:
+            type: string
+        type:
+          type: object
+          enum:
+            [
+              "static_site",
+              "web_service",
+              "private_service",
+              "background_worker",
+              "cron_job",
+            ]
+        updatedAt:
+          type: string
+        serviceDetails:
+          type: object
+          discriminator:
+            propertyName: type
+            mapping:
+              static_site: "#/components/schemas/staticSite"
+          oneOf:
+            - $ref: "#/components/schemas/staticSite"
+    listServiceResponse:
+      type: object
+      properties:
+        cursor:
+          type: string
+        service:
+          type: object
+          $ref: "#/components/schemas/service"
+security:
+  - bearerAuth: []
+tags:
+  - name: Owners
+    description: >-
+      [https://api-docs.render.com/reference/owners-1](https://api-docs.render.com/reference/owners-1)
+  - name: Services
+    description: >-
+      [https://api-docs.render.com/reference/service-fields](https://api-docs.render.com/reference/service-fields)
+  - name: Deploys
+    description: >-
+      [https://api-docs.render.com/reference/get-deploys](https://api-docs.render.com/reference/get-deploys)
+  - name: Custom Domains
+  - name: Jobs
+paths:
+  /owners:
+    get:
+      tags:
+        - Owners
+      summary: List authorized users and teams
+      description: >-
+        [https://api-docs.render.com/reference/get-owners](https://api-docs.render.com/reference/get-owners)
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: name
+          in: query
+          schema:
+            type: string
+          example: sed aliqua qui anim
+        - name: email
+          in: query
+          schema:
+            type: string
+          example: sed aliqua qui anim
+        - name: cursor
+          in: query
+          schema:
+            type: string
+          description: Cursor to begin retrieving entries for this query
+          example: Lorem amet sin
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          description: Max number of items that can be returned
+          example: "20"
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/listOwnersResponse"
+              example:
+                - owner:
+                    id: tempor labore voluptate velit dolore
+                    name: amet enim qui adipisicing
+                    email: quis
+                    type: user
+                  cursor: incididunt labore occaecat eiusmod dolore
+                - owner:
+                    id: anim ea aute
+                    name: enim nostrud
+                    email: occa
+                    type: team
+                  cursor: consectetur ut
+        "401":
+          description: Unauthorized
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "406":
+          description: Not Acceptable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "429":
+          description: Too Many Requests
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "500":
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "503":
+          description: Service Unavailable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+  /owners/{ownerId}:
+    get:
+      tags:
+        - Owners
+      summary: Retrieve user or team
+      description: >-
+        [https://api-docs.render.com/reference/get-owner](https://api-docs.render.com/reference/get-owner)
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: ownerId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: (Required) The ID of the user or team
+          example: Lorem amet sin
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/owner"
+              example:
+                id: nisi aute veniam elit
+                name: labore
+                email: id adipisicing Excepteur
+                type: user
+        "401":
+          description: Unauthorized
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "406":
+          description: Not Acceptable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "410":
+          description: Gone
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "429":
+          description: Too Many Requests
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "500":
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "503":
+          description: Service Unavailable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+  /services:
+    get:
+      tags:
+        - Services
+      summary: List services
+      description: >-
+        [https://api-docs.render.com/reference/get-services](https://api-docs.render.com/reference/get-services)
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: name
+          in: query
+          schema:
+            type: string
+          description: Filter for the names of services
+          example: sed aliqua qui anim,do
+        - name: type
+          in: query
+          schema:
+            type: string
+          description: Filter for types of services
+          example: web_service,cron_job
+        - name: env
+          in: query
+          schema:
+            type: string
+          description: Filter for environments of services
+          example: rust,node
+        - name: region
+          in: query
+          schema:
+            type: string
+          description: Filter for regions of services
+          example: frankfurt,frankfurt
+        - name: suspended
+          in: query
+          schema:
+            type: string
+          description: Filter services based on whether they're suspended or not suspended
+          example: suspended,not_suspended
+        - name: createdBefore
+          in: query
+          schema:
+            type: string
+          description: >-
+            Filter for services created before a certain time (specified as an
+            ISO 8601 timestamp)
+          example: "2021-06-17T08:15:30Z"
+        - name: createdAfter
+          in: query
+          schema:
+            type: string
+          description: >-
+            Filter for services created after a certain time (specified as an
+            ISO 8601 timestamp)
+          example: "2021-02-17T08:15:30Z"
+        - name: updatedBefore
+          in: query
+          schema:
+            type: string
+          description: >-
+            Filter for services updated before a certain time (specified as an
+            ISO 8601 timestamp)
+          example: "2021-06-17T08:15:30Z"
+        - name: updatedAfter
+          in: query
+          schema:
+            type: string
+          description: >-
+            Filter for services updated after a certain time (specified as an
+            ISO 8601 timestamp)
+          example: "2021-02-17T08:15:30Z"
+        - name: ownerId
+          in: query
+          schema:
+            type: string
+          description: >-
+            The ID of the owner (team or personal user) whose resources should
+            be returned
+          example: sed aliqua qui anim,do
+        - name: cursor
+          in: query
+          schema:
+            type: string
+          description: Cursor to begin retrieving entries for this query
+          example: Lorem amet sin
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          description: Max number of items that can be returned
+          example: "20"
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: array
+                $ref: "#/components/schemas/listServiceResponse"
+              example:
+                - service:
+                    id: irure occaecat aute reprehenderit
+                    autoDeploy: "no"
+                    branch: proident eu amet
+                    createdAt: "2019-10-01T21:05:43.378Z"
+                    name: qui
+                    notifyOnFail: ignore
+                    ownerId: ut laboris
+                    repo: https://github.com/render-examples/flask-hello-world
+                    slug: nulla dolore
+                    suspended: suspended
+                    suspenders:
+                      - unknown
+                      - billing
+                    type: web_service
+                    updatedAt: "2001-04-20T02:58:48.244Z"
+                    serviceDetails:
+                      buildCommand: irure
+                      parentServer:
+                        id: nulla Duis et
+                        name: incididunt eiusmod
+                      publishPath: irure consectetur ex
+                      pullRequestPreviewsEnabled: "no"
+                      url: ut irure
+                  cursor: non aliquip culpa labore
+                - service:
+                    id: Duis ex enim
+                    autoDeploy: "no"
+                    branch: Lorem commodo in
+                    createdAt: "2012-11-16T11:56:07.514Z"
+                    name: laborum deserunt ullamco nostrud
+                    notifyOnFail: default
+                    ownerId: aliqua
+                    repo: https://github.com/render-examples/flask-hello-world
+                    slug: incididu
+                    suspended: suspended
+                    suspenders:
+                      - parent_service
+                      - user
+                    type: private_service
+                    updatedAt: "1976-10-06T18:26:05.215Z"
+                    serviceDetails:
+                      buildCommand: nisi sed sint aliqua exercitation
+                      parentServer:
+                        id: veniam voluptate incididunt
+                        name: anim non consectetur occaecat
+                      publishPath: cupidatat irure pariatur commodo dolor
+                      pullRequestPreviewsEnabled: "yes"
+                      url: velit lab
+                  cursor: ut pariatur
+        "401":
+          description: Unauthorized
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "406":
+          description: Not Acceptable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "429":
+          description: Too Many Requests
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "500":
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "503":
+          description: Service Unavailable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+    post:
+      tags:
+        - Services
+      summary: Create service
+      description: >-
+        [https://api-docs.render.com/reference/create-service](https://api-docs.render.com/reference/create-service)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                type: web_service
+                name: cillum ipsum
+                ownerId: iru
+                repo: https://github.com/render-examples/flask-hello-world
+                autoDeploy: "yes"
+                branch: Excepteur mollit in
+                envVars:
+                  - key: eu
+                    value: dolor
+                  - key: minim nisi voluptate non
+                    value: vol
+                secretFiles:
+                  - name: ad ex Duis
+                    contents: ipsum consequat dolor dolor
+                  - name: sunt paria
+                    contents: exercitation ut Duis ex
+                serviceDetails:
+                  buildCommand: dolore ex
+                  headers:
+                    - path: enim Excepteur p
+                      name: deserunt
+                      value: commodo nisi proident ad velit
+                    - path: labore vel
+                      name: exercitation dolor minim nostrud esse
+                      value: Lorem occaecat tempor
+                  publishPath: public
+                  pullRequestPreviewsEnabled: "no"
+                  routes:
+                    - type: redirect
+                      source: sed
+                      destination: dolor
+                    - type: redirect
+                      source: proident aute irure veniam occaecat
+                      destination: sit culpa a
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        "201":
+          description: Created
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                service:
+                  id: ea veniam
+                  autoDeploy: "yes"
+                  branch: Excepteur
+                  createdAt: "1999-10-21T15:43:09.576Z"
+                  name: e
+                  notifyOnFail: default
+                  ownerId: laborum mollit
+                  repo: https://github.com/render-examples/flask-hello-world
+                  slug: nisi tempor dolore
+                  suspended: not_suspended
+                  suspenders:
+                    - admin
+                    - unknown
+                  type: private_service
+                  updatedAt: "1988-04-27T23:28:54.313Z"
+                  serviceDetails:
+                    buildCommand: ut
+                    parentServer:
+                      id: es
+                      name: "sunt eu do amet "
+                    publishPath: ipsum ut
+                    pullRequestPreviewsEnabled: "no"
+                    url: officia ut Excepteur culpa
+                deployId: nostrud qui Excepteur commodo
+        "400":
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "401":
+          description: Unauthorized
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "402":
+          description: Payment Required
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "406":
+          description: Not Acceptable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "409":
+          description: Conflict
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "429":
+          description: Too Many Requests
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "500":
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "503":
+          description: Service Unavailable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+  /services/{serviceId}:
+    get:
+      tags:
+        - Services
+      summary: Retrieve service
+      description: >-
+        [https://api-docs.render.com/reference/get-service](https://api-docs.render.com/reference/get-service)
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: serviceId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: (Required) The ID of the service
+          example: Lorem amet sin
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/service"
+              example:
+                id: in deserunt laboris dolore
+                autoDeploy: "yes"
+                branch: nostrud Duis laboris nisi
+                createdAt: "1942-04-20T08:53:35.077Z"
+                name: amet ex Excepteur
+                notifyOnFail: notify
+                ownerId: est dolore eiusmod do
+                repo: https://github.com/render-examples/flask-hello-world
+                slug: ut proident ea sit
+                suspended: not_suspended
+                suspenders:
+                  - parent_service
+                  - unknown
+                type: static_site
+                updatedAt: "1983-02-10T05:26:21.960Z"
+                serviceDetails:
+                  buildCommand: aliquip in ea aliqua elit
+                  parentServer:
+                    id: aute consectetur ad consequat
+                    name: ut sed sint ipsum Duis
+                  publishPath: "incididunt in pariatur "
+                  pullRequestPreviewsEnabled: "yes"
+                  url: aliquip laboris
+        "401":
+          description: Unauthorized
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "403":
+          description: Forbidden
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "406":
+          description: Not Acceptable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "410":
+          description: Gone
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "429":
+          description: Too Many Requests
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "500":
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "503":
+          description: Service Unavailable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+    patch:
+      tags:
+        - Services
+      summary: Update service
+      description: >-
+        [https://api-docs.render.com/reference/update-service](https://api-docs.render.com/reference/update-service)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                autoDeploy: "yes"
+                branch: amet dolore officia quis est
+                name: nisi minim et
+                serviceDetails:
+                  buildCommand: ex qui
+                  publishPath: dolor laboris Excepteur fugiat
+                  pullRequestPreviewsEnabled: "no"
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: serviceId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: (Required) The ID of the service
+          example: Lorem amet sin
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: in deserunt laboris dolore
+                autoDeploy: "yes"
+                branch: nostrud Duis laboris nisi
+                createdAt: "1942-04-20T08:53:35.077Z"
+                name: amet ex Excepteur
+                notifyOnFail: notify
+                ownerId: est dolore eiusmod do
+                repo: https://github.com/render-examples/flask-hello-world
+                slug: ut proident ea sit
+                suspended: not_suspended
+                suspenders:
+                  - parent_service
+                  - unknown
+                type: static_site
+                updatedAt: "1983-02-10T05:26:21.960Z"
+                serviceDetails:
+                  buildCommand: aliquip in ea aliqua elit
+                  parentServer:
+                    id: aute consectetur ad consequat
+                    name: ut sed sint ipsum Duis
+                  publishPath: "incididunt in pariatur "
+                  pullRequestPreviewsEnabled: "yes"
+                  url: aliquip laboris
+        "400":
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "401":
+          description: Unauthorized
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "402":
+          description: Payment Required
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "403":
+          description: Forbidden
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "406":
+          description: Not Acceptable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "409":
+          description: Conflict
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "410":
+          description: Gone
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "429":
+          description: Too Many Requests
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "500":
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "503":
+          description: Service Unavailable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+    delete:
+      tags:
+        - Services
+      summary: Delete service
+      description: >-
+        [https://api-docs.render.com/reference/delete-service](https://api-docs.render.com/reference/delete-service)
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: serviceId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: (Required) The ID of the service
+          example: Lorem amet sin
+      responses:
+        "204":
+          description: No Content
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: text/plain
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: ""
+        "401":
+          description: Unauthorized
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "403":
+          description: Forbidden
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "406":
+          description: Not Acceptable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "410":
+          description: Gone
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "429":
+          description: Too Many Requests
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "500":
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "503":
+          description: Service Unavailable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+  /services/{serviceId}/env-vars:
+    get:
+      tags:
+        - Services
+      summary: Retrieve environment variables
+      description: >-
+        [https://api-docs.render.com/reference/get-env-vars-for-service](https://api-docs.render.com/reference/get-env-vars-for-service)
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: cursor
+          in: query
+          schema:
+            type: string
+          description: Cursor to begin retrieving entries for this query
+          example: Lorem amet sin
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          description: Max number of items that can be returned
+          example: "20"
+        - name: serviceId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: (Required) The ID of the service
+          example: Lorem amet sin
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                - envVar:
+                    key: eu mollit reprehenderit nulla
+                    value: ad
+                  cursor: magna aliquip cillum in
+                - envVar:
+                    key: fugiat non ut tempor
+                    value: vol
+                  cursor: mollit do nulla non
+        "401":
+          description: Unauthorized
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "403":
+          description: Forbidden
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "406":
+          description: Not Acceptable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "410":
+          description: Gone
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "429":
+          description: Too Many Requests
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "500":
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "503":
+          description: Service Unavailable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+    put:
+      tags:
+        - Services
+      summary: Update environment variables
+      description: >-
+        [https://api-docs.render.com/reference/update-env-vars-for-service](https://api-docs.render.com/reference/update-env-vars-for-service)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                - key: aute cupidatat
+                  value: esse
+                - key: officia esse nostrud Excepteur
+                  value: Lorem
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: serviceId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: (Required) The ID of the service
+          example: Lorem amet sin
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                - envVar:
+                    key: eu mollit reprehenderit nulla
+                    value: ad
+                  cursor: magna aliquip cillum in
+                - envVar:
+                    key: fugiat non ut tempor
+                    value: vol
+                  cursor: mollit do nulla non
+        "400":
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "401":
+          description: Unauthorized
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "403":
+          description: Forbidden
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "406":
+          description: Not Acceptable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "410":
+          description: Gone
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "429":
+          description: Too Many Requests
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "500":
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "503":
+          description: Service Unavailable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+  /services/{serviceId}/headers:
+    get:
+      tags:
+        - Services
+      summary: Retrieve headers
+      description: >-
+        [https://api-docs.render.com/reference/get-headers](https://api-docs.render.com/reference/get-headers)
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: path
+          in: query
+          schema:
+            type: string
+          description: Filter for specific paths that headers apply to
+          example: sed aliqua qui anim,do
+        - name: name
+          in: query
+          schema:
+            type: string
+          description: Filter for header names
+          example: sed aliqua qui anim,do
+        - name: value
+          in: query
+          schema:
+            type: string
+          description: Filter for header values
+          example: sed aliqua qui anim,do
+        - name: cursor
+          in: query
+          schema:
+            type: string
+          description: Cursor to begin retrieving entries for this query
+          example: Lorem amet sin
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          description: Max number of items that can be returned
+          example: "20"
+        - name: serviceId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: (Required) The ID of the service
+          example: Lorem amet sin
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                - headers:
+                    path: in officia
+                    name: deserunt mollit enim nostrud
+                    value: ut ea
+                  cursor: officia dolore Excepteur
+                - headers:
+                    path: aliquip
+                    name: ullamco amet in
+                    value: ali
+                  cursor: Lorem reprehenderit
+        "401":
+          description: Unauthorized
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "403":
+          description: Forbidden
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "406":
+          description: Not Acceptable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "410":
+          description: Gone
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "429":
+          description: Too Many Requests
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "500":
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "503":
+          description: Service Unavailable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+  /services/{serviceId}/routes:
+    get:
+      tags:
+        - Services
+      summary: Retrieve redirect and rewrite rules
+      description: >-
+        [https://api-docs.render.com/reference/get-routes](https://api-docs.render.com/reference/get-routes)
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: type
+          in: query
+          schema:
+            type: string
+          description: Filter for the type of route rule
+          example: redirect,redirect
+        - name: source
+          in: query
+          schema:
+            type: string
+          description: Filter for the source path of the route
+          example: sed aliqua qui anim,do
+        - name: destination
+          in: query
+          schema:
+            type: string
+          description: Filter for the destination path of the route
+          example: sed aliqua qui anim,do
+        - name: cursor
+          in: query
+          schema:
+            type: string
+          description: Cursor to begin retrieving entries for this query
+          example: Lorem amet sin
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          description: Max number of items that can be returned
+          example: "20"
+        - name: serviceId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: (Required) The ID of the service
+          example: Lorem amet sin
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                - routes:
+                    type: rewrite
+                    source: fugiat Lorem dolor
+                    destination: in occaecat proident qui incididunt
+                  cursor: anim labore
+                - routes:
+                    type: redirect
+                    source: anim dolor dolore
+                    destination: ad sint quis
+                  cursor: cillum reprehenderit esse
+        "401":
+          description: Unauthorized
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "403":
+          description: Forbidden
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "406":
+          description: Not Acceptable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "410":
+          description: Gone
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "429":
+          description: Too Many Requests
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "500":
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "503":
+          description: Service Unavailable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+  /services/{serviceId}/suspend:
+    post:
+      tags:
+        - Services
+      summary: Suspend service
+      description: >-
+        [https://api-docs.render.com/reference/suspend-service-1](https://api-docs.render.com/reference/suspend-service-1)
+      requestBody:
+        content: {}
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: serviceId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: (Required) The ID of the service
+          example: Lorem amet sin
+      responses:
+        "202":
+          description: Accepted
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: text/plain
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: ""
+        "400":
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "401":
+          description: Unauthorized
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "403":
+          description: Forbidden
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "406":
+          description: Not Acceptable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "410":
+          description: Gone
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "429":
+          description: Too Many Requests
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "500":
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "503":
+          description: Service Unavailable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+  /services/{serviceId}/resume:
+    post:
+      tags:
+        - Services
+      summary: Resume service
+      description: >-
+        [https://api-docs.render.com/reference/resume-service-1](https://api-docs.render.com/reference/resume-service-1)
+      requestBody:
+        content: {}
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: serviceId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: (Required) The ID of the service
+          example: Lorem amet sin
+      responses:
+        "202":
+          description: Accepted
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: text/plain
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: ""
+        "400":
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "401":
+          description: Unauthorized
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "403":
+          description: Forbidden
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "406":
+          description: Not Acceptable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "410":
+          description: Gone
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "429":
+          description: Too Many Requests
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "500":
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "503":
+          description: Service Unavailable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+  /services/{serviceId}/scale:
+    post:
+      tags:
+        - Services
+      summary: Scale service to desired number of instances
+      description: >-
+        [https://api-docs.render.com/reference/scale-service](https://api-docs.render.com/reference/scale-service)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                numInstances:
+                  type: number
+              required: ["numInstances"]
+              example:
+                numInstances: 3
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: serviceId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: (Required) The ID of the service
+          example: Lorem amet sin
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: officia ut dolor
+                commit:
+                  id: incididunt in deserunt aliquip exerc
+                  message: aliquip non dolore
+                  createdAt: "1976-01-22T15:20:29.246Z"
+                status: created
+                finishedAt: "1959-01-25T18:23:55.820Z"
+                createdAt: "1969-09-01T14:51:32.931Z"
+                updatedAt: "1980-10-29T06:36:55.491Z"
+        "400":
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "401":
+          description: Unauthorized
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "403":
+          description: Forbidden
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "406":
+          description: Not Acceptable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "410":
+          description: Gone
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "429":
+          description: Too Many Requests
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "500":
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "503":
+          description: Service Unavailable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+  /services/{serviceId}/deploys:
+    get:
+      tags:
+        - Deploys
+      summary: List deploys
+      description: >-
+        [https://api-docs.render.com/reference/get-deploys](https://api-docs.render.com/reference/get-deploys)
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: startTime
+          in: query
+          schema:
+            type: integer
+          description: Epoch/Unix timestamp of start of time range to return
+          example: "97254737"
+        - name: endTime
+          in: query
+          schema:
+            type: integer
+          description: Epoch/Unix timestamp of end of time range to return
+          example: "97254737"
+        - name: cursor
+          in: query
+          schema:
+            type: string
+          description: Cursor to begin retrieving entries for this query
+          example: Lorem amet sin
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          description: Max number of items that can be returned
+          example: "20"
+        - name: serviceId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: (Required) The ID of the service
+          example: Lorem amet sin
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                - deploy:
+                    id: enim Lorem amet
+                    commit:
+                      id: nostrud laborum
+                      message: dolore fugiat adipisicing Lorem commodo
+                      createdAt: "1978-04-16T20:55:25.900Z"
+                    status: update_in_progress
+                    finishedAt: "1943-06-10T00:28:23.857Z"
+                    createdAt: "1950-03-29T08:07:14.828Z"
+                    updatedAt: "1962-10-21T13:09:29.570Z"
+                  cursor: dolor Duis labore enim aute
+                - deploy:
+                    id: do non velit
+                    commit:
+                      id: pariatur
+                      message: ad consectetur aliquip
+                      createdAt: "1944-07-09T04:42:00.125Z"
+                    status: canceled
+                    finishedAt: "1972-06-29T05:52:13.073Z"
+                    createdAt: "1972-09-20T16:16:12.721Z"
+                    updatedAt: "1981-03-05T12:42:20.181Z"
+                  cursor: nostrud Ut Lorem non
+        "401":
+          description: Unauthorized
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "403":
+          description: Forbidden
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "406":
+          description: Not Acceptable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "410":
+          description: Gone
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "429":
+          description: Too Many Requests
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "500":
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "503":
+          description: Service Unavailable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+    post:
+      tags:
+        - Deploys
+      summary: Trigger a deploy
+      description: >-
+        [https://api-docs.render.com/reference/create-deploy](https://api-docs.render.com/reference/create-deploy)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                clearCache: do_not_clear
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: serviceId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: (Required) The ID of the service
+          example: Lorem amet sin
+      responses:
+        "201":
+          description: Created
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: officia ut dolor
+                commit:
+                  id: incididunt in deserunt aliquip exerc
+                  message: aliquip non dolore
+                  createdAt: "1976-01-22T15:20:29.246Z"
+                status: created
+                finishedAt: "1959-01-25T18:23:55.820Z"
+                createdAt: "1969-09-01T14:51:32.931Z"
+                updatedAt: "1980-10-29T06:36:55.491Z"
+        "400":
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "401":
+          description: Unauthorized
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "406":
+          description: Not Acceptable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "409":
+          description: Conflict
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "410":
+          description: Gone
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "429":
+          description: Too Many Requests
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "500":
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "503":
+          description: Service Unavailable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+  /services/{serviceId}/deploys/{deployId}:
+    get:
+      tags:
+        - Deploys
+      summary: Retrieve deploy
+      description: >-
+        [https://api-docs.render.com/reference/get-deploy](https://api-docs.render.com/reference/get-deploy)
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: serviceId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: (Required) The ID of the service
+          example: Lorem amet sin
+        - name: deployId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: (Required) The ID of the deploy
+          example: Lorem amet sin
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: officia ut dolor
+                commit:
+                  id: incididunt in deserunt aliquip exerc
+                  message: aliquip non dolore
+                  createdAt: "1976-01-22T15:20:29.246Z"
+                status: created
+                finishedAt: "1959-01-25T18:23:55.820Z"
+                createdAt: "1969-09-01T14:51:32.931Z"
+                updatedAt: "1980-10-29T06:36:55.491Z"
+        "401":
+          description: Unauthorized
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "403":
+          description: Forbidden
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "406":
+          description: Not Acceptable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "410":
+          description: Gone
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "429":
+          description: Too Many Requests
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "500":
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "503":
+          description: Service Unavailable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+  /services/{serviceId}/custom-domains:
+    get:
+      tags:
+        - Custom Domains
+      summary: List custom domains
+      description: >-
+        [https://api-docs.render.com/reference/get-custom-domains](https://api-docs.render.com/reference/get-custom-domains)
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: cursor
+          in: query
+          schema:
+            type: string
+          description: Cursor to begin retrieving entries for this query
+          example: Lorem amet sin
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          description: Max number of items that can be returned
+          example: "20"
+        - name: name
+          in: query
+          schema:
+            type: string
+          description: Filter for the names of custom domain
+          example: sed aliqua qui anim,do
+        - name: domainType
+          in: query
+          schema:
+            type: string
+          description: Filter for apex or subdomains
+          example: subdomain
+        - name: verificationStatus
+          in: query
+          schema:
+            type: string
+          description: Filter for verified or unverified custom domains
+          example: verified
+        - name: createdBefore
+          in: query
+          schema:
+            type: string
+          description: >-
+            Filter for custom domains created before a certain time (specified
+            as an ISO 8601 timestamp)
+          example: "2021-06-17T08:15:30Z"
+        - name: createdAfter
+          in: query
+          schema:
+            type: string
+          description: >-
+            Filter for custom domains created after a certain time (specified as
+            an ISO 8601 timestamp)
+          example: "2021-02-17T08:15:30Z"
+        - name: serviceId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: (Required) The ID of the service
+          example: Lorem amet sin
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                - customDomain:
+                    id: fugiat dolore in ut in
+                    name: id commodo consectetur amet
+                    domainType: subdomain
+                    publicSuffix: in incididunt
+                    redirectForName: culpa mollit
+                    verificationStatus: verified
+                    createdAt: "1975-06-30T08:45:27.521Z"
+                    server:
+                      id: aliqua ut
+                      name: aliquip minim
+                  cursor: est sint
+                - customDomain:
+                    id: sed mollit
+                    name: enim sit laboris exercitation ullamco
+                    domainType: subdomain
+                    publicSuffix: pariatur
+                    redirectForName: et officia
+                    verificationStatus: unverified
+                    createdAt: "2010-09-20T23:48:01.957Z"
+                    server:
+                      id: quis mollit Lorem officia pari
+                      name: consequat aliqua in dolore
+                  cursor: dolor nostru
+        "400":
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "401":
+          description: Unauthorized
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "403":
+          description: Forbidden
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "406":
+          description: Not Acceptable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "410":
+          description: Gone
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "429":
+          description: Too Many Requests
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "500":
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "503":
+          description: Service Unavailable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+    post:
+      tags:
+        - Custom Domains
+      summary: Add custom domain
+      description: >-
+        [https://api-docs.render.com/reference/create-custom-domain](https://api-docs.render.com/reference/create-custom-domain)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: voluptate in
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: serviceId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: (Required) The ID of the service
+          example: Lorem amet sin
+      responses:
+        "201":
+          description: Created
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                - id: dolore culpa
+                  name: esse dolor nulla dolor
+                  domainType: apex
+                  publicSuffix: do qui dolore
+                  redirectForName: velit incididunt est
+                  verificationStatus: unverified
+                  createdAt: "2013-03-17T18:01:01.797Z"
+                  server:
+                    id: Lorem elit ad
+                    name: consequat quis commodo eu
+                - id: ea in
+                  name: cupidatat adipisicing
+                  domainType: subdomain
+                  publicSuffix: id magna officia
+                  redirectForName: non
+                  verificationStatus: unverified
+                  createdAt: "1985-06-03T07:24:05.696Z"
+                  server:
+                    id: nulla sunt voluptate dolor ut
+                    name: minim sed
+        "400":
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "401":
+          description: Unauthorized
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "402":
+          description: Payment Required
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "403":
+          description: Forbidden
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "406":
+          description: Not Acceptable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "409":
+          description: Conflict
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "410":
+          description: Gone
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "429":
+          description: Too Many Requests
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "500":
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "503":
+          description: Service Unavailable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+  /services/{serviceId}/custom-domains/{customDomainIdOrName}:
+    get:
+      tags:
+        - Custom Domains
+      summary: Retrieve custom domain
+      description: >-
+        [https://api-docs.render.com/reference/get-custom-domain](https://api-docs.render.com/reference/get-custom-domain)
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: serviceId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: (Required) The ID of the service
+          example: Lorem amet sin
+        - name: customDomainIdOrName
+          in: path
+          schema:
+            type: string
+          required: true
+          description: (Required) The ID or name of the custom domain
+          example: Lorem amet sin
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: aliquip ipsum
+                name: aliquip incididunt mollit in
+                domainType: subdomain
+                publicSuffix: ea laborum reprehenderit
+                redirectForName: irure aliquip amet reprehenderit sunt
+                verificationStatus: unverified
+                createdAt: "1952-09-09T12:25:06.974Z"
+                server:
+                  id: eiusmod
+                  name: mollit dolo
+        "400":
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "401":
+          description: Unauthorized
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "403":
+          description: Forbidden
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "406":
+          description: Not Acceptable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "410":
+          description: Gone
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "429":
+          description: Too Many Requests
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "500":
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "503":
+          description: Service Unavailable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+    delete:
+      tags:
+        - Custom Domains
+      summary: Delete custom domain
+      description: >-
+        [https://api-docs.render.com/reference/delete-custom-domain](https://api-docs.render.com/reference/delete-custom-domain)
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: serviceId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: (Required) The ID of the service
+          example: Lorem amet sin
+        - name: customDomainIdOrName
+          in: path
+          schema:
+            type: string
+          required: true
+          description: (Required) The ID or name of the custom domain
+          example: Lorem amet sin
+      responses:
+        "204":
+          description: No Content
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: text/plain
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: ""
+        "400":
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "401":
+          description: Unauthorized
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "403":
+          description: Forbidden
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "406":
+          description: Not Acceptable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "410":
+          description: Gone
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "429":
+          description: Too Many Requests
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "500":
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "503":
+          description: Service Unavailable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+  /services/{serviceId}/custom-domains/{customDomainIdOrName}/verify:
+    post:
+      tags:
+        - Custom Domains
+      summary: Verify DNS configuration
+      description: >-
+        [https://api-docs.render.com/reference/refresh-custom-domain](https://api-docs.render.com/reference/refresh-custom-domain)
+      requestBody:
+        content: {}
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: serviceId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: (Required) The ID of the service
+          example: Lorem amet sin
+        - name: customDomainIdOrName
+          in: path
+          schema:
+            type: string
+          required: true
+          description: (Required) The ID or name of the custom domain
+          example: Lorem amet sin
+      responses:
+        "202":
+          description: Accepted
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: text/plain
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: ""
+        "400":
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "401":
+          description: Unauthorized
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "403":
+          description: Forbidden
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "406":
+          description: Not Acceptable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "410":
+          description: Gone
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "429":
+          description: Too Many Requests
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "500":
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "503":
+          description: Service Unavailable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+  /services/{serviceId}/jobs:
+    get:
+      tags:
+        - Jobs
+      summary: List jobs
+      description: >-
+        [https://api-docs.render.com/reference/list-job](https://api-docs.render.com/reference/list-job)
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: cursor
+          in: query
+          schema:
+            type: string
+          description: Cursor to begin retrieving entries for this query
+          example: Lorem amet sin
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          description: Max number of items that can be returned
+          example: "20"
+        - name: status
+          in: query
+          schema:
+            type: string
+          description: >-
+            Filter for the status of the job (`pending`, `running`, `succeeded`,
+            or `failed`)
+          example: pending,succeeded
+        - name: createdBefore
+          in: query
+          schema:
+            type: string
+          description: >-
+            Filter for jobs created before a certain time (specified as an ISO
+            8601 timestamp)
+          example: "2021-06-17T08:15:30Z"
+        - name: createdAfter
+          in: query
+          schema:
+            type: string
+          description: >-
+            Filter for jobs created after a certain time (specified as an ISO
+            8601 timestamp)
+          example: "2021-02-17T08:15:30Z"
+        - name: startedBefore
+          in: query
+          schema:
+            type: string
+          description: >-
+            Filter for jobs started before a certain time (specified as an ISO
+            8601 timestamp)
+          example: "2021-06-17T08:15:30Z"
+        - name: startedAfter
+          in: query
+          schema:
+            type: string
+          description: >-
+            Filter for jobs started after a certain time (specified as an ISO
+            8601 timestamp)
+          example: "2021-02-17T08:15:30Z"
+        - name: finishedBefore
+          in: query
+          schema:
+            type: string
+          description: >-
+            Filter for jobs finished before a certain time (specified as an ISO
+            8601 timestamp)
+          example: "2021-06-17T08:15:30Z"
+        - name: finishedAfter
+          in: query
+          schema:
+            type: string
+          description: >-
+            Filter for jobs finished after a certain time (specified as an ISO
+            8601 timestamp)
+          example: "2021-02-17T08:15:30Z"
+        - name: serviceId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: (Required) The ID of the service
+          example: Lorem amet sin
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                - job:
+                    id: job-xxxxx
+                    serviceId: srv-xxxxx
+                    startCommand: echo 'hello world'
+                    planId: plan-srv-004
+                    status: succeeded
+                    createdAt: "2021-07-15T07:20:05.777035-07:00"
+                    startedAt: "2021-07-15T07:20:05.777035-07:00"
+                    finishedAt: "2021-07-15T07:20:05.777035-07:00"
+                  cursor: abc123
+                - job:
+                    id: job-xxxxx
+                    serviceId: srv-xxxxx
+                    startCommand: echo 'hello world'
+                    planId: plan-srv-004
+                    status: succeeded
+                    createdAt: "2021-07-15T07:20:05.777035-07:00"
+                    startedAt: "2021-07-15T07:20:05.777035-07:00"
+                    finishedAt: "2021-07-15T07:20:05.777035-07:00"
+                  cursor: abc123
+        "400":
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "401":
+          description: Unauthorized
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "429":
+          description: Too Many Requests
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "500":
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "503":
+          description: Service Unavailable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+    post:
+      tags:
+        - Jobs
+      summary: Create job
+      description: >-
+        [https://api-docs.render.com/reference/post-job](https://api-docs.render.com/reference/post-job)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                startCommand: et ex Duis sit
+                planId: cupidatat Duis ad
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: serviceId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: (Required) The ID of the service
+          example: Lorem amet sin
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: job-xxxxx
+                serviceId: srv-xxxxx
+                startCommand: echo 'hello world'
+                planId: plan-srv-004
+                status: succeeded
+                createdAt: "2021-07-15T07:20:05.777035-07:00"
+                startedAt: "2021-07-15T07:20:05.777035-07:00"
+                finishedAt: "2021-07-15T07:20:05.777035-07:00"
+        "400":
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "401":
+          description: Unauthorized
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "429":
+          description: Too Many Requests
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "500":
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "503":
+          description: Service Unavailable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+  /services/{serviceId}/jobs/{jobId}:
+    get:
+      tags:
+        - Jobs
+      summary: Retrieve job
+      description: >-
+        [https://api-docs.render.com/reference/get-job](https://api-docs.render.com/reference/get-job)
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: serviceId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: (Required) The ID of the service
+          example: Lorem amet sin
+        - name: jobId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: (Required) The ID of the job
+          example: Lorem amet sin
+      responses:
+        "200":
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: job-xxxxx
+                serviceId: srv-xxxxx
+                startCommand: echo 'hello world'
+                planId: plan-srv-004
+                status: succeeded
+                createdAt: "2021-07-15T07:20:05.777035-07:00"
+                startedAt: "2021-07-15T07:20:05.777035-07:00"
+                finishedAt: "2021-07-15T07:20:05.777035-07:00"
+        "400":
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "401":
+          description: Unauthorized
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "404":
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "429":
+          description: Too Many Requests
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "500":
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor
+        "503":
+          description: Service Unavailable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: dolor
+                message: sunt Excepteur deserunt dolor

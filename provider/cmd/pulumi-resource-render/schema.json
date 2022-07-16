@@ -1,44 +1,261 @@
 {
     "name": "render",
-    "version": "0.0.1",
-    "resources": {
-        "render:index:Random": {
-            "properties": {
-                "length": {
-                    "type": "integer"
-                },
-                "result": {
-                    "type": "string"
-                }
-            },
-            "required": ["length", "result"],
-            "inputProperties": {
-                "length": {
-                    "type": "integer"
-                }
-            },
-            "requiredInputs": ["length"]
-        }
-    },
+    "displayName": "Render",
+    "description": "A Pulumi package for creating and managing Render resources.",
+    "keywords": [
+        "pulumi",
+        "render",
+        "category/cloud",
+        "kind/native"
+    ],
+    "homepage": "https://cloudysky.software",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/cloudy-sky-software/pulumi-render",
+    "publisher": "Cloudy Sky Software",
     "language": {
         "csharp": {
+            "namespaces": {
+                "": "Provider",
+                "render": "Render",
+                "services": "Services"
+            },
             "packageReferences": {
                 "Pulumi": "3.*"
             }
         },
         "go": {
-            "generateResourceContainerTypes": true,
             "importBasePath": "github.com/cloudy-sky-software/pulumi-render/sdk/go/render"
         },
         "nodejs": {
             "dependencies": {
-                "@pulumi/pulumi": "^3.0.0"
+                "@pulumi/pulumi": "^3.0.0",
+                "@types/glob": "^5.0.35",
+                "@types/node-fetch": "^2.1.4",
+                "@types/tmp": "^0.0.33",
+                "glob": "^7.1.2",
+                "node-fetch": "^2.3.0",
+                "shell-quote": "^1.6.1",
+                "tmp": "^0.0.33"
+            },
+            "devDependencies": {
+                "@types/mocha": "^5.2.5",
+                "@types/shell-quote": "^1.6.0",
+                "mocha": "^5.2.0"
             }
         },
         "python": {
             "requires": {
-                "pulumi": ">=3.0.0,<4.0.0"
+                "pulumi": "\u003e=3.0.0,\u003c4.0.0"
             }
+        }
+    },
+    "config": {
+        "variables": {
+            "apiKey": {
+                "type": "string",
+                "description": "The Render API key",
+                "language": {
+                    "csharp": {
+                        "name": "ApiKey"
+                    }
+                }
+            }
+        }
+    },
+    "types": {
+        "render:services:ServiceNotifyOnFail": {
+            "description": "The notification setting for this service upon deployment failure.",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Default",
+                    "value": "default"
+                },
+                {
+                    "name": "Notify",
+                    "value": "notify"
+                },
+                {
+                    "name": "Ignore",
+                    "value": "ignore"
+                }
+            ]
+        },
+        "render:services:ServiceSuspended": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Suspended",
+                    "value": "suspended"
+                },
+                {
+                    "name": "NotSuspended",
+                    "value": "not_suspended"
+                }
+            ]
+        },
+        "render:services:ServiceType": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "StaticSite",
+                    "value": "static_site"
+                },
+                {
+                    "name": "WebService",
+                    "value": "web_service"
+                },
+                {
+                    "name": "PrivateService",
+                    "value": "private_service"
+                },
+                {
+                    "name": "BackgroundWorker",
+                    "value": "background_worker"
+                },
+                {
+                    "name": "CronJob",
+                    "value": "cron_job"
+                }
+            ]
+        }
+    },
+    "provider": {
+        "description": "The provider type for the render package.",
+        "type": "object",
+        "inputProperties": {
+            "apiKey": {
+                "type": "string",
+                "description": "The Render API key.",
+                "defaultInfo": {
+                    "environment": [
+                        "RENDER_APIKEY"
+                    ]
+                },
+                "language": {
+                    "csharp": {
+                        "name": "ApiKey"
+                    }
+                }
+            }
+        }
+    },
+    "resources": {
+        "render:services:Service": {
+            "properties": {
+                "autoDeploy": {
+                    "type": "boolean",
+                    "description": "Whether to auto deploy the service or not upon git push."
+                },
+                "branch": {
+                    "type": "string",
+                    "description": "If left empty, this will fall back to the default branch of the repository"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The owner ID."
+                },
+                "name": {
+                    "type": "string"
+                },
+                "notifyOnFail": {
+                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
+                    "description": "The notification setting for this service upon deployment failure."
+                },
+                "ownerId": {
+                    "type": "string"
+                },
+                "repo": {
+                    "type": "string",
+                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                },
+                "serviceDetails": {
+                    "$ref": "pulumi.json#/Any"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "suspended": {
+                    "$ref": "#/types/render:services:ServiceSuspended"
+                },
+                "suspenders": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "type": {
+                    "$ref": "#/types/render:services:ServiceType"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "id",
+                "type",
+                "name",
+                "ownerId",
+                "repo"
+            ],
+            "inputProperties": {
+                "autoDeploy": {
+                    "type": "boolean",
+                    "description": "Whether to auto deploy the service or not upon git push."
+                },
+                "branch": {
+                    "type": "string",
+                    "description": "If left empty, this will fall back to the default branch of the repository"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "notifyOnFail": {
+                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
+                    "description": "The notification setting for this service upon deployment failure."
+                },
+                "ownerId": {
+                    "type": "string"
+                },
+                "repo": {
+                    "type": "string",
+                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                },
+                "serviceDetails": {
+                    "$ref": "pulumi.json#/Any"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "suspended": {
+                    "$ref": "#/types/render:services:ServiceSuspended"
+                },
+                "suspenders": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "type": {
+                    "$ref": "#/types/render:services:ServiceType"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            },
+            "requiredInputs": [
+                "name",
+                "ownerId",
+                "repo",
+                "type"
+            ]
         }
     }
 }

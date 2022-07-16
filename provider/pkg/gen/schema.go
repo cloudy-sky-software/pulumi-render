@@ -110,11 +110,11 @@ func PulumiSchema(openapiDoc openapi3.T) pschema.PackageSpec {
 	csharpNamespaces := map[string]string{
 		"render": "Render",
 		// TODO: Is this needed?
-		// "": "Provider",
+		"": "Provider",
 	}
 
 	getRootPath := func(path string) string {
-		parts := strings.Split(path, "/")
+		parts := strings.Split(strings.TrimPrefix(path, "/"), "/")
 		return parts[0]
 	}
 
@@ -122,26 +122,31 @@ func PulumiSchema(openapiDoc openapi3.T) pschema.PackageSpec {
 		if pathSchema.Post == nil {
 			continue
 		}
+		// TODO: TEMPORARY!
+		if path != "/services" {
+			continue
+		}
+		//
 
 		module := getRootPath(path)
 		jsonReq := pathSchema.Post.RequestBody.Value.Content.Get("application/json")
-		i, err := openapiDoc.Components.Schemas.JSONLookup(jsonReq.Schema.Ref)
-		if err != nil {
-			contract.Failf("Could not lookup the $ref: %s", jsonReq.Schema.Ref)
+
+		if jsonReq.Schema.Value == nil {
+			contract.Failf("Path %s has no schema definition", path)
 		}
 
-		resourceType := i.(openapi3.SchemaRef)
+		resourceType := jsonReq.Schema.Value
 		pkgCtx := &resourceContext{
 			mod:               module,
 			pkg:               &pkg,
-			resourceName:      resourceType.Value.Title,
+			resourceName:      resourceType.Title,
 			openapiComponents: openapiDoc.Components,
 			visitedTypes:      codegen.NewStringSet(),
 		}
 
 		inputProperties := make(map[string]pschema.PropertySpec)
 		properties := make(map[string]pschema.PropertySpec)
-		for propName, prop := range resourceType.Value.Properties {
+		for propName, prop := range resourceType.Properties {
 			propSpec := pkgCtx.genPropertySpec(propName, *prop)
 			if !prop.Value.ReadOnly {
 				inputProperties[propName] = propSpec
@@ -152,8 +157,8 @@ func PulumiSchema(openapiDoc openapi3.T) pschema.PackageSpec {
 		requiredInputs := codegen.NewStringSet()
 		// Create a set of required inputs for this resource.
 		// Filter out required props that are marked as read-only.
-		for _, requiredProp := range resourceType.Value.Required {
-			propSchema := resourceType.Value.Properties[requiredProp]
+		for _, requiredProp := range resourceType.Required {
+			propSchema := resourceType.Properties[requiredProp]
 			if propSchema.Value.ReadOnly {
 				continue
 			}
@@ -161,13 +166,13 @@ func PulumiSchema(openapiDoc openapi3.T) pschema.PackageSpec {
 			requiredInputs.Add(requiredProp)
 		}
 
-		typeToken := fmt.Sprintf("%s:%s:%s", packageName, module, resourceType.Value.Title)
+		typeToken := fmt.Sprintf("%s:%s:%s", packageName, module, resourceType.Title)
 		pkg.Resources[typeToken] = pschema.ResourceSpec{
 			ObjectTypeSpec: pschema.ObjectTypeSpec{
 				Description: pathSchema.Description,
 				Type:        "object",
 				Properties:  properties,
-				Required:    resourceType.Value.Required,
+				Required:    resourceType.Required,
 			},
 			InputProperties: inputProperties,
 			RequiredInputs:  requiredInputs.SortedValues(),
@@ -281,7 +286,7 @@ func (ctx *resourceContext) propertyTypeSpec(parentName string, propSchema opena
 		schemaName := strings.TrimPrefix(propSchema.Ref, "#/components/schemas/")
 		typName := schemaName
 		if !strings.HasPrefix(schemaName, ctx.resourceName) {
-			typName = fmt.Sprintf("%s%s", ctx.resourceName, schemaName)
+			typName = fmt.Sprintf("%s%s", ctx.resourceName, ToPascalCase(schemaName))
 		}
 		tok := fmt.Sprintf("%s:%s:%s", packageName, ctx.mod, typName)
 
@@ -370,23 +375,7 @@ func (ctx *resourceContext) propertyTypeSpec(parentName string, propSchema opena
 	case openapi3.TypeObject:
 		return &pschema.TypeSpec{Ref: "pulumi.json#/Any"}, nil
 	case openapi3.TypeArray:
-		schemaOrRef, err := ctx.openapiComponents.Schemas.JSONLookup(propSchema.Value.Items.Ref)
-		if err != nil {
-			contract.Failf("Failed to lookup array item type %s: %v", propSchema.Value.Items.Ref, err)
-		}
-
-		var schemaRef openapi3.SchemaRef
-		switch ty := schemaOrRef.(type) {
-		case *openapi3.Ref:
-			schemaRef = openapi3.SchemaRef{
-				Ref: ty.Ref,
-			}
-		case *openapi3.Schema:
-			schemaRef = openapi3.SchemaRef{
-				Value: ty,
-			}
-		}
-		elementType, err := ctx.propertyTypeSpec(parentName+"Item", schemaRef)
+		elementType, err := ctx.propertyTypeSpec(parentName+"Item", *propSchema.Value.Items)
 		if err != nil {
 			return nil, err
 		}
@@ -436,7 +425,7 @@ func (ctx *resourceContext) genEnumType(enumName string, propSchema openapi3.Sch
 	}
 	typName := enumName
 	if !strings.HasPrefix(enumName, ctx.resourceName) {
-		typName = ctx.resourceName + enumName
+		typName = ctx.resourceName + ToPascalCase(enumName)
 	}
 	switch ctx.mod + ":" + typName {
 	case "networkfirewall:RuleGroupType":

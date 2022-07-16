@@ -21,13 +21,16 @@ TESTPARALLELISM := 4
 ensure::
 	cd provider && go mod tidy -go=1.16 && go mod tidy -go=1.17
 	cd sdk && go mod tidy -go=1.16 && go mod tidy -go=1.17
-	cd tests && go mod tidy -go=1.16 && go mod tidy -go=1.17
 
 gen::
 	(cd provider && go build -o $(WORKING_DIR)/bin/${CODEGEN} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/$(CODEGEN))
 
+generate_schema::
+	echo "Generating Pulumi schema..."
+	$(WORKING_DIR)/bin/$(CODEGEN) schema $(SCHEMA_FILE) $(CURDIR)
+	echo "Finished generating schema."
+
 provider::
-	(cd provider && VERSION=${VERSION} go generate cmd/${PROVIDER}/main.go)
 	(cd provider && go build -o $(WORKING_DIR)/bin/${PROVIDER} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" $(PROJECT)/${PROVIDER_PATH}/cmd/$(PROVIDER))
 
 provider_debug::

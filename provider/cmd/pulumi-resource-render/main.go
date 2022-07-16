@@ -15,12 +15,17 @@
 package main
 
 import (
+	_ "embed"
+
 	"github.com/cloudy-sky-software/pulumi-render/provider/pkg/provider"
 	"github.com/cloudy-sky-software/pulumi-render/provider/pkg/version"
 )
 
 var providerName = "render"
 
+//go:embed schema.json
+var pulumiSchema []byte
+
 func main() {
-	provider.Serve(providerName, version.Version)
+	provider.Serve(providerName, version.Version, pulumiSchema)
 }

@@ -7,5 +7,5 @@ var service string
 
 // ApiVersionToExample contains Markdown-formatted examples corresponding to a k8s apiVersion.
 var ApiVersionToExample = map[string]string{
-	"render:index/service:Service": service,
+	"render:service:Service": service,
 }

@@ -23,6 +23,7 @@ import (
 	"github.com/pulumi/pulumi/pkg/v3/resource/provider"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
+
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
@@ -46,14 +47,24 @@ func makeProvider(host *provider.HostClient, name, version string) (pulumirpc.Re
 	}, nil
 }
 
+// Attach sends the engine address to an already running plugin.
+func (k *renderProvider) Attach(context context.Context, req *pulumirpc.PluginAttach) (*pbempty.Empty, error) {
+	host, err := provider.NewHostClient(req.GetAddress())
+	if err != nil {
+		return nil, err
+	}
+	k.host = host
+	return &pbempty.Empty{}, nil
+}
+
 // Call dynamically executes a method in the provider associated with a component resource.
 func (k *renderProvider) Call(ctx context.Context, req *pulumirpc.CallRequest) (*pulumirpc.CallResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "Call is not yet implemented")
+	return nil, status.Error(codes.Unimplemented, "call is not yet implemented")
 }
 
 // Construct creates a new component resource.
 func (k *renderProvider) Construct(ctx context.Context, req *pulumirpc.ConstructRequest) (*pulumirpc.ConstructResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "Construct is not yet implemented")
+	return nil, status.Error(codes.Unimplemented, "construct is not yet implemented")
 }
 
 // CheckConfig validates the configuration for this provider.
@@ -74,14 +85,14 @@ func (k *renderProvider) Configure(_ context.Context, req *pulumirpc.ConfigureRe
 // Invoke dynamically executes a built-in function in the provider.
 func (k *renderProvider) Invoke(_ context.Context, req *pulumirpc.InvokeRequest) (*pulumirpc.InvokeResponse, error) {
 	tok := req.GetTok()
-	return nil, fmt.Errorf("Unknown Invoke token '%s'", tok)
+	return nil, fmt.Errorf("unknown Invoke token '%s'", tok)
 }
 
 // StreamInvoke dynamically executes a built-in function in the provider. The result is streamed
 // back as a series of messages.
 func (k *renderProvider) StreamInvoke(req *pulumirpc.InvokeRequest, server pulumirpc.ResourceProvider_StreamInvokeServer) error {
 	tok := req.GetTok()
-	return fmt.Errorf("Unknown StreamInvoke token '%s'", tok)
+	return fmt.Errorf("unknown StreamInvoke token '%s'", tok)
 }
 
 // Check validates that the given property bag is valid for a resource of the given type and returns
@@ -91,22 +102,11 @@ func (k *renderProvider) StreamInvoke(req *pulumirpc.InvokeRequest, server pulum
 // required for correctness, violations thereof can negatively impact the end-user experience, as
 // the provider inputs are using for detecting and rendering diffs.
 func (k *renderProvider) Check(ctx context.Context, req *pulumirpc.CheckRequest) (*pulumirpc.CheckResponse, error) {
-	urn := resource.URN(req.GetUrn())
-	ty := urn.Type()
-	if ty != "render:index:Random" {
-		return nil, fmt.Errorf("Unknown resource type '%s'", ty)
-	}
 	return &pulumirpc.CheckResponse{Inputs: req.News, Failures: nil}, nil
 }
 
 // Diff checks what impacts a hypothetical update will have on the resource's properties.
 func (k *renderProvider) Diff(ctx context.Context, req *pulumirpc.DiffRequest) (*pulumirpc.DiffResponse, error) {
-	urn := resource.URN(req.GetUrn())
-	ty := urn.Type()
-	if ty != "render:index:Random" {
-		return nil, fmt.Errorf("Unknown resource type '%s'", ty)
-	}
-
 	olds, err := plugin.UnmarshalProperties(req.GetOlds(), plugin.MarshalOptions{KeepUnknowns: true, SkipNulls: true})
 	if err != nil {
 		return nil, err
@@ -131,19 +131,13 @@ func (k *renderProvider) Diff(ctx context.Context, req *pulumirpc.DiffRequest) (
 
 // Create allocates a new instance of the provided resource and returns its unique ID afterwards.
 func (k *renderProvider) Create(ctx context.Context, req *pulumirpc.CreateRequest) (*pulumirpc.CreateResponse, error) {
-	urn := resource.URN(req.GetUrn())
-	ty := urn.Type()
-	if ty != "render:index:Random" {
-		return nil, fmt.Errorf("Unknown resource type '%s'", ty)
-	}
-
 	inputs, err := plugin.UnmarshalProperties(req.GetProperties(), plugin.MarshalOptions{KeepUnknowns: true, SkipNulls: true})
 	if err != nil {
 		return nil, err
 	}
 
 	if !inputs["length"].IsNumber() {
-		return nil, fmt.Errorf("Expected input property 'length' of type 'number' but got '%s", inputs["length"].TypeString())
+		return nil, fmt.Errorf("expected input property 'length' of type 'number' but got '%s", inputs["length"].TypeString())
 	}
 
 	n := int(inputs["length"].NumberValue())
@@ -172,34 +166,21 @@ func (k *renderProvider) Create(ctx context.Context, req *pulumirpc.CreateReques
 // Read the current live state associated with a resource.
 func (k *renderProvider) Read(ctx context.Context, req *pulumirpc.ReadRequest) (*pulumirpc.ReadResponse, error) {
 	urn := resource.URN(req.GetUrn())
-	ty := urn.Type()
-	if ty != "render:index:Random" {
-		return nil, fmt.Errorf("Unknown resource type '%s'", ty)
-	}
-	return nil, status.Error(codes.Unimplemented, "Read is not yet implemented for 'render:index:Random'")
+	msg := fmt.Sprintf("Read is not yet implemented for %s", urn.Type())
+	return nil, status.Error(codes.Unimplemented, msg)
 }
 
 // Update updates an existing resource with new values.
 func (k *renderProvider) Update(ctx context.Context, req *pulumirpc.UpdateRequest) (*pulumirpc.UpdateResponse, error) {
 	urn := resource.URN(req.GetUrn())
-	ty := urn.Type()
-	if ty != "render:index:Random" {
-		return nil, fmt.Errorf("Unknown resource type '%s'", ty)
-	}
-
-	// Our Random resource will never be updated - if there is a diff, it will be a replacement.
-	return nil, status.Error(codes.Unimplemented, "Update is not yet implemented for 'render:index:Random'")
+	// Our example Random resource will never be updated - if there is a diff, it will be a replacement.
+	msg := fmt.Sprintf("Update is not yet implemented for %s", urn.Type())
+	return nil, status.Error(codes.Unimplemented, msg)
 }
 
 // Delete tears down an existing resource with the given ID.  If it fails, the resource is assumed
 // to still exist.
 func (k *renderProvider) Delete(ctx context.Context, req *pulumirpc.DeleteRequest) (*pbempty.Empty, error) {
-	urn := resource.URN(req.GetUrn())
-	ty := urn.Type()
-	if ty != "render:index:Random" {
-		return nil, fmt.Errorf("Unknown resource type '%s'", ty)
-	}
-
 	// Note that for our Random resource, we don't have to do anything on Delete.
 	return &pbempty.Empty{}, nil
 }

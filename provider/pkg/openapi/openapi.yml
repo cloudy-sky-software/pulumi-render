@@ -118,7 +118,7 @@ components:
           type: boolean
         branch:
           type: string
-          description: "If left empty, this will fall back to the default branch of the repository"
+          description: "If left empty, this will fall back to the default branch of the repository."
         createdAt:
           type: string
         name:

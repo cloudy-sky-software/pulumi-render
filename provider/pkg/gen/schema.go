@@ -22,22 +22,19 @@ import (
 	"strings"
 
 	"github.com/cloudy-sky-software/pulumi-render/provider/pkg/gen/examples"
+
 	"github.com/getkin/kin-openapi/openapi3"
+
 	"github.com/pkg/errors"
+
 	"github.com/pulumi/pulumi/pkg/v3/codegen"
 	dotnetgen "github.com/pulumi/pulumi/pkg/v3/codegen/dotnet"
-	"github.com/pulumi/pulumi/pkg/v3/codegen/schema"
 	pschema "github.com/pulumi/pulumi/pkg/v3/codegen/schema"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
 )
 
 const packageName = "render"
-
-// typeOverlays augment the types defined by the kubernetes schema.
-var typeOverlays = map[string]pschema.ComplexTypeSpec{}
-
-// resourceOverlays augment the resources defined by the kubernetes schema.
-var resourceOverlays = map[string]pschema.ResourceSpec{}
 
 type resourceContext struct {
 	mod               string
@@ -147,7 +144,7 @@ func PulumiSchema(openapiDoc openapi3.T) pschema.PackageSpec {
 		inputProperties := make(map[string]pschema.PropertySpec)
 		properties := make(map[string]pschema.PropertySpec)
 		for propName, prop := range resourceType.Properties {
-			propSpec := pkgCtx.genPropertySpec(propName, *prop)
+			propSpec := pkgCtx.genPropertySpec(ToPascalCase(propName), *prop)
 			if !prop.Value.ReadOnly {
 				inputProperties[propName] = propSpec
 			}
@@ -229,25 +226,25 @@ func PulumiSchema(openapiDoc openapi3.T) pschema.PackageSpec {
 	return pkg
 }
 
-func (ctx *resourceContext) genPropertySpec(propName string, p openapi3.SchemaRef) pschema.PropertySpec {
-	defaultValue := func() *string {
-		if p.Value.Default == nil {
-			return nil
-		}
-
-		// TODO: This typecast will likely fail if the default value
-		// is not a string.
-		dv := p.Value.Default.(string)
-		if len(dv) != 0 {
-			return &dv
-		}
+func defaultValue(p openapi3.SchemaRef) *string {
+	if p.Value.Default == nil {
 		return nil
 	}
 
+	// TODO: This typecast will likely fail if the default value
+	// is not a string.
+	dv := p.Value.Default.(string)
+	if len(dv) != 0 {
+		return &dv
+	}
+	return nil
+}
+
+func (ctx *resourceContext) genPropertySpec(propName string, p openapi3.SchemaRef) pschema.PropertySpec {
 	propertySpec := pschema.PropertySpec{
 		Description: p.Value.Description,
 	}
-	if dv := defaultValue(); dv != nil {
+	if dv := defaultValue(p); dv != nil {
 		propertySpec.Default = *dv
 	}
 	languageName := strings.ToUpper(propName[:1]) + propName[1:]
@@ -284,9 +281,9 @@ func (ctx *resourceContext) propertyTypeSpec(parentName string, propSchema opena
 	// References to other type definitions.
 	if propSchema.Ref != "" {
 		schemaName := strings.TrimPrefix(propSchema.Ref, "#/components/schemas/")
-		typName := schemaName
+		typName := ToPascalCase(schemaName)
 		if !strings.HasPrefix(schemaName, ctx.resourceName) {
-			typName = fmt.Sprintf("%s%s", ctx.resourceName, ToPascalCase(schemaName))
+			typName = fmt.Sprintf("%s%s", ctx.resourceName, typName)
 		}
 		tok := fmt.Sprintf("%s:%s:%s", packageName, ctx.mod, typName)
 
@@ -338,17 +335,27 @@ func (ctx *resourceContext) propertyTypeSpec(parentName string, propSchema opena
 	}
 
 	// Union types.
-	if len(propSchema.Value.AnyOf) > 0 {
+	if len(propSchema.Value.OneOf) > 0 {
 		var types []pschema.TypeSpec
-		for _, schemaRef := range propSchema.Value.AnyOf {
+		for _, schemaRef := range propSchema.Value.OneOf {
 			typ, err := ctx.propertyTypeSpec(parentName, *schemaRef)
 			if err != nil {
 				return nil, err
 			}
 			types = append(types, *typ)
 		}
+
+		var discriminator *pschema.DiscriminatorSpec
+		if propSchema.Value.Discriminator != nil {
+			discriminator = &pschema.DiscriminatorSpec{
+				PropertyName: propSchema.Value.Discriminator.PropertyName,
+				Mapping:      propSchema.Value.Discriminator.Mapping,
+			}
+		}
+
 		return &pschema.TypeSpec{
-			OneOf: types,
+			OneOf:         types,
+			Discriminator: discriminator,
 		}, nil
 	}
 
@@ -365,7 +372,7 @@ func (ctx *resourceContext) propertyTypeSpec(parentName string, propSchema opena
 	// All other types.
 	switch propSchema.Value.Type {
 	case openapi3.TypeInteger:
-		return &schema.TypeSpec{Type: "integer"}, nil
+		return &pschema.TypeSpec{Type: "integer"}, nil
 	case openapi3.TypeString:
 		return &pschema.TypeSpec{Type: "string"}, nil
 	case openapi3.TypeBoolean:
@@ -395,13 +402,16 @@ func (ctx *resourceContext) genProperties(parentName string, typeSchema openapi3
 		value := typeSchema.Properties[name]
 		sdkName := ToSdkName(name)
 
-		typeSpec, err := ctx.propertyTypeSpec(parentName+name, *value)
+		typeSpec, err := ctx.propertyTypeSpec(parentName+ToPascalCase(name), *value)
 		if err != nil {
 			return nil, nil, errors.Wrapf(err, "property %s", name)
 		}
 		propertySpec := pschema.PropertySpec{
 			Description: value.Value.Description,
 			TypeSpec:    *typeSpec,
+		}
+		if dv := defaultValue(*value); dv != nil {
+			propertySpec.Default = *dv
 		}
 
 		specs[sdkName] = propertySpec
@@ -423,14 +433,12 @@ func (ctx *resourceContext) genEnumType(enumName string, propSchema openapi3.Sch
 	if propSchema.Type != openapi3.TypeString {
 		return nil, nil
 	}
-	typName := enumName
+
+	typName := ToPascalCase(enumName)
 	if !strings.HasPrefix(enumName, ctx.resourceName) {
-		typName = ctx.resourceName + ToPascalCase(enumName)
+		typName = ctx.resourceName + enumName
 	}
-	switch ctx.mod + ":" + typName {
-	case "networkfirewall:RuleGroupType":
-		typName = "RuleGroupTypeEnum" // Go SDK name conflict vs. RuleGroup resource
-	}
+
 	tok := fmt.Sprintf("%s:%s:%s", packageName, ctx.mod, typName)
 
 	enumSpec := &pschema.ComplexTypeSpec{
@@ -465,16 +473,7 @@ func (ctx *resourceContext) genEnumType(enumName string, propSchema openapi3.Sch
 			same = same && values.Has(val.Name)
 		}
 		if !same {
-			switch tok {
-			case "aws-native:mediaconnect:FlowSourceProtocol":
-				// FlowSourceProtocol is defined in two resources and one is a subset of the other.
-				// They seem to be the same type. Pick the longer one here to avoid losing values.
-				if len(enumSpec.Enum) < len(other.Enum) {
-					enumSpec = &other
-				}
-			default:
-				return nil, errors.Errorf("duplicate enum %q: %+v vs. %+v", tok, enumSpec.Enum, other.Enum)
-			}
+			return nil, errors.Errorf("duplicate enum %q: %+v vs. %+v", tok, enumSpec.Enum, other.Enum)
 		}
 	}
 	ctx.pkg.Types[tok] = *enumSpec

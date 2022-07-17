@@ -81,6 +81,101 @@
                 }
             ]
         },
+        "render:services:ServiceServiceHeader": {
+            "description": "A service header object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "path",
+                "value"
+            ]
+        },
+        "render:services:ServiceStaticSite": {
+            "description": "A static website service",
+            "properties": {
+                "buildCommand": {
+                    "type": "string"
+                },
+                "headers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:ServiceServiceHeader"
+                    }
+                },
+                "publishPath": {
+                    "type": "string",
+                    "default": "public"
+                },
+                "pullRequestPreviewsEnabled": {
+                    "$ref": "#/types/render:services:ServiceStaticSitePullRequestPreviewsEnabled",
+                    "default": "no"
+                },
+                "routes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:ServiceStaticSiteRoute"
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "render:services:ServiceStaticSitePullRequestPreviewsEnabled": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
+        "render:services:ServiceStaticSiteRoute": {
+            "description": "A route object for a static site",
+            "properties": {
+                "destination": {
+                    "type": "string"
+                },
+                "source": {
+                    "type": "string"
+                },
+                "type": {
+                    "$ref": "#/types/render:services:ServiceStaticSiteRouteType"
+                }
+            },
+            "type": "object",
+            "required": [
+                "destination",
+                "source",
+                "type"
+            ]
+        },
+        "render:services:ServiceStaticSiteRouteType": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Redirect",
+                    "value": "redirect"
+                },
+                {
+                    "name": "Rewrite",
+                    "value": "rewrite"
+                }
+            ]
+        },
         "render:services:ServiceSuspended": {
             "type": "string",
             "enum": [
@@ -173,7 +268,17 @@
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
                 },
                 "serviceDetails": {
-                    "$ref": "pulumi.json#/Any"
+                    "oneOf": [
+                        {
+                            "$ref": "#/types/render:services:ServiceStaticSite"
+                        }
+                    ],
+                    "discriminator": {
+                        "propertyName": "type",
+                        "mapping": {
+                            "static_site": "#/components/schemas/staticSite"
+                        }
+                    }
                 },
                 "slug": {
                     "type": "string"
@@ -229,7 +334,17 @@
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
                 },
                 "serviceDetails": {
-                    "$ref": "pulumi.json#/Any"
+                    "oneOf": [
+                        {
+                            "$ref": "#/types/render:services:ServiceStaticSite"
+                        }
+                    ],
+                    "discriminator": {
+                        "propertyName": "type",
+                        "mapping": {
+                            "static_site": "#/components/schemas/staticSite"
+                        }
+                    }
                 },
                 "slug": {
                     "type": "string"

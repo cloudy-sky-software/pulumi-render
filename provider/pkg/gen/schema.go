@@ -219,8 +219,6 @@ func PulumiSchema(openapiDoc openapi3.T) pschema.PackageSpec {
 		"requires": map[string]string{
 			"pulumi": ">=3.0.0,<4.0.0",
 		},
-		// TODO: What does this enable?
-		// "usesIOClasses":       true,
 	})
 
 	return pkg

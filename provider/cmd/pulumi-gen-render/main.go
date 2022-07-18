@@ -15,6 +15,8 @@
 package main
 
 import (
+	_ "embed"
+
 	"encoding/json"
 	"flag"
 	"fmt"
@@ -35,6 +37,9 @@ import (
 
 	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
 )
+
+//go:embed openapi.yml
+var openapiDocBytes []byte
 
 // TemplateDir is the path to the base directory for code generator templates.
 var TemplateDir string
@@ -92,10 +97,17 @@ func main() {
 	case Go:
 		writeGoClient(schema, outdir)
 	case Schema:
-		openapiDoc := providerOpenAPI.GetOpenAPISpec()
-		schemaSpec := providerSchemaGen.PulumiSchema(*openapiDoc)
+		openapiDoc := providerOpenAPI.GetOpenAPISpec(openapiDocBytes)
+		schemaSpec, metadata := providerSchemaGen.PulumiSchema(*openapiDoc)
 		providerDir := filepath.Join(".", "provider", "cmd", "pulumi-resource-render")
 		mustWritePulumiSchema(schemaSpec, providerDir)
+
+		// Write the metadata.json file as well.
+		metadataBytes, _ := json.Marshal(metadata)
+		mustWriteFile(providerDir, "metadata.json", metadataBytes)
+
+		// Also copy the raw OpenAPI spec file to the provider dir.
+		mustWriteFile(providerDir, "openapi.yml", openapiDocBytes)
 	default:
 		panic(fmt.Sprintf("Unrecognized language '%s'", language))
 	}

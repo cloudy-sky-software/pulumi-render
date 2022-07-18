@@ -26,6 +26,12 @@ var providerName = "render"
 //go:embed schema.json
 var pulumiSchema []byte
 
+//go:embed openapi.yml
+var openapiDocBytes []byte
+
+//go:embed metadata.json
+var metadataBytes []byte
+
 func main() {
-	provider.Serve(providerName, version.Version, pulumiSchema)
+	provider.Serve(providerName, version.Version, pulumiSchema, openapiDocBytes, metadataBytes)
 }

@@ -1,13 +1,20 @@
 package gen
 
 import (
+	"os"
+	"path/filepath"
 	"testing"
 
 	"github.com/cloudy-sky-software/pulumi-render/provider/pkg/openapi"
 )
 
 func TestPulumiSchema(t *testing.T) {
-	oaSpec := openapi.GetOpenAPISpec()
+	b, err := os.ReadFile(filepath.Join("..", "..", "cmd", "pulumi-gen-render", "openapi.yml"))
+	if err != nil {
+		t.Fatalf("Failed reading openapi.yml: %v", err)
+	}
+
+	oaSpec := openapi.GetOpenAPISpec(b)
 
 	PulumiSchema(*oaSpec)
 }

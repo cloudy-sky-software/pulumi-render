@@ -36,6 +36,12 @@ import (
 
 const packageName = "render"
 
+type OperationMap map[string]string
+
+type ProviderMetadata struct {
+	OperationMap OperationMap `json:"operationMap"`
+}
+
 type resourceContext struct {
 	mod               string
 	pkg               *pschema.PackageSpec
@@ -45,7 +51,9 @@ type resourceContext struct {
 }
 
 // PulumiSchema will generate a Pulumi schema for the given k8s schema.
-func PulumiSchema(openapiDoc openapi3.T) pschema.PackageSpec {
+func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata) {
+	operationMap := make(map[string]string)
+
 	pkg := pschema.PackageSpec{
 		Name:        packageName,
 		Description: "A Pulumi package for creating and managing Render resources.",
@@ -116,9 +124,11 @@ func PulumiSchema(openapiDoc openapi3.T) pschema.PackageSpec {
 	}
 
 	for path, pathSchema := range openapiDoc.Paths {
+		// TODO: Only handle creates for now.
 		if pathSchema.Post == nil {
 			continue
 		}
+
 		// TODO: TEMPORARY!
 		if path != "/services" {
 			continue
@@ -163,7 +173,24 @@ func PulumiSchema(openapiDoc openapi3.T) pschema.PackageSpec {
 			requiredInputs.Add(requiredProp)
 		}
 
+		// If this endpoint path has path parameters,
+		// then those should be required inputs too.
+		for _, param := range pathSchema.Parameters {
+			if param.Value.In != "path" {
+				continue
+			}
+
+			paramName := param.Value.Name
+			inputProperties[paramName] = pschema.PropertySpec{
+				Description: param.Value.Description,
+				TypeSpec:    pschema.TypeSpec{Type: "string"},
+			}
+			requiredInputs.Add(paramName)
+		}
+
 		typeToken := fmt.Sprintf("%s:%s:%s", packageName, module, resourceType.Title)
+		// TODO: Since we are only handling creates, assume this
+		// is a resource. (Otherwise, it could be an invoke/function.)
 		pkg.Resources[typeToken] = pschema.ResourceSpec{
 			ObjectTypeSpec: pschema.ObjectTypeSpec{
 				Description: pathSchema.Description,
@@ -175,6 +202,7 @@ func PulumiSchema(openapiDoc openapi3.T) pschema.PackageSpec {
 			RequiredInputs:  requiredInputs.SortedValues(),
 		}
 
+		operationMap[typeToken] = path
 		csharpNamespaces[module] = ToPascalCase(module)
 	}
 
@@ -221,7 +249,7 @@ func PulumiSchema(openapiDoc openapi3.T) pschema.PackageSpec {
 		},
 	})
 
-	return pkg
+	return pkg, ProviderMetadata{OperationMap: operationMap}
 }
 
 func defaultValue(p openapi3.SchemaRef) *string {

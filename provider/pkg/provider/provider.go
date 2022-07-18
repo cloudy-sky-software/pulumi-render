@@ -15,19 +15,34 @@
 package provider
 
 import (
+	"bytes"
 	"context"
+	"encoding/json"
 	"fmt"
-	"math/rand"
-	"time"
+	"io/ioutil"
+	"net/http"
+	"os"
+	"strings"
 
+	"github.com/getkin/kin-openapi/openapi3"
+	"github.com/getkin/kin-openapi/openapi3filter"
+	"github.com/getkin/kin-openapi/routers"
+	"github.com/getkin/kin-openapi/routers/gorillamux"
+
+	"github.com/pkg/errors"
+
+	pschema "github.com/pulumi/pulumi/pkg/v3/codegen/schema"
 	"github.com/pulumi/pulumi/pkg/v3/resource/provider"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
+	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
+
+	providerGen "github.com/cloudy-sky-software/pulumi-render/provider/pkg/gen"
+	providerOpenAPI "github.com/cloudy-sky-software/pulumi-render/provider/pkg/openapi"
 
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
-
-	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
 
 	pbempty "github.com/golang/protobuf/ptypes/empty"
 )
@@ -36,16 +51,53 @@ type renderProvider struct {
 	host    *provider.HostClient
 	name    string
 	version string
-	schema  []byte
+	schema  pschema.PackageSpec
+
+	baseURL    string
+	openapiDoc openapi3.T
+	metadata   providerGen.ProviderMetadata
+	router     routers.Router
+
+	httpClient http.Client
+	apiKey     string
 }
 
-func makeProvider(host *provider.HostClient, name, version string, pulumiSchema []byte) (pulumirpc.ResourceProviderServer, error) {
+func makeProvider(host *provider.HostClient, name, version string, pulumiSchemaBytes, openapiDocBytes, metadataBytes []byte) (pulumirpc.ResourceProviderServer, error) {
+	openapiDoc := providerOpenAPI.GetOpenAPISpec(openapiDocBytes)
+
+	router, err := gorillamux.NewRouter(openapiDoc)
+	if err != nil {
+		return nil, errors.Wrap(err, "creating api router mux")
+	}
+
+	var metadata providerGen.ProviderMetadata
+	if err := json.Unmarshal(metadataBytes, &metadata); err != nil {
+		return nil, errors.Wrap(err, "unmarshaling the metadata bytes to json")
+	}
+
+	httpClient := http.Client{
+		Transport: http.DefaultTransport,
+		CheckRedirect: func(req *http.Request, via []*http.Request) error {
+			return errors.New("unable to handle redirects")
+		},
+	}
+
+	var pulumiSchema pschema.PackageSpec
+	if err := json.Unmarshal(pulumiSchemaBytes, &pulumiSchema); err != nil {
+		return nil, errors.Wrap(err, "unmarshaling pulumi schema into its package spec form")
+	}
+
 	// Return the new provider
 	return &renderProvider{
-		host:    host,
-		name:    name,
-		version: version,
-		schema:  pulumiSchema,
+		host:       host,
+		name:       name,
+		version:    version,
+		schema:     pulumiSchema,
+		baseURL:    openapiDoc.Servers[0].URL,
+		openapiDoc: *openapiDoc,
+		metadata:   metadata,
+		router:     router,
+		httpClient: httpClient,
 	}, nil
 }
 
@@ -81,6 +133,25 @@ func (p *renderProvider) DiffConfig(ctx context.Context, req *pulumirpc.DiffRequ
 
 // Configure configures the resource provider with "globals" that control its behavior.
 func (p *renderProvider) Configure(_ context.Context, req *pulumirpc.ConfigureRequest) (*pulumirpc.ConfigureResponse, error) {
+	apiKey, ok := req.GetVariables()["render:config:apiKey"]
+	if !ok {
+		// Check if it's set as an env var.
+		envVarNames := p.schema.Provider.InputProperties["apiKey"].DefaultInfo.Environment
+		for _, n := range envVarNames {
+			v := os.Getenv(n)
+			if v != "" {
+				apiKey = v
+			}
+		}
+
+		// Return an error if the API key is still empty.
+		if apiKey == "" {
+			return nil, errors.New("api key is required")
+		}
+	}
+
+	p.apiKey = apiKey
+
 	return &pulumirpc.ConfigureResponse{}, nil
 }
 
@@ -102,7 +173,7 @@ func (p *renderProvider) StreamInvoke(req *pulumirpc.InvokeRequest, server pulum
 // resource. As a rule, the provider inputs returned by a call to Check should preserve the original
 // representation of the properties as present in the program inputs. Though this rule is not
 // required for correctness, violations thereof can negatively impact the end-user experience, as
-// the provider inputs are using for detecting and rendering diffs.
+// the provider inputs are used for detecting and rendering diffs.
 func (p *renderProvider) Check(ctx context.Context, req *pulumirpc.CheckRequest) (*pulumirpc.CheckResponse, error) {
 	return &pulumirpc.CheckResponse{Inputs: req.News, Failures: nil}, nil
 }
@@ -120,14 +191,19 @@ func (p *renderProvider) Diff(ctx context.Context, req *pulumirpc.DiffRequest) (
 	}
 
 	d := olds.Diff(news)
-	changes := pulumirpc.DiffResponse_DIFF_NONE
-	if d.Changed("length") {
-		changes = pulumirpc.DiffResponse_DIFF_SOME
+	if d == nil || !d.AnyChanges() {
+		return &pulumirpc.DiffResponse{Changes: pulumirpc.DiffResponse_DIFF_NONE}, nil
+	}
+
+	changes := pulumirpc.DiffResponse_DIFF_SOME
+	replaces := make([]string, 0)
+	if _, ok := d.Updates["name"]; ok {
+		replaces = append(replaces, "name")
 	}
 
 	return &pulumirpc.DiffResponse{
 		Changes:  changes,
-		Replaces: []string{"length"},
+		Replaces: replaces,
 	}, nil
 }
 
@@ -138,17 +214,85 @@ func (p *renderProvider) Create(ctx context.Context, req *pulumirpc.CreateReques
 		return nil, err
 	}
 
-	if !inputs["length"].IsNumber() {
-		return nil, fmt.Errorf("expected input property 'length' of type 'number' but got '%s", inputs["length"].TypeString())
+	urn := req.GetUrn()
+	parts := strings.Split(urn, "$")
+	resourceTypeAndName := strings.Split(parts[1], "::")
+	resourceTypeToken := resourceTypeAndName[0]
+	op, ok := p.metadata.OperationMap[resourceTypeToken]
+	if !ok {
+		return nil, errors.Errorf("unknown resource type %s", resourceTypeToken)
 	}
 
-	n := int(inputs["length"].NumberValue())
+	b, err := json.Marshal(inputs)
+	if err != nil {
+		return nil, errors.Wrap(err, "marshaling inputs")
+	}
 
-	// Actually "create" the random number
-	result := makeRandom(n)
+	buf := bytes.NewBuffer(b)
+	httpReq, err := http.NewRequestWithContext(ctx, "POST", p.baseURL+"/"+op, buf)
+	if err != nil {
+		return nil, errors.Wrap(err, "initializing request")
+	}
+
+	// Set the API key in the auth header.
+	httpReq.Header.Add("Authorization", fmt.Sprintf("Bearer %s", p.apiKey))
+
+	route, _, err := p.router.FindRoute(httpReq)
+	if err != nil {
+		return nil, errors.Wrap(err, "finding route from router")
+	}
+
+	hasPathParams := strings.Contains(op, "{")
+	pathParams := make(map[string]string)
+	// If the endpoint has path params, peek into
+	// the OpenAPI doc for the param names.
+	if hasPathParams {
+		for _, param := range p.openapiDoc.Paths[op].Post.Parameters {
+			if param.Value.In != "path" {
+				continue
+			}
+
+			paramName := param.Value.Name
+			input := inputs[resource.PropertyKey(paramName)]
+			if input.IsComputed() {
+				pathParams[paramName] = input.Input().Element.StringValue()
+			} else {
+				pathParams[paramName] = input.StringValue()
+			}
+		}
+
+		if len(pathParams) == 0 {
+			return nil, errors.Errorf("could not find path parameters in the openapi doc for %s", resourceTypeToken)
+		}
+	}
+
+	// Validate request
+	requestValidationInput := &openapi3filter.RequestValidationInput{
+		Request:    httpReq,
+		PathParams: pathParams,
+		Route:      route,
+	}
+	if err := openapi3filter.ValidateRequest(ctx, requestValidationInput); err != nil {
+		return nil, errors.Wrap(err, "request validation failed")
+	}
+
+	// Create the resource.
+	httpResp, err := p.httpClient.Do(httpReq)
+	if err != nil {
+		return nil, errors.Wrap(err, "creating the resource")
+	}
+
+	body, err := ioutil.ReadAll(httpResp.Body)
+	if err != nil {
+		return nil, errors.Wrap(err, "reading response body")
+	}
+
+	var result map[string]interface{}
+	if err := json.Unmarshal(body, &result); err != nil {
+		return nil, errors.Wrap(err, "unmarshaling the response")
+	}
 
 	outputs := map[string]interface{}{
-		"length": n,
 		"result": result,
 	}
 
@@ -157,10 +301,16 @@ func (p *renderProvider) Create(ctx context.Context, req *pulumirpc.CreateReques
 		plugin.MarshalOptions{KeepUnknowns: true, SkipNulls: true},
 	)
 	if err != nil {
-		return nil, err
+		return nil, errors.Wrap(err, "marshaling the output properties map")
 	}
+
+	id, ok := result["id"]
+	if !ok {
+		return nil, errors.New("resource may have been created successfully but the id was not present in the response")
+	}
+
 	return &pulumirpc.CreateResponse{
-		Id:         result,
+		Id:         id.(string), // ID's in Render are always strings.
 		Properties: outputProperties,
 	}, nil
 }
@@ -207,15 +357,4 @@ func (p *renderProvider) GetSchema(ctx context.Context, req *pulumirpc.GetSchema
 func (p *renderProvider) Cancel(context.Context, *pbempty.Empty) (*pbempty.Empty, error) {
 	// TODO
 	return &pbempty.Empty{}, nil
-}
-
-func makeRandom(length int) string {
-	seededRand := rand.New(rand.NewSource(time.Now().UnixNano()))
-	charset := []rune("abcdefghijklmnopqrstuvwrenderABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
-
-	result := make([]rune, length)
-	for i := range result {
-		result[i] = charset[seededRand.Intn(len(charset))]
-	}
-	return string(result)
 }

@@ -1,8 +1,6 @@
 package openapi
 
 import (
-	_ "embed"
-
 	"context"
 
 	"github.com/getkin/kin-openapi/openapi3"
@@ -10,13 +8,10 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
 )
 
-//go:embed openapi.yml
-var openapi []byte
-
 // GetOpenAPISpec read the openapi.yml spec file,
 // validates it and returns the parsed doc.
-func GetOpenAPISpec() *openapi3.T {
-	doc, err := openapi3.NewLoader().LoadFromData(openapi)
+func GetOpenAPISpec(data []byte) *openapi3.T {
+	doc, err := openapi3.NewLoader().LoadFromData(data)
 	if err != nil {
 		contract.Failf("Failed to load openapi.yml: %v", err)
 	}

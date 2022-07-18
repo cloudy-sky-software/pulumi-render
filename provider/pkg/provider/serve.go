@@ -21,10 +21,10 @@ import (
 )
 
 // Serve launches the gRPC server for the resource provider.
-func Serve(providerName, version string, pulumiSchema []byte) {
+func Serve(providerName, version string, pulumiSchema, openapiDocBytes, metadataBytes []byte) {
 	// Start gRPC service.
 	err := provider.Main(providerName, func(host *provider.HostClient) (rpc.ResourceProviderServer, error) {
-		return makeProvider(host, providerName, version, pulumiSchema)
+		return makeProvider(host, providerName, version, pulumiSchema, openapiDocBytes, metadataBytes)
 	})
 	if err != nil {
 		cmdutil.ExitError(err.Error())

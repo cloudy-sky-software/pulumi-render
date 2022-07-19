@@ -101,6 +101,19 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/serviceHeader"
+        parentServer:
+          type: object
+          readOnly: true
+          properties:
+            id:
+              type: string
+              readOnly: true
+            name:
+              type: string
+              readOnly: true
+          required:
+            - "id"
+            - "name"
         publishPath:
           type: string
           default: "public"
@@ -112,6 +125,11 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/staticSiteRoute"
+        url:
+          type: string
+          readOnly: true
+      required:
+        - "url"
     patchStaticSite:
       title: "Static Site PATCH"
       description: "The PATCH object to update a static website service"
@@ -126,6 +144,16 @@ components:
           type: string
           default: "no"
           enum: ["yes", "no"]
+    secretFile:
+      type: object
+      properties:
+        name:
+          type: string
+        contents:
+          type: string
+      required:
+        - "name"
+        - "contents"
     service:
       title: "Service"
       description: "The service object represents a service. The type of service is discriminated by the type property which determines the type of object in the serviceDetails property."
@@ -143,11 +171,13 @@ components:
           description: "If left empty, this will fall back to the default branch of the repository."
         createdAt:
           type: string
+          readOnly: true
         name:
           type: string
         notifyOnFail:
           description: The notification setting for this service upon deployment failure.
           type: string
+          readOnly: true
           enum: ["default", "notify", "ignore"]
         ownerId:
           type: string
@@ -157,11 +187,14 @@ components:
           description: "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
         slug:
           type: string
+          readOnly: true
         suspended:
           type: string
+          readOnly: true
           enum: ["suspended", "not_suspended"]
         suspenders:
           type: array
+          readOnly: true
           items:
             type: string
         type:
@@ -176,6 +209,7 @@ components:
             ]
         updatedAt:
           type: string
+          readOnly: true
         serviceDetails:
           type: object
           discriminator:

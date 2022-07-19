@@ -99,6 +99,7 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata)
 							"name": "ApiKey",
 						}),
 					},
+					Secret: true,
 				},
 				"clearCacheOnServiceUpdateDeployments": {
 					Description: "When a service is updated, a deployment is automatically triggered. This variable controls whether or not the service cache should be cleared upon deployment.",
@@ -132,6 +133,7 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata)
 							"name": "ApiKey",
 						}),
 					},
+					Secret: true,
 				},
 			},
 		},

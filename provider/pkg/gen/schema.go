@@ -42,14 +42,17 @@ type OperationMap map[string]string
 // CRUDOperationsMap identifies the endpoints to perform
 // create, read, update and delete (CRUD) operations.
 type CRUDOperationsMap struct {
-	// C represents the endpoint that handles the creation.
+	// C represents the POST (create) endpoint.
 	C *string `json:"c,omitempty"`
-	// R represents the endpoint that handles the read.
+	// R represents the GET (read) endpoint.
 	R *string `json:"r,omitempty"`
-	// U represents the endpoint that handles the update.
+	// U represents the PATCH endpoint.
 	U *string `json:"u,omitempty"`
-	// D represents the endpoint that handles the deletion.
+	// D represents the DELETE endpoint.
 	D *string `json:"d,omitempty"`
+
+	// P represents the PUT (overwrite/update) endpoint.
+	P *string `json:"p,omitempty"`
 }
 
 type ProviderMetadata struct {
@@ -100,7 +103,7 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata)
 				"clearCacheOnUpdateDeployments": {
 					Description: "When a service is updated, a deployment is automatically triggered. This variable controls whether or not the service cache should be cleared upon deployment.",
 					Default:     "do_not_clear",
-					TypeSpec:    pschema.TypeSpec{Ref: "#/types/render:service:ServiceDeployClearCache"},
+					TypeSpec:    pschema.TypeSpec{Ref: "#/types/render:services:DeployClearCache"},
 					Language: map[string]pschema.RawMessage{
 						"csharp": rawMessage(map[string]interface{}{
 							"name": "ClearCacheOnDeploys",
@@ -133,23 +136,7 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata)
 			},
 		},
 
-		Types: map[string]pschema.ComplexTypeSpec{
-			"render:service:ServiceDeployClearCache": {
-				Enum: []pschema.EnumValueSpec{
-					{
-						Name:  "clear",
-						Value: "clear",
-					},
-					{
-						Name:  "do_not_clear",
-						Value: "do_not_clear",
-					},
-				},
-				ObjectTypeSpec: pschema.ObjectTypeSpec{
-					Type: "string",
-				},
-			},
-		},
+		Types:     map[string]pschema.ComplexTypeSpec{},
 		Resources: map[string]pschema.ResourceSpec{},
 		Functions: map[string]pschema.FunctionSpec{},
 		Language:  map[string]pschema.RawMessage{},
@@ -186,7 +173,9 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata)
 		module := getRootPath(currentPath)
 
 		// TODO: TEMPORARY!
-		if currentPath != "/services" && currentPath != "/services/{serviceId}" {
+		if currentPath == "/services/{serviceId}/resume" ||
+			strings.HasPrefix(currentPath, "/services/{serviceId}/jobs") ||
+			currentPath == "/services/{serviceId}/custom-domains/{customDomainIdOrName}/verify" {
 			continue
 		}
 		//
@@ -195,7 +184,7 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata)
 
 		if pathSchema.Get != nil {
 			parentPath := getParentPath(currentPath)
-			glog.V(3).Infof("GET Parent path for %s is %s\n", currentPath, parentPath)
+			glog.V(3).Infof("GET: Parent path for %s is %s\n", currentPath, parentPath)
 
 			jsonReq := pathSchema.Get.Responses.Get(200).Value.Content.Get("application/json")
 			if jsonReq.Schema.Value == nil {
@@ -213,18 +202,16 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata)
 					}
 				}
 			}
-			// TODO: Need an else-condition here.
-			// We'll need to handle this as an invoke/function
-			// when the type is array.
+			// TODO: We'll should also add this as get*/list* provider functions.
 		}
 
 		if pathSchema.Patch != nil {
 			parentPath := getParentPath(currentPath)
-			glog.V(3).Infof("PATCH Parent path for %s is %s\n", currentPath, parentPath)
+			glog.V(3).Infof("PATCH: Parent path for %s is %s\n", currentPath, parentPath)
 
 			jsonReq := pathSchema.Patch.RequestBody.Value.Content.Get("application/json")
 			if jsonReq.Schema.Value == nil {
-				contract.Failf("Path %s has no schema definition for application/json", currentPath)
+				contract.Failf("Path %s has no schema definition for Patch method", currentPath)
 			}
 
 			resourceType := jsonReq.Schema.Value
@@ -238,13 +225,33 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata)
 			}
 		}
 
+		if pathSchema.Put != nil {
+			parentPath := getParentPath(currentPath)
+			glog.V(3).Infof("PUT: Parent path for %s is %s\n", currentPath, parentPath)
+
+			jsonReq := pathSchema.Put.RequestBody.Value.Content.Get("application/json")
+			if jsonReq.Schema.Value == nil {
+				contract.Failf("Path %s has no schema definition for Put method", currentPath)
+			}
+
+			resourceType := jsonReq.Schema.Value
+			typeToken := fmt.Sprintf("%s:%s:%s", packageName, module, resourceType.Title)
+			if existing, ok := resourceCRUDMap[typeToken]; ok {
+				existing.P = &currentPath
+			} else {
+				resourceCRUDMap[typeToken] = &CRUDOperationsMap{
+					P: &currentPath,
+				}
+			}
+		}
+
 		if pathSchema.Delete != nil {
 			parentPath := getParentPath(currentPath)
-			glog.V(3).Infof("DELETE Parent path for %s is %s\n", currentPath, parentPath)
+			glog.V(3).Infof("DELETE: Parent path for %s is %s\n", currentPath, parentPath)
 
 			jsonReq := openapiDoc.Paths[parentPath].Post.RequestBody.Value.Content.Get("application/json")
 			if jsonReq.Schema.Value == nil {
-				contract.Failf("Path %s has no schema definition for application/json", parentPath)
+				contract.Failf("Path %s has no schema definition for Delete method", parentPath)
 			}
 
 			resourceType := jsonReq.Schema.Value
@@ -265,7 +272,8 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata)
 
 		jsonReq := pathSchema.Post.RequestBody.Value.Content.Get("application/json")
 		if jsonReq.Schema.Value == nil {
-			contract.Failf("Path %s has no schema definition for application/json", currentPath)
+			glog.Warningf("Path %s has no schema definition for Post method", currentPath)
+			continue
 		}
 
 		resourceType := jsonReq.Schema.Value

@@ -61,7 +61,7 @@
                 }
             },
             "clearCacheOnUpdateDeployments": {
-                "$ref": "#/types/render:service:ServiceDeployClearCache",
+                "$ref": "#/types/render:services:DeployClearCache",
                 "description": "When a service is updated, a deployment is automatically triggered. This variable controls whether or not the service cache should be cleared upon deployment.",
                 "default": "do_not_clear",
                 "language": {
@@ -73,17 +73,77 @@
         }
     },
     "types": {
-        "render:service:ServiceDeployClearCache": {
+        "render:services:CustomDomainDomainType": {
             "type": "string",
             "enum": [
                 {
-                    "name": "clear",
-                    "value": "clear"
+                    "name": "Apex",
+                    "value": "apex"
                 },
                 {
-                    "name": "do_not_clear",
-                    "value": "do_not_clear"
+                    "name": "Subdomain",
+                    "value": "subdomain"
                 }
+            ]
+        },
+        "render:services:CustomDomainVerificationStatus": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Verified",
+                    "value": "verified"
+                },
+                {
+                    "name": "Unverified",
+                    "value": "unverified"
+                }
+            ]
+        },
+        "render:services:DeployClearCache": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "DoNotClear",
+                    "value": "do_not_clear"
+                },
+                {
+                    "name": "Clear",
+                    "value": "clear"
+                }
+            ]
+        },
+        "render:services:DeployCommit": {
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "createdAt",
+                "id",
+                "message"
+            ]
+        },
+        "render:services:ServerProperties": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "id",
+                "name"
             ]
         },
         "render:services:ServiceNotifyOnFail": {
@@ -259,6 +319,108 @@
         }
     },
     "resources": {
+        "render:services:CustomDomain": {
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "domainType": {
+                    "$ref": "#/types/render:services:CustomDomainDomainType"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "publicSuffix": {
+                    "type": "string"
+                },
+                "redirectForName": {
+                    "type": "string"
+                },
+                "server": {
+                    "$ref": "#/types/render:services:ServerProperties"
+                },
+                "verificationStatus": {
+                    "$ref": "#/types/render:services:CustomDomainVerificationStatus"
+                }
+            },
+            "type": "object",
+            "required": [
+                "id",
+                "name",
+                "domainType",
+                "redirectForName",
+                "verificationStatus",
+                "createdAt",
+                "server"
+            ],
+            "inputProperties": {
+                "name": {
+                    "type": "string"
+                },
+                "server": {
+                    "$ref": "#/types/render:services:ServerProperties"
+                }
+            },
+            "requiredInputs": [
+                "name",
+                "server"
+            ]
+        },
+        "render:services:Deploy": {
+            "properties": {
+                "clearCache": {
+                    "$ref": "#/types/render:services:DeployClearCache",
+                    "default": "do_not_clear"
+                },
+                "commit": {
+                    "$ref": "#/types/render:services:DeployCommit"
+                },
+                "id": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "id",
+                "commit",
+                "clearCache"
+            ],
+            "inputProperties": {
+                "clearCache": {
+                    "$ref": "#/types/render:services:DeployClearCache",
+                    "default": "do_not_clear"
+                },
+                "commit": {
+                    "$ref": "#/types/render:services:DeployCommit"
+                }
+            },
+            "requiredInputs": [
+                "clearCache",
+                "commit"
+            ]
+        },
+        "render:services:Scale": {
+            "properties": {
+                "numInstances": {
+                    "type": "number"
+                }
+            },
+            "type": "object",
+            "required": [
+                "numInstances"
+            ],
+            "inputProperties": {
+                "numInstances": {
+                    "type": "number"
+                }
+            },
+            "requiredInputs": [
+                "numInstances"
+            ]
+        },
         "render:services:Service": {
             "description": "\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n### Create a service\n```typescript\nimport * as render from \"@pulumi/render\";\n\n// TODO: Fill me in!\nconst service = new render.Service(\"staticSite\", {});\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
@@ -397,6 +559,9 @@
                 "repo",
                 "type"
             ]
+        },
+        "render:services:Suspend": {
+            "type": "object"
         }
     }
 }

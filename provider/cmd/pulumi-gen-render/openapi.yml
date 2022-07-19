@@ -62,6 +62,10 @@ components:
         header:
           type: object
           $ref: "#/components/schemas/serviceHeader"
+    listServiceHeaders:
+      type: array
+      items:
+        $ref: "#/components/schemas/listServiceHeadersResponse"
     staticSiteRoute:
       description: "A route object for a static site"
       type: object
@@ -82,6 +86,10 @@ components:
         route:
           type: object
           $ref: "#/components/schemas/staticSiteRoute"
+    listStaticSiteRoutes:
+      type: array
+      items:
+        $ref: "#/components/schemas/listStaticSiteRoutesResponse"
     staticSite:
       title: "Static Site"
       description: "A static website service"
@@ -209,6 +217,163 @@ components:
         serviceDetails:
           oneOf:
             - $ref: "#/components/schemas/patchStaticSite"
+    envVarKeyValue:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+      required:
+        - "key"
+        - "value"
+    envVarKeyGenerateValue:
+      type: object
+      properties:
+        key:
+          type: string
+        generateValue:
+          type: string
+          default: "yes"
+          enum:
+            - "yes"
+        value:
+          type: string
+          readOnly: true
+      required:
+        - "key"
+        - "value"
+    envVarKeyValueOrGenerateValue:
+      type: object
+      oneOf:
+        - $ref: "#/components/schemas/envVarKeyValue"
+        - $ref: "#/components/schemas/envVarKeyGenerateValue"
+    envVar:
+      title: EnvVar
+      type: array
+      items:
+        $ref: "#/components/schemas/envVarKeyValueOrGenerateValue"
+    listEnvVarsResponse:
+      type: object
+      properties:
+        cursor:
+          type: string
+        envVar:
+          $ref: "#/components/schemas/envVarKeyValue"
+    listEnvVars:
+      type: array
+      items:
+        $ref: "#/components/schemas/listEnvVarsResponse"
+    suspendService:
+      title: "Suspend"
+      type: object
+      properties: {}
+    commit:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        message:
+          type: string
+          readOnly: true
+        createdAt:
+          type: string
+          readOnly: true
+      required:
+        - "id"
+        - "message"
+        - "createdAt"
+    deploy:
+      title: Deploy
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        commit:
+          readOnly: true
+          $ref: "#/components/schemas/commit"
+        clearCache:
+          type: string
+          default: "do_not_clear"
+          enum: ["do_not_clear", "clear"]
+      required:
+        - "id"
+        - "commit"
+        - "clearCache"
+    listDeploysResponse:
+      type: object
+      properties:
+        cursor:
+          type: string
+        customDomain:
+          $ref: "#/components/schemas/deploy"
+    listDeploys:
+      type: array
+      items:
+        $ref: "#/components/schemas/listDeploysResponse"
+    customDomain:
+      title: CustomDomain
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+        domainType:
+          type: string
+          readOnly: true
+          enum:
+            - "apex"
+            - "subdomain"
+        publicSuffix:
+          type: string
+          readOnly: true
+        redirectForName:
+          type: string
+          readOnly: true
+        verificationStatus:
+          type: string
+          readOnly: true
+          enum:
+            - "verified"
+            - "unverified"
+        createdAt:
+          type: string
+          readOnly: true
+        server:
+          type: object
+          properties:
+            id:
+              type: string
+              readOnly: true
+            name:
+              type: string
+              readOnly: true
+          required:
+            - "id"
+            - "name"
+      required:
+        - "id"
+        - "name"
+        - "domainType"
+        - "redirectForName"
+        - "verificationStatus"
+        - "createdAt"
+        - "server"
+    listCustomDomainsResponse:
+      type: object
+      properties:
+        cursor:
+          type: string
+        customDomain:
+          $ref: "#/components/schemas/customDomain"
+    listCustomDomains:
+      type: array
+      items:
+        $ref: "#/components/schemas/listCustomDomainsResponse"
 security:
   - bearerAuth: []
 tags:
@@ -1510,7 +1675,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: "#/components/schemas/listEnvVars"
               example:
                 - envVar:
                     key: eu mollit reprehenderit nulla
@@ -1642,7 +1807,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
+              $ref: "#/components/schemas/envVar"
               example:
                 - key: aute cupidatat
                   value: esse
@@ -1874,7 +2039,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: "#/components/schemas/listServiceHeaders"
               example:
                 - headers:
                     path: in officia
@@ -2059,7 +2224,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: "#/components/schemas/listStaticSiteRoutes"
               example:
                 - routes:
                     type: rewrite
@@ -2191,7 +2356,10 @@ paths:
       description: >-
         [https://api-docs.render.com/reference/suspend-service-1](https://api-docs.render.com/reference/suspend-service-1)
       requestBody:
-        content: {}
+        content:
+          "application/json":
+            schema:
+              $ref: "#/components/schemas/suspendService"
       parameters:
         - name: Accept
           in: header
@@ -2516,6 +2684,7 @@ paths:
         content:
           application/json:
             schema:
+              title: Scale
               type: object
               properties:
                 numInstances:
@@ -2744,7 +2913,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: "#/components/schemas/listDeploys"
               example:
                 - deploy:
                     id: enim Lorem amet
@@ -2890,7 +3059,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
+              $ref: "#/components/schemas/deploy"
               example:
                 clearCache: do_not_clear
       parameters:
@@ -3097,7 +3266,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: "#/components/schemas/deploy"
               example:
                 id: officia ut dolor
                 commit:
@@ -3297,7 +3466,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: "#/components/schemas/listCustomDomains"
               example:
                 - customDomain:
                     id: fugiat dolore in ut in
@@ -3459,9 +3628,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              example:
-                name: voluptate in
+              $ref: "#/components/schemas/customDomain"
       parameters:
         - name: Content-Type
           in: header
@@ -3705,7 +3872,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: "#/components/schemas/customDomain"
               example:
                 id: aliquip ipsum
                 name: aliquip incididunt mollit in

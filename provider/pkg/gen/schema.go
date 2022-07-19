@@ -100,13 +100,13 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata)
 						}),
 					},
 				},
-				"clearCacheOnUpdateDeployments": {
+				"clearCacheOnServiceUpdateDeployments": {
 					Description: "When a service is updated, a deployment is automatically triggered. This variable controls whether or not the service cache should be cleared upon deployment.",
 					Default:     "do_not_clear",
 					TypeSpec:    pschema.TypeSpec{Ref: "#/types/render:services:DeployClearCache"},
 					Language: map[string]pschema.RawMessage{
 						"csharp": rawMessage(map[string]interface{}{
-							"name": "ClearCacheOnDeploys",
+							"name": "ClearCacheOnServiceUpdateDeployments",
 						}),
 					},
 				},

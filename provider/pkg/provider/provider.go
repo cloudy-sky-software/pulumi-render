@@ -43,6 +43,7 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
+	"github.com/golang/glog"
 	pbempty "github.com/golang/protobuf/ptypes/empty"
 )
 
@@ -57,8 +58,9 @@ type renderProvider struct {
 	metadata   providerGen.ProviderMetadata
 	router     routers.Router
 
-	httpClient http.Client
-	apiKey     string
+	httpClient                           http.Client
+	apiKey                               string
+	clearCacheOnServiceUpdateDeployments string
 }
 
 func makeProvider(host *provider.HostClient, name, version string, pulumiSchemaBytes, openapiDocBytes, metadataBytes []byte) (pulumirpc.ResourceProviderServer, error) {
@@ -155,6 +157,13 @@ func (p *renderProvider) Configure(_ context.Context, req *pulumirpc.ConfigureRe
 	}
 
 	p.apiKey = apiKey
+
+	clearCacheOnServiceUpdateDeployments, ok := req.GetVariables()["render:config:clearCacheOnServiceUpdateDeployments"]
+	if !ok {
+		// Check if it's set as an env var.
+		clearCacheOnServiceUpdateDeployments = p.schema.Config.Variables["clearCacheOnServiceUpdateDeployments"].Default.(string)
+	}
+	p.clearCacheOnServiceUpdateDeployments = clearCacheOnServiceUpdateDeployments
 
 	return &pulumirpc.ConfigureResponse{}, nil
 }
@@ -460,7 +469,13 @@ func (p *renderProvider) Update(ctx context.Context, req *pulumirpc.UpdateReques
 	}
 
 	httpEndpointPath := *crudMap.U
-	httpReq, err := http.NewRequestWithContext(ctx, "PATCH", p.baseURL+httpEndpointPath, nil)
+	b, err := json.Marshal(inputs)
+	if err != nil {
+		return nil, errors.Wrap(err, "marshaling inputs")
+	}
+
+	buf := bytes.NewBuffer(b)
+	httpReq, err := http.NewRequestWithContext(ctx, "PATCH", p.baseURL+httpEndpointPath, buf)
 	if err != nil {
 		return nil, errors.Wrap(err, "initializing request")
 	}
@@ -499,7 +514,31 @@ func (p *renderProvider) Update(ctx context.Context, req *pulumirpc.UpdateReques
 
 	httpResp.Body.Close()
 
+	p.runPostUpdateAction(ctx, resourceTypeToken, httpReq.URL.String())
+
 	return &pulumirpc.UpdateResponse{}, nil
+}
+
+func (p *renderProvider) runPostUpdateAction(ctx context.Context, resourceTypeToken, url string) {
+	if resourceTypeToken != "render:services:Service" {
+		return
+	}
+
+	// When a service is updated via the API, we should trigger a deployment.
+	// Check if we should also request to clear the cache.
+	// We are sort of cheating here by not using the API spec to derive the
+	// required input. A fancier approach can be done in the future.
+	var buf *bytes.Buffer
+	if p.clearCacheOnServiceUpdateDeployments == "clear" {
+		b, _ := json.Marshal(map[string]string{"clearCache": "clear"})
+		buf = bytes.NewBuffer(b)
+	}
+	resp, err := http.NewRequestWithContext(ctx, "POST", url+"/deploys", buf)
+	if err != nil {
+		glog.Warningf("Service was updated successfully. However, triggering a deployment failed: %v. You should trigger a deployment manually using the Render dashboard.", err)
+	}
+
+	resp.Body.Close()
 }
 
 // Delete tears down an existing resource with the given ID.  If it fails, the resource is assumed

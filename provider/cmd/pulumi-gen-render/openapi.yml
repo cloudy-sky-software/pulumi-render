@@ -270,6 +270,7 @@ components:
       properties: {}
     commit:
       type: object
+      readOnly: true
       properties:
         id:
           type: string
@@ -292,7 +293,6 @@ components:
           type: string
           readOnly: true
         commit:
-          readOnly: true
           $ref: "#/components/schemas/commit"
         clearCache:
           type: string
@@ -301,7 +301,6 @@ components:
       required:
         - "id"
         - "commit"
-        - "clearCache"
     listDeploysResponse:
       type: object
       properties:

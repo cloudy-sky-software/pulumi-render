@@ -214,7 +214,7 @@ func (p *renderProvider) Diff(ctx context.Context, req *pulumirpc.DiffRequest) (
 		return nil, errors.Errorf("unknown resource type %s", resourceTypeToken)
 	}
 	if crudMap.U == nil {
-		return nil, errors.Errorf("resource update endpoint is not known for %s", resourceTypeToken)
+		return nil, errors.Errorf("resource update endpoint is unknown for %s", resourceTypeToken)
 	}
 
 	patchOp := p.openapiDoc.Paths[*crudMap.U].Patch
@@ -280,7 +280,7 @@ func (p *renderProvider) Create(ctx context.Context, req *pulumirpc.CreateReques
 		return nil, errors.Errorf("unknown resource type %s", resourceTypeToken)
 	}
 	if crudMap.C == nil {
-		return nil, errors.Errorf("resource construction endpoint is not known for %s", resourceTypeToken)
+		return nil, errors.Errorf("resource construction endpoint is unknown for %s", resourceTypeToken)
 	}
 
 	httpEndpointPath := *crudMap.C
@@ -375,7 +375,7 @@ func (p *renderProvider) Read(ctx context.Context, req *pulumirpc.ReadRequest) (
 		return nil, errors.Errorf("unknown resource type %s", resourceTypeToken)
 	}
 	if crudMap.R == nil {
-		return nil, errors.Errorf("resource read endpoint is not known for %s", resourceTypeToken)
+		return nil, errors.Errorf("resource read endpoint is unknown for %s", resourceTypeToken)
 	}
 
 	httpEndpointPath := *crudMap.R
@@ -464,18 +464,27 @@ func (p *renderProvider) Update(ctx context.Context, req *pulumirpc.UpdateReques
 	if !ok {
 		return nil, errors.Errorf("unknown resource type %s", resourceTypeToken)
 	}
-	if crudMap.U == nil {
-		return nil, errors.Errorf("resource read endpoint is not known for %s", resourceTypeToken)
+	if crudMap.U == nil && crudMap.P == nil {
+		return nil, errors.Errorf("resource update endpoints (u and p) are unknown for %s", resourceTypeToken)
 	}
 
-	httpEndpointPath := *crudMap.U
+	var httpEndpointPath string
+	var method string
+	if crudMap.U != nil {
+		httpEndpointPath = *crudMap.U
+		method = "PATCH"
+	} else {
+		httpEndpointPath = *crudMap.P
+		method = "PUT"
+	}
+
 	b, err := json.Marshal(inputs)
 	if err != nil {
 		return nil, errors.Wrap(err, "marshaling inputs")
 	}
 
 	buf := bytes.NewBuffer(b)
-	httpReq, err := http.NewRequestWithContext(ctx, "PATCH", p.baseURL+httpEndpointPath, buf)
+	httpReq, err := http.NewRequestWithContext(ctx, method, p.baseURL+httpEndpointPath, buf)
 	if err != nil {
 		return nil, errors.Wrap(err, "initializing request")
 	}
@@ -533,12 +542,32 @@ func (p *renderProvider) runPostUpdateAction(ctx context.Context, resourceTypeTo
 		b, _ := json.Marshal(map[string]string{"clearCache": "clear"})
 		buf = bytes.NewBuffer(b)
 	}
-	resp, err := http.NewRequestWithContext(ctx, "POST", url+"/deploys", buf)
+	httpReq, _ := http.NewRequestWithContext(ctx, "POST", url+"/deploys", buf)
+
+	// Set the API key in the auth header.
+	httpReq.Header.Add("Authorization", fmt.Sprintf("Bearer %s", p.apiKey))
+
+	resp, err := p.httpClient.Do(httpReq)
 	if err != nil {
 		glog.Warningf("Service was updated successfully. However, triggering a deployment failed: %v. You should trigger a deployment manually using the Render dashboard.", err)
 	}
 
 	resp.Body.Close()
+}
+
+func (p *renderProvider) executeResumeSerivce(ctx context.Context, serviceId string) error {
+	httpReq, _ := http.NewRequestWithContext(ctx, "POST", p.baseURL+"/services"+serviceId+"/resume", nil)
+
+	// Set the API key in the auth header.
+	httpReq.Header.Add("Authorization", fmt.Sprintf("Bearer %s", p.apiKey))
+
+	resp, err := p.httpClient.Do(httpReq)
+	if err != nil {
+		return errors.Wrapf(err, "calling resume service endpoint %s", serviceId)
+	}
+
+	resp.Body.Close()
+	return nil
 }
 
 // Delete tears down an existing resource with the given ID.  If it fails, the resource is assumed
@@ -550,12 +579,22 @@ func (p *renderProvider) Delete(ctx context.Context, req *pulumirpc.DeleteReques
 	}
 
 	resourceTypeToken := getResourceTypeToken(req.GetUrn())
+
+	// Nothing to delete if the Suspend resource is being removed.
+	// But we do need to resume the service.
+	if resourceTypeToken == "render:services:Suspend" {
+		if err := p.executeResumeSerivce(ctx, inputs["serviceId"].StringValue()); err != nil {
+			return &pbempty.Empty{}, errors.Wrap(err, "resuming service")
+		}
+		return &pbempty.Empty{}, nil
+	}
+
 	crudMap, ok := p.metadata.ResourceCRUDMap[resourceTypeToken]
 	if !ok {
 		return nil, errors.Errorf("unknown resource type %s", resourceTypeToken)
 	}
 	if crudMap.D == nil {
-		return nil, errors.Errorf("resource delete endpoint is not known for %s", resourceTypeToken)
+		return nil, errors.Errorf("resource delete endpoint is unknown for %s", resourceTypeToken)
 	}
 
 	httpEndpointPath := *crudMap.D
@@ -626,6 +665,5 @@ func (p *renderProvider) GetSchema(ctx context.Context, req *pulumirpc.GetSchema
 // it is up to the host to decide how long to wait after Cancel is called before (e.g.)
 // hard-closing any gRPC connection.
 func (p *renderProvider) Cancel(context.Context, *pbempty.Empty) (*pbempty.Empty, error) {
-	// TODO
 	return &pbempty.Empty{}, nil
 }

@@ -127,6 +127,7 @@ components:
             $ref: "#/components/schemas/staticSiteRoute"
         url:
           type: string
+          description: The HTTPS service URL. A subdomain of onrender.com, by default.
           readOnly: true
       required:
         - "url"

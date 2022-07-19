@@ -104,13 +104,27 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/staticSiteRoute"
+    staticSitePatch:
+      title: "Static Site PATCH"
+      description: "The PATCH object to update a static website service"
+      type: object
+      properties:
+        buildCommand:
+          type: string
+        publishPath:
+          type: string
+          default: "public"
+        pullRequestPreviewsEnabled:
+          type: string
+          default: "no"
+          enum: ["yes", "no"]
     service:
       title: "Service"
       description: "The service object represents a service. The type of service is discriminated by the type property which determines the type of object in the serviceDetails property."
       type: object
       properties:
         id:
-          description: The owner ID.
+          description: The service ID.
           readOnly: true
           type: string
         autoDeploy:
@@ -129,6 +143,7 @@ components:
           enum: ["default", "notify", "ignore"]
         ownerId:
           type: string
+          description: The id of the owner (user/team).
         repo:
           type: string
           description: "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
@@ -1075,6 +1090,18 @@ paths:
           application/json:
             schema:
               type: object
+              properties:
+                autoDeploy:
+                  type: string
+                  default: "no"
+                  enum: ["yes", "no"]
+                branch:
+                  type: string
+                name:
+                  type: string
+                serviceDetails:
+                  oneOf:
+                    - $ref: "#/components/schemas/staticSitePatch"
               example:
                 autoDeploy: "yes"
                 branch: amet dolore officia quis est

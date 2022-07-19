@@ -25,7 +25,6 @@ import (
 	"strings"
 
 	"github.com/getkin/kin-openapi/openapi3"
-	"github.com/getkin/kin-openapi/openapi3filter"
 	"github.com/getkin/kin-openapi/routers"
 	"github.com/getkin/kin-openapi/routers/gorillamux"
 
@@ -99,6 +98,11 @@ func makeProvider(host *provider.HostClient, name, version string, pulumiSchemaB
 		router:     router,
 		httpClient: httpClient,
 	}, nil
+}
+
+func getResourceTypeToken(u string) string {
+	urn := resource.URN(u)
+	return urn.Type().String()
 }
 
 // Attach sends the engine address to an already running plugin.
@@ -195,15 +199,62 @@ func (p *renderProvider) Diff(ctx context.Context, req *pulumirpc.DiffRequest) (
 		return &pulumirpc.DiffResponse{Changes: pulumirpc.DiffResponse_DIFF_NONE}, nil
 	}
 
-	changes := pulumirpc.DiffResponse_DIFF_SOME
+	resourceTypeToken := getResourceTypeToken(req.GetUrn())
+	crudMap, ok := p.metadata.ResourceCRUDMap[resourceTypeToken]
+	if !ok {
+		return nil, errors.Errorf("unknown resource type %s", resourceTypeToken)
+	}
+	if crudMap.U == nil {
+		return nil, errors.Errorf("resource update endpoint is not known for %s", resourceTypeToken)
+	}
+
+	patchOp := p.openapiDoc.Paths[*crudMap.U].Patch
+	if patchOp == nil {
+		return nil, errors.Errorf("openapi doc does not have patch endpoint definition for the path %s", *crudMap.U)
+	}
+
+	jsonReq := patchOp.RequestBody.Value.Content["applicaton/json"]
+
 	replaces := make([]string, 0)
-	if _, ok := d.Updates["name"]; ok {
-		replaces = append(replaces, "name")
+	diffs := make([]string, 0)
+
+	for propKey := range d.Adds {
+		prop := string(propKey)
+		// If the added property is not part of the PATCH operation schema,
+		// then suggest a replacement triggered by this property.
+		if _, ok := jsonReq.Schema.Value.Properties[prop]; !ok {
+			replaces = append(replaces, prop)
+		} else {
+			diffs = append(diffs, prop)
+		}
+	}
+
+	for propKey := range d.Updates {
+		prop := string(propKey)
+		// If the updated property is not part of the PATCH operation schema,
+		// then suggest a replacement triggered by this property.
+		if _, ok := jsonReq.Schema.Value.Properties[prop]; !ok {
+			replaces = append(replaces, prop)
+		} else {
+			diffs = append(diffs, prop)
+		}
+	}
+
+	for propKey := range d.Deletes {
+		prop := string(propKey)
+		// If the deleted property is not part of the PATCH operation schema,
+		// then suggest a replacement triggered by this property.
+		if _, ok := jsonReq.Schema.Value.Properties[prop]; !ok {
+			replaces = append(replaces, prop)
+		} else {
+			diffs = append(diffs, prop)
+		}
 	}
 
 	return &pulumirpc.DiffResponse{
-		Changes:  changes,
+		Changes:  pulumirpc.DiffResponse_DIFF_SOME,
 		Replaces: replaces,
+		Diffs:    diffs,
 	}, nil
 }
 
@@ -211,17 +262,19 @@ func (p *renderProvider) Diff(ctx context.Context, req *pulumirpc.DiffRequest) (
 func (p *renderProvider) Create(ctx context.Context, req *pulumirpc.CreateRequest) (*pulumirpc.CreateResponse, error) {
 	inputs, err := plugin.UnmarshalProperties(req.GetProperties(), plugin.MarshalOptions{KeepUnknowns: true, SkipNulls: true})
 	if err != nil {
-		return nil, err
+		return nil, errors.Wrap(err, "unmarshal input properties as propertymap")
 	}
 
-	urn := req.GetUrn()
-	parts := strings.Split(urn, "$")
-	resourceTypeAndName := strings.Split(parts[1], "::")
-	resourceTypeToken := resourceTypeAndName[0]
-	op, ok := p.metadata.OperationMap[resourceTypeToken]
+	resourceTypeToken := getResourceTypeToken(req.GetUrn())
+	crudMap, ok := p.metadata.ResourceCRUDMap[resourceTypeToken]
 	if !ok {
 		return nil, errors.Errorf("unknown resource type %s", resourceTypeToken)
 	}
+	if crudMap.C == nil {
+		return nil, errors.Errorf("resource construction endpoint is not known for %s", resourceTypeToken)
+	}
+
+	httpEndpointPath := *crudMap.C
 
 	b, err := json.Marshal(inputs)
 	if err != nil {
@@ -229,7 +282,7 @@ func (p *renderProvider) Create(ctx context.Context, req *pulumirpc.CreateReques
 	}
 
 	buf := bytes.NewBuffer(b)
-	httpReq, err := http.NewRequestWithContext(ctx, "POST", p.baseURL+"/"+op, buf)
+	httpReq, err := http.NewRequestWithContext(ctx, "POST", p.baseURL+httpEndpointPath, buf)
 	if err != nil {
 		return nil, errors.Wrap(err, "initializing request")
 	}
@@ -237,55 +290,40 @@ func (p *renderProvider) Create(ctx context.Context, req *pulumirpc.CreateReques
 	// Set the API key in the auth header.
 	httpReq.Header.Add("Authorization", fmt.Sprintf("Bearer %s", p.apiKey))
 
-	route, _, err := p.router.FindRoute(httpReq)
-	if err != nil {
-		return nil, errors.Wrap(err, "finding route from router")
-	}
-
-	hasPathParams := strings.Contains(op, "{")
-	pathParams := make(map[string]string)
-	// If the endpoint has path params, peek into
-	// the OpenAPI doc for the param names.
+	hasPathParams := strings.Contains(httpEndpointPath, "{")
+	var pathParams map[string]string
+	// If the endpoint has path params, peek into the OpenAPI doc
+	// for the param names.
 	if hasPathParams {
-		for _, param := range p.openapiDoc.Paths[op].Post.Parameters {
-			if param.Value.In != "path" {
-				continue
-			}
-
-			paramName := param.Value.Name
-			input := inputs[resource.PropertyKey(paramName)]
-			if input.IsComputed() {
-				pathParams[paramName] = input.Input().Element.StringValue()
-			} else {
-				pathParams[paramName] = input.StringValue()
-			}
-		}
-
-		if len(pathParams) == 0 {
-			return nil, errors.Errorf("could not find path parameters in the openapi doc for %s", resourceTypeToken)
+		var err error
+		pathParams, err = p.getPathParamsMap(resourceTypeToken, httpEndpointPath, inputs)
+		if err != nil {
+			return nil, errors.Wrap(err, "getting path params")
 		}
 	}
 
-	// Validate request
-	requestValidationInput := &openapi3filter.RequestValidationInput{
-		Request:    httpReq,
-		PathParams: pathParams,
-		Route:      route,
+	if err := p.validateRequest(ctx, httpReq, pathParams); err != nil {
+		return nil, errors.Wrap(err, "validate http request")
 	}
-	if err := openapi3filter.ValidateRequest(ctx, requestValidationInput); err != nil {
-		return nil, errors.Wrap(err, "request validation failed")
-	}
+
+	httpReq.URL.Path = p.replacePathParams(httpReq.URL.Path, pathParams)
 
 	// Create the resource.
 	httpResp, err := p.httpClient.Do(httpReq)
 	if err != nil {
-		return nil, errors.Wrap(err, "creating the resource")
+		return nil, errors.Wrap(err, "executing http request")
+	}
+
+	if httpResp.StatusCode != http.StatusOK && httpResp.StatusCode != http.StatusCreated {
+		return nil, errors.Errorf("http request failed: %v", err)
 	}
 
 	body, err := ioutil.ReadAll(httpResp.Body)
 	if err != nil {
 		return nil, errors.Wrap(err, "reading response body")
 	}
+
+	httpResp.Body.Close()
 
 	var result map[string]interface{}
 	if err := json.Unmarshal(body, &result); err != nil {
@@ -317,23 +355,210 @@ func (p *renderProvider) Create(ctx context.Context, req *pulumirpc.CreateReques
 
 // Read the current live state associated with a resource.
 func (p *renderProvider) Read(ctx context.Context, req *pulumirpc.ReadRequest) (*pulumirpc.ReadResponse, error) {
-	urn := resource.URN(req.GetUrn())
-	msg := fmt.Sprintf("Read is not yet implemented for %s", urn.Type())
-	return nil, status.Error(codes.Unimplemented, msg)
+	inputs, err := plugin.UnmarshalProperties(req.GetProperties(), plugin.MarshalOptions{KeepUnknowns: true, SkipNulls: true})
+	if err != nil {
+		return nil, errors.Wrap(err, "unmarshal input properties as propertymap")
+	}
+
+	resourceTypeToken := getResourceTypeToken(req.GetUrn())
+	crudMap, ok := p.metadata.ResourceCRUDMap[resourceTypeToken]
+	if !ok {
+		return nil, errors.Errorf("unknown resource type %s", resourceTypeToken)
+	}
+	if crudMap.R == nil {
+		return nil, errors.Errorf("resource read endpoint is not known for %s", resourceTypeToken)
+	}
+
+	httpEndpointPath := *crudMap.R
+
+	httpReq, err := http.NewRequestWithContext(ctx, "GET", p.baseURL+httpEndpointPath, nil)
+	if err != nil {
+		return nil, errors.Wrap(err, "initializing request")
+	}
+
+	// Set the API key in the auth header.
+	httpReq.Header.Add("Authorization", fmt.Sprintf("Bearer %s", p.apiKey))
+
+	hasPathParams := strings.Contains(httpEndpointPath, "{")
+	var pathParams map[string]string
+	// If the endpoint has path params, peek into the OpenAPI doc
+	// for the param names.
+	if hasPathParams {
+		var err error
+
+		pathParams, err = p.getPathParamsMap(resourceTypeToken, httpEndpointPath, inputs)
+		if err != nil {
+			return nil, errors.Wrap(err, "getting path params")
+		}
+	}
+
+	if err := p.validateRequest(ctx, httpReq, pathParams); err != nil {
+		return nil, errors.Wrap(err, "validate http request")
+	}
+
+	httpReq.URL.Path = p.replacePathParams(httpReq.URL.Path, pathParams)
+
+	// Read the resource.
+	httpResp, err := p.httpClient.Do(httpReq)
+	if err != nil {
+		return nil, errors.Wrap(err, "executing http request")
+	}
+
+	if httpResp.StatusCode != http.StatusOK {
+		return nil, errors.Errorf("http request failed: %v", err)
+	}
+
+	body, err := ioutil.ReadAll(httpResp.Body)
+	if err != nil {
+		return nil, errors.Wrap(err, "reading response body")
+	}
+
+	httpResp.Body.Close()
+
+	var result map[string]interface{}
+	if err := json.Unmarshal(body, &result); err != nil {
+		return nil, errors.Wrap(err, "unmarshaling the response")
+	}
+
+	outputs := map[string]interface{}{
+		"result": result,
+	}
+
+	outputProperties, err := plugin.MarshalProperties(
+		resource.NewPropertyMapFromMap(outputs),
+		plugin.MarshalOptions{KeepUnknowns: true, SkipNulls: true},
+	)
+	if err != nil {
+		return nil, errors.Wrap(err, "marshaling the output properties map")
+	}
+
+	id, ok := result["id"]
+	if !ok {
+		return nil, errors.New("resource may have been created successfully but the id was not present in the response")
+	}
+
+	return &pulumirpc.ReadResponse{
+		Id:         id.(string),
+		Properties: outputProperties,
+	}, nil
 }
 
 // Update updates an existing resource with new values.
 func (p *renderProvider) Update(ctx context.Context, req *pulumirpc.UpdateRequest) (*pulumirpc.UpdateResponse, error) {
-	urn := resource.URN(req.GetUrn())
-	// Our example Random resource will never be updated - if there is a diff, it will be a replacement.
-	msg := fmt.Sprintf("Update is not yet implemented for %s", urn.Type())
-	return nil, status.Error(codes.Unimplemented, msg)
+	inputs, err := plugin.UnmarshalProperties(req.News, plugin.MarshalOptions{KeepUnknowns: true, SkipNulls: true})
+	if err != nil {
+		return nil, errors.Wrap(err, "unmarshal input properties as propertymap")
+	}
+
+	resourceTypeToken := getResourceTypeToken(req.GetUrn())
+	crudMap, ok := p.metadata.ResourceCRUDMap[resourceTypeToken]
+	if !ok {
+		return nil, errors.Errorf("unknown resource type %s", resourceTypeToken)
+	}
+	if crudMap.U == nil {
+		return nil, errors.Errorf("resource read endpoint is not known for %s", resourceTypeToken)
+	}
+
+	httpEndpointPath := *crudMap.U
+	httpReq, err := http.NewRequestWithContext(ctx, "PATCH", p.baseURL+httpEndpointPath, nil)
+	if err != nil {
+		return nil, errors.Wrap(err, "initializing request")
+	}
+
+	// Set the API key in the auth header.
+	httpReq.Header.Add("Authorization", fmt.Sprintf("Bearer %s", p.apiKey))
+
+	hasPathParams := strings.Contains(httpEndpointPath, "{")
+	var pathParams map[string]string
+	// If the endpoint has path params, peek into the OpenAPI doc
+	// for the param names.
+	if hasPathParams {
+		var err error
+
+		pathParams, err = p.getPathParamsMap(resourceTypeToken, httpEndpointPath, inputs)
+		if err != nil {
+			return nil, errors.Wrap(err, "getting path params")
+		}
+	}
+
+	if err := p.validateRequest(ctx, httpReq, pathParams); err != nil {
+		return nil, errors.Wrap(err, "validate http request")
+	}
+
+	httpReq.URL.Path = p.replacePathParams(httpReq.URL.Path, pathParams)
+
+	// Update the resource.
+	httpResp, err := p.httpClient.Do(httpReq)
+	if err != nil {
+		return nil, errors.Wrap(err, "executing http request")
+	}
+
+	if httpResp.StatusCode != http.StatusOK {
+		return nil, errors.Errorf("http request failed: %v", err)
+	}
+
+	httpResp.Body.Close()
+
+	return &pulumirpc.UpdateResponse{}, nil
 }
 
 // Delete tears down an existing resource with the given ID.  If it fails, the resource is assumed
 // to still exist.
 func (p *renderProvider) Delete(ctx context.Context, req *pulumirpc.DeleteRequest) (*pbempty.Empty, error) {
-	// Note that for our Random resource, we don't have to do anything on Delete.
+	inputs, err := plugin.UnmarshalProperties(req.GetProperties(), plugin.MarshalOptions{KeepUnknowns: true, SkipNulls: true})
+	if err != nil {
+		return nil, errors.Wrap(err, "unmarshal input properties as propertymap")
+	}
+
+	resourceTypeToken := getResourceTypeToken(req.GetUrn())
+	crudMap, ok := p.metadata.ResourceCRUDMap[resourceTypeToken]
+	if !ok {
+		return nil, errors.Errorf("unknown resource type %s", resourceTypeToken)
+	}
+	if crudMap.D == nil {
+		return nil, errors.Errorf("resource delete endpoint is not known for %s", resourceTypeToken)
+	}
+
+	httpEndpointPath := *crudMap.D
+	httpReq, err := http.NewRequestWithContext(ctx, "DELETE", p.baseURL+httpEndpointPath, nil)
+	if err != nil {
+		return nil, errors.Wrap(err, "initializing request")
+	}
+
+	// Set the API key in the auth header.
+	httpReq.Header.Add("Authorization", fmt.Sprintf("Bearer %s", p.apiKey))
+
+	hasPathParams := strings.Contains(httpEndpointPath, "{")
+	var pathParams map[string]string
+	// If the endpoint has path params, peek into the OpenAPI doc
+	// for the param names.
+	if hasPathParams {
+		var err error
+
+		pathParams, err = p.getPathParamsMap(resourceTypeToken, httpEndpointPath, inputs)
+		if err != nil {
+			return nil, errors.Wrap(err, "getting path params")
+		}
+	}
+
+	if err := p.validateRequest(ctx, httpReq, pathParams); err != nil {
+		return nil, errors.Wrap(err, "validate http request")
+	}
+
+	httpReq.URL.Path = p.replacePathParams(httpReq.URL.Path, pathParams)
+
+	// Delete the resource.
+	httpResp, err := p.httpClient.Do(httpReq)
+	if err != nil {
+		return nil, errors.Wrap(err, "executing http request")
+	}
+
+	if httpResp.StatusCode != http.StatusOK && httpResp.StatusCode != http.StatusNoContent {
+		return nil, errors.Errorf("http request failed: %v", err)
+	}
+
+	httpResp.Body.Close()
+
 	return &pbempty.Empty{}, nil
 }
 
@@ -346,13 +571,20 @@ func (p *renderProvider) GetPluginInfo(context.Context, *pbempty.Empty) (*pulumi
 
 // GetSchema returns the JSON-serialized schema for the provider.
 func (p *renderProvider) GetSchema(ctx context.Context, req *pulumirpc.GetSchemaRequest) (*pulumirpc.GetSchemaResponse, error) {
-	return &pulumirpc.GetSchemaResponse{}, nil
+	b, err := json.Marshal(p.schema)
+	if err != nil {
+		return nil, errors.Wrap(err, "marshaling the schema")
+	}
+
+	return &pulumirpc.GetSchemaResponse{
+		Schema: string(b),
+	}, nil
 }
 
 // Cancel signals the provider to gracefully shut down and abort any ongoing resource operations.
-// Operations aborted in this way will return an error (e.g., `Update` and `Create` will either a
-// creation error or an initialization error). Since Cancel is advisory and non-blocking, it is up
-// to the host to decide how long to wait after Cancel is called before (e.g.)
+// Operations aborted in this way will return an error (e.g., `Update` and `Create` will either
+// reutrn a creation error or an initialization error). Since Cancel is advisory and non-blocking,
+// it is up to the host to decide how long to wait after Cancel is called before (e.g.)
 // hard-closing any gRPC connection.
 func (p *renderProvider) Cancel(context.Context, *pbempty.Empty) (*pbempty.Empty, error) {
 	// TODO

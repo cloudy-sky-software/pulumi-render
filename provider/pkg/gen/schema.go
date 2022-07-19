@@ -38,8 +38,25 @@ const packageName = "render"
 
 type OperationMap map[string]string
 
+// CRUDOperationsMap identifies the endpoints to perform
+// create, read, update and delete (CRUD) operations.
+type CRUDOperationsMap struct {
+	// C represents the endpoint that handles the creation.
+	C *string `json:"c,omitempty"`
+	// R represents the endpoint that handles the read.
+	R *string `json:"r,omitempty"`
+	// U represents the endpoint that handles the update.
+	U *string `json:"u,omitempty"`
+	// D represents the endpoint that handles the deletion.
+	D *string `json:"d,omitempty"`
+}
+
 type ProviderMetadata struct {
-	OperationMap OperationMap `json:"operationMap"`
+	// ResourceToOperationMap identifies the endpoint that will handle the creation of a resource.
+	ResourceToOperationMap OperationMap `json:"operationMap"`
+	// ResourceToOperationMap identifies the endpoint that will
+	// handle the CRUD for a given Pulumi resource type token.
+	ResourceCRUDMap map[string]*CRUDOperationsMap `json:"crudMap"`
 }
 
 type resourceContext struct {
@@ -53,6 +70,7 @@ type resourceContext struct {
 // PulumiSchema will generate a Pulumi schema for the given k8s schema.
 func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata) {
 	operationMap := make(map[string]string)
+	resourceCRUDMap := make(map[string]*CRUDOperationsMap)
 
 	pkg := pschema.PackageSpec{
 		Name:        packageName,
@@ -77,6 +95,16 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata)
 					Language: map[string]pschema.RawMessage{
 						"csharp": rawMessage(map[string]interface{}{
 							"name": "ApiKey",
+						}),
+					},
+				},
+				"clearCacheOnUpdateDeployments": {
+					Description: "When a service is updated, a deployment is automatically triggered. This variable controls whether or not the service cache should be cleared upon deployment.",
+					Default:     "do_not_clear",
+					TypeSpec:    pschema.TypeSpec{Ref: "#/types/render:service:ServiceDeployClearCache"},
+					Language: map[string]pschema.RawMessage{
+						"csharp": rawMessage(map[string]interface{}{
+							"name": "ClearCacheOnDeploys",
 						}),
 					},
 				},
@@ -106,7 +134,23 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata)
 			},
 		},
 
-		Types:     map[string]pschema.ComplexTypeSpec{},
+		Types: map[string]pschema.ComplexTypeSpec{
+			"render:service:ServiceDeployClearCache": {
+				Enum: []pschema.EnumValueSpec{
+					{
+						Name:  "clear",
+						Value: "clear",
+					},
+					{
+						Name:  "do_not_clear",
+						Value: "do_not_clear",
+					},
+				},
+				ObjectTypeSpec: pschema.ObjectTypeSpec{
+					Type: "string",
+				},
+			},
+		},
 		Resources: map[string]pschema.ResourceSpec{},
 		Functions: map[string]pschema.FunctionSpec{},
 		Language:  map[string]pschema.RawMessage{},
@@ -123,8 +167,71 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata)
 		return parts[0]
 	}
 
+	getParentPath := func(path string) string {
+		parts := strings.Split(strings.TrimPrefix(path, "/"), "/")
+		lastPathPart := parts[len(parts)-1]
+		if !strings.HasPrefix(lastPathPart, "{") && !strings.HasSuffix(lastPathPart, "}") {
+			return path
+		}
+
+		// Skip the last path part which contains a path parameter.
+		return strings.Join(parts[0:len(parts)-2], "/")
+	}
+
 	for path, pathSchema := range openapiDoc.Paths {
-		// TODO: Only handle creates for now.
+		module := getRootPath(path)
+
+		// TODO: Skip Get only paths for now.
+		if pathSchema.Post == nil && pathSchema.Patch == nil && pathSchema.Delete == nil {
+			continue
+		}
+
+		if pathSchema.Patch != nil {
+			parentPath := getParentPath(path)
+			if module != strings.TrimPrefix(parentPath, "/") {
+				continue
+			}
+
+			jsonReq := pathSchema.Patch.RequestBody.Value.Content.Get("application/json")
+			if jsonReq.Schema.Value == nil {
+				contract.Failf("Path %s has no schema definition for application/json", path)
+			}
+
+			resourceType := jsonReq.Schema.Value
+			typeToken := fmt.Sprintf("%s:%s:%s", packageName, module, resourceType.Title)
+			if existing, ok := resourceCRUDMap[typeToken]; ok {
+				existing.U = &path
+			} else {
+				resourceCRUDMap[typeToken] = &CRUDOperationsMap{
+					U: &path,
+				}
+			}
+		}
+
+		if pathSchema.Delete != nil {
+			parentPath := getParentPath(path)
+
+			if module != strings.TrimPrefix(parentPath, "/") {
+				continue
+			}
+
+			jsonReq := pathSchema.Delete.RequestBody.Value.Content.Get("application/json")
+			if jsonReq.Schema.Value == nil {
+				contract.Failf("Path %s has no schema definition for application/json", path)
+			}
+
+			resourceType := jsonReq.Schema.Value
+			typeToken := fmt.Sprintf("%s:%s:%s", packageName, module, resourceType.Title)
+
+			if existing, ok := resourceCRUDMap[typeToken]; ok {
+				existing.D = &path
+			} else {
+				resourceCRUDMap[typeToken] = &CRUDOperationsMap{
+					D: &path,
+				}
+			}
+		}
+
 		if pathSchema.Post == nil {
 			continue
 		}
@@ -135,11 +242,9 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata)
 		}
 		//
 
-		module := getRootPath(path)
 		jsonReq := pathSchema.Post.RequestBody.Value.Content.Get("application/json")
-
 		if jsonReq.Schema.Value == nil {
-			contract.Failf("Path %s has no schema definition", path)
+			contract.Failf("Path %s has no schema definition for application/json", path)
 		}
 
 		resourceType := jsonReq.Schema.Value
@@ -189,6 +294,13 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata)
 		}
 
 		typeToken := fmt.Sprintf("%s:%s:%s", packageName, module, resourceType.Title)
+		if existing, ok := resourceCRUDMap[typeToken]; ok {
+			existing.C = &path
+		} else {
+			resourceCRUDMap[typeToken] = &CRUDOperationsMap{
+				C: &path,
+			}
+		}
 		// TODO: Since we are only handling creates, assume this
 		// is a resource. (Otherwise, it could be an invoke/function.)
 		pkg.Resources[typeToken] = pschema.ResourceSpec{
@@ -249,7 +361,11 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata)
 		},
 	})
 
-	return pkg, ProviderMetadata{OperationMap: operationMap}
+	metadata := ProviderMetadata{
+		ResourceToOperationMap: operationMap,
+		ResourceCRUDMap:        resourceCRUDMap,
+	}
+	return pkg, metadata
 }
 
 func defaultValue(p openapi3.SchemaRef) *string {

@@ -71,8 +71,6 @@ type resourceContext struct {
 
 // PulumiSchema will generate a Pulumi schema for the given k8s schema.
 func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata) {
-	resourceCRUDMap := make(map[string]*CRUDOperationsMap)
-
 	pkg := pschema.PackageSpec{
 		Name:        packageName,
 		Description: "A Pulumi package for creating and managing Render resources.",
@@ -179,34 +177,39 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata)
 		return "/" + strings.Join(parts[0:len(parts)-1], "/")
 	}
 
+	resourceCRUDMap := make(map[string]*CRUDOperationsMap)
+
 	for path, pathSchema := range openapiDoc.Paths {
-		module := getRootPath(path)
+		// Capture the iteration variable `path` because we use its pointer
+		// in the crudMap.
+		currentPath := path
+		module := getRootPath(currentPath)
 
 		// TODO: TEMPORARY!
-		if path != "/services" && path != "/services/{serviceId}" {
+		if currentPath != "/services" && currentPath != "/services/{serviceId}" {
 			continue
 		}
 		//
 
-		glog.V(3).Infof("Processing path %s\n", path)
+		glog.V(3).Infof("Processing path %s\n", currentPath)
 
 		if pathSchema.Get != nil {
-			parentPath := getParentPath(path)
-			glog.V(3).Infof("GET Parent path for %s is %s\n", path, parentPath)
+			parentPath := getParentPath(currentPath)
+			glog.V(3).Infof("GET Parent path for %s is %s\n", currentPath, parentPath)
 
 			jsonReq := pathSchema.Get.Responses.Get(200).Value.Content.Get("application/json")
 			if jsonReq.Schema.Value == nil {
-				contract.Failf("Path %s has no schema definition for status code 200", path)
+				contract.Failf("Path %s has no schema definition for status code 200", currentPath)
 			}
 
 			resourceType := jsonReq.Schema.Value
 			if resourceType.Type != "array" {
 				typeToken := fmt.Sprintf("%s:%s:%s", packageName, module, resourceType.Title)
 				if existing, ok := resourceCRUDMap[typeToken]; ok {
-					existing.R = &path
+					existing.R = &currentPath
 				} else {
 					resourceCRUDMap[typeToken] = &CRUDOperationsMap{
-						R: &path,
+						R: &currentPath,
 					}
 				}
 			}
@@ -216,28 +219,28 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata)
 		}
 
 		if pathSchema.Patch != nil {
-			parentPath := getParentPath(path)
-			glog.V(3).Infof("PATCH Parent path for %s is %s\n", path, parentPath)
+			parentPath := getParentPath(currentPath)
+			glog.V(3).Infof("PATCH Parent path for %s is %s\n", currentPath, parentPath)
 
 			jsonReq := pathSchema.Patch.RequestBody.Value.Content.Get("application/json")
 			if jsonReq.Schema.Value == nil {
-				contract.Failf("Path %s has no schema definition for application/json", path)
+				contract.Failf("Path %s has no schema definition for application/json", currentPath)
 			}
 
 			resourceType := jsonReq.Schema.Value
 			typeToken := fmt.Sprintf("%s:%s:%s", packageName, module, resourceType.Title)
 			if existing, ok := resourceCRUDMap[typeToken]; ok {
-				existing.U = &path
+				existing.U = &currentPath
 			} else {
 				resourceCRUDMap[typeToken] = &CRUDOperationsMap{
-					U: &path,
+					U: &currentPath,
 				}
 			}
 		}
 
 		if pathSchema.Delete != nil {
-			parentPath := getParentPath(path)
-			glog.V(3).Infof("DELETE Parent path for %s is %s\n", path, parentPath)
+			parentPath := getParentPath(currentPath)
+			glog.V(3).Infof("DELETE Parent path for %s is %s\n", currentPath, parentPath)
 
 			jsonReq := openapiDoc.Paths[parentPath].Post.RequestBody.Value.Content.Get("application/json")
 			if jsonReq.Schema.Value == nil {
@@ -248,10 +251,10 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata)
 			typeToken := fmt.Sprintf("%s:%s:%s", packageName, module, resourceType.Title)
 
 			if existing, ok := resourceCRUDMap[typeToken]; ok {
-				existing.D = &path
+				existing.D = &currentPath
 			} else {
 				resourceCRUDMap[typeToken] = &CRUDOperationsMap{
-					D: &path,
+					D: &currentPath,
 				}
 			}
 		}
@@ -262,7 +265,7 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata)
 
 		jsonReq := pathSchema.Post.RequestBody.Value.Content.Get("application/json")
 		if jsonReq.Schema.Value == nil {
-			contract.Failf("Path %s has no schema definition for application/json", path)
+			contract.Failf("Path %s has no schema definition for application/json", currentPath)
 		}
 
 		resourceType := jsonReq.Schema.Value
@@ -313,10 +316,10 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata)
 
 		typeToken := fmt.Sprintf("%s:%s:%s", packageName, module, resourceType.Title)
 		if existing, ok := resourceCRUDMap[typeToken]; ok {
-			existing.C = &path
+			existing.C = &currentPath
 		} else {
 			resourceCRUDMap[typeToken] = &CRUDOperationsMap{
-				C: &path,
+				C: &currentPath,
 			}
 		}
 

@@ -27,7 +27,7 @@ gen::
 
 generate_schema::
 	echo "Generating Pulumi schema..."
-	$(WORKING_DIR)/bin/$(CODEGEN) schema $(SCHEMA_FILE) $(CURDIR)
+	$(WORKING_DIR)/bin/$(CODEGEN) -v=3 --logtostderr schema $(SCHEMA_FILE) $(CURDIR)
 	echo "Finished generating schema."
 
 provider::

@@ -22,6 +22,7 @@ import (
 	"strings"
 
 	"github.com/cloudy-sky-software/pulumi-render/provider/pkg/gen/examples"
+	"github.com/golang/glog"
 
 	"github.com/getkin/kin-openapi/openapi3"
 
@@ -53,7 +54,8 @@ type CRUDOperationsMap struct {
 
 type ProviderMetadata struct {
 	// ResourceToOperationMap identifies the endpoint that will handle the creation of a resource.
-	ResourceToOperationMap OperationMap `json:"operationMap"`
+	// ResourceToOperationMap OperationMap `json:"operationMap"`
+
 	// ResourceToOperationMap identifies the endpoint that will
 	// handle the CRUD for a given Pulumi resource type token.
 	ResourceCRUDMap map[string]*CRUDOperationsMap `json:"crudMap"`
@@ -69,7 +71,6 @@ type resourceContext struct {
 
 // PulumiSchema will generate a Pulumi schema for the given k8s schema.
 func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata) {
-	operationMap := make(map[string]string)
 	resourceCRUDMap := make(map[string]*CRUDOperationsMap)
 
 	pkg := pschema.PackageSpec{
@@ -175,22 +176,48 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata)
 		}
 
 		// Skip the last path part which contains a path parameter.
-		return strings.Join(parts[0:len(parts)-2], "/")
+		return "/" + strings.Join(parts[0:len(parts)-1], "/")
 	}
 
 	for path, pathSchema := range openapiDoc.Paths {
 		module := getRootPath(path)
 
-		// TODO: Skip Get only paths for now.
-		if pathSchema.Post == nil && pathSchema.Patch == nil && pathSchema.Delete == nil {
+		// TODO: TEMPORARY!
+		if path != "/services" && path != "/services/{serviceId}" {
 			continue
+		}
+		//
+
+		glog.V(3).Infof("Processing path %s\n", path)
+
+		if pathSchema.Get != nil {
+			parentPath := getParentPath(path)
+			glog.V(3).Infof("GET Parent path for %s is %s\n", path, parentPath)
+
+			jsonReq := pathSchema.Get.Responses.Get(200).Value.Content.Get("application/json")
+			if jsonReq.Schema.Value == nil {
+				contract.Failf("Path %s has no schema definition for status code 200", path)
+			}
+
+			resourceType := jsonReq.Schema.Value
+			if resourceType.Type != "array" {
+				typeToken := fmt.Sprintf("%s:%s:%s", packageName, module, resourceType.Title)
+				if existing, ok := resourceCRUDMap[typeToken]; ok {
+					existing.R = &path
+				} else {
+					resourceCRUDMap[typeToken] = &CRUDOperationsMap{
+						R: &path,
+					}
+				}
+			}
+			// TODO: Need an else-condition here.
+			// We'll need to handle this as an invoke/function
+			// when the type is array.
 		}
 
 		if pathSchema.Patch != nil {
 			parentPath := getParentPath(path)
-			if module != strings.TrimPrefix(parentPath, "/") {
-				continue
-			}
+			glog.V(3).Infof("PATCH Parent path for %s is %s\n", path, parentPath)
 
 			jsonReq := pathSchema.Patch.RequestBody.Value.Content.Get("application/json")
 			if jsonReq.Schema.Value == nil {
@@ -210,14 +237,11 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata)
 
 		if pathSchema.Delete != nil {
 			parentPath := getParentPath(path)
+			glog.V(3).Infof("DELETE Parent path for %s is %s\n", path, parentPath)
 
-			if module != strings.TrimPrefix(parentPath, "/") {
-				continue
-			}
-
-			jsonReq := pathSchema.Delete.RequestBody.Value.Content.Get("application/json")
+			jsonReq := openapiDoc.Paths[parentPath].Post.RequestBody.Value.Content.Get("application/json")
 			if jsonReq.Schema.Value == nil {
-				contract.Failf("Path %s has no schema definition for application/json", path)
+				contract.Failf("Path %s has no schema definition for application/json", parentPath)
 			}
 
 			resourceType := jsonReq.Schema.Value
@@ -235,12 +259,6 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata)
 		if pathSchema.Post == nil {
 			continue
 		}
-
-		// TODO: TEMPORARY!
-		if path != "/services" {
-			continue
-		}
-		//
 
 		jsonReq := pathSchema.Post.RequestBody.Value.Content.Get("application/json")
 		if jsonReq.Schema.Value == nil {
@@ -301,8 +319,7 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata)
 				C: &path,
 			}
 		}
-		// TODO: Since we are only handling creates, assume this
-		// is a resource. (Otherwise, it could be an invoke/function.)
+
 		pkg.Resources[typeToken] = pschema.ResourceSpec{
 			ObjectTypeSpec: pschema.ObjectTypeSpec{
 				Description: pathSchema.Description,
@@ -314,7 +331,6 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata)
 			RequiredInputs:  requiredInputs.SortedValues(),
 		}
 
-		operationMap[typeToken] = path
 		csharpNamespaces[module] = ToPascalCase(module)
 	}
 
@@ -362,8 +378,7 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata)
 	})
 
 	metadata := ProviderMetadata{
-		ResourceToOperationMap: operationMap,
-		ResourceCRUDMap:        resourceCRUDMap,
+		ResourceCRUDMap: resourceCRUDMap,
 	}
 	return pkg, metadata
 }

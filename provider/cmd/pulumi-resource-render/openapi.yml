@@ -104,6 +104,20 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/staticSiteRoute"
+    patchStaticSite:
+      title: "Static Site PATCH"
+      description: "The PATCH object to update a static website service"
+      type: object
+      properties:
+        buildCommand:
+          type: string
+        publishPath:
+          type: string
+          default: "public"
+        pullRequestPreviewsEnabled:
+          type: string
+          default: "no"
+          enum: ["yes", "no"]
     service:
       title: "Service"
       description: "The service object represents a service. The type of service is discriminated by the type property which determines the type of object in the serviceDetails property."
@@ -176,6 +190,25 @@ components:
         service:
           type: object
           $ref: "#/components/schemas/service"
+    listService:
+      type: array
+      items:
+        $ref: "#/components/schemas/listServiceResponse"
+    patchService:
+      title: "Service"
+      type: object
+      properties:
+        autoDeploy:
+          type: string
+          default: "no"
+          enum: ["yes", "no"]
+        branch:
+          type: string
+        name:
+          type: string
+        serviceDetails:
+          oneOf:
+            - $ref: "#/components/schemas/patchStaticSite"
 security:
   - bearerAuth: []
 tags:
@@ -565,8 +598,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                $ref: "#/components/schemas/listServiceResponse"
+                $ref: "#/components/schemas/listService"
               example:
                 - service:
                     id: irure occaecat aute reprehenderit
@@ -927,7 +959,6 @@ paths:
           content:
             application/json:
               schema:
-                type: object
                 $ref: "#/components/schemas/service"
               example:
                 id: in deserunt laboris dolore
@@ -1075,7 +1106,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
+              $ref: "#/components/schemas/patchService"
               example:
                 autoDeploy: "yes"
                 branch: amet dolore officia quis est

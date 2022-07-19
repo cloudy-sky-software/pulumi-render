@@ -1,1 +1,1 @@
-{"operationMap":{"render:services:Service":"/services"}}
+{"crudMap":{"render:services:Service":{"c":"/services/{serviceId}/resume","r":"/services/{serviceId}/resume","u":"/services/{serviceId}/resume","d":"/services/{serviceId}/resume"}}}

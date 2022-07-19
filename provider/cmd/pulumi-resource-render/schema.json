@@ -59,10 +59,33 @@
                         "name": "ApiKey"
                     }
                 }
+            },
+            "clearCacheOnUpdateDeployments": {
+                "$ref": "#/types/render:service:ServiceDeployClearCache",
+                "description": "When a service is updated, a deployment is automatically triggered. This variable controls whether or not the service cache should be cleared upon deployment.",
+                "default": "do_not_clear",
+                "language": {
+                    "csharp": {
+                        "name": "ClearCacheOnDeploys"
+                    }
+                }
             }
         }
     },
     "types": {
+        "render:service:ServiceDeployClearCache": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "clear",
+                    "value": "clear"
+                },
+                {
+                    "name": "do_not_clear",
+                    "value": "do_not_clear"
+                }
+            ]
+        },
         "render:services:ServiceNotifyOnFail": {
             "description": "The notification setting for this service upon deployment failure.",
             "type": "string",
@@ -237,6 +260,7 @@
     },
     "resources": {
         "render:services:Service": {
+            "description": "\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n### Create a service\n```typescript\nimport * as render from \"@pulumi/render\";\n\n// TODO: Fill me in!\nconst service = new render.Service(\"staticSite\", {});\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "autoDeploy": {
                     "type": "boolean",
@@ -251,7 +275,7 @@
                 },
                 "id": {
                     "type": "string",
-                    "description": "The owner ID."
+                    "description": "The service ID."
                 },
                 "name": {
                     "type": "string"
@@ -261,7 +285,8 @@
                     "description": "The notification setting for this service upon deployment failure."
                 },
                 "ownerId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The id of the owner (user/team)."
                 },
                 "repo": {
                     "type": "string",
@@ -327,7 +352,8 @@
                     "description": "The notification setting for this service upon deployment failure."
                 },
                 "ownerId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The id of the owner (user/team)."
                 },
                 "repo": {
                     "type": "string",

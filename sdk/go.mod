@@ -1,4 +1,4 @@
-module github.com/cloudy-sky-software/pulumi-render/sdk/v3
+module github.com/cloudy-sky-software/pulumi-render/sdk
 
 go 1.17
 

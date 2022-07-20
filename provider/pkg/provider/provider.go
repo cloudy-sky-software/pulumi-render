@@ -465,7 +465,7 @@ func (p *renderProvider) Update(ctx context.Context, req *pulumirpc.UpdateReques
 		return nil, errors.Errorf("unknown resource type %s", resourceTypeToken)
 	}
 	if crudMap.U == nil && crudMap.P == nil {
-		return nil, errors.Errorf("resource update endpoints (u and p) are unknown for %s", resourceTypeToken)
+		return nil, errors.Errorf("neither resource update endpoints (update and put) are available for %s", resourceTypeToken)
 	}
 
 	var httpEndpointPath string

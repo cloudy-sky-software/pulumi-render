@@ -101,6 +101,19 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/serviceHeader"
+        parentServer:
+          type: object
+          readOnly: true
+          properties:
+            id:
+              type: string
+              readOnly: true
+            name:
+              type: string
+              readOnly: true
+          required:
+            - "id"
+            - "name"
         publishPath:
           type: string
           default: "public"
@@ -112,6 +125,12 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/staticSiteRoute"
+        url:
+          type: string
+          description: The HTTPS service URL. A subdomain of onrender.com, by default.
+          readOnly: true
+      required:
+        - "url"
     patchStaticSite:
       title: "Static Site PATCH"
       description: "The PATCH object to update a static website service"
@@ -126,6 +145,98 @@ components:
           type: string
           default: "no"
           enum: ["yes", "no"]
+    secretFile:
+      type: object
+      properties:
+        name:
+          type: string
+        contents:
+          type: string
+      required:
+        - "name"
+        - "contents"
+    disk:
+      type: object
+      properties:
+        name:
+          type: string
+        mountPath:
+          type: string
+        sizeGB:
+          type: number
+          default: 1
+      required:
+        - "name"
+        - "mountPath"
+    dockerDetails:
+      type: object
+      properties:
+        dockerCommand:
+          type: string
+        dockerContext:
+          type: string
+        dockerfilePath:
+          type: string
+          default: "./Dockerfile"
+    nativeEnvironmentDetails:
+      type: object
+      properties:
+        buildCommand:
+          type: string
+        startCommand:
+          type: string
+      required:
+        - "buildCommand"
+        - "startCommand"
+    webService:
+      title: "WebService"
+      type: object
+      properties:
+        disk:
+          $ref: "#/components/schemas/disk"
+        env:
+          type: string
+          enum:
+            - docker
+            - elixir
+            - go
+            - node
+            - python
+            - ruby
+            - rust
+        envSpecificDetails:
+          oneOf:
+            - $ref: "#/components/schemas/dockerDetails"
+            - $ref: "#/components/schemas/nativeEnvironmentDetails"
+        healthCheckPath:
+          type: string
+        numInstances:
+          type: number
+          default: 1
+        plan:
+          type: string
+          default: "starter"
+          enum:
+            - "starter"
+            - "starter_plus"
+            - "standard"
+            - "standard_plus"
+            - "pro"
+            - "pro_plus"
+            - "pro_max"
+            - "pro_ultra"
+        pullRequestPreviewsEnabled:
+          type: string
+          default: "no"
+          enum: ["yes", "no"]
+        region:
+          type: string
+          default: "oregon"
+          enum:
+            - "oregon"
+            - "frankfurt"
+      required:
+        - "env"
     service:
       title: "Service"
       description: "The service object represents a service. The type of service is discriminated by the type property which determines the type of object in the serviceDetails property."
@@ -143,11 +254,13 @@ components:
           description: "If left empty, this will fall back to the default branch of the repository."
         createdAt:
           type: string
+          readOnly: true
         name:
           type: string
         notifyOnFail:
           description: The notification setting for this service upon deployment failure.
           type: string
+          readOnly: true
           enum: ["default", "notify", "ignore"]
         ownerId:
           type: string
@@ -157,11 +270,14 @@ components:
           description: "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
         slug:
           type: string
+          readOnly: true
         suspended:
           type: string
+          readOnly: true
           enum: ["suspended", "not_suspended"]
         suspenders:
           type: array
+          readOnly: true
           items:
             type: string
         type:
@@ -176,14 +292,16 @@ components:
             ]
         updatedAt:
           type: string
+          readOnly: true
         serviceDetails:
-          type: object
           discriminator:
             propertyName: type
             mapping:
               static_site: "#/components/schemas/staticSite"
+              web_service: "#/components/schemas/webService"
           oneOf:
             - $ref: "#/components/schemas/staticSite"
+            - $ref: "#/components/schemas/webService"
       required:
         - "id"
         - "type"

@@ -26,7 +26,7 @@ var providerName = "render"
 //go:embed schema.json
 var pulumiSchema []byte
 
-//go:embed openapi.yml
+//go:embed openapi_generated.yml
 var openapiDocBytes []byte
 
 //go:embed metadata.json

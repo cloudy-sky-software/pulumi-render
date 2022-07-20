@@ -155,6 +155,88 @@ components:
       required:
         - "name"
         - "contents"
+    disk:
+      type: object
+      properties:
+        name:
+          type: string
+        mountPath:
+          type: string
+        sizeGB:
+          type: number
+          default: 1
+      required:
+        - "name"
+        - "mountPath"
+    dockerDetails:
+      type: object
+      properties:
+        dockerCommand:
+          type: string
+        dockerContext:
+          type: string
+        dockerfilePath:
+          type: string
+          default: "./Dockerfile"
+    nativeEnvironmentDetails:
+      type: object
+      properties:
+        buildCommand:
+          type: string
+        startCommand:
+          type: string
+      required:
+        - "buildCommand"
+        - "startCommand"
+    webService:
+      title: "WebService"
+      type: object
+      properties:
+        disk:
+          $ref: "#/components/schemas/disk"
+        env:
+          type: string
+          enum:
+            - docker
+            - elixir
+            - go
+            - node
+            - python
+            - ruby
+            - rust
+        envSpecificDetails:
+          oneOf:
+            - $ref: "#/components/schemas/dockerDetails"
+            - $ref: "#/components/schemas/nativeEnvironmentDetails"
+        healthCheckPath:
+          type: string
+        numInstances:
+          type: number
+          default: 1
+        plan:
+          type: string
+          default: "starter"
+          enum:
+            - "starter"
+            - "starter_plus"
+            - "standard"
+            - "standard_plus"
+            - "pro"
+            - "pro_plus"
+            - "pro_max"
+            - "pro_ultra"
+        pullRequestPreviewsEnabled:
+          type: string
+          default: "no"
+          enum: ["yes", "no"]
+        region:
+          type: string
+          default: "oregon"
+          enum:
+            - "oregon"
+            - "frankfurt"
+      required:
+        - "env"
     service:
       title: "Service"
       description: "The service object represents a service. The type of service is discriminated by the type property which determines the type of object in the serviceDetails property."
@@ -212,13 +294,14 @@ components:
           type: string
           readOnly: true
         serviceDetails:
-          type: object
           discriminator:
             propertyName: type
             mapping:
               static_site: "#/components/schemas/staticSite"
+              web_service: "#/components/schemas/webService"
           oneOf:
             - $ref: "#/components/schemas/staticSite"
+            - $ref: "#/components/schemas/webService"
       required:
         - "id"
         - "type"

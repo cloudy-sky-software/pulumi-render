@@ -107,7 +107,7 @@ func main() {
 		mustWriteFile(providerDir, "metadata.json", metadataBytes)
 
 		// Also copy the raw OpenAPI spec file to the provider dir.
-		mustWriteFile(providerDir, "openapi.yml", openapiDocBytes)
+		mustWriteFile(providerDir, "openapi_generated.yml", openapiDocBytes)
 	default:
 		panic(fmt.Sprintf("Unrecognized language '%s'", language))
 	}

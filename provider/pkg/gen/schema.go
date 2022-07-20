@@ -103,7 +103,6 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata)
 				},
 				"clearCacheOnServiceUpdateDeployments": {
 					Description: "When a service is updated, a deployment is automatically triggered. This variable controls whether or not the service cache should be cleared upon deployment.",
-					Default:     "do_not_clear",
 					TypeSpec:    pschema.TypeSpec{Ref: "#/types/render:services:DeployClearCache"},
 					Language: map[string]pschema.RawMessage{
 						"csharp": rawMessage(map[string]interface{}{
@@ -396,26 +395,12 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata)
 	return pkg, metadata
 }
 
-func defaultValue(p openapi3.SchemaRef) *string {
-	if p.Value.Default == nil {
-		return nil
-	}
-
-	// TODO: This typecast will likely fail if the default value
-	// is not a string.
-	dv := p.Value.Default.(string)
-	if len(dv) != 0 {
-		return &dv
-	}
-	return nil
-}
-
 func (ctx *resourceContext) genPropertySpec(propName string, p openapi3.SchemaRef) pschema.PropertySpec {
 	propertySpec := pschema.PropertySpec{
 		Description: p.Value.Description,
 	}
-	if dv := defaultValue(p); dv != nil {
-		propertySpec.Default = *dv
+	if p.Value.Default != nil {
+		propertySpec.Default = p.Value.Default
 	}
 	languageName := strings.ToUpper(propName[:1]) + propName[1:]
 	if languageName == ctx.resourceName {
@@ -580,8 +565,8 @@ func (ctx *resourceContext) genProperties(parentName string, typeSchema openapi3
 			Description: value.Value.Description,
 			TypeSpec:    *typeSpec,
 		}
-		if dv := defaultValue(*value); dv != nil {
-			propertySpec.Default = *dv
+		if value.Value.Default != nil {
+			propertySpec.Default = value.Value.Default
 		}
 
 		specs[sdkName] = propertySpec

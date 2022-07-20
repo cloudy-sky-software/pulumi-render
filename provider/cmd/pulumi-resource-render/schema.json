@@ -58,12 +58,12 @@
                     "csharp": {
                         "name": "ApiKey"
                     }
-                }
+                },
+                "secret": true
             },
             "clearCacheOnServiceUpdateDeployments": {
                 "$ref": "#/types/render:services:DeployClearCache",
                 "description": "When a service is updated, a deployment is automatically triggered. This variable controls whether or not the service cache should be cleared upon deployment.",
-                "default": "do_not_clear",
                 "language": {
                     "csharp": {
                         "name": "ClearCacheOnServiceUpdateDeployments"
@@ -146,6 +146,55 @@
                 "name"
             ]
         },
+        "render:services:ServiceDisk": {
+            "properties": {
+                "mountPath": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "sizeGB": {
+                    "type": "number",
+                    "default": 1
+                }
+            },
+            "type": "object",
+            "required": [
+                "mountPath",
+                "name"
+            ]
+        },
+        "render:services:ServiceDockerDetails": {
+            "properties": {
+                "dockerCommand": {
+                    "type": "string"
+                },
+                "dockerContext": {
+                    "type": "string"
+                },
+                "dockerfilePath": {
+                    "type": "string",
+                    "default": "./Dockerfile"
+                }
+            },
+            "type": "object"
+        },
+        "render:services:ServiceNativeEnvironmentDetails": {
+            "properties": {
+                "buildCommand": {
+                    "type": "string"
+                },
+                "startCommand": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "buildCommand",
+                "startCommand"
+            ]
+        },
         "render:services:ServiceNotifyOnFail": {
             "description": "The notification setting for this service upon deployment failure.",
             "type": "string",
@@ -196,6 +245,9 @@
                         "$ref": "#/types/render:services:ServiceServiceHeader"
                     }
                 },
+                "parentServer": {
+                    "$ref": "#/types/render:services:ServiceStaticSiteParentServerProperties"
+                },
                 "publishPath": {
                     "type": "string",
                     "default": "public"
@@ -209,9 +261,31 @@
                     "items": {
                         "$ref": "#/types/render:services:ServiceStaticSiteRoute"
                     }
+                },
+                "url": {
+                    "type": "string",
+                    "description": "The HTTPS service URL. A subdomain of onrender.com, by default."
                 }
             },
-            "type": "object"
+            "type": "object",
+            "required": [
+                "url"
+            ]
+        },
+        "render:services:ServiceStaticSiteParentServerProperties": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "id",
+                "name"
+            ]
         },
         "render:services:ServiceStaticSitePullRequestPreviewsEnabled": {
             "type": "string",
@@ -296,6 +370,145 @@
                     "value": "cron_job"
                 }
             ]
+        },
+        "render:services:ServiceWebService": {
+            "properties": {
+                "disk": {
+                    "$ref": "#/types/render:services:ServiceDisk"
+                },
+                "env": {
+                    "$ref": "#/types/render:services:ServiceWebServiceEnv"
+                },
+                "envSpecificDetails": {
+                    "oneOf": [
+                        {
+                            "$ref": "#/types/render:services:ServiceDockerDetails"
+                        },
+                        {
+                            "$ref": "#/types/render:services:ServiceNativeEnvironmentDetails"
+                        }
+                    ]
+                },
+                "healthCheckPath": {
+                    "type": "string"
+                },
+                "numInstances": {
+                    "type": "number",
+                    "default": 1
+                },
+                "plan": {
+                    "$ref": "#/types/render:services:ServiceWebServicePlan",
+                    "default": "starter"
+                },
+                "pullRequestPreviewsEnabled": {
+                    "$ref": "#/types/render:services:ServiceWebServicePullRequestPreviewsEnabled",
+                    "default": "no"
+                },
+                "region": {
+                    "$ref": "#/types/render:services:ServiceWebServiceRegion",
+                    "default": "oregon"
+                }
+            },
+            "type": "object",
+            "required": [
+                "env"
+            ]
+        },
+        "render:services:ServiceWebServiceEnv": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Docker",
+                    "value": "docker"
+                },
+                {
+                    "name": "Elixir",
+                    "value": "elixir"
+                },
+                {
+                    "name": "Go",
+                    "value": "go"
+                },
+                {
+                    "name": "Node",
+                    "value": "node"
+                },
+                {
+                    "name": "Python",
+                    "value": "python"
+                },
+                {
+                    "name": "Ruby",
+                    "value": "ruby"
+                },
+                {
+                    "name": "Rust",
+                    "value": "rust"
+                }
+            ]
+        },
+        "render:services:ServiceWebServicePlan": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Starter",
+                    "value": "starter"
+                },
+                {
+                    "name": "StarterPlus",
+                    "value": "starter_plus"
+                },
+                {
+                    "name": "Standard",
+                    "value": "standard"
+                },
+                {
+                    "name": "StandardPlus",
+                    "value": "standard_plus"
+                },
+                {
+                    "name": "Pro",
+                    "value": "pro"
+                },
+                {
+                    "name": "ProPlus",
+                    "value": "pro_plus"
+                },
+                {
+                    "name": "ProMax",
+                    "value": "pro_max"
+                },
+                {
+                    "name": "ProUltra",
+                    "value": "pro_ultra"
+                }
+            ]
+        },
+        "render:services:ServiceWebServicePullRequestPreviewsEnabled": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
+        "render:services:ServiceWebServiceRegion": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Oregon",
+                    "value": "oregon"
+                },
+                {
+                    "name": "Frankfurt",
+                    "value": "frankfurt"
+                }
+            ]
         }
     },
     "provider": {
@@ -314,7 +527,8 @@
                     "csharp": {
                         "name": "ApiKey"
                     }
-                }
+                },
+                "secret": true
             }
         }
     },
@@ -450,12 +664,16 @@
                     "oneOf": [
                         {
                             "$ref": "#/types/render:services:ServiceStaticSite"
+                        },
+                        {
+                            "$ref": "#/types/render:services:ServiceWebService"
                         }
                     ],
                     "discriminator": {
                         "propertyName": "type",
                         "mapping": {
-                            "static_site": "#/components/schemas/staticSite"
+                            "static_site": "#/components/schemas/staticSite",
+                            "web_service": "#/components/schemas/webService"
                         }
                     }
                 },
@@ -495,15 +713,8 @@
                     "type": "string",
                     "description": "If left empty, this will fall back to the default branch of the repository."
                 },
-                "createdAt": {
-                    "type": "string"
-                },
                 "name": {
                     "type": "string"
-                },
-                "notifyOnFail": {
-                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
-                    "description": "The notification setting for this service upon deployment failure."
                 },
                 "ownerId": {
                     "type": "string",
@@ -517,32 +728,21 @@
                     "oneOf": [
                         {
                             "$ref": "#/types/render:services:ServiceStaticSite"
+                        },
+                        {
+                            "$ref": "#/types/render:services:ServiceWebService"
                         }
                     ],
                     "discriminator": {
                         "propertyName": "type",
                         "mapping": {
-                            "static_site": "#/components/schemas/staticSite"
+                            "static_site": "#/components/schemas/staticSite",
+                            "web_service": "#/components/schemas/webService"
                         }
-                    }
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:services:ServiceSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
                     }
                 },
                 "type": {
                     "$ref": "#/types/render:services:ServiceType"
-                },
-                "updatedAt": {
-                    "type": "string"
                 }
             },
             "requiredInputs": [

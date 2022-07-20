@@ -552,6 +552,10 @@ func (p *renderProvider) runPostUpdateAction(ctx context.Context, resourceTypeTo
 		glog.Warningf("Service was updated successfully. However, triggering a deployment failed: %v. You should trigger a deployment manually using the Render dashboard.", err)
 	}
 
+	if resp == nil {
+		return
+	}
+
 	resp.Body.Close()
 }
 

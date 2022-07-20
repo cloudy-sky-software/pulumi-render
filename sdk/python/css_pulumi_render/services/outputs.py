@@ -44,45 +44,50 @@ class DeployCommit(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 created_at: str,
-                 id: str,
-                 message: str):
-        pulumi.set(__self__, "created_at", created_at)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "message", message)
+                 created_at: Optional[str] = None,
+                 id: Optional[str] = None,
+                 message: Optional[str] = None):
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if message is not None:
+            pulumi.set(__self__, "message", message)
 
     @property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> str:
+    def created_at(self) -> Optional[str]:
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
-    def id(self) -> str:
+    def id(self) -> Optional[str]:
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
-    def message(self) -> str:
+    def message(self) -> Optional[str]:
         return pulumi.get(self, "message")
 
 
 @pulumi.output_type
 class ServerProperties(dict):
     def __init__(__self__, *,
-                 id: str,
-                 name: str):
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "name", name)
+                 id: Optional[str] = None,
+                 name: Optional[str] = None):
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
-    def id(self) -> str:
+    def id(self) -> Optional[str]:
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> Optional[str]:
         return pulumi.get(self, "name")
 
 
@@ -285,18 +290,17 @@ class ServiceStaticSite(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 url: str,
                  build_command: Optional[str] = None,
                  headers: Optional[Sequence['outputs.ServiceServiceHeader']] = None,
                  parent_server: Optional['outputs.ServiceStaticSiteParentServerProperties'] = None,
                  publish_path: Optional[str] = None,
                  pull_request_previews_enabled: Optional['ServiceStaticSitePullRequestPreviewsEnabled'] = None,
-                 routes: Optional[Sequence['outputs.ServiceStaticSiteRoute']] = None):
+                 routes: Optional[Sequence['outputs.ServiceStaticSiteRoute']] = None,
+                 url: Optional[str] = None):
         """
         A static website service
         :param str url: The HTTPS service URL. A subdomain of onrender.com, by default.
         """
-        pulumi.set(__self__, "url", url)
         if build_command is not None:
             pulumi.set(__self__, "build_command", build_command)
         if headers is not None:
@@ -313,14 +317,8 @@ class ServiceStaticSite(dict):
             pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
         if routes is not None:
             pulumi.set(__self__, "routes", routes)
-
-    @property
-    @pulumi.getter
-    def url(self) -> str:
-        """
-        The HTTPS service URL. A subdomain of onrender.com, by default.
-        """
-        return pulumi.get(self, "url")
+        if url is not None:
+            pulumi.set(__self__, "url", url)
 
     @property
     @pulumi.getter(name="buildCommand")
@@ -352,23 +350,33 @@ class ServiceStaticSite(dict):
     def routes(self) -> Optional[Sequence['outputs.ServiceStaticSiteRoute']]:
         return pulumi.get(self, "routes")
 
+    @property
+    @pulumi.getter
+    def url(self) -> Optional[str]:
+        """
+        The HTTPS service URL. A subdomain of onrender.com, by default.
+        """
+        return pulumi.get(self, "url")
+
 
 @pulumi.output_type
 class ServiceStaticSiteParentServerProperties(dict):
     def __init__(__self__, *,
-                 id: str,
-                 name: str):
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "name", name)
+                 id: Optional[str] = None,
+                 name: Optional[str] = None):
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
-    def id(self) -> str:
+    def id(self) -> Optional[str]:
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> Optional[str]:
         return pulumi.get(self, "name")
 
 

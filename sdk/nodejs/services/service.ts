@@ -51,10 +51,6 @@ export class Service extends pulumi.CustomResource {
      */
     public readonly branch!: pulumi.Output<string | undefined>;
     public /*out*/ readonly createdAt!: pulumi.Output<string | undefined>;
-    /**
-     * The service ID.
-     */
-    public /*out*/ readonly id!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
     /**
      * The notification setting for this service upon deployment failure.
@@ -106,7 +102,6 @@ export class Service extends pulumi.CustomResource {
             resourceInputs["serviceDetails"] = args ? args.serviceDetails : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
-            resourceInputs["id"] = undefined /*out*/;
             resourceInputs["notifyOnFail"] = undefined /*out*/;
             resourceInputs["slug"] = undefined /*out*/;
             resourceInputs["suspended"] = undefined /*out*/;
@@ -116,7 +111,6 @@ export class Service extends pulumi.CustomResource {
             resourceInputs["autoDeploy"] = undefined /*out*/;
             resourceInputs["branch"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
-            resourceInputs["id"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;
             resourceInputs["notifyOnFail"] = undefined /*out*/;
             resourceInputs["ownerId"] = undefined /*out*/;

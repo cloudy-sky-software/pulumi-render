@@ -6,8 +6,9 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi;
 
-namespace Pulumi.Render.Services.Inputs
+namespace CloudySkySoftware.Render.Services.Inputs
 {
 
     public sealed class ServiceWebServiceArgs : Pulumi.ResourceArgs
@@ -16,7 +17,7 @@ namespace Pulumi.Render.Services.Inputs
         public Input<Inputs.ServiceDiskArgs>? Disk { get; set; }
 
         [Input("env", required: true)]
-        public Input<Pulumi.Render.Services.ServiceWebServiceEnv> Env { get; set; } = null!;
+        public Input<CloudySkySoftware.Render.Services.ServiceWebServiceEnv> Env { get; set; } = null!;
 
         [Input("envSpecificDetails")]
         public InputUnion<Inputs.ServiceDockerDetailsArgs, Inputs.ServiceNativeEnvironmentDetailsArgs>? EnvSpecificDetails { get; set; }
@@ -28,20 +29,20 @@ namespace Pulumi.Render.Services.Inputs
         public Input<double>? NumInstances { get; set; }
 
         [Input("plan")]
-        public Input<Pulumi.Render.Services.ServiceWebServicePlan>? Plan { get; set; }
+        public Input<CloudySkySoftware.Render.Services.ServiceWebServicePlan>? Plan { get; set; }
 
         [Input("pullRequestPreviewsEnabled")]
-        public Input<Pulumi.Render.Services.ServiceWebServicePullRequestPreviewsEnabled>? PullRequestPreviewsEnabled { get; set; }
+        public Input<CloudySkySoftware.Render.Services.ServiceWebServicePullRequestPreviewsEnabled>? PullRequestPreviewsEnabled { get; set; }
 
         [Input("region")]
-        public Input<Pulumi.Render.Services.ServiceWebServiceRegion>? Region { get; set; }
+        public Input<CloudySkySoftware.Render.Services.ServiceWebServiceRegion>? Region { get; set; }
 
         public ServiceWebServiceArgs()
         {
             NumInstances = 1;
-            Plan = Pulumi.Render.Services.ServiceWebServicePlan.Starter;
-            PullRequestPreviewsEnabled = Pulumi.Render.Services.ServiceWebServicePullRequestPreviewsEnabled.No;
-            Region = Pulumi.Render.Services.ServiceWebServiceRegion.Oregon;
+            Plan = CloudySkySoftware.Render.Services.ServiceWebServicePlan.Starter;
+            PullRequestPreviewsEnabled = CloudySkySoftware.Render.Services.ServiceWebServicePullRequestPreviewsEnabled.No;
+            Region = CloudySkySoftware.Render.Services.ServiceWebServiceRegion.Oregon;
         }
     }
 }

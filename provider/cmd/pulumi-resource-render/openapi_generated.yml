@@ -111,9 +111,6 @@ components:
             name:
               type: string
               readOnly: true
-          required:
-            - "id"
-            - "name"
         publishPath:
           type: string
           default: "public"
@@ -129,8 +126,6 @@ components:
           type: string
           description: The HTTPS service URL. A subdomain of onrender.com, by default.
           readOnly: true
-      required:
-        - "url"
     patchStaticSite:
       title: "Static Site PATCH"
       description: "The PATCH object to update a static website service"
@@ -242,10 +237,6 @@ components:
       description: "The service object represents a service. The type of service is discriminated by the type property which determines the type of object in the serviceDetails property."
       type: object
       properties:
-        id:
-          description: The service ID.
-          readOnly: true
-          type: string
         autoDeploy:
           description: Whether to auto deploy the service or not upon git push.
           type: boolean
@@ -303,7 +294,6 @@ components:
             - $ref: "#/components/schemas/staticSite"
             - $ref: "#/components/schemas/webService"
       required:
-        - "id"
         - "type"
         - "name"
         - "ownerId"
@@ -399,26 +389,16 @@ components:
         createdAt:
           type: string
           readOnly: true
-      required:
-        - "id"
-        - "message"
-        - "createdAt"
     deploy:
       title: Deploy
       type: object
       properties:
-        id:
-          type: string
-          readOnly: true
         commit:
           $ref: "#/components/schemas/commit"
         clearCache:
           type: string
           default: "do_not_clear"
           enum: ["do_not_clear", "clear"]
-      required:
-        - "id"
-        - "commit"
     listDeploysResponse:
       type: object
       properties:
@@ -434,9 +414,6 @@ components:
       title: CustomDomain
       type: object
       properties:
-        id:
-          type: string
-          readOnly: true
         name:
           type: string
         domainType:
@@ -469,16 +446,11 @@ components:
             name:
               type: string
               readOnly: true
-          required:
-            - "id"
-            - "name"
       required:
-        - "id"
         - "name"
         - "domainType"
         - "redirectForName"
         - "verificationStatus"
-        - "createdAt"
         - "server"
     listCustomDomainsResponse:
       type: object

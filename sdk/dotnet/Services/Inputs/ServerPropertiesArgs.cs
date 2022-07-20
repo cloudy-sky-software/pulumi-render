@@ -6,17 +6,18 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi;
 
-namespace Pulumi.Render.Services.Inputs
+namespace CloudySkySoftware.Render.Services.Inputs
 {
 
     public sealed class ServerPropertiesArgs : Pulumi.ResourceArgs
     {
-        [Input("id", required: true)]
-        public Input<string> Id { get; set; } = null!;
+        [Input("id")]
+        public Input<string>? Id { get; set; }
 
-        [Input("name", required: true)]
-        public Input<string> Name { get; set; } = null!;
+        [Input("name")]
+        public Input<string>? Name { get; set; }
 
         public ServerPropertiesArgs()
         {

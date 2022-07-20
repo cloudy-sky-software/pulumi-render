@@ -6,8 +6,9 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi;
 
-namespace Pulumi.Render.Services.Inputs
+namespace CloudySkySoftware.Render.Services.Inputs
 {
 
     /// <summary>
@@ -22,7 +23,7 @@ namespace Pulumi.Render.Services.Inputs
         public Input<string> Source { get; set; } = null!;
 
         [Input("type", required: true)]
-        public Input<Pulumi.Render.Services.ServiceStaticSiteRouteType> Type { get; set; } = null!;
+        public Input<CloudySkySoftware.Render.Services.ServiceStaticSiteRouteType> Type { get; set; } = null!;
 
         public ServiceStaticSiteRouteArgs()
         {

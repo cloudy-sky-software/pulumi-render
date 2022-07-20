@@ -14,8 +14,7 @@ type Deploy struct {
 	pulumi.CustomResourceState
 
 	ClearCache DeployClearCachePtrOutput `pulumi:"clearCache"`
-	Commit     DeployCommitOutput        `pulumi:"commit"`
-	Id         pulumi.StringOutput       `pulumi:"id"`
+	Commit     DeployCommitPtrOutput     `pulumi:"commit"`
 }
 
 // NewDeploy registers a new resource with the given unique name, arguments, and options.
@@ -109,12 +108,8 @@ func (o DeployOutput) ClearCache() DeployClearCachePtrOutput {
 	return o.ApplyT(func(v *Deploy) DeployClearCachePtrOutput { return v.ClearCache }).(DeployClearCachePtrOutput)
 }
 
-func (o DeployOutput) Commit() DeployCommitOutput {
-	return o.ApplyT(func(v *Deploy) DeployCommitOutput { return v.Commit }).(DeployCommitOutput)
-}
-
-func (o DeployOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v *Deploy) pulumi.StringOutput { return v.Id }).(pulumi.StringOutput)
+func (o DeployOutput) Commit() DeployCommitPtrOutput {
+	return o.ApplyT(func(v *Deploy) DeployCommitPtrOutput { return v.Commit }).(DeployCommitPtrOutput)
 }
 
 func init() {

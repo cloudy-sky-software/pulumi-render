@@ -6,8 +6,9 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi;
 
-namespace Pulumi.Render.Services.Outputs
+namespace CloudySkySoftware.Render.Services.Outputs
 {
 
     /// <summary>
@@ -20,12 +21,12 @@ namespace Pulumi.Render.Services.Outputs
         public readonly ImmutableArray<Outputs.ServiceServiceHeader> Headers;
         public readonly Outputs.ServiceStaticSiteParentServerProperties? ParentServer;
         public readonly string? PublishPath;
-        public readonly Pulumi.Render.Services.ServiceStaticSitePullRequestPreviewsEnabled? PullRequestPreviewsEnabled;
+        public readonly CloudySkySoftware.Render.Services.ServiceStaticSitePullRequestPreviewsEnabled? PullRequestPreviewsEnabled;
         public readonly ImmutableArray<Outputs.ServiceStaticSiteRoute> Routes;
         /// <summary>
         /// The HTTPS service URL. A subdomain of onrender.com, by default.
         /// </summary>
-        public readonly string Url;
+        public readonly string? Url;
 
         [OutputConstructor]
         private ServiceStaticSite(
@@ -37,11 +38,11 @@ namespace Pulumi.Render.Services.Outputs
 
             string? publishPath,
 
-            Pulumi.Render.Services.ServiceStaticSitePullRequestPreviewsEnabled? pullRequestPreviewsEnabled,
+            CloudySkySoftware.Render.Services.ServiceStaticSitePullRequestPreviewsEnabled? pullRequestPreviewsEnabled,
 
             ImmutableArray<Outputs.ServiceStaticSiteRoute> routes,
 
-            string url)
+            string? url)
         {
             BuildCommand = buildCommand;
             Headers = headers;

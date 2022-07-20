@@ -197,7 +197,6 @@ class Service(pulumi.CustomResource):
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
             __props__.__dict__["created_at"] = None
-            __props__.__dict__["id"] = None
             __props__.__dict__["notify_on_fail"] = None
             __props__.__dict__["slug"] = None
             __props__.__dict__["suspended"] = None
@@ -228,7 +227,6 @@ class Service(pulumi.CustomResource):
         __props__.__dict__["auto_deploy"] = None
         __props__.__dict__["branch"] = None
         __props__.__dict__["created_at"] = None
-        __props__.__dict__["id"] = None
         __props__.__dict__["name"] = None
         __props__.__dict__["notify_on_fail"] = None
         __props__.__dict__["owner_id"] = None
@@ -261,14 +259,6 @@ class Service(pulumi.CustomResource):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "created_at")
-
-    @property
-    @pulumi.getter
-    def id(self) -> pulumi.Output[str]:
-        """
-        The service ID.
-        """
-        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter

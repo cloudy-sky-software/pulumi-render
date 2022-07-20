@@ -6,20 +6,18 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi;
 
-namespace Pulumi.Render.Services
+namespace CloudySkySoftware.Render.Services
 {
     [RenderResourceType("render:services:Deploy")]
     public partial class Deploy : Pulumi.CustomResource
     {
         [Output("clearCache")]
-        public Output<Pulumi.Render.Services.DeployClearCache?> ClearCache { get; private set; } = null!;
+        public Output<CloudySkySoftware.Render.Services.DeployClearCache?> ClearCache { get; private set; } = null!;
 
         [Output("commit")]
-        public Output<Outputs.DeployCommit> Commit { get; private set; } = null!;
-
-        [Output("id")]
-        public Output<string> Id { get; private set; } = null!;
+        public Output<Outputs.DeployCommit?> Commit { get; private set; } = null!;
 
 
         /// <summary>
@@ -67,11 +65,11 @@ namespace Pulumi.Render.Services
     public sealed class DeployArgs : Pulumi.ResourceArgs
     {
         [Input("clearCache")]
-        public Input<Pulumi.Render.Services.DeployClearCache>? ClearCache { get; set; }
+        public Input<CloudySkySoftware.Render.Services.DeployClearCache>? ClearCache { get; set; }
 
         public DeployArgs()
         {
-            ClearCache = Pulumi.Render.Services.DeployClearCache.DoNotClear;
+            ClearCache = CloudySkySoftware.Render.Services.DeployClearCache.DoNotClear;
         }
     }
 }

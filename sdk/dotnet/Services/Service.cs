@@ -6,8 +6,9 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi;
 
-namespace Pulumi.Render.Services
+namespace CloudySkySoftware.Render.Services
 {
     /// <summary>
     /// ## Example Usage
@@ -30,12 +31,6 @@ namespace Pulumi.Render.Services
         [Output("createdAt")]
         public Output<string?> CreatedAt { get; private set; } = null!;
 
-        /// <summary>
-        /// The service ID.
-        /// </summary>
-        [Output("id")]
-        public Output<string> Id { get; private set; } = null!;
-
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
@@ -43,7 +38,7 @@ namespace Pulumi.Render.Services
         /// The notification setting for this service upon deployment failure.
         /// </summary>
         [Output("notifyOnFail")]
-        public Output<Pulumi.Render.Services.ServiceNotifyOnFail?> NotifyOnFail { get; private set; } = null!;
+        public Output<CloudySkySoftware.Render.Services.ServiceNotifyOnFail?> NotifyOnFail { get; private set; } = null!;
 
         /// <summary>
         /// The id of the owner (user/team).
@@ -64,13 +59,13 @@ namespace Pulumi.Render.Services
         public Output<string?> Slug { get; private set; } = null!;
 
         [Output("suspended")]
-        public Output<Pulumi.Render.Services.ServiceSuspended?> Suspended { get; private set; } = null!;
+        public Output<CloudySkySoftware.Render.Services.ServiceSuspended?> Suspended { get; private set; } = null!;
 
         [Output("suspenders")]
         public Output<ImmutableArray<string>> Suspenders { get; private set; } = null!;
 
         [Output("type")]
-        public Output<Pulumi.Render.Services.ServiceType> Type { get; private set; } = null!;
+        public Output<CloudySkySoftware.Render.Services.ServiceType> Type { get; private set; } = null!;
 
         [Output("updatedAt")]
         public Output<string?> UpdatedAt { get; private set; } = null!;
@@ -151,7 +146,7 @@ namespace Pulumi.Render.Services
         public InputUnion<Inputs.ServiceStaticSiteArgs, Inputs.ServiceWebServiceArgs>? ServiceDetails { get; set; }
 
         [Input("type", required: true)]
-        public Input<Pulumi.Render.Services.ServiceType> Type { get; set; } = null!;
+        public Input<CloudySkySoftware.Render.Services.ServiceType> Type { get; set; } = null!;
 
         public ServiceArgs()
         {

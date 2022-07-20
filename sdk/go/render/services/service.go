@@ -20,9 +20,7 @@ type Service struct {
 	// If left empty, this will fall back to the default branch of the repository.
 	Branch    pulumi.StringPtrOutput `pulumi:"branch"`
 	CreatedAt pulumi.StringPtrOutput `pulumi:"createdAt"`
-	// The service ID.
-	Id   pulumi.StringOutput `pulumi:"id"`
-	Name pulumi.StringOutput `pulumi:"name"`
+	Name      pulumi.StringOutput    `pulumi:"name"`
 	// The notification setting for this service upon deployment failure.
 	NotifyOnFail ServiceNotifyOnFailPtrOutput `pulumi:"notifyOnFail"`
 	// The id of the owner (user/team).
@@ -165,11 +163,6 @@ func (o ServiceOutput) Branch() pulumi.StringPtrOutput {
 
 func (o ServiceOutput) CreatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Service) pulumi.StringPtrOutput { return v.CreatedAt }).(pulumi.StringPtrOutput)
-}
-
-// The service ID.
-func (o ServiceOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v *Service) pulumi.StringOutput { return v.Id }).(pulumi.StringOutput)
 }
 
 func (o ServiceOutput) Name() pulumi.StringOutput {

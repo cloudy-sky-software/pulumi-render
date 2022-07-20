@@ -25,27 +25,29 @@ __all__ = [
 @pulumi.input_type
 class ServerPropertiesArgs:
     def __init__(__self__, *,
-                 id: pulumi.Input[str],
-                 name: pulumi.Input[str]):
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "name", name)
+                 id: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None):
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
-    def id(self) -> pulumi.Input[str]:
+    def id(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: pulumi.Input[str]):
+    def id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
+    def name(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: pulumi.Input[str]):
+    def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
 
 
@@ -204,27 +206,29 @@ class ServiceServiceHeaderArgs:
 @pulumi.input_type
 class ServiceStaticSiteParentServerPropertiesArgs:
     def __init__(__self__, *,
-                 id: pulumi.Input[str],
-                 name: pulumi.Input[str]):
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "name", name)
+                 id: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None):
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
-    def id(self) -> pulumi.Input[str]:
+    def id(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: pulumi.Input[str]):
+    def id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
+    def name(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: pulumi.Input[str]):
+    def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
 
 
@@ -272,18 +276,17 @@ class ServiceStaticSiteRouteArgs:
 @pulumi.input_type
 class ServiceStaticSiteArgs:
     def __init__(__self__, *,
-                 url: pulumi.Input[str],
                  build_command: Optional[pulumi.Input[str]] = None,
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceServiceHeaderArgs']]]] = None,
                  parent_server: Optional[pulumi.Input['ServiceStaticSiteParentServerPropertiesArgs']] = None,
                  publish_path: Optional[pulumi.Input[str]] = None,
                  pull_request_previews_enabled: Optional[pulumi.Input['ServiceStaticSitePullRequestPreviewsEnabled']] = None,
-                 routes: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceStaticSiteRouteArgs']]]] = None):
+                 routes: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceStaticSiteRouteArgs']]]] = None,
+                 url: Optional[pulumi.Input[str]] = None):
         """
         A static website service
         :param pulumi.Input[str] url: The HTTPS service URL. A subdomain of onrender.com, by default.
         """
-        pulumi.set(__self__, "url", url)
         if build_command is not None:
             pulumi.set(__self__, "build_command", build_command)
         if headers is not None:
@@ -300,18 +303,8 @@ class ServiceStaticSiteArgs:
             pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
         if routes is not None:
             pulumi.set(__self__, "routes", routes)
-
-    @property
-    @pulumi.getter
-    def url(self) -> pulumi.Input[str]:
-        """
-        The HTTPS service URL. A subdomain of onrender.com, by default.
-        """
-        return pulumi.get(self, "url")
-
-    @url.setter
-    def url(self, value: pulumi.Input[str]):
-        pulumi.set(self, "url", value)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
 
     @property
     @pulumi.getter(name="buildCommand")
@@ -366,6 +359,18 @@ class ServiceStaticSiteArgs:
     @routes.setter
     def routes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceStaticSiteRouteArgs']]]]):
         pulumi.set(self, "routes", value)
+
+    @property
+    @pulumi.getter
+    def url(self) -> Optional[pulumi.Input[str]]:
+        """
+        The HTTPS service URL. A subdomain of onrender.com, by default.
+        """
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "url", value)
 
 
 @pulumi.input_type

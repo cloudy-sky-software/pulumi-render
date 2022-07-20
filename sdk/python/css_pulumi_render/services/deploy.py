@@ -84,7 +84,6 @@ class Deploy(pulumi.CustomResource):
                 clear_cache = 'do_not_clear'
             __props__.__dict__["clear_cache"] = clear_cache
             __props__.__dict__["commit"] = None
-            __props__.__dict__["id"] = None
         super(Deploy, __self__).__init__(
             'render:services:Deploy',
             resource_name,
@@ -109,7 +108,6 @@ class Deploy(pulumi.CustomResource):
 
         __props__.__dict__["clear_cache"] = None
         __props__.__dict__["commit"] = None
-        __props__.__dict__["id"] = None
         return Deploy(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -119,11 +117,6 @@ class Deploy(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def commit(self) -> pulumi.Output['outputs.DeployCommit']:
+    def commit(self) -> pulumi.Output[Optional['outputs.DeployCommit']]:
         return pulumi.get(self, "commit")
-
-    @property
-    @pulumi.getter
-    def id(self) -> pulumi.Output[str]:
-        return pulumi.get(self, "id")
 

@@ -99,7 +99,6 @@ class CustomDomain(pulumi.CustomResource):
             __props__.__dict__["server"] = server
             __props__.__dict__["created_at"] = None
             __props__.__dict__["domain_type"] = None
-            __props__.__dict__["id"] = None
             __props__.__dict__["public_suffix"] = None
             __props__.__dict__["redirect_for_name"] = None
             __props__.__dict__["verification_status"] = None
@@ -127,7 +126,6 @@ class CustomDomain(pulumi.CustomResource):
 
         __props__.__dict__["created_at"] = None
         __props__.__dict__["domain_type"] = None
-        __props__.__dict__["id"] = None
         __props__.__dict__["name"] = None
         __props__.__dict__["public_suffix"] = None
         __props__.__dict__["redirect_for_name"] = None
@@ -137,18 +135,13 @@ class CustomDomain(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> pulumi.Output[str]:
+    def created_at(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="domainType")
     def domain_type(self) -> pulumi.Output['CustomDomainDomainType']:
         return pulumi.get(self, "domain_type")
-
-    @property
-    @pulumi.getter
-    def id(self) -> pulumi.Output[str]:
-        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter

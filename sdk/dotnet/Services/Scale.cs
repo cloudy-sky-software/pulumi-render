@@ -6,8 +6,9 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi;
 
-namespace Pulumi.Render.Services
+namespace CloudySkySoftware.Render.Services
 {
     [RenderResourceType("render:services:Scale")]
     public partial class Scale : Pulumi.CustomResource

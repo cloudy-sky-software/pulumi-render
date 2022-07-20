@@ -6,21 +6,22 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi;
 
-namespace Pulumi.Render.Services.Outputs
+namespace CloudySkySoftware.Render.Services.Outputs
 {
 
     [OutputType]
     public sealed class ServiceStaticSiteParentServerProperties
     {
-        public readonly string Id;
-        public readonly string Name;
+        public readonly string? Id;
+        public readonly string? Name;
 
         [OutputConstructor]
         private ServiceStaticSiteParentServerProperties(
-            string id,
+            string? id,
 
-            string name)
+            string? name)
         {
             Id = id;
             Name = name;

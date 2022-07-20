@@ -1,5 +1,9 @@
-import * as render from "@pulumi/render";
+import * as render from "@css/render";
 
-const random = new render.Random("my-random", { length: 24 });
-
-export const output = random.result;
+const service = new render.services.Service("my-service", {
+  name: "My test service",
+  ownerId: "",
+  repo: "https://github.com/praneetloke/test",
+  type: "static_site",
+  serviceDetails: {},
+});

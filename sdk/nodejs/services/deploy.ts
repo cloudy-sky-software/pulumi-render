@@ -33,8 +33,7 @@ export class Deploy extends pulumi.CustomResource {
     }
 
     public readonly clearCache!: pulumi.Output<enums.services.DeployClearCache | undefined>;
-    public /*out*/ readonly commit!: pulumi.Output<outputs.services.DeployCommit>;
-    public /*out*/ readonly id!: pulumi.Output<string>;
+    public /*out*/ readonly commit!: pulumi.Output<outputs.services.DeployCommit | undefined>;
 
     /**
      * Create a Deploy resource with the given unique name, arguments, and options.
@@ -49,11 +48,9 @@ export class Deploy extends pulumi.CustomResource {
         if (!opts.id) {
             resourceInputs["clearCache"] = (args ? args.clearCache : undefined) ?? "do_not_clear";
             resourceInputs["commit"] = undefined /*out*/;
-            resourceInputs["id"] = undefined /*out*/;
         } else {
             resourceInputs["clearCache"] = undefined /*out*/;
             resourceInputs["commit"] = undefined /*out*/;
-            resourceInputs["id"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Deploy.__pulumiType, name, resourceInputs, opts);

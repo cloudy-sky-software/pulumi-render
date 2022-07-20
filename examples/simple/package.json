@@ -1,10 +1,11 @@
 {
-    "name": "render-typescript",
-    "version": "0.1.0",
-    "devDependencies": {
-        "@types/node": "latest"
-    },
-    "dependencies": {
-        "@pulumi/pulumi": "latest"
-    }
+  "name": "render-typescript",
+  "version": "0.1.0",
+  "devDependencies": {
+    "@types/node": "latest"
+  },
+  "dependencies": {
+    "@pulumi/pulumi": "latest",
+    "@css/render": "latest"
+  }
 }

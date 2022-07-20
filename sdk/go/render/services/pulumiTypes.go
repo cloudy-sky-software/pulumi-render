@@ -11,9 +11,9 @@ import (
 )
 
 type DeployCommit struct {
-	CreatedAt string `pulumi:"createdAt"`
-	Id        string `pulumi:"id"`
-	Message   string `pulumi:"message"`
+	CreatedAt *string `pulumi:"createdAt"`
+	Id        *string `pulumi:"id"`
+	Message   *string `pulumi:"message"`
 }
 
 type DeployCommitOutput struct{ *pulumi.OutputState }
@@ -30,21 +30,72 @@ func (o DeployCommitOutput) ToDeployCommitOutputWithContext(ctx context.Context)
 	return o
 }
 
-func (o DeployCommitOutput) CreatedAt() pulumi.StringOutput {
-	return o.ApplyT(func(v DeployCommit) string { return v.CreatedAt }).(pulumi.StringOutput)
+func (o DeployCommitOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeployCommit) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
 
-func (o DeployCommitOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v DeployCommit) string { return v.Id }).(pulumi.StringOutput)
+func (o DeployCommitOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeployCommit) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-func (o DeployCommitOutput) Message() pulumi.StringOutput {
-	return o.ApplyT(func(v DeployCommit) string { return v.Message }).(pulumi.StringOutput)
+func (o DeployCommitOutput) Message() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeployCommit) *string { return v.Message }).(pulumi.StringPtrOutput)
+}
+
+type DeployCommitPtrOutput struct{ *pulumi.OutputState }
+
+func (DeployCommitPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeployCommit)(nil)).Elem()
+}
+
+func (o DeployCommitPtrOutput) ToDeployCommitPtrOutput() DeployCommitPtrOutput {
+	return o
+}
+
+func (o DeployCommitPtrOutput) ToDeployCommitPtrOutputWithContext(ctx context.Context) DeployCommitPtrOutput {
+	return o
+}
+
+func (o DeployCommitPtrOutput) Elem() DeployCommitOutput {
+	return o.ApplyT(func(v *DeployCommit) DeployCommit {
+		if v != nil {
+			return *v
+		}
+		var ret DeployCommit
+		return ret
+	}).(DeployCommitOutput)
+}
+
+func (o DeployCommitPtrOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeployCommit) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedAt
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeployCommitPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeployCommit) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DeployCommitPtrOutput) Message() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeployCommit) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Message
+	}).(pulumi.StringPtrOutput)
 }
 
 type ServerProperties struct {
-	Id   string `pulumi:"id"`
-	Name string `pulumi:"name"`
+	Id   *string `pulumi:"id"`
+	Name *string `pulumi:"name"`
 }
 
 // ServerPropertiesInput is an input type that accepts ServerPropertiesArgs and ServerPropertiesOutput values.
@@ -59,8 +110,8 @@ type ServerPropertiesInput interface {
 }
 
 type ServerPropertiesArgs struct {
-	Id   pulumi.StringInput `pulumi:"id"`
-	Name pulumi.StringInput `pulumi:"name"`
+	Id   pulumi.StringPtrInput `pulumi:"id"`
+	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
 func (ServerPropertiesArgs) ElementType() reflect.Type {
@@ -89,12 +140,12 @@ func (o ServerPropertiesOutput) ToServerPropertiesOutputWithContext(ctx context.
 	return o
 }
 
-func (o ServerPropertiesOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v ServerProperties) string { return v.Id }).(pulumi.StringOutput)
+func (o ServerPropertiesOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServerProperties) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-func (o ServerPropertiesOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v ServerProperties) string { return v.Name }).(pulumi.StringOutput)
+func (o ServerPropertiesOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServerProperties) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
 type ServiceDisk struct {
@@ -156,7 +207,7 @@ type ServiceStaticSite struct {
 	PullRequestPreviewsEnabled *ServiceStaticSitePullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
 	Routes                     []ServiceStaticSiteRoute                     `pulumi:"routes"`
 	// The HTTPS service URL. A subdomain of onrender.com, by default.
-	Url string `pulumi:"url"`
+	Url *string `pulumi:"url"`
 }
 
 // Defaults sets the appropriate defaults for ServiceStaticSite
@@ -177,8 +228,8 @@ func (val *ServiceStaticSite) Defaults() *ServiceStaticSite {
 }
 
 type ServiceStaticSiteParentServerProperties struct {
-	Id   string `pulumi:"id"`
-	Name string `pulumi:"name"`
+	Id   *string `pulumi:"id"`
+	Name *string `pulumi:"name"`
 }
 
 // A route object for a static site
@@ -228,5 +279,6 @@ func (val *ServiceWebService) Defaults() *ServiceWebService {
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerPropertiesInput)(nil)).Elem(), ServerPropertiesArgs{})
 	pulumi.RegisterOutputType(DeployCommitOutput{})
+	pulumi.RegisterOutputType(DeployCommitPtrOutput{})
 	pulumi.RegisterOutputType(ServerPropertiesOutput{})
 }

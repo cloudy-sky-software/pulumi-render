@@ -37,7 +37,7 @@ def readme():
         return "render Pulumi Package - Development Version"
 
 
-setup(name='pulumi_render',
+setup(name='css_pulumi_render',
       version=VERSION,
       description="A Pulumi package for creating and managing Render resources.",
       long_description=readme(),
@@ -53,7 +53,7 @@ setup(name='pulumi_render',
       license='Apache-2.0',
       packages=find_packages(),
       package_data={
-          'pulumi_render': [
+          'css_pulumi_render': [
               'py.typed',
               'pulumi-plugin.json',
           ]

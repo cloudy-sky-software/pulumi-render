@@ -21,7 +21,8 @@
             },
             "packageReferences": {
                 "Pulumi": "3.*"
-            }
+            },
+            "rootNamespace": "CloudySkySoftware"
         },
         "go": {
             "importBasePath": "github.com/cloudy-sky-software/pulumi-render/sdk/go/render"
@@ -41,9 +42,11 @@
                 "@types/mocha": "^5.2.5",
                 "@types/shell-quote": "^1.6.0",
                 "mocha": "^5.2.0"
-            }
+            },
+            "packageName": "@css/render"
         },
         "python": {
+            "packageName": "css_pulumi_render",
             "requires": {
                 "pulumi": "\u003e=3.0.0,\u003c4.0.0"
             }
@@ -124,12 +127,7 @@
                     "type": "string"
                 }
             },
-            "type": "object",
-            "required": [
-                "createdAt",
-                "id",
-                "message"
-            ]
+            "type": "object"
         },
         "render:services:ServerProperties": {
             "properties": {
@@ -140,11 +138,7 @@
                     "type": "string"
                 }
             },
-            "type": "object",
-            "required": [
-                "id",
-                "name"
-            ]
+            "type": "object"
         },
         "render:services:ServiceDisk": {
             "properties": {
@@ -267,10 +261,7 @@
                     "description": "The HTTPS service URL. A subdomain of onrender.com, by default."
                 }
             },
-            "type": "object",
-            "required": [
-                "url"
-            ]
+            "type": "object"
         },
         "render:services:ServiceStaticSiteParentServerProperties": {
             "properties": {
@@ -281,11 +272,7 @@
                     "type": "string"
                 }
             },
-            "type": "object",
-            "required": [
-                "id",
-                "name"
-            ]
+            "type": "object"
         },
         "render:services:ServiceStaticSitePullRequestPreviewsEnabled": {
             "type": "string",
@@ -541,9 +528,6 @@
                 "domainType": {
                     "$ref": "#/types/render:services:CustomDomainDomainType"
                 },
-                "id": {
-                    "type": "string"
-                },
                 "name": {
                     "type": "string"
                 },
@@ -562,12 +546,10 @@
             },
             "type": "object",
             "required": [
-                "id",
                 "name",
                 "domainType",
                 "redirectForName",
                 "verificationStatus",
-                "createdAt",
                 "server"
             ],
             "inputProperties": {
@@ -591,16 +573,9 @@
                 },
                 "commit": {
                     "$ref": "#/types/render:services:DeployCommit"
-                },
-                "id": {
-                    "type": "string"
                 }
             },
             "type": "object",
-            "required": [
-                "id",
-                "commit"
-            ],
             "inputProperties": {
                 "clearCache": {
                     "$ref": "#/types/render:services:DeployClearCache",
@@ -640,10 +615,6 @@
                 },
                 "createdAt": {
                     "type": "string"
-                },
-                "id": {
-                    "type": "string",
-                    "description": "The service ID."
                 },
                 "name": {
                     "type": "string"
@@ -698,7 +669,6 @@
             },
             "type": "object",
             "required": [
-                "id",
                 "type",
                 "name",
                 "ownerId",

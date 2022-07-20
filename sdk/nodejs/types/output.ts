@@ -8,14 +8,14 @@ import * as utilities from "../utilities";
 
 export namespace services {
     export interface DeployCommit {
-        createdAt: string;
-        id: string;
-        message: string;
+        createdAt?: string;
+        id?: string;
+        message?: string;
     }
 
     export interface ServerProperties {
-        id: string;
-        name: string;
+        id?: string;
+        name?: string;
     }
 
     export interface ServiceDisk {
@@ -75,7 +75,7 @@ export namespace services {
         /**
          * The HTTPS service URL. A subdomain of onrender.com, by default.
          */
-        url: string;
+        url?: string;
     }
     /**
      * serviceStaticSiteProvideDefaults sets the appropriate defaults for ServiceStaticSite
@@ -89,8 +89,8 @@ export namespace services {
     }
 
     export interface ServiceStaticSiteParentServerProperties {
-        id: string;
-        name: string;
+        id?: string;
+        name?: string;
     }
 
     /**

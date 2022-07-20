@@ -6,8 +6,9 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi;
 
-namespace Pulumi.Render
+namespace CloudySkySoftware.Render
 {
     /// <summary>
     /// The provider type for the render package.

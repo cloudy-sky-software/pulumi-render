@@ -14,9 +14,8 @@ import (
 type CustomDomain struct {
 	pulumi.CustomResourceState
 
-	CreatedAt          pulumi.StringOutput                  `pulumi:"createdAt"`
+	CreatedAt          pulumi.StringPtrOutput               `pulumi:"createdAt"`
 	DomainType         CustomDomainDomainTypeOutput         `pulumi:"domainType"`
-	Id                 pulumi.StringOutput                  `pulumi:"id"`
 	Name               pulumi.StringOutput                  `pulumi:"name"`
 	PublicSuffix       pulumi.StringPtrOutput               `pulumi:"publicSuffix"`
 	RedirectForName    pulumi.StringOutput                  `pulumi:"redirectForName"`
@@ -116,16 +115,12 @@ func (o CustomDomainOutput) ToCustomDomainOutputWithContext(ctx context.Context)
 	return o
 }
 
-func (o CustomDomainOutput) CreatedAt() pulumi.StringOutput {
-	return o.ApplyT(func(v *CustomDomain) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
+func (o CustomDomainOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CustomDomain) pulumi.StringPtrOutput { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
 
 func (o CustomDomainOutput) DomainType() CustomDomainDomainTypeOutput {
 	return o.ApplyT(func(v *CustomDomain) CustomDomainDomainTypeOutput { return v.DomainType }).(CustomDomainDomainTypeOutput)
-}
-
-func (o CustomDomainOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v *CustomDomain) pulumi.StringOutput { return v.Id }).(pulumi.StringOutput)
 }
 
 func (o CustomDomainOutput) Name() pulumi.StringOutput {

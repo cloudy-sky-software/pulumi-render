@@ -6,24 +6,25 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi;
 
-namespace Pulumi.Render.Services.Outputs
+namespace CloudySkySoftware.Render.Services.Outputs
 {
 
     [OutputType]
     public sealed class DeployCommit
     {
-        public readonly string CreatedAt;
-        public readonly string Id;
-        public readonly string Message;
+        public readonly string? CreatedAt;
+        public readonly string? Id;
+        public readonly string? Message;
 
         [OutputConstructor]
         private DeployCommit(
-            string createdAt,
+            string? createdAt,
 
-            string id,
+            string? id,
 
-            string message)
+            string? message)
         {
             CreatedAt = createdAt;
             Id = id;

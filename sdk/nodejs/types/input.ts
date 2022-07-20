@@ -8,8 +8,8 @@ import * as utilities from "../utilities";
 
 export namespace services {
     export interface ServerPropertiesArgs {
-        id: pulumi.Input<string>;
-        name: pulumi.Input<string>;
+        id?: pulumi.Input<string>;
+        name?: pulumi.Input<string>;
     }
 
     export interface ServiceDiskArgs {
@@ -69,7 +69,7 @@ export namespace services {
         /**
          * The HTTPS service URL. A subdomain of onrender.com, by default.
          */
-        url: pulumi.Input<string>;
+        url?: pulumi.Input<string>;
     }
     /**
      * serviceStaticSiteArgsProvideDefaults sets the appropriate defaults for ServiceStaticSiteArgs
@@ -83,8 +83,8 @@ export namespace services {
     }
 
     export interface ServiceStaticSiteParentServerPropertiesArgs {
-        id: pulumi.Input<string>;
-        name: pulumi.Input<string>;
+        id?: pulumi.Input<string>;
+        name?: pulumi.Input<string>;
     }
 
     /**

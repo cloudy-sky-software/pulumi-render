@@ -1,5 +1,5 @@
 {
-    "name": "@pulumi/render",
+    "name": "@css/render",
     "version": "${VERSION}",
     "keywords": [
         "pulumi",

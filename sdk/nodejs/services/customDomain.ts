@@ -32,9 +32,8 @@ export class CustomDomain extends pulumi.CustomResource {
         return obj['__pulumiType'] === CustomDomain.__pulumiType;
     }
 
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    public /*out*/ readonly createdAt!: pulumi.Output<string | undefined>;
     public /*out*/ readonly domainType!: pulumi.Output<enums.services.CustomDomainDomainType>;
-    public /*out*/ readonly id!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
     public /*out*/ readonly publicSuffix!: pulumi.Output<string | undefined>;
     public /*out*/ readonly redirectForName!: pulumi.Output<string>;
@@ -62,14 +61,12 @@ export class CustomDomain extends pulumi.CustomResource {
             resourceInputs["server"] = args ? args.server : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["domainType"] = undefined /*out*/;
-            resourceInputs["id"] = undefined /*out*/;
             resourceInputs["publicSuffix"] = undefined /*out*/;
             resourceInputs["redirectForName"] = undefined /*out*/;
             resourceInputs["verificationStatus"] = undefined /*out*/;
         } else {
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["domainType"] = undefined /*out*/;
-            resourceInputs["id"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;
             resourceInputs["publicSuffix"] = undefined /*out*/;
             resourceInputs["redirectForName"] = undefined /*out*/;

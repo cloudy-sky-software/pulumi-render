@@ -6,27 +6,28 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi;
 
-namespace Pulumi.Render.Services.Outputs
+namespace CloudySkySoftware.Render.Services.Outputs
 {
 
     [OutputType]
     public sealed class ServiceWebService
     {
         public readonly Outputs.ServiceDisk? Disk;
-        public readonly Pulumi.Render.Services.ServiceWebServiceEnv Env;
+        public readonly CloudySkySoftware.Render.Services.ServiceWebServiceEnv Env;
         public readonly Union<Outputs.ServiceDockerDetails, Outputs.ServiceNativeEnvironmentDetails>? EnvSpecificDetails;
         public readonly string? HealthCheckPath;
         public readonly double? NumInstances;
-        public readonly Pulumi.Render.Services.ServiceWebServicePlan? Plan;
-        public readonly Pulumi.Render.Services.ServiceWebServicePullRequestPreviewsEnabled? PullRequestPreviewsEnabled;
-        public readonly Pulumi.Render.Services.ServiceWebServiceRegion? Region;
+        public readonly CloudySkySoftware.Render.Services.ServiceWebServicePlan? Plan;
+        public readonly CloudySkySoftware.Render.Services.ServiceWebServicePullRequestPreviewsEnabled? PullRequestPreviewsEnabled;
+        public readonly CloudySkySoftware.Render.Services.ServiceWebServiceRegion? Region;
 
         [OutputConstructor]
         private ServiceWebService(
             Outputs.ServiceDisk? disk,
 
-            Pulumi.Render.Services.ServiceWebServiceEnv env,
+            CloudySkySoftware.Render.Services.ServiceWebServiceEnv env,
 
             Union<Outputs.ServiceDockerDetails, Outputs.ServiceNativeEnvironmentDetails>? envSpecificDetails,
 
@@ -34,11 +35,11 @@ namespace Pulumi.Render.Services.Outputs
 
             double? numInstances,
 
-            Pulumi.Render.Services.ServiceWebServicePlan? plan,
+            CloudySkySoftware.Render.Services.ServiceWebServicePlan? plan,
 
-            Pulumi.Render.Services.ServiceWebServicePullRequestPreviewsEnabled? pullRequestPreviewsEnabled,
+            CloudySkySoftware.Render.Services.ServiceWebServicePullRequestPreviewsEnabled? pullRequestPreviewsEnabled,
 
-            Pulumi.Render.Services.ServiceWebServiceRegion? region)
+            CloudySkySoftware.Render.Services.ServiceWebServiceRegion? region)
         {
             Disk = disk;
             Env = env;

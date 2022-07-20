@@ -39,11 +39,18 @@ def readme():
 
 setup(name='pulumi_render',
       version=VERSION,
+      description="A Pulumi package for creating and managing Render resources.",
       long_description=readme(),
       long_description_content_type='text/markdown',
       cmdclass={
           'install': InstallPluginCommand,
       },
+      keywords='pulumi render category/cloud kind/native',
+      url='https://cloudysky.software',
+      project_urls={
+          'Repository': 'https://github.com/cloudy-sky-software/pulumi-render'
+      },
+      license='Apache-2.0',
       packages=find_packages(),
       package_data={
           'pulumi_render': [

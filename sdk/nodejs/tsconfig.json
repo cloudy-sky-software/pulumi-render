@@ -13,9 +13,21 @@
         "strict": true
     },
     "files": [
+        "config/index.ts",
+        "config/vars.ts",
         "index.ts",
         "provider.ts",
-        "random.ts",
+        "services/customDomain.ts",
+        "services/deploy.ts",
+        "services/index.ts",
+        "services/scale.ts",
+        "services/service.ts",
+        "services/suspend.ts",
+        "types/enums/index.ts",
+        "types/enums/services/index.ts",
+        "types/index.ts",
+        "types/input.ts",
+        "types/output.ts",
         "utilities.ts"
     ]
 }

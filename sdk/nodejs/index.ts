@@ -6,33 +6,23 @@ import * as utilities from "./utilities";
 
 // Export members:
 export * from "./provider";
-export * from "./random";
 
-// Import resources to register:
-import { Random } from "./random";
+// Export sub-modules:
+import * as config from "./config";
+import * as services from "./services";
+import * as types from "./types";
 
-const _module = {
-    version: utilities.getVersion(),
-    construct: (name: string, type: string, urn: string): pulumi.Resource => {
-        switch (type) {
-            case "render:index:Random":
-                return new Random(name, <any>undefined, { urn });
-            default:
-                throw new Error(`unknown resource type ${type}`);
-        }
-    },
+export {
+    config,
+    services,
+    types,
 };
-pulumi.runtime.registerResourceModule("render", "index", _module);
 
 import { Provider } from "./provider";
 
 pulumi.runtime.registerResourcePackage("render", {
     version: utilities.getVersion(),
-    constructProvider: (
-        name: string,
-        type: string,
-        urn: string
-    ): pulumi.ProviderResource => {
+    constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {
         if (type !== "pulumi:providers:render") {
             throw new Error(`unknown provider type ${type}`);
         }

@@ -9,6 +9,9 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Render
 {
+    /// <summary>
+    /// The provider type for the render package.
+    /// </summary>
     [RenderResourceType("pulumi:providers:render")]
     public partial class Provider : Pulumi.ProviderResource
     {
@@ -39,8 +42,25 @@ namespace Pulumi.Render
 
     public sealed class ProviderArgs : Pulumi.ResourceArgs
     {
+        [Input("apiKey")]
+        private Input<string>? _apiKey;
+
+        /// <summary>
+        /// The Render API key.
+        /// </summary>
+        public Input<string>? ApiKey
+        {
+            get => _apiKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _apiKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
         public ProviderArgs()
         {
+            ApiKey = Utilities.GetEnv("RENDER_APIKEY");
         }
     }
 }

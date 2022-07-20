@@ -1,5 +1,7 @@
 import * as render from "@css/render";
 
+import * as o from "@css/render/types/output";
+
 const service = new render.services.Service("my-service", {
   name: "My test service",
   ownerId: "",
@@ -7,3 +9,7 @@ const service = new render.services.Service("my-service", {
   type: "static_site",
   serviceDetails: {},
 });
+
+export const staticSiteUrl = service.serviceDetails.apply(
+  (d) => (d as o.services.ServiceStaticSite).url
+);

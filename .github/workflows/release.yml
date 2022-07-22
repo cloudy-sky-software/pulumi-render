@@ -25,7 +25,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v2
       - name: Unshallow clone for tags
-        run: git fetch --prune --unshallow --tags
+        run: git fetch --tags
       - name: Install Go
         uses: actions/setup-go@v2
         with:
@@ -52,7 +52,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v2
       - name: Unshallow clone for tags
-        run: git fetch --tags
+        run: git fetch --tags -f
       - name: Install Go
         uses: actions/setup-go@v2
         with:

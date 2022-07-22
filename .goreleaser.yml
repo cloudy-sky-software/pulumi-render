@@ -3,12 +3,15 @@ archives:
     name_template: "{{ .Binary }}-{{ .Tag }}-{{ .Os }}-{{ .Arch }}"
 before:
   hooks:
-    - make gen
+    - make gen generate_schema
+    - make build
 builds:
-  - binary: pulumi-resource-xyz
+  - binary: pulumi-resource-render
+    main: ./cmd/pulumi-resource-render/
     dir: provider
     env:
       - CGO_ENABLED=0
+      - GO111MODULE=on
     goarch:
       - amd64
       - arm64
@@ -18,8 +21,7 @@ builds:
       - linux
     ldflags:
       # The line below MUST align with the module in current provider/go.mod
-      - -X github.com/your-org-name/pulumi-xyz/provider/pkg/version.Version={{.Tag }}
-    main: ./cmd/pulumi-resource-xyz/
+      - -X github.com/cloudy-sky-software/pulumi-render/provider/pkg/version.Version={{.Tag }}
 changelog:
   skip: true
 release:

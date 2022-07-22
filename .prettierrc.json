@@ -1,0 +1,12 @@
+{
+    "overrides": [
+        {
+            "files": [
+                ".github/workflows/*.yml"
+            ],
+            "options": {
+                "tabWidth": 2
+            }
+        }
+    ]
+}

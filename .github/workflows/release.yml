@@ -75,6 +75,8 @@ jobs:
         with:
           args: -p 1 release --rm-dist --timeout 90m0s
           version: latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     strategy:
       fail-fast: true
       matrix:

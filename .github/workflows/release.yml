@@ -60,7 +60,7 @@ jobs:
           config: |
             Host bastion
               HostName github.com
-              IdentityFile ~/.ssh/id_ed25519_github-bastion
+              IdentityFile ~/.ssh/id_ed25519_github
 
       - run: |
           git config --local url."ssh://git@github.com/".insteadOf "https://github.com/"
@@ -106,7 +106,7 @@ jobs:
           config: |
             Host bastion
               HostName github.com
-              IdentityFile ~/.ssh/id_ed25519_github-bastion
+              IdentityFile ~/.ssh/id_ed25519_github
 
       - run: |
           git config --local url."ssh://git@github.com/".insteadOf "https://github.com/"

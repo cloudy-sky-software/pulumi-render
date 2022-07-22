@@ -222,7 +222,7 @@ func (p *renderProvider) Diff(ctx context.Context, req *pulumirpc.DiffRequest) (
 		return nil, errors.Errorf("openapi doc does not have patch endpoint definition for the path %s", *crudMap.U)
 	}
 
-	jsonReq := patchOp.RequestBody.Value.Content["applicaton/json"]
+	jsonReq := patchOp.RequestBody.Value.Content[jsonMimeType]
 
 	replaces := make([]string, 0)
 	diffs := make([]string, 0)
@@ -559,15 +559,15 @@ func (p *renderProvider) runPostUpdateAction(ctx context.Context, resourceTypeTo
 	resp.Body.Close()
 }
 
-func (p *renderProvider) executeResumeSerivce(ctx context.Context, serviceId string) error {
-	httpReq, _ := http.NewRequestWithContext(ctx, "POST", p.baseURL+"/services"+serviceId+"/resume", nil)
+func (p *renderProvider) executeResumeSerivce(ctx context.Context, serviceID string) error {
+	httpReq, _ := http.NewRequestWithContext(ctx, "POST", p.baseURL+"/services"+serviceID+"/resume", nil)
 
 	// Set the API key in the auth header.
 	httpReq.Header.Add("Authorization", fmt.Sprintf("Bearer %s", p.apiKey))
 
 	resp, err := p.httpClient.Do(httpReq)
 	if err != nil {
-		return errors.Wrapf(err, "calling resume service endpoint %s", serviceId)
+		return errors.Wrapf(err, "calling resume service endpoint %s", serviceID)
 	}
 
 	resp.Body.Close()

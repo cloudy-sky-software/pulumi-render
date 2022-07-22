@@ -12,6 +12,8 @@ import (
 	"github.com/pkg/errors"
 )
 
+const jsonMimeType = "application/json"
+
 func (p *renderProvider) validateRequest(ctx context.Context, httpReq *http.Request, pathParams map[string]string) error {
 	route, _, err := p.router.FindRoute(httpReq)
 	if err != nil {

@@ -36,6 +36,7 @@ func NewCustomDomain(ctx *pulumi.Context,
 	if args.Server == nil {
 		return nil, errors.New("invalid value for required argument 'Server'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource CustomDomain
 	err := ctx.RegisterResource("render:services:CustomDomain", name, args, &resource, opts...)
 	if err != nil {

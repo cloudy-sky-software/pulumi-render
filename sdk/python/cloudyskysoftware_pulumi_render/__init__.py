@@ -9,13 +9,13 @@ from .provider import *
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
-    import css_pulumi_render.config as __config
+    import cloudyskysoftware_pulumi_render.config as __config
     config = __config
-    import css_pulumi_render.services as __services
+    import cloudyskysoftware_pulumi_render.services as __services
     services = __services
 else:
-    config = _utilities.lazy_import('css_pulumi_render.config')
-    services = _utilities.lazy_import('css_pulumi_render.services')
+    config = _utilities.lazy_import('cloudyskysoftware_pulumi_render.config')
+    services = _utilities.lazy_import('cloudyskysoftware_pulumi_render.services')
 
 _utilities.register(
     resource_modules="""
@@ -23,7 +23,7 @@ _utilities.register(
  {
   "pkg": "render",
   "mod": "services",
-  "fqn": "css_pulumi_render.services",
+  "fqn": "cloudyskysoftware_pulumi_render.services",
   "classes": {
    "render:services:CustomDomain": "CustomDomain",
    "render:services:Deploy": "Deploy",
@@ -39,7 +39,7 @@ _utilities.register(
  {
   "pkg": "render",
   "token": "pulumi:providers:render",
-  "fqn": "css_pulumi_render",
+  "fqn": "cloudyskysoftware_pulumi_render",
   "class": "Provider"
  }
 ]

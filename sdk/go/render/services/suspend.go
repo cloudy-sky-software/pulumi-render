@@ -21,6 +21,7 @@ func NewSuspend(ctx *pulumi.Context,
 		args = &SuspendArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Suspend
 	err := ctx.RegisterResource("render:services:Suspend", name, args, &resource, opts...)
 	if err != nil {

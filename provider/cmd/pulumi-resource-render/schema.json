@@ -11,6 +11,7 @@
     "homepage": "https://cloudysky.software",
     "license": "Apache-2.0",
     "repository": "https://github.com/cloudy-sky-software/pulumi-render",
+    "pluginDownloadURL": "https://github.com/cloudy-sky-software/pulumi-render/releases/download/v${VERSION}",
     "publisher": "Cloudy Sky Software",
     "language": {
         "csharp": {
@@ -43,10 +44,10 @@
                 "@types/shell-quote": "^1.6.0",
                 "mocha": "^5.2.0"
             },
-            "packageName": "@css/render"
+            "packageName": "@cloudyskysoftware/render"
         },
         "python": {
-            "packageName": "css_pulumi_render",
+            "packageName": "cloudyskysoftware_pulumi_render",
             "requires": {
                 "pulumi": "\u003e=3.0.0,\u003c4.0.0"
             }

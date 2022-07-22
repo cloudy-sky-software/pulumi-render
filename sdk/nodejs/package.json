@@ -1,5 +1,5 @@
 {
-    "name": "@css/render",
+    "name": "@cloudyskysoftware/render",
     "version": "${VERSION}",
     "keywords": [
         "pulumi",
@@ -32,6 +32,7 @@
     },
     "pulumi": {
         "resource": true,
-        "name": "render"
+        "name": "render",
+        "server": "https://github.com/cloudy-sky-software/pulumi-render/releases/download/v${VERSION}"
     }
 }

@@ -27,6 +27,7 @@ func NewDeploy(ctx *pulumi.Context,
 	if isZero(args.ClearCache) {
 		args.ClearCache = DeployClearCache("do_not_clear")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Deploy
 	err := ctx.RegisterResource("render:services:Deploy", name, args, &resource, opts...)
 	if err != nil {

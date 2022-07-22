@@ -27,6 +27,7 @@ func NewScale(ctx *pulumi.Context,
 	if args.NumInstances == nil {
 		return nil, errors.New("invalid value for required argument 'NumInstances'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Scale
 	err := ctx.RegisterResource("render:services:Scale", name, args, &resource, opts...)
 	if err != nil {

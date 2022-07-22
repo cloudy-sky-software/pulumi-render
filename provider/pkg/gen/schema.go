@@ -372,7 +372,7 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata)
 		"importBasePath": "github.com/cloudy-sky-software/pulumi-render/sdk/go/render",
 	})
 	pkg.Language["nodejs"] = rawMessage(map[string]interface{}{
-		"packageName": "@css/render",
+		"packageName": "@cloudyskysoftware/render",
 		"dependencies": map[string]string{
 			"@pulumi/pulumi":    "^3.0.0",
 			"shell-quote":       "^1.6.1",
@@ -390,7 +390,7 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata)
 		},
 	})
 	pkg.Language["python"] = rawMessage(map[string]interface{}{
-		"packageName": "css_pulumi_render",
+		"packageName": "cloudyskysoftware_pulumi_render",
 		"requires": map[string]string{
 			"pulumi": ">=3.0.0,<4.0.0",
 		},

@@ -15,7 +15,7 @@ class InstallPluginCommand(install):
     def run(self):
         install.run(self)
         try:
-            check_call(['pulumi', 'plugin', 'install', 'resource', 'render', PLUGIN_VERSION])
+            check_call(['pulumi', 'plugin', 'install', 'resource', 'render', PLUGIN_VERSION, '--server', 'https://github.com/cloudy-sky-software/pulumi-render/releases/download/v${VERSION}'])
         except OSError as error:
             if error.errno == errno.ENOENT:
                 print(f"""
@@ -37,7 +37,7 @@ def readme():
         return "render Pulumi Package - Development Version"
 
 
-setup(name='css_pulumi_render',
+setup(name='cloudyskysoftware_pulumi_render',
       version=VERSION,
       description="A Pulumi package for creating and managing Render resources.",
       long_description=readme(),
@@ -53,7 +53,7 @@ setup(name='css_pulumi_render',
       license='Apache-2.0',
       packages=find_packages(),
       package_data={
-          'css_pulumi_render': [
+          'cloudyskysoftware_pulumi_render': [
               'py.typed',
               'pulumi-plugin.json',
           ]

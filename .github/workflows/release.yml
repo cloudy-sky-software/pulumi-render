@@ -19,7 +19,7 @@ env:
   PUBLISH_PYPI: true
 jobs:
   publish-binary:
-    name: publish
+    name: Publish binary
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -44,10 +44,10 @@ jobs:
       matrix:
         goversion:
           - 1.17.x
-  publish_sdk:
+  publish-sdk:
     name: Publish SDKs
     runs-on: ubuntu-latest
-    needs: publish_binary
+    needs: publish-binary
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2

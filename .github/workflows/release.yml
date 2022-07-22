@@ -5,6 +5,7 @@ on:
       - v*.*.*
       - "!v*.*.*-**"
 env:
+  GOPRIVATE: "github.com/cloudy-sky-software/pulumi-render"
   PROVIDER: "render"
   GITHUB_TOKEN: ${{ secrets.GH_REPO_PAT }}
   NPM_TOKEN: ${{ secrets.NPM_AUTOMATION_TOKEN }}
@@ -49,16 +50,23 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
+
+      - run: |
+          git config --local url."ssh://git@github.com/".insteadOf "https://github.com/"
+
       - name: Unshallow clone for tags
         run: git fetch --prune --unshallow --tags
+
       - name: Install Go
         uses: actions/setup-go@v3
         with:
           go-version: ${{matrix.goversion}}
+
       - name: Install pulumictl
         uses: jaxxstorm/action-install-gh-release@v1.5.0
         with:
           repo: pulumi/pulumictl
+
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v2
         with:
@@ -77,33 +85,45 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
+
+      - run: |
+          git config --local url."ssh://git@github.com/".insteadOf "https://github.com/"
+
       - name: Unshallow clone for tags
         run: git fetch --prune --unshallow --tags
+
       - name: Install Go
         uses: actions/setup-go@v3
         with:
           go-version: ${{ matrix.goversion }}
+
       - name: Install pulumictl
         uses: jaxxstorm/action-install-gh-release@v1.5.0
         with:
           repo: pulumi/pulumictl
+
       - name: Install Pulumi CLI
         uses: pulumi/action-install-pulumi-cli@v2.0.0
+
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: ${{matrix.nodeversion}}
           registry-url: ${{env.NPM_REGISTRY_URL}}
+
       - name: Setup DotNet
         uses: actions/setup-dotnet@v2
         with:
           dotnet-version: ${{matrix.dotnetverson}}
+
       - name: Setup Python
         uses: actions/setup-python@v1
         with:
           python-version: ${{matrix.pythonversion}}
+
       - name: Generate SDK
         run: make ${{ matrix.language }}_sdk
+
       - name: Check worktree clean
         run: |
           git update-index -q --refresh
@@ -113,13 +133,16 @@ jobs:
               git diff
               exit 1
           fi
+
       - name: Compress SDK folder
         run: tar -zcf sdk/${{ matrix.language }}.tar.gz -C sdk/${{ matrix.language }} .
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.language  }}-sdk.tar.gz
           path: ${{ github.workspace}}/sdk/${{ matrix.language }}.tar.gz
+
       - if: ${{ matrix.language == 'python' && env.PUBLISH_PYPI == 'true' }}
         name: Publish package to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
@@ -127,12 +150,14 @@ jobs:
           user: ${{ env.PYPI_USERNAME }}
           password: ${{ env.PYPI_PASSWORD }}
           packages_dir: ${{github.workspace}}/sdk/python/bin/dist
+
       - if: ${{ matrix.language == 'nodejs' && env.PUBLISH_NPM == 'true' }}
         uses: JS-DevTools/npm-publish@v1
         with:
           access: "public"
           token: ${{ env.NPM_TOKEN }}
           package: ${{github.workspace}}/sdk/nodejs/bin/package.json
+
       - if: ${{ matrix.language == 'dotnet' && env.PUBLISH_NUGET == 'true' }}
         name: publish nuget package
         run: |

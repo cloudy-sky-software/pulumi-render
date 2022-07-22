@@ -3,8 +3,5 @@
     "build.env": {
       "GOPRIVATE": "github.com/cloudy-sky-software/pulumi-render"
     }
-  },
-  "yaml.schemas": {
-    "https://goreleaser.com/static/schema.json": "file:///home/pl_wsl/go/src/github.com/cloudy-sky-software/pulumi-render/.github/workflows/.goreleaser.yml"
   }
 }

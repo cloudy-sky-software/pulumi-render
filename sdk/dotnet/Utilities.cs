@@ -53,7 +53,7 @@ namespace CloudySkySoftware.Render
         {
             var dst = src ?? new global::Pulumi.InvokeOptions{};
             dst.Version = src?.Version ?? Version;
-            dst.PluginDownloadURL = src?.PluginDownloadURL ?? "https://github.com/cloudy-sky-software/pulumi-render/releases/download/v${VERSION}";
+            dst.PluginDownloadURL = src?.PluginDownloadURL ?? "https://github.com/cloudy-sky-software/pulumi-render/releases/download/${VERSION}";
             return dst;
         }
 

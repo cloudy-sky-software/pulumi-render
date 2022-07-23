@@ -5,7 +5,7 @@
     "@types/node": "latest"
   },
   "dependencies": {
-    "@pulumi/pulumi": "latest",
-    "@css/render": "latest"
+    "@cloudyskysoftware/render": "latest",
+    "@pulumi/pulumi": "latest"
   }
 }

@@ -44,7 +44,7 @@ jobs:
 
   publish-binary:
     name: Publish binary
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.agent-os }}
     needs: lint
     steps:
       - name: Checkout Repo

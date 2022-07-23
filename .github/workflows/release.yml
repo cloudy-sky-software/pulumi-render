@@ -73,11 +73,10 @@ jobs:
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v2
         with:
-          args: -f ${CONFIG_FILE} -p 1 release --rm-dist --timeout 90m0s
+          args: -f ${{ matrix.goreleaser }} -p 1 release --rm-dist --timeout 90m0s
           version: latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CONFIG_FILE: ${{ matrix.goreleaser }}
     strategy:
       fail-fast: true
       matrix:

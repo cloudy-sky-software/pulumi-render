@@ -137,7 +137,7 @@ jobs:
           python-version: ${{matrix.pythonversion}}
 
       - name: Generate SDK
-        run: make ${{ matrix.language }}_sdk
+        run: make gen generate_schema ${{ matrix.language }}_sdk
 
       - name: Check worktree clean
         run: |

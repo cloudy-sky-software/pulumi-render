@@ -15,8 +15,7 @@ builds:
       - amd64
       - arm64
     goos:
-      - windows
-      - linux
+      - darwin
     ldflags:
       # The line below MUST align with the module in current provider/go.mod
       - -X github.com/cloudy-sky-software/pulumi-render/provider/pkg/version.Version={{.Tag }}

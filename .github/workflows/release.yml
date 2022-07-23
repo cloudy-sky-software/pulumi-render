@@ -61,7 +61,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v3
         with:
-          go-version: ${{matrix.goversion}}
+          go-version: 1.18.x
 
       - name: Install pulumictl
         uses: jaxxstorm/action-install-gh-release@v1.5.0
@@ -73,15 +73,22 @@ jobs:
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v2
         with:
-          args: -p 1 release --rm-dist --timeout 90m0s
+          args: -f ${CONFIG_FILE} -p 1 release --rm-dist --timeout 90m0s
           version: latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CONFIG_FILE: ${{ matrix.goreleaser }}
     strategy:
       fail-fast: true
       matrix:
-        goversion:
-          - 1.18.x
+        agent-os:
+          - ubuntu-latest
+          - macos-latest
+        include:
+          - agent-os: ubuntu-latest
+            goreleaser: .goreleaser.yml
+          - agent-os: macos-latest
+            goreleaser: .goreleaser-darwin.yml
 
   publish-sdk:
     name: Publish SDKs

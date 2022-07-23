@@ -140,7 +140,7 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata)
 		// This URL should be the base releases URL for a version,
 		// to which the plugin name is suffixed.
 		// https://github.com/pulumi/pulumi/blob/c7e17febe5ff0396e25dca24f59ca98f6722edf2/sdk/go/common/workspace/plugins.go#L379
-		PluginDownloadURL: "https://github.com/cloudy-sky-software/pulumi-render/releases/download/v${VERSION}",
+		PluginDownloadURL: "https://github.com/cloudy-sky-software/pulumi-render/releases/download/${VERSION}",
 		Types:             map[string]pschema.ComplexTypeSpec{},
 		Resources:         map[string]pschema.ResourceSpec{},
 		Functions:         map[string]pschema.FunctionSpec{},

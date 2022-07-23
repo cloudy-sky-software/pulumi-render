@@ -1,0 +1,49 @@
+on:
+  push:
+    branches:
+      - main
+
+env:
+  GOPRIVATE: "github.com/cloudy-sky-software/pulumi-render"
+  PROVIDER: "render"
+
+jobs:
+  assert-clean-tree:
+    name: Check if working tree is clean
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Install Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.18.x
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
+      - name: Setup DotNet
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: 3.1.301
+
+      - name: Setup Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.9
+
+      - name: Generate schema and build SDKs
+        run: make gen generate_schema build
+
+      - name: Check worktree clean
+        run: |
+          git update-index -q --refresh
+          if ! git diff-files --quiet; then
+              >&2 echo "error: working tree is not clean, aborting!"
+              git status
+              git diff
+              exit 1
+          fi

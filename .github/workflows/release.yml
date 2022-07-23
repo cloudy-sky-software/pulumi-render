@@ -17,6 +17,7 @@ env:
   # PYPI usernames for API tokens is literally __token__.
   PYPI_USERNAME: "__token__"
   PUBLISH_PYPI: true
+
 jobs:
   lint:
     name: Lint

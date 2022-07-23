@@ -194,3 +194,5 @@ require (
 	golang.org/x/term v0.0.0-20220526004731-065cf7ba2467 // indirect
 	google.golang.org/genproto v0.0.0-20220715211116-798f69b842b9 // indirect
 )
+
+replace github.com/mattn/go-ieproxy => github.com/mattn/go-ieproxy v0.0.1

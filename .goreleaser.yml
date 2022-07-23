@@ -21,6 +21,14 @@ builds:
     ldflags:
       # The line below MUST align with the module in current provider/go.mod
       - -X github.com/cloudy-sky-software/pulumi-render/provider/pkg/version.Version={{.Tag }}
+    overrides:
+      - goos: darwin
+        goarch: amd64
+        goamd64: v1
+        goarm: ""
+        gomips: ""
+        env:
+          - CGO_ENABLED=1
 changelog:
   skip: true
 release:

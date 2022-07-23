@@ -35,6 +35,13 @@ jobs:
         with:
           python-version: 3.9
 
+      - name: Install pulumictl
+        uses: jaxxstorm/action-install-gh-release@v1.5.0
+        with:
+          repo: pulumi/pulumictl
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Generate schema and build SDKs
         run: make gen generate_schema build
 

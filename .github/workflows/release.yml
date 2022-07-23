@@ -87,7 +87,7 @@ jobs:
           - agent-os: ubuntu-latest
             goreleaser: .goreleaser.yml
           - agent-os: macos-latest
-            goreleaser: .goreleaser-darwin.yml
+            goreleaser: .goreleaser.darwin.yml
 
   publish-sdk:
     name: Publish SDKs

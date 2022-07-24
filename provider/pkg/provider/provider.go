@@ -20,9 +20,11 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"net"
 	"net/http"
 	"os"
 	"strings"
+	"time"
 
 	"github.com/getkin/kin-openapi/openapi3"
 	"github.com/getkin/kin-openapi/routers"
@@ -35,6 +37,7 @@ import (
 
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
+	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
 	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
 
 	providerGen "github.com/cloudy-sky-software/pulumi-render/provider/pkg/gen"
@@ -58,9 +61,13 @@ type renderProvider struct {
 	metadata   providerGen.ProviderMetadata
 	router     routers.Router
 
-	httpClient                           http.Client
+	httpClient                           *http.Client
 	apiKey                               string
 	clearCacheOnServiceUpdateDeployments string
+}
+
+func defaultTransportDialContext(dialer *net.Dialer) func(context.Context, string, string) (net.Conn, error) {
+	return dialer.DialContext
 }
 
 func makeProvider(host *provider.HostClient, name, version string, pulumiSchemaBytes, openapiDocBytes, metadataBytes []byte) (pulumirpc.ResourceProviderServer, error) {
@@ -76,8 +83,21 @@ func makeProvider(host *provider.HostClient, name, version string, pulumiSchemaB
 		return nil, errors.Wrap(err, "unmarshaling the metadata bytes to json")
 	}
 
-	httpClient := http.Client{
-		Transport: http.DefaultTransport,
+	httpClient := &http.Client{
+		// The transport is mostly a copy of the http.DefaultTransport
+		// with the exception of ForceAttemptHTTP2 set to false.
+		Transport: &http.Transport{
+			Proxy: http.ProxyFromEnvironment,
+			DialContext: defaultTransportDialContext(&net.Dialer{
+				Timeout:   30 * time.Second,
+				KeepAlive: 30 * time.Second,
+			}),
+			ForceAttemptHTTP2:     false,
+			MaxIdleConns:          100,
+			IdleConnTimeout:       90 * time.Second,
+			TLSHandshakeTimeout:   10 * time.Second,
+			ExpectContinueTimeout: 1 * time.Second,
+		},
 		CheckRedirect: func(req *http.Request, via []*http.Request) error {
 			return errors.New("unable to handle redirects")
 		},
@@ -159,11 +179,9 @@ func (p *renderProvider) Configure(_ context.Context, req *pulumirpc.ConfigureRe
 	p.apiKey = apiKey
 
 	clearCacheOnServiceUpdateDeployments, ok := req.GetVariables()["render:config:clearCacheOnServiceUpdateDeployments"]
-	if !ok {
-		// Check if it's set as an env var.
-		clearCacheOnServiceUpdateDeployments = p.schema.Config.Variables["clearCacheOnServiceUpdateDeployments"].Default.(string)
+	if ok {
+		p.clearCacheOnServiceUpdateDeployments = clearCacheOnServiceUpdateDeployments
 	}
-	p.clearCacheOnServiceUpdateDeployments = clearCacheOnServiceUpdateDeployments
 
 	return &pulumirpc.ConfigureResponse{}, nil
 }
@@ -285,19 +303,24 @@ func (p *renderProvider) Create(ctx context.Context, req *pulumirpc.CreateReques
 
 	httpEndpointPath := *crudMap.C
 
-	b, err := json.Marshal(inputs)
+	b, err := json.Marshal(inputs.Mappable())
 	if err != nil {
 		return nil, errors.Wrap(err, "marshaling inputs")
 	}
 
 	buf := bytes.NewBuffer(b)
+	logging.V(3).Infof("REQUEST BODY: %s", string(b))
 	httpReq, err := http.NewRequestWithContext(ctx, "POST", p.baseURL+httpEndpointPath, buf)
 	if err != nil {
 		return nil, errors.Wrap(err, "initializing request")
 	}
 
+	logging.V(3).Infof("URL: %s", httpReq.URL.String())
+
 	// Set the API key in the auth header.
 	httpReq.Header.Add("Authorization", fmt.Sprintf("Bearer %s", p.apiKey))
+	httpReq.Header.Add("Accept", jsonMimeType)
+	httpReq.Header.Add("Content-Type", jsonMimeType)
 
 	hasPathParams := strings.Contains(httpEndpointPath, "{")
 	var pathParams map[string]string
@@ -317,6 +340,8 @@ func (p *renderProvider) Create(ctx context.Context, req *pulumirpc.CreateReques
 
 	httpReq.URL.Path = p.replacePathParams(httpReq.URL.Path, pathParams)
 
+	logging.V(3).Info("Executing create resource request")
+
 	// Create the resource.
 	httpResp, err := p.httpClient.Do(httpReq)
 	if err != nil {
@@ -324,7 +349,13 @@ func (p *renderProvider) Create(ctx context.Context, req *pulumirpc.CreateReques
 	}
 
 	if httpResp.StatusCode != http.StatusOK && httpResp.StatusCode != http.StatusCreated {
-		return nil, errors.Errorf("http request failed: %v", err)
+		body, err := ioutil.ReadAll(httpResp.Body)
+		if err != nil {
+			return nil, errors.Wrap(err, "http request failed and the error response could not be read")
+		}
+
+		httpResp.Body.Close()
+		return nil, errors.Errorf("http request failed (status: %s): %s", httpResp.Status, string(body))
 	}
 
 	body, err := ioutil.ReadAll(httpResp.Body)
@@ -387,6 +418,8 @@ func (p *renderProvider) Read(ctx context.Context, req *pulumirpc.ReadRequest) (
 
 	// Set the API key in the auth header.
 	httpReq.Header.Add("Authorization", fmt.Sprintf("Bearer %s", p.apiKey))
+	httpReq.Header.Add("Accept", jsonMimeType)
+	httpReq.Header.Add("Content-Type", jsonMimeType)
 
 	hasPathParams := strings.Contains(httpEndpointPath, "{")
 	var pathParams map[string]string
@@ -414,7 +447,13 @@ func (p *renderProvider) Read(ctx context.Context, req *pulumirpc.ReadRequest) (
 	}
 
 	if httpResp.StatusCode != http.StatusOK {
-		return nil, errors.Errorf("http request failed: %v", err)
+		body, err := ioutil.ReadAll(httpResp.Body)
+		if err != nil {
+			return nil, errors.Wrap(err, "http request failed and the error response could not be read")
+		}
+
+		httpResp.Body.Close()
+		return nil, errors.Errorf("http request failed (status: %s): %s", httpResp.Status, string(body))
 	}
 
 	body, err := ioutil.ReadAll(httpResp.Body)
@@ -478,11 +517,12 @@ func (p *renderProvider) Update(ctx context.Context, req *pulumirpc.UpdateReques
 		method = "PUT"
 	}
 
-	b, err := json.Marshal(inputs)
+	b, err := json.Marshal(inputs.Mappable())
 	if err != nil {
 		return nil, errors.Wrap(err, "marshaling inputs")
 	}
 
+	logging.V(3).Infof("REQUEST BODY: %s", string(b))
 	buf := bytes.NewBuffer(b)
 	httpReq, err := http.NewRequestWithContext(ctx, method, p.baseURL+httpEndpointPath, buf)
 	if err != nil {
@@ -491,6 +531,8 @@ func (p *renderProvider) Update(ctx context.Context, req *pulumirpc.UpdateReques
 
 	// Set the API key in the auth header.
 	httpReq.Header.Add("Authorization", fmt.Sprintf("Bearer %s", p.apiKey))
+	httpReq.Header.Add("Accept", jsonMimeType)
+	httpReq.Header.Add("Content-Type", jsonMimeType)
 
 	hasPathParams := strings.Contains(httpEndpointPath, "{")
 	var pathParams map[string]string
@@ -546,6 +588,8 @@ func (p *renderProvider) runPostUpdateAction(ctx context.Context, resourceTypeTo
 
 	// Set the API key in the auth header.
 	httpReq.Header.Add("Authorization", fmt.Sprintf("Bearer %s", p.apiKey))
+	httpReq.Header.Add("Accept", jsonMimeType)
+	httpReq.Header.Add("Content-Type", jsonMimeType)
 
 	resp, err := p.httpClient.Do(httpReq)
 	if err != nil {
@@ -564,6 +608,8 @@ func (p *renderProvider) executeResumeSerivce(ctx context.Context, serviceID str
 
 	// Set the API key in the auth header.
 	httpReq.Header.Add("Authorization", fmt.Sprintf("Bearer %s", p.apiKey))
+	httpReq.Header.Add("Accept", jsonMimeType)
+	httpReq.Header.Add("Content-Type", jsonMimeType)
 
 	resp, err := p.httpClient.Do(httpReq)
 	if err != nil {
@@ -609,6 +655,8 @@ func (p *renderProvider) Delete(ctx context.Context, req *pulumirpc.DeleteReques
 
 	// Set the API key in the auth header.
 	httpReq.Header.Add("Authorization", fmt.Sprintf("Bearer %s", p.apiKey))
+	httpReq.Header.Add("Accept", jsonMimeType)
+	httpReq.Header.Add("Content-Type", jsonMimeType)
 
 	hasPathParams := strings.Contains(httpEndpointPath, "{")
 	var pathParams map[string]string

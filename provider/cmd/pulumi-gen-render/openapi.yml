@@ -9,7 +9,7 @@ info:
     Email: [support@render.com](mailto:support@render.com)
   version: 1.0.0
 servers:
-  - url: https://api.render.com
+  - url: https://api.render.com/v1
 components:
   securitySchemes:
     bearerAuth:
@@ -285,11 +285,6 @@ components:
           type: string
           readOnly: true
         serviceDetails:
-          discriminator:
-            propertyName: type
-            mapping:
-              static_site: "#/components/schemas/staticSite"
-              web_service: "#/components/schemas/webService"
           oneOf:
             - $ref: "#/components/schemas/staticSite"
             - $ref: "#/components/schemas/webService"

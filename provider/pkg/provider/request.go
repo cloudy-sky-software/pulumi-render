@@ -25,6 +25,15 @@ func (p *renderProvider) validateRequest(ctx context.Context, httpReq *http.Requ
 		Request:    httpReq,
 		PathParams: pathParams,
 		Route:      route,
+		Options: &openapi3filter.Options{
+			AuthenticationFunc: func(ctx context.Context, ai *openapi3filter.AuthenticationInput) error {
+				if ai.RequestValidationInput.Request.Header.Get("Authorization") != "" {
+					return nil
+				}
+
+				return errors.New("authorization header is required")
+			},
+		},
 	}
 	if err := openapi3filter.ValidateRequest(ctx, requestValidationInput); err != nil {
 		return errors.Wrap(err, "request validation failed")

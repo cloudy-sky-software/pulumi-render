@@ -640,14 +640,7 @@
                         {
                             "$ref": "#/types/render:services:ServiceWebService"
                         }
-                    ],
-                    "discriminator": {
-                        "propertyName": "type",
-                        "mapping": {
-                            "static_site": "#/components/schemas/staticSite",
-                            "web_service": "#/components/schemas/webService"
-                        }
-                    }
+                    ]
                 },
                 "slug": {
                     "type": "string"
@@ -703,14 +696,7 @@
                         {
                             "$ref": "#/types/render:services:ServiceWebService"
                         }
-                    ],
-                    "discriminator": {
-                        "propertyName": "type",
-                        "mapping": {
-                            "static_site": "#/components/schemas/staticSite",
-                            "web_service": "#/components/schemas/webService"
-                        }
-                    }
+                    ]
                 },
                 "type": {
                     "$ref": "#/types/render:services:ServiceType"

@@ -521,6 +521,31 @@ func (ctx *resourceContext) propertyTypeSpec(parentName string, propSchema opena
 		}, nil
 	}
 
+	// TODO: allOf
+	if len(propSchema.Value.AllOf) > 0 {
+		var types []pschema.TypeSpec
+		for _, schemaRef := range propSchema.Value.OneOf {
+			typ, err := ctx.propertyTypeSpec(parentName, *schemaRef)
+			if err != nil {
+				return nil, err
+			}
+			types = append(types, *typ)
+		}
+
+		var discriminator *pschema.DiscriminatorSpec
+		if propSchema.Value.Discriminator != nil {
+			discriminator = &pschema.DiscriminatorSpec{
+				PropertyName: propSchema.Value.Discriminator.PropertyName,
+				Mapping:      propSchema.Value.Discriminator.Mapping,
+			}
+		}
+
+		return &pschema.TypeSpec{
+			OneOf:         types,
+			Discriminator: discriminator,
+		}, nil
+	}
+
 	if len(propSchema.Value.Enum) > 0 {
 		enum, err := ctx.genEnumType(parentName, *propSchema.Value)
 		if err != nil {

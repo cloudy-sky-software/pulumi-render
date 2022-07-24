@@ -90,9 +90,8 @@ components:
       type: array
       items:
         $ref: "#/components/schemas/listStaticSiteRoutesResponse"
-    staticSite:
-      title: "Static Site"
-      description: "A static website service"
+    staticSiteServiceDetails:
+      title: "Service"
       type: object
       properties:
         buildCommand:
@@ -126,6 +125,19 @@ components:
           type: string
           description: The HTTPS service URL. A subdomain of onrender.com, by default.
           readOnly: true
+    staticSite:
+      title: "Service"
+      description: "A static website service"
+      allOf:
+        - $ref: "#/components/schemas/service"
+        - type: object
+          properties:
+            type:
+              type: string
+              default: "static_site"
+              readOnly: true
+            serviceDetails:
+              $ref: "#/components/schemas/staticSiteServiceDetails"
     patchStaticSite:
       title: "Static Site PATCH"
       description: "The PATCH object to update a static website service"
@@ -183,8 +195,8 @@ components:
       required:
         - "buildCommand"
         - "startCommand"
-    webService:
-      title: "WebService"
+    webServiceServiceDetails:
+      title: "Service"
       type: object
       properties:
         disk:
@@ -232,6 +244,18 @@ components:
             - "frankfurt"
       required:
         - "env"
+    webService:
+      title: "Service"
+      allOf:
+        - $ref: "#/components/schemas/service"
+        - type: object
+          properties:
+            type:
+              type: string
+              default: "web_service"
+              readOnly: true
+            serviceDetails:
+              $ref: "#/components/schemas/webServiceServiceDetails"
     service:
       title: "Service"
       description: "The service object represents a service. The type of service is discriminated by the type property which determines the type of object in the serviceDetails property."
@@ -271,23 +295,9 @@ components:
           readOnly: true
           items:
             type: string
-        type:
-          type: string
-          enum:
-            [
-              "static_site",
-              "web_service",
-              "private_service",
-              "background_worker",
-              "cron_job",
-            ]
         updatedAt:
           type: string
           readOnly: true
-        serviceDetails:
-          oneOf:
-            - $ref: "#/components/schemas/staticSite"
-            - $ref: "#/components/schemas/webService"
       required:
         - "type"
         - "name"
@@ -299,8 +309,14 @@ components:
         cursor:
           type: string
         service:
-          type: object
-          $ref: "#/components/schemas/service"
+          discriminator:
+            propertyName: type
+            mapping:
+              "static_site": "#/components/schemas/staticSite"
+              "web_service": "#/components/schemas/webService"
+          oneOf:
+            - $ref: "#/components/schemas/staticSite"
+            - $ref: "#/components/schemas/webService"
     listService:
       type: array
       items:
@@ -979,8 +995,14 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              $ref: "#/components/schemas/service"
+              discriminator:
+                propertyName: type
+                mapping:
+                  "static_site": "#/components/schemas/staticSite"
+                  "web_service": "#/components/schemas/webService"
+                oneOf:
+                  - $ref: "#/components/schemas/staticSite"
+                  - $ref: "#/components/schemas/webService"
               example:
                 type: web_service
                 name: cillum ipsum
@@ -1208,7 +1230,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/service"
+                discriminator:
+                  propertyName: type
+                  mapping:
+                    "static_site": "#/components/schemas/staticSite"
+                    "web_service": "#/components/schemas/webService"
+                  oneOf:
+                    - $ref: "#/components/schemas/staticSite"
+                    - $ref: "#/components/schemas/webService"
               example:
                 id: in deserunt laboris dolore
                 autoDeploy: "yes"

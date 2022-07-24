@@ -66,6 +66,7 @@ export namespace services {
         publishPath?: pulumi.Input<string>;
         pullRequestPreviewsEnabled?: pulumi.Input<enums.services.ServiceStaticSitePullRequestPreviewsEnabled>;
         routes?: pulumi.Input<pulumi.Input<inputs.services.ServiceStaticSiteRouteArgs>[]>;
+        type?: pulumi.Input<string>;
         /**
          * The HTTPS service URL. A subdomain of onrender.com, by default.
          */
@@ -79,6 +80,7 @@ export namespace services {
             ...val,
             publishPath: (val.publishPath) ?? "public",
             pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
+            type: (val.type) ?? "static_site",
         };
     }
 
@@ -105,6 +107,7 @@ export namespace services {
         plan?: pulumi.Input<enums.services.ServiceWebServicePlan>;
         pullRequestPreviewsEnabled?: pulumi.Input<enums.services.ServiceWebServicePullRequestPreviewsEnabled>;
         region?: pulumi.Input<enums.services.ServiceWebServiceRegion>;
+        type?: pulumi.Input<string>;
     }
     /**
      * serviceWebServiceArgsProvideDefaults sets the appropriate defaults for ServiceWebServiceArgs
@@ -117,6 +120,7 @@ export namespace services {
             plan: (val.plan) ?? "starter",
             pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
             region: (val.region) ?? "oregon",
+            type: (val.type) ?? "web_service",
         };
     }
 }

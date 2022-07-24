@@ -282,6 +282,7 @@ class ServiceStaticSiteArgs:
                  publish_path: Optional[pulumi.Input[str]] = None,
                  pull_request_previews_enabled: Optional[pulumi.Input['ServiceStaticSitePullRequestPreviewsEnabled']] = None,
                  routes: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceStaticSiteRouteArgs']]]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None):
         """
         A static website service
@@ -303,6 +304,10 @@ class ServiceStaticSiteArgs:
             pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
         if routes is not None:
             pulumi.set(__self__, "routes", routes)
+        if type is None:
+            type = 'static_site'
+        if type is not None:
+            pulumi.set(__self__, "type", type)
         if url is not None:
             pulumi.set(__self__, "url", url)
 
@@ -362,6 +367,15 @@ class ServiceStaticSiteArgs:
 
     @property
     @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter
     def url(self) -> Optional[pulumi.Input[str]]:
         """
         The HTTPS service URL. A subdomain of onrender.com, by default.
@@ -383,7 +397,8 @@ class ServiceWebServiceArgs:
                  num_instances: Optional[pulumi.Input[float]] = None,
                  plan: Optional[pulumi.Input['ServiceWebServicePlan']] = None,
                  pull_request_previews_enabled: Optional[pulumi.Input['ServiceWebServicePullRequestPreviewsEnabled']] = None,
-                 region: Optional[pulumi.Input['ServiceWebServiceRegion']] = None):
+                 region: Optional[pulumi.Input['ServiceWebServiceRegion']] = None,
+                 type: Optional[pulumi.Input[str]] = None):
         pulumi.set(__self__, "env", env)
         if disk is not None:
             pulumi.set(__self__, "disk", disk)
@@ -407,6 +422,10 @@ class ServiceWebServiceArgs:
             region = 'oregon'
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if type is None:
+            type = 'web_service'
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
@@ -479,5 +498,14 @@ class ServiceWebServiceArgs:
     @region.setter
     def region(self, value: Optional[pulumi.Input['ServiceWebServiceRegion']]):
         pulumi.set(self, "region", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
 
 

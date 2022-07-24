@@ -72,6 +72,7 @@ export namespace services {
         publishPath?: string;
         pullRequestPreviewsEnabled?: enums.services.ServiceStaticSitePullRequestPreviewsEnabled;
         routes?: outputs.services.ServiceStaticSiteRoute[];
+        type?: string;
         /**
          * The HTTPS service URL. A subdomain of onrender.com, by default.
          */
@@ -85,6 +86,7 @@ export namespace services {
             ...val,
             publishPath: (val.publishPath) ?? "public",
             pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
+            type: (val.type) ?? "static_site",
         };
     }
 
@@ -111,6 +113,7 @@ export namespace services {
         plan?: enums.services.ServiceWebServicePlan;
         pullRequestPreviewsEnabled?: enums.services.ServiceWebServicePullRequestPreviewsEnabled;
         region?: enums.services.ServiceWebServiceRegion;
+        type?: string;
     }
     /**
      * serviceWebServiceProvideDefaults sets the appropriate defaults for ServiceWebService
@@ -123,6 +126,7 @@ export namespace services {
             plan: (val.plan) ?? "starter",
             pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
             region: (val.region) ?? "oregon",
+            type: (val.type) ?? "web_service",
         };
     }
 

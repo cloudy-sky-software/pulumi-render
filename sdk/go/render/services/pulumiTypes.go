@@ -206,6 +206,7 @@ type ServiceStaticSite struct {
 	PublishPath                *string                                      `pulumi:"publishPath"`
 	PullRequestPreviewsEnabled *ServiceStaticSitePullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
 	Routes                     []ServiceStaticSiteRoute                     `pulumi:"routes"`
+	Type                       *string                                      `pulumi:"type"`
 	// The HTTPS service URL. A subdomain of onrender.com, by default.
 	Url *string `pulumi:"url"`
 }
@@ -223,6 +224,10 @@ func (val *ServiceStaticSite) Defaults() *ServiceStaticSite {
 	if isZero(tmp.PullRequestPreviewsEnabled) {
 		pullRequestPreviewsEnabled_ := ServiceStaticSitePullRequestPreviewsEnabled("no")
 		tmp.PullRequestPreviewsEnabled = &pullRequestPreviewsEnabled_
+	}
+	if isZero(tmp.Type) {
+		type_ := "static_site"
+		tmp.Type = &type_
 	}
 	return &tmp
 }
@@ -248,6 +253,7 @@ type ServiceWebService struct {
 	Plan                       *ServiceWebServicePlan                       `pulumi:"plan"`
 	PullRequestPreviewsEnabled *ServiceWebServicePullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
 	Region                     *ServiceWebServiceRegion                     `pulumi:"region"`
+	Type                       *string                                      `pulumi:"type"`
 }
 
 // Defaults sets the appropriate defaults for ServiceWebService
@@ -273,6 +279,10 @@ func (val *ServiceWebService) Defaults() *ServiceWebService {
 	if isZero(tmp.Region) {
 		region_ := ServiceWebServiceRegion("oregon")
 		tmp.Region = &region_
+	}
+	if isZero(tmp.Type) {
+		type_ := "web_service"
+		tmp.Type = &type_
 	}
 	return &tmp
 }

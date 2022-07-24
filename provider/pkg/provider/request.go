@@ -3,11 +3,13 @@ package provider
 import (
 	"context"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"strings"
 
 	"github.com/getkin/kin-openapi/openapi3filter"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
+	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
 
 	"github.com/pkg/errors"
 )
@@ -35,9 +37,19 @@ func (p *renderProvider) validateRequest(ctx context.Context, httpReq *http.Requ
 			},
 		},
 	}
+
 	if err := openapi3filter.ValidateRequest(ctx, requestValidationInput); err != nil {
 		return errors.Wrap(err, "request validation failed")
 	}
+
+	// Update the original HTTP request's ContentLength since the
+	// body might have changed due to default properties getting
+	// added to it.
+	clonedReq := httpReq.Clone(ctx)
+	clonedBody, _ := ioutil.ReadAll(clonedReq.Body)
+	newContentLength := int64(len(clonedBody))
+	logging.V(3).Infof("REQUEST CONTENT LENGTH: current: %d, new: %d", httpReq.ContentLength, newContentLength)
+	httpReq.ContentLength = newContentLength
 
 	return nil
 }

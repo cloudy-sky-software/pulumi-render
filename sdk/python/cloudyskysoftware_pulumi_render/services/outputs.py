@@ -296,6 +296,7 @@ class ServiceStaticSite(dict):
                  publish_path: Optional[str] = None,
                  pull_request_previews_enabled: Optional['ServiceStaticSitePullRequestPreviewsEnabled'] = None,
                  routes: Optional[Sequence['outputs.ServiceStaticSiteRoute']] = None,
+                 type: Optional[str] = None,
                  url: Optional[str] = None):
         """
         A static website service
@@ -317,6 +318,10 @@ class ServiceStaticSite(dict):
             pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
         if routes is not None:
             pulumi.set(__self__, "routes", routes)
+        if type is None:
+            type = 'static_site'
+        if type is not None:
+            pulumi.set(__self__, "type", type)
         if url is not None:
             pulumi.set(__self__, "url", url)
 
@@ -349,6 +354,11 @@ class ServiceStaticSite(dict):
     @pulumi.getter
     def routes(self) -> Optional[Sequence['outputs.ServiceStaticSiteRoute']]:
         return pulumi.get(self, "routes")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
@@ -445,7 +455,8 @@ class ServiceWebService(dict):
                  num_instances: Optional[float] = None,
                  plan: Optional['ServiceWebServicePlan'] = None,
                  pull_request_previews_enabled: Optional['ServiceWebServicePullRequestPreviewsEnabled'] = None,
-                 region: Optional['ServiceWebServiceRegion'] = None):
+                 region: Optional['ServiceWebServiceRegion'] = None,
+                 type: Optional[str] = None):
         pulumi.set(__self__, "env", env)
         if disk is not None:
             pulumi.set(__self__, "disk", disk)
@@ -469,6 +480,10 @@ class ServiceWebService(dict):
             region = 'oregon'
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if type is None:
+            type = 'web_service'
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
@@ -509,5 +524,10 @@ class ServiceWebService(dict):
     @pulumi.getter
     def region(self) -> Optional['ServiceWebServiceRegion']:
         return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        return pulumi.get(self, "type")
 
 

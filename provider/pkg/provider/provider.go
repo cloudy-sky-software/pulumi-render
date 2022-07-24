@@ -370,6 +370,8 @@ func (p *renderProvider) Create(ctx context.Context, req *pulumirpc.CreateReques
 		return nil, errors.Wrap(err, "unmarshaling the response")
 	}
 
+	logging.V(3).Infof("RESPONSE BODY: %v", result)
+
 	outputs := map[string]interface{}{
 		"result": result,
 	}
@@ -564,6 +566,9 @@ func (p *renderProvider) Update(ctx context.Context, req *pulumirpc.UpdateReques
 	}
 
 	httpResp.Body.Close()
+
+	// TODO: Read the response body for 200 OK status codes only (since 204 won't have a body)
+	// and set them as output properties.
 
 	p.runPostUpdateAction(ctx, resourceTypeToken, httpReq.URL.String())
 

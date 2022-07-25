@@ -5,11 +5,15 @@ import (
 	"strings"
 
 	"github.com/getkin/kin-openapi/openapi3"
+
 	"github.com/golang/glog"
+
 	"github.com/pkg/errors"
+
 	"github.com/pulumi/pulumi/pkg/v3/codegen"
 	dotnetgen "github.com/pulumi/pulumi/pkg/v3/codegen/dotnet"
 	pschema "github.com/pulumi/pulumi/pkg/v3/codegen/schema"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
 )
 

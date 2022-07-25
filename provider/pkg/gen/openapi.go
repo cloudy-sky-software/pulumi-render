@@ -17,6 +17,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
 )
 
+const componentsSchemaRefPrefix = "#/components/schemas/"
+
 type openAPIContext struct {
 	doc             openapi3.T
 	pkg             *pschema.PackageSpec
@@ -65,15 +67,28 @@ func (o *openAPIContext) gatherResourcesFromAPI(csharpNamespaces map[string]stri
 				contract.Failf("Path %s has no schema definition for status code 200", currentPath)
 			}
 
-			resourceType := jsonReq.Schema.Value
-			if resourceType.Type != "array" {
-				typeToken := fmt.Sprintf("%s:%s:%s", packageName, module, resourceType.Title)
-				if existing, ok := o.resourceCRUDMap[typeToken]; ok {
+			setReadOperationMapping := func(tok string) {
+				if existing, ok := o.resourceCRUDMap[tok]; ok {
 					existing.R = &currentPath
 				} else {
-					o.resourceCRUDMap[typeToken] = &CRUDOperationsMap{
+					o.resourceCRUDMap[tok] = &CRUDOperationsMap{
 						R: &currentPath,
 					}
+				}
+			}
+
+			resourceType := jsonReq.Schema.Value
+			if resourceType.Type != "array" {
+				if resourceType.Discriminator != nil {
+					for _, ref := range resourceType.Discriminator.Mapping {
+						schemaName := strings.TrimPrefix(ref, componentsSchemaRefPrefix)
+						dResource := o.doc.Components.Schemas[schemaName]
+						typeToken := fmt.Sprintf("%s:%s:%s", packageName, module, dResource.Value.Title)
+						setReadOperationMapping(typeToken)
+					}
+				} else {
+					typeToken := fmt.Sprintf("%s:%s:%s", packageName, module, resourceType.Title)
+					setReadOperationMapping(typeToken)
 				}
 			}
 			// TODO: We'll should also add this as get*/list* provider functions.
@@ -88,14 +103,41 @@ func (o *openAPIContext) gatherResourcesFromAPI(csharpNamespaces map[string]stri
 				contract.Failf("Path %s has no schema definition for Patch method", currentPath)
 			}
 
-			resourceType := jsonReq.Schema.Value
-			typeToken := fmt.Sprintf("%s:%s:%s", packageName, module, resourceType.Title)
-			if existing, ok := o.resourceCRUDMap[typeToken]; ok {
-				existing.U = &currentPath
-			} else {
-				o.resourceCRUDMap[typeToken] = &CRUDOperationsMap{
-					U: &currentPath,
+			setUpdateOperationMapping := func(tok string) {
+				if existing, ok := o.resourceCRUDMap[tok]; ok {
+					existing.U = &currentPath
+				} else {
+					o.resourceCRUDMap[tok] = &CRUDOperationsMap{
+						U: &currentPath,
+					}
 				}
+			}
+
+			resourceType := jsonReq.Schema.Value
+			if resourceType.Discriminator != nil || len(resourceType.OneOf) > 0 {
+				schemaNames := make([]string, 0)
+				if resourceType.Discriminator != nil {
+					for _, ref := range resourceType.Discriminator.Mapping {
+						schemaName := strings.TrimPrefix(ref, componentsSchemaRefPrefix)
+						schemaNames = append(schemaNames, schemaName)
+					}
+				}
+
+				if len(resourceType.OneOf) > 0 {
+					for _, ref := range resourceType.OneOf {
+						schemaName := strings.TrimPrefix(ref.Ref, componentsSchemaRefPrefix)
+						schemaNames = append(schemaNames, schemaName)
+					}
+				}
+
+				for _, n := range schemaNames {
+					dResource := o.doc.Components.Schemas[n]
+					typeToken := fmt.Sprintf("%s:%s:%s", packageName, module, dResource.Value.Title)
+					setUpdateOperationMapping(typeToken)
+				}
+			} else {
+				typeToken := fmt.Sprintf("%s:%s:%s", packageName, module, resourceType.Title)
+				setUpdateOperationMapping(typeToken)
 			}
 		}
 
@@ -108,14 +150,27 @@ func (o *openAPIContext) gatherResourcesFromAPI(csharpNamespaces map[string]stri
 				contract.Failf("Path %s has no schema definition for Put method", currentPath)
 			}
 
-			resourceType := jsonReq.Schema.Value
-			typeToken := fmt.Sprintf("%s:%s:%s", packageName, module, resourceType.Title)
-			if existing, ok := o.resourceCRUDMap[typeToken]; ok {
-				existing.P = &currentPath
-			} else {
-				o.resourceCRUDMap[typeToken] = &CRUDOperationsMap{
-					P: &currentPath,
+			setPutOperationMapping := func(tok string) {
+				if existing, ok := o.resourceCRUDMap[tok]; ok {
+					existing.P = &currentPath
+				} else {
+					o.resourceCRUDMap[tok] = &CRUDOperationsMap{
+						P: &currentPath,
+					}
 				}
+			}
+
+			resourceType := jsonReq.Schema.Value
+			if resourceType.Discriminator != nil {
+				for _, ref := range resourceType.Discriminator.Mapping {
+					schemaName := strings.TrimPrefix(ref, componentsSchemaRefPrefix)
+					dResource := o.doc.Components.Schemas[schemaName]
+					typeToken := fmt.Sprintf("%s:%s:%s", packageName, module, dResource.Value.Title)
+					setPutOperationMapping(typeToken)
+				}
+			} else {
+				typeToken := fmt.Sprintf("%s:%s:%s", packageName, module, resourceType.Title)
+				setPutOperationMapping(typeToken)
 			}
 		}
 
@@ -128,15 +183,27 @@ func (o *openAPIContext) gatherResourcesFromAPI(csharpNamespaces map[string]stri
 				contract.Failf("Path %s has no schema definition for Delete method", parentPath)
 			}
 
-			resourceType := jsonReq.Schema.Value
-			typeToken := fmt.Sprintf("%s:%s:%s", packageName, module, resourceType.Title)
-
-			if existing, ok := o.resourceCRUDMap[typeToken]; ok {
-				existing.D = &currentPath
-			} else {
-				o.resourceCRUDMap[typeToken] = &CRUDOperationsMap{
-					D: &currentPath,
+			setDeleteOperationMapping := func(tok string) {
+				if existing, ok := o.resourceCRUDMap[tok]; ok {
+					existing.D = &currentPath
+				} else {
+					o.resourceCRUDMap[tok] = &CRUDOperationsMap{
+						D: &currentPath,
+					}
 				}
+			}
+
+			resourceType := jsonReq.Schema.Value
+			if resourceType.Discriminator != nil {
+				for _, ref := range resourceType.Discriminator.Mapping {
+					schemaName := strings.TrimPrefix(ref, componentsSchemaRefPrefix)
+					dResource := o.doc.Components.Schemas[schemaName]
+					typeToken := fmt.Sprintf("%s:%s:%s", packageName, module, dResource.Value.Title)
+					setDeleteOperationMapping(typeToken)
+				}
+			} else {
+				typeToken := fmt.Sprintf("%s:%s:%s", packageName, module, resourceType.Title)
+				setDeleteOperationMapping(typeToken)
 			}
 		}
 
@@ -167,7 +234,7 @@ func (o *openAPIContext) gatherResourceFromAPIPath(apiPath string, pathItem open
 
 	if resourceType.Discriminator != nil {
 		for _, mappingRef := range resourceType.Discriminator.Mapping {
-			schemaName := strings.TrimPrefix(mappingRef, "#/components/schemas/")
+			schemaName := strings.TrimPrefix(mappingRef, componentsSchemaRefPrefix)
 			typeSchema, ok := o.doc.Components.Schemas[schemaName]
 			if !ok {
 				return errors.Errorf("%s not found in api schemas for discriminated type in path %s", schemaName, apiPath)
@@ -353,7 +420,7 @@ func (ctx *resourceContext) genPropertySpec(propName string, p openapi3.SchemaRe
 func (ctx *resourceContext) propertyTypeSpec(parentName string, propSchema openapi3.SchemaRef) (*pschema.TypeSpec, error) {
 	// References to other type definitions.
 	if propSchema.Ref != "" {
-		schemaName := strings.TrimPrefix(propSchema.Ref, "#/components/schemas/")
+		schemaName := strings.TrimPrefix(propSchema.Ref, componentsSchemaRefPrefix)
 		typName := ToPascalCase(schemaName)
 		if !strings.HasPrefix(schemaName, ctx.resourceName) {
 			typName = fmt.Sprintf("%s%s", ctx.resourceName, typName)

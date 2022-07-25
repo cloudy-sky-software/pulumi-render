@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.1.0
 info:
   title: Render Public API
   description: |-
@@ -139,15 +139,61 @@ components:
             serviceDetails:
               $ref: "#/components/schemas/staticSiteServiceDetails"
     patchStaticSite:
-      title: "Static Site PATCH"
+      title: "StaticSite"
       description: "The PATCH object to update a static website service"
       type: object
       properties:
+        autoDeploy:
+          type: string
+          default: "no"
+          enum: ["yes", "no"]
+        branch:
+          type: string
         buildCommand:
+          type: string
+        name:
           type: string
         publishPath:
           type: string
           default: "public"
+        pullRequestPreviewsEnabled:
+          type: string
+          default: "no"
+          enum: ["yes", "no"]
+    patchWebService:
+      title: "WebService"
+      description: "The PATCH object to update a web service"
+      type: object
+      properties:
+        autoDeploy:
+          type: string
+          default: "no"
+          enum: ["yes", "no"]
+        branch:
+          type: string
+        envSpecificDetails:
+          oneOf:
+            - $ref: "#/components/schemas/dockerDetails"
+            - $ref: "#/components/schemas/nativeEnvironmentDetails"
+        healthCheckPath:
+          type: string
+        name:
+          type: string
+        numInstances:
+          type: number
+          default: 1
+        plan:
+          type: string
+          default: "starter"
+          enum:
+            - "starter"
+            - "starter_plus"
+            - "standard"
+            - "standard_plus"
+            - "pro"
+            - "pro_plus"
+            - "pro_max"
+            - "pro_ultra"
         pullRequestPreviewsEnabled:
           type: string
           default: "no"
@@ -301,7 +347,6 @@ components:
           readOnly: true
       required:
         - "type"
-        - "name"
         - "ownerId"
         - "repo"
     listServiceResponse:
@@ -322,21 +367,6 @@ components:
       type: array
       items:
         $ref: "#/components/schemas/listServiceResponse"
-    patchService:
-      title: "Service"
-      type: object
-      properties:
-        autoDeploy:
-          type: string
-          default: "no"
-          enum: ["yes", "no"]
-        branch:
-          type: string
-        name:
-          type: string
-        serviceDetails:
-          oneOf:
-            - $ref: "#/components/schemas/patchStaticSite"
     envVarKeyValue:
       type: object
       properties:
@@ -1385,7 +1415,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/patchService"
+              oneOf:
+                - $ref: "#/components/schemas/patchStaticSite"
+                - $ref: "#/components/schemas/patchWebService"
               example:
                 autoDeploy: "yes"
                 branch: amet dolore officia quis est

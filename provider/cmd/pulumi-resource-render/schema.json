@@ -200,7 +200,6 @@
             },
             "type": "object",
             "required": [
-                "name",
                 "ownerId",
                 "repo"
             ]
@@ -456,7 +455,6 @@
             },
             "type": "object",
             "required": [
-                "name",
                 "ownerId",
                 "repo"
             ]
@@ -737,7 +735,7 @@
             ]
         },
         "render:services:StaticSite": {
-            "description": "A static website service",
+            "description": "A static website service\n\n{{% examples %}}\n\n## Example Usage\n\n{{% example %}}\n\n### Create a service\n\n```typescript\nimport * as render from \"@pulumi/render\";\n\n// TODO: Fill me in!\nconst service = new render.services.StaticSite(\"staticSite\", {});\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
             "properties": {
                 "autoDeploy": {
                     "type": "boolean",
@@ -790,7 +788,6 @@
             },
             "type": "object",
             "requiredInputs": [
-                "name",
                 "ownerId",
                 "repo"
             ]
@@ -852,7 +849,6 @@
             },
             "type": "object",
             "requiredInputs": [
-                "name",
                 "ownerId",
                 "repo"
             ]

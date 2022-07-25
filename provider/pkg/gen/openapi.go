@@ -253,7 +253,6 @@ func (o *openAPIContext) gatherResourceFromAPISchema(apiSchema openapi3.Schema, 
 		// a new type and get rid of those top-level ones.
 		typeToken := fmt.Sprintf("%s:%s:%s", packageName, module, parentName)
 		properties := make(map[string]pschema.PropertySpec)
-		requiredSpecs := codegen.NewStringSet()
 		for _, t := range types {
 			refType := pkgCtx.pkg.Types[strings.TrimPrefix(t.Ref, "#/types/")]
 
@@ -262,10 +261,10 @@ func (o *openAPIContext) gatherResourceFromAPISchema(apiSchema openapi3.Schema, 
 			}
 
 			for _, r := range refType.Required {
-				if requiredSpecs.Has(r) {
+				if requiredInputs.Has(r) {
 					continue
 				}
-				requiredSpecs.Add(r)
+				requiredInputs.Add(r)
 			}
 		}
 

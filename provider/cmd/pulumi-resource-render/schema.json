@@ -788,7 +788,12 @@
                     "type": "string"
                 }
             },
-            "type": "object"
+            "type": "object",
+            "requiredInputs": [
+                "name",
+                "ownerId",
+                "repo"
+            ]
         },
         "render:services:Suspend": {
             "type": "object"
@@ -845,7 +850,12 @@
                     "type": "string"
                 }
             },
-            "type": "object"
+            "type": "object",
+            "requiredInputs": [
+                "name",
+                "ownerId",
+                "repo"
+            ]
         }
     }
 }

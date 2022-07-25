@@ -157,8 +157,9 @@
             "description": "The service object represents a service. The type of service is discriminated by the type property which determines the type of object in the serviceDetails property.",
             "properties": {
                 "autoDeploy": {
-                    "type": "boolean",
-                    "description": "Whether to auto deploy the service or not upon git push."
+                    "$ref": "#/types/render:services:StaticSiteServiceAutoDeploy",
+                    "description": "Whether to auto deploy the service or not upon git push.",
+                    "default": "no"
                 },
                 "branch": {
                     "type": "string",
@@ -203,6 +204,20 @@
                 "name",
                 "ownerId",
                 "repo"
+            ]
+        },
+        "render:services:StaticSiteServiceAutoDeploy": {
+            "description": "Whether to auto deploy the service or not upon git push.",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
             ]
         },
         "render:services:StaticSiteServiceHeader": {
@@ -413,8 +428,9 @@
             "description": "The service object represents a service. The type of service is discriminated by the type property which determines the type of object in the serviceDetails property.",
             "properties": {
                 "autoDeploy": {
-                    "type": "boolean",
-                    "description": "Whether to auto deploy the service or not upon git push."
+                    "$ref": "#/types/render:services:WebServiceServiceAutoDeploy",
+                    "description": "Whether to auto deploy the service or not upon git push.",
+                    "default": "no"
                 },
                 "branch": {
                     "type": "string",
@@ -459,6 +475,20 @@
                 "name",
                 "ownerId",
                 "repo"
+            ]
+        },
+        "render:services:WebServiceServiceAutoDeploy": {
+            "description": "Whether to auto deploy the service or not upon git push.",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
             ]
         },
         "render:services:WebServiceServiceNotifyOnFail": {
@@ -740,8 +770,9 @@
             "description": "A static website service\n\n{{% examples %}}\n\n## Example Usage\n\n{{% example %}}\n\n### Create a service\n\n```typescript\nimport * as render from \"@pulumi/render\";\n\n// TODO: Fill me in!\nconst service = new render.services.StaticSite(\"staticSite\", {});\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
             "properties": {
                 "autoDeploy": {
-                    "type": "boolean",
-                    "description": "Whether to auto deploy the service or not upon git push."
+                    "$ref": "#/types/render:services:StaticSiteServiceAutoDeploy",
+                    "description": "Whether to auto deploy the service or not upon git push.",
+                    "default": "no"
                 },
                 "branch": {
                     "type": "string",
@@ -791,8 +822,9 @@
             "type": "object",
             "inputProperties": {
                 "autoDeploy": {
-                    "type": "boolean",
-                    "description": "Whether to auto deploy the service or not upon git push."
+                    "$ref": "#/types/render:services:StaticSiteServiceAutoDeploy",
+                    "description": "Whether to auto deploy the service or not upon git push.",
+                    "default": "no"
                 },
                 "branch": {
                     "type": "string",
@@ -852,8 +884,9 @@
             "description": "A web service",
             "properties": {
                 "autoDeploy": {
-                    "type": "boolean",
-                    "description": "Whether to auto deploy the service or not upon git push."
+                    "$ref": "#/types/render:services:WebServiceServiceAutoDeploy",
+                    "description": "Whether to auto deploy the service or not upon git push.",
+                    "default": "no"
                 },
                 "branch": {
                     "type": "string",
@@ -903,8 +936,9 @@
             "type": "object",
             "inputProperties": {
                 "autoDeploy": {
-                    "type": "boolean",
-                    "description": "Whether to auto deploy the service or not upon git push."
+                    "$ref": "#/types/render:services:WebServiceServiceAutoDeploy",
+                    "description": "Whether to auto deploy the service or not upon git push.",
+                    "default": "no"
                 },
                 "branch": {
                     "type": "string",

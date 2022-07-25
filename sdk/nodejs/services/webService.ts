@@ -38,7 +38,7 @@ export class WebService extends pulumi.CustomResource {
     /**
      * Whether to auto deploy the service or not upon git push.
      */
-    public readonly autoDeploy!: pulumi.Output<boolean | undefined>;
+    public readonly autoDeploy!: pulumi.Output<enums.services.WebServiceServiceAutoDeploy | undefined>;
     /**
      * If left empty, this will fall back to the default branch of the repository.
      */
@@ -84,7 +84,7 @@ export class WebService extends pulumi.CustomResource {
             if ((!args || args.repo === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'repo'");
             }
-            resourceInputs["autoDeploy"] = args ? args.autoDeploy : undefined;
+            resourceInputs["autoDeploy"] = (args ? args.autoDeploy : undefined) ?? "no";
             resourceInputs["branch"] = args ? args.branch : undefined;
             resourceInputs["createdAt"] = args ? args.createdAt : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -124,7 +124,7 @@ export interface WebServiceArgs {
     /**
      * Whether to auto deploy the service or not upon git push.
      */
-    autoDeploy?: pulumi.Input<boolean>;
+    autoDeploy?: pulumi.Input<enums.services.WebServiceServiceAutoDeploy>;
     /**
      * If left empty, this will fall back to the default branch of the repository.
      */

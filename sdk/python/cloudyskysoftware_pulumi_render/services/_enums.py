@@ -8,10 +8,12 @@ __all__ = [
     'CustomDomainDomainType',
     'CustomDomainVerificationStatus',
     'DeployClearCache',
+    'StaticSiteServiceAutoDeploy',
     'StaticSiteServiceNotifyOnFail',
     'StaticSiteServiceSuspended',
     'StaticSiteStaticSiteRouteType',
     'StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled',
+    'WebServiceServiceAutoDeploy',
     'WebServiceServiceNotifyOnFail',
     'WebServiceServiceSuspended',
     'WebServiceWebServiceServiceDetailsEnv',
@@ -36,6 +38,14 @@ class DeployClearCache(str, Enum):
     CLEAR = "clear"
 
 
+class StaticSiteServiceAutoDeploy(str, Enum):
+    """
+    Whether to auto deploy the service or not upon git push.
+    """
+    YES = "yes"
+    NO = "no"
+
+
 class StaticSiteServiceNotifyOnFail(str, Enum):
     """
     The notification setting for this service upon deployment failure.
@@ -56,6 +66,14 @@ class StaticSiteStaticSiteRouteType(str, Enum):
 
 
 class StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled(str, Enum):
+    YES = "yes"
+    NO = "no"
+
+
+class WebServiceServiceAutoDeploy(str, Enum):
+    """
+    Whether to auto deploy the service or not upon git push.
+    """
     YES = "yes"
     NO = "no"
 

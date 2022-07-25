@@ -354,6 +354,171 @@ func (in *deployClearCachePtr) ToDeployClearCachePtrOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, in).(DeployClearCachePtrOutput)
 }
 
+// Whether to auto deploy the service or not upon git push.
+type StaticSiteServiceAutoDeploy string
+
+const (
+	StaticSiteServiceAutoDeployYes = StaticSiteServiceAutoDeploy("yes")
+	StaticSiteServiceAutoDeployNo  = StaticSiteServiceAutoDeploy("no")
+)
+
+func (StaticSiteServiceAutoDeploy) ElementType() reflect.Type {
+	return reflect.TypeOf((*StaticSiteServiceAutoDeploy)(nil)).Elem()
+}
+
+func (e StaticSiteServiceAutoDeploy) ToStaticSiteServiceAutoDeployOutput() StaticSiteServiceAutoDeployOutput {
+	return pulumi.ToOutput(e).(StaticSiteServiceAutoDeployOutput)
+}
+
+func (e StaticSiteServiceAutoDeploy) ToStaticSiteServiceAutoDeployOutputWithContext(ctx context.Context) StaticSiteServiceAutoDeployOutput {
+	return pulumi.ToOutputWithContext(ctx, e).(StaticSiteServiceAutoDeployOutput)
+}
+
+func (e StaticSiteServiceAutoDeploy) ToStaticSiteServiceAutoDeployPtrOutput() StaticSiteServiceAutoDeployPtrOutput {
+	return e.ToStaticSiteServiceAutoDeployPtrOutputWithContext(context.Background())
+}
+
+func (e StaticSiteServiceAutoDeploy) ToStaticSiteServiceAutoDeployPtrOutputWithContext(ctx context.Context) StaticSiteServiceAutoDeployPtrOutput {
+	return StaticSiteServiceAutoDeploy(e).ToStaticSiteServiceAutoDeployOutputWithContext(ctx).ToStaticSiteServiceAutoDeployPtrOutputWithContext(ctx)
+}
+
+func (e StaticSiteServiceAutoDeploy) ToStringOutput() pulumi.StringOutput {
+	return pulumi.ToOutput(pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e StaticSiteServiceAutoDeploy) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return pulumi.ToOutputWithContext(ctx, pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e StaticSiteServiceAutoDeploy) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringPtrOutputWithContext(context.Background())
+}
+
+func (e StaticSiteServiceAutoDeploy) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
+}
+
+type StaticSiteServiceAutoDeployOutput struct{ *pulumi.OutputState }
+
+func (StaticSiteServiceAutoDeployOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StaticSiteServiceAutoDeploy)(nil)).Elem()
+}
+
+func (o StaticSiteServiceAutoDeployOutput) ToStaticSiteServiceAutoDeployOutput() StaticSiteServiceAutoDeployOutput {
+	return o
+}
+
+func (o StaticSiteServiceAutoDeployOutput) ToStaticSiteServiceAutoDeployOutputWithContext(ctx context.Context) StaticSiteServiceAutoDeployOutput {
+	return o
+}
+
+func (o StaticSiteServiceAutoDeployOutput) ToStaticSiteServiceAutoDeployPtrOutput() StaticSiteServiceAutoDeployPtrOutput {
+	return o.ToStaticSiteServiceAutoDeployPtrOutputWithContext(context.Background())
+}
+
+func (o StaticSiteServiceAutoDeployOutput) ToStaticSiteServiceAutoDeployPtrOutputWithContext(ctx context.Context) StaticSiteServiceAutoDeployPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StaticSiteServiceAutoDeploy) *StaticSiteServiceAutoDeploy {
+		return &v
+	}).(StaticSiteServiceAutoDeployPtrOutput)
+}
+
+func (o StaticSiteServiceAutoDeployOutput) ToStringOutput() pulumi.StringOutput {
+	return o.ToStringOutputWithContext(context.Background())
+}
+
+func (o StaticSiteServiceAutoDeployOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e StaticSiteServiceAutoDeploy) string {
+		return string(e)
+	}).(pulumi.StringOutput)
+}
+
+func (o StaticSiteServiceAutoDeployOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o StaticSiteServiceAutoDeployOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e StaticSiteServiceAutoDeploy) *string {
+		v := string(e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+type StaticSiteServiceAutoDeployPtrOutput struct{ *pulumi.OutputState }
+
+func (StaticSiteServiceAutoDeployPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StaticSiteServiceAutoDeploy)(nil)).Elem()
+}
+
+func (o StaticSiteServiceAutoDeployPtrOutput) ToStaticSiteServiceAutoDeployPtrOutput() StaticSiteServiceAutoDeployPtrOutput {
+	return o
+}
+
+func (o StaticSiteServiceAutoDeployPtrOutput) ToStaticSiteServiceAutoDeployPtrOutputWithContext(ctx context.Context) StaticSiteServiceAutoDeployPtrOutput {
+	return o
+}
+
+func (o StaticSiteServiceAutoDeployPtrOutput) Elem() StaticSiteServiceAutoDeployOutput {
+	return o.ApplyT(func(v *StaticSiteServiceAutoDeploy) StaticSiteServiceAutoDeploy {
+		if v != nil {
+			return *v
+		}
+		var ret StaticSiteServiceAutoDeploy
+		return ret
+	}).(StaticSiteServiceAutoDeployOutput)
+}
+
+func (o StaticSiteServiceAutoDeployPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o StaticSiteServiceAutoDeployPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *StaticSiteServiceAutoDeploy) *string {
+		if e == nil {
+			return nil
+		}
+		v := string(*e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+// StaticSiteServiceAutoDeployInput is an input type that accepts StaticSiteServiceAutoDeployArgs and StaticSiteServiceAutoDeployOutput values.
+// You can construct a concrete instance of `StaticSiteServiceAutoDeployInput` via:
+//
+//          StaticSiteServiceAutoDeployArgs{...}
+type StaticSiteServiceAutoDeployInput interface {
+	pulumi.Input
+
+	ToStaticSiteServiceAutoDeployOutput() StaticSiteServiceAutoDeployOutput
+	ToStaticSiteServiceAutoDeployOutputWithContext(context.Context) StaticSiteServiceAutoDeployOutput
+}
+
+var staticSiteServiceAutoDeployPtrType = reflect.TypeOf((**StaticSiteServiceAutoDeploy)(nil)).Elem()
+
+type StaticSiteServiceAutoDeployPtrInput interface {
+	pulumi.Input
+
+	ToStaticSiteServiceAutoDeployPtrOutput() StaticSiteServiceAutoDeployPtrOutput
+	ToStaticSiteServiceAutoDeployPtrOutputWithContext(context.Context) StaticSiteServiceAutoDeployPtrOutput
+}
+
+type staticSiteServiceAutoDeployPtr string
+
+func StaticSiteServiceAutoDeployPtr(v string) StaticSiteServiceAutoDeployPtrInput {
+	return (*staticSiteServiceAutoDeployPtr)(&v)
+}
+
+func (*staticSiteServiceAutoDeployPtr) ElementType() reflect.Type {
+	return staticSiteServiceAutoDeployPtrType
+}
+
+func (in *staticSiteServiceAutoDeployPtr) ToStaticSiteServiceAutoDeployPtrOutput() StaticSiteServiceAutoDeployPtrOutput {
+	return pulumi.ToOutput(in).(StaticSiteServiceAutoDeployPtrOutput)
+}
+
+func (in *staticSiteServiceAutoDeployPtr) ToStaticSiteServiceAutoDeployPtrOutputWithContext(ctx context.Context) StaticSiteServiceAutoDeployPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, in).(StaticSiteServiceAutoDeployPtrOutput)
+}
+
 // The notification setting for this service upon deployment failure.
 type StaticSiteServiceNotifyOnFail string
 
@@ -1010,6 +1175,171 @@ func (in *staticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabledPtr) ToSta
 
 func (in *staticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabledPtr) ToStaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabledPtrOutputWithContext(ctx context.Context) StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabledPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabledPtrOutput)
+}
+
+// Whether to auto deploy the service or not upon git push.
+type WebServiceServiceAutoDeploy string
+
+const (
+	WebServiceServiceAutoDeployYes = WebServiceServiceAutoDeploy("yes")
+	WebServiceServiceAutoDeployNo  = WebServiceServiceAutoDeploy("no")
+)
+
+func (WebServiceServiceAutoDeploy) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceServiceAutoDeploy)(nil)).Elem()
+}
+
+func (e WebServiceServiceAutoDeploy) ToWebServiceServiceAutoDeployOutput() WebServiceServiceAutoDeployOutput {
+	return pulumi.ToOutput(e).(WebServiceServiceAutoDeployOutput)
+}
+
+func (e WebServiceServiceAutoDeploy) ToWebServiceServiceAutoDeployOutputWithContext(ctx context.Context) WebServiceServiceAutoDeployOutput {
+	return pulumi.ToOutputWithContext(ctx, e).(WebServiceServiceAutoDeployOutput)
+}
+
+func (e WebServiceServiceAutoDeploy) ToWebServiceServiceAutoDeployPtrOutput() WebServiceServiceAutoDeployPtrOutput {
+	return e.ToWebServiceServiceAutoDeployPtrOutputWithContext(context.Background())
+}
+
+func (e WebServiceServiceAutoDeploy) ToWebServiceServiceAutoDeployPtrOutputWithContext(ctx context.Context) WebServiceServiceAutoDeployPtrOutput {
+	return WebServiceServiceAutoDeploy(e).ToWebServiceServiceAutoDeployOutputWithContext(ctx).ToWebServiceServiceAutoDeployPtrOutputWithContext(ctx)
+}
+
+func (e WebServiceServiceAutoDeploy) ToStringOutput() pulumi.StringOutput {
+	return pulumi.ToOutput(pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e WebServiceServiceAutoDeploy) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return pulumi.ToOutputWithContext(ctx, pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e WebServiceServiceAutoDeploy) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringPtrOutputWithContext(context.Background())
+}
+
+func (e WebServiceServiceAutoDeploy) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
+}
+
+type WebServiceServiceAutoDeployOutput struct{ *pulumi.OutputState }
+
+func (WebServiceServiceAutoDeployOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceServiceAutoDeploy)(nil)).Elem()
+}
+
+func (o WebServiceServiceAutoDeployOutput) ToWebServiceServiceAutoDeployOutput() WebServiceServiceAutoDeployOutput {
+	return o
+}
+
+func (o WebServiceServiceAutoDeployOutput) ToWebServiceServiceAutoDeployOutputWithContext(ctx context.Context) WebServiceServiceAutoDeployOutput {
+	return o
+}
+
+func (o WebServiceServiceAutoDeployOutput) ToWebServiceServiceAutoDeployPtrOutput() WebServiceServiceAutoDeployPtrOutput {
+	return o.ToWebServiceServiceAutoDeployPtrOutputWithContext(context.Background())
+}
+
+func (o WebServiceServiceAutoDeployOutput) ToWebServiceServiceAutoDeployPtrOutputWithContext(ctx context.Context) WebServiceServiceAutoDeployPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebServiceServiceAutoDeploy) *WebServiceServiceAutoDeploy {
+		return &v
+	}).(WebServiceServiceAutoDeployPtrOutput)
+}
+
+func (o WebServiceServiceAutoDeployOutput) ToStringOutput() pulumi.StringOutput {
+	return o.ToStringOutputWithContext(context.Background())
+}
+
+func (o WebServiceServiceAutoDeployOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e WebServiceServiceAutoDeploy) string {
+		return string(e)
+	}).(pulumi.StringOutput)
+}
+
+func (o WebServiceServiceAutoDeployOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o WebServiceServiceAutoDeployOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e WebServiceServiceAutoDeploy) *string {
+		v := string(e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+type WebServiceServiceAutoDeployPtrOutput struct{ *pulumi.OutputState }
+
+func (WebServiceServiceAutoDeployPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebServiceServiceAutoDeploy)(nil)).Elem()
+}
+
+func (o WebServiceServiceAutoDeployPtrOutput) ToWebServiceServiceAutoDeployPtrOutput() WebServiceServiceAutoDeployPtrOutput {
+	return o
+}
+
+func (o WebServiceServiceAutoDeployPtrOutput) ToWebServiceServiceAutoDeployPtrOutputWithContext(ctx context.Context) WebServiceServiceAutoDeployPtrOutput {
+	return o
+}
+
+func (o WebServiceServiceAutoDeployPtrOutput) Elem() WebServiceServiceAutoDeployOutput {
+	return o.ApplyT(func(v *WebServiceServiceAutoDeploy) WebServiceServiceAutoDeploy {
+		if v != nil {
+			return *v
+		}
+		var ret WebServiceServiceAutoDeploy
+		return ret
+	}).(WebServiceServiceAutoDeployOutput)
+}
+
+func (o WebServiceServiceAutoDeployPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o WebServiceServiceAutoDeployPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *WebServiceServiceAutoDeploy) *string {
+		if e == nil {
+			return nil
+		}
+		v := string(*e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+// WebServiceServiceAutoDeployInput is an input type that accepts WebServiceServiceAutoDeployArgs and WebServiceServiceAutoDeployOutput values.
+// You can construct a concrete instance of `WebServiceServiceAutoDeployInput` via:
+//
+//          WebServiceServiceAutoDeployArgs{...}
+type WebServiceServiceAutoDeployInput interface {
+	pulumi.Input
+
+	ToWebServiceServiceAutoDeployOutput() WebServiceServiceAutoDeployOutput
+	ToWebServiceServiceAutoDeployOutputWithContext(context.Context) WebServiceServiceAutoDeployOutput
+}
+
+var webServiceServiceAutoDeployPtrType = reflect.TypeOf((**WebServiceServiceAutoDeploy)(nil)).Elem()
+
+type WebServiceServiceAutoDeployPtrInput interface {
+	pulumi.Input
+
+	ToWebServiceServiceAutoDeployPtrOutput() WebServiceServiceAutoDeployPtrOutput
+	ToWebServiceServiceAutoDeployPtrOutputWithContext(context.Context) WebServiceServiceAutoDeployPtrOutput
+}
+
+type webServiceServiceAutoDeployPtr string
+
+func WebServiceServiceAutoDeployPtr(v string) WebServiceServiceAutoDeployPtrInput {
+	return (*webServiceServiceAutoDeployPtr)(&v)
+}
+
+func (*webServiceServiceAutoDeployPtr) ElementType() reflect.Type {
+	return webServiceServiceAutoDeployPtrType
+}
+
+func (in *webServiceServiceAutoDeployPtr) ToWebServiceServiceAutoDeployPtrOutput() WebServiceServiceAutoDeployPtrOutput {
+	return pulumi.ToOutput(in).(WebServiceServiceAutoDeployPtrOutput)
+}
+
+func (in *webServiceServiceAutoDeployPtr) ToWebServiceServiceAutoDeployPtrOutputWithContext(ctx context.Context) WebServiceServiceAutoDeployPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, in).(WebServiceServiceAutoDeployPtrOutput)
 }
 
 // The notification setting for this service upon deployment failure.
@@ -2012,6 +2342,8 @@ func (in *webServiceWebServiceServiceDetailsRegionPtr) ToWebServiceWebServiceSer
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DeployClearCacheInput)(nil)).Elem(), DeployClearCache("do_not_clear"))
 	pulumi.RegisterInputType(reflect.TypeOf((*DeployClearCachePtrInput)(nil)).Elem(), DeployClearCache("do_not_clear"))
+	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteServiceAutoDeployInput)(nil)).Elem(), StaticSiteServiceAutoDeploy("yes"))
+	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteServiceAutoDeployPtrInput)(nil)).Elem(), StaticSiteServiceAutoDeploy("yes"))
 	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteServiceNotifyOnFailInput)(nil)).Elem(), StaticSiteServiceNotifyOnFail("default"))
 	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteServiceNotifyOnFailPtrInput)(nil)).Elem(), StaticSiteServiceNotifyOnFail("default"))
 	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteServiceSuspendedInput)(nil)).Elem(), StaticSiteServiceSuspended("suspended"))
@@ -2020,6 +2352,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteStaticSiteRouteTypePtrInput)(nil)).Elem(), StaticSiteStaticSiteRouteType("redirect"))
 	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabledInput)(nil)).Elem(), StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled("yes"))
 	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabledPtrInput)(nil)).Elem(), StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled("yes"))
+	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceServiceAutoDeployInput)(nil)).Elem(), WebServiceServiceAutoDeploy("yes"))
+	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceServiceAutoDeployPtrInput)(nil)).Elem(), WebServiceServiceAutoDeploy("yes"))
 	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceServiceNotifyOnFailInput)(nil)).Elem(), WebServiceServiceNotifyOnFail("default"))
 	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceServiceNotifyOnFailPtrInput)(nil)).Elem(), WebServiceServiceNotifyOnFail("default"))
 	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceServiceSuspendedInput)(nil)).Elem(), WebServiceServiceSuspended("suspended"))
@@ -2038,6 +2372,8 @@ func init() {
 	pulumi.RegisterOutputType(CustomDomainVerificationStatusPtrOutput{})
 	pulumi.RegisterOutputType(DeployClearCacheOutput{})
 	pulumi.RegisterOutputType(DeployClearCachePtrOutput{})
+	pulumi.RegisterOutputType(StaticSiteServiceAutoDeployOutput{})
+	pulumi.RegisterOutputType(StaticSiteServiceAutoDeployPtrOutput{})
 	pulumi.RegisterOutputType(StaticSiteServiceNotifyOnFailOutput{})
 	pulumi.RegisterOutputType(StaticSiteServiceNotifyOnFailPtrOutput{})
 	pulumi.RegisterOutputType(StaticSiteServiceSuspendedOutput{})
@@ -2046,6 +2382,8 @@ func init() {
 	pulumi.RegisterOutputType(StaticSiteStaticSiteRouteTypePtrOutput{})
 	pulumi.RegisterOutputType(StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabledOutput{})
 	pulumi.RegisterOutputType(StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabledPtrOutput{})
+	pulumi.RegisterOutputType(WebServiceServiceAutoDeployOutput{})
+	pulumi.RegisterOutputType(WebServiceServiceAutoDeployPtrOutput{})
 	pulumi.RegisterOutputType(WebServiceServiceNotifyOnFailOutput{})
 	pulumi.RegisterOutputType(WebServiceServiceNotifyOnFailPtrOutput{})
 	pulumi.RegisterOutputType(WebServiceServiceSuspendedOutput{})

@@ -20,7 +20,7 @@ namespace CloudySkySoftware.Render.Services
         /// Whether to auto deploy the service or not upon git push.
         /// </summary>
         [Output("autoDeploy")]
-        public Output<bool?> AutoDeploy { get; private set; } = null!;
+        public Output<CloudySkySoftware.Render.Services.WebServiceServiceAutoDeploy?> AutoDeploy { get; private set; } = null!;
 
         /// <summary>
         /// If left empty, this will fall back to the default branch of the repository.
@@ -120,7 +120,7 @@ namespace CloudySkySoftware.Render.Services
         /// Whether to auto deploy the service or not upon git push.
         /// </summary>
         [Input("autoDeploy")]
-        public Input<bool>? AutoDeploy { get; set; }
+        public Input<CloudySkySoftware.Render.Services.WebServiceServiceAutoDeploy>? AutoDeploy { get; set; }
 
         /// <summary>
         /// If left empty, this will fall back to the default branch of the repository.
@@ -177,6 +177,7 @@ namespace CloudySkySoftware.Render.Services
 
         public WebServiceArgs()
         {
+            AutoDeploy = CloudySkySoftware.Render.Services.WebServiceServiceAutoDeploy.No;
             Type = "web_service";
         }
     }

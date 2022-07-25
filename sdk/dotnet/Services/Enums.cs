@@ -92,6 +92,37 @@ namespace CloudySkySoftware.Render.Services
     }
 
     /// <summary>
+    /// Whether to auto deploy the service or not upon git push.
+    /// </summary>
+    [EnumType]
+    public readonly struct StaticSiteServiceAutoDeploy : IEquatable<StaticSiteServiceAutoDeploy>
+    {
+        private readonly string _value;
+
+        private StaticSiteServiceAutoDeploy(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static StaticSiteServiceAutoDeploy Yes { get; } = new StaticSiteServiceAutoDeploy("yes");
+        public static StaticSiteServiceAutoDeploy No { get; } = new StaticSiteServiceAutoDeploy("no");
+
+        public static bool operator ==(StaticSiteServiceAutoDeploy left, StaticSiteServiceAutoDeploy right) => left.Equals(right);
+        public static bool operator !=(StaticSiteServiceAutoDeploy left, StaticSiteServiceAutoDeploy right) => !left.Equals(right);
+
+        public static explicit operator string(StaticSiteServiceAutoDeploy value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is StaticSiteServiceAutoDeploy other && Equals(other);
+        public bool Equals(StaticSiteServiceAutoDeploy other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    /// <summary>
     /// The notification setting for this service upon deployment failure.
     /// </summary>
     [EnumType]
@@ -200,6 +231,37 @@ namespace CloudySkySoftware.Render.Services
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool Equals(object? obj) => obj is StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled other && Equals(other);
         public bool Equals(StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    /// <summary>
+    /// Whether to auto deploy the service or not upon git push.
+    /// </summary>
+    [EnumType]
+    public readonly struct WebServiceServiceAutoDeploy : IEquatable<WebServiceServiceAutoDeploy>
+    {
+        private readonly string _value;
+
+        private WebServiceServiceAutoDeploy(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static WebServiceServiceAutoDeploy Yes { get; } = new WebServiceServiceAutoDeploy("yes");
+        public static WebServiceServiceAutoDeploy No { get; } = new WebServiceServiceAutoDeploy("no");
+
+        public static bool operator ==(WebServiceServiceAutoDeploy left, WebServiceServiceAutoDeploy right) => left.Equals(right);
+        public static bool operator !=(WebServiceServiceAutoDeploy left, WebServiceServiceAutoDeploy right) => !left.Equals(right);
+
+        public static explicit operator string(WebServiceServiceAutoDeploy value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is WebServiceServiceAutoDeploy other && Equals(other);
+        public bool Equals(WebServiceServiceAutoDeploy other) => string.Equals(_value, other._value, StringComparison.Ordinal);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => _value?.GetHashCode() ?? 0;

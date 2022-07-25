@@ -23,6 +23,16 @@ export const DeployClearCache = {
 
 export type DeployClearCache = (typeof DeployClearCache)[keyof typeof DeployClearCache];
 
+export const StaticSiteServiceAutoDeploy = {
+    Yes: "yes",
+    No: "no",
+} as const;
+
+/**
+ * Whether to auto deploy the service or not upon git push.
+ */
+export type StaticSiteServiceAutoDeploy = (typeof StaticSiteServiceAutoDeploy)[keyof typeof StaticSiteServiceAutoDeploy];
+
 export const StaticSiteServiceNotifyOnFail = {
     Default: "default",
     Notify: "notify",
@@ -54,6 +64,16 @@ export const StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled = {
 } as const;
 
 export type StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled = (typeof StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled)[keyof typeof StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled];
+
+export const WebServiceServiceAutoDeploy = {
+    Yes: "yes",
+    No: "no",
+} as const;
+
+/**
+ * Whether to auto deploy the service or not upon git push.
+ */
+export type WebServiceServiceAutoDeploy = (typeof WebServiceServiceAutoDeploy)[keyof typeof WebServiceServiceAutoDeploy];
 
 export const WebServiceServiceNotifyOnFail = {
     Default: "default",

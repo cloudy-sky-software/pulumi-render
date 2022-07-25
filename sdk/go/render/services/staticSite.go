@@ -18,7 +18,7 @@ type StaticSite struct {
 	pulumi.CustomResourceState
 
 	// Whether to auto deploy the service or not upon git push.
-	AutoDeploy pulumi.BoolPtrOutput `pulumi:"autoDeploy"`
+	AutoDeploy StaticSiteServiceAutoDeployPtrOutput `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
 	Branch    pulumi.StringPtrOutput `pulumi:"branch"`
 	CreatedAt pulumi.StringPtrOutput `pulumi:"createdAt"`
@@ -52,6 +52,9 @@ func NewStaticSite(ctx *pulumi.Context,
 	}
 	if args.Repo == nil {
 		return nil, errors.New("invalid value for required argument 'Repo'")
+	}
+	if isZero(args.AutoDeploy) {
+		args.AutoDeploy = StaticSiteServiceAutoDeploy("no")
 	}
 	if args.ServiceDetails != nil {
 		args.ServiceDetails = args.ServiceDetails.ToStaticSiteStaticSiteServiceDetailsPtrOutput().ApplyT(func(v *StaticSiteStaticSiteServiceDetails) *StaticSiteStaticSiteServiceDetails { return v.Defaults() }).(StaticSiteStaticSiteServiceDetailsPtrOutput)
@@ -93,7 +96,7 @@ func (StaticSiteState) ElementType() reflect.Type {
 
 type staticSiteArgs struct {
 	// Whether to auto deploy the service or not upon git push.
-	AutoDeploy *bool `pulumi:"autoDeploy"`
+	AutoDeploy *StaticSiteServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
 	Branch    *string `pulumi:"branch"`
 	CreatedAt *string `pulumi:"createdAt"`
@@ -115,7 +118,7 @@ type staticSiteArgs struct {
 // The set of arguments for constructing a StaticSite resource.
 type StaticSiteArgs struct {
 	// Whether to auto deploy the service or not upon git push.
-	AutoDeploy pulumi.BoolPtrInput
+	AutoDeploy StaticSiteServiceAutoDeployPtrInput
 	// If left empty, this will fall back to the default branch of the repository.
 	Branch    pulumi.StringPtrInput
 	CreatedAt pulumi.StringPtrInput
@@ -172,8 +175,8 @@ func (o StaticSiteOutput) ToStaticSiteOutputWithContext(ctx context.Context) Sta
 }
 
 // Whether to auto deploy the service or not upon git push.
-func (o StaticSiteOutput) AutoDeploy() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *StaticSite) pulumi.BoolPtrOutput { return v.AutoDeploy }).(pulumi.BoolPtrOutput)
+func (o StaticSiteOutput) AutoDeploy() StaticSiteServiceAutoDeployPtrOutput {
+	return o.ApplyT(func(v *StaticSite) StaticSiteServiceAutoDeployPtrOutput { return v.AutoDeploy }).(StaticSiteServiceAutoDeployPtrOutput)
 }
 
 // If left empty, this will fall back to the default branch of the repository.

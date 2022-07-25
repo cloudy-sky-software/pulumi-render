@@ -310,7 +310,9 @@ components:
       properties:
         autoDeploy:
           description: Whether to auto deploy the service or not upon git push.
-          type: boolean
+          type: string
+          default: "no"
+          enum: ["yes", "no"]
         branch:
           type: string
           description: "If left empty, this will fall back to the default branch of the repository."

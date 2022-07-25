@@ -16,7 +16,7 @@ type WebService struct {
 	pulumi.CustomResourceState
 
 	// Whether to auto deploy the service or not upon git push.
-	AutoDeploy pulumi.BoolPtrOutput `pulumi:"autoDeploy"`
+	AutoDeploy WebServiceServiceAutoDeployPtrOutput `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
 	Branch    pulumi.StringPtrOutput `pulumi:"branch"`
 	CreatedAt pulumi.StringPtrOutput `pulumi:"createdAt"`
@@ -50,6 +50,9 @@ func NewWebService(ctx *pulumi.Context,
 	}
 	if args.Repo == nil {
 		return nil, errors.New("invalid value for required argument 'Repo'")
+	}
+	if isZero(args.AutoDeploy) {
+		args.AutoDeploy = WebServiceServiceAutoDeploy("no")
 	}
 	if args.ServiceDetails != nil {
 		args.ServiceDetails = args.ServiceDetails.ToWebServiceWebServiceServiceDetailsPtrOutput().ApplyT(func(v *WebServiceWebServiceServiceDetails) *WebServiceWebServiceServiceDetails { return v.Defaults() }).(WebServiceWebServiceServiceDetailsPtrOutput)
@@ -91,7 +94,7 @@ func (WebServiceState) ElementType() reflect.Type {
 
 type webServiceArgs struct {
 	// Whether to auto deploy the service or not upon git push.
-	AutoDeploy *bool `pulumi:"autoDeploy"`
+	AutoDeploy *WebServiceServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
 	Branch    *string `pulumi:"branch"`
 	CreatedAt *string `pulumi:"createdAt"`
@@ -113,7 +116,7 @@ type webServiceArgs struct {
 // The set of arguments for constructing a WebService resource.
 type WebServiceArgs struct {
 	// Whether to auto deploy the service or not upon git push.
-	AutoDeploy pulumi.BoolPtrInput
+	AutoDeploy WebServiceServiceAutoDeployPtrInput
 	// If left empty, this will fall back to the default branch of the repository.
 	Branch    pulumi.StringPtrInput
 	CreatedAt pulumi.StringPtrInput
@@ -170,8 +173,8 @@ func (o WebServiceOutput) ToWebServiceOutputWithContext(ctx context.Context) Web
 }
 
 // Whether to auto deploy the service or not upon git push.
-func (o WebServiceOutput) AutoDeploy() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *WebService) pulumi.BoolPtrOutput { return v.AutoDeploy }).(pulumi.BoolPtrOutput)
+func (o WebServiceOutput) AutoDeploy() WebServiceServiceAutoDeployPtrOutput {
+	return o.ApplyT(func(v *WebService) WebServiceServiceAutoDeployPtrOutput { return v.AutoDeploy }).(WebServiceServiceAutoDeployPtrOutput)
 }
 
 // If left empty, this will fall back to the default branch of the repository.

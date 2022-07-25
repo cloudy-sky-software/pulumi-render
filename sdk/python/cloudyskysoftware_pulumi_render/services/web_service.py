@@ -20,7 +20,7 @@ class WebServiceArgs:
                  name: pulumi.Input[str],
                  owner_id: pulumi.Input[str],
                  repo: pulumi.Input[str],
-                 auto_deploy: Optional[pulumi.Input[bool]] = None,
+                 auto_deploy: Optional[pulumi.Input['WebServiceServiceAutoDeploy']] = None,
                  branch: Optional[pulumi.Input[str]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  notify_on_fail: Optional[pulumi.Input['WebServiceServiceNotifyOnFail']] = None,
@@ -34,13 +34,15 @@ class WebServiceArgs:
         The set of arguments for constructing a WebService resource.
         :param pulumi.Input[str] owner_id: The id of the owner (user/team).
         :param pulumi.Input[str] repo: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-        :param pulumi.Input[bool] auto_deploy: Whether to auto deploy the service or not upon git push.
+        :param pulumi.Input['WebServiceServiceAutoDeploy'] auto_deploy: Whether to auto deploy the service or not upon git push.
         :param pulumi.Input[str] branch: If left empty, this will fall back to the default branch of the repository.
         :param pulumi.Input['WebServiceServiceNotifyOnFail'] notify_on_fail: The notification setting for this service upon deployment failure.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "owner_id", owner_id)
         pulumi.set(__self__, "repo", repo)
+        if auto_deploy is None:
+            auto_deploy = 'no'
         if auto_deploy is not None:
             pulumi.set(__self__, "auto_deploy", auto_deploy)
         if branch is not None:
@@ -99,14 +101,14 @@ class WebServiceArgs:
 
     @property
     @pulumi.getter(name="autoDeploy")
-    def auto_deploy(self) -> Optional[pulumi.Input[bool]]:
+    def auto_deploy(self) -> Optional[pulumi.Input['WebServiceServiceAutoDeploy']]:
         """
         Whether to auto deploy the service or not upon git push.
         """
         return pulumi.get(self, "auto_deploy")
 
     @auto_deploy.setter
-    def auto_deploy(self, value: Optional[pulumi.Input[bool]]):
+    def auto_deploy(self, value: Optional[pulumi.Input['WebServiceServiceAutoDeploy']]):
         pulumi.set(self, "auto_deploy", value)
 
     @property
@@ -202,7 +204,7 @@ class WebService(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 auto_deploy: Optional[pulumi.Input[bool]] = None,
+                 auto_deploy: Optional[pulumi.Input['WebServiceServiceAutoDeploy']] = None,
                  branch: Optional[pulumi.Input[str]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -221,7 +223,7 @@ class WebService(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] auto_deploy: Whether to auto deploy the service or not upon git push.
+        :param pulumi.Input['WebServiceServiceAutoDeploy'] auto_deploy: Whether to auto deploy the service or not upon git push.
         :param pulumi.Input[str] branch: If left empty, this will fall back to the default branch of the repository.
         :param pulumi.Input['WebServiceServiceNotifyOnFail'] notify_on_fail: The notification setting for this service upon deployment failure.
         :param pulumi.Input[str] owner_id: The id of the owner (user/team).
@@ -251,7 +253,7 @@ class WebService(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 auto_deploy: Optional[pulumi.Input[bool]] = None,
+                 auto_deploy: Optional[pulumi.Input['WebServiceServiceAutoDeploy']] = None,
                  branch: Optional[pulumi.Input[str]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -273,6 +275,8 @@ class WebService(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = WebServiceArgs.__new__(WebServiceArgs)
 
+            if auto_deploy is None:
+                auto_deploy = 'no'
             __props__.__dict__["auto_deploy"] = auto_deploy
             __props__.__dict__["branch"] = branch
             __props__.__dict__["created_at"] = created_at
@@ -333,7 +337,7 @@ class WebService(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="autoDeploy")
-    def auto_deploy(self) -> pulumi.Output[Optional[bool]]:
+    def auto_deploy(self) -> pulumi.Output[Optional['WebServiceServiceAutoDeploy']]:
         """
         Whether to auto deploy the service or not upon git push.
         """

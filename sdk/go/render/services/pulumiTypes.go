@@ -171,7 +171,7 @@ func (val *StaticSiteProperties) Defaults() *StaticSiteProperties {
 // The service object represents a service. The type of service is discriminated by the type property which determines the type of object in the serviceDetails property.
 type StaticSiteService struct {
 	// Whether to auto deploy the service or not upon git push.
-	AutoDeploy *bool `pulumi:"autoDeploy"`
+	AutoDeploy *StaticSiteServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
 	Branch    *string `pulumi:"branch"`
 	CreatedAt *string `pulumi:"createdAt"`
@@ -186,6 +186,19 @@ type StaticSiteService struct {
 	Suspended  *StaticSiteServiceSuspended `pulumi:"suspended"`
 	Suspenders []string                    `pulumi:"suspenders"`
 	UpdatedAt  *string                     `pulumi:"updatedAt"`
+}
+
+// Defaults sets the appropriate defaults for StaticSiteService
+func (val *StaticSiteService) Defaults() *StaticSiteService {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if isZero(tmp.AutoDeploy) {
+		autoDeploy_ := StaticSiteServiceAutoDeploy("no")
+		tmp.AutoDeploy = &autoDeploy_
+	}
+	return &tmp
 }
 
 // A service header object
@@ -1050,7 +1063,7 @@ func (val *WebServiceProperties) Defaults() *WebServiceProperties {
 // The service object represents a service. The type of service is discriminated by the type property which determines the type of object in the serviceDetails property.
 type WebServiceService struct {
 	// Whether to auto deploy the service or not upon git push.
-	AutoDeploy *bool `pulumi:"autoDeploy"`
+	AutoDeploy *WebServiceServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
 	Branch    *string `pulumi:"branch"`
 	CreatedAt *string `pulumi:"createdAt"`
@@ -1065,6 +1078,19 @@ type WebServiceService struct {
 	Suspended  *WebServiceServiceSuspended `pulumi:"suspended"`
 	Suspenders []string                    `pulumi:"suspenders"`
 	UpdatedAt  *string                     `pulumi:"updatedAt"`
+}
+
+// Defaults sets the appropriate defaults for WebServiceService
+func (val *WebServiceService) Defaults() *WebServiceService {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if isZero(tmp.AutoDeploy) {
+		autoDeploy_ := WebServiceServiceAutoDeploy("no")
+		tmp.AutoDeploy = &autoDeploy_
+	}
+	return &tmp
 }
 
 type WebServiceWebServiceServiceDetails struct {

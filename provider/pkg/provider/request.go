@@ -1,8 +1,10 @@
 package provider
 
 import (
+	"bytes"
 	"context"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"net/http"
 	"strings"
@@ -50,6 +52,8 @@ func (p *renderProvider) validateRequest(ctx context.Context, httpReq *http.Requ
 	newContentLength := int64(len(clonedBody))
 	logging.V(3).Infof("REQUEST CONTENT LENGTH: current: %d, new: %d", httpReq.ContentLength, newContentLength)
 	httpReq.ContentLength = newContentLength
+	logging.V(3).Infof("UPDATED REQUEST BODY: %v", string(clonedBody))
+	httpReq.Body = io.NopCloser(bytes.NewBuffer(clonedBody))
 
 	return nil
 }

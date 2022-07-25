@@ -655,7 +655,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /owners/{ownerId}:
+  /owners/{id}:
     get:
       tags:
         - Owners
@@ -1233,7 +1233,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}:
+  /services/{id}:
     get:
       tags:
         - Services
@@ -1781,7 +1781,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/env-vars:
+  /services/{id}/env-vars:
     get:
       tags:
         - Services
@@ -2127,7 +2127,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/headers:
+  /services/{id}/headers:
     get:
       tags:
         - Services
@@ -2312,7 +2312,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/routes:
+  /services/{id}/routes:
     get:
       tags:
         - Services
@@ -2497,7 +2497,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/suspend:
+  /services/{id}/suspend:
     post:
       tags:
         - Services
@@ -2661,7 +2661,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/resume:
+  /services/{id}/resume:
     post:
       tags:
         - Services
@@ -2822,7 +2822,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/scale:
+  /services/{id}/scale:
     post:
       tags:
         - Services
@@ -3007,7 +3007,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/deploys:
+  /services/{id}/deploys:
     get:
       tags:
         - Deploys
@@ -3377,7 +3377,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/deploys/{deployId}:
+  /services/{serviceId}/deploys/{id}:
     get:
       tags:
         - Deploys
@@ -3538,7 +3538,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/custom-domains:
+  /services/{id}/custom-domains:
     get:
       tags:
         - Custom Domains
@@ -3983,7 +3983,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/custom-domains/{customDomainIdOrName}:
+  /services/{serviceId}/custom-domains/{id}:
     get:
       tags:
         - Custom Domains
@@ -4324,7 +4324,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/custom-domains/{customDomainIdOrName}/verify:
+  /services/{serviceId}/custom-domains/{id}/verify:
     post:
       tags:
         - Custom Domains
@@ -4492,7 +4492,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/jobs:
+  /services/{id}/jobs:
     get:
       tags:
         - Jobs
@@ -4834,7 +4834,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/jobs/{jobId}:
+  /services/{serviceId}/jobs/{id}:
     get:
       tags:
         - Jobs

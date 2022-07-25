@@ -347,6 +347,7 @@ components:
           readOnly: true
       required:
         - "type"
+        - "name"
         - "ownerId"
         - "repo"
     listServiceResponse:

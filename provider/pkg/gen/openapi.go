@@ -319,11 +319,11 @@ func (o *openAPIContext) gatherResourceFromAPISchema(apiSchema openapi3.Schema, 
 		// gather all of their properties and smash them together into
 		// a new type and get rid of those top-level ones.
 		typeToken := fmt.Sprintf("%s:%s:%s", packageName, module, parentName)
-		properties := make(map[string]pschema.PropertySpec)
 		for _, t := range types {
 			refType := pkgCtx.pkg.Types[strings.TrimPrefix(t.Ref, "#/types/")]
 
 			for name, propSpec := range refType.Properties {
+				inputProperties[name] = propSpec
 				properties[name] = propSpec
 			}
 

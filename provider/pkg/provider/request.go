@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/getkin/kin-openapi/openapi3"
 	"github.com/getkin/kin-openapi/openapi3filter"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
@@ -58,10 +59,27 @@ func (p *renderProvider) validateRequest(ctx context.Context, httpReq *http.Requ
 	return nil
 }
 
-func (p *renderProvider) getPathParamsMap(resourceTypeToken, apiPath string, inputs resource.PropertyMap) (map[string]string, error) {
+func (p *renderProvider) getPathParamsMap(resourceTypeToken, apiPath, requestMethod string, inputs resource.PropertyMap) (map[string]string, error) {
 	pathParams := make(map[string]string)
 
-	for _, param := range p.openapiDoc.Paths[apiPath].Post.Parameters {
+	var parameters openapi3.Parameters
+
+	switch requestMethod {
+	case http.MethodGet:
+		parameters = p.openapiDoc.Paths[apiPath].Get.Parameters
+	case http.MethodPost:
+		parameters = p.openapiDoc.Paths[apiPath].Post.Parameters
+	case http.MethodPatch:
+		parameters = p.openapiDoc.Paths[apiPath].Patch.Parameters
+	case http.MethodPut:
+		parameters = p.openapiDoc.Paths[apiPath].Put.Parameters
+	case http.MethodDelete:
+		parameters = p.openapiDoc.Paths[apiPath].Delete.Parameters
+	default:
+		return pathParams, nil
+	}
+
+	for _, param := range parameters {
 		if param.Value.In != "path" {
 			continue
 		}

@@ -310,7 +310,7 @@ func (p *renderProvider) Create(ctx context.Context, req *pulumirpc.CreateReques
 
 	buf := bytes.NewBuffer(b)
 	logging.V(3).Infof("REQUEST BODY: %s", string(b))
-	httpReq, err := http.NewRequestWithContext(ctx, "POST", p.baseURL+httpEndpointPath, buf)
+	httpReq, err := http.NewRequestWithContext(ctx, http.MethodPost, p.baseURL+httpEndpointPath, buf)
 	if err != nil {
 		return nil, errors.Wrap(err, "initializing request")
 	}
@@ -328,7 +328,7 @@ func (p *renderProvider) Create(ctx context.Context, req *pulumirpc.CreateReques
 	// for the param names.
 	if hasPathParams {
 		var err error
-		pathParams, err = p.getPathParamsMap(resourceTypeToken, httpEndpointPath, inputs)
+		pathParams, err = p.getPathParamsMap(resourceTypeToken, httpEndpointPath, http.MethodPost, inputs)
 		if err != nil {
 			return nil, errors.Wrap(err, "getting path params")
 		}
@@ -371,6 +371,11 @@ func (p *renderProvider) Create(ctx context.Context, req *pulumirpc.CreateReques
 	}
 
 	logging.V(3).Infof("RESPONSE BODY: %v", result)
+
+	if service, serviceOk := result["service"]; serviceOk {
+		glog.V(3).Info("Found service object in the response. Using that as the output result.")
+		result = service.(map[string]interface{})
+	}
 
 	outputs := map[string]interface{}{
 		"result": result,
@@ -430,7 +435,7 @@ func (p *renderProvider) Read(ctx context.Context, req *pulumirpc.ReadRequest) (
 	if hasPathParams {
 		var err error
 
-		pathParams, err = p.getPathParamsMap(resourceTypeToken, httpEndpointPath, inputs)
+		pathParams, err = p.getPathParamsMap(resourceTypeToken, httpEndpointPath, http.MethodGet, inputs)
 		if err != nil {
 			return nil, errors.Wrap(err, "getting path params")
 		}
@@ -513,10 +518,10 @@ func (p *renderProvider) Update(ctx context.Context, req *pulumirpc.UpdateReques
 	var method string
 	if crudMap.U != nil {
 		httpEndpointPath = *crudMap.U
-		method = "PATCH"
+		method = http.MethodPatch
 	} else {
 		httpEndpointPath = *crudMap.P
-		method = "PUT"
+		method = http.MethodPut
 	}
 
 	b, err := json.Marshal(inputs.Mappable())
@@ -543,7 +548,7 @@ func (p *renderProvider) Update(ctx context.Context, req *pulumirpc.UpdateReques
 	if hasPathParams {
 		var err error
 
-		pathParams, err = p.getPathParamsMap(resourceTypeToken, httpEndpointPath, inputs)
+		pathParams, err = p.getPathParamsMap(resourceTypeToken, httpEndpointPath, method, inputs)
 		if err != nil {
 			return nil, errors.Wrap(err, "getting path params")
 		}
@@ -653,7 +658,7 @@ func (p *renderProvider) Delete(ctx context.Context, req *pulumirpc.DeleteReques
 	}
 
 	httpEndpointPath := *crudMap.D
-	httpReq, err := http.NewRequestWithContext(ctx, "DELETE", p.baseURL+httpEndpointPath, nil)
+	httpReq, err := http.NewRequestWithContext(ctx, http.MethodDelete, p.baseURL+httpEndpointPath, nil)
 	if err != nil {
 		return nil, errors.Wrap(err, "initializing request")
 	}
@@ -670,7 +675,7 @@ func (p *renderProvider) Delete(ctx context.Context, req *pulumirpc.DeleteReques
 	if hasPathParams {
 		var err error
 
-		pathParams, err = p.getPathParamsMap(resourceTypeToken, httpEndpointPath, inputs)
+		pathParams, err = p.getPathParamsMap(resourceTypeToken, httpEndpointPath, http.MethodDelete, inputs)
 		if err != nil {
 			return nil, errors.Wrap(err, "getting path params")
 		}

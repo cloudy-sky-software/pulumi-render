@@ -246,6 +246,7 @@ components:
         - "env"
     webService:
       title: "WebService"
+      description: "A web service"
       allOf:
         - $ref: "#/components/schemas/service"
         - type: object

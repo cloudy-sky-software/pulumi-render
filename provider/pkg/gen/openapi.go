@@ -163,6 +163,7 @@ func (o *openAPIContext) gatherResourceFromAPIPath(apiPath string, pathItem open
 	resourceType := jsonReq.Schema.Value
 
 	var resourceTypeToken *string
+	var err error
 
 	if resourceType.Discriminator != nil {
 		for _, mappingRef := range resourceType.Discriminator.Mapping {
@@ -172,10 +173,14 @@ func (o *openAPIContext) gatherResourceFromAPIPath(apiPath string, pathItem open
 				return errors.Errorf("%s not found in api schemas for discriminated type in path %s", schemaName, apiPath)
 			}
 
-			resourceTypeToken = o.gatherResourceFromAPISchema(*typeSchema.Value, apiPath, module)
+			resourceTypeToken, err = o.gatherResourceFromAPISchema(*typeSchema.Value, apiPath, module)
 		}
 	} else {
-		resourceTypeToken = o.gatherResourceFromAPISchema(*resourceType, apiPath, module)
+		resourceTypeToken, err = o.gatherResourceFromAPISchema(*resourceType, apiPath, module)
+	}
+
+	if err != nil {
+		return errors.Wrapf(err, "gathering resource from api path %s", apiPath)
 	}
 
 	resource := o.pkg.Resources[*resourceTypeToken]
@@ -201,7 +206,7 @@ func (o *openAPIContext) gatherResourceFromAPIPath(apiPath string, pathItem open
 	return nil
 }
 
-func (o *openAPIContext) gatherResourceFromAPISchema(apiSchema openapi3.Schema, apiPath, module string) *string {
+func (o *openAPIContext) gatherResourceFromAPISchema(apiSchema openapi3.Schema, apiPath, module string) (*string, error) {
 	pkgCtx := &resourceContext{
 		mod:               module,
 		pkg:               o.pkg,
@@ -233,7 +238,57 @@ func (o *openAPIContext) gatherResourceFromAPISchema(apiSchema openapi3.Schema, 
 	}
 
 	if len(apiSchema.AllOf) > 0 {
-		pkgCtx.propertyTypeSpec(ToPascalCase(apiSchema.Title), *openapi3.NewSchemaRef("", &apiSchema))
+		parentName := ToPascalCase(apiSchema.Title)
+		var types []pschema.TypeSpec
+		for _, schemaRef := range apiSchema.AllOf {
+			typ, err := pkgCtx.propertyTypeSpec(parentName, *schemaRef)
+			if err != nil {
+				return nil, errors.Wrapf(err, "generating property type spec from allOf schema for %s", apiSchema.Title)
+			}
+			types = append(types, *typ)
+		}
+
+		// Now that all of the types have been added to schema's Types,
+		// gather all of their properties and smash them together into
+		// a new type and get rid of those top-level ones.
+		typeToken := fmt.Sprintf("%s:%s:%s", packageName, module, parentName)
+		properties := make(map[string]pschema.PropertySpec)
+		requiredSpecs := codegen.NewStringSet()
+		for _, t := range types {
+			refType := pkgCtx.pkg.Types[strings.TrimPrefix(t.Ref, "#/types/")]
+
+			for name, propSpec := range refType.Properties {
+				properties[name] = propSpec
+			}
+
+			for _, r := range refType.Required {
+				if requiredSpecs.Has(r) {
+					continue
+				}
+				requiredSpecs.Add(r)
+			}
+		}
+
+		if existing, ok := o.resourceCRUDMap[typeToken]; ok {
+			existing.C = &apiPath
+		} else {
+			o.resourceCRUDMap[typeToken] = &CRUDOperationsMap{
+				C: &apiPath,
+			}
+		}
+
+		o.pkg.Resources[typeToken] = pschema.ResourceSpec{
+			ObjectTypeSpec: pschema.ObjectTypeSpec{
+				Description: apiSchema.Description,
+				Type:        "object",
+				Properties:  properties,
+				Required:    apiSchema.Required,
+			},
+			InputProperties: inputProperties,
+			RequiredInputs:  requiredInputs.SortedValues(),
+		}
+
+		return &typeToken, nil
 	}
 
 	typeToken := fmt.Sprintf("%s:%s:%s", packageName, module, apiSchema.Title)
@@ -256,7 +311,7 @@ func (o *openAPIContext) gatherResourceFromAPISchema(apiSchema openapi3.Schema, 
 		RequiredInputs:  requiredInputs.SortedValues(),
 	}
 
-	return &typeToken
+	return &typeToken, nil
 }
 
 func (ctx *resourceContext) genPropertySpec(propName string, p openapi3.SchemaRef) pschema.PropertySpec {

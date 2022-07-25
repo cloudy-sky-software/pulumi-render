@@ -27,10 +27,12 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Deploy{}
 	case "render:services:Scale":
 		r = &Scale{}
-	case "render:services:Service":
-		r = &Service{}
+	case "render:services:StaticSite":
+		r = &StaticSite{}
 	case "render:services:Suspend":
 		r = &Suspend{}
+	case "render:services:WebService":
+		r = &WebService{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}

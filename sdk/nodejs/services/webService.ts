@@ -6,40 +6,33 @@ import { input as inputs, output as outputs, enums } from "../types";
 import * as utilities from "../utilities";
 
 /**
- * ## Example Usage
- * ### Create a service
- * ```typescript
- * import * as render from "@pulumi/render";
- *
- * // TODO: Fill me in!
- * const service = new render.Service("staticSite", {});
- * ```
+ * A web service
  */
-export class Service extends pulumi.CustomResource {
+export class WebService extends pulumi.CustomResource {
     /**
-     * Get an existing Service resource's state with the given name, ID, and optional extra
+     * Get an existing WebService resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, opts?: pulumi.CustomResourceOptions): Service {
-        return new Service(name, undefined as any, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, opts?: pulumi.CustomResourceOptions): WebService {
+        return new WebService(name, undefined as any, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'render:services:Service';
+    public static readonly __pulumiType = 'render:services:WebService';
 
     /**
-     * Returns true if the given object is an instance of Service.  This is designed to work even
+     * Returns true if the given object is an instance of WebService.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is Service {
+    public static isInstance(obj: any): obj is WebService {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === Service.__pulumiType;
+        return obj['__pulumiType'] === WebService.__pulumiType;
     }
 
     /**
@@ -50,35 +43,35 @@ export class Service extends pulumi.CustomResource {
      * If left empty, this will fall back to the default branch of the repository.
      */
     public readonly branch!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly createdAt!: pulumi.Output<string | undefined>;
-    public readonly name!: pulumi.Output<string>;
+    public readonly createdAt!: pulumi.Output<string | undefined>;
+    public readonly name!: pulumi.Output<string | undefined>;
     /**
      * The notification setting for this service upon deployment failure.
      */
-    public /*out*/ readonly notifyOnFail!: pulumi.Output<enums.services.ServiceNotifyOnFail | undefined>;
+    public readonly notifyOnFail!: pulumi.Output<enums.services.WebServiceServiceNotifyOnFail | undefined>;
     /**
      * The id of the owner (user/team).
      */
-    public readonly ownerId!: pulumi.Output<string>;
+    public readonly ownerId!: pulumi.Output<string | undefined>;
     /**
      * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
      */
-    public readonly repo!: pulumi.Output<string>;
-    public readonly serviceDetails!: pulumi.Output<outputs.services.ServiceStaticSite | outputs.services.ServiceWebService | undefined>;
-    public /*out*/ readonly slug!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly suspended!: pulumi.Output<enums.services.ServiceSuspended | undefined>;
-    public /*out*/ readonly suspenders!: pulumi.Output<string[] | undefined>;
-    public readonly type!: pulumi.Output<enums.services.ServiceType>;
-    public /*out*/ readonly updatedAt!: pulumi.Output<string | undefined>;
+    public readonly repo!: pulumi.Output<string | undefined>;
+    public readonly serviceDetails!: pulumi.Output<outputs.services.WebServiceWebServiceServiceDetails | undefined>;
+    public readonly slug!: pulumi.Output<string | undefined>;
+    public readonly suspended!: pulumi.Output<enums.services.WebServiceServiceSuspended | undefined>;
+    public readonly suspenders!: pulumi.Output<string[] | undefined>;
+    public readonly type!: pulumi.Output<string | undefined>;
+    public readonly updatedAt!: pulumi.Output<string | undefined>;
 
     /**
-     * Create a Service resource with the given unique name, arguments, and options.
+     * Create a WebService resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: ServiceArgs, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: WebServiceArgs, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
@@ -91,22 +84,19 @@ export class Service extends pulumi.CustomResource {
             if ((!args || args.repo === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'repo'");
             }
-            if ((!args || args.type === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'type'");
-            }
             resourceInputs["autoDeploy"] = args ? args.autoDeploy : undefined;
             resourceInputs["branch"] = args ? args.branch : undefined;
+            resourceInputs["createdAt"] = args ? args.createdAt : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["notifyOnFail"] = args ? args.notifyOnFail : undefined;
             resourceInputs["ownerId"] = args ? args.ownerId : undefined;
             resourceInputs["repo"] = args ? args.repo : undefined;
-            resourceInputs["serviceDetails"] = args ? args.serviceDetails : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
-            resourceInputs["createdAt"] = undefined /*out*/;
-            resourceInputs["notifyOnFail"] = undefined /*out*/;
-            resourceInputs["slug"] = undefined /*out*/;
-            resourceInputs["suspended"] = undefined /*out*/;
-            resourceInputs["suspenders"] = undefined /*out*/;
-            resourceInputs["updatedAt"] = undefined /*out*/;
+            resourceInputs["serviceDetails"] = args ? (args.serviceDetails ? pulumi.output(args.serviceDetails).apply(inputs.services.webServiceWebServiceServiceDetailsArgsProvideDefaults) : undefined) : undefined;
+            resourceInputs["slug"] = args ? args.slug : undefined;
+            resourceInputs["suspended"] = args ? args.suspended : undefined;
+            resourceInputs["suspenders"] = args ? args.suspenders : undefined;
+            resourceInputs["type"] = (args ? args.type : undefined) ?? "web_service";
+            resourceInputs["updatedAt"] = args ? args.updatedAt : undefined;
         } else {
             resourceInputs["autoDeploy"] = undefined /*out*/;
             resourceInputs["branch"] = undefined /*out*/;
@@ -123,14 +113,14 @@ export class Service extends pulumi.CustomResource {
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(Service.__pulumiType, name, resourceInputs, opts);
+        super(WebService.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * The set of arguments for constructing a Service resource.
+ * The set of arguments for constructing a WebService resource.
  */
-export interface ServiceArgs {
+export interface WebServiceArgs {
     /**
      * Whether to auto deploy the service or not upon git push.
      */
@@ -139,7 +129,12 @@ export interface ServiceArgs {
      * If left empty, this will fall back to the default branch of the repository.
      */
     branch?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string>;
     name: pulumi.Input<string>;
+    /**
+     * The notification setting for this service upon deployment failure.
+     */
+    notifyOnFail?: pulumi.Input<enums.services.WebServiceServiceNotifyOnFail>;
     /**
      * The id of the owner (user/team).
      */
@@ -148,6 +143,10 @@ export interface ServiceArgs {
      * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
      */
     repo: pulumi.Input<string>;
-    serviceDetails?: pulumi.Input<inputs.services.ServiceStaticSiteArgs | inputs.services.ServiceWebServiceArgs>;
-    type: pulumi.Input<enums.services.ServiceType>;
+    serviceDetails?: pulumi.Input<inputs.services.WebServiceWebServiceServiceDetailsArgs>;
+    slug?: pulumi.Input<string>;
+    suspended?: pulumi.Input<enums.services.WebServiceServiceSuspended>;
+    suspenders?: pulumi.Input<pulumi.Input<string>[]>;
+    type?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string>;
 }

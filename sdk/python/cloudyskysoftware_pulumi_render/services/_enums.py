@@ -8,15 +8,16 @@ __all__ = [
     'CustomDomainDomainType',
     'CustomDomainVerificationStatus',
     'DeployClearCache',
-    'ServiceNotifyOnFail',
-    'ServiceStaticSitePullRequestPreviewsEnabled',
-    'ServiceStaticSiteRouteType',
-    'ServiceSuspended',
-    'ServiceType',
-    'ServiceWebServiceEnv',
-    'ServiceWebServicePlan',
-    'ServiceWebServicePullRequestPreviewsEnabled',
-    'ServiceWebServiceRegion',
+    'StaticSiteServiceNotifyOnFail',
+    'StaticSiteServiceSuspended',
+    'StaticSiteStaticSiteRouteType',
+    'StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled',
+    'WebServiceServiceNotifyOnFail',
+    'WebServiceServiceSuspended',
+    'WebServiceWebServiceServiceDetailsEnv',
+    'WebServiceWebServiceServiceDetailsPlan',
+    'WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled',
+    'WebServiceWebServiceServiceDetailsRegion',
 ]
 
 
@@ -35,7 +36,7 @@ class DeployClearCache(str, Enum):
     CLEAR = "clear"
 
 
-class ServiceNotifyOnFail(str, Enum):
+class StaticSiteServiceNotifyOnFail(str, Enum):
     """
     The notification setting for this service upon deployment failure.
     """
@@ -44,30 +45,36 @@ class ServiceNotifyOnFail(str, Enum):
     IGNORE = "ignore"
 
 
-class ServiceStaticSitePullRequestPreviewsEnabled(str, Enum):
-    YES = "yes"
-    NO = "no"
-
-
-class ServiceStaticSiteRouteType(str, Enum):
-    REDIRECT = "redirect"
-    REWRITE = "rewrite"
-
-
-class ServiceSuspended(str, Enum):
+class StaticSiteServiceSuspended(str, Enum):
     SUSPENDED = "suspended"
     NOT_SUSPENDED = "not_suspended"
 
 
-class ServiceType(str, Enum):
-    STATIC_SITE = "static_site"
-    WEB_SERVICE = "web_service"
-    PRIVATE_SERVICE = "private_service"
-    BACKGROUND_WORKER = "background_worker"
-    CRON_JOB = "cron_job"
+class StaticSiteStaticSiteRouteType(str, Enum):
+    REDIRECT = "redirect"
+    REWRITE = "rewrite"
 
 
-class ServiceWebServiceEnv(str, Enum):
+class StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled(str, Enum):
+    YES = "yes"
+    NO = "no"
+
+
+class WebServiceServiceNotifyOnFail(str, Enum):
+    """
+    The notification setting for this service upon deployment failure.
+    """
+    DEFAULT = "default"
+    NOTIFY = "notify"
+    IGNORE = "ignore"
+
+
+class WebServiceServiceSuspended(str, Enum):
+    SUSPENDED = "suspended"
+    NOT_SUSPENDED = "not_suspended"
+
+
+class WebServiceWebServiceServiceDetailsEnv(str, Enum):
     DOCKER = "docker"
     ELIXIR = "elixir"
     GO = "go"
@@ -77,7 +84,7 @@ class ServiceWebServiceEnv(str, Enum):
     RUST = "rust"
 
 
-class ServiceWebServicePlan(str, Enum):
+class WebServiceWebServiceServiceDetailsPlan(str, Enum):
     STARTER = "starter"
     STARTER_PLUS = "starter_plus"
     STANDARD = "standard"
@@ -88,11 +95,11 @@ class ServiceWebServicePlan(str, Enum):
     PRO_ULTRA = "pro_ultra"
 
 
-class ServiceWebServicePullRequestPreviewsEnabled(str, Enum):
+class WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled(str, Enum):
     YES = "yes"
     NO = "no"
 
 
-class ServiceWebServiceRegion(str, Enum):
+class WebServiceWebServiceServiceDetailsRegion(str, Enum):
     OREGON = "oregon"
     FRANKFURT = "frankfurt"

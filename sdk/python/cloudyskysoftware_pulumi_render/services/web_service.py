@@ -12,35 +12,57 @@ from . import outputs
 from ._enums import *
 from ._inputs import *
 
-__all__ = ['ServiceArgs', 'Service']
+__all__ = ['WebServiceArgs', 'WebService']
 
 @pulumi.input_type
-class ServiceArgs:
+class WebServiceArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
                  owner_id: pulumi.Input[str],
                  repo: pulumi.Input[str],
-                 type: pulumi.Input['ServiceType'],
                  auto_deploy: Optional[pulumi.Input[bool]] = None,
                  branch: Optional[pulumi.Input[str]] = None,
-                 service_details: Optional[pulumi.Input[Union['ServiceStaticSiteArgs', 'ServiceWebServiceArgs']]] = None):
+                 created_at: Optional[pulumi.Input[str]] = None,
+                 notify_on_fail: Optional[pulumi.Input['WebServiceServiceNotifyOnFail']] = None,
+                 service_details: Optional[pulumi.Input['WebServiceWebServiceServiceDetailsArgs']] = None,
+                 slug: Optional[pulumi.Input[str]] = None,
+                 suspended: Optional[pulumi.Input['WebServiceServiceSuspended']] = None,
+                 suspenders: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
+                 updated_at: Optional[pulumi.Input[str]] = None):
         """
-        The set of arguments for constructing a Service resource.
+        The set of arguments for constructing a WebService resource.
         :param pulumi.Input[str] owner_id: The id of the owner (user/team).
         :param pulumi.Input[str] repo: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
         :param pulumi.Input[bool] auto_deploy: Whether to auto deploy the service or not upon git push.
         :param pulumi.Input[str] branch: If left empty, this will fall back to the default branch of the repository.
+        :param pulumi.Input['WebServiceServiceNotifyOnFail'] notify_on_fail: The notification setting for this service upon deployment failure.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "owner_id", owner_id)
         pulumi.set(__self__, "repo", repo)
-        pulumi.set(__self__, "type", type)
         if auto_deploy is not None:
             pulumi.set(__self__, "auto_deploy", auto_deploy)
         if branch is not None:
             pulumi.set(__self__, "branch", branch)
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if notify_on_fail is not None:
+            pulumi.set(__self__, "notify_on_fail", notify_on_fail)
         if service_details is not None:
             pulumi.set(__self__, "service_details", service_details)
+        if slug is not None:
+            pulumi.set(__self__, "slug", slug)
+        if suspended is not None:
+            pulumi.set(__self__, "suspended", suspended)
+        if suspenders is not None:
+            pulumi.set(__self__, "suspenders", suspenders)
+        if type is None:
+            type = 'web_service'
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if updated_at is not None:
+            pulumi.set(__self__, "updated_at", updated_at)
 
     @property
     @pulumi.getter
@@ -76,15 +98,6 @@ class ServiceArgs:
         pulumi.set(self, "repo", value)
 
     @property
-    @pulumi.getter
-    def type(self) -> pulumi.Input['ServiceType']:
-        return pulumi.get(self, "type")
-
-    @type.setter
-    def type(self, value: pulumi.Input['ServiceType']):
-        pulumi.set(self, "type", value)
-
-    @property
     @pulumi.getter(name="autoDeploy")
     def auto_deploy(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -109,35 +122,108 @@ class ServiceArgs:
         pulumi.set(self, "branch", value)
 
     @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "created_at")
+
+    @created_at.setter
+    def created_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "created_at", value)
+
+    @property
+    @pulumi.getter(name="notifyOnFail")
+    def notify_on_fail(self) -> Optional[pulumi.Input['WebServiceServiceNotifyOnFail']]:
+        """
+        The notification setting for this service upon deployment failure.
+        """
+        return pulumi.get(self, "notify_on_fail")
+
+    @notify_on_fail.setter
+    def notify_on_fail(self, value: Optional[pulumi.Input['WebServiceServiceNotifyOnFail']]):
+        pulumi.set(self, "notify_on_fail", value)
+
+    @property
     @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> Optional[pulumi.Input[Union['ServiceStaticSiteArgs', 'ServiceWebServiceArgs']]]:
+    def service_details(self) -> Optional[pulumi.Input['WebServiceWebServiceServiceDetailsArgs']]:
         return pulumi.get(self, "service_details")
 
     @service_details.setter
-    def service_details(self, value: Optional[pulumi.Input[Union['ServiceStaticSiteArgs', 'ServiceWebServiceArgs']]]):
+    def service_details(self, value: Optional[pulumi.Input['WebServiceWebServiceServiceDetailsArgs']]):
         pulumi.set(self, "service_details", value)
 
+    @property
+    @pulumi.getter
+    def slug(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "slug")
 
-class Service(pulumi.CustomResource):
+    @slug.setter
+    def slug(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "slug", value)
+
+    @property
+    @pulumi.getter
+    def suspended(self) -> Optional[pulumi.Input['WebServiceServiceSuspended']]:
+        return pulumi.get(self, "suspended")
+
+    @suspended.setter
+    def suspended(self, value: Optional[pulumi.Input['WebServiceServiceSuspended']]):
+        pulumi.set(self, "suspended", value)
+
+    @property
+    @pulumi.getter
+    def suspenders(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "suspenders")
+
+    @suspenders.setter
+    def suspenders(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "suspenders", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "updated_at")
+
+    @updated_at.setter
+    def updated_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "updated_at", value)
+
+
+class WebService(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auto_deploy: Optional[pulumi.Input[bool]] = None,
                  branch: Optional[pulumi.Input[str]] = None,
+                 created_at: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 notify_on_fail: Optional[pulumi.Input['WebServiceServiceNotifyOnFail']] = None,
                  owner_id: Optional[pulumi.Input[str]] = None,
                  repo: Optional[pulumi.Input[str]] = None,
-                 service_details: Optional[pulumi.Input[Union[pulumi.InputType['ServiceStaticSiteArgs'], pulumi.InputType['ServiceWebServiceArgs']]]] = None,
-                 type: Optional[pulumi.Input['ServiceType']] = None,
+                 service_details: Optional[pulumi.Input[pulumi.InputType['WebServiceWebServiceServiceDetailsArgs']]] = None,
+                 slug: Optional[pulumi.Input[str]] = None,
+                 suspended: Optional[pulumi.Input['WebServiceServiceSuspended']] = None,
+                 suspenders: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
+                 updated_at: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## Example Usage
+        A web service
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] auto_deploy: Whether to auto deploy the service or not upon git push.
         :param pulumi.Input[str] branch: If left empty, this will fall back to the default branch of the repository.
+        :param pulumi.Input['WebServiceServiceNotifyOnFail'] notify_on_fail: The notification setting for this service upon deployment failure.
         :param pulumi.Input[str] owner_id: The id of the owner (user/team).
         :param pulumi.Input[str] repo: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
         """
@@ -145,18 +231,18 @@ class Service(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: ServiceArgs,
+                 args: WebServiceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Example Usage
+        A web service
 
         :param str resource_name: The name of the resource.
-        :param ServiceArgs args: The arguments to use to populate this resource's properties.
+        :param WebServiceArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(ServiceArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(WebServiceArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -167,11 +253,17 @@ class Service(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auto_deploy: Optional[pulumi.Input[bool]] = None,
                  branch: Optional[pulumi.Input[str]] = None,
+                 created_at: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 notify_on_fail: Optional[pulumi.Input['WebServiceServiceNotifyOnFail']] = None,
                  owner_id: Optional[pulumi.Input[str]] = None,
                  repo: Optional[pulumi.Input[str]] = None,
-                 service_details: Optional[pulumi.Input[Union[pulumi.InputType['ServiceStaticSiteArgs'], pulumi.InputType['ServiceWebServiceArgs']]]] = None,
-                 type: Optional[pulumi.Input['ServiceType']] = None,
+                 service_details: Optional[pulumi.Input[pulumi.InputType['WebServiceWebServiceServiceDetailsArgs']]] = None,
+                 slug: Optional[pulumi.Input[str]] = None,
+                 suspended: Optional[pulumi.Input['WebServiceServiceSuspended']] = None,
+                 suspenders: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
+                 updated_at: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -179,13 +271,15 @@ class Service(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = ServiceArgs.__new__(ServiceArgs)
+            __props__ = WebServiceArgs.__new__(WebServiceArgs)
 
             __props__.__dict__["auto_deploy"] = auto_deploy
             __props__.__dict__["branch"] = branch
+            __props__.__dict__["created_at"] = created_at
             if name is None and not opts.urn:
                 raise TypeError("Missing required property 'name'")
             __props__.__dict__["name"] = name
+            __props__.__dict__["notify_on_fail"] = notify_on_fail
             if owner_id is None and not opts.urn:
                 raise TypeError("Missing required property 'owner_id'")
             __props__.__dict__["owner_id"] = owner_id
@@ -193,17 +287,15 @@ class Service(pulumi.CustomResource):
                 raise TypeError("Missing required property 'repo'")
             __props__.__dict__["repo"] = repo
             __props__.__dict__["service_details"] = service_details
-            if type is None and not opts.urn:
-                raise TypeError("Missing required property 'type'")
+            __props__.__dict__["slug"] = slug
+            __props__.__dict__["suspended"] = suspended
+            __props__.__dict__["suspenders"] = suspenders
+            if type is None:
+                type = 'web_service'
             __props__.__dict__["type"] = type
-            __props__.__dict__["created_at"] = None
-            __props__.__dict__["notify_on_fail"] = None
-            __props__.__dict__["slug"] = None
-            __props__.__dict__["suspended"] = None
-            __props__.__dict__["suspenders"] = None
-            __props__.__dict__["updated_at"] = None
-        super(Service, __self__).__init__(
-            'render:services:Service',
+            __props__.__dict__["updated_at"] = updated_at
+        super(WebService, __self__).__init__(
+            'render:services:WebService',
             resource_name,
             __props__,
             opts)
@@ -211,9 +303,9 @@ class Service(pulumi.CustomResource):
     @staticmethod
     def get(resource_name: str,
             id: pulumi.Input[str],
-            opts: Optional[pulumi.ResourceOptions] = None) -> 'Service':
+            opts: Optional[pulumi.ResourceOptions] = None) -> 'WebService':
         """
-        Get an existing Service resource's state with the given name, id, and optional extra
+        Get an existing WebService resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -222,7 +314,7 @@ class Service(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = ServiceArgs.__new__(ServiceArgs)
+        __props__ = WebServiceArgs.__new__(WebServiceArgs)
 
         __props__.__dict__["auto_deploy"] = None
         __props__.__dict__["branch"] = None
@@ -237,7 +329,7 @@ class Service(pulumi.CustomResource):
         __props__.__dict__["suspenders"] = None
         __props__.__dict__["type"] = None
         __props__.__dict__["updated_at"] = None
-        return Service(resource_name, opts=opts, __props__=__props__)
+        return WebService(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="autoDeploy")
@@ -262,12 +354,12 @@ class Service(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> pulumi.Output[str]:
+    def name(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="notifyOnFail")
-    def notify_on_fail(self) -> pulumi.Output[Optional['ServiceNotifyOnFail']]:
+    def notify_on_fail(self) -> pulumi.Output[Optional['WebServiceServiceNotifyOnFail']]:
         """
         The notification setting for this service upon deployment failure.
         """
@@ -275,7 +367,7 @@ class Service(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="ownerId")
-    def owner_id(self) -> pulumi.Output[str]:
+    def owner_id(self) -> pulumi.Output[Optional[str]]:
         """
         The id of the owner (user/team).
         """
@@ -283,7 +375,7 @@ class Service(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def repo(self) -> pulumi.Output[str]:
+    def repo(self) -> pulumi.Output[Optional[str]]:
         """
         Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
         """
@@ -291,7 +383,7 @@ class Service(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> pulumi.Output[Optional[Any]]:
+    def service_details(self) -> pulumi.Output[Optional['outputs.WebServiceWebServiceServiceDetails']]:
         return pulumi.get(self, "service_details")
 
     @property
@@ -301,7 +393,7 @@ class Service(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def suspended(self) -> pulumi.Output[Optional['ServiceSuspended']]:
+    def suspended(self) -> pulumi.Output[Optional['WebServiceServiceSuspended']]:
         return pulumi.get(self, "suspended")
 
     @property
@@ -311,7 +403,7 @@ class Service(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def type(self) -> pulumi.Output['ServiceType']:
+    def type(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "type")
 
     @property

@@ -23,7 +23,7 @@ export const DeployClearCache = {
 
 export type DeployClearCache = (typeof DeployClearCache)[keyof typeof DeployClearCache];
 
-export const ServiceNotifyOnFail = {
+export const StaticSiteServiceNotifyOnFail = {
     Default: "default",
     Notify: "notify",
     Ignore: "ignore",
@@ -32,40 +32,48 @@ export const ServiceNotifyOnFail = {
 /**
  * The notification setting for this service upon deployment failure.
  */
-export type ServiceNotifyOnFail = (typeof ServiceNotifyOnFail)[keyof typeof ServiceNotifyOnFail];
+export type StaticSiteServiceNotifyOnFail = (typeof StaticSiteServiceNotifyOnFail)[keyof typeof StaticSiteServiceNotifyOnFail];
 
-export const ServiceStaticSitePullRequestPreviewsEnabled = {
-    Yes: "yes",
-    No: "no",
-} as const;
-
-export type ServiceStaticSitePullRequestPreviewsEnabled = (typeof ServiceStaticSitePullRequestPreviewsEnabled)[keyof typeof ServiceStaticSitePullRequestPreviewsEnabled];
-
-export const ServiceStaticSiteRouteType = {
-    Redirect: "redirect",
-    Rewrite: "rewrite",
-} as const;
-
-export type ServiceStaticSiteRouteType = (typeof ServiceStaticSiteRouteType)[keyof typeof ServiceStaticSiteRouteType];
-
-export const ServiceSuspended = {
+export const StaticSiteServiceSuspended = {
     Suspended: "suspended",
     NotSuspended: "not_suspended",
 } as const;
 
-export type ServiceSuspended = (typeof ServiceSuspended)[keyof typeof ServiceSuspended];
+export type StaticSiteServiceSuspended = (typeof StaticSiteServiceSuspended)[keyof typeof StaticSiteServiceSuspended];
 
-export const ServiceType = {
-    StaticSite: "static_site",
-    WebService: "web_service",
-    PrivateService: "private_service",
-    BackgroundWorker: "background_worker",
-    CronJob: "cron_job",
+export const StaticSiteStaticSiteRouteType = {
+    Redirect: "redirect",
+    Rewrite: "rewrite",
 } as const;
 
-export type ServiceType = (typeof ServiceType)[keyof typeof ServiceType];
+export type StaticSiteStaticSiteRouteType = (typeof StaticSiteStaticSiteRouteType)[keyof typeof StaticSiteStaticSiteRouteType];
 
-export const ServiceWebServiceEnv = {
+export const StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled = {
+    Yes: "yes",
+    No: "no",
+} as const;
+
+export type StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled = (typeof StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled)[keyof typeof StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled];
+
+export const WebServiceServiceNotifyOnFail = {
+    Default: "default",
+    Notify: "notify",
+    Ignore: "ignore",
+} as const;
+
+/**
+ * The notification setting for this service upon deployment failure.
+ */
+export type WebServiceServiceNotifyOnFail = (typeof WebServiceServiceNotifyOnFail)[keyof typeof WebServiceServiceNotifyOnFail];
+
+export const WebServiceServiceSuspended = {
+    Suspended: "suspended",
+    NotSuspended: "not_suspended",
+} as const;
+
+export type WebServiceServiceSuspended = (typeof WebServiceServiceSuspended)[keyof typeof WebServiceServiceSuspended];
+
+export const WebServiceWebServiceServiceDetailsEnv = {
     Docker: "docker",
     Elixir: "elixir",
     Go: "go",
@@ -75,9 +83,9 @@ export const ServiceWebServiceEnv = {
     Rust: "rust",
 } as const;
 
-export type ServiceWebServiceEnv = (typeof ServiceWebServiceEnv)[keyof typeof ServiceWebServiceEnv];
+export type WebServiceWebServiceServiceDetailsEnv = (typeof WebServiceWebServiceServiceDetailsEnv)[keyof typeof WebServiceWebServiceServiceDetailsEnv];
 
-export const ServiceWebServicePlan = {
+export const WebServiceWebServiceServiceDetailsPlan = {
     Starter: "starter",
     StarterPlus: "starter_plus",
     Standard: "standard",
@@ -88,18 +96,18 @@ export const ServiceWebServicePlan = {
     ProUltra: "pro_ultra",
 } as const;
 
-export type ServiceWebServicePlan = (typeof ServiceWebServicePlan)[keyof typeof ServiceWebServicePlan];
+export type WebServiceWebServiceServiceDetailsPlan = (typeof WebServiceWebServiceServiceDetailsPlan)[keyof typeof WebServiceWebServiceServiceDetailsPlan];
 
-export const ServiceWebServicePullRequestPreviewsEnabled = {
+export const WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled = {
     Yes: "yes",
     No: "no",
 } as const;
 
-export type ServiceWebServicePullRequestPreviewsEnabled = (typeof ServiceWebServicePullRequestPreviewsEnabled)[keyof typeof ServiceWebServicePullRequestPreviewsEnabled];
+export type WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled = (typeof WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled)[keyof typeof WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled];
 
-export const ServiceWebServiceRegion = {
+export const WebServiceWebServiceServiceDetailsRegion = {
     Oregon: "oregon",
     Frankfurt: "frankfurt",
 } as const;
 
-export type ServiceWebServiceRegion = (typeof ServiceWebServiceRegion)[keyof typeof ServiceWebServiceRegion];
+export type WebServiceWebServiceServiceDetailsRegion = (typeof WebServiceWebServiceServiceDetailsRegion)[keyof typeof WebServiceWebServiceServiceDetailsRegion];

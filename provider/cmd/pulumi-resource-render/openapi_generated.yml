@@ -91,7 +91,7 @@ components:
       items:
         $ref: "#/components/schemas/listStaticSiteRoutesResponse"
     staticSiteServiceDetails:
-      title: "Service"
+      title: "StaticSite"
       type: object
       properties:
         buildCommand:
@@ -126,7 +126,7 @@ components:
           description: The HTTPS service URL. A subdomain of onrender.com, by default.
           readOnly: true
     staticSite:
-      title: "Service"
+      title: "StaticSite"
       description: "A static website service"
       allOf:
         - $ref: "#/components/schemas/service"
@@ -196,7 +196,7 @@ components:
         - "buildCommand"
         - "startCommand"
     webServiceServiceDetails:
-      title: "Service"
+      title: "WebService"
       type: object
       properties:
         disk:
@@ -245,7 +245,7 @@ components:
       required:
         - "env"
     webService:
-      title: "Service"
+      title: "WebService"
       allOf:
         - $ref: "#/components/schemas/service"
         - type: object

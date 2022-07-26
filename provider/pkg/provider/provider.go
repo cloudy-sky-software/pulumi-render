@@ -489,14 +489,18 @@ func (p *renderProvider) Read(ctx context.Context, req *pulumirpc.ReadRequest) (
 	}
 
 	inputs := getOldInputs(oldState)
-	// If there is no old state, then persiste the current outputs as the
+	// If there is no old state, then persist the current outputs as the
 	// "old" inputs going forward for this resource.
 	if inputs == nil {
 		inputs = resource.NewPropertyMapFromMap(outputs)
 	} else {
-		// TODO: We should take the values from outputs and apply them onto the inputs
-		// so that the checkpoint is in-sync with the state in the cloud provider.
+		// Take the values from outputs and apply them to the inputs
+		// so that the checkpoint is in-sync with the state in the
+		// cloud provider.
+		newState := resource.NewPropertyMapFromMap(outputs)
+		inputs = applyDiff(newState, inputs)
 	}
+
 	outputProperties, err := plugin.MarshalProperties(
 		getResourceState(outputs, inputs),
 		plugin.MarshalOptions{KeepUnknowns: true, SkipNulls: true, KeepSecrets: true},

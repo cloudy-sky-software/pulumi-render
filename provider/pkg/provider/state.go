@@ -19,3 +19,26 @@ func getOldInputs(state resource.PropertyMap) resource.PropertyMap {
 
 	return nil
 }
+
+func applyDiff(newProps resource.PropertyMap, oldProps resource.PropertyMap) resource.PropertyMap {
+	diff := oldProps.Diff(newProps)
+	if diff == nil {
+		return oldProps
+	}
+
+	result := resource.PropertyMap{}
+	// Maintain inputs that we have that they don't have.
+	for name, value := range oldProps {
+		if !diff.Deleted(name) {
+			result[name] = value
+		}
+	}
+	// Take all the additions and updates from them.
+	for key, value := range diff.Adds {
+		result[key] = value
+	}
+	for key, value := range diff.Updates {
+		result[key] = value.New
+	}
+	return result
+}

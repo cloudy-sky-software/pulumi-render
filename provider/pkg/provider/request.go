@@ -64,7 +64,7 @@ func (p *renderProvider) validateRequest(ctx context.Context, httpReq *http.Requ
 	return nil
 }
 
-func (p *renderProvider) getPathParamsMap(resourceTypeToken, apiPath, requestMethod string, inputs resource.PropertyMap) (map[string]string, error) {
+func (p *renderProvider) getPathParamsMap(resourceTypeToken, apiPath, requestMethod string, properties resource.PropertyMap) (map[string]string, error) {
 	pathParams := make(map[string]string)
 
 	var parameters openapi3.Parameters
@@ -84,30 +84,31 @@ func (p *renderProvider) getPathParamsMap(resourceTypeToken, apiPath, requestMet
 		return pathParams, nil
 	}
 
-	logging.V(3).Infof("Process path parameters with inputs %v", inputs)
-	result := inputs["result"].Mappable().(map[string]interface{})
+	logging.V(3).Infof("Process path parameters with %v", properties)
+	count := 0
 	for _, param := range parameters {
 		if param.Value.In != "path" {
 			continue
 		}
 
+		count++
 		paramName := param.Value.Name
 		logging.V(3).Infof("Looking for path param %q in resource inputs", paramName)
-		input := result[paramName]
-		switch ty := input.(type) {
-		case string:
-			pathParams[paramName] = ty
-		case resource.PropertyValue:
-			if ty.IsComputed() {
-				pathParams[paramName] = ty.Input().Element.StringValue()
-			} else {
-				pathParams[paramName] = ty.StringValue()
-			}
+		property := properties[resource.PropertyKey(paramName)]
+		if property.IsComputed() {
+			pathParams[paramName] = property.Input().Element.StringValue()
+		} else {
+			pathParams[paramName] = property.StringValue()
 		}
 	}
 
-	if len(pathParams) == 0 {
+	numPathParams := len(pathParams)
+	if numPathParams == 0 {
 		return nil, errors.Errorf("did not find any path parameters in the openapi doc for %s", resourceTypeToken)
+	}
+
+	if numPathParams != count {
+		return nil, errors.Errorf("not all path params were found in the properties (expected: %d, found: %d)", count, numPathParams)
 	}
 
 	return pathParams, nil

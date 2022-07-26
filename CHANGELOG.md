@@ -1,3 +1,7 @@
+## 0.0.32
+
+Fix for path param handling when dealing with output properties.
+
 ## 0.0.31
 
 Change package names under which the language SDKs are published.

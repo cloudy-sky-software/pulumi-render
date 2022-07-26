@@ -655,7 +655,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /owners/{ownerId}:
+  /owners/{id}:
     get:
       tags:
         - Owners
@@ -668,7 +668,7 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: ownerId
+        - name: id
           in: path
           schema:
             type: string
@@ -1233,7 +1233,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}:
+  /services/{id}:
     get:
       tags:
         - Services
@@ -1246,7 +1246,7 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: serviceId
+        - name: id
           in: path
           schema:
             type: string
@@ -1440,7 +1440,7 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: serviceId
+        - name: id
           in: path
           schema:
             type: string
@@ -1643,13 +1643,25 @@ paths:
       summary: Delete service
       description: >-
         [https://api-docs.render.com/reference/delete-service](https://api-docs.render.com/reference/delete-service)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              discriminator:
+                propertyName: type
+                mapping:
+                  "static_site": "#/components/schemas/staticSite"
+                  "web_service": "#/components/schemas/webService"
+                oneOf:
+                  - $ref: "#/components/schemas/staticSite"
+                  - $ref: "#/components/schemas/webService"
       parameters:
         - name: Accept
           in: header
           schema:
             type: string
           example: application/json
-        - name: serviceId
+        - name: id
           in: path
           schema:
             type: string
@@ -1781,7 +1793,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/env-vars:
+  /services/{id}/env-vars:
     get:
       tags:
         - Services
@@ -1806,7 +1818,7 @@ paths:
             type: integer
           description: Max number of items that can be returned
           example: "20"
-        - name: serviceId
+        - name: id
           in: path
           schema:
             type: string
@@ -1973,7 +1985,7 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: serviceId
+        - name: id
           in: path
           schema:
             type: string
@@ -2127,7 +2139,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/headers:
+  /services/{id}/headers:
     get:
       tags:
         - Services
@@ -2170,7 +2182,7 @@ paths:
             type: integer
           description: Max number of items that can be returned
           example: "20"
-        - name: serviceId
+        - name: id
           in: path
           schema:
             type: string
@@ -2312,7 +2324,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/routes:
+  /services/{id}/routes:
     get:
       tags:
         - Services
@@ -2355,7 +2367,7 @@ paths:
             type: integer
           description: Max number of items that can be returned
           example: "20"
-        - name: serviceId
+        - name: id
           in: path
           schema:
             type: string
@@ -2497,7 +2509,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/suspend:
+  /services/{id}/suspend:
     post:
       tags:
         - Services
@@ -2515,7 +2527,7 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: serviceId
+        - name: id
           in: path
           schema:
             type: string
@@ -2661,7 +2673,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/resume:
+  /services/{id}/resume:
     post:
       tags:
         - Services
@@ -2676,7 +2688,7 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: serviceId
+        - name: id
           in: path
           schema:
             type: string
@@ -2822,7 +2834,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/scale:
+  /services/{id}/scale:
     post:
       tags:
         - Services
@@ -2852,7 +2864,7 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: serviceId
+        - name: id
           in: path
           schema:
             type: string
@@ -3007,7 +3019,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/deploys:
+  /services/{id}/deploys:
     get:
       tags:
         - Deploys
@@ -3044,7 +3056,7 @@ paths:
             type: integer
           description: Max number of items that can be returned
           example: "20"
-        - name: serviceId
+        - name: id
           in: path
           schema:
             type: string
@@ -3222,7 +3234,7 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: serviceId
+        - name: id
           in: path
           schema:
             type: string
@@ -3377,7 +3389,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/deploys/{deployId}:
+  /services/{serviceId}/deploys/{id}:
     get:
       tags:
         - Deploys
@@ -3397,7 +3409,7 @@ paths:
           required: true
           description: (Required) The ID of the service
           example: Lorem amet sin
-        - name: deployId
+        - name: id
           in: path
           schema:
             type: string
@@ -3538,7 +3550,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/custom-domains:
+  /services/{id}/custom-domains:
     get:
       tags:
         - Custom Domains
@@ -3597,7 +3609,7 @@ paths:
             Filter for custom domains created after a certain time (specified as
             an ISO 8601 timestamp)
           example: "2021-02-17T08:15:30Z"
-        - name: serviceId
+        - name: id
           in: path
           schema:
             type: string
@@ -3789,7 +3801,7 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: serviceId
+        - name: id
           in: path
           schema:
             type: string
@@ -3983,7 +3995,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/custom-domains/{customDomainIdOrName}:
+  /services/{serviceId}/custom-domains/{id}:
     get:
       tags:
         - Custom Domains
@@ -4003,7 +4015,7 @@ paths:
           required: true
           description: (Required) The ID of the service
           example: Lorem amet sin
-        - name: customDomainIdOrName
+        - name: id
           in: path
           schema:
             type: string
@@ -4165,6 +4177,11 @@ paths:
       summary: Delete custom domain
       description: >-
         [https://api-docs.render.com/reference/delete-custom-domain](https://api-docs.render.com/reference/delete-custom-domain)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/customDomain"
       parameters:
         - name: Accept
           in: header
@@ -4178,7 +4195,7 @@ paths:
           required: true
           description: (Required) The ID of the service
           example: Lorem amet sin
-        - name: customDomainIdOrName
+        - name: id
           in: path
           schema:
             type: string
@@ -4324,7 +4341,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/custom-domains/{customDomainIdOrName}/verify:
+  /services/{serviceId}/custom-domains/{id}/verify:
     post:
       tags:
         - Custom Domains
@@ -4346,7 +4363,7 @@ paths:
           required: true
           description: (Required) The ID of the service
           example: Lorem amet sin
-        - name: customDomainIdOrName
+        - name: id
           in: path
           schema:
             type: string
@@ -4492,7 +4509,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/jobs:
+  /services/{id}/jobs:
     get:
       tags:
         - Jobs
@@ -4573,7 +4590,7 @@ paths:
             Filter for jobs finished after a certain time (specified as an ISO
             8601 timestamp)
           example: "2021-02-17T08:15:30Z"
-        - name: serviceId
+        - name: id
           in: path
           schema:
             type: string
@@ -4722,7 +4739,7 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: serviceId
+        - name: id
           in: path
           schema:
             type: string
@@ -4834,7 +4851,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/jobs/{jobId}:
+  /services/{serviceId}/jobs/{id}:
     get:
       tags:
         - Jobs
@@ -4854,7 +4871,7 @@ paths:
           required: true
           description: (Required) The ID of the service
           example: Lorem amet sin
-        - name: jobId
+        - name: id
           in: path
           schema:
             type: string

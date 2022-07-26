@@ -365,20 +365,19 @@ func (p *renderProvider) Create(ctx context.Context, req *pulumirpc.CreateReques
 
 	httpResp.Body.Close()
 
-	var result map[string]interface{}
-	if err := json.Unmarshal(body, &result); err != nil {
+	var outputs map[string]interface{}
+	if err := json.Unmarshal(body, &outputs); err != nil {
 		return nil, errors.Wrap(err, "unmarshaling the response")
 	}
 
-	logging.V(3).Infof("RESPONSE BODY: %v", result)
+	logging.V(3).Infof("RESPONSE BODY: %v", outputs)
 
-	if service, serviceOk := result["service"]; serviceOk {
+	// HACK! Service resources return an object that has the deployment ID
+	// for the newly-created resources, as well as the newly-created service
+	// object.
+	if service, serviceOk := outputs["service"]; serviceOk {
 		glog.V(3).Info("Found service object in the response. Using that as the output result.")
-		result = service.(map[string]interface{})
-	}
-
-	outputs := map[string]interface{}{
-		"result": result,
+		outputs = service.(map[string]interface{})
 	}
 
 	outputProperties, err := plugin.MarshalProperties(
@@ -389,7 +388,7 @@ func (p *renderProvider) Create(ctx context.Context, req *pulumirpc.CreateReques
 		return nil, errors.Wrap(err, "marshaling the output properties map")
 	}
 
-	id, ok := result["id"]
+	id, ok := outputs["id"]
 	if !ok {
 		return nil, errors.New("resource may have been created successfully but the id was not present in the response")
 	}
@@ -470,13 +469,9 @@ func (p *renderProvider) Read(ctx context.Context, req *pulumirpc.ReadRequest) (
 
 	httpResp.Body.Close()
 
-	var result map[string]interface{}
-	if err := json.Unmarshal(body, &result); err != nil {
+	var outputs map[string]interface{}
+	if err := json.Unmarshal(body, &outputs); err != nil {
 		return nil, errors.Wrap(err, "unmarshaling the response")
-	}
-
-	outputs := map[string]interface{}{
-		"result": result,
 	}
 
 	outputProperties, err := plugin.MarshalProperties(
@@ -487,9 +482,9 @@ func (p *renderProvider) Read(ctx context.Context, req *pulumirpc.ReadRequest) (
 		return nil, errors.Wrap(err, "marshaling the output properties map")
 	}
 
-	id, ok := result["id"]
+	id, ok := outputs["id"]
 	if !ok {
-		return nil, errors.New("resource may have been created successfully but the id was not present in the response")
+		return nil, errors.New("looking up id property from the response")
 	}
 
 	return &pulumirpc.ReadResponse{
@@ -566,18 +561,41 @@ func (p *renderProvider) Update(ctx context.Context, req *pulumirpc.UpdateReques
 		return nil, errors.Wrap(err, "executing http request")
 	}
 
-	if httpResp.StatusCode != http.StatusOK {
-		return nil, errors.Errorf("http request failed: %v", err)
+	if httpResp.StatusCode != http.StatusOK && httpResp.StatusCode != http.StatusNoContent {
+		return nil, errors.Errorf("http request failed: %v. expected 200 or 204 but got %d", err, httpResp.StatusCode)
 	}
 
-	httpResp.Body.Close()
+	body, err := ioutil.ReadAll(httpResp.Body)
+	if err != nil {
+		return nil, errors.Wrap(err, "reading response body")
+	}
 
-	// TODO: Read the response body for 200 OK status codes only (since 204 won't have a body)
-	// and set them as output properties.
+	defer httpResp.Body.Close()
+
+	if httpResp.StatusCode == http.StatusNoContent {
+		return &pulumirpc.UpdateResponse{}, nil
+	}
+
+	var outputs map[string]interface{}
+	if err := json.Unmarshal(body, &outputs); err != nil {
+		return nil, errors.Wrap(err, "unmarshaling the response")
+	}
+
+	logging.V(3).Infof("RESPONSE BODY: %v", outputs)
+
+	outputProperties, err := plugin.MarshalProperties(
+		resource.NewPropertyMapFromMap(outputs),
+		plugin.MarshalOptions{KeepUnknowns: true, SkipNulls: true},
+	)
+	if err != nil {
+		return nil, errors.Wrap(err, "marshaling the output properties map")
+	}
 
 	p.runPostUpdateAction(ctx, resourceTypeToken, httpReq.URL.String())
 
-	return &pulumirpc.UpdateResponse{}, nil
+	return &pulumirpc.UpdateResponse{
+		Properties: outputProperties,
+	}, nil
 }
 
 func (p *renderProvider) runPostUpdateAction(ctx context.Context, resourceTypeToken, url string) {
@@ -654,7 +672,9 @@ func (p *renderProvider) Delete(ctx context.Context, req *pulumirpc.DeleteReques
 		return nil, errors.Errorf("unknown resource type %s", resourceTypeToken)
 	}
 	if crudMap.D == nil {
-		return nil, errors.Errorf("resource delete endpoint is unknown for %s", resourceTypeToken)
+		// Nothing to do to delete this resource,
+		// simply drop it from the state.
+		return &pbempty.Empty{}, nil
 	}
 
 	httpEndpointPath := *crudMap.D
@@ -694,7 +714,7 @@ func (p *renderProvider) Delete(ctx context.Context, req *pulumirpc.DeleteReques
 	}
 
 	if httpResp.StatusCode != http.StatusOK && httpResp.StatusCode != http.StatusNoContent {
-		return nil, errors.Errorf("http request failed: %v", err)
+		return nil, errors.Errorf("http request failed: %v. expected 200 or 204 but got %d", err, httpResp.StatusCode)
 	}
 
 	httpResp.Body.Close()

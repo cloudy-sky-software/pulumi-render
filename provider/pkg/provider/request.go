@@ -45,6 +45,11 @@ func (p *renderProvider) validateRequest(ctx context.Context, httpReq *http.Requ
 		return errors.Wrap(err, "request validation failed")
 	}
 
+	if httpReq.Body == nil {
+		logging.V(3).Info("Request does not have a body. Skipping ContentLength adjustment...")
+		return nil
+	}
+
 	// Update the original HTTP request's ContentLength since the
 	// body might have changed due to default properties getting
 	// added to it.
@@ -79,17 +84,25 @@ func (p *renderProvider) getPathParamsMap(resourceTypeToken, apiPath, requestMet
 		return pathParams, nil
 	}
 
+	logging.V(3).Infof("Process path parameters with inputs %v", inputs)
+	result := inputs["result"].Mappable().(map[string]interface{})
 	for _, param := range parameters {
 		if param.Value.In != "path" {
 			continue
 		}
 
 		paramName := param.Value.Name
-		input := inputs[resource.PropertyKey(paramName)]
-		if input.IsComputed() {
-			pathParams[paramName] = input.Input().Element.StringValue()
-		} else {
-			pathParams[paramName] = input.StringValue()
+		logging.V(3).Infof("Looking for path param %q in resource inputs", paramName)
+		input := result[paramName]
+		switch ty := input.(type) {
+		case string:
+			pathParams[paramName] = ty
+		case resource.PropertyValue:
+			if ty.IsComputed() {
+				pathParams[paramName] = ty.Input().Element.StringValue()
+			} else {
+				pathParams[paramName] = ty.StringValue()
+			}
 		}
 	}
 

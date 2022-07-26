@@ -18,6 +18,7 @@ import (
 )
 
 const componentsSchemaRefPrefix = "#/components/schemas/"
+const jsonMimeType = "application/json"
 
 type openAPIContext struct {
 	doc             openapi3.T
@@ -49,9 +50,9 @@ func (o *openAPIContext) gatherResourcesFromAPI(csharpNamespaces map[string]stri
 		module := getRootPath(currentPath)
 
 		// TODO: TEMPORARY!
-		if currentPath == "/services/{serviceId}/resume" ||
-			strings.HasPrefix(currentPath, "/services/{serviceId}/jobs") ||
-			currentPath == "/services/{serviceId}/custom-domains/{customDomainIdOrName}/verify" {
+		if currentPath == "/services/{id}/resume" ||
+			strings.HasPrefix(currentPath, "/services/{id}/jobs") ||
+			currentPath == "/services/{serviceId}/custom-domains/{id}/verify" {
 			continue
 		}
 		//
@@ -62,7 +63,7 @@ func (o *openAPIContext) gatherResourcesFromAPI(csharpNamespaces map[string]stri
 			parentPath := getParentPath(currentPath)
 			glog.V(3).Infof("GET: Parent path for %s is %s\n", currentPath, parentPath)
 
-			jsonReq := pathItem.Get.Responses.Get(200).Value.Content.Get("application/json")
+			jsonReq := pathItem.Get.Responses.Get(200).Value.Content.Get(jsonMimeType)
 			if jsonReq.Schema.Value == nil {
 				contract.Failf("Path %s has no schema definition for status code 200", currentPath)
 			}
@@ -98,7 +99,7 @@ func (o *openAPIContext) gatherResourcesFromAPI(csharpNamespaces map[string]stri
 			parentPath := getParentPath(currentPath)
 			glog.V(3).Infof("PATCH: Parent path for %s is %s\n", currentPath, parentPath)
 
-			jsonReq := pathItem.Patch.RequestBody.Value.Content.Get("application/json")
+			jsonReq := pathItem.Patch.RequestBody.Value.Content.Get(jsonMimeType)
 			if jsonReq.Schema.Value == nil {
 				contract.Failf("Path %s has no schema definition for Patch method", currentPath)
 			}
@@ -145,7 +146,7 @@ func (o *openAPIContext) gatherResourcesFromAPI(csharpNamespaces map[string]stri
 			parentPath := getParentPath(currentPath)
 			glog.V(3).Infof("PUT: Parent path for %s is %s\n", currentPath, parentPath)
 
-			jsonReq := pathItem.Put.RequestBody.Value.Content.Get("application/json")
+			jsonReq := pathItem.Put.RequestBody.Value.Content.Get(jsonMimeType)
 			if jsonReq.Schema.Value == nil {
 				contract.Failf("Path %s has no schema definition for Put method", currentPath)
 			}
@@ -174,13 +175,13 @@ func (o *openAPIContext) gatherResourcesFromAPI(csharpNamespaces map[string]stri
 			}
 		}
 
-		if pathItem.Delete != nil {
+		if pathItem.Delete != nil && pathItem.Delete.RequestBody != nil {
 			parentPath := getParentPath(currentPath)
 			glog.V(3).Infof("DELETE: Parent path for %s is %s\n", currentPath, parentPath)
 
-			jsonReq := o.doc.Paths[parentPath].Post.RequestBody.Value.Content.Get("application/json")
+			jsonReq := pathItem.Delete.RequestBody.Value.Content.Get(jsonMimeType)
 			if jsonReq.Schema.Value == nil {
-				contract.Failf("Path %s has no schema definition for Delete method", parentPath)
+				contract.Failf("Path %s has no schema definition for Delete method", currentPath)
 			}
 
 			setDeleteOperationMapping := func(tok string) {
@@ -222,7 +223,7 @@ func (o *openAPIContext) gatherResourcesFromAPI(csharpNamespaces map[string]stri
 }
 
 func (o *openAPIContext) gatherResourceFromAPIPath(apiPath string, pathItem openapi3.PathItem, module string) error {
-	jsonReq := pathItem.Post.RequestBody.Value.Content.Get("application/json")
+	jsonReq := pathItem.Post.RequestBody.Value.Content.Get(jsonMimeType)
 	if jsonReq.Schema.Value == nil {
 		return errors.Errorf("path %s has no api schema definition for post method", apiPath)
 	}

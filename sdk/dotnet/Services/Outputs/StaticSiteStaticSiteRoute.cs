@@ -15,19 +15,19 @@ namespace CloudySkySoftware.Render.Services.Outputs
     /// A route object for a static site
     /// </summary>
     [OutputType]
-    public sealed class ServiceStaticSiteRoute
+    public sealed class StaticSiteStaticSiteRoute
     {
         public readonly string Destination;
         public readonly string Source;
-        public readonly CloudySkySoftware.Render.Services.ServiceStaticSiteRouteType Type;
+        public readonly CloudySkySoftware.Render.Services.StaticSiteStaticSiteRouteType Type;
 
         [OutputConstructor]
-        private ServiceStaticSiteRoute(
+        private StaticSiteStaticSiteRoute(
             string destination,
 
             string source,
 
-            CloudySkySoftware.Render.Services.ServiceStaticSiteRouteType type)
+            CloudySkySoftware.Render.Services.StaticSiteStaticSiteRouteType type)
         {
             Destination = destination;
             Source = source;

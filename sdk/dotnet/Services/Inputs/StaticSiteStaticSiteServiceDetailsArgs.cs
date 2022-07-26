@@ -11,36 +11,33 @@ using Pulumi;
 namespace CloudySkySoftware.Render.Services.Inputs
 {
 
-    /// <summary>
-    /// A static website service
-    /// </summary>
-    public sealed class ServiceStaticSiteArgs : Pulumi.ResourceArgs
+    public sealed class StaticSiteStaticSiteServiceDetailsArgs : Pulumi.ResourceArgs
     {
         [Input("buildCommand")]
         public Input<string>? BuildCommand { get; set; }
 
         [Input("headers")]
-        private InputList<Inputs.ServiceServiceHeaderArgs>? _headers;
-        public InputList<Inputs.ServiceServiceHeaderArgs> Headers
+        private InputList<Inputs.StaticSiteServiceHeaderArgs>? _headers;
+        public InputList<Inputs.StaticSiteServiceHeaderArgs> Headers
         {
-            get => _headers ?? (_headers = new InputList<Inputs.ServiceServiceHeaderArgs>());
+            get => _headers ?? (_headers = new InputList<Inputs.StaticSiteServiceHeaderArgs>());
             set => _headers = value;
         }
 
         [Input("parentServer")]
-        public Input<Inputs.ServiceStaticSiteParentServerPropertiesArgs>? ParentServer { get; set; }
+        public Input<Inputs.StaticSiteStaticSiteServiceDetailsParentServerPropertiesArgs>? ParentServer { get; set; }
 
         [Input("publishPath")]
         public Input<string>? PublishPath { get; set; }
 
         [Input("pullRequestPreviewsEnabled")]
-        public Input<CloudySkySoftware.Render.Services.ServiceStaticSitePullRequestPreviewsEnabled>? PullRequestPreviewsEnabled { get; set; }
+        public Input<CloudySkySoftware.Render.Services.StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled>? PullRequestPreviewsEnabled { get; set; }
 
         [Input("routes")]
-        private InputList<Inputs.ServiceStaticSiteRouteArgs>? _routes;
-        public InputList<Inputs.ServiceStaticSiteRouteArgs> Routes
+        private InputList<Inputs.StaticSiteStaticSiteRouteArgs>? _routes;
+        public InputList<Inputs.StaticSiteStaticSiteRouteArgs> Routes
         {
-            get => _routes ?? (_routes = new InputList<Inputs.ServiceStaticSiteRouteArgs>());
+            get => _routes ?? (_routes = new InputList<Inputs.StaticSiteStaticSiteRouteArgs>());
             set => _routes = value;
         }
 
@@ -50,10 +47,10 @@ namespace CloudySkySoftware.Render.Services.Inputs
         [Input("url")]
         public Input<string>? Url { get; set; }
 
-        public ServiceStaticSiteArgs()
+        public StaticSiteStaticSiteServiceDetailsArgs()
         {
             PublishPath = "public";
-            PullRequestPreviewsEnabled = CloudySkySoftware.Render.Services.ServiceStaticSitePullRequestPreviewsEnabled.No;
+            PullRequestPreviewsEnabled = CloudySkySoftware.Render.Services.StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled.No;
         }
     }
 }

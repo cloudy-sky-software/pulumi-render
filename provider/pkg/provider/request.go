@@ -1,13 +1,18 @@
 package provider
 
 import (
+	"bytes"
 	"context"
 	"fmt"
+	"io"
+	"io/ioutil"
 	"net/http"
 	"strings"
 
+	"github.com/getkin/kin-openapi/openapi3"
 	"github.com/getkin/kin-openapi/openapi3filter"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
+	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
 
 	"github.com/pkg/errors"
 )
@@ -35,27 +40,69 @@ func (p *renderProvider) validateRequest(ctx context.Context, httpReq *http.Requ
 			},
 		},
 	}
+
 	if err := openapi3filter.ValidateRequest(ctx, requestValidationInput); err != nil {
 		return errors.Wrap(err, "request validation failed")
 	}
 
+	if httpReq.Body == nil {
+		logging.V(3).Info("Request does not have a body. Skipping ContentLength adjustment...")
+		return nil
+	}
+
+	// Update the original HTTP request's ContentLength since the
+	// body might have changed due to default properties getting
+	// added to it.
+	clonedReq := httpReq.Clone(ctx)
+	clonedBody, _ := ioutil.ReadAll(clonedReq.Body)
+	newContentLength := int64(len(clonedBody))
+	logging.V(3).Infof("REQUEST CONTENT LENGTH: current: %d, new: %d", httpReq.ContentLength, newContentLength)
+	httpReq.ContentLength = newContentLength
+	logging.V(3).Infof("UPDATED REQUEST BODY: %v", string(clonedBody))
+	httpReq.Body = io.NopCloser(bytes.NewBuffer(clonedBody))
+
 	return nil
 }
 
-func (p *renderProvider) getPathParamsMap(resourceTypeToken, apiPath string, inputs resource.PropertyMap) (map[string]string, error) {
+func (p *renderProvider) getPathParamsMap(resourceTypeToken, apiPath, requestMethod string, inputs resource.PropertyMap) (map[string]string, error) {
 	pathParams := make(map[string]string)
 
-	for _, param := range p.openapiDoc.Paths[apiPath].Post.Parameters {
+	var parameters openapi3.Parameters
+
+	switch requestMethod {
+	case http.MethodGet:
+		parameters = p.openapiDoc.Paths[apiPath].Get.Parameters
+	case http.MethodPost:
+		parameters = p.openapiDoc.Paths[apiPath].Post.Parameters
+	case http.MethodPatch:
+		parameters = p.openapiDoc.Paths[apiPath].Patch.Parameters
+	case http.MethodPut:
+		parameters = p.openapiDoc.Paths[apiPath].Put.Parameters
+	case http.MethodDelete:
+		parameters = p.openapiDoc.Paths[apiPath].Delete.Parameters
+	default:
+		return pathParams, nil
+	}
+
+	logging.V(3).Infof("Process path parameters with inputs %v", inputs)
+	result := inputs["result"].Mappable().(map[string]interface{})
+	for _, param := range parameters {
 		if param.Value.In != "path" {
 			continue
 		}
 
 		paramName := param.Value.Name
-		input := inputs[resource.PropertyKey(paramName)]
-		if input.IsComputed() {
-			pathParams[paramName] = input.Input().Element.StringValue()
-		} else {
-			pathParams[paramName] = input.StringValue()
+		logging.V(3).Infof("Looking for path param %q in resource inputs", paramName)
+		input := result[paramName]
+		switch ty := input.(type) {
+		case string:
+			pathParams[paramName] = ty
+		case resource.PropertyValue:
+			if ty.IsComputed() {
+				pathParams[paramName] = ty.Input().Element.StringValue()
+			} else {
+				pathParams[paramName] = ty.StringValue()
+			}
 		}
 	}
 

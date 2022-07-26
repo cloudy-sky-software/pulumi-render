@@ -12,69 +12,40 @@ export namespace services {
         name?: pulumi.Input<string>;
     }
 
-    export interface ServiceDiskArgs {
-        mountPath: pulumi.Input<string>;
-        name: pulumi.Input<string>;
-        sizeGB?: pulumi.Input<number>;
-    }
-    /**
-     * serviceDiskArgsProvideDefaults sets the appropriate defaults for ServiceDiskArgs
-     */
-    export function serviceDiskArgsProvideDefaults(val: ServiceDiskArgs): ServiceDiskArgs {
-        return {
-            ...val,
-            sizeGB: (val.sizeGB) ?? 1,
-        };
-    }
-
-    export interface ServiceDockerDetailsArgs {
-        dockerCommand?: pulumi.Input<string>;
-        dockerContext?: pulumi.Input<string>;
-        dockerfilePath?: pulumi.Input<string>;
-    }
-    /**
-     * serviceDockerDetailsArgsProvideDefaults sets the appropriate defaults for ServiceDockerDetailsArgs
-     */
-    export function serviceDockerDetailsArgsProvideDefaults(val: ServiceDockerDetailsArgs): ServiceDockerDetailsArgs {
-        return {
-            ...val,
-            dockerfilePath: (val.dockerfilePath) ?? "./Dockerfile",
-        };
-    }
-
-    export interface ServiceNativeEnvironmentDetailsArgs {
-        buildCommand: pulumi.Input<string>;
-        startCommand: pulumi.Input<string>;
-    }
-
     /**
      * A service header object
      */
-    export interface ServiceServiceHeaderArgs {
+    export interface StaticSiteServiceHeaderArgs {
         name: pulumi.Input<string>;
         path: pulumi.Input<string>;
         value: pulumi.Input<string>;
     }
 
     /**
-     * A static website service
+     * A route object for a static site
      */
-    export interface ServiceStaticSiteArgs {
+    export interface StaticSiteStaticSiteRouteArgs {
+        destination: pulumi.Input<string>;
+        source: pulumi.Input<string>;
+        type: pulumi.Input<enums.services.StaticSiteStaticSiteRouteType>;
+    }
+
+    export interface StaticSiteStaticSiteServiceDetailsArgs {
         buildCommand?: pulumi.Input<string>;
-        headers?: pulumi.Input<pulumi.Input<inputs.services.ServiceServiceHeaderArgs>[]>;
-        parentServer?: pulumi.Input<inputs.services.ServiceStaticSiteParentServerPropertiesArgs>;
+        headers?: pulumi.Input<pulumi.Input<inputs.services.StaticSiteServiceHeaderArgs>[]>;
+        parentServer?: pulumi.Input<inputs.services.StaticSiteStaticSiteServiceDetailsParentServerPropertiesArgs>;
         publishPath?: pulumi.Input<string>;
-        pullRequestPreviewsEnabled?: pulumi.Input<enums.services.ServiceStaticSitePullRequestPreviewsEnabled>;
-        routes?: pulumi.Input<pulumi.Input<inputs.services.ServiceStaticSiteRouteArgs>[]>;
+        pullRequestPreviewsEnabled?: pulumi.Input<enums.services.StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled>;
+        routes?: pulumi.Input<pulumi.Input<inputs.services.StaticSiteStaticSiteRouteArgs>[]>;
         /**
          * The HTTPS service URL. A subdomain of onrender.com, by default.
          */
         url?: pulumi.Input<string>;
     }
     /**
-     * serviceStaticSiteArgsProvideDefaults sets the appropriate defaults for ServiceStaticSiteArgs
+     * staticSiteStaticSiteServiceDetailsArgsProvideDefaults sets the appropriate defaults for StaticSiteStaticSiteServiceDetailsArgs
      */
-    export function serviceStaticSiteArgsProvideDefaults(val: ServiceStaticSiteArgs): ServiceStaticSiteArgs {
+    export function staticSiteStaticSiteServiceDetailsArgsProvideDefaults(val: StaticSiteStaticSiteServiceDetailsArgs): StaticSiteStaticSiteServiceDetailsArgs {
         return {
             ...val,
             publishPath: (val.publishPath) ?? "public",
@@ -82,37 +53,63 @@ export namespace services {
         };
     }
 
-    export interface ServiceStaticSiteParentServerPropertiesArgs {
+    export interface StaticSiteStaticSiteServiceDetailsParentServerPropertiesArgs {
         id?: pulumi.Input<string>;
         name?: pulumi.Input<string>;
     }
 
-    /**
-     * A route object for a static site
-     */
-    export interface ServiceStaticSiteRouteArgs {
-        destination: pulumi.Input<string>;
-        source: pulumi.Input<string>;
-        type: pulumi.Input<enums.services.ServiceStaticSiteRouteType>;
-    }
-
-    export interface ServiceWebServiceArgs {
-        disk?: pulumi.Input<inputs.services.ServiceDiskArgs>;
-        env: pulumi.Input<enums.services.ServiceWebServiceEnv>;
-        envSpecificDetails?: pulumi.Input<inputs.services.ServiceDockerDetailsArgs | inputs.services.ServiceNativeEnvironmentDetailsArgs>;
-        healthCheckPath?: pulumi.Input<string>;
-        numInstances?: pulumi.Input<number>;
-        plan?: pulumi.Input<enums.services.ServiceWebServicePlan>;
-        pullRequestPreviewsEnabled?: pulumi.Input<enums.services.ServiceWebServicePullRequestPreviewsEnabled>;
-        region?: pulumi.Input<enums.services.ServiceWebServiceRegion>;
+    export interface WebServiceDiskArgs {
+        mountPath: pulumi.Input<string>;
+        name: pulumi.Input<string>;
+        sizeGB?: pulumi.Input<number>;
     }
     /**
-     * serviceWebServiceArgsProvideDefaults sets the appropriate defaults for ServiceWebServiceArgs
+     * webServiceDiskArgsProvideDefaults sets the appropriate defaults for WebServiceDiskArgs
      */
-    export function serviceWebServiceArgsProvideDefaults(val: ServiceWebServiceArgs): ServiceWebServiceArgs {
+    export function webServiceDiskArgsProvideDefaults(val: WebServiceDiskArgs): WebServiceDiskArgs {
         return {
             ...val,
-            disk: (val.disk ? pulumi.output(val.disk).apply(inputs.services.serviceDiskArgsProvideDefaults) : undefined),
+            sizeGB: (val.sizeGB) ?? 1,
+        };
+    }
+
+    export interface WebServiceDockerDetailsArgs {
+        dockerCommand?: pulumi.Input<string>;
+        dockerContext?: pulumi.Input<string>;
+        dockerfilePath?: pulumi.Input<string>;
+    }
+    /**
+     * webServiceDockerDetailsArgsProvideDefaults sets the appropriate defaults for WebServiceDockerDetailsArgs
+     */
+    export function webServiceDockerDetailsArgsProvideDefaults(val: WebServiceDockerDetailsArgs): WebServiceDockerDetailsArgs {
+        return {
+            ...val,
+            dockerfilePath: (val.dockerfilePath) ?? "./Dockerfile",
+        };
+    }
+
+    export interface WebServiceNativeEnvironmentDetailsArgs {
+        buildCommand: pulumi.Input<string>;
+        startCommand: pulumi.Input<string>;
+    }
+
+    export interface WebServiceWebServiceServiceDetailsArgs {
+        disk?: pulumi.Input<inputs.services.WebServiceDiskArgs>;
+        env: pulumi.Input<enums.services.WebServiceWebServiceServiceDetailsEnv>;
+        envSpecificDetails?: pulumi.Input<inputs.services.WebServiceDockerDetailsArgs | inputs.services.WebServiceNativeEnvironmentDetailsArgs>;
+        healthCheckPath?: pulumi.Input<string>;
+        numInstances?: pulumi.Input<number>;
+        plan?: pulumi.Input<enums.services.WebServiceWebServiceServiceDetailsPlan>;
+        pullRequestPreviewsEnabled?: pulumi.Input<enums.services.WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled>;
+        region?: pulumi.Input<enums.services.WebServiceWebServiceServiceDetailsRegion>;
+    }
+    /**
+     * webServiceWebServiceServiceDetailsArgsProvideDefaults sets the appropriate defaults for WebServiceWebServiceServiceDetailsArgs
+     */
+    export function webServiceWebServiceServiceDetailsArgsProvideDefaults(val: WebServiceWebServiceServiceDetailsArgs): WebServiceWebServiceServiceDetailsArgs {
+        return {
+            ...val,
+            disk: (val.disk ? pulumi.output(val.disk).apply(inputs.services.webServiceDiskArgsProvideDefaults) : undefined),
             numInstances: (val.numInstances) ?? 1,
             plan: (val.plan) ?? "starter",
             pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",

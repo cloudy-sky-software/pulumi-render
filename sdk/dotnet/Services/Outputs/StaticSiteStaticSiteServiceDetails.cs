@@ -11,36 +11,33 @@ using Pulumi;
 namespace CloudySkySoftware.Render.Services.Outputs
 {
 
-    /// <summary>
-    /// A static website service
-    /// </summary>
     [OutputType]
-    public sealed class ServiceStaticSite
+    public sealed class StaticSiteStaticSiteServiceDetails
     {
         public readonly string? BuildCommand;
-        public readonly ImmutableArray<Outputs.ServiceServiceHeader> Headers;
-        public readonly Outputs.ServiceStaticSiteParentServerProperties? ParentServer;
+        public readonly ImmutableArray<Outputs.StaticSiteServiceHeader> Headers;
+        public readonly Outputs.StaticSiteStaticSiteServiceDetailsParentServerProperties? ParentServer;
         public readonly string? PublishPath;
-        public readonly CloudySkySoftware.Render.Services.ServiceStaticSitePullRequestPreviewsEnabled? PullRequestPreviewsEnabled;
-        public readonly ImmutableArray<Outputs.ServiceStaticSiteRoute> Routes;
+        public readonly CloudySkySoftware.Render.Services.StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled? PullRequestPreviewsEnabled;
+        public readonly ImmutableArray<Outputs.StaticSiteStaticSiteRoute> Routes;
         /// <summary>
         /// The HTTPS service URL. A subdomain of onrender.com, by default.
         /// </summary>
         public readonly string? Url;
 
         [OutputConstructor]
-        private ServiceStaticSite(
+        private StaticSiteStaticSiteServiceDetails(
             string? buildCommand,
 
-            ImmutableArray<Outputs.ServiceServiceHeader> headers,
+            ImmutableArray<Outputs.StaticSiteServiceHeader> headers,
 
-            Outputs.ServiceStaticSiteParentServerProperties? parentServer,
+            Outputs.StaticSiteStaticSiteServiceDetailsParentServerProperties? parentServer,
 
             string? publishPath,
 
-            CloudySkySoftware.Render.Services.ServiceStaticSitePullRequestPreviewsEnabled? pullRequestPreviewsEnabled,
+            CloudySkySoftware.Render.Services.StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled? pullRequestPreviewsEnabled,
 
-            ImmutableArray<Outputs.ServiceStaticSiteRoute> routes,
+            ImmutableArray<Outputs.StaticSiteStaticSiteRoute> routes,
 
             string? url)
         {

@@ -12,23 +12,19 @@ namespace CloudySkySoftware.Render.Services.Outputs
 {
 
     [OutputType]
-    public sealed class ServiceDisk
+    public sealed class WebServiceNativeEnvironmentDetails
     {
-        public readonly string MountPath;
-        public readonly string Name;
-        public readonly double? SizeGB;
+        public readonly string BuildCommand;
+        public readonly string StartCommand;
 
         [OutputConstructor]
-        private ServiceDisk(
-            string mountPath,
+        private WebServiceNativeEnvironmentDetails(
+            string buildCommand,
 
-            string name,
-
-            double? sizeGB)
+            string startCommand)
         {
-            MountPath = mountPath;
-            Name = name;
-            SizeGB = sizeGB;
+            BuildCommand = buildCommand;
+            StartCommand = startCommand;
         }
     }
 }

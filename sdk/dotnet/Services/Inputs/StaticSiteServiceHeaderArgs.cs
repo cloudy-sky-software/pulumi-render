@@ -11,20 +11,22 @@ using Pulumi;
 namespace CloudySkySoftware.Render.Services.Inputs
 {
 
-    public sealed class ServiceDiskArgs : Pulumi.ResourceArgs
+    /// <summary>
+    /// A service header object
+    /// </summary>
+    public sealed class StaticSiteServiceHeaderArgs : Pulumi.ResourceArgs
     {
-        [Input("mountPath", required: true)]
-        public Input<string> MountPath { get; set; } = null!;
-
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
-        [Input("sizeGB")]
-        public Input<double>? SizeGB { get; set; }
+        [Input("path", required: true)]
+        public Input<string> Path { get; set; } = null!;
 
-        public ServiceDiskArgs()
+        [Input("value", required: true)]
+        public Input<string> Value { get; set; } = null!;
+
+        public StaticSiteServiceHeaderArgs()
         {
-            SizeGB = 1;
         }
     }
 }

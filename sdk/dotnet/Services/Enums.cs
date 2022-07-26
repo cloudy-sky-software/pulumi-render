@@ -92,30 +92,61 @@ namespace CloudySkySoftware.Render.Services
     }
 
     /// <summary>
+    /// Whether to auto deploy the service or not upon git push.
+    /// </summary>
+    [EnumType]
+    public readonly struct StaticSiteServiceAutoDeploy : IEquatable<StaticSiteServiceAutoDeploy>
+    {
+        private readonly string _value;
+
+        private StaticSiteServiceAutoDeploy(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static StaticSiteServiceAutoDeploy Yes { get; } = new StaticSiteServiceAutoDeploy("yes");
+        public static StaticSiteServiceAutoDeploy No { get; } = new StaticSiteServiceAutoDeploy("no");
+
+        public static bool operator ==(StaticSiteServiceAutoDeploy left, StaticSiteServiceAutoDeploy right) => left.Equals(right);
+        public static bool operator !=(StaticSiteServiceAutoDeploy left, StaticSiteServiceAutoDeploy right) => !left.Equals(right);
+
+        public static explicit operator string(StaticSiteServiceAutoDeploy value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is StaticSiteServiceAutoDeploy other && Equals(other);
+        public bool Equals(StaticSiteServiceAutoDeploy other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    /// <summary>
     /// The notification setting for this service upon deployment failure.
     /// </summary>
     [EnumType]
-    public readonly struct ServiceNotifyOnFail : IEquatable<ServiceNotifyOnFail>
+    public readonly struct StaticSiteServiceNotifyOnFail : IEquatable<StaticSiteServiceNotifyOnFail>
     {
         private readonly string _value;
 
-        private ServiceNotifyOnFail(string value)
+        private StaticSiteServiceNotifyOnFail(string value)
         {
             _value = value ?? throw new ArgumentNullException(nameof(value));
         }
 
-        public static ServiceNotifyOnFail Default { get; } = new ServiceNotifyOnFail("default");
-        public static ServiceNotifyOnFail Notify { get; } = new ServiceNotifyOnFail("notify");
-        public static ServiceNotifyOnFail Ignore { get; } = new ServiceNotifyOnFail("ignore");
+        public static StaticSiteServiceNotifyOnFail Default { get; } = new StaticSiteServiceNotifyOnFail("default");
+        public static StaticSiteServiceNotifyOnFail Notify { get; } = new StaticSiteServiceNotifyOnFail("notify");
+        public static StaticSiteServiceNotifyOnFail Ignore { get; } = new StaticSiteServiceNotifyOnFail("ignore");
 
-        public static bool operator ==(ServiceNotifyOnFail left, ServiceNotifyOnFail right) => left.Equals(right);
-        public static bool operator !=(ServiceNotifyOnFail left, ServiceNotifyOnFail right) => !left.Equals(right);
+        public static bool operator ==(StaticSiteServiceNotifyOnFail left, StaticSiteServiceNotifyOnFail right) => left.Equals(right);
+        public static bool operator !=(StaticSiteServiceNotifyOnFail left, StaticSiteServiceNotifyOnFail right) => !left.Equals(right);
 
-        public static explicit operator string(ServiceNotifyOnFail value) => value._value;
+        public static explicit operator string(StaticSiteServiceNotifyOnFail value) => value._value;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is ServiceNotifyOnFail other && Equals(other);
-        public bool Equals(ServiceNotifyOnFail other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+        public override bool Equals(object? obj) => obj is StaticSiteServiceNotifyOnFail other && Equals(other);
+        public bool Equals(StaticSiteServiceNotifyOnFail other) => string.Equals(_value, other._value, StringComparison.Ordinal);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => _value?.GetHashCode() ?? 0;
@@ -124,26 +155,26 @@ namespace CloudySkySoftware.Render.Services
     }
 
     [EnumType]
-    public readonly struct ServiceStaticSitePullRequestPreviewsEnabled : IEquatable<ServiceStaticSitePullRequestPreviewsEnabled>
+    public readonly struct StaticSiteServiceSuspended : IEquatable<StaticSiteServiceSuspended>
     {
         private readonly string _value;
 
-        private ServiceStaticSitePullRequestPreviewsEnabled(string value)
+        private StaticSiteServiceSuspended(string value)
         {
             _value = value ?? throw new ArgumentNullException(nameof(value));
         }
 
-        public static ServiceStaticSitePullRequestPreviewsEnabled Yes { get; } = new ServiceStaticSitePullRequestPreviewsEnabled("yes");
-        public static ServiceStaticSitePullRequestPreviewsEnabled No { get; } = new ServiceStaticSitePullRequestPreviewsEnabled("no");
+        public static StaticSiteServiceSuspended Suspended { get; } = new StaticSiteServiceSuspended("suspended");
+        public static StaticSiteServiceSuspended NotSuspended { get; } = new StaticSiteServiceSuspended("not_suspended");
 
-        public static bool operator ==(ServiceStaticSitePullRequestPreviewsEnabled left, ServiceStaticSitePullRequestPreviewsEnabled right) => left.Equals(right);
-        public static bool operator !=(ServiceStaticSitePullRequestPreviewsEnabled left, ServiceStaticSitePullRequestPreviewsEnabled right) => !left.Equals(right);
+        public static bool operator ==(StaticSiteServiceSuspended left, StaticSiteServiceSuspended right) => left.Equals(right);
+        public static bool operator !=(StaticSiteServiceSuspended left, StaticSiteServiceSuspended right) => !left.Equals(right);
 
-        public static explicit operator string(ServiceStaticSitePullRequestPreviewsEnabled value) => value._value;
+        public static explicit operator string(StaticSiteServiceSuspended value) => value._value;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is ServiceStaticSitePullRequestPreviewsEnabled other && Equals(other);
-        public bool Equals(ServiceStaticSitePullRequestPreviewsEnabled other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+        public override bool Equals(object? obj) => obj is StaticSiteServiceSuspended other && Equals(other);
+        public bool Equals(StaticSiteServiceSuspended other) => string.Equals(_value, other._value, StringComparison.Ordinal);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => _value?.GetHashCode() ?? 0;
@@ -152,26 +183,26 @@ namespace CloudySkySoftware.Render.Services
     }
 
     [EnumType]
-    public readonly struct ServiceStaticSiteRouteType : IEquatable<ServiceStaticSiteRouteType>
+    public readonly struct StaticSiteStaticSiteRouteType : IEquatable<StaticSiteStaticSiteRouteType>
     {
         private readonly string _value;
 
-        private ServiceStaticSiteRouteType(string value)
+        private StaticSiteStaticSiteRouteType(string value)
         {
             _value = value ?? throw new ArgumentNullException(nameof(value));
         }
 
-        public static ServiceStaticSiteRouteType Redirect { get; } = new ServiceStaticSiteRouteType("redirect");
-        public static ServiceStaticSiteRouteType Rewrite { get; } = new ServiceStaticSiteRouteType("rewrite");
+        public static StaticSiteStaticSiteRouteType Redirect { get; } = new StaticSiteStaticSiteRouteType("redirect");
+        public static StaticSiteStaticSiteRouteType Rewrite { get; } = new StaticSiteStaticSiteRouteType("rewrite");
 
-        public static bool operator ==(ServiceStaticSiteRouteType left, ServiceStaticSiteRouteType right) => left.Equals(right);
-        public static bool operator !=(ServiceStaticSiteRouteType left, ServiceStaticSiteRouteType right) => !left.Equals(right);
+        public static bool operator ==(StaticSiteStaticSiteRouteType left, StaticSiteStaticSiteRouteType right) => left.Equals(right);
+        public static bool operator !=(StaticSiteStaticSiteRouteType left, StaticSiteStaticSiteRouteType right) => !left.Equals(right);
 
-        public static explicit operator string(ServiceStaticSiteRouteType value) => value._value;
+        public static explicit operator string(StaticSiteStaticSiteRouteType value) => value._value;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is ServiceStaticSiteRouteType other && Equals(other);
-        public bool Equals(ServiceStaticSiteRouteType other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+        public override bool Equals(object? obj) => obj is StaticSiteStaticSiteRouteType other && Equals(other);
+        public bool Equals(StaticSiteStaticSiteRouteType other) => string.Equals(_value, other._value, StringComparison.Ordinal);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => _value?.GetHashCode() ?? 0;
@@ -180,26 +211,89 @@ namespace CloudySkySoftware.Render.Services
     }
 
     [EnumType]
-    public readonly struct ServiceSuspended : IEquatable<ServiceSuspended>
+    public readonly struct StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled : IEquatable<StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled>
     {
         private readonly string _value;
 
-        private ServiceSuspended(string value)
+        private StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled(string value)
         {
             _value = value ?? throw new ArgumentNullException(nameof(value));
         }
 
-        public static ServiceSuspended Suspended { get; } = new ServiceSuspended("suspended");
-        public static ServiceSuspended NotSuspended { get; } = new ServiceSuspended("not_suspended");
+        public static StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled Yes { get; } = new StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled("yes");
+        public static StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled No { get; } = new StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled("no");
 
-        public static bool operator ==(ServiceSuspended left, ServiceSuspended right) => left.Equals(right);
-        public static bool operator !=(ServiceSuspended left, ServiceSuspended right) => !left.Equals(right);
+        public static bool operator ==(StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled left, StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled right) => left.Equals(right);
+        public static bool operator !=(StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled left, StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled right) => !left.Equals(right);
 
-        public static explicit operator string(ServiceSuspended value) => value._value;
+        public static explicit operator string(StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled value) => value._value;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is ServiceSuspended other && Equals(other);
-        public bool Equals(ServiceSuspended other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+        public override bool Equals(object? obj) => obj is StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled other && Equals(other);
+        public bool Equals(StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    /// <summary>
+    /// Whether to auto deploy the service or not upon git push.
+    /// </summary>
+    [EnumType]
+    public readonly struct WebServiceServiceAutoDeploy : IEquatable<WebServiceServiceAutoDeploy>
+    {
+        private readonly string _value;
+
+        private WebServiceServiceAutoDeploy(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static WebServiceServiceAutoDeploy Yes { get; } = new WebServiceServiceAutoDeploy("yes");
+        public static WebServiceServiceAutoDeploy No { get; } = new WebServiceServiceAutoDeploy("no");
+
+        public static bool operator ==(WebServiceServiceAutoDeploy left, WebServiceServiceAutoDeploy right) => left.Equals(right);
+        public static bool operator !=(WebServiceServiceAutoDeploy left, WebServiceServiceAutoDeploy right) => !left.Equals(right);
+
+        public static explicit operator string(WebServiceServiceAutoDeploy value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is WebServiceServiceAutoDeploy other && Equals(other);
+        public bool Equals(WebServiceServiceAutoDeploy other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    /// <summary>
+    /// The notification setting for this service upon deployment failure.
+    /// </summary>
+    [EnumType]
+    public readonly struct WebServiceServiceNotifyOnFail : IEquatable<WebServiceServiceNotifyOnFail>
+    {
+        private readonly string _value;
+
+        private WebServiceServiceNotifyOnFail(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static WebServiceServiceNotifyOnFail Default { get; } = new WebServiceServiceNotifyOnFail("default");
+        public static WebServiceServiceNotifyOnFail Notify { get; } = new WebServiceServiceNotifyOnFail("notify");
+        public static WebServiceServiceNotifyOnFail Ignore { get; } = new WebServiceServiceNotifyOnFail("ignore");
+
+        public static bool operator ==(WebServiceServiceNotifyOnFail left, WebServiceServiceNotifyOnFail right) => left.Equals(right);
+        public static bool operator !=(WebServiceServiceNotifyOnFail left, WebServiceServiceNotifyOnFail right) => !left.Equals(right);
+
+        public static explicit operator string(WebServiceServiceNotifyOnFail value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is WebServiceServiceNotifyOnFail other && Equals(other);
+        public bool Equals(WebServiceServiceNotifyOnFail other) => string.Equals(_value, other._value, StringComparison.Ordinal);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => _value?.GetHashCode() ?? 0;
@@ -208,29 +302,26 @@ namespace CloudySkySoftware.Render.Services
     }
 
     [EnumType]
-    public readonly struct ServiceType : IEquatable<ServiceType>
+    public readonly struct WebServiceServiceSuspended : IEquatable<WebServiceServiceSuspended>
     {
         private readonly string _value;
 
-        private ServiceType(string value)
+        private WebServiceServiceSuspended(string value)
         {
             _value = value ?? throw new ArgumentNullException(nameof(value));
         }
 
-        public static ServiceType StaticSite { get; } = new ServiceType("static_site");
-        public static ServiceType WebService { get; } = new ServiceType("web_service");
-        public static ServiceType PrivateService { get; } = new ServiceType("private_service");
-        public static ServiceType BackgroundWorker { get; } = new ServiceType("background_worker");
-        public static ServiceType CronJob { get; } = new ServiceType("cron_job");
+        public static WebServiceServiceSuspended Suspended { get; } = new WebServiceServiceSuspended("suspended");
+        public static WebServiceServiceSuspended NotSuspended { get; } = new WebServiceServiceSuspended("not_suspended");
 
-        public static bool operator ==(ServiceType left, ServiceType right) => left.Equals(right);
-        public static bool operator !=(ServiceType left, ServiceType right) => !left.Equals(right);
+        public static bool operator ==(WebServiceServiceSuspended left, WebServiceServiceSuspended right) => left.Equals(right);
+        public static bool operator !=(WebServiceServiceSuspended left, WebServiceServiceSuspended right) => !left.Equals(right);
 
-        public static explicit operator string(ServiceType value) => value._value;
+        public static explicit operator string(WebServiceServiceSuspended value) => value._value;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is ServiceType other && Equals(other);
-        public bool Equals(ServiceType other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+        public override bool Equals(object? obj) => obj is WebServiceServiceSuspended other && Equals(other);
+        public bool Equals(WebServiceServiceSuspended other) => string.Equals(_value, other._value, StringComparison.Ordinal);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => _value?.GetHashCode() ?? 0;
@@ -239,31 +330,31 @@ namespace CloudySkySoftware.Render.Services
     }
 
     [EnumType]
-    public readonly struct ServiceWebServiceEnv : IEquatable<ServiceWebServiceEnv>
+    public readonly struct WebServiceWebServiceServiceDetailsEnv : IEquatable<WebServiceWebServiceServiceDetailsEnv>
     {
         private readonly string _value;
 
-        private ServiceWebServiceEnv(string value)
+        private WebServiceWebServiceServiceDetailsEnv(string value)
         {
             _value = value ?? throw new ArgumentNullException(nameof(value));
         }
 
-        public static ServiceWebServiceEnv Docker { get; } = new ServiceWebServiceEnv("docker");
-        public static ServiceWebServiceEnv Elixir { get; } = new ServiceWebServiceEnv("elixir");
-        public static ServiceWebServiceEnv Go { get; } = new ServiceWebServiceEnv("go");
-        public static ServiceWebServiceEnv Node { get; } = new ServiceWebServiceEnv("node");
-        public static ServiceWebServiceEnv Python { get; } = new ServiceWebServiceEnv("python");
-        public static ServiceWebServiceEnv Ruby { get; } = new ServiceWebServiceEnv("ruby");
-        public static ServiceWebServiceEnv Rust { get; } = new ServiceWebServiceEnv("rust");
+        public static WebServiceWebServiceServiceDetailsEnv Docker { get; } = new WebServiceWebServiceServiceDetailsEnv("docker");
+        public static WebServiceWebServiceServiceDetailsEnv Elixir { get; } = new WebServiceWebServiceServiceDetailsEnv("elixir");
+        public static WebServiceWebServiceServiceDetailsEnv Go { get; } = new WebServiceWebServiceServiceDetailsEnv("go");
+        public static WebServiceWebServiceServiceDetailsEnv Node { get; } = new WebServiceWebServiceServiceDetailsEnv("node");
+        public static WebServiceWebServiceServiceDetailsEnv Python { get; } = new WebServiceWebServiceServiceDetailsEnv("python");
+        public static WebServiceWebServiceServiceDetailsEnv Ruby { get; } = new WebServiceWebServiceServiceDetailsEnv("ruby");
+        public static WebServiceWebServiceServiceDetailsEnv Rust { get; } = new WebServiceWebServiceServiceDetailsEnv("rust");
 
-        public static bool operator ==(ServiceWebServiceEnv left, ServiceWebServiceEnv right) => left.Equals(right);
-        public static bool operator !=(ServiceWebServiceEnv left, ServiceWebServiceEnv right) => !left.Equals(right);
+        public static bool operator ==(WebServiceWebServiceServiceDetailsEnv left, WebServiceWebServiceServiceDetailsEnv right) => left.Equals(right);
+        public static bool operator !=(WebServiceWebServiceServiceDetailsEnv left, WebServiceWebServiceServiceDetailsEnv right) => !left.Equals(right);
 
-        public static explicit operator string(ServiceWebServiceEnv value) => value._value;
+        public static explicit operator string(WebServiceWebServiceServiceDetailsEnv value) => value._value;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is ServiceWebServiceEnv other && Equals(other);
-        public bool Equals(ServiceWebServiceEnv other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+        public override bool Equals(object? obj) => obj is WebServiceWebServiceServiceDetailsEnv other && Equals(other);
+        public bool Equals(WebServiceWebServiceServiceDetailsEnv other) => string.Equals(_value, other._value, StringComparison.Ordinal);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => _value?.GetHashCode() ?? 0;
@@ -272,32 +363,32 @@ namespace CloudySkySoftware.Render.Services
     }
 
     [EnumType]
-    public readonly struct ServiceWebServicePlan : IEquatable<ServiceWebServicePlan>
+    public readonly struct WebServiceWebServiceServiceDetailsPlan : IEquatable<WebServiceWebServiceServiceDetailsPlan>
     {
         private readonly string _value;
 
-        private ServiceWebServicePlan(string value)
+        private WebServiceWebServiceServiceDetailsPlan(string value)
         {
             _value = value ?? throw new ArgumentNullException(nameof(value));
         }
 
-        public static ServiceWebServicePlan Starter { get; } = new ServiceWebServicePlan("starter");
-        public static ServiceWebServicePlan StarterPlus { get; } = new ServiceWebServicePlan("starter_plus");
-        public static ServiceWebServicePlan Standard { get; } = new ServiceWebServicePlan("standard");
-        public static ServiceWebServicePlan StandardPlus { get; } = new ServiceWebServicePlan("standard_plus");
-        public static ServiceWebServicePlan Pro { get; } = new ServiceWebServicePlan("pro");
-        public static ServiceWebServicePlan ProPlus { get; } = new ServiceWebServicePlan("pro_plus");
-        public static ServiceWebServicePlan ProMax { get; } = new ServiceWebServicePlan("pro_max");
-        public static ServiceWebServicePlan ProUltra { get; } = new ServiceWebServicePlan("pro_ultra");
+        public static WebServiceWebServiceServiceDetailsPlan Starter { get; } = new WebServiceWebServiceServiceDetailsPlan("starter");
+        public static WebServiceWebServiceServiceDetailsPlan StarterPlus { get; } = new WebServiceWebServiceServiceDetailsPlan("starter_plus");
+        public static WebServiceWebServiceServiceDetailsPlan Standard { get; } = new WebServiceWebServiceServiceDetailsPlan("standard");
+        public static WebServiceWebServiceServiceDetailsPlan StandardPlus { get; } = new WebServiceWebServiceServiceDetailsPlan("standard_plus");
+        public static WebServiceWebServiceServiceDetailsPlan Pro { get; } = new WebServiceWebServiceServiceDetailsPlan("pro");
+        public static WebServiceWebServiceServiceDetailsPlan ProPlus { get; } = new WebServiceWebServiceServiceDetailsPlan("pro_plus");
+        public static WebServiceWebServiceServiceDetailsPlan ProMax { get; } = new WebServiceWebServiceServiceDetailsPlan("pro_max");
+        public static WebServiceWebServiceServiceDetailsPlan ProUltra { get; } = new WebServiceWebServiceServiceDetailsPlan("pro_ultra");
 
-        public static bool operator ==(ServiceWebServicePlan left, ServiceWebServicePlan right) => left.Equals(right);
-        public static bool operator !=(ServiceWebServicePlan left, ServiceWebServicePlan right) => !left.Equals(right);
+        public static bool operator ==(WebServiceWebServiceServiceDetailsPlan left, WebServiceWebServiceServiceDetailsPlan right) => left.Equals(right);
+        public static bool operator !=(WebServiceWebServiceServiceDetailsPlan left, WebServiceWebServiceServiceDetailsPlan right) => !left.Equals(right);
 
-        public static explicit operator string(ServiceWebServicePlan value) => value._value;
+        public static explicit operator string(WebServiceWebServiceServiceDetailsPlan value) => value._value;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is ServiceWebServicePlan other && Equals(other);
-        public bool Equals(ServiceWebServicePlan other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+        public override bool Equals(object? obj) => obj is WebServiceWebServiceServiceDetailsPlan other && Equals(other);
+        public bool Equals(WebServiceWebServiceServiceDetailsPlan other) => string.Equals(_value, other._value, StringComparison.Ordinal);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => _value?.GetHashCode() ?? 0;
@@ -306,26 +397,26 @@ namespace CloudySkySoftware.Render.Services
     }
 
     [EnumType]
-    public readonly struct ServiceWebServicePullRequestPreviewsEnabled : IEquatable<ServiceWebServicePullRequestPreviewsEnabled>
+    public readonly struct WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled : IEquatable<WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled>
     {
         private readonly string _value;
 
-        private ServiceWebServicePullRequestPreviewsEnabled(string value)
+        private WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled(string value)
         {
             _value = value ?? throw new ArgumentNullException(nameof(value));
         }
 
-        public static ServiceWebServicePullRequestPreviewsEnabled Yes { get; } = new ServiceWebServicePullRequestPreviewsEnabled("yes");
-        public static ServiceWebServicePullRequestPreviewsEnabled No { get; } = new ServiceWebServicePullRequestPreviewsEnabled("no");
+        public static WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled Yes { get; } = new WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled("yes");
+        public static WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled No { get; } = new WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled("no");
 
-        public static bool operator ==(ServiceWebServicePullRequestPreviewsEnabled left, ServiceWebServicePullRequestPreviewsEnabled right) => left.Equals(right);
-        public static bool operator !=(ServiceWebServicePullRequestPreviewsEnabled left, ServiceWebServicePullRequestPreviewsEnabled right) => !left.Equals(right);
+        public static bool operator ==(WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled left, WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled right) => left.Equals(right);
+        public static bool operator !=(WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled left, WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled right) => !left.Equals(right);
 
-        public static explicit operator string(ServiceWebServicePullRequestPreviewsEnabled value) => value._value;
+        public static explicit operator string(WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled value) => value._value;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is ServiceWebServicePullRequestPreviewsEnabled other && Equals(other);
-        public bool Equals(ServiceWebServicePullRequestPreviewsEnabled other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+        public override bool Equals(object? obj) => obj is WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled other && Equals(other);
+        public bool Equals(WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled other) => string.Equals(_value, other._value, StringComparison.Ordinal);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => _value?.GetHashCode() ?? 0;
@@ -334,26 +425,26 @@ namespace CloudySkySoftware.Render.Services
     }
 
     [EnumType]
-    public readonly struct ServiceWebServiceRegion : IEquatable<ServiceWebServiceRegion>
+    public readonly struct WebServiceWebServiceServiceDetailsRegion : IEquatable<WebServiceWebServiceServiceDetailsRegion>
     {
         private readonly string _value;
 
-        private ServiceWebServiceRegion(string value)
+        private WebServiceWebServiceServiceDetailsRegion(string value)
         {
             _value = value ?? throw new ArgumentNullException(nameof(value));
         }
 
-        public static ServiceWebServiceRegion Oregon { get; } = new ServiceWebServiceRegion("oregon");
-        public static ServiceWebServiceRegion Frankfurt { get; } = new ServiceWebServiceRegion("frankfurt");
+        public static WebServiceWebServiceServiceDetailsRegion Oregon { get; } = new WebServiceWebServiceServiceDetailsRegion("oregon");
+        public static WebServiceWebServiceServiceDetailsRegion Frankfurt { get; } = new WebServiceWebServiceServiceDetailsRegion("frankfurt");
 
-        public static bool operator ==(ServiceWebServiceRegion left, ServiceWebServiceRegion right) => left.Equals(right);
-        public static bool operator !=(ServiceWebServiceRegion left, ServiceWebServiceRegion right) => !left.Equals(right);
+        public static bool operator ==(WebServiceWebServiceServiceDetailsRegion left, WebServiceWebServiceServiceDetailsRegion right) => left.Equals(right);
+        public static bool operator !=(WebServiceWebServiceServiceDetailsRegion left, WebServiceWebServiceServiceDetailsRegion right) => !left.Equals(right);
 
-        public static explicit operator string(ServiceWebServiceRegion value) => value._value;
+        public static explicit operator string(WebServiceWebServiceServiceDetailsRegion value) => value._value;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is ServiceWebServiceRegion other && Equals(other);
-        public bool Equals(ServiceWebServiceRegion other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+        public override bool Equals(object? obj) => obj is WebServiceWebServiceServiceDetailsRegion other && Equals(other);
+        public bool Equals(WebServiceWebServiceServiceDetailsRegion other) => string.Equals(_value, other._value, StringComparison.Ordinal);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => _value?.GetHashCode() ?? 0;

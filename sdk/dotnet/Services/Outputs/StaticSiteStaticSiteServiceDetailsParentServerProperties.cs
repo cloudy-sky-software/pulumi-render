@@ -11,27 +11,20 @@ using Pulumi;
 namespace CloudySkySoftware.Render.Services.Outputs
 {
 
-    /// <summary>
-    /// A service header object
-    /// </summary>
     [OutputType]
-    public sealed class ServiceServiceHeader
+    public sealed class StaticSiteStaticSiteServiceDetailsParentServerProperties
     {
-        public readonly string Name;
-        public readonly string Path;
-        public readonly string Value;
+        public readonly string? Id;
+        public readonly string? Name;
 
         [OutputConstructor]
-        private ServiceServiceHeader(
-            string name,
+        private StaticSiteStaticSiteServiceDetailsParentServerProperties(
+            string? id,
 
-            string path,
-
-            string value)
+            string? name)
         {
+            Id = id;
             Name = name;
-            Path = path;
-            Value = value;
         }
     }
 }

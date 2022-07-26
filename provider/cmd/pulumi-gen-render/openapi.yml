@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.1.0
 info:
   title: Render Public API
   description: |-
@@ -90,9 +90,8 @@ components:
       type: array
       items:
         $ref: "#/components/schemas/listStaticSiteRoutesResponse"
-    staticSite:
-      title: "Static Site"
-      description: "A static website service"
+    staticSiteServiceDetails:
+      title: "StaticSite"
       type: object
       properties:
         buildCommand:
@@ -126,16 +125,75 @@ components:
           type: string
           description: The HTTPS service URL. A subdomain of onrender.com, by default.
           readOnly: true
+    staticSite:
+      title: "StaticSite"
+      description: "A static website service"
+      allOf:
+        - $ref: "#/components/schemas/service"
+        - type: object
+          properties:
+            type:
+              type: string
+              default: "static_site"
+              readOnly: true
+            serviceDetails:
+              $ref: "#/components/schemas/staticSiteServiceDetails"
     patchStaticSite:
-      title: "Static Site PATCH"
+      title: "StaticSite"
       description: "The PATCH object to update a static website service"
       type: object
       properties:
+        autoDeploy:
+          type: string
+          default: "no"
+          enum: ["yes", "no"]
+        branch:
+          type: string
         buildCommand:
+          type: string
+        name:
           type: string
         publishPath:
           type: string
           default: "public"
+        pullRequestPreviewsEnabled:
+          type: string
+          default: "no"
+          enum: ["yes", "no"]
+    patchWebService:
+      title: "WebService"
+      description: "The PATCH object to update a web service"
+      type: object
+      properties:
+        autoDeploy:
+          type: string
+          default: "no"
+          enum: ["yes", "no"]
+        branch:
+          type: string
+        envSpecificDetails:
+          oneOf:
+            - $ref: "#/components/schemas/dockerDetails"
+            - $ref: "#/components/schemas/nativeEnvironmentDetails"
+        healthCheckPath:
+          type: string
+        name:
+          type: string
+        numInstances:
+          type: number
+          default: 1
+        plan:
+          type: string
+          default: "starter"
+          enum:
+            - "starter"
+            - "starter_plus"
+            - "standard"
+            - "standard_plus"
+            - "pro"
+            - "pro_plus"
+            - "pro_max"
+            - "pro_ultra"
         pullRequestPreviewsEnabled:
           type: string
           default: "no"
@@ -183,7 +241,7 @@ components:
       required:
         - "buildCommand"
         - "startCommand"
-    webService:
+    webServiceServiceDetails:
       title: "WebService"
       type: object
       properties:
@@ -232,6 +290,19 @@ components:
             - "frankfurt"
       required:
         - "env"
+    webService:
+      title: "WebService"
+      description: "A web service"
+      allOf:
+        - $ref: "#/components/schemas/service"
+        - type: object
+          properties:
+            type:
+              type: string
+              default: "web_service"
+              readOnly: true
+            serviceDetails:
+              $ref: "#/components/schemas/webServiceServiceDetails"
     service:
       title: "Service"
       description: "The service object represents a service. The type of service is discriminated by the type property which determines the type of object in the serviceDetails property."
@@ -239,7 +310,9 @@ components:
       properties:
         autoDeploy:
           description: Whether to auto deploy the service or not upon git push.
-          type: boolean
+          type: string
+          default: "no"
+          enum: ["yes", "no"]
         branch:
           type: string
           description: "If left empty, this will fall back to the default branch of the repository."
@@ -271,23 +344,9 @@ components:
           readOnly: true
           items:
             type: string
-        type:
-          type: string
-          enum:
-            [
-              "static_site",
-              "web_service",
-              "private_service",
-              "background_worker",
-              "cron_job",
-            ]
         updatedAt:
           type: string
           readOnly: true
-        serviceDetails:
-          oneOf:
-            - $ref: "#/components/schemas/staticSite"
-            - $ref: "#/components/schemas/webService"
       required:
         - "type"
         - "name"
@@ -299,27 +358,18 @@ components:
         cursor:
           type: string
         service:
-          type: object
-          $ref: "#/components/schemas/service"
+          discriminator:
+            propertyName: type
+            mapping:
+              "static_site": "#/components/schemas/staticSite"
+              "web_service": "#/components/schemas/webService"
+          oneOf:
+            - $ref: "#/components/schemas/staticSite"
+            - $ref: "#/components/schemas/webService"
     listService:
       type: array
       items:
         $ref: "#/components/schemas/listServiceResponse"
-    patchService:
-      title: "Service"
-      type: object
-      properties:
-        autoDeploy:
-          type: string
-          default: "no"
-          enum: ["yes", "no"]
-        branch:
-          type: string
-        name:
-          type: string
-        serviceDetails:
-          oneOf:
-            - $ref: "#/components/schemas/patchStaticSite"
     envVarKeyValue:
       type: object
       properties:
@@ -605,7 +655,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /owners/{ownerId}:
+  /owners/{id}:
     get:
       tags:
         - Owners
@@ -618,7 +668,7 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: ownerId
+        - name: id
           in: path
           schema:
             type: string
@@ -979,8 +1029,14 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              $ref: "#/components/schemas/service"
+              discriminator:
+                propertyName: type
+                mapping:
+                  "static_site": "#/components/schemas/staticSite"
+                  "web_service": "#/components/schemas/webService"
+                oneOf:
+                  - $ref: "#/components/schemas/staticSite"
+                  - $ref: "#/components/schemas/webService"
               example:
                 type: web_service
                 name: cillum ipsum
@@ -1177,7 +1233,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}:
+  /services/{id}:
     get:
       tags:
         - Services
@@ -1190,7 +1246,7 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: serviceId
+        - name: id
           in: path
           schema:
             type: string
@@ -1208,7 +1264,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/service"
+                discriminator:
+                  propertyName: type
+                  mapping:
+                    "static_site": "#/components/schemas/staticSite"
+                    "web_service": "#/components/schemas/webService"
+                  oneOf:
+                    - $ref: "#/components/schemas/staticSite"
+                    - $ref: "#/components/schemas/webService"
               example:
                 id: in deserunt laboris dolore
                 autoDeploy: "yes"
@@ -1355,7 +1418,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/patchService"
+              oneOf:
+                - $ref: "#/components/schemas/patchStaticSite"
+                - $ref: "#/components/schemas/patchWebService"
               example:
                 autoDeploy: "yes"
                 branch: amet dolore officia quis est
@@ -1375,7 +1440,7 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: serviceId
+        - name: id
           in: path
           schema:
             type: string
@@ -1578,13 +1643,29 @@ paths:
       summary: Delete service
       description: >-
         [https://api-docs.render.com/reference/delete-service](https://api-docs.render.com/reference/delete-service)
+      # DELETE operations actually don't have a request body, well, at least not very often
+      # and certainly not in Render. It's included here to help the provider make the link
+      # between this operation and the resources that should use this.
+      # TODO: Maybe there's a better way?
+      requestBody:
+        content:
+          application/json:
+            schema:
+              discriminator:
+                propertyName: type
+                mapping:
+                  "static_site": "#/components/schemas/staticSite"
+                  "web_service": "#/components/schemas/webService"
+                oneOf:
+                  - $ref: "#/components/schemas/staticSite"
+                  - $ref: "#/components/schemas/webService"
       parameters:
         - name: Accept
           in: header
           schema:
             type: string
           example: application/json
-        - name: serviceId
+        - name: id
           in: path
           schema:
             type: string
@@ -1716,7 +1797,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/env-vars:
+  /services/{id}/env-vars:
     get:
       tags:
         - Services
@@ -1741,7 +1822,7 @@ paths:
             type: integer
           description: Max number of items that can be returned
           example: "20"
-        - name: serviceId
+        - name: id
           in: path
           schema:
             type: string
@@ -1908,7 +1989,7 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: serviceId
+        - name: id
           in: path
           schema:
             type: string
@@ -2062,7 +2143,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/headers:
+  /services/{id}/headers:
     get:
       tags:
         - Services
@@ -2105,7 +2186,7 @@ paths:
             type: integer
           description: Max number of items that can be returned
           example: "20"
-        - name: serviceId
+        - name: id
           in: path
           schema:
             type: string
@@ -2247,7 +2328,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/routes:
+  /services/{id}/routes:
     get:
       tags:
         - Services
@@ -2290,7 +2371,7 @@ paths:
             type: integer
           description: Max number of items that can be returned
           example: "20"
-        - name: serviceId
+        - name: id
           in: path
           schema:
             type: string
@@ -2432,7 +2513,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/suspend:
+  /services/{id}/suspend:
     post:
       tags:
         - Services
@@ -2450,7 +2531,7 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: serviceId
+        - name: id
           in: path
           schema:
             type: string
@@ -2596,7 +2677,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/resume:
+  /services/{id}/resume:
     post:
       tags:
         - Services
@@ -2611,7 +2692,7 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: serviceId
+        - name: id
           in: path
           schema:
             type: string
@@ -2757,7 +2838,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/scale:
+  /services/{id}/scale:
     post:
       tags:
         - Services
@@ -2787,7 +2868,7 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: serviceId
+        - name: id
           in: path
           schema:
             type: string
@@ -2942,7 +3023,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/deploys:
+  /services/{id}/deploys:
     get:
       tags:
         - Deploys
@@ -2979,7 +3060,7 @@ paths:
             type: integer
           description: Max number of items that can be returned
           example: "20"
-        - name: serviceId
+        - name: id
           in: path
           schema:
             type: string
@@ -3157,7 +3238,7 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: serviceId
+        - name: id
           in: path
           schema:
             type: string
@@ -3312,7 +3393,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/deploys/{deployId}:
+  /services/{serviceId}/deploys/{id}:
     get:
       tags:
         - Deploys
@@ -3332,7 +3413,7 @@ paths:
           required: true
           description: (Required) The ID of the service
           example: Lorem amet sin
-        - name: deployId
+        - name: id
           in: path
           schema:
             type: string
@@ -3473,7 +3554,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/custom-domains:
+  /services/{id}/custom-domains:
     get:
       tags:
         - Custom Domains
@@ -3532,7 +3613,7 @@ paths:
             Filter for custom domains created after a certain time (specified as
             an ISO 8601 timestamp)
           example: "2021-02-17T08:15:30Z"
-        - name: serviceId
+        - name: id
           in: path
           schema:
             type: string
@@ -3724,7 +3805,7 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: serviceId
+        - name: id
           in: path
           schema:
             type: string
@@ -3918,7 +3999,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/custom-domains/{customDomainIdOrName}:
+  /services/{serviceId}/custom-domains/{id}:
     get:
       tags:
         - Custom Domains
@@ -3938,7 +4019,7 @@ paths:
           required: true
           description: (Required) The ID of the service
           example: Lorem amet sin
-        - name: customDomainIdOrName
+        - name: id
           in: path
           schema:
             type: string
@@ -4100,6 +4181,15 @@ paths:
       summary: Delete custom domain
       description: >-
         [https://api-docs.render.com/reference/delete-custom-domain](https://api-docs.render.com/reference/delete-custom-domain)
+      # DELETE operations actually don't have a request body, well, at least not very often
+      # and certainly not in Render. It's included here to help the provider make the link
+      # between this operation and the resources that should use this.
+      # TODO: Maybe there's a better way?
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/customDomain"
       parameters:
         - name: Accept
           in: header
@@ -4113,7 +4203,7 @@ paths:
           required: true
           description: (Required) The ID of the service
           example: Lorem amet sin
-        - name: customDomainIdOrName
+        - name: id
           in: path
           schema:
             type: string
@@ -4259,7 +4349,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/custom-domains/{customDomainIdOrName}/verify:
+  /services/{serviceId}/custom-domains/{id}/verify:
     post:
       tags:
         - Custom Domains
@@ -4281,7 +4371,7 @@ paths:
           required: true
           description: (Required) The ID of the service
           example: Lorem amet sin
-        - name: customDomainIdOrName
+        - name: id
           in: path
           schema:
             type: string
@@ -4427,7 +4517,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/jobs:
+  /services/{id}/jobs:
     get:
       tags:
         - Jobs
@@ -4508,7 +4598,7 @@ paths:
             Filter for jobs finished after a certain time (specified as an ISO
             8601 timestamp)
           example: "2021-02-17T08:15:30Z"
-        - name: serviceId
+        - name: id
           in: path
           schema:
             type: string
@@ -4657,7 +4747,7 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: serviceId
+        - name: id
           in: path
           schema:
             type: string
@@ -4769,7 +4859,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/jobs/{jobId}:
+  /services/{serviceId}/jobs/{id}:
     get:
       tags:
         - Jobs
@@ -4789,7 +4879,7 @@ paths:
           required: true
           description: (Required) The ID of the service
           example: Lorem amet sin
-        - name: jobId
+        - name: id
           in: path
           schema:
             type: string

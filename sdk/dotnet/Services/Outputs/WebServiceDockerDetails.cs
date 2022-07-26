@@ -12,14 +12,14 @@ namespace CloudySkySoftware.Render.Services.Outputs
 {
 
     [OutputType]
-    public sealed class ServiceDockerDetails
+    public sealed class WebServiceDockerDetails
     {
         public readonly string? DockerCommand;
         public readonly string? DockerContext;
         public readonly string? DockerfilePath;
 
         [OutputConstructor]
-        private ServiceDockerDetails(
+        private WebServiceDockerDetails(
             string? dockerCommand,
 
             string? dockerContext,

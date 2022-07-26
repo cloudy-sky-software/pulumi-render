@@ -11,7 +11,7 @@ using Pulumi;
 namespace CloudySkySoftware.Render.Services.Inputs
 {
 
-    public sealed class ServiceDockerDetailsArgs : Pulumi.ResourceArgs
+    public sealed class WebServiceDockerDetailsArgs : Pulumi.ResourceArgs
     {
         [Input("dockerCommand")]
         public Input<string>? DockerCommand { get; set; }
@@ -22,7 +22,7 @@ namespace CloudySkySoftware.Render.Services.Inputs
         [Input("dockerfilePath")]
         public Input<string>? DockerfilePath { get; set; }
 
-        public ServiceDockerDetailsArgs()
+        public WebServiceDockerDetailsArgs()
         {
             DockerfilePath = "./Dockerfile";
         }

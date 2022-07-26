@@ -11,20 +11,27 @@ using Pulumi;
 namespace CloudySkySoftware.Render.Services.Outputs
 {
 
+    /// <summary>
+    /// A service header object
+    /// </summary>
     [OutputType]
-    public sealed class ServiceNativeEnvironmentDetails
+    public sealed class StaticSiteServiceHeader
     {
-        public readonly string BuildCommand;
-        public readonly string StartCommand;
+        public readonly string Name;
+        public readonly string Path;
+        public readonly string Value;
 
         [OutputConstructor]
-        private ServiceNativeEnvironmentDetails(
-            string buildCommand,
+        private StaticSiteServiceHeader(
+            string name,
 
-            string startCommand)
+            string path,
+
+            string value)
         {
-            BuildCommand = buildCommand;
-            StartCommand = startCommand;
+            Name = name;
+            Path = path;
+            Value = value;
         }
     }
 }

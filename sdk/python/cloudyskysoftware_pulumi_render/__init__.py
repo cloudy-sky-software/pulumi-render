@@ -28,8 +28,9 @@ _utilities.register(
    "render:services:CustomDomain": "CustomDomain",
    "render:services:Deploy": "Deploy",
    "render:services:Scale": "Scale",
-   "render:services:Service": "Service",
-   "render:services:Suspend": "Suspend"
+   "render:services:StaticSite": "StaticSite",
+   "render:services:Suspend": "Suspend",
+   "render:services:WebService": "WebService"
   }
  }
 ]

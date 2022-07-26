@@ -9,7 +9,8 @@ from ._enums import *
 from .custom_domain import *
 from .deploy import *
 from .scale import *
-from .service import *
+from .static_site import *
 from .suspend import *
+from .web_service import *
 from ._inputs import *
 from . import outputs

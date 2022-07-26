@@ -11,15 +11,15 @@ using Pulumi;
 namespace CloudySkySoftware.Render.Services.Inputs
 {
 
-    public sealed class ServiceStaticSiteParentServerPropertiesArgs : Pulumi.ResourceArgs
+    public sealed class WebServiceNativeEnvironmentDetailsArgs : Pulumi.ResourceArgs
     {
-        [Input("id")]
-        public Input<string>? Id { get; set; }
+        [Input("buildCommand", required: true)]
+        public Input<string> BuildCommand { get; set; } = null!;
 
-        [Input("name")]
-        public Input<string>? Name { get; set; }
+        [Input("startCommand", required: true)]
+        public Input<string> StartCommand { get; set; } = null!;
 
-        public ServiceStaticSiteParentServerPropertiesArgs()
+        public WebServiceNativeEnvironmentDetailsArgs()
         {
         }
     }

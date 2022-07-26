@@ -14,7 +14,7 @@ namespace CloudySkySoftware.Render.Services.Inputs
     /// <summary>
     /// A route object for a static site
     /// </summary>
-    public sealed class ServiceStaticSiteRouteArgs : Pulumi.ResourceArgs
+    public sealed class StaticSiteStaticSiteRouteArgs : Pulumi.ResourceArgs
     {
         [Input("destination", required: true)]
         public Input<string> Destination { get; set; } = null!;
@@ -23,9 +23,9 @@ namespace CloudySkySoftware.Render.Services.Inputs
         public Input<string> Source { get; set; } = null!;
 
         [Input("type", required: true)]
-        public Input<CloudySkySoftware.Render.Services.ServiceStaticSiteRouteType> Type { get; set; } = null!;
+        public Input<CloudySkySoftware.Render.Services.StaticSiteStaticSiteRouteType> Type { get; set; } = null!;
 
-        public ServiceStaticSiteRouteArgs()
+        public StaticSiteStaticSiteRouteArgs()
         {
         }
     }

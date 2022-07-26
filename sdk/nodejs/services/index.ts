@@ -8,8 +8,9 @@ import * as utilities from "../utilities";
 export * from "./customDomain";
 export * from "./deploy";
 export * from "./scale";
-export * from "./service";
+export * from "./staticSite";
 export * from "./suspend";
+export * from "./webService";
 
 // Export enums:
 export * from "../types/enums/services";
@@ -18,8 +19,9 @@ export * from "../types/enums/services";
 import { CustomDomain } from "./customDomain";
 import { Deploy } from "./deploy";
 import { Scale } from "./scale";
-import { Service } from "./service";
+import { StaticSite } from "./staticSite";
 import { Suspend } from "./suspend";
+import { WebService } from "./webService";
 
 const _module = {
     version: utilities.getVersion(),
@@ -31,10 +33,12 @@ const _module = {
                 return new Deploy(name, <any>undefined, { urn })
             case "render:services:Scale":
                 return new Scale(name, <any>undefined, { urn })
-            case "render:services:Service":
-                return new Service(name, <any>undefined, { urn })
+            case "render:services:StaticSite":
+                return new StaticSite(name, <any>undefined, { urn })
             case "render:services:Suspend":
                 return new Suspend(name, <any>undefined, { urn })
+            case "render:services:WebService":
+                return new WebService(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }

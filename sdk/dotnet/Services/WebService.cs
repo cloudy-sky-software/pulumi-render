@@ -11,16 +11,16 @@ using Pulumi;
 namespace CloudySkySoftware.Render.Services
 {
     /// <summary>
-    /// ## Example Usage
+    /// A web service
     /// </summary>
-    [RenderResourceType("render:services:Service")]
-    public partial class Service : Pulumi.CustomResource
+    [RenderResourceType("render:services:WebService")]
+    public partial class WebService : Pulumi.CustomResource
     {
         /// <summary>
         /// Whether to auto deploy the service or not upon git push.
         /// </summary>
         [Output("autoDeploy")]
-        public Output<bool?> AutoDeploy { get; private set; } = null!;
+        public Output<CloudySkySoftware.Render.Services.WebServiceServiceAutoDeploy?> AutoDeploy { get; private set; } = null!;
 
         /// <summary>
         /// If left empty, this will fall back to the default branch of the repository.
@@ -32,59 +32,59 @@ namespace CloudySkySoftware.Render.Services
         public Output<string?> CreatedAt { get; private set; } = null!;
 
         [Output("name")]
-        public Output<string> Name { get; private set; } = null!;
+        public Output<string?> Name { get; private set; } = null!;
 
         /// <summary>
         /// The notification setting for this service upon deployment failure.
         /// </summary>
         [Output("notifyOnFail")]
-        public Output<CloudySkySoftware.Render.Services.ServiceNotifyOnFail?> NotifyOnFail { get; private set; } = null!;
+        public Output<CloudySkySoftware.Render.Services.WebServiceServiceNotifyOnFail?> NotifyOnFail { get; private set; } = null!;
 
         /// <summary>
         /// The id of the owner (user/team).
         /// </summary>
         [Output("ownerId")]
-        public Output<string> OwnerId { get; private set; } = null!;
+        public Output<string?> OwnerId { get; private set; } = null!;
 
         /// <summary>
         /// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
         /// </summary>
         [Output("repo")]
-        public Output<string> Repo { get; private set; } = null!;
+        public Output<string?> Repo { get; private set; } = null!;
 
         [Output("serviceDetails")]
-        public Output<Union<Outputs.ServiceStaticSite, Outputs.ServiceWebService>?> ServiceDetails { get; private set; } = null!;
+        public Output<Outputs.WebServiceWebServiceServiceDetails?> ServiceDetails { get; private set; } = null!;
 
         [Output("slug")]
         public Output<string?> Slug { get; private set; } = null!;
 
         [Output("suspended")]
-        public Output<CloudySkySoftware.Render.Services.ServiceSuspended?> Suspended { get; private set; } = null!;
+        public Output<CloudySkySoftware.Render.Services.WebServiceServiceSuspended?> Suspended { get; private set; } = null!;
 
         [Output("suspenders")]
         public Output<ImmutableArray<string>> Suspenders { get; private set; } = null!;
 
         [Output("type")]
-        public Output<CloudySkySoftware.Render.Services.ServiceType> Type { get; private set; } = null!;
+        public Output<string?> Type { get; private set; } = null!;
 
         [Output("updatedAt")]
         public Output<string?> UpdatedAt { get; private set; } = null!;
 
 
         /// <summary>
-        /// Create a Service resource with the given unique name, arguments, and options.
+        /// Create a WebService resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Service(string name, ServiceArgs args, CustomResourceOptions? options = null)
-            : base("render:services:Service", name, args ?? new ServiceArgs(), MakeResourceOptions(options, ""))
+        public WebService(string name, WebServiceArgs args, CustomResourceOptions? options = null)
+            : base("render:services:WebService", name, args ?? new WebServiceArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private Service(string name, Input<string> id, CustomResourceOptions? options = null)
-            : base("render:services:Service", name, null, MakeResourceOptions(options, id))
+        private WebService(string name, Input<string> id, CustomResourceOptions? options = null)
+            : base("render:services:WebService", name, null, MakeResourceOptions(options, id))
         {
         }
 
@@ -101,26 +101,26 @@ namespace CloudySkySoftware.Render.Services
             return merged;
         }
         /// <summary>
-        /// Get an existing Service resource's state with the given name, ID, and optional extra
+        /// Get an existing WebService resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resulting resource.</param>
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static Service Get(string name, Input<string> id, CustomResourceOptions? options = null)
+        public static WebService Get(string name, Input<string> id, CustomResourceOptions? options = null)
         {
-            return new Service(name, id, options);
+            return new WebService(name, id, options);
         }
     }
 
-    public sealed class ServiceArgs : Pulumi.ResourceArgs
+    public sealed class WebServiceArgs : Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether to auto deploy the service or not upon git push.
         /// </summary>
         [Input("autoDeploy")]
-        public Input<bool>? AutoDeploy { get; set; }
+        public Input<CloudySkySoftware.Render.Services.WebServiceServiceAutoDeploy>? AutoDeploy { get; set; }
 
         /// <summary>
         /// If left empty, this will fall back to the default branch of the repository.
@@ -128,8 +128,17 @@ namespace CloudySkySoftware.Render.Services
         [Input("branch")]
         public Input<string>? Branch { get; set; }
 
+        [Input("createdAt")]
+        public Input<string>? CreatedAt { get; set; }
+
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
+
+        /// <summary>
+        /// The notification setting for this service upon deployment failure.
+        /// </summary>
+        [Input("notifyOnFail")]
+        public Input<CloudySkySoftware.Render.Services.WebServiceServiceNotifyOnFail>? NotifyOnFail { get; set; }
 
         /// <summary>
         /// The id of the owner (user/team).
@@ -144,13 +153,32 @@ namespace CloudySkySoftware.Render.Services
         public Input<string> Repo { get; set; } = null!;
 
         [Input("serviceDetails")]
-        public InputUnion<Inputs.ServiceStaticSiteArgs, Inputs.ServiceWebServiceArgs>? ServiceDetails { get; set; }
+        public Input<Inputs.WebServiceWebServiceServiceDetailsArgs>? ServiceDetails { get; set; }
 
-        [Input("type", required: true)]
-        public Input<CloudySkySoftware.Render.Services.ServiceType> Type { get; set; } = null!;
+        [Input("slug")]
+        public Input<string>? Slug { get; set; }
 
-        public ServiceArgs()
+        [Input("suspended")]
+        public Input<CloudySkySoftware.Render.Services.WebServiceServiceSuspended>? Suspended { get; set; }
+
+        [Input("suspenders")]
+        private InputList<string>? _suspenders;
+        public InputList<string> Suspenders
         {
+            get => _suspenders ?? (_suspenders = new InputList<string>());
+            set => _suspenders = value;
+        }
+
+        [Input("type")]
+        public Input<string>? Type { get; set; }
+
+        [Input("updatedAt")]
+        public Input<string>? UpdatedAt { get; set; }
+
+        public WebServiceArgs()
+        {
+            AutoDeploy = CloudySkySoftware.Render.Services.WebServiceServiceAutoDeploy.No;
+            Type = "web_service";
         }
     }
 }

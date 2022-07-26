@@ -12,19 +12,23 @@ namespace CloudySkySoftware.Render.Services.Outputs
 {
 
     [OutputType]
-    public sealed class ServiceStaticSiteParentServerProperties
+    public sealed class WebServiceDisk
     {
-        public readonly string? Id;
-        public readonly string? Name;
+        public readonly string MountPath;
+        public readonly string Name;
+        public readonly double? SizeGB;
 
         [OutputConstructor]
-        private ServiceStaticSiteParentServerProperties(
-            string? id,
+        private WebServiceDisk(
+            string mountPath,
 
-            string? name)
+            string name,
+
+            double? sizeGB)
         {
-            Id = id;
+            MountPath = mountPath;
             Name = name;
+            SizeGB = sizeGB;
         }
     }
 }

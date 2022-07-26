@@ -1,3 +1,13 @@
+## 0.0.31
+
+Change package names under which the language SDKs are published.
+From here on the following are the respective package names:
+
+Go: `github.com/cloudy-sky-software/pulumi-render/sdk/go/render`
+.NET: `Pulumi.Render`
+npm (Node.js): `@cloudyskysoftware/pulumi-render`
+PyPi (Python): `pulumi_render`
+
 ## 0.0.30
 
 - `Service` resource is now split to each individual service type if the POST operation

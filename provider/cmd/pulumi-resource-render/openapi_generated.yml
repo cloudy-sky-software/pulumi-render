@@ -1643,6 +1643,10 @@ paths:
       summary: Delete service
       description: >-
         [https://api-docs.render.com/reference/delete-service](https://api-docs.render.com/reference/delete-service)
+      # DELETE operations actually don't have a request body, well, at least not very often
+      # and certainly not in Render. It's included here to help the provider make the link
+      # between this operation and the resources that should use this.
+      # TODO: Maybe there's a better way?
       requestBody:
         content:
           application/json:
@@ -4177,6 +4181,10 @@ paths:
       summary: Delete custom domain
       description: >-
         [https://api-docs.render.com/reference/delete-custom-domain](https://api-docs.render.com/reference/delete-custom-domain)
+      # DELETE operations actually don't have a request body, well, at least not very often
+      # and certainly not in Render. It's included here to help the provider make the link
+      # between this operation and the resources that should use this.
+      # TODO: Maybe there's a better way?
       requestBody:
         content:
           application/json:

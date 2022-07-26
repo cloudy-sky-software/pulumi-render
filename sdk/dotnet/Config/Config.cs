@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Immutable;
 
-namespace CloudySkySoftware.Render
+namespace Pulumi.Render
 {
     public static class Config
     {
@@ -42,11 +42,11 @@ namespace CloudySkySoftware.Render
             set => _apiKey.Set(value);
         }
 
-        private static readonly __Value<CloudySkySoftware.Render.Services.DeployClearCache?> _clearCacheOnServiceUpdateDeployments = new __Value<CloudySkySoftware.Render.Services.DeployClearCache?>(() => __config.GetObject<CloudySkySoftware.Render.Services.DeployClearCache>("clearCacheOnServiceUpdateDeployments"));
+        private static readonly __Value<Pulumi.Render.Services.DeployClearCache?> _clearCacheOnServiceUpdateDeployments = new __Value<Pulumi.Render.Services.DeployClearCache?>(() => __config.GetObject<Pulumi.Render.Services.DeployClearCache>("clearCacheOnServiceUpdateDeployments"));
         /// <summary>
         /// When a service is updated, a deployment is automatically triggered. This variable controls whether or not the service cache should be cleared upon deployment.
         /// </summary>
-        public static CloudySkySoftware.Render.Services.DeployClearCache? ClearCacheOnServiceUpdateDeployments
+        public static Pulumi.Render.Services.DeployClearCache? ClearCacheOnServiceUpdateDeployments
         {
             get => _clearCacheOnServiceUpdateDeployments.Get();
             set => _clearCacheOnServiceUpdateDeployments.Set(value);

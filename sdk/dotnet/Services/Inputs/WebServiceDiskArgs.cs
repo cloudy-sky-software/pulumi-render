@@ -6,9 +6,8 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi;
 
-namespace CloudySkySoftware.Render.Services.Inputs
+namespace Pulumi.Render.Services.Inputs
 {
 
     public sealed class WebServiceDiskArgs : Pulumi.ResourceArgs

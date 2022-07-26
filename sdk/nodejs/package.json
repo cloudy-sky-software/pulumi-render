@@ -1,5 +1,5 @@
 {
-    "name": "@cloudyskysoftware/render",
+    "name": "@cloudyskysoftware/pulumi-render",
     "version": "${VERSION}",
     "keywords": [
         "pulumi",

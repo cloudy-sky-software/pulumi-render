@@ -6,9 +6,8 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi;
 
-namespace CloudySkySoftware.Render.Services.Inputs
+namespace Pulumi.Render.Services.Inputs
 {
 
     public sealed class StaticSiteStaticSiteServiceDetailsArgs : Pulumi.ResourceArgs
@@ -31,7 +30,7 @@ namespace CloudySkySoftware.Render.Services.Inputs
         public Input<string>? PublishPath { get; set; }
 
         [Input("pullRequestPreviewsEnabled")]
-        public Input<CloudySkySoftware.Render.Services.StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled>? PullRequestPreviewsEnabled { get; set; }
+        public Input<Pulumi.Render.Services.StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled>? PullRequestPreviewsEnabled { get; set; }
 
         [Input("routes")]
         private InputList<Inputs.StaticSiteStaticSiteRouteArgs>? _routes;
@@ -50,7 +49,7 @@ namespace CloudySkySoftware.Render.Services.Inputs
         public StaticSiteStaticSiteServiceDetailsArgs()
         {
             PublishPath = "public";
-            PullRequestPreviewsEnabled = CloudySkySoftware.Render.Services.StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled.No;
+            PullRequestPreviewsEnabled = Pulumi.Render.Services.StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled.No;
         }
     }
 }

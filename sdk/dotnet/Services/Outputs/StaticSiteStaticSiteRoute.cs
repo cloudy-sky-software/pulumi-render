@@ -6,9 +6,8 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi;
 
-namespace CloudySkySoftware.Render.Services.Outputs
+namespace Pulumi.Render.Services.Outputs
 {
 
     /// <summary>
@@ -19,7 +18,7 @@ namespace CloudySkySoftware.Render.Services.Outputs
     {
         public readonly string Destination;
         public readonly string Source;
-        public readonly CloudySkySoftware.Render.Services.StaticSiteStaticSiteRouteType Type;
+        public readonly Pulumi.Render.Services.StaticSiteStaticSiteRouteType Type;
 
         [OutputConstructor]
         private StaticSiteStaticSiteRoute(
@@ -27,7 +26,7 @@ namespace CloudySkySoftware.Render.Services.Outputs
 
             string source,
 
-            CloudySkySoftware.Render.Services.StaticSiteStaticSiteRouteType type)
+            Pulumi.Render.Services.StaticSiteStaticSiteRouteType type)
         {
             Destination = destination;
             Source = source;

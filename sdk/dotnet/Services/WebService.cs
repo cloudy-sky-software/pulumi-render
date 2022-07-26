@@ -6,9 +6,8 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi;
 
-namespace CloudySkySoftware.Render.Services
+namespace Pulumi.Render.Services
 {
     /// <summary>
     /// A web service
@@ -20,7 +19,7 @@ namespace CloudySkySoftware.Render.Services
         /// Whether to auto deploy the service or not upon git push.
         /// </summary>
         [Output("autoDeploy")]
-        public Output<CloudySkySoftware.Render.Services.WebServiceServiceAutoDeploy?> AutoDeploy { get; private set; } = null!;
+        public Output<Pulumi.Render.Services.WebServiceServiceAutoDeploy?> AutoDeploy { get; private set; } = null!;
 
         /// <summary>
         /// If left empty, this will fall back to the default branch of the repository.
@@ -38,7 +37,7 @@ namespace CloudySkySoftware.Render.Services
         /// The notification setting for this service upon deployment failure.
         /// </summary>
         [Output("notifyOnFail")]
-        public Output<CloudySkySoftware.Render.Services.WebServiceServiceNotifyOnFail?> NotifyOnFail { get; private set; } = null!;
+        public Output<Pulumi.Render.Services.WebServiceServiceNotifyOnFail?> NotifyOnFail { get; private set; } = null!;
 
         /// <summary>
         /// The id of the owner (user/team).
@@ -59,7 +58,7 @@ namespace CloudySkySoftware.Render.Services
         public Output<string?> Slug { get; private set; } = null!;
 
         [Output("suspended")]
-        public Output<CloudySkySoftware.Render.Services.WebServiceServiceSuspended?> Suspended { get; private set; } = null!;
+        public Output<Pulumi.Render.Services.WebServiceServiceSuspended?> Suspended { get; private set; } = null!;
 
         [Output("suspenders")]
         public Output<ImmutableArray<string>> Suspenders { get; private set; } = null!;
@@ -120,7 +119,7 @@ namespace CloudySkySoftware.Render.Services
         /// Whether to auto deploy the service or not upon git push.
         /// </summary>
         [Input("autoDeploy")]
-        public Input<CloudySkySoftware.Render.Services.WebServiceServiceAutoDeploy>? AutoDeploy { get; set; }
+        public Input<Pulumi.Render.Services.WebServiceServiceAutoDeploy>? AutoDeploy { get; set; }
 
         /// <summary>
         /// If left empty, this will fall back to the default branch of the repository.
@@ -138,7 +137,7 @@ namespace CloudySkySoftware.Render.Services
         /// The notification setting for this service upon deployment failure.
         /// </summary>
         [Input("notifyOnFail")]
-        public Input<CloudySkySoftware.Render.Services.WebServiceServiceNotifyOnFail>? NotifyOnFail { get; set; }
+        public Input<Pulumi.Render.Services.WebServiceServiceNotifyOnFail>? NotifyOnFail { get; set; }
 
         /// <summary>
         /// The id of the owner (user/team).
@@ -159,7 +158,7 @@ namespace CloudySkySoftware.Render.Services
         public Input<string>? Slug { get; set; }
 
         [Input("suspended")]
-        public Input<CloudySkySoftware.Render.Services.WebServiceServiceSuspended>? Suspended { get; set; }
+        public Input<Pulumi.Render.Services.WebServiceServiceSuspended>? Suspended { get; set; }
 
         [Input("suspenders")]
         private InputList<string>? _suspenders;
@@ -177,7 +176,7 @@ namespace CloudySkySoftware.Render.Services
 
         public WebServiceArgs()
         {
-            AutoDeploy = CloudySkySoftware.Render.Services.WebServiceServiceAutoDeploy.No;
+            AutoDeploy = Pulumi.Render.Services.WebServiceServiceAutoDeploy.No;
             Type = "web_service";
         }
     }

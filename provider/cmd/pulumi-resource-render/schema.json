@@ -23,7 +23,7 @@
             "packageReferences": {
                 "Pulumi": "3.*"
             },
-            "rootNamespace": "CloudySkySoftware"
+            "rootNamespace": "Pulumi"
         },
         "go": {
             "importBasePath": "github.com/cloudy-sky-software/pulumi-render/sdk/go/render"
@@ -44,10 +44,10 @@
                 "@types/shell-quote": "^1.6.0",
                 "mocha": "^5.2.0"
             },
-            "packageName": "@cloudyskysoftware/render"
+            "packageName": "@cloudyskysoftware/pulumi-render"
         },
         "python": {
-            "packageName": "cloudyskysoftware_pulumi_render",
+            "packageName": "pulumi_render",
             "requires": {
                 "pulumi": "\u003e=3.0.0,\u003c4.0.0"
             }

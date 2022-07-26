@@ -37,7 +37,7 @@ def readme():
         return "render Pulumi Package - Development Version"
 
 
-setup(name='cloudyskysoftware_pulumi_render',
+setup(name='pulumi_render',
       version=VERSION,
       description="A Pulumi package for creating and managing Render resources.",
       long_description=readme(),
@@ -53,7 +53,7 @@ setup(name='cloudyskysoftware_pulumi_render',
       license='Apache-2.0',
       packages=find_packages(),
       package_data={
-          'cloudyskysoftware_pulumi_render': [
+          'pulumi_render': [
               'py.typed',
               'pulumi-plugin.json',
           ]

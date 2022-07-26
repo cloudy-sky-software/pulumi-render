@@ -6,9 +6,8 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi;
 
-namespace CloudySkySoftware.Render.Services
+namespace Pulumi.Render.Services
 {
     [RenderResourceType("render:services:CustomDomain")]
     public partial class CustomDomain : Pulumi.CustomResource
@@ -17,7 +16,7 @@ namespace CloudySkySoftware.Render.Services
         public Output<string?> CreatedAt { get; private set; } = null!;
 
         [Output("domainType")]
-        public Output<CloudySkySoftware.Render.Services.CustomDomainDomainType> DomainType { get; private set; } = null!;
+        public Output<Pulumi.Render.Services.CustomDomainDomainType> DomainType { get; private set; } = null!;
 
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -32,7 +31,7 @@ namespace CloudySkySoftware.Render.Services
         public Output<Outputs.ServerProperties> Server { get; private set; } = null!;
 
         [Output("verificationStatus")]
-        public Output<CloudySkySoftware.Render.Services.CustomDomainVerificationStatus> VerificationStatus { get; private set; } = null!;
+        public Output<Pulumi.Render.Services.CustomDomainVerificationStatus> VerificationStatus { get; private set; } = null!;
 
 
         /// <summary>

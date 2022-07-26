@@ -5,7 +5,7 @@ using System;
 using System.ComponentModel;
 using Pulumi;
 
-namespace CloudySkySoftware.Render.Services
+namespace Pulumi.Render.Services
 {
     [EnumType]
     public readonly struct CustomDomainDomainType : IEquatable<CustomDomainDomainType>

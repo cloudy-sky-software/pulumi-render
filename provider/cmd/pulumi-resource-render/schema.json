@@ -77,8 +77,100 @@
         }
     },
     "types": {
-        "render:owners:ListOwnersListOwners": {
+        "render:owners:ListOwnersResponse": {
+            "properties": {
+                "cursor": {
+                    "type": "string"
+                },
+                "owner": {
+                    "$ref": "#/types/render:owners:Owner",
+                    "description": "The owner object represents an authorized user or team. The `type` property indicates if the owner is a user or team."
+                }
+            },
             "type": "object"
+        },
+        "render:owners:Owner": {
+            "description": "The owner object represents an authorized user or team. The `type` property indicates if the owner is a user or team.",
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "description": "The email of the owner."
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The owner ID."
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the owner."
+                },
+                "type": {
+                    "$ref": "#/types/render:owners:OwnerType",
+                    "description": "The type of the authorized user."
+                }
+            },
+            "type": "object"
+        },
+        "render:owners:OwnerType": {
+            "description": "The type of the authorized user.",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "User",
+                    "value": "user"
+                },
+                {
+                    "name": "Team",
+                    "value": "team"
+                }
+            ]
+        },
+        "render:services:Commit": {
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "render:services:CustomDomain": {
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "domainType": {
+                    "$ref": "#/types/render:services:CustomDomainDomainType"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "publicSuffix": {
+                    "type": "string"
+                },
+                "redirectForName": {
+                    "type": "string"
+                },
+                "server": {
+                    "$ref": "#/types/render:services:CustomDomainServerProperties"
+                },
+                "verificationStatus": {
+                    "$ref": "#/types/render:services:CustomDomainVerificationStatus"
+                }
+            },
+            "type": "object",
+            "required": [
+                "domainType",
+                "name",
+                "redirectForName",
+                "server",
+                "verificationStatus"
+            ]
         },
         "render:services:CustomDomainDomainType": {
             "type": "string",
@@ -93,6 +185,17 @@
                 }
             ]
         },
+        "render:services:CustomDomainServerProperties": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
         "render:services:CustomDomainVerificationStatus": {
             "type": "string",
             "enum": [
@@ -105,6 +208,18 @@
                     "value": "unverified"
                 }
             ]
+        },
+        "render:services:Deploy": {
+            "properties": {
+                "clearCache": {
+                    "$ref": "#/types/render:services:DeployClearCache",
+                    "default": "do_not_clear"
+                },
+                "commit": {
+                    "$ref": "#/types/render:services:Commit"
+                }
+            },
+            "type": "object"
         },
         "render:services:DeployClearCache": {
             "type": "string",
@@ -133,22 +248,101 @@
             },
             "type": "object"
         },
-        "render:services:ListCustomDomainsListCustomDomains": {
+        "render:services:EnvVarKeyValue": {
+            "properties": {
+                "key": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "key",
+                "value"
+            ]
+        },
+        "render:services:ListCustomDomainsResponse": {
+            "properties": {
+                "cursor": {
+                    "type": "string"
+                },
+                "customDomain": {
+                    "$ref": "#/types/render:services:CustomDomain"
+                }
+            },
             "type": "object"
         },
-        "render:services:ListDeploysListDeploys": {
+        "render:services:ListDeploysResponse": {
+            "properties": {
+                "cursor": {
+                    "type": "string"
+                },
+                "customDomain": {
+                    "$ref": "#/types/render:services:Deploy"
+                }
+            },
             "type": "object"
         },
-        "render:services:ListEnvVarsListEnvVars": {
+        "render:services:ListEnvVarsResponse": {
+            "properties": {
+                "cursor": {
+                    "type": "string"
+                },
+                "envVar": {
+                    "$ref": "#/types/render:services:EnvVarKeyValue"
+                }
+            },
             "type": "object"
         },
-        "render:services:ListServiceHeadersListServiceHeaders": {
+        "render:services:ListServiceHeadersResponse": {
+            "properties": {
+                "cursor": {
+                    "type": "string"
+                },
+                "header": {
+                    "$ref": "#/types/render:services:ServiceHeader",
+                    "description": "A service header object"
+                }
+            },
             "type": "object"
         },
-        "render:services:ListServicesListServices": {
+        "render:services:ListServiceResponse": {
+            "properties": {
+                "cursor": {
+                    "type": "string"
+                },
+                "service": {
+                    "oneOf": [
+                        {
+                            "$ref": "#/types/render:services:StaticSite"
+                        },
+                        {
+                            "$ref": "#/types/render:services:WebService"
+                        }
+                    ],
+                    "discriminator": {
+                        "propertyName": "type",
+                        "mapping": {
+                            "static_site": "#/types/render:services:StaticSite",
+                            "web_service": "#/types/render:services:StaticSite"
+                        }
+                    }
+                }
+            },
             "type": "object"
         },
-        "render:services:ListStaticSiteRoutesListStaticSiteRoutes": {
+        "render:services:ListStaticSiteRoutesResponse": {
+            "properties": {
+                "cursor": {
+                    "type": "string"
+                },
+                "route": {
+                    "$ref": "#/types/render:services:StaticSiteRoute",
+                    "description": "A route object for a static site"
+                }
+            },
             "type": "object"
         },
         "render:services:ServerProperties": {
@@ -162,6 +356,30 @@
             },
             "type": "object"
         },
+        "render:services:ServiceHeader": {
+            "description": "A service header object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "path",
+                "value"
+            ]
+        },
+        "render:services:StaticSite": {
+            "description": "A static website service",
+            "type": "object"
+        },
         "render:services:StaticSiteProperties": {
             "properties": {
                 "serviceDetails": {
@@ -173,6 +391,39 @@
                 }
             },
             "type": "object"
+        },
+        "render:services:StaticSiteRoute": {
+            "description": "A route object for a static site",
+            "properties": {
+                "destination": {
+                    "type": "string"
+                },
+                "source": {
+                    "type": "string"
+                },
+                "type": {
+                    "$ref": "#/types/render:services:StaticSiteRouteType"
+                }
+            },
+            "type": "object",
+            "required": [
+                "destination",
+                "source",
+                "type"
+            ]
+        },
+        "render:services:StaticSiteRouteType": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Redirect",
+                    "value": "redirect"
+                },
+                {
+                    "name": "Rewrite",
+                    "value": "rewrite"
+                }
+            ]
         },
         "render:services:StaticSiteService": {
             "description": "The service object represents a service. The type of service is discriminated by the type property which determines the type of object in the serviceDetails property.",
@@ -383,6 +634,10 @@
                     "value": "no"
                 }
             ]
+        },
+        "render:services:WebService": {
+            "description": "A web service",
+            "type": "object"
         },
         "render:services:WebServiceDisk": {
             "properties": {
@@ -1035,7 +1290,20 @@
         "render:owners:listOwners": {
             "inputs": {},
             "outputs": {
-                "type": "#/types/render:owners:ListOwnersListOwners"
+                "properties": {
+                    "value": {
+                        "type": "array",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/types/render:owners:ListOwnersResponse"
+                            }
+                        }
+                    }
+                },
+                "required": [
+                    "value"
+                ]
             }
         },
         "render:services:listCustomDomains": {
@@ -1051,7 +1319,20 @@
                 ]
             },
             "outputs": {
-                "type": "#/types/render:services:ListCustomDomainsListCustomDomains"
+                "properties": {
+                    "value": {
+                        "type": "array",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/types/render:services:ListCustomDomainsResponse"
+                            }
+                        }
+                    }
+                },
+                "required": [
+                    "value"
+                ]
             }
         },
         "render:services:listDeploys": {
@@ -1067,7 +1348,20 @@
                 ]
             },
             "outputs": {
-                "type": "#/types/render:services:ListDeploysListDeploys"
+                "properties": {
+                    "value": {
+                        "type": "array",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/types/render:services:ListDeploysResponse"
+                            }
+                        }
+                    }
+                },
+                "required": [
+                    "value"
+                ]
             }
         },
         "render:services:listEnvVars": {
@@ -1083,7 +1377,20 @@
                 ]
             },
             "outputs": {
-                "type": "#/types/render:services:ListEnvVarsListEnvVars"
+                "properties": {
+                    "value": {
+                        "type": "array",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/types/render:services:ListEnvVarsResponse"
+                            }
+                        }
+                    }
+                },
+                "required": [
+                    "value"
+                ]
             }
         },
         "render:services:listServiceHeaders": {
@@ -1099,13 +1406,39 @@
                 ]
             },
             "outputs": {
-                "type": "#/types/render:services:ListServiceHeadersListServiceHeaders"
+                "properties": {
+                    "value": {
+                        "type": "array",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/types/render:services:ListServiceHeadersResponse"
+                            }
+                        }
+                    }
+                },
+                "required": [
+                    "value"
+                ]
             }
         },
         "render:services:listServices": {
             "inputs": {},
             "outputs": {
-                "type": "#/types/render:services:ListServicesListServices"
+                "properties": {
+                    "value": {
+                        "type": "array",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/types/render:services:ListServiceResponse"
+                            }
+                        }
+                    }
+                },
+                "required": [
+                    "value"
+                ]
             }
         },
         "render:services:listStaticSiteRoutes": {
@@ -1121,7 +1454,20 @@
                 ]
             },
             "outputs": {
-                "type": "#/types/render:services:ListStaticSiteRoutesListStaticSiteRoutes"
+                "properties": {
+                    "value": {
+                        "type": "array",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/types/render:services:ListStaticSiteRoutesResponse"
+                            }
+                        }
+                    }
+                },
+                "required": [
+                    "value"
+                ]
             }
         }
     }

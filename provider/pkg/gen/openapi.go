@@ -92,14 +92,16 @@ func (o *openAPIContext) gatherResourcesFromAPI(csharpNamespaces map[string]stri
 					setReadOperationMapping(typeToken)
 				}
 			}
-			// TODO: We'll should also add this as get*/list* provider functions.
+			// TODO: We should also add this as get provider functions.
+
+			// Add the API operation as a list* function.
 			if resourceType.Type == "array" {
 				funcName := strings.TrimPrefix(jsonReq.Schema.Ref, componentsSchemaRefPrefix)
 				parentName := ToPascalCase(funcName)
 				funcPkgCtx := &resourceContext{
 					mod:               module,
 					pkg:               o.pkg,
-					resourceName:      parentName,
+					resourceName:      "",
 					openapiComponents: o.doc.Components,
 					visitedTypes:      codegen.NewStringSet(),
 				}
@@ -119,7 +121,7 @@ func (o *openAPIContext) gatherResourcesFromAPI(csharpNamespaces map[string]stri
 					requiredInputs.Add(paramName)
 				}
 
-				outputPropType, _ := funcPkgCtx.propertyTypeSpec("", *jsonReq.Schema)
+				outputPropType, _ := funcPkgCtx.propertyTypeSpec(parentName, *jsonReq.Schema)
 				funcTypeToken := packageName + ":" + module + ":" + funcName
 				o.pkg.Functions[funcTypeToken] = pschema.FunctionSpec{
 					Description: pathItem.Description,
@@ -128,7 +130,15 @@ func (o *openAPIContext) gatherResourcesFromAPI(csharpNamespaces map[string]stri
 						Required:   requiredInputs.SortedValues(),
 					},
 					Outputs: &pschema.ObjectTypeSpec{
-						Type: outputPropType.Ref,
+						Properties: map[string]pschema.PropertySpec{
+							"value": {
+								TypeSpec: pschema.TypeSpec{
+									Type:  "array",
+									Items: outputPropType,
+								},
+							},
+						},
+						Required: []string{"value"},
 					},
 				}
 
@@ -470,8 +480,9 @@ func (ctx *resourceContext) genPropertySpec(propName string, p openapi3.SchemaRe
 
 // propertyTypeSpec converts a JSON type definition to a Pulumi type definition.
 func (ctx *resourceContext) propertyTypeSpec(parentName string, propSchema openapi3.SchemaRef) (*pschema.TypeSpec, error) {
-	// References to other type definitions.
-	if propSchema.Ref != "" {
+	// References to other type definitions as long as the type is not an array.
+	// Arrays will be handled later in this method.
+	if propSchema.Ref != "" && propSchema.Value.Type != "array" {
 		schemaName := strings.TrimPrefix(propSchema.Ref, componentsSchemaRefPrefix)
 		typName := ToPascalCase(schemaName)
 		if !strings.HasPrefix(schemaName, ctx.resourceName) {
@@ -540,9 +551,15 @@ func (ctx *resourceContext) propertyTypeSpec(parentName string, propSchema opena
 		var discriminator *pschema.DiscriminatorSpec
 		if propSchema.Value.Discriminator != nil {
 			discriminator = &pschema.DiscriminatorSpec{
-				PropertyName: propSchema.Value.Discriminator.PropertyName,
-				Mapping:      propSchema.Value.Discriminator.Mapping,
+				PropertyName: ToSdkName(propSchema.Value.Discriminator.PropertyName),
 			}
+
+			mapping := make(map[string]string)
+			idx := 0
+			for discriminatorValue := range propSchema.Value.Discriminator.Mapping {
+				mapping[discriminatorValue] = types[idx].Ref
+			}
+			discriminator.Mapping = mapping
 		}
 
 		return &pschema.TypeSpec{
@@ -551,7 +568,6 @@ func (ctx *resourceContext) propertyTypeSpec(parentName string, propSchema opena
 		}, nil
 	}
 
-	// TODO: allOf
 	if len(propSchema.Value.AllOf) > 0 {
 		var types []pschema.TypeSpec
 		for _, schemaRef := range propSchema.Value.AllOf {

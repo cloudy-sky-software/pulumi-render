@@ -254,48 +254,29 @@ func (p *renderProvider) Diff(ctx context.Context, req *pulumirpc.DiffRequest) (
 		return nil, errors.Errorf("openapi doc does not have patch endpoint definition for the path %s", *crudMap.U)
 	}
 
+	var replaces []string
+	var diffs []string
+	changes := pulumirpc.DiffResponse_DIFF_SOME
 	jsonReq := patchOp.RequestBody.Value.Content[jsonMimeType]
 
-	replaces := make([]string, 0)
-	diffs := make([]string, 0)
-
-	for propKey := range d.Adds {
-		prop := string(propKey)
-		// If the added property is not part of the PATCH operation schema,
-		// then suggest a replacement triggered by this property.
-		if _, ok := jsonReq.Schema.Value.Properties[prop]; !ok {
-			replaces = append(replaces, prop)
-		} else {
-			diffs = append(diffs, prop)
+	if len(jsonReq.Schema.Value.OneOf) > 0 {
+		// HACK! Taking a shortcut to handle service type-specific updates.
+		switch resourceTypeToken {
+		case "render:services:StaticSite":
+			replaces, diffs = p.determineDiffsAndReplacements(d, p.openapiDoc.Components.Schemas["patchStaticSite"].Value.Properties)
+		case "render:services:WebService":
+			replaces, diffs = p.determineDiffsAndReplacements(d, p.openapiDoc.Components.Schemas["patchWebService"].Value.Properties)
 		}
+	} else if len(jsonReq.Schema.Value.Properties) != 0 {
+		replaces, diffs = p.determineDiffsAndReplacements(d, jsonReq.Schema.Value.Properties)
+	} else {
+		changes = pulumirpc.DiffResponse_DIFF_UNKNOWN
 	}
 
-	for propKey := range d.Updates {
-		prop := string(propKey)
-		// If the updated property is not part of the PATCH operation schema,
-		// then suggest a replacement triggered by this property.
-		if _, ok := jsonReq.Schema.Value.Properties[prop]; !ok {
-			replaces = append(replaces, prop)
-		} else {
-			diffs = append(diffs, prop)
-		}
-	}
-
-	for propKey := range d.Deletes {
-		prop := string(propKey)
-		// If the deleted property is not part of the PATCH operation schema,
-		// then suggest a replacement triggered by this property.
-		if _, ok := jsonReq.Schema.Value.Properties[prop]; !ok {
-			replaces = append(replaces, prop)
-		} else {
-			diffs = append(diffs, prop)
-		}
-	}
-
-	logging.V(3).Infof("Returning diff response: replaces: %v; diffs: %v", replaces, diffs)
+	logging.V(3).Infof("Diff response: replaces: %v; diffs: %v", replaces, diffs)
 
 	return &pulumirpc.DiffResponse{
-		Changes:  pulumirpc.DiffResponse_DIFF_SOME,
+		Changes:  changes,
 		Replaces: replaces,
 		Diffs:    diffs,
 	}, nil

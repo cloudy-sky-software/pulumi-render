@@ -46,5 +46,6 @@ func TestDiff(t *testing.T) {
 	assert.Nil(t, err)
 	assert.Equal(t, pulumirpc.DiffResponse_DIFF_SOME, resp.Changes)
 	assert.NotEmpty(t, resp.Diffs)
+	assert.Len(t, resp.Diffs, 1)
 	assert.Empty(t, resp.Replaces)
 }

@@ -214,7 +214,7 @@ func (p *renderProvider) Check(ctx context.Context, req *pulumirpc.CheckRequest)
 
 // Diff checks what impacts a hypothetical update will have on the resource's properties.
 func (p *renderProvider) Diff(ctx context.Context, req *pulumirpc.DiffRequest) (*pulumirpc.DiffResponse, error) {
-	oldState, err := plugin.UnmarshalProperties(req.GetOlds(), plugin.MarshalOptions{KeepUnknowns: true, SkipNulls: true, KeepSecrets: true})
+	oldState, err := plugin.UnmarshalProperties(req.GetOlds(), defaultMarshalOpts)
 	if err != nil {
 		return nil, err
 	}
@@ -224,7 +224,7 @@ func (p *renderProvider) Diff(ctx context.Context, req *pulumirpc.DiffRequest) (
 		return nil, errors.New("fetching old inputs from the state")
 	}
 
-	news, err := plugin.UnmarshalProperties(req.GetNews(), plugin.MarshalOptions{KeepUnknowns: true, SkipNulls: true, KeepSecrets: true})
+	news, err := plugin.UnmarshalProperties(req.GetNews(), defaultMarshalOpts)
 	if err != nil {
 		return nil, err
 	}
@@ -303,7 +303,7 @@ func (p *renderProvider) Diff(ctx context.Context, req *pulumirpc.DiffRequest) (
 
 // Create allocates a new instance of the provided resource and returns its unique ID afterwards.
 func (p *renderProvider) Create(ctx context.Context, req *pulumirpc.CreateRequest) (*pulumirpc.CreateResponse, error) {
-	inputs, err := plugin.UnmarshalProperties(req.GetProperties(), plugin.MarshalOptions{KeepUnknowns: true, SkipNulls: true, KeepSecrets: true})
+	inputs, err := plugin.UnmarshalProperties(req.GetProperties(), defaultMarshalOpts)
 	if err != nil {
 		return nil, errors.Wrap(err, "unmarshal input properties as propertymap")
 	}
@@ -396,10 +396,7 @@ func (p *renderProvider) Create(ctx context.Context, req *pulumirpc.CreateReques
 		outputs = service.(map[string]interface{})
 	}
 
-	outputProperties, err := plugin.MarshalProperties(
-		getResourceState(outputs, inputs),
-		plugin.MarshalOptions{KeepUnknowns: true, SkipNulls: true, KeepSecrets: true},
-	)
+	outputProperties, err := plugin.MarshalProperties(getResourceState(outputs, inputs), defaultMarshalOpts)
 	if err != nil {
 		return nil, errors.Wrap(err, "marshaling the output properties map")
 	}
@@ -417,7 +414,7 @@ func (p *renderProvider) Create(ctx context.Context, req *pulumirpc.CreateReques
 
 // Read the current live state associated with a resource.
 func (p *renderProvider) Read(ctx context.Context, req *pulumirpc.ReadRequest) (*pulumirpc.ReadResponse, error) {
-	oldState, err := plugin.UnmarshalProperties(req.GetProperties(), plugin.MarshalOptions{KeepUnknowns: true, SkipNulls: true, KeepSecrets: true})
+	oldState, err := plugin.UnmarshalProperties(req.GetProperties(), defaultMarshalOpts)
 	if err != nil {
 		return nil, errors.Wrap(err, "unmarshal input properties as propertymap")
 	}
@@ -503,10 +500,7 @@ func (p *renderProvider) Read(ctx context.Context, req *pulumirpc.ReadRequest) (
 		inputs = applyDiff(newState, inputs)
 	}
 
-	outputProperties, err := plugin.MarshalProperties(
-		getResourceState(outputs, inputs),
-		plugin.MarshalOptions{KeepUnknowns: true, SkipNulls: true, KeepSecrets: true},
-	)
+	outputProperties, err := plugin.MarshalProperties(getResourceState(outputs, inputs), defaultMarshalOpts)
 	if err != nil {
 		return nil, errors.Wrap(err, "marshaling the output properties map")
 	}
@@ -517,9 +511,7 @@ func (p *renderProvider) Read(ctx context.Context, req *pulumirpc.ReadRequest) (
 	}
 
 	// Serialize and return the calculated inputs.
-	inputsRecord, err := plugin.MarshalProperties(
-		inputs,
-		plugin.MarshalOptions{KeepUnknowns: true, SkipNulls: true, KeepSecrets: true})
+	inputsRecord, err := plugin.MarshalProperties(inputs, defaultMarshalOpts)
 	if err != nil {
 		return nil, err
 	}
@@ -621,10 +613,7 @@ func (p *renderProvider) Update(ctx context.Context, req *pulumirpc.UpdateReques
 
 	logging.V(3).Infof("RESPONSE BODY: %v", outputs)
 
-	outputProperties, err := plugin.MarshalProperties(
-		getResourceState(outputs, inputs),
-		plugin.MarshalOptions{KeepUnknowns: true, SkipNulls: true, KeepSecrets: true},
-	)
+	outputProperties, err := plugin.MarshalProperties(getResourceState(outputs, inputs), defaultMarshalOpts)
 	if err != nil {
 		return nil, errors.Wrap(err, "marshaling the output properties map")
 	}

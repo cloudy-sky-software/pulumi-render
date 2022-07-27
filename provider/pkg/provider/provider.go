@@ -478,7 +478,7 @@ func (p *renderProvider) Read(ctx context.Context, req *pulumirpc.ReadRequest) (
 		// so that the checkpoint is in-sync with the state in the
 		// cloud provider.
 		newState := resource.NewPropertyMapFromMap(outputs)
-		inputs = applyDiff(newState, inputs)
+		inputs = applyDiffFromCloudProvider(newState, inputs)
 	}
 
 	outputProperties, err := plugin.MarshalProperties(getResourceState(outputs, inputs), defaultMarshalOpts)

@@ -26,7 +26,7 @@ func getOldInputs(state resource.PropertyMap) resource.PropertyMap {
 	return nil
 }
 
-func applyDiff(newProps resource.PropertyMap, oldProps resource.PropertyMap) resource.PropertyMap {
+func applyDiffFromCloudProvider(newProps resource.PropertyMap, oldProps resource.PropertyMap) resource.PropertyMap {
 	diff := oldProps.Diff(newProps)
 	if diff == nil {
 		return oldProps

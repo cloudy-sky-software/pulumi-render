@@ -67,6 +67,12 @@ namespace Pulumi.Render.Services
         [Input("clearCache")]
         public Input<Pulumi.Render.Services.DeployClearCache>? ClearCache { get; set; }
 
+        /// <summary>
+        /// (Required) The ID of the service
+        /// </summary>
+        [Input("id")]
+        public Input<string>? Id { get; set; }
+
         public DeployArgs()
         {
             ClearCache = Pulumi.Render.Services.DeployClearCache.DoNotClear;

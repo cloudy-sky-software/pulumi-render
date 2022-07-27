@@ -7,6 +7,12 @@ import * as utilities from "../utilities";
 // Export members:
 export * from "./customDomain";
 export * from "./deploy";
+export * from "./listCustomDomains";
+export * from "./listDeploys";
+export * from "./listEnvVars";
+export * from "./listServiceHeaders";
+export * from "./listServices";
+export * from "./listStaticSiteRoutes";
 export * from "./scale";
 export * from "./staticSite";
 export * from "./suspend";

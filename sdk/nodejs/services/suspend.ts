@@ -43,6 +43,7 @@ export class Suspend extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
+            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
         } else {
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -54,4 +55,8 @@ export class Suspend extends pulumi.CustomResource {
  * The set of arguments for constructing a Suspend resource.
  */
 export interface SuspendArgs {
+    /**
+     * (Required) The ID of the service
+     */
+    serviceId?: pulumi.Input<string>;
 }

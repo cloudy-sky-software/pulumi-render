@@ -18,12 +18,16 @@ __all__ = ['CustomDomainArgs', 'CustomDomain']
 class CustomDomainArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
-                 server: pulumi.Input['ServerPropertiesArgs']):
+                 server: pulumi.Input['ServerPropertiesArgs'],
+                 id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a CustomDomain resource.
+        :param pulumi.Input[str] id: (Required) The ID of the service
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "server", server)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
 
     @property
     @pulumi.getter
@@ -43,12 +47,25 @@ class CustomDomainArgs:
     def server(self, value: pulumi.Input['ServerPropertiesArgs']):
         pulumi.set(self, "server", value)
 
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Required) The ID of the service
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
 
 class CustomDomain(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[pulumi.InputType['ServerPropertiesArgs']]] = None,
                  __props__=None):
@@ -56,6 +73,7 @@ class CustomDomain(pulumi.CustomResource):
         Create a CustomDomain resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] id: (Required) The ID of the service
         """
         ...
     @overload
@@ -80,6 +98,7 @@ class CustomDomain(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[pulumi.InputType['ServerPropertiesArgs']]] = None,
                  __props__=None):
@@ -91,6 +110,7 @@ class CustomDomain(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = CustomDomainArgs.__new__(CustomDomainArgs)
 
+            __props__.__dict__["id"] = id
             if name is None and not opts.urn:
                 raise TypeError("Missing required property 'name'")
             __props__.__dict__["name"] = name

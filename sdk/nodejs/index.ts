@@ -9,11 +9,13 @@ export * from "./provider";
 
 // Export sub-modules:
 import * as config from "./config";
+import * as owners from "./owners";
 import * as services from "./services";
 import * as types from "./types";
 
 export {
     config,
+    owners,
     services,
     types,
 };

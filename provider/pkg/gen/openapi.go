@@ -50,9 +50,8 @@ func (o *openAPIContext) gatherResourcesFromAPI(csharpNamespaces map[string]stri
 		module := getRootPath(currentPath)
 
 		// TODO: TEMPORARY!
-		if currentPath == "/services/{id}/resume" ||
+		if currentPath == "/services/{serviceId}/resume" ||
 			strings.HasPrefix(currentPath, "/services/{serviceId}/jobs") ||
-			strings.HasPrefix(currentPath, "/services/{id}/jobs") ||
 			currentPath == "/services/{serviceId}/custom-domains/{id}/verify" {
 			continue
 		}
@@ -94,6 +93,47 @@ func (o *openAPIContext) gatherResourcesFromAPI(csharpNamespaces map[string]stri
 				}
 			}
 			// TODO: We'll should also add this as get*/list* provider functions.
+			if resourceType.Type == "array" {
+				funcName := strings.TrimPrefix(jsonReq.Schema.Ref, componentsSchemaRefPrefix)
+				parentName := ToPascalCase(funcName)
+				funcPkgCtx := &resourceContext{
+					mod:               module,
+					pkg:               o.pkg,
+					resourceName:      parentName,
+					openapiComponents: o.doc.Components,
+					visitedTypes:      codegen.NewStringSet(),
+				}
+
+				requiredInputs := codegen.NewStringSet()
+				inputProps := make(map[string]pschema.PropertySpec)
+				for _, param := range pathItem.Get.Parameters {
+					if param.Value.In != "path" {
+						continue
+					}
+
+					paramName := param.Value.Name
+					inputProps[paramName] = pschema.PropertySpec{
+						Description: param.Value.Description,
+						TypeSpec:    pschema.TypeSpec{Type: "string"},
+					}
+					requiredInputs.Add(paramName)
+				}
+
+				outputPropType, _ := funcPkgCtx.propertyTypeSpec("", *jsonReq.Schema)
+				funcTypeToken := packageName + ":" + module + ":" + funcName
+				o.pkg.Functions[funcTypeToken] = pschema.FunctionSpec{
+					Description: pathItem.Description,
+					Inputs: &pschema.ObjectTypeSpec{
+						Properties: inputProps,
+						Required:   requiredInputs.SortedValues(),
+					},
+					Outputs: &pschema.ObjectTypeSpec{
+						Type: outputPropType.Ref,
+					},
+				}
+
+				setReadOperationMapping(funcTypeToken)
+			}
 		}
 
 		if pathItem.Patch != nil {
@@ -220,7 +260,13 @@ func (o *openAPIContext) gatherResourcesFromAPI(csharpNamespaces map[string]stri
 			continue
 		}
 
-		if err := o.gatherResourceFromAPIPath(currentPath, *pathItem, module); err != nil {
+		jsonReq := pathItem.Post.RequestBody.Value.Content.Get(jsonMimeType)
+		if jsonReq.Schema.Value == nil {
+			return errors.Errorf("path %s has no api schema definition for post method", currentPath)
+		}
+
+		resourceType := jsonReq.Schema.Value
+		if err := o.gatherResource(currentPath, *resourceType, pathItem.Post.Parameters, module); err != nil {
 			return errors.Wrapf(err, "generating resource for api path %s", currentPath)
 		}
 
@@ -230,14 +276,11 @@ func (o *openAPIContext) gatherResourcesFromAPI(csharpNamespaces map[string]stri
 	return nil
 }
 
-func (o *openAPIContext) gatherResourceFromAPIPath(apiPath string, pathItem openapi3.PathItem, module string) error {
-	jsonReq := pathItem.Post.RequestBody.Value.Content.Get(jsonMimeType)
-	if jsonReq.Schema.Value == nil {
-		return errors.Errorf("path %s has no api schema definition for post method", apiPath)
-	}
-
-	resourceType := jsonReq.Schema.Value
-
+func (o *openAPIContext) gatherResource(
+	apiPath string,
+	resourceType openapi3.Schema,
+	pathParams openapi3.Parameters,
+	module string) error {
 	var resourceTypeToken *string
 	var err error
 
@@ -249,10 +292,10 @@ func (o *openAPIContext) gatherResourceFromAPIPath(apiPath string, pathItem open
 				return errors.Errorf("%s not found in api schemas for discriminated type in path %s", schemaName, apiPath)
 			}
 
-			resourceTypeToken, err = o.gatherResourceFromAPISchema(*typeSchema.Value, apiPath, module)
+			resourceTypeToken, err = o.gatherResourceProperties(*typeSchema.Value, apiPath, module)
 		}
 	} else {
-		resourceTypeToken, err = o.gatherResourceFromAPISchema(*resourceType, apiPath, module)
+		resourceTypeToken, err = o.gatherResourceProperties(resourceType, apiPath, module)
 	}
 
 	if err != nil {
@@ -264,7 +307,7 @@ func (o *openAPIContext) gatherResourceFromAPIPath(apiPath string, pathItem open
 
 	// If this endpoint path has path parameters,
 	// then those should be required inputs too.
-	for _, param := range pathItem.Parameters {
+	for _, param := range pathParams {
 		if param.Value.In != "path" {
 			continue
 		}
@@ -282,7 +325,7 @@ func (o *openAPIContext) gatherResourceFromAPIPath(apiPath string, pathItem open
 	return nil
 }
 
-func (o *openAPIContext) gatherResourceFromAPISchema(apiSchema openapi3.Schema, apiPath, module string) (*string, error) {
+func (o *openAPIContext) gatherResourceProperties(apiSchema openapi3.Schema, apiPath, module string) (*string, error) {
 	pkgCtx := &resourceContext{
 		mod:               module,
 		pkg:               o.pkg,

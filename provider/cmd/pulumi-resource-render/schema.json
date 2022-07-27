@@ -77,6 +77,9 @@
         }
     },
     "types": {
+        "render:owners:ListOwnersListOwners": {
+            "type": "object"
+        },
         "render:services:CustomDomainDomainType": {
             "type": "string",
             "enum": [
@@ -128,6 +131,24 @@
                     "type": "string"
                 }
             },
+            "type": "object"
+        },
+        "render:services:ListCustomDomainsListCustomDomains": {
+            "type": "object"
+        },
+        "render:services:ListDeploysListDeploys": {
+            "type": "object"
+        },
+        "render:services:ListEnvVarsListEnvVars": {
+            "type": "object"
+        },
+        "render:services:ListServiceHeadersListServiceHeaders": {
+            "type": "object"
+        },
+        "render:services:ListServicesListServices": {
+            "type": "object"
+        },
+        "render:services:ListStaticSiteRoutesListStaticSiteRoutes": {
             "type": "object"
         },
         "render:services:ServerProperties": {
@@ -717,6 +738,10 @@
                 "server"
             ],
             "inputProperties": {
+                "id": {
+                    "type": "string",
+                    "description": "(Required) The ID of the service"
+                },
                 "name": {
                     "type": "string"
                 },
@@ -744,6 +769,10 @@
                 "clearCache": {
                     "$ref": "#/types/render:services:DeployClearCache",
                     "default": "do_not_clear"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "(Required) The ID of the service"
                 }
             }
         },
@@ -760,6 +789,10 @@
             "inputProperties": {
                 "numInstances": {
                     "type": "number"
+                },
+                "serviceId": {
+                    "type": "string",
+                    "description": "(Required) The ID of the service"
                 }
             },
             "requiredInputs": [
@@ -878,7 +911,13 @@
             ]
         },
         "render:services:Suspend": {
-            "type": "object"
+            "type": "object",
+            "inputProperties": {
+                "serviceId": {
+                    "type": "string",
+                    "description": "(Required) The ID of the service"
+                }
+            }
         },
         "render:services:WebService": {
             "description": "A web service",
@@ -990,6 +1029,100 @@
                 "ownerId",
                 "repo"
             ]
+        }
+    },
+    "functions": {
+        "render:owners:listOwners": {
+            "inputs": {},
+            "outputs": {
+                "type": "#/types/render:owners:ListOwnersListOwners"
+            }
+        },
+        "render:services:listCustomDomains": {
+            "inputs": {
+                "properties": {
+                    "serviceId": {
+                        "type": "string",
+                        "description": "(Required) The ID of the service"
+                    }
+                },
+                "required": [
+                    "serviceId"
+                ]
+            },
+            "outputs": {
+                "type": "#/types/render:services:ListCustomDomainsListCustomDomains"
+            }
+        },
+        "render:services:listDeploys": {
+            "inputs": {
+                "properties": {
+                    "serviceId": {
+                        "type": "string",
+                        "description": "(Required) The ID of the service"
+                    }
+                },
+                "required": [
+                    "serviceId"
+                ]
+            },
+            "outputs": {
+                "type": "#/types/render:services:ListDeploysListDeploys"
+            }
+        },
+        "render:services:listEnvVars": {
+            "inputs": {
+                "properties": {
+                    "serviceId": {
+                        "type": "string",
+                        "description": "(Required) The ID of the service"
+                    }
+                },
+                "required": [
+                    "serviceId"
+                ]
+            },
+            "outputs": {
+                "type": "#/types/render:services:ListEnvVarsListEnvVars"
+            }
+        },
+        "render:services:listServiceHeaders": {
+            "inputs": {
+                "properties": {
+                    "serviceId": {
+                        "type": "string",
+                        "description": "(Required) The ID of the service"
+                    }
+                },
+                "required": [
+                    "serviceId"
+                ]
+            },
+            "outputs": {
+                "type": "#/types/render:services:ListServiceHeadersListServiceHeaders"
+            }
+        },
+        "render:services:listServices": {
+            "inputs": {},
+            "outputs": {
+                "type": "#/types/render:services:ListServicesListServices"
+            }
+        },
+        "render:services:listStaticSiteRoutes": {
+            "inputs": {
+                "properties": {
+                    "serviceId": {
+                        "type": "string",
+                        "description": "(Required) The ID of the service"
+                    }
+                },
+                "required": [
+                    "serviceId"
+                ]
+            },
+            "outputs": {
+                "type": "#/types/render:services:ListStaticSiteRoutesListStaticSiteRoutes"
+            }
         }
     }
 }

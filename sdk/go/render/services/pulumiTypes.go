@@ -93,6 +93,24 @@ func (o DeployCommitPtrOutput) Message() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type ListCustomDomainsListCustomDomains struct {
+}
+
+type ListDeploysListDeploys struct {
+}
+
+type ListEnvVarsListEnvVars struct {
+}
+
+type ListServiceHeadersListServiceHeaders struct {
+}
+
+type ListServicesListServices struct {
+}
+
+type ListStaticSiteRoutesListStaticSiteRoutes struct {
+}
+
 type ServerProperties struct {
 	Id   *string `pulumi:"id"`
 	Name *string `pulumi:"name"`

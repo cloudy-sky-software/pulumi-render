@@ -47,6 +47,7 @@ export class Deploy extends pulumi.CustomResource {
         opts = opts || {};
         if (!opts.id) {
             resourceInputs["clearCache"] = (args ? args.clearCache : undefined) ?? "do_not_clear";
+            resourceInputs["id"] = args ? args.id : undefined;
             resourceInputs["commit"] = undefined /*out*/;
         } else {
             resourceInputs["clearCache"] = undefined /*out*/;
@@ -62,4 +63,8 @@ export class Deploy extends pulumi.CustomResource {
  */
 export interface DeployArgs {
     clearCache?: pulumi.Input<enums.services.DeployClearCache>;
+    /**
+     * (Required) The ID of the service
+     */
+    id?: pulumi.Input<string>;
 }

@@ -79,6 +79,12 @@ namespace Pulumi.Render.Services
 
     public sealed class CustomDomainArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// (Required) The ID of the service
+        /// </summary>
+        [Input("id")]
+        public Input<string>? Id { get; set; }
+
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 

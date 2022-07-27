@@ -6,6 +6,9 @@ import { input as inputs, output as outputs, enums } from "../types";
 
 import * as utilities from "../utilities";
 
+export namespace owners {
+}
+
 export namespace services {
     export interface ServerPropertiesArgs {
         id?: pulumi.Input<string>;

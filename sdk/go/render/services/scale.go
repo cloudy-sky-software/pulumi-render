@@ -61,11 +61,15 @@ func (ScaleState) ElementType() reflect.Type {
 
 type scaleArgs struct {
 	NumInstances float64 `pulumi:"numInstances"`
+	// (Required) The ID of the service
+	ServiceId *string `pulumi:"serviceId"`
 }
 
 // The set of arguments for constructing a Scale resource.
 type ScaleArgs struct {
 	NumInstances pulumi.Float64Input
+	// (Required) The ID of the service
+	ServiceId pulumi.StringPtrInput
 }
 
 func (ScaleArgs) ElementType() reflect.Type {

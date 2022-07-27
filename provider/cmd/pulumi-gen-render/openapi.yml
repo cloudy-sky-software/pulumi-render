@@ -43,6 +43,10 @@ components:
         owner:
           type: object
           $ref: "#/components/schemas/owner"
+    listOwners:
+      type: array
+      items:
+        $ref: "#/components/schemas/listOwnersResponse"
     serviceHeader:
       description: "A service header object"
       type: object
@@ -366,7 +370,7 @@ components:
           oneOf:
             - $ref: "#/components/schemas/staticSite"
             - $ref: "#/components/schemas/webService"
-    listService:
+    listServices:
       type: array
       items:
         $ref: "#/components/schemas/listServiceResponse"
@@ -569,9 +573,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/listOwnersResponse"
+                $ref: "#/components/schemas/listOwners"
               example:
                 - owner:
                     id: tempor labore voluptate velit dolore
@@ -897,7 +899,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/listService"
+                $ref: "#/components/schemas/listServices"
               example:
                 - service:
                     id: irure occaecat aute reprehenderit
@@ -1797,7 +1799,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{id}/env-vars:
+  /services/{serviceId}/env-vars:
     get:
       tags:
         - Services
@@ -1822,7 +1824,7 @@ paths:
             type: integer
           description: Max number of items that can be returned
           example: "20"
-        - name: id
+        - name: serviceId
           in: path
           schema:
             type: string
@@ -2143,7 +2145,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{id}/headers:
+  /services/{serviceId}/headers:
     get:
       tags:
         - Services
@@ -2186,7 +2188,7 @@ paths:
             type: integer
           description: Max number of items that can be returned
           example: "20"
-        - name: id
+        - name: serviceId
           in: path
           schema:
             type: string
@@ -2328,7 +2330,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{id}/routes:
+  /services/{serviceId}/routes:
     get:
       tags:
         - Services
@@ -2371,7 +2373,7 @@ paths:
             type: integer
           description: Max number of items that can be returned
           example: "20"
-        - name: id
+        - name: serviceId
           in: path
           schema:
             type: string
@@ -2513,7 +2515,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{id}/suspend:
+  /services/{serviceId}/suspend:
     post:
       tags:
         - Services
@@ -2531,7 +2533,7 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: id
+        - name: serviceId
           in: path
           schema:
             type: string
@@ -2677,7 +2679,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{id}/resume:
+  /services/{serviceId}/resume:
     post:
       tags:
         - Services
@@ -2692,7 +2694,7 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: id
+        - name: serviceId
           in: path
           schema:
             type: string
@@ -2838,7 +2840,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{id}/scale:
+  /services/{serviceId}/scale:
     post:
       tags:
         - Services
@@ -2868,7 +2870,7 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: id
+        - name: serviceId
           in: path
           schema:
             type: string
@@ -3023,7 +3025,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{id}/deploys:
+  /services/{serviceId}/deploys:
     get:
       tags:
         - Deploys
@@ -3060,7 +3062,7 @@ paths:
             type: integer
           description: Max number of items that can be returned
           example: "20"
-        - name: id
+        - name: serviceId
           in: path
           schema:
             type: string
@@ -3554,7 +3556,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{id}/custom-domains:
+  /services/{serviceId}/custom-domains:
     get:
       tags:
         - Custom Domains
@@ -3613,7 +3615,7 @@ paths:
             Filter for custom domains created after a certain time (specified as
             an ISO 8601 timestamp)
           example: "2021-02-17T08:15:30Z"
-        - name: id
+        - name: serviceId
           in: path
           schema:
             type: string
@@ -4517,7 +4519,7 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
-  /services/{id}/jobs:
+  /services/{serviceId}/jobs:
     get:
       tags:
         - Jobs
@@ -4598,7 +4600,7 @@ paths:
             Filter for jobs finished after a certain time (specified as an ISO
             8601 timestamp)
           example: "2021-02-17T08:15:30Z"
-        - name: id
+        - name: serviceId
           in: path
           schema:
             type: string

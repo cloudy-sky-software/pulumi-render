@@ -49,3 +49,15 @@ func TestDiff(t *testing.T) {
 	assert.Len(t, resp.Diffs, 1)
 	assert.Empty(t, resp.Replaces)
 }
+
+func TestGetResourceState(t *testing.T) {
+	outputs := make(map[string]interface{})
+	outputs["name"] = "Test"
+	outputs["id"] = "someid"
+
+	inputs := make(map[string]interface{})
+	inputs["name"] = "Test"
+
+	state := getResourceState(outputs, resource.NewPropertyMapFromMap(inputs))
+	assert.True(t, state.HasValue(resource.PropertyKey(stateKeyInputs)))
+}

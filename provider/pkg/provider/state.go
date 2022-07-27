@@ -9,6 +9,7 @@ import (
 const stateKeyInputs = "__inputs"
 
 var defaultMarshalOpts = plugin.MarshalOptions{KeepUnknowns: true, KeepSecrets: true, SkipNulls: true}
+var defaultUnmarshalOpts = plugin.MarshalOptions{KeepUnknowns: true, KeepSecrets: true, SkipNulls: true}
 
 func getResourceState(outputs map[string]interface{}, inputs resource.PropertyMap) resource.PropertyMap {
 	state := resource.NewPropertyMapFromMap(outputs)

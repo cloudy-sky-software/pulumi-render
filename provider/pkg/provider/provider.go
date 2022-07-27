@@ -214,7 +214,7 @@ func (p *renderProvider) Check(ctx context.Context, req *pulumirpc.CheckRequest)
 
 // Diff checks what impacts a hypothetical update will have on the resource's properties.
 func (p *renderProvider) Diff(ctx context.Context, req *pulumirpc.DiffRequest) (*pulumirpc.DiffResponse, error) {
-	oldState, err := plugin.UnmarshalProperties(req.GetOlds(), defaultMarshalOpts)
+	oldState, err := plugin.UnmarshalProperties(req.GetOlds(), defaultUnmarshalOpts)
 	if err != nil {
 		return nil, err
 	}
@@ -224,7 +224,7 @@ func (p *renderProvider) Diff(ctx context.Context, req *pulumirpc.DiffRequest) (
 		return nil, errors.New("fetching old inputs from the state")
 	}
 
-	news, err := plugin.UnmarshalProperties(req.GetNews(), defaultMarshalOpts)
+	news, err := plugin.UnmarshalProperties(req.GetNews(), defaultUnmarshalOpts)
 	if err != nil {
 		return nil, err
 	}
@@ -284,7 +284,7 @@ func (p *renderProvider) Diff(ctx context.Context, req *pulumirpc.DiffRequest) (
 
 // Create allocates a new instance of the provided resource and returns its unique ID afterwards.
 func (p *renderProvider) Create(ctx context.Context, req *pulumirpc.CreateRequest) (*pulumirpc.CreateResponse, error) {
-	inputs, err := plugin.UnmarshalProperties(req.GetProperties(), defaultMarshalOpts)
+	inputs, err := plugin.UnmarshalProperties(req.GetProperties(), defaultUnmarshalOpts)
 	if err != nil {
 		return nil, errors.Wrap(err, "unmarshal input properties as propertymap")
 	}
@@ -395,7 +395,7 @@ func (p *renderProvider) Create(ctx context.Context, req *pulumirpc.CreateReques
 
 // Read the current live state associated with a resource.
 func (p *renderProvider) Read(ctx context.Context, req *pulumirpc.ReadRequest) (*pulumirpc.ReadResponse, error) {
-	oldState, err := plugin.UnmarshalProperties(req.GetProperties(), defaultMarshalOpts)
+	oldState, err := plugin.UnmarshalProperties(req.GetProperties(), defaultUnmarshalOpts)
 	if err != nil {
 		return nil, errors.Wrap(err, "unmarshal input properties as propertymap")
 	}
@@ -506,9 +506,14 @@ func (p *renderProvider) Read(ctx context.Context, req *pulumirpc.ReadRequest) (
 
 // Update updates an existing resource with new values.
 func (p *renderProvider) Update(ctx context.Context, req *pulumirpc.UpdateRequest) (*pulumirpc.UpdateResponse, error) {
-	inputs, err := plugin.UnmarshalProperties(req.News, plugin.MarshalOptions{KeepUnknowns: true, SkipNulls: true})
+	oldState, err := plugin.UnmarshalProperties(req.Olds, defaultUnmarshalOpts)
 	if err != nil {
-		return nil, errors.Wrap(err, "unmarshal input properties as propertymap")
+		return nil, errors.Wrap(err, "unmarshal olds as propertymap")
+	}
+
+	inputs, err := plugin.UnmarshalProperties(req.News, defaultUnmarshalOpts)
+	if err != nil {
+		return nil, errors.Wrap(err, "unmarshal news as propertymap")
 	}
 
 	resourceTypeToken := getResourceTypeToken(req.GetUrn())
@@ -554,7 +559,7 @@ func (p *renderProvider) Update(ctx context.Context, req *pulumirpc.UpdateReques
 	if hasPathParams {
 		var err error
 
-		pathParams, err = p.getPathParamsMap(resourceTypeToken, httpEndpointPath, method, inputs)
+		pathParams, err = p.getPathParamsMap(resourceTypeToken, httpEndpointPath, method, oldState)
 		if err != nil {
 			return nil, errors.Wrap(err, "getting path params")
 		}
@@ -659,7 +664,7 @@ func (p *renderProvider) executeResumeSerivce(ctx context.Context, serviceID str
 // Delete tears down an existing resource with the given ID.  If it fails, the resource is assumed
 // to still exist.
 func (p *renderProvider) Delete(ctx context.Context, req *pulumirpc.DeleteRequest) (*pbempty.Empty, error) {
-	inputs, err := plugin.UnmarshalProperties(req.GetProperties(), plugin.MarshalOptions{KeepUnknowns: true, SkipNulls: true})
+	inputs, err := plugin.UnmarshalProperties(req.GetProperties(), defaultUnmarshalOpts)
 	if err != nil {
 		return nil, errors.Wrap(err, "unmarshal input properties as propertymap")
 	}

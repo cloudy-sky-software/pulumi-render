@@ -259,7 +259,7 @@ func (p *renderProvider) Diff(ctx context.Context, req *pulumirpc.DiffRequest) (
 	changes := pulumirpc.DiffResponse_DIFF_SOME
 	jsonReq := patchOp.RequestBody.Value.Content[jsonMimeType]
 
-	if len(jsonReq.Schema.Value.OneOf) > 0 {
+	if len(jsonReq.Schema.Value.AnyOf) > 0 {
 		// HACK! Taking a shortcut to handle service type-specific updates.
 		switch resourceTypeToken {
 		case "render:services:StaticSite":

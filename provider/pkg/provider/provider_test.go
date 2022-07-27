@@ -51,12 +51,13 @@ func TestDiff(t *testing.T) {
 }
 
 func TestGetResourceState(t *testing.T) {
+	val := "Testing"
 	outputs := make(map[string]interface{})
-	outputs["name"] = "Test"
+	outputs["name"] = val
 	outputs["id"] = "someid"
 
 	inputs := make(map[string]interface{})
-	inputs["name"] = "Test"
+	inputs["name"] = val
 
 	state := getResourceState(outputs, resource.NewPropertyMapFromMap(inputs))
 	assert.True(t, state.HasValue(resource.PropertyKey(stateKeyInputs)))

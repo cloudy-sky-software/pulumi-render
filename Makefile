@@ -1,5 +1,7 @@
 PROJECT_NAME := Pulumi Render Resource Provider
 
+SHELL = /bin/bash
+
 PACK             := render
 PACKDIR          := sdk
 PROJECT          := github.com/cloudy-sky-software/pulumi-render

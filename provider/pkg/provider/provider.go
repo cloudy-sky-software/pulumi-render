@@ -176,6 +176,7 @@ func (p *renderProvider) Configure(_ context.Context, req *pulumirpc.ConfigureRe
 		}
 	}
 
+	logging.V(3).Info("Configuring Render API key")
 	p.apiKey = apiKey
 
 	clearCacheOnServiceUpdateDeployments, ok := req.GetVariables()["render:config:clearCacheOnServiceUpdateDeployments"]
@@ -183,7 +184,9 @@ func (p *renderProvider) Configure(_ context.Context, req *pulumirpc.ConfigureRe
 		p.clearCacheOnServiceUpdateDeployments = clearCacheOnServiceUpdateDeployments
 	}
 
-	return &pulumirpc.ConfigureResponse{}, nil
+	return &pulumirpc.ConfigureResponse{
+		AcceptSecrets: true,
+	}, nil
 }
 
 // Invoke dynamically executes a built-in function in the provider.
@@ -211,20 +214,31 @@ func (p *renderProvider) Check(ctx context.Context, req *pulumirpc.CheckRequest)
 
 // Diff checks what impacts a hypothetical update will have on the resource's properties.
 func (p *renderProvider) Diff(ctx context.Context, req *pulumirpc.DiffRequest) (*pulumirpc.DiffResponse, error) {
-	olds, err := plugin.UnmarshalProperties(req.GetOlds(), plugin.MarshalOptions{KeepUnknowns: true, SkipNulls: true})
+	oldState, err := plugin.UnmarshalProperties(req.GetOlds(), defaultUnmarshalOpts)
 	if err != nil {
 		return nil, err
 	}
 
-	news, err := plugin.UnmarshalProperties(req.GetNews(), plugin.MarshalOptions{KeepUnknowns: true, SkipNulls: true})
+	olds := getOldInputs(oldState)
+	if olds == nil {
+		return nil, errors.New("fetching old inputs from the state")
+	}
+
+	news, err := plugin.UnmarshalProperties(req.GetNews(), defaultUnmarshalOpts)
 	if err != nil {
 		return nil, err
 	}
 
+	logging.V(3).Infof("Calculating diff: olds: %v; news: %v", olds, news)
 	d := olds.Diff(news)
 	if d == nil || !d.AnyChanges() {
 		return &pulumirpc.DiffResponse{Changes: pulumirpc.DiffResponse_DIFF_NONE}, nil
 	}
+
+	logging.V(3).Info("Detected some changes...")
+	logging.V(4).Infof("ADDS: %v", d.Adds)
+	logging.V(4).Infof("DELETES: %v", d.Deletes)
+	logging.V(4).Infof("UPDATES: %v", d.Updates)
 
 	resourceTypeToken := getResourceTypeToken(req.GetUrn())
 	crudMap, ok := p.metadata.ResourceCRUDMap[resourceTypeToken]
@@ -240,46 +254,29 @@ func (p *renderProvider) Diff(ctx context.Context, req *pulumirpc.DiffRequest) (
 		return nil, errors.Errorf("openapi doc does not have patch endpoint definition for the path %s", *crudMap.U)
 	}
 
+	var replaces []string
+	var diffs []string
+	changes := pulumirpc.DiffResponse_DIFF_SOME
 	jsonReq := patchOp.RequestBody.Value.Content[jsonMimeType]
 
-	replaces := make([]string, 0)
-	diffs := make([]string, 0)
-
-	for propKey := range d.Adds {
-		prop := string(propKey)
-		// If the added property is not part of the PATCH operation schema,
-		// then suggest a replacement triggered by this property.
-		if _, ok := jsonReq.Schema.Value.Properties[prop]; !ok {
-			replaces = append(replaces, prop)
-		} else {
-			diffs = append(diffs, prop)
+	if len(jsonReq.Schema.Value.AnyOf) > 0 {
+		// HACK! Taking a shortcut to handle service type-specific updates.
+		switch resourceTypeToken {
+		case "render:services:StaticSite":
+			replaces, diffs = p.determineDiffsAndReplacements(d, p.openapiDoc.Components.Schemas["patchStaticSite"].Value.Properties)
+		case "render:services:WebService":
+			replaces, diffs = p.determineDiffsAndReplacements(d, p.openapiDoc.Components.Schemas["patchWebService"].Value.Properties)
 		}
+	} else if len(jsonReq.Schema.Value.Properties) != 0 {
+		replaces, diffs = p.determineDiffsAndReplacements(d, jsonReq.Schema.Value.Properties)
+	} else {
+		changes = pulumirpc.DiffResponse_DIFF_UNKNOWN
 	}
 
-	for propKey := range d.Updates {
-		prop := string(propKey)
-		// If the updated property is not part of the PATCH operation schema,
-		// then suggest a replacement triggered by this property.
-		if _, ok := jsonReq.Schema.Value.Properties[prop]; !ok {
-			replaces = append(replaces, prop)
-		} else {
-			diffs = append(diffs, prop)
-		}
-	}
-
-	for propKey := range d.Deletes {
-		prop := string(propKey)
-		// If the deleted property is not part of the PATCH operation schema,
-		// then suggest a replacement triggered by this property.
-		if _, ok := jsonReq.Schema.Value.Properties[prop]; !ok {
-			replaces = append(replaces, prop)
-		} else {
-			diffs = append(diffs, prop)
-		}
-	}
+	logging.V(3).Infof("Diff response: replaces: %v; diffs: %v", replaces, diffs)
 
 	return &pulumirpc.DiffResponse{
-		Changes:  pulumirpc.DiffResponse_DIFF_SOME,
+		Changes:  changes,
 		Replaces: replaces,
 		Diffs:    diffs,
 	}, nil
@@ -287,7 +284,7 @@ func (p *renderProvider) Diff(ctx context.Context, req *pulumirpc.DiffRequest) (
 
 // Create allocates a new instance of the provided resource and returns its unique ID afterwards.
 func (p *renderProvider) Create(ctx context.Context, req *pulumirpc.CreateRequest) (*pulumirpc.CreateResponse, error) {
-	inputs, err := plugin.UnmarshalProperties(req.GetProperties(), plugin.MarshalOptions{KeepUnknowns: true, SkipNulls: true})
+	inputs, err := plugin.UnmarshalProperties(req.GetProperties(), defaultUnmarshalOpts)
 	if err != nil {
 		return nil, errors.Wrap(err, "unmarshal input properties as propertymap")
 	}
@@ -380,10 +377,7 @@ func (p *renderProvider) Create(ctx context.Context, req *pulumirpc.CreateReques
 		outputs = service.(map[string]interface{})
 	}
 
-	outputProperties, err := plugin.MarshalProperties(
-		resource.NewPropertyMapFromMap(outputs),
-		plugin.MarshalOptions{KeepUnknowns: true, SkipNulls: true},
-	)
+	outputProperties, err := plugin.MarshalProperties(getResourceState(outputs, inputs), defaultMarshalOpts)
 	if err != nil {
 		return nil, errors.Wrap(err, "marshaling the output properties map")
 	}
@@ -401,7 +395,7 @@ func (p *renderProvider) Create(ctx context.Context, req *pulumirpc.CreateReques
 
 // Read the current live state associated with a resource.
 func (p *renderProvider) Read(ctx context.Context, req *pulumirpc.ReadRequest) (*pulumirpc.ReadResponse, error) {
-	inputs, err := plugin.UnmarshalProperties(req.GetProperties(), plugin.MarshalOptions{KeepUnknowns: true, SkipNulls: true})
+	oldState, err := plugin.UnmarshalProperties(req.GetProperties(), defaultUnmarshalOpts)
 	if err != nil {
 		return nil, errors.Wrap(err, "unmarshal input properties as propertymap")
 	}
@@ -434,7 +428,7 @@ func (p *renderProvider) Read(ctx context.Context, req *pulumirpc.ReadRequest) (
 	if hasPathParams {
 		var err error
 
-		pathParams, err = p.getPathParamsMap(resourceTypeToken, httpEndpointPath, http.MethodGet, inputs)
+		pathParams, err = p.getPathParamsMap(resourceTypeToken, httpEndpointPath, http.MethodGet, oldState)
 		if err != nil {
 			return nil, errors.Wrap(err, "getting path params")
 		}
@@ -474,10 +468,20 @@ func (p *renderProvider) Read(ctx context.Context, req *pulumirpc.ReadRequest) (
 		return nil, errors.Wrap(err, "unmarshaling the response")
 	}
 
-	outputProperties, err := plugin.MarshalProperties(
-		resource.NewPropertyMapFromMap(outputs),
-		plugin.MarshalOptions{KeepUnknowns: true, SkipNulls: true},
-	)
+	inputs := getOldInputs(oldState)
+	// If there is no old state, then persist the current outputs as the
+	// "old" inputs going forward for this resource.
+	if inputs == nil {
+		inputs = resource.NewPropertyMapFromMap(outputs)
+	} else {
+		// Take the values from outputs and apply them to the inputs
+		// so that the checkpoint is in-sync with the state in the
+		// cloud provider.
+		newState := resource.NewPropertyMapFromMap(outputs)
+		inputs = applyDiffFromCloudProvider(newState, inputs)
+	}
+
+	outputProperties, err := plugin.MarshalProperties(getResourceState(outputs, inputs), defaultMarshalOpts)
 	if err != nil {
 		return nil, errors.Wrap(err, "marshaling the output properties map")
 	}
@@ -487,17 +491,29 @@ func (p *renderProvider) Read(ctx context.Context, req *pulumirpc.ReadRequest) (
 		return nil, errors.New("looking up id property from the response")
 	}
 
+	// Serialize and return the calculated inputs.
+	inputsRecord, err := plugin.MarshalProperties(inputs, defaultMarshalOpts)
+	if err != nil {
+		return nil, err
+	}
+
 	return &pulumirpc.ReadResponse{
 		Id:         id.(string),
+		Inputs:     inputsRecord,
 		Properties: outputProperties,
 	}, nil
 }
 
 // Update updates an existing resource with new values.
 func (p *renderProvider) Update(ctx context.Context, req *pulumirpc.UpdateRequest) (*pulumirpc.UpdateResponse, error) {
-	inputs, err := plugin.UnmarshalProperties(req.News, plugin.MarshalOptions{KeepUnknowns: true, SkipNulls: true})
+	oldState, err := plugin.UnmarshalProperties(req.Olds, defaultUnmarshalOpts)
 	if err != nil {
-		return nil, errors.Wrap(err, "unmarshal input properties as propertymap")
+		return nil, errors.Wrap(err, "unmarshal olds as propertymap")
+	}
+
+	inputs, err := plugin.UnmarshalProperties(req.News, defaultUnmarshalOpts)
+	if err != nil {
+		return nil, errors.Wrap(err, "unmarshal news as propertymap")
 	}
 
 	resourceTypeToken := getResourceTypeToken(req.GetUrn())
@@ -543,7 +559,7 @@ func (p *renderProvider) Update(ctx context.Context, req *pulumirpc.UpdateReques
 	if hasPathParams {
 		var err error
 
-		pathParams, err = p.getPathParamsMap(resourceTypeToken, httpEndpointPath, method, inputs)
+		pathParams, err = p.getPathParamsMap(resourceTypeToken, httpEndpointPath, method, oldState)
 		if err != nil {
 			return nil, errors.Wrap(err, "getting path params")
 		}
@@ -583,10 +599,7 @@ func (p *renderProvider) Update(ctx context.Context, req *pulumirpc.UpdateReques
 
 	logging.V(3).Infof("RESPONSE BODY: %v", outputs)
 
-	outputProperties, err := plugin.MarshalProperties(
-		resource.NewPropertyMapFromMap(outputs),
-		plugin.MarshalOptions{KeepUnknowns: true, SkipNulls: true},
-	)
+	outputProperties, err := plugin.MarshalProperties(getResourceState(outputs, inputs), defaultMarshalOpts)
 	if err != nil {
 		return nil, errors.Wrap(err, "marshaling the output properties map")
 	}
@@ -651,7 +664,7 @@ func (p *renderProvider) executeResumeSerivce(ctx context.Context, serviceID str
 // Delete tears down an existing resource with the given ID.  If it fails, the resource is assumed
 // to still exist.
 func (p *renderProvider) Delete(ctx context.Context, req *pulumirpc.DeleteRequest) (*pbempty.Empty, error) {
-	inputs, err := plugin.UnmarshalProperties(req.GetProperties(), plugin.MarshalOptions{KeepUnknowns: true, SkipNulls: true})
+	inputs, err := plugin.UnmarshalProperties(req.GetProperties(), defaultUnmarshalOpts)
 	if err != nil {
 		return nil, errors.Wrap(err, "unmarshal input properties as propertymap")
 	}

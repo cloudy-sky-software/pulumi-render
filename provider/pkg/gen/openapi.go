@@ -51,6 +51,7 @@ func (o *openAPIContext) gatherResourcesFromAPI(csharpNamespaces map[string]stri
 
 		// TODO: TEMPORARY!
 		if currentPath == "/services/{id}/resume" ||
+			strings.HasPrefix(currentPath, "/services/{serviceId}/jobs") ||
 			strings.HasPrefix(currentPath, "/services/{id}/jobs") ||
 			currentPath == "/services/{serviceId}/custom-domains/{id}/verify" {
 			continue
@@ -115,7 +116,7 @@ func (o *openAPIContext) gatherResourcesFromAPI(csharpNamespaces map[string]stri
 			}
 
 			resourceType := jsonReq.Schema.Value
-			if resourceType.Discriminator != nil || len(resourceType.OneOf) > 0 {
+			if resourceType.Discriminator != nil || len(resourceType.OneOf) > 0 || len(resourceType.AnyOf) > 0 {
 				schemaNames := make([]string, 0)
 				if resourceType.Discriminator != nil {
 					for _, ref := range resourceType.Discriminator.Mapping {
@@ -126,6 +127,13 @@ func (o *openAPIContext) gatherResourcesFromAPI(csharpNamespaces map[string]stri
 
 				if len(resourceType.OneOf) > 0 {
 					for _, ref := range resourceType.OneOf {
+						schemaName := strings.TrimPrefix(ref.Ref, componentsSchemaRefPrefix)
+						schemaNames = append(schemaNames, schemaName)
+					}
+				}
+
+				if len(resourceType.AnyOf) > 0 {
+					for _, ref := range resourceType.AnyOf {
 						schemaName := strings.TrimPrefix(ref.Ref, componentsSchemaRefPrefix)
 						schemaNames = append(schemaNames, schemaName)
 					}

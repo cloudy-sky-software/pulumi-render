@@ -84,6 +84,8 @@ func (p *renderProvider) getPathParamsMap(resourceTypeToken, apiPath, requestMet
 		return pathParams, nil
 	}
 
+	oldInputs := getOldInputs(properties)
+
 	logging.V(3).Infof("Process path parameters with %v", properties)
 	count := 0
 	for _, param := range parameters {
@@ -94,9 +96,25 @@ func (p *renderProvider) getPathParamsMap(resourceTypeToken, apiPath, requestMet
 		count++
 		paramName := param.Value.Name
 		logging.V(3).Infof("Looking for path param %q in resource inputs", paramName)
-		property := properties[resource.PropertyKey(paramName)]
+		property, ok := properties[resource.PropertyKey(paramName)]
+		// If the path param is not in the properties, check if
+		// we have the old inputs, if we are dealing with the state
+		// of an existing resource.
+		if !ok {
+			if oldInputs == nil {
+				return nil, errors.Errorf("did not find value for path param %s in output props (old inputs was nil)", paramName)
+			}
+
+			property, ok = oldInputs[resource.PropertyKey(paramName)]
+			if !ok {
+				return nil, errors.Errorf("did not find value for path param %s in output props and old inputs", paramName)
+			}
+		}
+
 		if property.IsComputed() {
 			pathParams[paramName] = property.Input().Element.StringValue()
+		} else if property.IsSecret() {
+			pathParams[paramName] = property.SecretValue().Element.StringValue()
 		} else {
 			pathParams[paramName] = property.StringValue()
 		}
@@ -120,4 +138,44 @@ func (p *renderProvider) replacePathParams(path string, pathParams map[string]st
 	}
 
 	return path
+}
+
+func (p *renderProvider) determineDiffsAndReplacements(d *resource.ObjectDiff, properties openapi3.Schemas) ([]string, []string) {
+	replaces := make([]string, 0)
+	diffs := make([]string, 0)
+
+	for propKey := range d.Adds {
+		prop := string(propKey)
+		// If the added property is not part of the PATCH operation schema,
+		// then suggest a replacement triggered by this property.
+		if _, ok := properties[prop]; !ok {
+			replaces = append(replaces, prop)
+		} else {
+			diffs = append(diffs, prop)
+		}
+	}
+
+	for propKey := range d.Updates {
+		prop := string(propKey)
+		// If the updated property is not part of the PATCH operation schema,
+		// then suggest a replacement triggered by this property.
+		if _, ok := properties[prop]; !ok {
+			replaces = append(replaces, prop)
+		} else {
+			diffs = append(diffs, prop)
+		}
+	}
+
+	for propKey := range d.Deletes {
+		prop := string(propKey)
+		// If the deleted property is not part of the PATCH operation schema,
+		// then suggest a replacement triggered by this property.
+		if _, ok := properties[prop]; !ok {
+			replaces = append(replaces, prop)
+		} else {
+			diffs = append(diffs, prop)
+		}
+	}
+
+	return replaces, diffs
 }

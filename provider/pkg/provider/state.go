@@ -1,8 +1,14 @@
 package provider
 
-import "github.com/pulumi/pulumi/sdk/v3/go/common/resource"
+import (
+	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
+
+	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
+)
 
 const stateKeyInputs = "__inputs"
+
+var defaultMarshalOpts = plugin.MarshalOptions{KeepUnknowns: true, KeepSecrets: true, SkipNulls: true}
 
 func getResourceState(outputs map[string]interface{}, inputs resource.PropertyMap) resource.PropertyMap {
 	state := resource.NewPropertyMapFromMap(outputs)

@@ -292,6 +292,8 @@ func (p *renderProvider) Diff(ctx context.Context, req *pulumirpc.DiffRequest) (
 		}
 	}
 
+	logging.V(3).Infof("Returning diff response: replaces: %v; diffs: %v", replaces, diffs)
+
 	return &pulumirpc.DiffResponse{
 		Changes:  pulumirpc.DiffResponse_DIFF_SOME,
 		Replaces: replaces,

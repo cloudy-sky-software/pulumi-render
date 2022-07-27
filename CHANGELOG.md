@@ -1,3 +1,7 @@
+## 0.0.33
+
+Fix for handling updates vs. replacements.
+
 ## 0.0.32
 
 Fix for path param handling when dealing with output properties.

@@ -24,7 +24,7 @@ export interface ListCustomDomainsArgs {
 }
 
 export interface ListCustomDomainsResult {
-    readonly value: outputs.services.ListCustomDomainsResponse[][];
+    readonly value: outputs.services.ListCustomDomainsResponse[];
 }
 
 export function listCustomDomainsOutput(args: ListCustomDomainsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListCustomDomainsResult> {

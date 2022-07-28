@@ -26,7 +26,7 @@ class ListServiceHeadersResult:
 
     @property
     @pulumi.getter
-    def value(self) -> Sequence[Sequence['outputs.ListServiceHeadersResponse']]:
+    def value(self) -> Sequence['outputs.ListServiceHeadersResponse']:
         return pulumi.get(self, "value")
 
 

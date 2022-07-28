@@ -3,13 +3,6 @@
 
 package owners
 
-import (
-	"context"
-	"reflect"
-
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-)
-
 type ListOwnersResponse struct {
 	Cursor *string `pulumi:"cursor"`
 	// The owner object represents an authorized user or team. The `type` property indicates if the owner is a user or team.

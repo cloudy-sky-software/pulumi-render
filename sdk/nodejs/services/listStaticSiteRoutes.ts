@@ -24,7 +24,7 @@ export interface ListStaticSiteRoutesArgs {
 }
 
 export interface ListStaticSiteRoutesResult {
-    readonly value: outputs.services.ListStaticSiteRoutesResponse[][];
+    readonly value: outputs.services.ListStaticSiteRoutesResponse[];
 }
 
 export function listStaticSiteRoutesOutput(args: ListStaticSiteRoutesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListStaticSiteRoutesResult> {

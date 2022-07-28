@@ -27,10 +27,10 @@ namespace Pulumi.Render.Services
     [OutputType]
     public sealed class ListServicesResult
     {
-        public readonly ImmutableArray<ImmutableArray<Outputs.ListServiceResponse>> Value;
+        public readonly ImmutableArray<Outputs.ListServiceResponse> Value;
 
         [OutputConstructor]
-        private ListServicesResult(ImmutableArray<ImmutableArray<Outputs.ListServiceResponse>> value)
+        private ListServicesResult(ImmutableArray<Outputs.ListServiceResponse> value)
         {
             Value = value;
         }

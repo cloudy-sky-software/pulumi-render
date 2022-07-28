@@ -27,7 +27,7 @@ class ListDeploysResult:
 
     @property
     @pulumi.getter
-    def value(self) -> Sequence[Sequence['outputs.ListDeploysResponse']]:
+    def value(self) -> Sequence['outputs.ListDeploysResponse']:
         return pulumi.get(self, "value")
 
 

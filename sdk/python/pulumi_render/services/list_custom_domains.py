@@ -27,7 +27,7 @@ class ListCustomDomainsResult:
 
     @property
     @pulumi.getter
-    def value(self) -> Sequence[Sequence['outputs.ListCustomDomainsResponse']]:
+    def value(self) -> Sequence['outputs.ListCustomDomainsResponse']:
         return pulumi.get(self, "value")
 
 

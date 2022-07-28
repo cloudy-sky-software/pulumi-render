@@ -27,10 +27,10 @@ namespace Pulumi.Render.Owners
     [OutputType]
     public sealed class ListOwnersResult
     {
-        public readonly ImmutableArray<ImmutableArray<Outputs.ListOwnersResponse>> Value;
+        public readonly ImmutableArray<Outputs.ListOwnersResponse> Value;
 
         [OutputConstructor]
-        private ListOwnersResult(ImmutableArray<ImmutableArray<Outputs.ListOwnersResponse>> value)
+        private ListOwnersResult(ImmutableArray<Outputs.ListOwnersResponse> value)
         {
             Value = value;
         }

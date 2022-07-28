@@ -24,7 +24,7 @@ export interface ListEnvVarsArgs {
 }
 
 export interface ListEnvVarsResult {
-    readonly value: outputs.services.ListEnvVarsResponse[][];
+    readonly value: outputs.services.ListEnvVarsResponse[];
 }
 
 export function listEnvVarsOutput(args: ListEnvVarsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListEnvVarsResult> {

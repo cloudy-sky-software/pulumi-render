@@ -27,7 +27,7 @@ class ListStaticSiteRoutesResult:
 
     @property
     @pulumi.getter
-    def value(self) -> Sequence[Sequence['outputs.ListStaticSiteRoutesResponse']]:
+    def value(self) -> Sequence['outputs.ListStaticSiteRoutesResponse']:
         return pulumi.get(self, "value")
 
 

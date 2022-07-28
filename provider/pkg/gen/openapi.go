@@ -132,10 +132,7 @@ func (o *openAPIContext) gatherResourcesFromAPI(csharpNamespaces map[string]stri
 					Outputs: &pschema.ObjectTypeSpec{
 						Properties: map[string]pschema.PropertySpec{
 							"value": {
-								TypeSpec: pschema.TypeSpec{
-									Type:  "array",
-									Items: outputPropType,
-								},
+								TypeSpec: *outputPropType,
 							},
 						},
 						Required: []string{"value"},

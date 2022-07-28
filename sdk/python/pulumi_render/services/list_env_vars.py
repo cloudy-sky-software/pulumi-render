@@ -26,7 +26,7 @@ class ListEnvVarsResult:
 
     @property
     @pulumi.getter
-    def value(self) -> Sequence[Sequence['outputs.ListEnvVarsResponse']]:
+    def value(self) -> Sequence['outputs.ListEnvVarsResponse']:
         return pulumi.get(self, "value")
 
 

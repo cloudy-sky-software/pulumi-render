@@ -24,7 +24,7 @@ export interface ListServiceHeadersArgs {
 }
 
 export interface ListServiceHeadersResult {
-    readonly value: outputs.services.ListServiceHeadersResponse[][];
+    readonly value: outputs.services.ListServiceHeadersResponse[];
 }
 
 export function listServiceHeadersOutput(args: ListServiceHeadersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListServiceHeadersResult> {

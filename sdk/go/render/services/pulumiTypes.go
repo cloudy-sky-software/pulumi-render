@@ -2338,106 +2338,6 @@ func (o WebServiceWebServiceServiceDetailsPtrOutput) Region() WebServiceWebServi
 	}).(WebServiceWebServiceServiceDetailsRegionPtrOutput)
 }
 
-type ListCustomDomainsResponseArrayArrayOutput struct{ *pulumi.OutputState }
-
-func (ListCustomDomainsResponseArrayArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[][]ListCustomDomainsResponse)(nil)).Elem()
-}
-
-func (o ListCustomDomainsResponseArrayArrayOutput) ToListCustomDomainsResponseArrayArrayOutput() ListCustomDomainsResponseArrayArrayOutput {
-	return o
-}
-
-func (o ListCustomDomainsResponseArrayArrayOutput) ToListCustomDomainsResponseArrayArrayOutputWithContext(ctx context.Context) ListCustomDomainsResponseArrayArrayOutput {
-	return o
-}
-
-func (o ListCustomDomainsResponseArrayArrayOutput) Index(i pulumi.IntInput) ListCustomDomainsResponseArrayOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) []ListCustomDomainsResponse {
-		return vs[0].([][]ListCustomDomainsResponse)[vs[1].(int)]
-	}).(ListCustomDomainsResponseArrayOutput)
-}
-
-type ListDeploysResponseArrayArrayOutput struct{ *pulumi.OutputState }
-
-func (ListDeploysResponseArrayArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[][]ListDeploysResponse)(nil)).Elem()
-}
-
-func (o ListDeploysResponseArrayArrayOutput) ToListDeploysResponseArrayArrayOutput() ListDeploysResponseArrayArrayOutput {
-	return o
-}
-
-func (o ListDeploysResponseArrayArrayOutput) ToListDeploysResponseArrayArrayOutputWithContext(ctx context.Context) ListDeploysResponseArrayArrayOutput {
-	return o
-}
-
-func (o ListDeploysResponseArrayArrayOutput) Index(i pulumi.IntInput) ListDeploysResponseArrayOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) []ListDeploysResponse {
-		return vs[0].([][]ListDeploysResponse)[vs[1].(int)]
-	}).(ListDeploysResponseArrayOutput)
-}
-
-type ListEnvVarsResponseArrayArrayOutput struct{ *pulumi.OutputState }
-
-func (ListEnvVarsResponseArrayArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[][]ListEnvVarsResponse)(nil)).Elem()
-}
-
-func (o ListEnvVarsResponseArrayArrayOutput) ToListEnvVarsResponseArrayArrayOutput() ListEnvVarsResponseArrayArrayOutput {
-	return o
-}
-
-func (o ListEnvVarsResponseArrayArrayOutput) ToListEnvVarsResponseArrayArrayOutputWithContext(ctx context.Context) ListEnvVarsResponseArrayArrayOutput {
-	return o
-}
-
-func (o ListEnvVarsResponseArrayArrayOutput) Index(i pulumi.IntInput) ListEnvVarsResponseArrayOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) []ListEnvVarsResponse {
-		return vs[0].([][]ListEnvVarsResponse)[vs[1].(int)]
-	}).(ListEnvVarsResponseArrayOutput)
-}
-
-type ListServiceHeadersResponseArrayArrayOutput struct{ *pulumi.OutputState }
-
-func (ListServiceHeadersResponseArrayArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[][]ListServiceHeadersResponse)(nil)).Elem()
-}
-
-func (o ListServiceHeadersResponseArrayArrayOutput) ToListServiceHeadersResponseArrayArrayOutput() ListServiceHeadersResponseArrayArrayOutput {
-	return o
-}
-
-func (o ListServiceHeadersResponseArrayArrayOutput) ToListServiceHeadersResponseArrayArrayOutputWithContext(ctx context.Context) ListServiceHeadersResponseArrayArrayOutput {
-	return o
-}
-
-func (o ListServiceHeadersResponseArrayArrayOutput) Index(i pulumi.IntInput) ListServiceHeadersResponseArrayOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) []ListServiceHeadersResponse {
-		return vs[0].([][]ListServiceHeadersResponse)[vs[1].(int)]
-	}).(ListServiceHeadersResponseArrayOutput)
-}
-
-type ListStaticSiteRoutesResponseArrayArrayOutput struct{ *pulumi.OutputState }
-
-func (ListStaticSiteRoutesResponseArrayArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[][]ListStaticSiteRoutesResponse)(nil)).Elem()
-}
-
-func (o ListStaticSiteRoutesResponseArrayArrayOutput) ToListStaticSiteRoutesResponseArrayArrayOutput() ListStaticSiteRoutesResponseArrayArrayOutput {
-	return o
-}
-
-func (o ListStaticSiteRoutesResponseArrayArrayOutput) ToListStaticSiteRoutesResponseArrayArrayOutputWithContext(ctx context.Context) ListStaticSiteRoutesResponseArrayArrayOutput {
-	return o
-}
-
-func (o ListStaticSiteRoutesResponseArrayArrayOutput) Index(i pulumi.IntInput) ListStaticSiteRoutesResponseArrayOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) []ListStaticSiteRoutesResponse {
-		return vs[0].([][]ListStaticSiteRoutesResponse)[vs[1].(int)]
-	}).(ListStaticSiteRoutesResponseArrayOutput)
-}
-
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerPropertiesInput)(nil)).Elem(), ServerPropertiesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteServiceHeaderInput)(nil)).Elem(), StaticSiteServiceHeaderArgs{})
@@ -2491,9 +2391,4 @@ func init() {
 	pulumi.RegisterOutputType(WebServiceDiskPtrOutput{})
 	pulumi.RegisterOutputType(WebServiceWebServiceServiceDetailsOutput{})
 	pulumi.RegisterOutputType(WebServiceWebServiceServiceDetailsPtrOutput{})
-	pulumi.RegisterOutputType(ListCustomDomainsResponseArrayArrayOutput{})
-	pulumi.RegisterOutputType(ListDeploysResponseArrayArrayOutput{})
-	pulumi.RegisterOutputType(ListEnvVarsResponseArrayArrayOutput{})
-	pulumi.RegisterOutputType(ListServiceHeadersResponseArrayArrayOutput{})
-	pulumi.RegisterOutputType(ListStaticSiteRoutesResponseArrayArrayOutput{})
 }

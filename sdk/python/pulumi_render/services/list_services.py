@@ -19,15 +19,15 @@ __all__ = [
 
 @pulumi.output_type
 class ListServicesResult:
-    def __init__(__self__, value=None):
-        if value and not isinstance(value, list):
-            raise TypeError("Expected argument 'value' to be a list")
-        pulumi.set(__self__, "value", value)
+    def __init__(__self__, items=None):
+        if items and not isinstance(items, list):
+            raise TypeError("Expected argument 'items' to be a list")
+        pulumi.set(__self__, "items", items)
 
     @property
     @pulumi.getter
-    def value(self) -> Sequence['outputs.ListServiceResponse']:
-        return pulumi.get(self, "value")
+    def items(self) -> Sequence['outputs.ListServiceResponse']:
+        return pulumi.get(self, "items")
 
 
 class AwaitableListServicesResult(ListServicesResult):
@@ -36,7 +36,7 @@ class AwaitableListServicesResult(ListServicesResult):
         if False:
             yield self
         return ListServicesResult(
-            value=self.value)
+            items=self.items)
 
 
 def list_services(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListServicesResult:
@@ -48,4 +48,4 @@ def list_services(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListS
     __ret__ = pulumi.runtime.invoke('render:services:listServices', __args__, opts=opts, typ=ListServicesResult).value
 
     return AwaitableListServicesResult(
-        value=__ret__.value)
+        items=__ret__.items)

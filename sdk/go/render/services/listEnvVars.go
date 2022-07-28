@@ -26,7 +26,7 @@ type ListEnvVarsArgs struct {
 }
 
 type ListEnvVarsResult struct {
-	Value []ListEnvVarsResponse `pulumi:"value"`
+	Items []ListEnvVarsResponse `pulumi:"items"`
 }
 
 func ListEnvVarsOutput(ctx *pulumi.Context, args ListEnvVarsOutputArgs, opts ...pulumi.InvokeOption) ListEnvVarsResultOutput {
@@ -65,8 +65,8 @@ func (o ListEnvVarsResultOutput) ToListEnvVarsResultOutputWithContext(ctx contex
 	return o
 }
 
-func (o ListEnvVarsResultOutput) Value() ListEnvVarsResponseArrayOutput {
-	return o.ApplyT(func(v ListEnvVarsResult) []ListEnvVarsResponse { return v.Value }).(ListEnvVarsResponseArrayOutput)
+func (o ListEnvVarsResultOutput) Items() ListEnvVarsResponseArrayOutput {
+	return o.ApplyT(func(v ListEnvVarsResult) []ListEnvVarsResponse { return v.Items }).(ListEnvVarsResponseArrayOutput)
 }
 
 func init() {

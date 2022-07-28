@@ -49,12 +49,12 @@ namespace Pulumi.Render.Services
     [OutputType]
     public sealed class ListEnvVarsResult
     {
-        public readonly ImmutableArray<Outputs.ListEnvVarsResponse> Value;
+        public readonly ImmutableArray<Outputs.ListEnvVarsResponse> Items;
 
         [OutputConstructor]
-        private ListEnvVarsResult(ImmutableArray<Outputs.ListEnvVarsResponse> value)
+        private ListEnvVarsResult(ImmutableArray<Outputs.ListEnvVarsResponse> items)
         {
-            Value = value;
+            Items = items;
         }
     }
 }

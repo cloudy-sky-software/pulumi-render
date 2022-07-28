@@ -20,15 +20,15 @@ __all__ = [
 
 @pulumi.output_type
 class ListCustomDomainsResult:
-    def __init__(__self__, value=None):
-        if value and not isinstance(value, list):
-            raise TypeError("Expected argument 'value' to be a list")
-        pulumi.set(__self__, "value", value)
+    def __init__(__self__, items=None):
+        if items and not isinstance(items, list):
+            raise TypeError("Expected argument 'items' to be a list")
+        pulumi.set(__self__, "items", items)
 
     @property
     @pulumi.getter
-    def value(self) -> Sequence['outputs.ListCustomDomainsResponse']:
-        return pulumi.get(self, "value")
+    def items(self) -> Sequence['outputs.ListCustomDomainsResponse']:
+        return pulumi.get(self, "items")
 
 
 class AwaitableListCustomDomainsResult(ListCustomDomainsResult):
@@ -37,7 +37,7 @@ class AwaitableListCustomDomainsResult(ListCustomDomainsResult):
         if False:
             yield self
         return ListCustomDomainsResult(
-            value=self.value)
+            items=self.items)
 
 
 def list_custom_domains(service_id: Optional[str] = None,
@@ -53,7 +53,7 @@ def list_custom_domains(service_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('render:services:listCustomDomains', __args__, opts=opts, typ=ListCustomDomainsResult).value
 
     return AwaitableListCustomDomainsResult(
-        value=__ret__.value)
+        items=__ret__.items)
 
 
 @_utilities.lift_output_func(list_custom_domains)

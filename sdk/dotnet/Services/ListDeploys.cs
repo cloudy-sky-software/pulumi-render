@@ -49,12 +49,12 @@ namespace Pulumi.Render.Services
     [OutputType]
     public sealed class ListDeploysResult
     {
-        public readonly ImmutableArray<Outputs.ListDeploysResponse> Value;
+        public readonly ImmutableArray<Outputs.ListDeploysResponse> Items;
 
         [OutputConstructor]
-        private ListDeploysResult(ImmutableArray<Outputs.ListDeploysResponse> value)
+        private ListDeploysResult(ImmutableArray<Outputs.ListDeploysResponse> items)
         {
-            Value = value;
+            Items = items;
         }
     }
 }

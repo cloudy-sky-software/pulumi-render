@@ -26,7 +26,7 @@ type ListStaticSiteRoutesArgs struct {
 }
 
 type ListStaticSiteRoutesResult struct {
-	Value []ListStaticSiteRoutesResponse `pulumi:"value"`
+	Items []ListStaticSiteRoutesResponse `pulumi:"items"`
 }
 
 func ListStaticSiteRoutesOutput(ctx *pulumi.Context, args ListStaticSiteRoutesOutputArgs, opts ...pulumi.InvokeOption) ListStaticSiteRoutesResultOutput {
@@ -65,8 +65,8 @@ func (o ListStaticSiteRoutesResultOutput) ToListStaticSiteRoutesResultOutputWith
 	return o
 }
 
-func (o ListStaticSiteRoutesResultOutput) Value() ListStaticSiteRoutesResponseArrayOutput {
-	return o.ApplyT(func(v ListStaticSiteRoutesResult) []ListStaticSiteRoutesResponse { return v.Value }).(ListStaticSiteRoutesResponseArrayOutput)
+func (o ListStaticSiteRoutesResultOutput) Items() ListStaticSiteRoutesResponseArrayOutput {
+	return o.ApplyT(func(v ListStaticSiteRoutesResult) []ListStaticSiteRoutesResponse { return v.Items }).(ListStaticSiteRoutesResponseArrayOutput)
 }
 
 func init() {

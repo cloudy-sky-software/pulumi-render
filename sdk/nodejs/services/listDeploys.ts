@@ -24,7 +24,7 @@ export interface ListDeploysArgs {
 }
 
 export interface ListDeploysResult {
-    readonly value: outputs.services.ListDeploysResponse[];
+    readonly items: outputs.services.ListDeploysResponse[];
 }
 
 export function listDeploysOutput(args: ListDeploysOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListDeploysResult> {

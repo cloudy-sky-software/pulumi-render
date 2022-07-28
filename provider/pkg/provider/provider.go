@@ -190,9 +190,46 @@ func (p *renderProvider) Configure(_ context.Context, req *pulumirpc.ConfigureRe
 }
 
 // Invoke dynamically executes a built-in function in the provider.
-func (p *renderProvider) Invoke(_ context.Context, req *pulumirpc.InvokeRequest) (*pulumirpc.InvokeResponse, error) {
-	tok := req.GetTok()
-	return nil, fmt.Errorf("unknown Invoke token '%s'", tok)
+func (p *renderProvider) Invoke(ctx context.Context, req *pulumirpc.InvokeRequest) (*pulumirpc.InvokeResponse, error) {
+	args, err := plugin.UnmarshalProperties(req.Args, defaultUnmarshalOpts)
+	if err != nil {
+		return nil, errors.Wrap(err, "unmarshal input properties as propertymap")
+	}
+
+	invokeTypeToken := req.GetTok()
+
+	body, err := p.executeGet(ctx, invokeTypeToken, args)
+	if err != nil {
+		return nil, errors.Wrap(err, "executing get request for invoke")
+	}
+
+	var obj resource.PropertyMap
+	if strings.Contains(invokeTypeToken, ":list") {
+		var outputs []interface{}
+		if err := json.Unmarshal(body, &outputs); err != nil {
+			return nil, errors.Wrap(err, "unmarshaling the response")
+		}
+
+		m := make(map[string]interface{})
+		m["items"] = outputs
+		obj = resource.NewPropertyMapFromMap(m)
+	} else {
+		var outputs map[string]interface{}
+		if err := json.Unmarshal(body, &outputs); err != nil {
+			return nil, errors.Wrap(err, "unmarshaling the response")
+		}
+
+		obj = resource.NewPropertyMapFromMap(outputs)
+	}
+
+	outputProperties, err := plugin.MarshalProperties(obj, defaultMarshalOpts)
+	if err != nil {
+		return nil, errors.Wrap(err, "marshaling the output properties map")
+	}
+
+	return &pulumirpc.InvokeResponse{
+		Return: outputProperties,
+	}, nil
 }
 
 // StreamInvoke dynamically executes a built-in function in the provider. The result is streamed

@@ -20,5 +20,5 @@ export interface ListServicesArgs {
 }
 
 export interface ListServicesResult {
-    readonly value: outputs.services.ListServiceResponse[];
+    readonly items: outputs.services.ListServiceResponse[];
 }

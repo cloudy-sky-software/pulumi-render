@@ -20,5 +20,5 @@ export interface ListOwnersArgs {
 }
 
 export interface ListOwnersResult {
-    readonly value: outputs.owners.ListOwnersResponse[];
+    readonly items: outputs.owners.ListOwnersResponse[];
 }

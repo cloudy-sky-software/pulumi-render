@@ -19,15 +19,15 @@ __all__ = [
 
 @pulumi.output_type
 class ListOwnersResult:
-    def __init__(__self__, value=None):
-        if value and not isinstance(value, list):
-            raise TypeError("Expected argument 'value' to be a list")
-        pulumi.set(__self__, "value", value)
+    def __init__(__self__, items=None):
+        if items and not isinstance(items, list):
+            raise TypeError("Expected argument 'items' to be a list")
+        pulumi.set(__self__, "items", items)
 
     @property
     @pulumi.getter
-    def value(self) -> Sequence['outputs.ListOwnersResponse']:
-        return pulumi.get(self, "value")
+    def items(self) -> Sequence['outputs.ListOwnersResponse']:
+        return pulumi.get(self, "items")
 
 
 class AwaitableListOwnersResult(ListOwnersResult):
@@ -36,7 +36,7 @@ class AwaitableListOwnersResult(ListOwnersResult):
         if False:
             yield self
         return ListOwnersResult(
-            value=self.value)
+            items=self.items)
 
 
 def list_owners(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListOwnersResult:
@@ -48,4 +48,4 @@ def list_owners(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListOwn
     __ret__ = pulumi.runtime.invoke('render:owners:listOwners', __args__, opts=opts, typ=ListOwnersResult).value
 
     return AwaitableListOwnersResult(
-        value=__ret__.value)
+        items=__ret__.items)

@@ -21,5 +21,5 @@ type ListOwnersArgs struct {
 }
 
 type ListOwnersResult struct {
-	Value []ListOwnersResponse `pulumi:"value"`
+	Items []ListOwnersResponse `pulumi:"items"`
 }

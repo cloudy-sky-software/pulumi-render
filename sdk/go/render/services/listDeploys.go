@@ -26,7 +26,7 @@ type ListDeploysArgs struct {
 }
 
 type ListDeploysResult struct {
-	Value []ListDeploysResponse `pulumi:"value"`
+	Items []ListDeploysResponse `pulumi:"items"`
 }
 
 func ListDeploysOutput(ctx *pulumi.Context, args ListDeploysOutputArgs, opts ...pulumi.InvokeOption) ListDeploysResultOutput {
@@ -65,8 +65,8 @@ func (o ListDeploysResultOutput) ToListDeploysResultOutputWithContext(ctx contex
 	return o
 }
 
-func (o ListDeploysResultOutput) Value() ListDeploysResponseArrayOutput {
-	return o.ApplyT(func(v ListDeploysResult) []ListDeploysResponse { return v.Value }).(ListDeploysResponseArrayOutput)
+func (o ListDeploysResultOutput) Items() ListDeploysResponseArrayOutput {
+	return o.ApplyT(func(v ListDeploysResult) []ListDeploysResponse { return v.Items }).(ListDeploysResponseArrayOutput)
 }
 
 func init() {

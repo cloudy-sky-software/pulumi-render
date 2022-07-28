@@ -19,6 +19,8 @@ import (
 
 const componentsSchemaRefPrefix = "#/components/schemas/"
 const jsonMimeType = "application/json"
+const arrayType = "array"
+const parameterLocationPath = "path"
 
 type openAPIContext struct {
 	doc             openapi3.T
@@ -79,7 +81,7 @@ func (o *openAPIContext) gatherResourcesFromAPI(csharpNamespaces map[string]stri
 			}
 
 			resourceType := jsonReq.Schema.Value
-			if resourceType.Type != "array" {
+			if resourceType.Type != arrayType {
 				// If there is a discriminator then we should set this operation
 				// as the read endpoint for each of the types in the mapping.
 				if resourceType.Discriminator != nil {
@@ -108,7 +110,7 @@ func (o *openAPIContext) gatherResourcesFromAPI(csharpNamespaces map[string]stri
 			}
 
 			// Add the API operation as a list* function.
-			if resourceType.Type == "array" {
+			if resourceType.Type == arrayType {
 				funcName := strings.TrimPrefix(jsonReq.Schema.Ref, componentsSchemaRefPrefix)
 				funcTypeToken := packageName + ":" + module + ":" + funcName
 				funcSpec := o.genListFunc(*pathItem, *jsonReq.Schema, funcName, module)
@@ -273,7 +275,7 @@ func (o *openAPIContext) genListFunc(pathItem openapi3.PathItem, returnTypeSchem
 	requiredInputs := codegen.NewStringSet()
 	inputProps := make(map[string]pschema.PropertySpec)
 	for _, param := range pathItem.Get.Parameters {
-		if param.Value.In != "path" {
+		if param.Value.In != parameterLocationPath {
 			continue
 		}
 
@@ -320,7 +322,7 @@ func (o *openAPIContext) genGetFunc(pathItem openapi3.PathItem, returnTypeSchema
 	requiredInputs := codegen.NewStringSet()
 	inputProps := make(map[string]pschema.PropertySpec)
 	for _, param := range pathItem.Get.Parameters {
-		if param.Value.In != "path" {
+		if param.Value.In != parameterLocationPath {
 			continue
 		}
 
@@ -385,7 +387,7 @@ func (o *openAPIContext) gatherResource(
 	// If this endpoint path has path parameters,
 	// then those should be required inputs too.
 	for _, param := range pathParams {
-		if param.Value.In != "path" {
+		if param.Value.In != parameterLocationPath {
 			continue
 		}
 
@@ -561,7 +563,7 @@ func (ctx *resourceContext) genPropertySpec(propName string, p openapi3.SchemaRe
 func (ctx *resourceContext) propertyTypeSpec(parentName string, propSchema openapi3.SchemaRef) (*pschema.TypeSpec, error) {
 	// References to other type definitions as long as the type is not an array.
 	// Arrays will be handled later in this method.
-	if propSchema.Ref != "" && propSchema.Value.Type != "array" {
+	if propSchema.Ref != "" && propSchema.Value.Type != arrayType {
 		schemaName := strings.TrimPrefix(propSchema.Ref, componentsSchemaRefPrefix)
 		typName := ToPascalCase(schemaName)
 		tok := fmt.Sprintf("%s:%s:%s", packageName, ctx.mod, typName)
@@ -634,7 +636,7 @@ func (ctx *resourceContext) propertyTypeSpec(parentName string, propSchema opena
 			idx := 0
 			for discriminatorValue := range propSchema.Value.Discriminator.Mapping {
 				mapping[discriminatorValue] = types[idx].Ref
-				idx += 1
+				idx++
 			}
 			discriminator.Mapping = mapping
 		}
@@ -694,7 +696,7 @@ func (ctx *resourceContext) propertyTypeSpec(parentName string, propSchema opena
 			return nil, err
 		}
 		return &pschema.TypeSpec{
-			Type:  "array",
+			Type:  arrayType,
 			Items: elementType,
 		}, nil
 	}

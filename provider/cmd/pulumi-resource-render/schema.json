@@ -360,7 +360,7 @@
                         "propertyName": "type",
                         "mapping": {
                             "static_site": "#/types/render:services:StaticSite",
-                            "web_service": "#/types/render:services:StaticSite"
+                            "web_service": "#/types/render:services:WebService"
                         }
                     }
                 }
@@ -404,59 +404,6 @@
                 }
             },
             "type": "object"
-        },
-        "render:services:Service": {
-            "description": "The service object represents a service. The type of service is discriminated by the type property which determines the type of object in the serviceDetails property.",
-            "properties": {
-                "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy",
-                    "description": "Whether to auto deploy the service or not upon git push.",
-                    "default": "no"
-                },
-                "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository."
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "notifyOnFail": {
-                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
-                    "description": "The notification setting for this service upon deployment failure."
-                },
-                "ownerId": {
-                    "type": "string",
-                    "description": "The id of the owner (user/team)."
-                },
-                "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:services:ServiceSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "updatedAt": {
-                    "type": "string"
-                }
-            },
-            "type": "object",
-            "required": [
-                "name",
-                "ownerId",
-                "repo"
-            ]
         },
         "render:services:ServiceAutoDeploy": {
             "description": "Whether to auto deploy the service or not upon git push.",
@@ -525,19 +472,63 @@
         },
         "render:services:StaticSite": {
             "description": "A static website service",
-            "type": "object"
-        },
-        "render:services:StaticSiteProperties": {
             "properties": {
+                "autoDeploy": {
+                    "$ref": "#/types/render:services:ServiceAutoDeploy",
+                    "description": "Whether to auto deploy the service or not upon git push.",
+                    "default": "no"
+                },
+                "branch": {
+                    "type": "string",
+                    "description": "If left empty, this will fall back to the default branch of the repository."
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "notifyOnFail": {
+                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
+                    "description": "The notification setting for this service upon deployment failure."
+                },
+                "ownerId": {
+                    "type": "string",
+                    "description": "The id of the owner (user/team)."
+                },
+                "repo": {
+                    "type": "string",
+                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                },
                 "serviceDetails": {
-                    "$ref": "#/types/render:services:StaticSiteStaticSiteServiceDetails"
+                    "$ref": "#/types/render:services:StaticSiteServiceDetails"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "suspended": {
+                    "$ref": "#/types/render:services:ServiceSuspended"
+                },
+                "suspenders": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 },
                 "type": {
                     "type": "string",
                     "default": "static_site"
+                },
+                "updatedAt": {
+                    "type": "string"
                 }
             },
-            "type": "object"
+            "type": "object",
+            "required": [
+                "name",
+                "ownerId",
+                "repo"
+            ]
         },
         "render:services:StaticSiteRoute": {
             "description": "A route object for a static site",
@@ -570,59 +561,6 @@
                     "name": "Rewrite",
                     "value": "rewrite"
                 }
-            ]
-        },
-        "render:services:StaticSiteService": {
-            "description": "The service object represents a service. The type of service is discriminated by the type property which determines the type of object in the serviceDetails property.",
-            "properties": {
-                "autoDeploy": {
-                    "$ref": "#/types/render:services:StaticSiteServiceAutoDeploy",
-                    "description": "Whether to auto deploy the service or not upon git push.",
-                    "default": "no"
-                },
-                "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository."
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "notifyOnFail": {
-                    "$ref": "#/types/render:services:StaticSiteServiceNotifyOnFail",
-                    "description": "The notification setting for this service upon deployment failure."
-                },
-                "ownerId": {
-                    "type": "string",
-                    "description": "The id of the owner (user/team)."
-                },
-                "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:services:StaticSiteServiceSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "updatedAt": {
-                    "type": "string"
-                }
-            },
-            "type": "object",
-            "required": [
-                "name",
-                "ownerId",
-                "repo"
             ]
         },
         "render:services:StaticSiteServiceAutoDeploy": {
@@ -843,7 +781,63 @@
         },
         "render:services:WebService": {
             "description": "A web service",
-            "type": "object"
+            "properties": {
+                "autoDeploy": {
+                    "$ref": "#/types/render:services:ServiceAutoDeploy",
+                    "description": "Whether to auto deploy the service or not upon git push.",
+                    "default": "no"
+                },
+                "branch": {
+                    "type": "string",
+                    "description": "If left empty, this will fall back to the default branch of the repository."
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "notifyOnFail": {
+                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
+                    "description": "The notification setting for this service upon deployment failure."
+                },
+                "ownerId": {
+                    "type": "string",
+                    "description": "The id of the owner (user/team)."
+                },
+                "repo": {
+                    "type": "string",
+                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                },
+                "serviceDetails": {
+                    "$ref": "#/types/render:services:WebServiceServiceDetails"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "suspended": {
+                    "$ref": "#/types/render:services:ServiceSuspended"
+                },
+                "suspenders": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "default": "web_service"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "ownerId",
+                "repo"
+            ]
         },
         "render:services:WebServiceDisk": {
             "properties": {
@@ -892,71 +886,6 @@
             "required": [
                 "buildCommand",
                 "startCommand"
-            ]
-        },
-        "render:services:WebServiceProperties": {
-            "properties": {
-                "serviceDetails": {
-                    "$ref": "#/types/render:services:WebServiceWebServiceServiceDetails"
-                },
-                "type": {
-                    "type": "string",
-                    "default": "web_service"
-                }
-            },
-            "type": "object"
-        },
-        "render:services:WebServiceService": {
-            "description": "The service object represents a service. The type of service is discriminated by the type property which determines the type of object in the serviceDetails property.",
-            "properties": {
-                "autoDeploy": {
-                    "$ref": "#/types/render:services:WebServiceServiceAutoDeploy",
-                    "description": "Whether to auto deploy the service or not upon git push.",
-                    "default": "no"
-                },
-                "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository."
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "notifyOnFail": {
-                    "$ref": "#/types/render:services:WebServiceServiceNotifyOnFail",
-                    "description": "The notification setting for this service upon deployment failure."
-                },
-                "ownerId": {
-                    "type": "string",
-                    "description": "The id of the owner (user/team)."
-                },
-                "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:services:WebServiceServiceSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "updatedAt": {
-                    "type": "string"
-                }
-            },
-            "type": "object",
-            "required": [
-                "name",
-                "ownerId",
-                "repo"
             ]
         },
         "render:services:WebServiceServiceAutoDeploy": {

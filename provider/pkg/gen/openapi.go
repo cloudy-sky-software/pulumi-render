@@ -382,7 +382,8 @@ func (o *openAPIContext) gatherResourceProperties(apiSchema openapi3.Schema, api
 		// a new type and get rid of those top-level ones.
 		typeToken := fmt.Sprintf("%s:%s:%s", packageName, module, parentName)
 		for _, t := range types {
-			refType := pkgCtx.pkg.Types[strings.TrimPrefix(t.Ref, "#/types/")]
+			refTypeTok := strings.TrimPrefix(t.Ref, "#/types/")
+			refType := pkgCtx.pkg.Types[refTypeTok]
 
 			for name, propSpec := range refType.Properties {
 				inputProperties[name] = propSpec
@@ -395,6 +396,9 @@ func (o *openAPIContext) gatherResourceProperties(apiSchema openapi3.Schema, api
 				}
 				requiredInputs.Add(r)
 			}
+
+			pkgCtx.visitedTypes.Delete(refTypeTok)
+			delete(pkgCtx.pkg.Types, refTypeTok)
 		}
 
 		if existing, ok := o.resourceCRUDMap[typeToken]; ok {
@@ -558,6 +562,7 @@ func (ctx *resourceContext) propertyTypeSpec(parentName string, propSchema opena
 			idx := 0
 			for discriminatorValue := range propSchema.Value.Discriminator.Mapping {
 				mapping[discriminatorValue] = types[idx].Ref
+				idx += 1
 			}
 			discriminator.Mapping = mapping
 		}
@@ -676,7 +681,8 @@ func (ctx *resourceContext) genPropertiesFromAllOf(parentName string, allOf open
 	properties := make(map[string]pschema.PropertySpec)
 	requiredSpecs := codegen.NewStringSet()
 	for _, t := range types {
-		refType := ctx.pkg.Types[t.Ref]
+		refTypeTok := strings.TrimPrefix(t.Ref, "#/types/")
+		refType := ctx.pkg.Types[refTypeTok]
 
 		for name, propSpec := range refType.Properties {
 			properties[name] = propSpec
@@ -688,6 +694,9 @@ func (ctx *resourceContext) genPropertiesFromAllOf(parentName string, allOf open
 			}
 			requiredSpecs.Add(r)
 		}
+
+		ctx.visitedTypes.Delete(refTypeTok)
+		delete(ctx.pkg.Types, refTypeTok)
 	}
 
 	return properties, requiredSpecs, nil

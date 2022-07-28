@@ -569,36 +569,12 @@ func (ctx *resourceContext) propertyTypeSpec(parentName string, propSchema opena
 	}
 
 	if len(propSchema.Value.AllOf) > 0 {
-		var types []pschema.TypeSpec
-		for _, schemaRef := range propSchema.Value.AllOf {
-			typ, err := ctx.propertyTypeSpec(parentName, *schemaRef)
-			if err != nil {
-				return nil, err
-			}
-			types = append(types, *typ)
+		properties, requiredSpecs, err := ctx.genPropertiesFromAllOf(parentName, propSchema.Value.AllOf)
+		if err != nil {
+			return nil, errors.Wrap(err, "generating properties from allOf schema definition")
 		}
 
-		// Now that all of the types have been added to schema's Types,
-		// gather all of their properties and smash them together into
-		// a new type and get rid of those top-level ones.
 		tok := fmt.Sprintf("%s:%s:%s", packageName, ctx.mod, ToPascalCase(parentName))
-		properties := make(map[string]pschema.PropertySpec)
-		requiredSpecs := codegen.NewStringSet()
-		for _, t := range types {
-			refType := ctx.pkg.Types[t.Ref]
-
-			for name, propSpec := range refType.Properties {
-				properties[name] = propSpec
-			}
-
-			for _, r := range refType.Required {
-				if requiredSpecs.Has(r) {
-					continue
-				}
-				requiredSpecs.Add(r)
-			}
-		}
-
 		ctx.pkg.Types[tok] = pschema.ComplexTypeSpec{
 			ObjectTypeSpec: pschema.ObjectTypeSpec{
 				Description: propSchema.Value.Description,
@@ -607,9 +583,9 @@ func (ctx *resourceContext) propertyTypeSpec(parentName string, propSchema opena
 				Required:    requiredSpecs.SortedValues(),
 			},
 		}
-		referencedTypeName := fmt.Sprintf("#/types/%s", tok)
+
 		return &pschema.TypeSpec{
-			Ref: referencedTypeName,
+			Ref: fmt.Sprintf("#/types/%s", tok),
 		}, nil
 	}
 
@@ -676,7 +652,45 @@ func (ctx *resourceContext) genProperties(parentName string, typeSchema openapi3
 			requiredSpecs.Add(sdkName)
 		}
 	}
+
+	if len(typeSchema.AllOf) > 0 {
+		return ctx.genPropertiesFromAllOf(parentName, typeSchema.AllOf)
+
+	}
 	return specs, requiredSpecs, nil
+}
+
+func (ctx *resourceContext) genPropertiesFromAllOf(parentName string, allOf openapi3.SchemaRefs) (map[string]pschema.PropertySpec, codegen.StringSet, error) {
+	var types []pschema.TypeSpec
+	for _, schemaRef := range allOf {
+		typ, err := ctx.propertyTypeSpec(parentName, *schemaRef)
+		if err != nil {
+			return nil, nil, err
+		}
+		types = append(types, *typ)
+	}
+
+	// Now that all of the types have been added to schema's Types,
+	// gather all of their properties and smash them together into
+	// a new type.
+	properties := make(map[string]pschema.PropertySpec)
+	requiredSpecs := codegen.NewStringSet()
+	for _, t := range types {
+		refType := ctx.pkg.Types[t.Ref]
+
+		for name, propSpec := range refType.Properties {
+			properties[name] = propSpec
+		}
+
+		for _, r := range refType.Required {
+			if requiredSpecs.Has(r) {
+				continue
+			}
+			requiredSpecs.Add(r)
+		}
+	}
+
+	return properties, requiredSpecs, nil
 }
 
 // genEnumType generates the enum type for a given schema.

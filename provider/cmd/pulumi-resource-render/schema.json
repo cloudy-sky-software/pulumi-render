@@ -248,6 +248,40 @@
             },
             "type": "object"
         },
+        "render:services:Disk": {
+            "properties": {
+                "mountPath": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "sizeGB": {
+                    "type": "number",
+                    "default": 1
+                }
+            },
+            "type": "object",
+            "required": [
+                "mountPath",
+                "name"
+            ]
+        },
+        "render:services:DockerDetails": {
+            "properties": {
+                "dockerCommand": {
+                    "type": "string"
+                },
+                "dockerContext": {
+                    "type": "string"
+                },
+                "dockerfilePath": {
+                    "type": "string",
+                    "default": "./Dockerfile"
+                }
+            },
+            "type": "object"
+        },
         "render:services:EnvVarKeyValue": {
             "properties": {
                 "key": {
@@ -345,6 +379,21 @@
             },
             "type": "object"
         },
+        "render:services:NativeEnvironmentDetails": {
+            "properties": {
+                "buildCommand": {
+                    "type": "string"
+                },
+                "startCommand": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "buildCommand",
+                "startCommand"
+            ]
+        },
         "render:services:ServerProperties": {
             "properties": {
                 "id": {
@@ -355,6 +404,73 @@
                 }
             },
             "type": "object"
+        },
+        "render:services:Service": {
+            "description": "The service object represents a service. The type of service is discriminated by the type property which determines the type of object in the serviceDetails property.",
+            "properties": {
+                "autoDeploy": {
+                    "$ref": "#/types/render:services:ServiceAutoDeploy",
+                    "description": "Whether to auto deploy the service or not upon git push.",
+                    "default": "no"
+                },
+                "branch": {
+                    "type": "string",
+                    "description": "If left empty, this will fall back to the default branch of the repository."
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "notifyOnFail": {
+                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
+                    "description": "The notification setting for this service upon deployment failure."
+                },
+                "ownerId": {
+                    "type": "string",
+                    "description": "The id of the owner (user/team)."
+                },
+                "repo": {
+                    "type": "string",
+                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "suspended": {
+                    "$ref": "#/types/render:services:ServiceSuspended"
+                },
+                "suspenders": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "ownerId",
+                "repo"
+            ]
+        },
+        "render:services:ServiceAutoDeploy": {
+            "description": "Whether to auto deploy the service or not upon git push.",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
         },
         "render:services:ServiceHeader": {
             "description": "A service header object",
@@ -374,6 +490,37 @@
                 "name",
                 "path",
                 "value"
+            ]
+        },
+        "render:services:ServiceNotifyOnFail": {
+            "description": "The notification setting for this service upon deployment failure.",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Default",
+                    "value": "default"
+                },
+                {
+                    "name": "Notify",
+                    "value": "notify"
+                },
+                {
+                    "name": "Ignore",
+                    "value": "ignore"
+                }
+            ]
+        },
+        "render:services:ServiceSuspended": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Suspended",
+                    "value": "suspended"
+                },
+                {
+                    "name": "NotSuspended",
+                    "value": "not_suspended"
+                }
             ]
         },
         "render:services:StaticSite": {
@@ -480,6 +627,65 @@
         },
         "render:services:StaticSiteServiceAutoDeploy": {
             "description": "Whether to auto deploy the service or not upon git push.",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
+        "render:services:StaticSiteServiceDetails": {
+            "properties": {
+                "buildCommand": {
+                    "type": "string"
+                },
+                "headers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:ServiceHeader"
+                    }
+                },
+                "parentServer": {
+                    "$ref": "#/types/render:services:StaticSiteServiceDetailsParentServerProperties"
+                },
+                "publishPath": {
+                    "type": "string",
+                    "default": "public"
+                },
+                "pullRequestPreviewsEnabled": {
+                    "$ref": "#/types/render:services:StaticSiteServiceDetailsPullRequestPreviewsEnabled",
+                    "default": "no"
+                },
+                "routes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:StaticSiteRoute"
+                    }
+                },
+                "url": {
+                    "type": "string",
+                    "description": "The HTTPS service URL. A subdomain of onrender.com, by default."
+                }
+            },
+            "type": "object"
+        },
+        "render:services:StaticSiteServiceDetailsParentServerProperties": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "render:services:StaticSiteServiceDetailsPullRequestPreviewsEnabled": {
             "type": "string",
             "enum": [
                 {
@@ -764,6 +970,145 @@
                 {
                     "name": "No",
                     "value": "no"
+                }
+            ]
+        },
+        "render:services:WebServiceServiceDetails": {
+            "properties": {
+                "disk": {
+                    "$ref": "#/types/render:services:Disk"
+                },
+                "env": {
+                    "$ref": "#/types/render:services:WebServiceServiceDetailsEnv"
+                },
+                "envSpecificDetails": {
+                    "oneOf": [
+                        {
+                            "$ref": "#/types/render:services:DockerDetails"
+                        },
+                        {
+                            "$ref": "#/types/render:services:NativeEnvironmentDetails"
+                        }
+                    ]
+                },
+                "healthCheckPath": {
+                    "type": "string"
+                },
+                "numInstances": {
+                    "type": "number",
+                    "default": 1
+                },
+                "plan": {
+                    "$ref": "#/types/render:services:WebServiceServiceDetailsPlan",
+                    "default": "starter"
+                },
+                "pullRequestPreviewsEnabled": {
+                    "$ref": "#/types/render:services:WebServiceServiceDetailsPullRequestPreviewsEnabled",
+                    "default": "no"
+                },
+                "region": {
+                    "$ref": "#/types/render:services:WebServiceServiceDetailsRegion",
+                    "default": "oregon"
+                }
+            },
+            "type": "object",
+            "required": [
+                "env"
+            ]
+        },
+        "render:services:WebServiceServiceDetailsEnv": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Docker",
+                    "value": "docker"
+                },
+                {
+                    "name": "Elixir",
+                    "value": "elixir"
+                },
+                {
+                    "name": "Go",
+                    "value": "go"
+                },
+                {
+                    "name": "Node",
+                    "value": "node"
+                },
+                {
+                    "name": "Python",
+                    "value": "python"
+                },
+                {
+                    "name": "Ruby",
+                    "value": "ruby"
+                },
+                {
+                    "name": "Rust",
+                    "value": "rust"
+                }
+            ]
+        },
+        "render:services:WebServiceServiceDetailsPlan": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Starter",
+                    "value": "starter"
+                },
+                {
+                    "name": "StarterPlus",
+                    "value": "starter_plus"
+                },
+                {
+                    "name": "Standard",
+                    "value": "standard"
+                },
+                {
+                    "name": "StandardPlus",
+                    "value": "standard_plus"
+                },
+                {
+                    "name": "Pro",
+                    "value": "pro"
+                },
+                {
+                    "name": "ProPlus",
+                    "value": "pro_plus"
+                },
+                {
+                    "name": "ProMax",
+                    "value": "pro_max"
+                },
+                {
+                    "name": "ProUltra",
+                    "value": "pro_ultra"
+                }
+            ]
+        },
+        "render:services:WebServiceServiceDetailsPullRequestPreviewsEnabled": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
+        "render:services:WebServiceServiceDetailsRegion": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Oregon",
+                    "value": "oregon"
+                },
+                {
+                    "name": "Frankfurt",
+                    "value": "frankfurt"
                 }
             ]
         },

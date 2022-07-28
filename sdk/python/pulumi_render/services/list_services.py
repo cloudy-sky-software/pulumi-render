@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._enums import *
 
 __all__ = [
     'ListServicesResult',
@@ -17,15 +19,24 @@ __all__ = [
 
 @pulumi.output_type
 class ListServicesResult:
-    def __init__(__self__):
-        pass
+    def __init__(__self__, value=None):
+        if value and not isinstance(value, list):
+            raise TypeError("Expected argument 'value' to be a list")
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Sequence[Sequence['outputs.ListServiceResponse']]:
+        return pulumi.get(self, "value")
+
 
 class AwaitableListServicesResult(ListServicesResult):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return ListServicesResult()
+        return ListServicesResult(
+            value=self.value)
 
 
 def list_services(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListServicesResult:
@@ -36,4 +47,5 @@ def list_services(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListS
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:services:listServices', __args__, opts=opts, typ=ListServicesResult).value
 
-    return AwaitableListServicesResult()
+    return AwaitableListServicesResult(
+        value=__ret__.value)

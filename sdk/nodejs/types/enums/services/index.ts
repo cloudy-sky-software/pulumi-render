@@ -23,6 +23,41 @@ export const DeployClearCache = {
 
 export type DeployClearCache = (typeof DeployClearCache)[keyof typeof DeployClearCache];
 
+export const ServiceAutoDeploy = {
+    Yes: "yes",
+    No: "no",
+} as const;
+
+/**
+ * Whether to auto deploy the service or not upon git push.
+ */
+export type ServiceAutoDeploy = (typeof ServiceAutoDeploy)[keyof typeof ServiceAutoDeploy];
+
+export const ServiceNotifyOnFail = {
+    Default: "default",
+    Notify: "notify",
+    Ignore: "ignore",
+} as const;
+
+/**
+ * The notification setting for this service upon deployment failure.
+ */
+export type ServiceNotifyOnFail = (typeof ServiceNotifyOnFail)[keyof typeof ServiceNotifyOnFail];
+
+export const ServiceSuspended = {
+    Suspended: "suspended",
+    NotSuspended: "not_suspended",
+} as const;
+
+export type ServiceSuspended = (typeof ServiceSuspended)[keyof typeof ServiceSuspended];
+
+export const StaticSiteRouteType = {
+    Redirect: "redirect",
+    Rewrite: "rewrite",
+} as const;
+
+export type StaticSiteRouteType = (typeof StaticSiteRouteType)[keyof typeof StaticSiteRouteType];
+
 export const StaticSiteServiceAutoDeploy = {
     Yes: "yes",
     No: "no",
@@ -32,6 +67,13 @@ export const StaticSiteServiceAutoDeploy = {
  * Whether to auto deploy the service or not upon git push.
  */
 export type StaticSiteServiceAutoDeploy = (typeof StaticSiteServiceAutoDeploy)[keyof typeof StaticSiteServiceAutoDeploy];
+
+export const StaticSiteServiceDetailsPullRequestPreviewsEnabled = {
+    Yes: "yes",
+    No: "no",
+} as const;
+
+export type StaticSiteServiceDetailsPullRequestPreviewsEnabled = (typeof StaticSiteServiceDetailsPullRequestPreviewsEnabled)[keyof typeof StaticSiteServiceDetailsPullRequestPreviewsEnabled];
 
 export const StaticSiteServiceNotifyOnFail = {
     Default: "default",
@@ -74,6 +116,45 @@ export const WebServiceServiceAutoDeploy = {
  * Whether to auto deploy the service or not upon git push.
  */
 export type WebServiceServiceAutoDeploy = (typeof WebServiceServiceAutoDeploy)[keyof typeof WebServiceServiceAutoDeploy];
+
+export const WebServiceServiceDetailsEnv = {
+    Docker: "docker",
+    Elixir: "elixir",
+    Go: "go",
+    Node: "node",
+    Python: "python",
+    Ruby: "ruby",
+    Rust: "rust",
+} as const;
+
+export type WebServiceServiceDetailsEnv = (typeof WebServiceServiceDetailsEnv)[keyof typeof WebServiceServiceDetailsEnv];
+
+export const WebServiceServiceDetailsPlan = {
+    Starter: "starter",
+    StarterPlus: "starter_plus",
+    Standard: "standard",
+    StandardPlus: "standard_plus",
+    Pro: "pro",
+    ProPlus: "pro_plus",
+    ProMax: "pro_max",
+    ProUltra: "pro_ultra",
+} as const;
+
+export type WebServiceServiceDetailsPlan = (typeof WebServiceServiceDetailsPlan)[keyof typeof WebServiceServiceDetailsPlan];
+
+export const WebServiceServiceDetailsPullRequestPreviewsEnabled = {
+    Yes: "yes",
+    No: "no",
+} as const;
+
+export type WebServiceServiceDetailsPullRequestPreviewsEnabled = (typeof WebServiceServiceDetailsPullRequestPreviewsEnabled)[keyof typeof WebServiceServiceDetailsPullRequestPreviewsEnabled];
+
+export const WebServiceServiceDetailsRegion = {
+    Oregon: "oregon",
+    Frankfurt: "frankfurt",
+} as const;
+
+export type WebServiceServiceDetailsRegion = (typeof WebServiceServiceDetailsRegion)[keyof typeof WebServiceServiceDetailsRegion];
 
 export const WebServiceServiceNotifyOnFail = {
     Default: "default",

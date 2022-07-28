@@ -355,6 +355,120 @@ func (in *deployClearCachePtr) ToDeployClearCachePtrOutputWithContext(ctx contex
 }
 
 // Whether to auto deploy the service or not upon git push.
+type ServiceAutoDeploy string
+
+const (
+	ServiceAutoDeployYes = ServiceAutoDeploy("yes")
+	ServiceAutoDeployNo  = ServiceAutoDeploy("no")
+)
+
+// The notification setting for this service upon deployment failure.
+type ServiceNotifyOnFail string
+
+const (
+	ServiceNotifyOnFailDefault = ServiceNotifyOnFail("default")
+	ServiceNotifyOnFailNotify  = ServiceNotifyOnFail("notify")
+	ServiceNotifyOnFailIgnore  = ServiceNotifyOnFail("ignore")
+)
+
+type ServiceSuspended string
+
+const (
+	ServiceSuspendedSuspended    = ServiceSuspended("suspended")
+	ServiceSuspendedNotSuspended = ServiceSuspended("not_suspended")
+)
+
+type StaticSiteRouteType string
+
+const (
+	StaticSiteRouteTypeRedirect = StaticSiteRouteType("redirect")
+	StaticSiteRouteTypeRewrite  = StaticSiteRouteType("rewrite")
+)
+
+type StaticSiteRouteTypeOutput struct{ *pulumi.OutputState }
+
+func (StaticSiteRouteTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StaticSiteRouteType)(nil)).Elem()
+}
+
+func (o StaticSiteRouteTypeOutput) ToStaticSiteRouteTypeOutput() StaticSiteRouteTypeOutput {
+	return o
+}
+
+func (o StaticSiteRouteTypeOutput) ToStaticSiteRouteTypeOutputWithContext(ctx context.Context) StaticSiteRouteTypeOutput {
+	return o
+}
+
+func (o StaticSiteRouteTypeOutput) ToStaticSiteRouteTypePtrOutput() StaticSiteRouteTypePtrOutput {
+	return o.ToStaticSiteRouteTypePtrOutputWithContext(context.Background())
+}
+
+func (o StaticSiteRouteTypeOutput) ToStaticSiteRouteTypePtrOutputWithContext(ctx context.Context) StaticSiteRouteTypePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StaticSiteRouteType) *StaticSiteRouteType {
+		return &v
+	}).(StaticSiteRouteTypePtrOutput)
+}
+
+func (o StaticSiteRouteTypeOutput) ToStringOutput() pulumi.StringOutput {
+	return o.ToStringOutputWithContext(context.Background())
+}
+
+func (o StaticSiteRouteTypeOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e StaticSiteRouteType) string {
+		return string(e)
+	}).(pulumi.StringOutput)
+}
+
+func (o StaticSiteRouteTypeOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o StaticSiteRouteTypeOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e StaticSiteRouteType) *string {
+		v := string(e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+type StaticSiteRouteTypePtrOutput struct{ *pulumi.OutputState }
+
+func (StaticSiteRouteTypePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StaticSiteRouteType)(nil)).Elem()
+}
+
+func (o StaticSiteRouteTypePtrOutput) ToStaticSiteRouteTypePtrOutput() StaticSiteRouteTypePtrOutput {
+	return o
+}
+
+func (o StaticSiteRouteTypePtrOutput) ToStaticSiteRouteTypePtrOutputWithContext(ctx context.Context) StaticSiteRouteTypePtrOutput {
+	return o
+}
+
+func (o StaticSiteRouteTypePtrOutput) Elem() StaticSiteRouteTypeOutput {
+	return o.ApplyT(func(v *StaticSiteRouteType) StaticSiteRouteType {
+		if v != nil {
+			return *v
+		}
+		var ret StaticSiteRouteType
+		return ret
+	}).(StaticSiteRouteTypeOutput)
+}
+
+func (o StaticSiteRouteTypePtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o StaticSiteRouteTypePtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *StaticSiteRouteType) *string {
+		if e == nil {
+			return nil
+		}
+		v := string(*e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+// Whether to auto deploy the service or not upon git push.
 type StaticSiteServiceAutoDeploy string
 
 const (
@@ -518,6 +632,13 @@ func (in *staticSiteServiceAutoDeployPtr) ToStaticSiteServiceAutoDeployPtrOutput
 func (in *staticSiteServiceAutoDeployPtr) ToStaticSiteServiceAutoDeployPtrOutputWithContext(ctx context.Context) StaticSiteServiceAutoDeployPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(StaticSiteServiceAutoDeployPtrOutput)
 }
+
+type StaticSiteServiceDetailsPullRequestPreviewsEnabled string
+
+const (
+	StaticSiteServiceDetailsPullRequestPreviewsEnabledYes = StaticSiteServiceDetailsPullRequestPreviewsEnabled("yes")
+	StaticSiteServiceDetailsPullRequestPreviewsEnabledNo  = StaticSiteServiceDetailsPullRequestPreviewsEnabled("no")
+)
 
 // The notification setting for this service upon deployment failure.
 type StaticSiteServiceNotifyOnFail string
@@ -1341,6 +1462,45 @@ func (in *webServiceServiceAutoDeployPtr) ToWebServiceServiceAutoDeployPtrOutput
 func (in *webServiceServiceAutoDeployPtr) ToWebServiceServiceAutoDeployPtrOutputWithContext(ctx context.Context) WebServiceServiceAutoDeployPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(WebServiceServiceAutoDeployPtrOutput)
 }
+
+type WebServiceServiceDetailsEnv string
+
+const (
+	WebServiceServiceDetailsEnvDocker = WebServiceServiceDetailsEnv("docker")
+	WebServiceServiceDetailsEnvElixir = WebServiceServiceDetailsEnv("elixir")
+	WebServiceServiceDetailsEnvGo     = WebServiceServiceDetailsEnv("go")
+	WebServiceServiceDetailsEnvNode   = WebServiceServiceDetailsEnv("node")
+	WebServiceServiceDetailsEnvPython = WebServiceServiceDetailsEnv("python")
+	WebServiceServiceDetailsEnvRuby   = WebServiceServiceDetailsEnv("ruby")
+	WebServiceServiceDetailsEnvRust   = WebServiceServiceDetailsEnv("rust")
+)
+
+type WebServiceServiceDetailsPlan string
+
+const (
+	WebServiceServiceDetailsPlanStarter      = WebServiceServiceDetailsPlan("starter")
+	WebServiceServiceDetailsPlanStarterPlus  = WebServiceServiceDetailsPlan("starter_plus")
+	WebServiceServiceDetailsPlanStandard     = WebServiceServiceDetailsPlan("standard")
+	WebServiceServiceDetailsPlanStandardPlus = WebServiceServiceDetailsPlan("standard_plus")
+	WebServiceServiceDetailsPlanPro          = WebServiceServiceDetailsPlan("pro")
+	WebServiceServiceDetailsPlanProPlus      = WebServiceServiceDetailsPlan("pro_plus")
+	WebServiceServiceDetailsPlanProMax       = WebServiceServiceDetailsPlan("pro_max")
+	WebServiceServiceDetailsPlanProUltra     = WebServiceServiceDetailsPlan("pro_ultra")
+)
+
+type WebServiceServiceDetailsPullRequestPreviewsEnabled string
+
+const (
+	WebServiceServiceDetailsPullRequestPreviewsEnabledYes = WebServiceServiceDetailsPullRequestPreviewsEnabled("yes")
+	WebServiceServiceDetailsPullRequestPreviewsEnabledNo  = WebServiceServiceDetailsPullRequestPreviewsEnabled("no")
+)
+
+type WebServiceServiceDetailsRegion string
+
+const (
+	WebServiceServiceDetailsRegionOregon    = WebServiceServiceDetailsRegion("oregon")
+	WebServiceServiceDetailsRegionFrankfurt = WebServiceServiceDetailsRegion("frankfurt")
+)
 
 // The notification setting for this service upon deployment failure.
 type WebServiceServiceNotifyOnFail string
@@ -2372,6 +2532,8 @@ func init() {
 	pulumi.RegisterOutputType(CustomDomainVerificationStatusPtrOutput{})
 	pulumi.RegisterOutputType(DeployClearCacheOutput{})
 	pulumi.RegisterOutputType(DeployClearCachePtrOutput{})
+	pulumi.RegisterOutputType(StaticSiteRouteTypeOutput{})
+	pulumi.RegisterOutputType(StaticSiteRouteTypePtrOutput{})
 	pulumi.RegisterOutputType(StaticSiteServiceAutoDeployOutput{})
 	pulumi.RegisterOutputType(StaticSiteServiceAutoDeployPtrOutput{})
 	pulumi.RegisterOutputType(StaticSiteServiceNotifyOnFailOutput{})

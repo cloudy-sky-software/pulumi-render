@@ -21,4 +21,5 @@ type ListServicesArgs struct {
 }
 
 type ListServicesResult struct {
+	Value [][]ListServiceResponse `pulumi:"value"`
 }

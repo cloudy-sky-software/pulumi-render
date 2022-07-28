@@ -8,6 +8,7 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
 
 __all__ = [
     'ListEnvVarsResult',
@@ -18,15 +19,24 @@ __all__ = [
 
 @pulumi.output_type
 class ListEnvVarsResult:
-    def __init__(__self__):
-        pass
+    def __init__(__self__, value=None):
+        if value and not isinstance(value, list):
+            raise TypeError("Expected argument 'value' to be a list")
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Sequence[Sequence['outputs.ListEnvVarsResponse']]:
+        return pulumi.get(self, "value")
+
 
 class AwaitableListEnvVarsResult(ListEnvVarsResult):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return ListEnvVarsResult()
+        return ListEnvVarsResult(
+            value=self.value)
 
 
 def list_env_vars(service_id: Optional[str] = None,
@@ -41,7 +51,8 @@ def list_env_vars(service_id: Optional[str] = None,
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:services:listEnvVars', __args__, opts=opts, typ=ListEnvVarsResult).value
 
-    return AwaitableListEnvVarsResult()
+    return AwaitableListEnvVarsResult(
+        value=__ret__.value)
 
 
 @_utilities.lift_output_func(list_env_vars)

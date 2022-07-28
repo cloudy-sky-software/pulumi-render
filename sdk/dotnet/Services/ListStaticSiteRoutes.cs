@@ -49,9 +49,12 @@ namespace Pulumi.Render.Services
     [OutputType]
     public sealed class ListStaticSiteRoutesResult
     {
+        public readonly ImmutableArray<ImmutableArray<Outputs.ListStaticSiteRoutesResponse>> Value;
+
         [OutputConstructor]
-        private ListStaticSiteRoutesResult()
+        private ListStaticSiteRoutesResult(ImmutableArray<ImmutableArray<Outputs.ListStaticSiteRoutesResponse>> value)
         {
+            Value = value;
         }
     }
 }

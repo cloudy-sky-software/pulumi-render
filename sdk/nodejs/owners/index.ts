@@ -3,3 +3,6 @@
 
 // Export members:
 export * from "./listOwners";
+
+// Export enums:
+export * from "../types/enums/owners";

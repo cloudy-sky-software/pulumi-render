@@ -2,6 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import { input as inputs, output as outputs, enums } from "../types";
 import * as utilities from "../utilities";
 
 export function listCustomDomains(args: ListCustomDomainsArgs, opts?: pulumi.InvokeOptions): Promise<ListCustomDomainsResult> {
@@ -23,6 +24,7 @@ export interface ListCustomDomainsArgs {
 }
 
 export interface ListCustomDomainsResult {
+    readonly value: outputs.services.ListCustomDomainsResponse[][];
 }
 
 export function listCustomDomainsOutput(args: ListCustomDomainsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListCustomDomainsResult> {

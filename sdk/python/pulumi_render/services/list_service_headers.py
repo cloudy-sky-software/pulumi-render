@@ -8,6 +8,7 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
 
 __all__ = [
     'ListServiceHeadersResult',
@@ -18,15 +19,24 @@ __all__ = [
 
 @pulumi.output_type
 class ListServiceHeadersResult:
-    def __init__(__self__):
-        pass
+    def __init__(__self__, value=None):
+        if value and not isinstance(value, list):
+            raise TypeError("Expected argument 'value' to be a list")
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Sequence[Sequence['outputs.ListServiceHeadersResponse']]:
+        return pulumi.get(self, "value")
+
 
 class AwaitableListServiceHeadersResult(ListServiceHeadersResult):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return ListServiceHeadersResult()
+        return ListServiceHeadersResult(
+            value=self.value)
 
 
 def list_service_headers(service_id: Optional[str] = None,
@@ -41,7 +51,8 @@ def list_service_headers(service_id: Optional[str] = None,
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:services:listServiceHeaders', __args__, opts=opts, typ=ListServiceHeadersResult).value
 
-    return AwaitableListServiceHeadersResult()
+    return AwaitableListServiceHeadersResult(
+        value=__ret__.value)
 
 
 @_utilities.lift_output_func(list_service_headers)

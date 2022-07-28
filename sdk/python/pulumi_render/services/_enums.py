@@ -8,12 +8,21 @@ __all__ = [
     'CustomDomainDomainType',
     'CustomDomainVerificationStatus',
     'DeployClearCache',
+    'ServiceAutoDeploy',
+    'ServiceNotifyOnFail',
+    'ServiceSuspended',
+    'StaticSiteRouteType',
     'StaticSiteServiceAutoDeploy',
+    'StaticSiteServiceDetailsPullRequestPreviewsEnabled',
     'StaticSiteServiceNotifyOnFail',
     'StaticSiteServiceSuspended',
     'StaticSiteStaticSiteRouteType',
     'StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled',
     'WebServiceServiceAutoDeploy',
+    'WebServiceServiceDetailsEnv',
+    'WebServiceServiceDetailsPlan',
+    'WebServiceServiceDetailsPullRequestPreviewsEnabled',
+    'WebServiceServiceDetailsRegion',
     'WebServiceServiceNotifyOnFail',
     'WebServiceServiceSuspended',
     'WebServiceWebServiceServiceDetailsEnv',
@@ -38,10 +47,42 @@ class DeployClearCache(str, Enum):
     CLEAR = "clear"
 
 
+class ServiceAutoDeploy(str, Enum):
+    """
+    Whether to auto deploy the service or not upon git push.
+    """
+    YES = "yes"
+    NO = "no"
+
+
+class ServiceNotifyOnFail(str, Enum):
+    """
+    The notification setting for this service upon deployment failure.
+    """
+    DEFAULT = "default"
+    NOTIFY = "notify"
+    IGNORE = "ignore"
+
+
+class ServiceSuspended(str, Enum):
+    SUSPENDED = "suspended"
+    NOT_SUSPENDED = "not_suspended"
+
+
+class StaticSiteRouteType(str, Enum):
+    REDIRECT = "redirect"
+    REWRITE = "rewrite"
+
+
 class StaticSiteServiceAutoDeploy(str, Enum):
     """
     Whether to auto deploy the service or not upon git push.
     """
+    YES = "yes"
+    NO = "no"
+
+
+class StaticSiteServiceDetailsPullRequestPreviewsEnabled(str, Enum):
     YES = "yes"
     NO = "no"
 
@@ -76,6 +117,37 @@ class WebServiceServiceAutoDeploy(str, Enum):
     """
     YES = "yes"
     NO = "no"
+
+
+class WebServiceServiceDetailsEnv(str, Enum):
+    DOCKER = "docker"
+    ELIXIR = "elixir"
+    GO = "go"
+    NODE = "node"
+    PYTHON = "python"
+    RUBY = "ruby"
+    RUST = "rust"
+
+
+class WebServiceServiceDetailsPlan(str, Enum):
+    STARTER = "starter"
+    STARTER_PLUS = "starter_plus"
+    STANDARD = "standard"
+    STANDARD_PLUS = "standard_plus"
+    PRO = "pro"
+    PRO_PLUS = "pro_plus"
+    PRO_MAX = "pro_max"
+    PRO_ULTRA = "pro_ultra"
+
+
+class WebServiceServiceDetailsPullRequestPreviewsEnabled(str, Enum):
+    YES = "yes"
+    NO = "no"
+
+
+class WebServiceServiceDetailsRegion(str, Enum):
+    OREGON = "oregon"
+    FRANKFURT = "frankfurt"
 
 
 class WebServiceServiceNotifyOnFail(str, Enum):

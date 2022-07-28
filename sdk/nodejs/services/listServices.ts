@@ -2,6 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import { input as inputs, output as outputs, enums } from "../types";
 import * as utilities from "../utilities";
 
 export function listServices(args?: ListServicesArgs, opts?: pulumi.InvokeOptions): Promise<ListServicesResult> {
@@ -19,4 +20,5 @@ export interface ListServicesArgs {
 }
 
 export interface ListServicesResult {
+    readonly value: outputs.services.ListServiceResponse[][];
 }

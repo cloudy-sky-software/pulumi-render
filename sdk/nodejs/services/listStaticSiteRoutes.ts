@@ -2,6 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import { input as inputs, output as outputs, enums } from "../types";
 import * as utilities from "../utilities";
 
 export function listStaticSiteRoutes(args: ListStaticSiteRoutesArgs, opts?: pulumi.InvokeOptions): Promise<ListStaticSiteRoutesResult> {
@@ -23,6 +24,7 @@ export interface ListStaticSiteRoutesArgs {
 }
 
 export interface ListStaticSiteRoutesResult {
+    readonly value: outputs.services.ListStaticSiteRoutesResponse[][];
 }
 
 export function listStaticSiteRoutesOutput(args: ListStaticSiteRoutesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListStaticSiteRoutesResult> {

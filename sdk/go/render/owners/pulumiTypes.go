@@ -3,7 +3,29 @@
 
 package owners
 
-type ListOwnersListOwners struct {
+import (
+	"context"
+	"reflect"
+
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+)
+
+type ListOwnersResponse struct {
+	Cursor *string `pulumi:"cursor"`
+	// The owner object represents an authorized user or team. The `type` property indicates if the owner is a user or team.
+	Owner *Owner `pulumi:"owner"`
+}
+
+// The owner object represents an authorized user or team. The `type` property indicates if the owner is a user or team.
+type Owner struct {
+	// The email of the owner.
+	Email *string `pulumi:"email"`
+	// The owner ID.
+	Id *string `pulumi:"id"`
+	// The name of the owner.
+	Name *string `pulumi:"name"`
+	// The type of the authorized user.
+	Type *OwnerType `pulumi:"type"`
 }
 
 func init() {

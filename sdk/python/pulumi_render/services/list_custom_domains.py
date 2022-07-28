@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._enums import *
 
 __all__ = [
     'ListCustomDomainsResult',
@@ -18,15 +20,24 @@ __all__ = [
 
 @pulumi.output_type
 class ListCustomDomainsResult:
-    def __init__(__self__):
-        pass
+    def __init__(__self__, value=None):
+        if value and not isinstance(value, list):
+            raise TypeError("Expected argument 'value' to be a list")
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Sequence[Sequence['outputs.ListCustomDomainsResponse']]:
+        return pulumi.get(self, "value")
+
 
 class AwaitableListCustomDomainsResult(ListCustomDomainsResult):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return ListCustomDomainsResult()
+        return ListCustomDomainsResult(
+            value=self.value)
 
 
 def list_custom_domains(service_id: Optional[str] = None,
@@ -41,7 +52,8 @@ def list_custom_domains(service_id: Optional[str] = None,
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:services:listCustomDomains', __args__, opts=opts, typ=ListCustomDomainsResult).value
 
-    return AwaitableListCustomDomainsResult()
+    return AwaitableListCustomDomainsResult(
+        value=__ret__.value)
 
 
 @_utilities.lift_output_func(list_custom_domains)

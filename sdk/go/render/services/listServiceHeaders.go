@@ -26,6 +26,7 @@ type ListServiceHeadersArgs struct {
 }
 
 type ListServiceHeadersResult struct {
+	Value [][]ListServiceHeadersResponse `pulumi:"value"`
 }
 
 func ListServiceHeadersOutput(ctx *pulumi.Context, args ListServiceHeadersOutputArgs, opts ...pulumi.InvokeOption) ListServiceHeadersResultOutput {
@@ -62,6 +63,10 @@ func (o ListServiceHeadersResultOutput) ToListServiceHeadersResultOutput() ListS
 
 func (o ListServiceHeadersResultOutput) ToListServiceHeadersResultOutputWithContext(ctx context.Context) ListServiceHeadersResultOutput {
 	return o
+}
+
+func (o ListServiceHeadersResultOutput) Value() ListServiceHeadersResponseArrayArrayOutput {
+	return o.ApplyT(func(v ListServiceHeadersResult) [][]ListServiceHeadersResponse { return v.Value }).(ListServiceHeadersResponseArrayArrayOutput)
 }
 
 func init() {

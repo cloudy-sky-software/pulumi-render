@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._enums import *
 
 __all__ = [
     'ListOwnersResult',
@@ -17,15 +19,24 @@ __all__ = [
 
 @pulumi.output_type
 class ListOwnersResult:
-    def __init__(__self__):
-        pass
+    def __init__(__self__, value=None):
+        if value and not isinstance(value, list):
+            raise TypeError("Expected argument 'value' to be a list")
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Sequence[Sequence['outputs.ListOwnersResponse']]:
+        return pulumi.get(self, "value")
+
 
 class AwaitableListOwnersResult(ListOwnersResult):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return ListOwnersResult()
+        return ListOwnersResult(
+            value=self.value)
 
 
 def list_owners(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListOwnersResult:
@@ -36,4 +47,5 @@ def list_owners(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListOwn
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:owners:listOwners', __args__, opts=opts, typ=ListOwnersResult).value
 
-    return AwaitableListOwnersResult()
+    return AwaitableListOwnersResult(
+        value=__ret__.value)

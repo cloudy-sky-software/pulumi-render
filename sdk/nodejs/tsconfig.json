@@ -33,6 +33,7 @@
         "services/suspend.ts",
         "services/webService.ts",
         "types/enums/index.ts",
+        "types/enums/owners/index.ts",
         "types/enums/services/index.ts",
         "types/index.ts",
         "types/input.ts",

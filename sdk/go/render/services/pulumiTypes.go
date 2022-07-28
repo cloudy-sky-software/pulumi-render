@@ -10,6 +10,379 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+type Commit struct {
+	CreatedAt *string `pulumi:"createdAt"`
+	Id        *string `pulumi:"id"`
+	Message   *string `pulumi:"message"`
+}
+
+type CommitOutput struct{ *pulumi.OutputState }
+
+func (CommitOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Commit)(nil)).Elem()
+}
+
+func (o CommitOutput) ToCommitOutput() CommitOutput {
+	return o
+}
+
+func (o CommitOutput) ToCommitOutputWithContext(ctx context.Context) CommitOutput {
+	return o
+}
+
+func (o CommitOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Commit) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+}
+
+func (o CommitOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Commit) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+func (o CommitOutput) Message() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Commit) *string { return v.Message }).(pulumi.StringPtrOutput)
+}
+
+type CommitPtrOutput struct{ *pulumi.OutputState }
+
+func (CommitPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Commit)(nil)).Elem()
+}
+
+func (o CommitPtrOutput) ToCommitPtrOutput() CommitPtrOutput {
+	return o
+}
+
+func (o CommitPtrOutput) ToCommitPtrOutputWithContext(ctx context.Context) CommitPtrOutput {
+	return o
+}
+
+func (o CommitPtrOutput) Elem() CommitOutput {
+	return o.ApplyT(func(v *Commit) Commit {
+		if v != nil {
+			return *v
+		}
+		var ret Commit
+		return ret
+	}).(CommitOutput)
+}
+
+func (o CommitPtrOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Commit) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedAt
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CommitPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Commit) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CommitPtrOutput) Message() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Commit) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Message
+	}).(pulumi.StringPtrOutput)
+}
+
+type CustomDomainType struct {
+	CreatedAt          *string                        `pulumi:"createdAt"`
+	DomainType         CustomDomainDomainType         `pulumi:"domainType"`
+	Name               string                         `pulumi:"name"`
+	PublicSuffix       *string                        `pulumi:"publicSuffix"`
+	RedirectForName    string                         `pulumi:"redirectForName"`
+	Server             CustomDomainServerProperties   `pulumi:"server"`
+	VerificationStatus CustomDomainVerificationStatus `pulumi:"verificationStatus"`
+}
+
+type CustomDomainTypeOutput struct{ *pulumi.OutputState }
+
+func (CustomDomainTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomDomainType)(nil)).Elem()
+}
+
+func (o CustomDomainTypeOutput) ToCustomDomainTypeOutput() CustomDomainTypeOutput {
+	return o
+}
+
+func (o CustomDomainTypeOutput) ToCustomDomainTypeOutputWithContext(ctx context.Context) CustomDomainTypeOutput {
+	return o
+}
+
+func (o CustomDomainTypeOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CustomDomainType) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+}
+
+func (o CustomDomainTypeOutput) DomainType() CustomDomainDomainTypeOutput {
+	return o.ApplyT(func(v CustomDomainType) CustomDomainDomainType { return v.DomainType }).(CustomDomainDomainTypeOutput)
+}
+
+func (o CustomDomainTypeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v CustomDomainType) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o CustomDomainTypeOutput) PublicSuffix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CustomDomainType) *string { return v.PublicSuffix }).(pulumi.StringPtrOutput)
+}
+
+func (o CustomDomainTypeOutput) RedirectForName() pulumi.StringOutput {
+	return o.ApplyT(func(v CustomDomainType) string { return v.RedirectForName }).(pulumi.StringOutput)
+}
+
+func (o CustomDomainTypeOutput) Server() CustomDomainServerPropertiesOutput {
+	return o.ApplyT(func(v CustomDomainType) CustomDomainServerProperties { return v.Server }).(CustomDomainServerPropertiesOutput)
+}
+
+func (o CustomDomainTypeOutput) VerificationStatus() CustomDomainVerificationStatusOutput {
+	return o.ApplyT(func(v CustomDomainType) CustomDomainVerificationStatus { return v.VerificationStatus }).(CustomDomainVerificationStatusOutput)
+}
+
+type CustomDomainTypePtrOutput struct{ *pulumi.OutputState }
+
+func (CustomDomainTypePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CustomDomainType)(nil)).Elem()
+}
+
+func (o CustomDomainTypePtrOutput) ToCustomDomainTypePtrOutput() CustomDomainTypePtrOutput {
+	return o
+}
+
+func (o CustomDomainTypePtrOutput) ToCustomDomainTypePtrOutputWithContext(ctx context.Context) CustomDomainTypePtrOutput {
+	return o
+}
+
+func (o CustomDomainTypePtrOutput) Elem() CustomDomainTypeOutput {
+	return o.ApplyT(func(v *CustomDomainType) CustomDomainType {
+		if v != nil {
+			return *v
+		}
+		var ret CustomDomainType
+		return ret
+	}).(CustomDomainTypeOutput)
+}
+
+func (o CustomDomainTypePtrOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CustomDomainType) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedAt
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CustomDomainTypePtrOutput) DomainType() CustomDomainDomainTypePtrOutput {
+	return o.ApplyT(func(v *CustomDomainType) *CustomDomainDomainType {
+		if v == nil {
+			return nil
+		}
+		return &v.DomainType
+	}).(CustomDomainDomainTypePtrOutput)
+}
+
+func (o CustomDomainTypePtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CustomDomainType) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CustomDomainTypePtrOutput) PublicSuffix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CustomDomainType) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PublicSuffix
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CustomDomainTypePtrOutput) RedirectForName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CustomDomainType) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.RedirectForName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CustomDomainTypePtrOutput) Server() CustomDomainServerPropertiesPtrOutput {
+	return o.ApplyT(func(v *CustomDomainType) *CustomDomainServerProperties {
+		if v == nil {
+			return nil
+		}
+		return &v.Server
+	}).(CustomDomainServerPropertiesPtrOutput)
+}
+
+func (o CustomDomainTypePtrOutput) VerificationStatus() CustomDomainVerificationStatusPtrOutput {
+	return o.ApplyT(func(v *CustomDomainType) *CustomDomainVerificationStatus {
+		if v == nil {
+			return nil
+		}
+		return &v.VerificationStatus
+	}).(CustomDomainVerificationStatusPtrOutput)
+}
+
+type CustomDomainServerProperties struct {
+	Id   *string `pulumi:"id"`
+	Name *string `pulumi:"name"`
+}
+
+type CustomDomainServerPropertiesOutput struct{ *pulumi.OutputState }
+
+func (CustomDomainServerPropertiesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomDomainServerProperties)(nil)).Elem()
+}
+
+func (o CustomDomainServerPropertiesOutput) ToCustomDomainServerPropertiesOutput() CustomDomainServerPropertiesOutput {
+	return o
+}
+
+func (o CustomDomainServerPropertiesOutput) ToCustomDomainServerPropertiesOutputWithContext(ctx context.Context) CustomDomainServerPropertiesOutput {
+	return o
+}
+
+func (o CustomDomainServerPropertiesOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CustomDomainServerProperties) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+func (o CustomDomainServerPropertiesOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CustomDomainServerProperties) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type CustomDomainServerPropertiesPtrOutput struct{ *pulumi.OutputState }
+
+func (CustomDomainServerPropertiesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CustomDomainServerProperties)(nil)).Elem()
+}
+
+func (o CustomDomainServerPropertiesPtrOutput) ToCustomDomainServerPropertiesPtrOutput() CustomDomainServerPropertiesPtrOutput {
+	return o
+}
+
+func (o CustomDomainServerPropertiesPtrOutput) ToCustomDomainServerPropertiesPtrOutputWithContext(ctx context.Context) CustomDomainServerPropertiesPtrOutput {
+	return o
+}
+
+func (o CustomDomainServerPropertiesPtrOutput) Elem() CustomDomainServerPropertiesOutput {
+	return o.ApplyT(func(v *CustomDomainServerProperties) CustomDomainServerProperties {
+		if v != nil {
+			return *v
+		}
+		var ret CustomDomainServerProperties
+		return ret
+	}).(CustomDomainServerPropertiesOutput)
+}
+
+func (o CustomDomainServerPropertiesPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CustomDomainServerProperties) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CustomDomainServerPropertiesPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CustomDomainServerProperties) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+type DeployType struct {
+	ClearCache *DeployClearCache `pulumi:"clearCache"`
+	Commit     *Commit           `pulumi:"commit"`
+}
+
+// Defaults sets the appropriate defaults for DeployType
+func (val *DeployType) Defaults() *DeployType {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if isZero(tmp.ClearCache) {
+		clearCache_ := DeployClearCache("do_not_clear")
+		tmp.ClearCache = &clearCache_
+	}
+	return &tmp
+}
+
+type DeployTypeOutput struct{ *pulumi.OutputState }
+
+func (DeployTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeployType)(nil)).Elem()
+}
+
+func (o DeployTypeOutput) ToDeployTypeOutput() DeployTypeOutput {
+	return o
+}
+
+func (o DeployTypeOutput) ToDeployTypeOutputWithContext(ctx context.Context) DeployTypeOutput {
+	return o
+}
+
+func (o DeployTypeOutput) ClearCache() DeployClearCachePtrOutput {
+	return o.ApplyT(func(v DeployType) *DeployClearCache { return v.ClearCache }).(DeployClearCachePtrOutput)
+}
+
+func (o DeployTypeOutput) Commit() CommitPtrOutput {
+	return o.ApplyT(func(v DeployType) *Commit { return v.Commit }).(CommitPtrOutput)
+}
+
+type DeployTypePtrOutput struct{ *pulumi.OutputState }
+
+func (DeployTypePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeployType)(nil)).Elem()
+}
+
+func (o DeployTypePtrOutput) ToDeployTypePtrOutput() DeployTypePtrOutput {
+	return o
+}
+
+func (o DeployTypePtrOutput) ToDeployTypePtrOutputWithContext(ctx context.Context) DeployTypePtrOutput {
+	return o
+}
+
+func (o DeployTypePtrOutput) Elem() DeployTypeOutput {
+	return o.ApplyT(func(v *DeployType) DeployType {
+		if v != nil {
+			return *v
+		}
+		var ret DeployType
+		return ret
+	}).(DeployTypeOutput)
+}
+
+func (o DeployTypePtrOutput) ClearCache() DeployClearCachePtrOutput {
+	return o.ApplyT(func(v *DeployType) *DeployClearCache {
+		if v == nil {
+			return nil
+		}
+		return v.ClearCache
+	}).(DeployClearCachePtrOutput)
+}
+
+func (o DeployTypePtrOutput) Commit() CommitPtrOutput {
+	return o.ApplyT(func(v *DeployType) *Commit {
+		if v == nil {
+			return nil
+		}
+		return v.Commit
+	}).(CommitPtrOutput)
+}
+
 type DeployCommit struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	Id        *string `pulumi:"id"`
@@ -93,22 +466,371 @@ func (o DeployCommitPtrOutput) Message() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-type ListCustomDomainsListCustomDomains struct {
+type Disk struct {
+	MountPath string   `pulumi:"mountPath"`
+	Name      string   `pulumi:"name"`
+	SizeGB    *float64 `pulumi:"sizeGB"`
 }
 
-type ListDeploysListDeploys struct {
+// Defaults sets the appropriate defaults for Disk
+func (val *Disk) Defaults() *Disk {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if isZero(tmp.SizeGB) {
+		sizeGB_ := 1.0
+		tmp.SizeGB = &sizeGB_
+	}
+	return &tmp
 }
 
-type ListEnvVarsListEnvVars struct {
+type DockerDetails struct {
+	DockerCommand  *string `pulumi:"dockerCommand"`
+	DockerContext  *string `pulumi:"dockerContext"`
+	DockerfilePath *string `pulumi:"dockerfilePath"`
 }
 
-type ListServiceHeadersListServiceHeaders struct {
+// Defaults sets the appropriate defaults for DockerDetails
+func (val *DockerDetails) Defaults() *DockerDetails {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if isZero(tmp.DockerfilePath) {
+		dockerfilePath_ := "./Dockerfile"
+		tmp.DockerfilePath = &dockerfilePath_
+	}
+	return &tmp
 }
 
-type ListServicesListServices struct {
+type EnvVarKeyValue struct {
+	Key   string `pulumi:"key"`
+	Value string `pulumi:"value"`
 }
 
-type ListStaticSiteRoutesListStaticSiteRoutes struct {
+type EnvVarKeyValueOutput struct{ *pulumi.OutputState }
+
+func (EnvVarKeyValueOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvVarKeyValue)(nil)).Elem()
+}
+
+func (o EnvVarKeyValueOutput) ToEnvVarKeyValueOutput() EnvVarKeyValueOutput {
+	return o
+}
+
+func (o EnvVarKeyValueOutput) ToEnvVarKeyValueOutputWithContext(ctx context.Context) EnvVarKeyValueOutput {
+	return o
+}
+
+func (o EnvVarKeyValueOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v EnvVarKeyValue) string { return v.Key }).(pulumi.StringOutput)
+}
+
+func (o EnvVarKeyValueOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v EnvVarKeyValue) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type EnvVarKeyValuePtrOutput struct{ *pulumi.OutputState }
+
+func (EnvVarKeyValuePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvVarKeyValue)(nil)).Elem()
+}
+
+func (o EnvVarKeyValuePtrOutput) ToEnvVarKeyValuePtrOutput() EnvVarKeyValuePtrOutput {
+	return o
+}
+
+func (o EnvVarKeyValuePtrOutput) ToEnvVarKeyValuePtrOutputWithContext(ctx context.Context) EnvVarKeyValuePtrOutput {
+	return o
+}
+
+func (o EnvVarKeyValuePtrOutput) Elem() EnvVarKeyValueOutput {
+	return o.ApplyT(func(v *EnvVarKeyValue) EnvVarKeyValue {
+		if v != nil {
+			return *v
+		}
+		var ret EnvVarKeyValue
+		return ret
+	}).(EnvVarKeyValueOutput)
+}
+
+func (o EnvVarKeyValuePtrOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvVarKeyValue) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Key
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o EnvVarKeyValuePtrOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvVarKeyValue) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Value
+	}).(pulumi.StringPtrOutput)
+}
+
+type ListCustomDomainsResponse struct {
+	Cursor       *string           `pulumi:"cursor"`
+	CustomDomain *CustomDomainType `pulumi:"customDomain"`
+}
+
+type ListCustomDomainsResponseOutput struct{ *pulumi.OutputState }
+
+func (ListCustomDomainsResponseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListCustomDomainsResponse)(nil)).Elem()
+}
+
+func (o ListCustomDomainsResponseOutput) ToListCustomDomainsResponseOutput() ListCustomDomainsResponseOutput {
+	return o
+}
+
+func (o ListCustomDomainsResponseOutput) ToListCustomDomainsResponseOutputWithContext(ctx context.Context) ListCustomDomainsResponseOutput {
+	return o
+}
+
+func (o ListCustomDomainsResponseOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListCustomDomainsResponse) *string { return v.Cursor }).(pulumi.StringPtrOutput)
+}
+
+func (o ListCustomDomainsResponseOutput) CustomDomain() CustomDomainTypePtrOutput {
+	return o.ApplyT(func(v ListCustomDomainsResponse) *CustomDomainType { return v.CustomDomain }).(CustomDomainTypePtrOutput)
+}
+
+type ListCustomDomainsResponseArrayOutput struct{ *pulumi.OutputState }
+
+func (ListCustomDomainsResponseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListCustomDomainsResponse)(nil)).Elem()
+}
+
+func (o ListCustomDomainsResponseArrayOutput) ToListCustomDomainsResponseArrayOutput() ListCustomDomainsResponseArrayOutput {
+	return o
+}
+
+func (o ListCustomDomainsResponseArrayOutput) ToListCustomDomainsResponseArrayOutputWithContext(ctx context.Context) ListCustomDomainsResponseArrayOutput {
+	return o
+}
+
+func (o ListCustomDomainsResponseArrayOutput) Index(i pulumi.IntInput) ListCustomDomainsResponseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListCustomDomainsResponse {
+		return vs[0].([]ListCustomDomainsResponse)[vs[1].(int)]
+	}).(ListCustomDomainsResponseOutput)
+}
+
+type ListDeploysResponse struct {
+	Cursor       *string     `pulumi:"cursor"`
+	CustomDomain *DeployType `pulumi:"customDomain"`
+}
+
+// Defaults sets the appropriate defaults for ListDeploysResponse
+func (val *ListDeploysResponse) Defaults() *ListDeploysResponse {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	tmp.CustomDomain = tmp.CustomDomain.Defaults()
+
+	return &tmp
+}
+
+type ListDeploysResponseOutput struct{ *pulumi.OutputState }
+
+func (ListDeploysResponseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListDeploysResponse)(nil)).Elem()
+}
+
+func (o ListDeploysResponseOutput) ToListDeploysResponseOutput() ListDeploysResponseOutput {
+	return o
+}
+
+func (o ListDeploysResponseOutput) ToListDeploysResponseOutputWithContext(ctx context.Context) ListDeploysResponseOutput {
+	return o
+}
+
+func (o ListDeploysResponseOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListDeploysResponse) *string { return v.Cursor }).(pulumi.StringPtrOutput)
+}
+
+func (o ListDeploysResponseOutput) CustomDomain() DeployTypePtrOutput {
+	return o.ApplyT(func(v ListDeploysResponse) *DeployType { return v.CustomDomain }).(DeployTypePtrOutput)
+}
+
+type ListDeploysResponseArrayOutput struct{ *pulumi.OutputState }
+
+func (ListDeploysResponseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListDeploysResponse)(nil)).Elem()
+}
+
+func (o ListDeploysResponseArrayOutput) ToListDeploysResponseArrayOutput() ListDeploysResponseArrayOutput {
+	return o
+}
+
+func (o ListDeploysResponseArrayOutput) ToListDeploysResponseArrayOutputWithContext(ctx context.Context) ListDeploysResponseArrayOutput {
+	return o
+}
+
+func (o ListDeploysResponseArrayOutput) Index(i pulumi.IntInput) ListDeploysResponseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListDeploysResponse {
+		return vs[0].([]ListDeploysResponse)[vs[1].(int)]
+	}).(ListDeploysResponseOutput)
+}
+
+type ListEnvVarsResponse struct {
+	Cursor *string         `pulumi:"cursor"`
+	EnvVar *EnvVarKeyValue `pulumi:"envVar"`
+}
+
+type ListEnvVarsResponseOutput struct{ *pulumi.OutputState }
+
+func (ListEnvVarsResponseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListEnvVarsResponse)(nil)).Elem()
+}
+
+func (o ListEnvVarsResponseOutput) ToListEnvVarsResponseOutput() ListEnvVarsResponseOutput {
+	return o
+}
+
+func (o ListEnvVarsResponseOutput) ToListEnvVarsResponseOutputWithContext(ctx context.Context) ListEnvVarsResponseOutput {
+	return o
+}
+
+func (o ListEnvVarsResponseOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListEnvVarsResponse) *string { return v.Cursor }).(pulumi.StringPtrOutput)
+}
+
+func (o ListEnvVarsResponseOutput) EnvVar() EnvVarKeyValuePtrOutput {
+	return o.ApplyT(func(v ListEnvVarsResponse) *EnvVarKeyValue { return v.EnvVar }).(EnvVarKeyValuePtrOutput)
+}
+
+type ListEnvVarsResponseArrayOutput struct{ *pulumi.OutputState }
+
+func (ListEnvVarsResponseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListEnvVarsResponse)(nil)).Elem()
+}
+
+func (o ListEnvVarsResponseArrayOutput) ToListEnvVarsResponseArrayOutput() ListEnvVarsResponseArrayOutput {
+	return o
+}
+
+func (o ListEnvVarsResponseArrayOutput) ToListEnvVarsResponseArrayOutputWithContext(ctx context.Context) ListEnvVarsResponseArrayOutput {
+	return o
+}
+
+func (o ListEnvVarsResponseArrayOutput) Index(i pulumi.IntInput) ListEnvVarsResponseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListEnvVarsResponse {
+		return vs[0].([]ListEnvVarsResponse)[vs[1].(int)]
+	}).(ListEnvVarsResponseOutput)
+}
+
+type ListServiceHeadersResponse struct {
+	Cursor *string `pulumi:"cursor"`
+	// A service header object
+	Header *ServiceHeader `pulumi:"header"`
+}
+
+type ListServiceHeadersResponseOutput struct{ *pulumi.OutputState }
+
+func (ListServiceHeadersResponseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListServiceHeadersResponse)(nil)).Elem()
+}
+
+func (o ListServiceHeadersResponseOutput) ToListServiceHeadersResponseOutput() ListServiceHeadersResponseOutput {
+	return o
+}
+
+func (o ListServiceHeadersResponseOutput) ToListServiceHeadersResponseOutputWithContext(ctx context.Context) ListServiceHeadersResponseOutput {
+	return o
+}
+
+func (o ListServiceHeadersResponseOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListServiceHeadersResponse) *string { return v.Cursor }).(pulumi.StringPtrOutput)
+}
+
+// A service header object
+func (o ListServiceHeadersResponseOutput) Header() ServiceHeaderPtrOutput {
+	return o.ApplyT(func(v ListServiceHeadersResponse) *ServiceHeader { return v.Header }).(ServiceHeaderPtrOutput)
+}
+
+type ListServiceHeadersResponseArrayOutput struct{ *pulumi.OutputState }
+
+func (ListServiceHeadersResponseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListServiceHeadersResponse)(nil)).Elem()
+}
+
+func (o ListServiceHeadersResponseArrayOutput) ToListServiceHeadersResponseArrayOutput() ListServiceHeadersResponseArrayOutput {
+	return o
+}
+
+func (o ListServiceHeadersResponseArrayOutput) ToListServiceHeadersResponseArrayOutputWithContext(ctx context.Context) ListServiceHeadersResponseArrayOutput {
+	return o
+}
+
+func (o ListServiceHeadersResponseArrayOutput) Index(i pulumi.IntInput) ListServiceHeadersResponseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListServiceHeadersResponse {
+		return vs[0].([]ListServiceHeadersResponse)[vs[1].(int)]
+	}).(ListServiceHeadersResponseOutput)
+}
+
+type ListServiceResponse struct {
+	Cursor  *string     `pulumi:"cursor"`
+	Service interface{} `pulumi:"service"`
+}
+
+type ListStaticSiteRoutesResponse struct {
+	Cursor *string `pulumi:"cursor"`
+	// A route object for a static site
+	Route *StaticSiteRoute `pulumi:"route"`
+}
+
+type ListStaticSiteRoutesResponseOutput struct{ *pulumi.OutputState }
+
+func (ListStaticSiteRoutesResponseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListStaticSiteRoutesResponse)(nil)).Elem()
+}
+
+func (o ListStaticSiteRoutesResponseOutput) ToListStaticSiteRoutesResponseOutput() ListStaticSiteRoutesResponseOutput {
+	return o
+}
+
+func (o ListStaticSiteRoutesResponseOutput) ToListStaticSiteRoutesResponseOutputWithContext(ctx context.Context) ListStaticSiteRoutesResponseOutput {
+	return o
+}
+
+func (o ListStaticSiteRoutesResponseOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListStaticSiteRoutesResponse) *string { return v.Cursor }).(pulumi.StringPtrOutput)
+}
+
+// A route object for a static site
+func (o ListStaticSiteRoutesResponseOutput) Route() StaticSiteRoutePtrOutput {
+	return o.ApplyT(func(v ListStaticSiteRoutesResponse) *StaticSiteRoute { return v.Route }).(StaticSiteRoutePtrOutput)
+}
+
+type ListStaticSiteRoutesResponseArrayOutput struct{ *pulumi.OutputState }
+
+func (ListStaticSiteRoutesResponseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListStaticSiteRoutesResponse)(nil)).Elem()
+}
+
+func (o ListStaticSiteRoutesResponseArrayOutput) ToListStaticSiteRoutesResponseArrayOutput() ListStaticSiteRoutesResponseArrayOutput {
+	return o
+}
+
+func (o ListStaticSiteRoutesResponseArrayOutput) ToListStaticSiteRoutesResponseArrayOutputWithContext(ctx context.Context) ListStaticSiteRoutesResponseArrayOutput {
+	return o
+}
+
+func (o ListStaticSiteRoutesResponseArrayOutput) Index(i pulumi.IntInput) ListStaticSiteRoutesResponseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListStaticSiteRoutesResponse {
+		return vs[0].([]ListStaticSiteRoutesResponse)[vs[1].(int)]
+	}).(ListStaticSiteRoutesResponseOutput)
+}
+
+type NativeEnvironmentDetails struct {
+	BuildCommand string `pulumi:"buildCommand"`
+	StartCommand string `pulumi:"startCommand"`
 }
 
 type ServerProperties struct {
@@ -166,17 +888,123 @@ func (o ServerPropertiesOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerProperties) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-type StaticSiteProperties struct {
-	ServiceDetails *StaticSiteStaticSiteServiceDetails `pulumi:"serviceDetails"`
-	Type           *string                             `pulumi:"type"`
+// A service header object
+type ServiceHeader struct {
+	Name  string `pulumi:"name"`
+	Path  string `pulumi:"path"`
+	Value string `pulumi:"value"`
 }
 
-// Defaults sets the appropriate defaults for StaticSiteProperties
-func (val *StaticSiteProperties) Defaults() *StaticSiteProperties {
+// A service header object
+type ServiceHeaderOutput struct{ *pulumi.OutputState }
+
+func (ServiceHeaderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceHeader)(nil)).Elem()
+}
+
+func (o ServiceHeaderOutput) ToServiceHeaderOutput() ServiceHeaderOutput {
+	return o
+}
+
+func (o ServiceHeaderOutput) ToServiceHeaderOutputWithContext(ctx context.Context) ServiceHeaderOutput {
+	return o
+}
+
+func (o ServiceHeaderOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceHeader) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o ServiceHeaderOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceHeader) string { return v.Path }).(pulumi.StringOutput)
+}
+
+func (o ServiceHeaderOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceHeader) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type ServiceHeaderPtrOutput struct{ *pulumi.OutputState }
+
+func (ServiceHeaderPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceHeader)(nil)).Elem()
+}
+
+func (o ServiceHeaderPtrOutput) ToServiceHeaderPtrOutput() ServiceHeaderPtrOutput {
+	return o
+}
+
+func (o ServiceHeaderPtrOutput) ToServiceHeaderPtrOutputWithContext(ctx context.Context) ServiceHeaderPtrOutput {
+	return o
+}
+
+func (o ServiceHeaderPtrOutput) Elem() ServiceHeaderOutput {
+	return o.ApplyT(func(v *ServiceHeader) ServiceHeader {
+		if v != nil {
+			return *v
+		}
+		var ret ServiceHeader
+		return ret
+	}).(ServiceHeaderOutput)
+}
+
+func (o ServiceHeaderPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceHeader) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ServiceHeaderPtrOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceHeader) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Path
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ServiceHeaderPtrOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceHeader) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Value
+	}).(pulumi.StringPtrOutput)
+}
+
+// A static website service
+type StaticSiteType struct {
+	// Whether to auto deploy the service or not upon git push.
+	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
+	// If left empty, this will fall back to the default branch of the repository.
+	Branch    *string `pulumi:"branch"`
+	CreatedAt *string `pulumi:"createdAt"`
+	Name      string  `pulumi:"name"`
+	// The notification setting for this service upon deployment failure.
+	NotifyOnFail *ServiceNotifyOnFail `pulumi:"notifyOnFail"`
+	// The id of the owner (user/team).
+	OwnerId string `pulumi:"ownerId"`
+	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+	Repo           string                    `pulumi:"repo"`
+	ServiceDetails *StaticSiteServiceDetails `pulumi:"serviceDetails"`
+	Slug           *string                   `pulumi:"slug"`
+	Suspended      *ServiceSuspended         `pulumi:"suspended"`
+	Suspenders     []string                  `pulumi:"suspenders"`
+	Type           *string                   `pulumi:"type"`
+	UpdatedAt      *string                   `pulumi:"updatedAt"`
+}
+
+// Defaults sets the appropriate defaults for StaticSiteType
+func (val *StaticSiteType) Defaults() *StaticSiteType {
 	if val == nil {
 		return nil
 	}
 	tmp := *val
+	if isZero(tmp.AutoDeploy) {
+		autoDeploy_ := ServiceAutoDeploy("no")
+		tmp.AutoDeploy = &autoDeploy_
+	}
 	tmp.ServiceDetails = tmp.ServiceDetails.Defaults()
 
 	if isZero(tmp.Type) {
@@ -186,37 +1014,122 @@ func (val *StaticSiteProperties) Defaults() *StaticSiteProperties {
 	return &tmp
 }
 
-// The service object represents a service. The type of service is discriminated by the type property which determines the type of object in the serviceDetails property.
-type StaticSiteService struct {
-	// Whether to auto deploy the service or not upon git push.
-	AutoDeploy *StaticSiteServiceAutoDeploy `pulumi:"autoDeploy"`
-	// If left empty, this will fall back to the default branch of the repository.
-	Branch    *string `pulumi:"branch"`
-	CreatedAt *string `pulumi:"createdAt"`
-	Name      string  `pulumi:"name"`
-	// The notification setting for this service upon deployment failure.
-	NotifyOnFail *StaticSiteServiceNotifyOnFail `pulumi:"notifyOnFail"`
-	// The id of the owner (user/team).
-	OwnerId string `pulumi:"ownerId"`
-	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-	Repo       string                      `pulumi:"repo"`
-	Slug       *string                     `pulumi:"slug"`
-	Suspended  *StaticSiteServiceSuspended `pulumi:"suspended"`
-	Suspenders []string                    `pulumi:"suspenders"`
-	UpdatedAt  *string                     `pulumi:"updatedAt"`
+// A route object for a static site
+type StaticSiteRoute struct {
+	Destination string              `pulumi:"destination"`
+	Source      string              `pulumi:"source"`
+	Type        StaticSiteRouteType `pulumi:"type"`
 }
 
-// Defaults sets the appropriate defaults for StaticSiteService
-func (val *StaticSiteService) Defaults() *StaticSiteService {
+// A route object for a static site
+type StaticSiteRouteOutput struct{ *pulumi.OutputState }
+
+func (StaticSiteRouteOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StaticSiteRoute)(nil)).Elem()
+}
+
+func (o StaticSiteRouteOutput) ToStaticSiteRouteOutput() StaticSiteRouteOutput {
+	return o
+}
+
+func (o StaticSiteRouteOutput) ToStaticSiteRouteOutputWithContext(ctx context.Context) StaticSiteRouteOutput {
+	return o
+}
+
+func (o StaticSiteRouteOutput) Destination() pulumi.StringOutput {
+	return o.ApplyT(func(v StaticSiteRoute) string { return v.Destination }).(pulumi.StringOutput)
+}
+
+func (o StaticSiteRouteOutput) Source() pulumi.StringOutput {
+	return o.ApplyT(func(v StaticSiteRoute) string { return v.Source }).(pulumi.StringOutput)
+}
+
+func (o StaticSiteRouteOutput) Type() StaticSiteRouteTypeOutput {
+	return o.ApplyT(func(v StaticSiteRoute) StaticSiteRouteType { return v.Type }).(StaticSiteRouteTypeOutput)
+}
+
+type StaticSiteRoutePtrOutput struct{ *pulumi.OutputState }
+
+func (StaticSiteRoutePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StaticSiteRoute)(nil)).Elem()
+}
+
+func (o StaticSiteRoutePtrOutput) ToStaticSiteRoutePtrOutput() StaticSiteRoutePtrOutput {
+	return o
+}
+
+func (o StaticSiteRoutePtrOutput) ToStaticSiteRoutePtrOutputWithContext(ctx context.Context) StaticSiteRoutePtrOutput {
+	return o
+}
+
+func (o StaticSiteRoutePtrOutput) Elem() StaticSiteRouteOutput {
+	return o.ApplyT(func(v *StaticSiteRoute) StaticSiteRoute {
+		if v != nil {
+			return *v
+		}
+		var ret StaticSiteRoute
+		return ret
+	}).(StaticSiteRouteOutput)
+}
+
+func (o StaticSiteRoutePtrOutput) Destination() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StaticSiteRoute) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Destination
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o StaticSiteRoutePtrOutput) Source() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StaticSiteRoute) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Source
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o StaticSiteRoutePtrOutput) Type() StaticSiteRouteTypePtrOutput {
+	return o.ApplyT(func(v *StaticSiteRoute) *StaticSiteRouteType {
+		if v == nil {
+			return nil
+		}
+		return &v.Type
+	}).(StaticSiteRouteTypePtrOutput)
+}
+
+type StaticSiteServiceDetails struct {
+	BuildCommand               *string                                             `pulumi:"buildCommand"`
+	Headers                    []ServiceHeader                                     `pulumi:"headers"`
+	ParentServer               *StaticSiteServiceDetailsParentServerProperties     `pulumi:"parentServer"`
+	PublishPath                *string                                             `pulumi:"publishPath"`
+	PullRequestPreviewsEnabled *StaticSiteServiceDetailsPullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
+	Routes                     []StaticSiteRoute                                   `pulumi:"routes"`
+	// The HTTPS service URL. A subdomain of onrender.com, by default.
+	Url *string `pulumi:"url"`
+}
+
+// Defaults sets the appropriate defaults for StaticSiteServiceDetails
+func (val *StaticSiteServiceDetails) Defaults() *StaticSiteServiceDetails {
 	if val == nil {
 		return nil
 	}
 	tmp := *val
-	if isZero(tmp.AutoDeploy) {
-		autoDeploy_ := StaticSiteServiceAutoDeploy("no")
-		tmp.AutoDeploy = &autoDeploy_
+	if isZero(tmp.PublishPath) {
+		publishPath_ := "public"
+		tmp.PublishPath = &publishPath_
+	}
+	if isZero(tmp.PullRequestPreviewsEnabled) {
+		pullRequestPreviewsEnabled_ := StaticSiteServiceDetailsPullRequestPreviewsEnabled("no")
+		tmp.PullRequestPreviewsEnabled = &pullRequestPreviewsEnabled_
 	}
 	return &tmp
+}
+
+type StaticSiteServiceDetailsParentServerProperties struct {
+	Id   *string `pulumi:"id"`
+	Name *string `pulumi:"name"`
 }
 
 // A service header object
@@ -847,6 +1760,47 @@ func (o StaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutput) Name(
 	}).(pulumi.StringPtrOutput)
 }
 
+// A web service
+type WebServiceType struct {
+	// Whether to auto deploy the service or not upon git push.
+	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
+	// If left empty, this will fall back to the default branch of the repository.
+	Branch    *string `pulumi:"branch"`
+	CreatedAt *string `pulumi:"createdAt"`
+	Name      string  `pulumi:"name"`
+	// The notification setting for this service upon deployment failure.
+	NotifyOnFail *ServiceNotifyOnFail `pulumi:"notifyOnFail"`
+	// The id of the owner (user/team).
+	OwnerId string `pulumi:"ownerId"`
+	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+	Repo           string                    `pulumi:"repo"`
+	ServiceDetails *WebServiceServiceDetails `pulumi:"serviceDetails"`
+	Slug           *string                   `pulumi:"slug"`
+	Suspended      *ServiceSuspended         `pulumi:"suspended"`
+	Suspenders     []string                  `pulumi:"suspenders"`
+	Type           *string                   `pulumi:"type"`
+	UpdatedAt      *string                   `pulumi:"updatedAt"`
+}
+
+// Defaults sets the appropriate defaults for WebServiceType
+func (val *WebServiceType) Defaults() *WebServiceType {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if isZero(tmp.AutoDeploy) {
+		autoDeploy_ := ServiceAutoDeploy("no")
+		tmp.AutoDeploy = &autoDeploy_
+	}
+	tmp.ServiceDetails = tmp.ServiceDetails.Defaults()
+
+	if isZero(tmp.Type) {
+		type_ := "web_service"
+		tmp.Type = &type_
+	}
+	return &tmp
+}
+
 type WebServiceDisk struct {
 	MountPath string   `pulumi:"mountPath"`
 	Name      string   `pulumi:"name"`
@@ -1058,55 +2012,40 @@ type WebServiceNativeEnvironmentDetails struct {
 	StartCommand string `pulumi:"startCommand"`
 }
 
-type WebServiceProperties struct {
-	ServiceDetails *WebServiceWebServiceServiceDetails `pulumi:"serviceDetails"`
-	Type           *string                             `pulumi:"type"`
+type WebServiceServiceDetails struct {
+	Disk                       *Disk                                               `pulumi:"disk"`
+	Env                        WebServiceServiceDetailsEnv                         `pulumi:"env"`
+	EnvSpecificDetails         interface{}                                         `pulumi:"envSpecificDetails"`
+	HealthCheckPath            *string                                             `pulumi:"healthCheckPath"`
+	NumInstances               *float64                                            `pulumi:"numInstances"`
+	Plan                       *WebServiceServiceDetailsPlan                       `pulumi:"plan"`
+	PullRequestPreviewsEnabled *WebServiceServiceDetailsPullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
+	Region                     *WebServiceServiceDetailsRegion                     `pulumi:"region"`
 }
 
-// Defaults sets the appropriate defaults for WebServiceProperties
-func (val *WebServiceProperties) Defaults() *WebServiceProperties {
+// Defaults sets the appropriate defaults for WebServiceServiceDetails
+func (val *WebServiceServiceDetails) Defaults() *WebServiceServiceDetails {
 	if val == nil {
 		return nil
 	}
 	tmp := *val
-	tmp.ServiceDetails = tmp.ServiceDetails.Defaults()
+	tmp.Disk = tmp.Disk.Defaults()
 
-	if isZero(tmp.Type) {
-		type_ := "web_service"
-		tmp.Type = &type_
+	if isZero(tmp.NumInstances) {
+		numInstances_ := 1.0
+		tmp.NumInstances = &numInstances_
 	}
-	return &tmp
-}
-
-// The service object represents a service. The type of service is discriminated by the type property which determines the type of object in the serviceDetails property.
-type WebServiceService struct {
-	// Whether to auto deploy the service or not upon git push.
-	AutoDeploy *WebServiceServiceAutoDeploy `pulumi:"autoDeploy"`
-	// If left empty, this will fall back to the default branch of the repository.
-	Branch    *string `pulumi:"branch"`
-	CreatedAt *string `pulumi:"createdAt"`
-	Name      string  `pulumi:"name"`
-	// The notification setting for this service upon deployment failure.
-	NotifyOnFail *WebServiceServiceNotifyOnFail `pulumi:"notifyOnFail"`
-	// The id of the owner (user/team).
-	OwnerId string `pulumi:"ownerId"`
-	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-	Repo       string                      `pulumi:"repo"`
-	Slug       *string                     `pulumi:"slug"`
-	Suspended  *WebServiceServiceSuspended `pulumi:"suspended"`
-	Suspenders []string                    `pulumi:"suspenders"`
-	UpdatedAt  *string                     `pulumi:"updatedAt"`
-}
-
-// Defaults sets the appropriate defaults for WebServiceService
-func (val *WebServiceService) Defaults() *WebServiceService {
-	if val == nil {
-		return nil
+	if isZero(tmp.Plan) {
+		plan_ := WebServiceServiceDetailsPlan("starter")
+		tmp.Plan = &plan_
 	}
-	tmp := *val
-	if isZero(tmp.AutoDeploy) {
-		autoDeploy_ := WebServiceServiceAutoDeploy("no")
-		tmp.AutoDeploy = &autoDeploy_
+	if isZero(tmp.PullRequestPreviewsEnabled) {
+		pullRequestPreviewsEnabled_ := WebServiceServiceDetailsPullRequestPreviewsEnabled("no")
+		tmp.PullRequestPreviewsEnabled = &pullRequestPreviewsEnabled_
+	}
+	if isZero(tmp.Region) {
+		region_ := WebServiceServiceDetailsRegion("oregon")
+		tmp.Region = &region_
 	}
 	return &tmp
 }
@@ -1399,6 +2338,106 @@ func (o WebServiceWebServiceServiceDetailsPtrOutput) Region() WebServiceWebServi
 	}).(WebServiceWebServiceServiceDetailsRegionPtrOutput)
 }
 
+type ListCustomDomainsResponseArrayArrayOutput struct{ *pulumi.OutputState }
+
+func (ListCustomDomainsResponseArrayArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[][]ListCustomDomainsResponse)(nil)).Elem()
+}
+
+func (o ListCustomDomainsResponseArrayArrayOutput) ToListCustomDomainsResponseArrayArrayOutput() ListCustomDomainsResponseArrayArrayOutput {
+	return o
+}
+
+func (o ListCustomDomainsResponseArrayArrayOutput) ToListCustomDomainsResponseArrayArrayOutputWithContext(ctx context.Context) ListCustomDomainsResponseArrayArrayOutput {
+	return o
+}
+
+func (o ListCustomDomainsResponseArrayArrayOutput) Index(i pulumi.IntInput) ListCustomDomainsResponseArrayOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) []ListCustomDomainsResponse {
+		return vs[0].([][]ListCustomDomainsResponse)[vs[1].(int)]
+	}).(ListCustomDomainsResponseArrayOutput)
+}
+
+type ListDeploysResponseArrayArrayOutput struct{ *pulumi.OutputState }
+
+func (ListDeploysResponseArrayArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[][]ListDeploysResponse)(nil)).Elem()
+}
+
+func (o ListDeploysResponseArrayArrayOutput) ToListDeploysResponseArrayArrayOutput() ListDeploysResponseArrayArrayOutput {
+	return o
+}
+
+func (o ListDeploysResponseArrayArrayOutput) ToListDeploysResponseArrayArrayOutputWithContext(ctx context.Context) ListDeploysResponseArrayArrayOutput {
+	return o
+}
+
+func (o ListDeploysResponseArrayArrayOutput) Index(i pulumi.IntInput) ListDeploysResponseArrayOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) []ListDeploysResponse {
+		return vs[0].([][]ListDeploysResponse)[vs[1].(int)]
+	}).(ListDeploysResponseArrayOutput)
+}
+
+type ListEnvVarsResponseArrayArrayOutput struct{ *pulumi.OutputState }
+
+func (ListEnvVarsResponseArrayArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[][]ListEnvVarsResponse)(nil)).Elem()
+}
+
+func (o ListEnvVarsResponseArrayArrayOutput) ToListEnvVarsResponseArrayArrayOutput() ListEnvVarsResponseArrayArrayOutput {
+	return o
+}
+
+func (o ListEnvVarsResponseArrayArrayOutput) ToListEnvVarsResponseArrayArrayOutputWithContext(ctx context.Context) ListEnvVarsResponseArrayArrayOutput {
+	return o
+}
+
+func (o ListEnvVarsResponseArrayArrayOutput) Index(i pulumi.IntInput) ListEnvVarsResponseArrayOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) []ListEnvVarsResponse {
+		return vs[0].([][]ListEnvVarsResponse)[vs[1].(int)]
+	}).(ListEnvVarsResponseArrayOutput)
+}
+
+type ListServiceHeadersResponseArrayArrayOutput struct{ *pulumi.OutputState }
+
+func (ListServiceHeadersResponseArrayArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[][]ListServiceHeadersResponse)(nil)).Elem()
+}
+
+func (o ListServiceHeadersResponseArrayArrayOutput) ToListServiceHeadersResponseArrayArrayOutput() ListServiceHeadersResponseArrayArrayOutput {
+	return o
+}
+
+func (o ListServiceHeadersResponseArrayArrayOutput) ToListServiceHeadersResponseArrayArrayOutputWithContext(ctx context.Context) ListServiceHeadersResponseArrayArrayOutput {
+	return o
+}
+
+func (o ListServiceHeadersResponseArrayArrayOutput) Index(i pulumi.IntInput) ListServiceHeadersResponseArrayOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) []ListServiceHeadersResponse {
+		return vs[0].([][]ListServiceHeadersResponse)[vs[1].(int)]
+	}).(ListServiceHeadersResponseArrayOutput)
+}
+
+type ListStaticSiteRoutesResponseArrayArrayOutput struct{ *pulumi.OutputState }
+
+func (ListStaticSiteRoutesResponseArrayArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[][]ListStaticSiteRoutesResponse)(nil)).Elem()
+}
+
+func (o ListStaticSiteRoutesResponseArrayArrayOutput) ToListStaticSiteRoutesResponseArrayArrayOutput() ListStaticSiteRoutesResponseArrayArrayOutput {
+	return o
+}
+
+func (o ListStaticSiteRoutesResponseArrayArrayOutput) ToListStaticSiteRoutesResponseArrayArrayOutputWithContext(ctx context.Context) ListStaticSiteRoutesResponseArrayArrayOutput {
+	return o
+}
+
+func (o ListStaticSiteRoutesResponseArrayArrayOutput) Index(i pulumi.IntInput) ListStaticSiteRoutesResponseArrayOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) []ListStaticSiteRoutesResponse {
+		return vs[0].([][]ListStaticSiteRoutesResponse)[vs[1].(int)]
+	}).(ListStaticSiteRoutesResponseArrayOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerPropertiesInput)(nil)).Elem(), ServerPropertiesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteServiceHeaderInput)(nil)).Elem(), StaticSiteServiceHeaderArgs{})
@@ -1413,9 +2452,33 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceDiskPtrInput)(nil)).Elem(), WebServiceDiskArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceWebServiceServiceDetailsInput)(nil)).Elem(), WebServiceWebServiceServiceDetailsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceWebServiceServiceDetailsPtrInput)(nil)).Elem(), WebServiceWebServiceServiceDetailsArgs{})
+	pulumi.RegisterOutputType(CommitOutput{})
+	pulumi.RegisterOutputType(CommitPtrOutput{})
+	pulumi.RegisterOutputType(CustomDomainTypeOutput{})
+	pulumi.RegisterOutputType(CustomDomainTypePtrOutput{})
+	pulumi.RegisterOutputType(CustomDomainServerPropertiesOutput{})
+	pulumi.RegisterOutputType(CustomDomainServerPropertiesPtrOutput{})
+	pulumi.RegisterOutputType(DeployTypeOutput{})
+	pulumi.RegisterOutputType(DeployTypePtrOutput{})
 	pulumi.RegisterOutputType(DeployCommitOutput{})
 	pulumi.RegisterOutputType(DeployCommitPtrOutput{})
+	pulumi.RegisterOutputType(EnvVarKeyValueOutput{})
+	pulumi.RegisterOutputType(EnvVarKeyValuePtrOutput{})
+	pulumi.RegisterOutputType(ListCustomDomainsResponseOutput{})
+	pulumi.RegisterOutputType(ListCustomDomainsResponseArrayOutput{})
+	pulumi.RegisterOutputType(ListDeploysResponseOutput{})
+	pulumi.RegisterOutputType(ListDeploysResponseArrayOutput{})
+	pulumi.RegisterOutputType(ListEnvVarsResponseOutput{})
+	pulumi.RegisterOutputType(ListEnvVarsResponseArrayOutput{})
+	pulumi.RegisterOutputType(ListServiceHeadersResponseOutput{})
+	pulumi.RegisterOutputType(ListServiceHeadersResponseArrayOutput{})
+	pulumi.RegisterOutputType(ListStaticSiteRoutesResponseOutput{})
+	pulumi.RegisterOutputType(ListStaticSiteRoutesResponseArrayOutput{})
 	pulumi.RegisterOutputType(ServerPropertiesOutput{})
+	pulumi.RegisterOutputType(ServiceHeaderOutput{})
+	pulumi.RegisterOutputType(ServiceHeaderPtrOutput{})
+	pulumi.RegisterOutputType(StaticSiteRouteOutput{})
+	pulumi.RegisterOutputType(StaticSiteRoutePtrOutput{})
 	pulumi.RegisterOutputType(StaticSiteServiceHeaderOutput{})
 	pulumi.RegisterOutputType(StaticSiteServiceHeaderArrayOutput{})
 	pulumi.RegisterOutputType(StaticSiteStaticSiteRouteOutput{})
@@ -1428,4 +2491,9 @@ func init() {
 	pulumi.RegisterOutputType(WebServiceDiskPtrOutput{})
 	pulumi.RegisterOutputType(WebServiceWebServiceServiceDetailsOutput{})
 	pulumi.RegisterOutputType(WebServiceWebServiceServiceDetailsPtrOutput{})
+	pulumi.RegisterOutputType(ListCustomDomainsResponseArrayArrayOutput{})
+	pulumi.RegisterOutputType(ListDeploysResponseArrayArrayOutput{})
+	pulumi.RegisterOutputType(ListEnvVarsResponseArrayArrayOutput{})
+	pulumi.RegisterOutputType(ListServiceHeadersResponseArrayArrayOutput{})
+	pulumi.RegisterOutputType(ListStaticSiteRoutesResponseArrayArrayOutput{})
 }

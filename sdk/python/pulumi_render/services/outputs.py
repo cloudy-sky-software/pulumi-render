@@ -16,7 +16,6 @@ __all__ = [
     'CustomDomain',
     'CustomDomainServerProperties',
     'Deploy',
-    'DeployCommit',
     'Disk',
     'DockerDetails',
     'EnvVarKeyValue',
@@ -35,20 +34,29 @@ __all__ = [
     'StaticSiteRoute',
     'StaticSiteServiceDetails',
     'StaticSiteServiceDetailsParentServerProperties',
-    'StaticSiteServiceHeader',
-    'StaticSiteStaticSiteRoute',
-    'StaticSiteStaticSiteServiceDetails',
-    'StaticSiteStaticSiteServiceDetailsParentServerProperties',
     'WebService',
-    'WebServiceDisk',
-    'WebServiceDockerDetails',
-    'WebServiceNativeEnvironmentDetails',
     'WebServiceServiceDetails',
-    'WebServiceWebServiceServiceDetails',
 ]
 
 @pulumi.output_type
 class Commit(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "createdAt":
+            suggest = "created_at"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Commit. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Commit.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Commit.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  created_at: Optional[str] = None,
                  id: Optional[str] = None,
@@ -177,53 +185,26 @@ class Deploy(dict):
 
 
 @pulumi.output_type
-class DeployCommit(dict):
+class Disk(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "createdAt":
-            suggest = "created_at"
+        if key == "mountPath":
+            suggest = "mount_path"
+        elif key == "sizeGB":
+            suggest = "size_gb"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in DeployCommit. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in Disk. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        DeployCommit.__key_warning(key)
+        Disk.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        DeployCommit.__key_warning(key)
+        Disk.__key_warning(key)
         return super().get(key, default)
 
-    def __init__(__self__, *,
-                 created_at: Optional[str] = None,
-                 id: Optional[str] = None,
-                 message: Optional[str] = None):
-        if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
-        if id is not None:
-            pulumi.set(__self__, "id", id)
-        if message is not None:
-            pulumi.set(__self__, "message", message)
-
-    @property
-    @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[str]:
-        return pulumi.get(self, "created_at")
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[str]:
-        return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter
-    def message(self) -> Optional[str]:
-        return pulumi.get(self, "message")
-
-
-@pulumi.output_type
-class Disk(dict):
     def __init__(__self__, *,
                  mount_path: str,
                  name: str,
@@ -253,6 +234,27 @@ class Disk(dict):
 
 @pulumi.output_type
 class DockerDetails(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "dockerCommand":
+            suggest = "docker_command"
+        elif key == "dockerContext":
+            suggest = "docker_context"
+        elif key == "dockerfilePath":
+            suggest = "dockerfile_path"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DockerDetails. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DockerDetails.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DockerDetails.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  docker_command: Optional[str] = None,
                  docker_context: Optional[str] = None,
@@ -713,6 +715,25 @@ class ListStaticSiteRoutesResponse(dict):
 
 @pulumi.output_type
 class NativeEnvironmentDetails(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "buildCommand":
+            suggest = "build_command"
+        elif key == "startCommand":
+            suggest = "start_command"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NativeEnvironmentDetails. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NativeEnvironmentDetails.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NativeEnvironmentDetails.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  build_command: str,
                  start_command: str):
@@ -953,6 +974,29 @@ class StaticSiteRoute(dict):
 
 @pulumi.output_type
 class StaticSiteServiceDetails(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "buildCommand":
+            suggest = "build_command"
+        elif key == "parentServer":
+            suggest = "parent_server"
+        elif key == "publishPath":
+            suggest = "publish_path"
+        elif key == "pullRequestPreviewsEnabled":
+            suggest = "pull_request_previews_enabled"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in StaticSiteServiceDetails. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        StaticSiteServiceDetails.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        StaticSiteServiceDetails.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  build_command: Optional[str] = None,
                  headers: Optional[Sequence['outputs.ServiceHeader']] = None,
@@ -1024,185 +1068,6 @@ class StaticSiteServiceDetails(dict):
 
 @pulumi.output_type
 class StaticSiteServiceDetailsParentServerProperties(dict):
-    def __init__(__self__, *,
-                 id: Optional[str] = None,
-                 name: Optional[str] = None):
-        if id is not None:
-            pulumi.set(__self__, "id", id)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[str]:
-        return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[str]:
-        return pulumi.get(self, "name")
-
-
-@pulumi.output_type
-class StaticSiteServiceHeader(dict):
-    """
-    A service header object
-    """
-    def __init__(__self__, *,
-                 name: str,
-                 path: str,
-                 value: str):
-        """
-        A service header object
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "path", path)
-        pulumi.set(__self__, "value", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def path(self) -> str:
-        return pulumi.get(self, "path")
-
-    @property
-    @pulumi.getter
-    def value(self) -> str:
-        return pulumi.get(self, "value")
-
-
-@pulumi.output_type
-class StaticSiteStaticSiteRoute(dict):
-    """
-    A route object for a static site
-    """
-    def __init__(__self__, *,
-                 destination: str,
-                 source: str,
-                 type: 'StaticSiteStaticSiteRouteType'):
-        """
-        A route object for a static site
-        """
-        pulumi.set(__self__, "destination", destination)
-        pulumi.set(__self__, "source", source)
-        pulumi.set(__self__, "type", type)
-
-    @property
-    @pulumi.getter
-    def destination(self) -> str:
-        return pulumi.get(self, "destination")
-
-    @property
-    @pulumi.getter
-    def source(self) -> str:
-        return pulumi.get(self, "source")
-
-    @property
-    @pulumi.getter
-    def type(self) -> 'StaticSiteStaticSiteRouteType':
-        return pulumi.get(self, "type")
-
-
-@pulumi.output_type
-class StaticSiteStaticSiteServiceDetails(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "buildCommand":
-            suggest = "build_command"
-        elif key == "parentServer":
-            suggest = "parent_server"
-        elif key == "publishPath":
-            suggest = "publish_path"
-        elif key == "pullRequestPreviewsEnabled":
-            suggest = "pull_request_previews_enabled"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in StaticSiteStaticSiteServiceDetails. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        StaticSiteStaticSiteServiceDetails.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        StaticSiteStaticSiteServiceDetails.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 build_command: Optional[str] = None,
-                 headers: Optional[Sequence['outputs.StaticSiteServiceHeader']] = None,
-                 parent_server: Optional['outputs.StaticSiteStaticSiteServiceDetailsParentServerProperties'] = None,
-                 publish_path: Optional[str] = None,
-                 pull_request_previews_enabled: Optional['StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled'] = None,
-                 routes: Optional[Sequence['outputs.StaticSiteStaticSiteRoute']] = None,
-                 url: Optional[str] = None):
-        """
-        :param str url: The HTTPS service URL. A subdomain of onrender.com, by default.
-        """
-        if build_command is not None:
-            pulumi.set(__self__, "build_command", build_command)
-        if headers is not None:
-            pulumi.set(__self__, "headers", headers)
-        if parent_server is not None:
-            pulumi.set(__self__, "parent_server", parent_server)
-        if publish_path is None:
-            publish_path = 'public'
-        if publish_path is not None:
-            pulumi.set(__self__, "publish_path", publish_path)
-        if pull_request_previews_enabled is None:
-            pull_request_previews_enabled = 'no'
-        if pull_request_previews_enabled is not None:
-            pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
-        if routes is not None:
-            pulumi.set(__self__, "routes", routes)
-        if url is not None:
-            pulumi.set(__self__, "url", url)
-
-    @property
-    @pulumi.getter(name="buildCommand")
-    def build_command(self) -> Optional[str]:
-        return pulumi.get(self, "build_command")
-
-    @property
-    @pulumi.getter
-    def headers(self) -> Optional[Sequence['outputs.StaticSiteServiceHeader']]:
-        return pulumi.get(self, "headers")
-
-    @property
-    @pulumi.getter(name="parentServer")
-    def parent_server(self) -> Optional['outputs.StaticSiteStaticSiteServiceDetailsParentServerProperties']:
-        return pulumi.get(self, "parent_server")
-
-    @property
-    @pulumi.getter(name="publishPath")
-    def publish_path(self) -> Optional[str]:
-        return pulumi.get(self, "publish_path")
-
-    @property
-    @pulumi.getter(name="pullRequestPreviewsEnabled")
-    def pull_request_previews_enabled(self) -> Optional['StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled']:
-        return pulumi.get(self, "pull_request_previews_enabled")
-
-    @property
-    @pulumi.getter
-    def routes(self) -> Optional[Sequence['outputs.StaticSiteStaticSiteRoute']]:
-        return pulumi.get(self, "routes")
-
-    @property
-    @pulumi.getter
-    def url(self) -> Optional[str]:
-        """
-        The HTTPS service URL. A subdomain of onrender.com, by default.
-        """
-        return pulumi.get(self, "url")
-
-
-@pulumi.output_type
-class StaticSiteStaticSiteServiceDetailsParentServerProperties(dict):
     def __init__(__self__, *,
                  id: Optional[str] = None,
                  name: Optional[str] = None):
@@ -1359,145 +1224,30 @@ class WebService(dict):
 
 
 @pulumi.output_type
-class WebServiceDisk(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "mountPath":
-            suggest = "mount_path"
-        elif key == "sizeGB":
-            suggest = "size_gb"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in WebServiceDisk. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        WebServiceDisk.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        WebServiceDisk.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 mount_path: str,
-                 name: str,
-                 size_gb: Optional[float] = None):
-        pulumi.set(__self__, "mount_path", mount_path)
-        pulumi.set(__self__, "name", name)
-        if size_gb is None:
-            size_gb = 1
-        if size_gb is not None:
-            pulumi.set(__self__, "size_gb", size_gb)
-
-    @property
-    @pulumi.getter(name="mountPath")
-    def mount_path(self) -> str:
-        return pulumi.get(self, "mount_path")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter(name="sizeGB")
-    def size_gb(self) -> Optional[float]:
-        return pulumi.get(self, "size_gb")
-
-
-@pulumi.output_type
-class WebServiceDockerDetails(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "dockerCommand":
-            suggest = "docker_command"
-        elif key == "dockerContext":
-            suggest = "docker_context"
-        elif key == "dockerfilePath":
-            suggest = "dockerfile_path"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in WebServiceDockerDetails. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        WebServiceDockerDetails.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        WebServiceDockerDetails.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 docker_command: Optional[str] = None,
-                 docker_context: Optional[str] = None,
-                 dockerfile_path: Optional[str] = None):
-        if docker_command is not None:
-            pulumi.set(__self__, "docker_command", docker_command)
-        if docker_context is not None:
-            pulumi.set(__self__, "docker_context", docker_context)
-        if dockerfile_path is None:
-            dockerfile_path = './Dockerfile'
-        if dockerfile_path is not None:
-            pulumi.set(__self__, "dockerfile_path", dockerfile_path)
-
-    @property
-    @pulumi.getter(name="dockerCommand")
-    def docker_command(self) -> Optional[str]:
-        return pulumi.get(self, "docker_command")
-
-    @property
-    @pulumi.getter(name="dockerContext")
-    def docker_context(self) -> Optional[str]:
-        return pulumi.get(self, "docker_context")
-
-    @property
-    @pulumi.getter(name="dockerfilePath")
-    def dockerfile_path(self) -> Optional[str]:
-        return pulumi.get(self, "dockerfile_path")
-
-
-@pulumi.output_type
-class WebServiceNativeEnvironmentDetails(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "buildCommand":
-            suggest = "build_command"
-        elif key == "startCommand":
-            suggest = "start_command"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in WebServiceNativeEnvironmentDetails. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        WebServiceNativeEnvironmentDetails.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        WebServiceNativeEnvironmentDetails.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 build_command: str,
-                 start_command: str):
-        pulumi.set(__self__, "build_command", build_command)
-        pulumi.set(__self__, "start_command", start_command)
-
-    @property
-    @pulumi.getter(name="buildCommand")
-    def build_command(self) -> str:
-        return pulumi.get(self, "build_command")
-
-    @property
-    @pulumi.getter(name="startCommand")
-    def start_command(self) -> str:
-        return pulumi.get(self, "start_command")
-
-
-@pulumi.output_type
 class WebServiceServiceDetails(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "envSpecificDetails":
+            suggest = "env_specific_details"
+        elif key == "healthCheckPath":
+            suggest = "health_check_path"
+        elif key == "numInstances":
+            suggest = "num_instances"
+        elif key == "pullRequestPreviewsEnabled":
+            suggest = "pull_request_previews_enabled"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in WebServiceServiceDetails. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        WebServiceServiceDetails.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        WebServiceServiceDetails.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  env: 'WebServiceServiceDetailsEnv',
                  disk: Optional['outputs.Disk'] = None,
@@ -1569,105 +1319,6 @@ class WebServiceServiceDetails(dict):
     @property
     @pulumi.getter
     def region(self) -> Optional['WebServiceServiceDetailsRegion']:
-        return pulumi.get(self, "region")
-
-
-@pulumi.output_type
-class WebServiceWebServiceServiceDetails(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "envSpecificDetails":
-            suggest = "env_specific_details"
-        elif key == "healthCheckPath":
-            suggest = "health_check_path"
-        elif key == "numInstances":
-            suggest = "num_instances"
-        elif key == "pullRequestPreviewsEnabled":
-            suggest = "pull_request_previews_enabled"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in WebServiceWebServiceServiceDetails. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        WebServiceWebServiceServiceDetails.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        WebServiceWebServiceServiceDetails.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 env: 'WebServiceWebServiceServiceDetailsEnv',
-                 disk: Optional['outputs.WebServiceDisk'] = None,
-                 env_specific_details: Optional[Any] = None,
-                 health_check_path: Optional[str] = None,
-                 num_instances: Optional[float] = None,
-                 plan: Optional['WebServiceWebServiceServiceDetailsPlan'] = None,
-                 pull_request_previews_enabled: Optional['WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled'] = None,
-                 region: Optional['WebServiceWebServiceServiceDetailsRegion'] = None):
-        pulumi.set(__self__, "env", env)
-        if disk is not None:
-            pulumi.set(__self__, "disk", disk)
-        if env_specific_details is not None:
-            pulumi.set(__self__, "env_specific_details", env_specific_details)
-        if health_check_path is not None:
-            pulumi.set(__self__, "health_check_path", health_check_path)
-        if num_instances is None:
-            num_instances = 1
-        if num_instances is not None:
-            pulumi.set(__self__, "num_instances", num_instances)
-        if plan is None:
-            plan = 'starter'
-        if plan is not None:
-            pulumi.set(__self__, "plan", plan)
-        if pull_request_previews_enabled is None:
-            pull_request_previews_enabled = 'no'
-        if pull_request_previews_enabled is not None:
-            pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
-        if region is None:
-            region = 'oregon'
-        if region is not None:
-            pulumi.set(__self__, "region", region)
-
-    @property
-    @pulumi.getter
-    def env(self) -> 'WebServiceWebServiceServiceDetailsEnv':
-        return pulumi.get(self, "env")
-
-    @property
-    @pulumi.getter
-    def disk(self) -> Optional['outputs.WebServiceDisk']:
-        return pulumi.get(self, "disk")
-
-    @property
-    @pulumi.getter(name="envSpecificDetails")
-    def env_specific_details(self) -> Optional[Any]:
-        return pulumi.get(self, "env_specific_details")
-
-    @property
-    @pulumi.getter(name="healthCheckPath")
-    def health_check_path(self) -> Optional[str]:
-        return pulumi.get(self, "health_check_path")
-
-    @property
-    @pulumi.getter(name="numInstances")
-    def num_instances(self) -> Optional[float]:
-        return pulumi.get(self, "num_instances")
-
-    @property
-    @pulumi.getter
-    def plan(self) -> Optional['WebServiceWebServiceServiceDetailsPlan']:
-        return pulumi.get(self, "plan")
-
-    @property
-    @pulumi.getter(name="pullRequestPreviewsEnabled")
-    def pull_request_previews_enabled(self) -> Optional['WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled']:
-        return pulumi.get(self, "pull_request_previews_enabled")
-
-    @property
-    @pulumi.getter
-    def region(self) -> Optional['WebServiceWebServiceServiceDetailsRegion']:
         return pulumi.get(self, "region")
 
 

@@ -13,8 +13,8 @@ import (
 type Deploy struct {
 	pulumi.CustomResourceState
 
-	ClearCache DeployClearCachePtrOutput `pulumi:"clearCache"`
-	Commit     DeployCommitPtrOutput     `pulumi:"commit"`
+	ClearCache ClearCachePtrOutput `pulumi:"clearCache"`
+	Commit     CommitPtrOutput     `pulumi:"commit"`
 }
 
 // NewDeploy registers a new resource with the given unique name, arguments, and options.
@@ -25,7 +25,7 @@ func NewDeploy(ctx *pulumi.Context,
 	}
 
 	if isZero(args.ClearCache) {
-		args.ClearCache = DeployClearCache("do_not_clear")
+		args.ClearCache = ClearCache("do_not_clear")
 	}
 	opts = pkgResourceDefaultOpts(opts)
 	var resource Deploy
@@ -60,14 +60,14 @@ func (DeployState) ElementType() reflect.Type {
 }
 
 type deployArgs struct {
-	ClearCache *DeployClearCache `pulumi:"clearCache"`
+	ClearCache *ClearCache `pulumi:"clearCache"`
 	// (Required) The ID of the service
 	Id *string `pulumi:"id"`
 }
 
 // The set of arguments for constructing a Deploy resource.
 type DeployArgs struct {
-	ClearCache DeployClearCachePtrInput
+	ClearCache ClearCachePtrInput
 	// (Required) The ID of the service
 	Id pulumi.StringPtrInput
 }
@@ -109,12 +109,12 @@ func (o DeployOutput) ToDeployOutputWithContext(ctx context.Context) DeployOutpu
 	return o
 }
 
-func (o DeployOutput) ClearCache() DeployClearCachePtrOutput {
-	return o.ApplyT(func(v *Deploy) DeployClearCachePtrOutput { return v.ClearCache }).(DeployClearCachePtrOutput)
+func (o DeployOutput) ClearCache() ClearCachePtrOutput {
+	return o.ApplyT(func(v *Deploy) ClearCachePtrOutput { return v.ClearCache }).(ClearCachePtrOutput)
 }
 
-func (o DeployOutput) Commit() DeployCommitPtrOutput {
-	return o.ApplyT(func(v *Deploy) DeployCommitPtrOutput { return v.Commit }).(DeployCommitPtrOutput)
+func (o DeployOutput) Commit() CommitPtrOutput {
+	return o.ApplyT(func(v *Deploy) CommitPtrOutput { return v.Commit }).(CommitPtrOutput)
 }
 
 func init() {

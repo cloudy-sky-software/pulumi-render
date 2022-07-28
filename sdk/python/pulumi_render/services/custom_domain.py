@@ -160,7 +160,7 @@ class CustomDomain(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="domainType")
-    def domain_type(self) -> pulumi.Output['CustomDomainDomainType']:
+    def domain_type(self) -> pulumi.Output['DomainType']:
         return pulumi.get(self, "domain_type")
 
     @property
@@ -185,6 +185,6 @@ class CustomDomain(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="verificationStatus")
-    def verification_status(self) -> pulumi.Output['CustomDomainVerificationStatus']:
+    def verification_status(self) -> pulumi.Output['VerificationStatus']:
         return pulumi.get(self, "verification_status")
 

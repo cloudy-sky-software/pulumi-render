@@ -33,12 +33,12 @@ export class CustomDomain extends pulumi.CustomResource {
     }
 
     public /*out*/ readonly createdAt!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly domainType!: pulumi.Output<enums.services.CustomDomainDomainType>;
+    public /*out*/ readonly domainType!: pulumi.Output<enums.services.DomainType>;
     public readonly name!: pulumi.Output<string>;
     public /*out*/ readonly publicSuffix!: pulumi.Output<string | undefined>;
     public /*out*/ readonly redirectForName!: pulumi.Output<string>;
     public readonly server!: pulumi.Output<outputs.services.ServerProperties>;
-    public /*out*/ readonly verificationStatus!: pulumi.Output<enums.services.CustomDomainVerificationStatus>;
+    public /*out*/ readonly verificationStatus!: pulumi.Output<enums.services.VerificationStatus>;
 
     /**
      * Create a CustomDomain resource with the given unique name, arguments, and options.

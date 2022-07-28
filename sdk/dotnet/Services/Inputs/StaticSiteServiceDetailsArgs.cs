@@ -10,33 +10,33 @@ using Pulumi.Serialization;
 namespace Pulumi.Render.Services.Inputs
 {
 
-    public sealed class StaticSiteStaticSiteServiceDetailsArgs : Pulumi.ResourceArgs
+    public sealed class StaticSiteServiceDetailsArgs : Pulumi.ResourceArgs
     {
         [Input("buildCommand")]
         public Input<string>? BuildCommand { get; set; }
 
         [Input("headers")]
-        private InputList<Inputs.StaticSiteServiceHeaderArgs>? _headers;
-        public InputList<Inputs.StaticSiteServiceHeaderArgs> Headers
+        private InputList<Inputs.ServiceHeaderArgs>? _headers;
+        public InputList<Inputs.ServiceHeaderArgs> Headers
         {
-            get => _headers ?? (_headers = new InputList<Inputs.StaticSiteServiceHeaderArgs>());
+            get => _headers ?? (_headers = new InputList<Inputs.ServiceHeaderArgs>());
             set => _headers = value;
         }
 
         [Input("parentServer")]
-        public Input<Inputs.StaticSiteStaticSiteServiceDetailsParentServerPropertiesArgs>? ParentServer { get; set; }
+        public Input<Inputs.StaticSiteServiceDetailsParentServerPropertiesArgs>? ParentServer { get; set; }
 
         [Input("publishPath")]
         public Input<string>? PublishPath { get; set; }
 
         [Input("pullRequestPreviewsEnabled")]
-        public Input<Pulumi.Render.Services.StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled>? PullRequestPreviewsEnabled { get; set; }
+        public Input<Pulumi.Render.Services.StaticSiteServiceDetailsPullRequestPreviewsEnabled>? PullRequestPreviewsEnabled { get; set; }
 
         [Input("routes")]
-        private InputList<Inputs.StaticSiteStaticSiteRouteArgs>? _routes;
-        public InputList<Inputs.StaticSiteStaticSiteRouteArgs> Routes
+        private InputList<Inputs.StaticSiteRouteArgs>? _routes;
+        public InputList<Inputs.StaticSiteRouteArgs> Routes
         {
-            get => _routes ?? (_routes = new InputList<Inputs.StaticSiteStaticSiteRouteArgs>());
+            get => _routes ?? (_routes = new InputList<Inputs.StaticSiteRouteArgs>());
             set => _routes = value;
         }
 
@@ -46,10 +46,10 @@ namespace Pulumi.Render.Services.Inputs
         [Input("url")]
         public Input<string>? Url { get; set; }
 
-        public StaticSiteStaticSiteServiceDetailsArgs()
+        public StaticSiteServiceDetailsArgs()
         {
             PublishPath = "public";
-            PullRequestPreviewsEnabled = Pulumi.Render.Services.StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled.No;
+            PullRequestPreviewsEnabled = Pulumi.Render.Services.StaticSiteServiceDetailsPullRequestPreviewsEnabled.No;
         }
     }
 }

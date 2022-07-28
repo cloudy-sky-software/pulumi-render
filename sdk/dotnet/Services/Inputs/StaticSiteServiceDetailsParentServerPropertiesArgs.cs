@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Render.Services.Inputs
 {
 
-    public sealed class StaticSiteStaticSiteServiceDetailsParentServerPropertiesArgs : Pulumi.ResourceArgs
+    public sealed class StaticSiteServiceDetailsParentServerPropertiesArgs : Pulumi.ResourceArgs
     {
         [Input("id")]
         public Input<string>? Id { get; set; }
@@ -18,7 +18,7 @@ namespace Pulumi.Render.Services.Inputs
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        public StaticSiteStaticSiteServiceDetailsParentServerPropertiesArgs()
+        public StaticSiteServiceDetailsParentServerPropertiesArgs()
         {
         }
     }

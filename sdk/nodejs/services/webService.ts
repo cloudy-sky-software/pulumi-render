@@ -38,7 +38,7 @@ export class WebService extends pulumi.CustomResource {
     /**
      * Whether to auto deploy the service or not upon git push.
      */
-    public readonly autoDeploy!: pulumi.Output<enums.services.WebServiceServiceAutoDeploy | undefined>;
+    public readonly autoDeploy!: pulumi.Output<enums.services.ServiceAutoDeploy | undefined>;
     /**
      * If left empty, this will fall back to the default branch of the repository.
      */
@@ -48,7 +48,7 @@ export class WebService extends pulumi.CustomResource {
     /**
      * The notification setting for this service upon deployment failure.
      */
-    public readonly notifyOnFail!: pulumi.Output<enums.services.WebServiceServiceNotifyOnFail | undefined>;
+    public readonly notifyOnFail!: pulumi.Output<enums.services.ServiceNotifyOnFail | undefined>;
     /**
      * The id of the owner (user/team).
      */
@@ -57,9 +57,9 @@ export class WebService extends pulumi.CustomResource {
      * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
      */
     public readonly repo!: pulumi.Output<string | undefined>;
-    public readonly serviceDetails!: pulumi.Output<outputs.services.WebServiceWebServiceServiceDetails | undefined>;
+    public readonly serviceDetails!: pulumi.Output<outputs.services.WebServiceServiceDetails | undefined>;
     public readonly slug!: pulumi.Output<string | undefined>;
-    public readonly suspended!: pulumi.Output<enums.services.WebServiceServiceSuspended | undefined>;
+    public readonly suspended!: pulumi.Output<enums.services.ServiceSuspended | undefined>;
     public readonly suspenders!: pulumi.Output<string[] | undefined>;
     public readonly type!: pulumi.Output<string | undefined>;
     public readonly updatedAt!: pulumi.Output<string | undefined>;
@@ -91,7 +91,7 @@ export class WebService extends pulumi.CustomResource {
             resourceInputs["notifyOnFail"] = args ? args.notifyOnFail : undefined;
             resourceInputs["ownerId"] = args ? args.ownerId : undefined;
             resourceInputs["repo"] = args ? args.repo : undefined;
-            resourceInputs["serviceDetails"] = args ? (args.serviceDetails ? pulumi.output(args.serviceDetails).apply(inputs.services.webServiceWebServiceServiceDetailsArgsProvideDefaults) : undefined) : undefined;
+            resourceInputs["serviceDetails"] = args ? (args.serviceDetails ? pulumi.output(args.serviceDetails).apply(inputs.services.webServiceServiceDetailsArgsProvideDefaults) : undefined) : undefined;
             resourceInputs["slug"] = args ? args.slug : undefined;
             resourceInputs["suspended"] = args ? args.suspended : undefined;
             resourceInputs["suspenders"] = args ? args.suspenders : undefined;
@@ -124,7 +124,7 @@ export interface WebServiceArgs {
     /**
      * Whether to auto deploy the service or not upon git push.
      */
-    autoDeploy?: pulumi.Input<enums.services.WebServiceServiceAutoDeploy>;
+    autoDeploy?: pulumi.Input<enums.services.ServiceAutoDeploy>;
     /**
      * If left empty, this will fall back to the default branch of the repository.
      */
@@ -134,7 +134,7 @@ export interface WebServiceArgs {
     /**
      * The notification setting for this service upon deployment failure.
      */
-    notifyOnFail?: pulumi.Input<enums.services.WebServiceServiceNotifyOnFail>;
+    notifyOnFail?: pulumi.Input<enums.services.ServiceNotifyOnFail>;
     /**
      * The id of the owner (user/team).
      */
@@ -143,9 +143,9 @@ export interface WebServiceArgs {
      * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
      */
     repo: pulumi.Input<string>;
-    serviceDetails?: pulumi.Input<inputs.services.WebServiceWebServiceServiceDetailsArgs>;
+    serviceDetails?: pulumi.Input<inputs.services.WebServiceServiceDetailsArgs>;
     slug?: pulumi.Input<string>;
-    suspended?: pulumi.Input<enums.services.WebServiceServiceSuspended>;
+    suspended?: pulumi.Input<enums.services.ServiceSuspended>;
     suspenders?: pulumi.Input<pulumi.Input<string>[]>;
     type?: pulumi.Input<string>;
     updatedAt?: pulumi.Input<string>;

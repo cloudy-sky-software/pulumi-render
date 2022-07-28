@@ -11,258 +11,19 @@ from .. import _utilities
 from ._enums import *
 
 __all__ = [
+    'DiskArgs',
+    'DockerDetailsArgs',
+    'NativeEnvironmentDetailsArgs',
     'ServerPropertiesArgs',
-    'StaticSiteServiceHeaderArgs',
-    'StaticSiteStaticSiteRouteArgs',
-    'StaticSiteStaticSiteServiceDetailsParentServerPropertiesArgs',
-    'StaticSiteStaticSiteServiceDetailsArgs',
-    'WebServiceDiskArgs',
-    'WebServiceDockerDetailsArgs',
-    'WebServiceNativeEnvironmentDetailsArgs',
-    'WebServiceWebServiceServiceDetailsArgs',
+    'ServiceHeaderArgs',
+    'StaticSiteRouteArgs',
+    'StaticSiteServiceDetailsParentServerPropertiesArgs',
+    'StaticSiteServiceDetailsArgs',
+    'WebServiceServiceDetailsArgs',
 ]
 
 @pulumi.input_type
-class ServerPropertiesArgs:
-    def __init__(__self__, *,
-                 id: Optional[pulumi.Input[str]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
-        if id is not None:
-            pulumi.set(__self__, "id", id)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "id", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
-
-
-@pulumi.input_type
-class StaticSiteServiceHeaderArgs:
-    def __init__(__self__, *,
-                 name: pulumi.Input[str],
-                 path: pulumi.Input[str],
-                 value: pulumi.Input[str]):
-        """
-        A service header object
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "path", path)
-        pulumi.set(__self__, "value", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def path(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "path")
-
-    @path.setter
-    def path(self, value: pulumi.Input[str]):
-        pulumi.set(self, "path", value)
-
-    @property
-    @pulumi.getter
-    def value(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "value")
-
-    @value.setter
-    def value(self, value: pulumi.Input[str]):
-        pulumi.set(self, "value", value)
-
-
-@pulumi.input_type
-class StaticSiteStaticSiteRouteArgs:
-    def __init__(__self__, *,
-                 destination: pulumi.Input[str],
-                 source: pulumi.Input[str],
-                 type: pulumi.Input['StaticSiteStaticSiteRouteType']):
-        """
-        A route object for a static site
-        """
-        pulumi.set(__self__, "destination", destination)
-        pulumi.set(__self__, "source", source)
-        pulumi.set(__self__, "type", type)
-
-    @property
-    @pulumi.getter
-    def destination(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "destination")
-
-    @destination.setter
-    def destination(self, value: pulumi.Input[str]):
-        pulumi.set(self, "destination", value)
-
-    @property
-    @pulumi.getter
-    def source(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "source")
-
-    @source.setter
-    def source(self, value: pulumi.Input[str]):
-        pulumi.set(self, "source", value)
-
-    @property
-    @pulumi.getter
-    def type(self) -> pulumi.Input['StaticSiteStaticSiteRouteType']:
-        return pulumi.get(self, "type")
-
-    @type.setter
-    def type(self, value: pulumi.Input['StaticSiteStaticSiteRouteType']):
-        pulumi.set(self, "type", value)
-
-
-@pulumi.input_type
-class StaticSiteStaticSiteServiceDetailsParentServerPropertiesArgs:
-    def __init__(__self__, *,
-                 id: Optional[pulumi.Input[str]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
-        if id is not None:
-            pulumi.set(__self__, "id", id)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "id", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
-
-
-@pulumi.input_type
-class StaticSiteStaticSiteServiceDetailsArgs:
-    def __init__(__self__, *,
-                 build_command: Optional[pulumi.Input[str]] = None,
-                 headers: Optional[pulumi.Input[Sequence[pulumi.Input['StaticSiteServiceHeaderArgs']]]] = None,
-                 parent_server: Optional[pulumi.Input['StaticSiteStaticSiteServiceDetailsParentServerPropertiesArgs']] = None,
-                 publish_path: Optional[pulumi.Input[str]] = None,
-                 pull_request_previews_enabled: Optional[pulumi.Input['StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled']] = None,
-                 routes: Optional[pulumi.Input[Sequence[pulumi.Input['StaticSiteStaticSiteRouteArgs']]]] = None,
-                 url: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] url: The HTTPS service URL. A subdomain of onrender.com, by default.
-        """
-        if build_command is not None:
-            pulumi.set(__self__, "build_command", build_command)
-        if headers is not None:
-            pulumi.set(__self__, "headers", headers)
-        if parent_server is not None:
-            pulumi.set(__self__, "parent_server", parent_server)
-        if publish_path is None:
-            publish_path = 'public'
-        if publish_path is not None:
-            pulumi.set(__self__, "publish_path", publish_path)
-        if pull_request_previews_enabled is None:
-            pull_request_previews_enabled = 'no'
-        if pull_request_previews_enabled is not None:
-            pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
-        if routes is not None:
-            pulumi.set(__self__, "routes", routes)
-        if url is not None:
-            pulumi.set(__self__, "url", url)
-
-    @property
-    @pulumi.getter(name="buildCommand")
-    def build_command(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "build_command")
-
-    @build_command.setter
-    def build_command(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "build_command", value)
-
-    @property
-    @pulumi.getter
-    def headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['StaticSiteServiceHeaderArgs']]]]:
-        return pulumi.get(self, "headers")
-
-    @headers.setter
-    def headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['StaticSiteServiceHeaderArgs']]]]):
-        pulumi.set(self, "headers", value)
-
-    @property
-    @pulumi.getter(name="parentServer")
-    def parent_server(self) -> Optional[pulumi.Input['StaticSiteStaticSiteServiceDetailsParentServerPropertiesArgs']]:
-        return pulumi.get(self, "parent_server")
-
-    @parent_server.setter
-    def parent_server(self, value: Optional[pulumi.Input['StaticSiteStaticSiteServiceDetailsParentServerPropertiesArgs']]):
-        pulumi.set(self, "parent_server", value)
-
-    @property
-    @pulumi.getter(name="publishPath")
-    def publish_path(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "publish_path")
-
-    @publish_path.setter
-    def publish_path(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "publish_path", value)
-
-    @property
-    @pulumi.getter(name="pullRequestPreviewsEnabled")
-    def pull_request_previews_enabled(self) -> Optional[pulumi.Input['StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled']]:
-        return pulumi.get(self, "pull_request_previews_enabled")
-
-    @pull_request_previews_enabled.setter
-    def pull_request_previews_enabled(self, value: Optional[pulumi.Input['StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled']]):
-        pulumi.set(self, "pull_request_previews_enabled", value)
-
-    @property
-    @pulumi.getter
-    def routes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['StaticSiteStaticSiteRouteArgs']]]]:
-        return pulumi.get(self, "routes")
-
-    @routes.setter
-    def routes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['StaticSiteStaticSiteRouteArgs']]]]):
-        pulumi.set(self, "routes", value)
-
-    @property
-    @pulumi.getter
-    def url(self) -> Optional[pulumi.Input[str]]:
-        """
-        The HTTPS service URL. A subdomain of onrender.com, by default.
-        """
-        return pulumi.get(self, "url")
-
-    @url.setter
-    def url(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "url", value)
-
-
-@pulumi.input_type
-class WebServiceDiskArgs:
+class DiskArgs:
     def __init__(__self__, *,
                  mount_path: pulumi.Input[str],
                  name: pulumi.Input[str],
@@ -303,7 +64,7 @@ class WebServiceDiskArgs:
 
 
 @pulumi.input_type
-class WebServiceDockerDetailsArgs:
+class DockerDetailsArgs:
     def __init__(__self__, *,
                  docker_command: Optional[pulumi.Input[str]] = None,
                  docker_context: Optional[pulumi.Input[str]] = None,
@@ -346,7 +107,7 @@ class WebServiceDockerDetailsArgs:
 
 
 @pulumi.input_type
-class WebServiceNativeEnvironmentDetailsArgs:
+class NativeEnvironmentDetailsArgs:
     def __init__(__self__, *,
                  build_command: pulumi.Input[str],
                  start_command: pulumi.Input[str]):
@@ -373,16 +134,255 @@ class WebServiceNativeEnvironmentDetailsArgs:
 
 
 @pulumi.input_type
-class WebServiceWebServiceServiceDetailsArgs:
+class ServerPropertiesArgs:
     def __init__(__self__, *,
-                 env: pulumi.Input['WebServiceWebServiceServiceDetailsEnv'],
-                 disk: Optional[pulumi.Input['WebServiceDiskArgs']] = None,
-                 env_specific_details: Optional[pulumi.Input[Union['WebServiceDockerDetailsArgs', 'WebServiceNativeEnvironmentDetailsArgs']]] = None,
+                 id: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None):
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class ServiceHeaderArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 path: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        A service header object
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "path", path)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def path(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: pulumi.Input[str]):
+        pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class StaticSiteRouteArgs:
+    def __init__(__self__, *,
+                 destination: pulumi.Input[str],
+                 source: pulumi.Input[str],
+                 type: pulumi.Input['StaticSiteRouteType']):
+        """
+        A route object for a static site
+        """
+        pulumi.set(__self__, "destination", destination)
+        pulumi.set(__self__, "source", source)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def destination(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "destination")
+
+    @destination.setter
+    def destination(self, value: pulumi.Input[str]):
+        pulumi.set(self, "destination", value)
+
+    @property
+    @pulumi.getter
+    def source(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "source")
+
+    @source.setter
+    def source(self, value: pulumi.Input[str]):
+        pulumi.set(self, "source", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Input['StaticSiteRouteType']:
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input['StaticSiteRouteType']):
+        pulumi.set(self, "type", value)
+
+
+@pulumi.input_type
+class StaticSiteServiceDetailsParentServerPropertiesArgs:
+    def __init__(__self__, *,
+                 id: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None):
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class StaticSiteServiceDetailsArgs:
+    def __init__(__self__, *,
+                 build_command: Optional[pulumi.Input[str]] = None,
+                 headers: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceHeaderArgs']]]] = None,
+                 parent_server: Optional[pulumi.Input['StaticSiteServiceDetailsParentServerPropertiesArgs']] = None,
+                 publish_path: Optional[pulumi.Input[str]] = None,
+                 pull_request_previews_enabled: Optional[pulumi.Input['StaticSiteServiceDetailsPullRequestPreviewsEnabled']] = None,
+                 routes: Optional[pulumi.Input[Sequence[pulumi.Input['StaticSiteRouteArgs']]]] = None,
+                 url: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] url: The HTTPS service URL. A subdomain of onrender.com, by default.
+        """
+        if build_command is not None:
+            pulumi.set(__self__, "build_command", build_command)
+        if headers is not None:
+            pulumi.set(__self__, "headers", headers)
+        if parent_server is not None:
+            pulumi.set(__self__, "parent_server", parent_server)
+        if publish_path is None:
+            publish_path = 'public'
+        if publish_path is not None:
+            pulumi.set(__self__, "publish_path", publish_path)
+        if pull_request_previews_enabled is None:
+            pull_request_previews_enabled = 'no'
+        if pull_request_previews_enabled is not None:
+            pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
+        if routes is not None:
+            pulumi.set(__self__, "routes", routes)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+
+    @property
+    @pulumi.getter(name="buildCommand")
+    def build_command(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "build_command")
+
+    @build_command.setter
+    def build_command(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "build_command", value)
+
+    @property
+    @pulumi.getter
+    def headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceHeaderArgs']]]]:
+        return pulumi.get(self, "headers")
+
+    @headers.setter
+    def headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceHeaderArgs']]]]):
+        pulumi.set(self, "headers", value)
+
+    @property
+    @pulumi.getter(name="parentServer")
+    def parent_server(self) -> Optional[pulumi.Input['StaticSiteServiceDetailsParentServerPropertiesArgs']]:
+        return pulumi.get(self, "parent_server")
+
+    @parent_server.setter
+    def parent_server(self, value: Optional[pulumi.Input['StaticSiteServiceDetailsParentServerPropertiesArgs']]):
+        pulumi.set(self, "parent_server", value)
+
+    @property
+    @pulumi.getter(name="publishPath")
+    def publish_path(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "publish_path")
+
+    @publish_path.setter
+    def publish_path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "publish_path", value)
+
+    @property
+    @pulumi.getter(name="pullRequestPreviewsEnabled")
+    def pull_request_previews_enabled(self) -> Optional[pulumi.Input['StaticSiteServiceDetailsPullRequestPreviewsEnabled']]:
+        return pulumi.get(self, "pull_request_previews_enabled")
+
+    @pull_request_previews_enabled.setter
+    def pull_request_previews_enabled(self, value: Optional[pulumi.Input['StaticSiteServiceDetailsPullRequestPreviewsEnabled']]):
+        pulumi.set(self, "pull_request_previews_enabled", value)
+
+    @property
+    @pulumi.getter
+    def routes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['StaticSiteRouteArgs']]]]:
+        return pulumi.get(self, "routes")
+
+    @routes.setter
+    def routes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['StaticSiteRouteArgs']]]]):
+        pulumi.set(self, "routes", value)
+
+    @property
+    @pulumi.getter
+    def url(self) -> Optional[pulumi.Input[str]]:
+        """
+        The HTTPS service URL. A subdomain of onrender.com, by default.
+        """
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "url", value)
+
+
+@pulumi.input_type
+class WebServiceServiceDetailsArgs:
+    def __init__(__self__, *,
+                 env: pulumi.Input['WebServiceServiceDetailsEnv'],
+                 disk: Optional[pulumi.Input['DiskArgs']] = None,
+                 env_specific_details: Optional[pulumi.Input[Union['DockerDetailsArgs', 'NativeEnvironmentDetailsArgs']]] = None,
                  health_check_path: Optional[pulumi.Input[str]] = None,
                  num_instances: Optional[pulumi.Input[float]] = None,
-                 plan: Optional[pulumi.Input['WebServiceWebServiceServiceDetailsPlan']] = None,
-                 pull_request_previews_enabled: Optional[pulumi.Input['WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled']] = None,
-                 region: Optional[pulumi.Input['WebServiceWebServiceServiceDetailsRegion']] = None):
+                 plan: Optional[pulumi.Input['WebServiceServiceDetailsPlan']] = None,
+                 pull_request_previews_enabled: Optional[pulumi.Input['WebServiceServiceDetailsPullRequestPreviewsEnabled']] = None,
+                 region: Optional[pulumi.Input['WebServiceServiceDetailsRegion']] = None):
         pulumi.set(__self__, "env", env)
         if disk is not None:
             pulumi.set(__self__, "disk", disk)
@@ -409,29 +409,29 @@ class WebServiceWebServiceServiceDetailsArgs:
 
     @property
     @pulumi.getter
-    def env(self) -> pulumi.Input['WebServiceWebServiceServiceDetailsEnv']:
+    def env(self) -> pulumi.Input['WebServiceServiceDetailsEnv']:
         return pulumi.get(self, "env")
 
     @env.setter
-    def env(self, value: pulumi.Input['WebServiceWebServiceServiceDetailsEnv']):
+    def env(self, value: pulumi.Input['WebServiceServiceDetailsEnv']):
         pulumi.set(self, "env", value)
 
     @property
     @pulumi.getter
-    def disk(self) -> Optional[pulumi.Input['WebServiceDiskArgs']]:
+    def disk(self) -> Optional[pulumi.Input['DiskArgs']]:
         return pulumi.get(self, "disk")
 
     @disk.setter
-    def disk(self, value: Optional[pulumi.Input['WebServiceDiskArgs']]):
+    def disk(self, value: Optional[pulumi.Input['DiskArgs']]):
         pulumi.set(self, "disk", value)
 
     @property
     @pulumi.getter(name="envSpecificDetails")
-    def env_specific_details(self) -> Optional[pulumi.Input[Union['WebServiceDockerDetailsArgs', 'WebServiceNativeEnvironmentDetailsArgs']]]:
+    def env_specific_details(self) -> Optional[pulumi.Input[Union['DockerDetailsArgs', 'NativeEnvironmentDetailsArgs']]]:
         return pulumi.get(self, "env_specific_details")
 
     @env_specific_details.setter
-    def env_specific_details(self, value: Optional[pulumi.Input[Union['WebServiceDockerDetailsArgs', 'WebServiceNativeEnvironmentDetailsArgs']]]):
+    def env_specific_details(self, value: Optional[pulumi.Input[Union['DockerDetailsArgs', 'NativeEnvironmentDetailsArgs']]]):
         pulumi.set(self, "env_specific_details", value)
 
     @property
@@ -454,29 +454,29 @@ class WebServiceWebServiceServiceDetailsArgs:
 
     @property
     @pulumi.getter
-    def plan(self) -> Optional[pulumi.Input['WebServiceWebServiceServiceDetailsPlan']]:
+    def plan(self) -> Optional[pulumi.Input['WebServiceServiceDetailsPlan']]:
         return pulumi.get(self, "plan")
 
     @plan.setter
-    def plan(self, value: Optional[pulumi.Input['WebServiceWebServiceServiceDetailsPlan']]):
+    def plan(self, value: Optional[pulumi.Input['WebServiceServiceDetailsPlan']]):
         pulumi.set(self, "plan", value)
 
     @property
     @pulumi.getter(name="pullRequestPreviewsEnabled")
-    def pull_request_previews_enabled(self) -> Optional[pulumi.Input['WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled']]:
+    def pull_request_previews_enabled(self) -> Optional[pulumi.Input['WebServiceServiceDetailsPullRequestPreviewsEnabled']]:
         return pulumi.get(self, "pull_request_previews_enabled")
 
     @pull_request_previews_enabled.setter
-    def pull_request_previews_enabled(self, value: Optional[pulumi.Input['WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled']]):
+    def pull_request_previews_enabled(self, value: Optional[pulumi.Input['WebServiceServiceDetailsPullRequestPreviewsEnabled']]):
         pulumi.set(self, "pull_request_previews_enabled", value)
 
     @property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input['WebServiceWebServiceServiceDetailsRegion']]:
+    def region(self) -> Optional[pulumi.Input['WebServiceServiceDetailsRegion']]:
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input['WebServiceWebServiceServiceDetailsRegion']]):
+    def region(self, value: Optional[pulumi.Input['WebServiceServiceDetailsRegion']]):
         pulumi.set(self, "region", value)
 
 

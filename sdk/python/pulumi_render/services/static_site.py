@@ -20,13 +20,13 @@ class StaticSiteArgs:
                  name: pulumi.Input[str],
                  owner_id: pulumi.Input[str],
                  repo: pulumi.Input[str],
-                 auto_deploy: Optional[pulumi.Input['StaticSiteServiceAutoDeploy']] = None,
+                 auto_deploy: Optional[pulumi.Input['ServiceAutoDeploy']] = None,
                  branch: Optional[pulumi.Input[str]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
-                 notify_on_fail: Optional[pulumi.Input['StaticSiteServiceNotifyOnFail']] = None,
-                 service_details: Optional[pulumi.Input['StaticSiteStaticSiteServiceDetailsArgs']] = None,
+                 notify_on_fail: Optional[pulumi.Input['ServiceNotifyOnFail']] = None,
+                 service_details: Optional[pulumi.Input['StaticSiteServiceDetailsArgs']] = None,
                  slug: Optional[pulumi.Input[str]] = None,
-                 suspended: Optional[pulumi.Input['StaticSiteServiceSuspended']] = None,
+                 suspended: Optional[pulumi.Input['ServiceSuspended']] = None,
                  suspenders: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  updated_at: Optional[pulumi.Input[str]] = None):
@@ -34,9 +34,9 @@ class StaticSiteArgs:
         The set of arguments for constructing a StaticSite resource.
         :param pulumi.Input[str] owner_id: The id of the owner (user/team).
         :param pulumi.Input[str] repo: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-        :param pulumi.Input['StaticSiteServiceAutoDeploy'] auto_deploy: Whether to auto deploy the service or not upon git push.
+        :param pulumi.Input['ServiceAutoDeploy'] auto_deploy: Whether to auto deploy the service or not upon git push.
         :param pulumi.Input[str] branch: If left empty, this will fall back to the default branch of the repository.
-        :param pulumi.Input['StaticSiteServiceNotifyOnFail'] notify_on_fail: The notification setting for this service upon deployment failure.
+        :param pulumi.Input['ServiceNotifyOnFail'] notify_on_fail: The notification setting for this service upon deployment failure.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "owner_id", owner_id)
@@ -101,14 +101,14 @@ class StaticSiteArgs:
 
     @property
     @pulumi.getter(name="autoDeploy")
-    def auto_deploy(self) -> Optional[pulumi.Input['StaticSiteServiceAutoDeploy']]:
+    def auto_deploy(self) -> Optional[pulumi.Input['ServiceAutoDeploy']]:
         """
         Whether to auto deploy the service or not upon git push.
         """
         return pulumi.get(self, "auto_deploy")
 
     @auto_deploy.setter
-    def auto_deploy(self, value: Optional[pulumi.Input['StaticSiteServiceAutoDeploy']]):
+    def auto_deploy(self, value: Optional[pulumi.Input['ServiceAutoDeploy']]):
         pulumi.set(self, "auto_deploy", value)
 
     @property
@@ -134,23 +134,23 @@ class StaticSiteArgs:
 
     @property
     @pulumi.getter(name="notifyOnFail")
-    def notify_on_fail(self) -> Optional[pulumi.Input['StaticSiteServiceNotifyOnFail']]:
+    def notify_on_fail(self) -> Optional[pulumi.Input['ServiceNotifyOnFail']]:
         """
         The notification setting for this service upon deployment failure.
         """
         return pulumi.get(self, "notify_on_fail")
 
     @notify_on_fail.setter
-    def notify_on_fail(self, value: Optional[pulumi.Input['StaticSiteServiceNotifyOnFail']]):
+    def notify_on_fail(self, value: Optional[pulumi.Input['ServiceNotifyOnFail']]):
         pulumi.set(self, "notify_on_fail", value)
 
     @property
     @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> Optional[pulumi.Input['StaticSiteStaticSiteServiceDetailsArgs']]:
+    def service_details(self) -> Optional[pulumi.Input['StaticSiteServiceDetailsArgs']]:
         return pulumi.get(self, "service_details")
 
     @service_details.setter
-    def service_details(self, value: Optional[pulumi.Input['StaticSiteStaticSiteServiceDetailsArgs']]):
+    def service_details(self, value: Optional[pulumi.Input['StaticSiteServiceDetailsArgs']]):
         pulumi.set(self, "service_details", value)
 
     @property
@@ -164,11 +164,11 @@ class StaticSiteArgs:
 
     @property
     @pulumi.getter
-    def suspended(self) -> Optional[pulumi.Input['StaticSiteServiceSuspended']]:
+    def suspended(self) -> Optional[pulumi.Input['ServiceSuspended']]:
         return pulumi.get(self, "suspended")
 
     @suspended.setter
-    def suspended(self, value: Optional[pulumi.Input['StaticSiteServiceSuspended']]):
+    def suspended(self, value: Optional[pulumi.Input['ServiceSuspended']]):
         pulumi.set(self, "suspended", value)
 
     @property
@@ -204,16 +204,16 @@ class StaticSite(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 auto_deploy: Optional[pulumi.Input['StaticSiteServiceAutoDeploy']] = None,
+                 auto_deploy: Optional[pulumi.Input['ServiceAutoDeploy']] = None,
                  branch: Optional[pulumi.Input[str]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 notify_on_fail: Optional[pulumi.Input['StaticSiteServiceNotifyOnFail']] = None,
+                 notify_on_fail: Optional[pulumi.Input['ServiceNotifyOnFail']] = None,
                  owner_id: Optional[pulumi.Input[str]] = None,
                  repo: Optional[pulumi.Input[str]] = None,
-                 service_details: Optional[pulumi.Input[pulumi.InputType['StaticSiteStaticSiteServiceDetailsArgs']]] = None,
+                 service_details: Optional[pulumi.Input[pulumi.InputType['StaticSiteServiceDetailsArgs']]] = None,
                  slug: Optional[pulumi.Input[str]] = None,
-                 suspended: Optional[pulumi.Input['StaticSiteServiceSuspended']] = None,
+                 suspended: Optional[pulumi.Input['ServiceSuspended']] = None,
                  suspenders: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  updated_at: Optional[pulumi.Input[str]] = None,
@@ -225,9 +225,9 @@ class StaticSite(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input['StaticSiteServiceAutoDeploy'] auto_deploy: Whether to auto deploy the service or not upon git push.
+        :param pulumi.Input['ServiceAutoDeploy'] auto_deploy: Whether to auto deploy the service or not upon git push.
         :param pulumi.Input[str] branch: If left empty, this will fall back to the default branch of the repository.
-        :param pulumi.Input['StaticSiteServiceNotifyOnFail'] notify_on_fail: The notification setting for this service upon deployment failure.
+        :param pulumi.Input['ServiceNotifyOnFail'] notify_on_fail: The notification setting for this service upon deployment failure.
         :param pulumi.Input[str] owner_id: The id of the owner (user/team).
         :param pulumi.Input[str] repo: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
         """
@@ -257,16 +257,16 @@ class StaticSite(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 auto_deploy: Optional[pulumi.Input['StaticSiteServiceAutoDeploy']] = None,
+                 auto_deploy: Optional[pulumi.Input['ServiceAutoDeploy']] = None,
                  branch: Optional[pulumi.Input[str]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 notify_on_fail: Optional[pulumi.Input['StaticSiteServiceNotifyOnFail']] = None,
+                 notify_on_fail: Optional[pulumi.Input['ServiceNotifyOnFail']] = None,
                  owner_id: Optional[pulumi.Input[str]] = None,
                  repo: Optional[pulumi.Input[str]] = None,
-                 service_details: Optional[pulumi.Input[pulumi.InputType['StaticSiteStaticSiteServiceDetailsArgs']]] = None,
+                 service_details: Optional[pulumi.Input[pulumi.InputType['StaticSiteServiceDetailsArgs']]] = None,
                  slug: Optional[pulumi.Input[str]] = None,
-                 suspended: Optional[pulumi.Input['StaticSiteServiceSuspended']] = None,
+                 suspended: Optional[pulumi.Input['ServiceSuspended']] = None,
                  suspenders: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  updated_at: Optional[pulumi.Input[str]] = None,
@@ -341,7 +341,7 @@ class StaticSite(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="autoDeploy")
-    def auto_deploy(self) -> pulumi.Output[Optional['StaticSiteServiceAutoDeploy']]:
+    def auto_deploy(self) -> pulumi.Output[Optional['ServiceAutoDeploy']]:
         """
         Whether to auto deploy the service or not upon git push.
         """
@@ -367,7 +367,7 @@ class StaticSite(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="notifyOnFail")
-    def notify_on_fail(self) -> pulumi.Output[Optional['StaticSiteServiceNotifyOnFail']]:
+    def notify_on_fail(self) -> pulumi.Output[Optional['ServiceNotifyOnFail']]:
         """
         The notification setting for this service upon deployment failure.
         """
@@ -391,7 +391,7 @@ class StaticSite(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> pulumi.Output[Optional['outputs.StaticSiteStaticSiteServiceDetails']]:
+    def service_details(self) -> pulumi.Output[Optional['outputs.StaticSiteServiceDetails']]:
         return pulumi.get(self, "service_details")
 
     @property
@@ -401,7 +401,7 @@ class StaticSite(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def suspended(self) -> pulumi.Output[Optional['StaticSiteServiceSuspended']]:
+    def suspended(self) -> pulumi.Output[Optional['ServiceSuspended']]:
         return pulumi.get(self, "suspended")
 
     @property

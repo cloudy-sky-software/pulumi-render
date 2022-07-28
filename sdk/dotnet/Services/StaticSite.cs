@@ -21,7 +21,7 @@ namespace Pulumi.Render.Services
         /// Whether to auto deploy the service or not upon git push.
         /// </summary>
         [Output("autoDeploy")]
-        public Output<Pulumi.Render.Services.StaticSiteServiceAutoDeploy?> AutoDeploy { get; private set; } = null!;
+        public Output<Pulumi.Render.Services.ServiceAutoDeploy?> AutoDeploy { get; private set; } = null!;
 
         /// <summary>
         /// If left empty, this will fall back to the default branch of the repository.
@@ -39,7 +39,7 @@ namespace Pulumi.Render.Services
         /// The notification setting for this service upon deployment failure.
         /// </summary>
         [Output("notifyOnFail")]
-        public Output<Pulumi.Render.Services.StaticSiteServiceNotifyOnFail?> NotifyOnFail { get; private set; } = null!;
+        public Output<Pulumi.Render.Services.ServiceNotifyOnFail?> NotifyOnFail { get; private set; } = null!;
 
         /// <summary>
         /// The id of the owner (user/team).
@@ -54,13 +54,13 @@ namespace Pulumi.Render.Services
         public Output<string?> Repo { get; private set; } = null!;
 
         [Output("serviceDetails")]
-        public Output<Outputs.StaticSiteStaticSiteServiceDetails?> ServiceDetails { get; private set; } = null!;
+        public Output<Outputs.StaticSiteServiceDetails?> ServiceDetails { get; private set; } = null!;
 
         [Output("slug")]
         public Output<string?> Slug { get; private set; } = null!;
 
         [Output("suspended")]
-        public Output<Pulumi.Render.Services.StaticSiteServiceSuspended?> Suspended { get; private set; } = null!;
+        public Output<Pulumi.Render.Services.ServiceSuspended?> Suspended { get; private set; } = null!;
 
         [Output("suspenders")]
         public Output<ImmutableArray<string>> Suspenders { get; private set; } = null!;
@@ -121,7 +121,7 @@ namespace Pulumi.Render.Services
         /// Whether to auto deploy the service or not upon git push.
         /// </summary>
         [Input("autoDeploy")]
-        public Input<Pulumi.Render.Services.StaticSiteServiceAutoDeploy>? AutoDeploy { get; set; }
+        public Input<Pulumi.Render.Services.ServiceAutoDeploy>? AutoDeploy { get; set; }
 
         /// <summary>
         /// If left empty, this will fall back to the default branch of the repository.
@@ -139,7 +139,7 @@ namespace Pulumi.Render.Services
         /// The notification setting for this service upon deployment failure.
         /// </summary>
         [Input("notifyOnFail")]
-        public Input<Pulumi.Render.Services.StaticSiteServiceNotifyOnFail>? NotifyOnFail { get; set; }
+        public Input<Pulumi.Render.Services.ServiceNotifyOnFail>? NotifyOnFail { get; set; }
 
         /// <summary>
         /// The id of the owner (user/team).
@@ -154,13 +154,13 @@ namespace Pulumi.Render.Services
         public Input<string> Repo { get; set; } = null!;
 
         [Input("serviceDetails")]
-        public Input<Inputs.StaticSiteStaticSiteServiceDetailsArgs>? ServiceDetails { get; set; }
+        public Input<Inputs.StaticSiteServiceDetailsArgs>? ServiceDetails { get; set; }
 
         [Input("slug")]
         public Input<string>? Slug { get; set; }
 
         [Input("suspended")]
-        public Input<Pulumi.Render.Services.StaticSiteServiceSuspended>? Suspended { get; set; }
+        public Input<Pulumi.Render.Services.ServiceSuspended>? Suspended { get; set; }
 
         [Input("suspenders")]
         private InputList<string>? _suspenders;
@@ -178,7 +178,7 @@ namespace Pulumi.Render.Services
 
         public StaticSiteArgs()
         {
-            AutoDeploy = Pulumi.Render.Services.StaticSiteServiceAutoDeploy.No;
+            AutoDeploy = Pulumi.Render.Services.ServiceAutoDeploy.No;
             Type = "static_site";
         }
     }

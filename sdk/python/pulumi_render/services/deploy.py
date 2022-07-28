@@ -16,7 +16,7 @@ __all__ = ['DeployArgs', 'Deploy']
 @pulumi.input_type
 class DeployArgs:
     def __init__(__self__, *,
-                 clear_cache: Optional[pulumi.Input['DeployClearCache']] = None,
+                 clear_cache: Optional[pulumi.Input['ClearCache']] = None,
                  id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Deploy resource.
@@ -31,11 +31,11 @@ class DeployArgs:
 
     @property
     @pulumi.getter(name="clearCache")
-    def clear_cache(self) -> Optional[pulumi.Input['DeployClearCache']]:
+    def clear_cache(self) -> Optional[pulumi.Input['ClearCache']]:
         return pulumi.get(self, "clear_cache")
 
     @clear_cache.setter
-    def clear_cache(self, value: Optional[pulumi.Input['DeployClearCache']]):
+    def clear_cache(self, value: Optional[pulumi.Input['ClearCache']]):
         pulumi.set(self, "clear_cache", value)
 
     @property
@@ -56,7 +56,7 @@ class Deploy(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 clear_cache: Optional[pulumi.Input['DeployClearCache']] = None,
+                 clear_cache: Optional[pulumi.Input['ClearCache']] = None,
                  id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -88,7 +88,7 @@ class Deploy(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 clear_cache: Optional[pulumi.Input['DeployClearCache']] = None,
+                 clear_cache: Optional[pulumi.Input['ClearCache']] = None,
                  id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -132,11 +132,11 @@ class Deploy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clearCache")
-    def clear_cache(self) -> pulumi.Output[Optional['DeployClearCache']]:
+    def clear_cache(self) -> pulumi.Output[Optional['ClearCache']]:
         return pulumi.get(self, "clear_cache")
 
     @property
     @pulumi.getter
-    def commit(self) -> pulumi.Output[Optional['outputs.DeployCommit']]:
+    def commit(self) -> pulumi.Output[Optional['outputs.Commit']]:
         return pulumi.get(self, "commit")
 

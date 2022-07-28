@@ -383,89 +383,6 @@ func (o DeployTypePtrOutput) Commit() CommitPtrOutput {
 	}).(CommitPtrOutput)
 }
 
-type DeployCommit struct {
-	CreatedAt *string `pulumi:"createdAt"`
-	Id        *string `pulumi:"id"`
-	Message   *string `pulumi:"message"`
-}
-
-type DeployCommitOutput struct{ *pulumi.OutputState }
-
-func (DeployCommitOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DeployCommit)(nil)).Elem()
-}
-
-func (o DeployCommitOutput) ToDeployCommitOutput() DeployCommitOutput {
-	return o
-}
-
-func (o DeployCommitOutput) ToDeployCommitOutputWithContext(ctx context.Context) DeployCommitOutput {
-	return o
-}
-
-func (o DeployCommitOutput) CreatedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DeployCommit) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
-}
-
-func (o DeployCommitOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DeployCommit) *string { return v.Id }).(pulumi.StringPtrOutput)
-}
-
-func (o DeployCommitOutput) Message() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DeployCommit) *string { return v.Message }).(pulumi.StringPtrOutput)
-}
-
-type DeployCommitPtrOutput struct{ *pulumi.OutputState }
-
-func (DeployCommitPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DeployCommit)(nil)).Elem()
-}
-
-func (o DeployCommitPtrOutput) ToDeployCommitPtrOutput() DeployCommitPtrOutput {
-	return o
-}
-
-func (o DeployCommitPtrOutput) ToDeployCommitPtrOutputWithContext(ctx context.Context) DeployCommitPtrOutput {
-	return o
-}
-
-func (o DeployCommitPtrOutput) Elem() DeployCommitOutput {
-	return o.ApplyT(func(v *DeployCommit) DeployCommit {
-		if v != nil {
-			return *v
-		}
-		var ret DeployCommit
-		return ret
-	}).(DeployCommitOutput)
-}
-
-func (o DeployCommitPtrOutput) CreatedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DeployCommit) *string {
-		if v == nil {
-			return nil
-		}
-		return v.CreatedAt
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o DeployCommitPtrOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DeployCommit) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Id
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o DeployCommitPtrOutput) Message() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DeployCommit) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Message
-	}).(pulumi.StringPtrOutput)
-}
-
 type Disk struct {
 	MountPath string   `pulumi:"mountPath"`
 	Name      string   `pulumi:"name"`
@@ -485,6 +402,87 @@ func (val *Disk) Defaults() *Disk {
 	return &tmp
 }
 
+// DiskInput is an input type that accepts DiskArgs and DiskOutput values.
+// You can construct a concrete instance of `DiskInput` via:
+//
+//          DiskArgs{...}
+type DiskInput interface {
+	pulumi.Input
+
+	ToDiskOutput() DiskOutput
+	ToDiskOutputWithContext(context.Context) DiskOutput
+}
+
+type DiskArgs struct {
+	MountPath pulumi.StringInput     `pulumi:"mountPath"`
+	Name      pulumi.StringInput     `pulumi:"name"`
+	SizeGB    pulumi.Float64PtrInput `pulumi:"sizeGB"`
+}
+
+// Defaults sets the appropriate defaults for DiskArgs
+func (val *DiskArgs) Defaults() *DiskArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if isZero(tmp.SizeGB) {
+		tmp.SizeGB = pulumi.Float64Ptr(1.0)
+	}
+	return &tmp
+}
+func (DiskArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*Disk)(nil)).Elem()
+}
+
+func (i DiskArgs) ToDiskOutput() DiskOutput {
+	return i.ToDiskOutputWithContext(context.Background())
+}
+
+func (i DiskArgs) ToDiskOutputWithContext(ctx context.Context) DiskOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DiskOutput)
+}
+
+func (i DiskArgs) ToDiskPtrOutput() DiskPtrOutput {
+	return i.ToDiskPtrOutputWithContext(context.Background())
+}
+
+func (i DiskArgs) ToDiskPtrOutputWithContext(ctx context.Context) DiskPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DiskOutput).ToDiskPtrOutputWithContext(ctx)
+}
+
+// DiskPtrInput is an input type that accepts DiskArgs, DiskPtr and DiskPtrOutput values.
+// You can construct a concrete instance of `DiskPtrInput` via:
+//
+//          DiskArgs{...}
+//
+//  or:
+//
+//          nil
+type DiskPtrInput interface {
+	pulumi.Input
+
+	ToDiskPtrOutput() DiskPtrOutput
+	ToDiskPtrOutputWithContext(context.Context) DiskPtrOutput
+}
+
+type diskPtrType DiskArgs
+
+func DiskPtr(v *DiskArgs) DiskPtrInput {
+	return (*diskPtrType)(v)
+}
+
+func (*diskPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**Disk)(nil)).Elem()
+}
+
+func (i *diskPtrType) ToDiskPtrOutput() DiskPtrOutput {
+	return i.ToDiskPtrOutputWithContext(context.Background())
+}
+
+func (i *diskPtrType) ToDiskPtrOutputWithContext(ctx context.Context) DiskPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DiskPtrOutput)
+}
+
 type DiskOutput struct{ *pulumi.OutputState }
 
 func (DiskOutput) ElementType() reflect.Type {
@@ -497,6 +495,16 @@ func (o DiskOutput) ToDiskOutput() DiskOutput {
 
 func (o DiskOutput) ToDiskOutputWithContext(ctx context.Context) DiskOutput {
 	return o
+}
+
+func (o DiskOutput) ToDiskPtrOutput() DiskPtrOutput {
+	return o.ToDiskPtrOutputWithContext(context.Background())
+}
+
+func (o DiskOutput) ToDiskPtrOutputWithContext(ctx context.Context) DiskPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v Disk) *Disk {
+		return &v
+	}).(DiskPtrOutput)
 }
 
 func (o DiskOutput) MountPath() pulumi.StringOutput {
@@ -1198,6 +1206,61 @@ type ServiceHeader struct {
 	Value string `pulumi:"value"`
 }
 
+// ServiceHeaderInput is an input type that accepts ServiceHeaderArgs and ServiceHeaderOutput values.
+// You can construct a concrete instance of `ServiceHeaderInput` via:
+//
+//          ServiceHeaderArgs{...}
+type ServiceHeaderInput interface {
+	pulumi.Input
+
+	ToServiceHeaderOutput() ServiceHeaderOutput
+	ToServiceHeaderOutputWithContext(context.Context) ServiceHeaderOutput
+}
+
+// A service header object
+type ServiceHeaderArgs struct {
+	Name  pulumi.StringInput `pulumi:"name"`
+	Path  pulumi.StringInput `pulumi:"path"`
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (ServiceHeaderArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceHeader)(nil)).Elem()
+}
+
+func (i ServiceHeaderArgs) ToServiceHeaderOutput() ServiceHeaderOutput {
+	return i.ToServiceHeaderOutputWithContext(context.Background())
+}
+
+func (i ServiceHeaderArgs) ToServiceHeaderOutputWithContext(ctx context.Context) ServiceHeaderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceHeaderOutput)
+}
+
+// ServiceHeaderArrayInput is an input type that accepts ServiceHeaderArray and ServiceHeaderArrayOutput values.
+// You can construct a concrete instance of `ServiceHeaderArrayInput` via:
+//
+//          ServiceHeaderArray{ ServiceHeaderArgs{...} }
+type ServiceHeaderArrayInput interface {
+	pulumi.Input
+
+	ToServiceHeaderArrayOutput() ServiceHeaderArrayOutput
+	ToServiceHeaderArrayOutputWithContext(context.Context) ServiceHeaderArrayOutput
+}
+
+type ServiceHeaderArray []ServiceHeaderInput
+
+func (ServiceHeaderArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceHeader)(nil)).Elem()
+}
+
+func (i ServiceHeaderArray) ToServiceHeaderArrayOutput() ServiceHeaderArrayOutput {
+	return i.ToServiceHeaderArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceHeaderArray) ToServiceHeaderArrayOutputWithContext(ctx context.Context) ServiceHeaderArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceHeaderArrayOutput)
+}
+
 // A service header object
 type ServiceHeaderOutput struct{ *pulumi.OutputState }
 
@@ -1344,6 +1407,61 @@ type StaticSiteRoute struct {
 	Type        StaticSiteRouteType `pulumi:"type"`
 }
 
+// StaticSiteRouteInput is an input type that accepts StaticSiteRouteArgs and StaticSiteRouteOutput values.
+// You can construct a concrete instance of `StaticSiteRouteInput` via:
+//
+//          StaticSiteRouteArgs{...}
+type StaticSiteRouteInput interface {
+	pulumi.Input
+
+	ToStaticSiteRouteOutput() StaticSiteRouteOutput
+	ToStaticSiteRouteOutputWithContext(context.Context) StaticSiteRouteOutput
+}
+
+// A route object for a static site
+type StaticSiteRouteArgs struct {
+	Destination pulumi.StringInput       `pulumi:"destination"`
+	Source      pulumi.StringInput       `pulumi:"source"`
+	Type        StaticSiteRouteTypeInput `pulumi:"type"`
+}
+
+func (StaticSiteRouteArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StaticSiteRoute)(nil)).Elem()
+}
+
+func (i StaticSiteRouteArgs) ToStaticSiteRouteOutput() StaticSiteRouteOutput {
+	return i.ToStaticSiteRouteOutputWithContext(context.Background())
+}
+
+func (i StaticSiteRouteArgs) ToStaticSiteRouteOutputWithContext(ctx context.Context) StaticSiteRouteOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteRouteOutput)
+}
+
+// StaticSiteRouteArrayInput is an input type that accepts StaticSiteRouteArray and StaticSiteRouteArrayOutput values.
+// You can construct a concrete instance of `StaticSiteRouteArrayInput` via:
+//
+//          StaticSiteRouteArray{ StaticSiteRouteArgs{...} }
+type StaticSiteRouteArrayInput interface {
+	pulumi.Input
+
+	ToStaticSiteRouteArrayOutput() StaticSiteRouteArrayOutput
+	ToStaticSiteRouteArrayOutputWithContext(context.Context) StaticSiteRouteArrayOutput
+}
+
+type StaticSiteRouteArray []StaticSiteRouteInput
+
+func (StaticSiteRouteArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]StaticSiteRoute)(nil)).Elem()
+}
+
+func (i StaticSiteRouteArray) ToStaticSiteRouteArrayOutput() StaticSiteRouteArrayOutput {
+	return i.ToStaticSiteRouteArrayOutputWithContext(context.Background())
+}
+
+func (i StaticSiteRouteArray) ToStaticSiteRouteArrayOutputWithContext(ctx context.Context) StaticSiteRouteArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteRouteArrayOutput)
+}
+
 // A route object for a static site
 type StaticSiteRouteOutput struct{ *pulumi.OutputState }
 
@@ -1470,6 +1588,95 @@ func (val *StaticSiteServiceDetails) Defaults() *StaticSiteServiceDetails {
 	return &tmp
 }
 
+// StaticSiteServiceDetailsInput is an input type that accepts StaticSiteServiceDetailsArgs and StaticSiteServiceDetailsOutput values.
+// You can construct a concrete instance of `StaticSiteServiceDetailsInput` via:
+//
+//          StaticSiteServiceDetailsArgs{...}
+type StaticSiteServiceDetailsInput interface {
+	pulumi.Input
+
+	ToStaticSiteServiceDetailsOutput() StaticSiteServiceDetailsOutput
+	ToStaticSiteServiceDetailsOutputWithContext(context.Context) StaticSiteServiceDetailsOutput
+}
+
+type StaticSiteServiceDetailsArgs struct {
+	BuildCommand               pulumi.StringPtrInput                                      `pulumi:"buildCommand"`
+	Headers                    ServiceHeaderArrayInput                                    `pulumi:"headers"`
+	ParentServer               StaticSiteServiceDetailsParentServerPropertiesPtrInput     `pulumi:"parentServer"`
+	PublishPath                pulumi.StringPtrInput                                      `pulumi:"publishPath"`
+	PullRequestPreviewsEnabled StaticSiteServiceDetailsPullRequestPreviewsEnabledPtrInput `pulumi:"pullRequestPreviewsEnabled"`
+	Routes                     StaticSiteRouteArrayInput                                  `pulumi:"routes"`
+	// The HTTPS service URL. A subdomain of onrender.com, by default.
+	Url pulumi.StringPtrInput `pulumi:"url"`
+}
+
+// Defaults sets the appropriate defaults for StaticSiteServiceDetailsArgs
+func (val *StaticSiteServiceDetailsArgs) Defaults() *StaticSiteServiceDetailsArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if isZero(tmp.PublishPath) {
+		tmp.PublishPath = pulumi.StringPtr("public")
+	}
+	if isZero(tmp.PullRequestPreviewsEnabled) {
+		tmp.PullRequestPreviewsEnabled = StaticSiteServiceDetailsPullRequestPreviewsEnabled("no")
+	}
+	return &tmp
+}
+func (StaticSiteServiceDetailsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StaticSiteServiceDetails)(nil)).Elem()
+}
+
+func (i StaticSiteServiceDetailsArgs) ToStaticSiteServiceDetailsOutput() StaticSiteServiceDetailsOutput {
+	return i.ToStaticSiteServiceDetailsOutputWithContext(context.Background())
+}
+
+func (i StaticSiteServiceDetailsArgs) ToStaticSiteServiceDetailsOutputWithContext(ctx context.Context) StaticSiteServiceDetailsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteServiceDetailsOutput)
+}
+
+func (i StaticSiteServiceDetailsArgs) ToStaticSiteServiceDetailsPtrOutput() StaticSiteServiceDetailsPtrOutput {
+	return i.ToStaticSiteServiceDetailsPtrOutputWithContext(context.Background())
+}
+
+func (i StaticSiteServiceDetailsArgs) ToStaticSiteServiceDetailsPtrOutputWithContext(ctx context.Context) StaticSiteServiceDetailsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteServiceDetailsOutput).ToStaticSiteServiceDetailsPtrOutputWithContext(ctx)
+}
+
+// StaticSiteServiceDetailsPtrInput is an input type that accepts StaticSiteServiceDetailsArgs, StaticSiteServiceDetailsPtr and StaticSiteServiceDetailsPtrOutput values.
+// You can construct a concrete instance of `StaticSiteServiceDetailsPtrInput` via:
+//
+//          StaticSiteServiceDetailsArgs{...}
+//
+//  or:
+//
+//          nil
+type StaticSiteServiceDetailsPtrInput interface {
+	pulumi.Input
+
+	ToStaticSiteServiceDetailsPtrOutput() StaticSiteServiceDetailsPtrOutput
+	ToStaticSiteServiceDetailsPtrOutputWithContext(context.Context) StaticSiteServiceDetailsPtrOutput
+}
+
+type staticSiteServiceDetailsPtrType StaticSiteServiceDetailsArgs
+
+func StaticSiteServiceDetailsPtr(v *StaticSiteServiceDetailsArgs) StaticSiteServiceDetailsPtrInput {
+	return (*staticSiteServiceDetailsPtrType)(v)
+}
+
+func (*staticSiteServiceDetailsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StaticSiteServiceDetails)(nil)).Elem()
+}
+
+func (i *staticSiteServiceDetailsPtrType) ToStaticSiteServiceDetailsPtrOutput() StaticSiteServiceDetailsPtrOutput {
+	return i.ToStaticSiteServiceDetailsPtrOutputWithContext(context.Background())
+}
+
+func (i *staticSiteServiceDetailsPtrType) ToStaticSiteServiceDetailsPtrOutputWithContext(ctx context.Context) StaticSiteServiceDetailsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteServiceDetailsPtrOutput)
+}
+
 type StaticSiteServiceDetailsOutput struct{ *pulumi.OutputState }
 
 func (StaticSiteServiceDetailsOutput) ElementType() reflect.Type {
@@ -1482,6 +1689,16 @@ func (o StaticSiteServiceDetailsOutput) ToStaticSiteServiceDetailsOutput() Stati
 
 func (o StaticSiteServiceDetailsOutput) ToStaticSiteServiceDetailsOutputWithContext(ctx context.Context) StaticSiteServiceDetailsOutput {
 	return o
+}
+
+func (o StaticSiteServiceDetailsOutput) ToStaticSiteServiceDetailsPtrOutput() StaticSiteServiceDetailsPtrOutput {
+	return o.ToStaticSiteServiceDetailsPtrOutputWithContext(context.Background())
+}
+
+func (o StaticSiteServiceDetailsOutput) ToStaticSiteServiceDetailsPtrOutputWithContext(ctx context.Context) StaticSiteServiceDetailsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StaticSiteServiceDetails) *StaticSiteServiceDetails {
+		return &v
+	}).(StaticSiteServiceDetailsPtrOutput)
 }
 
 func (o StaticSiteServiceDetailsOutput) BuildCommand() pulumi.StringPtrOutput {
@@ -1610,6 +1827,75 @@ type StaticSiteServiceDetailsParentServerProperties struct {
 	Name *string `pulumi:"name"`
 }
 
+// StaticSiteServiceDetailsParentServerPropertiesInput is an input type that accepts StaticSiteServiceDetailsParentServerPropertiesArgs and StaticSiteServiceDetailsParentServerPropertiesOutput values.
+// You can construct a concrete instance of `StaticSiteServiceDetailsParentServerPropertiesInput` via:
+//
+//          StaticSiteServiceDetailsParentServerPropertiesArgs{...}
+type StaticSiteServiceDetailsParentServerPropertiesInput interface {
+	pulumi.Input
+
+	ToStaticSiteServiceDetailsParentServerPropertiesOutput() StaticSiteServiceDetailsParentServerPropertiesOutput
+	ToStaticSiteServiceDetailsParentServerPropertiesOutputWithContext(context.Context) StaticSiteServiceDetailsParentServerPropertiesOutput
+}
+
+type StaticSiteServiceDetailsParentServerPropertiesArgs struct {
+	Id   pulumi.StringPtrInput `pulumi:"id"`
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (StaticSiteServiceDetailsParentServerPropertiesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StaticSiteServiceDetailsParentServerProperties)(nil)).Elem()
+}
+
+func (i StaticSiteServiceDetailsParentServerPropertiesArgs) ToStaticSiteServiceDetailsParentServerPropertiesOutput() StaticSiteServiceDetailsParentServerPropertiesOutput {
+	return i.ToStaticSiteServiceDetailsParentServerPropertiesOutputWithContext(context.Background())
+}
+
+func (i StaticSiteServiceDetailsParentServerPropertiesArgs) ToStaticSiteServiceDetailsParentServerPropertiesOutputWithContext(ctx context.Context) StaticSiteServiceDetailsParentServerPropertiesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteServiceDetailsParentServerPropertiesOutput)
+}
+
+func (i StaticSiteServiceDetailsParentServerPropertiesArgs) ToStaticSiteServiceDetailsParentServerPropertiesPtrOutput() StaticSiteServiceDetailsParentServerPropertiesPtrOutput {
+	return i.ToStaticSiteServiceDetailsParentServerPropertiesPtrOutputWithContext(context.Background())
+}
+
+func (i StaticSiteServiceDetailsParentServerPropertiesArgs) ToStaticSiteServiceDetailsParentServerPropertiesPtrOutputWithContext(ctx context.Context) StaticSiteServiceDetailsParentServerPropertiesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteServiceDetailsParentServerPropertiesOutput).ToStaticSiteServiceDetailsParentServerPropertiesPtrOutputWithContext(ctx)
+}
+
+// StaticSiteServiceDetailsParentServerPropertiesPtrInput is an input type that accepts StaticSiteServiceDetailsParentServerPropertiesArgs, StaticSiteServiceDetailsParentServerPropertiesPtr and StaticSiteServiceDetailsParentServerPropertiesPtrOutput values.
+// You can construct a concrete instance of `StaticSiteServiceDetailsParentServerPropertiesPtrInput` via:
+//
+//          StaticSiteServiceDetailsParentServerPropertiesArgs{...}
+//
+//  or:
+//
+//          nil
+type StaticSiteServiceDetailsParentServerPropertiesPtrInput interface {
+	pulumi.Input
+
+	ToStaticSiteServiceDetailsParentServerPropertiesPtrOutput() StaticSiteServiceDetailsParentServerPropertiesPtrOutput
+	ToStaticSiteServiceDetailsParentServerPropertiesPtrOutputWithContext(context.Context) StaticSiteServiceDetailsParentServerPropertiesPtrOutput
+}
+
+type staticSiteServiceDetailsParentServerPropertiesPtrType StaticSiteServiceDetailsParentServerPropertiesArgs
+
+func StaticSiteServiceDetailsParentServerPropertiesPtr(v *StaticSiteServiceDetailsParentServerPropertiesArgs) StaticSiteServiceDetailsParentServerPropertiesPtrInput {
+	return (*staticSiteServiceDetailsParentServerPropertiesPtrType)(v)
+}
+
+func (*staticSiteServiceDetailsParentServerPropertiesPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StaticSiteServiceDetailsParentServerProperties)(nil)).Elem()
+}
+
+func (i *staticSiteServiceDetailsParentServerPropertiesPtrType) ToStaticSiteServiceDetailsParentServerPropertiesPtrOutput() StaticSiteServiceDetailsParentServerPropertiesPtrOutput {
+	return i.ToStaticSiteServiceDetailsParentServerPropertiesPtrOutputWithContext(context.Background())
+}
+
+func (i *staticSiteServiceDetailsParentServerPropertiesPtrType) ToStaticSiteServiceDetailsParentServerPropertiesPtrOutputWithContext(ctx context.Context) StaticSiteServiceDetailsParentServerPropertiesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteServiceDetailsParentServerPropertiesPtrOutput)
+}
+
 type StaticSiteServiceDetailsParentServerPropertiesOutput struct{ *pulumi.OutputState }
 
 func (StaticSiteServiceDetailsParentServerPropertiesOutput) ElementType() reflect.Type {
@@ -1622,6 +1908,16 @@ func (o StaticSiteServiceDetailsParentServerPropertiesOutput) ToStaticSiteServic
 
 func (o StaticSiteServiceDetailsParentServerPropertiesOutput) ToStaticSiteServiceDetailsParentServerPropertiesOutputWithContext(ctx context.Context) StaticSiteServiceDetailsParentServerPropertiesOutput {
 	return o
+}
+
+func (o StaticSiteServiceDetailsParentServerPropertiesOutput) ToStaticSiteServiceDetailsParentServerPropertiesPtrOutput() StaticSiteServiceDetailsParentServerPropertiesPtrOutput {
+	return o.ToStaticSiteServiceDetailsParentServerPropertiesPtrOutputWithContext(context.Background())
+}
+
+func (o StaticSiteServiceDetailsParentServerPropertiesOutput) ToStaticSiteServiceDetailsParentServerPropertiesPtrOutputWithContext(ctx context.Context) StaticSiteServiceDetailsParentServerPropertiesPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StaticSiteServiceDetailsParentServerProperties) *StaticSiteServiceDetailsParentServerProperties {
+		return &v
+	}).(StaticSiteServiceDetailsParentServerPropertiesPtrOutput)
 }
 
 func (o StaticSiteServiceDetailsParentServerPropertiesOutput) Id() pulumi.StringPtrOutput {
@@ -1674,634 +1970,6 @@ func (o StaticSiteServiceDetailsParentServerPropertiesPtrOutput) Name() pulumi.S
 	}).(pulumi.StringPtrOutput)
 }
 
-// A service header object
-type StaticSiteServiceHeader struct {
-	Name  string `pulumi:"name"`
-	Path  string `pulumi:"path"`
-	Value string `pulumi:"value"`
-}
-
-// StaticSiteServiceHeaderInput is an input type that accepts StaticSiteServiceHeaderArgs and StaticSiteServiceHeaderOutput values.
-// You can construct a concrete instance of `StaticSiteServiceHeaderInput` via:
-//
-//          StaticSiteServiceHeaderArgs{...}
-type StaticSiteServiceHeaderInput interface {
-	pulumi.Input
-
-	ToStaticSiteServiceHeaderOutput() StaticSiteServiceHeaderOutput
-	ToStaticSiteServiceHeaderOutputWithContext(context.Context) StaticSiteServiceHeaderOutput
-}
-
-// A service header object
-type StaticSiteServiceHeaderArgs struct {
-	Name  pulumi.StringInput `pulumi:"name"`
-	Path  pulumi.StringInput `pulumi:"path"`
-	Value pulumi.StringInput `pulumi:"value"`
-}
-
-func (StaticSiteServiceHeaderArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*StaticSiteServiceHeader)(nil)).Elem()
-}
-
-func (i StaticSiteServiceHeaderArgs) ToStaticSiteServiceHeaderOutput() StaticSiteServiceHeaderOutput {
-	return i.ToStaticSiteServiceHeaderOutputWithContext(context.Background())
-}
-
-func (i StaticSiteServiceHeaderArgs) ToStaticSiteServiceHeaderOutputWithContext(ctx context.Context) StaticSiteServiceHeaderOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteServiceHeaderOutput)
-}
-
-// StaticSiteServiceHeaderArrayInput is an input type that accepts StaticSiteServiceHeaderArray and StaticSiteServiceHeaderArrayOutput values.
-// You can construct a concrete instance of `StaticSiteServiceHeaderArrayInput` via:
-//
-//          StaticSiteServiceHeaderArray{ StaticSiteServiceHeaderArgs{...} }
-type StaticSiteServiceHeaderArrayInput interface {
-	pulumi.Input
-
-	ToStaticSiteServiceHeaderArrayOutput() StaticSiteServiceHeaderArrayOutput
-	ToStaticSiteServiceHeaderArrayOutputWithContext(context.Context) StaticSiteServiceHeaderArrayOutput
-}
-
-type StaticSiteServiceHeaderArray []StaticSiteServiceHeaderInput
-
-func (StaticSiteServiceHeaderArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]StaticSiteServiceHeader)(nil)).Elem()
-}
-
-func (i StaticSiteServiceHeaderArray) ToStaticSiteServiceHeaderArrayOutput() StaticSiteServiceHeaderArrayOutput {
-	return i.ToStaticSiteServiceHeaderArrayOutputWithContext(context.Background())
-}
-
-func (i StaticSiteServiceHeaderArray) ToStaticSiteServiceHeaderArrayOutputWithContext(ctx context.Context) StaticSiteServiceHeaderArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteServiceHeaderArrayOutput)
-}
-
-// A service header object
-type StaticSiteServiceHeaderOutput struct{ *pulumi.OutputState }
-
-func (StaticSiteServiceHeaderOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*StaticSiteServiceHeader)(nil)).Elem()
-}
-
-func (o StaticSiteServiceHeaderOutput) ToStaticSiteServiceHeaderOutput() StaticSiteServiceHeaderOutput {
-	return o
-}
-
-func (o StaticSiteServiceHeaderOutput) ToStaticSiteServiceHeaderOutputWithContext(ctx context.Context) StaticSiteServiceHeaderOutput {
-	return o
-}
-
-func (o StaticSiteServiceHeaderOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v StaticSiteServiceHeader) string { return v.Name }).(pulumi.StringOutput)
-}
-
-func (o StaticSiteServiceHeaderOutput) Path() pulumi.StringOutput {
-	return o.ApplyT(func(v StaticSiteServiceHeader) string { return v.Path }).(pulumi.StringOutput)
-}
-
-func (o StaticSiteServiceHeaderOutput) Value() pulumi.StringOutput {
-	return o.ApplyT(func(v StaticSiteServiceHeader) string { return v.Value }).(pulumi.StringOutput)
-}
-
-type StaticSiteServiceHeaderArrayOutput struct{ *pulumi.OutputState }
-
-func (StaticSiteServiceHeaderArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]StaticSiteServiceHeader)(nil)).Elem()
-}
-
-func (o StaticSiteServiceHeaderArrayOutput) ToStaticSiteServiceHeaderArrayOutput() StaticSiteServiceHeaderArrayOutput {
-	return o
-}
-
-func (o StaticSiteServiceHeaderArrayOutput) ToStaticSiteServiceHeaderArrayOutputWithContext(ctx context.Context) StaticSiteServiceHeaderArrayOutput {
-	return o
-}
-
-func (o StaticSiteServiceHeaderArrayOutput) Index(i pulumi.IntInput) StaticSiteServiceHeaderOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) StaticSiteServiceHeader {
-		return vs[0].([]StaticSiteServiceHeader)[vs[1].(int)]
-	}).(StaticSiteServiceHeaderOutput)
-}
-
-// A route object for a static site
-type StaticSiteStaticSiteRoute struct {
-	Destination string                        `pulumi:"destination"`
-	Source      string                        `pulumi:"source"`
-	Type        StaticSiteStaticSiteRouteType `pulumi:"type"`
-}
-
-// StaticSiteStaticSiteRouteInput is an input type that accepts StaticSiteStaticSiteRouteArgs and StaticSiteStaticSiteRouteOutput values.
-// You can construct a concrete instance of `StaticSiteStaticSiteRouteInput` via:
-//
-//          StaticSiteStaticSiteRouteArgs{...}
-type StaticSiteStaticSiteRouteInput interface {
-	pulumi.Input
-
-	ToStaticSiteStaticSiteRouteOutput() StaticSiteStaticSiteRouteOutput
-	ToStaticSiteStaticSiteRouteOutputWithContext(context.Context) StaticSiteStaticSiteRouteOutput
-}
-
-// A route object for a static site
-type StaticSiteStaticSiteRouteArgs struct {
-	Destination pulumi.StringInput                 `pulumi:"destination"`
-	Source      pulumi.StringInput                 `pulumi:"source"`
-	Type        StaticSiteStaticSiteRouteTypeInput `pulumi:"type"`
-}
-
-func (StaticSiteStaticSiteRouteArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*StaticSiteStaticSiteRoute)(nil)).Elem()
-}
-
-func (i StaticSiteStaticSiteRouteArgs) ToStaticSiteStaticSiteRouteOutput() StaticSiteStaticSiteRouteOutput {
-	return i.ToStaticSiteStaticSiteRouteOutputWithContext(context.Background())
-}
-
-func (i StaticSiteStaticSiteRouteArgs) ToStaticSiteStaticSiteRouteOutputWithContext(ctx context.Context) StaticSiteStaticSiteRouteOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteStaticSiteRouteOutput)
-}
-
-// StaticSiteStaticSiteRouteArrayInput is an input type that accepts StaticSiteStaticSiteRouteArray and StaticSiteStaticSiteRouteArrayOutput values.
-// You can construct a concrete instance of `StaticSiteStaticSiteRouteArrayInput` via:
-//
-//          StaticSiteStaticSiteRouteArray{ StaticSiteStaticSiteRouteArgs{...} }
-type StaticSiteStaticSiteRouteArrayInput interface {
-	pulumi.Input
-
-	ToStaticSiteStaticSiteRouteArrayOutput() StaticSiteStaticSiteRouteArrayOutput
-	ToStaticSiteStaticSiteRouteArrayOutputWithContext(context.Context) StaticSiteStaticSiteRouteArrayOutput
-}
-
-type StaticSiteStaticSiteRouteArray []StaticSiteStaticSiteRouteInput
-
-func (StaticSiteStaticSiteRouteArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]StaticSiteStaticSiteRoute)(nil)).Elem()
-}
-
-func (i StaticSiteStaticSiteRouteArray) ToStaticSiteStaticSiteRouteArrayOutput() StaticSiteStaticSiteRouteArrayOutput {
-	return i.ToStaticSiteStaticSiteRouteArrayOutputWithContext(context.Background())
-}
-
-func (i StaticSiteStaticSiteRouteArray) ToStaticSiteStaticSiteRouteArrayOutputWithContext(ctx context.Context) StaticSiteStaticSiteRouteArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteStaticSiteRouteArrayOutput)
-}
-
-// A route object for a static site
-type StaticSiteStaticSiteRouteOutput struct{ *pulumi.OutputState }
-
-func (StaticSiteStaticSiteRouteOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*StaticSiteStaticSiteRoute)(nil)).Elem()
-}
-
-func (o StaticSiteStaticSiteRouteOutput) ToStaticSiteStaticSiteRouteOutput() StaticSiteStaticSiteRouteOutput {
-	return o
-}
-
-func (o StaticSiteStaticSiteRouteOutput) ToStaticSiteStaticSiteRouteOutputWithContext(ctx context.Context) StaticSiteStaticSiteRouteOutput {
-	return o
-}
-
-func (o StaticSiteStaticSiteRouteOutput) Destination() pulumi.StringOutput {
-	return o.ApplyT(func(v StaticSiteStaticSiteRoute) string { return v.Destination }).(pulumi.StringOutput)
-}
-
-func (o StaticSiteStaticSiteRouteOutput) Source() pulumi.StringOutput {
-	return o.ApplyT(func(v StaticSiteStaticSiteRoute) string { return v.Source }).(pulumi.StringOutput)
-}
-
-func (o StaticSiteStaticSiteRouteOutput) Type() StaticSiteStaticSiteRouteTypeOutput {
-	return o.ApplyT(func(v StaticSiteStaticSiteRoute) StaticSiteStaticSiteRouteType { return v.Type }).(StaticSiteStaticSiteRouteTypeOutput)
-}
-
-type StaticSiteStaticSiteRouteArrayOutput struct{ *pulumi.OutputState }
-
-func (StaticSiteStaticSiteRouteArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]StaticSiteStaticSiteRoute)(nil)).Elem()
-}
-
-func (o StaticSiteStaticSiteRouteArrayOutput) ToStaticSiteStaticSiteRouteArrayOutput() StaticSiteStaticSiteRouteArrayOutput {
-	return o
-}
-
-func (o StaticSiteStaticSiteRouteArrayOutput) ToStaticSiteStaticSiteRouteArrayOutputWithContext(ctx context.Context) StaticSiteStaticSiteRouteArrayOutput {
-	return o
-}
-
-func (o StaticSiteStaticSiteRouteArrayOutput) Index(i pulumi.IntInput) StaticSiteStaticSiteRouteOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) StaticSiteStaticSiteRoute {
-		return vs[0].([]StaticSiteStaticSiteRoute)[vs[1].(int)]
-	}).(StaticSiteStaticSiteRouteOutput)
-}
-
-type StaticSiteStaticSiteServiceDetails struct {
-	BuildCommand               *string                                                       `pulumi:"buildCommand"`
-	Headers                    []StaticSiteServiceHeader                                     `pulumi:"headers"`
-	ParentServer               *StaticSiteStaticSiteServiceDetailsParentServerProperties     `pulumi:"parentServer"`
-	PublishPath                *string                                                       `pulumi:"publishPath"`
-	PullRequestPreviewsEnabled *StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
-	Routes                     []StaticSiteStaticSiteRoute                                   `pulumi:"routes"`
-	// The HTTPS service URL. A subdomain of onrender.com, by default.
-	Url *string `pulumi:"url"`
-}
-
-// Defaults sets the appropriate defaults for StaticSiteStaticSiteServiceDetails
-func (val *StaticSiteStaticSiteServiceDetails) Defaults() *StaticSiteStaticSiteServiceDetails {
-	if val == nil {
-		return nil
-	}
-	tmp := *val
-	if isZero(tmp.PublishPath) {
-		publishPath_ := "public"
-		tmp.PublishPath = &publishPath_
-	}
-	if isZero(tmp.PullRequestPreviewsEnabled) {
-		pullRequestPreviewsEnabled_ := StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled("no")
-		tmp.PullRequestPreviewsEnabled = &pullRequestPreviewsEnabled_
-	}
-	return &tmp
-}
-
-// StaticSiteStaticSiteServiceDetailsInput is an input type that accepts StaticSiteStaticSiteServiceDetailsArgs and StaticSiteStaticSiteServiceDetailsOutput values.
-// You can construct a concrete instance of `StaticSiteStaticSiteServiceDetailsInput` via:
-//
-//          StaticSiteStaticSiteServiceDetailsArgs{...}
-type StaticSiteStaticSiteServiceDetailsInput interface {
-	pulumi.Input
-
-	ToStaticSiteStaticSiteServiceDetailsOutput() StaticSiteStaticSiteServiceDetailsOutput
-	ToStaticSiteStaticSiteServiceDetailsOutputWithContext(context.Context) StaticSiteStaticSiteServiceDetailsOutput
-}
-
-type StaticSiteStaticSiteServiceDetailsArgs struct {
-	BuildCommand               pulumi.StringPtrInput                                                `pulumi:"buildCommand"`
-	Headers                    StaticSiteServiceHeaderArrayInput                                    `pulumi:"headers"`
-	ParentServer               StaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrInput     `pulumi:"parentServer"`
-	PublishPath                pulumi.StringPtrInput                                                `pulumi:"publishPath"`
-	PullRequestPreviewsEnabled StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabledPtrInput `pulumi:"pullRequestPreviewsEnabled"`
-	Routes                     StaticSiteStaticSiteRouteArrayInput                                  `pulumi:"routes"`
-	// The HTTPS service URL. A subdomain of onrender.com, by default.
-	Url pulumi.StringPtrInput `pulumi:"url"`
-}
-
-// Defaults sets the appropriate defaults for StaticSiteStaticSiteServiceDetailsArgs
-func (val *StaticSiteStaticSiteServiceDetailsArgs) Defaults() *StaticSiteStaticSiteServiceDetailsArgs {
-	if val == nil {
-		return nil
-	}
-	tmp := *val
-	if isZero(tmp.PublishPath) {
-		tmp.PublishPath = pulumi.StringPtr("public")
-	}
-	if isZero(tmp.PullRequestPreviewsEnabled) {
-		tmp.PullRequestPreviewsEnabled = StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled("no")
-	}
-	return &tmp
-}
-func (StaticSiteStaticSiteServiceDetailsArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*StaticSiteStaticSiteServiceDetails)(nil)).Elem()
-}
-
-func (i StaticSiteStaticSiteServiceDetailsArgs) ToStaticSiteStaticSiteServiceDetailsOutput() StaticSiteStaticSiteServiceDetailsOutput {
-	return i.ToStaticSiteStaticSiteServiceDetailsOutputWithContext(context.Background())
-}
-
-func (i StaticSiteStaticSiteServiceDetailsArgs) ToStaticSiteStaticSiteServiceDetailsOutputWithContext(ctx context.Context) StaticSiteStaticSiteServiceDetailsOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteStaticSiteServiceDetailsOutput)
-}
-
-func (i StaticSiteStaticSiteServiceDetailsArgs) ToStaticSiteStaticSiteServiceDetailsPtrOutput() StaticSiteStaticSiteServiceDetailsPtrOutput {
-	return i.ToStaticSiteStaticSiteServiceDetailsPtrOutputWithContext(context.Background())
-}
-
-func (i StaticSiteStaticSiteServiceDetailsArgs) ToStaticSiteStaticSiteServiceDetailsPtrOutputWithContext(ctx context.Context) StaticSiteStaticSiteServiceDetailsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteStaticSiteServiceDetailsOutput).ToStaticSiteStaticSiteServiceDetailsPtrOutputWithContext(ctx)
-}
-
-// StaticSiteStaticSiteServiceDetailsPtrInput is an input type that accepts StaticSiteStaticSiteServiceDetailsArgs, StaticSiteStaticSiteServiceDetailsPtr and StaticSiteStaticSiteServiceDetailsPtrOutput values.
-// You can construct a concrete instance of `StaticSiteStaticSiteServiceDetailsPtrInput` via:
-//
-//          StaticSiteStaticSiteServiceDetailsArgs{...}
-//
-//  or:
-//
-//          nil
-type StaticSiteStaticSiteServiceDetailsPtrInput interface {
-	pulumi.Input
-
-	ToStaticSiteStaticSiteServiceDetailsPtrOutput() StaticSiteStaticSiteServiceDetailsPtrOutput
-	ToStaticSiteStaticSiteServiceDetailsPtrOutputWithContext(context.Context) StaticSiteStaticSiteServiceDetailsPtrOutput
-}
-
-type staticSiteStaticSiteServiceDetailsPtrType StaticSiteStaticSiteServiceDetailsArgs
-
-func StaticSiteStaticSiteServiceDetailsPtr(v *StaticSiteStaticSiteServiceDetailsArgs) StaticSiteStaticSiteServiceDetailsPtrInput {
-	return (*staticSiteStaticSiteServiceDetailsPtrType)(v)
-}
-
-func (*staticSiteStaticSiteServiceDetailsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**StaticSiteStaticSiteServiceDetails)(nil)).Elem()
-}
-
-func (i *staticSiteStaticSiteServiceDetailsPtrType) ToStaticSiteStaticSiteServiceDetailsPtrOutput() StaticSiteStaticSiteServiceDetailsPtrOutput {
-	return i.ToStaticSiteStaticSiteServiceDetailsPtrOutputWithContext(context.Background())
-}
-
-func (i *staticSiteStaticSiteServiceDetailsPtrType) ToStaticSiteStaticSiteServiceDetailsPtrOutputWithContext(ctx context.Context) StaticSiteStaticSiteServiceDetailsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteStaticSiteServiceDetailsPtrOutput)
-}
-
-type StaticSiteStaticSiteServiceDetailsOutput struct{ *pulumi.OutputState }
-
-func (StaticSiteStaticSiteServiceDetailsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*StaticSiteStaticSiteServiceDetails)(nil)).Elem()
-}
-
-func (o StaticSiteStaticSiteServiceDetailsOutput) ToStaticSiteStaticSiteServiceDetailsOutput() StaticSiteStaticSiteServiceDetailsOutput {
-	return o
-}
-
-func (o StaticSiteStaticSiteServiceDetailsOutput) ToStaticSiteStaticSiteServiceDetailsOutputWithContext(ctx context.Context) StaticSiteStaticSiteServiceDetailsOutput {
-	return o
-}
-
-func (o StaticSiteStaticSiteServiceDetailsOutput) ToStaticSiteStaticSiteServiceDetailsPtrOutput() StaticSiteStaticSiteServiceDetailsPtrOutput {
-	return o.ToStaticSiteStaticSiteServiceDetailsPtrOutputWithContext(context.Background())
-}
-
-func (o StaticSiteStaticSiteServiceDetailsOutput) ToStaticSiteStaticSiteServiceDetailsPtrOutputWithContext(ctx context.Context) StaticSiteStaticSiteServiceDetailsPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v StaticSiteStaticSiteServiceDetails) *StaticSiteStaticSiteServiceDetails {
-		return &v
-	}).(StaticSiteStaticSiteServiceDetailsPtrOutput)
-}
-
-func (o StaticSiteStaticSiteServiceDetailsOutput) BuildCommand() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v StaticSiteStaticSiteServiceDetails) *string { return v.BuildCommand }).(pulumi.StringPtrOutput)
-}
-
-func (o StaticSiteStaticSiteServiceDetailsOutput) Headers() StaticSiteServiceHeaderArrayOutput {
-	return o.ApplyT(func(v StaticSiteStaticSiteServiceDetails) []StaticSiteServiceHeader { return v.Headers }).(StaticSiteServiceHeaderArrayOutput)
-}
-
-func (o StaticSiteStaticSiteServiceDetailsOutput) ParentServer() StaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutput {
-	return o.ApplyT(func(v StaticSiteStaticSiteServiceDetails) *StaticSiteStaticSiteServiceDetailsParentServerProperties {
-		return v.ParentServer
-	}).(StaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutput)
-}
-
-func (o StaticSiteStaticSiteServiceDetailsOutput) PublishPath() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v StaticSiteStaticSiteServiceDetails) *string { return v.PublishPath }).(pulumi.StringPtrOutput)
-}
-
-func (o StaticSiteStaticSiteServiceDetailsOutput) PullRequestPreviewsEnabled() StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabledPtrOutput {
-	return o.ApplyT(func(v StaticSiteStaticSiteServiceDetails) *StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled {
-		return v.PullRequestPreviewsEnabled
-	}).(StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabledPtrOutput)
-}
-
-func (o StaticSiteStaticSiteServiceDetailsOutput) Routes() StaticSiteStaticSiteRouteArrayOutput {
-	return o.ApplyT(func(v StaticSiteStaticSiteServiceDetails) []StaticSiteStaticSiteRoute { return v.Routes }).(StaticSiteStaticSiteRouteArrayOutput)
-}
-
-// The HTTPS service URL. A subdomain of onrender.com, by default.
-func (o StaticSiteStaticSiteServiceDetailsOutput) Url() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v StaticSiteStaticSiteServiceDetails) *string { return v.Url }).(pulumi.StringPtrOutput)
-}
-
-type StaticSiteStaticSiteServiceDetailsPtrOutput struct{ *pulumi.OutputState }
-
-func (StaticSiteStaticSiteServiceDetailsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**StaticSiteStaticSiteServiceDetails)(nil)).Elem()
-}
-
-func (o StaticSiteStaticSiteServiceDetailsPtrOutput) ToStaticSiteStaticSiteServiceDetailsPtrOutput() StaticSiteStaticSiteServiceDetailsPtrOutput {
-	return o
-}
-
-func (o StaticSiteStaticSiteServiceDetailsPtrOutput) ToStaticSiteStaticSiteServiceDetailsPtrOutputWithContext(ctx context.Context) StaticSiteStaticSiteServiceDetailsPtrOutput {
-	return o
-}
-
-func (o StaticSiteStaticSiteServiceDetailsPtrOutput) Elem() StaticSiteStaticSiteServiceDetailsOutput {
-	return o.ApplyT(func(v *StaticSiteStaticSiteServiceDetails) StaticSiteStaticSiteServiceDetails {
-		if v != nil {
-			return *v
-		}
-		var ret StaticSiteStaticSiteServiceDetails
-		return ret
-	}).(StaticSiteStaticSiteServiceDetailsOutput)
-}
-
-func (o StaticSiteStaticSiteServiceDetailsPtrOutput) BuildCommand() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *StaticSiteStaticSiteServiceDetails) *string {
-		if v == nil {
-			return nil
-		}
-		return v.BuildCommand
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o StaticSiteStaticSiteServiceDetailsPtrOutput) Headers() StaticSiteServiceHeaderArrayOutput {
-	return o.ApplyT(func(v *StaticSiteStaticSiteServiceDetails) []StaticSiteServiceHeader {
-		if v == nil {
-			return nil
-		}
-		return v.Headers
-	}).(StaticSiteServiceHeaderArrayOutput)
-}
-
-func (o StaticSiteStaticSiteServiceDetailsPtrOutput) ParentServer() StaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutput {
-	return o.ApplyT(func(v *StaticSiteStaticSiteServiceDetails) *StaticSiteStaticSiteServiceDetailsParentServerProperties {
-		if v == nil {
-			return nil
-		}
-		return v.ParentServer
-	}).(StaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutput)
-}
-
-func (o StaticSiteStaticSiteServiceDetailsPtrOutput) PublishPath() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *StaticSiteStaticSiteServiceDetails) *string {
-		if v == nil {
-			return nil
-		}
-		return v.PublishPath
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o StaticSiteStaticSiteServiceDetailsPtrOutput) PullRequestPreviewsEnabled() StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabledPtrOutput {
-	return o.ApplyT(func(v *StaticSiteStaticSiteServiceDetails) *StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled {
-		if v == nil {
-			return nil
-		}
-		return v.PullRequestPreviewsEnabled
-	}).(StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabledPtrOutput)
-}
-
-func (o StaticSiteStaticSiteServiceDetailsPtrOutput) Routes() StaticSiteStaticSiteRouteArrayOutput {
-	return o.ApplyT(func(v *StaticSiteStaticSiteServiceDetails) []StaticSiteStaticSiteRoute {
-		if v == nil {
-			return nil
-		}
-		return v.Routes
-	}).(StaticSiteStaticSiteRouteArrayOutput)
-}
-
-// The HTTPS service URL. A subdomain of onrender.com, by default.
-func (o StaticSiteStaticSiteServiceDetailsPtrOutput) Url() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *StaticSiteStaticSiteServiceDetails) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Url
-	}).(pulumi.StringPtrOutput)
-}
-
-type StaticSiteStaticSiteServiceDetailsParentServerProperties struct {
-	Id   *string `pulumi:"id"`
-	Name *string `pulumi:"name"`
-}
-
-// StaticSiteStaticSiteServiceDetailsParentServerPropertiesInput is an input type that accepts StaticSiteStaticSiteServiceDetailsParentServerPropertiesArgs and StaticSiteStaticSiteServiceDetailsParentServerPropertiesOutput values.
-// You can construct a concrete instance of `StaticSiteStaticSiteServiceDetailsParentServerPropertiesInput` via:
-//
-//          StaticSiteStaticSiteServiceDetailsParentServerPropertiesArgs{...}
-type StaticSiteStaticSiteServiceDetailsParentServerPropertiesInput interface {
-	pulumi.Input
-
-	ToStaticSiteStaticSiteServiceDetailsParentServerPropertiesOutput() StaticSiteStaticSiteServiceDetailsParentServerPropertiesOutput
-	ToStaticSiteStaticSiteServiceDetailsParentServerPropertiesOutputWithContext(context.Context) StaticSiteStaticSiteServiceDetailsParentServerPropertiesOutput
-}
-
-type StaticSiteStaticSiteServiceDetailsParentServerPropertiesArgs struct {
-	Id   pulumi.StringPtrInput `pulumi:"id"`
-	Name pulumi.StringPtrInput `pulumi:"name"`
-}
-
-func (StaticSiteStaticSiteServiceDetailsParentServerPropertiesArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*StaticSiteStaticSiteServiceDetailsParentServerProperties)(nil)).Elem()
-}
-
-func (i StaticSiteStaticSiteServiceDetailsParentServerPropertiesArgs) ToStaticSiteStaticSiteServiceDetailsParentServerPropertiesOutput() StaticSiteStaticSiteServiceDetailsParentServerPropertiesOutput {
-	return i.ToStaticSiteStaticSiteServiceDetailsParentServerPropertiesOutputWithContext(context.Background())
-}
-
-func (i StaticSiteStaticSiteServiceDetailsParentServerPropertiesArgs) ToStaticSiteStaticSiteServiceDetailsParentServerPropertiesOutputWithContext(ctx context.Context) StaticSiteStaticSiteServiceDetailsParentServerPropertiesOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteStaticSiteServiceDetailsParentServerPropertiesOutput)
-}
-
-func (i StaticSiteStaticSiteServiceDetailsParentServerPropertiesArgs) ToStaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutput() StaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutput {
-	return i.ToStaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutputWithContext(context.Background())
-}
-
-func (i StaticSiteStaticSiteServiceDetailsParentServerPropertiesArgs) ToStaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutputWithContext(ctx context.Context) StaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteStaticSiteServiceDetailsParentServerPropertiesOutput).ToStaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutputWithContext(ctx)
-}
-
-// StaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrInput is an input type that accepts StaticSiteStaticSiteServiceDetailsParentServerPropertiesArgs, StaticSiteStaticSiteServiceDetailsParentServerPropertiesPtr and StaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutput values.
-// You can construct a concrete instance of `StaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrInput` via:
-//
-//          StaticSiteStaticSiteServiceDetailsParentServerPropertiesArgs{...}
-//
-//  or:
-//
-//          nil
-type StaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrInput interface {
-	pulumi.Input
-
-	ToStaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutput() StaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutput
-	ToStaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutputWithContext(context.Context) StaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutput
-}
-
-type staticSiteStaticSiteServiceDetailsParentServerPropertiesPtrType StaticSiteStaticSiteServiceDetailsParentServerPropertiesArgs
-
-func StaticSiteStaticSiteServiceDetailsParentServerPropertiesPtr(v *StaticSiteStaticSiteServiceDetailsParentServerPropertiesArgs) StaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrInput {
-	return (*staticSiteStaticSiteServiceDetailsParentServerPropertiesPtrType)(v)
-}
-
-func (*staticSiteStaticSiteServiceDetailsParentServerPropertiesPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**StaticSiteStaticSiteServiceDetailsParentServerProperties)(nil)).Elem()
-}
-
-func (i *staticSiteStaticSiteServiceDetailsParentServerPropertiesPtrType) ToStaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutput() StaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutput {
-	return i.ToStaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutputWithContext(context.Background())
-}
-
-func (i *staticSiteStaticSiteServiceDetailsParentServerPropertiesPtrType) ToStaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutputWithContext(ctx context.Context) StaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutput)
-}
-
-type StaticSiteStaticSiteServiceDetailsParentServerPropertiesOutput struct{ *pulumi.OutputState }
-
-func (StaticSiteStaticSiteServiceDetailsParentServerPropertiesOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*StaticSiteStaticSiteServiceDetailsParentServerProperties)(nil)).Elem()
-}
-
-func (o StaticSiteStaticSiteServiceDetailsParentServerPropertiesOutput) ToStaticSiteStaticSiteServiceDetailsParentServerPropertiesOutput() StaticSiteStaticSiteServiceDetailsParentServerPropertiesOutput {
-	return o
-}
-
-func (o StaticSiteStaticSiteServiceDetailsParentServerPropertiesOutput) ToStaticSiteStaticSiteServiceDetailsParentServerPropertiesOutputWithContext(ctx context.Context) StaticSiteStaticSiteServiceDetailsParentServerPropertiesOutput {
-	return o
-}
-
-func (o StaticSiteStaticSiteServiceDetailsParentServerPropertiesOutput) ToStaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutput() StaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutput {
-	return o.ToStaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutputWithContext(context.Background())
-}
-
-func (o StaticSiteStaticSiteServiceDetailsParentServerPropertiesOutput) ToStaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutputWithContext(ctx context.Context) StaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v StaticSiteStaticSiteServiceDetailsParentServerProperties) *StaticSiteStaticSiteServiceDetailsParentServerProperties {
-		return &v
-	}).(StaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutput)
-}
-
-func (o StaticSiteStaticSiteServiceDetailsParentServerPropertiesOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v StaticSiteStaticSiteServiceDetailsParentServerProperties) *string { return v.Id }).(pulumi.StringPtrOutput)
-}
-
-func (o StaticSiteStaticSiteServiceDetailsParentServerPropertiesOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v StaticSiteStaticSiteServiceDetailsParentServerProperties) *string { return v.Name }).(pulumi.StringPtrOutput)
-}
-
-type StaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutput struct{ *pulumi.OutputState }
-
-func (StaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**StaticSiteStaticSiteServiceDetailsParentServerProperties)(nil)).Elem()
-}
-
-func (o StaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutput) ToStaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutput() StaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutput {
-	return o
-}
-
-func (o StaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutput) ToStaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutputWithContext(ctx context.Context) StaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutput {
-	return o
-}
-
-func (o StaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutput) Elem() StaticSiteStaticSiteServiceDetailsParentServerPropertiesOutput {
-	return o.ApplyT(func(v *StaticSiteStaticSiteServiceDetailsParentServerProperties) StaticSiteStaticSiteServiceDetailsParentServerProperties {
-		if v != nil {
-			return *v
-		}
-		var ret StaticSiteStaticSiteServiceDetailsParentServerProperties
-		return ret
-	}).(StaticSiteStaticSiteServiceDetailsParentServerPropertiesOutput)
-}
-
-func (o StaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *StaticSiteStaticSiteServiceDetailsParentServerProperties) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Id
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o StaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *StaticSiteStaticSiteServiceDetailsParentServerProperties) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Name
-	}).(pulumi.StringPtrOutput)
-}
-
 // A web service
 type WebServiceType struct {
 	// Whether to auto deploy the service or not upon git push.
@@ -2343,217 +2011,6 @@ func (val *WebServiceType) Defaults() *WebServiceType {
 	return &tmp
 }
 
-type WebServiceDisk struct {
-	MountPath string   `pulumi:"mountPath"`
-	Name      string   `pulumi:"name"`
-	SizeGB    *float64 `pulumi:"sizeGB"`
-}
-
-// Defaults sets the appropriate defaults for WebServiceDisk
-func (val *WebServiceDisk) Defaults() *WebServiceDisk {
-	if val == nil {
-		return nil
-	}
-	tmp := *val
-	if isZero(tmp.SizeGB) {
-		sizeGB_ := 1.0
-		tmp.SizeGB = &sizeGB_
-	}
-	return &tmp
-}
-
-// WebServiceDiskInput is an input type that accepts WebServiceDiskArgs and WebServiceDiskOutput values.
-// You can construct a concrete instance of `WebServiceDiskInput` via:
-//
-//          WebServiceDiskArgs{...}
-type WebServiceDiskInput interface {
-	pulumi.Input
-
-	ToWebServiceDiskOutput() WebServiceDiskOutput
-	ToWebServiceDiskOutputWithContext(context.Context) WebServiceDiskOutput
-}
-
-type WebServiceDiskArgs struct {
-	MountPath pulumi.StringInput     `pulumi:"mountPath"`
-	Name      pulumi.StringInput     `pulumi:"name"`
-	SizeGB    pulumi.Float64PtrInput `pulumi:"sizeGB"`
-}
-
-// Defaults sets the appropriate defaults for WebServiceDiskArgs
-func (val *WebServiceDiskArgs) Defaults() *WebServiceDiskArgs {
-	if val == nil {
-		return nil
-	}
-	tmp := *val
-	if isZero(tmp.SizeGB) {
-		tmp.SizeGB = pulumi.Float64Ptr(1.0)
-	}
-	return &tmp
-}
-func (WebServiceDiskArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebServiceDisk)(nil)).Elem()
-}
-
-func (i WebServiceDiskArgs) ToWebServiceDiskOutput() WebServiceDiskOutput {
-	return i.ToWebServiceDiskOutputWithContext(context.Background())
-}
-
-func (i WebServiceDiskArgs) ToWebServiceDiskOutputWithContext(ctx context.Context) WebServiceDiskOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebServiceDiskOutput)
-}
-
-func (i WebServiceDiskArgs) ToWebServiceDiskPtrOutput() WebServiceDiskPtrOutput {
-	return i.ToWebServiceDiskPtrOutputWithContext(context.Background())
-}
-
-func (i WebServiceDiskArgs) ToWebServiceDiskPtrOutputWithContext(ctx context.Context) WebServiceDiskPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebServiceDiskOutput).ToWebServiceDiskPtrOutputWithContext(ctx)
-}
-
-// WebServiceDiskPtrInput is an input type that accepts WebServiceDiskArgs, WebServiceDiskPtr and WebServiceDiskPtrOutput values.
-// You can construct a concrete instance of `WebServiceDiskPtrInput` via:
-//
-//          WebServiceDiskArgs{...}
-//
-//  or:
-//
-//          nil
-type WebServiceDiskPtrInput interface {
-	pulumi.Input
-
-	ToWebServiceDiskPtrOutput() WebServiceDiskPtrOutput
-	ToWebServiceDiskPtrOutputWithContext(context.Context) WebServiceDiskPtrOutput
-}
-
-type webServiceDiskPtrType WebServiceDiskArgs
-
-func WebServiceDiskPtr(v *WebServiceDiskArgs) WebServiceDiskPtrInput {
-	return (*webServiceDiskPtrType)(v)
-}
-
-func (*webServiceDiskPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebServiceDisk)(nil)).Elem()
-}
-
-func (i *webServiceDiskPtrType) ToWebServiceDiskPtrOutput() WebServiceDiskPtrOutput {
-	return i.ToWebServiceDiskPtrOutputWithContext(context.Background())
-}
-
-func (i *webServiceDiskPtrType) ToWebServiceDiskPtrOutputWithContext(ctx context.Context) WebServiceDiskPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebServiceDiskPtrOutput)
-}
-
-type WebServiceDiskOutput struct{ *pulumi.OutputState }
-
-func (WebServiceDiskOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebServiceDisk)(nil)).Elem()
-}
-
-func (o WebServiceDiskOutput) ToWebServiceDiskOutput() WebServiceDiskOutput {
-	return o
-}
-
-func (o WebServiceDiskOutput) ToWebServiceDiskOutputWithContext(ctx context.Context) WebServiceDiskOutput {
-	return o
-}
-
-func (o WebServiceDiskOutput) ToWebServiceDiskPtrOutput() WebServiceDiskPtrOutput {
-	return o.ToWebServiceDiskPtrOutputWithContext(context.Background())
-}
-
-func (o WebServiceDiskOutput) ToWebServiceDiskPtrOutputWithContext(ctx context.Context) WebServiceDiskPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebServiceDisk) *WebServiceDisk {
-		return &v
-	}).(WebServiceDiskPtrOutput)
-}
-
-func (o WebServiceDiskOutput) MountPath() pulumi.StringOutput {
-	return o.ApplyT(func(v WebServiceDisk) string { return v.MountPath }).(pulumi.StringOutput)
-}
-
-func (o WebServiceDiskOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v WebServiceDisk) string { return v.Name }).(pulumi.StringOutput)
-}
-
-func (o WebServiceDiskOutput) SizeGB() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v WebServiceDisk) *float64 { return v.SizeGB }).(pulumi.Float64PtrOutput)
-}
-
-type WebServiceDiskPtrOutput struct{ *pulumi.OutputState }
-
-func (WebServiceDiskPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebServiceDisk)(nil)).Elem()
-}
-
-func (o WebServiceDiskPtrOutput) ToWebServiceDiskPtrOutput() WebServiceDiskPtrOutput {
-	return o
-}
-
-func (o WebServiceDiskPtrOutput) ToWebServiceDiskPtrOutputWithContext(ctx context.Context) WebServiceDiskPtrOutput {
-	return o
-}
-
-func (o WebServiceDiskPtrOutput) Elem() WebServiceDiskOutput {
-	return o.ApplyT(func(v *WebServiceDisk) WebServiceDisk {
-		if v != nil {
-			return *v
-		}
-		var ret WebServiceDisk
-		return ret
-	}).(WebServiceDiskOutput)
-}
-
-func (o WebServiceDiskPtrOutput) MountPath() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *WebServiceDisk) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.MountPath
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o WebServiceDiskPtrOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *WebServiceDisk) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.Name
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o WebServiceDiskPtrOutput) SizeGB() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v *WebServiceDisk) *float64 {
-		if v == nil {
-			return nil
-		}
-		return v.SizeGB
-	}).(pulumi.Float64PtrOutput)
-}
-
-type WebServiceDockerDetails struct {
-	DockerCommand  *string `pulumi:"dockerCommand"`
-	DockerContext  *string `pulumi:"dockerContext"`
-	DockerfilePath *string `pulumi:"dockerfilePath"`
-}
-
-// Defaults sets the appropriate defaults for WebServiceDockerDetails
-func (val *WebServiceDockerDetails) Defaults() *WebServiceDockerDetails {
-	if val == nil {
-		return nil
-	}
-	tmp := *val
-	if isZero(tmp.DockerfilePath) {
-		dockerfilePath_ := "./Dockerfile"
-		tmp.DockerfilePath = &dockerfilePath_
-	}
-	return &tmp
-}
-
-type WebServiceNativeEnvironmentDetails struct {
-	BuildCommand string `pulumi:"buildCommand"`
-	StartCommand string `pulumi:"startCommand"`
-}
-
 type WebServiceServiceDetails struct {
 	Disk                       *Disk                                               `pulumi:"disk"`
 	Env                        WebServiceServiceDetailsEnv                         `pulumi:"env"`
@@ -2592,6 +2049,102 @@ func (val *WebServiceServiceDetails) Defaults() *WebServiceServiceDetails {
 	return &tmp
 }
 
+// WebServiceServiceDetailsInput is an input type that accepts WebServiceServiceDetailsArgs and WebServiceServiceDetailsOutput values.
+// You can construct a concrete instance of `WebServiceServiceDetailsInput` via:
+//
+//          WebServiceServiceDetailsArgs{...}
+type WebServiceServiceDetailsInput interface {
+	pulumi.Input
+
+	ToWebServiceServiceDetailsOutput() WebServiceServiceDetailsOutput
+	ToWebServiceServiceDetailsOutputWithContext(context.Context) WebServiceServiceDetailsOutput
+}
+
+type WebServiceServiceDetailsArgs struct {
+	Disk                       DiskPtrInput                                               `pulumi:"disk"`
+	Env                        WebServiceServiceDetailsEnvInput                           `pulumi:"env"`
+	EnvSpecificDetails         pulumi.Input                                               `pulumi:"envSpecificDetails"`
+	HealthCheckPath            pulumi.StringPtrInput                                      `pulumi:"healthCheckPath"`
+	NumInstances               pulumi.Float64PtrInput                                     `pulumi:"numInstances"`
+	Plan                       WebServiceServiceDetailsPlanPtrInput                       `pulumi:"plan"`
+	PullRequestPreviewsEnabled WebServiceServiceDetailsPullRequestPreviewsEnabledPtrInput `pulumi:"pullRequestPreviewsEnabled"`
+	Region                     WebServiceServiceDetailsRegionPtrInput                     `pulumi:"region"`
+}
+
+// Defaults sets the appropriate defaults for WebServiceServiceDetailsArgs
+func (val *WebServiceServiceDetailsArgs) Defaults() *WebServiceServiceDetailsArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+
+	if isZero(tmp.NumInstances) {
+		tmp.NumInstances = pulumi.Float64Ptr(1.0)
+	}
+	if isZero(tmp.Plan) {
+		tmp.Plan = WebServiceServiceDetailsPlan("starter")
+	}
+	if isZero(tmp.PullRequestPreviewsEnabled) {
+		tmp.PullRequestPreviewsEnabled = WebServiceServiceDetailsPullRequestPreviewsEnabled("no")
+	}
+	if isZero(tmp.Region) {
+		tmp.Region = WebServiceServiceDetailsRegion("oregon")
+	}
+	return &tmp
+}
+func (WebServiceServiceDetailsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceServiceDetails)(nil)).Elem()
+}
+
+func (i WebServiceServiceDetailsArgs) ToWebServiceServiceDetailsOutput() WebServiceServiceDetailsOutput {
+	return i.ToWebServiceServiceDetailsOutputWithContext(context.Background())
+}
+
+func (i WebServiceServiceDetailsArgs) ToWebServiceServiceDetailsOutputWithContext(ctx context.Context) WebServiceServiceDetailsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebServiceServiceDetailsOutput)
+}
+
+func (i WebServiceServiceDetailsArgs) ToWebServiceServiceDetailsPtrOutput() WebServiceServiceDetailsPtrOutput {
+	return i.ToWebServiceServiceDetailsPtrOutputWithContext(context.Background())
+}
+
+func (i WebServiceServiceDetailsArgs) ToWebServiceServiceDetailsPtrOutputWithContext(ctx context.Context) WebServiceServiceDetailsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebServiceServiceDetailsOutput).ToWebServiceServiceDetailsPtrOutputWithContext(ctx)
+}
+
+// WebServiceServiceDetailsPtrInput is an input type that accepts WebServiceServiceDetailsArgs, WebServiceServiceDetailsPtr and WebServiceServiceDetailsPtrOutput values.
+// You can construct a concrete instance of `WebServiceServiceDetailsPtrInput` via:
+//
+//          WebServiceServiceDetailsArgs{...}
+//
+//  or:
+//
+//          nil
+type WebServiceServiceDetailsPtrInput interface {
+	pulumi.Input
+
+	ToWebServiceServiceDetailsPtrOutput() WebServiceServiceDetailsPtrOutput
+	ToWebServiceServiceDetailsPtrOutputWithContext(context.Context) WebServiceServiceDetailsPtrOutput
+}
+
+type webServiceServiceDetailsPtrType WebServiceServiceDetailsArgs
+
+func WebServiceServiceDetailsPtr(v *WebServiceServiceDetailsArgs) WebServiceServiceDetailsPtrInput {
+	return (*webServiceServiceDetailsPtrType)(v)
+}
+
+func (*webServiceServiceDetailsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebServiceServiceDetails)(nil)).Elem()
+}
+
+func (i *webServiceServiceDetailsPtrType) ToWebServiceServiceDetailsPtrOutput() WebServiceServiceDetailsPtrOutput {
+	return i.ToWebServiceServiceDetailsPtrOutputWithContext(context.Background())
+}
+
+func (i *webServiceServiceDetailsPtrType) ToWebServiceServiceDetailsPtrOutputWithContext(ctx context.Context) WebServiceServiceDetailsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebServiceServiceDetailsPtrOutput)
+}
+
 type WebServiceServiceDetailsOutput struct{ *pulumi.OutputState }
 
 func (WebServiceServiceDetailsOutput) ElementType() reflect.Type {
@@ -2604,6 +2157,16 @@ func (o WebServiceServiceDetailsOutput) ToWebServiceServiceDetailsOutput() WebSe
 
 func (o WebServiceServiceDetailsOutput) ToWebServiceServiceDetailsOutputWithContext(ctx context.Context) WebServiceServiceDetailsOutput {
 	return o
+}
+
+func (o WebServiceServiceDetailsOutput) ToWebServiceServiceDetailsPtrOutput() WebServiceServiceDetailsPtrOutput {
+	return o.ToWebServiceServiceDetailsPtrOutputWithContext(context.Background())
+}
+
+func (o WebServiceServiceDetailsOutput) ToWebServiceServiceDetailsPtrOutputWithContext(ctx context.Context) WebServiceServiceDetailsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebServiceServiceDetails) *WebServiceServiceDetails {
+		return &v
+	}).(WebServiceServiceDetailsPtrOutput)
 }
 
 func (o WebServiceServiceDetailsOutput) Disk() DiskPtrOutput {
@@ -2736,308 +2299,20 @@ func (o WebServiceServiceDetailsPtrOutput) Region() WebServiceServiceDetailsRegi
 	}).(WebServiceServiceDetailsRegionPtrOutput)
 }
 
-type WebServiceWebServiceServiceDetails struct {
-	Disk                       *WebServiceDisk                                               `pulumi:"disk"`
-	Env                        WebServiceWebServiceServiceDetailsEnv                         `pulumi:"env"`
-	EnvSpecificDetails         interface{}                                                   `pulumi:"envSpecificDetails"`
-	HealthCheckPath            *string                                                       `pulumi:"healthCheckPath"`
-	NumInstances               *float64                                                      `pulumi:"numInstances"`
-	Plan                       *WebServiceWebServiceServiceDetailsPlan                       `pulumi:"plan"`
-	PullRequestPreviewsEnabled *WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
-	Region                     *WebServiceWebServiceServiceDetailsRegion                     `pulumi:"region"`
-}
-
-// Defaults sets the appropriate defaults for WebServiceWebServiceServiceDetails
-func (val *WebServiceWebServiceServiceDetails) Defaults() *WebServiceWebServiceServiceDetails {
-	if val == nil {
-		return nil
-	}
-	tmp := *val
-	tmp.Disk = tmp.Disk.Defaults()
-
-	if isZero(tmp.NumInstances) {
-		numInstances_ := 1.0
-		tmp.NumInstances = &numInstances_
-	}
-	if isZero(tmp.Plan) {
-		plan_ := WebServiceWebServiceServiceDetailsPlan("starter")
-		tmp.Plan = &plan_
-	}
-	if isZero(tmp.PullRequestPreviewsEnabled) {
-		pullRequestPreviewsEnabled_ := WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled("no")
-		tmp.PullRequestPreviewsEnabled = &pullRequestPreviewsEnabled_
-	}
-	if isZero(tmp.Region) {
-		region_ := WebServiceWebServiceServiceDetailsRegion("oregon")
-		tmp.Region = &region_
-	}
-	return &tmp
-}
-
-// WebServiceWebServiceServiceDetailsInput is an input type that accepts WebServiceWebServiceServiceDetailsArgs and WebServiceWebServiceServiceDetailsOutput values.
-// You can construct a concrete instance of `WebServiceWebServiceServiceDetailsInput` via:
-//
-//          WebServiceWebServiceServiceDetailsArgs{...}
-type WebServiceWebServiceServiceDetailsInput interface {
-	pulumi.Input
-
-	ToWebServiceWebServiceServiceDetailsOutput() WebServiceWebServiceServiceDetailsOutput
-	ToWebServiceWebServiceServiceDetailsOutputWithContext(context.Context) WebServiceWebServiceServiceDetailsOutput
-}
-
-type WebServiceWebServiceServiceDetailsArgs struct {
-	Disk                       WebServiceDiskPtrInput                                               `pulumi:"disk"`
-	Env                        WebServiceWebServiceServiceDetailsEnvInput                           `pulumi:"env"`
-	EnvSpecificDetails         pulumi.Input                                                         `pulumi:"envSpecificDetails"`
-	HealthCheckPath            pulumi.StringPtrInput                                                `pulumi:"healthCheckPath"`
-	NumInstances               pulumi.Float64PtrInput                                               `pulumi:"numInstances"`
-	Plan                       WebServiceWebServiceServiceDetailsPlanPtrInput                       `pulumi:"plan"`
-	PullRequestPreviewsEnabled WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabledPtrInput `pulumi:"pullRequestPreviewsEnabled"`
-	Region                     WebServiceWebServiceServiceDetailsRegionPtrInput                     `pulumi:"region"`
-}
-
-// Defaults sets the appropriate defaults for WebServiceWebServiceServiceDetailsArgs
-func (val *WebServiceWebServiceServiceDetailsArgs) Defaults() *WebServiceWebServiceServiceDetailsArgs {
-	if val == nil {
-		return nil
-	}
-	tmp := *val
-
-	if isZero(tmp.NumInstances) {
-		tmp.NumInstances = pulumi.Float64Ptr(1.0)
-	}
-	if isZero(tmp.Plan) {
-		tmp.Plan = WebServiceWebServiceServiceDetailsPlan("starter")
-	}
-	if isZero(tmp.PullRequestPreviewsEnabled) {
-		tmp.PullRequestPreviewsEnabled = WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled("no")
-	}
-	if isZero(tmp.Region) {
-		tmp.Region = WebServiceWebServiceServiceDetailsRegion("oregon")
-	}
-	return &tmp
-}
-func (WebServiceWebServiceServiceDetailsArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebServiceWebServiceServiceDetails)(nil)).Elem()
-}
-
-func (i WebServiceWebServiceServiceDetailsArgs) ToWebServiceWebServiceServiceDetailsOutput() WebServiceWebServiceServiceDetailsOutput {
-	return i.ToWebServiceWebServiceServiceDetailsOutputWithContext(context.Background())
-}
-
-func (i WebServiceWebServiceServiceDetailsArgs) ToWebServiceWebServiceServiceDetailsOutputWithContext(ctx context.Context) WebServiceWebServiceServiceDetailsOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebServiceWebServiceServiceDetailsOutput)
-}
-
-func (i WebServiceWebServiceServiceDetailsArgs) ToWebServiceWebServiceServiceDetailsPtrOutput() WebServiceWebServiceServiceDetailsPtrOutput {
-	return i.ToWebServiceWebServiceServiceDetailsPtrOutputWithContext(context.Background())
-}
-
-func (i WebServiceWebServiceServiceDetailsArgs) ToWebServiceWebServiceServiceDetailsPtrOutputWithContext(ctx context.Context) WebServiceWebServiceServiceDetailsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebServiceWebServiceServiceDetailsOutput).ToWebServiceWebServiceServiceDetailsPtrOutputWithContext(ctx)
-}
-
-// WebServiceWebServiceServiceDetailsPtrInput is an input type that accepts WebServiceWebServiceServiceDetailsArgs, WebServiceWebServiceServiceDetailsPtr and WebServiceWebServiceServiceDetailsPtrOutput values.
-// You can construct a concrete instance of `WebServiceWebServiceServiceDetailsPtrInput` via:
-//
-//          WebServiceWebServiceServiceDetailsArgs{...}
-//
-//  or:
-//
-//          nil
-type WebServiceWebServiceServiceDetailsPtrInput interface {
-	pulumi.Input
-
-	ToWebServiceWebServiceServiceDetailsPtrOutput() WebServiceWebServiceServiceDetailsPtrOutput
-	ToWebServiceWebServiceServiceDetailsPtrOutputWithContext(context.Context) WebServiceWebServiceServiceDetailsPtrOutput
-}
-
-type webServiceWebServiceServiceDetailsPtrType WebServiceWebServiceServiceDetailsArgs
-
-func WebServiceWebServiceServiceDetailsPtr(v *WebServiceWebServiceServiceDetailsArgs) WebServiceWebServiceServiceDetailsPtrInput {
-	return (*webServiceWebServiceServiceDetailsPtrType)(v)
-}
-
-func (*webServiceWebServiceServiceDetailsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebServiceWebServiceServiceDetails)(nil)).Elem()
-}
-
-func (i *webServiceWebServiceServiceDetailsPtrType) ToWebServiceWebServiceServiceDetailsPtrOutput() WebServiceWebServiceServiceDetailsPtrOutput {
-	return i.ToWebServiceWebServiceServiceDetailsPtrOutputWithContext(context.Background())
-}
-
-func (i *webServiceWebServiceServiceDetailsPtrType) ToWebServiceWebServiceServiceDetailsPtrOutputWithContext(ctx context.Context) WebServiceWebServiceServiceDetailsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebServiceWebServiceServiceDetailsPtrOutput)
-}
-
-type WebServiceWebServiceServiceDetailsOutput struct{ *pulumi.OutputState }
-
-func (WebServiceWebServiceServiceDetailsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebServiceWebServiceServiceDetails)(nil)).Elem()
-}
-
-func (o WebServiceWebServiceServiceDetailsOutput) ToWebServiceWebServiceServiceDetailsOutput() WebServiceWebServiceServiceDetailsOutput {
-	return o
-}
-
-func (o WebServiceWebServiceServiceDetailsOutput) ToWebServiceWebServiceServiceDetailsOutputWithContext(ctx context.Context) WebServiceWebServiceServiceDetailsOutput {
-	return o
-}
-
-func (o WebServiceWebServiceServiceDetailsOutput) ToWebServiceWebServiceServiceDetailsPtrOutput() WebServiceWebServiceServiceDetailsPtrOutput {
-	return o.ToWebServiceWebServiceServiceDetailsPtrOutputWithContext(context.Background())
-}
-
-func (o WebServiceWebServiceServiceDetailsOutput) ToWebServiceWebServiceServiceDetailsPtrOutputWithContext(ctx context.Context) WebServiceWebServiceServiceDetailsPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebServiceWebServiceServiceDetails) *WebServiceWebServiceServiceDetails {
-		return &v
-	}).(WebServiceWebServiceServiceDetailsPtrOutput)
-}
-
-func (o WebServiceWebServiceServiceDetailsOutput) Disk() WebServiceDiskPtrOutput {
-	return o.ApplyT(func(v WebServiceWebServiceServiceDetails) *WebServiceDisk { return v.Disk }).(WebServiceDiskPtrOutput)
-}
-
-func (o WebServiceWebServiceServiceDetailsOutput) Env() WebServiceWebServiceServiceDetailsEnvOutput {
-	return o.ApplyT(func(v WebServiceWebServiceServiceDetails) WebServiceWebServiceServiceDetailsEnv { return v.Env }).(WebServiceWebServiceServiceDetailsEnvOutput)
-}
-
-func (o WebServiceWebServiceServiceDetailsOutput) EnvSpecificDetails() pulumi.AnyOutput {
-	return o.ApplyT(func(v WebServiceWebServiceServiceDetails) interface{} { return v.EnvSpecificDetails }).(pulumi.AnyOutput)
-}
-
-func (o WebServiceWebServiceServiceDetailsOutput) HealthCheckPath() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v WebServiceWebServiceServiceDetails) *string { return v.HealthCheckPath }).(pulumi.StringPtrOutput)
-}
-
-func (o WebServiceWebServiceServiceDetailsOutput) NumInstances() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v WebServiceWebServiceServiceDetails) *float64 { return v.NumInstances }).(pulumi.Float64PtrOutput)
-}
-
-func (o WebServiceWebServiceServiceDetailsOutput) Plan() WebServiceWebServiceServiceDetailsPlanPtrOutput {
-	return o.ApplyT(func(v WebServiceWebServiceServiceDetails) *WebServiceWebServiceServiceDetailsPlan { return v.Plan }).(WebServiceWebServiceServiceDetailsPlanPtrOutput)
-}
-
-func (o WebServiceWebServiceServiceDetailsOutput) PullRequestPreviewsEnabled() WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabledPtrOutput {
-	return o.ApplyT(func(v WebServiceWebServiceServiceDetails) *WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled {
-		return v.PullRequestPreviewsEnabled
-	}).(WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabledPtrOutput)
-}
-
-func (o WebServiceWebServiceServiceDetailsOutput) Region() WebServiceWebServiceServiceDetailsRegionPtrOutput {
-	return o.ApplyT(func(v WebServiceWebServiceServiceDetails) *WebServiceWebServiceServiceDetailsRegion { return v.Region }).(WebServiceWebServiceServiceDetailsRegionPtrOutput)
-}
-
-type WebServiceWebServiceServiceDetailsPtrOutput struct{ *pulumi.OutputState }
-
-func (WebServiceWebServiceServiceDetailsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebServiceWebServiceServiceDetails)(nil)).Elem()
-}
-
-func (o WebServiceWebServiceServiceDetailsPtrOutput) ToWebServiceWebServiceServiceDetailsPtrOutput() WebServiceWebServiceServiceDetailsPtrOutput {
-	return o
-}
-
-func (o WebServiceWebServiceServiceDetailsPtrOutput) ToWebServiceWebServiceServiceDetailsPtrOutputWithContext(ctx context.Context) WebServiceWebServiceServiceDetailsPtrOutput {
-	return o
-}
-
-func (o WebServiceWebServiceServiceDetailsPtrOutput) Elem() WebServiceWebServiceServiceDetailsOutput {
-	return o.ApplyT(func(v *WebServiceWebServiceServiceDetails) WebServiceWebServiceServiceDetails {
-		if v != nil {
-			return *v
-		}
-		var ret WebServiceWebServiceServiceDetails
-		return ret
-	}).(WebServiceWebServiceServiceDetailsOutput)
-}
-
-func (o WebServiceWebServiceServiceDetailsPtrOutput) Disk() WebServiceDiskPtrOutput {
-	return o.ApplyT(func(v *WebServiceWebServiceServiceDetails) *WebServiceDisk {
-		if v == nil {
-			return nil
-		}
-		return v.Disk
-	}).(WebServiceDiskPtrOutput)
-}
-
-func (o WebServiceWebServiceServiceDetailsPtrOutput) Env() WebServiceWebServiceServiceDetailsEnvPtrOutput {
-	return o.ApplyT(func(v *WebServiceWebServiceServiceDetails) *WebServiceWebServiceServiceDetailsEnv {
-		if v == nil {
-			return nil
-		}
-		return &v.Env
-	}).(WebServiceWebServiceServiceDetailsEnvPtrOutput)
-}
-
-func (o WebServiceWebServiceServiceDetailsPtrOutput) EnvSpecificDetails() pulumi.AnyOutput {
-	return o.ApplyT(func(v *WebServiceWebServiceServiceDetails) interface{} {
-		if v == nil {
-			return nil
-		}
-		return v.EnvSpecificDetails
-	}).(pulumi.AnyOutput)
-}
-
-func (o WebServiceWebServiceServiceDetailsPtrOutput) HealthCheckPath() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *WebServiceWebServiceServiceDetails) *string {
-		if v == nil {
-			return nil
-		}
-		return v.HealthCheckPath
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o WebServiceWebServiceServiceDetailsPtrOutput) NumInstances() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v *WebServiceWebServiceServiceDetails) *float64 {
-		if v == nil {
-			return nil
-		}
-		return v.NumInstances
-	}).(pulumi.Float64PtrOutput)
-}
-
-func (o WebServiceWebServiceServiceDetailsPtrOutput) Plan() WebServiceWebServiceServiceDetailsPlanPtrOutput {
-	return o.ApplyT(func(v *WebServiceWebServiceServiceDetails) *WebServiceWebServiceServiceDetailsPlan {
-		if v == nil {
-			return nil
-		}
-		return v.Plan
-	}).(WebServiceWebServiceServiceDetailsPlanPtrOutput)
-}
-
-func (o WebServiceWebServiceServiceDetailsPtrOutput) PullRequestPreviewsEnabled() WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabledPtrOutput {
-	return o.ApplyT(func(v *WebServiceWebServiceServiceDetails) *WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled {
-		if v == nil {
-			return nil
-		}
-		return v.PullRequestPreviewsEnabled
-	}).(WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabledPtrOutput)
-}
-
-func (o WebServiceWebServiceServiceDetailsPtrOutput) Region() WebServiceWebServiceServiceDetailsRegionPtrOutput {
-	return o.ApplyT(func(v *WebServiceWebServiceServiceDetails) *WebServiceWebServiceServiceDetailsRegion {
-		if v == nil {
-			return nil
-		}
-		return v.Region
-	}).(WebServiceWebServiceServiceDetailsRegionPtrOutput)
-}
-
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*DiskInput)(nil)).Elem(), DiskArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DiskPtrInput)(nil)).Elem(), DiskArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerPropertiesInput)(nil)).Elem(), ServerPropertiesArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteServiceHeaderInput)(nil)).Elem(), StaticSiteServiceHeaderArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteServiceHeaderArrayInput)(nil)).Elem(), StaticSiteServiceHeaderArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteStaticSiteRouteInput)(nil)).Elem(), StaticSiteStaticSiteRouteArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteStaticSiteRouteArrayInput)(nil)).Elem(), StaticSiteStaticSiteRouteArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteStaticSiteServiceDetailsInput)(nil)).Elem(), StaticSiteStaticSiteServiceDetailsArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteStaticSiteServiceDetailsPtrInput)(nil)).Elem(), StaticSiteStaticSiteServiceDetailsArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteStaticSiteServiceDetailsParentServerPropertiesInput)(nil)).Elem(), StaticSiteStaticSiteServiceDetailsParentServerPropertiesArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrInput)(nil)).Elem(), StaticSiteStaticSiteServiceDetailsParentServerPropertiesArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceDiskInput)(nil)).Elem(), WebServiceDiskArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceDiskPtrInput)(nil)).Elem(), WebServiceDiskArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceWebServiceServiceDetailsInput)(nil)).Elem(), WebServiceWebServiceServiceDetailsArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceWebServiceServiceDetailsPtrInput)(nil)).Elem(), WebServiceWebServiceServiceDetailsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceHeaderInput)(nil)).Elem(), ServiceHeaderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceHeaderArrayInput)(nil)).Elem(), ServiceHeaderArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteRouteInput)(nil)).Elem(), StaticSiteRouteArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteRouteArrayInput)(nil)).Elem(), StaticSiteRouteArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteServiceDetailsInput)(nil)).Elem(), StaticSiteServiceDetailsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteServiceDetailsPtrInput)(nil)).Elem(), StaticSiteServiceDetailsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteServiceDetailsParentServerPropertiesInput)(nil)).Elem(), StaticSiteServiceDetailsParentServerPropertiesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteServiceDetailsParentServerPropertiesPtrInput)(nil)).Elem(), StaticSiteServiceDetailsParentServerPropertiesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceServiceDetailsInput)(nil)).Elem(), WebServiceServiceDetailsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceServiceDetailsPtrInput)(nil)).Elem(), WebServiceServiceDetailsArgs{})
 	pulumi.RegisterOutputType(CommitOutput{})
 	pulumi.RegisterOutputType(CommitPtrOutput{})
 	pulumi.RegisterOutputType(CustomDomainTypeOutput{})
@@ -3046,8 +2321,6 @@ func init() {
 	pulumi.RegisterOutputType(CustomDomainServerPropertiesPtrOutput{})
 	pulumi.RegisterOutputType(DeployTypeOutput{})
 	pulumi.RegisterOutputType(DeployTypePtrOutput{})
-	pulumi.RegisterOutputType(DeployCommitOutput{})
-	pulumi.RegisterOutputType(DeployCommitPtrOutput{})
 	pulumi.RegisterOutputType(DiskOutput{})
 	pulumi.RegisterOutputType(DiskPtrOutput{})
 	pulumi.RegisterOutputType(EnvVarKeyValueOutput{})
@@ -3075,18 +2348,6 @@ func init() {
 	pulumi.RegisterOutputType(StaticSiteServiceDetailsPtrOutput{})
 	pulumi.RegisterOutputType(StaticSiteServiceDetailsParentServerPropertiesOutput{})
 	pulumi.RegisterOutputType(StaticSiteServiceDetailsParentServerPropertiesPtrOutput{})
-	pulumi.RegisterOutputType(StaticSiteServiceHeaderOutput{})
-	pulumi.RegisterOutputType(StaticSiteServiceHeaderArrayOutput{})
-	pulumi.RegisterOutputType(StaticSiteStaticSiteRouteOutput{})
-	pulumi.RegisterOutputType(StaticSiteStaticSiteRouteArrayOutput{})
-	pulumi.RegisterOutputType(StaticSiteStaticSiteServiceDetailsOutput{})
-	pulumi.RegisterOutputType(StaticSiteStaticSiteServiceDetailsPtrOutput{})
-	pulumi.RegisterOutputType(StaticSiteStaticSiteServiceDetailsParentServerPropertiesOutput{})
-	pulumi.RegisterOutputType(StaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutput{})
-	pulumi.RegisterOutputType(WebServiceDiskOutput{})
-	pulumi.RegisterOutputType(WebServiceDiskPtrOutput{})
 	pulumi.RegisterOutputType(WebServiceServiceDetailsOutput{})
 	pulumi.RegisterOutputType(WebServiceServiceDetailsPtrOutput{})
-	pulumi.RegisterOutputType(WebServiceWebServiceServiceDetailsOutput{})
-	pulumi.RegisterOutputType(WebServiceWebServiceServiceDetailsPtrOutput{})
 }

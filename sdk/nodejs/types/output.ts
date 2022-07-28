@@ -75,12 +75,6 @@ export namespace services {
         };
     }
 
-    export interface DeployCommit {
-        createdAt?: string;
-        id?: string;
-        message?: string;
-    }
-
     export interface Disk {
         mountPath: string;
         name: string;
@@ -353,52 +347,6 @@ export namespace services {
     }
 
     /**
-     * A service header object
-     */
-    export interface StaticSiteServiceHeader {
-        name: string;
-        path: string;
-        value: string;
-    }
-
-    /**
-     * A route object for a static site
-     */
-    export interface StaticSiteStaticSiteRoute {
-        destination: string;
-        source: string;
-        type: enums.services.StaticSiteStaticSiteRouteType;
-    }
-
-    export interface StaticSiteStaticSiteServiceDetails {
-        buildCommand?: string;
-        headers?: outputs.services.StaticSiteServiceHeader[];
-        parentServer?: outputs.services.StaticSiteStaticSiteServiceDetailsParentServerProperties;
-        publishPath?: string;
-        pullRequestPreviewsEnabled?: enums.services.StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled;
-        routes?: outputs.services.StaticSiteStaticSiteRoute[];
-        /**
-         * The HTTPS service URL. A subdomain of onrender.com, by default.
-         */
-        url?: string;
-    }
-    /**
-     * staticSiteStaticSiteServiceDetailsProvideDefaults sets the appropriate defaults for StaticSiteStaticSiteServiceDetails
-     */
-    export function staticSiteStaticSiteServiceDetailsProvideDefaults(val: StaticSiteStaticSiteServiceDetails): StaticSiteStaticSiteServiceDetails {
-        return {
-            ...val,
-            publishPath: (val.publishPath) ?? "public",
-            pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
-        };
-    }
-
-    export interface StaticSiteStaticSiteServiceDetailsParentServerProperties {
-        id?: string;
-        name?: string;
-    }
-
-    /**
      * A web service
      */
     export interface WebService {
@@ -443,41 +391,6 @@ export namespace services {
         };
     }
 
-    export interface WebServiceDisk {
-        mountPath: string;
-        name: string;
-        sizeGB?: number;
-    }
-    /**
-     * webServiceDiskProvideDefaults sets the appropriate defaults for WebServiceDisk
-     */
-    export function webServiceDiskProvideDefaults(val: WebServiceDisk): WebServiceDisk {
-        return {
-            ...val,
-            sizeGB: (val.sizeGB) ?? 1,
-        };
-    }
-
-    export interface WebServiceDockerDetails {
-        dockerCommand?: string;
-        dockerContext?: string;
-        dockerfilePath?: string;
-    }
-    /**
-     * webServiceDockerDetailsProvideDefaults sets the appropriate defaults for WebServiceDockerDetails
-     */
-    export function webServiceDockerDetailsProvideDefaults(val: WebServiceDockerDetails): WebServiceDockerDetails {
-        return {
-            ...val,
-            dockerfilePath: (val.dockerfilePath) ?? "./Dockerfile",
-        };
-    }
-
-    export interface WebServiceNativeEnvironmentDetails {
-        buildCommand: string;
-        startCommand: string;
-    }
-
     export interface WebServiceServiceDetails {
         disk?: outputs.services.Disk;
         env: enums.services.WebServiceServiceDetailsEnv;
@@ -495,30 +408,6 @@ export namespace services {
         return {
             ...val,
             disk: (val.disk ? outputs.services.diskProvideDefaults(val.disk) : undefined),
-            numInstances: (val.numInstances) ?? 1,
-            plan: (val.plan) ?? "starter",
-            pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
-            region: (val.region) ?? "oregon",
-        };
-    }
-
-    export interface WebServiceWebServiceServiceDetails {
-        disk?: outputs.services.WebServiceDisk;
-        env: enums.services.WebServiceWebServiceServiceDetailsEnv;
-        envSpecificDetails?: outputs.services.WebServiceDockerDetails | outputs.services.WebServiceNativeEnvironmentDetails;
-        healthCheckPath?: string;
-        numInstances?: number;
-        plan?: enums.services.WebServiceWebServiceServiceDetailsPlan;
-        pullRequestPreviewsEnabled?: enums.services.WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled;
-        region?: enums.services.WebServiceWebServiceServiceDetailsRegion;
-    }
-    /**
-     * webServiceWebServiceServiceDetailsProvideDefaults sets the appropriate defaults for WebServiceWebServiceServiceDetails
-     */
-    export function webServiceWebServiceServiceDetailsProvideDefaults(val: WebServiceWebServiceServiceDetails): WebServiceWebServiceServiceDetails {
-        return {
-            ...val,
-            disk: (val.disk ? outputs.services.webServiceDiskProvideDefaults(val.disk) : undefined),
             numInstances: (val.numInstances) ?? 1,
             plan: (val.plan) ?? "starter",
             pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",

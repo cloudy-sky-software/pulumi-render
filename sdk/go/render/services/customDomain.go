@@ -14,13 +14,13 @@ import (
 type CustomDomain struct {
 	pulumi.CustomResourceState
 
-	CreatedAt          pulumi.StringPtrOutput               `pulumi:"createdAt"`
-	DomainType         CustomDomainDomainTypeOutput         `pulumi:"domainType"`
-	Name               pulumi.StringOutput                  `pulumi:"name"`
-	PublicSuffix       pulumi.StringPtrOutput               `pulumi:"publicSuffix"`
-	RedirectForName    pulumi.StringOutput                  `pulumi:"redirectForName"`
-	Server             ServerPropertiesOutput               `pulumi:"server"`
-	VerificationStatus CustomDomainVerificationStatusOutput `pulumi:"verificationStatus"`
+	CreatedAt          pulumi.StringPtrOutput   `pulumi:"createdAt"`
+	DomainType         DomainTypeOutput         `pulumi:"domainType"`
+	Name               pulumi.StringOutput      `pulumi:"name"`
+	PublicSuffix       pulumi.StringPtrOutput   `pulumi:"publicSuffix"`
+	RedirectForName    pulumi.StringOutput      `pulumi:"redirectForName"`
+	Server             ServerPropertiesOutput   `pulumi:"server"`
+	VerificationStatus VerificationStatusOutput `pulumi:"verificationStatus"`
 }
 
 // NewCustomDomain registers a new resource with the given unique name, arguments, and options.
@@ -124,8 +124,8 @@ func (o CustomDomainOutput) CreatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CustomDomain) pulumi.StringPtrOutput { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
 
-func (o CustomDomainOutput) DomainType() CustomDomainDomainTypeOutput {
-	return o.ApplyT(func(v *CustomDomain) CustomDomainDomainTypeOutput { return v.DomainType }).(CustomDomainDomainTypeOutput)
+func (o CustomDomainOutput) DomainType() DomainTypeOutput {
+	return o.ApplyT(func(v *CustomDomain) DomainTypeOutput { return v.DomainType }).(DomainTypeOutput)
 }
 
 func (o CustomDomainOutput) Name() pulumi.StringOutput {
@@ -144,8 +144,8 @@ func (o CustomDomainOutput) Server() ServerPropertiesOutput {
 	return o.ApplyT(func(v *CustomDomain) ServerPropertiesOutput { return v.Server }).(ServerPropertiesOutput)
 }
 
-func (o CustomDomainOutput) VerificationStatus() CustomDomainVerificationStatusOutput {
-	return o.ApplyT(func(v *CustomDomain) CustomDomainVerificationStatusOutput { return v.VerificationStatus }).(CustomDomainVerificationStatusOutput)
+func (o CustomDomainOutput) VerificationStatus() VerificationStatusOutput {
+	return o.ApplyT(func(v *CustomDomain) VerificationStatusOutput { return v.VerificationStatus }).(VerificationStatusOutput)
 }
 
 func init() {

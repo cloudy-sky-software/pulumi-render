@@ -13,7 +13,7 @@ namespace Pulumi.Render.Services.Inputs
     /// <summary>
     /// A route object for a static site
     /// </summary>
-    public sealed class StaticSiteStaticSiteRouteArgs : Pulumi.ResourceArgs
+    public sealed class StaticSiteRouteArgs : Pulumi.ResourceArgs
     {
         [Input("destination", required: true)]
         public Input<string> Destination { get; set; } = null!;
@@ -22,9 +22,9 @@ namespace Pulumi.Render.Services.Inputs
         public Input<string> Source { get; set; } = null!;
 
         [Input("type", required: true)]
-        public Input<Pulumi.Render.Services.StaticSiteStaticSiteRouteType> Type { get; set; } = null!;
+        public Input<Pulumi.Render.Services.StaticSiteRouteType> Type { get; set; } = null!;
 
-        public StaticSiteStaticSiteRouteArgs()
+        public StaticSiteRouteArgs()
         {
         }
     }

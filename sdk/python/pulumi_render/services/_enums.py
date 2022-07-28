@@ -5,31 +5,27 @@
 from enum import Enum
 
 __all__ = [
+    'ClearCache',
     'CustomDomainDomainType',
     'CustomDomainVerificationStatus',
     'DeployClearCache',
+    'DomainType',
     'ServiceAutoDeploy',
     'ServiceNotifyOnFail',
     'ServiceSuspended',
     'StaticSiteRouteType',
-    'StaticSiteServiceAutoDeploy',
     'StaticSiteServiceDetailsPullRequestPreviewsEnabled',
-    'StaticSiteServiceNotifyOnFail',
-    'StaticSiteServiceSuspended',
-    'StaticSiteStaticSiteRouteType',
-    'StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled',
-    'WebServiceServiceAutoDeploy',
+    'VerificationStatus',
     'WebServiceServiceDetailsEnv',
     'WebServiceServiceDetailsPlan',
     'WebServiceServiceDetailsPullRequestPreviewsEnabled',
     'WebServiceServiceDetailsRegion',
-    'WebServiceServiceNotifyOnFail',
-    'WebServiceServiceSuspended',
-    'WebServiceWebServiceServiceDetailsEnv',
-    'WebServiceWebServiceServiceDetailsPlan',
-    'WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled',
-    'WebServiceWebServiceServiceDetailsRegion',
 ]
+
+
+class ClearCache(str, Enum):
+    DO_NOT_CLEAR = "do_not_clear"
+    CLEAR = "clear"
 
 
 class CustomDomainDomainType(str, Enum):
@@ -45,6 +41,11 @@ class CustomDomainVerificationStatus(str, Enum):
 class DeployClearCache(str, Enum):
     DO_NOT_CLEAR = "do_not_clear"
     CLEAR = "clear"
+
+
+class DomainType(str, Enum):
+    APEX = "apex"
+    SUBDOMAIN = "subdomain"
 
 
 class ServiceAutoDeploy(str, Enum):
@@ -74,49 +75,14 @@ class StaticSiteRouteType(str, Enum):
     REWRITE = "rewrite"
 
 
-class StaticSiteServiceAutoDeploy(str, Enum):
-    """
-    Whether to auto deploy the service or not upon git push.
-    """
-    YES = "yes"
-    NO = "no"
-
-
 class StaticSiteServiceDetailsPullRequestPreviewsEnabled(str, Enum):
     YES = "yes"
     NO = "no"
 
 
-class StaticSiteServiceNotifyOnFail(str, Enum):
-    """
-    The notification setting for this service upon deployment failure.
-    """
-    DEFAULT = "default"
-    NOTIFY = "notify"
-    IGNORE = "ignore"
-
-
-class StaticSiteServiceSuspended(str, Enum):
-    SUSPENDED = "suspended"
-    NOT_SUSPENDED = "not_suspended"
-
-
-class StaticSiteStaticSiteRouteType(str, Enum):
-    REDIRECT = "redirect"
-    REWRITE = "rewrite"
-
-
-class StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled(str, Enum):
-    YES = "yes"
-    NO = "no"
-
-
-class WebServiceServiceAutoDeploy(str, Enum):
-    """
-    Whether to auto deploy the service or not upon git push.
-    """
-    YES = "yes"
-    NO = "no"
+class VerificationStatus(str, Enum):
+    VERIFIED = "verified"
+    UNVERIFIED = "unverified"
 
 
 class WebServiceServiceDetailsEnv(str, Enum):
@@ -146,50 +112,5 @@ class WebServiceServiceDetailsPullRequestPreviewsEnabled(str, Enum):
 
 
 class WebServiceServiceDetailsRegion(str, Enum):
-    OREGON = "oregon"
-    FRANKFURT = "frankfurt"
-
-
-class WebServiceServiceNotifyOnFail(str, Enum):
-    """
-    The notification setting for this service upon deployment failure.
-    """
-    DEFAULT = "default"
-    NOTIFY = "notify"
-    IGNORE = "ignore"
-
-
-class WebServiceServiceSuspended(str, Enum):
-    SUSPENDED = "suspended"
-    NOT_SUSPENDED = "not_suspended"
-
-
-class WebServiceWebServiceServiceDetailsEnv(str, Enum):
-    DOCKER = "docker"
-    ELIXIR = "elixir"
-    GO = "go"
-    NODE = "node"
-    PYTHON = "python"
-    RUBY = "ruby"
-    RUST = "rust"
-
-
-class WebServiceWebServiceServiceDetailsPlan(str, Enum):
-    STARTER = "starter"
-    STARTER_PLUS = "starter_plus"
-    STANDARD = "standard"
-    STANDARD_PLUS = "standard_plus"
-    PRO = "pro"
-    PRO_PLUS = "pro_plus"
-    PRO_MAX = "pro_max"
-    PRO_ULTRA = "pro_ultra"
-
-
-class WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled(str, Enum):
-    YES = "yes"
-    NO = "no"
-
-
-class WebServiceWebServiceServiceDetailsRegion(str, Enum):
     OREGON = "oregon"
     FRANKFURT = "frankfurt"

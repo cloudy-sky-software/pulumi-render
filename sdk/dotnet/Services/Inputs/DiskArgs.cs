@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Render.Services.Inputs
 {
 
-    public sealed class WebServiceDiskArgs : Pulumi.ResourceArgs
+    public sealed class DiskArgs : Pulumi.ResourceArgs
     {
         [Input("mountPath", required: true)]
         public Input<string> MountPath { get; set; } = null!;
@@ -21,7 +21,7 @@ namespace Pulumi.Render.Services.Inputs
         [Input("sizeGB")]
         public Input<double>? SizeGB { get; set; }
 
-        public WebServiceDiskArgs()
+        public DiskArgs()
         {
             SizeGB = 1;
         }

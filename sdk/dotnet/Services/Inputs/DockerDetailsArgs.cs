@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Render.Services.Inputs
 {
 
-    public sealed class WebServiceDockerDetailsArgs : Pulumi.ResourceArgs
+    public sealed class DockerDetailsArgs : Pulumi.ResourceArgs
     {
         [Input("dockerCommand")]
         public Input<string>? DockerCommand { get; set; }
@@ -21,7 +21,7 @@ namespace Pulumi.Render.Services.Inputs
         [Input("dockerfilePath")]
         public Input<string>? DockerfilePath { get; set; }
 
-        public WebServiceDockerDetailsArgs()
+        public DockerDetailsArgs()
         {
             DockerfilePath = "./Dockerfile";
         }

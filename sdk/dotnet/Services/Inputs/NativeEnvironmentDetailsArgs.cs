@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Render.Services.Inputs
 {
 
-    public sealed class WebServiceNativeEnvironmentDetailsArgs : Pulumi.ResourceArgs
+    public sealed class NativeEnvironmentDetailsArgs : Pulumi.ResourceArgs
     {
         [Input("buildCommand", required: true)]
         public Input<string> BuildCommand { get; set; } = null!;
@@ -18,7 +18,7 @@ namespace Pulumi.Render.Services.Inputs
         [Input("startCommand", required: true)]
         public Input<string> StartCommand { get; set; } = null!;
 
-        public WebServiceNativeEnvironmentDetailsArgs()
+        public NativeEnvironmentDetailsArgs()
         {
         }
     }

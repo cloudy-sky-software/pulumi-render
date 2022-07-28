@@ -16,23 +16,23 @@ type WebService struct {
 	pulumi.CustomResourceState
 
 	// Whether to auto deploy the service or not upon git push.
-	AutoDeploy WebServiceServiceAutoDeployPtrOutput `pulumi:"autoDeploy"`
+	AutoDeploy ServiceAutoDeployPtrOutput `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
 	Branch    pulumi.StringPtrOutput `pulumi:"branch"`
 	CreatedAt pulumi.StringPtrOutput `pulumi:"createdAt"`
 	Name      pulumi.StringPtrOutput `pulumi:"name"`
 	// The notification setting for this service upon deployment failure.
-	NotifyOnFail WebServiceServiceNotifyOnFailPtrOutput `pulumi:"notifyOnFail"`
+	NotifyOnFail ServiceNotifyOnFailPtrOutput `pulumi:"notifyOnFail"`
 	// The id of the owner (user/team).
 	OwnerId pulumi.StringPtrOutput `pulumi:"ownerId"`
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-	Repo           pulumi.StringPtrOutput                      `pulumi:"repo"`
-	ServiceDetails WebServiceWebServiceServiceDetailsPtrOutput `pulumi:"serviceDetails"`
-	Slug           pulumi.StringPtrOutput                      `pulumi:"slug"`
-	Suspended      WebServiceServiceSuspendedPtrOutput         `pulumi:"suspended"`
-	Suspenders     pulumi.StringArrayOutput                    `pulumi:"suspenders"`
-	Type           pulumi.StringPtrOutput                      `pulumi:"type"`
-	UpdatedAt      pulumi.StringPtrOutput                      `pulumi:"updatedAt"`
+	Repo           pulumi.StringPtrOutput            `pulumi:"repo"`
+	ServiceDetails WebServiceServiceDetailsPtrOutput `pulumi:"serviceDetails"`
+	Slug           pulumi.StringPtrOutput            `pulumi:"slug"`
+	Suspended      ServiceSuspendedPtrOutput         `pulumi:"suspended"`
+	Suspenders     pulumi.StringArrayOutput          `pulumi:"suspenders"`
+	Type           pulumi.StringPtrOutput            `pulumi:"type"`
+	UpdatedAt      pulumi.StringPtrOutput            `pulumi:"updatedAt"`
 }
 
 // NewWebService registers a new resource with the given unique name, arguments, and options.
@@ -52,10 +52,10 @@ func NewWebService(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'Repo'")
 	}
 	if isZero(args.AutoDeploy) {
-		args.AutoDeploy = WebServiceServiceAutoDeploy("no")
+		args.AutoDeploy = ServiceAutoDeploy("no")
 	}
 	if args.ServiceDetails != nil {
-		args.ServiceDetails = args.ServiceDetails.ToWebServiceWebServiceServiceDetailsPtrOutput().ApplyT(func(v *WebServiceWebServiceServiceDetails) *WebServiceWebServiceServiceDetails { return v.Defaults() }).(WebServiceWebServiceServiceDetailsPtrOutput)
+		args.ServiceDetails = args.ServiceDetails.ToWebServiceServiceDetailsPtrOutput().ApplyT(func(v *WebServiceServiceDetails) *WebServiceServiceDetails { return v.Defaults() }).(WebServiceServiceDetailsPtrOutput)
 	}
 	if isZero(args.Type) {
 		args.Type = pulumi.StringPtr("web_service")
@@ -94,42 +94,42 @@ func (WebServiceState) ElementType() reflect.Type {
 
 type webServiceArgs struct {
 	// Whether to auto deploy the service or not upon git push.
-	AutoDeploy *WebServiceServiceAutoDeploy `pulumi:"autoDeploy"`
+	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
 	Branch    *string `pulumi:"branch"`
 	CreatedAt *string `pulumi:"createdAt"`
 	Name      string  `pulumi:"name"`
 	// The notification setting for this service upon deployment failure.
-	NotifyOnFail *WebServiceServiceNotifyOnFail `pulumi:"notifyOnFail"`
+	NotifyOnFail *ServiceNotifyOnFail `pulumi:"notifyOnFail"`
 	// The id of the owner (user/team).
 	OwnerId string `pulumi:"ownerId"`
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-	Repo           string                              `pulumi:"repo"`
-	ServiceDetails *WebServiceWebServiceServiceDetails `pulumi:"serviceDetails"`
-	Slug           *string                             `pulumi:"slug"`
-	Suspended      *WebServiceServiceSuspended         `pulumi:"suspended"`
-	Suspenders     []string                            `pulumi:"suspenders"`
-	Type           *string                             `pulumi:"type"`
-	UpdatedAt      *string                             `pulumi:"updatedAt"`
+	Repo           string                    `pulumi:"repo"`
+	ServiceDetails *WebServiceServiceDetails `pulumi:"serviceDetails"`
+	Slug           *string                   `pulumi:"slug"`
+	Suspended      *ServiceSuspended         `pulumi:"suspended"`
+	Suspenders     []string                  `pulumi:"suspenders"`
+	Type           *string                   `pulumi:"type"`
+	UpdatedAt      *string                   `pulumi:"updatedAt"`
 }
 
 // The set of arguments for constructing a WebService resource.
 type WebServiceArgs struct {
 	// Whether to auto deploy the service or not upon git push.
-	AutoDeploy WebServiceServiceAutoDeployPtrInput
+	AutoDeploy ServiceAutoDeployPtrInput
 	// If left empty, this will fall back to the default branch of the repository.
 	Branch    pulumi.StringPtrInput
 	CreatedAt pulumi.StringPtrInput
 	Name      pulumi.StringInput
 	// The notification setting for this service upon deployment failure.
-	NotifyOnFail WebServiceServiceNotifyOnFailPtrInput
+	NotifyOnFail ServiceNotifyOnFailPtrInput
 	// The id of the owner (user/team).
 	OwnerId pulumi.StringInput
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
 	Repo           pulumi.StringInput
-	ServiceDetails WebServiceWebServiceServiceDetailsPtrInput
+	ServiceDetails WebServiceServiceDetailsPtrInput
 	Slug           pulumi.StringPtrInput
-	Suspended      WebServiceServiceSuspendedPtrInput
+	Suspended      ServiceSuspendedPtrInput
 	Suspenders     pulumi.StringArrayInput
 	Type           pulumi.StringPtrInput
 	UpdatedAt      pulumi.StringPtrInput
@@ -173,8 +173,8 @@ func (o WebServiceOutput) ToWebServiceOutputWithContext(ctx context.Context) Web
 }
 
 // Whether to auto deploy the service or not upon git push.
-func (o WebServiceOutput) AutoDeploy() WebServiceServiceAutoDeployPtrOutput {
-	return o.ApplyT(func(v *WebService) WebServiceServiceAutoDeployPtrOutput { return v.AutoDeploy }).(WebServiceServiceAutoDeployPtrOutput)
+func (o WebServiceOutput) AutoDeploy() ServiceAutoDeployPtrOutput {
+	return o.ApplyT(func(v *WebService) ServiceAutoDeployPtrOutput { return v.AutoDeploy }).(ServiceAutoDeployPtrOutput)
 }
 
 // If left empty, this will fall back to the default branch of the repository.
@@ -191,8 +191,8 @@ func (o WebServiceOutput) Name() pulumi.StringPtrOutput {
 }
 
 // The notification setting for this service upon deployment failure.
-func (o WebServiceOutput) NotifyOnFail() WebServiceServiceNotifyOnFailPtrOutput {
-	return o.ApplyT(func(v *WebService) WebServiceServiceNotifyOnFailPtrOutput { return v.NotifyOnFail }).(WebServiceServiceNotifyOnFailPtrOutput)
+func (o WebServiceOutput) NotifyOnFail() ServiceNotifyOnFailPtrOutput {
+	return o.ApplyT(func(v *WebService) ServiceNotifyOnFailPtrOutput { return v.NotifyOnFail }).(ServiceNotifyOnFailPtrOutput)
 }
 
 // The id of the owner (user/team).
@@ -205,16 +205,16 @@ func (o WebServiceOutput) Repo() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WebService) pulumi.StringPtrOutput { return v.Repo }).(pulumi.StringPtrOutput)
 }
 
-func (o WebServiceOutput) ServiceDetails() WebServiceWebServiceServiceDetailsPtrOutput {
-	return o.ApplyT(func(v *WebService) WebServiceWebServiceServiceDetailsPtrOutput { return v.ServiceDetails }).(WebServiceWebServiceServiceDetailsPtrOutput)
+func (o WebServiceOutput) ServiceDetails() WebServiceServiceDetailsPtrOutput {
+	return o.ApplyT(func(v *WebService) WebServiceServiceDetailsPtrOutput { return v.ServiceDetails }).(WebServiceServiceDetailsPtrOutput)
 }
 
 func (o WebServiceOutput) Slug() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WebService) pulumi.StringPtrOutput { return v.Slug }).(pulumi.StringPtrOutput)
 }
 
-func (o WebServiceOutput) Suspended() WebServiceServiceSuspendedPtrOutput {
-	return o.ApplyT(func(v *WebService) WebServiceServiceSuspendedPtrOutput { return v.Suspended }).(WebServiceServiceSuspendedPtrOutput)
+func (o WebServiceOutput) Suspended() ServiceSuspendedPtrOutput {
+	return o.ApplyT(func(v *WebService) ServiceSuspendedPtrOutput { return v.Suspended }).(ServiceSuspendedPtrOutput)
 }
 
 func (o WebServiceOutput) Suspenders() pulumi.StringArrayOutput {

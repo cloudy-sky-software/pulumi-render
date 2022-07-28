@@ -57,6 +57,12 @@ namespace Pulumi.Render.Services
 
     public sealed class SuspendArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// (Required) The ID of the service
+        /// </summary>
+        [Input("serviceId")]
+        public Input<string>? ServiceId { get; set; }
+
         public SuspendArgs()
         {
         }

@@ -16,7 +16,7 @@ namespace Pulumi.Render.Services
         public Output<string?> CreatedAt { get; private set; } = null!;
 
         [Output("domainType")]
-        public Output<Pulumi.Render.Services.CustomDomainDomainType> DomainType { get; private set; } = null!;
+        public Output<Pulumi.Render.Services.DomainType> DomainType { get; private set; } = null!;
 
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -31,7 +31,7 @@ namespace Pulumi.Render.Services
         public Output<Outputs.ServerProperties> Server { get; private set; } = null!;
 
         [Output("verificationStatus")]
-        public Output<Pulumi.Render.Services.CustomDomainVerificationStatus> VerificationStatus { get; private set; } = null!;
+        public Output<Pulumi.Render.Services.VerificationStatus> VerificationStatus { get; private set; } = null!;
 
 
         /// <summary>
@@ -79,6 +79,12 @@ namespace Pulumi.Render.Services
 
     public sealed class CustomDomainArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// (Required) The ID of the service
+        /// </summary>
+        [Input("id")]
+        public Input<string>? Id { get; set; }
+
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 

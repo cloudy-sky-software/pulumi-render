@@ -32,8 +32,8 @@ export class Deploy extends pulumi.CustomResource {
         return obj['__pulumiType'] === Deploy.__pulumiType;
     }
 
-    public readonly clearCache!: pulumi.Output<enums.services.DeployClearCache | undefined>;
-    public /*out*/ readonly commit!: pulumi.Output<outputs.services.DeployCommit | undefined>;
+    public readonly clearCache!: pulumi.Output<enums.services.ClearCache | undefined>;
+    public /*out*/ readonly commit!: pulumi.Output<outputs.services.Commit | undefined>;
 
     /**
      * Create a Deploy resource with the given unique name, arguments, and options.
@@ -47,6 +47,7 @@ export class Deploy extends pulumi.CustomResource {
         opts = opts || {};
         if (!opts.id) {
             resourceInputs["clearCache"] = (args ? args.clearCache : undefined) ?? "do_not_clear";
+            resourceInputs["id"] = args ? args.id : undefined;
             resourceInputs["commit"] = undefined /*out*/;
         } else {
             resourceInputs["clearCache"] = undefined /*out*/;
@@ -61,5 +62,9 @@ export class Deploy extends pulumi.CustomResource {
  * The set of arguments for constructing a Deploy resource.
  */
 export interface DeployArgs {
-    clearCache?: pulumi.Input<enums.services.DeployClearCache>;
+    clearCache?: pulumi.Input<enums.services.ClearCache>;
+    /**
+     * (Required) The ID of the service
+     */
+    id?: pulumi.Input<string>;
 }

@@ -16,23 +16,39 @@ __all__ = ['DeployArgs', 'Deploy']
 @pulumi.input_type
 class DeployArgs:
     def __init__(__self__, *,
-                 clear_cache: Optional[pulumi.Input['DeployClearCache']] = None):
+                 clear_cache: Optional[pulumi.Input['ClearCache']] = None,
+                 id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Deploy resource.
+        :param pulumi.Input[str] id: (Required) The ID of the service
         """
         if clear_cache is None:
             clear_cache = 'do_not_clear'
         if clear_cache is not None:
             pulumi.set(__self__, "clear_cache", clear_cache)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
 
     @property
     @pulumi.getter(name="clearCache")
-    def clear_cache(self) -> Optional[pulumi.Input['DeployClearCache']]:
+    def clear_cache(self) -> Optional[pulumi.Input['ClearCache']]:
         return pulumi.get(self, "clear_cache")
 
     @clear_cache.setter
-    def clear_cache(self, value: Optional[pulumi.Input['DeployClearCache']]):
+    def clear_cache(self, value: Optional[pulumi.Input['ClearCache']]):
         pulumi.set(self, "clear_cache", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Required) The ID of the service
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
 
 
 class Deploy(pulumi.CustomResource):
@@ -40,12 +56,14 @@ class Deploy(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 clear_cache: Optional[pulumi.Input['DeployClearCache']] = None,
+                 clear_cache: Optional[pulumi.Input['ClearCache']] = None,
+                 id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Create a Deploy resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] id: (Required) The ID of the service
         """
         ...
     @overload
@@ -70,7 +88,8 @@ class Deploy(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 clear_cache: Optional[pulumi.Input['DeployClearCache']] = None,
+                 clear_cache: Optional[pulumi.Input['ClearCache']] = None,
+                 id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -83,6 +102,7 @@ class Deploy(pulumi.CustomResource):
             if clear_cache is None:
                 clear_cache = 'do_not_clear'
             __props__.__dict__["clear_cache"] = clear_cache
+            __props__.__dict__["id"] = id
             __props__.__dict__["commit"] = None
         super(Deploy, __self__).__init__(
             'render:services:Deploy',
@@ -112,11 +132,11 @@ class Deploy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clearCache")
-    def clear_cache(self) -> pulumi.Output[Optional['DeployClearCache']]:
+    def clear_cache(self) -> pulumi.Output[Optional['ClearCache']]:
         return pulumi.get(self, "clear_cache")
 
     @property
     @pulumi.getter
-    def commit(self) -> pulumi.Output[Optional['outputs.DeployCommit']]:
+    def commit(self) -> pulumi.Output[Optional['outputs.Commit']]:
         return pulumi.get(self, "commit")
 

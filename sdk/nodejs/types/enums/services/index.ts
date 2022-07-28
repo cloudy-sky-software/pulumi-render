@@ -2,6 +2,13 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 
+export const ClearCache = {
+    DoNotClear: "do_not_clear",
+    Clear: "clear",
+} as const;
+
+export type ClearCache = (typeof ClearCache)[keyof typeof ClearCache];
+
 export const CustomDomainDomainType = {
     Apex: "apex",
     Subdomain: "subdomain",
@@ -23,7 +30,14 @@ export const DeployClearCache = {
 
 export type DeployClearCache = (typeof DeployClearCache)[keyof typeof DeployClearCache];
 
-export const StaticSiteServiceAutoDeploy = {
+export const DomainType = {
+    Apex: "apex",
+    Subdomain: "subdomain",
+} as const;
+
+export type DomainType = (typeof DomainType)[keyof typeof DomainType];
+
+export const ServiceAutoDeploy = {
     Yes: "yes",
     No: "no",
 } as const;
@@ -31,9 +45,9 @@ export const StaticSiteServiceAutoDeploy = {
 /**
  * Whether to auto deploy the service or not upon git push.
  */
-export type StaticSiteServiceAutoDeploy = (typeof StaticSiteServiceAutoDeploy)[keyof typeof StaticSiteServiceAutoDeploy];
+export type ServiceAutoDeploy = (typeof ServiceAutoDeploy)[keyof typeof ServiceAutoDeploy];
 
-export const StaticSiteServiceNotifyOnFail = {
+export const ServiceNotifyOnFail = {
     Default: "default",
     Notify: "notify",
     Ignore: "ignore",
@@ -42,58 +56,37 @@ export const StaticSiteServiceNotifyOnFail = {
 /**
  * The notification setting for this service upon deployment failure.
  */
-export type StaticSiteServiceNotifyOnFail = (typeof StaticSiteServiceNotifyOnFail)[keyof typeof StaticSiteServiceNotifyOnFail];
+export type ServiceNotifyOnFail = (typeof ServiceNotifyOnFail)[keyof typeof ServiceNotifyOnFail];
 
-export const StaticSiteServiceSuspended = {
+export const ServiceSuspended = {
     Suspended: "suspended",
     NotSuspended: "not_suspended",
 } as const;
 
-export type StaticSiteServiceSuspended = (typeof StaticSiteServiceSuspended)[keyof typeof StaticSiteServiceSuspended];
+export type ServiceSuspended = (typeof ServiceSuspended)[keyof typeof ServiceSuspended];
 
-export const StaticSiteStaticSiteRouteType = {
+export const StaticSiteRouteType = {
     Redirect: "redirect",
     Rewrite: "rewrite",
 } as const;
 
-export type StaticSiteStaticSiteRouteType = (typeof StaticSiteStaticSiteRouteType)[keyof typeof StaticSiteStaticSiteRouteType];
+export type StaticSiteRouteType = (typeof StaticSiteRouteType)[keyof typeof StaticSiteRouteType];
 
-export const StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled = {
+export const StaticSiteServiceDetailsPullRequestPreviewsEnabled = {
     Yes: "yes",
     No: "no",
 } as const;
 
-export type StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled = (typeof StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled)[keyof typeof StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled];
+export type StaticSiteServiceDetailsPullRequestPreviewsEnabled = (typeof StaticSiteServiceDetailsPullRequestPreviewsEnabled)[keyof typeof StaticSiteServiceDetailsPullRequestPreviewsEnabled];
 
-export const WebServiceServiceAutoDeploy = {
-    Yes: "yes",
-    No: "no",
+export const VerificationStatus = {
+    Verified: "verified",
+    Unverified: "unverified",
 } as const;
 
-/**
- * Whether to auto deploy the service or not upon git push.
- */
-export type WebServiceServiceAutoDeploy = (typeof WebServiceServiceAutoDeploy)[keyof typeof WebServiceServiceAutoDeploy];
+export type VerificationStatus = (typeof VerificationStatus)[keyof typeof VerificationStatus];
 
-export const WebServiceServiceNotifyOnFail = {
-    Default: "default",
-    Notify: "notify",
-    Ignore: "ignore",
-} as const;
-
-/**
- * The notification setting for this service upon deployment failure.
- */
-export type WebServiceServiceNotifyOnFail = (typeof WebServiceServiceNotifyOnFail)[keyof typeof WebServiceServiceNotifyOnFail];
-
-export const WebServiceServiceSuspended = {
-    Suspended: "suspended",
-    NotSuspended: "not_suspended",
-} as const;
-
-export type WebServiceServiceSuspended = (typeof WebServiceServiceSuspended)[keyof typeof WebServiceServiceSuspended];
-
-export const WebServiceWebServiceServiceDetailsEnv = {
+export const WebServiceServiceDetailsEnv = {
     Docker: "docker",
     Elixir: "elixir",
     Go: "go",
@@ -103,9 +96,9 @@ export const WebServiceWebServiceServiceDetailsEnv = {
     Rust: "rust",
 } as const;
 
-export type WebServiceWebServiceServiceDetailsEnv = (typeof WebServiceWebServiceServiceDetailsEnv)[keyof typeof WebServiceWebServiceServiceDetailsEnv];
+export type WebServiceServiceDetailsEnv = (typeof WebServiceServiceDetailsEnv)[keyof typeof WebServiceServiceDetailsEnv];
 
-export const WebServiceWebServiceServiceDetailsPlan = {
+export const WebServiceServiceDetailsPlan = {
     Starter: "starter",
     StarterPlus: "starter_plus",
     Standard: "standard",
@@ -116,18 +109,18 @@ export const WebServiceWebServiceServiceDetailsPlan = {
     ProUltra: "pro_ultra",
 } as const;
 
-export type WebServiceWebServiceServiceDetailsPlan = (typeof WebServiceWebServiceServiceDetailsPlan)[keyof typeof WebServiceWebServiceServiceDetailsPlan];
+export type WebServiceServiceDetailsPlan = (typeof WebServiceServiceDetailsPlan)[keyof typeof WebServiceServiceDetailsPlan];
 
-export const WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled = {
+export const WebServiceServiceDetailsPullRequestPreviewsEnabled = {
     Yes: "yes",
     No: "no",
 } as const;
 
-export type WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled = (typeof WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled)[keyof typeof WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled];
+export type WebServiceServiceDetailsPullRequestPreviewsEnabled = (typeof WebServiceServiceDetailsPullRequestPreviewsEnabled)[keyof typeof WebServiceServiceDetailsPullRequestPreviewsEnabled];
 
-export const WebServiceWebServiceServiceDetailsRegion = {
+export const WebServiceServiceDetailsRegion = {
     Oregon: "oregon",
     Frankfurt: "frankfurt",
 } as const;
 
-export type WebServiceWebServiceServiceDetailsRegion = (typeof WebServiceWebServiceServiceDetailsRegion)[keyof typeof WebServiceWebServiceServiceDetailsRegion];
+export type WebServiceServiceDetailsRegion = (typeof WebServiceServiceDetailsRegion)[keyof typeof WebServiceServiceDetailsRegion];

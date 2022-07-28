@@ -13,10 +13,10 @@ namespace Pulumi.Render.Services
     public partial class Deploy : Pulumi.CustomResource
     {
         [Output("clearCache")]
-        public Output<Pulumi.Render.Services.DeployClearCache?> ClearCache { get; private set; } = null!;
+        public Output<Pulumi.Render.Services.ClearCache?> ClearCache { get; private set; } = null!;
 
         [Output("commit")]
-        public Output<Outputs.DeployCommit?> Commit { get; private set; } = null!;
+        public Output<Outputs.Commit?> Commit { get; private set; } = null!;
 
 
         /// <summary>
@@ -65,11 +65,17 @@ namespace Pulumi.Render.Services
     public sealed class DeployArgs : Pulumi.ResourceArgs
     {
         [Input("clearCache")]
-        public Input<Pulumi.Render.Services.DeployClearCache>? ClearCache { get; set; }
+        public Input<Pulumi.Render.Services.ClearCache>? ClearCache { get; set; }
+
+        /// <summary>
+        /// (Required) The ID of the service
+        /// </summary>
+        [Input("id")]
+        public Input<string>? Id { get; set; }
 
         public DeployArgs()
         {
-            ClearCache = Pulumi.Render.Services.DeployClearCache.DoNotClear;
+            ClearCache = Pulumi.Render.Services.ClearCache.DoNotClear;
         }
     }
 }

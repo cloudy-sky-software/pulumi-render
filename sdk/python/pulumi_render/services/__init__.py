@@ -8,6 +8,16 @@ import typing
 from ._enums import *
 from .custom_domain import *
 from .deploy import *
+from .get_custom_domain import *
+from .get_deploy import *
+from .get_static_site import *
+from .get_web_service import *
+from .list_custom_domains import *
+from .list_deploys import *
+from .list_env_vars import *
+from .list_service_headers import *
+from .list_services import *
+from .list_static_site_routes import *
 from .scale import *
 from .static_site import *
 from .suspend import *

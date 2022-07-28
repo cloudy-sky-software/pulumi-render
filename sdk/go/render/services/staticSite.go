@@ -18,23 +18,23 @@ type StaticSite struct {
 	pulumi.CustomResourceState
 
 	// Whether to auto deploy the service or not upon git push.
-	AutoDeploy StaticSiteServiceAutoDeployPtrOutput `pulumi:"autoDeploy"`
+	AutoDeploy ServiceAutoDeployPtrOutput `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
 	Branch    pulumi.StringPtrOutput `pulumi:"branch"`
 	CreatedAt pulumi.StringPtrOutput `pulumi:"createdAt"`
 	Name      pulumi.StringPtrOutput `pulumi:"name"`
 	// The notification setting for this service upon deployment failure.
-	NotifyOnFail StaticSiteServiceNotifyOnFailPtrOutput `pulumi:"notifyOnFail"`
+	NotifyOnFail ServiceNotifyOnFailPtrOutput `pulumi:"notifyOnFail"`
 	// The id of the owner (user/team).
 	OwnerId pulumi.StringPtrOutput `pulumi:"ownerId"`
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-	Repo           pulumi.StringPtrOutput                      `pulumi:"repo"`
-	ServiceDetails StaticSiteStaticSiteServiceDetailsPtrOutput `pulumi:"serviceDetails"`
-	Slug           pulumi.StringPtrOutput                      `pulumi:"slug"`
-	Suspended      StaticSiteServiceSuspendedPtrOutput         `pulumi:"suspended"`
-	Suspenders     pulumi.StringArrayOutput                    `pulumi:"suspenders"`
-	Type           pulumi.StringPtrOutput                      `pulumi:"type"`
-	UpdatedAt      pulumi.StringPtrOutput                      `pulumi:"updatedAt"`
+	Repo           pulumi.StringPtrOutput            `pulumi:"repo"`
+	ServiceDetails StaticSiteServiceDetailsPtrOutput `pulumi:"serviceDetails"`
+	Slug           pulumi.StringPtrOutput            `pulumi:"slug"`
+	Suspended      ServiceSuspendedPtrOutput         `pulumi:"suspended"`
+	Suspenders     pulumi.StringArrayOutput          `pulumi:"suspenders"`
+	Type           pulumi.StringPtrOutput            `pulumi:"type"`
+	UpdatedAt      pulumi.StringPtrOutput            `pulumi:"updatedAt"`
 }
 
 // NewStaticSite registers a new resource with the given unique name, arguments, and options.
@@ -54,10 +54,10 @@ func NewStaticSite(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'Repo'")
 	}
 	if isZero(args.AutoDeploy) {
-		args.AutoDeploy = StaticSiteServiceAutoDeploy("no")
+		args.AutoDeploy = ServiceAutoDeploy("no")
 	}
 	if args.ServiceDetails != nil {
-		args.ServiceDetails = args.ServiceDetails.ToStaticSiteStaticSiteServiceDetailsPtrOutput().ApplyT(func(v *StaticSiteStaticSiteServiceDetails) *StaticSiteStaticSiteServiceDetails { return v.Defaults() }).(StaticSiteStaticSiteServiceDetailsPtrOutput)
+		args.ServiceDetails = args.ServiceDetails.ToStaticSiteServiceDetailsPtrOutput().ApplyT(func(v *StaticSiteServiceDetails) *StaticSiteServiceDetails { return v.Defaults() }).(StaticSiteServiceDetailsPtrOutput)
 	}
 	if isZero(args.Type) {
 		args.Type = pulumi.StringPtr("static_site")
@@ -96,42 +96,42 @@ func (StaticSiteState) ElementType() reflect.Type {
 
 type staticSiteArgs struct {
 	// Whether to auto deploy the service or not upon git push.
-	AutoDeploy *StaticSiteServiceAutoDeploy `pulumi:"autoDeploy"`
+	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
 	Branch    *string `pulumi:"branch"`
 	CreatedAt *string `pulumi:"createdAt"`
 	Name      string  `pulumi:"name"`
 	// The notification setting for this service upon deployment failure.
-	NotifyOnFail *StaticSiteServiceNotifyOnFail `pulumi:"notifyOnFail"`
+	NotifyOnFail *ServiceNotifyOnFail `pulumi:"notifyOnFail"`
 	// The id of the owner (user/team).
 	OwnerId string `pulumi:"ownerId"`
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-	Repo           string                              `pulumi:"repo"`
-	ServiceDetails *StaticSiteStaticSiteServiceDetails `pulumi:"serviceDetails"`
-	Slug           *string                             `pulumi:"slug"`
-	Suspended      *StaticSiteServiceSuspended         `pulumi:"suspended"`
-	Suspenders     []string                            `pulumi:"suspenders"`
-	Type           *string                             `pulumi:"type"`
-	UpdatedAt      *string                             `pulumi:"updatedAt"`
+	Repo           string                    `pulumi:"repo"`
+	ServiceDetails *StaticSiteServiceDetails `pulumi:"serviceDetails"`
+	Slug           *string                   `pulumi:"slug"`
+	Suspended      *ServiceSuspended         `pulumi:"suspended"`
+	Suspenders     []string                  `pulumi:"suspenders"`
+	Type           *string                   `pulumi:"type"`
+	UpdatedAt      *string                   `pulumi:"updatedAt"`
 }
 
 // The set of arguments for constructing a StaticSite resource.
 type StaticSiteArgs struct {
 	// Whether to auto deploy the service or not upon git push.
-	AutoDeploy StaticSiteServiceAutoDeployPtrInput
+	AutoDeploy ServiceAutoDeployPtrInput
 	// If left empty, this will fall back to the default branch of the repository.
 	Branch    pulumi.StringPtrInput
 	CreatedAt pulumi.StringPtrInput
 	Name      pulumi.StringInput
 	// The notification setting for this service upon deployment failure.
-	NotifyOnFail StaticSiteServiceNotifyOnFailPtrInput
+	NotifyOnFail ServiceNotifyOnFailPtrInput
 	// The id of the owner (user/team).
 	OwnerId pulumi.StringInput
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
 	Repo           pulumi.StringInput
-	ServiceDetails StaticSiteStaticSiteServiceDetailsPtrInput
+	ServiceDetails StaticSiteServiceDetailsPtrInput
 	Slug           pulumi.StringPtrInput
-	Suspended      StaticSiteServiceSuspendedPtrInput
+	Suspended      ServiceSuspendedPtrInput
 	Suspenders     pulumi.StringArrayInput
 	Type           pulumi.StringPtrInput
 	UpdatedAt      pulumi.StringPtrInput
@@ -175,8 +175,8 @@ func (o StaticSiteOutput) ToStaticSiteOutputWithContext(ctx context.Context) Sta
 }
 
 // Whether to auto deploy the service or not upon git push.
-func (o StaticSiteOutput) AutoDeploy() StaticSiteServiceAutoDeployPtrOutput {
-	return o.ApplyT(func(v *StaticSite) StaticSiteServiceAutoDeployPtrOutput { return v.AutoDeploy }).(StaticSiteServiceAutoDeployPtrOutput)
+func (o StaticSiteOutput) AutoDeploy() ServiceAutoDeployPtrOutput {
+	return o.ApplyT(func(v *StaticSite) ServiceAutoDeployPtrOutput { return v.AutoDeploy }).(ServiceAutoDeployPtrOutput)
 }
 
 // If left empty, this will fall back to the default branch of the repository.
@@ -193,8 +193,8 @@ func (o StaticSiteOutput) Name() pulumi.StringPtrOutput {
 }
 
 // The notification setting for this service upon deployment failure.
-func (o StaticSiteOutput) NotifyOnFail() StaticSiteServiceNotifyOnFailPtrOutput {
-	return o.ApplyT(func(v *StaticSite) StaticSiteServiceNotifyOnFailPtrOutput { return v.NotifyOnFail }).(StaticSiteServiceNotifyOnFailPtrOutput)
+func (o StaticSiteOutput) NotifyOnFail() ServiceNotifyOnFailPtrOutput {
+	return o.ApplyT(func(v *StaticSite) ServiceNotifyOnFailPtrOutput { return v.NotifyOnFail }).(ServiceNotifyOnFailPtrOutput)
 }
 
 // The id of the owner (user/team).
@@ -207,16 +207,16 @@ func (o StaticSiteOutput) Repo() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StaticSite) pulumi.StringPtrOutput { return v.Repo }).(pulumi.StringPtrOutput)
 }
 
-func (o StaticSiteOutput) ServiceDetails() StaticSiteStaticSiteServiceDetailsPtrOutput {
-	return o.ApplyT(func(v *StaticSite) StaticSiteStaticSiteServiceDetailsPtrOutput { return v.ServiceDetails }).(StaticSiteStaticSiteServiceDetailsPtrOutput)
+func (o StaticSiteOutput) ServiceDetails() StaticSiteServiceDetailsPtrOutput {
+	return o.ApplyT(func(v *StaticSite) StaticSiteServiceDetailsPtrOutput { return v.ServiceDetails }).(StaticSiteServiceDetailsPtrOutput)
 }
 
 func (o StaticSiteOutput) Slug() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StaticSite) pulumi.StringPtrOutput { return v.Slug }).(pulumi.StringPtrOutput)
 }
 
-func (o StaticSiteOutput) Suspended() StaticSiteServiceSuspendedPtrOutput {
-	return o.ApplyT(func(v *StaticSite) StaticSiteServiceSuspendedPtrOutput { return v.Suspended }).(StaticSiteServiceSuspendedPtrOutput)
+func (o StaticSiteOutput) Suspended() ServiceSuspendedPtrOutput {
+	return o.ApplyT(func(v *StaticSite) ServiceSuspendedPtrOutput { return v.Suspended }).(ServiceSuspendedPtrOutput)
 }
 
 func (o StaticSiteOutput) Suspenders() pulumi.StringArrayOutput {

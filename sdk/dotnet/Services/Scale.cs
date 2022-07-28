@@ -64,6 +64,12 @@ namespace Pulumi.Render.Services
         [Input("numInstances", required: true)]
         public Input<double> NumInstances { get; set; } = null!;
 
+        /// <summary>
+        /// (Required) The ID of the service
+        /// </summary>
+        [Input("serviceId")]
+        public Input<string>? ServiceId { get; set; }
+
         public ScaleArgs()
         {
         }

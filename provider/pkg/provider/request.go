@@ -19,6 +19,75 @@ import (
 
 const jsonMimeType = "application/json"
 
+func (p *renderProvider) executeGet(
+	ctx context.Context,
+	typeToken string,
+	inputs resource.PropertyMap) ([]byte, error) {
+	crudMap, ok := p.metadata.ResourceCRUDMap[typeToken]
+	if !ok {
+		return nil, errors.Errorf("unknown resource type %s", typeToken)
+	}
+	if crudMap.R == nil {
+		return nil, errors.Errorf("resource read endpoint is unknown for %s", typeToken)
+	}
+
+	httpEndpointPath := *crudMap.R
+
+	httpReq, err := http.NewRequestWithContext(ctx, "GET", p.baseURL+httpEndpointPath, nil)
+	if err != nil {
+		return nil, errors.Wrap(err, "initializing request")
+	}
+
+	// Set the API key in the auth header.
+	httpReq.Header.Add("Authorization", fmt.Sprintf("Bearer %s", p.apiKey))
+	httpReq.Header.Add("Accept", jsonMimeType)
+	httpReq.Header.Add("Content-Type", jsonMimeType)
+
+	hasPathParams := strings.Contains(httpEndpointPath, "{")
+	var pathParams map[string]string
+	// If the endpoint has path params, peek into the OpenAPI doc
+	// for the param names.
+	if hasPathParams {
+		var err error
+
+		pathParams, err = p.getPathParamsMap(typeToken, httpEndpointPath, http.MethodGet, inputs)
+		if err != nil {
+			return nil, errors.Wrap(err, "getting path params")
+		}
+	}
+
+	if err := p.validateRequest(ctx, httpReq, pathParams); err != nil {
+		return nil, errors.Wrap(err, "validate http request")
+	}
+
+	httpReq.URL.Path = p.replacePathParams(httpReq.URL.Path, pathParams)
+
+	// Read the resource.
+	httpResp, err := p.httpClient.Do(httpReq)
+	if err != nil {
+		return nil, errors.Wrap(err, "executing http request")
+	}
+
+	if httpResp.StatusCode != http.StatusOK {
+		body, err := ioutil.ReadAll(httpResp.Body)
+		if err != nil {
+			return nil, errors.Wrap(err, "http request failed and the error response could not be read")
+		}
+
+		httpResp.Body.Close()
+		return nil, errors.Errorf("http request failed (status: %s): %s", httpResp.Status, string(body))
+	}
+
+	body, err := ioutil.ReadAll(httpResp.Body)
+	if err != nil {
+		return nil, errors.Wrap(err, "reading response body")
+	}
+
+	httpResp.Body.Close()
+
+	return body, nil
+}
+
 func (p *renderProvider) validateRequest(ctx context.Context, httpReq *http.Request, pathParams map[string]string) error {
 	route, _, err := p.router.FindRoute(httpReq)
 	if err != nil {

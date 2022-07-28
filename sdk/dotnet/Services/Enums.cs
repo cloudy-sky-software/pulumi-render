@@ -8,6 +8,34 @@ using Pulumi;
 namespace Pulumi.Render.Services
 {
     [EnumType]
+    public readonly struct ClearCache : IEquatable<ClearCache>
+    {
+        private readonly string _value;
+
+        private ClearCache(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static ClearCache DoNotClear { get; } = new ClearCache("do_not_clear");
+        public static ClearCache Clear { get; } = new ClearCache("clear");
+
+        public static bool operator ==(ClearCache left, ClearCache right) => left.Equals(right);
+        public static bool operator !=(ClearCache left, ClearCache right) => !left.Equals(right);
+
+        public static explicit operator string(ClearCache value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is ClearCache other && Equals(other);
+        public bool Equals(ClearCache other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    [EnumType]
     public readonly struct CustomDomainDomainType : IEquatable<CustomDomainDomainType>
     {
         private readonly string _value;
@@ -91,146 +119,27 @@ namespace Pulumi.Render.Services
         public override string ToString() => _value;
     }
 
-    /// <summary>
-    /// Whether to auto deploy the service or not upon git push.
-    /// </summary>
     [EnumType]
-    public readonly struct StaticSiteServiceAutoDeploy : IEquatable<StaticSiteServiceAutoDeploy>
+    public readonly struct DomainType : IEquatable<DomainType>
     {
         private readonly string _value;
 
-        private StaticSiteServiceAutoDeploy(string value)
+        private DomainType(string value)
         {
             _value = value ?? throw new ArgumentNullException(nameof(value));
         }
 
-        public static StaticSiteServiceAutoDeploy Yes { get; } = new StaticSiteServiceAutoDeploy("yes");
-        public static StaticSiteServiceAutoDeploy No { get; } = new StaticSiteServiceAutoDeploy("no");
+        public static DomainType Apex { get; } = new DomainType("apex");
+        public static DomainType Subdomain { get; } = new DomainType("subdomain");
 
-        public static bool operator ==(StaticSiteServiceAutoDeploy left, StaticSiteServiceAutoDeploy right) => left.Equals(right);
-        public static bool operator !=(StaticSiteServiceAutoDeploy left, StaticSiteServiceAutoDeploy right) => !left.Equals(right);
+        public static bool operator ==(DomainType left, DomainType right) => left.Equals(right);
+        public static bool operator !=(DomainType left, DomainType right) => !left.Equals(right);
 
-        public static explicit operator string(StaticSiteServiceAutoDeploy value) => value._value;
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is StaticSiteServiceAutoDeploy other && Equals(other);
-        public bool Equals(StaticSiteServiceAutoDeploy other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+        public static explicit operator string(DomainType value) => value._value;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
-
-        public override string ToString() => _value;
-    }
-
-    /// <summary>
-    /// The notification setting for this service upon deployment failure.
-    /// </summary>
-    [EnumType]
-    public readonly struct StaticSiteServiceNotifyOnFail : IEquatable<StaticSiteServiceNotifyOnFail>
-    {
-        private readonly string _value;
-
-        private StaticSiteServiceNotifyOnFail(string value)
-        {
-            _value = value ?? throw new ArgumentNullException(nameof(value));
-        }
-
-        public static StaticSiteServiceNotifyOnFail Default { get; } = new StaticSiteServiceNotifyOnFail("default");
-        public static StaticSiteServiceNotifyOnFail Notify { get; } = new StaticSiteServiceNotifyOnFail("notify");
-        public static StaticSiteServiceNotifyOnFail Ignore { get; } = new StaticSiteServiceNotifyOnFail("ignore");
-
-        public static bool operator ==(StaticSiteServiceNotifyOnFail left, StaticSiteServiceNotifyOnFail right) => left.Equals(right);
-        public static bool operator !=(StaticSiteServiceNotifyOnFail left, StaticSiteServiceNotifyOnFail right) => !left.Equals(right);
-
-        public static explicit operator string(StaticSiteServiceNotifyOnFail value) => value._value;
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is StaticSiteServiceNotifyOnFail other && Equals(other);
-        public bool Equals(StaticSiteServiceNotifyOnFail other) => string.Equals(_value, other._value, StringComparison.Ordinal);
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
-
-        public override string ToString() => _value;
-    }
-
-    [EnumType]
-    public readonly struct StaticSiteServiceSuspended : IEquatable<StaticSiteServiceSuspended>
-    {
-        private readonly string _value;
-
-        private StaticSiteServiceSuspended(string value)
-        {
-            _value = value ?? throw new ArgumentNullException(nameof(value));
-        }
-
-        public static StaticSiteServiceSuspended Suspended { get; } = new StaticSiteServiceSuspended("suspended");
-        public static StaticSiteServiceSuspended NotSuspended { get; } = new StaticSiteServiceSuspended("not_suspended");
-
-        public static bool operator ==(StaticSiteServiceSuspended left, StaticSiteServiceSuspended right) => left.Equals(right);
-        public static bool operator !=(StaticSiteServiceSuspended left, StaticSiteServiceSuspended right) => !left.Equals(right);
-
-        public static explicit operator string(StaticSiteServiceSuspended value) => value._value;
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is StaticSiteServiceSuspended other && Equals(other);
-        public bool Equals(StaticSiteServiceSuspended other) => string.Equals(_value, other._value, StringComparison.Ordinal);
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
-
-        public override string ToString() => _value;
-    }
-
-    [EnumType]
-    public readonly struct StaticSiteStaticSiteRouteType : IEquatable<StaticSiteStaticSiteRouteType>
-    {
-        private readonly string _value;
-
-        private StaticSiteStaticSiteRouteType(string value)
-        {
-            _value = value ?? throw new ArgumentNullException(nameof(value));
-        }
-
-        public static StaticSiteStaticSiteRouteType Redirect { get; } = new StaticSiteStaticSiteRouteType("redirect");
-        public static StaticSiteStaticSiteRouteType Rewrite { get; } = new StaticSiteStaticSiteRouteType("rewrite");
-
-        public static bool operator ==(StaticSiteStaticSiteRouteType left, StaticSiteStaticSiteRouteType right) => left.Equals(right);
-        public static bool operator !=(StaticSiteStaticSiteRouteType left, StaticSiteStaticSiteRouteType right) => !left.Equals(right);
-
-        public static explicit operator string(StaticSiteStaticSiteRouteType value) => value._value;
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is StaticSiteStaticSiteRouteType other && Equals(other);
-        public bool Equals(StaticSiteStaticSiteRouteType other) => string.Equals(_value, other._value, StringComparison.Ordinal);
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
-
-        public override string ToString() => _value;
-    }
-
-    [EnumType]
-    public readonly struct StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled : IEquatable<StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled>
-    {
-        private readonly string _value;
-
-        private StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled(string value)
-        {
-            _value = value ?? throw new ArgumentNullException(nameof(value));
-        }
-
-        public static StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled Yes { get; } = new StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled("yes");
-        public static StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled No { get; } = new StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled("no");
-
-        public static bool operator ==(StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled left, StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled right) => left.Equals(right);
-        public static bool operator !=(StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled left, StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled right) => !left.Equals(right);
-
-        public static explicit operator string(StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled value) => value._value;
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled other && Equals(other);
-        public bool Equals(StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+        public override bool Equals(object? obj) => obj is DomainType other && Equals(other);
+        public bool Equals(DomainType other) => string.Equals(_value, other._value, StringComparison.Ordinal);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => _value?.GetHashCode() ?? 0;
@@ -242,26 +151,26 @@ namespace Pulumi.Render.Services
     /// Whether to auto deploy the service or not upon git push.
     /// </summary>
     [EnumType]
-    public readonly struct WebServiceServiceAutoDeploy : IEquatable<WebServiceServiceAutoDeploy>
+    public readonly struct ServiceAutoDeploy : IEquatable<ServiceAutoDeploy>
     {
         private readonly string _value;
 
-        private WebServiceServiceAutoDeploy(string value)
+        private ServiceAutoDeploy(string value)
         {
             _value = value ?? throw new ArgumentNullException(nameof(value));
         }
 
-        public static WebServiceServiceAutoDeploy Yes { get; } = new WebServiceServiceAutoDeploy("yes");
-        public static WebServiceServiceAutoDeploy No { get; } = new WebServiceServiceAutoDeploy("no");
+        public static ServiceAutoDeploy Yes { get; } = new ServiceAutoDeploy("yes");
+        public static ServiceAutoDeploy No { get; } = new ServiceAutoDeploy("no");
 
-        public static bool operator ==(WebServiceServiceAutoDeploy left, WebServiceServiceAutoDeploy right) => left.Equals(right);
-        public static bool operator !=(WebServiceServiceAutoDeploy left, WebServiceServiceAutoDeploy right) => !left.Equals(right);
+        public static bool operator ==(ServiceAutoDeploy left, ServiceAutoDeploy right) => left.Equals(right);
+        public static bool operator !=(ServiceAutoDeploy left, ServiceAutoDeploy right) => !left.Equals(right);
 
-        public static explicit operator string(WebServiceServiceAutoDeploy value) => value._value;
+        public static explicit operator string(ServiceAutoDeploy value) => value._value;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is WebServiceServiceAutoDeploy other && Equals(other);
-        public bool Equals(WebServiceServiceAutoDeploy other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+        public override bool Equals(object? obj) => obj is ServiceAutoDeploy other && Equals(other);
+        public bool Equals(ServiceAutoDeploy other) => string.Equals(_value, other._value, StringComparison.Ordinal);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => _value?.GetHashCode() ?? 0;
@@ -273,27 +182,27 @@ namespace Pulumi.Render.Services
     /// The notification setting for this service upon deployment failure.
     /// </summary>
     [EnumType]
-    public readonly struct WebServiceServiceNotifyOnFail : IEquatable<WebServiceServiceNotifyOnFail>
+    public readonly struct ServiceNotifyOnFail : IEquatable<ServiceNotifyOnFail>
     {
         private readonly string _value;
 
-        private WebServiceServiceNotifyOnFail(string value)
+        private ServiceNotifyOnFail(string value)
         {
             _value = value ?? throw new ArgumentNullException(nameof(value));
         }
 
-        public static WebServiceServiceNotifyOnFail Default { get; } = new WebServiceServiceNotifyOnFail("default");
-        public static WebServiceServiceNotifyOnFail Notify { get; } = new WebServiceServiceNotifyOnFail("notify");
-        public static WebServiceServiceNotifyOnFail Ignore { get; } = new WebServiceServiceNotifyOnFail("ignore");
+        public static ServiceNotifyOnFail Default { get; } = new ServiceNotifyOnFail("default");
+        public static ServiceNotifyOnFail Notify { get; } = new ServiceNotifyOnFail("notify");
+        public static ServiceNotifyOnFail Ignore { get; } = new ServiceNotifyOnFail("ignore");
 
-        public static bool operator ==(WebServiceServiceNotifyOnFail left, WebServiceServiceNotifyOnFail right) => left.Equals(right);
-        public static bool operator !=(WebServiceServiceNotifyOnFail left, WebServiceServiceNotifyOnFail right) => !left.Equals(right);
+        public static bool operator ==(ServiceNotifyOnFail left, ServiceNotifyOnFail right) => left.Equals(right);
+        public static bool operator !=(ServiceNotifyOnFail left, ServiceNotifyOnFail right) => !left.Equals(right);
 
-        public static explicit operator string(WebServiceServiceNotifyOnFail value) => value._value;
+        public static explicit operator string(ServiceNotifyOnFail value) => value._value;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is WebServiceServiceNotifyOnFail other && Equals(other);
-        public bool Equals(WebServiceServiceNotifyOnFail other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+        public override bool Equals(object? obj) => obj is ServiceNotifyOnFail other && Equals(other);
+        public bool Equals(ServiceNotifyOnFail other) => string.Equals(_value, other._value, StringComparison.Ordinal);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => _value?.GetHashCode() ?? 0;
@@ -302,26 +211,26 @@ namespace Pulumi.Render.Services
     }
 
     [EnumType]
-    public readonly struct WebServiceServiceSuspended : IEquatable<WebServiceServiceSuspended>
+    public readonly struct ServiceSuspended : IEquatable<ServiceSuspended>
     {
         private readonly string _value;
 
-        private WebServiceServiceSuspended(string value)
+        private ServiceSuspended(string value)
         {
             _value = value ?? throw new ArgumentNullException(nameof(value));
         }
 
-        public static WebServiceServiceSuspended Suspended { get; } = new WebServiceServiceSuspended("suspended");
-        public static WebServiceServiceSuspended NotSuspended { get; } = new WebServiceServiceSuspended("not_suspended");
+        public static ServiceSuspended Suspended { get; } = new ServiceSuspended("suspended");
+        public static ServiceSuspended NotSuspended { get; } = new ServiceSuspended("not_suspended");
 
-        public static bool operator ==(WebServiceServiceSuspended left, WebServiceServiceSuspended right) => left.Equals(right);
-        public static bool operator !=(WebServiceServiceSuspended left, WebServiceServiceSuspended right) => !left.Equals(right);
+        public static bool operator ==(ServiceSuspended left, ServiceSuspended right) => left.Equals(right);
+        public static bool operator !=(ServiceSuspended left, ServiceSuspended right) => !left.Equals(right);
 
-        public static explicit operator string(WebServiceServiceSuspended value) => value._value;
+        public static explicit operator string(ServiceSuspended value) => value._value;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is WebServiceServiceSuspended other && Equals(other);
-        public bool Equals(WebServiceServiceSuspended other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+        public override bool Equals(object? obj) => obj is ServiceSuspended other && Equals(other);
+        public bool Equals(ServiceSuspended other) => string.Equals(_value, other._value, StringComparison.Ordinal);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => _value?.GetHashCode() ?? 0;
@@ -330,31 +239,26 @@ namespace Pulumi.Render.Services
     }
 
     [EnumType]
-    public readonly struct WebServiceWebServiceServiceDetailsEnv : IEquatable<WebServiceWebServiceServiceDetailsEnv>
+    public readonly struct StaticSiteRouteType : IEquatable<StaticSiteRouteType>
     {
         private readonly string _value;
 
-        private WebServiceWebServiceServiceDetailsEnv(string value)
+        private StaticSiteRouteType(string value)
         {
             _value = value ?? throw new ArgumentNullException(nameof(value));
         }
 
-        public static WebServiceWebServiceServiceDetailsEnv Docker { get; } = new WebServiceWebServiceServiceDetailsEnv("docker");
-        public static WebServiceWebServiceServiceDetailsEnv Elixir { get; } = new WebServiceWebServiceServiceDetailsEnv("elixir");
-        public static WebServiceWebServiceServiceDetailsEnv Go { get; } = new WebServiceWebServiceServiceDetailsEnv("go");
-        public static WebServiceWebServiceServiceDetailsEnv Node { get; } = new WebServiceWebServiceServiceDetailsEnv("node");
-        public static WebServiceWebServiceServiceDetailsEnv Python { get; } = new WebServiceWebServiceServiceDetailsEnv("python");
-        public static WebServiceWebServiceServiceDetailsEnv Ruby { get; } = new WebServiceWebServiceServiceDetailsEnv("ruby");
-        public static WebServiceWebServiceServiceDetailsEnv Rust { get; } = new WebServiceWebServiceServiceDetailsEnv("rust");
+        public static StaticSiteRouteType Redirect { get; } = new StaticSiteRouteType("redirect");
+        public static StaticSiteRouteType Rewrite { get; } = new StaticSiteRouteType("rewrite");
 
-        public static bool operator ==(WebServiceWebServiceServiceDetailsEnv left, WebServiceWebServiceServiceDetailsEnv right) => left.Equals(right);
-        public static bool operator !=(WebServiceWebServiceServiceDetailsEnv left, WebServiceWebServiceServiceDetailsEnv right) => !left.Equals(right);
+        public static bool operator ==(StaticSiteRouteType left, StaticSiteRouteType right) => left.Equals(right);
+        public static bool operator !=(StaticSiteRouteType left, StaticSiteRouteType right) => !left.Equals(right);
 
-        public static explicit operator string(WebServiceWebServiceServiceDetailsEnv value) => value._value;
+        public static explicit operator string(StaticSiteRouteType value) => value._value;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is WebServiceWebServiceServiceDetailsEnv other && Equals(other);
-        public bool Equals(WebServiceWebServiceServiceDetailsEnv other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+        public override bool Equals(object? obj) => obj is StaticSiteRouteType other && Equals(other);
+        public bool Equals(StaticSiteRouteType other) => string.Equals(_value, other._value, StringComparison.Ordinal);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => _value?.GetHashCode() ?? 0;
@@ -363,32 +267,26 @@ namespace Pulumi.Render.Services
     }
 
     [EnumType]
-    public readonly struct WebServiceWebServiceServiceDetailsPlan : IEquatable<WebServiceWebServiceServiceDetailsPlan>
+    public readonly struct StaticSiteServiceDetailsPullRequestPreviewsEnabled : IEquatable<StaticSiteServiceDetailsPullRequestPreviewsEnabled>
     {
         private readonly string _value;
 
-        private WebServiceWebServiceServiceDetailsPlan(string value)
+        private StaticSiteServiceDetailsPullRequestPreviewsEnabled(string value)
         {
             _value = value ?? throw new ArgumentNullException(nameof(value));
         }
 
-        public static WebServiceWebServiceServiceDetailsPlan Starter { get; } = new WebServiceWebServiceServiceDetailsPlan("starter");
-        public static WebServiceWebServiceServiceDetailsPlan StarterPlus { get; } = new WebServiceWebServiceServiceDetailsPlan("starter_plus");
-        public static WebServiceWebServiceServiceDetailsPlan Standard { get; } = new WebServiceWebServiceServiceDetailsPlan("standard");
-        public static WebServiceWebServiceServiceDetailsPlan StandardPlus { get; } = new WebServiceWebServiceServiceDetailsPlan("standard_plus");
-        public static WebServiceWebServiceServiceDetailsPlan Pro { get; } = new WebServiceWebServiceServiceDetailsPlan("pro");
-        public static WebServiceWebServiceServiceDetailsPlan ProPlus { get; } = new WebServiceWebServiceServiceDetailsPlan("pro_plus");
-        public static WebServiceWebServiceServiceDetailsPlan ProMax { get; } = new WebServiceWebServiceServiceDetailsPlan("pro_max");
-        public static WebServiceWebServiceServiceDetailsPlan ProUltra { get; } = new WebServiceWebServiceServiceDetailsPlan("pro_ultra");
+        public static StaticSiteServiceDetailsPullRequestPreviewsEnabled Yes { get; } = new StaticSiteServiceDetailsPullRequestPreviewsEnabled("yes");
+        public static StaticSiteServiceDetailsPullRequestPreviewsEnabled No { get; } = new StaticSiteServiceDetailsPullRequestPreviewsEnabled("no");
 
-        public static bool operator ==(WebServiceWebServiceServiceDetailsPlan left, WebServiceWebServiceServiceDetailsPlan right) => left.Equals(right);
-        public static bool operator !=(WebServiceWebServiceServiceDetailsPlan left, WebServiceWebServiceServiceDetailsPlan right) => !left.Equals(right);
+        public static bool operator ==(StaticSiteServiceDetailsPullRequestPreviewsEnabled left, StaticSiteServiceDetailsPullRequestPreviewsEnabled right) => left.Equals(right);
+        public static bool operator !=(StaticSiteServiceDetailsPullRequestPreviewsEnabled left, StaticSiteServiceDetailsPullRequestPreviewsEnabled right) => !left.Equals(right);
 
-        public static explicit operator string(WebServiceWebServiceServiceDetailsPlan value) => value._value;
+        public static explicit operator string(StaticSiteServiceDetailsPullRequestPreviewsEnabled value) => value._value;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is WebServiceWebServiceServiceDetailsPlan other && Equals(other);
-        public bool Equals(WebServiceWebServiceServiceDetailsPlan other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+        public override bool Equals(object? obj) => obj is StaticSiteServiceDetailsPullRequestPreviewsEnabled other && Equals(other);
+        public bool Equals(StaticSiteServiceDetailsPullRequestPreviewsEnabled other) => string.Equals(_value, other._value, StringComparison.Ordinal);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => _value?.GetHashCode() ?? 0;
@@ -397,26 +295,26 @@ namespace Pulumi.Render.Services
     }
 
     [EnumType]
-    public readonly struct WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled : IEquatable<WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled>
+    public readonly struct VerificationStatus : IEquatable<VerificationStatus>
     {
         private readonly string _value;
 
-        private WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled(string value)
+        private VerificationStatus(string value)
         {
             _value = value ?? throw new ArgumentNullException(nameof(value));
         }
 
-        public static WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled Yes { get; } = new WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled("yes");
-        public static WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled No { get; } = new WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled("no");
+        public static VerificationStatus Verified { get; } = new VerificationStatus("verified");
+        public static VerificationStatus Unverified { get; } = new VerificationStatus("unverified");
 
-        public static bool operator ==(WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled left, WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled right) => left.Equals(right);
-        public static bool operator !=(WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled left, WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled right) => !left.Equals(right);
+        public static bool operator ==(VerificationStatus left, VerificationStatus right) => left.Equals(right);
+        public static bool operator !=(VerificationStatus left, VerificationStatus right) => !left.Equals(right);
 
-        public static explicit operator string(WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled value) => value._value;
+        public static explicit operator string(VerificationStatus value) => value._value;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled other && Equals(other);
-        public bool Equals(WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+        public override bool Equals(object? obj) => obj is VerificationStatus other && Equals(other);
+        public bool Equals(VerificationStatus other) => string.Equals(_value, other._value, StringComparison.Ordinal);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => _value?.GetHashCode() ?? 0;
@@ -425,26 +323,121 @@ namespace Pulumi.Render.Services
     }
 
     [EnumType]
-    public readonly struct WebServiceWebServiceServiceDetailsRegion : IEquatable<WebServiceWebServiceServiceDetailsRegion>
+    public readonly struct WebServiceServiceDetailsEnv : IEquatable<WebServiceServiceDetailsEnv>
     {
         private readonly string _value;
 
-        private WebServiceWebServiceServiceDetailsRegion(string value)
+        private WebServiceServiceDetailsEnv(string value)
         {
             _value = value ?? throw new ArgumentNullException(nameof(value));
         }
 
-        public static WebServiceWebServiceServiceDetailsRegion Oregon { get; } = new WebServiceWebServiceServiceDetailsRegion("oregon");
-        public static WebServiceWebServiceServiceDetailsRegion Frankfurt { get; } = new WebServiceWebServiceServiceDetailsRegion("frankfurt");
+        public static WebServiceServiceDetailsEnv Docker { get; } = new WebServiceServiceDetailsEnv("docker");
+        public static WebServiceServiceDetailsEnv Elixir { get; } = new WebServiceServiceDetailsEnv("elixir");
+        public static WebServiceServiceDetailsEnv Go { get; } = new WebServiceServiceDetailsEnv("go");
+        public static WebServiceServiceDetailsEnv Node { get; } = new WebServiceServiceDetailsEnv("node");
+        public static WebServiceServiceDetailsEnv Python { get; } = new WebServiceServiceDetailsEnv("python");
+        public static WebServiceServiceDetailsEnv Ruby { get; } = new WebServiceServiceDetailsEnv("ruby");
+        public static WebServiceServiceDetailsEnv Rust { get; } = new WebServiceServiceDetailsEnv("rust");
 
-        public static bool operator ==(WebServiceWebServiceServiceDetailsRegion left, WebServiceWebServiceServiceDetailsRegion right) => left.Equals(right);
-        public static bool operator !=(WebServiceWebServiceServiceDetailsRegion left, WebServiceWebServiceServiceDetailsRegion right) => !left.Equals(right);
+        public static bool operator ==(WebServiceServiceDetailsEnv left, WebServiceServiceDetailsEnv right) => left.Equals(right);
+        public static bool operator !=(WebServiceServiceDetailsEnv left, WebServiceServiceDetailsEnv right) => !left.Equals(right);
 
-        public static explicit operator string(WebServiceWebServiceServiceDetailsRegion value) => value._value;
+        public static explicit operator string(WebServiceServiceDetailsEnv value) => value._value;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is WebServiceWebServiceServiceDetailsRegion other && Equals(other);
-        public bool Equals(WebServiceWebServiceServiceDetailsRegion other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+        public override bool Equals(object? obj) => obj is WebServiceServiceDetailsEnv other && Equals(other);
+        public bool Equals(WebServiceServiceDetailsEnv other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    [EnumType]
+    public readonly struct WebServiceServiceDetailsPlan : IEquatable<WebServiceServiceDetailsPlan>
+    {
+        private readonly string _value;
+
+        private WebServiceServiceDetailsPlan(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static WebServiceServiceDetailsPlan Starter { get; } = new WebServiceServiceDetailsPlan("starter");
+        public static WebServiceServiceDetailsPlan StarterPlus { get; } = new WebServiceServiceDetailsPlan("starter_plus");
+        public static WebServiceServiceDetailsPlan Standard { get; } = new WebServiceServiceDetailsPlan("standard");
+        public static WebServiceServiceDetailsPlan StandardPlus { get; } = new WebServiceServiceDetailsPlan("standard_plus");
+        public static WebServiceServiceDetailsPlan Pro { get; } = new WebServiceServiceDetailsPlan("pro");
+        public static WebServiceServiceDetailsPlan ProPlus { get; } = new WebServiceServiceDetailsPlan("pro_plus");
+        public static WebServiceServiceDetailsPlan ProMax { get; } = new WebServiceServiceDetailsPlan("pro_max");
+        public static WebServiceServiceDetailsPlan ProUltra { get; } = new WebServiceServiceDetailsPlan("pro_ultra");
+
+        public static bool operator ==(WebServiceServiceDetailsPlan left, WebServiceServiceDetailsPlan right) => left.Equals(right);
+        public static bool operator !=(WebServiceServiceDetailsPlan left, WebServiceServiceDetailsPlan right) => !left.Equals(right);
+
+        public static explicit operator string(WebServiceServiceDetailsPlan value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is WebServiceServiceDetailsPlan other && Equals(other);
+        public bool Equals(WebServiceServiceDetailsPlan other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    [EnumType]
+    public readonly struct WebServiceServiceDetailsPullRequestPreviewsEnabled : IEquatable<WebServiceServiceDetailsPullRequestPreviewsEnabled>
+    {
+        private readonly string _value;
+
+        private WebServiceServiceDetailsPullRequestPreviewsEnabled(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static WebServiceServiceDetailsPullRequestPreviewsEnabled Yes { get; } = new WebServiceServiceDetailsPullRequestPreviewsEnabled("yes");
+        public static WebServiceServiceDetailsPullRequestPreviewsEnabled No { get; } = new WebServiceServiceDetailsPullRequestPreviewsEnabled("no");
+
+        public static bool operator ==(WebServiceServiceDetailsPullRequestPreviewsEnabled left, WebServiceServiceDetailsPullRequestPreviewsEnabled right) => left.Equals(right);
+        public static bool operator !=(WebServiceServiceDetailsPullRequestPreviewsEnabled left, WebServiceServiceDetailsPullRequestPreviewsEnabled right) => !left.Equals(right);
+
+        public static explicit operator string(WebServiceServiceDetailsPullRequestPreviewsEnabled value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is WebServiceServiceDetailsPullRequestPreviewsEnabled other && Equals(other);
+        public bool Equals(WebServiceServiceDetailsPullRequestPreviewsEnabled other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    [EnumType]
+    public readonly struct WebServiceServiceDetailsRegion : IEquatable<WebServiceServiceDetailsRegion>
+    {
+        private readonly string _value;
+
+        private WebServiceServiceDetailsRegion(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static WebServiceServiceDetailsRegion Oregon { get; } = new WebServiceServiceDetailsRegion("oregon");
+        public static WebServiceServiceDetailsRegion Frankfurt { get; } = new WebServiceServiceDetailsRegion("frankfurt");
+
+        public static bool operator ==(WebServiceServiceDetailsRegion left, WebServiceServiceDetailsRegion right) => left.Equals(right);
+        public static bool operator !=(WebServiceServiceDetailsRegion left, WebServiceServiceDetailsRegion right) => !left.Equals(right);
+
+        public static explicit operator string(WebServiceServiceDetailsRegion value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is WebServiceServiceDetailsRegion other && Equals(other);
+        public bool Equals(WebServiceServiceDetailsRegion other) => string.Equals(_value, other._value, StringComparison.Ordinal);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => _value?.GetHashCode() ?? 0;

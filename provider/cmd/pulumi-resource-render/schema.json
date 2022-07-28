@@ -77,6 +77,114 @@
         }
     },
     "types": {
+        "render:owners:ListOwnersResponse": {
+            "properties": {
+                "cursor": {
+                    "type": "string"
+                },
+                "owner": {
+                    "$ref": "#/types/render:owners:Owner",
+                    "description": "The owner object represents an authorized user or team. The `type` property indicates if the owner is a user or team."
+                }
+            },
+            "type": "object"
+        },
+        "render:owners:Owner": {
+            "description": "The owner object represents an authorized user or team. The `type` property indicates if the owner is a user or team.",
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "description": "The email of the owner."
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The owner ID."
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the owner."
+                },
+                "type": {
+                    "$ref": "#/types/render:owners:OwnerType",
+                    "description": "The type of the authorized user."
+                }
+            },
+            "type": "object"
+        },
+        "render:owners:OwnerType": {
+            "description": "The type of the authorized user.",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "User",
+                    "value": "user"
+                },
+                {
+                    "name": "Team",
+                    "value": "team"
+                }
+            ]
+        },
+        "render:services:ClearCache": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "DoNotClear",
+                    "value": "do_not_clear"
+                },
+                {
+                    "name": "Clear",
+                    "value": "clear"
+                }
+            ]
+        },
+        "render:services:Commit": {
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "render:services:CustomDomain": {
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "domainType": {
+                    "$ref": "#/types/render:services:CustomDomainDomainType"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "publicSuffix": {
+                    "type": "string"
+                },
+                "redirectForName": {
+                    "type": "string"
+                },
+                "server": {
+                    "$ref": "#/types/render:services:CustomDomainServerProperties"
+                },
+                "verificationStatus": {
+                    "$ref": "#/types/render:services:CustomDomainVerificationStatus"
+                }
+            },
+            "type": "object",
+            "required": [
+                "domainType",
+                "name",
+                "redirectForName",
+                "server",
+                "verificationStatus"
+            ]
+        },
         "render:services:CustomDomainDomainType": {
             "type": "string",
             "enum": [
@@ -89,6 +197,17 @@
                     "value": "subdomain"
                 }
             ]
+        },
+        "render:services:CustomDomainServerProperties": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
         },
         "render:services:CustomDomainVerificationStatus": {
             "type": "string",
@@ -103,6 +222,18 @@
                 }
             ]
         },
+        "render:services:Deploy": {
+            "properties": {
+                "clearCache": {
+                    "$ref": "#/types/render:services:DeployClearCache",
+                    "default": "do_not_clear"
+                },
+                "commit": {
+                    "$ref": "#/types/render:services:Commit"
+                }
+            },
+            "type": "object"
+        },
         "render:services:DeployClearCache": {
             "type": "string",
             "enum": [
@@ -116,48 +247,73 @@
                 }
             ]
         },
-        "render:services:DeployCommit": {
+        "render:services:Disk": {
             "properties": {
-                "createdAt": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "message": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        },
-        "render:services:ServerProperties": {
-            "properties": {
-                "id": {
+                "mountPath": {
                     "type": "string"
                 },
                 "name": {
                     "type": "string"
-                }
-            },
-            "type": "object"
-        },
-        "render:services:StaticSiteProperties": {
-            "properties": {
-                "serviceDetails": {
-                    "$ref": "#/types/render:services:StaticSiteStaticSiteServiceDetails"
                 },
-                "type": {
+                "sizeGB": {
+                    "type": "number",
+                    "default": 1
+                }
+            },
+            "type": "object",
+            "required": [
+                "mountPath",
+                "name"
+            ]
+        },
+        "render:services:DockerDetails": {
+            "properties": {
+                "dockerCommand": {
+                    "type": "string"
+                },
+                "dockerContext": {
+                    "type": "string"
+                },
+                "dockerfilePath": {
                     "type": "string",
-                    "default": "static_site"
+                    "default": "./Dockerfile"
                 }
             },
             "type": "object"
         },
-        "render:services:StaticSiteService": {
-            "description": "The service object represents a service. The type of service is discriminated by the type property which determines the type of object in the serviceDetails property.",
+        "render:services:DomainType": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Apex",
+                    "value": "apex"
+                },
+                {
+                    "name": "Subdomain",
+                    "value": "subdomain"
+                }
+            ]
+        },
+        "render:services:EnvVarKeyValue": {
+            "properties": {
+                "key": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "key",
+                "value"
+            ]
+        },
+        "render:services:GetStaticSite": {
+            "description": "A static website service",
             "properties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:StaticSiteServiceAutoDeploy",
+                    "$ref": "#/types/render:services:ServiceAutoDeploy",
                     "description": "Whether to auto deploy the service or not upon git push.",
                     "default": "no"
                 },
@@ -172,7 +328,7 @@
                     "type": "string"
                 },
                 "notifyOnFail": {
-                    "$ref": "#/types/render:services:StaticSiteServiceNotifyOnFail",
+                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
                     "description": "The notification setting for this service upon deployment failure."
                 },
                 "ownerId": {
@@ -183,17 +339,24 @@
                     "type": "string",
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
                 },
+                "serviceDetails": {
+                    "$ref": "#/types/render:services:StaticSiteServiceDetails"
+                },
                 "slug": {
                     "type": "string"
                 },
                 "suspended": {
-                    "$ref": "#/types/render:services:StaticSiteServiceSuspended"
+                    "$ref": "#/types/render:services:ServiceSuspended"
                 },
                 "suspenders": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     }
+                },
+                "type": {
+                    "type": "string",
+                    "default": "static_site"
                 },
                 "updatedAt": {
                     "type": "string"
@@ -206,7 +369,175 @@
                 "repo"
             ]
         },
-        "render:services:StaticSiteServiceAutoDeploy": {
+        "render:services:GetWebService": {
+            "description": "A web service",
+            "properties": {
+                "autoDeploy": {
+                    "$ref": "#/types/render:services:ServiceAutoDeploy",
+                    "description": "Whether to auto deploy the service or not upon git push.",
+                    "default": "no"
+                },
+                "branch": {
+                    "type": "string",
+                    "description": "If left empty, this will fall back to the default branch of the repository."
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "notifyOnFail": {
+                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
+                    "description": "The notification setting for this service upon deployment failure."
+                },
+                "ownerId": {
+                    "type": "string",
+                    "description": "The id of the owner (user/team)."
+                },
+                "repo": {
+                    "type": "string",
+                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                },
+                "serviceDetails": {
+                    "$ref": "#/types/render:services:WebServiceServiceDetails"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "suspended": {
+                    "$ref": "#/types/render:services:ServiceSuspended"
+                },
+                "suspenders": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "default": "web_service"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "ownerId",
+                "repo"
+            ]
+        },
+        "render:services:ListCustomDomainsResponse": {
+            "properties": {
+                "cursor": {
+                    "type": "string"
+                },
+                "customDomain": {
+                    "$ref": "#/types/render:services:CustomDomain"
+                }
+            },
+            "type": "object"
+        },
+        "render:services:ListDeploysResponse": {
+            "properties": {
+                "cursor": {
+                    "type": "string"
+                },
+                "customDomain": {
+                    "$ref": "#/types/render:services:Deploy"
+                }
+            },
+            "type": "object"
+        },
+        "render:services:ListEnvVarsResponse": {
+            "properties": {
+                "cursor": {
+                    "type": "string"
+                },
+                "envVar": {
+                    "$ref": "#/types/render:services:EnvVarKeyValue"
+                }
+            },
+            "type": "object"
+        },
+        "render:services:ListServiceHeadersResponse": {
+            "properties": {
+                "cursor": {
+                    "type": "string"
+                },
+                "header": {
+                    "$ref": "#/types/render:services:ServiceHeader",
+                    "description": "A service header object"
+                }
+            },
+            "type": "object"
+        },
+        "render:services:ListServiceResponse": {
+            "properties": {
+                "cursor": {
+                    "type": "string"
+                },
+                "service": {
+                    "oneOf": [
+                        {
+                            "$ref": "#/types/render:services:StaticSite"
+                        },
+                        {
+                            "$ref": "#/types/render:services:WebService"
+                        }
+                    ],
+                    "discriminator": {
+                        "propertyName": "type",
+                        "mapping": {
+                            "static_site": "#/types/render:services:StaticSite",
+                            "web_service": "#/types/render:services:WebService"
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "render:services:ListStaticSiteRoutesResponse": {
+            "properties": {
+                "cursor": {
+                    "type": "string"
+                },
+                "route": {
+                    "$ref": "#/types/render:services:StaticSiteRoute",
+                    "description": "A route object for a static site"
+                }
+            },
+            "type": "object"
+        },
+        "render:services:NativeEnvironmentDetails": {
+            "properties": {
+                "buildCommand": {
+                    "type": "string"
+                },
+                "startCommand": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "buildCommand",
+                "startCommand"
+            ]
+        },
+        "render:services:ServerProperties": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "render:services:ServiceAutoDeploy": {
             "description": "Whether to auto deploy the service or not upon git push.",
             "type": "string",
             "enum": [
@@ -220,7 +551,7 @@
                 }
             ]
         },
-        "render:services:StaticSiteServiceHeader": {
+        "render:services:ServiceHeader": {
             "description": "A service header object",
             "properties": {
                 "name": {
@@ -240,7 +571,7 @@
                 "value"
             ]
         },
-        "render:services:StaticSiteServiceNotifyOnFail": {
+        "render:services:ServiceNotifyOnFail": {
             "description": "The notification setting for this service upon deployment failure.",
             "type": "string",
             "enum": [
@@ -258,7 +589,7 @@
                 }
             ]
         },
-        "render:services:StaticSiteServiceSuspended": {
+        "render:services:ServiceSuspended": {
             "type": "string",
             "enum": [
                 {
@@ -271,164 +602,11 @@
                 }
             ]
         },
-        "render:services:StaticSiteStaticSiteRoute": {
-            "description": "A route object for a static site",
-            "properties": {
-                "destination": {
-                    "type": "string"
-                },
-                "source": {
-                    "type": "string"
-                },
-                "type": {
-                    "$ref": "#/types/render:services:StaticSiteStaticSiteRouteType"
-                }
-            },
-            "type": "object",
-            "required": [
-                "destination",
-                "source",
-                "type"
-            ]
-        },
-        "render:services:StaticSiteStaticSiteRouteType": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Redirect",
-                    "value": "redirect"
-                },
-                {
-                    "name": "Rewrite",
-                    "value": "rewrite"
-                }
-            ]
-        },
-        "render:services:StaticSiteStaticSiteServiceDetails": {
-            "properties": {
-                "buildCommand": {
-                    "type": "string"
-                },
-                "headers": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:StaticSiteServiceHeader"
-                    }
-                },
-                "parentServer": {
-                    "$ref": "#/types/render:services:StaticSiteStaticSiteServiceDetailsParentServerProperties"
-                },
-                "publishPath": {
-                    "type": "string",
-                    "default": "public"
-                },
-                "pullRequestPreviewsEnabled": {
-                    "$ref": "#/types/render:services:StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled",
-                    "default": "no"
-                },
-                "routes": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:StaticSiteStaticSiteRoute"
-                    }
-                },
-                "url": {
-                    "type": "string",
-                    "description": "The HTTPS service URL. A subdomain of onrender.com, by default."
-                }
-            },
-            "type": "object"
-        },
-        "render:services:StaticSiteStaticSiteServiceDetailsParentServerProperties": {
-            "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        },
-        "render:services:StaticSiteStaticSiteServiceDetailsPullRequestPreviewsEnabled": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Yes",
-                    "value": "yes"
-                },
-                {
-                    "name": "No",
-                    "value": "no"
-                }
-            ]
-        },
-        "render:services:WebServiceDisk": {
-            "properties": {
-                "mountPath": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "sizeGB": {
-                    "type": "number",
-                    "default": 1
-                }
-            },
-            "type": "object",
-            "required": [
-                "mountPath",
-                "name"
-            ]
-        },
-        "render:services:WebServiceDockerDetails": {
-            "properties": {
-                "dockerCommand": {
-                    "type": "string"
-                },
-                "dockerContext": {
-                    "type": "string"
-                },
-                "dockerfilePath": {
-                    "type": "string",
-                    "default": "./Dockerfile"
-                }
-            },
-            "type": "object"
-        },
-        "render:services:WebServiceNativeEnvironmentDetails": {
-            "properties": {
-                "buildCommand": {
-                    "type": "string"
-                },
-                "startCommand": {
-                    "type": "string"
-                }
-            },
-            "type": "object",
-            "required": [
-                "buildCommand",
-                "startCommand"
-            ]
-        },
-        "render:services:WebServiceProperties": {
-            "properties": {
-                "serviceDetails": {
-                    "$ref": "#/types/render:services:WebServiceWebServiceServiceDetails"
-                },
-                "type": {
-                    "type": "string",
-                    "default": "web_service"
-                }
-            },
-            "type": "object"
-        },
-        "render:services:WebServiceService": {
-            "description": "The service object represents a service. The type of service is discriminated by the type property which determines the type of object in the serviceDetails property.",
+        "render:services:StaticSite": {
+            "description": "A static website service",
             "properties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:WebServiceServiceAutoDeploy",
+                    "$ref": "#/types/render:services:ServiceAutoDeploy",
                     "description": "Whether to auto deploy the service or not upon git push.",
                     "default": "no"
                 },
@@ -443,7 +621,7 @@
                     "type": "string"
                 },
                 "notifyOnFail": {
-                    "$ref": "#/types/render:services:WebServiceServiceNotifyOnFail",
+                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
                     "description": "The notification setting for this service upon deployment failure."
                 },
                 "ownerId": {
@@ -454,17 +632,24 @@
                     "type": "string",
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
                 },
+                "serviceDetails": {
+                    "$ref": "#/types/render:services:StaticSiteServiceDetails"
+                },
                 "slug": {
                     "type": "string"
                 },
                 "suspended": {
-                    "$ref": "#/types/render:services:WebServiceServiceSuspended"
+                    "$ref": "#/types/render:services:ServiceSuspended"
                 },
                 "suspenders": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     }
+                },
+                "type": {
+                    "type": "string",
+                    "default": "static_site"
                 },
                 "updatedAt": {
                     "type": "string"
@@ -477,8 +662,86 @@
                 "repo"
             ]
         },
-        "render:services:WebServiceServiceAutoDeploy": {
-            "description": "Whether to auto deploy the service or not upon git push.",
+        "render:services:StaticSiteRoute": {
+            "description": "A route object for a static site",
+            "properties": {
+                "destination": {
+                    "type": "string"
+                },
+                "source": {
+                    "type": "string"
+                },
+                "type": {
+                    "$ref": "#/types/render:services:StaticSiteRouteType"
+                }
+            },
+            "type": "object",
+            "required": [
+                "destination",
+                "source",
+                "type"
+            ]
+        },
+        "render:services:StaticSiteRouteType": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Redirect",
+                    "value": "redirect"
+                },
+                {
+                    "name": "Rewrite",
+                    "value": "rewrite"
+                }
+            ]
+        },
+        "render:services:StaticSiteServiceDetails": {
+            "properties": {
+                "buildCommand": {
+                    "type": "string"
+                },
+                "headers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:ServiceHeader"
+                    }
+                },
+                "parentServer": {
+                    "$ref": "#/types/render:services:StaticSiteServiceDetailsParentServerProperties"
+                },
+                "publishPath": {
+                    "type": "string",
+                    "default": "public"
+                },
+                "pullRequestPreviewsEnabled": {
+                    "$ref": "#/types/render:services:StaticSiteServiceDetailsPullRequestPreviewsEnabled",
+                    "default": "no"
+                },
+                "routes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:StaticSiteRoute"
+                    }
+                },
+                "url": {
+                    "type": "string",
+                    "description": "The HTTPS service URL. A subdomain of onrender.com, by default."
+                }
+            },
+            "type": "object"
+        },
+        "render:services:StaticSiteServiceDetailsParentServerProperties": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "render:services:StaticSiteServiceDetailsPullRequestPreviewsEnabled": {
             "type": "string",
             "enum": [
                 {
@@ -491,52 +754,94 @@
                 }
             ]
         },
-        "render:services:WebServiceServiceNotifyOnFail": {
-            "description": "The notification setting for this service upon deployment failure.",
+        "render:services:VerificationStatus": {
             "type": "string",
             "enum": [
                 {
-                    "name": "Default",
-                    "value": "default"
+                    "name": "Verified",
+                    "value": "verified"
                 },
                 {
-                    "name": "Notify",
-                    "value": "notify"
-                },
-                {
-                    "name": "Ignore",
-                    "value": "ignore"
+                    "name": "Unverified",
+                    "value": "unverified"
                 }
             ]
         },
-        "render:services:WebServiceServiceSuspended": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Suspended",
-                    "value": "suspended"
+        "render:services:WebService": {
+            "description": "A web service",
+            "properties": {
+                "autoDeploy": {
+                    "$ref": "#/types/render:services:ServiceAutoDeploy",
+                    "description": "Whether to auto deploy the service or not upon git push.",
+                    "default": "no"
                 },
-                {
-                    "name": "NotSuspended",
-                    "value": "not_suspended"
+                "branch": {
+                    "type": "string",
+                    "description": "If left empty, this will fall back to the default branch of the repository."
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "notifyOnFail": {
+                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
+                    "description": "The notification setting for this service upon deployment failure."
+                },
+                "ownerId": {
+                    "type": "string",
+                    "description": "The id of the owner (user/team)."
+                },
+                "repo": {
+                    "type": "string",
+                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                },
+                "serviceDetails": {
+                    "$ref": "#/types/render:services:WebServiceServiceDetails"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "suspended": {
+                    "$ref": "#/types/render:services:ServiceSuspended"
+                },
+                "suspenders": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "default": "web_service"
+                },
+                "updatedAt": {
+                    "type": "string"
                 }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "ownerId",
+                "repo"
             ]
         },
-        "render:services:WebServiceWebServiceServiceDetails": {
+        "render:services:WebServiceServiceDetails": {
             "properties": {
                 "disk": {
-                    "$ref": "#/types/render:services:WebServiceDisk"
+                    "$ref": "#/types/render:services:Disk"
                 },
                 "env": {
-                    "$ref": "#/types/render:services:WebServiceWebServiceServiceDetailsEnv"
+                    "$ref": "#/types/render:services:WebServiceServiceDetailsEnv"
                 },
                 "envSpecificDetails": {
                     "oneOf": [
                         {
-                            "$ref": "#/types/render:services:WebServiceDockerDetails"
+                            "$ref": "#/types/render:services:DockerDetails"
                         },
                         {
-                            "$ref": "#/types/render:services:WebServiceNativeEnvironmentDetails"
+                            "$ref": "#/types/render:services:NativeEnvironmentDetails"
                         }
                     ]
                 },
@@ -548,15 +853,15 @@
                     "default": 1
                 },
                 "plan": {
-                    "$ref": "#/types/render:services:WebServiceWebServiceServiceDetailsPlan",
+                    "$ref": "#/types/render:services:WebServiceServiceDetailsPlan",
                     "default": "starter"
                 },
                 "pullRequestPreviewsEnabled": {
-                    "$ref": "#/types/render:services:WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled",
+                    "$ref": "#/types/render:services:WebServiceServiceDetailsPullRequestPreviewsEnabled",
                     "default": "no"
                 },
                 "region": {
-                    "$ref": "#/types/render:services:WebServiceWebServiceServiceDetailsRegion",
+                    "$ref": "#/types/render:services:WebServiceServiceDetailsRegion",
                     "default": "oregon"
                 }
             },
@@ -565,7 +870,7 @@
                 "env"
             ]
         },
-        "render:services:WebServiceWebServiceServiceDetailsEnv": {
+        "render:services:WebServiceServiceDetailsEnv": {
             "type": "string",
             "enum": [
                 {
@@ -598,7 +903,7 @@
                 }
             ]
         },
-        "render:services:WebServiceWebServiceServiceDetailsPlan": {
+        "render:services:WebServiceServiceDetailsPlan": {
             "type": "string",
             "enum": [
                 {
@@ -635,7 +940,7 @@
                 }
             ]
         },
-        "render:services:WebServiceWebServiceServiceDetailsPullRequestPreviewsEnabled": {
+        "render:services:WebServiceServiceDetailsPullRequestPreviewsEnabled": {
             "type": "string",
             "enum": [
                 {
@@ -648,7 +953,7 @@
                 }
             ]
         },
-        "render:services:WebServiceWebServiceServiceDetailsRegion": {
+        "render:services:WebServiceServiceDetailsRegion": {
             "type": "string",
             "enum": [
                 {
@@ -690,7 +995,7 @@
                     "type": "string"
                 },
                 "domainType": {
-                    "$ref": "#/types/render:services:CustomDomainDomainType"
+                    "$ref": "#/types/render:services:DomainType"
                 },
                 "name": {
                     "type": "string"
@@ -705,7 +1010,7 @@
                     "$ref": "#/types/render:services:ServerProperties"
                 },
                 "verificationStatus": {
-                    "$ref": "#/types/render:services:CustomDomainVerificationStatus"
+                    "$ref": "#/types/render:services:VerificationStatus"
                 }
             },
             "type": "object",
@@ -717,6 +1022,10 @@
                 "server"
             ],
             "inputProperties": {
+                "id": {
+                    "type": "string",
+                    "description": "(Required) The ID of the service"
+                },
                 "name": {
                     "type": "string"
                 },
@@ -732,18 +1041,22 @@
         "render:services:Deploy": {
             "properties": {
                 "clearCache": {
-                    "$ref": "#/types/render:services:DeployClearCache",
+                    "$ref": "#/types/render:services:ClearCache",
                     "default": "do_not_clear"
                 },
                 "commit": {
-                    "$ref": "#/types/render:services:DeployCommit"
+                    "$ref": "#/types/render:services:Commit"
                 }
             },
             "type": "object",
             "inputProperties": {
                 "clearCache": {
-                    "$ref": "#/types/render:services:DeployClearCache",
+                    "$ref": "#/types/render:services:ClearCache",
                     "default": "do_not_clear"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "(Required) The ID of the service"
                 }
             }
         },
@@ -760,6 +1073,10 @@
             "inputProperties": {
                 "numInstances": {
                     "type": "number"
+                },
+                "serviceId": {
+                    "type": "string",
+                    "description": "(Required) The ID of the service"
                 }
             },
             "requiredInputs": [
@@ -770,7 +1087,7 @@
             "description": "A static website service\n\n{{% examples %}}\n\n## Example Usage\n\n{{% example %}}\n\n### Create a service\n\n```typescript\nimport * as render from \"@pulumi/render\";\n\n// TODO: Fill me in!\nconst service = new render.services.StaticSite(\"staticSite\", {});\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
             "properties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:StaticSiteServiceAutoDeploy",
+                    "$ref": "#/types/render:services:ServiceAutoDeploy",
                     "description": "Whether to auto deploy the service or not upon git push.",
                     "default": "no"
                 },
@@ -785,7 +1102,7 @@
                     "type": "string"
                 },
                 "notifyOnFail": {
-                    "$ref": "#/types/render:services:StaticSiteServiceNotifyOnFail",
+                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
                     "description": "The notification setting for this service upon deployment failure."
                 },
                 "ownerId": {
@@ -797,13 +1114,13 @@
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
                 },
                 "serviceDetails": {
-                    "$ref": "#/types/render:services:StaticSiteStaticSiteServiceDetails"
+                    "$ref": "#/types/render:services:StaticSiteServiceDetails"
                 },
                 "slug": {
                     "type": "string"
                 },
                 "suspended": {
-                    "$ref": "#/types/render:services:StaticSiteServiceSuspended"
+                    "$ref": "#/types/render:services:ServiceSuspended"
                 },
                 "suspenders": {
                     "type": "array",
@@ -822,7 +1139,7 @@
             "type": "object",
             "inputProperties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:StaticSiteServiceAutoDeploy",
+                    "$ref": "#/types/render:services:ServiceAutoDeploy",
                     "description": "Whether to auto deploy the service or not upon git push.",
                     "default": "no"
                 },
@@ -837,7 +1154,7 @@
                     "type": "string"
                 },
                 "notifyOnFail": {
-                    "$ref": "#/types/render:services:StaticSiteServiceNotifyOnFail",
+                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
                     "description": "The notification setting for this service upon deployment failure."
                 },
                 "ownerId": {
@@ -849,13 +1166,13 @@
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
                 },
                 "serviceDetails": {
-                    "$ref": "#/types/render:services:StaticSiteStaticSiteServiceDetails"
+                    "$ref": "#/types/render:services:StaticSiteServiceDetails"
                 },
                 "slug": {
                     "type": "string"
                 },
                 "suspended": {
-                    "$ref": "#/types/render:services:StaticSiteServiceSuspended"
+                    "$ref": "#/types/render:services:ServiceSuspended"
                 },
                 "suspenders": {
                     "type": "array",
@@ -878,13 +1195,19 @@
             ]
         },
         "render:services:Suspend": {
-            "type": "object"
+            "type": "object",
+            "inputProperties": {
+                "serviceId": {
+                    "type": "string",
+                    "description": "(Required) The ID of the service"
+                }
+            }
         },
         "render:services:WebService": {
             "description": "A web service",
             "properties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:WebServiceServiceAutoDeploy",
+                    "$ref": "#/types/render:services:ServiceAutoDeploy",
                     "description": "Whether to auto deploy the service or not upon git push.",
                     "default": "no"
                 },
@@ -899,7 +1222,7 @@
                     "type": "string"
                 },
                 "notifyOnFail": {
-                    "$ref": "#/types/render:services:WebServiceServiceNotifyOnFail",
+                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
                     "description": "The notification setting for this service upon deployment failure."
                 },
                 "ownerId": {
@@ -911,13 +1234,13 @@
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
                 },
                 "serviceDetails": {
-                    "$ref": "#/types/render:services:WebServiceWebServiceServiceDetails"
+                    "$ref": "#/types/render:services:WebServiceServiceDetails"
                 },
                 "slug": {
                     "type": "string"
                 },
                 "suspended": {
-                    "$ref": "#/types/render:services:WebServiceServiceSuspended"
+                    "$ref": "#/types/render:services:ServiceSuspended"
                 },
                 "suspenders": {
                     "type": "array",
@@ -936,7 +1259,7 @@
             "type": "object",
             "inputProperties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:WebServiceServiceAutoDeploy",
+                    "$ref": "#/types/render:services:ServiceAutoDeploy",
                     "description": "Whether to auto deploy the service or not upon git push.",
                     "default": "no"
                 },
@@ -951,7 +1274,7 @@
                     "type": "string"
                 },
                 "notifyOnFail": {
-                    "$ref": "#/types/render:services:WebServiceServiceNotifyOnFail",
+                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
                     "description": "The notification setting for this service upon deployment failure."
                 },
                 "ownerId": {
@@ -963,13 +1286,13 @@
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
                 },
                 "serviceDetails": {
-                    "$ref": "#/types/render:services:WebServiceWebServiceServiceDetails"
+                    "$ref": "#/types/render:services:WebServiceServiceDetails"
                 },
                 "slug": {
                     "type": "string"
                 },
                 "suspended": {
-                    "$ref": "#/types/render:services:WebServiceServiceSuspended"
+                    "$ref": "#/types/render:services:ServiceSuspended"
                 },
                 "suspenders": {
                     "type": "array",
@@ -990,6 +1313,295 @@
                 "ownerId",
                 "repo"
             ]
+        }
+    },
+    "functions": {
+        "render:owners:getOwner": {
+            "inputs": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "(Required) The ID of the user or team"
+                    }
+                },
+                "required": [
+                    "id"
+                ]
+            },
+            "outputs": {
+                "properties": {
+                    "items": {
+                        "$ref": "#/types/render:owners:Owner"
+                    }
+                },
+                "required": [
+                    "items"
+                ]
+            }
+        },
+        "render:owners:listOwners": {
+            "inputs": {},
+            "outputs": {
+                "properties": {
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/render:owners:ListOwnersResponse"
+                        }
+                    }
+                },
+                "required": [
+                    "items"
+                ]
+            }
+        },
+        "render:services:getCustomDomain": {
+            "inputs": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "(Required) The ID or name of the custom domain"
+                    },
+                    "serviceId": {
+                        "type": "string",
+                        "description": "(Required) The ID of the service"
+                    }
+                },
+                "required": [
+                    "id",
+                    "serviceId"
+                ]
+            },
+            "outputs": {
+                "properties": {
+                    "items": {
+                        "$ref": "#/types/render:services:CustomDomain"
+                    }
+                },
+                "required": [
+                    "items"
+                ]
+            }
+        },
+        "render:services:getDeploy": {
+            "inputs": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "(Required) The ID of the deploy"
+                    },
+                    "serviceId": {
+                        "type": "string",
+                        "description": "(Required) The ID of the service"
+                    }
+                },
+                "required": [
+                    "id",
+                    "serviceId"
+                ]
+            },
+            "outputs": {
+                "properties": {
+                    "items": {
+                        "$ref": "#/types/render:services:Deploy"
+                    }
+                },
+                "required": [
+                    "items"
+                ]
+            }
+        },
+        "render:services:getStaticSite": {
+            "inputs": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "(Required) The ID of the service"
+                    }
+                },
+                "required": [
+                    "id"
+                ]
+            },
+            "outputs": {
+                "properties": {
+                    "items": {
+                        "$ref": "#/types/render:services:GetStaticSite"
+                    }
+                },
+                "required": [
+                    "items"
+                ]
+            }
+        },
+        "render:services:getWebService": {
+            "inputs": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "(Required) The ID of the service"
+                    }
+                },
+                "required": [
+                    "id"
+                ]
+            },
+            "outputs": {
+                "properties": {
+                    "items": {
+                        "$ref": "#/types/render:services:GetWebService"
+                    }
+                },
+                "required": [
+                    "items"
+                ]
+            }
+        },
+        "render:services:listCustomDomains": {
+            "inputs": {
+                "properties": {
+                    "serviceId": {
+                        "type": "string",
+                        "description": "(Required) The ID of the service"
+                    }
+                },
+                "required": [
+                    "serviceId"
+                ]
+            },
+            "outputs": {
+                "properties": {
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/render:services:ListCustomDomainsResponse"
+                        }
+                    }
+                },
+                "required": [
+                    "items"
+                ]
+            }
+        },
+        "render:services:listDeploys": {
+            "inputs": {
+                "properties": {
+                    "serviceId": {
+                        "type": "string",
+                        "description": "(Required) The ID of the service"
+                    }
+                },
+                "required": [
+                    "serviceId"
+                ]
+            },
+            "outputs": {
+                "properties": {
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/render:services:ListDeploysResponse"
+                        }
+                    }
+                },
+                "required": [
+                    "items"
+                ]
+            }
+        },
+        "render:services:listEnvVars": {
+            "inputs": {
+                "properties": {
+                    "serviceId": {
+                        "type": "string",
+                        "description": "(Required) The ID of the service"
+                    }
+                },
+                "required": [
+                    "serviceId"
+                ]
+            },
+            "outputs": {
+                "properties": {
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/render:services:ListEnvVarsResponse"
+                        }
+                    }
+                },
+                "required": [
+                    "items"
+                ]
+            }
+        },
+        "render:services:listServiceHeaders": {
+            "inputs": {
+                "properties": {
+                    "serviceId": {
+                        "type": "string",
+                        "description": "(Required) The ID of the service"
+                    }
+                },
+                "required": [
+                    "serviceId"
+                ]
+            },
+            "outputs": {
+                "properties": {
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/render:services:ListServiceHeadersResponse"
+                        }
+                    }
+                },
+                "required": [
+                    "items"
+                ]
+            }
+        },
+        "render:services:listServices": {
+            "inputs": {},
+            "outputs": {
+                "properties": {
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/render:services:ListServiceResponse"
+                        }
+                    }
+                },
+                "required": [
+                    "items"
+                ]
+            }
+        },
+        "render:services:listStaticSiteRoutes": {
+            "inputs": {
+                "properties": {
+                    "serviceId": {
+                        "type": "string",
+                        "description": "(Required) The ID of the service"
+                    }
+                },
+                "required": [
+                    "serviceId"
+                ]
+            },
+            "outputs": {
+                "properties": {
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/render:services:ListStaticSiteRoutesResponse"
+                        }
+                    }
+                },
+                "required": [
+                    "items"
+                ]
+            }
         }
     }
 }

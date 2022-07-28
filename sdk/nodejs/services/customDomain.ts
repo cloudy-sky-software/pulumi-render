@@ -33,12 +33,12 @@ export class CustomDomain extends pulumi.CustomResource {
     }
 
     public /*out*/ readonly createdAt!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly domainType!: pulumi.Output<enums.services.CustomDomainDomainType>;
+    public /*out*/ readonly domainType!: pulumi.Output<enums.services.DomainType>;
     public readonly name!: pulumi.Output<string>;
     public /*out*/ readonly publicSuffix!: pulumi.Output<string | undefined>;
     public /*out*/ readonly redirectForName!: pulumi.Output<string>;
     public readonly server!: pulumi.Output<outputs.services.ServerProperties>;
-    public /*out*/ readonly verificationStatus!: pulumi.Output<enums.services.CustomDomainVerificationStatus>;
+    public /*out*/ readonly verificationStatus!: pulumi.Output<enums.services.VerificationStatus>;
 
     /**
      * Create a CustomDomain resource with the given unique name, arguments, and options.
@@ -57,6 +57,7 @@ export class CustomDomain extends pulumi.CustomResource {
             if ((!args || args.server === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'server'");
             }
+            resourceInputs["id"] = args ? args.id : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["server"] = args ? args.server : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
@@ -82,6 +83,10 @@ export class CustomDomain extends pulumi.CustomResource {
  * The set of arguments for constructing a CustomDomain resource.
  */
 export interface CustomDomainArgs {
+    /**
+     * (Required) The ID of the service
+     */
+    id?: pulumi.Input<string>;
     name: pulumi.Input<string>;
     server: pulumi.Input<inputs.services.ServerPropertiesArgs>;
 }

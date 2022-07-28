@@ -11,10 +11,13 @@ from .provider import *
 if typing.TYPE_CHECKING:
     import pulumi_render.config as __config
     config = __config
+    import pulumi_render.owners as __owners
+    owners = __owners
     import pulumi_render.services as __services
     services = __services
 else:
     config = _utilities.lazy_import('pulumi_render.config')
+    owners = _utilities.lazy_import('pulumi_render.owners')
     services = _utilities.lazy_import('pulumi_render.services')
 
 _utilities.register(

@@ -1,3 +1,7 @@
+## 0.0.34
+
+Implement support for get/list* funcs.
+
 ## 0.0.33
 
 Fix for handling updates vs. replacements.

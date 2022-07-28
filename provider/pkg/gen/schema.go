@@ -61,7 +61,6 @@ type ProviderMetadata struct {
 type resourceContext struct {
 	mod               string
 	pkg               *pschema.PackageSpec
-	resourceName      string
 	openapiComponents openapi3.Components
 	visitedTypes      codegen.StringSet
 }

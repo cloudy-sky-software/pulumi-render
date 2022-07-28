@@ -114,7 +114,6 @@ func (o *openAPIContext) gatherResourcesFromAPI(csharpNamespaces map[string]stri
 				funcPkgCtx := &resourceContext{
 					mod:               module,
 					pkg:               o.pkg,
-					resourceName:      "",
 					openapiComponents: o.doc.Components,
 					visitedTypes:      codegen.NewStringSet(),
 				}
@@ -301,7 +300,6 @@ func (o *openAPIContext) genGetter(pathItem openapi3.PathItem, getterSchema open
 	funcPkgCtx := &resourceContext{
 		mod:               module,
 		pkg:               o.pkg,
-		resourceName:      "",
 		openapiComponents: o.doc.Components,
 		visitedTypes:      codegen.NewStringSet(),
 	}
@@ -393,7 +391,6 @@ func (o *openAPIContext) gatherResourceProperties(apiSchema openapi3.Schema, api
 	pkgCtx := &resourceContext{
 		mod:               module,
 		pkg:               o.pkg,
-		resourceName:      apiSchema.Title,
 		openapiComponents: o.doc.Components,
 		visitedTypes:      codegen.NewStringSet(),
 	}
@@ -508,7 +505,7 @@ func (ctx *resourceContext) genPropertySpec(propName string, p openapi3.SchemaRe
 		propertySpec.Default = p.Value.Default
 	}
 	languageName := strings.ToUpper(propName[:1]) + propName[1:]
-	if languageName == ctx.resourceName {
+	if languageName == propName {
 		// .NET does not allow properties to be the same as the enclosing class - so special case these
 		propertySpec.Language = map[string]pschema.RawMessage{
 			"csharp": rawMessage(dotnetgen.CSharpPropertyInfo{
@@ -528,7 +525,7 @@ func (ctx *resourceContext) genPropertySpec(propName string, p openapi3.SchemaRe
 
 	typeSpec, err := ctx.propertyTypeSpec(propName, p)
 	if err != nil {
-		contract.Failf("Failed to generate type spec (resource: %s; prop %s): %v", ctx.resourceName, propName, err)
+		contract.Failf("Failed to generate type spec (prop %s): %v", propName, err)
 	}
 
 	propertySpec.TypeSpec = *typeSpec
@@ -543,14 +540,11 @@ func (ctx *resourceContext) propertyTypeSpec(parentName string, propSchema opena
 	if propSchema.Ref != "" && propSchema.Value.Type != "array" {
 		schemaName := strings.TrimPrefix(propSchema.Ref, componentsSchemaRefPrefix)
 		typName := ToPascalCase(schemaName)
-		if !strings.HasPrefix(schemaName, ctx.resourceName) {
-			typName = fmt.Sprintf("%s%s", ctx.resourceName, typName)
-		}
 		tok := fmt.Sprintf("%s:%s:%s", packageName, ctx.mod, typName)
 
 		typeSchema, ok := ctx.openapiComponents.Schemas[schemaName]
 		if !ok {
-			return nil, errors.Errorf("definition %s not found in resource %s", schemaName, ctx.resourceName)
+			return nil, errors.Errorf("definition %s not found in resource %s", schemaName, parentName)
 		}
 
 		if !ctx.visitedTypes.Has(tok) {
@@ -766,10 +760,6 @@ func (ctx *resourceContext) genEnumType(enumName string, propSchema openapi3.Sch
 	}
 
 	typName := ToPascalCase(enumName)
-	if !strings.HasPrefix(enumName, ctx.resourceName) {
-		typName = ctx.resourceName + enumName
-	}
-
 	tok := fmt.Sprintf("%s:%s:%s", packageName, ctx.mod, typName)
 
 	enumSpec := &pschema.ComplexTypeSpec{

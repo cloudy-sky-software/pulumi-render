@@ -116,6 +116,96 @@ export namespace services {
         value: string;
     }
 
+    /**
+     * A static website service
+     */
+    export interface GetStaticSite {
+        /**
+         * Whether to auto deploy the service or not upon git push.
+         */
+        autoDeploy?: enums.services.ServiceAutoDeploy;
+        /**
+         * If left empty, this will fall back to the default branch of the repository.
+         */
+        branch?: string;
+        createdAt?: string;
+        name: string;
+        /**
+         * The notification setting for this service upon deployment failure.
+         */
+        notifyOnFail?: enums.services.ServiceNotifyOnFail;
+        /**
+         * The id of the owner (user/team).
+         */
+        ownerId: string;
+        /**
+         * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+         */
+        repo: string;
+        serviceDetails?: outputs.services.StaticSiteServiceDetails;
+        slug?: string;
+        suspended?: enums.services.ServiceSuspended;
+        suspenders?: string[];
+        type?: string;
+        updatedAt?: string;
+    }
+    /**
+     * getStaticSiteProvideDefaults sets the appropriate defaults for GetStaticSite
+     */
+    export function getStaticSiteProvideDefaults(val: GetStaticSite): GetStaticSite {
+        return {
+            ...val,
+            autoDeploy: (val.autoDeploy) ?? "no",
+            serviceDetails: (val.serviceDetails ? outputs.services.staticSiteServiceDetailsProvideDefaults(val.serviceDetails) : undefined),
+            type: (val.type) ?? "static_site",
+        };
+    }
+
+    /**
+     * A web service
+     */
+    export interface GetWebService {
+        /**
+         * Whether to auto deploy the service or not upon git push.
+         */
+        autoDeploy?: enums.services.ServiceAutoDeploy;
+        /**
+         * If left empty, this will fall back to the default branch of the repository.
+         */
+        branch?: string;
+        createdAt?: string;
+        name: string;
+        /**
+         * The notification setting for this service upon deployment failure.
+         */
+        notifyOnFail?: enums.services.ServiceNotifyOnFail;
+        /**
+         * The id of the owner (user/team).
+         */
+        ownerId: string;
+        /**
+         * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+         */
+        repo: string;
+        serviceDetails?: outputs.services.WebServiceServiceDetails;
+        slug?: string;
+        suspended?: enums.services.ServiceSuspended;
+        suspenders?: string[];
+        type?: string;
+        updatedAt?: string;
+    }
+    /**
+     * getWebServiceProvideDefaults sets the appropriate defaults for GetWebService
+     */
+    export function getWebServiceProvideDefaults(val: GetWebService): GetWebService {
+        return {
+            ...val,
+            autoDeploy: (val.autoDeploy) ?? "no",
+            serviceDetails: (val.serviceDetails ? outputs.services.webServiceServiceDetailsProvideDefaults(val.serviceDetails) : undefined),
+            type: (val.type) ?? "web_service",
+        };
+    }
+
     export interface ListCustomDomainsResponse {
         cursor?: string;
         customDomain?: outputs.services.CustomDomain;

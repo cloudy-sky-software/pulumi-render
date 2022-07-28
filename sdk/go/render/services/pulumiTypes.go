@@ -485,6 +485,83 @@ func (val *Disk) Defaults() *Disk {
 	return &tmp
 }
 
+type DiskOutput struct{ *pulumi.OutputState }
+
+func (DiskOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Disk)(nil)).Elem()
+}
+
+func (o DiskOutput) ToDiskOutput() DiskOutput {
+	return o
+}
+
+func (o DiskOutput) ToDiskOutputWithContext(ctx context.Context) DiskOutput {
+	return o
+}
+
+func (o DiskOutput) MountPath() pulumi.StringOutput {
+	return o.ApplyT(func(v Disk) string { return v.MountPath }).(pulumi.StringOutput)
+}
+
+func (o DiskOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v Disk) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o DiskOutput) SizeGB() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v Disk) *float64 { return v.SizeGB }).(pulumi.Float64PtrOutput)
+}
+
+type DiskPtrOutput struct{ *pulumi.OutputState }
+
+func (DiskPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Disk)(nil)).Elem()
+}
+
+func (o DiskPtrOutput) ToDiskPtrOutput() DiskPtrOutput {
+	return o
+}
+
+func (o DiskPtrOutput) ToDiskPtrOutputWithContext(ctx context.Context) DiskPtrOutput {
+	return o
+}
+
+func (o DiskPtrOutput) Elem() DiskOutput {
+	return o.ApplyT(func(v *Disk) Disk {
+		if v != nil {
+			return *v
+		}
+		var ret Disk
+		return ret
+	}).(DiskOutput)
+}
+
+func (o DiskPtrOutput) MountPath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Disk) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.MountPath
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DiskPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Disk) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DiskPtrOutput) SizeGB() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *Disk) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.SizeGB
+	}).(pulumi.Float64PtrOutput)
+}
+
 type DockerDetails struct {
 	DockerCommand  *string `pulumi:"dockerCommand"`
 	DockerContext  *string `pulumi:"dockerContext"`
@@ -571,6 +648,232 @@ func (o EnvVarKeyValuePtrOutput) Value() pulumi.StringPtrOutput {
 		}
 		return &v.Value
 	}).(pulumi.StringPtrOutput)
+}
+
+// A static website service
+type GetStaticSiteType struct {
+	// Whether to auto deploy the service or not upon git push.
+	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
+	// If left empty, this will fall back to the default branch of the repository.
+	Branch    *string `pulumi:"branch"`
+	CreatedAt *string `pulumi:"createdAt"`
+	Name      string  `pulumi:"name"`
+	// The notification setting for this service upon deployment failure.
+	NotifyOnFail *ServiceNotifyOnFail `pulumi:"notifyOnFail"`
+	// The id of the owner (user/team).
+	OwnerId string `pulumi:"ownerId"`
+	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+	Repo           string                    `pulumi:"repo"`
+	ServiceDetails *StaticSiteServiceDetails `pulumi:"serviceDetails"`
+	Slug           *string                   `pulumi:"slug"`
+	Suspended      *ServiceSuspended         `pulumi:"suspended"`
+	Suspenders     []string                  `pulumi:"suspenders"`
+	Type           *string                   `pulumi:"type"`
+	UpdatedAt      *string                   `pulumi:"updatedAt"`
+}
+
+// Defaults sets the appropriate defaults for GetStaticSiteType
+func (val *GetStaticSiteType) Defaults() *GetStaticSiteType {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if isZero(tmp.AutoDeploy) {
+		autoDeploy_ := ServiceAutoDeploy("no")
+		tmp.AutoDeploy = &autoDeploy_
+	}
+	tmp.ServiceDetails = tmp.ServiceDetails.Defaults()
+
+	if isZero(tmp.Type) {
+		type_ := "static_site"
+		tmp.Type = &type_
+	}
+	return &tmp
+}
+
+// A static website service
+type GetStaticSiteTypeOutput struct{ *pulumi.OutputState }
+
+func (GetStaticSiteTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStaticSiteType)(nil)).Elem()
+}
+
+func (o GetStaticSiteTypeOutput) ToGetStaticSiteTypeOutput() GetStaticSiteTypeOutput {
+	return o
+}
+
+func (o GetStaticSiteTypeOutput) ToGetStaticSiteTypeOutputWithContext(ctx context.Context) GetStaticSiteTypeOutput {
+	return o
+}
+
+// Whether to auto deploy the service or not upon git push.
+func (o GetStaticSiteTypeOutput) AutoDeploy() ServiceAutoDeployPtrOutput {
+	return o.ApplyT(func(v GetStaticSiteType) *ServiceAutoDeploy { return v.AutoDeploy }).(ServiceAutoDeployPtrOutput)
+}
+
+// If left empty, this will fall back to the default branch of the repository.
+func (o GetStaticSiteTypeOutput) Branch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetStaticSiteType) *string { return v.Branch }).(pulumi.StringPtrOutput)
+}
+
+func (o GetStaticSiteTypeOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetStaticSiteType) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+}
+
+func (o GetStaticSiteTypeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStaticSiteType) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The notification setting for this service upon deployment failure.
+func (o GetStaticSiteTypeOutput) NotifyOnFail() ServiceNotifyOnFailPtrOutput {
+	return o.ApplyT(func(v GetStaticSiteType) *ServiceNotifyOnFail { return v.NotifyOnFail }).(ServiceNotifyOnFailPtrOutput)
+}
+
+// The id of the owner (user/team).
+func (o GetStaticSiteTypeOutput) OwnerId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStaticSiteType) string { return v.OwnerId }).(pulumi.StringOutput)
+}
+
+// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+func (o GetStaticSiteTypeOutput) Repo() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStaticSiteType) string { return v.Repo }).(pulumi.StringOutput)
+}
+
+func (o GetStaticSiteTypeOutput) ServiceDetails() StaticSiteServiceDetailsPtrOutput {
+	return o.ApplyT(func(v GetStaticSiteType) *StaticSiteServiceDetails { return v.ServiceDetails }).(StaticSiteServiceDetailsPtrOutput)
+}
+
+func (o GetStaticSiteTypeOutput) Slug() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetStaticSiteType) *string { return v.Slug }).(pulumi.StringPtrOutput)
+}
+
+func (o GetStaticSiteTypeOutput) Suspended() ServiceSuspendedPtrOutput {
+	return o.ApplyT(func(v GetStaticSiteType) *ServiceSuspended { return v.Suspended }).(ServiceSuspendedPtrOutput)
+}
+
+func (o GetStaticSiteTypeOutput) Suspenders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetStaticSiteType) []string { return v.Suspenders }).(pulumi.StringArrayOutput)
+}
+
+func (o GetStaticSiteTypeOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetStaticSiteType) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+func (o GetStaticSiteTypeOutput) UpdatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetStaticSiteType) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
+}
+
+// A web service
+type GetWebServiceType struct {
+	// Whether to auto deploy the service or not upon git push.
+	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
+	// If left empty, this will fall back to the default branch of the repository.
+	Branch    *string `pulumi:"branch"`
+	CreatedAt *string `pulumi:"createdAt"`
+	Name      string  `pulumi:"name"`
+	// The notification setting for this service upon deployment failure.
+	NotifyOnFail *ServiceNotifyOnFail `pulumi:"notifyOnFail"`
+	// The id of the owner (user/team).
+	OwnerId string `pulumi:"ownerId"`
+	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+	Repo           string                    `pulumi:"repo"`
+	ServiceDetails *WebServiceServiceDetails `pulumi:"serviceDetails"`
+	Slug           *string                   `pulumi:"slug"`
+	Suspended      *ServiceSuspended         `pulumi:"suspended"`
+	Suspenders     []string                  `pulumi:"suspenders"`
+	Type           *string                   `pulumi:"type"`
+	UpdatedAt      *string                   `pulumi:"updatedAt"`
+}
+
+// Defaults sets the appropriate defaults for GetWebServiceType
+func (val *GetWebServiceType) Defaults() *GetWebServiceType {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if isZero(tmp.AutoDeploy) {
+		autoDeploy_ := ServiceAutoDeploy("no")
+		tmp.AutoDeploy = &autoDeploy_
+	}
+	tmp.ServiceDetails = tmp.ServiceDetails.Defaults()
+
+	if isZero(tmp.Type) {
+		type_ := "web_service"
+		tmp.Type = &type_
+	}
+	return &tmp
+}
+
+// A web service
+type GetWebServiceTypeOutput struct{ *pulumi.OutputState }
+
+func (GetWebServiceTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWebServiceType)(nil)).Elem()
+}
+
+func (o GetWebServiceTypeOutput) ToGetWebServiceTypeOutput() GetWebServiceTypeOutput {
+	return o
+}
+
+func (o GetWebServiceTypeOutput) ToGetWebServiceTypeOutputWithContext(ctx context.Context) GetWebServiceTypeOutput {
+	return o
+}
+
+// Whether to auto deploy the service or not upon git push.
+func (o GetWebServiceTypeOutput) AutoDeploy() ServiceAutoDeployPtrOutput {
+	return o.ApplyT(func(v GetWebServiceType) *ServiceAutoDeploy { return v.AutoDeploy }).(ServiceAutoDeployPtrOutput)
+}
+
+// If left empty, this will fall back to the default branch of the repository.
+func (o GetWebServiceTypeOutput) Branch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetWebServiceType) *string { return v.Branch }).(pulumi.StringPtrOutput)
+}
+
+func (o GetWebServiceTypeOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetWebServiceType) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+}
+
+func (o GetWebServiceTypeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebServiceType) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The notification setting for this service upon deployment failure.
+func (o GetWebServiceTypeOutput) NotifyOnFail() ServiceNotifyOnFailPtrOutput {
+	return o.ApplyT(func(v GetWebServiceType) *ServiceNotifyOnFail { return v.NotifyOnFail }).(ServiceNotifyOnFailPtrOutput)
+}
+
+// The id of the owner (user/team).
+func (o GetWebServiceTypeOutput) OwnerId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebServiceType) string { return v.OwnerId }).(pulumi.StringOutput)
+}
+
+// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+func (o GetWebServiceTypeOutput) Repo() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebServiceType) string { return v.Repo }).(pulumi.StringOutput)
+}
+
+func (o GetWebServiceTypeOutput) ServiceDetails() WebServiceServiceDetailsPtrOutput {
+	return o.ApplyT(func(v GetWebServiceType) *WebServiceServiceDetails { return v.ServiceDetails }).(WebServiceServiceDetailsPtrOutput)
+}
+
+func (o GetWebServiceTypeOutput) Slug() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetWebServiceType) *string { return v.Slug }).(pulumi.StringPtrOutput)
+}
+
+func (o GetWebServiceTypeOutput) Suspended() ServiceSuspendedPtrOutput {
+	return o.ApplyT(func(v GetWebServiceType) *ServiceSuspended { return v.Suspended }).(ServiceSuspendedPtrOutput)
+}
+
+func (o GetWebServiceTypeOutput) Suspenders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetWebServiceType) []string { return v.Suspenders }).(pulumi.StringArrayOutput)
+}
+
+func (o GetWebServiceTypeOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetWebServiceType) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+func (o GetWebServiceTypeOutput) UpdatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetWebServiceType) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
 }
 
 type ListCustomDomainsResponse struct {
@@ -973,6 +1276,26 @@ func (o ServiceHeaderPtrOutput) Value() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type ServiceHeaderArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceHeaderArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceHeader)(nil)).Elem()
+}
+
+func (o ServiceHeaderArrayOutput) ToServiceHeaderArrayOutput() ServiceHeaderArrayOutput {
+	return o
+}
+
+func (o ServiceHeaderArrayOutput) ToServiceHeaderArrayOutputWithContext(ctx context.Context) ServiceHeaderArrayOutput {
+	return o
+}
+
+func (o ServiceHeaderArrayOutput) Index(i pulumi.IntInput) ServiceHeaderOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceHeader {
+		return vs[0].([]ServiceHeader)[vs[1].(int)]
+	}).(ServiceHeaderOutput)
+}
+
 // A static website service
 type StaticSiteType struct {
 	// Whether to auto deploy the service or not upon git push.
@@ -1099,6 +1422,26 @@ func (o StaticSiteRoutePtrOutput) Type() StaticSiteRouteTypePtrOutput {
 	}).(StaticSiteRouteTypePtrOutput)
 }
 
+type StaticSiteRouteArrayOutput struct{ *pulumi.OutputState }
+
+func (StaticSiteRouteArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]StaticSiteRoute)(nil)).Elem()
+}
+
+func (o StaticSiteRouteArrayOutput) ToStaticSiteRouteArrayOutput() StaticSiteRouteArrayOutput {
+	return o
+}
+
+func (o StaticSiteRouteArrayOutput) ToStaticSiteRouteArrayOutputWithContext(ctx context.Context) StaticSiteRouteArrayOutput {
+	return o
+}
+
+func (o StaticSiteRouteArrayOutput) Index(i pulumi.IntInput) StaticSiteRouteOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) StaticSiteRoute {
+		return vs[0].([]StaticSiteRoute)[vs[1].(int)]
+	}).(StaticSiteRouteOutput)
+}
+
 type StaticSiteServiceDetails struct {
 	BuildCommand               *string                                             `pulumi:"buildCommand"`
 	Headers                    []ServiceHeader                                     `pulumi:"headers"`
@@ -1127,9 +1470,208 @@ func (val *StaticSiteServiceDetails) Defaults() *StaticSiteServiceDetails {
 	return &tmp
 }
 
+type StaticSiteServiceDetailsOutput struct{ *pulumi.OutputState }
+
+func (StaticSiteServiceDetailsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StaticSiteServiceDetails)(nil)).Elem()
+}
+
+func (o StaticSiteServiceDetailsOutput) ToStaticSiteServiceDetailsOutput() StaticSiteServiceDetailsOutput {
+	return o
+}
+
+func (o StaticSiteServiceDetailsOutput) ToStaticSiteServiceDetailsOutputWithContext(ctx context.Context) StaticSiteServiceDetailsOutput {
+	return o
+}
+
+func (o StaticSiteServiceDetailsOutput) BuildCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StaticSiteServiceDetails) *string { return v.BuildCommand }).(pulumi.StringPtrOutput)
+}
+
+func (o StaticSiteServiceDetailsOutput) Headers() ServiceHeaderArrayOutput {
+	return o.ApplyT(func(v StaticSiteServiceDetails) []ServiceHeader { return v.Headers }).(ServiceHeaderArrayOutput)
+}
+
+func (o StaticSiteServiceDetailsOutput) ParentServer() StaticSiteServiceDetailsParentServerPropertiesPtrOutput {
+	return o.ApplyT(func(v StaticSiteServiceDetails) *StaticSiteServiceDetailsParentServerProperties {
+		return v.ParentServer
+	}).(StaticSiteServiceDetailsParentServerPropertiesPtrOutput)
+}
+
+func (o StaticSiteServiceDetailsOutput) PublishPath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StaticSiteServiceDetails) *string { return v.PublishPath }).(pulumi.StringPtrOutput)
+}
+
+func (o StaticSiteServiceDetailsOutput) PullRequestPreviewsEnabled() StaticSiteServiceDetailsPullRequestPreviewsEnabledPtrOutput {
+	return o.ApplyT(func(v StaticSiteServiceDetails) *StaticSiteServiceDetailsPullRequestPreviewsEnabled {
+		return v.PullRequestPreviewsEnabled
+	}).(StaticSiteServiceDetailsPullRequestPreviewsEnabledPtrOutput)
+}
+
+func (o StaticSiteServiceDetailsOutput) Routes() StaticSiteRouteArrayOutput {
+	return o.ApplyT(func(v StaticSiteServiceDetails) []StaticSiteRoute { return v.Routes }).(StaticSiteRouteArrayOutput)
+}
+
+// The HTTPS service URL. A subdomain of onrender.com, by default.
+func (o StaticSiteServiceDetailsOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StaticSiteServiceDetails) *string { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+type StaticSiteServiceDetailsPtrOutput struct{ *pulumi.OutputState }
+
+func (StaticSiteServiceDetailsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StaticSiteServiceDetails)(nil)).Elem()
+}
+
+func (o StaticSiteServiceDetailsPtrOutput) ToStaticSiteServiceDetailsPtrOutput() StaticSiteServiceDetailsPtrOutput {
+	return o
+}
+
+func (o StaticSiteServiceDetailsPtrOutput) ToStaticSiteServiceDetailsPtrOutputWithContext(ctx context.Context) StaticSiteServiceDetailsPtrOutput {
+	return o
+}
+
+func (o StaticSiteServiceDetailsPtrOutput) Elem() StaticSiteServiceDetailsOutput {
+	return o.ApplyT(func(v *StaticSiteServiceDetails) StaticSiteServiceDetails {
+		if v != nil {
+			return *v
+		}
+		var ret StaticSiteServiceDetails
+		return ret
+	}).(StaticSiteServiceDetailsOutput)
+}
+
+func (o StaticSiteServiceDetailsPtrOutput) BuildCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StaticSiteServiceDetails) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BuildCommand
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o StaticSiteServiceDetailsPtrOutput) Headers() ServiceHeaderArrayOutput {
+	return o.ApplyT(func(v *StaticSiteServiceDetails) []ServiceHeader {
+		if v == nil {
+			return nil
+		}
+		return v.Headers
+	}).(ServiceHeaderArrayOutput)
+}
+
+func (o StaticSiteServiceDetailsPtrOutput) ParentServer() StaticSiteServiceDetailsParentServerPropertiesPtrOutput {
+	return o.ApplyT(func(v *StaticSiteServiceDetails) *StaticSiteServiceDetailsParentServerProperties {
+		if v == nil {
+			return nil
+		}
+		return v.ParentServer
+	}).(StaticSiteServiceDetailsParentServerPropertiesPtrOutput)
+}
+
+func (o StaticSiteServiceDetailsPtrOutput) PublishPath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StaticSiteServiceDetails) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PublishPath
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o StaticSiteServiceDetailsPtrOutput) PullRequestPreviewsEnabled() StaticSiteServiceDetailsPullRequestPreviewsEnabledPtrOutput {
+	return o.ApplyT(func(v *StaticSiteServiceDetails) *StaticSiteServiceDetailsPullRequestPreviewsEnabled {
+		if v == nil {
+			return nil
+		}
+		return v.PullRequestPreviewsEnabled
+	}).(StaticSiteServiceDetailsPullRequestPreviewsEnabledPtrOutput)
+}
+
+func (o StaticSiteServiceDetailsPtrOutput) Routes() StaticSiteRouteArrayOutput {
+	return o.ApplyT(func(v *StaticSiteServiceDetails) []StaticSiteRoute {
+		if v == nil {
+			return nil
+		}
+		return v.Routes
+	}).(StaticSiteRouteArrayOutput)
+}
+
+// The HTTPS service URL. A subdomain of onrender.com, by default.
+func (o StaticSiteServiceDetailsPtrOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StaticSiteServiceDetails) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Url
+	}).(pulumi.StringPtrOutput)
+}
+
 type StaticSiteServiceDetailsParentServerProperties struct {
 	Id   *string `pulumi:"id"`
 	Name *string `pulumi:"name"`
+}
+
+type StaticSiteServiceDetailsParentServerPropertiesOutput struct{ *pulumi.OutputState }
+
+func (StaticSiteServiceDetailsParentServerPropertiesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StaticSiteServiceDetailsParentServerProperties)(nil)).Elem()
+}
+
+func (o StaticSiteServiceDetailsParentServerPropertiesOutput) ToStaticSiteServiceDetailsParentServerPropertiesOutput() StaticSiteServiceDetailsParentServerPropertiesOutput {
+	return o
+}
+
+func (o StaticSiteServiceDetailsParentServerPropertiesOutput) ToStaticSiteServiceDetailsParentServerPropertiesOutputWithContext(ctx context.Context) StaticSiteServiceDetailsParentServerPropertiesOutput {
+	return o
+}
+
+func (o StaticSiteServiceDetailsParentServerPropertiesOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StaticSiteServiceDetailsParentServerProperties) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+func (o StaticSiteServiceDetailsParentServerPropertiesOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StaticSiteServiceDetailsParentServerProperties) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type StaticSiteServiceDetailsParentServerPropertiesPtrOutput struct{ *pulumi.OutputState }
+
+func (StaticSiteServiceDetailsParentServerPropertiesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StaticSiteServiceDetailsParentServerProperties)(nil)).Elem()
+}
+
+func (o StaticSiteServiceDetailsParentServerPropertiesPtrOutput) ToStaticSiteServiceDetailsParentServerPropertiesPtrOutput() StaticSiteServiceDetailsParentServerPropertiesPtrOutput {
+	return o
+}
+
+func (o StaticSiteServiceDetailsParentServerPropertiesPtrOutput) ToStaticSiteServiceDetailsParentServerPropertiesPtrOutputWithContext(ctx context.Context) StaticSiteServiceDetailsParentServerPropertiesPtrOutput {
+	return o
+}
+
+func (o StaticSiteServiceDetailsParentServerPropertiesPtrOutput) Elem() StaticSiteServiceDetailsParentServerPropertiesOutput {
+	return o.ApplyT(func(v *StaticSiteServiceDetailsParentServerProperties) StaticSiteServiceDetailsParentServerProperties {
+		if v != nil {
+			return *v
+		}
+		var ret StaticSiteServiceDetailsParentServerProperties
+		return ret
+	}).(StaticSiteServiceDetailsParentServerPropertiesOutput)
+}
+
+func (o StaticSiteServiceDetailsParentServerPropertiesPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StaticSiteServiceDetailsParentServerProperties) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o StaticSiteServiceDetailsParentServerPropertiesPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StaticSiteServiceDetailsParentServerProperties) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringPtrOutput)
 }
 
 // A service header object
@@ -2050,6 +2592,150 @@ func (val *WebServiceServiceDetails) Defaults() *WebServiceServiceDetails {
 	return &tmp
 }
 
+type WebServiceServiceDetailsOutput struct{ *pulumi.OutputState }
+
+func (WebServiceServiceDetailsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceServiceDetails)(nil)).Elem()
+}
+
+func (o WebServiceServiceDetailsOutput) ToWebServiceServiceDetailsOutput() WebServiceServiceDetailsOutput {
+	return o
+}
+
+func (o WebServiceServiceDetailsOutput) ToWebServiceServiceDetailsOutputWithContext(ctx context.Context) WebServiceServiceDetailsOutput {
+	return o
+}
+
+func (o WebServiceServiceDetailsOutput) Disk() DiskPtrOutput {
+	return o.ApplyT(func(v WebServiceServiceDetails) *Disk { return v.Disk }).(DiskPtrOutput)
+}
+
+func (o WebServiceServiceDetailsOutput) Env() WebServiceServiceDetailsEnvOutput {
+	return o.ApplyT(func(v WebServiceServiceDetails) WebServiceServiceDetailsEnv { return v.Env }).(WebServiceServiceDetailsEnvOutput)
+}
+
+func (o WebServiceServiceDetailsOutput) EnvSpecificDetails() pulumi.AnyOutput {
+	return o.ApplyT(func(v WebServiceServiceDetails) interface{} { return v.EnvSpecificDetails }).(pulumi.AnyOutput)
+}
+
+func (o WebServiceServiceDetailsOutput) HealthCheckPath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WebServiceServiceDetails) *string { return v.HealthCheckPath }).(pulumi.StringPtrOutput)
+}
+
+func (o WebServiceServiceDetailsOutput) NumInstances() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v WebServiceServiceDetails) *float64 { return v.NumInstances }).(pulumi.Float64PtrOutput)
+}
+
+func (o WebServiceServiceDetailsOutput) Plan() WebServiceServiceDetailsPlanPtrOutput {
+	return o.ApplyT(func(v WebServiceServiceDetails) *WebServiceServiceDetailsPlan { return v.Plan }).(WebServiceServiceDetailsPlanPtrOutput)
+}
+
+func (o WebServiceServiceDetailsOutput) PullRequestPreviewsEnabled() WebServiceServiceDetailsPullRequestPreviewsEnabledPtrOutput {
+	return o.ApplyT(func(v WebServiceServiceDetails) *WebServiceServiceDetailsPullRequestPreviewsEnabled {
+		return v.PullRequestPreviewsEnabled
+	}).(WebServiceServiceDetailsPullRequestPreviewsEnabledPtrOutput)
+}
+
+func (o WebServiceServiceDetailsOutput) Region() WebServiceServiceDetailsRegionPtrOutput {
+	return o.ApplyT(func(v WebServiceServiceDetails) *WebServiceServiceDetailsRegion { return v.Region }).(WebServiceServiceDetailsRegionPtrOutput)
+}
+
+type WebServiceServiceDetailsPtrOutput struct{ *pulumi.OutputState }
+
+func (WebServiceServiceDetailsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebServiceServiceDetails)(nil)).Elem()
+}
+
+func (o WebServiceServiceDetailsPtrOutput) ToWebServiceServiceDetailsPtrOutput() WebServiceServiceDetailsPtrOutput {
+	return o
+}
+
+func (o WebServiceServiceDetailsPtrOutput) ToWebServiceServiceDetailsPtrOutputWithContext(ctx context.Context) WebServiceServiceDetailsPtrOutput {
+	return o
+}
+
+func (o WebServiceServiceDetailsPtrOutput) Elem() WebServiceServiceDetailsOutput {
+	return o.ApplyT(func(v *WebServiceServiceDetails) WebServiceServiceDetails {
+		if v != nil {
+			return *v
+		}
+		var ret WebServiceServiceDetails
+		return ret
+	}).(WebServiceServiceDetailsOutput)
+}
+
+func (o WebServiceServiceDetailsPtrOutput) Disk() DiskPtrOutput {
+	return o.ApplyT(func(v *WebServiceServiceDetails) *Disk {
+		if v == nil {
+			return nil
+		}
+		return v.Disk
+	}).(DiskPtrOutput)
+}
+
+func (o WebServiceServiceDetailsPtrOutput) Env() WebServiceServiceDetailsEnvPtrOutput {
+	return o.ApplyT(func(v *WebServiceServiceDetails) *WebServiceServiceDetailsEnv {
+		if v == nil {
+			return nil
+		}
+		return &v.Env
+	}).(WebServiceServiceDetailsEnvPtrOutput)
+}
+
+func (o WebServiceServiceDetailsPtrOutput) EnvSpecificDetails() pulumi.AnyOutput {
+	return o.ApplyT(func(v *WebServiceServiceDetails) interface{} {
+		if v == nil {
+			return nil
+		}
+		return v.EnvSpecificDetails
+	}).(pulumi.AnyOutput)
+}
+
+func (o WebServiceServiceDetailsPtrOutput) HealthCheckPath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebServiceServiceDetails) *string {
+		if v == nil {
+			return nil
+		}
+		return v.HealthCheckPath
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WebServiceServiceDetailsPtrOutput) NumInstances() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *WebServiceServiceDetails) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.NumInstances
+	}).(pulumi.Float64PtrOutput)
+}
+
+func (o WebServiceServiceDetailsPtrOutput) Plan() WebServiceServiceDetailsPlanPtrOutput {
+	return o.ApplyT(func(v *WebServiceServiceDetails) *WebServiceServiceDetailsPlan {
+		if v == nil {
+			return nil
+		}
+		return v.Plan
+	}).(WebServiceServiceDetailsPlanPtrOutput)
+}
+
+func (o WebServiceServiceDetailsPtrOutput) PullRequestPreviewsEnabled() WebServiceServiceDetailsPullRequestPreviewsEnabledPtrOutput {
+	return o.ApplyT(func(v *WebServiceServiceDetails) *WebServiceServiceDetailsPullRequestPreviewsEnabled {
+		if v == nil {
+			return nil
+		}
+		return v.PullRequestPreviewsEnabled
+	}).(WebServiceServiceDetailsPullRequestPreviewsEnabledPtrOutput)
+}
+
+func (o WebServiceServiceDetailsPtrOutput) Region() WebServiceServiceDetailsRegionPtrOutput {
+	return o.ApplyT(func(v *WebServiceServiceDetails) *WebServiceServiceDetailsRegion {
+		if v == nil {
+			return nil
+		}
+		return v.Region
+	}).(WebServiceServiceDetailsRegionPtrOutput)
+}
+
 type WebServiceWebServiceServiceDetails struct {
 	Disk                       *WebServiceDisk                                               `pulumi:"disk"`
 	Env                        WebServiceWebServiceServiceDetailsEnv                         `pulumi:"env"`
@@ -2362,8 +3048,12 @@ func init() {
 	pulumi.RegisterOutputType(DeployTypePtrOutput{})
 	pulumi.RegisterOutputType(DeployCommitOutput{})
 	pulumi.RegisterOutputType(DeployCommitPtrOutput{})
+	pulumi.RegisterOutputType(DiskOutput{})
+	pulumi.RegisterOutputType(DiskPtrOutput{})
 	pulumi.RegisterOutputType(EnvVarKeyValueOutput{})
 	pulumi.RegisterOutputType(EnvVarKeyValuePtrOutput{})
+	pulumi.RegisterOutputType(GetStaticSiteTypeOutput{})
+	pulumi.RegisterOutputType(GetWebServiceTypeOutput{})
 	pulumi.RegisterOutputType(ListCustomDomainsResponseOutput{})
 	pulumi.RegisterOutputType(ListCustomDomainsResponseArrayOutput{})
 	pulumi.RegisterOutputType(ListDeploysResponseOutput{})
@@ -2377,8 +3067,14 @@ func init() {
 	pulumi.RegisterOutputType(ServerPropertiesOutput{})
 	pulumi.RegisterOutputType(ServiceHeaderOutput{})
 	pulumi.RegisterOutputType(ServiceHeaderPtrOutput{})
+	pulumi.RegisterOutputType(ServiceHeaderArrayOutput{})
 	pulumi.RegisterOutputType(StaticSiteRouteOutput{})
 	pulumi.RegisterOutputType(StaticSiteRoutePtrOutput{})
+	pulumi.RegisterOutputType(StaticSiteRouteArrayOutput{})
+	pulumi.RegisterOutputType(StaticSiteServiceDetailsOutput{})
+	pulumi.RegisterOutputType(StaticSiteServiceDetailsPtrOutput{})
+	pulumi.RegisterOutputType(StaticSiteServiceDetailsParentServerPropertiesOutput{})
+	pulumi.RegisterOutputType(StaticSiteServiceDetailsParentServerPropertiesPtrOutput{})
 	pulumi.RegisterOutputType(StaticSiteServiceHeaderOutput{})
 	pulumi.RegisterOutputType(StaticSiteServiceHeaderArrayOutput{})
 	pulumi.RegisterOutputType(StaticSiteStaticSiteRouteOutput{})
@@ -2389,6 +3085,8 @@ func init() {
 	pulumi.RegisterOutputType(StaticSiteStaticSiteServiceDetailsParentServerPropertiesPtrOutput{})
 	pulumi.RegisterOutputType(WebServiceDiskOutput{})
 	pulumi.RegisterOutputType(WebServiceDiskPtrOutput{})
+	pulumi.RegisterOutputType(WebServiceServiceDetailsOutput{})
+	pulumi.RegisterOutputType(WebServiceServiceDetailsPtrOutput{})
 	pulumi.RegisterOutputType(WebServiceWebServiceServiceDetailsOutput{})
 	pulumi.RegisterOutputType(WebServiceWebServiceServiceDetailsPtrOutput{})
 }

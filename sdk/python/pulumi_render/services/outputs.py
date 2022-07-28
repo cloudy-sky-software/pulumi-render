@@ -20,6 +20,8 @@ __all__ = [
     'Disk',
     'DockerDetails',
     'EnvVarKeyValue',
+    'GetStaticSite',
+    'GetWebService',
     'ListCustomDomainsResponse',
     'ListDeploysResponse',
     'ListEnvVarsResponse',
@@ -297,6 +299,278 @@ class EnvVarKeyValue(dict):
     @pulumi.getter
     def value(self) -> str:
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetStaticSite(dict):
+    """
+    A static website service
+    """
+    def __init__(__self__, *,
+                 name: str,
+                 owner_id: str,
+                 repo: str,
+                 auto_deploy: Optional['ServiceAutoDeploy'] = None,
+                 branch: Optional[str] = None,
+                 created_at: Optional[str] = None,
+                 notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
+                 service_details: Optional['outputs.StaticSiteServiceDetails'] = None,
+                 slug: Optional[str] = None,
+                 suspended: Optional['ServiceSuspended'] = None,
+                 suspenders: Optional[Sequence[str]] = None,
+                 type: Optional[str] = None,
+                 updated_at: Optional[str] = None):
+        """
+        A static website service
+        :param str owner_id: The id of the owner (user/team).
+        :param str repo: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+        :param 'ServiceAutoDeploy' auto_deploy: Whether to auto deploy the service or not upon git push.
+        :param str branch: If left empty, this will fall back to the default branch of the repository.
+        :param 'ServiceNotifyOnFail' notify_on_fail: The notification setting for this service upon deployment failure.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "owner_id", owner_id)
+        pulumi.set(__self__, "repo", repo)
+        if auto_deploy is None:
+            auto_deploy = 'no'
+        if auto_deploy is not None:
+            pulumi.set(__self__, "auto_deploy", auto_deploy)
+        if branch is not None:
+            pulumi.set(__self__, "branch", branch)
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if notify_on_fail is not None:
+            pulumi.set(__self__, "notify_on_fail", notify_on_fail)
+        if service_details is not None:
+            pulumi.set(__self__, "service_details", service_details)
+        if slug is not None:
+            pulumi.set(__self__, "slug", slug)
+        if suspended is not None:
+            pulumi.set(__self__, "suspended", suspended)
+        if suspenders is not None:
+            pulumi.set(__self__, "suspenders", suspenders)
+        if type is None:
+            type = 'static_site'
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if updated_at is not None:
+            pulumi.set(__self__, "updated_at", updated_at)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> str:
+        """
+        The id of the owner (user/team).
+        """
+        return pulumi.get(self, "owner_id")
+
+    @property
+    @pulumi.getter
+    def repo(self) -> str:
+        """
+        Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+        """
+        return pulumi.get(self, "repo")
+
+    @property
+    @pulumi.getter(name="autoDeploy")
+    def auto_deploy(self) -> Optional['ServiceAutoDeploy']:
+        """
+        Whether to auto deploy the service or not upon git push.
+        """
+        return pulumi.get(self, "auto_deploy")
+
+    @property
+    @pulumi.getter
+    def branch(self) -> Optional[str]:
+        """
+        If left empty, this will fall back to the default branch of the repository.
+        """
+        return pulumi.get(self, "branch")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[str]:
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="notifyOnFail")
+    def notify_on_fail(self) -> Optional['ServiceNotifyOnFail']:
+        """
+        The notification setting for this service upon deployment failure.
+        """
+        return pulumi.get(self, "notify_on_fail")
+
+    @property
+    @pulumi.getter(name="serviceDetails")
+    def service_details(self) -> Optional['outputs.StaticSiteServiceDetails']:
+        return pulumi.get(self, "service_details")
+
+    @property
+    @pulumi.getter
+    def slug(self) -> Optional[str]:
+        return pulumi.get(self, "slug")
+
+    @property
+    @pulumi.getter
+    def suspended(self) -> Optional['ServiceSuspended']:
+        return pulumi.get(self, "suspended")
+
+    @property
+    @pulumi.getter
+    def suspenders(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "suspenders")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> Optional[str]:
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetWebService(dict):
+    """
+    A web service
+    """
+    def __init__(__self__, *,
+                 name: str,
+                 owner_id: str,
+                 repo: str,
+                 auto_deploy: Optional['ServiceAutoDeploy'] = None,
+                 branch: Optional[str] = None,
+                 created_at: Optional[str] = None,
+                 notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
+                 service_details: Optional['outputs.WebServiceServiceDetails'] = None,
+                 slug: Optional[str] = None,
+                 suspended: Optional['ServiceSuspended'] = None,
+                 suspenders: Optional[Sequence[str]] = None,
+                 type: Optional[str] = None,
+                 updated_at: Optional[str] = None):
+        """
+        A web service
+        :param str owner_id: The id of the owner (user/team).
+        :param str repo: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+        :param 'ServiceAutoDeploy' auto_deploy: Whether to auto deploy the service or not upon git push.
+        :param str branch: If left empty, this will fall back to the default branch of the repository.
+        :param 'ServiceNotifyOnFail' notify_on_fail: The notification setting for this service upon deployment failure.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "owner_id", owner_id)
+        pulumi.set(__self__, "repo", repo)
+        if auto_deploy is None:
+            auto_deploy = 'no'
+        if auto_deploy is not None:
+            pulumi.set(__self__, "auto_deploy", auto_deploy)
+        if branch is not None:
+            pulumi.set(__self__, "branch", branch)
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if notify_on_fail is not None:
+            pulumi.set(__self__, "notify_on_fail", notify_on_fail)
+        if service_details is not None:
+            pulumi.set(__self__, "service_details", service_details)
+        if slug is not None:
+            pulumi.set(__self__, "slug", slug)
+        if suspended is not None:
+            pulumi.set(__self__, "suspended", suspended)
+        if suspenders is not None:
+            pulumi.set(__self__, "suspenders", suspenders)
+        if type is None:
+            type = 'web_service'
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if updated_at is not None:
+            pulumi.set(__self__, "updated_at", updated_at)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> str:
+        """
+        The id of the owner (user/team).
+        """
+        return pulumi.get(self, "owner_id")
+
+    @property
+    @pulumi.getter
+    def repo(self) -> str:
+        """
+        Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+        """
+        return pulumi.get(self, "repo")
+
+    @property
+    @pulumi.getter(name="autoDeploy")
+    def auto_deploy(self) -> Optional['ServiceAutoDeploy']:
+        """
+        Whether to auto deploy the service or not upon git push.
+        """
+        return pulumi.get(self, "auto_deploy")
+
+    @property
+    @pulumi.getter
+    def branch(self) -> Optional[str]:
+        """
+        If left empty, this will fall back to the default branch of the repository.
+        """
+        return pulumi.get(self, "branch")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[str]:
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="notifyOnFail")
+    def notify_on_fail(self) -> Optional['ServiceNotifyOnFail']:
+        """
+        The notification setting for this service upon deployment failure.
+        """
+        return pulumi.get(self, "notify_on_fail")
+
+    @property
+    @pulumi.getter(name="serviceDetails")
+    def service_details(self) -> Optional['outputs.WebServiceServiceDetails']:
+        return pulumi.get(self, "service_details")
+
+    @property
+    @pulumi.getter
+    def slug(self) -> Optional[str]:
+        return pulumi.get(self, "slug")
+
+    @property
+    @pulumi.getter
+    def suspended(self) -> Optional['ServiceSuspended']:
+        return pulumi.get(self, "suspended")
+
+    @property
+    @pulumi.getter
+    def suspenders(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "suspenders")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> Optional[str]:
+        return pulumi.get(self, "updated_at")
 
 
 @pulumi.output_type

@@ -91,7 +91,7 @@ func (o *openAPIContext) gatherResourcesFromAPI(csharpNamespaces map[string]stri
 
 						funcName := "get" + dResource.Value.Title
 						funcTypeToken := packageName + ":" + module + ":" + funcName
-						getterFuncSpec := o.genGetter(*pathItem, *dResource, module, funcName)
+						getterFuncSpec := o.genGetFunc(*pathItem, *dResource, module, funcName)
 						o.pkg.Functions[funcTypeToken] = getterFuncSpec
 						setReadOperationMapping(funcTypeToken)
 					}
@@ -101,7 +101,7 @@ func (o *openAPIContext) gatherResourcesFromAPI(csharpNamespaces map[string]stri
 
 					funcName := "get" + resourceType.Title
 					funcTypeToken := packageName + ":" + module + ":" + funcName
-					getterFuncSpec := o.genGetter(*pathItem, *jsonReq.Schema, module, funcName)
+					getterFuncSpec := o.genGetFunc(*pathItem, *jsonReq.Schema, module, funcName)
 					o.pkg.Functions[funcTypeToken] = getterFuncSpec
 					setReadOperationMapping(funcTypeToken)
 				}
@@ -110,47 +110,9 @@ func (o *openAPIContext) gatherResourcesFromAPI(csharpNamespaces map[string]stri
 			// Add the API operation as a list* function.
 			if resourceType.Type == "array" {
 				funcName := strings.TrimPrefix(jsonReq.Schema.Ref, componentsSchemaRefPrefix)
-				parentName := ToPascalCase(funcName)
-				funcPkgCtx := &resourceContext{
-					mod:               module,
-					pkg:               o.pkg,
-					openapiComponents: o.doc.Components,
-					visitedTypes:      codegen.NewStringSet(),
-				}
-
-				requiredInputs := codegen.NewStringSet()
-				inputProps := make(map[string]pschema.PropertySpec)
-				for _, param := range pathItem.Get.Parameters {
-					if param.Value.In != "path" {
-						continue
-					}
-
-					paramName := param.Value.Name
-					inputProps[paramName] = pschema.PropertySpec{
-						Description: param.Value.Description,
-						TypeSpec:    pschema.TypeSpec{Type: "string"},
-					}
-					requiredInputs.Add(paramName)
-				}
-
-				outputPropType, _ := funcPkgCtx.propertyTypeSpec(parentName, *jsonReq.Schema)
 				funcTypeToken := packageName + ":" + module + ":" + funcName
-				o.pkg.Functions[funcTypeToken] = pschema.FunctionSpec{
-					Description: pathItem.Description,
-					Inputs: &pschema.ObjectTypeSpec{
-						Properties: inputProps,
-						Required:   requiredInputs.SortedValues(),
-					},
-					Outputs: &pschema.ObjectTypeSpec{
-						Properties: map[string]pschema.PropertySpec{
-							"items": {
-								TypeSpec: *outputPropType,
-							},
-						},
-						Required: []string{"items"},
-					},
-				}
-
+				funcSpec := o.genListFunc(*pathItem, *jsonReq.Schema, funcName, module)
+				o.pkg.Functions[funcTypeToken] = funcSpec
 				setReadOperationMapping(funcTypeToken)
 			}
 		}
@@ -295,7 +257,11 @@ func (o *openAPIContext) gatherResourcesFromAPI(csharpNamespaces map[string]stri
 	return nil
 }
 
-func (o *openAPIContext) genGetter(pathItem openapi3.PathItem, getterSchema openapi3.SchemaRef, module, funcName string) pschema.FunctionSpec {
+// genListFunc returns a function spec for a GET API endpoint that returns a list of objects.
+// The item type can have a discriminator in the schema. This method will return a type
+// that will refer to an output type that uses the discriminator properties to correctly
+// type the output result.
+func (o *openAPIContext) genListFunc(pathItem openapi3.PathItem, returnTypeSchema openapi3.SchemaRef, funcName, module string) pschema.FunctionSpec {
 	parentName := ToPascalCase(funcName)
 	funcPkgCtx := &resourceContext{
 		mod:               module,
@@ -319,7 +285,7 @@ func (o *openAPIContext) genGetter(pathItem openapi3.PathItem, getterSchema open
 		requiredInputs.Add(paramName)
 	}
 
-	outputPropType, _ := funcPkgCtx.propertyTypeSpec(parentName, getterSchema)
+	outputPropType, _ := funcPkgCtx.propertyTypeSpec(parentName, returnTypeSchema)
 
 	return pschema.FunctionSpec{
 		Description: pathItem.Description,
@@ -338,6 +304,55 @@ func (o *openAPIContext) genGetter(pathItem openapi3.PathItem, getterSchema open
 	}
 }
 
+// genGetFunc returns a function spec for a GET API endpoint that returns a single object.
+// The single object can have a discriminator in the schema. This method will return a type
+// that will refer to an output type that uses the discriminator properties to correctly
+// type the output result.
+func (o *openAPIContext) genGetFunc(pathItem openapi3.PathItem, returnTypeSchema openapi3.SchemaRef, module, funcName string) pschema.FunctionSpec {
+	parentName := ToPascalCase(funcName)
+	funcPkgCtx := &resourceContext{
+		mod:               module,
+		pkg:               o.pkg,
+		openapiComponents: o.doc.Components,
+		visitedTypes:      codegen.NewStringSet(),
+	}
+
+	requiredInputs := codegen.NewStringSet()
+	inputProps := make(map[string]pschema.PropertySpec)
+	for _, param := range pathItem.Get.Parameters {
+		if param.Value.In != "path" {
+			continue
+		}
+
+		paramName := param.Value.Name
+		inputProps[paramName] = pschema.PropertySpec{
+			Description: param.Value.Description,
+			TypeSpec:    pschema.TypeSpec{Type: "string"},
+		}
+		requiredInputs.Add(paramName)
+	}
+
+	outputPropType, _ := funcPkgCtx.propertyTypeSpec(parentName, returnTypeSchema)
+
+	return pschema.FunctionSpec{
+		Description: pathItem.Description,
+		Inputs: &pschema.ObjectTypeSpec{
+			Properties: inputProps,
+			Required:   requiredInputs.SortedValues(),
+		},
+		Outputs: &pschema.ObjectTypeSpec{
+			Properties: map[string]pschema.PropertySpec{
+				"items": {
+					TypeSpec: *outputPropType,
+				},
+			},
+			Required: []string{"items"},
+		},
+	}
+}
+
+// gatherResource generates a resource spec from a POST API endpoint schema and
+// adds it to the Pulumi schema spec.
 func (o *openAPIContext) gatherResource(
 	apiPath string,
 	resourceType openapi3.Schema,
@@ -364,8 +379,8 @@ func (o *openAPIContext) gatherResource(
 		return errors.Wrapf(err, "gathering resource from api path %s", apiPath)
 	}
 
-	resource := o.pkg.Resources[*resourceTypeToken]
-	requiredInputs := codegen.NewStringSet(resource.RequiredInputs...)
+	resourceSpec := o.pkg.Resources[*resourceTypeToken]
+	requiredInputs := codegen.NewStringSet(resourceSpec.RequiredInputs...)
 
 	// If this endpoint path has path parameters,
 	// then those should be required inputs too.
@@ -375,18 +390,20 @@ func (o *openAPIContext) gatherResource(
 		}
 
 		paramName := param.Value.Name
-		resource.InputProperties[paramName] = pschema.PropertySpec{
+		resourceSpec.InputProperties[paramName] = pschema.PropertySpec{
 			Description: param.Value.Description,
 			TypeSpec:    pschema.TypeSpec{Type: "string"},
 		}
 		requiredInputs.Add(paramName)
 	}
 
-	o.pkg.Resources[*resourceTypeToken] = resource
+	o.pkg.Resources[*resourceTypeToken] = resourceSpec
 
 	return nil
 }
 
+// gatherResourceProperties generates a resource spec's input and output properties
+// based on its API schema. Returns the Pulumi type token for the newly-added resource.
 func (o *openAPIContext) gatherResourceProperties(resourceAPISchema openapi3.Schema, apiPath, module string) (*string, error) {
 	pkgCtx := &resourceContext{
 		mod:               module,
@@ -498,6 +515,12 @@ func (o *openAPIContext) gatherResourceProperties(resourceAPISchema openapi3.Sch
 	return &typeToken, nil
 }
 
+// genPropertySpec returns a property spec from an schema ref.
+// The type spec of the returned property spec can be any of the
+// supported types in Pulumi, including ref's to other types
+// within the schema. In the case of ref's to other types, those
+// other types are automatically added to the Pulumi schema spec's
+// `Types` property.
 func (ctx *resourceContext) genPropertySpec(propName string, p openapi3.SchemaRef) pschema.PropertySpec {
 	propertySpec := pschema.PropertySpec{
 		Description: p.Value.Description,
@@ -534,7 +557,7 @@ func (ctx *resourceContext) genPropertySpec(propName string, p openapi3.SchemaRe
 	return propertySpec
 }
 
-// propertyTypeSpec converts a JSON type definition to a Pulumi type definition.
+// propertyTypeSpec converts an API schema to a Pulumi property type spec.
 func (ctx *resourceContext) propertyTypeSpec(parentName string, propSchema openapi3.SchemaRef) (*pschema.TypeSpec, error) {
 	// References to other type definitions as long as the type is not an array.
 	// Arrays will be handled later in this method.

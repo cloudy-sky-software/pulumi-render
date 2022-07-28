@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-// ToSdkName converts a Cloud Formation property or attribute name to the lowerCamelCase convention that
+// ToSdkName converts a property or attribute name to the lowerCamelCase convention that
 // is used in Pulumi schema's properties.
 func ToSdkName(s string) string {
 	if r := rune(s[0]); r >= 'A' && r <= 'Z' {

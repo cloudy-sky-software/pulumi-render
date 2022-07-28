@@ -387,10 +387,11 @@ func (o *openAPIContext) gatherResource(
 	return nil
 }
 
-func (o *openAPIContext) gatherResourceProperties(apiSchema openapi3.Schema, apiPath, module string) (*string, error) {
+func (o *openAPIContext) gatherResourceProperties(resourceAPISchema openapi3.Schema, apiPath, module string) (*string, error) {
 	pkgCtx := &resourceContext{
 		mod:               module,
 		pkg:               o.pkg,
+		resourceName:      resourceAPISchema.Title,
 		openapiComponents: o.doc.Components,
 		visitedTypes:      codegen.NewStringSet(),
 	}
@@ -398,7 +399,7 @@ func (o *openAPIContext) gatherResourceProperties(apiSchema openapi3.Schema, api
 	inputProperties := make(map[string]pschema.PropertySpec)
 	properties := make(map[string]pschema.PropertySpec)
 	requiredInputs := codegen.NewStringSet()
-	for propName, prop := range apiSchema.Properties {
+	for propName, prop := range resourceAPISchema.Properties {
 		propSpec := pkgCtx.genPropertySpec(ToPascalCase(propName), *prop)
 		if !prop.Value.ReadOnly {
 			inputProperties[propName] = propSpec
@@ -408,8 +409,8 @@ func (o *openAPIContext) gatherResourceProperties(apiSchema openapi3.Schema, api
 
 	// Create a set of required inputs for this resource.
 	// Filter out required props that are marked as read-only.
-	for _, requiredProp := range apiSchema.Required {
-		propSchema := apiSchema.Properties[requiredProp]
+	for _, requiredProp := range resourceAPISchema.Required {
+		propSchema := resourceAPISchema.Properties[requiredProp]
 		if propSchema.Value.ReadOnly {
 			continue
 		}
@@ -417,13 +418,13 @@ func (o *openAPIContext) gatherResourceProperties(apiSchema openapi3.Schema, api
 		requiredInputs.Add(requiredProp)
 	}
 
-	if len(apiSchema.AllOf) > 0 {
-		parentName := ToPascalCase(apiSchema.Title)
+	if len(resourceAPISchema.AllOf) > 0 {
+		parentName := ToPascalCase(resourceAPISchema.Title)
 		var types []pschema.TypeSpec
-		for _, schemaRef := range apiSchema.AllOf {
+		for _, schemaRef := range resourceAPISchema.AllOf {
 			typ, err := pkgCtx.propertyTypeSpec(parentName, *schemaRef)
 			if err != nil {
-				return nil, errors.Wrapf(err, "generating property type spec from allOf schema for %s", apiSchema.Title)
+				return nil, errors.Wrapf(err, "generating property type spec from allOf schema for %s", resourceAPISchema.Title)
 			}
 			types = append(types, *typ)
 		}
@@ -462,10 +463,10 @@ func (o *openAPIContext) gatherResourceProperties(apiSchema openapi3.Schema, api
 
 		o.pkg.Resources[typeToken] = pschema.ResourceSpec{
 			ObjectTypeSpec: pschema.ObjectTypeSpec{
-				Description: apiSchema.Description,
+				Description: resourceAPISchema.Description,
 				Type:        "object",
 				Properties:  properties,
-				Required:    apiSchema.Required,
+				Required:    resourceAPISchema.Required,
 			},
 			InputProperties: inputProperties,
 			RequiredInputs:  requiredInputs.SortedValues(),
@@ -474,7 +475,7 @@ func (o *openAPIContext) gatherResourceProperties(apiSchema openapi3.Schema, api
 		return &typeToken, nil
 	}
 
-	typeToken := fmt.Sprintf("%s:%s:%s", packageName, module, apiSchema.Title)
+	typeToken := fmt.Sprintf("%s:%s:%s", packageName, module, resourceAPISchema.Title)
 	if existing, ok := o.resourceCRUDMap[typeToken]; ok {
 		existing.C = &apiPath
 	} else {
@@ -485,10 +486,10 @@ func (o *openAPIContext) gatherResourceProperties(apiSchema openapi3.Schema, api
 
 	o.pkg.Resources[typeToken] = pschema.ResourceSpec{
 		ObjectTypeSpec: pschema.ObjectTypeSpec{
-			Description: apiSchema.Description,
+			Description: resourceAPISchema.Description,
 			Type:        "object",
 			Properties:  properties,
-			Required:    apiSchema.Required,
+			Required:    resourceAPISchema.Required,
 		},
 		InputProperties: inputProperties,
 		RequiredInputs:  requiredInputs.SortedValues(),
@@ -505,7 +506,7 @@ func (ctx *resourceContext) genPropertySpec(propName string, p openapi3.SchemaRe
 		propertySpec.Default = p.Value.Default
 	}
 	languageName := strings.ToUpper(propName[:1]) + propName[1:]
-	if languageName == propName {
+	if languageName == ctx.resourceName {
 		// .NET does not allow properties to be the same as the enclosing class - so special case these
 		propertySpec.Language = map[string]pschema.RawMessage{
 			"csharp": rawMessage(dotnetgen.CSharpPropertyInfo{
@@ -525,7 +526,7 @@ func (ctx *resourceContext) genPropertySpec(propName string, p openapi3.SchemaRe
 
 	typeSpec, err := ctx.propertyTypeSpec(propName, p)
 	if err != nil {
-		contract.Failf("Failed to generate type spec (prop %s): %v", propName, err)
+		contract.Failf("Failed to generate type spec (resource: %s, prop %s): %v", ctx.resourceName, propName, err)
 	}
 
 	propertySpec.TypeSpec = *typeSpec

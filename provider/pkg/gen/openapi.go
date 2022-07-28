@@ -80,19 +80,32 @@ func (o *openAPIContext) gatherResourcesFromAPI(csharpNamespaces map[string]stri
 
 			resourceType := jsonReq.Schema.Value
 			if resourceType.Type != "array" {
+				// If there is a discriminator then we should set this operation
+				// as the read endpoint for each of the types in the mapping.
 				if resourceType.Discriminator != nil {
 					for _, ref := range resourceType.Discriminator.Mapping {
 						schemaName := strings.TrimPrefix(ref, componentsSchemaRefPrefix)
 						dResource := o.doc.Components.Schemas[schemaName]
 						typeToken := fmt.Sprintf("%s:%s:%s", packageName, module, dResource.Value.Title)
 						setReadOperationMapping(typeToken)
+
+						funcName := "get" + dResource.Value.Title
+						funcTypeToken := packageName + ":" + module + ":" + funcName
+						getterFuncSpec := o.genGetter(*pathItem, *dResource, module, funcName)
+						o.pkg.Functions[funcTypeToken] = getterFuncSpec
+						setReadOperationMapping(funcTypeToken)
 					}
 				} else {
 					typeToken := fmt.Sprintf("%s:%s:%s", packageName, module, resourceType.Title)
 					setReadOperationMapping(typeToken)
+
+					funcName := "get" + resourceType.Title
+					funcTypeToken := packageName + ":" + module + ":" + funcName
+					getterFuncSpec := o.genGetter(*pathItem, *jsonReq.Schema, module, funcName)
+					o.pkg.Functions[funcTypeToken] = getterFuncSpec
+					setReadOperationMapping(funcTypeToken)
 				}
 			}
-			// TODO: We should also add this as get provider functions.
 
 			// Add the API operation as a list* function.
 			if resourceType.Type == "array" {
@@ -281,6 +294,50 @@ func (o *openAPIContext) gatherResourcesFromAPI(csharpNamespaces map[string]stri
 	}
 
 	return nil
+}
+
+func (o *openAPIContext) genGetter(pathItem openapi3.PathItem, getterSchema openapi3.SchemaRef, module, funcName string) pschema.FunctionSpec {
+	parentName := ToPascalCase(funcName)
+	funcPkgCtx := &resourceContext{
+		mod:               module,
+		pkg:               o.pkg,
+		resourceName:      "",
+		openapiComponents: o.doc.Components,
+		visitedTypes:      codegen.NewStringSet(),
+	}
+
+	requiredInputs := codegen.NewStringSet()
+	inputProps := make(map[string]pschema.PropertySpec)
+	for _, param := range pathItem.Get.Parameters {
+		if param.Value.In != "path" {
+			continue
+		}
+
+		paramName := param.Value.Name
+		inputProps[paramName] = pschema.PropertySpec{
+			Description: param.Value.Description,
+			TypeSpec:    pschema.TypeSpec{Type: "string"},
+		}
+		requiredInputs.Add(paramName)
+	}
+
+	outputPropType, _ := funcPkgCtx.propertyTypeSpec(parentName, getterSchema)
+
+	return pschema.FunctionSpec{
+		Description: pathItem.Description,
+		Inputs: &pschema.ObjectTypeSpec{
+			Properties: inputProps,
+			Required:   requiredInputs.SortedValues(),
+		},
+		Outputs: &pschema.ObjectTypeSpec{
+			Properties: map[string]pschema.PropertySpec{
+				"items": {
+					TypeSpec: *outputPropType,
+				},
+			},
+			Required: []string{"items"},
+		},
+	}
 }
 
 func (o *openAPIContext) gatherResource(

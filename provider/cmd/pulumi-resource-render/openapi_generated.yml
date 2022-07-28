@@ -1036,9 +1036,9 @@ paths:
                 mapping:
                   "static_site": "#/components/schemas/staticSite"
                   "web_service": "#/components/schemas/webService"
-                oneOf:
-                  - $ref: "#/components/schemas/staticSite"
-                  - $ref: "#/components/schemas/webService"
+              oneOf:
+                - $ref: "#/components/schemas/staticSite"
+                - $ref: "#/components/schemas/webService"
               example:
                 type: web_service
                 name: cillum ipsum
@@ -1271,9 +1271,9 @@ paths:
                   mapping:
                     "static_site": "#/components/schemas/staticSite"
                     "web_service": "#/components/schemas/webService"
-                  oneOf:
-                    - $ref: "#/components/schemas/staticSite"
-                    - $ref: "#/components/schemas/webService"
+                oneOf:
+                  - $ref: "#/components/schemas/staticSite"
+                  - $ref: "#/components/schemas/webService"
               example:
                 id: in deserunt laboris dolore
                 autoDeploy: "yes"
@@ -1658,9 +1658,9 @@ paths:
                 mapping:
                   "static_site": "#/components/schemas/staticSite"
                   "web_service": "#/components/schemas/webService"
-                oneOf:
-                  - $ref: "#/components/schemas/staticSite"
-                  - $ref: "#/components/schemas/webService"
+              oneOf:
+                - $ref: "#/components/schemas/staticSite"
+                - $ref: "#/components/schemas/webService"
       parameters:
         - name: Accept
           in: header

@@ -6,11 +6,18 @@ from enum import Enum
 
 __all__ = [
     'ClearCache',
+    'CronJobServiceDetailsEnv',
+    'CronJobServiceDetailsPlan',
+    'CronJobServiceDetailsRegion',
     'CustomDomainDomainType',
     'CustomDomainVerificationStatus',
     'DeployClearCache',
     'DomainType',
     'ServiceAutoDeploy',
+    'ServiceDetailsEnv',
+    'ServiceDetailsPlan',
+    'ServiceDetailsPullRequestPreviewsEnabled',
+    'ServiceDetailsRegion',
     'ServiceNotifyOnFail',
     'ServiceSuspended',
     'StaticSiteRouteType',
@@ -26,6 +33,32 @@ __all__ = [
 class ClearCache(str, Enum):
     DO_NOT_CLEAR = "do_not_clear"
     CLEAR = "clear"
+
+
+class CronJobServiceDetailsEnv(str, Enum):
+    DOCKER = "docker"
+    ELIXIR = "elixir"
+    GO = "go"
+    NODE = "node"
+    PYTHON = "python"
+    RUBY = "ruby"
+    RUST = "rust"
+
+
+class CronJobServiceDetailsPlan(str, Enum):
+    STARTER = "starter"
+    STARTER_PLUS = "starter_plus"
+    STANDARD = "standard"
+    STANDARD_PLUS = "standard_plus"
+    PRO = "pro"
+    PRO_PLUS = "pro_plus"
+    PRO_MAX = "pro_max"
+    PRO_ULTRA = "pro_ultra"
+
+
+class CronJobServiceDetailsRegion(str, Enum):
+    OREGON = "oregon"
+    FRANKFURT = "frankfurt"
 
 
 class CustomDomainDomainType(str, Enum):
@@ -54,6 +87,37 @@ class ServiceAutoDeploy(str, Enum):
     """
     YES = "yes"
     NO = "no"
+
+
+class ServiceDetailsEnv(str, Enum):
+    DOCKER = "docker"
+    ELIXIR = "elixir"
+    GO = "go"
+    NODE = "node"
+    PYTHON = "python"
+    RUBY = "ruby"
+    RUST = "rust"
+
+
+class ServiceDetailsPlan(str, Enum):
+    STARTER = "starter"
+    STARTER_PLUS = "starter_plus"
+    STANDARD = "standard"
+    STANDARD_PLUS = "standard_plus"
+    PRO = "pro"
+    PRO_PLUS = "pro_plus"
+    PRO_MAX = "pro_max"
+    PRO_ULTRA = "pro_ultra"
+
+
+class ServiceDetailsPullRequestPreviewsEnabled(str, Enum):
+    YES = "yes"
+    NO = "no"
+
+
+class ServiceDetailsRegion(str, Enum):
+    OREGON = "oregon"
+    FRANKFURT = "frankfurt"
 
 
 class ServiceNotifyOnFail(str, Enum):

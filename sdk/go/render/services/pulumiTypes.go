@@ -10,6 +10,47 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// A background worker service
+type BackgroundWorkerType struct {
+	// Whether to auto deploy the service or not upon git push.
+	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
+	// If left empty, this will fall back to the default branch of the repository.
+	Branch    *string `pulumi:"branch"`
+	CreatedAt *string `pulumi:"createdAt"`
+	Name      string  `pulumi:"name"`
+	// The notification setting for this service upon deployment failure.
+	NotifyOnFail *ServiceNotifyOnFail `pulumi:"notifyOnFail"`
+	// The id of the owner (user/team).
+	OwnerId string `pulumi:"ownerId"`
+	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+	Repo           string            `pulumi:"repo"`
+	ServiceDetails *ServiceDetails   `pulumi:"serviceDetails"`
+	Slug           *string           `pulumi:"slug"`
+	Suspended      *ServiceSuspended `pulumi:"suspended"`
+	Suspenders     []string          `pulumi:"suspenders"`
+	Type           *string           `pulumi:"type"`
+	UpdatedAt      *string           `pulumi:"updatedAt"`
+}
+
+// Defaults sets the appropriate defaults for BackgroundWorkerType
+func (val *BackgroundWorkerType) Defaults() *BackgroundWorkerType {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if isZero(tmp.AutoDeploy) {
+		autoDeploy_ := ServiceAutoDeploy("no")
+		tmp.AutoDeploy = &autoDeploy_
+	}
+	tmp.ServiceDetails = tmp.ServiceDetails.Defaults()
+
+	if isZero(tmp.Type) {
+		type_ := "background_worker"
+		tmp.Type = &type_
+	}
+	return &tmp
+}
+
 type Commit struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	Id        *string `pulumi:"id"`
@@ -90,6 +131,271 @@ func (o CommitPtrOutput) Message() pulumi.StringPtrOutput {
 			return nil
 		}
 		return v.Message
+	}).(pulumi.StringPtrOutput)
+}
+
+// A cron job
+type CronJobType struct {
+	// Whether to auto deploy the service or not upon git push.
+	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
+	// If left empty, this will fall back to the default branch of the repository.
+	Branch    *string `pulumi:"branch"`
+	CreatedAt *string `pulumi:"createdAt"`
+	Name      string  `pulumi:"name"`
+	// The notification setting for this service upon deployment failure.
+	NotifyOnFail *ServiceNotifyOnFail `pulumi:"notifyOnFail"`
+	// The id of the owner (user/team).
+	OwnerId string `pulumi:"ownerId"`
+	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+	Repo           string                 `pulumi:"repo"`
+	ServiceDetails *CronJobServiceDetails `pulumi:"serviceDetails"`
+	Slug           *string                `pulumi:"slug"`
+	Suspended      *ServiceSuspended      `pulumi:"suspended"`
+	Suspenders     []string               `pulumi:"suspenders"`
+	Type           *string                `pulumi:"type"`
+	UpdatedAt      *string                `pulumi:"updatedAt"`
+}
+
+// Defaults sets the appropriate defaults for CronJobType
+func (val *CronJobType) Defaults() *CronJobType {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if isZero(tmp.AutoDeploy) {
+		autoDeploy_ := ServiceAutoDeploy("no")
+		tmp.AutoDeploy = &autoDeploy_
+	}
+	tmp.ServiceDetails = tmp.ServiceDetails.Defaults()
+
+	if isZero(tmp.Type) {
+		type_ := "cron_job"
+		tmp.Type = &type_
+	}
+	return &tmp
+}
+
+type CronJobServiceDetails struct {
+	Env                CronJobServiceDetailsEnv     `pulumi:"env"`
+	EnvSpecificDetails interface{}                  `pulumi:"envSpecificDetails"`
+	Plan               *CronJobServiceDetailsPlan   `pulumi:"plan"`
+	Region             *CronJobServiceDetailsRegion `pulumi:"region"`
+	Schedule           string                       `pulumi:"schedule"`
+}
+
+// Defaults sets the appropriate defaults for CronJobServiceDetails
+func (val *CronJobServiceDetails) Defaults() *CronJobServiceDetails {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if isZero(tmp.Plan) {
+		plan_ := CronJobServiceDetailsPlan("starter")
+		tmp.Plan = &plan_
+	}
+	if isZero(tmp.Region) {
+		region_ := CronJobServiceDetailsRegion("oregon")
+		tmp.Region = &region_
+	}
+	return &tmp
+}
+
+// CronJobServiceDetailsInput is an input type that accepts CronJobServiceDetailsArgs and CronJobServiceDetailsOutput values.
+// You can construct a concrete instance of `CronJobServiceDetailsInput` via:
+//
+//          CronJobServiceDetailsArgs{...}
+type CronJobServiceDetailsInput interface {
+	pulumi.Input
+
+	ToCronJobServiceDetailsOutput() CronJobServiceDetailsOutput
+	ToCronJobServiceDetailsOutputWithContext(context.Context) CronJobServiceDetailsOutput
+}
+
+type CronJobServiceDetailsArgs struct {
+	Env                CronJobServiceDetailsEnvInput       `pulumi:"env"`
+	EnvSpecificDetails pulumi.Input                        `pulumi:"envSpecificDetails"`
+	Plan               CronJobServiceDetailsPlanPtrInput   `pulumi:"plan"`
+	Region             CronJobServiceDetailsRegionPtrInput `pulumi:"region"`
+	Schedule           pulumi.StringInput                  `pulumi:"schedule"`
+}
+
+// Defaults sets the appropriate defaults for CronJobServiceDetailsArgs
+func (val *CronJobServiceDetailsArgs) Defaults() *CronJobServiceDetailsArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if isZero(tmp.Plan) {
+		tmp.Plan = CronJobServiceDetailsPlan("starter")
+	}
+	if isZero(tmp.Region) {
+		tmp.Region = CronJobServiceDetailsRegion("oregon")
+	}
+	return &tmp
+}
+func (CronJobServiceDetailsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CronJobServiceDetails)(nil)).Elem()
+}
+
+func (i CronJobServiceDetailsArgs) ToCronJobServiceDetailsOutput() CronJobServiceDetailsOutput {
+	return i.ToCronJobServiceDetailsOutputWithContext(context.Background())
+}
+
+func (i CronJobServiceDetailsArgs) ToCronJobServiceDetailsOutputWithContext(ctx context.Context) CronJobServiceDetailsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CronJobServiceDetailsOutput)
+}
+
+func (i CronJobServiceDetailsArgs) ToCronJobServiceDetailsPtrOutput() CronJobServiceDetailsPtrOutput {
+	return i.ToCronJobServiceDetailsPtrOutputWithContext(context.Background())
+}
+
+func (i CronJobServiceDetailsArgs) ToCronJobServiceDetailsPtrOutputWithContext(ctx context.Context) CronJobServiceDetailsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CronJobServiceDetailsOutput).ToCronJobServiceDetailsPtrOutputWithContext(ctx)
+}
+
+// CronJobServiceDetailsPtrInput is an input type that accepts CronJobServiceDetailsArgs, CronJobServiceDetailsPtr and CronJobServiceDetailsPtrOutput values.
+// You can construct a concrete instance of `CronJobServiceDetailsPtrInput` via:
+//
+//          CronJobServiceDetailsArgs{...}
+//
+//  or:
+//
+//          nil
+type CronJobServiceDetailsPtrInput interface {
+	pulumi.Input
+
+	ToCronJobServiceDetailsPtrOutput() CronJobServiceDetailsPtrOutput
+	ToCronJobServiceDetailsPtrOutputWithContext(context.Context) CronJobServiceDetailsPtrOutput
+}
+
+type cronJobServiceDetailsPtrType CronJobServiceDetailsArgs
+
+func CronJobServiceDetailsPtr(v *CronJobServiceDetailsArgs) CronJobServiceDetailsPtrInput {
+	return (*cronJobServiceDetailsPtrType)(v)
+}
+
+func (*cronJobServiceDetailsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CronJobServiceDetails)(nil)).Elem()
+}
+
+func (i *cronJobServiceDetailsPtrType) ToCronJobServiceDetailsPtrOutput() CronJobServiceDetailsPtrOutput {
+	return i.ToCronJobServiceDetailsPtrOutputWithContext(context.Background())
+}
+
+func (i *cronJobServiceDetailsPtrType) ToCronJobServiceDetailsPtrOutputWithContext(ctx context.Context) CronJobServiceDetailsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CronJobServiceDetailsPtrOutput)
+}
+
+type CronJobServiceDetailsOutput struct{ *pulumi.OutputState }
+
+func (CronJobServiceDetailsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CronJobServiceDetails)(nil)).Elem()
+}
+
+func (o CronJobServiceDetailsOutput) ToCronJobServiceDetailsOutput() CronJobServiceDetailsOutput {
+	return o
+}
+
+func (o CronJobServiceDetailsOutput) ToCronJobServiceDetailsOutputWithContext(ctx context.Context) CronJobServiceDetailsOutput {
+	return o
+}
+
+func (o CronJobServiceDetailsOutput) ToCronJobServiceDetailsPtrOutput() CronJobServiceDetailsPtrOutput {
+	return o.ToCronJobServiceDetailsPtrOutputWithContext(context.Background())
+}
+
+func (o CronJobServiceDetailsOutput) ToCronJobServiceDetailsPtrOutputWithContext(ctx context.Context) CronJobServiceDetailsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CronJobServiceDetails) *CronJobServiceDetails {
+		return &v
+	}).(CronJobServiceDetailsPtrOutput)
+}
+
+func (o CronJobServiceDetailsOutput) Env() CronJobServiceDetailsEnvOutput {
+	return o.ApplyT(func(v CronJobServiceDetails) CronJobServiceDetailsEnv { return v.Env }).(CronJobServiceDetailsEnvOutput)
+}
+
+func (o CronJobServiceDetailsOutput) EnvSpecificDetails() pulumi.AnyOutput {
+	return o.ApplyT(func(v CronJobServiceDetails) interface{} { return v.EnvSpecificDetails }).(pulumi.AnyOutput)
+}
+
+func (o CronJobServiceDetailsOutput) Plan() CronJobServiceDetailsPlanPtrOutput {
+	return o.ApplyT(func(v CronJobServiceDetails) *CronJobServiceDetailsPlan { return v.Plan }).(CronJobServiceDetailsPlanPtrOutput)
+}
+
+func (o CronJobServiceDetailsOutput) Region() CronJobServiceDetailsRegionPtrOutput {
+	return o.ApplyT(func(v CronJobServiceDetails) *CronJobServiceDetailsRegion { return v.Region }).(CronJobServiceDetailsRegionPtrOutput)
+}
+
+func (o CronJobServiceDetailsOutput) Schedule() pulumi.StringOutput {
+	return o.ApplyT(func(v CronJobServiceDetails) string { return v.Schedule }).(pulumi.StringOutput)
+}
+
+type CronJobServiceDetailsPtrOutput struct{ *pulumi.OutputState }
+
+func (CronJobServiceDetailsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CronJobServiceDetails)(nil)).Elem()
+}
+
+func (o CronJobServiceDetailsPtrOutput) ToCronJobServiceDetailsPtrOutput() CronJobServiceDetailsPtrOutput {
+	return o
+}
+
+func (o CronJobServiceDetailsPtrOutput) ToCronJobServiceDetailsPtrOutputWithContext(ctx context.Context) CronJobServiceDetailsPtrOutput {
+	return o
+}
+
+func (o CronJobServiceDetailsPtrOutput) Elem() CronJobServiceDetailsOutput {
+	return o.ApplyT(func(v *CronJobServiceDetails) CronJobServiceDetails {
+		if v != nil {
+			return *v
+		}
+		var ret CronJobServiceDetails
+		return ret
+	}).(CronJobServiceDetailsOutput)
+}
+
+func (o CronJobServiceDetailsPtrOutput) Env() CronJobServiceDetailsEnvPtrOutput {
+	return o.ApplyT(func(v *CronJobServiceDetails) *CronJobServiceDetailsEnv {
+		if v == nil {
+			return nil
+		}
+		return &v.Env
+	}).(CronJobServiceDetailsEnvPtrOutput)
+}
+
+func (o CronJobServiceDetailsPtrOutput) EnvSpecificDetails() pulumi.AnyOutput {
+	return o.ApplyT(func(v *CronJobServiceDetails) interface{} {
+		if v == nil {
+			return nil
+		}
+		return v.EnvSpecificDetails
+	}).(pulumi.AnyOutput)
+}
+
+func (o CronJobServiceDetailsPtrOutput) Plan() CronJobServiceDetailsPlanPtrOutput {
+	return o.ApplyT(func(v *CronJobServiceDetails) *CronJobServiceDetailsPlan {
+		if v == nil {
+			return nil
+		}
+		return v.Plan
+	}).(CronJobServiceDetailsPlanPtrOutput)
+}
+
+func (o CronJobServiceDetailsPtrOutput) Region() CronJobServiceDetailsRegionPtrOutput {
+	return o.ApplyT(func(v *CronJobServiceDetails) *CronJobServiceDetailsRegion {
+		if v == nil {
+			return nil
+		}
+		return v.Region
+	}).(CronJobServiceDetailsRegionPtrOutput)
+}
+
+func (o CronJobServiceDetailsPtrOutput) Schedule() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CronJobServiceDetails) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Schedule
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -658,6 +964,345 @@ func (o EnvVarKeyValuePtrOutput) Value() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// A background worker service
+type GetBackgroundWorkerType struct {
+	// Whether to auto deploy the service or not upon git push.
+	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
+	// If left empty, this will fall back to the default branch of the repository.
+	Branch    *string `pulumi:"branch"`
+	CreatedAt *string `pulumi:"createdAt"`
+	Name      string  `pulumi:"name"`
+	// The notification setting for this service upon deployment failure.
+	NotifyOnFail *ServiceNotifyOnFail `pulumi:"notifyOnFail"`
+	// The id of the owner (user/team).
+	OwnerId string `pulumi:"ownerId"`
+	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+	Repo           string            `pulumi:"repo"`
+	ServiceDetails *ServiceDetails   `pulumi:"serviceDetails"`
+	Slug           *string           `pulumi:"slug"`
+	Suspended      *ServiceSuspended `pulumi:"suspended"`
+	Suspenders     []string          `pulumi:"suspenders"`
+	Type           *string           `pulumi:"type"`
+	UpdatedAt      *string           `pulumi:"updatedAt"`
+}
+
+// Defaults sets the appropriate defaults for GetBackgroundWorkerType
+func (val *GetBackgroundWorkerType) Defaults() *GetBackgroundWorkerType {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if isZero(tmp.AutoDeploy) {
+		autoDeploy_ := ServiceAutoDeploy("no")
+		tmp.AutoDeploy = &autoDeploy_
+	}
+	tmp.ServiceDetails = tmp.ServiceDetails.Defaults()
+
+	if isZero(tmp.Type) {
+		type_ := "background_worker"
+		tmp.Type = &type_
+	}
+	return &tmp
+}
+
+// A background worker service
+type GetBackgroundWorkerTypeOutput struct{ *pulumi.OutputState }
+
+func (GetBackgroundWorkerTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackgroundWorkerType)(nil)).Elem()
+}
+
+func (o GetBackgroundWorkerTypeOutput) ToGetBackgroundWorkerTypeOutput() GetBackgroundWorkerTypeOutput {
+	return o
+}
+
+func (o GetBackgroundWorkerTypeOutput) ToGetBackgroundWorkerTypeOutputWithContext(ctx context.Context) GetBackgroundWorkerTypeOutput {
+	return o
+}
+
+// Whether to auto deploy the service or not upon git push.
+func (o GetBackgroundWorkerTypeOutput) AutoDeploy() ServiceAutoDeployPtrOutput {
+	return o.ApplyT(func(v GetBackgroundWorkerType) *ServiceAutoDeploy { return v.AutoDeploy }).(ServiceAutoDeployPtrOutput)
+}
+
+// If left empty, this will fall back to the default branch of the repository.
+func (o GetBackgroundWorkerTypeOutput) Branch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetBackgroundWorkerType) *string { return v.Branch }).(pulumi.StringPtrOutput)
+}
+
+func (o GetBackgroundWorkerTypeOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetBackgroundWorkerType) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+}
+
+func (o GetBackgroundWorkerTypeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackgroundWorkerType) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The notification setting for this service upon deployment failure.
+func (o GetBackgroundWorkerTypeOutput) NotifyOnFail() ServiceNotifyOnFailPtrOutput {
+	return o.ApplyT(func(v GetBackgroundWorkerType) *ServiceNotifyOnFail { return v.NotifyOnFail }).(ServiceNotifyOnFailPtrOutput)
+}
+
+// The id of the owner (user/team).
+func (o GetBackgroundWorkerTypeOutput) OwnerId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackgroundWorkerType) string { return v.OwnerId }).(pulumi.StringOutput)
+}
+
+// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+func (o GetBackgroundWorkerTypeOutput) Repo() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackgroundWorkerType) string { return v.Repo }).(pulumi.StringOutput)
+}
+
+func (o GetBackgroundWorkerTypeOutput) ServiceDetails() ServiceDetailsPtrOutput {
+	return o.ApplyT(func(v GetBackgroundWorkerType) *ServiceDetails { return v.ServiceDetails }).(ServiceDetailsPtrOutput)
+}
+
+func (o GetBackgroundWorkerTypeOutput) Slug() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetBackgroundWorkerType) *string { return v.Slug }).(pulumi.StringPtrOutput)
+}
+
+func (o GetBackgroundWorkerTypeOutput) Suspended() ServiceSuspendedPtrOutput {
+	return o.ApplyT(func(v GetBackgroundWorkerType) *ServiceSuspended { return v.Suspended }).(ServiceSuspendedPtrOutput)
+}
+
+func (o GetBackgroundWorkerTypeOutput) Suspenders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetBackgroundWorkerType) []string { return v.Suspenders }).(pulumi.StringArrayOutput)
+}
+
+func (o GetBackgroundWorkerTypeOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetBackgroundWorkerType) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+func (o GetBackgroundWorkerTypeOutput) UpdatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetBackgroundWorkerType) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
+}
+
+// A cron job
+type GetCronJobType struct {
+	// Whether to auto deploy the service or not upon git push.
+	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
+	// If left empty, this will fall back to the default branch of the repository.
+	Branch    *string `pulumi:"branch"`
+	CreatedAt *string `pulumi:"createdAt"`
+	Name      string  `pulumi:"name"`
+	// The notification setting for this service upon deployment failure.
+	NotifyOnFail *ServiceNotifyOnFail `pulumi:"notifyOnFail"`
+	// The id of the owner (user/team).
+	OwnerId string `pulumi:"ownerId"`
+	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+	Repo           string                 `pulumi:"repo"`
+	ServiceDetails *CronJobServiceDetails `pulumi:"serviceDetails"`
+	Slug           *string                `pulumi:"slug"`
+	Suspended      *ServiceSuspended      `pulumi:"suspended"`
+	Suspenders     []string               `pulumi:"suspenders"`
+	Type           *string                `pulumi:"type"`
+	UpdatedAt      *string                `pulumi:"updatedAt"`
+}
+
+// Defaults sets the appropriate defaults for GetCronJobType
+func (val *GetCronJobType) Defaults() *GetCronJobType {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if isZero(tmp.AutoDeploy) {
+		autoDeploy_ := ServiceAutoDeploy("no")
+		tmp.AutoDeploy = &autoDeploy_
+	}
+	tmp.ServiceDetails = tmp.ServiceDetails.Defaults()
+
+	if isZero(tmp.Type) {
+		type_ := "cron_job"
+		tmp.Type = &type_
+	}
+	return &tmp
+}
+
+// A cron job
+type GetCronJobTypeOutput struct{ *pulumi.OutputState }
+
+func (GetCronJobTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCronJobType)(nil)).Elem()
+}
+
+func (o GetCronJobTypeOutput) ToGetCronJobTypeOutput() GetCronJobTypeOutput {
+	return o
+}
+
+func (o GetCronJobTypeOutput) ToGetCronJobTypeOutputWithContext(ctx context.Context) GetCronJobTypeOutput {
+	return o
+}
+
+// Whether to auto deploy the service or not upon git push.
+func (o GetCronJobTypeOutput) AutoDeploy() ServiceAutoDeployPtrOutput {
+	return o.ApplyT(func(v GetCronJobType) *ServiceAutoDeploy { return v.AutoDeploy }).(ServiceAutoDeployPtrOutput)
+}
+
+// If left empty, this will fall back to the default branch of the repository.
+func (o GetCronJobTypeOutput) Branch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetCronJobType) *string { return v.Branch }).(pulumi.StringPtrOutput)
+}
+
+func (o GetCronJobTypeOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetCronJobType) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+}
+
+func (o GetCronJobTypeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCronJobType) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The notification setting for this service upon deployment failure.
+func (o GetCronJobTypeOutput) NotifyOnFail() ServiceNotifyOnFailPtrOutput {
+	return o.ApplyT(func(v GetCronJobType) *ServiceNotifyOnFail { return v.NotifyOnFail }).(ServiceNotifyOnFailPtrOutput)
+}
+
+// The id of the owner (user/team).
+func (o GetCronJobTypeOutput) OwnerId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCronJobType) string { return v.OwnerId }).(pulumi.StringOutput)
+}
+
+// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+func (o GetCronJobTypeOutput) Repo() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCronJobType) string { return v.Repo }).(pulumi.StringOutput)
+}
+
+func (o GetCronJobTypeOutput) ServiceDetails() CronJobServiceDetailsPtrOutput {
+	return o.ApplyT(func(v GetCronJobType) *CronJobServiceDetails { return v.ServiceDetails }).(CronJobServiceDetailsPtrOutput)
+}
+
+func (o GetCronJobTypeOutput) Slug() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetCronJobType) *string { return v.Slug }).(pulumi.StringPtrOutput)
+}
+
+func (o GetCronJobTypeOutput) Suspended() ServiceSuspendedPtrOutput {
+	return o.ApplyT(func(v GetCronJobType) *ServiceSuspended { return v.Suspended }).(ServiceSuspendedPtrOutput)
+}
+
+func (o GetCronJobTypeOutput) Suspenders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetCronJobType) []string { return v.Suspenders }).(pulumi.StringArrayOutput)
+}
+
+func (o GetCronJobTypeOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetCronJobType) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+func (o GetCronJobTypeOutput) UpdatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetCronJobType) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
+}
+
+// A private service
+type GetPrivateServiceType struct {
+	// Whether to auto deploy the service or not upon git push.
+	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
+	// If left empty, this will fall back to the default branch of the repository.
+	Branch    *string `pulumi:"branch"`
+	CreatedAt *string `pulumi:"createdAt"`
+	Name      string  `pulumi:"name"`
+	// The notification setting for this service upon deployment failure.
+	NotifyOnFail *ServiceNotifyOnFail `pulumi:"notifyOnFail"`
+	// The id of the owner (user/team).
+	OwnerId string `pulumi:"ownerId"`
+	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+	Repo           string            `pulumi:"repo"`
+	ServiceDetails *ServiceDetails   `pulumi:"serviceDetails"`
+	Slug           *string           `pulumi:"slug"`
+	Suspended      *ServiceSuspended `pulumi:"suspended"`
+	Suspenders     []string          `pulumi:"suspenders"`
+	Type           *string           `pulumi:"type"`
+	UpdatedAt      *string           `pulumi:"updatedAt"`
+}
+
+// Defaults sets the appropriate defaults for GetPrivateServiceType
+func (val *GetPrivateServiceType) Defaults() *GetPrivateServiceType {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if isZero(tmp.AutoDeploy) {
+		autoDeploy_ := ServiceAutoDeploy("no")
+		tmp.AutoDeploy = &autoDeploy_
+	}
+	tmp.ServiceDetails = tmp.ServiceDetails.Defaults()
+
+	if isZero(tmp.Type) {
+		type_ := "private_service"
+		tmp.Type = &type_
+	}
+	return &tmp
+}
+
+// A private service
+type GetPrivateServiceTypeOutput struct{ *pulumi.OutputState }
+
+func (GetPrivateServiceTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPrivateServiceType)(nil)).Elem()
+}
+
+func (o GetPrivateServiceTypeOutput) ToGetPrivateServiceTypeOutput() GetPrivateServiceTypeOutput {
+	return o
+}
+
+func (o GetPrivateServiceTypeOutput) ToGetPrivateServiceTypeOutputWithContext(ctx context.Context) GetPrivateServiceTypeOutput {
+	return o
+}
+
+// Whether to auto deploy the service or not upon git push.
+func (o GetPrivateServiceTypeOutput) AutoDeploy() ServiceAutoDeployPtrOutput {
+	return o.ApplyT(func(v GetPrivateServiceType) *ServiceAutoDeploy { return v.AutoDeploy }).(ServiceAutoDeployPtrOutput)
+}
+
+// If left empty, this will fall back to the default branch of the repository.
+func (o GetPrivateServiceTypeOutput) Branch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetPrivateServiceType) *string { return v.Branch }).(pulumi.StringPtrOutput)
+}
+
+func (o GetPrivateServiceTypeOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetPrivateServiceType) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+}
+
+func (o GetPrivateServiceTypeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivateServiceType) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The notification setting for this service upon deployment failure.
+func (o GetPrivateServiceTypeOutput) NotifyOnFail() ServiceNotifyOnFailPtrOutput {
+	return o.ApplyT(func(v GetPrivateServiceType) *ServiceNotifyOnFail { return v.NotifyOnFail }).(ServiceNotifyOnFailPtrOutput)
+}
+
+// The id of the owner (user/team).
+func (o GetPrivateServiceTypeOutput) OwnerId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivateServiceType) string { return v.OwnerId }).(pulumi.StringOutput)
+}
+
+// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+func (o GetPrivateServiceTypeOutput) Repo() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivateServiceType) string { return v.Repo }).(pulumi.StringOutput)
+}
+
+func (o GetPrivateServiceTypeOutput) ServiceDetails() ServiceDetailsPtrOutput {
+	return o.ApplyT(func(v GetPrivateServiceType) *ServiceDetails { return v.ServiceDetails }).(ServiceDetailsPtrOutput)
+}
+
+func (o GetPrivateServiceTypeOutput) Slug() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetPrivateServiceType) *string { return v.Slug }).(pulumi.StringPtrOutput)
+}
+
+func (o GetPrivateServiceTypeOutput) Suspended() ServiceSuspendedPtrOutput {
+	return o.ApplyT(func(v GetPrivateServiceType) *ServiceSuspended { return v.Suspended }).(ServiceSuspendedPtrOutput)
+}
+
+func (o GetPrivateServiceTypeOutput) Suspenders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetPrivateServiceType) []string { return v.Suspenders }).(pulumi.StringArrayOutput)
+}
+
+func (o GetPrivateServiceTypeOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetPrivateServiceType) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+func (o GetPrivateServiceTypeOutput) UpdatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetPrivateServiceType) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
+}
+
 // A static website service
 type GetStaticSiteType struct {
 	// Whether to auto deploy the service or not upon git push.
@@ -1144,6 +1789,47 @@ type NativeEnvironmentDetails struct {
 	StartCommand string `pulumi:"startCommand"`
 }
 
+// A private service
+type PrivateServiceType struct {
+	// Whether to auto deploy the service or not upon git push.
+	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
+	// If left empty, this will fall back to the default branch of the repository.
+	Branch    *string `pulumi:"branch"`
+	CreatedAt *string `pulumi:"createdAt"`
+	Name      string  `pulumi:"name"`
+	// The notification setting for this service upon deployment failure.
+	NotifyOnFail *ServiceNotifyOnFail `pulumi:"notifyOnFail"`
+	// The id of the owner (user/team).
+	OwnerId string `pulumi:"ownerId"`
+	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+	Repo           string            `pulumi:"repo"`
+	ServiceDetails *ServiceDetails   `pulumi:"serviceDetails"`
+	Slug           *string           `pulumi:"slug"`
+	Suspended      *ServiceSuspended `pulumi:"suspended"`
+	Suspenders     []string          `pulumi:"suspenders"`
+	Type           *string           `pulumi:"type"`
+	UpdatedAt      *string           `pulumi:"updatedAt"`
+}
+
+// Defaults sets the appropriate defaults for PrivateServiceType
+func (val *PrivateServiceType) Defaults() *PrivateServiceType {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if isZero(tmp.AutoDeploy) {
+		autoDeploy_ := ServiceAutoDeploy("no")
+		tmp.AutoDeploy = &autoDeploy_
+	}
+	tmp.ServiceDetails = tmp.ServiceDetails.Defaults()
+
+	if isZero(tmp.Type) {
+		type_ := "private_service"
+		tmp.Type = &type_
+	}
+	return &tmp
+}
+
 type ServerProperties struct {
 	Id   *string `pulumi:"id"`
 	Name *string `pulumi:"name"`
@@ -1197,6 +1883,277 @@ func (o ServerPropertiesOutput) Id() pulumi.StringPtrOutput {
 
 func (o ServerPropertiesOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerProperties) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type ServiceDetails struct {
+	Disk                       *Disk                                     `pulumi:"disk"`
+	Env                        ServiceDetailsEnv                         `pulumi:"env"`
+	EnvSpecificDetails         interface{}                               `pulumi:"envSpecificDetails"`
+	NumInstances               *float64                                  `pulumi:"numInstances"`
+	Plan                       *ServiceDetailsPlan                       `pulumi:"plan"`
+	PullRequestPreviewsEnabled *ServiceDetailsPullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
+	Region                     *ServiceDetailsRegion                     `pulumi:"region"`
+}
+
+// Defaults sets the appropriate defaults for ServiceDetails
+func (val *ServiceDetails) Defaults() *ServiceDetails {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	tmp.Disk = tmp.Disk.Defaults()
+
+	if isZero(tmp.NumInstances) {
+		numInstances_ := 1.0
+		tmp.NumInstances = &numInstances_
+	}
+	if isZero(tmp.Plan) {
+		plan_ := ServiceDetailsPlan("starter")
+		tmp.Plan = &plan_
+	}
+	if isZero(tmp.PullRequestPreviewsEnabled) {
+		pullRequestPreviewsEnabled_ := ServiceDetailsPullRequestPreviewsEnabled("no")
+		tmp.PullRequestPreviewsEnabled = &pullRequestPreviewsEnabled_
+	}
+	if isZero(tmp.Region) {
+		region_ := ServiceDetailsRegion("oregon")
+		tmp.Region = &region_
+	}
+	return &tmp
+}
+
+// ServiceDetailsInput is an input type that accepts ServiceDetailsArgs and ServiceDetailsOutput values.
+// You can construct a concrete instance of `ServiceDetailsInput` via:
+//
+//          ServiceDetailsArgs{...}
+type ServiceDetailsInput interface {
+	pulumi.Input
+
+	ToServiceDetailsOutput() ServiceDetailsOutput
+	ToServiceDetailsOutputWithContext(context.Context) ServiceDetailsOutput
+}
+
+type ServiceDetailsArgs struct {
+	Disk                       DiskPtrInput                                     `pulumi:"disk"`
+	Env                        ServiceDetailsEnvInput                           `pulumi:"env"`
+	EnvSpecificDetails         pulumi.Input                                     `pulumi:"envSpecificDetails"`
+	NumInstances               pulumi.Float64PtrInput                           `pulumi:"numInstances"`
+	Plan                       ServiceDetailsPlanPtrInput                       `pulumi:"plan"`
+	PullRequestPreviewsEnabled ServiceDetailsPullRequestPreviewsEnabledPtrInput `pulumi:"pullRequestPreviewsEnabled"`
+	Region                     ServiceDetailsRegionPtrInput                     `pulumi:"region"`
+}
+
+// Defaults sets the appropriate defaults for ServiceDetailsArgs
+func (val *ServiceDetailsArgs) Defaults() *ServiceDetailsArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+
+	if isZero(tmp.NumInstances) {
+		tmp.NumInstances = pulumi.Float64Ptr(1.0)
+	}
+	if isZero(tmp.Plan) {
+		tmp.Plan = ServiceDetailsPlan("starter")
+	}
+	if isZero(tmp.PullRequestPreviewsEnabled) {
+		tmp.PullRequestPreviewsEnabled = ServiceDetailsPullRequestPreviewsEnabled("no")
+	}
+	if isZero(tmp.Region) {
+		tmp.Region = ServiceDetailsRegion("oregon")
+	}
+	return &tmp
+}
+func (ServiceDetailsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceDetails)(nil)).Elem()
+}
+
+func (i ServiceDetailsArgs) ToServiceDetailsOutput() ServiceDetailsOutput {
+	return i.ToServiceDetailsOutputWithContext(context.Background())
+}
+
+func (i ServiceDetailsArgs) ToServiceDetailsOutputWithContext(ctx context.Context) ServiceDetailsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceDetailsOutput)
+}
+
+func (i ServiceDetailsArgs) ToServiceDetailsPtrOutput() ServiceDetailsPtrOutput {
+	return i.ToServiceDetailsPtrOutputWithContext(context.Background())
+}
+
+func (i ServiceDetailsArgs) ToServiceDetailsPtrOutputWithContext(ctx context.Context) ServiceDetailsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceDetailsOutput).ToServiceDetailsPtrOutputWithContext(ctx)
+}
+
+// ServiceDetailsPtrInput is an input type that accepts ServiceDetailsArgs, ServiceDetailsPtr and ServiceDetailsPtrOutput values.
+// You can construct a concrete instance of `ServiceDetailsPtrInput` via:
+//
+//          ServiceDetailsArgs{...}
+//
+//  or:
+//
+//          nil
+type ServiceDetailsPtrInput interface {
+	pulumi.Input
+
+	ToServiceDetailsPtrOutput() ServiceDetailsPtrOutput
+	ToServiceDetailsPtrOutputWithContext(context.Context) ServiceDetailsPtrOutput
+}
+
+type serviceDetailsPtrType ServiceDetailsArgs
+
+func ServiceDetailsPtr(v *ServiceDetailsArgs) ServiceDetailsPtrInput {
+	return (*serviceDetailsPtrType)(v)
+}
+
+func (*serviceDetailsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceDetails)(nil)).Elem()
+}
+
+func (i *serviceDetailsPtrType) ToServiceDetailsPtrOutput() ServiceDetailsPtrOutput {
+	return i.ToServiceDetailsPtrOutputWithContext(context.Background())
+}
+
+func (i *serviceDetailsPtrType) ToServiceDetailsPtrOutputWithContext(ctx context.Context) ServiceDetailsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceDetailsPtrOutput)
+}
+
+type ServiceDetailsOutput struct{ *pulumi.OutputState }
+
+func (ServiceDetailsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceDetails)(nil)).Elem()
+}
+
+func (o ServiceDetailsOutput) ToServiceDetailsOutput() ServiceDetailsOutput {
+	return o
+}
+
+func (o ServiceDetailsOutput) ToServiceDetailsOutputWithContext(ctx context.Context) ServiceDetailsOutput {
+	return o
+}
+
+func (o ServiceDetailsOutput) ToServiceDetailsPtrOutput() ServiceDetailsPtrOutput {
+	return o.ToServiceDetailsPtrOutputWithContext(context.Background())
+}
+
+func (o ServiceDetailsOutput) ToServiceDetailsPtrOutputWithContext(ctx context.Context) ServiceDetailsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ServiceDetails) *ServiceDetails {
+		return &v
+	}).(ServiceDetailsPtrOutput)
+}
+
+func (o ServiceDetailsOutput) Disk() DiskPtrOutput {
+	return o.ApplyT(func(v ServiceDetails) *Disk { return v.Disk }).(DiskPtrOutput)
+}
+
+func (o ServiceDetailsOutput) Env() ServiceDetailsEnvOutput {
+	return o.ApplyT(func(v ServiceDetails) ServiceDetailsEnv { return v.Env }).(ServiceDetailsEnvOutput)
+}
+
+func (o ServiceDetailsOutput) EnvSpecificDetails() pulumi.AnyOutput {
+	return o.ApplyT(func(v ServiceDetails) interface{} { return v.EnvSpecificDetails }).(pulumi.AnyOutput)
+}
+
+func (o ServiceDetailsOutput) NumInstances() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ServiceDetails) *float64 { return v.NumInstances }).(pulumi.Float64PtrOutput)
+}
+
+func (o ServiceDetailsOutput) Plan() ServiceDetailsPlanPtrOutput {
+	return o.ApplyT(func(v ServiceDetails) *ServiceDetailsPlan { return v.Plan }).(ServiceDetailsPlanPtrOutput)
+}
+
+func (o ServiceDetailsOutput) PullRequestPreviewsEnabled() ServiceDetailsPullRequestPreviewsEnabledPtrOutput {
+	return o.ApplyT(func(v ServiceDetails) *ServiceDetailsPullRequestPreviewsEnabled { return v.PullRequestPreviewsEnabled }).(ServiceDetailsPullRequestPreviewsEnabledPtrOutput)
+}
+
+func (o ServiceDetailsOutput) Region() ServiceDetailsRegionPtrOutput {
+	return o.ApplyT(func(v ServiceDetails) *ServiceDetailsRegion { return v.Region }).(ServiceDetailsRegionPtrOutput)
+}
+
+type ServiceDetailsPtrOutput struct{ *pulumi.OutputState }
+
+func (ServiceDetailsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceDetails)(nil)).Elem()
+}
+
+func (o ServiceDetailsPtrOutput) ToServiceDetailsPtrOutput() ServiceDetailsPtrOutput {
+	return o
+}
+
+func (o ServiceDetailsPtrOutput) ToServiceDetailsPtrOutputWithContext(ctx context.Context) ServiceDetailsPtrOutput {
+	return o
+}
+
+func (o ServiceDetailsPtrOutput) Elem() ServiceDetailsOutput {
+	return o.ApplyT(func(v *ServiceDetails) ServiceDetails {
+		if v != nil {
+			return *v
+		}
+		var ret ServiceDetails
+		return ret
+	}).(ServiceDetailsOutput)
+}
+
+func (o ServiceDetailsPtrOutput) Disk() DiskPtrOutput {
+	return o.ApplyT(func(v *ServiceDetails) *Disk {
+		if v == nil {
+			return nil
+		}
+		return v.Disk
+	}).(DiskPtrOutput)
+}
+
+func (o ServiceDetailsPtrOutput) Env() ServiceDetailsEnvPtrOutput {
+	return o.ApplyT(func(v *ServiceDetails) *ServiceDetailsEnv {
+		if v == nil {
+			return nil
+		}
+		return &v.Env
+	}).(ServiceDetailsEnvPtrOutput)
+}
+
+func (o ServiceDetailsPtrOutput) EnvSpecificDetails() pulumi.AnyOutput {
+	return o.ApplyT(func(v *ServiceDetails) interface{} {
+		if v == nil {
+			return nil
+		}
+		return v.EnvSpecificDetails
+	}).(pulumi.AnyOutput)
+}
+
+func (o ServiceDetailsPtrOutput) NumInstances() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ServiceDetails) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.NumInstances
+	}).(pulumi.Float64PtrOutput)
+}
+
+func (o ServiceDetailsPtrOutput) Plan() ServiceDetailsPlanPtrOutput {
+	return o.ApplyT(func(v *ServiceDetails) *ServiceDetailsPlan {
+		if v == nil {
+			return nil
+		}
+		return v.Plan
+	}).(ServiceDetailsPlanPtrOutput)
+}
+
+func (o ServiceDetailsPtrOutput) PullRequestPreviewsEnabled() ServiceDetailsPullRequestPreviewsEnabledPtrOutput {
+	return o.ApplyT(func(v *ServiceDetails) *ServiceDetailsPullRequestPreviewsEnabled {
+		if v == nil {
+			return nil
+		}
+		return v.PullRequestPreviewsEnabled
+	}).(ServiceDetailsPullRequestPreviewsEnabledPtrOutput)
+}
+
+func (o ServiceDetailsPtrOutput) Region() ServiceDetailsRegionPtrOutput {
+	return o.ApplyT(func(v *ServiceDetails) *ServiceDetailsRegion {
+		if v == nil {
+			return nil
+		}
+		return v.Region
+	}).(ServiceDetailsRegionPtrOutput)
 }
 
 // A service header object
@@ -2300,9 +3257,13 @@ func (o WebServiceServiceDetailsPtrOutput) Region() WebServiceServiceDetailsRegi
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*CronJobServiceDetailsInput)(nil)).Elem(), CronJobServiceDetailsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CronJobServiceDetailsPtrInput)(nil)).Elem(), CronJobServiceDetailsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DiskInput)(nil)).Elem(), DiskArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DiskPtrInput)(nil)).Elem(), DiskArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerPropertiesInput)(nil)).Elem(), ServerPropertiesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceDetailsInput)(nil)).Elem(), ServiceDetailsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceDetailsPtrInput)(nil)).Elem(), ServiceDetailsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceHeaderInput)(nil)).Elem(), ServiceHeaderArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceHeaderArrayInput)(nil)).Elem(), ServiceHeaderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteRouteInput)(nil)).Elem(), StaticSiteRouteArgs{})
@@ -2315,6 +3276,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceServiceDetailsPtrInput)(nil)).Elem(), WebServiceServiceDetailsArgs{})
 	pulumi.RegisterOutputType(CommitOutput{})
 	pulumi.RegisterOutputType(CommitPtrOutput{})
+	pulumi.RegisterOutputType(CronJobServiceDetailsOutput{})
+	pulumi.RegisterOutputType(CronJobServiceDetailsPtrOutput{})
 	pulumi.RegisterOutputType(CustomDomainTypeOutput{})
 	pulumi.RegisterOutputType(CustomDomainTypePtrOutput{})
 	pulumi.RegisterOutputType(CustomDomainServerPropertiesOutput{})
@@ -2325,6 +3288,9 @@ func init() {
 	pulumi.RegisterOutputType(DiskPtrOutput{})
 	pulumi.RegisterOutputType(EnvVarKeyValueOutput{})
 	pulumi.RegisterOutputType(EnvVarKeyValuePtrOutput{})
+	pulumi.RegisterOutputType(GetBackgroundWorkerTypeOutput{})
+	pulumi.RegisterOutputType(GetCronJobTypeOutput{})
+	pulumi.RegisterOutputType(GetPrivateServiceTypeOutput{})
 	pulumi.RegisterOutputType(GetStaticSiteTypeOutput{})
 	pulumi.RegisterOutputType(GetWebServiceTypeOutput{})
 	pulumi.RegisterOutputType(ListCustomDomainsResponseOutput{})
@@ -2338,6 +3304,8 @@ func init() {
 	pulumi.RegisterOutputType(ListStaticSiteRoutesResponseOutput{})
 	pulumi.RegisterOutputType(ListStaticSiteRoutesResponseArrayOutput{})
 	pulumi.RegisterOutputType(ServerPropertiesOutput{})
+	pulumi.RegisterOutputType(ServiceDetailsOutput{})
+	pulumi.RegisterOutputType(ServiceDetailsPtrOutput{})
 	pulumi.RegisterOutputType(ServiceHeaderOutput{})
 	pulumi.RegisterOutputType(ServiceHeaderPtrOutput{})
 	pulumi.RegisterOutputType(ServiceHeaderArrayOutput{})

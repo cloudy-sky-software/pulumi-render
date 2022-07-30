@@ -10,6 +10,24 @@ export namespace owners {
 }
 
 export namespace services {
+    export interface CronJobServiceDetailsArgs {
+        env: pulumi.Input<enums.services.CronJobServiceDetailsEnv>;
+        envSpecificDetails?: pulumi.Input<inputs.services.DockerDetailsArgs | inputs.services.NativeEnvironmentDetailsArgs>;
+        plan?: pulumi.Input<enums.services.CronJobServiceDetailsPlan>;
+        region?: pulumi.Input<enums.services.CronJobServiceDetailsRegion>;
+        schedule: pulumi.Input<string>;
+    }
+    /**
+     * cronJobServiceDetailsArgsProvideDefaults sets the appropriate defaults for CronJobServiceDetailsArgs
+     */
+    export function cronJobServiceDetailsArgsProvideDefaults(val: CronJobServiceDetailsArgs): CronJobServiceDetailsArgs {
+        return {
+            ...val,
+            plan: (val.plan) ?? "starter",
+            region: (val.region) ?? "oregon",
+        };
+    }
+
     export interface DiskArgs {
         mountPath: pulumi.Input<string>;
         name: pulumi.Input<string>;
@@ -48,6 +66,29 @@ export namespace services {
     export interface ServerPropertiesArgs {
         id?: pulumi.Input<string>;
         name?: pulumi.Input<string>;
+    }
+
+    export interface ServiceDetailsArgs {
+        disk?: pulumi.Input<inputs.services.DiskArgs>;
+        env: pulumi.Input<enums.services.ServiceDetailsEnv>;
+        envSpecificDetails?: pulumi.Input<inputs.services.DockerDetailsArgs | inputs.services.NativeEnvironmentDetailsArgs>;
+        numInstances?: pulumi.Input<number>;
+        plan?: pulumi.Input<enums.services.ServiceDetailsPlan>;
+        pullRequestPreviewsEnabled?: pulumi.Input<enums.services.ServiceDetailsPullRequestPreviewsEnabled>;
+        region?: pulumi.Input<enums.services.ServiceDetailsRegion>;
+    }
+    /**
+     * serviceDetailsArgsProvideDefaults sets the appropriate defaults for ServiceDetailsArgs
+     */
+    export function serviceDetailsArgsProvideDefaults(val: ServiceDetailsArgs): ServiceDetailsArgs {
+        return {
+            ...val,
+            disk: (val.disk ? pulumi.output(val.disk).apply(inputs.services.diskArgsProvideDefaults) : undefined),
+            numInstances: (val.numInstances) ?? 1,
+            plan: (val.plan) ?? "starter",
+            pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
+            region: (val.region) ?? "oregon",
+        };
     }
 
     /**

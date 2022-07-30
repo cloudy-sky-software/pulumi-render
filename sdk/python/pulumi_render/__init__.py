@@ -28,8 +28,11 @@ _utilities.register(
   "mod": "services",
   "fqn": "pulumi_render.services",
   "classes": {
+   "render:services:BackgroundWorker": "BackgroundWorker",
+   "render:services:CronJob": "CronJob",
    "render:services:CustomDomain": "CustomDomain",
    "render:services:Deploy": "Deploy",
+   "render:services:PrivateService": "PrivateService",
    "render:services:Scale": "Scale",
    "render:services:StaticSite": "StaticSite",
    "render:services:Suspend": "Suspend",

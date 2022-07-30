@@ -5,10 +5,15 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export * from "./backgroundWorker";
+export * from "./cronJob";
 export * from "./customDomain";
 export * from "./deploy";
+export * from "./getBackgroundWorker";
+export * from "./getCronJob";
 export * from "./getCustomDomain";
 export * from "./getDeploy";
+export * from "./getPrivateService";
 export * from "./getStaticSite";
 export * from "./getWebService";
 export * from "./listCustomDomains";
@@ -17,6 +22,7 @@ export * from "./listEnvVars";
 export * from "./listServiceHeaders";
 export * from "./listServices";
 export * from "./listStaticSiteRoutes";
+export * from "./privateService";
 export * from "./scale";
 export * from "./staticSite";
 export * from "./suspend";
@@ -26,8 +32,11 @@ export * from "./webService";
 export * from "../types/enums/services";
 
 // Import resources to register:
+import { BackgroundWorker } from "./backgroundWorker";
+import { CronJob } from "./cronJob";
 import { CustomDomain } from "./customDomain";
 import { Deploy } from "./deploy";
+import { PrivateService } from "./privateService";
 import { Scale } from "./scale";
 import { StaticSite } from "./staticSite";
 import { Suspend } from "./suspend";
@@ -37,10 +46,16 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "render:services:BackgroundWorker":
+                return new BackgroundWorker(name, <any>undefined, { urn })
+            case "render:services:CronJob":
+                return new CronJob(name, <any>undefined, { urn })
             case "render:services:CustomDomain":
                 return new CustomDomain(name, <any>undefined, { urn })
             case "render:services:Deploy":
                 return new Deploy(name, <any>undefined, { urn })
+            case "render:services:PrivateService":
+                return new PrivateService(name, <any>undefined, { urn })
             case "render:services:Scale":
                 return new Scale(name, <any>undefined, { urn })
             case "render:services:StaticSite":

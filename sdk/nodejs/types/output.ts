@@ -40,10 +40,118 @@ export namespace owners {
 }
 
 export namespace services {
+    /**
+     * A background worker service
+     */
+    export interface BackgroundWorker {
+        /**
+         * Whether to auto deploy the service or not upon git push.
+         */
+        autoDeploy?: enums.services.ServiceAutoDeploy;
+        /**
+         * If left empty, this will fall back to the default branch of the repository.
+         */
+        branch?: string;
+        createdAt?: string;
+        name: string;
+        /**
+         * The notification setting for this service upon deployment failure.
+         */
+        notifyOnFail?: enums.services.ServiceNotifyOnFail;
+        /**
+         * The id of the owner (user/team).
+         */
+        ownerId: string;
+        /**
+         * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+         */
+        repo: string;
+        serviceDetails?: outputs.services.ServiceDetails;
+        slug?: string;
+        suspended?: enums.services.ServiceSuspended;
+        suspenders?: string[];
+        type?: string;
+        updatedAt?: string;
+    }
+    /**
+     * backgroundWorkerProvideDefaults sets the appropriate defaults for BackgroundWorker
+     */
+    export function backgroundWorkerProvideDefaults(val: BackgroundWorker): BackgroundWorker {
+        return {
+            ...val,
+            autoDeploy: (val.autoDeploy) ?? "no",
+            serviceDetails: (val.serviceDetails ? outputs.services.serviceDetailsProvideDefaults(val.serviceDetails) : undefined),
+            type: (val.type) ?? "background_worker",
+        };
+    }
+
     export interface Commit {
         createdAt?: string;
         id?: string;
         message?: string;
+    }
+
+    /**
+     * A cron job
+     */
+    export interface CronJob {
+        /**
+         * Whether to auto deploy the service or not upon git push.
+         */
+        autoDeploy?: enums.services.ServiceAutoDeploy;
+        /**
+         * If left empty, this will fall back to the default branch of the repository.
+         */
+        branch?: string;
+        createdAt?: string;
+        name: string;
+        /**
+         * The notification setting for this service upon deployment failure.
+         */
+        notifyOnFail?: enums.services.ServiceNotifyOnFail;
+        /**
+         * The id of the owner (user/team).
+         */
+        ownerId: string;
+        /**
+         * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+         */
+        repo: string;
+        serviceDetails?: outputs.services.CronJobServiceDetails;
+        slug?: string;
+        suspended?: enums.services.ServiceSuspended;
+        suspenders?: string[];
+        type?: string;
+        updatedAt?: string;
+    }
+    /**
+     * cronJobProvideDefaults sets the appropriate defaults for CronJob
+     */
+    export function cronJobProvideDefaults(val: CronJob): CronJob {
+        return {
+            ...val,
+            autoDeploy: (val.autoDeploy) ?? "no",
+            serviceDetails: (val.serviceDetails ? outputs.services.cronJobServiceDetailsProvideDefaults(val.serviceDetails) : undefined),
+            type: (val.type) ?? "cron_job",
+        };
+    }
+
+    export interface CronJobServiceDetails {
+        env: enums.services.CronJobServiceDetailsEnv;
+        envSpecificDetails?: outputs.services.DockerDetails | outputs.services.NativeEnvironmentDetails;
+        plan?: enums.services.CronJobServiceDetailsPlan;
+        region?: enums.services.CronJobServiceDetailsRegion;
+        schedule: string;
+    }
+    /**
+     * cronJobServiceDetailsProvideDefaults sets the appropriate defaults for CronJobServiceDetails
+     */
+    export function cronJobServiceDetailsProvideDefaults(val: CronJobServiceDetails): CronJobServiceDetails {
+        return {
+            ...val,
+            plan: (val.plan) ?? "starter",
+            region: (val.region) ?? "oregon",
+        };
     }
 
     export interface CustomDomain {
@@ -108,6 +216,141 @@ export namespace services {
     export interface EnvVarKeyValue {
         key: string;
         value: string;
+    }
+
+    /**
+     * A background worker service
+     */
+    export interface GetBackgroundWorker {
+        /**
+         * Whether to auto deploy the service or not upon git push.
+         */
+        autoDeploy?: enums.services.ServiceAutoDeploy;
+        /**
+         * If left empty, this will fall back to the default branch of the repository.
+         */
+        branch?: string;
+        createdAt?: string;
+        name: string;
+        /**
+         * The notification setting for this service upon deployment failure.
+         */
+        notifyOnFail?: enums.services.ServiceNotifyOnFail;
+        /**
+         * The id of the owner (user/team).
+         */
+        ownerId: string;
+        /**
+         * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+         */
+        repo: string;
+        serviceDetails?: outputs.services.ServiceDetails;
+        slug?: string;
+        suspended?: enums.services.ServiceSuspended;
+        suspenders?: string[];
+        type?: string;
+        updatedAt?: string;
+    }
+    /**
+     * getBackgroundWorkerProvideDefaults sets the appropriate defaults for GetBackgroundWorker
+     */
+    export function getBackgroundWorkerProvideDefaults(val: GetBackgroundWorker): GetBackgroundWorker {
+        return {
+            ...val,
+            autoDeploy: (val.autoDeploy) ?? "no",
+            serviceDetails: (val.serviceDetails ? outputs.services.serviceDetailsProvideDefaults(val.serviceDetails) : undefined),
+            type: (val.type) ?? "background_worker",
+        };
+    }
+
+    /**
+     * A cron job
+     */
+    export interface GetCronJob {
+        /**
+         * Whether to auto deploy the service or not upon git push.
+         */
+        autoDeploy?: enums.services.ServiceAutoDeploy;
+        /**
+         * If left empty, this will fall back to the default branch of the repository.
+         */
+        branch?: string;
+        createdAt?: string;
+        name: string;
+        /**
+         * The notification setting for this service upon deployment failure.
+         */
+        notifyOnFail?: enums.services.ServiceNotifyOnFail;
+        /**
+         * The id of the owner (user/team).
+         */
+        ownerId: string;
+        /**
+         * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+         */
+        repo: string;
+        serviceDetails?: outputs.services.CronJobServiceDetails;
+        slug?: string;
+        suspended?: enums.services.ServiceSuspended;
+        suspenders?: string[];
+        type?: string;
+        updatedAt?: string;
+    }
+    /**
+     * getCronJobProvideDefaults sets the appropriate defaults for GetCronJob
+     */
+    export function getCronJobProvideDefaults(val: GetCronJob): GetCronJob {
+        return {
+            ...val,
+            autoDeploy: (val.autoDeploy) ?? "no",
+            serviceDetails: (val.serviceDetails ? outputs.services.cronJobServiceDetailsProvideDefaults(val.serviceDetails) : undefined),
+            type: (val.type) ?? "cron_job",
+        };
+    }
+
+    /**
+     * A private service
+     */
+    export interface GetPrivateService {
+        /**
+         * Whether to auto deploy the service or not upon git push.
+         */
+        autoDeploy?: enums.services.ServiceAutoDeploy;
+        /**
+         * If left empty, this will fall back to the default branch of the repository.
+         */
+        branch?: string;
+        createdAt?: string;
+        name: string;
+        /**
+         * The notification setting for this service upon deployment failure.
+         */
+        notifyOnFail?: enums.services.ServiceNotifyOnFail;
+        /**
+         * The id of the owner (user/team).
+         */
+        ownerId: string;
+        /**
+         * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+         */
+        repo: string;
+        serviceDetails?: outputs.services.ServiceDetails;
+        slug?: string;
+        suspended?: enums.services.ServiceSuspended;
+        suspenders?: string[];
+        type?: string;
+        updatedAt?: string;
+    }
+    /**
+     * getPrivateServiceProvideDefaults sets the appropriate defaults for GetPrivateService
+     */
+    export function getPrivateServiceProvideDefaults(val: GetPrivateService): GetPrivateService {
+        return {
+            ...val,
+            autoDeploy: (val.autoDeploy) ?? "no",
+            serviceDetails: (val.serviceDetails ? outputs.services.serviceDetailsProvideDefaults(val.serviceDetails) : undefined),
+            type: (val.type) ?? "private_service",
+        };
     }
 
     /**
@@ -234,7 +477,7 @@ export namespace services {
 
     export interface ListServiceResponse {
         cursor?: string;
-        service?: outputs.services.StaticSite | outputs.services.WebService;
+        service?: outputs.services.StaticSite | outputs.services.WebService | outputs.services.PrivateService | outputs.services.BackgroundWorker | outputs.services.CronJob;
     }
 
     export interface ListStaticSiteRoutesResponse {
@@ -250,9 +493,77 @@ export namespace services {
         startCommand: string;
     }
 
+    /**
+     * A private service
+     */
+    export interface PrivateService {
+        /**
+         * Whether to auto deploy the service or not upon git push.
+         */
+        autoDeploy?: enums.services.ServiceAutoDeploy;
+        /**
+         * If left empty, this will fall back to the default branch of the repository.
+         */
+        branch?: string;
+        createdAt?: string;
+        name: string;
+        /**
+         * The notification setting for this service upon deployment failure.
+         */
+        notifyOnFail?: enums.services.ServiceNotifyOnFail;
+        /**
+         * The id of the owner (user/team).
+         */
+        ownerId: string;
+        /**
+         * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+         */
+        repo: string;
+        serviceDetails?: outputs.services.ServiceDetails;
+        slug?: string;
+        suspended?: enums.services.ServiceSuspended;
+        suspenders?: string[];
+        type?: string;
+        updatedAt?: string;
+    }
+    /**
+     * privateServiceProvideDefaults sets the appropriate defaults for PrivateService
+     */
+    export function privateServiceProvideDefaults(val: PrivateService): PrivateService {
+        return {
+            ...val,
+            autoDeploy: (val.autoDeploy) ?? "no",
+            serviceDetails: (val.serviceDetails ? outputs.services.serviceDetailsProvideDefaults(val.serviceDetails) : undefined),
+            type: (val.type) ?? "private_service",
+        };
+    }
+
     export interface ServerProperties {
         id?: string;
         name?: string;
+    }
+
+    export interface ServiceDetails {
+        disk?: outputs.services.Disk;
+        env: enums.services.ServiceDetailsEnv;
+        envSpecificDetails?: outputs.services.DockerDetails | outputs.services.NativeEnvironmentDetails;
+        numInstances?: number;
+        plan?: enums.services.ServiceDetailsPlan;
+        pullRequestPreviewsEnabled?: enums.services.ServiceDetailsPullRequestPreviewsEnabled;
+        region?: enums.services.ServiceDetailsRegion;
+    }
+    /**
+     * serviceDetailsProvideDefaults sets the appropriate defaults for ServiceDetails
+     */
+    export function serviceDetailsProvideDefaults(val: ServiceDetails): ServiceDetails {
+        return {
+            ...val,
+            disk: (val.disk ? outputs.services.diskProvideDefaults(val.disk) : undefined),
+            numInstances: (val.numInstances) ?? 1,
+            plan: (val.plan) ?? "starter",
+            pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
+            region: (val.region) ?? "oregon",
+        };
     }
 
     /**

@@ -21,10 +21,16 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "render:services:BackgroundWorker":
+		r = &BackgroundWorker{}
+	case "render:services:CronJob":
+		r = &CronJob{}
 	case "render:services:CustomDomain":
 		r = &CustomDomain{}
 	case "render:services:Deploy":
 		r = &Deploy{}
+	case "render:services:PrivateService":
+		r = &PrivateService{}
 	case "render:services:Scale":
 		r = &Scale{}
 	case "render:services:StaticSite":

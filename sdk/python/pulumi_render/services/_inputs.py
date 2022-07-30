@@ -11,16 +11,85 @@ from .. import _utilities
 from ._enums import *
 
 __all__ = [
+    'CronJobServiceDetailsArgs',
     'DiskArgs',
     'DockerDetailsArgs',
     'NativeEnvironmentDetailsArgs',
     'ServerPropertiesArgs',
+    'ServiceDetailsArgs',
     'ServiceHeaderArgs',
     'StaticSiteRouteArgs',
     'StaticSiteServiceDetailsParentServerPropertiesArgs',
     'StaticSiteServiceDetailsArgs',
     'WebServiceServiceDetailsArgs',
 ]
+
+@pulumi.input_type
+class CronJobServiceDetailsArgs:
+    def __init__(__self__, *,
+                 env: pulumi.Input['CronJobServiceDetailsEnv'],
+                 schedule: pulumi.Input[str],
+                 env_specific_details: Optional[pulumi.Input[Union['DockerDetailsArgs', 'NativeEnvironmentDetailsArgs']]] = None,
+                 plan: Optional[pulumi.Input['CronJobServiceDetailsPlan']] = None,
+                 region: Optional[pulumi.Input['CronJobServiceDetailsRegion']] = None):
+        pulumi.set(__self__, "env", env)
+        pulumi.set(__self__, "schedule", schedule)
+        if env_specific_details is not None:
+            pulumi.set(__self__, "env_specific_details", env_specific_details)
+        if plan is None:
+            plan = 'starter'
+        if plan is not None:
+            pulumi.set(__self__, "plan", plan)
+        if region is None:
+            region = 'oregon'
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter
+    def env(self) -> pulumi.Input['CronJobServiceDetailsEnv']:
+        return pulumi.get(self, "env")
+
+    @env.setter
+    def env(self, value: pulumi.Input['CronJobServiceDetailsEnv']):
+        pulumi.set(self, "env", value)
+
+    @property
+    @pulumi.getter
+    def schedule(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "schedule")
+
+    @schedule.setter
+    def schedule(self, value: pulumi.Input[str]):
+        pulumi.set(self, "schedule", value)
+
+    @property
+    @pulumi.getter(name="envSpecificDetails")
+    def env_specific_details(self) -> Optional[pulumi.Input[Union['DockerDetailsArgs', 'NativeEnvironmentDetailsArgs']]]:
+        return pulumi.get(self, "env_specific_details")
+
+    @env_specific_details.setter
+    def env_specific_details(self, value: Optional[pulumi.Input[Union['DockerDetailsArgs', 'NativeEnvironmentDetailsArgs']]]):
+        pulumi.set(self, "env_specific_details", value)
+
+    @property
+    @pulumi.getter
+    def plan(self) -> Optional[pulumi.Input['CronJobServiceDetailsPlan']]:
+        return pulumi.get(self, "plan")
+
+    @plan.setter
+    def plan(self, value: Optional[pulumi.Input['CronJobServiceDetailsPlan']]):
+        pulumi.set(self, "plan", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input['CronJobServiceDetailsRegion']]:
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input['CronJobServiceDetailsRegion']]):
+        pulumi.set(self, "region", value)
+
 
 @pulumi.input_type
 class DiskArgs:
@@ -160,6 +229,102 @@ class ServerPropertiesArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class ServiceDetailsArgs:
+    def __init__(__self__, *,
+                 env: pulumi.Input['ServiceDetailsEnv'],
+                 disk: Optional[pulumi.Input['DiskArgs']] = None,
+                 env_specific_details: Optional[pulumi.Input[Union['DockerDetailsArgs', 'NativeEnvironmentDetailsArgs']]] = None,
+                 num_instances: Optional[pulumi.Input[float]] = None,
+                 plan: Optional[pulumi.Input['ServiceDetailsPlan']] = None,
+                 pull_request_previews_enabled: Optional[pulumi.Input['ServiceDetailsPullRequestPreviewsEnabled']] = None,
+                 region: Optional[pulumi.Input['ServiceDetailsRegion']] = None):
+        pulumi.set(__self__, "env", env)
+        if disk is not None:
+            pulumi.set(__self__, "disk", disk)
+        if env_specific_details is not None:
+            pulumi.set(__self__, "env_specific_details", env_specific_details)
+        if num_instances is None:
+            num_instances = 1
+        if num_instances is not None:
+            pulumi.set(__self__, "num_instances", num_instances)
+        if plan is None:
+            plan = 'starter'
+        if plan is not None:
+            pulumi.set(__self__, "plan", plan)
+        if pull_request_previews_enabled is None:
+            pull_request_previews_enabled = 'no'
+        if pull_request_previews_enabled is not None:
+            pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
+        if region is None:
+            region = 'oregon'
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter
+    def env(self) -> pulumi.Input['ServiceDetailsEnv']:
+        return pulumi.get(self, "env")
+
+    @env.setter
+    def env(self, value: pulumi.Input['ServiceDetailsEnv']):
+        pulumi.set(self, "env", value)
+
+    @property
+    @pulumi.getter
+    def disk(self) -> Optional[pulumi.Input['DiskArgs']]:
+        return pulumi.get(self, "disk")
+
+    @disk.setter
+    def disk(self, value: Optional[pulumi.Input['DiskArgs']]):
+        pulumi.set(self, "disk", value)
+
+    @property
+    @pulumi.getter(name="envSpecificDetails")
+    def env_specific_details(self) -> Optional[pulumi.Input[Union['DockerDetailsArgs', 'NativeEnvironmentDetailsArgs']]]:
+        return pulumi.get(self, "env_specific_details")
+
+    @env_specific_details.setter
+    def env_specific_details(self, value: Optional[pulumi.Input[Union['DockerDetailsArgs', 'NativeEnvironmentDetailsArgs']]]):
+        pulumi.set(self, "env_specific_details", value)
+
+    @property
+    @pulumi.getter(name="numInstances")
+    def num_instances(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "num_instances")
+
+    @num_instances.setter
+    def num_instances(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "num_instances", value)
+
+    @property
+    @pulumi.getter
+    def plan(self) -> Optional[pulumi.Input['ServiceDetailsPlan']]:
+        return pulumi.get(self, "plan")
+
+    @plan.setter
+    def plan(self, value: Optional[pulumi.Input['ServiceDetailsPlan']]):
+        pulumi.set(self, "plan", value)
+
+    @property
+    @pulumi.getter(name="pullRequestPreviewsEnabled")
+    def pull_request_previews_enabled(self) -> Optional[pulumi.Input['ServiceDetailsPullRequestPreviewsEnabled']]:
+        return pulumi.get(self, "pull_request_previews_enabled")
+
+    @pull_request_previews_enabled.setter
+    def pull_request_previews_enabled(self, value: Optional[pulumi.Input['ServiceDetailsPullRequestPreviewsEnabled']]):
+        pulumi.set(self, "pull_request_previews_enabled", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input['ServiceDetailsRegion']]:
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input['ServiceDetailsRegion']]):
+        pulumi.set(self, "region", value)
 
 
 @pulumi.input_type

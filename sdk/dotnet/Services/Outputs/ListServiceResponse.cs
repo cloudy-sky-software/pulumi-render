@@ -14,13 +14,13 @@ namespace Pulumi.Render.Services.Outputs
     public sealed class ListServiceResponse
     {
         public readonly string? Cursor;
-        public readonly Union<Outputs.StaticSite, Outputs.WebService>? Service;
+        public readonly object? Service;
 
         [OutputConstructor]
         private ListServiceResponse(
             string? cursor,
 
-            Union<Outputs.StaticSite, Outputs.WebService>? service)
+            object? service)
         {
             Cursor = cursor;
             Service = service;

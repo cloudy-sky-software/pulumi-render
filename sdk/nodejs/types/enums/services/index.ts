@@ -9,6 +9,38 @@ export const ClearCache = {
 
 export type ClearCache = (typeof ClearCache)[keyof typeof ClearCache];
 
+export const CronJobServiceDetailsEnv = {
+    Docker: "docker",
+    Elixir: "elixir",
+    Go: "go",
+    Node: "node",
+    Python: "python",
+    Ruby: "ruby",
+    Rust: "rust",
+} as const;
+
+export type CronJobServiceDetailsEnv = (typeof CronJobServiceDetailsEnv)[keyof typeof CronJobServiceDetailsEnv];
+
+export const CronJobServiceDetailsPlan = {
+    Starter: "starter",
+    StarterPlus: "starter_plus",
+    Standard: "standard",
+    StandardPlus: "standard_plus",
+    Pro: "pro",
+    ProPlus: "pro_plus",
+    ProMax: "pro_max",
+    ProUltra: "pro_ultra",
+} as const;
+
+export type CronJobServiceDetailsPlan = (typeof CronJobServiceDetailsPlan)[keyof typeof CronJobServiceDetailsPlan];
+
+export const CronJobServiceDetailsRegion = {
+    Oregon: "oregon",
+    Frankfurt: "frankfurt",
+} as const;
+
+export type CronJobServiceDetailsRegion = (typeof CronJobServiceDetailsRegion)[keyof typeof CronJobServiceDetailsRegion];
+
 export const CustomDomainDomainType = {
     Apex: "apex",
     Subdomain: "subdomain",
@@ -46,6 +78,45 @@ export const ServiceAutoDeploy = {
  * Whether to auto deploy the service or not upon git push.
  */
 export type ServiceAutoDeploy = (typeof ServiceAutoDeploy)[keyof typeof ServiceAutoDeploy];
+
+export const ServiceDetailsEnv = {
+    Docker: "docker",
+    Elixir: "elixir",
+    Go: "go",
+    Node: "node",
+    Python: "python",
+    Ruby: "ruby",
+    Rust: "rust",
+} as const;
+
+export type ServiceDetailsEnv = (typeof ServiceDetailsEnv)[keyof typeof ServiceDetailsEnv];
+
+export const ServiceDetailsPlan = {
+    Starter: "starter",
+    StarterPlus: "starter_plus",
+    Standard: "standard",
+    StandardPlus: "standard_plus",
+    Pro: "pro",
+    ProPlus: "pro_plus",
+    ProMax: "pro_max",
+    ProUltra: "pro_ultra",
+} as const;
+
+export type ServiceDetailsPlan = (typeof ServiceDetailsPlan)[keyof typeof ServiceDetailsPlan];
+
+export const ServiceDetailsPullRequestPreviewsEnabled = {
+    Yes: "yes",
+    No: "no",
+} as const;
+
+export type ServiceDetailsPullRequestPreviewsEnabled = (typeof ServiceDetailsPullRequestPreviewsEnabled)[keyof typeof ServiceDetailsPullRequestPreviewsEnabled];
+
+export const ServiceDetailsRegion = {
+    Oregon: "oregon",
+    Frankfurt: "frankfurt",
+} as const;
+
+export type ServiceDetailsRegion = (typeof ServiceDetailsRegion)[keyof typeof ServiceDetailsRegion];
 
 export const ServiceNotifyOnFail = {
     Default: "default",

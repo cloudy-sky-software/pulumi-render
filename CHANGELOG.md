@@ -1,6 +1,10 @@
+## 0.0.35
+
+Add OpenAPI schemas for all Render service types.
+
 ## 0.0.34
 
-Implement support for get/list* funcs.
+Implement support for get/list\* funcs.
 
 ## 0.0.33
 

@@ -202,6 +202,109 @@ components:
           type: string
           default: "no"
           enum: ["yes", "no"]
+    patchPrivateService:
+      title: "PrivateService"
+      description: "The PATCH object to update a private service"
+      type: object
+      properties:
+        autoDeploy:
+          type: string
+          default: "no"
+          enum: ["yes", "no"]
+        branch:
+          type: string
+        envSpecificDetails:
+          oneOf:
+            - $ref: "#/components/schemas/dockerDetails"
+            - $ref: "#/components/schemas/nativeEnvironmentDetails"
+        name:
+          type: string
+        numInstances:
+          type: number
+          default: 1
+        plan:
+          type: string
+          default: "starter"
+          enum:
+            - "starter"
+            - "starter_plus"
+            - "standard"
+            - "standard_plus"
+            - "pro"
+            - "pro_plus"
+            - "pro_max"
+            - "pro_ultra"
+        pullRequestPreviewsEnabled:
+          type: string
+          default: "no"
+          enum: ["yes", "no"]
+    patchBackgroundWorker:
+      title: "BackgroundWorker"
+      description: "The PATCH object to update a background worker"
+      type: object
+      properties:
+        autoDeploy:
+          type: string
+          default: "no"
+          enum: ["yes", "no"]
+        branch:
+          type: string
+        envSpecificDetails:
+          oneOf:
+            - $ref: "#/components/schemas/dockerDetails"
+            - $ref: "#/components/schemas/nativeEnvironmentDetails"
+        name:
+          type: string
+        numInstances:
+          type: number
+          default: 1
+        plan:
+          type: string
+          default: "starter"
+          enum:
+            - "starter"
+            - "starter_plus"
+            - "standard"
+            - "standard_plus"
+            - "pro"
+            - "pro_plus"
+            - "pro_max"
+            - "pro_ultra"
+        pullRequestPreviewsEnabled:
+          type: string
+          default: "no"
+          enum: ["yes", "no"]
+    patchCronJob:
+      title: "CronJob"
+      description: "The PATCH object to update a cron job"
+      type: object
+      properties:
+        autoDeploy:
+          type: string
+          default: "no"
+          enum: ["yes", "no"]
+        branch:
+          type: string
+        envSpecificDetails:
+          oneOf:
+            - $ref: "#/components/schemas/dockerDetails"
+            - $ref: "#/components/schemas/nativeEnvironmentDetails"
+        name:
+          type: string
+        plan:
+          type: string
+          default: "starter"
+          enum:
+            - "starter"
+            - "starter_plus"
+            - "standard"
+            - "standard_plus"
+            - "pro"
+            - "pro_plus"
+            - "pro_max"
+            - "pro_ultra"
+        schedule:
+          type: string
     secretFile:
       type: object
       properties:
@@ -307,6 +410,133 @@ components:
               readOnly: true
             serviceDetails:
               $ref: "#/components/schemas/webServiceServiceDetails"
+    serviceDetails:
+      title: "PrivateService"
+      type: object
+      properties:
+        disk:
+          $ref: "#/components/schemas/disk"
+        env:
+          type: string
+          enum:
+            - docker
+            - elixir
+            - go
+            - node
+            - python
+            - ruby
+            - rust
+        envSpecificDetails:
+          oneOf:
+            - $ref: "#/components/schemas/dockerDetails"
+            - $ref: "#/components/schemas/nativeEnvironmentDetails"
+        numInstances:
+          type: number
+          default: 1
+        plan:
+          type: string
+          default: "starter"
+          enum:
+            - "starter"
+            - "starter_plus"
+            - "standard"
+            - "standard_plus"
+            - "pro"
+            - "pro_plus"
+            - "pro_max"
+            - "pro_ultra"
+        pullRequestPreviewsEnabled:
+          type: string
+          default: "no"
+          enum: ["yes", "no"]
+        region:
+          type: string
+          default: "oregon"
+          enum:
+            - "oregon"
+            - "frankfurt"
+      required:
+        - "env"
+    privateService:
+      title: "PrivateService"
+      description: "A private service"
+      allOf:
+        - $ref: "#/components/schemas/service"
+        - type: object
+          properties:
+            type:
+              type: string
+              default: "private_service"
+              readOnly: true
+            serviceDetails:
+              $ref: "#/components/schemas/serviceDetails"
+    backgroundWorker:
+      title: "BackgroundWorker"
+      description: "A background worker service"
+      allOf:
+        - $ref: "#/components/schemas/service"
+        - type: object
+          properties:
+            type:
+              type: string
+              default: "background_worker"
+              readOnly: true
+            serviceDetails:
+              $ref: "#/components/schemas/serviceDetails"
+    cronJobServiceDetails:
+      title: "CronJob"
+      type: object
+      properties:
+        env:
+          type: string
+          enum:
+            - docker
+            - elixir
+            - go
+            - node
+            - python
+            - ruby
+            - rust
+        envSpecificDetails:
+          oneOf:
+            - $ref: "#/components/schemas/dockerDetails"
+            - $ref: "#/components/schemas/nativeEnvironmentDetails"
+        plan:
+          type: string
+          default: "starter"
+          enum:
+            - "starter"
+            - "starter_plus"
+            - "standard"
+            - "standard_plus"
+            - "pro"
+            - "pro_plus"
+            - "pro_max"
+            - "pro_ultra"
+        region:
+          type: string
+          default: "oregon"
+          enum:
+            - "oregon"
+            - "frankfurt"
+        schedule:
+          type: string
+      required:
+        - env
+        - schedule
+    cronJob:
+      title: "CronJob"
+      description: "A cron job"
+      allOf:
+        - $ref: "#/components/schemas/service"
+        - type: object
+          properties:
+            type:
+              type: string
+              default: "cron_job"
+              readOnly: true
+            serviceDetails:
+              $ref: "#/components/schemas/cronJobServiceDetails"
     service:
       title: "Service"
       description: "The service object represents a service. The type of service is discriminated by the type property which determines the type of object in the serviceDetails property."
@@ -367,9 +597,15 @@ components:
             mapping:
               "static_site": "#/components/schemas/staticSite"
               "web_service": "#/components/schemas/webService"
+              "private_service": "#/components/schemas/privateService"
+              "background_worker": "#/components/schemas/backgroundWorker"
+              "cronJob": "#/components/schemas/cronJob"
           oneOf:
             - $ref: "#/components/schemas/staticSite"
             - $ref: "#/components/schemas/webService"
+            - $ref: "#/components/schemas/privateService"
+            - $ref: "#/components/schemas/backgroundWorker"
+            - $ref: "#/components/schemas/cronJob"
     listServices:
       type: array
       items:
@@ -1036,9 +1272,15 @@ paths:
                 mapping:
                   "static_site": "#/components/schemas/staticSite"
                   "web_service": "#/components/schemas/webService"
+                  "private_service": "#/components/schemas/privateService"
+                  "background_worker": "#/components/schemas/backgroundWorker"
+                  "cronJob": "#/components/schemas/cronJob"
               oneOf:
                 - $ref: "#/components/schemas/staticSite"
                 - $ref: "#/components/schemas/webService"
+                - $ref: "#/components/schemas/privateService"
+                - $ref: "#/components/schemas/backgroundWorker"
+                - $ref: "#/components/schemas/cronJob"
               example:
                 type: web_service
                 name: cillum ipsum
@@ -1271,9 +1513,15 @@ paths:
                   mapping:
                     "static_site": "#/components/schemas/staticSite"
                     "web_service": "#/components/schemas/webService"
+                    "private_service": "#/components/schemas/privateService"
+                    "background_worker": "#/components/schemas/backgroundWorker"
+                    "cronJob": "#/components/schemas/cronJob"
                 oneOf:
                   - $ref: "#/components/schemas/staticSite"
                   - $ref: "#/components/schemas/webService"
+                  - $ref: "#/components/schemas/privateService"
+                  - $ref: "#/components/schemas/backgroundWorker"
+                  - $ref: "#/components/schemas/cronJob"
               example:
                 id: in deserunt laboris dolore
                 autoDeploy: "yes"
@@ -1423,6 +1671,9 @@ paths:
               anyOf:
                 - $ref: "#/components/schemas/patchStaticSite"
                 - $ref: "#/components/schemas/patchWebService"
+                - $ref: "#/components/schemas/patchPrivateService"
+                - $ref: "#/components/schemas/patchBackgroundWorker"
+                - $ref: "#/components/schemas/patchCronJob"
               example:
                 autoDeploy: "yes"
                 branch: amet dolore officia quis est
@@ -1658,9 +1909,15 @@ paths:
                 mapping:
                   "static_site": "#/components/schemas/staticSite"
                   "web_service": "#/components/schemas/webService"
+                  "private_service": "#/components/schemas/privateService"
+                  "background_worker": "#/components/schemas/backgroundWorker"
+                  "cronJob": "#/components/schemas/cronJob"
               oneOf:
                 - $ref: "#/components/schemas/staticSite"
                 - $ref: "#/components/schemas/webService"
+                - $ref: "#/components/schemas/privateService"
+                - $ref: "#/components/schemas/backgroundWorker"
+                - $ref: "#/components/schemas/cronJob"
       parameters:
         - name: Accept
           in: header

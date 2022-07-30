@@ -373,6 +373,16 @@ components:
         numInstances:
           type: number
           default: 1
+        parentServer:
+          type: object
+          readOnly: true
+          properties:
+            id:
+              type: string
+              readOnly: true
+            name:
+              type: string
+              readOnly: true
         plan:
           type: string
           default: "starter"
@@ -395,6 +405,8 @@ components:
           enum:
             - "oregon"
             - "frankfurt"
+        url:
+          type: string
       required:
         - "env"
     webService:
@@ -410,7 +422,18 @@ components:
               readOnly: true
             serviceDetails:
               $ref: "#/components/schemas/webServiceServiceDetails"
-    serviceDetails:
+    openPorts:
+      title: "OpenPorts"
+      type: object
+      properties:
+        port:
+          type: number
+        protocol:
+          type: string
+          enum:
+            - TCP
+            - UDP
+    privateServiceDetails:
       title: "PrivateService"
       type: object
       properties:
@@ -433,6 +456,20 @@ components:
         numInstances:
           type: number
           default: 1
+        openPorts:
+          type: array
+          items:
+            $ref: "#/components/schemas/openPorts"
+        parentServer:
+          type: object
+          readOnly: true
+          properties:
+            id:
+              type: string
+              readOnly: true
+            name:
+              type: string
+              readOnly: true
         plan:
           type: string
           default: "starter"
@@ -455,6 +492,8 @@ components:
           enum:
             - "oregon"
             - "frankfurt"
+        url:
+          type: string
       required:
         - "env"
     privateService:
@@ -469,7 +508,66 @@ components:
               default: "private_service"
               readOnly: true
             serviceDetails:
-              $ref: "#/components/schemas/serviceDetails"
+              $ref: "#/components/schemas/privateServiceDetails"
+    backgroundWorkerServiceDetails:
+      title: "PrivateService"
+      type: object
+      properties:
+        disk:
+          $ref: "#/components/schemas/disk"
+        env:
+          type: string
+          enum:
+            - docker
+            - elixir
+            - go
+            - node
+            - python
+            - ruby
+            - rust
+        envSpecificDetails:
+          oneOf:
+            - $ref: "#/components/schemas/dockerDetails"
+            - $ref: "#/components/schemas/nativeEnvironmentDetails"
+        numInstances:
+          type: number
+          default: 1
+        parentServer:
+          type: object
+          readOnly: true
+          properties:
+            id:
+              type: string
+              readOnly: true
+            name:
+              type: string
+              readOnly: true
+        plan:
+          type: string
+          default: "starter"
+          enum:
+            - "starter"
+            - "starter_plus"
+            - "standard"
+            - "standard_plus"
+            - "pro"
+            - "pro_plus"
+            - "pro_max"
+            - "pro_ultra"
+        pullRequestPreviewsEnabled:
+          type: string
+          default: "no"
+          enum: ["yes", "no"]
+        region:
+          type: string
+          default: "oregon"
+          enum:
+            - "oregon"
+            - "frankfurt"
+        url:
+          type: string
+      required:
+        - "env"
     backgroundWorker:
       title: "BackgroundWorker"
       description: "A background worker service"
@@ -482,7 +580,7 @@ components:
               default: "background_worker"
               readOnly: true
             serviceDetails:
-              $ref: "#/components/schemas/serviceDetails"
+              $ref: "#/components/schemas/backgroundWorkerServiceDetails"
     cronJobServiceDetails:
       title: "CronJob"
       type: object
@@ -501,6 +599,8 @@ components:
           oneOf:
             - $ref: "#/components/schemas/dockerDetails"
             - $ref: "#/components/schemas/nativeEnvironmentDetails"
+        lastSuccessfulRunAt:
+          type: string
         plan:
           type: string
           default: "starter"

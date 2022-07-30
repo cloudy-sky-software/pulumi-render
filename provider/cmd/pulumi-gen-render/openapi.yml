@@ -373,6 +373,11 @@ components:
         numInstances:
           type: number
           default: 1
+        openPorts:
+          type: array
+          readOnly: true
+          items:
+            $ref: "#/components/schemas/openPorts"
         parentServer:
           type: object
           readOnly: true
@@ -406,6 +411,7 @@ components:
             - "oregon"
             - "frankfurt"
         url:
+          readOnly: true
           type: string
       required:
         - "env"
@@ -458,6 +464,7 @@ components:
           default: 1
         openPorts:
           type: array
+          readOnly: true
           items:
             $ref: "#/components/schemas/openPorts"
         parentServer:
@@ -493,6 +500,7 @@ components:
             - "oregon"
             - "frankfurt"
         url:
+          readOnly: true
           type: string
       required:
         - "env"
@@ -565,6 +573,7 @@ components:
             - "oregon"
             - "frankfurt"
         url:
+          readOnly: true
           type: string
       required:
         - "env"

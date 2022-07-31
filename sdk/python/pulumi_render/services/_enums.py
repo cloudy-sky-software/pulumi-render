@@ -5,6 +5,10 @@
 from enum import Enum
 
 __all__ = [
+    'BackgroundWorkerServiceDetailsEnv',
+    'BackgroundWorkerServiceDetailsPlan',
+    'BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled',
+    'BackgroundWorkerServiceDetailsRegion',
     'ClearCache',
     'CronJobServiceDetailsEnv',
     'CronJobServiceDetailsPlan',
@@ -13,11 +17,12 @@ __all__ = [
     'CustomDomainVerificationStatus',
     'DeployClearCache',
     'DomainType',
+    'OpenPortsProtocol',
+    'PrivateServiceDetailsEnv',
+    'PrivateServiceDetailsPlan',
+    'PrivateServiceDetailsPullRequestPreviewsEnabled',
+    'PrivateServiceDetailsRegion',
     'ServiceAutoDeploy',
-    'ServiceDetailsEnv',
-    'ServiceDetailsPlan',
-    'ServiceDetailsPullRequestPreviewsEnabled',
-    'ServiceDetailsRegion',
     'ServiceNotifyOnFail',
     'ServiceSuspended',
     'StaticSiteRouteType',
@@ -28,6 +33,37 @@ __all__ = [
     'WebServiceServiceDetailsPullRequestPreviewsEnabled',
     'WebServiceServiceDetailsRegion',
 ]
+
+
+class BackgroundWorkerServiceDetailsEnv(str, Enum):
+    DOCKER = "docker"
+    ELIXIR = "elixir"
+    GO = "go"
+    NODE = "node"
+    PYTHON = "python"
+    RUBY = "ruby"
+    RUST = "rust"
+
+
+class BackgroundWorkerServiceDetailsPlan(str, Enum):
+    STARTER = "starter"
+    STARTER_PLUS = "starter_plus"
+    STANDARD = "standard"
+    STANDARD_PLUS = "standard_plus"
+    PRO = "pro"
+    PRO_PLUS = "pro_plus"
+    PRO_MAX = "pro_max"
+    PRO_ULTRA = "pro_ultra"
+
+
+class BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled(str, Enum):
+    YES = "yes"
+    NO = "no"
+
+
+class BackgroundWorkerServiceDetailsRegion(str, Enum):
+    OREGON = "oregon"
+    FRANKFURT = "frankfurt"
 
 
 class ClearCache(str, Enum):
@@ -81,15 +117,12 @@ class DomainType(str, Enum):
     SUBDOMAIN = "subdomain"
 
 
-class ServiceAutoDeploy(str, Enum):
-    """
-    Whether to auto deploy the service or not upon git push.
-    """
-    YES = "yes"
-    NO = "no"
+class OpenPortsProtocol(str, Enum):
+    TCP = "TCP"
+    UDP = "UDP"
 
 
-class ServiceDetailsEnv(str, Enum):
+class PrivateServiceDetailsEnv(str, Enum):
     DOCKER = "docker"
     ELIXIR = "elixir"
     GO = "go"
@@ -99,7 +132,7 @@ class ServiceDetailsEnv(str, Enum):
     RUST = "rust"
 
 
-class ServiceDetailsPlan(str, Enum):
+class PrivateServiceDetailsPlan(str, Enum):
     STARTER = "starter"
     STARTER_PLUS = "starter_plus"
     STANDARD = "standard"
@@ -110,14 +143,22 @@ class ServiceDetailsPlan(str, Enum):
     PRO_ULTRA = "pro_ultra"
 
 
-class ServiceDetailsPullRequestPreviewsEnabled(str, Enum):
+class PrivateServiceDetailsPullRequestPreviewsEnabled(str, Enum):
     YES = "yes"
     NO = "no"
 
 
-class ServiceDetailsRegion(str, Enum):
+class PrivateServiceDetailsRegion(str, Enum):
     OREGON = "oregon"
     FRANKFURT = "frankfurt"
+
+
+class ServiceAutoDeploy(str, Enum):
+    """
+    Whether to auto deploy the service or not upon git push.
+    """
+    YES = "yes"
+    NO = "no"
 
 
 class ServiceNotifyOnFail(str, Enum):

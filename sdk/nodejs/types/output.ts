@@ -66,7 +66,7 @@ export namespace services {
          * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
          */
         repo: string;
-        serviceDetails?: outputs.services.ServiceDetails;
+        serviceDetails?: outputs.services.BackgroundWorkerServiceDetails;
         slug?: string;
         suspended?: enums.services.ServiceSuspended;
         suspenders?: string[];
@@ -80,9 +80,39 @@ export namespace services {
         return {
             ...val,
             autoDeploy: (val.autoDeploy) ?? "no",
-            serviceDetails: (val.serviceDetails ? outputs.services.serviceDetailsProvideDefaults(val.serviceDetails) : undefined),
+            serviceDetails: (val.serviceDetails ? outputs.services.backgroundWorkerServiceDetailsProvideDefaults(val.serviceDetails) : undefined),
             type: (val.type) ?? "background_worker",
         };
+    }
+
+    export interface BackgroundWorkerServiceDetails {
+        disk?: outputs.services.Disk;
+        env: enums.services.BackgroundWorkerServiceDetailsEnv;
+        envSpecificDetails?: outputs.services.DockerDetails | outputs.services.NativeEnvironmentDetails;
+        numInstances?: number;
+        parentServer?: outputs.services.BackgroundWorkerServiceDetailsParentServerProperties;
+        plan?: enums.services.BackgroundWorkerServiceDetailsPlan;
+        pullRequestPreviewsEnabled?: enums.services.BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled;
+        region?: enums.services.BackgroundWorkerServiceDetailsRegion;
+        url?: string;
+    }
+    /**
+     * backgroundWorkerServiceDetailsProvideDefaults sets the appropriate defaults for BackgroundWorkerServiceDetails
+     */
+    export function backgroundWorkerServiceDetailsProvideDefaults(val: BackgroundWorkerServiceDetails): BackgroundWorkerServiceDetails {
+        return {
+            ...val,
+            disk: (val.disk ? outputs.services.diskProvideDefaults(val.disk) : undefined),
+            numInstances: (val.numInstances) ?? 1,
+            plan: (val.plan) ?? "starter",
+            pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
+            region: (val.region) ?? "oregon",
+        };
+    }
+
+    export interface BackgroundWorkerServiceDetailsParentServerProperties {
+        id?: string;
+        name?: string;
     }
 
     export interface Commit {
@@ -139,6 +169,7 @@ export namespace services {
     export interface CronJobServiceDetails {
         env: enums.services.CronJobServiceDetailsEnv;
         envSpecificDetails?: outputs.services.DockerDetails | outputs.services.NativeEnvironmentDetails;
+        lastSuccessfulRunAt?: string;
         plan?: enums.services.CronJobServiceDetailsPlan;
         region?: enums.services.CronJobServiceDetailsRegion;
         schedule: string;
@@ -244,7 +275,7 @@ export namespace services {
          * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
          */
         repo: string;
-        serviceDetails?: outputs.services.ServiceDetails;
+        serviceDetails?: outputs.services.BackgroundWorkerServiceDetails;
         slug?: string;
         suspended?: enums.services.ServiceSuspended;
         suspenders?: string[];
@@ -258,7 +289,7 @@ export namespace services {
         return {
             ...val,
             autoDeploy: (val.autoDeploy) ?? "no",
-            serviceDetails: (val.serviceDetails ? outputs.services.serviceDetailsProvideDefaults(val.serviceDetails) : undefined),
+            serviceDetails: (val.serviceDetails ? outputs.services.backgroundWorkerServiceDetailsProvideDefaults(val.serviceDetails) : undefined),
             type: (val.type) ?? "background_worker",
         };
     }
@@ -334,7 +365,7 @@ export namespace services {
          * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
          */
         repo: string;
-        serviceDetails?: outputs.services.ServiceDetails;
+        serviceDetails?: outputs.services.PrivateServiceDetails;
         slug?: string;
         suspended?: enums.services.ServiceSuspended;
         suspenders?: string[];
@@ -348,7 +379,7 @@ export namespace services {
         return {
             ...val,
             autoDeploy: (val.autoDeploy) ?? "no",
-            serviceDetails: (val.serviceDetails ? outputs.services.serviceDetailsProvideDefaults(val.serviceDetails) : undefined),
+            serviceDetails: (val.serviceDetails ? outputs.services.privateServiceDetailsProvideDefaults(val.serviceDetails) : undefined),
             type: (val.type) ?? "private_service",
         };
     }
@@ -493,6 +524,11 @@ export namespace services {
         startCommand: string;
     }
 
+    export interface OpenPorts {
+        port?: number;
+        protocol?: enums.services.OpenPortsProtocol;
+    }
+
     /**
      * A private service
      */
@@ -519,7 +555,7 @@ export namespace services {
          * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
          */
         repo: string;
-        serviceDetails?: outputs.services.ServiceDetails;
+        serviceDetails?: outputs.services.PrivateServiceDetails;
         slug?: string;
         suspended?: enums.services.ServiceSuspended;
         suspenders?: string[];
@@ -533,29 +569,27 @@ export namespace services {
         return {
             ...val,
             autoDeploy: (val.autoDeploy) ?? "no",
-            serviceDetails: (val.serviceDetails ? outputs.services.serviceDetailsProvideDefaults(val.serviceDetails) : undefined),
+            serviceDetails: (val.serviceDetails ? outputs.services.privateServiceDetailsProvideDefaults(val.serviceDetails) : undefined),
             type: (val.type) ?? "private_service",
         };
     }
 
-    export interface ServerProperties {
-        id?: string;
-        name?: string;
-    }
-
-    export interface ServiceDetails {
+    export interface PrivateServiceDetails {
         disk?: outputs.services.Disk;
-        env: enums.services.ServiceDetailsEnv;
+        env: enums.services.PrivateServiceDetailsEnv;
         envSpecificDetails?: outputs.services.DockerDetails | outputs.services.NativeEnvironmentDetails;
         numInstances?: number;
-        plan?: enums.services.ServiceDetailsPlan;
-        pullRequestPreviewsEnabled?: enums.services.ServiceDetailsPullRequestPreviewsEnabled;
-        region?: enums.services.ServiceDetailsRegion;
+        openPorts?: outputs.services.OpenPorts[];
+        parentServer?: outputs.services.PrivateServiceDetailsParentServerProperties;
+        plan?: enums.services.PrivateServiceDetailsPlan;
+        pullRequestPreviewsEnabled?: enums.services.PrivateServiceDetailsPullRequestPreviewsEnabled;
+        region?: enums.services.PrivateServiceDetailsRegion;
+        url?: string;
     }
     /**
-     * serviceDetailsProvideDefaults sets the appropriate defaults for ServiceDetails
+     * privateServiceDetailsProvideDefaults sets the appropriate defaults for PrivateServiceDetails
      */
-    export function serviceDetailsProvideDefaults(val: ServiceDetails): ServiceDetails {
+    export function privateServiceDetailsProvideDefaults(val: PrivateServiceDetails): PrivateServiceDetails {
         return {
             ...val,
             disk: (val.disk ? outputs.services.diskProvideDefaults(val.disk) : undefined),
@@ -564,6 +598,16 @@ export namespace services {
             pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
             region: (val.region) ?? "oregon",
         };
+    }
+
+    export interface PrivateServiceDetailsParentServerProperties {
+        id?: string;
+        name?: string;
+    }
+
+    export interface ServerProperties {
+        id?: string;
+        name?: string;
     }
 
     /**
@@ -708,9 +752,12 @@ export namespace services {
         envSpecificDetails?: outputs.services.DockerDetails | outputs.services.NativeEnvironmentDetails;
         healthCheckPath?: string;
         numInstances?: number;
+        openPorts?: outputs.services.OpenPorts[];
+        parentServer?: outputs.services.WebServiceServiceDetailsParentServerProperties;
         plan?: enums.services.WebServiceServiceDetailsPlan;
         pullRequestPreviewsEnabled?: enums.services.WebServiceServiceDetailsPullRequestPreviewsEnabled;
         region?: enums.services.WebServiceServiceDetailsRegion;
+        url?: string;
     }
     /**
      * webServiceServiceDetailsProvideDefaults sets the appropriate defaults for WebServiceServiceDetails
@@ -726,4 +773,8 @@ export namespace services {
         };
     }
 
+    export interface WebServiceServiceDetailsParentServerProperties {
+        id?: string;
+        name?: string;
+    }
 }

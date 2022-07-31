@@ -10,19 +10,16 @@ using Pulumi.Serialization;
 namespace Pulumi.Render.Services.Inputs
 {
 
-    public sealed class WebServiceServiceDetailsArgs : Pulumi.ResourceArgs
+    public sealed class PrivateServiceDetailsArgs : Pulumi.ResourceArgs
     {
         [Input("disk")]
         public Input<Inputs.DiskArgs>? Disk { get; set; }
 
         [Input("env", required: true)]
-        public Input<Pulumi.Render.Services.WebServiceServiceDetailsEnv> Env { get; set; } = null!;
+        public Input<Pulumi.Render.Services.PrivateServiceDetailsEnv> Env { get; set; } = null!;
 
         [Input("envSpecificDetails")]
         public InputUnion<Inputs.DockerDetailsArgs, Inputs.NativeEnvironmentDetailsArgs>? EnvSpecificDetails { get; set; }
-
-        [Input("healthCheckPath")]
-        public Input<string>? HealthCheckPath { get; set; }
 
         [Input("numInstances")]
         public Input<double>? NumInstances { get; set; }
@@ -36,26 +33,26 @@ namespace Pulumi.Render.Services.Inputs
         }
 
         [Input("parentServer")]
-        public Input<Inputs.WebServiceServiceDetailsParentServerPropertiesArgs>? ParentServer { get; set; }
+        public Input<Inputs.PrivateServiceDetailsParentServerPropertiesArgs>? ParentServer { get; set; }
 
         [Input("plan")]
-        public Input<Pulumi.Render.Services.WebServiceServiceDetailsPlan>? Plan { get; set; }
+        public Input<Pulumi.Render.Services.PrivateServiceDetailsPlan>? Plan { get; set; }
 
         [Input("pullRequestPreviewsEnabled")]
-        public Input<Pulumi.Render.Services.WebServiceServiceDetailsPullRequestPreviewsEnabled>? PullRequestPreviewsEnabled { get; set; }
+        public Input<Pulumi.Render.Services.PrivateServiceDetailsPullRequestPreviewsEnabled>? PullRequestPreviewsEnabled { get; set; }
 
         [Input("region")]
-        public Input<Pulumi.Render.Services.WebServiceServiceDetailsRegion>? Region { get; set; }
+        public Input<Pulumi.Render.Services.PrivateServiceDetailsRegion>? Region { get; set; }
 
         [Input("url")]
         public Input<string>? Url { get; set; }
 
-        public WebServiceServiceDetailsArgs()
+        public PrivateServiceDetailsArgs()
         {
             NumInstances = 1;
-            Plan = Pulumi.Render.Services.WebServiceServiceDetailsPlan.Starter;
-            PullRequestPreviewsEnabled = Pulumi.Render.Services.WebServiceServiceDetailsPullRequestPreviewsEnabled.No;
-            Region = Pulumi.Render.Services.WebServiceServiceDetailsRegion.Oregon;
+            Plan = Pulumi.Render.Services.PrivateServiceDetailsPlan.Starter;
+            PullRequestPreviewsEnabled = Pulumi.Render.Services.PrivateServiceDetailsPullRequestPreviewsEnabled.No;
+            Region = Pulumi.Render.Services.PrivateServiceDetailsRegion.Oregon;
         }
     }
 }

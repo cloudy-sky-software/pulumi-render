@@ -156,7 +156,7 @@
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
                 },
                 "serviceDetails": {
-                    "$ref": "#/types/render:services:ServiceDetails"
+                    "$ref": "#/types/render:services:BackgroundWorkerServiceDetails"
                 },
                 "slug": {
                     "type": "string"
@@ -183,6 +183,159 @@
                 "name",
                 "ownerId",
                 "repo"
+            ]
+        },
+        "render:services:BackgroundWorkerServiceDetails": {
+            "properties": {
+                "disk": {
+                    "$ref": "#/types/render:services:Disk"
+                },
+                "env": {
+                    "$ref": "#/types/render:services:BackgroundWorkerServiceDetailsEnv"
+                },
+                "envSpecificDetails": {
+                    "oneOf": [
+                        {
+                            "$ref": "#/types/render:services:DockerDetails"
+                        },
+                        {
+                            "$ref": "#/types/render:services:NativeEnvironmentDetails"
+                        }
+                    ]
+                },
+                "numInstances": {
+                    "type": "number",
+                    "default": 1
+                },
+                "parentServer": {
+                    "$ref": "#/types/render:services:BackgroundWorkerServiceDetailsParentServerProperties"
+                },
+                "plan": {
+                    "$ref": "#/types/render:services:BackgroundWorkerServiceDetailsPlan",
+                    "default": "starter"
+                },
+                "pullRequestPreviewsEnabled": {
+                    "$ref": "#/types/render:services:BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled",
+                    "default": "no"
+                },
+                "region": {
+                    "$ref": "#/types/render:services:BackgroundWorkerServiceDetailsRegion",
+                    "default": "oregon"
+                },
+                "url": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "env"
+            ]
+        },
+        "render:services:BackgroundWorkerServiceDetailsEnv": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Docker",
+                    "value": "docker"
+                },
+                {
+                    "name": "Elixir",
+                    "value": "elixir"
+                },
+                {
+                    "name": "Go",
+                    "value": "go"
+                },
+                {
+                    "name": "Node",
+                    "value": "node"
+                },
+                {
+                    "name": "Python",
+                    "value": "python"
+                },
+                {
+                    "name": "Ruby",
+                    "value": "ruby"
+                },
+                {
+                    "name": "Rust",
+                    "value": "rust"
+                }
+            ]
+        },
+        "render:services:BackgroundWorkerServiceDetailsParentServerProperties": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "render:services:BackgroundWorkerServiceDetailsPlan": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Starter",
+                    "value": "starter"
+                },
+                {
+                    "name": "StarterPlus",
+                    "value": "starter_plus"
+                },
+                {
+                    "name": "Standard",
+                    "value": "standard"
+                },
+                {
+                    "name": "StandardPlus",
+                    "value": "standard_plus"
+                },
+                {
+                    "name": "Pro",
+                    "value": "pro"
+                },
+                {
+                    "name": "ProPlus",
+                    "value": "pro_plus"
+                },
+                {
+                    "name": "ProMax",
+                    "value": "pro_max"
+                },
+                {
+                    "name": "ProUltra",
+                    "value": "pro_ultra"
+                }
+            ]
+        },
+        "render:services:BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
+        "render:services:BackgroundWorkerServiceDetailsRegion": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Oregon",
+                    "value": "oregon"
+                },
+                {
+                    "name": "Frankfurt",
+                    "value": "frankfurt"
+                }
             ]
         },
         "render:services:ClearCache": {
@@ -286,6 +439,9 @@
                             "$ref": "#/types/render:services:NativeEnvironmentDetails"
                         }
                     ]
+                },
+                "lastSuccessfulRunAt": {
+                    "type": "string"
                 },
                 "plan": {
                     "$ref": "#/types/render:services:CronJobServiceDetailsPlan",
@@ -576,7 +732,7 @@
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
                 },
                 "serviceDetails": {
-                    "$ref": "#/types/render:services:ServiceDetails"
+                    "$ref": "#/types/render:services:BackgroundWorkerServiceDetails"
                 },
                 "slug": {
                     "type": "string"
@@ -696,7 +852,7 @@
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
                 },
                 "serviceDetails": {
-                    "$ref": "#/types/render:services:ServiceDetails"
+                    "$ref": "#/types/render:services:PrivateServiceDetails"
                 },
                 "slug": {
                     "type": "string"
@@ -916,11 +1072,11 @@
                     "discriminator": {
                         "propertyName": "type",
                         "mapping": {
-                            "background_worker": "#/types/render:services:StaticSite",
-                            "cronJob": "#/types/render:services:WebService",
+                            "background_worker": "#/types/render:services:BackgroundWorker",
+                            "cron_job": "#/types/render:services:CronJob",
                             "private_service": "#/types/render:services:PrivateService",
-                            "static_site": "#/types/render:services:BackgroundWorker",
-                            "web_service": "#/types/render:services:CronJob"
+                            "static_site": "#/types/render:services:StaticSite",
+                            "web_service": "#/types/render:services:WebService"
                         }
                     }
                 }
@@ -954,6 +1110,30 @@
                 "startCommand"
             ]
         },
+        "render:services:OpenPorts": {
+            "properties": {
+                "port": {
+                    "type": "number"
+                },
+                "protocol": {
+                    "$ref": "#/types/render:services:OpenPortsProtocol"
+                }
+            },
+            "type": "object"
+        },
+        "render:services:OpenPortsProtocol": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Tcp",
+                    "value": "TCP"
+                },
+                {
+                    "name": "Udp",
+                    "value": "UDP"
+                }
+            ]
+        },
         "render:services:PrivateService": {
             "description": "A private service",
             "properties": {
@@ -985,7 +1165,7 @@
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
                 },
                 "serviceDetails": {
-                    "$ref": "#/types/render:services:ServiceDetails"
+                    "$ref": "#/types/render:services:PrivateServiceDetails"
                 },
                 "slug": {
                     "type": "string"
@@ -1014,38 +1194,13 @@
                 "repo"
             ]
         },
-        "render:services:ServerProperties": {
-            "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        },
-        "render:services:ServiceAutoDeploy": {
-            "description": "Whether to auto deploy the service or not upon git push.",
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Yes",
-                    "value": "yes"
-                },
-                {
-                    "name": "No",
-                    "value": "no"
-                }
-            ]
-        },
-        "render:services:ServiceDetails": {
+        "render:services:PrivateServiceDetails": {
             "properties": {
                 "disk": {
                     "$ref": "#/types/render:services:Disk"
                 },
                 "env": {
-                    "$ref": "#/types/render:services:ServiceDetailsEnv"
+                    "$ref": "#/types/render:services:PrivateServiceDetailsEnv"
                 },
                 "envSpecificDetails": {
                     "oneOf": [
@@ -1061,17 +1216,29 @@
                     "type": "number",
                     "default": 1
                 },
+                "openPorts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:OpenPorts"
+                    }
+                },
+                "parentServer": {
+                    "$ref": "#/types/render:services:PrivateServiceDetailsParentServerProperties"
+                },
                 "plan": {
-                    "$ref": "#/types/render:services:ServiceDetailsPlan",
+                    "$ref": "#/types/render:services:PrivateServiceDetailsPlan",
                     "default": "starter"
                 },
                 "pullRequestPreviewsEnabled": {
-                    "$ref": "#/types/render:services:ServiceDetailsPullRequestPreviewsEnabled",
+                    "$ref": "#/types/render:services:PrivateServiceDetailsPullRequestPreviewsEnabled",
                     "default": "no"
                 },
                 "region": {
-                    "$ref": "#/types/render:services:ServiceDetailsRegion",
+                    "$ref": "#/types/render:services:PrivateServiceDetailsRegion",
                     "default": "oregon"
+                },
+                "url": {
+                    "type": "string"
                 }
             },
             "type": "object",
@@ -1079,7 +1246,7 @@
                 "env"
             ]
         },
-        "render:services:ServiceDetailsEnv": {
+        "render:services:PrivateServiceDetailsEnv": {
             "type": "string",
             "enum": [
                 {
@@ -1112,7 +1279,18 @@
                 }
             ]
         },
-        "render:services:ServiceDetailsPlan": {
+        "render:services:PrivateServiceDetailsParentServerProperties": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "render:services:PrivateServiceDetailsPlan": {
             "type": "string",
             "enum": [
                 {
@@ -1149,7 +1327,7 @@
                 }
             ]
         },
-        "render:services:ServiceDetailsPullRequestPreviewsEnabled": {
+        "render:services:PrivateServiceDetailsPullRequestPreviewsEnabled": {
             "type": "string",
             "enum": [
                 {
@@ -1162,7 +1340,7 @@
                 }
             ]
         },
-        "render:services:ServiceDetailsRegion": {
+        "render:services:PrivateServiceDetailsRegion": {
             "type": "string",
             "enum": [
                 {
@@ -1172,6 +1350,31 @@
                 {
                     "name": "Frankfurt",
                     "value": "frankfurt"
+                }
+            ]
+        },
+        "render:services:ServerProperties": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "render:services:ServiceAutoDeploy": {
+            "description": "Whether to auto deploy the service or not upon git push.",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
                 }
             ]
         },
@@ -1476,6 +1679,15 @@
                     "type": "number",
                     "default": 1
                 },
+                "openPorts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:OpenPorts"
+                    }
+                },
+                "parentServer": {
+                    "$ref": "#/types/render:services:WebServiceServiceDetailsParentServerProperties"
+                },
                 "plan": {
                     "$ref": "#/types/render:services:WebServiceServiceDetailsPlan",
                     "default": "starter"
@@ -1487,6 +1699,9 @@
                 "region": {
                     "$ref": "#/types/render:services:WebServiceServiceDetailsRegion",
                     "default": "oregon"
+                },
+                "url": {
+                    "type": "string"
                 }
             },
             "type": "object",
@@ -1526,6 +1741,17 @@
                     "value": "rust"
                 }
             ]
+        },
+        "render:services:WebServiceServiceDetailsParentServerProperties": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
         },
         "render:services:WebServiceServiceDetailsPlan": {
             "type": "string",
@@ -1644,7 +1870,7 @@
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
                 },
                 "serviceDetails": {
-                    "$ref": "#/types/render:services:ServiceDetails"
+                    "$ref": "#/types/render:services:BackgroundWorkerServiceDetails"
                 },
                 "slug": {
                     "type": "string"
@@ -1696,7 +1922,7 @@
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
                 },
                 "serviceDetails": {
-                    "$ref": "#/types/render:services:ServiceDetails"
+                    "$ref": "#/types/render:services:BackgroundWorkerServiceDetails"
                 },
                 "slug": {
                     "type": "string"
@@ -1937,7 +2163,7 @@
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
                 },
                 "serviceDetails": {
-                    "$ref": "#/types/render:services:ServiceDetails"
+                    "$ref": "#/types/render:services:PrivateServiceDetails"
                 },
                 "slug": {
                     "type": "string"
@@ -1989,7 +2215,7 @@
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
                 },
                 "serviceDetails": {
-                    "$ref": "#/types/render:services:ServiceDetails"
+                    "$ref": "#/types/render:services:PrivateServiceDetails"
                 },
                 "slug": {
                     "type": "string"

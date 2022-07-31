@@ -26,13 +26,13 @@ type PrivateService struct {
 	// The id of the owner (user/team).
 	OwnerId pulumi.StringPtrOutput `pulumi:"ownerId"`
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-	Repo           pulumi.StringPtrOutput    `pulumi:"repo"`
-	ServiceDetails ServiceDetailsPtrOutput   `pulumi:"serviceDetails"`
-	Slug           pulumi.StringPtrOutput    `pulumi:"slug"`
-	Suspended      ServiceSuspendedPtrOutput `pulumi:"suspended"`
-	Suspenders     pulumi.StringArrayOutput  `pulumi:"suspenders"`
-	Type           pulumi.StringPtrOutput    `pulumi:"type"`
-	UpdatedAt      pulumi.StringPtrOutput    `pulumi:"updatedAt"`
+	Repo           pulumi.StringPtrOutput         `pulumi:"repo"`
+	ServiceDetails PrivateServiceDetailsPtrOutput `pulumi:"serviceDetails"`
+	Slug           pulumi.StringPtrOutput         `pulumi:"slug"`
+	Suspended      ServiceSuspendedPtrOutput      `pulumi:"suspended"`
+	Suspenders     pulumi.StringArrayOutput       `pulumi:"suspenders"`
+	Type           pulumi.StringPtrOutput         `pulumi:"type"`
+	UpdatedAt      pulumi.StringPtrOutput         `pulumi:"updatedAt"`
 }
 
 // NewPrivateService registers a new resource with the given unique name, arguments, and options.
@@ -55,7 +55,7 @@ func NewPrivateService(ctx *pulumi.Context,
 		args.AutoDeploy = ServiceAutoDeploy("no")
 	}
 	if args.ServiceDetails != nil {
-		args.ServiceDetails = args.ServiceDetails.ToServiceDetailsPtrOutput().ApplyT(func(v *ServiceDetails) *ServiceDetails { return v.Defaults() }).(ServiceDetailsPtrOutput)
+		args.ServiceDetails = args.ServiceDetails.ToPrivateServiceDetailsPtrOutput().ApplyT(func(v *PrivateServiceDetails) *PrivateServiceDetails { return v.Defaults() }).(PrivateServiceDetailsPtrOutput)
 	}
 	if isZero(args.Type) {
 		args.Type = pulumi.StringPtr("private_service")
@@ -104,13 +104,13 @@ type privateServiceArgs struct {
 	// The id of the owner (user/team).
 	OwnerId string `pulumi:"ownerId"`
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-	Repo           string            `pulumi:"repo"`
-	ServiceDetails *ServiceDetails   `pulumi:"serviceDetails"`
-	Slug           *string           `pulumi:"slug"`
-	Suspended      *ServiceSuspended `pulumi:"suspended"`
-	Suspenders     []string          `pulumi:"suspenders"`
-	Type           *string           `pulumi:"type"`
-	UpdatedAt      *string           `pulumi:"updatedAt"`
+	Repo           string                 `pulumi:"repo"`
+	ServiceDetails *PrivateServiceDetails `pulumi:"serviceDetails"`
+	Slug           *string                `pulumi:"slug"`
+	Suspended      *ServiceSuspended      `pulumi:"suspended"`
+	Suspenders     []string               `pulumi:"suspenders"`
+	Type           *string                `pulumi:"type"`
+	UpdatedAt      *string                `pulumi:"updatedAt"`
 }
 
 // The set of arguments for constructing a PrivateService resource.
@@ -127,7 +127,7 @@ type PrivateServiceArgs struct {
 	OwnerId pulumi.StringInput
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
 	Repo           pulumi.StringInput
-	ServiceDetails ServiceDetailsPtrInput
+	ServiceDetails PrivateServiceDetailsPtrInput
 	Slug           pulumi.StringPtrInput
 	Suspended      ServiceSuspendedPtrInput
 	Suspenders     pulumi.StringArrayInput
@@ -205,8 +205,8 @@ func (o PrivateServiceOutput) Repo() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PrivateService) pulumi.StringPtrOutput { return v.Repo }).(pulumi.StringPtrOutput)
 }
 
-func (o PrivateServiceOutput) ServiceDetails() ServiceDetailsPtrOutput {
-	return o.ApplyT(func(v *PrivateService) ServiceDetailsPtrOutput { return v.ServiceDetails }).(ServiceDetailsPtrOutput)
+func (o PrivateServiceOutput) ServiceDetails() PrivateServiceDetailsPtrOutput {
+	return o.ApplyT(func(v *PrivateService) PrivateServiceDetailsPtrOutput { return v.ServiceDetails }).(PrivateServiceDetailsPtrOutput)
 }
 
 func (o PrivateServiceOutput) Slug() pulumi.StringPtrOutput {

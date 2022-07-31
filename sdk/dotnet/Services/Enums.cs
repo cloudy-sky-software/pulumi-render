@@ -8,6 +8,129 @@ using Pulumi;
 namespace Pulumi.Render.Services
 {
     [EnumType]
+    public readonly struct BackgroundWorkerServiceDetailsEnv : IEquatable<BackgroundWorkerServiceDetailsEnv>
+    {
+        private readonly string _value;
+
+        private BackgroundWorkerServiceDetailsEnv(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static BackgroundWorkerServiceDetailsEnv Docker { get; } = new BackgroundWorkerServiceDetailsEnv("docker");
+        public static BackgroundWorkerServiceDetailsEnv Elixir { get; } = new BackgroundWorkerServiceDetailsEnv("elixir");
+        public static BackgroundWorkerServiceDetailsEnv Go { get; } = new BackgroundWorkerServiceDetailsEnv("go");
+        public static BackgroundWorkerServiceDetailsEnv Node { get; } = new BackgroundWorkerServiceDetailsEnv("node");
+        public static BackgroundWorkerServiceDetailsEnv Python { get; } = new BackgroundWorkerServiceDetailsEnv("python");
+        public static BackgroundWorkerServiceDetailsEnv Ruby { get; } = new BackgroundWorkerServiceDetailsEnv("ruby");
+        public static BackgroundWorkerServiceDetailsEnv Rust { get; } = new BackgroundWorkerServiceDetailsEnv("rust");
+
+        public static bool operator ==(BackgroundWorkerServiceDetailsEnv left, BackgroundWorkerServiceDetailsEnv right) => left.Equals(right);
+        public static bool operator !=(BackgroundWorkerServiceDetailsEnv left, BackgroundWorkerServiceDetailsEnv right) => !left.Equals(right);
+
+        public static explicit operator string(BackgroundWorkerServiceDetailsEnv value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is BackgroundWorkerServiceDetailsEnv other && Equals(other);
+        public bool Equals(BackgroundWorkerServiceDetailsEnv other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    [EnumType]
+    public readonly struct BackgroundWorkerServiceDetailsPlan : IEquatable<BackgroundWorkerServiceDetailsPlan>
+    {
+        private readonly string _value;
+
+        private BackgroundWorkerServiceDetailsPlan(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static BackgroundWorkerServiceDetailsPlan Starter { get; } = new BackgroundWorkerServiceDetailsPlan("starter");
+        public static BackgroundWorkerServiceDetailsPlan StarterPlus { get; } = new BackgroundWorkerServiceDetailsPlan("starter_plus");
+        public static BackgroundWorkerServiceDetailsPlan Standard { get; } = new BackgroundWorkerServiceDetailsPlan("standard");
+        public static BackgroundWorkerServiceDetailsPlan StandardPlus { get; } = new BackgroundWorkerServiceDetailsPlan("standard_plus");
+        public static BackgroundWorkerServiceDetailsPlan Pro { get; } = new BackgroundWorkerServiceDetailsPlan("pro");
+        public static BackgroundWorkerServiceDetailsPlan ProPlus { get; } = new BackgroundWorkerServiceDetailsPlan("pro_plus");
+        public static BackgroundWorkerServiceDetailsPlan ProMax { get; } = new BackgroundWorkerServiceDetailsPlan("pro_max");
+        public static BackgroundWorkerServiceDetailsPlan ProUltra { get; } = new BackgroundWorkerServiceDetailsPlan("pro_ultra");
+
+        public static bool operator ==(BackgroundWorkerServiceDetailsPlan left, BackgroundWorkerServiceDetailsPlan right) => left.Equals(right);
+        public static bool operator !=(BackgroundWorkerServiceDetailsPlan left, BackgroundWorkerServiceDetailsPlan right) => !left.Equals(right);
+
+        public static explicit operator string(BackgroundWorkerServiceDetailsPlan value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is BackgroundWorkerServiceDetailsPlan other && Equals(other);
+        public bool Equals(BackgroundWorkerServiceDetailsPlan other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    [EnumType]
+    public readonly struct BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled : IEquatable<BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled>
+    {
+        private readonly string _value;
+
+        private BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled Yes { get; } = new BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled("yes");
+        public static BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled No { get; } = new BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled("no");
+
+        public static bool operator ==(BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled left, BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled right) => left.Equals(right);
+        public static bool operator !=(BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled left, BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled right) => !left.Equals(right);
+
+        public static explicit operator string(BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled other && Equals(other);
+        public bool Equals(BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    [EnumType]
+    public readonly struct BackgroundWorkerServiceDetailsRegion : IEquatable<BackgroundWorkerServiceDetailsRegion>
+    {
+        private readonly string _value;
+
+        private BackgroundWorkerServiceDetailsRegion(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static BackgroundWorkerServiceDetailsRegion Oregon { get; } = new BackgroundWorkerServiceDetailsRegion("oregon");
+        public static BackgroundWorkerServiceDetailsRegion Frankfurt { get; } = new BackgroundWorkerServiceDetailsRegion("frankfurt");
+
+        public static bool operator ==(BackgroundWorkerServiceDetailsRegion left, BackgroundWorkerServiceDetailsRegion right) => left.Equals(right);
+        public static bool operator !=(BackgroundWorkerServiceDetailsRegion left, BackgroundWorkerServiceDetailsRegion right) => !left.Equals(right);
+
+        public static explicit operator string(BackgroundWorkerServiceDetailsRegion value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is BackgroundWorkerServiceDetailsRegion other && Equals(other);
+        public bool Equals(BackgroundWorkerServiceDetailsRegion other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    [EnumType]
     public readonly struct ClearCache : IEquatable<ClearCache>
     {
         private readonly string _value;
@@ -242,6 +365,157 @@ namespace Pulumi.Render.Services
         public override string ToString() => _value;
     }
 
+    [EnumType]
+    public readonly struct OpenPortsProtocol : IEquatable<OpenPortsProtocol>
+    {
+        private readonly string _value;
+
+        private OpenPortsProtocol(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static OpenPortsProtocol Tcp { get; } = new OpenPortsProtocol("TCP");
+        public static OpenPortsProtocol Udp { get; } = new OpenPortsProtocol("UDP");
+
+        public static bool operator ==(OpenPortsProtocol left, OpenPortsProtocol right) => left.Equals(right);
+        public static bool operator !=(OpenPortsProtocol left, OpenPortsProtocol right) => !left.Equals(right);
+
+        public static explicit operator string(OpenPortsProtocol value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is OpenPortsProtocol other && Equals(other);
+        public bool Equals(OpenPortsProtocol other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    [EnumType]
+    public readonly struct PrivateServiceDetailsEnv : IEquatable<PrivateServiceDetailsEnv>
+    {
+        private readonly string _value;
+
+        private PrivateServiceDetailsEnv(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static PrivateServiceDetailsEnv Docker { get; } = new PrivateServiceDetailsEnv("docker");
+        public static PrivateServiceDetailsEnv Elixir { get; } = new PrivateServiceDetailsEnv("elixir");
+        public static PrivateServiceDetailsEnv Go { get; } = new PrivateServiceDetailsEnv("go");
+        public static PrivateServiceDetailsEnv Node { get; } = new PrivateServiceDetailsEnv("node");
+        public static PrivateServiceDetailsEnv Python { get; } = new PrivateServiceDetailsEnv("python");
+        public static PrivateServiceDetailsEnv Ruby { get; } = new PrivateServiceDetailsEnv("ruby");
+        public static PrivateServiceDetailsEnv Rust { get; } = new PrivateServiceDetailsEnv("rust");
+
+        public static bool operator ==(PrivateServiceDetailsEnv left, PrivateServiceDetailsEnv right) => left.Equals(right);
+        public static bool operator !=(PrivateServiceDetailsEnv left, PrivateServiceDetailsEnv right) => !left.Equals(right);
+
+        public static explicit operator string(PrivateServiceDetailsEnv value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is PrivateServiceDetailsEnv other && Equals(other);
+        public bool Equals(PrivateServiceDetailsEnv other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    [EnumType]
+    public readonly struct PrivateServiceDetailsPlan : IEquatable<PrivateServiceDetailsPlan>
+    {
+        private readonly string _value;
+
+        private PrivateServiceDetailsPlan(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static PrivateServiceDetailsPlan Starter { get; } = new PrivateServiceDetailsPlan("starter");
+        public static PrivateServiceDetailsPlan StarterPlus { get; } = new PrivateServiceDetailsPlan("starter_plus");
+        public static PrivateServiceDetailsPlan Standard { get; } = new PrivateServiceDetailsPlan("standard");
+        public static PrivateServiceDetailsPlan StandardPlus { get; } = new PrivateServiceDetailsPlan("standard_plus");
+        public static PrivateServiceDetailsPlan Pro { get; } = new PrivateServiceDetailsPlan("pro");
+        public static PrivateServiceDetailsPlan ProPlus { get; } = new PrivateServiceDetailsPlan("pro_plus");
+        public static PrivateServiceDetailsPlan ProMax { get; } = new PrivateServiceDetailsPlan("pro_max");
+        public static PrivateServiceDetailsPlan ProUltra { get; } = new PrivateServiceDetailsPlan("pro_ultra");
+
+        public static bool operator ==(PrivateServiceDetailsPlan left, PrivateServiceDetailsPlan right) => left.Equals(right);
+        public static bool operator !=(PrivateServiceDetailsPlan left, PrivateServiceDetailsPlan right) => !left.Equals(right);
+
+        public static explicit operator string(PrivateServiceDetailsPlan value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is PrivateServiceDetailsPlan other && Equals(other);
+        public bool Equals(PrivateServiceDetailsPlan other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    [EnumType]
+    public readonly struct PrivateServiceDetailsPullRequestPreviewsEnabled : IEquatable<PrivateServiceDetailsPullRequestPreviewsEnabled>
+    {
+        private readonly string _value;
+
+        private PrivateServiceDetailsPullRequestPreviewsEnabled(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static PrivateServiceDetailsPullRequestPreviewsEnabled Yes { get; } = new PrivateServiceDetailsPullRequestPreviewsEnabled("yes");
+        public static PrivateServiceDetailsPullRequestPreviewsEnabled No { get; } = new PrivateServiceDetailsPullRequestPreviewsEnabled("no");
+
+        public static bool operator ==(PrivateServiceDetailsPullRequestPreviewsEnabled left, PrivateServiceDetailsPullRequestPreviewsEnabled right) => left.Equals(right);
+        public static bool operator !=(PrivateServiceDetailsPullRequestPreviewsEnabled left, PrivateServiceDetailsPullRequestPreviewsEnabled right) => !left.Equals(right);
+
+        public static explicit operator string(PrivateServiceDetailsPullRequestPreviewsEnabled value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is PrivateServiceDetailsPullRequestPreviewsEnabled other && Equals(other);
+        public bool Equals(PrivateServiceDetailsPullRequestPreviewsEnabled other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    [EnumType]
+    public readonly struct PrivateServiceDetailsRegion : IEquatable<PrivateServiceDetailsRegion>
+    {
+        private readonly string _value;
+
+        private PrivateServiceDetailsRegion(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static PrivateServiceDetailsRegion Oregon { get; } = new PrivateServiceDetailsRegion("oregon");
+        public static PrivateServiceDetailsRegion Frankfurt { get; } = new PrivateServiceDetailsRegion("frankfurt");
+
+        public static bool operator ==(PrivateServiceDetailsRegion left, PrivateServiceDetailsRegion right) => left.Equals(right);
+        public static bool operator !=(PrivateServiceDetailsRegion left, PrivateServiceDetailsRegion right) => !left.Equals(right);
+
+        public static explicit operator string(PrivateServiceDetailsRegion value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is PrivateServiceDetailsRegion other && Equals(other);
+        public bool Equals(PrivateServiceDetailsRegion other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
     /// <summary>
     /// Whether to auto deploy the service or not upon git push.
     /// </summary>
@@ -266,129 +540,6 @@ namespace Pulumi.Render.Services
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool Equals(object? obj) => obj is ServiceAutoDeploy other && Equals(other);
         public bool Equals(ServiceAutoDeploy other) => string.Equals(_value, other._value, StringComparison.Ordinal);
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
-
-        public override string ToString() => _value;
-    }
-
-    [EnumType]
-    public readonly struct ServiceDetailsEnv : IEquatable<ServiceDetailsEnv>
-    {
-        private readonly string _value;
-
-        private ServiceDetailsEnv(string value)
-        {
-            _value = value ?? throw new ArgumentNullException(nameof(value));
-        }
-
-        public static ServiceDetailsEnv Docker { get; } = new ServiceDetailsEnv("docker");
-        public static ServiceDetailsEnv Elixir { get; } = new ServiceDetailsEnv("elixir");
-        public static ServiceDetailsEnv Go { get; } = new ServiceDetailsEnv("go");
-        public static ServiceDetailsEnv Node { get; } = new ServiceDetailsEnv("node");
-        public static ServiceDetailsEnv Python { get; } = new ServiceDetailsEnv("python");
-        public static ServiceDetailsEnv Ruby { get; } = new ServiceDetailsEnv("ruby");
-        public static ServiceDetailsEnv Rust { get; } = new ServiceDetailsEnv("rust");
-
-        public static bool operator ==(ServiceDetailsEnv left, ServiceDetailsEnv right) => left.Equals(right);
-        public static bool operator !=(ServiceDetailsEnv left, ServiceDetailsEnv right) => !left.Equals(right);
-
-        public static explicit operator string(ServiceDetailsEnv value) => value._value;
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is ServiceDetailsEnv other && Equals(other);
-        public bool Equals(ServiceDetailsEnv other) => string.Equals(_value, other._value, StringComparison.Ordinal);
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
-
-        public override string ToString() => _value;
-    }
-
-    [EnumType]
-    public readonly struct ServiceDetailsPlan : IEquatable<ServiceDetailsPlan>
-    {
-        private readonly string _value;
-
-        private ServiceDetailsPlan(string value)
-        {
-            _value = value ?? throw new ArgumentNullException(nameof(value));
-        }
-
-        public static ServiceDetailsPlan Starter { get; } = new ServiceDetailsPlan("starter");
-        public static ServiceDetailsPlan StarterPlus { get; } = new ServiceDetailsPlan("starter_plus");
-        public static ServiceDetailsPlan Standard { get; } = new ServiceDetailsPlan("standard");
-        public static ServiceDetailsPlan StandardPlus { get; } = new ServiceDetailsPlan("standard_plus");
-        public static ServiceDetailsPlan Pro { get; } = new ServiceDetailsPlan("pro");
-        public static ServiceDetailsPlan ProPlus { get; } = new ServiceDetailsPlan("pro_plus");
-        public static ServiceDetailsPlan ProMax { get; } = new ServiceDetailsPlan("pro_max");
-        public static ServiceDetailsPlan ProUltra { get; } = new ServiceDetailsPlan("pro_ultra");
-
-        public static bool operator ==(ServiceDetailsPlan left, ServiceDetailsPlan right) => left.Equals(right);
-        public static bool operator !=(ServiceDetailsPlan left, ServiceDetailsPlan right) => !left.Equals(right);
-
-        public static explicit operator string(ServiceDetailsPlan value) => value._value;
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is ServiceDetailsPlan other && Equals(other);
-        public bool Equals(ServiceDetailsPlan other) => string.Equals(_value, other._value, StringComparison.Ordinal);
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
-
-        public override string ToString() => _value;
-    }
-
-    [EnumType]
-    public readonly struct ServiceDetailsPullRequestPreviewsEnabled : IEquatable<ServiceDetailsPullRequestPreviewsEnabled>
-    {
-        private readonly string _value;
-
-        private ServiceDetailsPullRequestPreviewsEnabled(string value)
-        {
-            _value = value ?? throw new ArgumentNullException(nameof(value));
-        }
-
-        public static ServiceDetailsPullRequestPreviewsEnabled Yes { get; } = new ServiceDetailsPullRequestPreviewsEnabled("yes");
-        public static ServiceDetailsPullRequestPreviewsEnabled No { get; } = new ServiceDetailsPullRequestPreviewsEnabled("no");
-
-        public static bool operator ==(ServiceDetailsPullRequestPreviewsEnabled left, ServiceDetailsPullRequestPreviewsEnabled right) => left.Equals(right);
-        public static bool operator !=(ServiceDetailsPullRequestPreviewsEnabled left, ServiceDetailsPullRequestPreviewsEnabled right) => !left.Equals(right);
-
-        public static explicit operator string(ServiceDetailsPullRequestPreviewsEnabled value) => value._value;
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is ServiceDetailsPullRequestPreviewsEnabled other && Equals(other);
-        public bool Equals(ServiceDetailsPullRequestPreviewsEnabled other) => string.Equals(_value, other._value, StringComparison.Ordinal);
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
-
-        public override string ToString() => _value;
-    }
-
-    [EnumType]
-    public readonly struct ServiceDetailsRegion : IEquatable<ServiceDetailsRegion>
-    {
-        private readonly string _value;
-
-        private ServiceDetailsRegion(string value)
-        {
-            _value = value ?? throw new ArgumentNullException(nameof(value));
-        }
-
-        public static ServiceDetailsRegion Oregon { get; } = new ServiceDetailsRegion("oregon");
-        public static ServiceDetailsRegion Frankfurt { get; } = new ServiceDetailsRegion("frankfurt");
-
-        public static bool operator ==(ServiceDetailsRegion left, ServiceDetailsRegion right) => left.Equals(right);
-        public static bool operator !=(ServiceDetailsRegion left, ServiceDetailsRegion right) => !left.Equals(right);
-
-        public static explicit operator string(ServiceDetailsRegion value) => value._value;
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is ServiceDetailsRegion other && Equals(other);
-        public bool Equals(ServiceDetailsRegion other) => string.Equals(_value, other._value, StringComparison.Ordinal);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => _value?.GetHashCode() ?? 0;

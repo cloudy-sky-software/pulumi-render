@@ -52,7 +52,7 @@ namespace Pulumi.Render.Services
         public Output<string?> Repo { get; private set; } = null!;
 
         [Output("serviceDetails")]
-        public Output<Outputs.ServiceDetails?> ServiceDetails { get; private set; } = null!;
+        public Output<Outputs.BackgroundWorkerServiceDetails?> ServiceDetails { get; private set; } = null!;
 
         [Output("slug")]
         public Output<string?> Slug { get; private set; } = null!;
@@ -152,7 +152,7 @@ namespace Pulumi.Render.Services
         public Input<string> Repo { get; set; } = null!;
 
         [Input("serviceDetails")]
-        public Input<Inputs.ServiceDetailsArgs>? ServiceDetails { get; set; }
+        public Input<Inputs.BackgroundWorkerServiceDetailsArgs>? ServiceDetails { get; set; }
 
         [Input("slug")]
         public Input<string>? Slug { get; set; }

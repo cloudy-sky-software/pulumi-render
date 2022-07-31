@@ -57,7 +57,7 @@ export class BackgroundWorker extends pulumi.CustomResource {
      * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
      */
     public readonly repo!: pulumi.Output<string | undefined>;
-    public readonly serviceDetails!: pulumi.Output<outputs.services.ServiceDetails | undefined>;
+    public readonly serviceDetails!: pulumi.Output<outputs.services.BackgroundWorkerServiceDetails | undefined>;
     public readonly slug!: pulumi.Output<string | undefined>;
     public readonly suspended!: pulumi.Output<enums.services.ServiceSuspended | undefined>;
     public readonly suspenders!: pulumi.Output<string[] | undefined>;
@@ -91,7 +91,7 @@ export class BackgroundWorker extends pulumi.CustomResource {
             resourceInputs["notifyOnFail"] = args ? args.notifyOnFail : undefined;
             resourceInputs["ownerId"] = args ? args.ownerId : undefined;
             resourceInputs["repo"] = args ? args.repo : undefined;
-            resourceInputs["serviceDetails"] = args ? (args.serviceDetails ? pulumi.output(args.serviceDetails).apply(inputs.services.serviceDetailsArgsProvideDefaults) : undefined) : undefined;
+            resourceInputs["serviceDetails"] = args ? (args.serviceDetails ? pulumi.output(args.serviceDetails).apply(inputs.services.backgroundWorkerServiceDetailsArgsProvideDefaults) : undefined) : undefined;
             resourceInputs["slug"] = args ? args.slug : undefined;
             resourceInputs["suspended"] = args ? args.suspended : undefined;
             resourceInputs["suspenders"] = args ? args.suspenders : undefined;
@@ -143,7 +143,7 @@ export interface BackgroundWorkerArgs {
      * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
      */
     repo: pulumi.Input<string>;
-    serviceDetails?: pulumi.Input<inputs.services.ServiceDetailsArgs>;
+    serviceDetails?: pulumi.Input<inputs.services.BackgroundWorkerServiceDetailsArgs>;
     slug?: pulumi.Input<string>;
     suspended?: pulumi.Input<enums.services.ServiceSuspended>;
     suspenders?: pulumi.Input<pulumi.Input<string>[]>;

@@ -1,3 +1,8 @@
+## 0.0.36
+
+* Fix discriminator mapping bug.
+* Add missing output props for all service types.
+
 ## 0.0.35
 
 Add OpenAPI schemas for all Render service types.

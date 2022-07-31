@@ -24,7 +24,7 @@ class PrivateServiceArgs:
                  branch: Optional[pulumi.Input[str]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  notify_on_fail: Optional[pulumi.Input['ServiceNotifyOnFail']] = None,
-                 service_details: Optional[pulumi.Input['ServiceDetailsArgs']] = None,
+                 service_details: Optional[pulumi.Input['PrivateServiceDetailsArgs']] = None,
                  slug: Optional[pulumi.Input[str]] = None,
                  suspended: Optional[pulumi.Input['ServiceSuspended']] = None,
                  suspenders: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -146,11 +146,11 @@ class PrivateServiceArgs:
 
     @property
     @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> Optional[pulumi.Input['ServiceDetailsArgs']]:
+    def service_details(self) -> Optional[pulumi.Input['PrivateServiceDetailsArgs']]:
         return pulumi.get(self, "service_details")
 
     @service_details.setter
-    def service_details(self, value: Optional[pulumi.Input['ServiceDetailsArgs']]):
+    def service_details(self, value: Optional[pulumi.Input['PrivateServiceDetailsArgs']]):
         pulumi.set(self, "service_details", value)
 
     @property
@@ -211,7 +211,7 @@ class PrivateService(pulumi.CustomResource):
                  notify_on_fail: Optional[pulumi.Input['ServiceNotifyOnFail']] = None,
                  owner_id: Optional[pulumi.Input[str]] = None,
                  repo: Optional[pulumi.Input[str]] = None,
-                 service_details: Optional[pulumi.Input[pulumi.InputType['ServiceDetailsArgs']]] = None,
+                 service_details: Optional[pulumi.Input[pulumi.InputType['PrivateServiceDetailsArgs']]] = None,
                  slug: Optional[pulumi.Input[str]] = None,
                  suspended: Optional[pulumi.Input['ServiceSuspended']] = None,
                  suspenders: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -260,7 +260,7 @@ class PrivateService(pulumi.CustomResource):
                  notify_on_fail: Optional[pulumi.Input['ServiceNotifyOnFail']] = None,
                  owner_id: Optional[pulumi.Input[str]] = None,
                  repo: Optional[pulumi.Input[str]] = None,
-                 service_details: Optional[pulumi.Input[pulumi.InputType['ServiceDetailsArgs']]] = None,
+                 service_details: Optional[pulumi.Input[pulumi.InputType['PrivateServiceDetailsArgs']]] = None,
                  slug: Optional[pulumi.Input[str]] = None,
                  suspended: Optional[pulumi.Input['ServiceSuspended']] = None,
                  suspenders: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -387,7 +387,7 @@ class PrivateService(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> pulumi.Output[Optional['outputs.ServiceDetails']]:
+    def service_details(self) -> pulumi.Output[Optional['outputs.PrivateServiceDetails']]:
         return pulumi.get(self, "service_details")
 
     @property

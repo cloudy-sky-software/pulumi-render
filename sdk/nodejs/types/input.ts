@@ -10,9 +10,40 @@ export namespace owners {
 }
 
 export namespace services {
+    export interface BackgroundWorkerServiceDetailsArgs {
+        disk?: pulumi.Input<inputs.services.DiskArgs>;
+        env: pulumi.Input<enums.services.BackgroundWorkerServiceDetailsEnv>;
+        envSpecificDetails?: pulumi.Input<inputs.services.DockerDetailsArgs | inputs.services.NativeEnvironmentDetailsArgs>;
+        numInstances?: pulumi.Input<number>;
+        parentServer?: pulumi.Input<inputs.services.BackgroundWorkerServiceDetailsParentServerPropertiesArgs>;
+        plan?: pulumi.Input<enums.services.BackgroundWorkerServiceDetailsPlan>;
+        pullRequestPreviewsEnabled?: pulumi.Input<enums.services.BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled>;
+        region?: pulumi.Input<enums.services.BackgroundWorkerServiceDetailsRegion>;
+        url?: pulumi.Input<string>;
+    }
+    /**
+     * backgroundWorkerServiceDetailsArgsProvideDefaults sets the appropriate defaults for BackgroundWorkerServiceDetailsArgs
+     */
+    export function backgroundWorkerServiceDetailsArgsProvideDefaults(val: BackgroundWorkerServiceDetailsArgs): BackgroundWorkerServiceDetailsArgs {
+        return {
+            ...val,
+            disk: (val.disk ? pulumi.output(val.disk).apply(inputs.services.diskArgsProvideDefaults) : undefined),
+            numInstances: (val.numInstances) ?? 1,
+            plan: (val.plan) ?? "starter",
+            pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
+            region: (val.region) ?? "oregon",
+        };
+    }
+
+    export interface BackgroundWorkerServiceDetailsParentServerPropertiesArgs {
+        id?: pulumi.Input<string>;
+        name?: pulumi.Input<string>;
+    }
+
     export interface CronJobServiceDetailsArgs {
         env: pulumi.Input<enums.services.CronJobServiceDetailsEnv>;
         envSpecificDetails?: pulumi.Input<inputs.services.DockerDetailsArgs | inputs.services.NativeEnvironmentDetailsArgs>;
+        lastSuccessfulRunAt?: pulumi.Input<string>;
         plan?: pulumi.Input<enums.services.CronJobServiceDetailsPlan>;
         region?: pulumi.Input<enums.services.CronJobServiceDetailsRegion>;
         schedule: pulumi.Input<string>;
@@ -63,24 +94,27 @@ export namespace services {
         startCommand: pulumi.Input<string>;
     }
 
-    export interface ServerPropertiesArgs {
-        id?: pulumi.Input<string>;
-        name?: pulumi.Input<string>;
+    export interface OpenPortsArgs {
+        port?: pulumi.Input<number>;
+        protocol?: pulumi.Input<enums.services.OpenPortsProtocol>;
     }
 
-    export interface ServiceDetailsArgs {
+    export interface PrivateServiceDetailsArgs {
         disk?: pulumi.Input<inputs.services.DiskArgs>;
-        env: pulumi.Input<enums.services.ServiceDetailsEnv>;
+        env: pulumi.Input<enums.services.PrivateServiceDetailsEnv>;
         envSpecificDetails?: pulumi.Input<inputs.services.DockerDetailsArgs | inputs.services.NativeEnvironmentDetailsArgs>;
         numInstances?: pulumi.Input<number>;
-        plan?: pulumi.Input<enums.services.ServiceDetailsPlan>;
-        pullRequestPreviewsEnabled?: pulumi.Input<enums.services.ServiceDetailsPullRequestPreviewsEnabled>;
-        region?: pulumi.Input<enums.services.ServiceDetailsRegion>;
+        openPorts?: pulumi.Input<pulumi.Input<inputs.services.OpenPortsArgs>[]>;
+        parentServer?: pulumi.Input<inputs.services.PrivateServiceDetailsParentServerPropertiesArgs>;
+        plan?: pulumi.Input<enums.services.PrivateServiceDetailsPlan>;
+        pullRequestPreviewsEnabled?: pulumi.Input<enums.services.PrivateServiceDetailsPullRequestPreviewsEnabled>;
+        region?: pulumi.Input<enums.services.PrivateServiceDetailsRegion>;
+        url?: pulumi.Input<string>;
     }
     /**
-     * serviceDetailsArgsProvideDefaults sets the appropriate defaults for ServiceDetailsArgs
+     * privateServiceDetailsArgsProvideDefaults sets the appropriate defaults for PrivateServiceDetailsArgs
      */
-    export function serviceDetailsArgsProvideDefaults(val: ServiceDetailsArgs): ServiceDetailsArgs {
+    export function privateServiceDetailsArgsProvideDefaults(val: PrivateServiceDetailsArgs): PrivateServiceDetailsArgs {
         return {
             ...val,
             disk: (val.disk ? pulumi.output(val.disk).apply(inputs.services.diskArgsProvideDefaults) : undefined),
@@ -89,6 +123,16 @@ export namespace services {
             pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
             region: (val.region) ?? "oregon",
         };
+    }
+
+    export interface PrivateServiceDetailsParentServerPropertiesArgs {
+        id?: pulumi.Input<string>;
+        name?: pulumi.Input<string>;
+    }
+
+    export interface ServerPropertiesArgs {
+        id?: pulumi.Input<string>;
+        name?: pulumi.Input<string>;
     }
 
     /**
@@ -143,9 +187,12 @@ export namespace services {
         envSpecificDetails?: pulumi.Input<inputs.services.DockerDetailsArgs | inputs.services.NativeEnvironmentDetailsArgs>;
         healthCheckPath?: pulumi.Input<string>;
         numInstances?: pulumi.Input<number>;
+        openPorts?: pulumi.Input<pulumi.Input<inputs.services.OpenPortsArgs>[]>;
+        parentServer?: pulumi.Input<inputs.services.WebServiceServiceDetailsParentServerPropertiesArgs>;
         plan?: pulumi.Input<enums.services.WebServiceServiceDetailsPlan>;
         pullRequestPreviewsEnabled?: pulumi.Input<enums.services.WebServiceServiceDetailsPullRequestPreviewsEnabled>;
         region?: pulumi.Input<enums.services.WebServiceServiceDetailsRegion>;
+        url?: pulumi.Input<string>;
     }
     /**
      * webServiceServiceDetailsArgsProvideDefaults sets the appropriate defaults for WebServiceServiceDetailsArgs
@@ -159,5 +206,10 @@ export namespace services {
             pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
             region: (val.region) ?? "oregon",
         };
+    }
+
+    export interface WebServiceServiceDetailsParentServerPropertiesArgs {
+        id?: pulumi.Input<string>;
+        name?: pulumi.Input<string>;
     }
 }

@@ -11,48 +11,44 @@ namespace Pulumi.Render.Services.Outputs
 {
 
     [OutputType]
-    public sealed class WebServiceServiceDetails
+    public sealed class PrivateServiceDetails
     {
         public readonly Outputs.Disk? Disk;
-        public readonly Pulumi.Render.Services.WebServiceServiceDetailsEnv Env;
+        public readonly Pulumi.Render.Services.PrivateServiceDetailsEnv Env;
         public readonly Union<Outputs.DockerDetails, Outputs.NativeEnvironmentDetails>? EnvSpecificDetails;
-        public readonly string? HealthCheckPath;
         public readonly double? NumInstances;
         public readonly ImmutableArray<Outputs.OpenPorts> OpenPorts;
-        public readonly Outputs.WebServiceServiceDetailsParentServerProperties? ParentServer;
-        public readonly Pulumi.Render.Services.WebServiceServiceDetailsPlan? Plan;
-        public readonly Pulumi.Render.Services.WebServiceServiceDetailsPullRequestPreviewsEnabled? PullRequestPreviewsEnabled;
-        public readonly Pulumi.Render.Services.WebServiceServiceDetailsRegion? Region;
+        public readonly Outputs.PrivateServiceDetailsParentServerProperties? ParentServer;
+        public readonly Pulumi.Render.Services.PrivateServiceDetailsPlan? Plan;
+        public readonly Pulumi.Render.Services.PrivateServiceDetailsPullRequestPreviewsEnabled? PullRequestPreviewsEnabled;
+        public readonly Pulumi.Render.Services.PrivateServiceDetailsRegion? Region;
         public readonly string? Url;
 
         [OutputConstructor]
-        private WebServiceServiceDetails(
+        private PrivateServiceDetails(
             Outputs.Disk? disk,
 
-            Pulumi.Render.Services.WebServiceServiceDetailsEnv env,
+            Pulumi.Render.Services.PrivateServiceDetailsEnv env,
 
             Union<Outputs.DockerDetails, Outputs.NativeEnvironmentDetails>? envSpecificDetails,
-
-            string? healthCheckPath,
 
             double? numInstances,
 
             ImmutableArray<Outputs.OpenPorts> openPorts,
 
-            Outputs.WebServiceServiceDetailsParentServerProperties? parentServer,
+            Outputs.PrivateServiceDetailsParentServerProperties? parentServer,
 
-            Pulumi.Render.Services.WebServiceServiceDetailsPlan? plan,
+            Pulumi.Render.Services.PrivateServiceDetailsPlan? plan,
 
-            Pulumi.Render.Services.WebServiceServiceDetailsPullRequestPreviewsEnabled? pullRequestPreviewsEnabled,
+            Pulumi.Render.Services.PrivateServiceDetailsPullRequestPreviewsEnabled? pullRequestPreviewsEnabled,
 
-            Pulumi.Render.Services.WebServiceServiceDetailsRegion? region,
+            Pulumi.Render.Services.PrivateServiceDetailsRegion? region,
 
             string? url)
         {
             Disk = disk;
             Env = env;
             EnvSpecificDetails = envSpecificDetails;
-            HealthCheckPath = healthCheckPath;
             NumInstances = numInstances;
             OpenPorts = openPorts;
             ParentServer = parentServer;

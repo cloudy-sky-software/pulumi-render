@@ -13,6 +13,8 @@ from ._enums import *
 
 __all__ = [
     'BackgroundWorker',
+    'BackgroundWorkerServiceDetails',
+    'BackgroundWorkerServiceDetailsParentServerProperties',
     'Commit',
     'CronJob',
     'CronJobServiceDetails',
@@ -34,9 +36,11 @@ __all__ = [
     'ListServiceResponse',
     'ListStaticSiteRoutesResponse',
     'NativeEnvironmentDetails',
+    'OpenPorts',
     'PrivateService',
+    'PrivateServiceDetails',
+    'PrivateServiceDetailsParentServerProperties',
     'ServerProperties',
-    'ServiceDetails',
     'ServiceHeader',
     'StaticSite',
     'StaticSiteRoute',
@@ -44,6 +48,7 @@ __all__ = [
     'StaticSiteServiceDetailsParentServerProperties',
     'WebService',
     'WebServiceServiceDetails',
+    'WebServiceServiceDetailsParentServerProperties',
 ]
 
 @pulumi.output_type
@@ -59,7 +64,7 @@ class BackgroundWorker(dict):
                  branch: Optional[str] = None,
                  created_at: Optional[str] = None,
                  notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
-                 service_details: Optional['outputs.ServiceDetails'] = None,
+                 service_details: Optional['outputs.BackgroundWorkerServiceDetails'] = None,
                  slug: Optional[str] = None,
                  suspended: Optional['ServiceSuspended'] = None,
                  suspenders: Optional[Sequence[str]] = None,
@@ -153,7 +158,7 @@ class BackgroundWorker(dict):
 
     @property
     @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> Optional['outputs.ServiceDetails']:
+    def service_details(self) -> Optional['outputs.BackgroundWorkerServiceDetails']:
         return pulumi.get(self, "service_details")
 
     @property
@@ -180,6 +185,134 @@ class BackgroundWorker(dict):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[str]:
         return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class BackgroundWorkerServiceDetails(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "envSpecificDetails":
+            suggest = "env_specific_details"
+        elif key == "numInstances":
+            suggest = "num_instances"
+        elif key == "parentServer":
+            suggest = "parent_server"
+        elif key == "pullRequestPreviewsEnabled":
+            suggest = "pull_request_previews_enabled"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BackgroundWorkerServiceDetails. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BackgroundWorkerServiceDetails.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BackgroundWorkerServiceDetails.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 env: 'BackgroundWorkerServiceDetailsEnv',
+                 disk: Optional['outputs.Disk'] = None,
+                 env_specific_details: Optional[Any] = None,
+                 num_instances: Optional[float] = None,
+                 parent_server: Optional['outputs.BackgroundWorkerServiceDetailsParentServerProperties'] = None,
+                 plan: Optional['BackgroundWorkerServiceDetailsPlan'] = None,
+                 pull_request_previews_enabled: Optional['BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled'] = None,
+                 region: Optional['BackgroundWorkerServiceDetailsRegion'] = None,
+                 url: Optional[str] = None):
+        pulumi.set(__self__, "env", env)
+        if disk is not None:
+            pulumi.set(__self__, "disk", disk)
+        if env_specific_details is not None:
+            pulumi.set(__self__, "env_specific_details", env_specific_details)
+        if num_instances is None:
+            num_instances = 1
+        if num_instances is not None:
+            pulumi.set(__self__, "num_instances", num_instances)
+        if parent_server is not None:
+            pulumi.set(__self__, "parent_server", parent_server)
+        if plan is None:
+            plan = 'starter'
+        if plan is not None:
+            pulumi.set(__self__, "plan", plan)
+        if pull_request_previews_enabled is None:
+            pull_request_previews_enabled = 'no'
+        if pull_request_previews_enabled is not None:
+            pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
+        if region is None:
+            region = 'oregon'
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+
+    @property
+    @pulumi.getter
+    def env(self) -> 'BackgroundWorkerServiceDetailsEnv':
+        return pulumi.get(self, "env")
+
+    @property
+    @pulumi.getter
+    def disk(self) -> Optional['outputs.Disk']:
+        return pulumi.get(self, "disk")
+
+    @property
+    @pulumi.getter(name="envSpecificDetails")
+    def env_specific_details(self) -> Optional[Any]:
+        return pulumi.get(self, "env_specific_details")
+
+    @property
+    @pulumi.getter(name="numInstances")
+    def num_instances(self) -> Optional[float]:
+        return pulumi.get(self, "num_instances")
+
+    @property
+    @pulumi.getter(name="parentServer")
+    def parent_server(self) -> Optional['outputs.BackgroundWorkerServiceDetailsParentServerProperties']:
+        return pulumi.get(self, "parent_server")
+
+    @property
+    @pulumi.getter
+    def plan(self) -> Optional['BackgroundWorkerServiceDetailsPlan']:
+        return pulumi.get(self, "plan")
+
+    @property
+    @pulumi.getter(name="pullRequestPreviewsEnabled")
+    def pull_request_previews_enabled(self) -> Optional['BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled']:
+        return pulumi.get(self, "pull_request_previews_enabled")
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional['BackgroundWorkerServiceDetailsRegion']:
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter
+    def url(self) -> Optional[str]:
+        return pulumi.get(self, "url")
+
+
+@pulumi.output_type
+class BackgroundWorkerServiceDetailsParentServerProperties(dict):
+    def __init__(__self__, *,
+                 id: Optional[str] = None,
+                 name: Optional[str] = None):
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
 
 
 @pulumi.output_type
@@ -371,6 +504,8 @@ class CronJobServiceDetails(dict):
         suggest = None
         if key == "envSpecificDetails":
             suggest = "env_specific_details"
+        elif key == "lastSuccessfulRunAt":
+            suggest = "last_successful_run_at"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in CronJobServiceDetails. Access the value via the '{suggest}' property getter instead.")
@@ -387,12 +522,15 @@ class CronJobServiceDetails(dict):
                  env: 'CronJobServiceDetailsEnv',
                  schedule: str,
                  env_specific_details: Optional[Any] = None,
+                 last_successful_run_at: Optional[str] = None,
                  plan: Optional['CronJobServiceDetailsPlan'] = None,
                  region: Optional['CronJobServiceDetailsRegion'] = None):
         pulumi.set(__self__, "env", env)
         pulumi.set(__self__, "schedule", schedule)
         if env_specific_details is not None:
             pulumi.set(__self__, "env_specific_details", env_specific_details)
+        if last_successful_run_at is not None:
+            pulumi.set(__self__, "last_successful_run_at", last_successful_run_at)
         if plan is None:
             plan = 'starter'
         if plan is not None:
@@ -416,6 +554,11 @@ class CronJobServiceDetails(dict):
     @pulumi.getter(name="envSpecificDetails")
     def env_specific_details(self) -> Optional[Any]:
         return pulumi.get(self, "env_specific_details")
+
+    @property
+    @pulumi.getter(name="lastSuccessfulRunAt")
+    def last_successful_run_at(self) -> Optional[str]:
+        return pulumi.get(self, "last_successful_run_at")
 
     @property
     @pulumi.getter
@@ -660,7 +803,7 @@ class GetBackgroundWorker(dict):
                  branch: Optional[str] = None,
                  created_at: Optional[str] = None,
                  notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
-                 service_details: Optional['outputs.ServiceDetails'] = None,
+                 service_details: Optional['outputs.BackgroundWorkerServiceDetails'] = None,
                  slug: Optional[str] = None,
                  suspended: Optional['ServiceSuspended'] = None,
                  suspenders: Optional[Sequence[str]] = None,
@@ -754,7 +897,7 @@ class GetBackgroundWorker(dict):
 
     @property
     @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> Optional['outputs.ServiceDetails']:
+    def service_details(self) -> Optional['outputs.BackgroundWorkerServiceDetails']:
         return pulumi.get(self, "service_details")
 
     @property
@@ -932,7 +1075,7 @@ class GetPrivateService(dict):
                  branch: Optional[str] = None,
                  created_at: Optional[str] = None,
                  notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
-                 service_details: Optional['outputs.ServiceDetails'] = None,
+                 service_details: Optional['outputs.PrivateServiceDetails'] = None,
                  slug: Optional[str] = None,
                  suspended: Optional['ServiceSuspended'] = None,
                  suspenders: Optional[Sequence[str]] = None,
@@ -1026,7 +1169,7 @@ class GetPrivateService(dict):
 
     @property
     @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> Optional['outputs.ServiceDetails']:
+    def service_details(self) -> Optional['outputs.PrivateServiceDetails']:
         return pulumi.get(self, "service_details")
 
     @property
@@ -1504,6 +1647,27 @@ class NativeEnvironmentDetails(dict):
 
 
 @pulumi.output_type
+class OpenPorts(dict):
+    def __init__(__self__, *,
+                 port: Optional[float] = None,
+                 protocol: Optional['OpenPortsProtocol'] = None):
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[float]:
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> Optional['OpenPortsProtocol']:
+        return pulumi.get(self, "protocol")
+
+
+@pulumi.output_type
 class PrivateService(dict):
     """
     A private service
@@ -1516,7 +1680,7 @@ class PrivateService(dict):
                  branch: Optional[str] = None,
                  created_at: Optional[str] = None,
                  notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
-                 service_details: Optional['outputs.ServiceDetails'] = None,
+                 service_details: Optional['outputs.PrivateServiceDetails'] = None,
                  slug: Optional[str] = None,
                  suspended: Optional['ServiceSuspended'] = None,
                  suspenders: Optional[Sequence[str]] = None,
@@ -1610,7 +1774,7 @@ class PrivateService(dict):
 
     @property
     @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> Optional['outputs.ServiceDetails']:
+    def service_details(self) -> Optional['outputs.PrivateServiceDetails']:
         return pulumi.get(self, "service_details")
 
     @property
@@ -1640,7 +1804,124 @@ class PrivateService(dict):
 
 
 @pulumi.output_type
-class ServerProperties(dict):
+class PrivateServiceDetails(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "envSpecificDetails":
+            suggest = "env_specific_details"
+        elif key == "numInstances":
+            suggest = "num_instances"
+        elif key == "openPorts":
+            suggest = "open_ports"
+        elif key == "parentServer":
+            suggest = "parent_server"
+        elif key == "pullRequestPreviewsEnabled":
+            suggest = "pull_request_previews_enabled"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PrivateServiceDetails. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PrivateServiceDetails.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PrivateServiceDetails.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 env: 'PrivateServiceDetailsEnv',
+                 disk: Optional['outputs.Disk'] = None,
+                 env_specific_details: Optional[Any] = None,
+                 num_instances: Optional[float] = None,
+                 open_ports: Optional[Sequence['outputs.OpenPorts']] = None,
+                 parent_server: Optional['outputs.PrivateServiceDetailsParentServerProperties'] = None,
+                 plan: Optional['PrivateServiceDetailsPlan'] = None,
+                 pull_request_previews_enabled: Optional['PrivateServiceDetailsPullRequestPreviewsEnabled'] = None,
+                 region: Optional['PrivateServiceDetailsRegion'] = None,
+                 url: Optional[str] = None):
+        pulumi.set(__self__, "env", env)
+        if disk is not None:
+            pulumi.set(__self__, "disk", disk)
+        if env_specific_details is not None:
+            pulumi.set(__self__, "env_specific_details", env_specific_details)
+        if num_instances is None:
+            num_instances = 1
+        if num_instances is not None:
+            pulumi.set(__self__, "num_instances", num_instances)
+        if open_ports is not None:
+            pulumi.set(__self__, "open_ports", open_ports)
+        if parent_server is not None:
+            pulumi.set(__self__, "parent_server", parent_server)
+        if plan is None:
+            plan = 'starter'
+        if plan is not None:
+            pulumi.set(__self__, "plan", plan)
+        if pull_request_previews_enabled is None:
+            pull_request_previews_enabled = 'no'
+        if pull_request_previews_enabled is not None:
+            pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
+        if region is None:
+            region = 'oregon'
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+
+    @property
+    @pulumi.getter
+    def env(self) -> 'PrivateServiceDetailsEnv':
+        return pulumi.get(self, "env")
+
+    @property
+    @pulumi.getter
+    def disk(self) -> Optional['outputs.Disk']:
+        return pulumi.get(self, "disk")
+
+    @property
+    @pulumi.getter(name="envSpecificDetails")
+    def env_specific_details(self) -> Optional[Any]:
+        return pulumi.get(self, "env_specific_details")
+
+    @property
+    @pulumi.getter(name="numInstances")
+    def num_instances(self) -> Optional[float]:
+        return pulumi.get(self, "num_instances")
+
+    @property
+    @pulumi.getter(name="openPorts")
+    def open_ports(self) -> Optional[Sequence['outputs.OpenPorts']]:
+        return pulumi.get(self, "open_ports")
+
+    @property
+    @pulumi.getter(name="parentServer")
+    def parent_server(self) -> Optional['outputs.PrivateServiceDetailsParentServerProperties']:
+        return pulumi.get(self, "parent_server")
+
+    @property
+    @pulumi.getter
+    def plan(self) -> Optional['PrivateServiceDetailsPlan']:
+        return pulumi.get(self, "plan")
+
+    @property
+    @pulumi.getter(name="pullRequestPreviewsEnabled")
+    def pull_request_previews_enabled(self) -> Optional['PrivateServiceDetailsPullRequestPreviewsEnabled']:
+        return pulumi.get(self, "pull_request_previews_enabled")
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional['PrivateServiceDetailsRegion']:
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter
+    def url(self) -> Optional[str]:
+        return pulumi.get(self, "url")
+
+
+@pulumi.output_type
+class PrivateServiceDetailsParentServerProperties(dict):
     def __init__(__self__, *,
                  id: Optional[str] = None,
                  name: Optional[str] = None):
@@ -1661,92 +1942,24 @@ class ServerProperties(dict):
 
 
 @pulumi.output_type
-class ServiceDetails(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "envSpecificDetails":
-            suggest = "env_specific_details"
-        elif key == "numInstances":
-            suggest = "num_instances"
-        elif key == "pullRequestPreviewsEnabled":
-            suggest = "pull_request_previews_enabled"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in ServiceDetails. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        ServiceDetails.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        ServiceDetails.__key_warning(key)
-        return super().get(key, default)
-
+class ServerProperties(dict):
     def __init__(__self__, *,
-                 env: 'ServiceDetailsEnv',
-                 disk: Optional['outputs.Disk'] = None,
-                 env_specific_details: Optional[Any] = None,
-                 num_instances: Optional[float] = None,
-                 plan: Optional['ServiceDetailsPlan'] = None,
-                 pull_request_previews_enabled: Optional['ServiceDetailsPullRequestPreviewsEnabled'] = None,
-                 region: Optional['ServiceDetailsRegion'] = None):
-        pulumi.set(__self__, "env", env)
-        if disk is not None:
-            pulumi.set(__self__, "disk", disk)
-        if env_specific_details is not None:
-            pulumi.set(__self__, "env_specific_details", env_specific_details)
-        if num_instances is None:
-            num_instances = 1
-        if num_instances is not None:
-            pulumi.set(__self__, "num_instances", num_instances)
-        if plan is None:
-            plan = 'starter'
-        if plan is not None:
-            pulumi.set(__self__, "plan", plan)
-        if pull_request_previews_enabled is None:
-            pull_request_previews_enabled = 'no'
-        if pull_request_previews_enabled is not None:
-            pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
-        if region is None:
-            region = 'oregon'
-        if region is not None:
-            pulumi.set(__self__, "region", region)
+                 id: Optional[str] = None,
+                 name: Optional[str] = None):
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
-    def env(self) -> 'ServiceDetailsEnv':
-        return pulumi.get(self, "env")
+    def id(self) -> Optional[str]:
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
-    def disk(self) -> Optional['outputs.Disk']:
-        return pulumi.get(self, "disk")
-
-    @property
-    @pulumi.getter(name="envSpecificDetails")
-    def env_specific_details(self) -> Optional[Any]:
-        return pulumi.get(self, "env_specific_details")
-
-    @property
-    @pulumi.getter(name="numInstances")
-    def num_instances(self) -> Optional[float]:
-        return pulumi.get(self, "num_instances")
-
-    @property
-    @pulumi.getter
-    def plan(self) -> Optional['ServiceDetailsPlan']:
-        return pulumi.get(self, "plan")
-
-    @property
-    @pulumi.getter(name="pullRequestPreviewsEnabled")
-    def pull_request_previews_enabled(self) -> Optional['ServiceDetailsPullRequestPreviewsEnabled']:
-        return pulumi.get(self, "pull_request_previews_enabled")
-
-    @property
-    @pulumi.getter
-    def region(self) -> Optional['ServiceDetailsRegion']:
-        return pulumi.get(self, "region")
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
 
 
 @pulumi.output_type
@@ -2211,6 +2424,10 @@ class WebServiceServiceDetails(dict):
             suggest = "health_check_path"
         elif key == "numInstances":
             suggest = "num_instances"
+        elif key == "openPorts":
+            suggest = "open_ports"
+        elif key == "parentServer":
+            suggest = "parent_server"
         elif key == "pullRequestPreviewsEnabled":
             suggest = "pull_request_previews_enabled"
 
@@ -2231,9 +2448,12 @@ class WebServiceServiceDetails(dict):
                  env_specific_details: Optional[Any] = None,
                  health_check_path: Optional[str] = None,
                  num_instances: Optional[float] = None,
+                 open_ports: Optional[Sequence['outputs.OpenPorts']] = None,
+                 parent_server: Optional['outputs.WebServiceServiceDetailsParentServerProperties'] = None,
                  plan: Optional['WebServiceServiceDetailsPlan'] = None,
                  pull_request_previews_enabled: Optional['WebServiceServiceDetailsPullRequestPreviewsEnabled'] = None,
-                 region: Optional['WebServiceServiceDetailsRegion'] = None):
+                 region: Optional['WebServiceServiceDetailsRegion'] = None,
+                 url: Optional[str] = None):
         pulumi.set(__self__, "env", env)
         if disk is not None:
             pulumi.set(__self__, "disk", disk)
@@ -2245,6 +2465,10 @@ class WebServiceServiceDetails(dict):
             num_instances = 1
         if num_instances is not None:
             pulumi.set(__self__, "num_instances", num_instances)
+        if open_ports is not None:
+            pulumi.set(__self__, "open_ports", open_ports)
+        if parent_server is not None:
+            pulumi.set(__self__, "parent_server", parent_server)
         if plan is None:
             plan = 'starter'
         if plan is not None:
@@ -2257,6 +2481,8 @@ class WebServiceServiceDetails(dict):
             region = 'oregon'
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
 
     @property
     @pulumi.getter
@@ -2284,6 +2510,16 @@ class WebServiceServiceDetails(dict):
         return pulumi.get(self, "num_instances")
 
     @property
+    @pulumi.getter(name="openPorts")
+    def open_ports(self) -> Optional[Sequence['outputs.OpenPorts']]:
+        return pulumi.get(self, "open_ports")
+
+    @property
+    @pulumi.getter(name="parentServer")
+    def parent_server(self) -> Optional['outputs.WebServiceServiceDetailsParentServerProperties']:
+        return pulumi.get(self, "parent_server")
+
+    @property
     @pulumi.getter
     def plan(self) -> Optional['WebServiceServiceDetailsPlan']:
         return pulumi.get(self, "plan")
@@ -2297,5 +2533,31 @@ class WebServiceServiceDetails(dict):
     @pulumi.getter
     def region(self) -> Optional['WebServiceServiceDetailsRegion']:
         return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter
+    def url(self) -> Optional[str]:
+        return pulumi.get(self, "url")
+
+
+@pulumi.output_type
+class WebServiceServiceDetailsParentServerProperties(dict):
+    def __init__(__self__, *,
+                 id: Optional[str] = None,
+                 name: Optional[str] = None):
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
 
 

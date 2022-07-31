@@ -26,13 +26,13 @@ type BackgroundWorker struct {
 	// The id of the owner (user/team).
 	OwnerId pulumi.StringPtrOutput `pulumi:"ownerId"`
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-	Repo           pulumi.StringPtrOutput    `pulumi:"repo"`
-	ServiceDetails ServiceDetailsPtrOutput   `pulumi:"serviceDetails"`
-	Slug           pulumi.StringPtrOutput    `pulumi:"slug"`
-	Suspended      ServiceSuspendedPtrOutput `pulumi:"suspended"`
-	Suspenders     pulumi.StringArrayOutput  `pulumi:"suspenders"`
-	Type           pulumi.StringPtrOutput    `pulumi:"type"`
-	UpdatedAt      pulumi.StringPtrOutput    `pulumi:"updatedAt"`
+	Repo           pulumi.StringPtrOutput                  `pulumi:"repo"`
+	ServiceDetails BackgroundWorkerServiceDetailsPtrOutput `pulumi:"serviceDetails"`
+	Slug           pulumi.StringPtrOutput                  `pulumi:"slug"`
+	Suspended      ServiceSuspendedPtrOutput               `pulumi:"suspended"`
+	Suspenders     pulumi.StringArrayOutput                `pulumi:"suspenders"`
+	Type           pulumi.StringPtrOutput                  `pulumi:"type"`
+	UpdatedAt      pulumi.StringPtrOutput                  `pulumi:"updatedAt"`
 }
 
 // NewBackgroundWorker registers a new resource with the given unique name, arguments, and options.
@@ -55,7 +55,7 @@ func NewBackgroundWorker(ctx *pulumi.Context,
 		args.AutoDeploy = ServiceAutoDeploy("no")
 	}
 	if args.ServiceDetails != nil {
-		args.ServiceDetails = args.ServiceDetails.ToServiceDetailsPtrOutput().ApplyT(func(v *ServiceDetails) *ServiceDetails { return v.Defaults() }).(ServiceDetailsPtrOutput)
+		args.ServiceDetails = args.ServiceDetails.ToBackgroundWorkerServiceDetailsPtrOutput().ApplyT(func(v *BackgroundWorkerServiceDetails) *BackgroundWorkerServiceDetails { return v.Defaults() }).(BackgroundWorkerServiceDetailsPtrOutput)
 	}
 	if isZero(args.Type) {
 		args.Type = pulumi.StringPtr("background_worker")
@@ -104,13 +104,13 @@ type backgroundWorkerArgs struct {
 	// The id of the owner (user/team).
 	OwnerId string `pulumi:"ownerId"`
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-	Repo           string            `pulumi:"repo"`
-	ServiceDetails *ServiceDetails   `pulumi:"serviceDetails"`
-	Slug           *string           `pulumi:"slug"`
-	Suspended      *ServiceSuspended `pulumi:"suspended"`
-	Suspenders     []string          `pulumi:"suspenders"`
-	Type           *string           `pulumi:"type"`
-	UpdatedAt      *string           `pulumi:"updatedAt"`
+	Repo           string                          `pulumi:"repo"`
+	ServiceDetails *BackgroundWorkerServiceDetails `pulumi:"serviceDetails"`
+	Slug           *string                         `pulumi:"slug"`
+	Suspended      *ServiceSuspended               `pulumi:"suspended"`
+	Suspenders     []string                        `pulumi:"suspenders"`
+	Type           *string                         `pulumi:"type"`
+	UpdatedAt      *string                         `pulumi:"updatedAt"`
 }
 
 // The set of arguments for constructing a BackgroundWorker resource.
@@ -127,7 +127,7 @@ type BackgroundWorkerArgs struct {
 	OwnerId pulumi.StringInput
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
 	Repo           pulumi.StringInput
-	ServiceDetails ServiceDetailsPtrInput
+	ServiceDetails BackgroundWorkerServiceDetailsPtrInput
 	Slug           pulumi.StringPtrInput
 	Suspended      ServiceSuspendedPtrInput
 	Suspenders     pulumi.StringArrayInput
@@ -205,8 +205,8 @@ func (o BackgroundWorkerOutput) Repo() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BackgroundWorker) pulumi.StringPtrOutput { return v.Repo }).(pulumi.StringPtrOutput)
 }
 
-func (o BackgroundWorkerOutput) ServiceDetails() ServiceDetailsPtrOutput {
-	return o.ApplyT(func(v *BackgroundWorker) ServiceDetailsPtrOutput { return v.ServiceDetails }).(ServiceDetailsPtrOutput)
+func (o BackgroundWorkerOutput) ServiceDetails() BackgroundWorkerServiceDetailsPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorker) BackgroundWorkerServiceDetailsPtrOutput { return v.ServiceDetails }).(BackgroundWorkerServiceDetailsPtrOutput)
 }
 
 func (o BackgroundWorkerOutput) Slug() pulumi.StringPtrOutput {

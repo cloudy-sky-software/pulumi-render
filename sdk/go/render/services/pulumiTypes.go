@@ -23,13 +23,13 @@ type BackgroundWorkerType struct {
 	// The id of the owner (user/team).
 	OwnerId string `pulumi:"ownerId"`
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-	Repo           string            `pulumi:"repo"`
-	ServiceDetails *ServiceDetails   `pulumi:"serviceDetails"`
-	Slug           *string           `pulumi:"slug"`
-	Suspended      *ServiceSuspended `pulumi:"suspended"`
-	Suspenders     []string          `pulumi:"suspenders"`
-	Type           *string           `pulumi:"type"`
-	UpdatedAt      *string           `pulumi:"updatedAt"`
+	Repo           string                          `pulumi:"repo"`
+	ServiceDetails *BackgroundWorkerServiceDetails `pulumi:"serviceDetails"`
+	Slug           *string                         `pulumi:"slug"`
+	Suspended      *ServiceSuspended               `pulumi:"suspended"`
+	Suspenders     []string                        `pulumi:"suspenders"`
+	Type           *string                         `pulumi:"type"`
+	UpdatedAt      *string                         `pulumi:"updatedAt"`
 }
 
 // Defaults sets the appropriate defaults for BackgroundWorkerType
@@ -49,6 +49,459 @@ func (val *BackgroundWorkerType) Defaults() *BackgroundWorkerType {
 		tmp.Type = &type_
 	}
 	return &tmp
+}
+
+type BackgroundWorkerServiceDetails struct {
+	Disk                       *Disk                                                     `pulumi:"disk"`
+	Env                        BackgroundWorkerServiceDetailsEnv                         `pulumi:"env"`
+	EnvSpecificDetails         interface{}                                               `pulumi:"envSpecificDetails"`
+	NumInstances               *float64                                                  `pulumi:"numInstances"`
+	ParentServer               *BackgroundWorkerServiceDetailsParentServerProperties     `pulumi:"parentServer"`
+	Plan                       *BackgroundWorkerServiceDetailsPlan                       `pulumi:"plan"`
+	PullRequestPreviewsEnabled *BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
+	Region                     *BackgroundWorkerServiceDetailsRegion                     `pulumi:"region"`
+	Url                        *string                                                   `pulumi:"url"`
+}
+
+// Defaults sets the appropriate defaults for BackgroundWorkerServiceDetails
+func (val *BackgroundWorkerServiceDetails) Defaults() *BackgroundWorkerServiceDetails {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	tmp.Disk = tmp.Disk.Defaults()
+
+	if isZero(tmp.NumInstances) {
+		numInstances_ := 1.0
+		tmp.NumInstances = &numInstances_
+	}
+	if isZero(tmp.Plan) {
+		plan_ := BackgroundWorkerServiceDetailsPlan("starter")
+		tmp.Plan = &plan_
+	}
+	if isZero(tmp.PullRequestPreviewsEnabled) {
+		pullRequestPreviewsEnabled_ := BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled("no")
+		tmp.PullRequestPreviewsEnabled = &pullRequestPreviewsEnabled_
+	}
+	if isZero(tmp.Region) {
+		region_ := BackgroundWorkerServiceDetailsRegion("oregon")
+		tmp.Region = &region_
+	}
+	return &tmp
+}
+
+// BackgroundWorkerServiceDetailsInput is an input type that accepts BackgroundWorkerServiceDetailsArgs and BackgroundWorkerServiceDetailsOutput values.
+// You can construct a concrete instance of `BackgroundWorkerServiceDetailsInput` via:
+//
+//          BackgroundWorkerServiceDetailsArgs{...}
+type BackgroundWorkerServiceDetailsInput interface {
+	pulumi.Input
+
+	ToBackgroundWorkerServiceDetailsOutput() BackgroundWorkerServiceDetailsOutput
+	ToBackgroundWorkerServiceDetailsOutputWithContext(context.Context) BackgroundWorkerServiceDetailsOutput
+}
+
+type BackgroundWorkerServiceDetailsArgs struct {
+	Disk                       DiskPtrInput                                                     `pulumi:"disk"`
+	Env                        BackgroundWorkerServiceDetailsEnvInput                           `pulumi:"env"`
+	EnvSpecificDetails         pulumi.Input                                                     `pulumi:"envSpecificDetails"`
+	NumInstances               pulumi.Float64PtrInput                                           `pulumi:"numInstances"`
+	ParentServer               BackgroundWorkerServiceDetailsParentServerPropertiesPtrInput     `pulumi:"parentServer"`
+	Plan                       BackgroundWorkerServiceDetailsPlanPtrInput                       `pulumi:"plan"`
+	PullRequestPreviewsEnabled BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledPtrInput `pulumi:"pullRequestPreviewsEnabled"`
+	Region                     BackgroundWorkerServiceDetailsRegionPtrInput                     `pulumi:"region"`
+	Url                        pulumi.StringPtrInput                                            `pulumi:"url"`
+}
+
+// Defaults sets the appropriate defaults for BackgroundWorkerServiceDetailsArgs
+func (val *BackgroundWorkerServiceDetailsArgs) Defaults() *BackgroundWorkerServiceDetailsArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+
+	if isZero(tmp.NumInstances) {
+		tmp.NumInstances = pulumi.Float64Ptr(1.0)
+	}
+	if isZero(tmp.Plan) {
+		tmp.Plan = BackgroundWorkerServiceDetailsPlan("starter")
+	}
+	if isZero(tmp.PullRequestPreviewsEnabled) {
+		tmp.PullRequestPreviewsEnabled = BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled("no")
+	}
+	if isZero(tmp.Region) {
+		tmp.Region = BackgroundWorkerServiceDetailsRegion("oregon")
+	}
+	return &tmp
+}
+func (BackgroundWorkerServiceDetailsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackgroundWorkerServiceDetails)(nil)).Elem()
+}
+
+func (i BackgroundWorkerServiceDetailsArgs) ToBackgroundWorkerServiceDetailsOutput() BackgroundWorkerServiceDetailsOutput {
+	return i.ToBackgroundWorkerServiceDetailsOutputWithContext(context.Background())
+}
+
+func (i BackgroundWorkerServiceDetailsArgs) ToBackgroundWorkerServiceDetailsOutputWithContext(ctx context.Context) BackgroundWorkerServiceDetailsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackgroundWorkerServiceDetailsOutput)
+}
+
+func (i BackgroundWorkerServiceDetailsArgs) ToBackgroundWorkerServiceDetailsPtrOutput() BackgroundWorkerServiceDetailsPtrOutput {
+	return i.ToBackgroundWorkerServiceDetailsPtrOutputWithContext(context.Background())
+}
+
+func (i BackgroundWorkerServiceDetailsArgs) ToBackgroundWorkerServiceDetailsPtrOutputWithContext(ctx context.Context) BackgroundWorkerServiceDetailsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackgroundWorkerServiceDetailsOutput).ToBackgroundWorkerServiceDetailsPtrOutputWithContext(ctx)
+}
+
+// BackgroundWorkerServiceDetailsPtrInput is an input type that accepts BackgroundWorkerServiceDetailsArgs, BackgroundWorkerServiceDetailsPtr and BackgroundWorkerServiceDetailsPtrOutput values.
+// You can construct a concrete instance of `BackgroundWorkerServiceDetailsPtrInput` via:
+//
+//          BackgroundWorkerServiceDetailsArgs{...}
+//
+//  or:
+//
+//          nil
+type BackgroundWorkerServiceDetailsPtrInput interface {
+	pulumi.Input
+
+	ToBackgroundWorkerServiceDetailsPtrOutput() BackgroundWorkerServiceDetailsPtrOutput
+	ToBackgroundWorkerServiceDetailsPtrOutputWithContext(context.Context) BackgroundWorkerServiceDetailsPtrOutput
+}
+
+type backgroundWorkerServiceDetailsPtrType BackgroundWorkerServiceDetailsArgs
+
+func BackgroundWorkerServiceDetailsPtr(v *BackgroundWorkerServiceDetailsArgs) BackgroundWorkerServiceDetailsPtrInput {
+	return (*backgroundWorkerServiceDetailsPtrType)(v)
+}
+
+func (*backgroundWorkerServiceDetailsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackgroundWorkerServiceDetails)(nil)).Elem()
+}
+
+func (i *backgroundWorkerServiceDetailsPtrType) ToBackgroundWorkerServiceDetailsPtrOutput() BackgroundWorkerServiceDetailsPtrOutput {
+	return i.ToBackgroundWorkerServiceDetailsPtrOutputWithContext(context.Background())
+}
+
+func (i *backgroundWorkerServiceDetailsPtrType) ToBackgroundWorkerServiceDetailsPtrOutputWithContext(ctx context.Context) BackgroundWorkerServiceDetailsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackgroundWorkerServiceDetailsPtrOutput)
+}
+
+type BackgroundWorkerServiceDetailsOutput struct{ *pulumi.OutputState }
+
+func (BackgroundWorkerServiceDetailsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackgroundWorkerServiceDetails)(nil)).Elem()
+}
+
+func (o BackgroundWorkerServiceDetailsOutput) ToBackgroundWorkerServiceDetailsOutput() BackgroundWorkerServiceDetailsOutput {
+	return o
+}
+
+func (o BackgroundWorkerServiceDetailsOutput) ToBackgroundWorkerServiceDetailsOutputWithContext(ctx context.Context) BackgroundWorkerServiceDetailsOutput {
+	return o
+}
+
+func (o BackgroundWorkerServiceDetailsOutput) ToBackgroundWorkerServiceDetailsPtrOutput() BackgroundWorkerServiceDetailsPtrOutput {
+	return o.ToBackgroundWorkerServiceDetailsPtrOutputWithContext(context.Background())
+}
+
+func (o BackgroundWorkerServiceDetailsOutput) ToBackgroundWorkerServiceDetailsPtrOutputWithContext(ctx context.Context) BackgroundWorkerServiceDetailsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BackgroundWorkerServiceDetails) *BackgroundWorkerServiceDetails {
+		return &v
+	}).(BackgroundWorkerServiceDetailsPtrOutput)
+}
+
+func (o BackgroundWorkerServiceDetailsOutput) Disk() DiskPtrOutput {
+	return o.ApplyT(func(v BackgroundWorkerServiceDetails) *Disk { return v.Disk }).(DiskPtrOutput)
+}
+
+func (o BackgroundWorkerServiceDetailsOutput) Env() BackgroundWorkerServiceDetailsEnvOutput {
+	return o.ApplyT(func(v BackgroundWorkerServiceDetails) BackgroundWorkerServiceDetailsEnv { return v.Env }).(BackgroundWorkerServiceDetailsEnvOutput)
+}
+
+func (o BackgroundWorkerServiceDetailsOutput) EnvSpecificDetails() pulumi.AnyOutput {
+	return o.ApplyT(func(v BackgroundWorkerServiceDetails) interface{} { return v.EnvSpecificDetails }).(pulumi.AnyOutput)
+}
+
+func (o BackgroundWorkerServiceDetailsOutput) NumInstances() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v BackgroundWorkerServiceDetails) *float64 { return v.NumInstances }).(pulumi.Float64PtrOutput)
+}
+
+func (o BackgroundWorkerServiceDetailsOutput) ParentServer() BackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput {
+	return o.ApplyT(func(v BackgroundWorkerServiceDetails) *BackgroundWorkerServiceDetailsParentServerProperties {
+		return v.ParentServer
+	}).(BackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput)
+}
+
+func (o BackgroundWorkerServiceDetailsOutput) Plan() BackgroundWorkerServiceDetailsPlanPtrOutput {
+	return o.ApplyT(func(v BackgroundWorkerServiceDetails) *BackgroundWorkerServiceDetailsPlan { return v.Plan }).(BackgroundWorkerServiceDetailsPlanPtrOutput)
+}
+
+func (o BackgroundWorkerServiceDetailsOutput) PullRequestPreviewsEnabled() BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledPtrOutput {
+	return o.ApplyT(func(v BackgroundWorkerServiceDetails) *BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled {
+		return v.PullRequestPreviewsEnabled
+	}).(BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledPtrOutput)
+}
+
+func (o BackgroundWorkerServiceDetailsOutput) Region() BackgroundWorkerServiceDetailsRegionPtrOutput {
+	return o.ApplyT(func(v BackgroundWorkerServiceDetails) *BackgroundWorkerServiceDetailsRegion { return v.Region }).(BackgroundWorkerServiceDetailsRegionPtrOutput)
+}
+
+func (o BackgroundWorkerServiceDetailsOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BackgroundWorkerServiceDetails) *string { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+type BackgroundWorkerServiceDetailsPtrOutput struct{ *pulumi.OutputState }
+
+func (BackgroundWorkerServiceDetailsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackgroundWorkerServiceDetails)(nil)).Elem()
+}
+
+func (o BackgroundWorkerServiceDetailsPtrOutput) ToBackgroundWorkerServiceDetailsPtrOutput() BackgroundWorkerServiceDetailsPtrOutput {
+	return o
+}
+
+func (o BackgroundWorkerServiceDetailsPtrOutput) ToBackgroundWorkerServiceDetailsPtrOutputWithContext(ctx context.Context) BackgroundWorkerServiceDetailsPtrOutput {
+	return o
+}
+
+func (o BackgroundWorkerServiceDetailsPtrOutput) Elem() BackgroundWorkerServiceDetailsOutput {
+	return o.ApplyT(func(v *BackgroundWorkerServiceDetails) BackgroundWorkerServiceDetails {
+		if v != nil {
+			return *v
+		}
+		var ret BackgroundWorkerServiceDetails
+		return ret
+	}).(BackgroundWorkerServiceDetailsOutput)
+}
+
+func (o BackgroundWorkerServiceDetailsPtrOutput) Disk() DiskPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorkerServiceDetails) *Disk {
+		if v == nil {
+			return nil
+		}
+		return v.Disk
+	}).(DiskPtrOutput)
+}
+
+func (o BackgroundWorkerServiceDetailsPtrOutput) Env() BackgroundWorkerServiceDetailsEnvPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorkerServiceDetails) *BackgroundWorkerServiceDetailsEnv {
+		if v == nil {
+			return nil
+		}
+		return &v.Env
+	}).(BackgroundWorkerServiceDetailsEnvPtrOutput)
+}
+
+func (o BackgroundWorkerServiceDetailsPtrOutput) EnvSpecificDetails() pulumi.AnyOutput {
+	return o.ApplyT(func(v *BackgroundWorkerServiceDetails) interface{} {
+		if v == nil {
+			return nil
+		}
+		return v.EnvSpecificDetails
+	}).(pulumi.AnyOutput)
+}
+
+func (o BackgroundWorkerServiceDetailsPtrOutput) NumInstances() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *BackgroundWorkerServiceDetails) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.NumInstances
+	}).(pulumi.Float64PtrOutput)
+}
+
+func (o BackgroundWorkerServiceDetailsPtrOutput) ParentServer() BackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorkerServiceDetails) *BackgroundWorkerServiceDetailsParentServerProperties {
+		if v == nil {
+			return nil
+		}
+		return v.ParentServer
+	}).(BackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput)
+}
+
+func (o BackgroundWorkerServiceDetailsPtrOutput) Plan() BackgroundWorkerServiceDetailsPlanPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorkerServiceDetails) *BackgroundWorkerServiceDetailsPlan {
+		if v == nil {
+			return nil
+		}
+		return v.Plan
+	}).(BackgroundWorkerServiceDetailsPlanPtrOutput)
+}
+
+func (o BackgroundWorkerServiceDetailsPtrOutput) PullRequestPreviewsEnabled() BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorkerServiceDetails) *BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled {
+		if v == nil {
+			return nil
+		}
+		return v.PullRequestPreviewsEnabled
+	}).(BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledPtrOutput)
+}
+
+func (o BackgroundWorkerServiceDetailsPtrOutput) Region() BackgroundWorkerServiceDetailsRegionPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorkerServiceDetails) *BackgroundWorkerServiceDetailsRegion {
+		if v == nil {
+			return nil
+		}
+		return v.Region
+	}).(BackgroundWorkerServiceDetailsRegionPtrOutput)
+}
+
+func (o BackgroundWorkerServiceDetailsPtrOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorkerServiceDetails) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Url
+	}).(pulumi.StringPtrOutput)
+}
+
+type BackgroundWorkerServiceDetailsParentServerProperties struct {
+	Id   *string `pulumi:"id"`
+	Name *string `pulumi:"name"`
+}
+
+// BackgroundWorkerServiceDetailsParentServerPropertiesInput is an input type that accepts BackgroundWorkerServiceDetailsParentServerPropertiesArgs and BackgroundWorkerServiceDetailsParentServerPropertiesOutput values.
+// You can construct a concrete instance of `BackgroundWorkerServiceDetailsParentServerPropertiesInput` via:
+//
+//          BackgroundWorkerServiceDetailsParentServerPropertiesArgs{...}
+type BackgroundWorkerServiceDetailsParentServerPropertiesInput interface {
+	pulumi.Input
+
+	ToBackgroundWorkerServiceDetailsParentServerPropertiesOutput() BackgroundWorkerServiceDetailsParentServerPropertiesOutput
+	ToBackgroundWorkerServiceDetailsParentServerPropertiesOutputWithContext(context.Context) BackgroundWorkerServiceDetailsParentServerPropertiesOutput
+}
+
+type BackgroundWorkerServiceDetailsParentServerPropertiesArgs struct {
+	Id   pulumi.StringPtrInput `pulumi:"id"`
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (BackgroundWorkerServiceDetailsParentServerPropertiesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackgroundWorkerServiceDetailsParentServerProperties)(nil)).Elem()
+}
+
+func (i BackgroundWorkerServiceDetailsParentServerPropertiesArgs) ToBackgroundWorkerServiceDetailsParentServerPropertiesOutput() BackgroundWorkerServiceDetailsParentServerPropertiesOutput {
+	return i.ToBackgroundWorkerServiceDetailsParentServerPropertiesOutputWithContext(context.Background())
+}
+
+func (i BackgroundWorkerServiceDetailsParentServerPropertiesArgs) ToBackgroundWorkerServiceDetailsParentServerPropertiesOutputWithContext(ctx context.Context) BackgroundWorkerServiceDetailsParentServerPropertiesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackgroundWorkerServiceDetailsParentServerPropertiesOutput)
+}
+
+func (i BackgroundWorkerServiceDetailsParentServerPropertiesArgs) ToBackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput() BackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput {
+	return i.ToBackgroundWorkerServiceDetailsParentServerPropertiesPtrOutputWithContext(context.Background())
+}
+
+func (i BackgroundWorkerServiceDetailsParentServerPropertiesArgs) ToBackgroundWorkerServiceDetailsParentServerPropertiesPtrOutputWithContext(ctx context.Context) BackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackgroundWorkerServiceDetailsParentServerPropertiesOutput).ToBackgroundWorkerServiceDetailsParentServerPropertiesPtrOutputWithContext(ctx)
+}
+
+// BackgroundWorkerServiceDetailsParentServerPropertiesPtrInput is an input type that accepts BackgroundWorkerServiceDetailsParentServerPropertiesArgs, BackgroundWorkerServiceDetailsParentServerPropertiesPtr and BackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput values.
+// You can construct a concrete instance of `BackgroundWorkerServiceDetailsParentServerPropertiesPtrInput` via:
+//
+//          BackgroundWorkerServiceDetailsParentServerPropertiesArgs{...}
+//
+//  or:
+//
+//          nil
+type BackgroundWorkerServiceDetailsParentServerPropertiesPtrInput interface {
+	pulumi.Input
+
+	ToBackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput() BackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput
+	ToBackgroundWorkerServiceDetailsParentServerPropertiesPtrOutputWithContext(context.Context) BackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput
+}
+
+type backgroundWorkerServiceDetailsParentServerPropertiesPtrType BackgroundWorkerServiceDetailsParentServerPropertiesArgs
+
+func BackgroundWorkerServiceDetailsParentServerPropertiesPtr(v *BackgroundWorkerServiceDetailsParentServerPropertiesArgs) BackgroundWorkerServiceDetailsParentServerPropertiesPtrInput {
+	return (*backgroundWorkerServiceDetailsParentServerPropertiesPtrType)(v)
+}
+
+func (*backgroundWorkerServiceDetailsParentServerPropertiesPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackgroundWorkerServiceDetailsParentServerProperties)(nil)).Elem()
+}
+
+func (i *backgroundWorkerServiceDetailsParentServerPropertiesPtrType) ToBackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput() BackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput {
+	return i.ToBackgroundWorkerServiceDetailsParentServerPropertiesPtrOutputWithContext(context.Background())
+}
+
+func (i *backgroundWorkerServiceDetailsParentServerPropertiesPtrType) ToBackgroundWorkerServiceDetailsParentServerPropertiesPtrOutputWithContext(ctx context.Context) BackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput)
+}
+
+type BackgroundWorkerServiceDetailsParentServerPropertiesOutput struct{ *pulumi.OutputState }
+
+func (BackgroundWorkerServiceDetailsParentServerPropertiesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackgroundWorkerServiceDetailsParentServerProperties)(nil)).Elem()
+}
+
+func (o BackgroundWorkerServiceDetailsParentServerPropertiesOutput) ToBackgroundWorkerServiceDetailsParentServerPropertiesOutput() BackgroundWorkerServiceDetailsParentServerPropertiesOutput {
+	return o
+}
+
+func (o BackgroundWorkerServiceDetailsParentServerPropertiesOutput) ToBackgroundWorkerServiceDetailsParentServerPropertiesOutputWithContext(ctx context.Context) BackgroundWorkerServiceDetailsParentServerPropertiesOutput {
+	return o
+}
+
+func (o BackgroundWorkerServiceDetailsParentServerPropertiesOutput) ToBackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput() BackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput {
+	return o.ToBackgroundWorkerServiceDetailsParentServerPropertiesPtrOutputWithContext(context.Background())
+}
+
+func (o BackgroundWorkerServiceDetailsParentServerPropertiesOutput) ToBackgroundWorkerServiceDetailsParentServerPropertiesPtrOutputWithContext(ctx context.Context) BackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BackgroundWorkerServiceDetailsParentServerProperties) *BackgroundWorkerServiceDetailsParentServerProperties {
+		return &v
+	}).(BackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput)
+}
+
+func (o BackgroundWorkerServiceDetailsParentServerPropertiesOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BackgroundWorkerServiceDetailsParentServerProperties) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+func (o BackgroundWorkerServiceDetailsParentServerPropertiesOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BackgroundWorkerServiceDetailsParentServerProperties) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type BackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput struct{ *pulumi.OutputState }
+
+func (BackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackgroundWorkerServiceDetailsParentServerProperties)(nil)).Elem()
+}
+
+func (o BackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput) ToBackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput() BackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput {
+	return o
+}
+
+func (o BackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput) ToBackgroundWorkerServiceDetailsParentServerPropertiesPtrOutputWithContext(ctx context.Context) BackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput {
+	return o
+}
+
+func (o BackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput) Elem() BackgroundWorkerServiceDetailsParentServerPropertiesOutput {
+	return o.ApplyT(func(v *BackgroundWorkerServiceDetailsParentServerProperties) BackgroundWorkerServiceDetailsParentServerProperties {
+		if v != nil {
+			return *v
+		}
+		var ret BackgroundWorkerServiceDetailsParentServerProperties
+		return ret
+	}).(BackgroundWorkerServiceDetailsParentServerPropertiesOutput)
+}
+
+func (o BackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorkerServiceDetailsParentServerProperties) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o BackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorkerServiceDetailsParentServerProperties) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringPtrOutput)
 }
 
 type Commit struct {
@@ -176,11 +629,12 @@ func (val *CronJobType) Defaults() *CronJobType {
 }
 
 type CronJobServiceDetails struct {
-	Env                CronJobServiceDetailsEnv     `pulumi:"env"`
-	EnvSpecificDetails interface{}                  `pulumi:"envSpecificDetails"`
-	Plan               *CronJobServiceDetailsPlan   `pulumi:"plan"`
-	Region             *CronJobServiceDetailsRegion `pulumi:"region"`
-	Schedule           string                       `pulumi:"schedule"`
+	Env                 CronJobServiceDetailsEnv     `pulumi:"env"`
+	EnvSpecificDetails  interface{}                  `pulumi:"envSpecificDetails"`
+	LastSuccessfulRunAt *string                      `pulumi:"lastSuccessfulRunAt"`
+	Plan                *CronJobServiceDetailsPlan   `pulumi:"plan"`
+	Region              *CronJobServiceDetailsRegion `pulumi:"region"`
+	Schedule            string                       `pulumi:"schedule"`
 }
 
 // Defaults sets the appropriate defaults for CronJobServiceDetails
@@ -212,11 +666,12 @@ type CronJobServiceDetailsInput interface {
 }
 
 type CronJobServiceDetailsArgs struct {
-	Env                CronJobServiceDetailsEnvInput       `pulumi:"env"`
-	EnvSpecificDetails pulumi.Input                        `pulumi:"envSpecificDetails"`
-	Plan               CronJobServiceDetailsPlanPtrInput   `pulumi:"plan"`
-	Region             CronJobServiceDetailsRegionPtrInput `pulumi:"region"`
-	Schedule           pulumi.StringInput                  `pulumi:"schedule"`
+	Env                 CronJobServiceDetailsEnvInput       `pulumi:"env"`
+	EnvSpecificDetails  pulumi.Input                        `pulumi:"envSpecificDetails"`
+	LastSuccessfulRunAt pulumi.StringPtrInput               `pulumi:"lastSuccessfulRunAt"`
+	Plan                CronJobServiceDetailsPlanPtrInput   `pulumi:"plan"`
+	Region              CronJobServiceDetailsRegionPtrInput `pulumi:"region"`
+	Schedule            pulumi.StringInput                  `pulumi:"schedule"`
 }
 
 // Defaults sets the appropriate defaults for CronJobServiceDetailsArgs
@@ -318,6 +773,10 @@ func (o CronJobServiceDetailsOutput) EnvSpecificDetails() pulumi.AnyOutput {
 	return o.ApplyT(func(v CronJobServiceDetails) interface{} { return v.EnvSpecificDetails }).(pulumi.AnyOutput)
 }
 
+func (o CronJobServiceDetailsOutput) LastSuccessfulRunAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CronJobServiceDetails) *string { return v.LastSuccessfulRunAt }).(pulumi.StringPtrOutput)
+}
+
 func (o CronJobServiceDetailsOutput) Plan() CronJobServiceDetailsPlanPtrOutput {
 	return o.ApplyT(func(v CronJobServiceDetails) *CronJobServiceDetailsPlan { return v.Plan }).(CronJobServiceDetailsPlanPtrOutput)
 }
@@ -370,6 +829,15 @@ func (o CronJobServiceDetailsPtrOutput) EnvSpecificDetails() pulumi.AnyOutput {
 		}
 		return v.EnvSpecificDetails
 	}).(pulumi.AnyOutput)
+}
+
+func (o CronJobServiceDetailsPtrOutput) LastSuccessfulRunAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CronJobServiceDetails) *string {
+		if v == nil {
+			return nil
+		}
+		return v.LastSuccessfulRunAt
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o CronJobServiceDetailsPtrOutput) Plan() CronJobServiceDetailsPlanPtrOutput {
@@ -977,13 +1445,13 @@ type GetBackgroundWorkerType struct {
 	// The id of the owner (user/team).
 	OwnerId string `pulumi:"ownerId"`
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-	Repo           string            `pulumi:"repo"`
-	ServiceDetails *ServiceDetails   `pulumi:"serviceDetails"`
-	Slug           *string           `pulumi:"slug"`
-	Suspended      *ServiceSuspended `pulumi:"suspended"`
-	Suspenders     []string          `pulumi:"suspenders"`
-	Type           *string           `pulumi:"type"`
-	UpdatedAt      *string           `pulumi:"updatedAt"`
+	Repo           string                          `pulumi:"repo"`
+	ServiceDetails *BackgroundWorkerServiceDetails `pulumi:"serviceDetails"`
+	Slug           *string                         `pulumi:"slug"`
+	Suspended      *ServiceSuspended               `pulumi:"suspended"`
+	Suspenders     []string                        `pulumi:"suspenders"`
+	Type           *string                         `pulumi:"type"`
+	UpdatedAt      *string                         `pulumi:"updatedAt"`
 }
 
 // Defaults sets the appropriate defaults for GetBackgroundWorkerType
@@ -1053,8 +1521,8 @@ func (o GetBackgroundWorkerTypeOutput) Repo() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBackgroundWorkerType) string { return v.Repo }).(pulumi.StringOutput)
 }
 
-func (o GetBackgroundWorkerTypeOutput) ServiceDetails() ServiceDetailsPtrOutput {
-	return o.ApplyT(func(v GetBackgroundWorkerType) *ServiceDetails { return v.ServiceDetails }).(ServiceDetailsPtrOutput)
+func (o GetBackgroundWorkerTypeOutput) ServiceDetails() BackgroundWorkerServiceDetailsPtrOutput {
+	return o.ApplyT(func(v GetBackgroundWorkerType) *BackgroundWorkerServiceDetails { return v.ServiceDetails }).(BackgroundWorkerServiceDetailsPtrOutput)
 }
 
 func (o GetBackgroundWorkerTypeOutput) Slug() pulumi.StringPtrOutput {
@@ -1203,13 +1671,13 @@ type GetPrivateServiceType struct {
 	// The id of the owner (user/team).
 	OwnerId string `pulumi:"ownerId"`
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-	Repo           string            `pulumi:"repo"`
-	ServiceDetails *ServiceDetails   `pulumi:"serviceDetails"`
-	Slug           *string           `pulumi:"slug"`
-	Suspended      *ServiceSuspended `pulumi:"suspended"`
-	Suspenders     []string          `pulumi:"suspenders"`
-	Type           *string           `pulumi:"type"`
-	UpdatedAt      *string           `pulumi:"updatedAt"`
+	Repo           string                 `pulumi:"repo"`
+	ServiceDetails *PrivateServiceDetails `pulumi:"serviceDetails"`
+	Slug           *string                `pulumi:"slug"`
+	Suspended      *ServiceSuspended      `pulumi:"suspended"`
+	Suspenders     []string               `pulumi:"suspenders"`
+	Type           *string                `pulumi:"type"`
+	UpdatedAt      *string                `pulumi:"updatedAt"`
 }
 
 // Defaults sets the appropriate defaults for GetPrivateServiceType
@@ -1279,8 +1747,8 @@ func (o GetPrivateServiceTypeOutput) Repo() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPrivateServiceType) string { return v.Repo }).(pulumi.StringOutput)
 }
 
-func (o GetPrivateServiceTypeOutput) ServiceDetails() ServiceDetailsPtrOutput {
-	return o.ApplyT(func(v GetPrivateServiceType) *ServiceDetails { return v.ServiceDetails }).(ServiceDetailsPtrOutput)
+func (o GetPrivateServiceTypeOutput) ServiceDetails() PrivateServiceDetailsPtrOutput {
+	return o.ApplyT(func(v GetPrivateServiceType) *PrivateServiceDetails { return v.ServiceDetails }).(PrivateServiceDetailsPtrOutput)
 }
 
 func (o GetPrivateServiceTypeOutput) Slug() pulumi.StringPtrOutput {
@@ -1789,6 +2257,106 @@ type NativeEnvironmentDetails struct {
 	StartCommand string `pulumi:"startCommand"`
 }
 
+type OpenPorts struct {
+	Port     *float64           `pulumi:"port"`
+	Protocol *OpenPortsProtocol `pulumi:"protocol"`
+}
+
+// OpenPortsInput is an input type that accepts OpenPortsArgs and OpenPortsOutput values.
+// You can construct a concrete instance of `OpenPortsInput` via:
+//
+//          OpenPortsArgs{...}
+type OpenPortsInput interface {
+	pulumi.Input
+
+	ToOpenPortsOutput() OpenPortsOutput
+	ToOpenPortsOutputWithContext(context.Context) OpenPortsOutput
+}
+
+type OpenPortsArgs struct {
+	Port     pulumi.Float64PtrInput    `pulumi:"port"`
+	Protocol OpenPortsProtocolPtrInput `pulumi:"protocol"`
+}
+
+func (OpenPortsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*OpenPorts)(nil)).Elem()
+}
+
+func (i OpenPortsArgs) ToOpenPortsOutput() OpenPortsOutput {
+	return i.ToOpenPortsOutputWithContext(context.Background())
+}
+
+func (i OpenPortsArgs) ToOpenPortsOutputWithContext(ctx context.Context) OpenPortsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OpenPortsOutput)
+}
+
+// OpenPortsArrayInput is an input type that accepts OpenPortsArray and OpenPortsArrayOutput values.
+// You can construct a concrete instance of `OpenPortsArrayInput` via:
+//
+//          OpenPortsArray{ OpenPortsArgs{...} }
+type OpenPortsArrayInput interface {
+	pulumi.Input
+
+	ToOpenPortsArrayOutput() OpenPortsArrayOutput
+	ToOpenPortsArrayOutputWithContext(context.Context) OpenPortsArrayOutput
+}
+
+type OpenPortsArray []OpenPortsInput
+
+func (OpenPortsArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]OpenPorts)(nil)).Elem()
+}
+
+func (i OpenPortsArray) ToOpenPortsArrayOutput() OpenPortsArrayOutput {
+	return i.ToOpenPortsArrayOutputWithContext(context.Background())
+}
+
+func (i OpenPortsArray) ToOpenPortsArrayOutputWithContext(ctx context.Context) OpenPortsArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OpenPortsArrayOutput)
+}
+
+type OpenPortsOutput struct{ *pulumi.OutputState }
+
+func (OpenPortsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OpenPorts)(nil)).Elem()
+}
+
+func (o OpenPortsOutput) ToOpenPortsOutput() OpenPortsOutput {
+	return o
+}
+
+func (o OpenPortsOutput) ToOpenPortsOutputWithContext(ctx context.Context) OpenPortsOutput {
+	return o
+}
+
+func (o OpenPortsOutput) Port() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v OpenPorts) *float64 { return v.Port }).(pulumi.Float64PtrOutput)
+}
+
+func (o OpenPortsOutput) Protocol() OpenPortsProtocolPtrOutput {
+	return o.ApplyT(func(v OpenPorts) *OpenPortsProtocol { return v.Protocol }).(OpenPortsProtocolPtrOutput)
+}
+
+type OpenPortsArrayOutput struct{ *pulumi.OutputState }
+
+func (OpenPortsArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]OpenPorts)(nil)).Elem()
+}
+
+func (o OpenPortsArrayOutput) ToOpenPortsArrayOutput() OpenPortsArrayOutput {
+	return o
+}
+
+func (o OpenPortsArrayOutput) ToOpenPortsArrayOutputWithContext(ctx context.Context) OpenPortsArrayOutput {
+	return o
+}
+
+func (o OpenPortsArrayOutput) Index(i pulumi.IntInput) OpenPortsOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) OpenPorts {
+		return vs[0].([]OpenPorts)[vs[1].(int)]
+	}).(OpenPortsOutput)
+}
+
 // A private service
 type PrivateServiceType struct {
 	// Whether to auto deploy the service or not upon git push.
@@ -1802,13 +2370,13 @@ type PrivateServiceType struct {
 	// The id of the owner (user/team).
 	OwnerId string `pulumi:"ownerId"`
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-	Repo           string            `pulumi:"repo"`
-	ServiceDetails *ServiceDetails   `pulumi:"serviceDetails"`
-	Slug           *string           `pulumi:"slug"`
-	Suspended      *ServiceSuspended `pulumi:"suspended"`
-	Suspenders     []string          `pulumi:"suspenders"`
-	Type           *string           `pulumi:"type"`
-	UpdatedAt      *string           `pulumi:"updatedAt"`
+	Repo           string                 `pulumi:"repo"`
+	ServiceDetails *PrivateServiceDetails `pulumi:"serviceDetails"`
+	Slug           *string                `pulumi:"slug"`
+	Suspended      *ServiceSuspended      `pulumi:"suspended"`
+	Suspenders     []string               `pulumi:"suspenders"`
+	Type           *string                `pulumi:"type"`
+	UpdatedAt      *string                `pulumi:"updatedAt"`
 }
 
 // Defaults sets the appropriate defaults for PrivateServiceType
@@ -1828,6 +2396,472 @@ func (val *PrivateServiceType) Defaults() *PrivateServiceType {
 		tmp.Type = &type_
 	}
 	return &tmp
+}
+
+type PrivateServiceDetails struct {
+	Disk                       *Disk                                            `pulumi:"disk"`
+	Env                        PrivateServiceDetailsEnv                         `pulumi:"env"`
+	EnvSpecificDetails         interface{}                                      `pulumi:"envSpecificDetails"`
+	NumInstances               *float64                                         `pulumi:"numInstances"`
+	OpenPorts                  []OpenPorts                                      `pulumi:"openPorts"`
+	ParentServer               *PrivateServiceDetailsParentServerProperties     `pulumi:"parentServer"`
+	Plan                       *PrivateServiceDetailsPlan                       `pulumi:"plan"`
+	PullRequestPreviewsEnabled *PrivateServiceDetailsPullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
+	Region                     *PrivateServiceDetailsRegion                     `pulumi:"region"`
+	Url                        *string                                          `pulumi:"url"`
+}
+
+// Defaults sets the appropriate defaults for PrivateServiceDetails
+func (val *PrivateServiceDetails) Defaults() *PrivateServiceDetails {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	tmp.Disk = tmp.Disk.Defaults()
+
+	if isZero(tmp.NumInstances) {
+		numInstances_ := 1.0
+		tmp.NumInstances = &numInstances_
+	}
+	if isZero(tmp.Plan) {
+		plan_ := PrivateServiceDetailsPlan("starter")
+		tmp.Plan = &plan_
+	}
+	if isZero(tmp.PullRequestPreviewsEnabled) {
+		pullRequestPreviewsEnabled_ := PrivateServiceDetailsPullRequestPreviewsEnabled("no")
+		tmp.PullRequestPreviewsEnabled = &pullRequestPreviewsEnabled_
+	}
+	if isZero(tmp.Region) {
+		region_ := PrivateServiceDetailsRegion("oregon")
+		tmp.Region = &region_
+	}
+	return &tmp
+}
+
+// PrivateServiceDetailsInput is an input type that accepts PrivateServiceDetailsArgs and PrivateServiceDetailsOutput values.
+// You can construct a concrete instance of `PrivateServiceDetailsInput` via:
+//
+//          PrivateServiceDetailsArgs{...}
+type PrivateServiceDetailsInput interface {
+	pulumi.Input
+
+	ToPrivateServiceDetailsOutput() PrivateServiceDetailsOutput
+	ToPrivateServiceDetailsOutputWithContext(context.Context) PrivateServiceDetailsOutput
+}
+
+type PrivateServiceDetailsArgs struct {
+	Disk                       DiskPtrInput                                            `pulumi:"disk"`
+	Env                        PrivateServiceDetailsEnvInput                           `pulumi:"env"`
+	EnvSpecificDetails         pulumi.Input                                            `pulumi:"envSpecificDetails"`
+	NumInstances               pulumi.Float64PtrInput                                  `pulumi:"numInstances"`
+	OpenPorts                  OpenPortsArrayInput                                     `pulumi:"openPorts"`
+	ParentServer               PrivateServiceDetailsParentServerPropertiesPtrInput     `pulumi:"parentServer"`
+	Plan                       PrivateServiceDetailsPlanPtrInput                       `pulumi:"plan"`
+	PullRequestPreviewsEnabled PrivateServiceDetailsPullRequestPreviewsEnabledPtrInput `pulumi:"pullRequestPreviewsEnabled"`
+	Region                     PrivateServiceDetailsRegionPtrInput                     `pulumi:"region"`
+	Url                        pulumi.StringPtrInput                                   `pulumi:"url"`
+}
+
+// Defaults sets the appropriate defaults for PrivateServiceDetailsArgs
+func (val *PrivateServiceDetailsArgs) Defaults() *PrivateServiceDetailsArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+
+	if isZero(tmp.NumInstances) {
+		tmp.NumInstances = pulumi.Float64Ptr(1.0)
+	}
+	if isZero(tmp.Plan) {
+		tmp.Plan = PrivateServiceDetailsPlan("starter")
+	}
+	if isZero(tmp.PullRequestPreviewsEnabled) {
+		tmp.PullRequestPreviewsEnabled = PrivateServiceDetailsPullRequestPreviewsEnabled("no")
+	}
+	if isZero(tmp.Region) {
+		tmp.Region = PrivateServiceDetailsRegion("oregon")
+	}
+	return &tmp
+}
+func (PrivateServiceDetailsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivateServiceDetails)(nil)).Elem()
+}
+
+func (i PrivateServiceDetailsArgs) ToPrivateServiceDetailsOutput() PrivateServiceDetailsOutput {
+	return i.ToPrivateServiceDetailsOutputWithContext(context.Background())
+}
+
+func (i PrivateServiceDetailsArgs) ToPrivateServiceDetailsOutputWithContext(ctx context.Context) PrivateServiceDetailsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateServiceDetailsOutput)
+}
+
+func (i PrivateServiceDetailsArgs) ToPrivateServiceDetailsPtrOutput() PrivateServiceDetailsPtrOutput {
+	return i.ToPrivateServiceDetailsPtrOutputWithContext(context.Background())
+}
+
+func (i PrivateServiceDetailsArgs) ToPrivateServiceDetailsPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateServiceDetailsOutput).ToPrivateServiceDetailsPtrOutputWithContext(ctx)
+}
+
+// PrivateServiceDetailsPtrInput is an input type that accepts PrivateServiceDetailsArgs, PrivateServiceDetailsPtr and PrivateServiceDetailsPtrOutput values.
+// You can construct a concrete instance of `PrivateServiceDetailsPtrInput` via:
+//
+//          PrivateServiceDetailsArgs{...}
+//
+//  or:
+//
+//          nil
+type PrivateServiceDetailsPtrInput interface {
+	pulumi.Input
+
+	ToPrivateServiceDetailsPtrOutput() PrivateServiceDetailsPtrOutput
+	ToPrivateServiceDetailsPtrOutputWithContext(context.Context) PrivateServiceDetailsPtrOutput
+}
+
+type privateServiceDetailsPtrType PrivateServiceDetailsArgs
+
+func PrivateServiceDetailsPtr(v *PrivateServiceDetailsArgs) PrivateServiceDetailsPtrInput {
+	return (*privateServiceDetailsPtrType)(v)
+}
+
+func (*privateServiceDetailsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**PrivateServiceDetails)(nil)).Elem()
+}
+
+func (i *privateServiceDetailsPtrType) ToPrivateServiceDetailsPtrOutput() PrivateServiceDetailsPtrOutput {
+	return i.ToPrivateServiceDetailsPtrOutputWithContext(context.Background())
+}
+
+func (i *privateServiceDetailsPtrType) ToPrivateServiceDetailsPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateServiceDetailsPtrOutput)
+}
+
+type PrivateServiceDetailsOutput struct{ *pulumi.OutputState }
+
+func (PrivateServiceDetailsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivateServiceDetails)(nil)).Elem()
+}
+
+func (o PrivateServiceDetailsOutput) ToPrivateServiceDetailsOutput() PrivateServiceDetailsOutput {
+	return o
+}
+
+func (o PrivateServiceDetailsOutput) ToPrivateServiceDetailsOutputWithContext(ctx context.Context) PrivateServiceDetailsOutput {
+	return o
+}
+
+func (o PrivateServiceDetailsOutput) ToPrivateServiceDetailsPtrOutput() PrivateServiceDetailsPtrOutput {
+	return o.ToPrivateServiceDetailsPtrOutputWithContext(context.Background())
+}
+
+func (o PrivateServiceDetailsOutput) ToPrivateServiceDetailsPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PrivateServiceDetails) *PrivateServiceDetails {
+		return &v
+	}).(PrivateServiceDetailsPtrOutput)
+}
+
+func (o PrivateServiceDetailsOutput) Disk() DiskPtrOutput {
+	return o.ApplyT(func(v PrivateServiceDetails) *Disk { return v.Disk }).(DiskPtrOutput)
+}
+
+func (o PrivateServiceDetailsOutput) Env() PrivateServiceDetailsEnvOutput {
+	return o.ApplyT(func(v PrivateServiceDetails) PrivateServiceDetailsEnv { return v.Env }).(PrivateServiceDetailsEnvOutput)
+}
+
+func (o PrivateServiceDetailsOutput) EnvSpecificDetails() pulumi.AnyOutput {
+	return o.ApplyT(func(v PrivateServiceDetails) interface{} { return v.EnvSpecificDetails }).(pulumi.AnyOutput)
+}
+
+func (o PrivateServiceDetailsOutput) NumInstances() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v PrivateServiceDetails) *float64 { return v.NumInstances }).(pulumi.Float64PtrOutput)
+}
+
+func (o PrivateServiceDetailsOutput) OpenPorts() OpenPortsArrayOutput {
+	return o.ApplyT(func(v PrivateServiceDetails) []OpenPorts { return v.OpenPorts }).(OpenPortsArrayOutput)
+}
+
+func (o PrivateServiceDetailsOutput) ParentServer() PrivateServiceDetailsParentServerPropertiesPtrOutput {
+	return o.ApplyT(func(v PrivateServiceDetails) *PrivateServiceDetailsParentServerProperties { return v.ParentServer }).(PrivateServiceDetailsParentServerPropertiesPtrOutput)
+}
+
+func (o PrivateServiceDetailsOutput) Plan() PrivateServiceDetailsPlanPtrOutput {
+	return o.ApplyT(func(v PrivateServiceDetails) *PrivateServiceDetailsPlan { return v.Plan }).(PrivateServiceDetailsPlanPtrOutput)
+}
+
+func (o PrivateServiceDetailsOutput) PullRequestPreviewsEnabled() PrivateServiceDetailsPullRequestPreviewsEnabledPtrOutput {
+	return o.ApplyT(func(v PrivateServiceDetails) *PrivateServiceDetailsPullRequestPreviewsEnabled {
+		return v.PullRequestPreviewsEnabled
+	}).(PrivateServiceDetailsPullRequestPreviewsEnabledPtrOutput)
+}
+
+func (o PrivateServiceDetailsOutput) Region() PrivateServiceDetailsRegionPtrOutput {
+	return o.ApplyT(func(v PrivateServiceDetails) *PrivateServiceDetailsRegion { return v.Region }).(PrivateServiceDetailsRegionPtrOutput)
+}
+
+func (o PrivateServiceDetailsOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PrivateServiceDetails) *string { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+type PrivateServiceDetailsPtrOutput struct{ *pulumi.OutputState }
+
+func (PrivateServiceDetailsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PrivateServiceDetails)(nil)).Elem()
+}
+
+func (o PrivateServiceDetailsPtrOutput) ToPrivateServiceDetailsPtrOutput() PrivateServiceDetailsPtrOutput {
+	return o
+}
+
+func (o PrivateServiceDetailsPtrOutput) ToPrivateServiceDetailsPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsPtrOutput {
+	return o
+}
+
+func (o PrivateServiceDetailsPtrOutput) Elem() PrivateServiceDetailsOutput {
+	return o.ApplyT(func(v *PrivateServiceDetails) PrivateServiceDetails {
+		if v != nil {
+			return *v
+		}
+		var ret PrivateServiceDetails
+		return ret
+	}).(PrivateServiceDetailsOutput)
+}
+
+func (o PrivateServiceDetailsPtrOutput) Disk() DiskPtrOutput {
+	return o.ApplyT(func(v *PrivateServiceDetails) *Disk {
+		if v == nil {
+			return nil
+		}
+		return v.Disk
+	}).(DiskPtrOutput)
+}
+
+func (o PrivateServiceDetailsPtrOutput) Env() PrivateServiceDetailsEnvPtrOutput {
+	return o.ApplyT(func(v *PrivateServiceDetails) *PrivateServiceDetailsEnv {
+		if v == nil {
+			return nil
+		}
+		return &v.Env
+	}).(PrivateServiceDetailsEnvPtrOutput)
+}
+
+func (o PrivateServiceDetailsPtrOutput) EnvSpecificDetails() pulumi.AnyOutput {
+	return o.ApplyT(func(v *PrivateServiceDetails) interface{} {
+		if v == nil {
+			return nil
+		}
+		return v.EnvSpecificDetails
+	}).(pulumi.AnyOutput)
+}
+
+func (o PrivateServiceDetailsPtrOutput) NumInstances() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *PrivateServiceDetails) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.NumInstances
+	}).(pulumi.Float64PtrOutput)
+}
+
+func (o PrivateServiceDetailsPtrOutput) OpenPorts() OpenPortsArrayOutput {
+	return o.ApplyT(func(v *PrivateServiceDetails) []OpenPorts {
+		if v == nil {
+			return nil
+		}
+		return v.OpenPorts
+	}).(OpenPortsArrayOutput)
+}
+
+func (o PrivateServiceDetailsPtrOutput) ParentServer() PrivateServiceDetailsParentServerPropertiesPtrOutput {
+	return o.ApplyT(func(v *PrivateServiceDetails) *PrivateServiceDetailsParentServerProperties {
+		if v == nil {
+			return nil
+		}
+		return v.ParentServer
+	}).(PrivateServiceDetailsParentServerPropertiesPtrOutput)
+}
+
+func (o PrivateServiceDetailsPtrOutput) Plan() PrivateServiceDetailsPlanPtrOutput {
+	return o.ApplyT(func(v *PrivateServiceDetails) *PrivateServiceDetailsPlan {
+		if v == nil {
+			return nil
+		}
+		return v.Plan
+	}).(PrivateServiceDetailsPlanPtrOutput)
+}
+
+func (o PrivateServiceDetailsPtrOutput) PullRequestPreviewsEnabled() PrivateServiceDetailsPullRequestPreviewsEnabledPtrOutput {
+	return o.ApplyT(func(v *PrivateServiceDetails) *PrivateServiceDetailsPullRequestPreviewsEnabled {
+		if v == nil {
+			return nil
+		}
+		return v.PullRequestPreviewsEnabled
+	}).(PrivateServiceDetailsPullRequestPreviewsEnabledPtrOutput)
+}
+
+func (o PrivateServiceDetailsPtrOutput) Region() PrivateServiceDetailsRegionPtrOutput {
+	return o.ApplyT(func(v *PrivateServiceDetails) *PrivateServiceDetailsRegion {
+		if v == nil {
+			return nil
+		}
+		return v.Region
+	}).(PrivateServiceDetailsRegionPtrOutput)
+}
+
+func (o PrivateServiceDetailsPtrOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PrivateServiceDetails) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Url
+	}).(pulumi.StringPtrOutput)
+}
+
+type PrivateServiceDetailsParentServerProperties struct {
+	Id   *string `pulumi:"id"`
+	Name *string `pulumi:"name"`
+}
+
+// PrivateServiceDetailsParentServerPropertiesInput is an input type that accepts PrivateServiceDetailsParentServerPropertiesArgs and PrivateServiceDetailsParentServerPropertiesOutput values.
+// You can construct a concrete instance of `PrivateServiceDetailsParentServerPropertiesInput` via:
+//
+//          PrivateServiceDetailsParentServerPropertiesArgs{...}
+type PrivateServiceDetailsParentServerPropertiesInput interface {
+	pulumi.Input
+
+	ToPrivateServiceDetailsParentServerPropertiesOutput() PrivateServiceDetailsParentServerPropertiesOutput
+	ToPrivateServiceDetailsParentServerPropertiesOutputWithContext(context.Context) PrivateServiceDetailsParentServerPropertiesOutput
+}
+
+type PrivateServiceDetailsParentServerPropertiesArgs struct {
+	Id   pulumi.StringPtrInput `pulumi:"id"`
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (PrivateServiceDetailsParentServerPropertiesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivateServiceDetailsParentServerProperties)(nil)).Elem()
+}
+
+func (i PrivateServiceDetailsParentServerPropertiesArgs) ToPrivateServiceDetailsParentServerPropertiesOutput() PrivateServiceDetailsParentServerPropertiesOutput {
+	return i.ToPrivateServiceDetailsParentServerPropertiesOutputWithContext(context.Background())
+}
+
+func (i PrivateServiceDetailsParentServerPropertiesArgs) ToPrivateServiceDetailsParentServerPropertiesOutputWithContext(ctx context.Context) PrivateServiceDetailsParentServerPropertiesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateServiceDetailsParentServerPropertiesOutput)
+}
+
+func (i PrivateServiceDetailsParentServerPropertiesArgs) ToPrivateServiceDetailsParentServerPropertiesPtrOutput() PrivateServiceDetailsParentServerPropertiesPtrOutput {
+	return i.ToPrivateServiceDetailsParentServerPropertiesPtrOutputWithContext(context.Background())
+}
+
+func (i PrivateServiceDetailsParentServerPropertiesArgs) ToPrivateServiceDetailsParentServerPropertiesPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsParentServerPropertiesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateServiceDetailsParentServerPropertiesOutput).ToPrivateServiceDetailsParentServerPropertiesPtrOutputWithContext(ctx)
+}
+
+// PrivateServiceDetailsParentServerPropertiesPtrInput is an input type that accepts PrivateServiceDetailsParentServerPropertiesArgs, PrivateServiceDetailsParentServerPropertiesPtr and PrivateServiceDetailsParentServerPropertiesPtrOutput values.
+// You can construct a concrete instance of `PrivateServiceDetailsParentServerPropertiesPtrInput` via:
+//
+//          PrivateServiceDetailsParentServerPropertiesArgs{...}
+//
+//  or:
+//
+//          nil
+type PrivateServiceDetailsParentServerPropertiesPtrInput interface {
+	pulumi.Input
+
+	ToPrivateServiceDetailsParentServerPropertiesPtrOutput() PrivateServiceDetailsParentServerPropertiesPtrOutput
+	ToPrivateServiceDetailsParentServerPropertiesPtrOutputWithContext(context.Context) PrivateServiceDetailsParentServerPropertiesPtrOutput
+}
+
+type privateServiceDetailsParentServerPropertiesPtrType PrivateServiceDetailsParentServerPropertiesArgs
+
+func PrivateServiceDetailsParentServerPropertiesPtr(v *PrivateServiceDetailsParentServerPropertiesArgs) PrivateServiceDetailsParentServerPropertiesPtrInput {
+	return (*privateServiceDetailsParentServerPropertiesPtrType)(v)
+}
+
+func (*privateServiceDetailsParentServerPropertiesPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**PrivateServiceDetailsParentServerProperties)(nil)).Elem()
+}
+
+func (i *privateServiceDetailsParentServerPropertiesPtrType) ToPrivateServiceDetailsParentServerPropertiesPtrOutput() PrivateServiceDetailsParentServerPropertiesPtrOutput {
+	return i.ToPrivateServiceDetailsParentServerPropertiesPtrOutputWithContext(context.Background())
+}
+
+func (i *privateServiceDetailsParentServerPropertiesPtrType) ToPrivateServiceDetailsParentServerPropertiesPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsParentServerPropertiesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateServiceDetailsParentServerPropertiesPtrOutput)
+}
+
+type PrivateServiceDetailsParentServerPropertiesOutput struct{ *pulumi.OutputState }
+
+func (PrivateServiceDetailsParentServerPropertiesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivateServiceDetailsParentServerProperties)(nil)).Elem()
+}
+
+func (o PrivateServiceDetailsParentServerPropertiesOutput) ToPrivateServiceDetailsParentServerPropertiesOutput() PrivateServiceDetailsParentServerPropertiesOutput {
+	return o
+}
+
+func (o PrivateServiceDetailsParentServerPropertiesOutput) ToPrivateServiceDetailsParentServerPropertiesOutputWithContext(ctx context.Context) PrivateServiceDetailsParentServerPropertiesOutput {
+	return o
+}
+
+func (o PrivateServiceDetailsParentServerPropertiesOutput) ToPrivateServiceDetailsParentServerPropertiesPtrOutput() PrivateServiceDetailsParentServerPropertiesPtrOutput {
+	return o.ToPrivateServiceDetailsParentServerPropertiesPtrOutputWithContext(context.Background())
+}
+
+func (o PrivateServiceDetailsParentServerPropertiesOutput) ToPrivateServiceDetailsParentServerPropertiesPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsParentServerPropertiesPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PrivateServiceDetailsParentServerProperties) *PrivateServiceDetailsParentServerProperties {
+		return &v
+	}).(PrivateServiceDetailsParentServerPropertiesPtrOutput)
+}
+
+func (o PrivateServiceDetailsParentServerPropertiesOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PrivateServiceDetailsParentServerProperties) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+func (o PrivateServiceDetailsParentServerPropertiesOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PrivateServiceDetailsParentServerProperties) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type PrivateServiceDetailsParentServerPropertiesPtrOutput struct{ *pulumi.OutputState }
+
+func (PrivateServiceDetailsParentServerPropertiesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PrivateServiceDetailsParentServerProperties)(nil)).Elem()
+}
+
+func (o PrivateServiceDetailsParentServerPropertiesPtrOutput) ToPrivateServiceDetailsParentServerPropertiesPtrOutput() PrivateServiceDetailsParentServerPropertiesPtrOutput {
+	return o
+}
+
+func (o PrivateServiceDetailsParentServerPropertiesPtrOutput) ToPrivateServiceDetailsParentServerPropertiesPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsParentServerPropertiesPtrOutput {
+	return o
+}
+
+func (o PrivateServiceDetailsParentServerPropertiesPtrOutput) Elem() PrivateServiceDetailsParentServerPropertiesOutput {
+	return o.ApplyT(func(v *PrivateServiceDetailsParentServerProperties) PrivateServiceDetailsParentServerProperties {
+		if v != nil {
+			return *v
+		}
+		var ret PrivateServiceDetailsParentServerProperties
+		return ret
+	}).(PrivateServiceDetailsParentServerPropertiesOutput)
+}
+
+func (o PrivateServiceDetailsParentServerPropertiesPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PrivateServiceDetailsParentServerProperties) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o PrivateServiceDetailsParentServerPropertiesPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PrivateServiceDetailsParentServerProperties) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringPtrOutput)
 }
 
 type ServerProperties struct {
@@ -1883,277 +2917,6 @@ func (o ServerPropertiesOutput) Id() pulumi.StringPtrOutput {
 
 func (o ServerPropertiesOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerProperties) *string { return v.Name }).(pulumi.StringPtrOutput)
-}
-
-type ServiceDetails struct {
-	Disk                       *Disk                                     `pulumi:"disk"`
-	Env                        ServiceDetailsEnv                         `pulumi:"env"`
-	EnvSpecificDetails         interface{}                               `pulumi:"envSpecificDetails"`
-	NumInstances               *float64                                  `pulumi:"numInstances"`
-	Plan                       *ServiceDetailsPlan                       `pulumi:"plan"`
-	PullRequestPreviewsEnabled *ServiceDetailsPullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
-	Region                     *ServiceDetailsRegion                     `pulumi:"region"`
-}
-
-// Defaults sets the appropriate defaults for ServiceDetails
-func (val *ServiceDetails) Defaults() *ServiceDetails {
-	if val == nil {
-		return nil
-	}
-	tmp := *val
-	tmp.Disk = tmp.Disk.Defaults()
-
-	if isZero(tmp.NumInstances) {
-		numInstances_ := 1.0
-		tmp.NumInstances = &numInstances_
-	}
-	if isZero(tmp.Plan) {
-		plan_ := ServiceDetailsPlan("starter")
-		tmp.Plan = &plan_
-	}
-	if isZero(tmp.PullRequestPreviewsEnabled) {
-		pullRequestPreviewsEnabled_ := ServiceDetailsPullRequestPreviewsEnabled("no")
-		tmp.PullRequestPreviewsEnabled = &pullRequestPreviewsEnabled_
-	}
-	if isZero(tmp.Region) {
-		region_ := ServiceDetailsRegion("oregon")
-		tmp.Region = &region_
-	}
-	return &tmp
-}
-
-// ServiceDetailsInput is an input type that accepts ServiceDetailsArgs and ServiceDetailsOutput values.
-// You can construct a concrete instance of `ServiceDetailsInput` via:
-//
-//          ServiceDetailsArgs{...}
-type ServiceDetailsInput interface {
-	pulumi.Input
-
-	ToServiceDetailsOutput() ServiceDetailsOutput
-	ToServiceDetailsOutputWithContext(context.Context) ServiceDetailsOutput
-}
-
-type ServiceDetailsArgs struct {
-	Disk                       DiskPtrInput                                     `pulumi:"disk"`
-	Env                        ServiceDetailsEnvInput                           `pulumi:"env"`
-	EnvSpecificDetails         pulumi.Input                                     `pulumi:"envSpecificDetails"`
-	NumInstances               pulumi.Float64PtrInput                           `pulumi:"numInstances"`
-	Plan                       ServiceDetailsPlanPtrInput                       `pulumi:"plan"`
-	PullRequestPreviewsEnabled ServiceDetailsPullRequestPreviewsEnabledPtrInput `pulumi:"pullRequestPreviewsEnabled"`
-	Region                     ServiceDetailsRegionPtrInput                     `pulumi:"region"`
-}
-
-// Defaults sets the appropriate defaults for ServiceDetailsArgs
-func (val *ServiceDetailsArgs) Defaults() *ServiceDetailsArgs {
-	if val == nil {
-		return nil
-	}
-	tmp := *val
-
-	if isZero(tmp.NumInstances) {
-		tmp.NumInstances = pulumi.Float64Ptr(1.0)
-	}
-	if isZero(tmp.Plan) {
-		tmp.Plan = ServiceDetailsPlan("starter")
-	}
-	if isZero(tmp.PullRequestPreviewsEnabled) {
-		tmp.PullRequestPreviewsEnabled = ServiceDetailsPullRequestPreviewsEnabled("no")
-	}
-	if isZero(tmp.Region) {
-		tmp.Region = ServiceDetailsRegion("oregon")
-	}
-	return &tmp
-}
-func (ServiceDetailsArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceDetails)(nil)).Elem()
-}
-
-func (i ServiceDetailsArgs) ToServiceDetailsOutput() ServiceDetailsOutput {
-	return i.ToServiceDetailsOutputWithContext(context.Background())
-}
-
-func (i ServiceDetailsArgs) ToServiceDetailsOutputWithContext(ctx context.Context) ServiceDetailsOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceDetailsOutput)
-}
-
-func (i ServiceDetailsArgs) ToServiceDetailsPtrOutput() ServiceDetailsPtrOutput {
-	return i.ToServiceDetailsPtrOutputWithContext(context.Background())
-}
-
-func (i ServiceDetailsArgs) ToServiceDetailsPtrOutputWithContext(ctx context.Context) ServiceDetailsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceDetailsOutput).ToServiceDetailsPtrOutputWithContext(ctx)
-}
-
-// ServiceDetailsPtrInput is an input type that accepts ServiceDetailsArgs, ServiceDetailsPtr and ServiceDetailsPtrOutput values.
-// You can construct a concrete instance of `ServiceDetailsPtrInput` via:
-//
-//          ServiceDetailsArgs{...}
-//
-//  or:
-//
-//          nil
-type ServiceDetailsPtrInput interface {
-	pulumi.Input
-
-	ToServiceDetailsPtrOutput() ServiceDetailsPtrOutput
-	ToServiceDetailsPtrOutputWithContext(context.Context) ServiceDetailsPtrOutput
-}
-
-type serviceDetailsPtrType ServiceDetailsArgs
-
-func ServiceDetailsPtr(v *ServiceDetailsArgs) ServiceDetailsPtrInput {
-	return (*serviceDetailsPtrType)(v)
-}
-
-func (*serviceDetailsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ServiceDetails)(nil)).Elem()
-}
-
-func (i *serviceDetailsPtrType) ToServiceDetailsPtrOutput() ServiceDetailsPtrOutput {
-	return i.ToServiceDetailsPtrOutputWithContext(context.Background())
-}
-
-func (i *serviceDetailsPtrType) ToServiceDetailsPtrOutputWithContext(ctx context.Context) ServiceDetailsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceDetailsPtrOutput)
-}
-
-type ServiceDetailsOutput struct{ *pulumi.OutputState }
-
-func (ServiceDetailsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceDetails)(nil)).Elem()
-}
-
-func (o ServiceDetailsOutput) ToServiceDetailsOutput() ServiceDetailsOutput {
-	return o
-}
-
-func (o ServiceDetailsOutput) ToServiceDetailsOutputWithContext(ctx context.Context) ServiceDetailsOutput {
-	return o
-}
-
-func (o ServiceDetailsOutput) ToServiceDetailsPtrOutput() ServiceDetailsPtrOutput {
-	return o.ToServiceDetailsPtrOutputWithContext(context.Background())
-}
-
-func (o ServiceDetailsOutput) ToServiceDetailsPtrOutputWithContext(ctx context.Context) ServiceDetailsPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v ServiceDetails) *ServiceDetails {
-		return &v
-	}).(ServiceDetailsPtrOutput)
-}
-
-func (o ServiceDetailsOutput) Disk() DiskPtrOutput {
-	return o.ApplyT(func(v ServiceDetails) *Disk { return v.Disk }).(DiskPtrOutput)
-}
-
-func (o ServiceDetailsOutput) Env() ServiceDetailsEnvOutput {
-	return o.ApplyT(func(v ServiceDetails) ServiceDetailsEnv { return v.Env }).(ServiceDetailsEnvOutput)
-}
-
-func (o ServiceDetailsOutput) EnvSpecificDetails() pulumi.AnyOutput {
-	return o.ApplyT(func(v ServiceDetails) interface{} { return v.EnvSpecificDetails }).(pulumi.AnyOutput)
-}
-
-func (o ServiceDetailsOutput) NumInstances() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v ServiceDetails) *float64 { return v.NumInstances }).(pulumi.Float64PtrOutput)
-}
-
-func (o ServiceDetailsOutput) Plan() ServiceDetailsPlanPtrOutput {
-	return o.ApplyT(func(v ServiceDetails) *ServiceDetailsPlan { return v.Plan }).(ServiceDetailsPlanPtrOutput)
-}
-
-func (o ServiceDetailsOutput) PullRequestPreviewsEnabled() ServiceDetailsPullRequestPreviewsEnabledPtrOutput {
-	return o.ApplyT(func(v ServiceDetails) *ServiceDetailsPullRequestPreviewsEnabled { return v.PullRequestPreviewsEnabled }).(ServiceDetailsPullRequestPreviewsEnabledPtrOutput)
-}
-
-func (o ServiceDetailsOutput) Region() ServiceDetailsRegionPtrOutput {
-	return o.ApplyT(func(v ServiceDetails) *ServiceDetailsRegion { return v.Region }).(ServiceDetailsRegionPtrOutput)
-}
-
-type ServiceDetailsPtrOutput struct{ *pulumi.OutputState }
-
-func (ServiceDetailsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ServiceDetails)(nil)).Elem()
-}
-
-func (o ServiceDetailsPtrOutput) ToServiceDetailsPtrOutput() ServiceDetailsPtrOutput {
-	return o
-}
-
-func (o ServiceDetailsPtrOutput) ToServiceDetailsPtrOutputWithContext(ctx context.Context) ServiceDetailsPtrOutput {
-	return o
-}
-
-func (o ServiceDetailsPtrOutput) Elem() ServiceDetailsOutput {
-	return o.ApplyT(func(v *ServiceDetails) ServiceDetails {
-		if v != nil {
-			return *v
-		}
-		var ret ServiceDetails
-		return ret
-	}).(ServiceDetailsOutput)
-}
-
-func (o ServiceDetailsPtrOutput) Disk() DiskPtrOutput {
-	return o.ApplyT(func(v *ServiceDetails) *Disk {
-		if v == nil {
-			return nil
-		}
-		return v.Disk
-	}).(DiskPtrOutput)
-}
-
-func (o ServiceDetailsPtrOutput) Env() ServiceDetailsEnvPtrOutput {
-	return o.ApplyT(func(v *ServiceDetails) *ServiceDetailsEnv {
-		if v == nil {
-			return nil
-		}
-		return &v.Env
-	}).(ServiceDetailsEnvPtrOutput)
-}
-
-func (o ServiceDetailsPtrOutput) EnvSpecificDetails() pulumi.AnyOutput {
-	return o.ApplyT(func(v *ServiceDetails) interface{} {
-		if v == nil {
-			return nil
-		}
-		return v.EnvSpecificDetails
-	}).(pulumi.AnyOutput)
-}
-
-func (o ServiceDetailsPtrOutput) NumInstances() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v *ServiceDetails) *float64 {
-		if v == nil {
-			return nil
-		}
-		return v.NumInstances
-	}).(pulumi.Float64PtrOutput)
-}
-
-func (o ServiceDetailsPtrOutput) Plan() ServiceDetailsPlanPtrOutput {
-	return o.ApplyT(func(v *ServiceDetails) *ServiceDetailsPlan {
-		if v == nil {
-			return nil
-		}
-		return v.Plan
-	}).(ServiceDetailsPlanPtrOutput)
-}
-
-func (o ServiceDetailsPtrOutput) PullRequestPreviewsEnabled() ServiceDetailsPullRequestPreviewsEnabledPtrOutput {
-	return o.ApplyT(func(v *ServiceDetails) *ServiceDetailsPullRequestPreviewsEnabled {
-		if v == nil {
-			return nil
-		}
-		return v.PullRequestPreviewsEnabled
-	}).(ServiceDetailsPullRequestPreviewsEnabledPtrOutput)
-}
-
-func (o ServiceDetailsPtrOutput) Region() ServiceDetailsRegionPtrOutput {
-	return o.ApplyT(func(v *ServiceDetails) *ServiceDetailsRegion {
-		if v == nil {
-			return nil
-		}
-		return v.Region
-	}).(ServiceDetailsRegionPtrOutput)
 }
 
 // A service header object
@@ -2974,9 +3737,12 @@ type WebServiceServiceDetails struct {
 	EnvSpecificDetails         interface{}                                         `pulumi:"envSpecificDetails"`
 	HealthCheckPath            *string                                             `pulumi:"healthCheckPath"`
 	NumInstances               *float64                                            `pulumi:"numInstances"`
+	OpenPorts                  []OpenPorts                                         `pulumi:"openPorts"`
+	ParentServer               *WebServiceServiceDetailsParentServerProperties     `pulumi:"parentServer"`
 	Plan                       *WebServiceServiceDetailsPlan                       `pulumi:"plan"`
 	PullRequestPreviewsEnabled *WebServiceServiceDetailsPullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
 	Region                     *WebServiceServiceDetailsRegion                     `pulumi:"region"`
+	Url                        *string                                             `pulumi:"url"`
 }
 
 // Defaults sets the appropriate defaults for WebServiceServiceDetails
@@ -3023,9 +3789,12 @@ type WebServiceServiceDetailsArgs struct {
 	EnvSpecificDetails         pulumi.Input                                               `pulumi:"envSpecificDetails"`
 	HealthCheckPath            pulumi.StringPtrInput                                      `pulumi:"healthCheckPath"`
 	NumInstances               pulumi.Float64PtrInput                                     `pulumi:"numInstances"`
+	OpenPorts                  OpenPortsArrayInput                                        `pulumi:"openPorts"`
+	ParentServer               WebServiceServiceDetailsParentServerPropertiesPtrInput     `pulumi:"parentServer"`
 	Plan                       WebServiceServiceDetailsPlanPtrInput                       `pulumi:"plan"`
 	PullRequestPreviewsEnabled WebServiceServiceDetailsPullRequestPreviewsEnabledPtrInput `pulumi:"pullRequestPreviewsEnabled"`
 	Region                     WebServiceServiceDetailsRegionPtrInput                     `pulumi:"region"`
+	Url                        pulumi.StringPtrInput                                      `pulumi:"url"`
 }
 
 // Defaults sets the appropriate defaults for WebServiceServiceDetailsArgs
@@ -3146,6 +3915,16 @@ func (o WebServiceServiceDetailsOutput) NumInstances() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v WebServiceServiceDetails) *float64 { return v.NumInstances }).(pulumi.Float64PtrOutput)
 }
 
+func (o WebServiceServiceDetailsOutput) OpenPorts() OpenPortsArrayOutput {
+	return o.ApplyT(func(v WebServiceServiceDetails) []OpenPorts { return v.OpenPorts }).(OpenPortsArrayOutput)
+}
+
+func (o WebServiceServiceDetailsOutput) ParentServer() WebServiceServiceDetailsParentServerPropertiesPtrOutput {
+	return o.ApplyT(func(v WebServiceServiceDetails) *WebServiceServiceDetailsParentServerProperties {
+		return v.ParentServer
+	}).(WebServiceServiceDetailsParentServerPropertiesPtrOutput)
+}
+
 func (o WebServiceServiceDetailsOutput) Plan() WebServiceServiceDetailsPlanPtrOutput {
 	return o.ApplyT(func(v WebServiceServiceDetails) *WebServiceServiceDetailsPlan { return v.Plan }).(WebServiceServiceDetailsPlanPtrOutput)
 }
@@ -3158,6 +3937,10 @@ func (o WebServiceServiceDetailsOutput) PullRequestPreviewsEnabled() WebServiceS
 
 func (o WebServiceServiceDetailsOutput) Region() WebServiceServiceDetailsRegionPtrOutput {
 	return o.ApplyT(func(v WebServiceServiceDetails) *WebServiceServiceDetailsRegion { return v.Region }).(WebServiceServiceDetailsRegionPtrOutput)
+}
+
+func (o WebServiceServiceDetailsOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WebServiceServiceDetails) *string { return v.Url }).(pulumi.StringPtrOutput)
 }
 
 type WebServiceServiceDetailsPtrOutput struct{ *pulumi.OutputState }
@@ -3229,6 +4012,24 @@ func (o WebServiceServiceDetailsPtrOutput) NumInstances() pulumi.Float64PtrOutpu
 	}).(pulumi.Float64PtrOutput)
 }
 
+func (o WebServiceServiceDetailsPtrOutput) OpenPorts() OpenPortsArrayOutput {
+	return o.ApplyT(func(v *WebServiceServiceDetails) []OpenPorts {
+		if v == nil {
+			return nil
+		}
+		return v.OpenPorts
+	}).(OpenPortsArrayOutput)
+}
+
+func (o WebServiceServiceDetailsPtrOutput) ParentServer() WebServiceServiceDetailsParentServerPropertiesPtrOutput {
+	return o.ApplyT(func(v *WebServiceServiceDetails) *WebServiceServiceDetailsParentServerProperties {
+		if v == nil {
+			return nil
+		}
+		return v.ParentServer
+	}).(WebServiceServiceDetailsParentServerPropertiesPtrOutput)
+}
+
 func (o WebServiceServiceDetailsPtrOutput) Plan() WebServiceServiceDetailsPlanPtrOutput {
 	return o.ApplyT(func(v *WebServiceServiceDetails) *WebServiceServiceDetailsPlan {
 		if v == nil {
@@ -3256,14 +4057,179 @@ func (o WebServiceServiceDetailsPtrOutput) Region() WebServiceServiceDetailsRegi
 	}).(WebServiceServiceDetailsRegionPtrOutput)
 }
 
+func (o WebServiceServiceDetailsPtrOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebServiceServiceDetails) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Url
+	}).(pulumi.StringPtrOutput)
+}
+
+type WebServiceServiceDetailsParentServerProperties struct {
+	Id   *string `pulumi:"id"`
+	Name *string `pulumi:"name"`
+}
+
+// WebServiceServiceDetailsParentServerPropertiesInput is an input type that accepts WebServiceServiceDetailsParentServerPropertiesArgs and WebServiceServiceDetailsParentServerPropertiesOutput values.
+// You can construct a concrete instance of `WebServiceServiceDetailsParentServerPropertiesInput` via:
+//
+//          WebServiceServiceDetailsParentServerPropertiesArgs{...}
+type WebServiceServiceDetailsParentServerPropertiesInput interface {
+	pulumi.Input
+
+	ToWebServiceServiceDetailsParentServerPropertiesOutput() WebServiceServiceDetailsParentServerPropertiesOutput
+	ToWebServiceServiceDetailsParentServerPropertiesOutputWithContext(context.Context) WebServiceServiceDetailsParentServerPropertiesOutput
+}
+
+type WebServiceServiceDetailsParentServerPropertiesArgs struct {
+	Id   pulumi.StringPtrInput `pulumi:"id"`
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (WebServiceServiceDetailsParentServerPropertiesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceServiceDetailsParentServerProperties)(nil)).Elem()
+}
+
+func (i WebServiceServiceDetailsParentServerPropertiesArgs) ToWebServiceServiceDetailsParentServerPropertiesOutput() WebServiceServiceDetailsParentServerPropertiesOutput {
+	return i.ToWebServiceServiceDetailsParentServerPropertiesOutputWithContext(context.Background())
+}
+
+func (i WebServiceServiceDetailsParentServerPropertiesArgs) ToWebServiceServiceDetailsParentServerPropertiesOutputWithContext(ctx context.Context) WebServiceServiceDetailsParentServerPropertiesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebServiceServiceDetailsParentServerPropertiesOutput)
+}
+
+func (i WebServiceServiceDetailsParentServerPropertiesArgs) ToWebServiceServiceDetailsParentServerPropertiesPtrOutput() WebServiceServiceDetailsParentServerPropertiesPtrOutput {
+	return i.ToWebServiceServiceDetailsParentServerPropertiesPtrOutputWithContext(context.Background())
+}
+
+func (i WebServiceServiceDetailsParentServerPropertiesArgs) ToWebServiceServiceDetailsParentServerPropertiesPtrOutputWithContext(ctx context.Context) WebServiceServiceDetailsParentServerPropertiesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebServiceServiceDetailsParentServerPropertiesOutput).ToWebServiceServiceDetailsParentServerPropertiesPtrOutputWithContext(ctx)
+}
+
+// WebServiceServiceDetailsParentServerPropertiesPtrInput is an input type that accepts WebServiceServiceDetailsParentServerPropertiesArgs, WebServiceServiceDetailsParentServerPropertiesPtr and WebServiceServiceDetailsParentServerPropertiesPtrOutput values.
+// You can construct a concrete instance of `WebServiceServiceDetailsParentServerPropertiesPtrInput` via:
+//
+//          WebServiceServiceDetailsParentServerPropertiesArgs{...}
+//
+//  or:
+//
+//          nil
+type WebServiceServiceDetailsParentServerPropertiesPtrInput interface {
+	pulumi.Input
+
+	ToWebServiceServiceDetailsParentServerPropertiesPtrOutput() WebServiceServiceDetailsParentServerPropertiesPtrOutput
+	ToWebServiceServiceDetailsParentServerPropertiesPtrOutputWithContext(context.Context) WebServiceServiceDetailsParentServerPropertiesPtrOutput
+}
+
+type webServiceServiceDetailsParentServerPropertiesPtrType WebServiceServiceDetailsParentServerPropertiesArgs
+
+func WebServiceServiceDetailsParentServerPropertiesPtr(v *WebServiceServiceDetailsParentServerPropertiesArgs) WebServiceServiceDetailsParentServerPropertiesPtrInput {
+	return (*webServiceServiceDetailsParentServerPropertiesPtrType)(v)
+}
+
+func (*webServiceServiceDetailsParentServerPropertiesPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebServiceServiceDetailsParentServerProperties)(nil)).Elem()
+}
+
+func (i *webServiceServiceDetailsParentServerPropertiesPtrType) ToWebServiceServiceDetailsParentServerPropertiesPtrOutput() WebServiceServiceDetailsParentServerPropertiesPtrOutput {
+	return i.ToWebServiceServiceDetailsParentServerPropertiesPtrOutputWithContext(context.Background())
+}
+
+func (i *webServiceServiceDetailsParentServerPropertiesPtrType) ToWebServiceServiceDetailsParentServerPropertiesPtrOutputWithContext(ctx context.Context) WebServiceServiceDetailsParentServerPropertiesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebServiceServiceDetailsParentServerPropertiesPtrOutput)
+}
+
+type WebServiceServiceDetailsParentServerPropertiesOutput struct{ *pulumi.OutputState }
+
+func (WebServiceServiceDetailsParentServerPropertiesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceServiceDetailsParentServerProperties)(nil)).Elem()
+}
+
+func (o WebServiceServiceDetailsParentServerPropertiesOutput) ToWebServiceServiceDetailsParentServerPropertiesOutput() WebServiceServiceDetailsParentServerPropertiesOutput {
+	return o
+}
+
+func (o WebServiceServiceDetailsParentServerPropertiesOutput) ToWebServiceServiceDetailsParentServerPropertiesOutputWithContext(ctx context.Context) WebServiceServiceDetailsParentServerPropertiesOutput {
+	return o
+}
+
+func (o WebServiceServiceDetailsParentServerPropertiesOutput) ToWebServiceServiceDetailsParentServerPropertiesPtrOutput() WebServiceServiceDetailsParentServerPropertiesPtrOutput {
+	return o.ToWebServiceServiceDetailsParentServerPropertiesPtrOutputWithContext(context.Background())
+}
+
+func (o WebServiceServiceDetailsParentServerPropertiesOutput) ToWebServiceServiceDetailsParentServerPropertiesPtrOutputWithContext(ctx context.Context) WebServiceServiceDetailsParentServerPropertiesPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebServiceServiceDetailsParentServerProperties) *WebServiceServiceDetailsParentServerProperties {
+		return &v
+	}).(WebServiceServiceDetailsParentServerPropertiesPtrOutput)
+}
+
+func (o WebServiceServiceDetailsParentServerPropertiesOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WebServiceServiceDetailsParentServerProperties) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+func (o WebServiceServiceDetailsParentServerPropertiesOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WebServiceServiceDetailsParentServerProperties) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type WebServiceServiceDetailsParentServerPropertiesPtrOutput struct{ *pulumi.OutputState }
+
+func (WebServiceServiceDetailsParentServerPropertiesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebServiceServiceDetailsParentServerProperties)(nil)).Elem()
+}
+
+func (o WebServiceServiceDetailsParentServerPropertiesPtrOutput) ToWebServiceServiceDetailsParentServerPropertiesPtrOutput() WebServiceServiceDetailsParentServerPropertiesPtrOutput {
+	return o
+}
+
+func (o WebServiceServiceDetailsParentServerPropertiesPtrOutput) ToWebServiceServiceDetailsParentServerPropertiesPtrOutputWithContext(ctx context.Context) WebServiceServiceDetailsParentServerPropertiesPtrOutput {
+	return o
+}
+
+func (o WebServiceServiceDetailsParentServerPropertiesPtrOutput) Elem() WebServiceServiceDetailsParentServerPropertiesOutput {
+	return o.ApplyT(func(v *WebServiceServiceDetailsParentServerProperties) WebServiceServiceDetailsParentServerProperties {
+		if v != nil {
+			return *v
+		}
+		var ret WebServiceServiceDetailsParentServerProperties
+		return ret
+	}).(WebServiceServiceDetailsParentServerPropertiesOutput)
+}
+
+func (o WebServiceServiceDetailsParentServerPropertiesPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebServiceServiceDetailsParentServerProperties) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WebServiceServiceDetailsParentServerPropertiesPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebServiceServiceDetailsParentServerProperties) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*BackgroundWorkerServiceDetailsInput)(nil)).Elem(), BackgroundWorkerServiceDetailsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackgroundWorkerServiceDetailsPtrInput)(nil)).Elem(), BackgroundWorkerServiceDetailsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackgroundWorkerServiceDetailsParentServerPropertiesInput)(nil)).Elem(), BackgroundWorkerServiceDetailsParentServerPropertiesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackgroundWorkerServiceDetailsParentServerPropertiesPtrInput)(nil)).Elem(), BackgroundWorkerServiceDetailsParentServerPropertiesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CronJobServiceDetailsInput)(nil)).Elem(), CronJobServiceDetailsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CronJobServiceDetailsPtrInput)(nil)).Elem(), CronJobServiceDetailsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DiskInput)(nil)).Elem(), DiskArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DiskPtrInput)(nil)).Elem(), DiskArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OpenPortsInput)(nil)).Elem(), OpenPortsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OpenPortsArrayInput)(nil)).Elem(), OpenPortsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceDetailsInput)(nil)).Elem(), PrivateServiceDetailsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceDetailsPtrInput)(nil)).Elem(), PrivateServiceDetailsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceDetailsParentServerPropertiesInput)(nil)).Elem(), PrivateServiceDetailsParentServerPropertiesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceDetailsParentServerPropertiesPtrInput)(nil)).Elem(), PrivateServiceDetailsParentServerPropertiesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerPropertiesInput)(nil)).Elem(), ServerPropertiesArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ServiceDetailsInput)(nil)).Elem(), ServiceDetailsArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ServiceDetailsPtrInput)(nil)).Elem(), ServiceDetailsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceHeaderInput)(nil)).Elem(), ServiceHeaderArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceHeaderArrayInput)(nil)).Elem(), ServiceHeaderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteRouteInput)(nil)).Elem(), StaticSiteRouteArgs{})
@@ -3274,6 +4240,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteServiceDetailsParentServerPropertiesPtrInput)(nil)).Elem(), StaticSiteServiceDetailsParentServerPropertiesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceServiceDetailsInput)(nil)).Elem(), WebServiceServiceDetailsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceServiceDetailsPtrInput)(nil)).Elem(), WebServiceServiceDetailsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceServiceDetailsParentServerPropertiesInput)(nil)).Elem(), WebServiceServiceDetailsParentServerPropertiesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceServiceDetailsParentServerPropertiesPtrInput)(nil)).Elem(), WebServiceServiceDetailsParentServerPropertiesArgs{})
+	pulumi.RegisterOutputType(BackgroundWorkerServiceDetailsOutput{})
+	pulumi.RegisterOutputType(BackgroundWorkerServiceDetailsPtrOutput{})
+	pulumi.RegisterOutputType(BackgroundWorkerServiceDetailsParentServerPropertiesOutput{})
+	pulumi.RegisterOutputType(BackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput{})
 	pulumi.RegisterOutputType(CommitOutput{})
 	pulumi.RegisterOutputType(CommitPtrOutput{})
 	pulumi.RegisterOutputType(CronJobServiceDetailsOutput{})
@@ -3303,9 +4275,13 @@ func init() {
 	pulumi.RegisterOutputType(ListServiceHeadersResponseArrayOutput{})
 	pulumi.RegisterOutputType(ListStaticSiteRoutesResponseOutput{})
 	pulumi.RegisterOutputType(ListStaticSiteRoutesResponseArrayOutput{})
+	pulumi.RegisterOutputType(OpenPortsOutput{})
+	pulumi.RegisterOutputType(OpenPortsArrayOutput{})
+	pulumi.RegisterOutputType(PrivateServiceDetailsOutput{})
+	pulumi.RegisterOutputType(PrivateServiceDetailsPtrOutput{})
+	pulumi.RegisterOutputType(PrivateServiceDetailsParentServerPropertiesOutput{})
+	pulumi.RegisterOutputType(PrivateServiceDetailsParentServerPropertiesPtrOutput{})
 	pulumi.RegisterOutputType(ServerPropertiesOutput{})
-	pulumi.RegisterOutputType(ServiceDetailsOutput{})
-	pulumi.RegisterOutputType(ServiceDetailsPtrOutput{})
 	pulumi.RegisterOutputType(ServiceHeaderOutput{})
 	pulumi.RegisterOutputType(ServiceHeaderPtrOutput{})
 	pulumi.RegisterOutputType(ServiceHeaderArrayOutput{})
@@ -3318,4 +4294,6 @@ func init() {
 	pulumi.RegisterOutputType(StaticSiteServiceDetailsParentServerPropertiesPtrOutput{})
 	pulumi.RegisterOutputType(WebServiceServiceDetailsOutput{})
 	pulumi.RegisterOutputType(WebServiceServiceDetailsPtrOutput{})
+	pulumi.RegisterOutputType(WebServiceServiceDetailsParentServerPropertiesOutput{})
+	pulumi.RegisterOutputType(WebServiceServiceDetailsParentServerPropertiesPtrOutput{})
 }

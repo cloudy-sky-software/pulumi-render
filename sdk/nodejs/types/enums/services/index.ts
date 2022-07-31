@@ -2,6 +2,45 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 
+export const BackgroundWorkerServiceDetailsEnv = {
+    Docker: "docker",
+    Elixir: "elixir",
+    Go: "go",
+    Node: "node",
+    Python: "python",
+    Ruby: "ruby",
+    Rust: "rust",
+} as const;
+
+export type BackgroundWorkerServiceDetailsEnv = (typeof BackgroundWorkerServiceDetailsEnv)[keyof typeof BackgroundWorkerServiceDetailsEnv];
+
+export const BackgroundWorkerServiceDetailsPlan = {
+    Starter: "starter",
+    StarterPlus: "starter_plus",
+    Standard: "standard",
+    StandardPlus: "standard_plus",
+    Pro: "pro",
+    ProPlus: "pro_plus",
+    ProMax: "pro_max",
+    ProUltra: "pro_ultra",
+} as const;
+
+export type BackgroundWorkerServiceDetailsPlan = (typeof BackgroundWorkerServiceDetailsPlan)[keyof typeof BackgroundWorkerServiceDetailsPlan];
+
+export const BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled = {
+    Yes: "yes",
+    No: "no",
+} as const;
+
+export type BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled = (typeof BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled)[keyof typeof BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled];
+
+export const BackgroundWorkerServiceDetailsRegion = {
+    Oregon: "oregon",
+    Frankfurt: "frankfurt",
+} as const;
+
+export type BackgroundWorkerServiceDetailsRegion = (typeof BackgroundWorkerServiceDetailsRegion)[keyof typeof BackgroundWorkerServiceDetailsRegion];
+
 export const ClearCache = {
     DoNotClear: "do_not_clear",
     Clear: "clear",
@@ -69,17 +108,14 @@ export const DomainType = {
 
 export type DomainType = (typeof DomainType)[keyof typeof DomainType];
 
-export const ServiceAutoDeploy = {
-    Yes: "yes",
-    No: "no",
+export const OpenPortsProtocol = {
+    Tcp: "TCP",
+    Udp: "UDP",
 } as const;
 
-/**
- * Whether to auto deploy the service or not upon git push.
- */
-export type ServiceAutoDeploy = (typeof ServiceAutoDeploy)[keyof typeof ServiceAutoDeploy];
+export type OpenPortsProtocol = (typeof OpenPortsProtocol)[keyof typeof OpenPortsProtocol];
 
-export const ServiceDetailsEnv = {
+export const PrivateServiceDetailsEnv = {
     Docker: "docker",
     Elixir: "elixir",
     Go: "go",
@@ -89,9 +125,9 @@ export const ServiceDetailsEnv = {
     Rust: "rust",
 } as const;
 
-export type ServiceDetailsEnv = (typeof ServiceDetailsEnv)[keyof typeof ServiceDetailsEnv];
+export type PrivateServiceDetailsEnv = (typeof PrivateServiceDetailsEnv)[keyof typeof PrivateServiceDetailsEnv];
 
-export const ServiceDetailsPlan = {
+export const PrivateServiceDetailsPlan = {
     Starter: "starter",
     StarterPlus: "starter_plus",
     Standard: "standard",
@@ -102,21 +138,31 @@ export const ServiceDetailsPlan = {
     ProUltra: "pro_ultra",
 } as const;
 
-export type ServiceDetailsPlan = (typeof ServiceDetailsPlan)[keyof typeof ServiceDetailsPlan];
+export type PrivateServiceDetailsPlan = (typeof PrivateServiceDetailsPlan)[keyof typeof PrivateServiceDetailsPlan];
 
-export const ServiceDetailsPullRequestPreviewsEnabled = {
+export const PrivateServiceDetailsPullRequestPreviewsEnabled = {
     Yes: "yes",
     No: "no",
 } as const;
 
-export type ServiceDetailsPullRequestPreviewsEnabled = (typeof ServiceDetailsPullRequestPreviewsEnabled)[keyof typeof ServiceDetailsPullRequestPreviewsEnabled];
+export type PrivateServiceDetailsPullRequestPreviewsEnabled = (typeof PrivateServiceDetailsPullRequestPreviewsEnabled)[keyof typeof PrivateServiceDetailsPullRequestPreviewsEnabled];
 
-export const ServiceDetailsRegion = {
+export const PrivateServiceDetailsRegion = {
     Oregon: "oregon",
     Frankfurt: "frankfurt",
 } as const;
 
-export type ServiceDetailsRegion = (typeof ServiceDetailsRegion)[keyof typeof ServiceDetailsRegion];
+export type PrivateServiceDetailsRegion = (typeof PrivateServiceDetailsRegion)[keyof typeof PrivateServiceDetailsRegion];
+
+export const ServiceAutoDeploy = {
+    Yes: "yes",
+    No: "no",
+} as const;
+
+/**
+ * Whether to auto deploy the service or not upon git push.
+ */
+export type ServiceAutoDeploy = (typeof ServiceAutoDeploy)[keyof typeof ServiceAutoDeploy];
 
 export const ServiceNotifyOnFail = {
     Default: "default",

@@ -18,6 +18,9 @@ namespace Pulumi.Render.Services.Inputs
         [Input("envSpecificDetails")]
         public InputUnion<Inputs.DockerDetailsArgs, Inputs.NativeEnvironmentDetailsArgs>? EnvSpecificDetails { get; set; }
 
+        [Input("lastSuccessfulRunAt")]
+        public Input<string>? LastSuccessfulRunAt { get; set; }
+
         [Input("plan")]
         public Input<Pulumi.Render.Services.CronJobServiceDetailsPlan>? Plan { get; set; }
 

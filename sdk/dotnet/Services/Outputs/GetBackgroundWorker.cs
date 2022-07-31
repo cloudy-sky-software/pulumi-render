@@ -38,7 +38,7 @@ namespace Pulumi.Render.Services.Outputs
         /// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
         /// </summary>
         public readonly string Repo;
-        public readonly Outputs.ServiceDetails? ServiceDetails;
+        public readonly Outputs.BackgroundWorkerServiceDetails? ServiceDetails;
         public readonly string? Slug;
         public readonly Pulumi.Render.Services.ServiceSuspended? Suspended;
         public readonly ImmutableArray<string> Suspenders;
@@ -61,7 +61,7 @@ namespace Pulumi.Render.Services.Outputs
 
             string repo,
 
-            Outputs.ServiceDetails? serviceDetails,
+            Outputs.BackgroundWorkerServiceDetails? serviceDetails,
 
             string? slug,
 

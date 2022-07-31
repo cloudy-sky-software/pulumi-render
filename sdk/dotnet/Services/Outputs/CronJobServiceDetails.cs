@@ -15,6 +15,7 @@ namespace Pulumi.Render.Services.Outputs
     {
         public readonly Pulumi.Render.Services.CronJobServiceDetailsEnv Env;
         public readonly Union<Outputs.DockerDetails, Outputs.NativeEnvironmentDetails>? EnvSpecificDetails;
+        public readonly string? LastSuccessfulRunAt;
         public readonly Pulumi.Render.Services.CronJobServiceDetailsPlan? Plan;
         public readonly Pulumi.Render.Services.CronJobServiceDetailsRegion? Region;
         public readonly string Schedule;
@@ -25,6 +26,8 @@ namespace Pulumi.Render.Services.Outputs
 
             Union<Outputs.DockerDetails, Outputs.NativeEnvironmentDetails>? envSpecificDetails,
 
+            string? lastSuccessfulRunAt,
+
             Pulumi.Render.Services.CronJobServiceDetailsPlan? plan,
 
             Pulumi.Render.Services.CronJobServiceDetailsRegion? region,
@@ -33,6 +36,7 @@ namespace Pulumi.Render.Services.Outputs
         {
             Env = env;
             EnvSpecificDetails = envSpecificDetails;
+            LastSuccessfulRunAt = lastSuccessfulRunAt;
             Plan = plan;
             Region = region;
             Schedule = schedule;

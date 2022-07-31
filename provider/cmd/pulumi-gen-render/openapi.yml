@@ -708,7 +708,7 @@ components:
               "web_service": "#/components/schemas/webService"
               "private_service": "#/components/schemas/privateService"
               "background_worker": "#/components/schemas/backgroundWorker"
-              "cronJob": "#/components/schemas/cronJob"
+              "cron_job": "#/components/schemas/cronJob"
           oneOf:
             - $ref: "#/components/schemas/staticSite"
             - $ref: "#/components/schemas/webService"
@@ -1383,7 +1383,7 @@ paths:
                   "web_service": "#/components/schemas/webService"
                   "private_service": "#/components/schemas/privateService"
                   "background_worker": "#/components/schemas/backgroundWorker"
-                  "cronJob": "#/components/schemas/cronJob"
+                  "cron_job": "#/components/schemas/cronJob"
               oneOf:
                 - $ref: "#/components/schemas/staticSite"
                 - $ref: "#/components/schemas/webService"
@@ -1624,7 +1624,7 @@ paths:
                     "web_service": "#/components/schemas/webService"
                     "private_service": "#/components/schemas/privateService"
                     "background_worker": "#/components/schemas/backgroundWorker"
-                    "cronJob": "#/components/schemas/cronJob"
+                    "cron_job": "#/components/schemas/cronJob"
                 oneOf:
                   - $ref: "#/components/schemas/staticSite"
                   - $ref: "#/components/schemas/webService"
@@ -2020,7 +2020,7 @@ paths:
                   "web_service": "#/components/schemas/webService"
                   "private_service": "#/components/schemas/privateService"
                   "background_worker": "#/components/schemas/backgroundWorker"
-                  "cronJob": "#/components/schemas/cronJob"
+                  "cron_job": "#/components/schemas/cronJob"
               oneOf:
                 - $ref: "#/components/schemas/staticSite"
                 - $ref: "#/components/schemas/webService"

@@ -633,10 +633,15 @@ func (ctx *resourceContext) propertyTypeSpec(parentName string, propSchema opena
 			}
 
 			mapping := make(map[string]string)
-			idx := 0
-			for discriminatorValue := range propSchema.Value.Discriminator.Mapping {
-				mapping[discriminatorValue] = types[idx].Ref
-				idx++
+			for discriminatorProperyValue, apiSchemaRef := range propSchema.Value.Discriminator.Mapping {
+				resourceTypeName := strings.TrimPrefix(apiSchemaRef, "#/components/schemas/")
+				resourceTypeName = ToPascalCase(resourceTypeName)
+				for _, typeSpec := range types {
+					if !strings.Contains(typeSpec.Ref, resourceTypeName) {
+						continue
+					}
+					mapping[discriminatorProperyValue] = typeSpec.Ref
+				}
 			}
 			discriminator.Mapping = mapping
 		}

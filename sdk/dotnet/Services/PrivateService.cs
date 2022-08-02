@@ -30,6 +30,9 @@ namespace Pulumi.Render.Services
         [Output("createdAt")]
         public Output<string?> CreatedAt { get; private set; } = null!;
 
+        [Output("envVars")]
+        public Output<ImmutableArray<Outputs.EnvVarKeyValueOrGenerateValue>> EnvVars { get; private set; } = null!;
+
         [Output("name")]
         public Output<string?> Name { get; private set; } = null!;
 
@@ -50,6 +53,9 @@ namespace Pulumi.Render.Services
         /// </summary>
         [Output("repo")]
         public Output<string?> Repo { get; private set; } = null!;
+
+        [Output("secretFiles")]
+        public Output<ImmutableArray<Outputs.SecretFile>> SecretFiles { get; private set; } = null!;
 
         [Output("serviceDetails")]
         public Output<Outputs.PrivateServiceDetails?> ServiceDetails { get; private set; } = null!;
@@ -130,6 +136,14 @@ namespace Pulumi.Render.Services
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
+        [Input("envVars")]
+        private InputList<Inputs.EnvVarKeyValueOrGenerateValueArgs>? _envVars;
+        public InputList<Inputs.EnvVarKeyValueOrGenerateValueArgs> EnvVars
+        {
+            get => _envVars ?? (_envVars = new InputList<Inputs.EnvVarKeyValueOrGenerateValueArgs>());
+            set => _envVars = value;
+        }
+
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
@@ -150,6 +164,14 @@ namespace Pulumi.Render.Services
         /// </summary>
         [Input("repo", required: true)]
         public Input<string> Repo { get; set; } = null!;
+
+        [Input("secretFiles")]
+        private InputList<Inputs.SecretFileArgs>? _secretFiles;
+        public InputList<Inputs.SecretFileArgs> SecretFiles
+        {
+            get => _secretFiles ?? (_secretFiles = new InputList<Inputs.SecretFileArgs>());
+            set => _secretFiles = value;
+        }
 
         [Input("serviceDetails")]
         public Input<Inputs.PrivateServiceDetailsArgs>? ServiceDetails { get; set; }

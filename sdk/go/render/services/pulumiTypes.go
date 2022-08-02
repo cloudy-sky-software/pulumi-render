@@ -15,15 +15,17 @@ type BackgroundWorkerType struct {
 	// Whether to auto deploy the service or not upon git push.
 	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
-	Branch    *string `pulumi:"branch"`
-	CreatedAt *string `pulumi:"createdAt"`
-	Name      string  `pulumi:"name"`
+	Branch    *string                         `pulumi:"branch"`
+	CreatedAt *string                         `pulumi:"createdAt"`
+	EnvVars   []EnvVarKeyValueOrGenerateValue `pulumi:"envVars"`
+	Name      string                          `pulumi:"name"`
 	// The notification setting for this service upon deployment failure.
 	NotifyOnFail *ServiceNotifyOnFail `pulumi:"notifyOnFail"`
 	// The id of the owner (user/team).
 	OwnerId string `pulumi:"ownerId"`
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
 	Repo           string                          `pulumi:"repo"`
+	SecretFiles    []SecretFile                    `pulumi:"secretFiles"`
 	ServiceDetails *BackgroundWorkerServiceDetails `pulumi:"serviceDetails"`
 	Slug           *string                         `pulumi:"slug"`
 	Suspended      *ServiceSuspended               `pulumi:"suspended"`
@@ -592,15 +594,17 @@ type CronJobType struct {
 	// Whether to auto deploy the service or not upon git push.
 	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
-	Branch    *string `pulumi:"branch"`
-	CreatedAt *string `pulumi:"createdAt"`
-	Name      string  `pulumi:"name"`
+	Branch    *string                         `pulumi:"branch"`
+	CreatedAt *string                         `pulumi:"createdAt"`
+	EnvVars   []EnvVarKeyValueOrGenerateValue `pulumi:"envVars"`
+	Name      string                          `pulumi:"name"`
 	// The notification setting for this service upon deployment failure.
 	NotifyOnFail *ServiceNotifyOnFail `pulumi:"notifyOnFail"`
 	// The id of the owner (user/team).
 	OwnerId string `pulumi:"ownerId"`
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
 	Repo           string                 `pulumi:"repo"`
+	SecretFiles    []SecretFile           `pulumi:"secretFiles"`
 	ServiceDetails *CronJobServiceDetails `pulumi:"serviceDetails"`
 	Slug           *string                `pulumi:"slug"`
 	Suspended      *ServiceSuspended      `pulumi:"suspended"`
@@ -1432,20 +1436,110 @@ func (o EnvVarKeyValuePtrOutput) Value() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type EnvVarKeyValueOrGenerateValue struct {
+}
+
+// EnvVarKeyValueOrGenerateValueInput is an input type that accepts EnvVarKeyValueOrGenerateValueArgs and EnvVarKeyValueOrGenerateValueOutput values.
+// You can construct a concrete instance of `EnvVarKeyValueOrGenerateValueInput` via:
+//
+//          EnvVarKeyValueOrGenerateValueArgs{...}
+type EnvVarKeyValueOrGenerateValueInput interface {
+	pulumi.Input
+
+	ToEnvVarKeyValueOrGenerateValueOutput() EnvVarKeyValueOrGenerateValueOutput
+	ToEnvVarKeyValueOrGenerateValueOutputWithContext(context.Context) EnvVarKeyValueOrGenerateValueOutput
+}
+
+type EnvVarKeyValueOrGenerateValueArgs struct {
+}
+
+func (EnvVarKeyValueOrGenerateValueArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvVarKeyValueOrGenerateValue)(nil)).Elem()
+}
+
+func (i EnvVarKeyValueOrGenerateValueArgs) ToEnvVarKeyValueOrGenerateValueOutput() EnvVarKeyValueOrGenerateValueOutput {
+	return i.ToEnvVarKeyValueOrGenerateValueOutputWithContext(context.Background())
+}
+
+func (i EnvVarKeyValueOrGenerateValueArgs) ToEnvVarKeyValueOrGenerateValueOutputWithContext(ctx context.Context) EnvVarKeyValueOrGenerateValueOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvVarKeyValueOrGenerateValueOutput)
+}
+
+// EnvVarKeyValueOrGenerateValueArrayInput is an input type that accepts EnvVarKeyValueOrGenerateValueArray and EnvVarKeyValueOrGenerateValueArrayOutput values.
+// You can construct a concrete instance of `EnvVarKeyValueOrGenerateValueArrayInput` via:
+//
+//          EnvVarKeyValueOrGenerateValueArray{ EnvVarKeyValueOrGenerateValueArgs{...} }
+type EnvVarKeyValueOrGenerateValueArrayInput interface {
+	pulumi.Input
+
+	ToEnvVarKeyValueOrGenerateValueArrayOutput() EnvVarKeyValueOrGenerateValueArrayOutput
+	ToEnvVarKeyValueOrGenerateValueArrayOutputWithContext(context.Context) EnvVarKeyValueOrGenerateValueArrayOutput
+}
+
+type EnvVarKeyValueOrGenerateValueArray []EnvVarKeyValueOrGenerateValueInput
+
+func (EnvVarKeyValueOrGenerateValueArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EnvVarKeyValueOrGenerateValue)(nil)).Elem()
+}
+
+func (i EnvVarKeyValueOrGenerateValueArray) ToEnvVarKeyValueOrGenerateValueArrayOutput() EnvVarKeyValueOrGenerateValueArrayOutput {
+	return i.ToEnvVarKeyValueOrGenerateValueArrayOutputWithContext(context.Background())
+}
+
+func (i EnvVarKeyValueOrGenerateValueArray) ToEnvVarKeyValueOrGenerateValueArrayOutputWithContext(ctx context.Context) EnvVarKeyValueOrGenerateValueArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvVarKeyValueOrGenerateValueArrayOutput)
+}
+
+type EnvVarKeyValueOrGenerateValueOutput struct{ *pulumi.OutputState }
+
+func (EnvVarKeyValueOrGenerateValueOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvVarKeyValueOrGenerateValue)(nil)).Elem()
+}
+
+func (o EnvVarKeyValueOrGenerateValueOutput) ToEnvVarKeyValueOrGenerateValueOutput() EnvVarKeyValueOrGenerateValueOutput {
+	return o
+}
+
+func (o EnvVarKeyValueOrGenerateValueOutput) ToEnvVarKeyValueOrGenerateValueOutputWithContext(ctx context.Context) EnvVarKeyValueOrGenerateValueOutput {
+	return o
+}
+
+type EnvVarKeyValueOrGenerateValueArrayOutput struct{ *pulumi.OutputState }
+
+func (EnvVarKeyValueOrGenerateValueArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EnvVarKeyValueOrGenerateValue)(nil)).Elem()
+}
+
+func (o EnvVarKeyValueOrGenerateValueArrayOutput) ToEnvVarKeyValueOrGenerateValueArrayOutput() EnvVarKeyValueOrGenerateValueArrayOutput {
+	return o
+}
+
+func (o EnvVarKeyValueOrGenerateValueArrayOutput) ToEnvVarKeyValueOrGenerateValueArrayOutputWithContext(ctx context.Context) EnvVarKeyValueOrGenerateValueArrayOutput {
+	return o
+}
+
+func (o EnvVarKeyValueOrGenerateValueArrayOutput) Index(i pulumi.IntInput) EnvVarKeyValueOrGenerateValueOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EnvVarKeyValueOrGenerateValue {
+		return vs[0].([]EnvVarKeyValueOrGenerateValue)[vs[1].(int)]
+	}).(EnvVarKeyValueOrGenerateValueOutput)
+}
+
 // A background worker service
 type GetBackgroundWorkerType struct {
 	// Whether to auto deploy the service or not upon git push.
 	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
-	Branch    *string `pulumi:"branch"`
-	CreatedAt *string `pulumi:"createdAt"`
-	Name      string  `pulumi:"name"`
+	Branch    *string                         `pulumi:"branch"`
+	CreatedAt *string                         `pulumi:"createdAt"`
+	EnvVars   []EnvVarKeyValueOrGenerateValue `pulumi:"envVars"`
+	Name      string                          `pulumi:"name"`
 	// The notification setting for this service upon deployment failure.
 	NotifyOnFail *ServiceNotifyOnFail `pulumi:"notifyOnFail"`
 	// The id of the owner (user/team).
 	OwnerId string `pulumi:"ownerId"`
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
 	Repo           string                          `pulumi:"repo"`
+	SecretFiles    []SecretFile                    `pulumi:"secretFiles"`
 	ServiceDetails *BackgroundWorkerServiceDetails `pulumi:"serviceDetails"`
 	Slug           *string                         `pulumi:"slug"`
 	Suspended      *ServiceSuspended               `pulumi:"suspended"`
@@ -1502,6 +1596,10 @@ func (o GetBackgroundWorkerTypeOutput) CreatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetBackgroundWorkerType) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
 
+func (o GetBackgroundWorkerTypeOutput) EnvVars() EnvVarKeyValueOrGenerateValueArrayOutput {
+	return o.ApplyT(func(v GetBackgroundWorkerType) []EnvVarKeyValueOrGenerateValue { return v.EnvVars }).(EnvVarKeyValueOrGenerateValueArrayOutput)
+}
+
 func (o GetBackgroundWorkerTypeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBackgroundWorkerType) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -1519,6 +1617,10 @@ func (o GetBackgroundWorkerTypeOutput) OwnerId() pulumi.StringOutput {
 // Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
 func (o GetBackgroundWorkerTypeOutput) Repo() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBackgroundWorkerType) string { return v.Repo }).(pulumi.StringOutput)
+}
+
+func (o GetBackgroundWorkerTypeOutput) SecretFiles() SecretFileArrayOutput {
+	return o.ApplyT(func(v GetBackgroundWorkerType) []SecretFile { return v.SecretFiles }).(SecretFileArrayOutput)
 }
 
 func (o GetBackgroundWorkerTypeOutput) ServiceDetails() BackgroundWorkerServiceDetailsPtrOutput {
@@ -1550,15 +1652,17 @@ type GetCronJobType struct {
 	// Whether to auto deploy the service or not upon git push.
 	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
-	Branch    *string `pulumi:"branch"`
-	CreatedAt *string `pulumi:"createdAt"`
-	Name      string  `pulumi:"name"`
+	Branch    *string                         `pulumi:"branch"`
+	CreatedAt *string                         `pulumi:"createdAt"`
+	EnvVars   []EnvVarKeyValueOrGenerateValue `pulumi:"envVars"`
+	Name      string                          `pulumi:"name"`
 	// The notification setting for this service upon deployment failure.
 	NotifyOnFail *ServiceNotifyOnFail `pulumi:"notifyOnFail"`
 	// The id of the owner (user/team).
 	OwnerId string `pulumi:"ownerId"`
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
 	Repo           string                 `pulumi:"repo"`
+	SecretFiles    []SecretFile           `pulumi:"secretFiles"`
 	ServiceDetails *CronJobServiceDetails `pulumi:"serviceDetails"`
 	Slug           *string                `pulumi:"slug"`
 	Suspended      *ServiceSuspended      `pulumi:"suspended"`
@@ -1615,6 +1719,10 @@ func (o GetCronJobTypeOutput) CreatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetCronJobType) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
 
+func (o GetCronJobTypeOutput) EnvVars() EnvVarKeyValueOrGenerateValueArrayOutput {
+	return o.ApplyT(func(v GetCronJobType) []EnvVarKeyValueOrGenerateValue { return v.EnvVars }).(EnvVarKeyValueOrGenerateValueArrayOutput)
+}
+
 func (o GetCronJobTypeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCronJobType) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -1632,6 +1740,10 @@ func (o GetCronJobTypeOutput) OwnerId() pulumi.StringOutput {
 // Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
 func (o GetCronJobTypeOutput) Repo() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCronJobType) string { return v.Repo }).(pulumi.StringOutput)
+}
+
+func (o GetCronJobTypeOutput) SecretFiles() SecretFileArrayOutput {
+	return o.ApplyT(func(v GetCronJobType) []SecretFile { return v.SecretFiles }).(SecretFileArrayOutput)
 }
 
 func (o GetCronJobTypeOutput) ServiceDetails() CronJobServiceDetailsPtrOutput {
@@ -1663,15 +1775,17 @@ type GetPrivateServiceType struct {
 	// Whether to auto deploy the service or not upon git push.
 	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
-	Branch    *string `pulumi:"branch"`
-	CreatedAt *string `pulumi:"createdAt"`
-	Name      string  `pulumi:"name"`
+	Branch    *string                         `pulumi:"branch"`
+	CreatedAt *string                         `pulumi:"createdAt"`
+	EnvVars   []EnvVarKeyValueOrGenerateValue `pulumi:"envVars"`
+	Name      string                          `pulumi:"name"`
 	// The notification setting for this service upon deployment failure.
 	NotifyOnFail *ServiceNotifyOnFail `pulumi:"notifyOnFail"`
 	// The id of the owner (user/team).
 	OwnerId string `pulumi:"ownerId"`
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
 	Repo           string                 `pulumi:"repo"`
+	SecretFiles    []SecretFile           `pulumi:"secretFiles"`
 	ServiceDetails *PrivateServiceDetails `pulumi:"serviceDetails"`
 	Slug           *string                `pulumi:"slug"`
 	Suspended      *ServiceSuspended      `pulumi:"suspended"`
@@ -1728,6 +1842,10 @@ func (o GetPrivateServiceTypeOutput) CreatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetPrivateServiceType) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
 
+func (o GetPrivateServiceTypeOutput) EnvVars() EnvVarKeyValueOrGenerateValueArrayOutput {
+	return o.ApplyT(func(v GetPrivateServiceType) []EnvVarKeyValueOrGenerateValue { return v.EnvVars }).(EnvVarKeyValueOrGenerateValueArrayOutput)
+}
+
 func (o GetPrivateServiceTypeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPrivateServiceType) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -1745,6 +1863,10 @@ func (o GetPrivateServiceTypeOutput) OwnerId() pulumi.StringOutput {
 // Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
 func (o GetPrivateServiceTypeOutput) Repo() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPrivateServiceType) string { return v.Repo }).(pulumi.StringOutput)
+}
+
+func (o GetPrivateServiceTypeOutput) SecretFiles() SecretFileArrayOutput {
+	return o.ApplyT(func(v GetPrivateServiceType) []SecretFile { return v.SecretFiles }).(SecretFileArrayOutput)
 }
 
 func (o GetPrivateServiceTypeOutput) ServiceDetails() PrivateServiceDetailsPtrOutput {
@@ -1776,15 +1898,17 @@ type GetStaticSiteType struct {
 	// Whether to auto deploy the service or not upon git push.
 	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
-	Branch    *string `pulumi:"branch"`
-	CreatedAt *string `pulumi:"createdAt"`
-	Name      string  `pulumi:"name"`
+	Branch    *string                         `pulumi:"branch"`
+	CreatedAt *string                         `pulumi:"createdAt"`
+	EnvVars   []EnvVarKeyValueOrGenerateValue `pulumi:"envVars"`
+	Name      string                          `pulumi:"name"`
 	// The notification setting for this service upon deployment failure.
 	NotifyOnFail *ServiceNotifyOnFail `pulumi:"notifyOnFail"`
 	// The id of the owner (user/team).
 	OwnerId string `pulumi:"ownerId"`
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
 	Repo           string                    `pulumi:"repo"`
+	SecretFiles    []SecretFile              `pulumi:"secretFiles"`
 	ServiceDetails *StaticSiteServiceDetails `pulumi:"serviceDetails"`
 	Slug           *string                   `pulumi:"slug"`
 	Suspended      *ServiceSuspended         `pulumi:"suspended"`
@@ -1841,6 +1965,10 @@ func (o GetStaticSiteTypeOutput) CreatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetStaticSiteType) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
 
+func (o GetStaticSiteTypeOutput) EnvVars() EnvVarKeyValueOrGenerateValueArrayOutput {
+	return o.ApplyT(func(v GetStaticSiteType) []EnvVarKeyValueOrGenerateValue { return v.EnvVars }).(EnvVarKeyValueOrGenerateValueArrayOutput)
+}
+
 func (o GetStaticSiteTypeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStaticSiteType) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -1858,6 +1986,10 @@ func (o GetStaticSiteTypeOutput) OwnerId() pulumi.StringOutput {
 // Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
 func (o GetStaticSiteTypeOutput) Repo() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStaticSiteType) string { return v.Repo }).(pulumi.StringOutput)
+}
+
+func (o GetStaticSiteTypeOutput) SecretFiles() SecretFileArrayOutput {
+	return o.ApplyT(func(v GetStaticSiteType) []SecretFile { return v.SecretFiles }).(SecretFileArrayOutput)
 }
 
 func (o GetStaticSiteTypeOutput) ServiceDetails() StaticSiteServiceDetailsPtrOutput {
@@ -1889,15 +2021,17 @@ type GetWebServiceType struct {
 	// Whether to auto deploy the service or not upon git push.
 	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
-	Branch    *string `pulumi:"branch"`
-	CreatedAt *string `pulumi:"createdAt"`
-	Name      string  `pulumi:"name"`
+	Branch    *string                         `pulumi:"branch"`
+	CreatedAt *string                         `pulumi:"createdAt"`
+	EnvVars   []EnvVarKeyValueOrGenerateValue `pulumi:"envVars"`
+	Name      string                          `pulumi:"name"`
 	// The notification setting for this service upon deployment failure.
 	NotifyOnFail *ServiceNotifyOnFail `pulumi:"notifyOnFail"`
 	// The id of the owner (user/team).
 	OwnerId string `pulumi:"ownerId"`
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
 	Repo           string                    `pulumi:"repo"`
+	SecretFiles    []SecretFile              `pulumi:"secretFiles"`
 	ServiceDetails *WebServiceServiceDetails `pulumi:"serviceDetails"`
 	Slug           *string                   `pulumi:"slug"`
 	Suspended      *ServiceSuspended         `pulumi:"suspended"`
@@ -1954,6 +2088,10 @@ func (o GetWebServiceTypeOutput) CreatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetWebServiceType) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
 
+func (o GetWebServiceTypeOutput) EnvVars() EnvVarKeyValueOrGenerateValueArrayOutput {
+	return o.ApplyT(func(v GetWebServiceType) []EnvVarKeyValueOrGenerateValue { return v.EnvVars }).(EnvVarKeyValueOrGenerateValueArrayOutput)
+}
+
 func (o GetWebServiceTypeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetWebServiceType) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -1971,6 +2109,10 @@ func (o GetWebServiceTypeOutput) OwnerId() pulumi.StringOutput {
 // Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
 func (o GetWebServiceTypeOutput) Repo() pulumi.StringOutput {
 	return o.ApplyT(func(v GetWebServiceType) string { return v.Repo }).(pulumi.StringOutput)
+}
+
+func (o GetWebServiceTypeOutput) SecretFiles() SecretFileArrayOutput {
+	return o.ApplyT(func(v GetWebServiceType) []SecretFile { return v.SecretFiles }).(SecretFileArrayOutput)
 }
 
 func (o GetWebServiceTypeOutput) ServiceDetails() WebServiceServiceDetailsPtrOutput {
@@ -2362,15 +2504,17 @@ type PrivateServiceType struct {
 	// Whether to auto deploy the service or not upon git push.
 	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
-	Branch    *string `pulumi:"branch"`
-	CreatedAt *string `pulumi:"createdAt"`
-	Name      string  `pulumi:"name"`
+	Branch    *string                         `pulumi:"branch"`
+	CreatedAt *string                         `pulumi:"createdAt"`
+	EnvVars   []EnvVarKeyValueOrGenerateValue `pulumi:"envVars"`
+	Name      string                          `pulumi:"name"`
 	// The notification setting for this service upon deployment failure.
 	NotifyOnFail *ServiceNotifyOnFail `pulumi:"notifyOnFail"`
 	// The id of the owner (user/team).
 	OwnerId string `pulumi:"ownerId"`
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
 	Repo           string                 `pulumi:"repo"`
+	SecretFiles    []SecretFile           `pulumi:"secretFiles"`
 	ServiceDetails *PrivateServiceDetails `pulumi:"serviceDetails"`
 	Slug           *string                `pulumi:"slug"`
 	Suspended      *ServiceSuspended      `pulumi:"suspended"`
@@ -2864,6 +3008,106 @@ func (o PrivateServiceDetailsParentServerPropertiesPtrOutput) Name() pulumi.Stri
 	}).(pulumi.StringPtrOutput)
 }
 
+type SecretFile struct {
+	Contents string `pulumi:"contents"`
+	Name     string `pulumi:"name"`
+}
+
+// SecretFileInput is an input type that accepts SecretFileArgs and SecretFileOutput values.
+// You can construct a concrete instance of `SecretFileInput` via:
+//
+//          SecretFileArgs{...}
+type SecretFileInput interface {
+	pulumi.Input
+
+	ToSecretFileOutput() SecretFileOutput
+	ToSecretFileOutputWithContext(context.Context) SecretFileOutput
+}
+
+type SecretFileArgs struct {
+	Contents pulumi.StringInput `pulumi:"contents"`
+	Name     pulumi.StringInput `pulumi:"name"`
+}
+
+func (SecretFileArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretFile)(nil)).Elem()
+}
+
+func (i SecretFileArgs) ToSecretFileOutput() SecretFileOutput {
+	return i.ToSecretFileOutputWithContext(context.Background())
+}
+
+func (i SecretFileArgs) ToSecretFileOutputWithContext(ctx context.Context) SecretFileOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretFileOutput)
+}
+
+// SecretFileArrayInput is an input type that accepts SecretFileArray and SecretFileArrayOutput values.
+// You can construct a concrete instance of `SecretFileArrayInput` via:
+//
+//          SecretFileArray{ SecretFileArgs{...} }
+type SecretFileArrayInput interface {
+	pulumi.Input
+
+	ToSecretFileArrayOutput() SecretFileArrayOutput
+	ToSecretFileArrayOutputWithContext(context.Context) SecretFileArrayOutput
+}
+
+type SecretFileArray []SecretFileInput
+
+func (SecretFileArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretFile)(nil)).Elem()
+}
+
+func (i SecretFileArray) ToSecretFileArrayOutput() SecretFileArrayOutput {
+	return i.ToSecretFileArrayOutputWithContext(context.Background())
+}
+
+func (i SecretFileArray) ToSecretFileArrayOutputWithContext(ctx context.Context) SecretFileArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretFileArrayOutput)
+}
+
+type SecretFileOutput struct{ *pulumi.OutputState }
+
+func (SecretFileOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretFile)(nil)).Elem()
+}
+
+func (o SecretFileOutput) ToSecretFileOutput() SecretFileOutput {
+	return o
+}
+
+func (o SecretFileOutput) ToSecretFileOutputWithContext(ctx context.Context) SecretFileOutput {
+	return o
+}
+
+func (o SecretFileOutput) Contents() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretFile) string { return v.Contents }).(pulumi.StringOutput)
+}
+
+func (o SecretFileOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretFile) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type SecretFileArrayOutput struct{ *pulumi.OutputState }
+
+func (SecretFileArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretFile)(nil)).Elem()
+}
+
+func (o SecretFileArrayOutput) ToSecretFileArrayOutput() SecretFileArrayOutput {
+	return o
+}
+
+func (o SecretFileArrayOutput) ToSecretFileArrayOutputWithContext(ctx context.Context) SecretFileArrayOutput {
+	return o
+}
+
+func (o SecretFileArrayOutput) Index(i pulumi.IntInput) SecretFileOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretFile {
+		return vs[0].([]SecretFile)[vs[1].(int)]
+	}).(SecretFileOutput)
+}
+
 type ServerProperties struct {
 	Id   *string `pulumi:"id"`
 	Name *string `pulumi:"name"`
@@ -3084,15 +3328,17 @@ type StaticSiteType struct {
 	// Whether to auto deploy the service or not upon git push.
 	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
-	Branch    *string `pulumi:"branch"`
-	CreatedAt *string `pulumi:"createdAt"`
-	Name      string  `pulumi:"name"`
+	Branch    *string                         `pulumi:"branch"`
+	CreatedAt *string                         `pulumi:"createdAt"`
+	EnvVars   []EnvVarKeyValueOrGenerateValue `pulumi:"envVars"`
+	Name      string                          `pulumi:"name"`
 	// The notification setting for this service upon deployment failure.
 	NotifyOnFail *ServiceNotifyOnFail `pulumi:"notifyOnFail"`
 	// The id of the owner (user/team).
 	OwnerId string `pulumi:"ownerId"`
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
 	Repo           string                    `pulumi:"repo"`
+	SecretFiles    []SecretFile              `pulumi:"secretFiles"`
 	ServiceDetails *StaticSiteServiceDetails `pulumi:"serviceDetails"`
 	Slug           *string                   `pulumi:"slug"`
 	Suspended      *ServiceSuspended         `pulumi:"suspended"`
@@ -3695,15 +3941,17 @@ type WebServiceType struct {
 	// Whether to auto deploy the service or not upon git push.
 	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
-	Branch    *string `pulumi:"branch"`
-	CreatedAt *string `pulumi:"createdAt"`
-	Name      string  `pulumi:"name"`
+	Branch    *string                         `pulumi:"branch"`
+	CreatedAt *string                         `pulumi:"createdAt"`
+	EnvVars   []EnvVarKeyValueOrGenerateValue `pulumi:"envVars"`
+	Name      string                          `pulumi:"name"`
 	// The notification setting for this service upon deployment failure.
 	NotifyOnFail *ServiceNotifyOnFail `pulumi:"notifyOnFail"`
 	// The id of the owner (user/team).
 	OwnerId string `pulumi:"ownerId"`
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
 	Repo           string                    `pulumi:"repo"`
+	SecretFiles    []SecretFile              `pulumi:"secretFiles"`
 	ServiceDetails *WebServiceServiceDetails `pulumi:"serviceDetails"`
 	Slug           *string                   `pulumi:"slug"`
 	Suspended      *ServiceSuspended         `pulumi:"suspended"`
@@ -4223,12 +4471,16 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CronJobServiceDetailsPtrInput)(nil)).Elem(), CronJobServiceDetailsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DiskInput)(nil)).Elem(), DiskArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DiskPtrInput)(nil)).Elem(), DiskArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvVarKeyValueOrGenerateValueInput)(nil)).Elem(), EnvVarKeyValueOrGenerateValueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvVarKeyValueOrGenerateValueArrayInput)(nil)).Elem(), EnvVarKeyValueOrGenerateValueArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OpenPortsInput)(nil)).Elem(), OpenPortsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OpenPortsArrayInput)(nil)).Elem(), OpenPortsArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceDetailsInput)(nil)).Elem(), PrivateServiceDetailsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceDetailsPtrInput)(nil)).Elem(), PrivateServiceDetailsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceDetailsParentServerPropertiesInput)(nil)).Elem(), PrivateServiceDetailsParentServerPropertiesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceDetailsParentServerPropertiesPtrInput)(nil)).Elem(), PrivateServiceDetailsParentServerPropertiesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretFileInput)(nil)).Elem(), SecretFileArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretFileArrayInput)(nil)).Elem(), SecretFileArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerPropertiesInput)(nil)).Elem(), ServerPropertiesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceHeaderInput)(nil)).Elem(), ServiceHeaderArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceHeaderArrayInput)(nil)).Elem(), ServiceHeaderArray{})
@@ -4260,6 +4512,8 @@ func init() {
 	pulumi.RegisterOutputType(DiskPtrOutput{})
 	pulumi.RegisterOutputType(EnvVarKeyValueOutput{})
 	pulumi.RegisterOutputType(EnvVarKeyValuePtrOutput{})
+	pulumi.RegisterOutputType(EnvVarKeyValueOrGenerateValueOutput{})
+	pulumi.RegisterOutputType(EnvVarKeyValueOrGenerateValueArrayOutput{})
 	pulumi.RegisterOutputType(GetBackgroundWorkerTypeOutput{})
 	pulumi.RegisterOutputType(GetCronJobTypeOutput{})
 	pulumi.RegisterOutputType(GetPrivateServiceTypeOutput{})
@@ -4281,6 +4535,8 @@ func init() {
 	pulumi.RegisterOutputType(PrivateServiceDetailsPtrOutput{})
 	pulumi.RegisterOutputType(PrivateServiceDetailsParentServerPropertiesOutput{})
 	pulumi.RegisterOutputType(PrivateServiceDetailsParentServerPropertiesPtrOutput{})
+	pulumi.RegisterOutputType(SecretFileOutput{})
+	pulumi.RegisterOutputType(SecretFileArrayOutput{})
 	pulumi.RegisterOutputType(ServerPropertiesOutput{})
 	pulumi.RegisterOutputType(ServiceHeaderOutput{})
 	pulumi.RegisterOutputType(ServiceHeaderPtrOutput{})

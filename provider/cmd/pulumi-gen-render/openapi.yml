@@ -662,6 +662,10 @@ components:
         createdAt:
           type: string
           readOnly: true
+        envVars:
+          type: array
+          items:
+            $ref: "#/components/schemas/envVarKeyValueOrGenerateValue"
         name:
           type: string
         notifyOnFail:
@@ -675,6 +679,10 @@ components:
         repo:
           type: string
           description: "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+        secretFiles:
+          type: array
+          items:
+            $ref: "#/components/schemas/secretFile"
         slug:
           type: string
           readOnly: true

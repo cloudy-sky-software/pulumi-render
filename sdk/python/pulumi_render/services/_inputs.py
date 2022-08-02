@@ -16,10 +16,12 @@ __all__ = [
     'CronJobServiceDetailsArgs',
     'DiskArgs',
     'DockerDetailsArgs',
+    'EnvVarKeyValueOrGenerateValueArgs',
     'NativeEnvironmentDetailsArgs',
     'OpenPortsArgs',
     'PrivateServiceDetailsParentServerPropertiesArgs',
     'PrivateServiceDetailsArgs',
+    'SecretFileArgs',
     'ServerPropertiesArgs',
     'ServiceHeaderArgs',
     'StaticSiteRouteArgs',
@@ -342,6 +344,12 @@ class DockerDetailsArgs:
 
 
 @pulumi.input_type
+class EnvVarKeyValueOrGenerateValueArgs:
+    def __init__(__self__):
+        pass
+
+
+@pulumi.input_type
 class NativeEnvironmentDetailsArgs:
     def __init__(__self__, *,
                  build_command: pulumi.Input[str],
@@ -556,6 +564,33 @@ class PrivateServiceDetailsArgs:
     @url.setter
     def url(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "url", value)
+
+
+@pulumi.input_type
+class SecretFileArgs:
+    def __init__(__self__, *,
+                 contents: pulumi.Input[str],
+                 name: pulumi.Input[str]):
+        pulumi.set(__self__, "contents", contents)
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def contents(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "contents")
+
+    @contents.setter
+    def contents(self, value: pulumi.Input[str]):
+        pulumi.set(self, "contents", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
 
 
 @pulumi.input_type

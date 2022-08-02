@@ -23,7 +23,9 @@ class BackgroundWorkerArgs:
                  auto_deploy: Optional[pulumi.Input['ServiceAutoDeploy']] = None,
                  branch: Optional[pulumi.Input[str]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
+                 env_vars: Optional[pulumi.Input[Sequence[pulumi.Input['EnvVarKeyValueOrGenerateValueArgs']]]] = None,
                  notify_on_fail: Optional[pulumi.Input['ServiceNotifyOnFail']] = None,
+                 secret_files: Optional[pulumi.Input[Sequence[pulumi.Input['SecretFileArgs']]]] = None,
                  service_details: Optional[pulumi.Input['BackgroundWorkerServiceDetailsArgs']] = None,
                  slug: Optional[pulumi.Input[str]] = None,
                  suspended: Optional[pulumi.Input['ServiceSuspended']] = None,
@@ -49,8 +51,12 @@ class BackgroundWorkerArgs:
             pulumi.set(__self__, "branch", branch)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
+        if env_vars is not None:
+            pulumi.set(__self__, "env_vars", env_vars)
         if notify_on_fail is not None:
             pulumi.set(__self__, "notify_on_fail", notify_on_fail)
+        if secret_files is not None:
+            pulumi.set(__self__, "secret_files", secret_files)
         if service_details is not None:
             pulumi.set(__self__, "service_details", service_details)
         if slug is not None:
@@ -133,6 +139,15 @@ class BackgroundWorkerArgs:
         pulumi.set(self, "created_at", value)
 
     @property
+    @pulumi.getter(name="envVars")
+    def env_vars(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['EnvVarKeyValueOrGenerateValueArgs']]]]:
+        return pulumi.get(self, "env_vars")
+
+    @env_vars.setter
+    def env_vars(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['EnvVarKeyValueOrGenerateValueArgs']]]]):
+        pulumi.set(self, "env_vars", value)
+
+    @property
     @pulumi.getter(name="notifyOnFail")
     def notify_on_fail(self) -> Optional[pulumi.Input['ServiceNotifyOnFail']]:
         """
@@ -143,6 +158,15 @@ class BackgroundWorkerArgs:
     @notify_on_fail.setter
     def notify_on_fail(self, value: Optional[pulumi.Input['ServiceNotifyOnFail']]):
         pulumi.set(self, "notify_on_fail", value)
+
+    @property
+    @pulumi.getter(name="secretFiles")
+    def secret_files(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretFileArgs']]]]:
+        return pulumi.get(self, "secret_files")
+
+    @secret_files.setter
+    def secret_files(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecretFileArgs']]]]):
+        pulumi.set(self, "secret_files", value)
 
     @property
     @pulumi.getter(name="serviceDetails")
@@ -207,10 +231,12 @@ class BackgroundWorker(pulumi.CustomResource):
                  auto_deploy: Optional[pulumi.Input['ServiceAutoDeploy']] = None,
                  branch: Optional[pulumi.Input[str]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
+                 env_vars: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['EnvVarKeyValueOrGenerateValueArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  notify_on_fail: Optional[pulumi.Input['ServiceNotifyOnFail']] = None,
                  owner_id: Optional[pulumi.Input[str]] = None,
                  repo: Optional[pulumi.Input[str]] = None,
+                 secret_files: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretFileArgs']]]]] = None,
                  service_details: Optional[pulumi.Input[pulumi.InputType['BackgroundWorkerServiceDetailsArgs']]] = None,
                  slug: Optional[pulumi.Input[str]] = None,
                  suspended: Optional[pulumi.Input['ServiceSuspended']] = None,
@@ -256,10 +282,12 @@ class BackgroundWorker(pulumi.CustomResource):
                  auto_deploy: Optional[pulumi.Input['ServiceAutoDeploy']] = None,
                  branch: Optional[pulumi.Input[str]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
+                 env_vars: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['EnvVarKeyValueOrGenerateValueArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  notify_on_fail: Optional[pulumi.Input['ServiceNotifyOnFail']] = None,
                  owner_id: Optional[pulumi.Input[str]] = None,
                  repo: Optional[pulumi.Input[str]] = None,
+                 secret_files: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretFileArgs']]]]] = None,
                  service_details: Optional[pulumi.Input[pulumi.InputType['BackgroundWorkerServiceDetailsArgs']]] = None,
                  slug: Optional[pulumi.Input[str]] = None,
                  suspended: Optional[pulumi.Input['ServiceSuspended']] = None,
@@ -280,6 +308,7 @@ class BackgroundWorker(pulumi.CustomResource):
             __props__.__dict__["auto_deploy"] = auto_deploy
             __props__.__dict__["branch"] = branch
             __props__.__dict__["created_at"] = created_at
+            __props__.__dict__["env_vars"] = env_vars
             if name is None and not opts.urn:
                 raise TypeError("Missing required property 'name'")
             __props__.__dict__["name"] = name
@@ -290,6 +319,7 @@ class BackgroundWorker(pulumi.CustomResource):
             if repo is None and not opts.urn:
                 raise TypeError("Missing required property 'repo'")
             __props__.__dict__["repo"] = repo
+            __props__.__dict__["secret_files"] = secret_files
             __props__.__dict__["service_details"] = service_details
             __props__.__dict__["slug"] = slug
             __props__.__dict__["suspended"] = suspended
@@ -323,10 +353,12 @@ class BackgroundWorker(pulumi.CustomResource):
         __props__.__dict__["auto_deploy"] = None
         __props__.__dict__["branch"] = None
         __props__.__dict__["created_at"] = None
+        __props__.__dict__["env_vars"] = None
         __props__.__dict__["name"] = None
         __props__.__dict__["notify_on_fail"] = None
         __props__.__dict__["owner_id"] = None
         __props__.__dict__["repo"] = None
+        __props__.__dict__["secret_files"] = None
         __props__.__dict__["service_details"] = None
         __props__.__dict__["slug"] = None
         __props__.__dict__["suspended"] = None
@@ -357,6 +389,11 @@ class BackgroundWorker(pulumi.CustomResource):
         return pulumi.get(self, "created_at")
 
     @property
+    @pulumi.getter(name="envVars")
+    def env_vars(self) -> pulumi.Output[Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']]]:
+        return pulumi.get(self, "env_vars")
+
+    @property
     @pulumi.getter
     def name(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "name")
@@ -384,6 +421,11 @@ class BackgroundWorker(pulumi.CustomResource):
         Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
         """
         return pulumi.get(self, "repo")
+
+    @property
+    @pulumi.getter(name="secretFiles")
+    def secret_files(self) -> pulumi.Output[Optional[Sequence['outputs.SecretFile']]]:
+        return pulumi.get(self, "secret_files")
 
     @property
     @pulumi.getter(name="serviceDetails")

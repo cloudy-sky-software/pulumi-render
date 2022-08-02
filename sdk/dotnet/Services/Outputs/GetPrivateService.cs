@@ -25,6 +25,7 @@ namespace Pulumi.Render.Services.Outputs
         /// </summary>
         public readonly string? Branch;
         public readonly string? CreatedAt;
+        public readonly ImmutableArray<Outputs.EnvVarKeyValueOrGenerateValue> EnvVars;
         public readonly string Name;
         /// <summary>
         /// The notification setting for this service upon deployment failure.
@@ -38,6 +39,7 @@ namespace Pulumi.Render.Services.Outputs
         /// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
         /// </summary>
         public readonly string Repo;
+        public readonly ImmutableArray<Outputs.SecretFile> SecretFiles;
         public readonly Outputs.PrivateServiceDetails? ServiceDetails;
         public readonly string? Slug;
         public readonly Pulumi.Render.Services.ServiceSuspended? Suspended;
@@ -53,6 +55,8 @@ namespace Pulumi.Render.Services.Outputs
 
             string? createdAt,
 
+            ImmutableArray<Outputs.EnvVarKeyValueOrGenerateValue> envVars,
+
             string name,
 
             Pulumi.Render.Services.ServiceNotifyOnFail? notifyOnFail,
@@ -60,6 +64,8 @@ namespace Pulumi.Render.Services.Outputs
             string ownerId,
 
             string repo,
+
+            ImmutableArray<Outputs.SecretFile> secretFiles,
 
             Outputs.PrivateServiceDetails? serviceDetails,
 
@@ -76,10 +82,12 @@ namespace Pulumi.Render.Services.Outputs
             AutoDeploy = autoDeploy;
             Branch = branch;
             CreatedAt = createdAt;
+            EnvVars = envVars;
             Name = name;
             NotifyOnFail = notifyOnFail;
             OwnerId = ownerId;
             Repo = repo;
+            SecretFiles = secretFiles;
             ServiceDetails = serviceDetails;
             Slug = slug;
             Suspended = suspended;

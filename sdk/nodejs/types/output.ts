@@ -53,6 +53,7 @@ export namespace services {
          */
         branch?: string;
         createdAt?: string;
+        envVars?: outputs.services.EnvVarKeyValueOrGenerateValue[];
         name: string;
         /**
          * The notification setting for this service upon deployment failure.
@@ -66,6 +67,7 @@ export namespace services {
          * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
          */
         repo: string;
+        secretFiles?: outputs.services.SecretFile[];
         serviceDetails?: outputs.services.BackgroundWorkerServiceDetails;
         slug?: string;
         suspended?: enums.services.ServiceSuspended;
@@ -134,6 +136,7 @@ export namespace services {
          */
         branch?: string;
         createdAt?: string;
+        envVars?: outputs.services.EnvVarKeyValueOrGenerateValue[];
         name: string;
         /**
          * The notification setting for this service upon deployment failure.
@@ -147,6 +150,7 @@ export namespace services {
          * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
          */
         repo: string;
+        secretFiles?: outputs.services.SecretFile[];
         serviceDetails?: outputs.services.CronJobServiceDetails;
         slug?: string;
         suspended?: enums.services.ServiceSuspended;
@@ -249,6 +253,9 @@ export namespace services {
         value: string;
     }
 
+    export interface EnvVarKeyValueOrGenerateValue {
+    }
+
     /**
      * A background worker service
      */
@@ -262,6 +269,7 @@ export namespace services {
          */
         branch?: string;
         createdAt?: string;
+        envVars?: outputs.services.EnvVarKeyValueOrGenerateValue[];
         name: string;
         /**
          * The notification setting for this service upon deployment failure.
@@ -275,6 +283,7 @@ export namespace services {
          * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
          */
         repo: string;
+        secretFiles?: outputs.services.SecretFile[];
         serviceDetails?: outputs.services.BackgroundWorkerServiceDetails;
         slug?: string;
         suspended?: enums.services.ServiceSuspended;
@@ -307,6 +316,7 @@ export namespace services {
          */
         branch?: string;
         createdAt?: string;
+        envVars?: outputs.services.EnvVarKeyValueOrGenerateValue[];
         name: string;
         /**
          * The notification setting for this service upon deployment failure.
@@ -320,6 +330,7 @@ export namespace services {
          * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
          */
         repo: string;
+        secretFiles?: outputs.services.SecretFile[];
         serviceDetails?: outputs.services.CronJobServiceDetails;
         slug?: string;
         suspended?: enums.services.ServiceSuspended;
@@ -352,6 +363,7 @@ export namespace services {
          */
         branch?: string;
         createdAt?: string;
+        envVars?: outputs.services.EnvVarKeyValueOrGenerateValue[];
         name: string;
         /**
          * The notification setting for this service upon deployment failure.
@@ -365,6 +377,7 @@ export namespace services {
          * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
          */
         repo: string;
+        secretFiles?: outputs.services.SecretFile[];
         serviceDetails?: outputs.services.PrivateServiceDetails;
         slug?: string;
         suspended?: enums.services.ServiceSuspended;
@@ -397,6 +410,7 @@ export namespace services {
          */
         branch?: string;
         createdAt?: string;
+        envVars?: outputs.services.EnvVarKeyValueOrGenerateValue[];
         name: string;
         /**
          * The notification setting for this service upon deployment failure.
@@ -410,6 +424,7 @@ export namespace services {
          * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
          */
         repo: string;
+        secretFiles?: outputs.services.SecretFile[];
         serviceDetails?: outputs.services.StaticSiteServiceDetails;
         slug?: string;
         suspended?: enums.services.ServiceSuspended;
@@ -442,6 +457,7 @@ export namespace services {
          */
         branch?: string;
         createdAt?: string;
+        envVars?: outputs.services.EnvVarKeyValueOrGenerateValue[];
         name: string;
         /**
          * The notification setting for this service upon deployment failure.
@@ -455,6 +471,7 @@ export namespace services {
          * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
          */
         repo: string;
+        secretFiles?: outputs.services.SecretFile[];
         serviceDetails?: outputs.services.WebServiceServiceDetails;
         slug?: string;
         suspended?: enums.services.ServiceSuspended;
@@ -542,6 +559,7 @@ export namespace services {
          */
         branch?: string;
         createdAt?: string;
+        envVars?: outputs.services.EnvVarKeyValueOrGenerateValue[];
         name: string;
         /**
          * The notification setting for this service upon deployment failure.
@@ -555,6 +573,7 @@ export namespace services {
          * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
          */
         repo: string;
+        secretFiles?: outputs.services.SecretFile[];
         serviceDetails?: outputs.services.PrivateServiceDetails;
         slug?: string;
         suspended?: enums.services.ServiceSuspended;
@@ -605,6 +624,11 @@ export namespace services {
         name?: string;
     }
 
+    export interface SecretFile {
+        contents: string;
+        name: string;
+    }
+
     export interface ServerProperties {
         id?: string;
         name?: string;
@@ -632,6 +656,7 @@ export namespace services {
          */
         branch?: string;
         createdAt?: string;
+        envVars?: outputs.services.EnvVarKeyValueOrGenerateValue[];
         name: string;
         /**
          * The notification setting for this service upon deployment failure.
@@ -645,6 +670,7 @@ export namespace services {
          * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
          */
         repo: string;
+        secretFiles?: outputs.services.SecretFile[];
         serviceDetails?: outputs.services.StaticSiteServiceDetails;
         slug?: string;
         suspended?: enums.services.ServiceSuspended;
@@ -714,6 +740,7 @@ export namespace services {
          */
         branch?: string;
         createdAt?: string;
+        envVars?: outputs.services.EnvVarKeyValueOrGenerateValue[];
         name: string;
         /**
          * The notification setting for this service upon deployment failure.
@@ -727,6 +754,7 @@ export namespace services {
          * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
          */
         repo: string;
+        secretFiles?: outputs.services.SecretFile[];
         serviceDetails?: outputs.services.WebServiceServiceDetails;
         slug?: string;
         suspended?: enums.services.ServiceSuspended;
@@ -777,4 +805,5 @@ export namespace services {
         id?: string;
         name?: string;
     }
+
 }

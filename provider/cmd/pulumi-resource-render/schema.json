@@ -140,6 +140,12 @@
                 "createdAt": {
                     "type": "string"
                 },
+                "envVars": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:EnvVarKeyValueOrGenerateValue"
+                    }
+                },
                 "name": {
                     "type": "string"
                 },
@@ -154,6 +160,12 @@
                 "repo": {
                     "type": "string",
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                },
+                "secretFiles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:SecretFile"
+                    }
                 },
                 "serviceDetails": {
                     "$ref": "#/types/render:services:BackgroundWorkerServiceDetails"
@@ -380,6 +392,12 @@
                 "createdAt": {
                     "type": "string"
                 },
+                "envVars": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:EnvVarKeyValueOrGenerateValue"
+                    }
+                },
                 "name": {
                     "type": "string"
                 },
@@ -394,6 +412,12 @@
                 "repo": {
                     "type": "string",
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                },
+                "secretFiles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:SecretFile"
+                    }
                 },
                 "serviceDetails": {
                     "$ref": "#/types/render:services:CronJobServiceDetails"
@@ -701,6 +725,9 @@
                 "value"
             ]
         },
+        "render:services:EnvVarKeyValueOrGenerateValue": {
+            "type": "object"
+        },
         "render:services:GetBackgroundWorker": {
             "description": "A background worker service",
             "properties": {
@@ -716,6 +743,12 @@
                 "createdAt": {
                     "type": "string"
                 },
+                "envVars": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:EnvVarKeyValueOrGenerateValue"
+                    }
+                },
                 "name": {
                     "type": "string"
                 },
@@ -730,6 +763,12 @@
                 "repo": {
                     "type": "string",
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                },
+                "secretFiles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:SecretFile"
+                    }
                 },
                 "serviceDetails": {
                     "$ref": "#/types/render:services:BackgroundWorkerServiceDetails"
@@ -776,6 +815,12 @@
                 "createdAt": {
                     "type": "string"
                 },
+                "envVars": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:EnvVarKeyValueOrGenerateValue"
+                    }
+                },
                 "name": {
                     "type": "string"
                 },
@@ -790,6 +835,12 @@
                 "repo": {
                     "type": "string",
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                },
+                "secretFiles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:SecretFile"
+                    }
                 },
                 "serviceDetails": {
                     "$ref": "#/types/render:services:CronJobServiceDetails"
@@ -836,6 +887,12 @@
                 "createdAt": {
                     "type": "string"
                 },
+                "envVars": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:EnvVarKeyValueOrGenerateValue"
+                    }
+                },
                 "name": {
                     "type": "string"
                 },
@@ -850,6 +907,12 @@
                 "repo": {
                     "type": "string",
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                },
+                "secretFiles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:SecretFile"
+                    }
                 },
                 "serviceDetails": {
                     "$ref": "#/types/render:services:PrivateServiceDetails"
@@ -896,6 +959,12 @@
                 "createdAt": {
                     "type": "string"
                 },
+                "envVars": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:EnvVarKeyValueOrGenerateValue"
+                    }
+                },
                 "name": {
                     "type": "string"
                 },
@@ -910,6 +979,12 @@
                 "repo": {
                     "type": "string",
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                },
+                "secretFiles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:SecretFile"
+                    }
                 },
                 "serviceDetails": {
                     "$ref": "#/types/render:services:StaticSiteServiceDetails"
@@ -956,6 +1031,12 @@
                 "createdAt": {
                     "type": "string"
                 },
+                "envVars": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:EnvVarKeyValueOrGenerateValue"
+                    }
+                },
                 "name": {
                     "type": "string"
                 },
@@ -970,6 +1051,12 @@
                 "repo": {
                     "type": "string",
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                },
+                "secretFiles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:SecretFile"
+                    }
                 },
                 "serviceDetails": {
                     "$ref": "#/types/render:services:WebServiceServiceDetails"
@@ -1149,6 +1236,12 @@
                 "createdAt": {
                     "type": "string"
                 },
+                "envVars": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:EnvVarKeyValueOrGenerateValue"
+                    }
+                },
                 "name": {
                     "type": "string"
                 },
@@ -1163,6 +1256,12 @@
                 "repo": {
                     "type": "string",
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                },
+                "secretFiles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:SecretFile"
+                    }
                 },
                 "serviceDetails": {
                     "$ref": "#/types/render:services:PrivateServiceDetails"
@@ -1353,6 +1452,21 @@
                 }
             ]
         },
+        "render:services:SecretFile": {
+            "properties": {
+                "contents": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "contents",
+                "name"
+            ]
+        },
         "render:services:ServerProperties": {
             "properties": {
                 "id": {
@@ -1444,6 +1558,12 @@
                 "createdAt": {
                     "type": "string"
                 },
+                "envVars": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:EnvVarKeyValueOrGenerateValue"
+                    }
+                },
                 "name": {
                     "type": "string"
                 },
@@ -1458,6 +1578,12 @@
                 "repo": {
                     "type": "string",
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                },
+                "secretFiles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:SecretFile"
+                    }
                 },
                 "serviceDetails": {
                     "$ref": "#/types/render:services:StaticSiteServiceDetails"
@@ -1609,6 +1735,12 @@
                 "createdAt": {
                     "type": "string"
                 },
+                "envVars": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:EnvVarKeyValueOrGenerateValue"
+                    }
+                },
                 "name": {
                     "type": "string"
                 },
@@ -1623,6 +1755,12 @@
                 "repo": {
                     "type": "string",
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                },
+                "secretFiles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:SecretFile"
+                    }
                 },
                 "serviceDetails": {
                     "$ref": "#/types/render:services:WebServiceServiceDetails"
@@ -1854,6 +1992,12 @@
                 "createdAt": {
                     "type": "string"
                 },
+                "envVars": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:EnvVarKeyValueOrGenerateValue"
+                    }
+                },
                 "name": {
                     "type": "string"
                 },
@@ -1868,6 +2012,12 @@
                 "repo": {
                     "type": "string",
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                },
+                "secretFiles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:SecretFile"
+                    }
                 },
                 "serviceDetails": {
                     "$ref": "#/types/render:services:BackgroundWorkerServiceDetails"
@@ -1906,6 +2056,12 @@
                 "createdAt": {
                     "type": "string"
                 },
+                "envVars": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:EnvVarKeyValueOrGenerateValue"
+                    }
+                },
                 "name": {
                     "type": "string"
                 },
@@ -1920,6 +2076,12 @@
                 "repo": {
                     "type": "string",
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                },
+                "secretFiles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:SecretFile"
+                    }
                 },
                 "serviceDetails": {
                     "$ref": "#/types/render:services:BackgroundWorkerServiceDetails"
@@ -1965,6 +2127,12 @@
                 "createdAt": {
                     "type": "string"
                 },
+                "envVars": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:EnvVarKeyValueOrGenerateValue"
+                    }
+                },
                 "name": {
                     "type": "string"
                 },
@@ -1979,6 +2147,12 @@
                 "repo": {
                     "type": "string",
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                },
+                "secretFiles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:SecretFile"
+                    }
                 },
                 "serviceDetails": {
                     "$ref": "#/types/render:services:CronJobServiceDetails"
@@ -2017,6 +2191,12 @@
                 "createdAt": {
                     "type": "string"
                 },
+                "envVars": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:EnvVarKeyValueOrGenerateValue"
+                    }
+                },
                 "name": {
                     "type": "string"
                 },
@@ -2031,6 +2211,12 @@
                 "repo": {
                     "type": "string",
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                },
+                "secretFiles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:SecretFile"
+                    }
                 },
                 "serviceDetails": {
                     "$ref": "#/types/render:services:CronJobServiceDetails"
@@ -2147,6 +2333,12 @@
                 "createdAt": {
                     "type": "string"
                 },
+                "envVars": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:EnvVarKeyValueOrGenerateValue"
+                    }
+                },
                 "name": {
                     "type": "string"
                 },
@@ -2161,6 +2353,12 @@
                 "repo": {
                     "type": "string",
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                },
+                "secretFiles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:SecretFile"
+                    }
                 },
                 "serviceDetails": {
                     "$ref": "#/types/render:services:PrivateServiceDetails"
@@ -2199,6 +2397,12 @@
                 "createdAt": {
                     "type": "string"
                 },
+                "envVars": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:EnvVarKeyValueOrGenerateValue"
+                    }
+                },
                 "name": {
                     "type": "string"
                 },
@@ -2213,6 +2417,12 @@
                 "repo": {
                     "type": "string",
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                },
+                "secretFiles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:SecretFile"
+                    }
                 },
                 "serviceDetails": {
                     "$ref": "#/types/render:services:PrivateServiceDetails"
@@ -2281,6 +2491,12 @@
                 "createdAt": {
                     "type": "string"
                 },
+                "envVars": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:EnvVarKeyValueOrGenerateValue"
+                    }
+                },
                 "name": {
                     "type": "string"
                 },
@@ -2295,6 +2511,12 @@
                 "repo": {
                     "type": "string",
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                },
+                "secretFiles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:SecretFile"
+                    }
                 },
                 "serviceDetails": {
                     "$ref": "#/types/render:services:StaticSiteServiceDetails"
@@ -2333,6 +2555,12 @@
                 "createdAt": {
                     "type": "string"
                 },
+                "envVars": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:EnvVarKeyValueOrGenerateValue"
+                    }
+                },
                 "name": {
                     "type": "string"
                 },
@@ -2347,6 +2575,12 @@
                 "repo": {
                     "type": "string",
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                },
+                "secretFiles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:SecretFile"
+                    }
                 },
                 "serviceDetails": {
                     "$ref": "#/types/render:services:StaticSiteServiceDetails"
@@ -2401,6 +2635,12 @@
                 "createdAt": {
                     "type": "string"
                 },
+                "envVars": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:EnvVarKeyValueOrGenerateValue"
+                    }
+                },
                 "name": {
                     "type": "string"
                 },
@@ -2415,6 +2655,12 @@
                 "repo": {
                     "type": "string",
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                },
+                "secretFiles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:SecretFile"
+                    }
                 },
                 "serviceDetails": {
                     "$ref": "#/types/render:services:WebServiceServiceDetails"
@@ -2453,6 +2699,12 @@
                 "createdAt": {
                     "type": "string"
                 },
+                "envVars": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:EnvVarKeyValueOrGenerateValue"
+                    }
+                },
                 "name": {
                     "type": "string"
                 },
@@ -2467,6 +2719,12 @@
                 "repo": {
                     "type": "string",
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                },
+                "secretFiles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:SecretFile"
+                    }
                 },
                 "serviceDetails": {
                     "$ref": "#/types/render:services:WebServiceServiceDetails"

@@ -24,6 +24,7 @@ __all__ = [
     'Disk',
     'DockerDetails',
     'EnvVarKeyValue',
+    'EnvVarKeyValueOrGenerateValue',
     'GetBackgroundWorker',
     'GetCronJob',
     'GetPrivateService',
@@ -40,6 +41,7 @@ __all__ = [
     'PrivateService',
     'PrivateServiceDetails',
     'PrivateServiceDetailsParentServerProperties',
+    'SecretFile',
     'ServerProperties',
     'ServiceHeader',
     'StaticSite',
@@ -63,7 +65,9 @@ class BackgroundWorker(dict):
                  auto_deploy: Optional['ServiceAutoDeploy'] = None,
                  branch: Optional[str] = None,
                  created_at: Optional[str] = None,
+                 env_vars: Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']] = None,
                  notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
+                 secret_files: Optional[Sequence['outputs.SecretFile']] = None,
                  service_details: Optional['outputs.BackgroundWorkerServiceDetails'] = None,
                  slug: Optional[str] = None,
                  suspended: Optional['ServiceSuspended'] = None,
@@ -89,8 +93,12 @@ class BackgroundWorker(dict):
             pulumi.set(__self__, "branch", branch)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
+        if env_vars is not None:
+            pulumi.set(__self__, "env_vars", env_vars)
         if notify_on_fail is not None:
             pulumi.set(__self__, "notify_on_fail", notify_on_fail)
+        if secret_files is not None:
+            pulumi.set(__self__, "secret_files", secret_files)
         if service_details is not None:
             pulumi.set(__self__, "service_details", service_details)
         if slug is not None:
@@ -149,12 +157,22 @@ class BackgroundWorker(dict):
         return pulumi.get(self, "created_at")
 
     @property
+    @pulumi.getter(name="envVars")
+    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']]:
+        return pulumi.get(self, "env_vars")
+
+    @property
     @pulumi.getter(name="notifyOnFail")
     def notify_on_fail(self) -> Optional['ServiceNotifyOnFail']:
         """
         The notification setting for this service upon deployment failure.
         """
         return pulumi.get(self, "notify_on_fail")
+
+    @property
+    @pulumi.getter(name="secretFiles")
+    def secret_files(self) -> Optional[Sequence['outputs.SecretFile']]:
+        return pulumi.get(self, "secret_files")
 
     @property
     @pulumi.getter(name="serviceDetails")
@@ -373,7 +391,9 @@ class CronJob(dict):
                  auto_deploy: Optional['ServiceAutoDeploy'] = None,
                  branch: Optional[str] = None,
                  created_at: Optional[str] = None,
+                 env_vars: Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']] = None,
                  notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
+                 secret_files: Optional[Sequence['outputs.SecretFile']] = None,
                  service_details: Optional['outputs.CronJobServiceDetails'] = None,
                  slug: Optional[str] = None,
                  suspended: Optional['ServiceSuspended'] = None,
@@ -399,8 +419,12 @@ class CronJob(dict):
             pulumi.set(__self__, "branch", branch)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
+        if env_vars is not None:
+            pulumi.set(__self__, "env_vars", env_vars)
         if notify_on_fail is not None:
             pulumi.set(__self__, "notify_on_fail", notify_on_fail)
+        if secret_files is not None:
+            pulumi.set(__self__, "secret_files", secret_files)
         if service_details is not None:
             pulumi.set(__self__, "service_details", service_details)
         if slug is not None:
@@ -459,12 +483,22 @@ class CronJob(dict):
         return pulumi.get(self, "created_at")
 
     @property
+    @pulumi.getter(name="envVars")
+    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']]:
+        return pulumi.get(self, "env_vars")
+
+    @property
     @pulumi.getter(name="notifyOnFail")
     def notify_on_fail(self) -> Optional['ServiceNotifyOnFail']:
         """
         The notification setting for this service upon deployment failure.
         """
         return pulumi.get(self, "notify_on_fail")
+
+    @property
+    @pulumi.getter(name="secretFiles")
+    def secret_files(self) -> Optional[Sequence['outputs.SecretFile']]:
+        return pulumi.get(self, "secret_files")
 
     @property
     @pulumi.getter(name="serviceDetails")
@@ -791,6 +825,12 @@ class EnvVarKeyValue(dict):
 
 
 @pulumi.output_type
+class EnvVarKeyValueOrGenerateValue(dict):
+    def __init__(__self__):
+        pass
+
+
+@pulumi.output_type
 class GetBackgroundWorker(dict):
     """
     A background worker service
@@ -802,7 +842,9 @@ class GetBackgroundWorker(dict):
                  auto_deploy: Optional['ServiceAutoDeploy'] = None,
                  branch: Optional[str] = None,
                  created_at: Optional[str] = None,
+                 env_vars: Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']] = None,
                  notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
+                 secret_files: Optional[Sequence['outputs.SecretFile']] = None,
                  service_details: Optional['outputs.BackgroundWorkerServiceDetails'] = None,
                  slug: Optional[str] = None,
                  suspended: Optional['ServiceSuspended'] = None,
@@ -828,8 +870,12 @@ class GetBackgroundWorker(dict):
             pulumi.set(__self__, "branch", branch)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
+        if env_vars is not None:
+            pulumi.set(__self__, "env_vars", env_vars)
         if notify_on_fail is not None:
             pulumi.set(__self__, "notify_on_fail", notify_on_fail)
+        if secret_files is not None:
+            pulumi.set(__self__, "secret_files", secret_files)
         if service_details is not None:
             pulumi.set(__self__, "service_details", service_details)
         if slug is not None:
@@ -888,12 +934,22 @@ class GetBackgroundWorker(dict):
         return pulumi.get(self, "created_at")
 
     @property
+    @pulumi.getter(name="envVars")
+    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']]:
+        return pulumi.get(self, "env_vars")
+
+    @property
     @pulumi.getter(name="notifyOnFail")
     def notify_on_fail(self) -> Optional['ServiceNotifyOnFail']:
         """
         The notification setting for this service upon deployment failure.
         """
         return pulumi.get(self, "notify_on_fail")
+
+    @property
+    @pulumi.getter(name="secretFiles")
+    def secret_files(self) -> Optional[Sequence['outputs.SecretFile']]:
+        return pulumi.get(self, "secret_files")
 
     @property
     @pulumi.getter(name="serviceDetails")
@@ -938,7 +994,9 @@ class GetCronJob(dict):
                  auto_deploy: Optional['ServiceAutoDeploy'] = None,
                  branch: Optional[str] = None,
                  created_at: Optional[str] = None,
+                 env_vars: Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']] = None,
                  notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
+                 secret_files: Optional[Sequence['outputs.SecretFile']] = None,
                  service_details: Optional['outputs.CronJobServiceDetails'] = None,
                  slug: Optional[str] = None,
                  suspended: Optional['ServiceSuspended'] = None,
@@ -964,8 +1022,12 @@ class GetCronJob(dict):
             pulumi.set(__self__, "branch", branch)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
+        if env_vars is not None:
+            pulumi.set(__self__, "env_vars", env_vars)
         if notify_on_fail is not None:
             pulumi.set(__self__, "notify_on_fail", notify_on_fail)
+        if secret_files is not None:
+            pulumi.set(__self__, "secret_files", secret_files)
         if service_details is not None:
             pulumi.set(__self__, "service_details", service_details)
         if slug is not None:
@@ -1024,12 +1086,22 @@ class GetCronJob(dict):
         return pulumi.get(self, "created_at")
 
     @property
+    @pulumi.getter(name="envVars")
+    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']]:
+        return pulumi.get(self, "env_vars")
+
+    @property
     @pulumi.getter(name="notifyOnFail")
     def notify_on_fail(self) -> Optional['ServiceNotifyOnFail']:
         """
         The notification setting for this service upon deployment failure.
         """
         return pulumi.get(self, "notify_on_fail")
+
+    @property
+    @pulumi.getter(name="secretFiles")
+    def secret_files(self) -> Optional[Sequence['outputs.SecretFile']]:
+        return pulumi.get(self, "secret_files")
 
     @property
     @pulumi.getter(name="serviceDetails")
@@ -1074,7 +1146,9 @@ class GetPrivateService(dict):
                  auto_deploy: Optional['ServiceAutoDeploy'] = None,
                  branch: Optional[str] = None,
                  created_at: Optional[str] = None,
+                 env_vars: Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']] = None,
                  notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
+                 secret_files: Optional[Sequence['outputs.SecretFile']] = None,
                  service_details: Optional['outputs.PrivateServiceDetails'] = None,
                  slug: Optional[str] = None,
                  suspended: Optional['ServiceSuspended'] = None,
@@ -1100,8 +1174,12 @@ class GetPrivateService(dict):
             pulumi.set(__self__, "branch", branch)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
+        if env_vars is not None:
+            pulumi.set(__self__, "env_vars", env_vars)
         if notify_on_fail is not None:
             pulumi.set(__self__, "notify_on_fail", notify_on_fail)
+        if secret_files is not None:
+            pulumi.set(__self__, "secret_files", secret_files)
         if service_details is not None:
             pulumi.set(__self__, "service_details", service_details)
         if slug is not None:
@@ -1160,12 +1238,22 @@ class GetPrivateService(dict):
         return pulumi.get(self, "created_at")
 
     @property
+    @pulumi.getter(name="envVars")
+    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']]:
+        return pulumi.get(self, "env_vars")
+
+    @property
     @pulumi.getter(name="notifyOnFail")
     def notify_on_fail(self) -> Optional['ServiceNotifyOnFail']:
         """
         The notification setting for this service upon deployment failure.
         """
         return pulumi.get(self, "notify_on_fail")
+
+    @property
+    @pulumi.getter(name="secretFiles")
+    def secret_files(self) -> Optional[Sequence['outputs.SecretFile']]:
+        return pulumi.get(self, "secret_files")
 
     @property
     @pulumi.getter(name="serviceDetails")
@@ -1210,7 +1298,9 @@ class GetStaticSite(dict):
                  auto_deploy: Optional['ServiceAutoDeploy'] = None,
                  branch: Optional[str] = None,
                  created_at: Optional[str] = None,
+                 env_vars: Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']] = None,
                  notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
+                 secret_files: Optional[Sequence['outputs.SecretFile']] = None,
                  service_details: Optional['outputs.StaticSiteServiceDetails'] = None,
                  slug: Optional[str] = None,
                  suspended: Optional['ServiceSuspended'] = None,
@@ -1236,8 +1326,12 @@ class GetStaticSite(dict):
             pulumi.set(__self__, "branch", branch)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
+        if env_vars is not None:
+            pulumi.set(__self__, "env_vars", env_vars)
         if notify_on_fail is not None:
             pulumi.set(__self__, "notify_on_fail", notify_on_fail)
+        if secret_files is not None:
+            pulumi.set(__self__, "secret_files", secret_files)
         if service_details is not None:
             pulumi.set(__self__, "service_details", service_details)
         if slug is not None:
@@ -1296,12 +1390,22 @@ class GetStaticSite(dict):
         return pulumi.get(self, "created_at")
 
     @property
+    @pulumi.getter(name="envVars")
+    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']]:
+        return pulumi.get(self, "env_vars")
+
+    @property
     @pulumi.getter(name="notifyOnFail")
     def notify_on_fail(self) -> Optional['ServiceNotifyOnFail']:
         """
         The notification setting for this service upon deployment failure.
         """
         return pulumi.get(self, "notify_on_fail")
+
+    @property
+    @pulumi.getter(name="secretFiles")
+    def secret_files(self) -> Optional[Sequence['outputs.SecretFile']]:
+        return pulumi.get(self, "secret_files")
 
     @property
     @pulumi.getter(name="serviceDetails")
@@ -1346,7 +1450,9 @@ class GetWebService(dict):
                  auto_deploy: Optional['ServiceAutoDeploy'] = None,
                  branch: Optional[str] = None,
                  created_at: Optional[str] = None,
+                 env_vars: Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']] = None,
                  notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
+                 secret_files: Optional[Sequence['outputs.SecretFile']] = None,
                  service_details: Optional['outputs.WebServiceServiceDetails'] = None,
                  slug: Optional[str] = None,
                  suspended: Optional['ServiceSuspended'] = None,
@@ -1372,8 +1478,12 @@ class GetWebService(dict):
             pulumi.set(__self__, "branch", branch)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
+        if env_vars is not None:
+            pulumi.set(__self__, "env_vars", env_vars)
         if notify_on_fail is not None:
             pulumi.set(__self__, "notify_on_fail", notify_on_fail)
+        if secret_files is not None:
+            pulumi.set(__self__, "secret_files", secret_files)
         if service_details is not None:
             pulumi.set(__self__, "service_details", service_details)
         if slug is not None:
@@ -1432,12 +1542,22 @@ class GetWebService(dict):
         return pulumi.get(self, "created_at")
 
     @property
+    @pulumi.getter(name="envVars")
+    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']]:
+        return pulumi.get(self, "env_vars")
+
+    @property
     @pulumi.getter(name="notifyOnFail")
     def notify_on_fail(self) -> Optional['ServiceNotifyOnFail']:
         """
         The notification setting for this service upon deployment failure.
         """
         return pulumi.get(self, "notify_on_fail")
+
+    @property
+    @pulumi.getter(name="secretFiles")
+    def secret_files(self) -> Optional[Sequence['outputs.SecretFile']]:
+        return pulumi.get(self, "secret_files")
 
     @property
     @pulumi.getter(name="serviceDetails")
@@ -1679,7 +1799,9 @@ class PrivateService(dict):
                  auto_deploy: Optional['ServiceAutoDeploy'] = None,
                  branch: Optional[str] = None,
                  created_at: Optional[str] = None,
+                 env_vars: Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']] = None,
                  notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
+                 secret_files: Optional[Sequence['outputs.SecretFile']] = None,
                  service_details: Optional['outputs.PrivateServiceDetails'] = None,
                  slug: Optional[str] = None,
                  suspended: Optional['ServiceSuspended'] = None,
@@ -1705,8 +1827,12 @@ class PrivateService(dict):
             pulumi.set(__self__, "branch", branch)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
+        if env_vars is not None:
+            pulumi.set(__self__, "env_vars", env_vars)
         if notify_on_fail is not None:
             pulumi.set(__self__, "notify_on_fail", notify_on_fail)
+        if secret_files is not None:
+            pulumi.set(__self__, "secret_files", secret_files)
         if service_details is not None:
             pulumi.set(__self__, "service_details", service_details)
         if slug is not None:
@@ -1765,12 +1891,22 @@ class PrivateService(dict):
         return pulumi.get(self, "created_at")
 
     @property
+    @pulumi.getter(name="envVars")
+    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']]:
+        return pulumi.get(self, "env_vars")
+
+    @property
     @pulumi.getter(name="notifyOnFail")
     def notify_on_fail(self) -> Optional['ServiceNotifyOnFail']:
         """
         The notification setting for this service upon deployment failure.
         """
         return pulumi.get(self, "notify_on_fail")
+
+    @property
+    @pulumi.getter(name="secretFiles")
+    def secret_files(self) -> Optional[Sequence['outputs.SecretFile']]:
+        return pulumi.get(self, "secret_files")
 
     @property
     @pulumi.getter(name="serviceDetails")
@@ -1942,6 +2078,25 @@ class PrivateServiceDetailsParentServerProperties(dict):
 
 
 @pulumi.output_type
+class SecretFile(dict):
+    def __init__(__self__, *,
+                 contents: str,
+                 name: str):
+        pulumi.set(__self__, "contents", contents)
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def contents(self) -> str:
+        return pulumi.get(self, "contents")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
 class ServerProperties(dict):
     def __init__(__self__, *,
                  id: Optional[str] = None,
@@ -2006,7 +2161,9 @@ class StaticSite(dict):
                  auto_deploy: Optional['ServiceAutoDeploy'] = None,
                  branch: Optional[str] = None,
                  created_at: Optional[str] = None,
+                 env_vars: Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']] = None,
                  notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
+                 secret_files: Optional[Sequence['outputs.SecretFile']] = None,
                  service_details: Optional['outputs.StaticSiteServiceDetails'] = None,
                  slug: Optional[str] = None,
                  suspended: Optional['ServiceSuspended'] = None,
@@ -2032,8 +2189,12 @@ class StaticSite(dict):
             pulumi.set(__self__, "branch", branch)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
+        if env_vars is not None:
+            pulumi.set(__self__, "env_vars", env_vars)
         if notify_on_fail is not None:
             pulumi.set(__self__, "notify_on_fail", notify_on_fail)
+        if secret_files is not None:
+            pulumi.set(__self__, "secret_files", secret_files)
         if service_details is not None:
             pulumi.set(__self__, "service_details", service_details)
         if slug is not None:
@@ -2092,12 +2253,22 @@ class StaticSite(dict):
         return pulumi.get(self, "created_at")
 
     @property
+    @pulumi.getter(name="envVars")
+    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']]:
+        return pulumi.get(self, "env_vars")
+
+    @property
     @pulumi.getter(name="notifyOnFail")
     def notify_on_fail(self) -> Optional['ServiceNotifyOnFail']:
         """
         The notification setting for this service upon deployment failure.
         """
         return pulumi.get(self, "notify_on_fail")
+
+    @property
+    @pulumi.getter(name="secretFiles")
+    def secret_files(self) -> Optional[Sequence['outputs.SecretFile']]:
+        return pulumi.get(self, "secret_files")
 
     @property
     @pulumi.getter(name="serviceDetails")
@@ -2289,7 +2460,9 @@ class WebService(dict):
                  auto_deploy: Optional['ServiceAutoDeploy'] = None,
                  branch: Optional[str] = None,
                  created_at: Optional[str] = None,
+                 env_vars: Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']] = None,
                  notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
+                 secret_files: Optional[Sequence['outputs.SecretFile']] = None,
                  service_details: Optional['outputs.WebServiceServiceDetails'] = None,
                  slug: Optional[str] = None,
                  suspended: Optional['ServiceSuspended'] = None,
@@ -2315,8 +2488,12 @@ class WebService(dict):
             pulumi.set(__self__, "branch", branch)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
+        if env_vars is not None:
+            pulumi.set(__self__, "env_vars", env_vars)
         if notify_on_fail is not None:
             pulumi.set(__self__, "notify_on_fail", notify_on_fail)
+        if secret_files is not None:
+            pulumi.set(__self__, "secret_files", secret_files)
         if service_details is not None:
             pulumi.set(__self__, "service_details", service_details)
         if slug is not None:
@@ -2375,12 +2552,22 @@ class WebService(dict):
         return pulumi.get(self, "created_at")
 
     @property
+    @pulumi.getter(name="envVars")
+    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']]:
+        return pulumi.get(self, "env_vars")
+
+    @property
     @pulumi.getter(name="notifyOnFail")
     def notify_on_fail(self) -> Optional['ServiceNotifyOnFail']:
         """
         The notification setting for this service upon deployment failure.
         """
         return pulumi.get(self, "notify_on_fail")
+
+    @property
+    @pulumi.getter(name="secretFiles")
+    def secret_files(self) -> Optional[Sequence['outputs.SecretFile']]:
+        return pulumi.get(self, "secret_files")
 
     @property
     @pulumi.getter(name="serviceDetails")

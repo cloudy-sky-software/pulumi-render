@@ -89,6 +89,9 @@ export namespace services {
         };
     }
 
+    export interface EnvVarKeyValueOrGenerateValueArgs {
+    }
+
     export interface NativeEnvironmentDetailsArgs {
         buildCommand: pulumi.Input<string>;
         startCommand: pulumi.Input<string>;
@@ -128,6 +131,11 @@ export namespace services {
     export interface PrivateServiceDetailsParentServerPropertiesArgs {
         id?: pulumi.Input<string>;
         name?: pulumi.Input<string>;
+    }
+
+    export interface SecretFileArgs {
+        contents: pulumi.Input<string>;
+        name: pulumi.Input<string>;
     }
 
     export interface ServerPropertiesArgs {

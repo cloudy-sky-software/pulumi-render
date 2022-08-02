@@ -55,6 +55,7 @@ export class StaticSite extends pulumi.CustomResource {
      */
     public readonly branch!: pulumi.Output<string | undefined>;
     public readonly createdAt!: pulumi.Output<string | undefined>;
+    public readonly envVars!: pulumi.Output<outputs.services.EnvVarKeyValueOrGenerateValue[] | undefined>;
     public readonly name!: pulumi.Output<string | undefined>;
     /**
      * The notification setting for this service upon deployment failure.
@@ -68,6 +69,7 @@ export class StaticSite extends pulumi.CustomResource {
      * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
      */
     public readonly repo!: pulumi.Output<string | undefined>;
+    public readonly secretFiles!: pulumi.Output<outputs.services.SecretFile[] | undefined>;
     public readonly serviceDetails!: pulumi.Output<outputs.services.StaticSiteServiceDetails | undefined>;
     public readonly slug!: pulumi.Output<string | undefined>;
     public readonly suspended!: pulumi.Output<enums.services.ServiceSuspended | undefined>;
@@ -98,10 +100,12 @@ export class StaticSite extends pulumi.CustomResource {
             resourceInputs["autoDeploy"] = (args ? args.autoDeploy : undefined) ?? "no";
             resourceInputs["branch"] = args ? args.branch : undefined;
             resourceInputs["createdAt"] = args ? args.createdAt : undefined;
+            resourceInputs["envVars"] = args ? args.envVars : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["notifyOnFail"] = args ? args.notifyOnFail : undefined;
             resourceInputs["ownerId"] = args ? args.ownerId : undefined;
             resourceInputs["repo"] = args ? args.repo : undefined;
+            resourceInputs["secretFiles"] = args ? args.secretFiles : undefined;
             resourceInputs["serviceDetails"] = args ? (args.serviceDetails ? pulumi.output(args.serviceDetails).apply(inputs.services.staticSiteServiceDetailsArgsProvideDefaults) : undefined) : undefined;
             resourceInputs["slug"] = args ? args.slug : undefined;
             resourceInputs["suspended"] = args ? args.suspended : undefined;
@@ -112,10 +116,12 @@ export class StaticSite extends pulumi.CustomResource {
             resourceInputs["autoDeploy"] = undefined /*out*/;
             resourceInputs["branch"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["envVars"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;
             resourceInputs["notifyOnFail"] = undefined /*out*/;
             resourceInputs["ownerId"] = undefined /*out*/;
             resourceInputs["repo"] = undefined /*out*/;
+            resourceInputs["secretFiles"] = undefined /*out*/;
             resourceInputs["serviceDetails"] = undefined /*out*/;
             resourceInputs["slug"] = undefined /*out*/;
             resourceInputs["suspended"] = undefined /*out*/;
@@ -141,6 +147,7 @@ export interface StaticSiteArgs {
      */
     branch?: pulumi.Input<string>;
     createdAt?: pulumi.Input<string>;
+    envVars?: pulumi.Input<pulumi.Input<inputs.services.EnvVarKeyValueOrGenerateValueArgs>[]>;
     name: pulumi.Input<string>;
     /**
      * The notification setting for this service upon deployment failure.
@@ -154,6 +161,7 @@ export interface StaticSiteArgs {
      * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
      */
     repo: pulumi.Input<string>;
+    secretFiles?: pulumi.Input<pulumi.Input<inputs.services.SecretFileArgs>[]>;
     serviceDetails?: pulumi.Input<inputs.services.StaticSiteServiceDetailsArgs>;
     slug?: pulumi.Input<string>;
     suspended?: pulumi.Input<enums.services.ServiceSuspended>;

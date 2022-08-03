@@ -50,7 +50,7 @@ func readFileFromProviderResourceDir(t *testing.T, filename string) []byte {
 	return b
 }
 
-func makeTestProvider(t *testing.T, ctx context.Context) pulumirpc.ResourceProviderServer {
+func makeTestProvider(ctx context.Context, t *testing.T) pulumirpc.ResourceProviderServer {
 	t.Helper()
 
 	openapiBytes := readFileFromProviderResourceDir(t, "openapi_generated.yml")
@@ -81,7 +81,7 @@ func makeTestProvider(t *testing.T, ctx context.Context) pulumirpc.ResourceProvi
 func TestDiff(t *testing.T) {
 	ctx := context.Background()
 
-	p := makeTestProvider(t, ctx)
+	p := makeTestProvider(ctx, t)
 
 	outputs := make(map[string]interface{})
 	outputs["name"] = "Test"
@@ -120,7 +120,7 @@ func TestCreate(t *testing.T) {
 		t.Fatal("Failed to unmarshal test payload")
 	}
 
-	p := makeTestProvider(t, ctx)
+	p := makeTestProvider(ctx, t)
 
 	inputProperties, _ := plugin.MarshalProperties(resource.NewPropertyMapFromMap(inputs), defaultMarshalOpts)
 

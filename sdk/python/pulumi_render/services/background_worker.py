@@ -23,7 +23,7 @@ class BackgroundWorkerArgs:
                  auto_deploy: Optional[pulumi.Input['ServiceAutoDeploy']] = None,
                  branch: Optional[pulumi.Input[str]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
-                 env_vars: Optional[pulumi.Input[Sequence[pulumi.Input['EnvVarKeyValueOrGenerateValueArgs']]]] = None,
+                 env_vars: Optional[pulumi.Input[Sequence[pulumi.Input['EnvVarKeyValueArgs']]]] = None,
                  notify_on_fail: Optional[pulumi.Input['ServiceNotifyOnFail']] = None,
                  secret_files: Optional[pulumi.Input[Sequence[pulumi.Input['SecretFileArgs']]]] = None,
                  service_details: Optional[pulumi.Input['BackgroundWorkerServiceDetailsArgs']] = None,
@@ -140,11 +140,11 @@ class BackgroundWorkerArgs:
 
     @property
     @pulumi.getter(name="envVars")
-    def env_vars(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['EnvVarKeyValueOrGenerateValueArgs']]]]:
+    def env_vars(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['EnvVarKeyValueArgs']]]]:
         return pulumi.get(self, "env_vars")
 
     @env_vars.setter
-    def env_vars(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['EnvVarKeyValueOrGenerateValueArgs']]]]):
+    def env_vars(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['EnvVarKeyValueArgs']]]]):
         pulumi.set(self, "env_vars", value)
 
     @property
@@ -231,7 +231,7 @@ class BackgroundWorker(pulumi.CustomResource):
                  auto_deploy: Optional[pulumi.Input['ServiceAutoDeploy']] = None,
                  branch: Optional[pulumi.Input[str]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
-                 env_vars: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['EnvVarKeyValueOrGenerateValueArgs']]]]] = None,
+                 env_vars: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['EnvVarKeyValueArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  notify_on_fail: Optional[pulumi.Input['ServiceNotifyOnFail']] = None,
                  owner_id: Optional[pulumi.Input[str]] = None,
@@ -282,7 +282,7 @@ class BackgroundWorker(pulumi.CustomResource):
                  auto_deploy: Optional[pulumi.Input['ServiceAutoDeploy']] = None,
                  branch: Optional[pulumi.Input[str]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
-                 env_vars: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['EnvVarKeyValueOrGenerateValueArgs']]]]] = None,
+                 env_vars: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['EnvVarKeyValueArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  notify_on_fail: Optional[pulumi.Input['ServiceNotifyOnFail']] = None,
                  owner_id: Optional[pulumi.Input[str]] = None,
@@ -390,7 +390,7 @@ class BackgroundWorker(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="envVars")
-    def env_vars(self) -> pulumi.Output[Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']]]:
+    def env_vars(self) -> pulumi.Output[Optional[Sequence['outputs.EnvVarKeyValue']]]:
         return pulumi.get(self, "env_vars")
 
     @property

@@ -75,21 +75,15 @@ export namespace services {
     }
 
     export interface DockerDetailsArgs {
-        dockerCommand?: pulumi.Input<string>;
-        dockerContext?: pulumi.Input<string>;
+        dockerCommand: pulumi.Input<string>;
+        dockerContext: pulumi.Input<string>;
         dockerfilePath?: pulumi.Input<string>;
     }
-    /**
-     * dockerDetailsArgsProvideDefaults sets the appropriate defaults for DockerDetailsArgs
-     */
-    export function dockerDetailsArgsProvideDefaults(val: DockerDetailsArgs): DockerDetailsArgs {
-        return {
-            ...val,
-            dockerfilePath: (val.dockerfilePath) ?? "./Dockerfile",
-        };
-    }
 
-    export interface EnvVarKeyValueOrGenerateValueArgs {
+    export interface EnvVarKeyValueArgs {
+        generateValue?: pulumi.Input<enums.services.EnvVarKeyValueGenerateValue>;
+        key: pulumi.Input<string>;
+        value?: pulumi.Input<string>;
     }
 
     export interface NativeEnvironmentDetailsArgs {

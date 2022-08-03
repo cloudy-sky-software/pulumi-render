@@ -17,6 +17,7 @@ __all__ = [
     'CustomDomainVerificationStatus',
     'DeployClearCache',
     'DomainType',
+    'EnvVarKeyValueGenerateValue',
     'OpenPortsProtocol',
     'PrivateServiceDetailsEnv',
     'PrivateServiceDetailsPlan',
@@ -115,6 +116,10 @@ class DeployClearCache(str, Enum):
 class DomainType(str, Enum):
     APEX = "apex"
     SUBDOMAIN = "subdomain"
+
+
+class EnvVarKeyValueGenerateValue(str, Enum):
+    YES = "yes"
 
 
 class OpenPortsProtocol(str, Enum):

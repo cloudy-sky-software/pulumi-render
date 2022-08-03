@@ -15,10 +15,10 @@ type BackgroundWorkerType struct {
 	// Whether to auto deploy the service or not upon git push.
 	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
-	Branch    *string                         `pulumi:"branch"`
-	CreatedAt *string                         `pulumi:"createdAt"`
-	EnvVars   []EnvVarKeyValueOrGenerateValue `pulumi:"envVars"`
-	Name      string                          `pulumi:"name"`
+	Branch    *string          `pulumi:"branch"`
+	CreatedAt *string          `pulumi:"createdAt"`
+	EnvVars   []EnvVarKeyValue `pulumi:"envVars"`
+	Name      string           `pulumi:"name"`
 	// The notification setting for this service upon deployment failure.
 	NotifyOnFail *ServiceNotifyOnFail `pulumi:"notifyOnFail"`
 	// The id of the owner (user/team).
@@ -594,10 +594,10 @@ type CronJobType struct {
 	// Whether to auto deploy the service or not upon git push.
 	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
-	Branch    *string                         `pulumi:"branch"`
-	CreatedAt *string                         `pulumi:"createdAt"`
-	EnvVars   []EnvVarKeyValueOrGenerateValue `pulumi:"envVars"`
-	Name      string                          `pulumi:"name"`
+	Branch    *string          `pulumi:"branch"`
+	CreatedAt *string          `pulumi:"createdAt"`
+	EnvVars   []EnvVarKeyValue `pulumi:"envVars"`
+	Name      string           `pulumi:"name"`
 	// The notification setting for this service upon deployment failure.
 	NotifyOnFail *ServiceNotifyOnFail `pulumi:"notifyOnFail"`
 	// The id of the owner (user/team).
@@ -1349,27 +1349,69 @@ func (o DiskPtrOutput) SizeGB() pulumi.Float64PtrOutput {
 }
 
 type DockerDetails struct {
-	DockerCommand  *string `pulumi:"dockerCommand"`
-	DockerContext  *string `pulumi:"dockerContext"`
+	DockerCommand  string  `pulumi:"dockerCommand"`
+	DockerContext  string  `pulumi:"dockerContext"`
 	DockerfilePath *string `pulumi:"dockerfilePath"`
 }
 
-// Defaults sets the appropriate defaults for DockerDetails
-func (val *DockerDetails) Defaults() *DockerDetails {
-	if val == nil {
-		return nil
-	}
-	tmp := *val
-	if isZero(tmp.DockerfilePath) {
-		dockerfilePath_ := "./Dockerfile"
-		tmp.DockerfilePath = &dockerfilePath_
-	}
-	return &tmp
+type EnvVarKeyValue struct {
+	GenerateValue *EnvVarKeyValueGenerateValue `pulumi:"generateValue"`
+	Key           string                       `pulumi:"key"`
+	Value         *string                      `pulumi:"value"`
 }
 
-type EnvVarKeyValue struct {
-	Key   string `pulumi:"key"`
-	Value string `pulumi:"value"`
+// EnvVarKeyValueInput is an input type that accepts EnvVarKeyValueArgs and EnvVarKeyValueOutput values.
+// You can construct a concrete instance of `EnvVarKeyValueInput` via:
+//
+//          EnvVarKeyValueArgs{...}
+type EnvVarKeyValueInput interface {
+	pulumi.Input
+
+	ToEnvVarKeyValueOutput() EnvVarKeyValueOutput
+	ToEnvVarKeyValueOutputWithContext(context.Context) EnvVarKeyValueOutput
+}
+
+type EnvVarKeyValueArgs struct {
+	GenerateValue EnvVarKeyValueGenerateValuePtrInput `pulumi:"generateValue"`
+	Key           pulumi.StringInput                  `pulumi:"key"`
+	Value         pulumi.StringPtrInput               `pulumi:"value"`
+}
+
+func (EnvVarKeyValueArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvVarKeyValue)(nil)).Elem()
+}
+
+func (i EnvVarKeyValueArgs) ToEnvVarKeyValueOutput() EnvVarKeyValueOutput {
+	return i.ToEnvVarKeyValueOutputWithContext(context.Background())
+}
+
+func (i EnvVarKeyValueArgs) ToEnvVarKeyValueOutputWithContext(ctx context.Context) EnvVarKeyValueOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvVarKeyValueOutput)
+}
+
+// EnvVarKeyValueArrayInput is an input type that accepts EnvVarKeyValueArray and EnvVarKeyValueArrayOutput values.
+// You can construct a concrete instance of `EnvVarKeyValueArrayInput` via:
+//
+//          EnvVarKeyValueArray{ EnvVarKeyValueArgs{...} }
+type EnvVarKeyValueArrayInput interface {
+	pulumi.Input
+
+	ToEnvVarKeyValueArrayOutput() EnvVarKeyValueArrayOutput
+	ToEnvVarKeyValueArrayOutputWithContext(context.Context) EnvVarKeyValueArrayOutput
+}
+
+type EnvVarKeyValueArray []EnvVarKeyValueInput
+
+func (EnvVarKeyValueArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EnvVarKeyValue)(nil)).Elem()
+}
+
+func (i EnvVarKeyValueArray) ToEnvVarKeyValueArrayOutput() EnvVarKeyValueArrayOutput {
+	return i.ToEnvVarKeyValueArrayOutputWithContext(context.Background())
+}
+
+func (i EnvVarKeyValueArray) ToEnvVarKeyValueArrayOutputWithContext(ctx context.Context) EnvVarKeyValueArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvVarKeyValueArrayOutput)
 }
 
 type EnvVarKeyValueOutput struct{ *pulumi.OutputState }
@@ -1386,12 +1428,16 @@ func (o EnvVarKeyValueOutput) ToEnvVarKeyValueOutputWithContext(ctx context.Cont
 	return o
 }
 
+func (o EnvVarKeyValueOutput) GenerateValue() EnvVarKeyValueGenerateValuePtrOutput {
+	return o.ApplyT(func(v EnvVarKeyValue) *EnvVarKeyValueGenerateValue { return v.GenerateValue }).(EnvVarKeyValueGenerateValuePtrOutput)
+}
+
 func (o EnvVarKeyValueOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v EnvVarKeyValue) string { return v.Key }).(pulumi.StringOutput)
 }
 
-func (o EnvVarKeyValueOutput) Value() pulumi.StringOutput {
-	return o.ApplyT(func(v EnvVarKeyValue) string { return v.Value }).(pulumi.StringOutput)
+func (o EnvVarKeyValueOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvVarKeyValue) *string { return v.Value }).(pulumi.StringPtrOutput)
 }
 
 type EnvVarKeyValuePtrOutput struct{ *pulumi.OutputState }
@@ -1418,6 +1464,15 @@ func (o EnvVarKeyValuePtrOutput) Elem() EnvVarKeyValueOutput {
 	}).(EnvVarKeyValueOutput)
 }
 
+func (o EnvVarKeyValuePtrOutput) GenerateValue() EnvVarKeyValueGenerateValuePtrOutput {
+	return o.ApplyT(func(v *EnvVarKeyValue) *EnvVarKeyValueGenerateValue {
+		if v == nil {
+			return nil
+		}
+		return v.GenerateValue
+	}).(EnvVarKeyValueGenerateValuePtrOutput)
+}
+
 func (o EnvVarKeyValuePtrOutput) Key() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *EnvVarKeyValue) *string {
 		if v == nil {
@@ -1432,96 +1487,28 @@ func (o EnvVarKeyValuePtrOutput) Value() pulumi.StringPtrOutput {
 		if v == nil {
 			return nil
 		}
-		return &v.Value
+		return v.Value
 	}).(pulumi.StringPtrOutput)
 }
 
-type EnvVarKeyValueOrGenerateValue struct {
+type EnvVarKeyValueArrayOutput struct{ *pulumi.OutputState }
+
+func (EnvVarKeyValueArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EnvVarKeyValue)(nil)).Elem()
 }
 
-// EnvVarKeyValueOrGenerateValueInput is an input type that accepts EnvVarKeyValueOrGenerateValueArgs and EnvVarKeyValueOrGenerateValueOutput values.
-// You can construct a concrete instance of `EnvVarKeyValueOrGenerateValueInput` via:
-//
-//          EnvVarKeyValueOrGenerateValueArgs{...}
-type EnvVarKeyValueOrGenerateValueInput interface {
-	pulumi.Input
-
-	ToEnvVarKeyValueOrGenerateValueOutput() EnvVarKeyValueOrGenerateValueOutput
-	ToEnvVarKeyValueOrGenerateValueOutputWithContext(context.Context) EnvVarKeyValueOrGenerateValueOutput
-}
-
-type EnvVarKeyValueOrGenerateValueArgs struct {
-}
-
-func (EnvVarKeyValueOrGenerateValueArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*EnvVarKeyValueOrGenerateValue)(nil)).Elem()
-}
-
-func (i EnvVarKeyValueOrGenerateValueArgs) ToEnvVarKeyValueOrGenerateValueOutput() EnvVarKeyValueOrGenerateValueOutput {
-	return i.ToEnvVarKeyValueOrGenerateValueOutputWithContext(context.Background())
-}
-
-func (i EnvVarKeyValueOrGenerateValueArgs) ToEnvVarKeyValueOrGenerateValueOutputWithContext(ctx context.Context) EnvVarKeyValueOrGenerateValueOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EnvVarKeyValueOrGenerateValueOutput)
-}
-
-// EnvVarKeyValueOrGenerateValueArrayInput is an input type that accepts EnvVarKeyValueOrGenerateValueArray and EnvVarKeyValueOrGenerateValueArrayOutput values.
-// You can construct a concrete instance of `EnvVarKeyValueOrGenerateValueArrayInput` via:
-//
-//          EnvVarKeyValueOrGenerateValueArray{ EnvVarKeyValueOrGenerateValueArgs{...} }
-type EnvVarKeyValueOrGenerateValueArrayInput interface {
-	pulumi.Input
-
-	ToEnvVarKeyValueOrGenerateValueArrayOutput() EnvVarKeyValueOrGenerateValueArrayOutput
-	ToEnvVarKeyValueOrGenerateValueArrayOutputWithContext(context.Context) EnvVarKeyValueOrGenerateValueArrayOutput
-}
-
-type EnvVarKeyValueOrGenerateValueArray []EnvVarKeyValueOrGenerateValueInput
-
-func (EnvVarKeyValueOrGenerateValueArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EnvVarKeyValueOrGenerateValue)(nil)).Elem()
-}
-
-func (i EnvVarKeyValueOrGenerateValueArray) ToEnvVarKeyValueOrGenerateValueArrayOutput() EnvVarKeyValueOrGenerateValueArrayOutput {
-	return i.ToEnvVarKeyValueOrGenerateValueArrayOutputWithContext(context.Background())
-}
-
-func (i EnvVarKeyValueOrGenerateValueArray) ToEnvVarKeyValueOrGenerateValueArrayOutputWithContext(ctx context.Context) EnvVarKeyValueOrGenerateValueArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EnvVarKeyValueOrGenerateValueArrayOutput)
-}
-
-type EnvVarKeyValueOrGenerateValueOutput struct{ *pulumi.OutputState }
-
-func (EnvVarKeyValueOrGenerateValueOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EnvVarKeyValueOrGenerateValue)(nil)).Elem()
-}
-
-func (o EnvVarKeyValueOrGenerateValueOutput) ToEnvVarKeyValueOrGenerateValueOutput() EnvVarKeyValueOrGenerateValueOutput {
+func (o EnvVarKeyValueArrayOutput) ToEnvVarKeyValueArrayOutput() EnvVarKeyValueArrayOutput {
 	return o
 }
 
-func (o EnvVarKeyValueOrGenerateValueOutput) ToEnvVarKeyValueOrGenerateValueOutputWithContext(ctx context.Context) EnvVarKeyValueOrGenerateValueOutput {
+func (o EnvVarKeyValueArrayOutput) ToEnvVarKeyValueArrayOutputWithContext(ctx context.Context) EnvVarKeyValueArrayOutput {
 	return o
 }
 
-type EnvVarKeyValueOrGenerateValueArrayOutput struct{ *pulumi.OutputState }
-
-func (EnvVarKeyValueOrGenerateValueArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EnvVarKeyValueOrGenerateValue)(nil)).Elem()
-}
-
-func (o EnvVarKeyValueOrGenerateValueArrayOutput) ToEnvVarKeyValueOrGenerateValueArrayOutput() EnvVarKeyValueOrGenerateValueArrayOutput {
-	return o
-}
-
-func (o EnvVarKeyValueOrGenerateValueArrayOutput) ToEnvVarKeyValueOrGenerateValueArrayOutputWithContext(ctx context.Context) EnvVarKeyValueOrGenerateValueArrayOutput {
-	return o
-}
-
-func (o EnvVarKeyValueOrGenerateValueArrayOutput) Index(i pulumi.IntInput) EnvVarKeyValueOrGenerateValueOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EnvVarKeyValueOrGenerateValue {
-		return vs[0].([]EnvVarKeyValueOrGenerateValue)[vs[1].(int)]
-	}).(EnvVarKeyValueOrGenerateValueOutput)
+func (o EnvVarKeyValueArrayOutput) Index(i pulumi.IntInput) EnvVarKeyValueOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EnvVarKeyValue {
+		return vs[0].([]EnvVarKeyValue)[vs[1].(int)]
+	}).(EnvVarKeyValueOutput)
 }
 
 // A background worker service
@@ -1529,10 +1516,10 @@ type GetBackgroundWorkerType struct {
 	// Whether to auto deploy the service or not upon git push.
 	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
-	Branch    *string                         `pulumi:"branch"`
-	CreatedAt *string                         `pulumi:"createdAt"`
-	EnvVars   []EnvVarKeyValueOrGenerateValue `pulumi:"envVars"`
-	Name      string                          `pulumi:"name"`
+	Branch    *string          `pulumi:"branch"`
+	CreatedAt *string          `pulumi:"createdAt"`
+	EnvVars   []EnvVarKeyValue `pulumi:"envVars"`
+	Name      string           `pulumi:"name"`
 	// The notification setting for this service upon deployment failure.
 	NotifyOnFail *ServiceNotifyOnFail `pulumi:"notifyOnFail"`
 	// The id of the owner (user/team).
@@ -1596,8 +1583,8 @@ func (o GetBackgroundWorkerTypeOutput) CreatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetBackgroundWorkerType) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
 
-func (o GetBackgroundWorkerTypeOutput) EnvVars() EnvVarKeyValueOrGenerateValueArrayOutput {
-	return o.ApplyT(func(v GetBackgroundWorkerType) []EnvVarKeyValueOrGenerateValue { return v.EnvVars }).(EnvVarKeyValueOrGenerateValueArrayOutput)
+func (o GetBackgroundWorkerTypeOutput) EnvVars() EnvVarKeyValueArrayOutput {
+	return o.ApplyT(func(v GetBackgroundWorkerType) []EnvVarKeyValue { return v.EnvVars }).(EnvVarKeyValueArrayOutput)
 }
 
 func (o GetBackgroundWorkerTypeOutput) Name() pulumi.StringOutput {
@@ -1652,10 +1639,10 @@ type GetCronJobType struct {
 	// Whether to auto deploy the service or not upon git push.
 	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
-	Branch    *string                         `pulumi:"branch"`
-	CreatedAt *string                         `pulumi:"createdAt"`
-	EnvVars   []EnvVarKeyValueOrGenerateValue `pulumi:"envVars"`
-	Name      string                          `pulumi:"name"`
+	Branch    *string          `pulumi:"branch"`
+	CreatedAt *string          `pulumi:"createdAt"`
+	EnvVars   []EnvVarKeyValue `pulumi:"envVars"`
+	Name      string           `pulumi:"name"`
 	// The notification setting for this service upon deployment failure.
 	NotifyOnFail *ServiceNotifyOnFail `pulumi:"notifyOnFail"`
 	// The id of the owner (user/team).
@@ -1719,8 +1706,8 @@ func (o GetCronJobTypeOutput) CreatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetCronJobType) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
 
-func (o GetCronJobTypeOutput) EnvVars() EnvVarKeyValueOrGenerateValueArrayOutput {
-	return o.ApplyT(func(v GetCronJobType) []EnvVarKeyValueOrGenerateValue { return v.EnvVars }).(EnvVarKeyValueOrGenerateValueArrayOutput)
+func (o GetCronJobTypeOutput) EnvVars() EnvVarKeyValueArrayOutput {
+	return o.ApplyT(func(v GetCronJobType) []EnvVarKeyValue { return v.EnvVars }).(EnvVarKeyValueArrayOutput)
 }
 
 func (o GetCronJobTypeOutput) Name() pulumi.StringOutput {
@@ -1775,10 +1762,10 @@ type GetPrivateServiceType struct {
 	// Whether to auto deploy the service or not upon git push.
 	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
-	Branch    *string                         `pulumi:"branch"`
-	CreatedAt *string                         `pulumi:"createdAt"`
-	EnvVars   []EnvVarKeyValueOrGenerateValue `pulumi:"envVars"`
-	Name      string                          `pulumi:"name"`
+	Branch    *string          `pulumi:"branch"`
+	CreatedAt *string          `pulumi:"createdAt"`
+	EnvVars   []EnvVarKeyValue `pulumi:"envVars"`
+	Name      string           `pulumi:"name"`
 	// The notification setting for this service upon deployment failure.
 	NotifyOnFail *ServiceNotifyOnFail `pulumi:"notifyOnFail"`
 	// The id of the owner (user/team).
@@ -1842,8 +1829,8 @@ func (o GetPrivateServiceTypeOutput) CreatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetPrivateServiceType) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
 
-func (o GetPrivateServiceTypeOutput) EnvVars() EnvVarKeyValueOrGenerateValueArrayOutput {
-	return o.ApplyT(func(v GetPrivateServiceType) []EnvVarKeyValueOrGenerateValue { return v.EnvVars }).(EnvVarKeyValueOrGenerateValueArrayOutput)
+func (o GetPrivateServiceTypeOutput) EnvVars() EnvVarKeyValueArrayOutput {
+	return o.ApplyT(func(v GetPrivateServiceType) []EnvVarKeyValue { return v.EnvVars }).(EnvVarKeyValueArrayOutput)
 }
 
 func (o GetPrivateServiceTypeOutput) Name() pulumi.StringOutput {
@@ -1898,10 +1885,10 @@ type GetStaticSiteType struct {
 	// Whether to auto deploy the service or not upon git push.
 	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
-	Branch    *string                         `pulumi:"branch"`
-	CreatedAt *string                         `pulumi:"createdAt"`
-	EnvVars   []EnvVarKeyValueOrGenerateValue `pulumi:"envVars"`
-	Name      string                          `pulumi:"name"`
+	Branch    *string          `pulumi:"branch"`
+	CreatedAt *string          `pulumi:"createdAt"`
+	EnvVars   []EnvVarKeyValue `pulumi:"envVars"`
+	Name      string           `pulumi:"name"`
 	// The notification setting for this service upon deployment failure.
 	NotifyOnFail *ServiceNotifyOnFail `pulumi:"notifyOnFail"`
 	// The id of the owner (user/team).
@@ -1965,8 +1952,8 @@ func (o GetStaticSiteTypeOutput) CreatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetStaticSiteType) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
 
-func (o GetStaticSiteTypeOutput) EnvVars() EnvVarKeyValueOrGenerateValueArrayOutput {
-	return o.ApplyT(func(v GetStaticSiteType) []EnvVarKeyValueOrGenerateValue { return v.EnvVars }).(EnvVarKeyValueOrGenerateValueArrayOutput)
+func (o GetStaticSiteTypeOutput) EnvVars() EnvVarKeyValueArrayOutput {
+	return o.ApplyT(func(v GetStaticSiteType) []EnvVarKeyValue { return v.EnvVars }).(EnvVarKeyValueArrayOutput)
 }
 
 func (o GetStaticSiteTypeOutput) Name() pulumi.StringOutput {
@@ -2021,10 +2008,10 @@ type GetWebServiceType struct {
 	// Whether to auto deploy the service or not upon git push.
 	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
-	Branch    *string                         `pulumi:"branch"`
-	CreatedAt *string                         `pulumi:"createdAt"`
-	EnvVars   []EnvVarKeyValueOrGenerateValue `pulumi:"envVars"`
-	Name      string                          `pulumi:"name"`
+	Branch    *string          `pulumi:"branch"`
+	CreatedAt *string          `pulumi:"createdAt"`
+	EnvVars   []EnvVarKeyValue `pulumi:"envVars"`
+	Name      string           `pulumi:"name"`
 	// The notification setting for this service upon deployment failure.
 	NotifyOnFail *ServiceNotifyOnFail `pulumi:"notifyOnFail"`
 	// The id of the owner (user/team).
@@ -2088,8 +2075,8 @@ func (o GetWebServiceTypeOutput) CreatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetWebServiceType) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
 
-func (o GetWebServiceTypeOutput) EnvVars() EnvVarKeyValueOrGenerateValueArrayOutput {
-	return o.ApplyT(func(v GetWebServiceType) []EnvVarKeyValueOrGenerateValue { return v.EnvVars }).(EnvVarKeyValueOrGenerateValueArrayOutput)
+func (o GetWebServiceTypeOutput) EnvVars() EnvVarKeyValueArrayOutput {
+	return o.ApplyT(func(v GetWebServiceType) []EnvVarKeyValue { return v.EnvVars }).(EnvVarKeyValueArrayOutput)
 }
 
 func (o GetWebServiceTypeOutput) Name() pulumi.StringOutput {
@@ -2504,10 +2491,10 @@ type PrivateServiceType struct {
 	// Whether to auto deploy the service or not upon git push.
 	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
-	Branch    *string                         `pulumi:"branch"`
-	CreatedAt *string                         `pulumi:"createdAt"`
-	EnvVars   []EnvVarKeyValueOrGenerateValue `pulumi:"envVars"`
-	Name      string                          `pulumi:"name"`
+	Branch    *string          `pulumi:"branch"`
+	CreatedAt *string          `pulumi:"createdAt"`
+	EnvVars   []EnvVarKeyValue `pulumi:"envVars"`
+	Name      string           `pulumi:"name"`
 	// The notification setting for this service upon deployment failure.
 	NotifyOnFail *ServiceNotifyOnFail `pulumi:"notifyOnFail"`
 	// The id of the owner (user/team).
@@ -3328,10 +3315,10 @@ type StaticSiteType struct {
 	// Whether to auto deploy the service or not upon git push.
 	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
-	Branch    *string                         `pulumi:"branch"`
-	CreatedAt *string                         `pulumi:"createdAt"`
-	EnvVars   []EnvVarKeyValueOrGenerateValue `pulumi:"envVars"`
-	Name      string                          `pulumi:"name"`
+	Branch    *string          `pulumi:"branch"`
+	CreatedAt *string          `pulumi:"createdAt"`
+	EnvVars   []EnvVarKeyValue `pulumi:"envVars"`
+	Name      string           `pulumi:"name"`
 	// The notification setting for this service upon deployment failure.
 	NotifyOnFail *ServiceNotifyOnFail `pulumi:"notifyOnFail"`
 	// The id of the owner (user/team).
@@ -3941,10 +3928,10 @@ type WebServiceType struct {
 	// Whether to auto deploy the service or not upon git push.
 	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
-	Branch    *string                         `pulumi:"branch"`
-	CreatedAt *string                         `pulumi:"createdAt"`
-	EnvVars   []EnvVarKeyValueOrGenerateValue `pulumi:"envVars"`
-	Name      string                          `pulumi:"name"`
+	Branch    *string          `pulumi:"branch"`
+	CreatedAt *string          `pulumi:"createdAt"`
+	EnvVars   []EnvVarKeyValue `pulumi:"envVars"`
+	Name      string           `pulumi:"name"`
 	// The notification setting for this service upon deployment failure.
 	NotifyOnFail *ServiceNotifyOnFail `pulumi:"notifyOnFail"`
 	// The id of the owner (user/team).
@@ -4471,8 +4458,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CronJobServiceDetailsPtrInput)(nil)).Elem(), CronJobServiceDetailsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DiskInput)(nil)).Elem(), DiskArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DiskPtrInput)(nil)).Elem(), DiskArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EnvVarKeyValueOrGenerateValueInput)(nil)).Elem(), EnvVarKeyValueOrGenerateValueArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EnvVarKeyValueOrGenerateValueArrayInput)(nil)).Elem(), EnvVarKeyValueOrGenerateValueArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvVarKeyValueInput)(nil)).Elem(), EnvVarKeyValueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvVarKeyValueArrayInput)(nil)).Elem(), EnvVarKeyValueArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OpenPortsInput)(nil)).Elem(), OpenPortsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OpenPortsArrayInput)(nil)).Elem(), OpenPortsArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceDetailsInput)(nil)).Elem(), PrivateServiceDetailsArgs{})
@@ -4512,8 +4499,7 @@ func init() {
 	pulumi.RegisterOutputType(DiskPtrOutput{})
 	pulumi.RegisterOutputType(EnvVarKeyValueOutput{})
 	pulumi.RegisterOutputType(EnvVarKeyValuePtrOutput{})
-	pulumi.RegisterOutputType(EnvVarKeyValueOrGenerateValueOutput{})
-	pulumi.RegisterOutputType(EnvVarKeyValueOrGenerateValueArrayOutput{})
+	pulumi.RegisterOutputType(EnvVarKeyValueArrayOutput{})
 	pulumi.RegisterOutputType(GetBackgroundWorkerTypeOutput{})
 	pulumi.RegisterOutputType(GetCronJobTypeOutput{})
 	pulumi.RegisterOutputType(GetPrivateServiceTypeOutput{})

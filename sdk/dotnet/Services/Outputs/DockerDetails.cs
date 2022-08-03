@@ -13,15 +13,15 @@ namespace Pulumi.Render.Services.Outputs
     [OutputType]
     public sealed class DockerDetails
     {
-        public readonly string? DockerCommand;
-        public readonly string? DockerContext;
+        public readonly string DockerCommand;
+        public readonly string DockerContext;
         public readonly string? DockerfilePath;
 
         [OutputConstructor]
         private DockerDetails(
-            string? dockerCommand,
+            string dockerCommand,
 
-            string? dockerContext,
+            string dockerContext,
 
             string? dockerfilePath)
         {

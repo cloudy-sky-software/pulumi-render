@@ -31,7 +31,7 @@ namespace Pulumi.Render.Services
         public Output<string?> CreatedAt { get; private set; } = null!;
 
         [Output("envVars")]
-        public Output<ImmutableArray<Outputs.EnvVarKeyValueOrGenerateValue>> EnvVars { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.EnvVarKeyValue>> EnvVars { get; private set; } = null!;
 
         [Output("name")]
         public Output<string?> Name { get; private set; } = null!;
@@ -137,10 +137,10 @@ namespace Pulumi.Render.Services
         public Input<string>? CreatedAt { get; set; }
 
         [Input("envVars")]
-        private InputList<Inputs.EnvVarKeyValueOrGenerateValueArgs>? _envVars;
-        public InputList<Inputs.EnvVarKeyValueOrGenerateValueArgs> EnvVars
+        private InputList<Inputs.EnvVarKeyValueArgs>? _envVars;
+        public InputList<Inputs.EnvVarKeyValueArgs> EnvVars
         {
-            get => _envVars ?? (_envVars = new InputList<Inputs.EnvVarKeyValueOrGenerateValueArgs>());
+            get => _envVars ?? (_envVars = new InputList<Inputs.EnvVarKeyValueArgs>());
             set => _envVars = value;
         }
 

@@ -25,7 +25,7 @@ namespace Pulumi.Render.Services.Outputs
         /// </summary>
         public readonly string? Branch;
         public readonly string? CreatedAt;
-        public readonly ImmutableArray<Outputs.EnvVarKeyValueOrGenerateValue> EnvVars;
+        public readonly ImmutableArray<Outputs.EnvVarKeyValue> EnvVars;
         public readonly string Name;
         /// <summary>
         /// The notification setting for this service upon deployment failure.
@@ -55,7 +55,7 @@ namespace Pulumi.Render.Services.Outputs
 
             string? createdAt,
 
-            ImmutableArray<Outputs.EnvVarKeyValueOrGenerateValue> envVars,
+            ImmutableArray<Outputs.EnvVarKeyValue> envVars,
 
             string name,
 

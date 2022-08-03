@@ -12,18 +12,17 @@ namespace Pulumi.Render.Services.Inputs
 
     public sealed class DockerDetailsArgs : Pulumi.ResourceArgs
     {
-        [Input("dockerCommand")]
-        public Input<string>? DockerCommand { get; set; }
+        [Input("dockerCommand", required: true)]
+        public Input<string> DockerCommand { get; set; } = null!;
 
-        [Input("dockerContext")]
-        public Input<string>? DockerContext { get; set; }
+        [Input("dockerContext", required: true)]
+        public Input<string> DockerContext { get; set; } = null!;
 
         [Input("dockerfilePath")]
         public Input<string>? DockerfilePath { get; set; }
 
         public DockerDetailsArgs()
         {
-            DockerfilePath = "./Dockerfile";
         }
     }
 }

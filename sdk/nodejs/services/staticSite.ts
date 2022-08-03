@@ -55,7 +55,7 @@ export class StaticSite extends pulumi.CustomResource {
      */
     public readonly branch!: pulumi.Output<string | undefined>;
     public readonly createdAt!: pulumi.Output<string | undefined>;
-    public readonly envVars!: pulumi.Output<outputs.services.EnvVarKeyValueOrGenerateValue[] | undefined>;
+    public readonly envVars!: pulumi.Output<outputs.services.EnvVarKeyValue[] | undefined>;
     public readonly name!: pulumi.Output<string | undefined>;
     /**
      * The notification setting for this service upon deployment failure.
@@ -147,7 +147,7 @@ export interface StaticSiteArgs {
      */
     branch?: pulumi.Input<string>;
     createdAt?: pulumi.Input<string>;
-    envVars?: pulumi.Input<pulumi.Input<inputs.services.EnvVarKeyValueOrGenerateValueArgs>[]>;
+    envVars?: pulumi.Input<pulumi.Input<inputs.services.EnvVarKeyValueArgs>[]>;
     name: pulumi.Input<string>;
     /**
      * The notification setting for this service upon deployment failure.

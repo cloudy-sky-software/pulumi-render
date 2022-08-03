@@ -18,10 +18,10 @@ type BackgroundWorker struct {
 	// Whether to auto deploy the service or not upon git push.
 	AutoDeploy ServiceAutoDeployPtrOutput `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
-	Branch    pulumi.StringPtrOutput                   `pulumi:"branch"`
-	CreatedAt pulumi.StringPtrOutput                   `pulumi:"createdAt"`
-	EnvVars   EnvVarKeyValueOrGenerateValueArrayOutput `pulumi:"envVars"`
-	Name      pulumi.StringPtrOutput                   `pulumi:"name"`
+	Branch    pulumi.StringPtrOutput    `pulumi:"branch"`
+	CreatedAt pulumi.StringPtrOutput    `pulumi:"createdAt"`
+	EnvVars   EnvVarKeyValueArrayOutput `pulumi:"envVars"`
+	Name      pulumi.StringPtrOutput    `pulumi:"name"`
 	// The notification setting for this service upon deployment failure.
 	NotifyOnFail ServiceNotifyOnFailPtrOutput `pulumi:"notifyOnFail"`
 	// The id of the owner (user/team).
@@ -98,10 +98,10 @@ type backgroundWorkerArgs struct {
 	// Whether to auto deploy the service or not upon git push.
 	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
-	Branch    *string                         `pulumi:"branch"`
-	CreatedAt *string                         `pulumi:"createdAt"`
-	EnvVars   []EnvVarKeyValueOrGenerateValue `pulumi:"envVars"`
-	Name      string                          `pulumi:"name"`
+	Branch    *string          `pulumi:"branch"`
+	CreatedAt *string          `pulumi:"createdAt"`
+	EnvVars   []EnvVarKeyValue `pulumi:"envVars"`
+	Name      string           `pulumi:"name"`
 	// The notification setting for this service upon deployment failure.
 	NotifyOnFail *ServiceNotifyOnFail `pulumi:"notifyOnFail"`
 	// The id of the owner (user/team).
@@ -124,7 +124,7 @@ type BackgroundWorkerArgs struct {
 	// If left empty, this will fall back to the default branch of the repository.
 	Branch    pulumi.StringPtrInput
 	CreatedAt pulumi.StringPtrInput
-	EnvVars   EnvVarKeyValueOrGenerateValueArrayInput
+	EnvVars   EnvVarKeyValueArrayInput
 	Name      pulumi.StringInput
 	// The notification setting for this service upon deployment failure.
 	NotifyOnFail ServiceNotifyOnFailPtrInput
@@ -192,8 +192,8 @@ func (o BackgroundWorkerOutput) CreatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BackgroundWorker) pulumi.StringPtrOutput { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
 
-func (o BackgroundWorkerOutput) EnvVars() EnvVarKeyValueOrGenerateValueArrayOutput {
-	return o.ApplyT(func(v *BackgroundWorker) EnvVarKeyValueOrGenerateValueArrayOutput { return v.EnvVars }).(EnvVarKeyValueOrGenerateValueArrayOutput)
+func (o BackgroundWorkerOutput) EnvVars() EnvVarKeyValueArrayOutput {
+	return o.ApplyT(func(v *BackgroundWorker) EnvVarKeyValueArrayOutput { return v.EnvVars }).(EnvVarKeyValueArrayOutput)
 }
 
 func (o BackgroundWorkerOutput) Name() pulumi.StringPtrOutput {

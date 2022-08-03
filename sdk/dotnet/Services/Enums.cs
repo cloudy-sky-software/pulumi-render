@@ -366,6 +366,33 @@ namespace Pulumi.Render.Services
     }
 
     [EnumType]
+    public readonly struct EnvVarKeyValueGenerateValue : IEquatable<EnvVarKeyValueGenerateValue>
+    {
+        private readonly string _value;
+
+        private EnvVarKeyValueGenerateValue(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static EnvVarKeyValueGenerateValue Yes { get; } = new EnvVarKeyValueGenerateValue("yes");
+
+        public static bool operator ==(EnvVarKeyValueGenerateValue left, EnvVarKeyValueGenerateValue right) => left.Equals(right);
+        public static bool operator !=(EnvVarKeyValueGenerateValue left, EnvVarKeyValueGenerateValue right) => !left.Equals(right);
+
+        public static explicit operator string(EnvVarKeyValueGenerateValue value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is EnvVarKeyValueGenerateValue other && Equals(other);
+        public bool Equals(EnvVarKeyValueGenerateValue other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    [EnumType]
     public readonly struct OpenPortsProtocol : IEquatable<OpenPortsProtocol>
     {
         private readonly string _value;

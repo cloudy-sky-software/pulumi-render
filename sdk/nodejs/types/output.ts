@@ -53,7 +53,7 @@ export namespace services {
          */
         branch?: string;
         createdAt?: string;
-        envVars?: outputs.services.EnvVarKeyValueOrGenerateValue[];
+        envVars?: outputs.services.EnvVarKeyValue[];
         name: string;
         /**
          * The notification setting for this service upon deployment failure.
@@ -136,7 +136,7 @@ export namespace services {
          */
         branch?: string;
         createdAt?: string;
-        envVars?: outputs.services.EnvVarKeyValueOrGenerateValue[];
+        envVars?: outputs.services.EnvVarKeyValue[];
         name: string;
         /**
          * The notification setting for this service upon deployment failure.
@@ -234,26 +234,15 @@ export namespace services {
     }
 
     export interface DockerDetails {
-        dockerCommand?: string;
-        dockerContext?: string;
+        dockerCommand: string;
+        dockerContext: string;
         dockerfilePath?: string;
-    }
-    /**
-     * dockerDetailsProvideDefaults sets the appropriate defaults for DockerDetails
-     */
-    export function dockerDetailsProvideDefaults(val: DockerDetails): DockerDetails {
-        return {
-            ...val,
-            dockerfilePath: (val.dockerfilePath) ?? "./Dockerfile",
-        };
     }
 
     export interface EnvVarKeyValue {
+        generateValue?: enums.services.EnvVarKeyValueGenerateValue;
         key: string;
-        value: string;
-    }
-
-    export interface EnvVarKeyValueOrGenerateValue {
+        value?: string;
     }
 
     /**
@@ -269,7 +258,7 @@ export namespace services {
          */
         branch?: string;
         createdAt?: string;
-        envVars?: outputs.services.EnvVarKeyValueOrGenerateValue[];
+        envVars?: outputs.services.EnvVarKeyValue[];
         name: string;
         /**
          * The notification setting for this service upon deployment failure.
@@ -316,7 +305,7 @@ export namespace services {
          */
         branch?: string;
         createdAt?: string;
-        envVars?: outputs.services.EnvVarKeyValueOrGenerateValue[];
+        envVars?: outputs.services.EnvVarKeyValue[];
         name: string;
         /**
          * The notification setting for this service upon deployment failure.
@@ -363,7 +352,7 @@ export namespace services {
          */
         branch?: string;
         createdAt?: string;
-        envVars?: outputs.services.EnvVarKeyValueOrGenerateValue[];
+        envVars?: outputs.services.EnvVarKeyValue[];
         name: string;
         /**
          * The notification setting for this service upon deployment failure.
@@ -410,7 +399,7 @@ export namespace services {
          */
         branch?: string;
         createdAt?: string;
-        envVars?: outputs.services.EnvVarKeyValueOrGenerateValue[];
+        envVars?: outputs.services.EnvVarKeyValue[];
         name: string;
         /**
          * The notification setting for this service upon deployment failure.
@@ -457,7 +446,7 @@ export namespace services {
          */
         branch?: string;
         createdAt?: string;
-        envVars?: outputs.services.EnvVarKeyValueOrGenerateValue[];
+        envVars?: outputs.services.EnvVarKeyValue[];
         name: string;
         /**
          * The notification setting for this service upon deployment failure.
@@ -559,7 +548,7 @@ export namespace services {
          */
         branch?: string;
         createdAt?: string;
-        envVars?: outputs.services.EnvVarKeyValueOrGenerateValue[];
+        envVars?: outputs.services.EnvVarKeyValue[];
         name: string;
         /**
          * The notification setting for this service upon deployment failure.
@@ -656,7 +645,7 @@ export namespace services {
          */
         branch?: string;
         createdAt?: string;
-        envVars?: outputs.services.EnvVarKeyValueOrGenerateValue[];
+        envVars?: outputs.services.EnvVarKeyValue[];
         name: string;
         /**
          * The notification setting for this service upon deployment failure.
@@ -740,7 +729,7 @@ export namespace services {
          */
         branch?: string;
         createdAt?: string;
-        envVars?: outputs.services.EnvVarKeyValueOrGenerateValue[];
+        envVars?: outputs.services.EnvVarKeyValue[];
         name: string;
         /**
          * The notification setting for this service upon deployment failure.
@@ -805,5 +794,4 @@ export namespace services {
         id?: string;
         name?: string;
     }
-
 }

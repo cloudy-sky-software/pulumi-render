@@ -1704,6 +1704,169 @@ func (o DomainTypePtrOutput) ToStringPtrOutputWithContext(ctx context.Context) p
 	}).(pulumi.StringPtrOutput)
 }
 
+type EnvVarKeyValueGenerateValue string
+
+const (
+	EnvVarKeyValueGenerateValueYes = EnvVarKeyValueGenerateValue("yes")
+)
+
+func (EnvVarKeyValueGenerateValue) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvVarKeyValueGenerateValue)(nil)).Elem()
+}
+
+func (e EnvVarKeyValueGenerateValue) ToEnvVarKeyValueGenerateValueOutput() EnvVarKeyValueGenerateValueOutput {
+	return pulumi.ToOutput(e).(EnvVarKeyValueGenerateValueOutput)
+}
+
+func (e EnvVarKeyValueGenerateValue) ToEnvVarKeyValueGenerateValueOutputWithContext(ctx context.Context) EnvVarKeyValueGenerateValueOutput {
+	return pulumi.ToOutputWithContext(ctx, e).(EnvVarKeyValueGenerateValueOutput)
+}
+
+func (e EnvVarKeyValueGenerateValue) ToEnvVarKeyValueGenerateValuePtrOutput() EnvVarKeyValueGenerateValuePtrOutput {
+	return e.ToEnvVarKeyValueGenerateValuePtrOutputWithContext(context.Background())
+}
+
+func (e EnvVarKeyValueGenerateValue) ToEnvVarKeyValueGenerateValuePtrOutputWithContext(ctx context.Context) EnvVarKeyValueGenerateValuePtrOutput {
+	return EnvVarKeyValueGenerateValue(e).ToEnvVarKeyValueGenerateValueOutputWithContext(ctx).ToEnvVarKeyValueGenerateValuePtrOutputWithContext(ctx)
+}
+
+func (e EnvVarKeyValueGenerateValue) ToStringOutput() pulumi.StringOutput {
+	return pulumi.ToOutput(pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e EnvVarKeyValueGenerateValue) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return pulumi.ToOutputWithContext(ctx, pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e EnvVarKeyValueGenerateValue) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringPtrOutputWithContext(context.Background())
+}
+
+func (e EnvVarKeyValueGenerateValue) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
+}
+
+type EnvVarKeyValueGenerateValueOutput struct{ *pulumi.OutputState }
+
+func (EnvVarKeyValueGenerateValueOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvVarKeyValueGenerateValue)(nil)).Elem()
+}
+
+func (o EnvVarKeyValueGenerateValueOutput) ToEnvVarKeyValueGenerateValueOutput() EnvVarKeyValueGenerateValueOutput {
+	return o
+}
+
+func (o EnvVarKeyValueGenerateValueOutput) ToEnvVarKeyValueGenerateValueOutputWithContext(ctx context.Context) EnvVarKeyValueGenerateValueOutput {
+	return o
+}
+
+func (o EnvVarKeyValueGenerateValueOutput) ToEnvVarKeyValueGenerateValuePtrOutput() EnvVarKeyValueGenerateValuePtrOutput {
+	return o.ToEnvVarKeyValueGenerateValuePtrOutputWithContext(context.Background())
+}
+
+func (o EnvVarKeyValueGenerateValueOutput) ToEnvVarKeyValueGenerateValuePtrOutputWithContext(ctx context.Context) EnvVarKeyValueGenerateValuePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EnvVarKeyValueGenerateValue) *EnvVarKeyValueGenerateValue {
+		return &v
+	}).(EnvVarKeyValueGenerateValuePtrOutput)
+}
+
+func (o EnvVarKeyValueGenerateValueOutput) ToStringOutput() pulumi.StringOutput {
+	return o.ToStringOutputWithContext(context.Background())
+}
+
+func (o EnvVarKeyValueGenerateValueOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e EnvVarKeyValueGenerateValue) string {
+		return string(e)
+	}).(pulumi.StringOutput)
+}
+
+func (o EnvVarKeyValueGenerateValueOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o EnvVarKeyValueGenerateValueOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e EnvVarKeyValueGenerateValue) *string {
+		v := string(e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+type EnvVarKeyValueGenerateValuePtrOutput struct{ *pulumi.OutputState }
+
+func (EnvVarKeyValueGenerateValuePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvVarKeyValueGenerateValue)(nil)).Elem()
+}
+
+func (o EnvVarKeyValueGenerateValuePtrOutput) ToEnvVarKeyValueGenerateValuePtrOutput() EnvVarKeyValueGenerateValuePtrOutput {
+	return o
+}
+
+func (o EnvVarKeyValueGenerateValuePtrOutput) ToEnvVarKeyValueGenerateValuePtrOutputWithContext(ctx context.Context) EnvVarKeyValueGenerateValuePtrOutput {
+	return o
+}
+
+func (o EnvVarKeyValueGenerateValuePtrOutput) Elem() EnvVarKeyValueGenerateValueOutput {
+	return o.ApplyT(func(v *EnvVarKeyValueGenerateValue) EnvVarKeyValueGenerateValue {
+		if v != nil {
+			return *v
+		}
+		var ret EnvVarKeyValueGenerateValue
+		return ret
+	}).(EnvVarKeyValueGenerateValueOutput)
+}
+
+func (o EnvVarKeyValueGenerateValuePtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o EnvVarKeyValueGenerateValuePtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *EnvVarKeyValueGenerateValue) *string {
+		if e == nil {
+			return nil
+		}
+		v := string(*e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+// EnvVarKeyValueGenerateValueInput is an input type that accepts EnvVarKeyValueGenerateValueArgs and EnvVarKeyValueGenerateValueOutput values.
+// You can construct a concrete instance of `EnvVarKeyValueGenerateValueInput` via:
+//
+//          EnvVarKeyValueGenerateValueArgs{...}
+type EnvVarKeyValueGenerateValueInput interface {
+	pulumi.Input
+
+	ToEnvVarKeyValueGenerateValueOutput() EnvVarKeyValueGenerateValueOutput
+	ToEnvVarKeyValueGenerateValueOutputWithContext(context.Context) EnvVarKeyValueGenerateValueOutput
+}
+
+var envVarKeyValueGenerateValuePtrType = reflect.TypeOf((**EnvVarKeyValueGenerateValue)(nil)).Elem()
+
+type EnvVarKeyValueGenerateValuePtrInput interface {
+	pulumi.Input
+
+	ToEnvVarKeyValueGenerateValuePtrOutput() EnvVarKeyValueGenerateValuePtrOutput
+	ToEnvVarKeyValueGenerateValuePtrOutputWithContext(context.Context) EnvVarKeyValueGenerateValuePtrOutput
+}
+
+type envVarKeyValueGenerateValuePtr string
+
+func EnvVarKeyValueGenerateValuePtr(v string) EnvVarKeyValueGenerateValuePtrInput {
+	return (*envVarKeyValueGenerateValuePtr)(&v)
+}
+
+func (*envVarKeyValueGenerateValuePtr) ElementType() reflect.Type {
+	return envVarKeyValueGenerateValuePtrType
+}
+
+func (in *envVarKeyValueGenerateValuePtr) ToEnvVarKeyValueGenerateValuePtrOutput() EnvVarKeyValueGenerateValuePtrOutput {
+	return pulumi.ToOutput(in).(EnvVarKeyValueGenerateValuePtrOutput)
+}
+
+func (in *envVarKeyValueGenerateValuePtr) ToEnvVarKeyValueGenerateValuePtrOutputWithContext(ctx context.Context) EnvVarKeyValueGenerateValuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, in).(EnvVarKeyValueGenerateValuePtrOutput)
+}
+
 type OpenPortsProtocol string
 
 const (
@@ -4132,6 +4295,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CronJobServiceDetailsPlanPtrInput)(nil)).Elem(), CronJobServiceDetailsPlan("starter"))
 	pulumi.RegisterInputType(reflect.TypeOf((*CronJobServiceDetailsRegionInput)(nil)).Elem(), CronJobServiceDetailsRegion("oregon"))
 	pulumi.RegisterInputType(reflect.TypeOf((*CronJobServiceDetailsRegionPtrInput)(nil)).Elem(), CronJobServiceDetailsRegion("oregon"))
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvVarKeyValueGenerateValueInput)(nil)).Elem(), EnvVarKeyValueGenerateValue("yes"))
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvVarKeyValueGenerateValuePtrInput)(nil)).Elem(), EnvVarKeyValueGenerateValue("yes"))
 	pulumi.RegisterInputType(reflect.TypeOf((*OpenPortsProtocolInput)(nil)).Elem(), OpenPortsProtocol("TCP"))
 	pulumi.RegisterInputType(reflect.TypeOf((*OpenPortsProtocolPtrInput)(nil)).Elem(), OpenPortsProtocol("TCP"))
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceDetailsEnvInput)(nil)).Elem(), PrivateServiceDetailsEnv("docker"))
@@ -4184,6 +4349,8 @@ func init() {
 	pulumi.RegisterOutputType(DeployClearCachePtrOutput{})
 	pulumi.RegisterOutputType(DomainTypeOutput{})
 	pulumi.RegisterOutputType(DomainTypePtrOutput{})
+	pulumi.RegisterOutputType(EnvVarKeyValueGenerateValueOutput{})
+	pulumi.RegisterOutputType(EnvVarKeyValueGenerateValuePtrOutput{})
 	pulumi.RegisterOutputType(OpenPortsProtocolOutput{})
 	pulumi.RegisterOutputType(OpenPortsProtocolPtrOutput{})
 	pulumi.RegisterOutputType(PrivateServiceDetailsEnvOutput{})

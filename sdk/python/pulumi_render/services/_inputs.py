@@ -16,7 +16,7 @@ __all__ = [
     'CronJobServiceDetailsArgs',
     'DiskArgs',
     'DockerDetailsArgs',
-    'EnvVarKeyValueOrGenerateValueArgs',
+    'EnvVarKeyValueArgs',
     'NativeEnvironmentDetailsArgs',
     'OpenPortsArgs',
     'PrivateServiceDetailsParentServerPropertiesArgs',
@@ -303,34 +303,30 @@ class DiskArgs:
 @pulumi.input_type
 class DockerDetailsArgs:
     def __init__(__self__, *,
-                 docker_command: Optional[pulumi.Input[str]] = None,
-                 docker_context: Optional[pulumi.Input[str]] = None,
+                 docker_command: pulumi.Input[str],
+                 docker_context: pulumi.Input[str],
                  dockerfile_path: Optional[pulumi.Input[str]] = None):
-        if docker_command is not None:
-            pulumi.set(__self__, "docker_command", docker_command)
-        if docker_context is not None:
-            pulumi.set(__self__, "docker_context", docker_context)
-        if dockerfile_path is None:
-            dockerfile_path = './Dockerfile'
+        pulumi.set(__self__, "docker_command", docker_command)
+        pulumi.set(__self__, "docker_context", docker_context)
         if dockerfile_path is not None:
             pulumi.set(__self__, "dockerfile_path", dockerfile_path)
 
     @property
     @pulumi.getter(name="dockerCommand")
-    def docker_command(self) -> Optional[pulumi.Input[str]]:
+    def docker_command(self) -> pulumi.Input[str]:
         return pulumi.get(self, "docker_command")
 
     @docker_command.setter
-    def docker_command(self, value: Optional[pulumi.Input[str]]):
+    def docker_command(self, value: pulumi.Input[str]):
         pulumi.set(self, "docker_command", value)
 
     @property
     @pulumi.getter(name="dockerContext")
-    def docker_context(self) -> Optional[pulumi.Input[str]]:
+    def docker_context(self) -> pulumi.Input[str]:
         return pulumi.get(self, "docker_context")
 
     @docker_context.setter
-    def docker_context(self, value: Optional[pulumi.Input[str]]):
+    def docker_context(self, value: pulumi.Input[str]):
         pulumi.set(self, "docker_context", value)
 
     @property
@@ -344,9 +340,43 @@ class DockerDetailsArgs:
 
 
 @pulumi.input_type
-class EnvVarKeyValueOrGenerateValueArgs:
-    def __init__(__self__):
-        pass
+class EnvVarKeyValueArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 generate_value: Optional[pulumi.Input['EnvVarKeyValueGenerateValue']] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "key", key)
+        if generate_value is not None:
+            pulumi.set(__self__, "generate_value", generate_value)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter(name="generateValue")
+    def generate_value(self) -> Optional[pulumi.Input['EnvVarKeyValueGenerateValue']]:
+        return pulumi.get(self, "generate_value")
+
+    @generate_value.setter
+    def generate_value(self, value: Optional[pulumi.Input['EnvVarKeyValueGenerateValue']]):
+        pulumi.set(self, "generate_value", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
 
 
 @pulumi.input_type

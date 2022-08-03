@@ -108,6 +108,12 @@ export const DomainType = {
 
 export type DomainType = (typeof DomainType)[keyof typeof DomainType];
 
+export const EnvVarKeyValueGenerateValue = {
+    Yes: "yes",
+} as const;
+
+export type EnvVarKeyValueGenerateValue = (typeof EnvVarKeyValueGenerateValue)[keyof typeof EnvVarKeyValueGenerateValue];
+
 export const OpenPortsProtocol = {
     Tcp: "TCP",
     Udp: "UDP",

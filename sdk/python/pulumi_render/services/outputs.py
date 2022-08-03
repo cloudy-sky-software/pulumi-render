@@ -24,7 +24,6 @@ __all__ = [
     'Disk',
     'DockerDetails',
     'EnvVarKeyValue',
-    'EnvVarKeyValueOrGenerateValue',
     'GetBackgroundWorker',
     'GetCronJob',
     'GetPrivateService',
@@ -65,7 +64,7 @@ class BackgroundWorker(dict):
                  auto_deploy: Optional['ServiceAutoDeploy'] = None,
                  branch: Optional[str] = None,
                  created_at: Optional[str] = None,
-                 env_vars: Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']] = None,
+                 env_vars: Optional[Sequence['outputs.EnvVarKeyValue']] = None,
                  notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
                  secret_files: Optional[Sequence['outputs.SecretFile']] = None,
                  service_details: Optional['outputs.BackgroundWorkerServiceDetails'] = None,
@@ -158,7 +157,7 @@ class BackgroundWorker(dict):
 
     @property
     @pulumi.getter(name="envVars")
-    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']]:
+    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValue']]:
         return pulumi.get(self, "env_vars")
 
     @property
@@ -391,7 +390,7 @@ class CronJob(dict):
                  auto_deploy: Optional['ServiceAutoDeploy'] = None,
                  branch: Optional[str] = None,
                  created_at: Optional[str] = None,
-                 env_vars: Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']] = None,
+                 env_vars: Optional[Sequence['outputs.EnvVarKeyValue']] = None,
                  notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
                  secret_files: Optional[Sequence['outputs.SecretFile']] = None,
                  service_details: Optional['outputs.CronJobServiceDetails'] = None,
@@ -484,7 +483,7 @@ class CronJob(dict):
 
     @property
     @pulumi.getter(name="envVars")
-    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']]:
+    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValue']]:
         return pulumi.get(self, "env_vars")
 
     @property
@@ -777,26 +776,22 @@ class DockerDetails(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 docker_command: Optional[str] = None,
-                 docker_context: Optional[str] = None,
+                 docker_command: str,
+                 docker_context: str,
                  dockerfile_path: Optional[str] = None):
-        if docker_command is not None:
-            pulumi.set(__self__, "docker_command", docker_command)
-        if docker_context is not None:
-            pulumi.set(__self__, "docker_context", docker_context)
-        if dockerfile_path is None:
-            dockerfile_path = './Dockerfile'
+        pulumi.set(__self__, "docker_command", docker_command)
+        pulumi.set(__self__, "docker_context", docker_context)
         if dockerfile_path is not None:
             pulumi.set(__self__, "dockerfile_path", dockerfile_path)
 
     @property
     @pulumi.getter(name="dockerCommand")
-    def docker_command(self) -> Optional[str]:
+    def docker_command(self) -> str:
         return pulumi.get(self, "docker_command")
 
     @property
     @pulumi.getter(name="dockerContext")
-    def docker_context(self) -> Optional[str]:
+    def docker_context(self) -> str:
         return pulumi.get(self, "docker_context")
 
     @property
@@ -807,11 +802,32 @@ class DockerDetails(dict):
 
 @pulumi.output_type
 class EnvVarKeyValue(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "generateValue":
+            suggest = "generate_value"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in EnvVarKeyValue. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        EnvVarKeyValue.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        EnvVarKeyValue.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  key: str,
-                 value: str):
+                 generate_value: Optional['EnvVarKeyValueGenerateValue'] = None,
+                 value: Optional[str] = None):
         pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "value", value)
+        if generate_value is not None:
+            pulumi.set(__self__, "generate_value", generate_value)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
@@ -819,15 +835,14 @@ class EnvVarKeyValue(dict):
         return pulumi.get(self, "key")
 
     @property
+    @pulumi.getter(name="generateValue")
+    def generate_value(self) -> Optional['EnvVarKeyValueGenerateValue']:
+        return pulumi.get(self, "generate_value")
+
+    @property
     @pulumi.getter
-    def value(self) -> str:
+    def value(self) -> Optional[str]:
         return pulumi.get(self, "value")
-
-
-@pulumi.output_type
-class EnvVarKeyValueOrGenerateValue(dict):
-    def __init__(__self__):
-        pass
 
 
 @pulumi.output_type
@@ -842,7 +857,7 @@ class GetBackgroundWorker(dict):
                  auto_deploy: Optional['ServiceAutoDeploy'] = None,
                  branch: Optional[str] = None,
                  created_at: Optional[str] = None,
-                 env_vars: Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']] = None,
+                 env_vars: Optional[Sequence['outputs.EnvVarKeyValue']] = None,
                  notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
                  secret_files: Optional[Sequence['outputs.SecretFile']] = None,
                  service_details: Optional['outputs.BackgroundWorkerServiceDetails'] = None,
@@ -935,7 +950,7 @@ class GetBackgroundWorker(dict):
 
     @property
     @pulumi.getter(name="envVars")
-    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']]:
+    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValue']]:
         return pulumi.get(self, "env_vars")
 
     @property
@@ -994,7 +1009,7 @@ class GetCronJob(dict):
                  auto_deploy: Optional['ServiceAutoDeploy'] = None,
                  branch: Optional[str] = None,
                  created_at: Optional[str] = None,
-                 env_vars: Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']] = None,
+                 env_vars: Optional[Sequence['outputs.EnvVarKeyValue']] = None,
                  notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
                  secret_files: Optional[Sequence['outputs.SecretFile']] = None,
                  service_details: Optional['outputs.CronJobServiceDetails'] = None,
@@ -1087,7 +1102,7 @@ class GetCronJob(dict):
 
     @property
     @pulumi.getter(name="envVars")
-    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']]:
+    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValue']]:
         return pulumi.get(self, "env_vars")
 
     @property
@@ -1146,7 +1161,7 @@ class GetPrivateService(dict):
                  auto_deploy: Optional['ServiceAutoDeploy'] = None,
                  branch: Optional[str] = None,
                  created_at: Optional[str] = None,
-                 env_vars: Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']] = None,
+                 env_vars: Optional[Sequence['outputs.EnvVarKeyValue']] = None,
                  notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
                  secret_files: Optional[Sequence['outputs.SecretFile']] = None,
                  service_details: Optional['outputs.PrivateServiceDetails'] = None,
@@ -1239,7 +1254,7 @@ class GetPrivateService(dict):
 
     @property
     @pulumi.getter(name="envVars")
-    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']]:
+    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValue']]:
         return pulumi.get(self, "env_vars")
 
     @property
@@ -1298,7 +1313,7 @@ class GetStaticSite(dict):
                  auto_deploy: Optional['ServiceAutoDeploy'] = None,
                  branch: Optional[str] = None,
                  created_at: Optional[str] = None,
-                 env_vars: Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']] = None,
+                 env_vars: Optional[Sequence['outputs.EnvVarKeyValue']] = None,
                  notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
                  secret_files: Optional[Sequence['outputs.SecretFile']] = None,
                  service_details: Optional['outputs.StaticSiteServiceDetails'] = None,
@@ -1391,7 +1406,7 @@ class GetStaticSite(dict):
 
     @property
     @pulumi.getter(name="envVars")
-    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']]:
+    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValue']]:
         return pulumi.get(self, "env_vars")
 
     @property
@@ -1450,7 +1465,7 @@ class GetWebService(dict):
                  auto_deploy: Optional['ServiceAutoDeploy'] = None,
                  branch: Optional[str] = None,
                  created_at: Optional[str] = None,
-                 env_vars: Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']] = None,
+                 env_vars: Optional[Sequence['outputs.EnvVarKeyValue']] = None,
                  notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
                  secret_files: Optional[Sequence['outputs.SecretFile']] = None,
                  service_details: Optional['outputs.WebServiceServiceDetails'] = None,
@@ -1543,7 +1558,7 @@ class GetWebService(dict):
 
     @property
     @pulumi.getter(name="envVars")
-    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']]:
+    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValue']]:
         return pulumi.get(self, "env_vars")
 
     @property
@@ -1799,7 +1814,7 @@ class PrivateService(dict):
                  auto_deploy: Optional['ServiceAutoDeploy'] = None,
                  branch: Optional[str] = None,
                  created_at: Optional[str] = None,
-                 env_vars: Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']] = None,
+                 env_vars: Optional[Sequence['outputs.EnvVarKeyValue']] = None,
                  notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
                  secret_files: Optional[Sequence['outputs.SecretFile']] = None,
                  service_details: Optional['outputs.PrivateServiceDetails'] = None,
@@ -1892,7 +1907,7 @@ class PrivateService(dict):
 
     @property
     @pulumi.getter(name="envVars")
-    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']]:
+    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValue']]:
         return pulumi.get(self, "env_vars")
 
     @property
@@ -2161,7 +2176,7 @@ class StaticSite(dict):
                  auto_deploy: Optional['ServiceAutoDeploy'] = None,
                  branch: Optional[str] = None,
                  created_at: Optional[str] = None,
-                 env_vars: Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']] = None,
+                 env_vars: Optional[Sequence['outputs.EnvVarKeyValue']] = None,
                  notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
                  secret_files: Optional[Sequence['outputs.SecretFile']] = None,
                  service_details: Optional['outputs.StaticSiteServiceDetails'] = None,
@@ -2254,7 +2269,7 @@ class StaticSite(dict):
 
     @property
     @pulumi.getter(name="envVars")
-    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']]:
+    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValue']]:
         return pulumi.get(self, "env_vars")
 
     @property
@@ -2460,7 +2475,7 @@ class WebService(dict):
                  auto_deploy: Optional['ServiceAutoDeploy'] = None,
                  branch: Optional[str] = None,
                  created_at: Optional[str] = None,
-                 env_vars: Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']] = None,
+                 env_vars: Optional[Sequence['outputs.EnvVarKeyValue']] = None,
                  notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
                  secret_files: Optional[Sequence['outputs.SecretFile']] = None,
                  service_details: Optional['outputs.WebServiceServiceDetails'] = None,
@@ -2553,7 +2568,7 @@ class WebService(dict):
 
     @property
     @pulumi.getter(name="envVars")
-    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValueOrGenerateValue']]:
+    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValue']]:
         return pulumi.get(self, "env_vars")
 
     @property

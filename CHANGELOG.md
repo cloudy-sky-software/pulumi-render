@@ -1,7 +1,12 @@
+## 0.0.37
+
+- Fix ambiguous type error in service details.
+- Add envVars and secretFiles to the base service type.
+
 ## 0.0.36
 
-* Fix discriminator mapping bug.
-* Add missing output props for all service types.
+- Fix discriminator mapping bug.
+- Add missing output props for all service types.
 
 ## 0.0.35
 

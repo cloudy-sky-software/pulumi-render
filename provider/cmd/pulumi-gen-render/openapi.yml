@@ -337,7 +337,15 @@ components:
           type: string
         dockerfilePath:
           type: string
-          default: "./Dockerfile"
+      # Must specify required properties, otherwise
+      # kin-api cannot properly typecast an input
+      # object into a specific type. That's because
+      # without any required properties, it thinks
+      # the input object can be any object since all
+      # properties are optional.
+      required:
+        - "dockerCommand"
+        - "dockerContext"
     nativeEnvironmentDetails:
       type: object
       properties:
@@ -665,7 +673,7 @@ components:
         envVars:
           type: array
           items:
-            $ref: "#/components/schemas/envVarKeyValueOrGenerateValue"
+            $ref: "#/components/schemas/envVarKeyValue"
         name:
           type: string
         notifyOnFail:
@@ -732,37 +740,19 @@ components:
       properties:
         key:
           type: string
-        value:
-          type: string
-      required:
-        - "key"
-        - "value"
-    envVarKeyGenerateValue:
-      type: object
-      properties:
-        key:
-          type: string
         generateValue:
           type: string
-          default: "yes"
           enum:
             - "yes"
         value:
           type: string
-          readOnly: true
       required:
         - "key"
-        - "value"
-    envVarKeyValueOrGenerateValue:
-      type: object
-      oneOf:
-        - $ref: "#/components/schemas/envVarKeyValue"
-        - $ref: "#/components/schemas/envVarKeyGenerateValue"
     envVar:
       title: EnvVar
       type: array
       items:
-        $ref: "#/components/schemas/envVarKeyValueOrGenerateValue"
+        $ref: "#/components/schemas/envVarKeyValue"
     listEnvVarsResponse:
       type: object
       properties:

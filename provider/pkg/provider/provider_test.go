@@ -2,9 +2,12 @@ package provider
 
 import (
 	"context"
+	"encoding/json"
 	"os"
 	"path/filepath"
 	"testing"
+
+	"github.com/cloudy-sky-software/pulumi-render/provider/pkg/openapi"
 
 	"github.com/stretchr/testify/assert"
 
@@ -12,6 +15,29 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
 	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
 )
+
+const testCreateJSONPayload = `{
+    "autoDeploy": "yes",
+    "branch": "master",
+    "envVars": [{ "key": "PORT", "value": "8080" }],
+    "name": "An Express.js web service",
+    "ownerId": "usr-somefakeownerid",
+    "repo": "https://github.com/render-examples/express-hello-world",
+    "serviceDetails": {
+        "env": "node",
+        "envSpecificDetails": {
+            "buildCommand": "yarn",
+            "startCommand": "node app.js"
+        },
+        "numInstances": 1,
+        "openPorts": [{ "port": 8080, "protocol": "TCP" }],
+        "plan": "starter",
+        "pullRequestPreviewsEnabled": "no",
+        "region": "oregon"
+    },
+    "type": "web_service"
+}
+`
 
 func readFileFromProviderResourceDir(t *testing.T, filename string) []byte {
 	t.Helper()
@@ -24,15 +50,38 @@ func readFileFromProviderResourceDir(t *testing.T, filename string) []byte {
 	return b
 }
 
-func TestDiff(t *testing.T) {
-	ctx := context.Background()
+func makeTestProvider(t *testing.T, ctx context.Context) pulumirpc.ResourceProviderServer {
+	t.Helper()
 
 	openapiBytes := readFileFromProviderResourceDir(t, "openapi_generated.yml")
+	d := openapi.GetOpenAPISpec(openapiBytes)
+	d.Servers[0].URL = "http://localhost:8080"
+	openapiBytes, _ = d.MarshalJSON()
 
 	pSchemaBytes := readFileFromProviderResourceDir(t, "schema.json")
 	metadataBytes := readFileFromProviderResourceDir(t, "metadata.json")
 
-	p, _ := makeProvider(nil, "", "", pSchemaBytes, openapiBytes, metadataBytes)
+	p, err := makeProvider(nil, "", "", pSchemaBytes, openapiBytes, metadataBytes)
+
+	if err != nil {
+		t.Fatalf("Could not create a provider instance: %v", err)
+	}
+
+	_, err = p.Configure(ctx, &pulumirpc.ConfigureRequest{
+		Variables: map[string]string{"render:config:apiKey": "fakeapikey"},
+	})
+
+	if err != nil {
+		t.Fatalf("Error configuring the provider: %v", err)
+	}
+
+	return p
+}
+
+func TestDiff(t *testing.T) {
+	ctx := context.Background()
+
+	p := makeTestProvider(t, ctx)
 
 	outputs := make(map[string]interface{})
 	outputs["name"] = "Test"
@@ -61,4 +110,26 @@ func TestGetResourceState(t *testing.T) {
 
 	state := getResourceState(outputs, resource.NewPropertyMapFromMap(inputs))
 	assert.True(t, state.HasValue(resource.PropertyKey(stateKeyInputs)))
+}
+
+func TestCreate(t *testing.T) {
+	ctx := context.Background()
+
+	var inputs map[string]interface{}
+	if err := json.Unmarshal([]byte(testCreateJSONPayload), &inputs); err != nil {
+		t.Fatal("Failed to unmarshal test payload")
+	}
+
+	p := makeTestProvider(t, ctx)
+
+	inputProperties, _ := plugin.MarshalProperties(resource.NewPropertyMapFromMap(inputs), defaultMarshalOpts)
+
+	_, err := p.Create(ctx, &pulumirpc.CreateRequest{
+		Urn:        "urn:pulumi:dev::render-ts::render:services:WebService::webservice",
+		Properties: inputProperties,
+	})
+
+	assert.NotNil(t, err)
+	// For now just assume that if we got to the point of making the request, we are good to go.
+	assert.Contains(t, err.Error(), "dial tcp 127.0.0.1:8080: connect: connection refused")
 }

@@ -269,6 +269,7 @@ func (p *renderProvider) Diff(ctx context.Context, req *pulumirpc.DiffRequest) (
 	logging.V(3).Infof("Calculating diff: olds: %v; news: %v", olds, news)
 	d := olds.Diff(news)
 	if d == nil || !d.AnyChanges() {
+		logging.V(3).Infof("Diff: no changes for %s", req.GetUrn())
 		return &pulumirpc.DiffResponse{Changes: pulumirpc.DiffResponse_DIFF_NONE}, nil
 	}
 
@@ -321,6 +322,8 @@ func (p *renderProvider) Diff(ctx context.Context, req *pulumirpc.DiffRequest) (
 
 // Create allocates a new instance of the provided resource and returns its unique ID afterwards.
 func (p *renderProvider) Create(ctx context.Context, req *pulumirpc.CreateRequest) (*pulumirpc.CreateResponse, error) {
+	logging.V(3).Infof("Create: %s", req.GetUrn())
+
 	inputs, err := plugin.UnmarshalProperties(req.GetProperties(), defaultUnmarshalOpts)
 	if err != nil {
 		return nil, errors.Wrap(err, "unmarshal input properties as propertymap")
@@ -352,7 +355,7 @@ func (p *renderProvider) Create(ctx context.Context, req *pulumirpc.CreateReques
 	logging.V(3).Infof("URL: %s", httpReq.URL.String())
 
 	// Set the API key in the auth header.
-	httpReq.Header.Add("Authorization", fmt.Sprintf("Bearer %s", p.apiKey))
+	httpReq.Header.Add("Authorization", fmt.Sprintf("%s %s", authSchemePrefix, p.apiKey))
 	httpReq.Header.Add("Accept", jsonMimeType)
 	httpReq.Header.Add("Content-Type", jsonMimeType)
 
@@ -454,7 +457,7 @@ func (p *renderProvider) Read(ctx context.Context, req *pulumirpc.ReadRequest) (
 	}
 
 	// Set the API key in the auth header.
-	httpReq.Header.Add("Authorization", fmt.Sprintf("Bearer %s", p.apiKey))
+	httpReq.Header.Add("Authorization", fmt.Sprintf("%s %s", authSchemePrefix, p.apiKey))
 	httpReq.Header.Add("Accept", jsonMimeType)
 	httpReq.Header.Add("Content-Type", jsonMimeType)
 
@@ -585,7 +588,7 @@ func (p *renderProvider) Update(ctx context.Context, req *pulumirpc.UpdateReques
 	}
 
 	// Set the API key in the auth header.
-	httpReq.Header.Add("Authorization", fmt.Sprintf("Bearer %s", p.apiKey))
+	httpReq.Header.Add("Authorization", fmt.Sprintf("%s %s", authSchemePrefix, p.apiKey))
 	httpReq.Header.Add("Accept", jsonMimeType)
 	httpReq.Header.Add("Content-Type", jsonMimeType)
 
@@ -665,7 +668,7 @@ func (p *renderProvider) runPostUpdateAction(ctx context.Context, resourceTypeTo
 	httpReq, _ := http.NewRequestWithContext(ctx, "POST", url+"/deploys", buf)
 
 	// Set the API key in the auth header.
-	httpReq.Header.Add("Authorization", fmt.Sprintf("Bearer %s", p.apiKey))
+	httpReq.Header.Add("Authorization", fmt.Sprintf("%s %s", authSchemePrefix, p.apiKey))
 	httpReq.Header.Add("Accept", jsonMimeType)
 	httpReq.Header.Add("Content-Type", jsonMimeType)
 
@@ -685,7 +688,7 @@ func (p *renderProvider) executeResumeSerivce(ctx context.Context, serviceID str
 	httpReq, _ := http.NewRequestWithContext(ctx, "POST", p.baseURL+"/services"+serviceID+"/resume", nil)
 
 	// Set the API key in the auth header.
-	httpReq.Header.Add("Authorization", fmt.Sprintf("Bearer %s", p.apiKey))
+	httpReq.Header.Add("Authorization", fmt.Sprintf("%s %s", authSchemePrefix, p.apiKey))
 	httpReq.Header.Add("Accept", jsonMimeType)
 	httpReq.Header.Add("Content-Type", jsonMimeType)
 
@@ -734,7 +737,7 @@ func (p *renderProvider) Delete(ctx context.Context, req *pulumirpc.DeleteReques
 	}
 
 	// Set the API key in the auth header.
-	httpReq.Header.Add("Authorization", fmt.Sprintf("Bearer %s", p.apiKey))
+	httpReq.Header.Add("Authorization", fmt.Sprintf("%s %s", authSchemePrefix, p.apiKey))
 	httpReq.Header.Add("Accept", jsonMimeType)
 	httpReq.Header.Add("Content-Type", jsonMimeType)
 

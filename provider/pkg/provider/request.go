@@ -17,7 +17,11 @@ import (
 	"github.com/pkg/errors"
 )
 
-const jsonMimeType = "application/json"
+const (
+	authHeaderName   = "Authorization"
+	authSchemePrefix = "Bearer"
+	jsonMimeType     = "application/json"
+)
 
 func (p *renderProvider) executeGet(
 	ctx context.Context,
@@ -101,11 +105,20 @@ func (p *renderProvider) validateRequest(ctx context.Context, httpReq *http.Requ
 		Route:      route,
 		Options: &openapi3filter.Options{
 			AuthenticationFunc: func(ctx context.Context, ai *openapi3filter.AuthenticationInput) error {
-				if ai.RequestValidationInput.Request.Header.Get("Authorization") != "" {
-					return nil
+				authHeader := ai.RequestValidationInput.Request.Header.Get(authHeaderName)
+				if authHeader == "" {
+					return errors.New("authorization header is required")
+				}
+				if !strings.HasPrefix(authHeader, authSchemePrefix) {
+					return errors.Errorf("unexpected auth scheme (expected %q)", authSchemePrefix)
 				}
 
-				return errors.New("authorization header is required")
+				bearerToken := strings.TrimPrefix(authHeader, fmt.Sprintf("%s ", authSchemePrefix))
+				if bearerToken == "" {
+					return errors.New("bearer token is required")
+				}
+
+				return nil
 			},
 		},
 	}

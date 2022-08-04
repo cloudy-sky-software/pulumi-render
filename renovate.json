@@ -5,5 +5,9 @@
   ],
   "ignoreDeps": [
     "github.com/mattn/go-ieproxy"
+  ],
+  "ignorePaths": [
+    "sdk/**",
+    "examples/**"
   ]
 }

@@ -13,7 +13,7 @@ env:
 
 jobs:
   assert-clean-tree:
-    if: ${{ github.actor != "renovate" }}
+    if: ${{ github.actor != 'renovate' }}
     name: Check if working tree is clean
     runs-on: ubuntu-latest
     steps:

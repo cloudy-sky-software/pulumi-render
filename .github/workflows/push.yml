@@ -6,7 +6,6 @@ on:
   pull_request:
     branches:
       - main
-      - "!renovate/**"
 
 env:
   GOPRIVATE: "github.com/cloudy-sky-software/pulumi-render"
@@ -14,6 +13,7 @@ env:
 
 jobs:
   assert-clean-tree:
+    if: ${{ github.actor != "renovate" }}
     name: Check if working tree is clean
     runs-on: ubuntu-latest
     steps:

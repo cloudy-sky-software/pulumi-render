@@ -183,7 +183,7 @@ require (
 
 require (
 	github.com/emirpasic/gods v1.18.1 // indirect
-	github.com/getkin/kin-openapi v0.99.0
+	github.com/getkin/kin-openapi v0.100.0
 	github.com/hashicorp/hcl/v2 v2.13.0 // indirect
 	github.com/kevinburke/ssh_config v1.2.0 // indirect
 	github.com/pkg/errors v0.9.1

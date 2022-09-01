@@ -19,7 +19,7 @@ namespace Pulumi.Render.Services
     }
 
 
-    public sealed class GetWebServiceArgs : Pulumi.InvokeArgs
+    public sealed class GetWebServiceArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// (Required) The ID of the service
@@ -30,9 +30,10 @@ namespace Pulumi.Render.Services
         public GetWebServiceArgs()
         {
         }
+        public static new GetWebServiceArgs Empty => new GetWebServiceArgs();
     }
 
-    public sealed class GetWebServiceInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetWebServiceInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// (Required) The ID of the service
@@ -43,6 +44,7 @@ namespace Pulumi.Render.Services
         public GetWebServiceInvokeArgs()
         {
         }
+        public static new GetWebServiceInvokeArgs Empty => new GetWebServiceInvokeArgs();
     }
 
 

@@ -13,7 +13,7 @@ namespace Pulumi.Render
     /// The provider type for the render package.
     /// </summary>
     [RenderResourceType("pulumi:providers:render")]
-    public partial class Provider : Pulumi.ProviderResource
+    public partial class Provider : global::Pulumi.ProviderResource
     {
         /// <summary>
         /// Create a Provider resource with the given unique name, arguments, and options.
@@ -41,7 +41,7 @@ namespace Pulumi.Render
         }
     }
 
-    public sealed class ProviderArgs : Pulumi.ResourceArgs
+    public sealed class ProviderArgs : global::Pulumi.ResourceArgs
     {
         [Input("apiKey")]
         private Input<string>? _apiKey;
@@ -63,5 +63,6 @@ namespace Pulumi.Render
         {
             ApiKey = Utilities.GetEnv("RENDER_APIKEY");
         }
+        public static new ProviderArgs Empty => new ProviderArgs();
     }
 }

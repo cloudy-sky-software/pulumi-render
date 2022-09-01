@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Render.Services.Inputs
 {
 
-    public sealed class BackgroundWorkerServiceDetailsArgs : Pulumi.ResourceArgs
+    public sealed class BackgroundWorkerServiceDetailsArgs : global::Pulumi.ResourceArgs
     {
         [Input("disk")]
         public Input<Inputs.DiskArgs>? Disk { get; set; }
@@ -46,5 +46,6 @@ namespace Pulumi.Render.Services.Inputs
             PullRequestPreviewsEnabled = Pulumi.Render.Services.BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled.No;
             Region = Pulumi.Render.Services.BackgroundWorkerServiceDetailsRegion.Oregon;
         }
+        public static new BackgroundWorkerServiceDetailsArgs Empty => new BackgroundWorkerServiceDetailsArgs();
     }
 }

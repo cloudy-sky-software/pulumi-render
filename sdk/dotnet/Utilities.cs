@@ -75,7 +75,7 @@ namespace Pulumi.Render
         }
     }
 
-    internal sealed class RenderResourceTypeAttribute : Pulumi.ResourceTypeAttribute
+    internal sealed class RenderResourceTypeAttribute : global::Pulumi.ResourceTypeAttribute
     {
         public RenderResourceTypeAttribute(string type) : base(type, Utilities.Version)
         {

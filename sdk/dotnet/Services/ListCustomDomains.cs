@@ -19,7 +19,7 @@ namespace Pulumi.Render.Services
     }
 
 
-    public sealed class ListCustomDomainsArgs : Pulumi.InvokeArgs
+    public sealed class ListCustomDomainsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// (Required) The ID of the service
@@ -30,9 +30,10 @@ namespace Pulumi.Render.Services
         public ListCustomDomainsArgs()
         {
         }
+        public static new ListCustomDomainsArgs Empty => new ListCustomDomainsArgs();
     }
 
-    public sealed class ListCustomDomainsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class ListCustomDomainsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// (Required) The ID of the service
@@ -43,6 +44,7 @@ namespace Pulumi.Render.Services
         public ListCustomDomainsInvokeArgs()
         {
         }
+        public static new ListCustomDomainsInvokeArgs Empty => new ListCustomDomainsInvokeArgs();
     }
 
 

@@ -13,7 +13,7 @@ namespace Pulumi.Render.Services
     /// A private service
     /// </summary>
     [RenderResourceType("render:services:PrivateService")]
-    public partial class PrivateService : Pulumi.CustomResource
+    public partial class PrivateService : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Whether to auto deploy the service or not upon git push.
@@ -119,7 +119,7 @@ namespace Pulumi.Render.Services
         }
     }
 
-    public sealed class PrivateServiceArgs : Pulumi.ResourceArgs
+    public sealed class PrivateServiceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether to auto deploy the service or not upon git push.
@@ -201,5 +201,6 @@ namespace Pulumi.Render.Services
             AutoDeploy = Pulumi.Render.Services.ServiceAutoDeploy.No;
             Type = "private_service";
         }
+        public static new PrivateServiceArgs Empty => new PrivateServiceArgs();
     }
 }

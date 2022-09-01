@@ -16,11 +16,12 @@ namespace Pulumi.Render.Owners
     }
 
 
-    public sealed class ListOwnersArgs : Pulumi.InvokeArgs
+    public sealed class ListOwnersArgs : global::Pulumi.InvokeArgs
     {
         public ListOwnersArgs()
         {
         }
+        public static new ListOwnersArgs Empty => new ListOwnersArgs();
     }
 
 

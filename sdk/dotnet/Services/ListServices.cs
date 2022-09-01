@@ -16,11 +16,12 @@ namespace Pulumi.Render.Services
     }
 
 
-    public sealed class ListServicesArgs : Pulumi.InvokeArgs
+    public sealed class ListServicesArgs : global::Pulumi.InvokeArgs
     {
         public ListServicesArgs()
         {
         }
+        public static new ListServicesArgs Empty => new ListServicesArgs();
     }
 
 

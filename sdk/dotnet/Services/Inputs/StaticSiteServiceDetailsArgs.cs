@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Render.Services.Inputs
 {
 
-    public sealed class StaticSiteServiceDetailsArgs : Pulumi.ResourceArgs
+    public sealed class StaticSiteServiceDetailsArgs : global::Pulumi.ResourceArgs
     {
         [Input("buildCommand")]
         public Input<string>? BuildCommand { get; set; }
@@ -51,5 +51,6 @@ namespace Pulumi.Render.Services.Inputs
             PublishPath = "public";
             PullRequestPreviewsEnabled = Pulumi.Render.Services.StaticSiteServiceDetailsPullRequestPreviewsEnabled.No;
         }
+        public static new StaticSiteServiceDetailsArgs Empty => new StaticSiteServiceDetailsArgs();
     }
 }

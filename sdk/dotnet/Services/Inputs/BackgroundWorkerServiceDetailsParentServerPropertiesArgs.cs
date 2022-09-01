@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Render.Services.Inputs
 {
 
-    public sealed class BackgroundWorkerServiceDetailsParentServerPropertiesArgs : Pulumi.ResourceArgs
+    public sealed class BackgroundWorkerServiceDetailsParentServerPropertiesArgs : global::Pulumi.ResourceArgs
     {
         [Input("id")]
         public Input<string>? Id { get; set; }
@@ -21,5 +21,6 @@ namespace Pulumi.Render.Services.Inputs
         public BackgroundWorkerServiceDetailsParentServerPropertiesArgs()
         {
         }
+        public static new BackgroundWorkerServiceDetailsParentServerPropertiesArgs Empty => new BackgroundWorkerServiceDetailsParentServerPropertiesArgs();
     }
 }

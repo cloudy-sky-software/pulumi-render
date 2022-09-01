@@ -19,7 +19,7 @@ namespace Pulumi.Render.Services
     }
 
 
-    public sealed class GetStaticSiteArgs : Pulumi.InvokeArgs
+    public sealed class GetStaticSiteArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// (Required) The ID of the service
@@ -30,9 +30,10 @@ namespace Pulumi.Render.Services
         public GetStaticSiteArgs()
         {
         }
+        public static new GetStaticSiteArgs Empty => new GetStaticSiteArgs();
     }
 
-    public sealed class GetStaticSiteInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetStaticSiteInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// (Required) The ID of the service
@@ -43,6 +44,7 @@ namespace Pulumi.Render.Services
         public GetStaticSiteInvokeArgs()
         {
         }
+        public static new GetStaticSiteInvokeArgs Empty => new GetStaticSiteInvokeArgs();
     }
 
 

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Render.Services.Inputs
 {
 
-    public sealed class WebServiceServiceDetailsArgs : Pulumi.ResourceArgs
+    public sealed class WebServiceServiceDetailsArgs : global::Pulumi.ResourceArgs
     {
         [Input("disk")]
         public Input<Inputs.DiskArgs>? Disk { get; set; }
@@ -57,5 +57,6 @@ namespace Pulumi.Render.Services.Inputs
             PullRequestPreviewsEnabled = Pulumi.Render.Services.WebServiceServiceDetailsPullRequestPreviewsEnabled.No;
             Region = Pulumi.Render.Services.WebServiceServiceDetailsRegion.Oregon;
         }
+        public static new WebServiceServiceDetailsArgs Empty => new WebServiceServiceDetailsArgs();
     }
 }

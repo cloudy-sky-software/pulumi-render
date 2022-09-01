@@ -19,7 +19,7 @@ namespace Pulumi.Render.Services
     }
 
 
-    public sealed class GetBackgroundWorkerArgs : Pulumi.InvokeArgs
+    public sealed class GetBackgroundWorkerArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// (Required) The ID of the service
@@ -30,9 +30,10 @@ namespace Pulumi.Render.Services
         public GetBackgroundWorkerArgs()
         {
         }
+        public static new GetBackgroundWorkerArgs Empty => new GetBackgroundWorkerArgs();
     }
 
-    public sealed class GetBackgroundWorkerInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetBackgroundWorkerInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// (Required) The ID of the service
@@ -43,6 +44,7 @@ namespace Pulumi.Render.Services
         public GetBackgroundWorkerInvokeArgs()
         {
         }
+        public static new GetBackgroundWorkerInvokeArgs Empty => new GetBackgroundWorkerInvokeArgs();
     }
 
 

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Render.Services.Inputs
 {
 
-    public sealed class DiskArgs : Pulumi.ResourceArgs
+    public sealed class DiskArgs : global::Pulumi.ResourceArgs
     {
         [Input("mountPath", required: true)]
         public Input<string> MountPath { get; set; } = null!;
@@ -25,5 +25,6 @@ namespace Pulumi.Render.Services.Inputs
         {
             SizeGB = 1;
         }
+        public static new DiskArgs Empty => new DiskArgs();
     }
 }

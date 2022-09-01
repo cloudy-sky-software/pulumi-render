@@ -19,7 +19,7 @@ namespace Pulumi.Render.Services
     }
 
 
-    public sealed class GetCronJobArgs : Pulumi.InvokeArgs
+    public sealed class GetCronJobArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// (Required) The ID of the service
@@ -30,9 +30,10 @@ namespace Pulumi.Render.Services
         public GetCronJobArgs()
         {
         }
+        public static new GetCronJobArgs Empty => new GetCronJobArgs();
     }
 
-    public sealed class GetCronJobInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetCronJobInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// (Required) The ID of the service
@@ -43,6 +44,7 @@ namespace Pulumi.Render.Services
         public GetCronJobInvokeArgs()
         {
         }
+        public static new GetCronJobInvokeArgs Empty => new GetCronJobInvokeArgs();
     }
 
 

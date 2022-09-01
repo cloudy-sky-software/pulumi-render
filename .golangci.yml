@@ -8,7 +8,6 @@ run:
 linters:
   enable-all: false
   enable:
-    - deadcode
     - errcheck
     - goconst
     - gofmt
@@ -18,9 +17,8 @@ linters:
     - misspell
     - nakedret
     - revive
-    - structcheck
     - unconvert
-    - varcheck
+    - unused
   disable:
     - lll
     - staticcheck

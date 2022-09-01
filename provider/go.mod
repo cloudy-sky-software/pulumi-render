@@ -1,6 +1,6 @@
 module github.com/cloudy-sky-software/pulumi-render/provider
 
-go 1.19
+go 1.18
 
 require (
 	github.com/golang/protobuf v1.5.2
@@ -73,7 +73,6 @@ require (
 	github.com/google/wire v0.5.0 // indirect
 	github.com/googleapis/enterprise-certificate-proxy v0.1.0 // indirect
 	github.com/googleapis/gax-go/v2 v2.5.1 // indirect
-	github.com/googleapis/go-type-adapters v1.0.0 // indirect
 	github.com/gorilla/mux v1.8.0 // indirect
 	github.com/grpc-ecosystem/grpc-opentracing v0.0.0-20180507213350-8e809c8a8645 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
@@ -96,7 +95,6 @@ require (
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/kballard/go-shellquote v0.0.0-20180428030007-95032a82bc51 // indirect
-	github.com/kr/text v0.2.0 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.16 // indirect
 	github.com/mattn/go-runewidth v0.0.13 // indirect
@@ -117,7 +115,6 @@ require (
 	github.com/pkg/term v1.1.0 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/rivo/uniseg v0.3.4 // indirect
-	github.com/rjeczalik/notify v0.9.2 // indirect
 	github.com/rogpeppe/go-internal v1.9.0 // indirect
 	github.com/ryanuber/go-glob v1.0.0 // indirect
 	github.com/sabhiram/go-gitignore v0.0.0-20210923224102-525f6e181f06 // indirect
@@ -125,8 +122,6 @@ require (
 	github.com/segmentio/encoding v0.3.5 // indirect
 	github.com/sergi/go-diff v1.2.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
-	github.com/src-d/gcfg v1.4.0 // indirect
-	github.com/stretchr/objx v0.4.0 // indirect
 	github.com/texttheater/golang-levenshtein v1.0.1 // indirect
 	github.com/tweekmonster/luser v0.0.0-20161003172636-3fa38070dbd7 // indirect
 	github.com/uber/jaeger-client-go v2.30.0+incompatible // indirect
@@ -145,8 +140,6 @@ require (
 	google.golang.org/protobuf v1.28.1 // indirect
 	gopkg.in/AlecAivazis/survey.v1 v1.8.9-0.20200217094205-6773bdf39b7f // indirect
 	gopkg.in/square/go-jose.v2 v2.6.0 // indirect
-	gopkg.in/src-d/go-billy.v4 v4.3.2 // indirect
-	gopkg.in/src-d/go-git.v4 v4.13.1 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect

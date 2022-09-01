@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Render.Services
 {
     [RenderResourceType("render:services:Suspend")]
-    public partial class Suspend : Pulumi.CustomResource
+    public partial class Suspend : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Create a Suspend resource with the given unique name, arguments, and options.
@@ -55,7 +55,7 @@ namespace Pulumi.Render.Services
         }
     }
 
-    public sealed class SuspendArgs : Pulumi.ResourceArgs
+    public sealed class SuspendArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// (Required) The ID of the service
@@ -66,5 +66,6 @@ namespace Pulumi.Render.Services
         public SuspendArgs()
         {
         }
+        public static new SuspendArgs Empty => new SuspendArgs();
     }
 }

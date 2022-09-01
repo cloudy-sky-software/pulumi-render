@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Render.Services.Inputs
 {
 
-    public sealed class NativeEnvironmentDetailsArgs : Pulumi.ResourceArgs
+    public sealed class NativeEnvironmentDetailsArgs : global::Pulumi.ResourceArgs
     {
         [Input("buildCommand", required: true)]
         public Input<string> BuildCommand { get; set; } = null!;
@@ -21,5 +21,6 @@ namespace Pulumi.Render.Services.Inputs
         public NativeEnvironmentDetailsArgs()
         {
         }
+        public static new NativeEnvironmentDetailsArgs Empty => new NativeEnvironmentDetailsArgs();
     }
 }

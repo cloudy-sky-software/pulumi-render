@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Render.Services.Inputs
 {
 
-    public sealed class SecretFileArgs : Pulumi.ResourceArgs
+    public sealed class SecretFileArgs : global::Pulumi.ResourceArgs
     {
         [Input("contents", required: true)]
         public Input<string> Contents { get; set; } = null!;
@@ -21,5 +21,6 @@ namespace Pulumi.Render.Services.Inputs
         public SecretFileArgs()
         {
         }
+        public static new SecretFileArgs Empty => new SecretFileArgs();
     }
 }

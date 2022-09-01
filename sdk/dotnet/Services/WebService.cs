@@ -13,7 +13,7 @@ namespace Pulumi.Render.Services
     /// A web service
     /// </summary>
     [RenderResourceType("render:services:WebService")]
-    public partial class WebService : Pulumi.CustomResource
+    public partial class WebService : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Whether to auto deploy the service or not upon git push.
@@ -119,7 +119,7 @@ namespace Pulumi.Render.Services
         }
     }
 
-    public sealed class WebServiceArgs : Pulumi.ResourceArgs
+    public sealed class WebServiceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether to auto deploy the service or not upon git push.
@@ -201,5 +201,6 @@ namespace Pulumi.Render.Services
             AutoDeploy = Pulumi.Render.Services.ServiceAutoDeploy.No;
             Type = "web_service";
         }
+        public static new WebServiceArgs Empty => new WebServiceArgs();
     }
 }

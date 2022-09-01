@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Render.Services.Inputs
 {
 
-    public sealed class CronJobServiceDetailsArgs : Pulumi.ResourceArgs
+    public sealed class CronJobServiceDetailsArgs : global::Pulumi.ResourceArgs
     {
         [Input("env", required: true)]
         public Input<Pulumi.Render.Services.CronJobServiceDetailsEnv> Env { get; set; } = null!;
@@ -35,5 +35,6 @@ namespace Pulumi.Render.Services.Inputs
             Plan = Pulumi.Render.Services.CronJobServiceDetailsPlan.Starter;
             Region = Pulumi.Render.Services.CronJobServiceDetailsRegion.Oregon;
         }
+        public static new CronJobServiceDetailsArgs Empty => new CronJobServiceDetailsArgs();
     }
 }

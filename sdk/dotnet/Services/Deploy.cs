@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Render.Services
 {
     [RenderResourceType("render:services:Deploy")]
-    public partial class Deploy : Pulumi.CustomResource
+    public partial class Deploy : global::Pulumi.CustomResource
     {
         [Output("clearCache")]
         public Output<Pulumi.Render.Services.ClearCache?> ClearCache { get; private set; } = null!;
@@ -62,7 +62,7 @@ namespace Pulumi.Render.Services
         }
     }
 
-    public sealed class DeployArgs : Pulumi.ResourceArgs
+    public sealed class DeployArgs : global::Pulumi.ResourceArgs
     {
         [Input("clearCache")]
         public Input<Pulumi.Render.Services.ClearCache>? ClearCache { get; set; }
@@ -77,5 +77,6 @@ namespace Pulumi.Render.Services
         {
             ClearCache = Pulumi.Render.Services.ClearCache.DoNotClear;
         }
+        public static new DeployArgs Empty => new DeployArgs();
     }
 }

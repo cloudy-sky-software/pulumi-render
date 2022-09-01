@@ -19,7 +19,7 @@ namespace Pulumi.Render.Services
     }
 
 
-    public sealed class GetCustomDomainArgs : Pulumi.InvokeArgs
+    public sealed class GetCustomDomainArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// (Required) The ID or name of the custom domain
@@ -36,9 +36,10 @@ namespace Pulumi.Render.Services
         public GetCustomDomainArgs()
         {
         }
+        public static new GetCustomDomainArgs Empty => new GetCustomDomainArgs();
     }
 
-    public sealed class GetCustomDomainInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetCustomDomainInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// (Required) The ID or name of the custom domain
@@ -55,6 +56,7 @@ namespace Pulumi.Render.Services
         public GetCustomDomainInvokeArgs()
         {
         }
+        public static new GetCustomDomainInvokeArgs Empty => new GetCustomDomainInvokeArgs();
     }
 
 

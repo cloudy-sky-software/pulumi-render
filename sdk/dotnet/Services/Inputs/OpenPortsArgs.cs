@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Render.Services.Inputs
 {
 
-    public sealed class OpenPortsArgs : Pulumi.ResourceArgs
+    public sealed class OpenPortsArgs : global::Pulumi.ResourceArgs
     {
         [Input("port")]
         public Input<double>? Port { get; set; }
@@ -21,5 +21,6 @@ namespace Pulumi.Render.Services.Inputs
         public OpenPortsArgs()
         {
         }
+        public static new OpenPortsArgs Empty => new OpenPortsArgs();
     }
 }

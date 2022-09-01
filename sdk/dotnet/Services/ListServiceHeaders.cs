@@ -19,7 +19,7 @@ namespace Pulumi.Render.Services
     }
 
 
-    public sealed class ListServiceHeadersArgs : Pulumi.InvokeArgs
+    public sealed class ListServiceHeadersArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// (Required) The ID of the service
@@ -30,9 +30,10 @@ namespace Pulumi.Render.Services
         public ListServiceHeadersArgs()
         {
         }
+        public static new ListServiceHeadersArgs Empty => new ListServiceHeadersArgs();
     }
 
-    public sealed class ListServiceHeadersInvokeArgs : Pulumi.InvokeArgs
+    public sealed class ListServiceHeadersInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// (Required) The ID of the service
@@ -43,6 +44,7 @@ namespace Pulumi.Render.Services
         public ListServiceHeadersInvokeArgs()
         {
         }
+        public static new ListServiceHeadersInvokeArgs Empty => new ListServiceHeadersInvokeArgs();
     }
 
 

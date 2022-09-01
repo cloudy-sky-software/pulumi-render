@@ -19,7 +19,7 @@ namespace Pulumi.Render.Owners
     }
 
 
-    public sealed class GetOwnerArgs : Pulumi.InvokeArgs
+    public sealed class GetOwnerArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// (Required) The ID of the user or team
@@ -30,9 +30,10 @@ namespace Pulumi.Render.Owners
         public GetOwnerArgs()
         {
         }
+        public static new GetOwnerArgs Empty => new GetOwnerArgs();
     }
 
-    public sealed class GetOwnerInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetOwnerInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// (Required) The ID of the user or team
@@ -43,6 +44,7 @@ namespace Pulumi.Render.Owners
         public GetOwnerInvokeArgs()
         {
         }
+        public static new GetOwnerInvokeArgs Empty => new GetOwnerInvokeArgs();
     }
 
 

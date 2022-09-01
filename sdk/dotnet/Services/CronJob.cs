@@ -13,7 +13,7 @@ namespace Pulumi.Render.Services
     /// A cron job
     /// </summary>
     [RenderResourceType("render:services:CronJob")]
-    public partial class CronJob : Pulumi.CustomResource
+    public partial class CronJob : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Whether to auto deploy the service or not upon git push.
@@ -119,7 +119,7 @@ namespace Pulumi.Render.Services
         }
     }
 
-    public sealed class CronJobArgs : Pulumi.ResourceArgs
+    public sealed class CronJobArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether to auto deploy the service or not upon git push.
@@ -201,5 +201,6 @@ namespace Pulumi.Render.Services
             AutoDeploy = Pulumi.Render.Services.ServiceAutoDeploy.No;
             Type = "cron_job";
         }
+        public static new CronJobArgs Empty => new CronJobArgs();
     }
 }

@@ -13,7 +13,7 @@ namespace Pulumi.Render.Services.Inputs
     /// <summary>
     /// A service header object
     /// </summary>
-    public sealed class ServiceHeaderArgs : Pulumi.ResourceArgs
+    public sealed class ServiceHeaderArgs : global::Pulumi.ResourceArgs
     {
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
@@ -27,5 +27,6 @@ namespace Pulumi.Render.Services.Inputs
         public ServiceHeaderArgs()
         {
         }
+        public static new ServiceHeaderArgs Empty => new ServiceHeaderArgs();
     }
 }

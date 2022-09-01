@@ -15,7 +15,7 @@ namespace Pulumi.Render.Services
     /// ## Example Usage
     /// </summary>
     [RenderResourceType("render:services:StaticSite")]
-    public partial class StaticSite : Pulumi.CustomResource
+    public partial class StaticSite : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Whether to auto deploy the service or not upon git push.
@@ -121,7 +121,7 @@ namespace Pulumi.Render.Services
         }
     }
 
-    public sealed class StaticSiteArgs : Pulumi.ResourceArgs
+    public sealed class StaticSiteArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether to auto deploy the service or not upon git push.
@@ -203,5 +203,6 @@ namespace Pulumi.Render.Services
             AutoDeploy = Pulumi.Render.Services.ServiceAutoDeploy.No;
             Type = "static_site";
         }
+        public static new StaticSiteArgs Empty => new StaticSiteArgs();
     }
 }

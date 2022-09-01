@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Render.Services.Inputs
 {
 
-    public sealed class EnvVarKeyValueArgs : Pulumi.ResourceArgs
+    public sealed class EnvVarKeyValueArgs : global::Pulumi.ResourceArgs
     {
         [Input("generateValue")]
         public Input<Pulumi.Render.Services.EnvVarKeyValueGenerateValue>? GenerateValue { get; set; }
@@ -24,5 +24,6 @@ namespace Pulumi.Render.Services.Inputs
         public EnvVarKeyValueArgs()
         {
         }
+        public static new EnvVarKeyValueArgs Empty => new EnvVarKeyValueArgs();
     }
 }

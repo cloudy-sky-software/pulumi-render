@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Render.Services.Inputs
 {
 
-    public sealed class DockerDetailsArgs : Pulumi.ResourceArgs
+    public sealed class DockerDetailsArgs : global::Pulumi.ResourceArgs
     {
         [Input("dockerCommand", required: true)]
         public Input<string> DockerCommand { get; set; } = null!;
@@ -24,5 +24,6 @@ namespace Pulumi.Render.Services.Inputs
         public DockerDetailsArgs()
         {
         }
+        public static new DockerDetailsArgs Empty => new DockerDetailsArgs();
     }
 }

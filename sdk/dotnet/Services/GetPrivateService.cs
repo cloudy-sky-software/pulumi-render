@@ -19,7 +19,7 @@ namespace Pulumi.Render.Services
     }
 
 
-    public sealed class GetPrivateServiceArgs : Pulumi.InvokeArgs
+    public sealed class GetPrivateServiceArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// (Required) The ID of the service
@@ -30,9 +30,10 @@ namespace Pulumi.Render.Services
         public GetPrivateServiceArgs()
         {
         }
+        public static new GetPrivateServiceArgs Empty => new GetPrivateServiceArgs();
     }
 
-    public sealed class GetPrivateServiceInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetPrivateServiceInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// (Required) The ID of the service
@@ -43,6 +44,7 @@ namespace Pulumi.Render.Services
         public GetPrivateServiceInvokeArgs()
         {
         }
+        public static new GetPrivateServiceInvokeArgs Empty => new GetPrivateServiceInvokeArgs();
     }
 
 

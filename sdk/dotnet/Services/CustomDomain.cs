@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Render.Services
 {
     [RenderResourceType("render:services:CustomDomain")]
-    public partial class CustomDomain : Pulumi.CustomResource
+    public partial class CustomDomain : global::Pulumi.CustomResource
     {
         [Output("createdAt")]
         public Output<string?> CreatedAt { get; private set; } = null!;
@@ -77,7 +77,7 @@ namespace Pulumi.Render.Services
         }
     }
 
-    public sealed class CustomDomainArgs : Pulumi.ResourceArgs
+    public sealed class CustomDomainArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// (Required) The ID of the service
@@ -94,5 +94,6 @@ namespace Pulumi.Render.Services
         public CustomDomainArgs()
         {
         }
+        public static new CustomDomainArgs Empty => new CustomDomainArgs();
     }
 }

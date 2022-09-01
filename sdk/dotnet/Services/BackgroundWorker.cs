@@ -13,7 +13,7 @@ namespace Pulumi.Render.Services
     /// A background worker service
     /// </summary>
     [RenderResourceType("render:services:BackgroundWorker")]
-    public partial class BackgroundWorker : Pulumi.CustomResource
+    public partial class BackgroundWorker : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Whether to auto deploy the service or not upon git push.
@@ -119,7 +119,7 @@ namespace Pulumi.Render.Services
         }
     }
 
-    public sealed class BackgroundWorkerArgs : Pulumi.ResourceArgs
+    public sealed class BackgroundWorkerArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether to auto deploy the service or not upon git push.
@@ -201,5 +201,6 @@ namespace Pulumi.Render.Services
             AutoDeploy = Pulumi.Render.Services.ServiceAutoDeploy.No;
             Type = "background_worker";
         }
+        public static new BackgroundWorkerArgs Empty => new BackgroundWorkerArgs();
     }
 }

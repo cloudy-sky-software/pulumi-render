@@ -19,7 +19,7 @@ namespace Pulumi.Render.Services
     }
 
 
-    public sealed class ListStaticSiteRoutesArgs : Pulumi.InvokeArgs
+    public sealed class ListStaticSiteRoutesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// (Required) The ID of the service
@@ -30,9 +30,10 @@ namespace Pulumi.Render.Services
         public ListStaticSiteRoutesArgs()
         {
         }
+        public static new ListStaticSiteRoutesArgs Empty => new ListStaticSiteRoutesArgs();
     }
 
-    public sealed class ListStaticSiteRoutesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class ListStaticSiteRoutesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// (Required) The ID of the service
@@ -43,6 +44,7 @@ namespace Pulumi.Render.Services
         public ListStaticSiteRoutesInvokeArgs()
         {
         }
+        public static new ListStaticSiteRoutesInvokeArgs Empty => new ListStaticSiteRoutesInvokeArgs();
     }
 
 

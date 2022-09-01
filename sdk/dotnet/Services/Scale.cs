@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Render.Services
 {
     [RenderResourceType("render:services:Scale")]
-    public partial class Scale : Pulumi.CustomResource
+    public partial class Scale : global::Pulumi.CustomResource
     {
         [Output("numInstances")]
         public Output<double> NumInstances { get; private set; } = null!;
@@ -59,7 +59,7 @@ namespace Pulumi.Render.Services
         }
     }
 
-    public sealed class ScaleArgs : Pulumi.ResourceArgs
+    public sealed class ScaleArgs : global::Pulumi.ResourceArgs
     {
         [Input("numInstances", required: true)]
         public Input<double> NumInstances { get; set; } = null!;
@@ -73,5 +73,6 @@ namespace Pulumi.Render.Services
         public ScaleArgs()
         {
         }
+        public static new ScaleArgs Empty => new ScaleArgs();
     }
 }

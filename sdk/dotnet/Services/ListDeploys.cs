@@ -19,7 +19,7 @@ namespace Pulumi.Render.Services
     }
 
 
-    public sealed class ListDeploysArgs : Pulumi.InvokeArgs
+    public sealed class ListDeploysArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// (Required) The ID of the service
@@ -30,9 +30,10 @@ namespace Pulumi.Render.Services
         public ListDeploysArgs()
         {
         }
+        public static new ListDeploysArgs Empty => new ListDeploysArgs();
     }
 
-    public sealed class ListDeploysInvokeArgs : Pulumi.InvokeArgs
+    public sealed class ListDeploysInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// (Required) The ID of the service
@@ -43,6 +44,7 @@ namespace Pulumi.Render.Services
         public ListDeploysInvokeArgs()
         {
         }
+        public static new ListDeploysInvokeArgs Empty => new ListDeploysInvokeArgs();
     }
 
 

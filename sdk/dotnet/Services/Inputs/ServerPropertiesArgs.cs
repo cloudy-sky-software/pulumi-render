@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Render.Services.Inputs
 {
 
-    public sealed class ServerPropertiesArgs : Pulumi.ResourceArgs
+    public sealed class ServerPropertiesArgs : global::Pulumi.ResourceArgs
     {
         [Input("id")]
         public Input<string>? Id { get; set; }
@@ -21,5 +21,6 @@ namespace Pulumi.Render.Services.Inputs
         public ServerPropertiesArgs()
         {
         }
+        public static new ServerPropertiesArgs Empty => new ServerPropertiesArgs();
     }
 }

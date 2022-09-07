@@ -95,7 +95,7 @@ func (val *BackgroundWorkerServiceDetails) Defaults() *BackgroundWorkerServiceDe
 // BackgroundWorkerServiceDetailsInput is an input type that accepts BackgroundWorkerServiceDetailsArgs and BackgroundWorkerServiceDetailsOutput values.
 // You can construct a concrete instance of `BackgroundWorkerServiceDetailsInput` via:
 //
-//          BackgroundWorkerServiceDetailsArgs{...}
+//	BackgroundWorkerServiceDetailsArgs{...}
 type BackgroundWorkerServiceDetailsInput interface {
 	pulumi.Input
 
@@ -159,11 +159,11 @@ func (i BackgroundWorkerServiceDetailsArgs) ToBackgroundWorkerServiceDetailsPtrO
 // BackgroundWorkerServiceDetailsPtrInput is an input type that accepts BackgroundWorkerServiceDetailsArgs, BackgroundWorkerServiceDetailsPtr and BackgroundWorkerServiceDetailsPtrOutput values.
 // You can construct a concrete instance of `BackgroundWorkerServiceDetailsPtrInput` via:
 //
-//          BackgroundWorkerServiceDetailsArgs{...}
+//	        BackgroundWorkerServiceDetailsArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type BackgroundWorkerServiceDetailsPtrInput interface {
 	pulumi.Input
 
@@ -366,7 +366,7 @@ type BackgroundWorkerServiceDetailsParentServerProperties struct {
 // BackgroundWorkerServiceDetailsParentServerPropertiesInput is an input type that accepts BackgroundWorkerServiceDetailsParentServerPropertiesArgs and BackgroundWorkerServiceDetailsParentServerPropertiesOutput values.
 // You can construct a concrete instance of `BackgroundWorkerServiceDetailsParentServerPropertiesInput` via:
 //
-//          BackgroundWorkerServiceDetailsParentServerPropertiesArgs{...}
+//	BackgroundWorkerServiceDetailsParentServerPropertiesArgs{...}
 type BackgroundWorkerServiceDetailsParentServerPropertiesInput interface {
 	pulumi.Input
 
@@ -402,11 +402,11 @@ func (i BackgroundWorkerServiceDetailsParentServerPropertiesArgs) ToBackgroundWo
 // BackgroundWorkerServiceDetailsParentServerPropertiesPtrInput is an input type that accepts BackgroundWorkerServiceDetailsParentServerPropertiesArgs, BackgroundWorkerServiceDetailsParentServerPropertiesPtr and BackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput values.
 // You can construct a concrete instance of `BackgroundWorkerServiceDetailsParentServerPropertiesPtrInput` via:
 //
-//          BackgroundWorkerServiceDetailsParentServerPropertiesArgs{...}
+//	        BackgroundWorkerServiceDetailsParentServerPropertiesArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type BackgroundWorkerServiceDetailsParentServerPropertiesPtrInput interface {
 	pulumi.Input
 
@@ -661,7 +661,7 @@ func (val *CronJobServiceDetails) Defaults() *CronJobServiceDetails {
 // CronJobServiceDetailsInput is an input type that accepts CronJobServiceDetailsArgs and CronJobServiceDetailsOutput values.
 // You can construct a concrete instance of `CronJobServiceDetailsInput` via:
 //
-//          CronJobServiceDetailsArgs{...}
+//	CronJobServiceDetailsArgs{...}
 type CronJobServiceDetailsInput interface {
 	pulumi.Input
 
@@ -715,11 +715,11 @@ func (i CronJobServiceDetailsArgs) ToCronJobServiceDetailsPtrOutputWithContext(c
 // CronJobServiceDetailsPtrInput is an input type that accepts CronJobServiceDetailsArgs, CronJobServiceDetailsPtr and CronJobServiceDetailsPtrOutput values.
 // You can construct a concrete instance of `CronJobServiceDetailsPtrInput` via:
 //
-//          CronJobServiceDetailsArgs{...}
+//	        CronJobServiceDetailsArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type CronJobServiceDetailsPtrInput interface {
 	pulumi.Input
 
@@ -1183,7 +1183,7 @@ func (val *Disk) Defaults() *Disk {
 // DiskInput is an input type that accepts DiskArgs and DiskOutput values.
 // You can construct a concrete instance of `DiskInput` via:
 //
-//          DiskArgs{...}
+//	DiskArgs{...}
 type DiskInput interface {
 	pulumi.Input
 
@@ -1231,11 +1231,11 @@ func (i DiskArgs) ToDiskPtrOutputWithContext(ctx context.Context) DiskPtrOutput 
 // DiskPtrInput is an input type that accepts DiskArgs, DiskPtr and DiskPtrOutput values.
 // You can construct a concrete instance of `DiskPtrInput` via:
 //
-//          DiskArgs{...}
+//	        DiskArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type DiskPtrInput interface {
 	pulumi.Input
 
@@ -1363,7 +1363,7 @@ type EnvVarKeyValue struct {
 // EnvVarKeyValueInput is an input type that accepts EnvVarKeyValueArgs and EnvVarKeyValueOutput values.
 // You can construct a concrete instance of `EnvVarKeyValueInput` via:
 //
-//          EnvVarKeyValueArgs{...}
+//	EnvVarKeyValueArgs{...}
 type EnvVarKeyValueInput interface {
 	pulumi.Input
 
@@ -1392,7 +1392,7 @@ func (i EnvVarKeyValueArgs) ToEnvVarKeyValueOutputWithContext(ctx context.Contex
 // EnvVarKeyValueArrayInput is an input type that accepts EnvVarKeyValueArray and EnvVarKeyValueArrayOutput values.
 // You can construct a concrete instance of `EnvVarKeyValueArrayInput` via:
 //
-//          EnvVarKeyValueArray{ EnvVarKeyValueArgs{...} }
+//	EnvVarKeyValueArray{ EnvVarKeyValueArgs{...} }
 type EnvVarKeyValueArrayInput interface {
 	pulumi.Input
 
@@ -2394,7 +2394,7 @@ type OpenPorts struct {
 // OpenPortsInput is an input type that accepts OpenPortsArgs and OpenPortsOutput values.
 // You can construct a concrete instance of `OpenPortsInput` via:
 //
-//          OpenPortsArgs{...}
+//	OpenPortsArgs{...}
 type OpenPortsInput interface {
 	pulumi.Input
 
@@ -2422,7 +2422,7 @@ func (i OpenPortsArgs) ToOpenPortsOutputWithContext(ctx context.Context) OpenPor
 // OpenPortsArrayInput is an input type that accepts OpenPortsArray and OpenPortsArrayOutput values.
 // You can construct a concrete instance of `OpenPortsArrayInput` via:
 //
-//          OpenPortsArray{ OpenPortsArgs{...} }
+//	OpenPortsArray{ OpenPortsArgs{...} }
 type OpenPortsArrayInput interface {
 	pulumi.Input
 
@@ -2572,7 +2572,7 @@ func (val *PrivateServiceDetails) Defaults() *PrivateServiceDetails {
 // PrivateServiceDetailsInput is an input type that accepts PrivateServiceDetailsArgs and PrivateServiceDetailsOutput values.
 // You can construct a concrete instance of `PrivateServiceDetailsInput` via:
 //
-//          PrivateServiceDetailsArgs{...}
+//	PrivateServiceDetailsArgs{...}
 type PrivateServiceDetailsInput interface {
 	pulumi.Input
 
@@ -2637,11 +2637,11 @@ func (i PrivateServiceDetailsArgs) ToPrivateServiceDetailsPtrOutputWithContext(c
 // PrivateServiceDetailsPtrInput is an input type that accepts PrivateServiceDetailsArgs, PrivateServiceDetailsPtr and PrivateServiceDetailsPtrOutput values.
 // You can construct a concrete instance of `PrivateServiceDetailsPtrInput` via:
 //
-//          PrivateServiceDetailsArgs{...}
+//	        PrivateServiceDetailsArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type PrivateServiceDetailsPtrInput interface {
 	pulumi.Input
 
@@ -2855,7 +2855,7 @@ type PrivateServiceDetailsParentServerProperties struct {
 // PrivateServiceDetailsParentServerPropertiesInput is an input type that accepts PrivateServiceDetailsParentServerPropertiesArgs and PrivateServiceDetailsParentServerPropertiesOutput values.
 // You can construct a concrete instance of `PrivateServiceDetailsParentServerPropertiesInput` via:
 //
-//          PrivateServiceDetailsParentServerPropertiesArgs{...}
+//	PrivateServiceDetailsParentServerPropertiesArgs{...}
 type PrivateServiceDetailsParentServerPropertiesInput interface {
 	pulumi.Input
 
@@ -2891,11 +2891,11 @@ func (i PrivateServiceDetailsParentServerPropertiesArgs) ToPrivateServiceDetails
 // PrivateServiceDetailsParentServerPropertiesPtrInput is an input type that accepts PrivateServiceDetailsParentServerPropertiesArgs, PrivateServiceDetailsParentServerPropertiesPtr and PrivateServiceDetailsParentServerPropertiesPtrOutput values.
 // You can construct a concrete instance of `PrivateServiceDetailsParentServerPropertiesPtrInput` via:
 //
-//          PrivateServiceDetailsParentServerPropertiesArgs{...}
+//	        PrivateServiceDetailsParentServerPropertiesArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type PrivateServiceDetailsParentServerPropertiesPtrInput interface {
 	pulumi.Input
 
@@ -3003,7 +3003,7 @@ type SecretFile struct {
 // SecretFileInput is an input type that accepts SecretFileArgs and SecretFileOutput values.
 // You can construct a concrete instance of `SecretFileInput` via:
 //
-//          SecretFileArgs{...}
+//	SecretFileArgs{...}
 type SecretFileInput interface {
 	pulumi.Input
 
@@ -3031,7 +3031,7 @@ func (i SecretFileArgs) ToSecretFileOutputWithContext(ctx context.Context) Secre
 // SecretFileArrayInput is an input type that accepts SecretFileArray and SecretFileArrayOutput values.
 // You can construct a concrete instance of `SecretFileArrayInput` via:
 //
-//          SecretFileArray{ SecretFileArgs{...} }
+//	SecretFileArray{ SecretFileArgs{...} }
 type SecretFileArrayInput interface {
 	pulumi.Input
 
@@ -3103,7 +3103,7 @@ type ServerProperties struct {
 // ServerPropertiesInput is an input type that accepts ServerPropertiesArgs and ServerPropertiesOutput values.
 // You can construct a concrete instance of `ServerPropertiesInput` via:
 //
-//          ServerPropertiesArgs{...}
+//	ServerPropertiesArgs{...}
 type ServerPropertiesInput interface {
 	pulumi.Input
 
@@ -3160,7 +3160,7 @@ type ServiceHeader struct {
 // ServiceHeaderInput is an input type that accepts ServiceHeaderArgs and ServiceHeaderOutput values.
 // You can construct a concrete instance of `ServiceHeaderInput` via:
 //
-//          ServiceHeaderArgs{...}
+//	ServiceHeaderArgs{...}
 type ServiceHeaderInput interface {
 	pulumi.Input
 
@@ -3190,7 +3190,7 @@ func (i ServiceHeaderArgs) ToServiceHeaderOutputWithContext(ctx context.Context)
 // ServiceHeaderArrayInput is an input type that accepts ServiceHeaderArray and ServiceHeaderArrayOutput values.
 // You can construct a concrete instance of `ServiceHeaderArrayInput` via:
 //
-//          ServiceHeaderArray{ ServiceHeaderArgs{...} }
+//	ServiceHeaderArray{ ServiceHeaderArgs{...} }
 type ServiceHeaderArrayInput interface {
 	pulumi.Input
 
@@ -3363,7 +3363,7 @@ type StaticSiteRoute struct {
 // StaticSiteRouteInput is an input type that accepts StaticSiteRouteArgs and StaticSiteRouteOutput values.
 // You can construct a concrete instance of `StaticSiteRouteInput` via:
 //
-//          StaticSiteRouteArgs{...}
+//	StaticSiteRouteArgs{...}
 type StaticSiteRouteInput interface {
 	pulumi.Input
 
@@ -3393,7 +3393,7 @@ func (i StaticSiteRouteArgs) ToStaticSiteRouteOutputWithContext(ctx context.Cont
 // StaticSiteRouteArrayInput is an input type that accepts StaticSiteRouteArray and StaticSiteRouteArrayOutput values.
 // You can construct a concrete instance of `StaticSiteRouteArrayInput` via:
 //
-//          StaticSiteRouteArray{ StaticSiteRouteArgs{...} }
+//	StaticSiteRouteArray{ StaticSiteRouteArgs{...} }
 type StaticSiteRouteArrayInput interface {
 	pulumi.Input
 
@@ -3544,7 +3544,7 @@ func (val *StaticSiteServiceDetails) Defaults() *StaticSiteServiceDetails {
 // StaticSiteServiceDetailsInput is an input type that accepts StaticSiteServiceDetailsArgs and StaticSiteServiceDetailsOutput values.
 // You can construct a concrete instance of `StaticSiteServiceDetailsInput` via:
 //
-//          StaticSiteServiceDetailsArgs{...}
+//	StaticSiteServiceDetailsArgs{...}
 type StaticSiteServiceDetailsInput interface {
 	pulumi.Input
 
@@ -3600,11 +3600,11 @@ func (i StaticSiteServiceDetailsArgs) ToStaticSiteServiceDetailsPtrOutputWithCon
 // StaticSiteServiceDetailsPtrInput is an input type that accepts StaticSiteServiceDetailsArgs, StaticSiteServiceDetailsPtr and StaticSiteServiceDetailsPtrOutput values.
 // You can construct a concrete instance of `StaticSiteServiceDetailsPtrInput` via:
 //
-//          StaticSiteServiceDetailsArgs{...}
+//	        StaticSiteServiceDetailsArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type StaticSiteServiceDetailsPtrInput interface {
 	pulumi.Input
 
@@ -3783,7 +3783,7 @@ type StaticSiteServiceDetailsParentServerProperties struct {
 // StaticSiteServiceDetailsParentServerPropertiesInput is an input type that accepts StaticSiteServiceDetailsParentServerPropertiesArgs and StaticSiteServiceDetailsParentServerPropertiesOutput values.
 // You can construct a concrete instance of `StaticSiteServiceDetailsParentServerPropertiesInput` via:
 //
-//          StaticSiteServiceDetailsParentServerPropertiesArgs{...}
+//	StaticSiteServiceDetailsParentServerPropertiesArgs{...}
 type StaticSiteServiceDetailsParentServerPropertiesInput interface {
 	pulumi.Input
 
@@ -3819,11 +3819,11 @@ func (i StaticSiteServiceDetailsParentServerPropertiesArgs) ToStaticSiteServiceD
 // StaticSiteServiceDetailsParentServerPropertiesPtrInput is an input type that accepts StaticSiteServiceDetailsParentServerPropertiesArgs, StaticSiteServiceDetailsParentServerPropertiesPtr and StaticSiteServiceDetailsParentServerPropertiesPtrOutput values.
 // You can construct a concrete instance of `StaticSiteServiceDetailsParentServerPropertiesPtrInput` via:
 //
-//          StaticSiteServiceDetailsParentServerPropertiesArgs{...}
+//	        StaticSiteServiceDetailsParentServerPropertiesArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type StaticSiteServiceDetailsParentServerPropertiesPtrInput interface {
 	pulumi.Input
 
@@ -4010,7 +4010,7 @@ func (val *WebServiceServiceDetails) Defaults() *WebServiceServiceDetails {
 // WebServiceServiceDetailsInput is an input type that accepts WebServiceServiceDetailsArgs and WebServiceServiceDetailsOutput values.
 // You can construct a concrete instance of `WebServiceServiceDetailsInput` via:
 //
-//          WebServiceServiceDetailsArgs{...}
+//	WebServiceServiceDetailsArgs{...}
 type WebServiceServiceDetailsInput interface {
 	pulumi.Input
 
@@ -4076,11 +4076,11 @@ func (i WebServiceServiceDetailsArgs) ToWebServiceServiceDetailsPtrOutputWithCon
 // WebServiceServiceDetailsPtrInput is an input type that accepts WebServiceServiceDetailsArgs, WebServiceServiceDetailsPtr and WebServiceServiceDetailsPtrOutput values.
 // You can construct a concrete instance of `WebServiceServiceDetailsPtrInput` via:
 //
-//          WebServiceServiceDetailsArgs{...}
+//	        WebServiceServiceDetailsArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type WebServiceServiceDetailsPtrInput interface {
 	pulumi.Input
 
@@ -4309,7 +4309,7 @@ type WebServiceServiceDetailsParentServerProperties struct {
 // WebServiceServiceDetailsParentServerPropertiesInput is an input type that accepts WebServiceServiceDetailsParentServerPropertiesArgs and WebServiceServiceDetailsParentServerPropertiesOutput values.
 // You can construct a concrete instance of `WebServiceServiceDetailsParentServerPropertiesInput` via:
 //
-//          WebServiceServiceDetailsParentServerPropertiesArgs{...}
+//	WebServiceServiceDetailsParentServerPropertiesArgs{...}
 type WebServiceServiceDetailsParentServerPropertiesInput interface {
 	pulumi.Input
 
@@ -4345,11 +4345,11 @@ func (i WebServiceServiceDetailsParentServerPropertiesArgs) ToWebServiceServiceD
 // WebServiceServiceDetailsParentServerPropertiesPtrInput is an input type that accepts WebServiceServiceDetailsParentServerPropertiesArgs, WebServiceServiceDetailsParentServerPropertiesPtr and WebServiceServiceDetailsParentServerPropertiesPtrOutput values.
 // You can construct a concrete instance of `WebServiceServiceDetailsParentServerPropertiesPtrInput` via:
 //
-//          WebServiceServiceDetailsParentServerPropertiesArgs{...}
+//	        WebServiceServiceDetailsParentServerPropertiesArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type WebServiceServiceDetailsParentServerPropertiesPtrInput interface {
 	pulumi.Input
 

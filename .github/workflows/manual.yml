@@ -51,4 +51,4 @@ jobs:
       fail-fast: true
       matrix:
         goversion:
-          - 1.18.x
+          - 1.19.x

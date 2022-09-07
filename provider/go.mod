@@ -4,8 +4,8 @@ go 1.18
 
 require (
 	github.com/golang/protobuf v1.5.2
-	github.com/pulumi/pulumi/pkg/v3 v3.39.0
-	github.com/pulumi/pulumi/sdk/v3 v3.39.1
+	github.com/pulumi/pulumi/pkg/v3 v3.39.2
+	github.com/pulumi/pulumi/sdk/v3 v3.39.2
 	google.golang.org/grpc v1.49.0
 )
 
@@ -24,6 +24,7 @@ require (
 	github.com/Azure/go-autorest/logger v0.2.1 // indirect
 	github.com/Azure/go-autorest/tracing v0.6.0 // indirect
 	github.com/HdrHistogram/hdrhistogram-go v1.1.2 // indirect
+	github.com/Microsoft/go-winio v0.5.2 // indirect
 	github.com/ProtonMail/go-crypto v0.0.0-20220824120805-4b6e5c587895 // indirect
 	github.com/acomagu/bufpipe v1.0.3 // indirect
 	github.com/aead/chacha20 v0.0.0-20180709150244-8b13a72661da // indirect
@@ -95,6 +96,7 @@ require (
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/kballard/go-shellquote v0.0.0-20180428030007-95032a82bc51 // indirect
+	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.16 // indirect
 	github.com/mattn/go-runewidth v0.0.13 // indirect
@@ -133,9 +135,11 @@ require (
 	go.opencensus.io v0.23.0 // indirect
 	go.uber.org/atomic v1.10.0 // indirect
 	gocloud.dev v0.26.0 // indirect
+	golang.org/x/oauth2 v0.0.0-20220822191816-0ebed06d0094 // indirect
 	golang.org/x/sync v0.0.0-20220819030929-7fc1605a5dde // indirect
 	golang.org/x/text v0.3.7 // indirect
 	golang.org/x/xerrors v0.0.0-20220609144429-65e65417b02f // indirect
+	google.golang.org/api v0.94.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/protobuf v1.28.1 // indirect
 	gopkg.in/AlecAivazis/survey.v1 v1.8.9-0.20200217094205-6773bdf39b7f // indirect
@@ -155,7 +159,6 @@ require (
 	github.com/Azure/go-autorest/autorest v0.11.28 // indirect
 	github.com/Azure/go-autorest/autorest/adal v0.9.21 // indirect
 	github.com/Azure/go-autorest/autorest/azure/auth v0.5.11 // indirect
-	github.com/Microsoft/go-winio v0.5.2 // indirect
 	github.com/armon/go-metrics v0.4.0 // indirect
 	github.com/aws/aws-sdk-go v1.44.89 // indirect
 	github.com/aws/aws-sdk-go-v2/feature/s3/manager v1.11.30 // indirect
@@ -172,16 +175,13 @@ require (
 	github.com/hashicorp/vault/sdk v0.5.3 // indirect
 	github.com/invopop/yaml v0.2.0 // indirect
 	github.com/kr/pretty v0.3.0 // indirect
-	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/mattn/go-ieproxy v0.0.7 // indirect
 	github.com/mgutz/ansi v0.0.0-20200706080929-d51e80ef957d // indirect
 	github.com/segmentio/asm v1.2.0 // indirect
 	github.com/stretchr/testify v1.8.0
 	github.com/xeipuuv/gojsonpointer v0.0.0-20190905194746-02993c407bfb // indirect
 	gocloud.dev/secrets/hashivault v0.26.0 // indirect
-	golang.org/x/oauth2 v0.0.0-20220822191816-0ebed06d0094 // indirect
 	golang.org/x/time v0.0.0-20220722155302-e5dcc9cfc0b9 // indirect
-	google.golang.org/api v0.94.0 // indirect
 )
 
 require (

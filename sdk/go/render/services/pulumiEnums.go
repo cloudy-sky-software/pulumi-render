@@ -144,7 +144,7 @@ func (o BackgroundWorkerServiceDetailsEnvPtrOutput) ToStringPtrOutputWithContext
 // BackgroundWorkerServiceDetailsEnvInput is an input type that accepts BackgroundWorkerServiceDetailsEnvArgs and BackgroundWorkerServiceDetailsEnvOutput values.
 // You can construct a concrete instance of `BackgroundWorkerServiceDetailsEnvInput` via:
 //
-//          BackgroundWorkerServiceDetailsEnvArgs{...}
+//	BackgroundWorkerServiceDetailsEnvArgs{...}
 type BackgroundWorkerServiceDetailsEnvInput interface {
 	pulumi.Input
 
@@ -314,7 +314,7 @@ func (o BackgroundWorkerServiceDetailsPlanPtrOutput) ToStringPtrOutputWithContex
 // BackgroundWorkerServiceDetailsPlanInput is an input type that accepts BackgroundWorkerServiceDetailsPlanArgs and BackgroundWorkerServiceDetailsPlanOutput values.
 // You can construct a concrete instance of `BackgroundWorkerServiceDetailsPlanInput` via:
 //
-//          BackgroundWorkerServiceDetailsPlanArgs{...}
+//	BackgroundWorkerServiceDetailsPlanArgs{...}
 type BackgroundWorkerServiceDetailsPlanInput interface {
 	pulumi.Input
 
@@ -478,7 +478,7 @@ func (o BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToStr
 // BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledInput is an input type that accepts BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledArgs and BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledOutput values.
 // You can construct a concrete instance of `BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledInput` via:
 //
-//          BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledArgs{...}
+//	BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledArgs{...}
 type BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledInput interface {
 	pulumi.Input
 
@@ -642,7 +642,7 @@ func (o BackgroundWorkerServiceDetailsRegionPtrOutput) ToStringPtrOutputWithCont
 // BackgroundWorkerServiceDetailsRegionInput is an input type that accepts BackgroundWorkerServiceDetailsRegionArgs and BackgroundWorkerServiceDetailsRegionOutput values.
 // You can construct a concrete instance of `BackgroundWorkerServiceDetailsRegionInput` via:
 //
-//          BackgroundWorkerServiceDetailsRegionArgs{...}
+//	BackgroundWorkerServiceDetailsRegionArgs{...}
 type BackgroundWorkerServiceDetailsRegionInput interface {
 	pulumi.Input
 
@@ -806,7 +806,7 @@ func (o ClearCachePtrOutput) ToStringPtrOutputWithContext(ctx context.Context) p
 // ClearCacheInput is an input type that accepts ClearCacheArgs and ClearCacheOutput values.
 // You can construct a concrete instance of `ClearCacheInput` via:
 //
-//          ClearCacheArgs{...}
+//	ClearCacheArgs{...}
 type ClearCacheInput interface {
 	pulumi.Input
 
@@ -975,7 +975,7 @@ func (o CronJobServiceDetailsEnvPtrOutput) ToStringPtrOutputWithContext(ctx cont
 // CronJobServiceDetailsEnvInput is an input type that accepts CronJobServiceDetailsEnvArgs and CronJobServiceDetailsEnvOutput values.
 // You can construct a concrete instance of `CronJobServiceDetailsEnvInput` via:
 //
-//          CronJobServiceDetailsEnvArgs{...}
+//	CronJobServiceDetailsEnvArgs{...}
 type CronJobServiceDetailsEnvInput interface {
 	pulumi.Input
 
@@ -1145,7 +1145,7 @@ func (o CronJobServiceDetailsPlanPtrOutput) ToStringPtrOutputWithContext(ctx con
 // CronJobServiceDetailsPlanInput is an input type that accepts CronJobServiceDetailsPlanArgs and CronJobServiceDetailsPlanOutput values.
 // You can construct a concrete instance of `CronJobServiceDetailsPlanInput` via:
 //
-//          CronJobServiceDetailsPlanArgs{...}
+//	CronJobServiceDetailsPlanArgs{...}
 type CronJobServiceDetailsPlanInput interface {
 	pulumi.Input
 
@@ -1309,7 +1309,7 @@ func (o CronJobServiceDetailsRegionPtrOutput) ToStringPtrOutputWithContext(ctx c
 // CronJobServiceDetailsRegionInput is an input type that accepts CronJobServiceDetailsRegionArgs and CronJobServiceDetailsRegionOutput values.
 // You can construct a concrete instance of `CronJobServiceDetailsRegionInput` via:
 //
-//          CronJobServiceDetailsRegionArgs{...}
+//	CronJobServiceDetailsRegionArgs{...}
 type CronJobServiceDetailsRegionInput interface {
 	pulumi.Input
 
@@ -1832,7 +1832,7 @@ func (o EnvVarKeyValueGenerateValuePtrOutput) ToStringPtrOutputWithContext(ctx c
 // EnvVarKeyValueGenerateValueInput is an input type that accepts EnvVarKeyValueGenerateValueArgs and EnvVarKeyValueGenerateValueOutput values.
 // You can construct a concrete instance of `EnvVarKeyValueGenerateValueInput` via:
 //
-//          EnvVarKeyValueGenerateValueArgs{...}
+//	EnvVarKeyValueGenerateValueArgs{...}
 type EnvVarKeyValueGenerateValueInput interface {
 	pulumi.Input
 
@@ -1996,7 +1996,7 @@ func (o OpenPortsProtocolPtrOutput) ToStringPtrOutputWithContext(ctx context.Con
 // OpenPortsProtocolInput is an input type that accepts OpenPortsProtocolArgs and OpenPortsProtocolOutput values.
 // You can construct a concrete instance of `OpenPortsProtocolInput` via:
 //
-//          OpenPortsProtocolArgs{...}
+//	OpenPortsProtocolArgs{...}
 type OpenPortsProtocolInput interface {
 	pulumi.Input
 
@@ -2165,7 +2165,7 @@ func (o PrivateServiceDetailsEnvPtrOutput) ToStringPtrOutputWithContext(ctx cont
 // PrivateServiceDetailsEnvInput is an input type that accepts PrivateServiceDetailsEnvArgs and PrivateServiceDetailsEnvOutput values.
 // You can construct a concrete instance of `PrivateServiceDetailsEnvInput` via:
 //
-//          PrivateServiceDetailsEnvArgs{...}
+//	PrivateServiceDetailsEnvArgs{...}
 type PrivateServiceDetailsEnvInput interface {
 	pulumi.Input
 
@@ -2335,7 +2335,7 @@ func (o PrivateServiceDetailsPlanPtrOutput) ToStringPtrOutputWithContext(ctx con
 // PrivateServiceDetailsPlanInput is an input type that accepts PrivateServiceDetailsPlanArgs and PrivateServiceDetailsPlanOutput values.
 // You can construct a concrete instance of `PrivateServiceDetailsPlanInput` via:
 //
-//          PrivateServiceDetailsPlanArgs{...}
+//	PrivateServiceDetailsPlanArgs{...}
 type PrivateServiceDetailsPlanInput interface {
 	pulumi.Input
 
@@ -2499,7 +2499,7 @@ func (o PrivateServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToStringPtrOut
 // PrivateServiceDetailsPullRequestPreviewsEnabledInput is an input type that accepts PrivateServiceDetailsPullRequestPreviewsEnabledArgs and PrivateServiceDetailsPullRequestPreviewsEnabledOutput values.
 // You can construct a concrete instance of `PrivateServiceDetailsPullRequestPreviewsEnabledInput` via:
 //
-//          PrivateServiceDetailsPullRequestPreviewsEnabledArgs{...}
+//	PrivateServiceDetailsPullRequestPreviewsEnabledArgs{...}
 type PrivateServiceDetailsPullRequestPreviewsEnabledInput interface {
 	pulumi.Input
 
@@ -2663,7 +2663,7 @@ func (o PrivateServiceDetailsRegionPtrOutput) ToStringPtrOutputWithContext(ctx c
 // PrivateServiceDetailsRegionInput is an input type that accepts PrivateServiceDetailsRegionArgs and PrivateServiceDetailsRegionOutput values.
 // You can construct a concrete instance of `PrivateServiceDetailsRegionInput` via:
 //
-//          PrivateServiceDetailsRegionArgs{...}
+//	PrivateServiceDetailsRegionArgs{...}
 type PrivateServiceDetailsRegionInput interface {
 	pulumi.Input
 
@@ -2828,7 +2828,7 @@ func (o ServiceAutoDeployPtrOutput) ToStringPtrOutputWithContext(ctx context.Con
 // ServiceAutoDeployInput is an input type that accepts ServiceAutoDeployArgs and ServiceAutoDeployOutput values.
 // You can construct a concrete instance of `ServiceAutoDeployInput` via:
 //
-//          ServiceAutoDeployArgs{...}
+//	ServiceAutoDeployArgs{...}
 type ServiceAutoDeployInput interface {
 	pulumi.Input
 
@@ -2994,7 +2994,7 @@ func (o ServiceNotifyOnFailPtrOutput) ToStringPtrOutputWithContext(ctx context.C
 // ServiceNotifyOnFailInput is an input type that accepts ServiceNotifyOnFailArgs and ServiceNotifyOnFailOutput values.
 // You can construct a concrete instance of `ServiceNotifyOnFailInput` via:
 //
-//          ServiceNotifyOnFailArgs{...}
+//	ServiceNotifyOnFailArgs{...}
 type ServiceNotifyOnFailInput interface {
 	pulumi.Input
 
@@ -3158,7 +3158,7 @@ func (o ServiceSuspendedPtrOutput) ToStringPtrOutputWithContext(ctx context.Cont
 // ServiceSuspendedInput is an input type that accepts ServiceSuspendedArgs and ServiceSuspendedOutput values.
 // You can construct a concrete instance of `ServiceSuspendedInput` via:
 //
-//          ServiceSuspendedArgs{...}
+//	ServiceSuspendedArgs{...}
 type ServiceSuspendedInput interface {
 	pulumi.Input
 
@@ -3322,7 +3322,7 @@ func (o StaticSiteRouteTypePtrOutput) ToStringPtrOutputWithContext(ctx context.C
 // StaticSiteRouteTypeInput is an input type that accepts StaticSiteRouteTypeArgs and StaticSiteRouteTypeOutput values.
 // You can construct a concrete instance of `StaticSiteRouteTypeInput` via:
 //
-//          StaticSiteRouteTypeArgs{...}
+//	StaticSiteRouteTypeArgs{...}
 type StaticSiteRouteTypeInput interface {
 	pulumi.Input
 
@@ -3486,7 +3486,7 @@ func (o StaticSiteServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToStringPtr
 // StaticSiteServiceDetailsPullRequestPreviewsEnabledInput is an input type that accepts StaticSiteServiceDetailsPullRequestPreviewsEnabledArgs and StaticSiteServiceDetailsPullRequestPreviewsEnabledOutput values.
 // You can construct a concrete instance of `StaticSiteServiceDetailsPullRequestPreviewsEnabledInput` via:
 //
-//          StaticSiteServiceDetailsPullRequestPreviewsEnabledArgs{...}
+//	StaticSiteServiceDetailsPullRequestPreviewsEnabledArgs{...}
 type StaticSiteServiceDetailsPullRequestPreviewsEnabledInput interface {
 	pulumi.Input
 
@@ -3745,7 +3745,7 @@ func (o WebServiceServiceDetailsEnvPtrOutput) ToStringPtrOutputWithContext(ctx c
 // WebServiceServiceDetailsEnvInput is an input type that accepts WebServiceServiceDetailsEnvArgs and WebServiceServiceDetailsEnvOutput values.
 // You can construct a concrete instance of `WebServiceServiceDetailsEnvInput` via:
 //
-//          WebServiceServiceDetailsEnvArgs{...}
+//	WebServiceServiceDetailsEnvArgs{...}
 type WebServiceServiceDetailsEnvInput interface {
 	pulumi.Input
 
@@ -3915,7 +3915,7 @@ func (o WebServiceServiceDetailsPlanPtrOutput) ToStringPtrOutputWithContext(ctx 
 // WebServiceServiceDetailsPlanInput is an input type that accepts WebServiceServiceDetailsPlanArgs and WebServiceServiceDetailsPlanOutput values.
 // You can construct a concrete instance of `WebServiceServiceDetailsPlanInput` via:
 //
-//          WebServiceServiceDetailsPlanArgs{...}
+//	WebServiceServiceDetailsPlanArgs{...}
 type WebServiceServiceDetailsPlanInput interface {
 	pulumi.Input
 
@@ -4079,7 +4079,7 @@ func (o WebServiceServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToStringPtr
 // WebServiceServiceDetailsPullRequestPreviewsEnabledInput is an input type that accepts WebServiceServiceDetailsPullRequestPreviewsEnabledArgs and WebServiceServiceDetailsPullRequestPreviewsEnabledOutput values.
 // You can construct a concrete instance of `WebServiceServiceDetailsPullRequestPreviewsEnabledInput` via:
 //
-//          WebServiceServiceDetailsPullRequestPreviewsEnabledArgs{...}
+//	WebServiceServiceDetailsPullRequestPreviewsEnabledArgs{...}
 type WebServiceServiceDetailsPullRequestPreviewsEnabledInput interface {
 	pulumi.Input
 
@@ -4243,7 +4243,7 @@ func (o WebServiceServiceDetailsRegionPtrOutput) ToStringPtrOutputWithContext(ct
 // WebServiceServiceDetailsRegionInput is an input type that accepts WebServiceServiceDetailsRegionArgs and WebServiceServiceDetailsRegionOutput values.
 // You can construct a concrete instance of `WebServiceServiceDetailsRegionInput` via:
 //
-//          WebServiceServiceDetailsRegionArgs{...}
+//	WebServiceServiceDetailsRegionArgs{...}
 type WebServiceServiceDetailsRegionInput interface {
 	pulumi.Input
 

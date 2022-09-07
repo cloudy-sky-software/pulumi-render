@@ -52,3 +52,15 @@ export function getVersion(): string {
 export function resourceOptsDefaults(): any {
     return { version: getVersion(), pluginDownloadURL: "https://github.com/cloudy-sky-software/pulumi-render/releases/download/${VERSION}" };
 }
+
+/** @internal */
+export function lazyLoad(exports: any, props: string[], loadModule: any) {
+    for (let property of props) {
+        Object.defineProperty(exports, property, {
+            enumerable: true,
+            get: function() {
+                return loadModule()[property];
+            },
+        });
+    }
+}

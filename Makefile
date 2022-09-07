@@ -21,7 +21,7 @@ WORKING_DIR     := $(shell pwd)
 TESTPARALLELISM := 4
 
 ensure::
-	cd provider && go mod tidy -go=1.16 && go mod tidy -go=1.17
+	cd provider && go mod tidy -go=1.16 && go mod tidy -go=1.18
 	cd sdk && go mod tidy -go=1.16 && go mod tidy -go=1.17
 
 gen::

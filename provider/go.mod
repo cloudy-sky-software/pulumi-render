@@ -4,8 +4,8 @@ go 1.18
 
 require (
 	github.com/golang/protobuf v1.5.2
-	github.com/pulumi/pulumi/pkg/v3 v3.39.3
-	github.com/pulumi/pulumi/sdk/v3 v3.39.3
+	github.com/pulumi/pulumi/pkg/v3 v3.39.4
+	github.com/pulumi/pulumi/sdk/v3 v3.39.4
 	google.golang.org/grpc v1.49.0
 )
 
@@ -187,7 +187,7 @@ require (
 require (
 	github.com/emirpasic/gods v1.18.1 // indirect
 	github.com/getkin/kin-openapi v0.101.0
-	github.com/hashicorp/hcl/v2 v2.13.0 // indirect
+	github.com/hashicorp/hcl/v2 v2.14.0 // indirect
 	github.com/kevinburke/ssh_config v1.2.0 // indirect
 	github.com/pkg/errors v0.9.1
 	github.com/spf13/cobra v1.5.0 // indirect

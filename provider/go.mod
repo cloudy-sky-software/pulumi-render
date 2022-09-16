@@ -188,7 +188,7 @@ require (
 
 require (
 	github.com/emirpasic/gods v1.18.1 // indirect
-	github.com/getkin/kin-openapi v0.101.0
+	github.com/getkin/kin-openapi v0.102.0
 	github.com/kevinburke/ssh_config v1.2.0 // indirect
 	github.com/pkg/errors v0.9.1
 	golang.org/x/crypto v0.0.0-20220829220503-c86fa9a7ed90 // indirect

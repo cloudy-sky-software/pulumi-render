@@ -12,10 +12,10 @@ namespace Pulumi.Render.Services
     public static class GetDeploy
     {
         public static Task<GetDeployResult> InvokeAsync(GetDeployArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetDeployResult>("render:services:getDeploy", args ?? new GetDeployArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetDeployResult>("render:services:getDeploy", args ?? new GetDeployArgs(), options.WithDefaults());
 
         public static Output<GetDeployResult> Invoke(GetDeployInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetDeployResult>("render:services:getDeploy", args ?? new GetDeployInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetDeployResult>("render:services:getDeploy", args ?? new GetDeployInvokeArgs(), options.WithDefaults());
     }
 
 

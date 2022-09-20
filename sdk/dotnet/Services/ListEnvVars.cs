@@ -12,10 +12,10 @@ namespace Pulumi.Render.Services
     public static class ListEnvVars
     {
         public static Task<ListEnvVarsResult> InvokeAsync(ListEnvVarsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<ListEnvVarsResult>("render:services:listEnvVars", args ?? new ListEnvVarsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<ListEnvVarsResult>("render:services:listEnvVars", args ?? new ListEnvVarsArgs(), options.WithDefaults());
 
         public static Output<ListEnvVarsResult> Invoke(ListEnvVarsInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<ListEnvVarsResult>("render:services:listEnvVars", args ?? new ListEnvVarsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<ListEnvVarsResult>("render:services:listEnvVars", args ?? new ListEnvVarsInvokeArgs(), options.WithDefaults());
     }
 
 

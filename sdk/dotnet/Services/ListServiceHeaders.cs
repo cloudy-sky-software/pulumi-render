@@ -12,10 +12,10 @@ namespace Pulumi.Render.Services
     public static class ListServiceHeaders
     {
         public static Task<ListServiceHeadersResult> InvokeAsync(ListServiceHeadersArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<ListServiceHeadersResult>("render:services:listServiceHeaders", args ?? new ListServiceHeadersArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<ListServiceHeadersResult>("render:services:listServiceHeaders", args ?? new ListServiceHeadersArgs(), options.WithDefaults());
 
         public static Output<ListServiceHeadersResult> Invoke(ListServiceHeadersInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<ListServiceHeadersResult>("render:services:listServiceHeaders", args ?? new ListServiceHeadersInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<ListServiceHeadersResult>("render:services:listServiceHeaders", args ?? new ListServiceHeadersInvokeArgs(), options.WithDefaults());
     }
 
 

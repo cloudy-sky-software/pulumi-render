@@ -12,10 +12,10 @@ namespace Pulumi.Render.Services
     public static class ListStaticSiteRoutes
     {
         public static Task<ListStaticSiteRoutesResult> InvokeAsync(ListStaticSiteRoutesArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<ListStaticSiteRoutesResult>("render:services:listStaticSiteRoutes", args ?? new ListStaticSiteRoutesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<ListStaticSiteRoutesResult>("render:services:listStaticSiteRoutes", args ?? new ListStaticSiteRoutesArgs(), options.WithDefaults());
 
         public static Output<ListStaticSiteRoutesResult> Invoke(ListStaticSiteRoutesInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<ListStaticSiteRoutesResult>("render:services:listStaticSiteRoutes", args ?? new ListStaticSiteRoutesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<ListStaticSiteRoutesResult>("render:services:listStaticSiteRoutes", args ?? new ListStaticSiteRoutesInvokeArgs(), options.WithDefaults());
     }
 
 

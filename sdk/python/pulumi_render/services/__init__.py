@@ -14,12 +14,15 @@ from .get_background_worker import *
 from .get_cron_job import *
 from .get_custom_domain import *
 from .get_deploy import *
+from .get_job import *
 from .get_private_service import *
 from .get_static_site import *
 from .get_web_service import *
+from .job import *
 from .list_custom_domains import *
 from .list_deploys import *
 from .list_env_vars import *
+from .list_jobs import *
 from .list_service_headers import *
 from .list_services import *
 from .list_static_site_routes import *

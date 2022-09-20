@@ -29,9 +29,11 @@ __all__ = [
     'GetPrivateService',
     'GetStaticSite',
     'GetWebService',
+    'Job',
     'ListCustomDomainsResponse',
     'ListDeploysResponse',
     'ListEnvVarsResponse',
+    'ListJobsResponse',
     'ListServiceHeadersResponse',
     'ListServiceResponse',
     'ListStaticSiteRoutesResponse',
@@ -1606,6 +1608,57 @@ class GetWebService(dict):
 
 
 @pulumi.output_type
+class Job(dict):
+    def __init__(__self__, *,
+                 plan_id: str,
+                 start_command: str,
+                 created_at: Optional[str] = None,
+                 finished_at: Optional[str] = None,
+                 started_at: Optional[str] = None,
+                 status: Optional[str] = None):
+        pulumi.set(__self__, "plan_id", plan_id)
+        pulumi.set(__self__, "start_command", start_command)
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if finished_at is not None:
+            pulumi.set(__self__, "finished_at", finished_at)
+        if started_at is not None:
+            pulumi.set(__self__, "started_at", started_at)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="planId")
+    def plan_id(self) -> str:
+        return pulumi.get(self, "plan_id")
+
+    @property
+    @pulumi.getter(name="startCommand")
+    def start_command(self) -> str:
+        return pulumi.get(self, "start_command")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[str]:
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="finishedAt")
+    def finished_at(self) -> Optional[str]:
+        return pulumi.get(self, "finished_at")
+
+    @property
+    @pulumi.getter(name="startedAt")
+    def started_at(self) -> Optional[str]:
+        return pulumi.get(self, "started_at")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[str]:
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
 class ListCustomDomainsResponse(dict):
     def __init__(__self__, *,
                  cursor: Optional[str] = None,
@@ -1666,6 +1719,27 @@ class ListEnvVarsResponse(dict):
     @pulumi.getter(name="envVar")
     def env_var(self) -> Optional['outputs.EnvVarKeyValue']:
         return pulumi.get(self, "env_var")
+
+
+@pulumi.output_type
+class ListJobsResponse(dict):
+    def __init__(__self__, *,
+                 cursor: Optional[str] = None,
+                 job: Optional['outputs.Job'] = None):
+        if cursor is not None:
+            pulumi.set(__self__, "cursor", cursor)
+        if job is not None:
+            pulumi.set(__self__, "job", job)
+
+    @property
+    @pulumi.getter
+    def cursor(self) -> Optional[str]:
+        return pulumi.get(self, "cursor")
+
+    @property
+    @pulumi.getter
+    def job(self) -> Optional['outputs.Job']:
+        return pulumi.get(self, "job")
 
 
 @pulumi.output_type

@@ -482,6 +482,15 @@ export namespace services {
         };
     }
 
+    export interface Job {
+        createdAt?: string;
+        finishedAt?: string;
+        planId: string;
+        startCommand: string;
+        startedAt?: string;
+        status?: string;
+    }
+
     export interface ListCustomDomainsResponse {
         cursor?: string;
         customDomain?: outputs.services.CustomDomain;
@@ -504,6 +513,11 @@ export namespace services {
     export interface ListEnvVarsResponse {
         cursor?: string;
         envVar?: outputs.services.EnvVarKeyValue;
+    }
+
+    export interface ListJobsResponse {
+        cursor?: string;
+        job?: outputs.services.Job;
     }
 
     export interface ListServiceHeadersResponse {

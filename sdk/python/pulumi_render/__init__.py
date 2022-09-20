@@ -32,6 +32,7 @@ _utilities.register(
    "render:services:CronJob": "CronJob",
    "render:services:CustomDomain": "CustomDomain",
    "render:services:Deploy": "Deploy",
+   "render:services:Job": "Job",
    "render:services:PrivateService": "PrivateService",
    "render:services:Scale": "Scale",
    "render:services:StaticSite": "StaticSite",

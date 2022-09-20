@@ -2126,6 +2126,131 @@ func (o GetWebServiceTypeOutput) UpdatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetWebServiceType) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
 }
 
+type JobType struct {
+	CreatedAt    *string `pulumi:"createdAt"`
+	FinishedAt   *string `pulumi:"finishedAt"`
+	PlanId       string  `pulumi:"planId"`
+	StartCommand string  `pulumi:"startCommand"`
+	StartedAt    *string `pulumi:"startedAt"`
+	Status       *string `pulumi:"status"`
+}
+
+type JobTypeOutput struct{ *pulumi.OutputState }
+
+func (JobTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobType)(nil)).Elem()
+}
+
+func (o JobTypeOutput) ToJobTypeOutput() JobTypeOutput {
+	return o
+}
+
+func (o JobTypeOutput) ToJobTypeOutputWithContext(ctx context.Context) JobTypeOutput {
+	return o
+}
+
+func (o JobTypeOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v JobType) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+}
+
+func (o JobTypeOutput) FinishedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v JobType) *string { return v.FinishedAt }).(pulumi.StringPtrOutput)
+}
+
+func (o JobTypeOutput) PlanId() pulumi.StringOutput {
+	return o.ApplyT(func(v JobType) string { return v.PlanId }).(pulumi.StringOutput)
+}
+
+func (o JobTypeOutput) StartCommand() pulumi.StringOutput {
+	return o.ApplyT(func(v JobType) string { return v.StartCommand }).(pulumi.StringOutput)
+}
+
+func (o JobTypeOutput) StartedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v JobType) *string { return v.StartedAt }).(pulumi.StringPtrOutput)
+}
+
+func (o JobTypeOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v JobType) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+type JobTypePtrOutput struct{ *pulumi.OutputState }
+
+func (JobTypePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**JobType)(nil)).Elem()
+}
+
+func (o JobTypePtrOutput) ToJobTypePtrOutput() JobTypePtrOutput {
+	return o
+}
+
+func (o JobTypePtrOutput) ToJobTypePtrOutputWithContext(ctx context.Context) JobTypePtrOutput {
+	return o
+}
+
+func (o JobTypePtrOutput) Elem() JobTypeOutput {
+	return o.ApplyT(func(v *JobType) JobType {
+		if v != nil {
+			return *v
+		}
+		var ret JobType
+		return ret
+	}).(JobTypeOutput)
+}
+
+func (o JobTypePtrOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *JobType) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedAt
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o JobTypePtrOutput) FinishedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *JobType) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FinishedAt
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o JobTypePtrOutput) PlanId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *JobType) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.PlanId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o JobTypePtrOutput) StartCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *JobType) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.StartCommand
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o JobTypePtrOutput) StartedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *JobType) *string {
+		if v == nil {
+			return nil
+		}
+		return v.StartedAt
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o JobTypePtrOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *JobType) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Status
+	}).(pulumi.StringPtrOutput)
+}
+
 type ListCustomDomainsResponse struct {
 	Cursor       *string           `pulumi:"cursor"`
 	CustomDomain *CustomDomainType `pulumi:"customDomain"`
@@ -2276,6 +2401,53 @@ func (o ListEnvVarsResponseArrayOutput) Index(i pulumi.IntInput) ListEnvVarsResp
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListEnvVarsResponse {
 		return vs[0].([]ListEnvVarsResponse)[vs[1].(int)]
 	}).(ListEnvVarsResponseOutput)
+}
+
+type ListJobsResponse struct {
+	Cursor *string  `pulumi:"cursor"`
+	Job    *JobType `pulumi:"job"`
+}
+
+type ListJobsResponseOutput struct{ *pulumi.OutputState }
+
+func (ListJobsResponseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListJobsResponse)(nil)).Elem()
+}
+
+func (o ListJobsResponseOutput) ToListJobsResponseOutput() ListJobsResponseOutput {
+	return o
+}
+
+func (o ListJobsResponseOutput) ToListJobsResponseOutputWithContext(ctx context.Context) ListJobsResponseOutput {
+	return o
+}
+
+func (o ListJobsResponseOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListJobsResponse) *string { return v.Cursor }).(pulumi.StringPtrOutput)
+}
+
+func (o ListJobsResponseOutput) Job() JobTypePtrOutput {
+	return o.ApplyT(func(v ListJobsResponse) *JobType { return v.Job }).(JobTypePtrOutput)
+}
+
+type ListJobsResponseArrayOutput struct{ *pulumi.OutputState }
+
+func (ListJobsResponseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListJobsResponse)(nil)).Elem()
+}
+
+func (o ListJobsResponseArrayOutput) ToListJobsResponseArrayOutput() ListJobsResponseArrayOutput {
+	return o
+}
+
+func (o ListJobsResponseArrayOutput) ToListJobsResponseArrayOutputWithContext(ctx context.Context) ListJobsResponseArrayOutput {
+	return o
+}
+
+func (o ListJobsResponseArrayOutput) Index(i pulumi.IntInput) ListJobsResponseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListJobsResponse {
+		return vs[0].([]ListJobsResponse)[vs[1].(int)]
+	}).(ListJobsResponseOutput)
 }
 
 type ListServiceHeadersResponse struct {
@@ -4505,12 +4677,16 @@ func init() {
 	pulumi.RegisterOutputType(GetPrivateServiceTypeOutput{})
 	pulumi.RegisterOutputType(GetStaticSiteTypeOutput{})
 	pulumi.RegisterOutputType(GetWebServiceTypeOutput{})
+	pulumi.RegisterOutputType(JobTypeOutput{})
+	pulumi.RegisterOutputType(JobTypePtrOutput{})
 	pulumi.RegisterOutputType(ListCustomDomainsResponseOutput{})
 	pulumi.RegisterOutputType(ListCustomDomainsResponseArrayOutput{})
 	pulumi.RegisterOutputType(ListDeploysResponseOutput{})
 	pulumi.RegisterOutputType(ListDeploysResponseArrayOutput{})
 	pulumi.RegisterOutputType(ListEnvVarsResponseOutput{})
 	pulumi.RegisterOutputType(ListEnvVarsResponseArrayOutput{})
+	pulumi.RegisterOutputType(ListJobsResponseOutput{})
+	pulumi.RegisterOutputType(ListJobsResponseArrayOutput{})
 	pulumi.RegisterOutputType(ListServiceHeadersResponseOutput{})
 	pulumi.RegisterOutputType(ListServiceHeadersResponseArrayOutput{})
 	pulumi.RegisterOutputType(ListStaticSiteRoutesResponseOutput{})

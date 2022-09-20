@@ -29,6 +29,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &CustomDomain{}
 	case "render:services:Deploy":
 		r = &Deploy{}
+	case "render:services:Job":
+		r = &Job{}
 	case "render:services:PrivateService":
 		r = &PrivateService{}
 	case "render:services:Scale":

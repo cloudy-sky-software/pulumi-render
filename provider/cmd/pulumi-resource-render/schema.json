@@ -1099,6 +1099,33 @@
                 "repo"
             ]
         },
+        "render:services:Job": {
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "finishedAt": {
+                    "type": "string"
+                },
+                "planId": {
+                    "type": "string"
+                },
+                "startCommand": {
+                    "type": "string"
+                },
+                "startedAt": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "planId",
+                "startCommand"
+            ]
+        },
         "render:services:ListCustomDomainsResponse": {
             "properties": {
                 "cursor": {
@@ -1128,6 +1155,17 @@
                 },
                 "envVar": {
                     "$ref": "#/types/render:services:EnvVarKeyValue"
+                }
+            },
+            "type": "object"
+        },
+        "render:services:ListJobsResponse": {
+            "properties": {
+                "cursor": {
+                    "type": "string"
+                },
+                "job": {
+                    "$ref": "#/types/render:services:Job"
                 }
             },
             "type": "object"
@@ -2329,6 +2367,49 @@
                 }
             }
         },
+        "render:services:Job": {
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "finishedAt": {
+                    "type": "string"
+                },
+                "planId": {
+                    "type": "string"
+                },
+                "startCommand": {
+                    "type": "string"
+                },
+                "startedAt": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "startCommand",
+                "planId"
+            ],
+            "inputProperties": {
+                "id": {
+                    "type": "string",
+                    "description": "(Required) The ID of the service"
+                },
+                "planId": {
+                    "type": "string"
+                },
+                "startCommand": {
+                    "type": "string"
+                }
+            },
+            "requiredInputs": [
+                "planId",
+                "startCommand"
+            ]
+        },
         "render:services:PrivateService": {
             "description": "A private service",
             "properties": {
@@ -2909,6 +2990,34 @@
                 ]
             }
         },
+        "render:services:getJob": {
+            "inputs": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "(Required) The ID of the job"
+                    },
+                    "serviceId": {
+                        "type": "string",
+                        "description": "(Required) The ID of the service"
+                    }
+                },
+                "required": [
+                    "id",
+                    "serviceId"
+                ]
+            },
+            "outputs": {
+                "properties": {
+                    "items": {
+                        "$ref": "#/types/render:services:Job"
+                    }
+                },
+                "required": [
+                    "items"
+                ]
+            }
+        },
         "render:services:getPrivateService": {
             "inputs": {
                 "properties": {
@@ -3048,6 +3157,32 @@
                         "type": "array",
                         "items": {
                             "$ref": "#/types/render:services:ListEnvVarsResponse"
+                        }
+                    }
+                },
+                "required": [
+                    "items"
+                ]
+            }
+        },
+        "render:services:listJobs": {
+            "inputs": {
+                "properties": {
+                    "serviceId": {
+                        "type": "string",
+                        "description": "(Required) The ID of the service"
+                    }
+                },
+                "required": [
+                    "serviceId"
+                ]
+            },
+            "outputs": {
+                "properties": {
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/render:services:ListJobsResponse"
                         }
                     }
                 },

@@ -53,7 +53,6 @@ func (o *openAPIContext) gatherResourcesFromAPI(csharpNamespaces map[string]stri
 
 		// TODO: TEMPORARY!
 		if currentPath == "/services/{serviceId}/resume" ||
-			strings.HasPrefix(currentPath, "/services/{serviceId}/jobs") ||
 			currentPath == "/services/{serviceId}/custom-domains/{id}/verify" {
 			continue
 		}

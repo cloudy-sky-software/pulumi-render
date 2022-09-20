@@ -37,6 +37,10 @@ export { GetDeployArgs, GetDeployResult, GetDeployOutputArgs } from "./getDeploy
 export const getDeploy: typeof import("./getDeploy").getDeploy = null as any;
 export const getDeployOutput: typeof import("./getDeploy").getDeployOutput = null as any;
 
+export { GetJobArgs, GetJobResult, GetJobOutputArgs } from "./getJob";
+export const getJob: typeof import("./getJob").getJob = null as any;
+export const getJobOutput: typeof import("./getJob").getJobOutput = null as any;
+
 export { GetPrivateServiceArgs, GetPrivateServiceResult, GetPrivateServiceOutputArgs } from "./getPrivateService";
 export const getPrivateService: typeof import("./getPrivateService").getPrivateService = null as any;
 export const getPrivateServiceOutput: typeof import("./getPrivateService").getPrivateServiceOutput = null as any;
@@ -49,6 +53,10 @@ export { GetWebServiceArgs, GetWebServiceResult, GetWebServiceOutputArgs } from 
 export const getWebService: typeof import("./getWebService").getWebService = null as any;
 export const getWebServiceOutput: typeof import("./getWebService").getWebServiceOutput = null as any;
 
+export { JobArgs } from "./job";
+export type Job = import("./job").Job;
+export const Job: typeof import("./job").Job = null as any;
+
 export { ListCustomDomainsArgs, ListCustomDomainsResult, ListCustomDomainsOutputArgs } from "./listCustomDomains";
 export const listCustomDomains: typeof import("./listCustomDomains").listCustomDomains = null as any;
 export const listCustomDomainsOutput: typeof import("./listCustomDomains").listCustomDomainsOutput = null as any;
@@ -60,6 +68,10 @@ export const listDeploysOutput: typeof import("./listDeploys").listDeploysOutput
 export { ListEnvVarsArgs, ListEnvVarsResult, ListEnvVarsOutputArgs } from "./listEnvVars";
 export const listEnvVars: typeof import("./listEnvVars").listEnvVars = null as any;
 export const listEnvVarsOutput: typeof import("./listEnvVars").listEnvVarsOutput = null as any;
+
+export { ListJobsArgs, ListJobsResult, ListJobsOutputArgs } from "./listJobs";
+export const listJobs: typeof import("./listJobs").listJobs = null as any;
+export const listJobsOutput: typeof import("./listJobs").listJobsOutput = null as any;
 
 export { ListServiceHeadersArgs, ListServiceHeadersResult, ListServiceHeadersOutputArgs } from "./listServiceHeaders";
 export const listServiceHeaders: typeof import("./listServiceHeaders").listServiceHeaders = null as any;
@@ -100,12 +112,15 @@ utilities.lazyLoad(exports, ["getBackgroundWorker","getBackgroundWorkerOutput"],
 utilities.lazyLoad(exports, ["getCronJob","getCronJobOutput"], () => require("./getCronJob"));
 utilities.lazyLoad(exports, ["getCustomDomain","getCustomDomainOutput"], () => require("./getCustomDomain"));
 utilities.lazyLoad(exports, ["getDeploy","getDeployOutput"], () => require("./getDeploy"));
+utilities.lazyLoad(exports, ["getJob","getJobOutput"], () => require("./getJob"));
 utilities.lazyLoad(exports, ["getPrivateService","getPrivateServiceOutput"], () => require("./getPrivateService"));
 utilities.lazyLoad(exports, ["getStaticSite","getStaticSiteOutput"], () => require("./getStaticSite"));
 utilities.lazyLoad(exports, ["getWebService","getWebServiceOutput"], () => require("./getWebService"));
+utilities.lazyLoad(exports, ["Job"], () => require("./job"));
 utilities.lazyLoad(exports, ["listCustomDomains","listCustomDomainsOutput"], () => require("./listCustomDomains"));
 utilities.lazyLoad(exports, ["listDeploys","listDeploysOutput"], () => require("./listDeploys"));
 utilities.lazyLoad(exports, ["listEnvVars","listEnvVarsOutput"], () => require("./listEnvVars"));
+utilities.lazyLoad(exports, ["listJobs","listJobsOutput"], () => require("./listJobs"));
 utilities.lazyLoad(exports, ["listServiceHeaders","listServiceHeadersOutput"], () => require("./listServiceHeaders"));
 utilities.lazyLoad(exports, ["listServices"], () => require("./listServices"));
 utilities.lazyLoad(exports, ["listStaticSiteRoutes","listStaticSiteRoutesOutput"], () => require("./listStaticSiteRoutes"));
@@ -130,6 +145,8 @@ const _module = {
                 return new CustomDomain(name, <any>undefined, { urn })
             case "render:services:Deploy":
                 return new Deploy(name, <any>undefined, { urn })
+            case "render:services:Job":
+                return new Job(name, <any>undefined, { urn })
             case "render:services:PrivateService":
                 return new PrivateService(name, <any>undefined, { urn })
             case "render:services:Scale":

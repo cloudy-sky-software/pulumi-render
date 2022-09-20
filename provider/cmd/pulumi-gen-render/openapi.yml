@@ -844,6 +844,10 @@ components:
         - "redirectForName"
         - "verificationStatus"
         - "server"
+    createCustomDomainResponse:
+      type: array
+      items:
+        $ref: "#/components/schemas/customDomain"
     listCustomDomainsResponse:
       type: object
       properties:
@@ -855,6 +859,40 @@ components:
       type: array
       items:
         $ref: "#/components/schemas/listCustomDomainsResponse"
+    job:
+      title: Job
+      type: object
+      properties:
+        startCommand:
+          type: string
+        planId:
+          type: string
+        status:
+          type: string
+          readOnly: true
+        createdAt:
+          type: string
+          readOnly: true
+        startedAt:
+          type: string
+          readOnly: true
+        finishedAt:
+          type: string
+          readOnly: true
+      required:
+        - startCommand
+        - planId
+    listJobsResponse:
+      type: object
+      properties:
+        cursor:
+          type: string
+        job:
+          $ref: "#/components/schemas/job"
+    listJobs:
+      type: array
+      items:
+        $ref: "#/components/schemas/listJobsResponse"
 security:
   - bearerAuth: []
 tags:
@@ -2375,7 +2413,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: "#/components/schemas/listEnvVars"
               example:
                 - envVar:
                     key: eu mollit reprehenderit nulla
@@ -4191,7 +4229,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
+                $ref: "#/components/schemas/createCustomDomainResponse"
               example:
                 - id: dolore culpa
                   name: esse dolor nulla dolor
@@ -4984,7 +5022,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: "#/components/schemas/listJobs"
               example:
                 - job:
                     id: job-xxxxx
@@ -5100,7 +5138,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
+              $ref: "#/components/schemas/job"
               example:
                 startCommand: et ex Duis sit
                 planId: cupidatat Duis ad
@@ -5265,7 +5303,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: "#/components/schemas/job"
               example:
                 id: job-xxxxx
                 serviceId: srv-xxxxx

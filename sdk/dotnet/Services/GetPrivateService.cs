@@ -12,10 +12,10 @@ namespace Pulumi.Render.Services
     public static class GetPrivateService
     {
         public static Task<GetPrivateServiceResult> InvokeAsync(GetPrivateServiceArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetPrivateServiceResult>("render:services:getPrivateService", args ?? new GetPrivateServiceArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetPrivateServiceResult>("render:services:getPrivateService", args ?? new GetPrivateServiceArgs(), options.WithDefaults());
 
         public static Output<GetPrivateServiceResult> Invoke(GetPrivateServiceInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetPrivateServiceResult>("render:services:getPrivateService", args ?? new GetPrivateServiceInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetPrivateServiceResult>("render:services:getPrivateService", args ?? new GetPrivateServiceInvokeArgs(), options.WithDefaults());
     }
 
 

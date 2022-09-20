@@ -12,10 +12,10 @@ namespace Pulumi.Render.Services
     public static class ListCustomDomains
     {
         public static Task<ListCustomDomainsResult> InvokeAsync(ListCustomDomainsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<ListCustomDomainsResult>("render:services:listCustomDomains", args ?? new ListCustomDomainsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<ListCustomDomainsResult>("render:services:listCustomDomains", args ?? new ListCustomDomainsArgs(), options.WithDefaults());
 
         public static Output<ListCustomDomainsResult> Invoke(ListCustomDomainsInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<ListCustomDomainsResult>("render:services:listCustomDomains", args ?? new ListCustomDomainsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<ListCustomDomainsResult>("render:services:listCustomDomains", args ?? new ListCustomDomainsInvokeArgs(), options.WithDefaults());
     }
 
 

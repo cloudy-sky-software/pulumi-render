@@ -12,10 +12,10 @@ namespace Pulumi.Render.Services
     public static class GetStaticSite
     {
         public static Task<GetStaticSiteResult> InvokeAsync(GetStaticSiteArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetStaticSiteResult>("render:services:getStaticSite", args ?? new GetStaticSiteArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetStaticSiteResult>("render:services:getStaticSite", args ?? new GetStaticSiteArgs(), options.WithDefaults());
 
         public static Output<GetStaticSiteResult> Invoke(GetStaticSiteInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetStaticSiteResult>("render:services:getStaticSite", args ?? new GetStaticSiteInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetStaticSiteResult>("render:services:getStaticSite", args ?? new GetStaticSiteInvokeArgs(), options.WithDefaults());
     }
 
 

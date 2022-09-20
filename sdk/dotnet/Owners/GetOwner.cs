@@ -12,10 +12,10 @@ namespace Pulumi.Render.Owners
     public static class GetOwner
     {
         public static Task<GetOwnerResult> InvokeAsync(GetOwnerArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetOwnerResult>("render:owners:getOwner", args ?? new GetOwnerArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetOwnerResult>("render:owners:getOwner", args ?? new GetOwnerArgs(), options.WithDefaults());
 
         public static Output<GetOwnerResult> Invoke(GetOwnerInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetOwnerResult>("render:owners:getOwner", args ?? new GetOwnerInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetOwnerResult>("render:owners:getOwner", args ?? new GetOwnerInvokeArgs(), options.WithDefaults());
     }
 
 

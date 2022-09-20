@@ -12,10 +12,10 @@ namespace Pulumi.Render.Services
     public static class GetCronJob
     {
         public static Task<GetCronJobResult> InvokeAsync(GetCronJobArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetCronJobResult>("render:services:getCronJob", args ?? new GetCronJobArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetCronJobResult>("render:services:getCronJob", args ?? new GetCronJobArgs(), options.WithDefaults());
 
         public static Output<GetCronJobResult> Invoke(GetCronJobInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetCronJobResult>("render:services:getCronJob", args ?? new GetCronJobInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetCronJobResult>("render:services:getCronJob", args ?? new GetCronJobInvokeArgs(), options.WithDefaults());
     }
 
 

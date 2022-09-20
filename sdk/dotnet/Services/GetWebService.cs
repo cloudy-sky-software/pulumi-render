@@ -12,10 +12,10 @@ namespace Pulumi.Render.Services
     public static class GetWebService
     {
         public static Task<GetWebServiceResult> InvokeAsync(GetWebServiceArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetWebServiceResult>("render:services:getWebService", args ?? new GetWebServiceArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetWebServiceResult>("render:services:getWebService", args ?? new GetWebServiceArgs(), options.WithDefaults());
 
         public static Output<GetWebServiceResult> Invoke(GetWebServiceInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetWebServiceResult>("render:services:getWebService", args ?? new GetWebServiceInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetWebServiceResult>("render:services:getWebService", args ?? new GetWebServiceInvokeArgs(), options.WithDefaults());
     }
 
 

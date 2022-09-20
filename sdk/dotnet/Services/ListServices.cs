@@ -12,7 +12,7 @@ namespace Pulumi.Render.Services
     public static class ListServices
     {
         public static Task<ListServicesResult> InvokeAsync(ListServicesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<ListServicesResult>("render:services:listServices", args ?? new ListServicesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<ListServicesResult>("render:services:listServices", args ?? new ListServicesArgs(), options.WithDefaults());
     }
 
 

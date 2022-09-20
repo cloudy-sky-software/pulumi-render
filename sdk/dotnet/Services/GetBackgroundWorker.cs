@@ -12,10 +12,10 @@ namespace Pulumi.Render.Services
     public static class GetBackgroundWorker
     {
         public static Task<GetBackgroundWorkerResult> InvokeAsync(GetBackgroundWorkerArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetBackgroundWorkerResult>("render:services:getBackgroundWorker", args ?? new GetBackgroundWorkerArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetBackgroundWorkerResult>("render:services:getBackgroundWorker", args ?? new GetBackgroundWorkerArgs(), options.WithDefaults());
 
         public static Output<GetBackgroundWorkerResult> Invoke(GetBackgroundWorkerInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetBackgroundWorkerResult>("render:services:getBackgroundWorker", args ?? new GetBackgroundWorkerInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetBackgroundWorkerResult>("render:services:getBackgroundWorker", args ?? new GetBackgroundWorkerInvokeArgs(), options.WithDefaults());
     }
 
 

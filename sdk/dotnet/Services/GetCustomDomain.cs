@@ -12,10 +12,10 @@ namespace Pulumi.Render.Services
     public static class GetCustomDomain
     {
         public static Task<GetCustomDomainResult> InvokeAsync(GetCustomDomainArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetCustomDomainResult>("render:services:getCustomDomain", args ?? new GetCustomDomainArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetCustomDomainResult>("render:services:getCustomDomain", args ?? new GetCustomDomainArgs(), options.WithDefaults());
 
         public static Output<GetCustomDomainResult> Invoke(GetCustomDomainInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetCustomDomainResult>("render:services:getCustomDomain", args ?? new GetCustomDomainInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetCustomDomainResult>("render:services:getCustomDomain", args ?? new GetCustomDomainInvokeArgs(), options.WithDefaults());
     }
 
 

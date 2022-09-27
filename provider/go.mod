@@ -5,7 +5,7 @@ go 1.18
 require (
 	github.com/golang/protobuf v1.5.2
 	github.com/pulumi/pulumi/pkg/v3 v3.40.1
-	github.com/pulumi/pulumi/sdk/v3 v3.40.1
+	github.com/pulumi/pulumi/sdk/v3 v3.40.2
 	google.golang.org/grpc v1.49.0
 )
 

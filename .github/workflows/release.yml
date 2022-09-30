@@ -122,7 +122,7 @@ jobs:
           registry-url: ${{env.NPM_REGISTRY_URL}}
 
       - name: Setup DotNet
-        uses: actions/setup-dotnet@v2
+        uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{matrix.dotnetverson}}
 

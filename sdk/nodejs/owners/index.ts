@@ -7,12 +7,12 @@ import * as utilities from "../utilities";
 export { GetOwnerArgs, GetOwnerResult, GetOwnerOutputArgs } from "./getOwner";
 export const getOwner: typeof import("./getOwner").getOwner = null as any;
 export const getOwnerOutput: typeof import("./getOwner").getOwnerOutput = null as any;
+utilities.lazyLoad(exports, ["getOwner","getOwnerOutput"], () => require("./getOwner"));
 
 export { ListOwnersArgs, ListOwnersResult } from "./listOwners";
 export const listOwners: typeof import("./listOwners").listOwners = null as any;
-
-utilities.lazyLoad(exports, ["getOwner","getOwnerOutput"], () => require("./getOwner"));
 utilities.lazyLoad(exports, ["listOwners"], () => require("./listOwners"));
+
 
 // Export enums:
 export * from "../types/enums/owners";

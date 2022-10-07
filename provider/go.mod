@@ -116,6 +116,7 @@ require (
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/mitchellh/reflectwalk v1.0.2 // indirect
 	github.com/moby/term v0.0.0-20220808134915-39b0c02b01ae // indirect
+	github.com/mohae/deepcopy v0.0.0-20170929034955-c48cc78d4826 // indirect
 	github.com/natefinch/atomic v1.0.1 // indirect
 	github.com/oklog/run v1.1.0 // indirect
 	github.com/opentracing/basictracer-go v1.1.0 // indirect
@@ -196,7 +197,7 @@ require (
 
 require (
 	github.com/emirpasic/gods v1.18.1 // indirect
-	github.com/getkin/kin-openapi v0.103.0
+	github.com/getkin/kin-openapi v0.104.0
 	github.com/kevinburke/ssh_config v1.2.0 // indirect
 	github.com/pkg/errors v0.9.1
 	golang.org/x/crypto v0.0.0-20220829220503-c86fa9a7ed90 // indirect

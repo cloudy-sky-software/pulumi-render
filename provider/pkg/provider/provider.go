@@ -1,17 +1,3 @@
-// Copyright 2016-2020, Pulumi Corporation.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 package provider
 
 import (
@@ -659,7 +645,8 @@ func (p *renderProvider) runPostUpdateAction(ctx context.Context, resourceTypeTo
 	// When a service is updated via the API, we should trigger a deployment.
 	// Check if we should also request to clear the cache.
 	// We are sort of cheating here by not using the API spec to derive the
-	// required input. A fancier approach can be done in the future.
+	// required input for the cache clear request. A fancier approach can be
+	// done in the future.
 	var buf *bytes.Buffer
 	if p.clearCacheOnServiceUpdateDeployments == "clear" {
 		b, _ := json.Marshal(map[string]string{"clearCache": "clear"})

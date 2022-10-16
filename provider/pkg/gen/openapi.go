@@ -44,6 +44,18 @@ func getParentPath(path string) string {
 	return "/" + strings.Join(parts[0:len(parts)-1], "/")
 }
 
+// gatherResourcesFromAPI gathers resources from API endpoints.
+// The goal is to extract resources and map their corresponding CRUD
+// operations.
+//
+//   - The "create" operation (denoted by a Post request) determines the schema
+//     for the resource.
+//   - The "read" operation (denoted by a Get request) determines the schema
+//     for "invokes" or "resource get's".
+//   - The "update" operation (denoted by a Patch request) determines the schema
+//     for resource updates. The Patch request schema is used to determine
+//     which properties can be patched when changes are detected in Diff() vs.
+//     which ones will force a resource replacement.
 func (o *openAPIContext) gatherResourcesFromAPI(csharpNamespaces map[string]string) error {
 	for path, pathItem := range o.doc.Paths {
 		// Capture the iteration variable `path` because we use its pointer
@@ -708,6 +720,8 @@ func (ctx *resourceContext) propertyTypeSpec(parentName string, propSchema opena
 	return nil, errors.Errorf("failed to generate property types for %+v", propSchema)
 }
 
+// genProperties returns a map of the property names and their corresponding
+// property type spec and the required properties as a sorted set.
 func (ctx *resourceContext) genProperties(parentName string, typeSchema openapi3.Schema) (map[string]pschema.PropertySpec, codegen.StringSet, error) {
 	specs := map[string]pschema.PropertySpec{}
 	requiredSpecs := codegen.NewStringSet()
@@ -743,6 +757,8 @@ func (ctx *resourceContext) genProperties(parentName string, typeSchema openapi3
 	return specs, requiredSpecs, nil
 }
 
+// genPropertiesFromAllOf returns a map of property names and their corresponding
+// property type spec gathered from a type's allOf schema.
 func (ctx *resourceContext) genPropertiesFromAllOf(parentName string, allOf openapi3.SchemaRefs) (map[string]pschema.PropertySpec, codegen.StringSet, error) {
 	var types []pschema.TypeSpec
 	for _, schemaRef := range allOf {

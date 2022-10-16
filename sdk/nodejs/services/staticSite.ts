@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * ### Create a service
  *
  * ```typescript
- * import * as render from "@pulumi/render";
+ * import * as render from "@cloudyskysoftware/render";
  *
  * // TODO: Fill me in!
  * const service = new render.services.StaticSite("staticSite", {});

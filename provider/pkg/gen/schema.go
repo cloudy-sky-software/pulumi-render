@@ -18,17 +18,8 @@ import (
 
 const packageName = "render"
 
-type ProviderMetadata struct {
-	// ResourceToOperationMap identifies the endpoint that will handle the creation of a resource.
-	// ResourceToOperationMap OperationMap `json:"operationMap"`
-
-	// ResourceToOperationMap identifies the endpoint that will
-	// handle the CRUD for a given Pulumi resource type token.
-	ResourceCRUDMap map[string]*openapigen.CRUDOperationsMap `json:"crudMap"`
-}
-
 // PulumiSchema will generate a Pulumi schema for the given k8s schema.
-func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata) {
+func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.ProviderMetadata) {
 	pkg := pschema.PackageSpec{
 		Name:        packageName,
 		Description: "A Pulumi package for creating and managing Render resources.",
@@ -163,7 +154,7 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata)
 		},
 	})
 
-	metadata := ProviderMetadata{
+	metadata := openapigen.ProviderMetadata{
 		ResourceCRUDMap: openAPICtx.ResourceCRUDMap,
 	}
 	return pkg, metadata

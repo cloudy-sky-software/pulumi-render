@@ -208,8 +208,7 @@ func (p *renderProvider) OnPostDelete(ctx context.Context, req *pulumirpc.Delete
 
 	resourceTypeToken := fwRest.GetResourceTypeToken(req.GetUrn())
 
-	// Nothing to delete if the Suspend resource is being removed.
-	// But we do need to resume the service.
+	// Resume the service when the Suspend resource is deleted.
 	if resourceTypeToken == "render:services:Suspend" {
 		if err := p.executeResumeSerivce(ctx, inputs["serviceId"].StringValue()); err != nil {
 			return errors.Wrap(err, "resuming service")

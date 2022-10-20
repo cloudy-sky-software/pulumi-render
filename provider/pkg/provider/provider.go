@@ -4,7 +4,6 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"net"
 	"net/http"
 	"os"
 
@@ -36,15 +35,9 @@ type renderProvider struct {
 }
 
 var (
-	emptyResourceMap = resource.NewPropertyMap(map[string]string{})
-
 	handler  *restLib.RestProvider
 	callback providerCallback.RestProviderCallback
 )
-
-func defaultTransportDialContext(dialer *net.Dialer) func(context.Context, string, string) (net.Conn, error) {
-	return dialer.DialContext
-}
 
 func makeProvider(host *provider.HostClient, name, version string, pulumiSchemaBytes, openapiDocBytes, metadataBytes []byte) (pulumirpc.ResourceProviderServer, error) {
 	p := &renderProvider{
@@ -173,7 +166,7 @@ func (p *renderProvider) OnPostUpdate(ctx context.Context, req *pulumirpc.Update
 	if p.clearCacheOnServiceUpdateDeployments == "clear" {
 		reqBody, _ = json.Marshal(map[string]string{"clearCache": "clear"})
 	}
-	clearCacheHttpReq, createReqErr := handler.CreatePostRequest(ctx, url+"/deploys", reqBody, emptyResourceMap)
+	clearCacheHttpReq, createReqErr := handler.CreatePostRequest(ctx, url+"/deploys", reqBody, nil)
 	if createReqErr != nil {
 		glog.Warningf("Failed to create POST request object to clear the Render Service cache")
 		return outputs, nil
@@ -193,7 +186,7 @@ func (p *renderProvider) OnPostUpdate(ctx context.Context, req *pulumirpc.Update
 }
 
 func (p *renderProvider) executeResumeSerivce(ctx context.Context, serviceID string) error {
-	httpReq, _ := handler.CreatePostRequest(ctx, handler.GetBaseURL()+"/services"+serviceID+"/resume", nil, emptyResourceMap)
+	httpReq, _ := handler.CreatePostRequest(ctx, handler.GetBaseURL()+"/services"+serviceID+"/resume", nil, nil)
 
 	resp, err := handler.GetHttpClient().Do(httpReq)
 	if err != nil {

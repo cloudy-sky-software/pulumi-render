@@ -9,6 +9,8 @@ import (
 
 	"github.com/cloudy-sky-software/pulumi-render/provider/pkg/openapi"
 
+	"github.com/cloudy-sky-software/pulumi-provider-framework/state"
+
 	"github.com/stretchr/testify/assert"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
@@ -85,7 +87,7 @@ func TestDiff(t *testing.T) {
 
 	outputs := make(map[string]interface{})
 	outputs["name"] = "Test"
-	oldsStruct, _ := plugin.MarshalProperties(getResourceState(outputs, resource.NewPropertyMapFromMap(outputs)), defaultMarshalOpts)
+	oldsStruct, _ := plugin.MarshalProperties(state.GetResourceState(outputs, resource.NewPropertyMapFromMap(outputs)), defaultMarshalOpts)
 
 	news := make(map[string]interface{})
 	news["name"] = "Test2"
@@ -97,19 +99,6 @@ func TestDiff(t *testing.T) {
 	assert.NotEmpty(t, resp.Diffs)
 	assert.Len(t, resp.Diffs, 1)
 	assert.Empty(t, resp.Replaces)
-}
-
-func TestGetResourceState(t *testing.T) {
-	val := "Testing"
-	outputs := make(map[string]interface{})
-	outputs["name"] = val
-	outputs["id"] = "someid"
-
-	inputs := make(map[string]interface{})
-	inputs["name"] = val
-
-	state := getResourceState(outputs, resource.NewPropertyMapFromMap(inputs))
-	assert.True(t, state.HasValue(resource.PropertyKey(stateKeyInputs)))
 }
 
 func TestCreate(t *testing.T) {

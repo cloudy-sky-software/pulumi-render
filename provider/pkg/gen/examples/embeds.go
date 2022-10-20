@@ -6,7 +6,8 @@ import _ "embed"
 //go:embed service.md
 var service string
 
-// ResourceExample contains Markdown-formatted examples corresponding to a resource's type token.
+// ResourceExample contains Markdown-formatted examples
+// corresponding to a resource's type token.
 var ResourceExample = map[string]string{
 	"render:services:StaticSite": service,
 }

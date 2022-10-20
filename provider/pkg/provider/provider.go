@@ -165,13 +165,13 @@ func (p *renderProvider) OnPostUpdate(ctx context.Context, req *pulumirpc.Update
 	if p.clearCacheOnServiceUpdateDeployments == "clear" {
 		reqBody, _ = json.Marshal(map[string]string{"clearCache": "clear"})
 	}
-	clearCacheHttpReq, createReqErr := handler.CreatePostRequest(ctx, url+"/deploys", reqBody, nil)
+	clearCacheHTTPReq, createReqErr := handler.CreatePostRequest(ctx, url+"/deploys", reqBody, nil)
 	if createReqErr != nil {
 		glog.Warningf("Failed to create POST request object to clear the Render Service cache")
 		return outputs, nil
 	}
 
-	resp, err := handler.GetHttpClient().Do(clearCacheHttpReq)
+	resp, err := handler.GetHttpClient().Do(clearCacheHTTPReq)
 	if err != nil {
 		glog.Warningf("Service was updated successfully but triggering a deployment failed: %v. Trigger a deployment manually using the Render dashboard.", err)
 	}

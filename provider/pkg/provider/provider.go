@@ -18,11 +18,10 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
 	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
 
-	providerCallback "github.com/cloudy-sky-software/pulumi-provider-framework/callback"
-	restLib "github.com/cloudy-sky-software/pulumi-provider-framework/rest"
+	fwCallback "github.com/cloudy-sky-software/pulumi-provider-framework/callback"
+	fwRest "github.com/cloudy-sky-software/pulumi-provider-framework/rest"
 
 	"github.com/golang/glog"
-	pbempty "github.com/golang/protobuf/ptypes/empty"
 )
 
 type renderProvider struct {
@@ -35,8 +34,8 @@ type renderProvider struct {
 }
 
 var (
-	handler  *restLib.RestProvider
-	callback providerCallback.RestProviderCallback
+	handler  *fwRest.RestProvider
+	callback fwCallback.ProviderCallback
 )
 
 func makeProvider(host *provider.HostClient, name, version string, pulumiSchemaBytes, openapiDocBytes, metadataBytes []byte) (pulumirpc.ResourceProviderServer, error) {
@@ -46,9 +45,9 @@ func makeProvider(host *provider.HostClient, name, version string, pulumiSchemaB
 	}
 
 	callback = p
-	rp, err := restLib.MakeProvider(host, name, version, pulumiSchemaBytes, openapiDocBytes, metadataBytes, callback)
+	rp, err := fwRest.MakeProvider(host, name, version, pulumiSchemaBytes, openapiDocBytes, metadataBytes, callback)
 
-	handler = rp.(*restLib.RestProvider)
+	handler = rp.(*fwRest.RestProvider)
 
 	return rp, err
 }
@@ -150,7 +149,7 @@ func (p *renderProvider) OnPreUpdate(ctx context.Context, req *pulumirpc.UpdateR
 }
 
 func (p *renderProvider) OnPostUpdate(ctx context.Context, req *pulumirpc.UpdateRequest, httpReq http.Request, outputs map[string]interface{}) (map[string]interface{}, error) {
-	resourceTypeToken := restLib.GetResourceTypeToken(req.GetUrn())
+	resourceTypeToken := fwRest.GetResourceTypeToken(req.GetUrn())
 	url := httpReq.URL.String()
 
 	if resourceTypeToken != "render:services:Service" {
@@ -197,28 +196,25 @@ func (p *renderProvider) executeResumeSerivce(ctx context.Context, serviceID str
 	return nil
 }
 
-// Delete tears-down an existing resource with the given ID. If it fails, the resource is assumed
-// to still exist.
-func (p *renderProvider) OnPreDelete(ctx context.Context, req *pulumirpc.DeleteRequest) (*pbempty.Empty, error) {
+func (p *renderProvider) OnPreDelete(ctx context.Context, req *pulumirpc.DeleteRequest, httpReq *http.Request) error {
+	return nil
+}
+
+func (p *renderProvider) OnPostDelete(ctx context.Context, req *pulumirpc.DeleteRequest) error {
 	inputs, err := plugin.UnmarshalProperties(req.GetProperties(), defaultUnmarshalOpts)
 	if err != nil {
-		return nil, errors.Wrap(err, "unmarshal input properties as propertymap")
+		return errors.Wrap(err, "unmarshal input properties as propertymap")
 	}
 
-	resourceTypeToken := restLib.GetResourceTypeToken(req.GetUrn())
+	resourceTypeToken := fwRest.GetResourceTypeToken(req.GetUrn())
 
 	// Nothing to delete if the Suspend resource is being removed.
 	// But we do need to resume the service.
 	if resourceTypeToken == "render:services:Suspend" {
 		if err := p.executeResumeSerivce(ctx, inputs["serviceId"].StringValue()); err != nil {
-			return &pbempty.Empty{}, errors.Wrap(err, "resuming service")
+			return errors.Wrap(err, "resuming service")
 		}
-		return &pbempty.Empty{}, nil
 	}
 
-	return nil, nil
-}
-
-func (p *renderProvider) OnPostDelete(ctx context.Context, req *pulumirpc.DeleteRequest) (*pbempty.Empty, error) {
-	return nil, nil
+	return nil
 }

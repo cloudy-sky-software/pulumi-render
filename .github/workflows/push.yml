@@ -8,7 +8,7 @@ on:
       - main
 
 env:
-  GOPRIVATE: "github.com/cloudy-sky-software/pulumi-render"
+  GOPRIVATE: "github.com/cloudy-sky-software/*"
   PROVIDER: "render"
 
 jobs:

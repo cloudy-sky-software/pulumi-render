@@ -5,7 +5,7 @@ on:
       - v*.*.*
       - "!v*.*.*-**"
 env:
-  GOPRIVATE: "github.com/cloudy-sky-software/pulumi-render"
+  GOPRIVATE: "github.com/cloudy-sky-software/*"
   PROVIDER: "render"
   NPM_TOKEN: ${{ secrets.NPM_AUTOMATION_TOKEN }}
   PUBLISH_NPM: true

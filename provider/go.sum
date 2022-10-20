@@ -110,9 +110,8 @@ github.com/Azure/azure-sdk-for-go/sdk/internal v1.0.0/go.mod h1:eWRD7oawr1Mu1sLC
 github.com/Azure/azure-sdk-for-go/sdk/internal v1.0.1 h1:XUNQ4mw+zJmaA2KXzP9JlQiecy1SI+Eog7xVkPiqIbg=
 github.com/Azure/azure-sdk-for-go/sdk/internal v1.0.1/go.mod h1:eWRD7oawr1Mu1sLCawqVc0CUiF43ia3qQMxLscsKQ9w=
 github.com/Azure/azure-sdk-for-go/sdk/messaging/azservicebus v1.0.2/go.mod h1:LH9XQnMr2ZYxQdVdCrzLO9mxeDyrDFa6wbSI3x5zCZk=
+github.com/Azure/azure-sdk-for-go/sdk/storage/azblob v0.4.1 h1:QSdcrd/UFJv6Bp/CfoVf2SrENpFn9P6Yh8yb+xNhYMM=
 github.com/Azure/azure-sdk-for-go/sdk/storage/azblob v0.4.1/go.mod h1:eZ4g6GUvXiGulfIbbhh1Xr4XwUYaYaWMqzGD/284wCA=
-github.com/Azure/azure-sdk-for-go/sdk/storage/azblob v0.5.1 h1:BMTdr+ib5ljLa9MxTJK8x/Ds0MbBb4MfuW5BL0zMJnI=
-github.com/Azure/azure-sdk-for-go/sdk/storage/azblob v0.5.1/go.mod h1:c6WvOhtmjNUWbLfOG1qxM/q0SPvQNSVJvolm+C52dIU=
 github.com/Azure/go-amqp v0.17.0/go.mod h1:9YJ3RhxRT1gquYnzpZO1vcYMMpAdJT+QEg6fwmw9Zlg=
 github.com/Azure/go-amqp v0.17.5/go.mod h1:9YJ3RhxRT1gquYnzpZO1vcYMMpAdJT+QEg6fwmw9Zlg=
 github.com/Azure/go-ansiterm v0.0.0-20170929234023-d6e3b3328b78/go.mod h1:LmzpDX56iTiv29bbRTIsUNlaFfuhWRQBWjQdVyAevI8=
@@ -382,10 +381,10 @@ github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDk
 github.com/cloudflare/circl v1.1.0/go.mod h1:prBCrKB9DV4poKZY1l9zBXg2QJY7mvgRvtMxxK7fi4I=
 github.com/cloudflare/circl v1.2.0 h1:NheeISPSUcYftKlfrLuOo4T62FkmD4t4jviLfFFYaec=
 github.com/cloudflare/circl v1.2.0/go.mod h1:Ch2UgYr6ti2KTtlejELlROl0YIYj7SLjAC8M+INXlMk=
-github.com/cloudy-sky-software/pulschema v0.0.0-20221018032305-88dedf5a7aae h1:BXjxybVHYB3eBCiX3jmghmR9t2enecnmn97qd7pe6c8=
-github.com/cloudy-sky-software/pulschema v0.0.0-20221018032305-88dedf5a7aae/go.mod h1:dyjEb7KxXGSaUedLLz13mqN38DrN2CRBwoZklogGWMo=
-github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20221019031804-b07aba6bb376 h1:auMy7BOVlh2clWAxY7RpfYNUxmzZJBZoNuclOG4zCV4=
-github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20221019031804-b07aba6bb376/go.mod h1:CCQ0ny8eM5CBVGTh6WSxXYO6tx8Fcwrf4lK6zYzlhBU=
+github.com/cloudy-sky-software/pulschema v0.0.0-20221020014757-94fa02ba2e0a h1:AP4cS317iqE1AMHVHQZNlreQTWA4EgVdRAg21nVD/F4=
+github.com/cloudy-sky-software/pulschema v0.0.0-20221020014757-94fa02ba2e0a/go.mod h1:7Y5SOxDVhQ+lb1JWZDTx09W9lg88gjksphAkA0kup5I=
+github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20221020014822-2257271a53a6 h1:SP0D65KPIc55+3OHgc0h8qll6JwAEaIQvFWTQKRXGiM=
+github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20221020014822-2257271a53a6/go.mod h1:/6NlJvNeL4R/hIqn9jB6eSIQ9DhwfsVZr9omXgfdv6g=
 github.com/cncf/udpa/go v0.0.0-20191209042840-269d4d468f6f/go.mod h1:M8M6+tZqaGXZJjfX53e64911xZQV5JYwmTeXPW+k8Sc=
 github.com/cncf/udpa/go v0.0.0-20200629203442-efcf912fb354/go.mod h1:WmhPx2Nbnhtbo57+VJT5O0JRkEi1Wbu0z5j0R8u5Hbk=
 github.com/cncf/udpa/go v0.0.0-20201120205902-5459f2c99403/go.mod h1:WmhPx2Nbnhtbo57+VJT5O0JRkEi1Wbu0z5j0R8u5Hbk=

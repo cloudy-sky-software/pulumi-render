@@ -5,8 +5,6 @@ import (
 	"bytes"
 	"encoding/json"
 
-	"github.com/cloudy-sky-software/pulumi-render/provider/pkg/gen/examples"
-
 	"github.com/getkin/kin-openapi/openapi3"
 
 	pschema "github.com/pulumi/pulumi/pkg/v3/codegen/schema"
@@ -14,6 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
 
 	openapigen "github.com/cloudy-sky-software/pulschema/pkg/gen"
+
+	"github.com/cloudy-sky-software/pulumi-render/provider/pkg/gen/examples"
 )
 
 const packageName = "render"

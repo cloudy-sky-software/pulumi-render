@@ -3,6 +3,10 @@ module github.com/cloudy-sky-software/pulumi-render/provider
 go 1.18
 
 require (
+	github.com/cloudy-sky-software/pulschema v0.0.0-20221020014757-94fa02ba2e0a
+	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20221020014822-2257271a53a6
+	github.com/getkin/kin-openapi v0.106.0
+	github.com/golang/glog v1.0.0
 	github.com/golang/protobuf v1.5.2
 	github.com/pulumi/pulumi/pkg/v3 v3.45.0
 	github.com/pulumi/pulumi/sdk/v3 v3.45.0
@@ -207,4 +211,4 @@ require (
 	sourcegraph.com/sourcegraph/appdash v0.0.0-20211028080628-e2786a622600 // indirect
 )
 
-replace github.com/mattn/go-ieproxy => github.com/mattn/go-ieproxy v0.0.1
+replace github.com/Azure/azure-sdk-for-go/sdk/storage/azblob => github.com/Azure/azure-sdk-for-go/sdk/storage/azblob v0.4.1

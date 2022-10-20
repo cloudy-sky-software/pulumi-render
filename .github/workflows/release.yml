@@ -5,6 +5,7 @@ on:
       - v*.*.*
       - "!v*.*.*-**"
 env:
+  GOLANG_CI_LINT_VERSION: v1.50.0
   GOPRIVATE: "github.com/cloudy-sky-software/*"
   PROVIDER: "render"
   NPM_TOKEN: ${{ secrets.NPM_AUTOMATION_TOKEN }}
@@ -31,8 +32,9 @@ jobs:
         with:
           go-version: 1.19.x
 
-      - run: |
-          curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.49.0
+      - name: Lint
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin $GOLANG_CI_LINT_VERSION
           make lint
 
   publish-binary:

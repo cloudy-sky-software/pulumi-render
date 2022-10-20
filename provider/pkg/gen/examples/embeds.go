@@ -1,6 +1,7 @@
 package examples
 
-import _ "embed" // Needed to support go:embed directive
+// Needed to support go:embed directive
+import _ "embed"
 
 //go:embed service.md
 var service string

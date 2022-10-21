@@ -10,7 +10,7 @@ import (
 
 	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
 
-	openapigen "github.com/cloudy-sky-software/pulschema/pkg/gen"
+	openapigen "github.com/cloudy-sky-software/pulschema/pkg"
 
 	"github.com/cloudy-sky-software/pulumi-render/provider/pkg/gen/examples"
 )

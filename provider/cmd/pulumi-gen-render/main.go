@@ -25,8 +25,10 @@ import (
 	"path/filepath"
 
 	providerSchemaGen "github.com/cloudy-sky-software/pulumi-render/provider/pkg/gen"
-	providerOpenAPI "github.com/cloudy-sky-software/pulumi-render/provider/pkg/openapi"
 	providerVersion "github.com/cloudy-sky-software/pulumi-render/provider/pkg/version"
+
+	"github.com/cloudy-sky-software/pulumi-provider-framework/openapi"
+
 	"github.com/pkg/errors"
 
 	dotnetgen "github.com/pulumi/pulumi/pkg/v3/codegen/dotnet"
@@ -97,7 +99,7 @@ func main() {
 	case Go:
 		writeGoClient(schema, outdir)
 	case Schema:
-		openapiDoc := providerOpenAPI.GetOpenAPISpec(openapiDocBytes)
+		openapiDoc := openapi.GetOpenAPISpec(openapiDocBytes)
 		schemaSpec, metadata := providerSchemaGen.PulumiSchema(*openapiDoc)
 		providerDir := filepath.Join(".", "provider", "cmd", "pulumi-resource-render")
 		mustWritePulumiSchema(schemaSpec, providerDir)

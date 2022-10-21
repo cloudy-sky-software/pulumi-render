@@ -2,6 +2,7 @@ package provider
 
 import (
 	"github.com/pulumi/pulumi/pkg/v3/resource/provider"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/common/util/cmdutil"
 	rpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
 )

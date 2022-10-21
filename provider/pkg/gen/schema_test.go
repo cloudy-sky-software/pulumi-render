@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/cloudy-sky-software/pulumi-render/provider/pkg/openapi"
+	"github.com/cloudy-sky-software/pulumi-provider-framework/openapi"
 )
 
 func TestPulumiSchema(t *testing.T) {

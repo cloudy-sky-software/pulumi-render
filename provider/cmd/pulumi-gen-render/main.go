@@ -20,7 +20,6 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 
@@ -126,7 +125,7 @@ func mustWritePulumiSchema(pkgSpec schema.PackageSpec, outdir string) {
 
 func readSchema(schemaPath string, version string) *schema.Package {
 	// Read in, decode, and import the schema.
-	schemaBytes, err := ioutil.ReadFile(schemaPath)
+	schemaBytes, err := os.ReadFile(schemaPath)
 	if err != nil {
 		panic(err)
 	}
@@ -195,7 +194,7 @@ func writeDotnetClient(pkg *schema.Package, outdir string) {
 			panic(err)
 		}
 		// nolint: gosec
-		err := ioutil.WriteFile(path, contents, 0644)
+		err := os.WriteFile(path, contents, 0644)
 		if err != nil {
 			panic(err)
 		}
@@ -224,7 +223,7 @@ func mustWriteFile(rootDir, filename string, contents []byte) {
 		panic(err)
 	}
 	// nolint: gosec
-	err := ioutil.WriteFile(outPath, contents, 0644)
+	err := os.WriteFile(outPath, contents, 0644)
 	if err != nil {
 		panic(err)
 	}

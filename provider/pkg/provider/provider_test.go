@@ -31,7 +31,6 @@ const testCreateJSONPayload = `{
             "startCommand": "node app.js"
         },
         "numInstances": 1,
-        "openPorts": [{ "port": 8080, "protocol": "TCP" }],
         "plan": "starter",
         "pullRequestPreviewsEnabled": "no",
         "region": "oregon"

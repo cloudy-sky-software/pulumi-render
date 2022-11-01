@@ -393,6 +393,8 @@ github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20221101085615-c
 github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20221101085615-cdca29a6fa4a/go.mod h1:Ywu3rK7kTch8H/EMV2BlAGizkczos68QQ9st/lJslGc=
 github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20221101095300-1d0239779dc5 h1:dL5V21VnjStJLHQvtKgyztdgsJ8EmSKane5l16LnDx4=
 github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20221101095300-1d0239779dc5/go.mod h1:uWJCcEjncZAk2+dpIwJnu5p5G+nlgtoT1qkqG7Q5hlE=
+github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20221101111102-642d0f02bc95 h1:Pb4IAhbG0GPLbKJa2g/diPXvBHk2QX9vYlSwX9FG3c4=
+github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20221101111102-642d0f02bc95/go.mod h1:uWJCcEjncZAk2+dpIwJnu5p5G+nlgtoT1qkqG7Q5hlE=
 github.com/cncf/udpa/go v0.0.0-20191209042840-269d4d468f6f/go.mod h1:M8M6+tZqaGXZJjfX53e64911xZQV5JYwmTeXPW+k8Sc=
 github.com/cncf/udpa/go v0.0.0-20200629203442-efcf912fb354/go.mod h1:WmhPx2Nbnhtbo57+VJT5O0JRkEi1Wbu0z5j0R8u5Hbk=
 github.com/cncf/udpa/go v0.0.0-20201120205902-5459f2c99403/go.mod h1:WmhPx2Nbnhtbo57+VJT5O0JRkEi1Wbu0z5j0R8u5Hbk=

@@ -5,26 +5,15 @@ go 1.18
 require (
 	github.com/cloudy-sky-software/pulschema v0.0.0-20221021012800-ce0b4d2cbf35
 	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20221021013431-36ac42caeb3d
-	github.com/getkin/kin-openapi v0.106.0
+	github.com/getkin/kin-openapi v0.107.0
 	github.com/golang/glog v1.0.0
-	github.com/golang/protobuf v1.5.2
 	github.com/pulumi/pulumi/pkg/v3 v3.45.0
 	github.com/pulumi/pulumi/sdk/v3 v3.45.0
-	google.golang.org/grpc v1.50.1
 )
 
-require (
-	github.com/golang/glog v1.0.0
-	github.com/stretchr/testify v1.8.1
-)
+require github.com/stretchr/testify v1.8.1
 
-require (
-	github.com/cloudy-sky-software/pulschema v0.0.0-20221018032305-88dedf5a7aae
-	github.com/getkin/kin-openapi v0.107.0
-	github.com/pkg/errors v0.9.1
-)
-
-require github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20221019031804-b07aba6bb376
+require github.com/pkg/errors v0.9.1
 
 require (
 	cloud.google.com/go v0.104.0 // indirect

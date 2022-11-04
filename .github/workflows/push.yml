@@ -9,7 +9,7 @@ on:
 
 env:
   GOLANG_CI_LINT_VERSION: v1.50.0
-  GOPRIVATE: "github.com/cloudy-sky-software/pulumi-render,github.com/cloudy-sky-software/pulschema,github.com/cloudy-sky-software/pulumi-provider-framework"
+  GOPRIVATE: "github.com/cloudy-sky-software/*"
   PROVIDER: "render"
 
 jobs:

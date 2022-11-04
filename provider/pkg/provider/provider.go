@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"github.com/cloudy-sky-software/pulumi-provider-framework/state"
 	"net/http"
 	"os"
 
@@ -60,7 +61,8 @@ func (p *renderProvider) OnInvoke(ctx context.Context, req *pulumirpc.InvokeRequ
 	return nil, nil
 }
 
-// Configure configures the resource provider with "globals" that control its behavior.
+// OnConfigure is called by the provider framework when Pulumi calls Configure on
+// the resource provider server.
 func (p *renderProvider) OnConfigure(_ context.Context, req *pulumirpc.ConfigureRequest) (*pulumirpc.ConfigureResponse, error) {
 	apiKey, ok := req.GetVariables()["render:config:apiKey"]
 	if !ok {
@@ -92,7 +94,7 @@ func (p *renderProvider) OnConfigure(_ context.Context, req *pulumirpc.Configure
 	}, nil
 }
 
-// Diff checks what impacts a hypothetical update will have on the resource's properties.
+// OnDiff checks what impacts a hypothetical update will have on the resource's properties.
 func (p *renderProvider) OnDiff(ctx context.Context, req *pulumirpc.DiffRequest, resourceTypeToken string, diff *resource.ObjectDiff, jsonReq *openapi3.MediaType) (*pulumirpc.DiffResponse, error) {
 	if len(jsonReq.Schema.Value.AnyOf) == 0 {
 		return nil, nil
@@ -123,7 +125,7 @@ func (p *renderProvider) OnPreCreate(ctx context.Context, req *pulumirpc.CreateR
 	return nil
 }
 
-// Create allocates a new instance of the provided resource and returns its unique ID afterwards.
+// OnPostCreate allocates a new instance of the provided resource and returns its unique ID afterwards.
 func (p *renderProvider) OnPostCreate(ctx context.Context, req *pulumirpc.CreateRequest, outputs map[string]interface{}) (map[string]interface{}, error) {
 	// Service resources return an object that has the deployment ID
 	// for the newly-created resources, as well as the newly-created service
@@ -201,7 +203,7 @@ func (p *renderProvider) OnPreDelete(ctx context.Context, req *pulumirpc.DeleteR
 }
 
 func (p *renderProvider) OnPostDelete(ctx context.Context, req *pulumirpc.DeleteRequest) error {
-	inputs, err := plugin.UnmarshalProperties(req.GetProperties(), defaultUnmarshalOpts)
+	inputs, err := plugin.UnmarshalProperties(req.GetProperties(), state.DefaultUnmarshalOpts)
 	if err != nil {
 		return errors.Wrap(err, "unmarshal input properties as propertymap")
 	}

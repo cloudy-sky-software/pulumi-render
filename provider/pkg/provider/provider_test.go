@@ -87,11 +87,11 @@ func TestDiff(t *testing.T) {
 
 	outputs := make(map[string]interface{})
 	outputs["name"] = "Test"
-	oldsStruct, _ := plugin.MarshalProperties(state.GetResourceState(outputs, resource.NewPropertyMapFromMap(outputs)), defaultMarshalOpts)
+	oldsStruct, _ := plugin.MarshalProperties(state.GetResourceState(outputs, resource.NewPropertyMapFromMap(outputs)), state.DefaultMarshalOpts)
 
 	news := make(map[string]interface{})
 	news["name"] = "Test2"
-	newsStruct, _ := plugin.MarshalProperties(resource.NewPropertyMapFromMap(news), defaultMarshalOpts)
+	newsStruct, _ := plugin.MarshalProperties(resource.NewPropertyMapFromMap(news), state.DefaultMarshalOpts)
 
 	resp, err := p.Diff(ctx, &pulumirpc.DiffRequest{Id: "", Urn: "urn:pulumi:some-stack::some-project::render:services:StaticSite::someResourceName", Olds: oldsStruct, News: newsStruct})
 	assert.Nil(t, err)
@@ -111,7 +111,7 @@ func TestCreate(t *testing.T) {
 
 	p := makeTestProvider(ctx, t)
 
-	inputProperties, _ := plugin.MarshalProperties(resource.NewPropertyMapFromMap(inputs), defaultMarshalOpts)
+	inputProperties, _ := plugin.MarshalProperties(resource.NewPropertyMapFromMap(inputs), state.DefaultMarshalOpts)
 
 	_, err := p.Create(ctx, &pulumirpc.CreateRequest{
 		Urn:        "urn:pulumi:dev::render-ts::render:services:WebService::webservice",

@@ -34,7 +34,7 @@ type renderProvider struct {
 }
 
 var (
-	handler  *fwRest.RestProvider
+	handler  *fwRest.Provider
 	callback fwCallback.ProviderCallback
 )
 
@@ -47,7 +47,7 @@ func makeProvider(host *provider.HostClient, name, version string, pulumiSchemaB
 	callback = p
 	rp, err := fwRest.MakeProvider(host, name, version, pulumiSchemaBytes, openapiDocBytes, metadataBytes, callback)
 
-	handler = rp.(*fwRest.RestProvider)
+	handler = rp.(*fwRest.Provider)
 
 	return rp, err
 }

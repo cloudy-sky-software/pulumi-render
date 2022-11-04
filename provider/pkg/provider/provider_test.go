@@ -1,3 +1,5 @@
+// Copyright 2022, Cloudy Sky Software LLC.
+
 package provider
 
 import (

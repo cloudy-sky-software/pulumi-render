@@ -8,17 +8,46 @@ on:
       - main
 
 env:
-  GOPRIVATE: "github.com/cloudy-sky-software/pulumi-render"
+  GOLANG_CI_LINT_VERSION: v1.50.0
+  GOPRIVATE: "github.com/cloudy-sky-software/*"
   PROVIDER: "render"
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Unshallow clone for tags
+        run: git fetch --prune --unshallow --tags
+
+      - name: Install Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.19.x
+
+      - run: |
+          git config --global url."https://praneetloke:${GH_REPO_PAT}@github.com/".insteadOf "https://github.com/"
+        env:
+          GH_REPO_PAT: ${{ secrets.GH_REPO_PAT }}
+
+      - name: Lint
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin $GOLANG_CI_LINT_VERSION
+          make lint
+
   assert-clean-tree:
-    if: ${{ github.actor != 'renovate' }}
     name: Check if working tree is clean
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
+
+      - run: |
+          git config --global url."https://praneetloke:${GH_REPO_PAT}@github.com/".insteadOf "https://github.com/"
+        env:
+          GH_REPO_PAT: ${{ secrets.GH_REPO_PAT }}
 
       - name: Unshallow clone for tags
         run: git fetch --prune --unshallow --tags
@@ -50,11 +79,6 @@ jobs:
           tag: "latest"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Lint
-        run: |
-          curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.49.0
-          make lint
 
       - name: Generate schema and build SDKs
         run: make gen generate_schema build

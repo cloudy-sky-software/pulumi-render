@@ -139,7 +139,6 @@ components:
             type:
               type: string
               default: "static_site"
-              readOnly: true
             serviceDetails:
               $ref: "#/components/schemas/staticSiteServiceDetails"
     patchStaticSite:
@@ -433,7 +432,6 @@ components:
             type:
               type: string
               default: "web_service"
-              readOnly: true
             serviceDetails:
               $ref: "#/components/schemas/webServiceServiceDetails"
     openPorts:
@@ -595,7 +593,6 @@ components:
             type:
               type: string
               default: "background_worker"
-              readOnly: true
             serviceDetails:
               $ref: "#/components/schemas/backgroundWorkerServiceDetails"
     cronJobServiceDetails:
@@ -651,7 +648,6 @@ components:
             type:
               type: string
               default: "cron_job"
-              readOnly: true
             serviceDetails:
               $ref: "#/components/schemas/cronJobServiceDetails"
     service:

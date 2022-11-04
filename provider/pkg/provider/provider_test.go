@@ -1,3 +1,5 @@
+// Copyright 2022, Cloudy Sky Software LLC.
+
 package provider
 
 import (
@@ -7,7 +9,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/cloudy-sky-software/pulumi-render/provider/pkg/openapi"
+	"github.com/cloudy-sky-software/pulumi-provider-framework/openapi"
+	"github.com/cloudy-sky-software/pulumi-provider-framework/state"
 
 	"github.com/stretchr/testify/assert"
 
@@ -30,7 +33,6 @@ const testCreateJSONPayload = `{
             "startCommand": "node app.js"
         },
         "numInstances": 1,
-        "openPorts": [{ "port": 8080, "protocol": "TCP" }],
         "plan": "starter",
         "pullRequestPreviewsEnabled": "no",
         "region": "oregon"
@@ -85,11 +87,11 @@ func TestDiff(t *testing.T) {
 
 	outputs := make(map[string]interface{})
 	outputs["name"] = "Test"
-	oldsStruct, _ := plugin.MarshalProperties(getResourceState(outputs, resource.NewPropertyMapFromMap(outputs)), defaultMarshalOpts)
+	oldsStruct, _ := plugin.MarshalProperties(state.GetResourceState(outputs, resource.NewPropertyMapFromMap(outputs)), state.DefaultMarshalOpts)
 
 	news := make(map[string]interface{})
 	news["name"] = "Test2"
-	newsStruct, _ := plugin.MarshalProperties(resource.NewPropertyMapFromMap(news), defaultMarshalOpts)
+	newsStruct, _ := plugin.MarshalProperties(resource.NewPropertyMapFromMap(news), state.DefaultMarshalOpts)
 
 	resp, err := p.Diff(ctx, &pulumirpc.DiffRequest{Id: "", Urn: "urn:pulumi:some-stack::some-project::render:services:StaticSite::someResourceName", Olds: oldsStruct, News: newsStruct})
 	assert.Nil(t, err)
@@ -97,19 +99,6 @@ func TestDiff(t *testing.T) {
 	assert.NotEmpty(t, resp.Diffs)
 	assert.Len(t, resp.Diffs, 1)
 	assert.Empty(t, resp.Replaces)
-}
-
-func TestGetResourceState(t *testing.T) {
-	val := "Testing"
-	outputs := make(map[string]interface{})
-	outputs["name"] = val
-	outputs["id"] = "someid"
-
-	inputs := make(map[string]interface{})
-	inputs["name"] = val
-
-	state := getResourceState(outputs, resource.NewPropertyMapFromMap(inputs))
-	assert.True(t, state.HasValue(resource.PropertyKey(stateKeyInputs)))
 }
 
 func TestCreate(t *testing.T) {
@@ -122,7 +111,7 @@ func TestCreate(t *testing.T) {
 
 	p := makeTestProvider(ctx, t)
 
-	inputProperties, _ := plugin.MarshalProperties(resource.NewPropertyMapFromMap(inputs), defaultMarshalOpts)
+	inputProperties, _ := plugin.MarshalProperties(resource.NewPropertyMapFromMap(inputs), state.DefaultMarshalOpts)
 
 	_, err := p.Create(ctx, &pulumirpc.CreateRequest{
 		Urn:        "urn:pulumi:dev::render-ts::render:services:WebService::webservice",

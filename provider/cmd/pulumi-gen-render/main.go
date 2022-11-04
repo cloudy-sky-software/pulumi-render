@@ -1,16 +1,4 @@
-// Copyright 2016-2020, Pulumi Corporation.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+// Copyright 2022, Cloudy Sky Software LLC.
 
 package main
 
@@ -20,13 +8,14 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 
 	providerSchemaGen "github.com/cloudy-sky-software/pulumi-render/provider/pkg/gen"
-	providerOpenAPI "github.com/cloudy-sky-software/pulumi-render/provider/pkg/openapi"
 	providerVersion "github.com/cloudy-sky-software/pulumi-render/provider/pkg/version"
+
+	"github.com/cloudy-sky-software/pulumi-provider-framework/openapi"
+
 	"github.com/pkg/errors"
 
 	dotnetgen "github.com/pulumi/pulumi/pkg/v3/codegen/dotnet"
@@ -82,22 +71,22 @@ func main() {
 	TemplateDir = filepath.Join(BaseDir, "provider", "pkg", "gen")
 	outdir := filepath.Join(BaseDir, "sdk", string(language))
 
-	var schema *schema.Package
+	var schemaPkg *schema.Package
 	if language != Schema {
-		schema = readSchema(inputFile, version)
+		schemaPkg = readSchema(inputFile, version)
 	}
 
 	switch language {
 	case NodeJS:
-		writeNodeJSClient(schema, outdir)
+		writeNodeJSClient(schemaPkg, outdir)
 	case Python:
-		writePythonClient(schema, outdir)
+		writePythonClient(schemaPkg, outdir)
 	case DotNet:
-		writeDotnetClient(schema, outdir)
+		writeDotnetClient(schemaPkg, outdir)
 	case Go:
-		writeGoClient(schema, outdir)
+		writeGoClient(schemaPkg, outdir)
 	case Schema:
-		openapiDoc := providerOpenAPI.GetOpenAPISpec(openapiDocBytes)
+		openapiDoc := openapi.GetOpenAPISpec(openapiDocBytes)
 		schemaSpec, metadata := providerSchemaGen.PulumiSchema(*openapiDoc)
 		providerDir := filepath.Join(".", "provider", "cmd", "pulumi-resource-render")
 		mustWritePulumiSchema(schemaSpec, providerDir)
@@ -124,7 +113,7 @@ func mustWritePulumiSchema(pkgSpec schema.PackageSpec, outdir string) {
 
 func readSchema(schemaPath string, version string) *schema.Package {
 	// Read in, decode, and import the schema.
-	schemaBytes, err := ioutil.ReadFile(schemaPath)
+	schemaBytes, err := os.ReadFile(schemaPath)
 	if err != nil {
 		panic(err)
 	}
@@ -193,7 +182,7 @@ func writeDotnetClient(pkg *schema.Package, outdir string) {
 			panic(err)
 		}
 		// nolint: gosec
-		err := ioutil.WriteFile(path, contents, 0644)
+		err := os.WriteFile(path, contents, 0644)
 		if err != nil {
 			panic(err)
 		}
@@ -222,7 +211,7 @@ func mustWriteFile(rootDir, filename string, contents []byte) {
 		panic(err)
 	}
 	// nolint: gosec
-	err := ioutil.WriteFile(outPath, contents, 0644)
+	err := os.WriteFile(outPath, contents, 0644)
 	if err != nil {
 		panic(err)
 	}

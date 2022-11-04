@@ -1,59 +1,26 @@
-// nolint: goconst
+// Copyright 2022, Cloudy Sky Software LLC.
+
 package gen
 
 import (
 	"bytes"
 	"encoding/json"
 
-	"github.com/cloudy-sky-software/pulumi-render/provider/pkg/gen/examples"
-
 	"github.com/getkin/kin-openapi/openapi3"
 
-	"github.com/pulumi/pulumi/pkg/v3/codegen"
 	pschema "github.com/pulumi/pulumi/pkg/v3/codegen/schema"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+
+	openapigen "github.com/cloudy-sky-software/pulschema/pkg"
+
+	"github.com/cloudy-sky-software/pulumi-render/provider/pkg/gen/examples"
 )
 
 const packageName = "render"
 
-type OperationMap map[string]string
-
-// CRUDOperationsMap identifies the endpoints to perform
-// create, read, update and delete (CRUD) operations.
-type CRUDOperationsMap struct {
-	// C represents the POST (create) endpoint.
-	C *string `json:"c,omitempty"`
-	// R represents the GET (read) endpoint.
-	R *string `json:"r,omitempty"`
-	// U represents the PATCH endpoint.
-	U *string `json:"u,omitempty"`
-	// D represents the DELETE endpoint.
-	D *string `json:"d,omitempty"`
-
-	// P represents the PUT (overwrite/update) endpoint.
-	P *string `json:"p,omitempty"`
-}
-
-type ProviderMetadata struct {
-	// ResourceToOperationMap identifies the endpoint that will handle the creation of a resource.
-	// ResourceToOperationMap OperationMap `json:"operationMap"`
-
-	// ResourceToOperationMap identifies the endpoint that will
-	// handle the CRUD for a given Pulumi resource type token.
-	ResourceCRUDMap map[string]*CRUDOperationsMap `json:"crudMap"`
-}
-
-type resourceContext struct {
-	mod               string
-	pkg               *pschema.PackageSpec
-	resourceName      string
-	openapiComponents openapi3.Components
-	visitedTypes      codegen.StringSet
-}
-
 // PulumiSchema will generate a Pulumi schema for the given k8s schema.
-func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata) {
+func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.ProviderMetadata) {
 	pkg := pschema.PackageSpec{
 		Name:        packageName,
 		Description: "A Pulumi package for creating and managing Render resources.",
@@ -133,12 +100,12 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata)
 		"": "Provider",
 	}
 
-	openapiContext := &openAPIContext{
-		doc:             openapiDoc,
-		pkg:             &pkg,
-		resourceCRUDMap: make(map[string]*CRUDOperationsMap),
+	openAPICtx := &openapigen.OpenAPIContext{
+		Doc:             openapiDoc,
+		Pkg:             &pkg,
+		ResourceCRUDMap: make(map[string]*openapigen.CRUDOperationsMap),
 	}
-	if err := openapiContext.gatherResourcesFromAPI(csharpNamespaces); err != nil {
+	if err := openAPICtx.GatherResourcesFromAPI(csharpNamespaces); err != nil {
 		contract.Failf("generating resources from OpenAPI spec: %v", err)
 	}
 
@@ -188,8 +155,8 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, ProviderMetadata)
 		},
 	})
 
-	metadata := ProviderMetadata{
-		ResourceCRUDMap: openapiContext.resourceCRUDMap,
+	metadata := openapigen.ProviderMetadata{
+		ResourceCRUDMap: openAPICtx.ResourceCRUDMap,
 	}
 	return pkg, metadata
 }

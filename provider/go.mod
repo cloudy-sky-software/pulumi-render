@@ -3,8 +3,8 @@ module github.com/cloudy-sky-software/pulumi-render/provider
 go 1.18
 
 require (
-	github.com/cloudy-sky-software/pulschema v0.0.0-20221104034630-02ecf2e133bc
-	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20221104041705-aff9ec06d629
+	github.com/cloudy-sky-software/pulschema v0.0.0-20221104051020-853d9f9156af
+	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20221104110734-01a2ad69d480
 	github.com/getkin/kin-openapi v0.107.0
 	github.com/golang/glog v1.0.0
 	github.com/pulumi/pulumi/pkg/v3 v3.46.0

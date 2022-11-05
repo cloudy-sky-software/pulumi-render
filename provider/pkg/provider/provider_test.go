@@ -120,5 +120,5 @@ func TestCreate(t *testing.T) {
 
 	assert.NotNil(t, err)
 	// For now just assume that if we got to the point of making the request, we are good to go.
-	assert.Contains(t, err.Error(), "dial tcp 127.0.0.1:8080: connect: connection refused")
+	assert.Contains(t, err.Error(), "connect: connection refused")
 }

@@ -173,7 +173,7 @@ func (p *renderProvider) OnPostUpdate(ctx context.Context, req *pulumirpc.Update
 		return outputs, nil
 	}
 
-	resp, err := handler.GetHttpClient().Do(clearCacheHTTPReq)
+	resp, err := handler.GetHTTPClient().Do(clearCacheHTTPReq)
 	if err != nil {
 		glog.Warningf("Service was updated successfully but triggering a deployment failed: %v. Trigger a deployment manually using the Render dashboard.", err)
 	}
@@ -189,7 +189,7 @@ func (p *renderProvider) OnPostUpdate(ctx context.Context, req *pulumirpc.Update
 func (p *renderProvider) executeResumeSerivce(ctx context.Context, serviceID string) error {
 	httpReq, _ := handler.CreatePostRequest(ctx, handler.GetBaseURL()+"/services"+serviceID+"/resume", nil, nil)
 
-	resp, err := handler.GetHttpClient().Do(httpReq)
+	resp, err := handler.GetHTTPClient().Do(httpReq)
 	if err != nil {
 		return errors.Wrapf(err, "calling resume service endpoint %s", serviceID)
 	}

@@ -1,4 +1,4 @@
-## 0.0.38
+## 0.0.39
 
 - Switch to the [Pulumi provider framework](https://github.com/cloudy-sky-software/pulumi-provider-framework)
 

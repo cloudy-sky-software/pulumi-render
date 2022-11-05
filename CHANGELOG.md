@@ -1,3 +1,7 @@
+## 0.0.38
+
+- Switch to the [Pulumi provider framework](https://github.com/cloudy-sky-software/pulumi-provider-framework)
+
 ## 0.0.37
 
 - Fix ambiguous type error in service details.

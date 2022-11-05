@@ -50,7 +50,7 @@ export function getVersion(): string {
 
 /** @internal */
 export function resourceOptsDefaults(): any {
-    return { version: getVersion(), pluginDownloadURL: "github://cloudy-sky-software/pulumi-render" };
+    return { version: getVersion(), pluginDownloadURL: "github://api.github.com/cloudy-sky-software/pulumi-render" };
 }
 
 /** @internal */

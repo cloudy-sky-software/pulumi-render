@@ -33,6 +33,6 @@
     "pulumi": {
         "resource": true,
         "name": "render",
-        "server": "github://cloudy-sky-software/pulumi-render"
+        "server": "github://api.github.com/cloudy-sky-software/pulumi-render"
     }
 }

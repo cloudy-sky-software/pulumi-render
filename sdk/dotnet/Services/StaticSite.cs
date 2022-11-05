@@ -100,7 +100,7 @@ namespace Pulumi.Render.Services
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "github://cloudy-sky-software/pulumi-render",
+                PluginDownloadURL = "github://api.github.com/cloudy-sky-software/pulumi-render",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.

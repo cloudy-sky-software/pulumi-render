@@ -11,7 +11,7 @@
     "homepage": "https://cloudysky.software",
     "license": "Apache-2.0",
     "repository": "https://github.com/cloudy-sky-software/pulumi-render",
-    "pluginDownloadURL": "github://cloudy-sky-software/pulumi-render",
+    "pluginDownloadURL": "github://api.github.com/cloudy-sky-software/pulumi-render",
     "publisher": "Cloudy Sky Software",
     "language": {
         "csharp": {

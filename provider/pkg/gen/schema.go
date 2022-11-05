@@ -84,7 +84,7 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 			},
 		},
 
-		PluginDownloadURL: "github://cloudy-sky-software/pulumi-render",
+		PluginDownloadURL: "github://api.github.com/cloudy-sky-software/pulumi-render",
 		Types:             map[string]pschema.ComplexTypeSpec{},
 		Resources:         map[string]pschema.ResourceSpec{},
 		Functions:         map[string]pschema.FunctionSpec{},

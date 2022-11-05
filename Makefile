@@ -95,6 +95,9 @@ install:: install_nodejs_sdk install_dotnet_sdk
 
 GO_TEST 	 := go test -v -count=1 -cover -timeout 2h -parallel ${TESTPARALLELISM}
 
+test::
+	cd provider/pkg && $(GO_TEST) ./...
+
 test_all::
 	cd provider/pkg && $(GO_TEST) ./...
 	cd tests/sdk/nodejs && $(GO_TEST) ./...

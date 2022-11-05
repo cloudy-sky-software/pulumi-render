@@ -15,7 +15,7 @@ class InstallPluginCommand(install):
     def run(self):
         install.run(self)
         try:
-            check_call(['pulumi', 'plugin', 'install', 'resource', 'render', PLUGIN_VERSION, '--server', 'https://github.com/cloudy-sky-software/pulumi-render/releases/download/${VERSION}'])
+            check_call(['pulumi', 'plugin', 'install', 'resource', 'render', PLUGIN_VERSION, '--server', 'github://cloudy-sky-software/pulumi-render'])
         except OSError as error:
             if error.errno == errno.ENOENT:
                 print(f"""

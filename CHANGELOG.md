@@ -1,3 +1,7 @@
+## 0.0.40
+
+- Fix the plugin download URL
+
 ## 0.0.39
 
 - Switch to the [Pulumi provider framework](https://github.com/cloudy-sky-software/pulumi-provider-framework)

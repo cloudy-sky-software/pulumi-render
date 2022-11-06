@@ -1,3 +1,7 @@
+## 0.0.41
+
+- Fix resource reads
+
 ## 0.0.40
 
 - Fix the plugin download URL

@@ -1,3 +1,7 @@
+## 0.0.42
+
+- Fix resource import
+
 ## 0.0.41
 
 - Fix resource reads

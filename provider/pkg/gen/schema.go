@@ -101,7 +101,12 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 		Doc:             openapiDoc,
 		Pkg:             &pkg,
 		ResourceCRUDMap: make(map[string]*openapigen.CRUDOperationsMap),
+		ExcludedPaths: []string{
+			"/services/{serviceId}/resume",
+			"/services/{serviceId}/custom-domains/{id}/verify",
+		},
 	}
+
 	if err := openAPICtx.GatherResourcesFromAPI(csharpNamespaces); err != nil {
 		contract.Failf("generating resources from OpenAPI spec: %v", err)
 	}

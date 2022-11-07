@@ -1,3 +1,7 @@
+## 0.0.45
+
+- Add support for EnvVar resource (#55)
+
 ## 0.0.42 - 0.0.44
 
 - Fix resource import

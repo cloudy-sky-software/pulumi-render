@@ -41,6 +41,8 @@ var (
 	callback fwCallback.ProviderCallback
 )
 
+const envVarResourceTypeToken = "render:services:EnvVar"
+
 func makeProvider(host *provider.HostClient, name, version string, pulumiSchemaBytes, openapiDocBytes, metadataBytes []byte) (pulumirpc.ResourceProviderServer, error) {
 	p := &renderProvider{
 		name:    name,
@@ -126,7 +128,7 @@ func (p *renderProvider) OnDiff(ctx context.Context, req *pulumirpc.DiffRequest,
 
 func (p *renderProvider) OnPreCreate(ctx context.Context, req *pulumirpc.CreateRequest, httpReq *http.Request) error {
 	resourceTypeToken := fwRest.GetResourceTypeToken(req.GetUrn())
-	if resourceTypeToken != "render:services:EnvVar" {
+	if resourceTypeToken != envVarResourceTypeToken {
 		return nil
 	}
 
@@ -154,7 +156,7 @@ func (p *renderProvider) OnPostCreate(ctx context.Context, req *pulumirpc.Create
 	resourceTypeToken := fwRest.GetResourceTypeToken(req.GetUrn())
 	var outputsMap map[string]interface{}
 
-	if resourceTypeToken == "render:services:EnvVar" {
+	if resourceTypeToken == envVarResourceTypeToken {
 		envVarResp := outputs.([]interface{})
 		id := sha256.New()
 
@@ -175,7 +177,7 @@ func (p *renderProvider) OnPostCreate(ctx context.Context, req *pulumirpc.Create
 	outputsMap = outputs.(map[string]interface{})
 	if service, serviceOk := outputsMap["service"]; serviceOk {
 		logging.V(3).Info("Found service object in the response. Using that as the output result.")
-		outputs = service.(map[string]interface{})
+		outputsMap = service.(map[string]interface{})
 	}
 
 	return outputsMap, nil
@@ -191,7 +193,7 @@ func (p *renderProvider) OnPostRead(ctx context.Context, req *pulumirpc.ReadRequ
 
 func (p *renderProvider) OnPreUpdate(ctx context.Context, req *pulumirpc.UpdateRequest, httpReq *http.Request) error {
 	resourceTypeToken := fwRest.GetResourceTypeToken(req.GetUrn())
-	if resourceTypeToken != "render:services:EnvVar" {
+	if resourceTypeToken != envVarResourceTypeToken {
 		return nil
 	}
 
@@ -218,7 +220,7 @@ func (p *renderProvider) OnPostUpdate(ctx context.Context, req *pulumirpc.Update
 	resourceTypeToken := fwRest.GetResourceTypeToken(req.GetUrn())
 	var outputsMap map[string]interface{}
 
-	if resourceTypeToken == "render:services:EnvVar" {
+	if resourceTypeToken == envVarResourceTypeToken {
 		envVarResp := outputs.([]interface{})
 		id := sha256.New()
 
@@ -236,7 +238,12 @@ func (p *renderProvider) OnPostUpdate(ctx context.Context, req *pulumirpc.Update
 
 	// When a service or env var is updated via the API,
 	// we should trigger a deployment.
-	if resourceTypeToken != "render:services:Service" && resourceTypeToken != "render:services:EnvVar" {
+	if resourceTypeToken != "render:services:StaticSite" &&
+		resourceTypeToken != "render:services:WebService" &&
+		resourceTypeToken != "render:services:PrivateService" &&
+		resourceTypeToken != "render:services:BackgroundWorker" &&
+		resourceTypeToken != "render:services:CronJob" &&
+		resourceTypeToken != envVarResourceTypeToken {
 		return outputsMap, nil
 	}
 
@@ -247,7 +254,7 @@ func (p *renderProvider) OnPostUpdate(ctx context.Context, req *pulumirpc.Update
 	urlPath = strings.TrimPrefix(urlPath, "/")
 
 	parts := strings.Split(urlPath, "/")
-	serviceId := parts[1]
+	serviceID := parts[1]
 
 	// Check if we should also request to clear the cache.
 	//
@@ -260,7 +267,7 @@ func (p *renderProvider) OnPostUpdate(ctx context.Context, req *pulumirpc.Update
 	}
 
 	inputs := resource.NewPropertyMapFromMap(map[string]interface{}{
-		"serviceId": serviceId,
+		"serviceId": serviceID,
 	})
 	clearCacheHTTPReq, createReqErr := handler.CreatePostRequest(ctx, "/services/{serviceId}/deploys", reqBody, inputs)
 	if createReqErr != nil {

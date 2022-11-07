@@ -9,30 +9,27 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Render.Services
 {
-    [RenderResourceType("render:services:Deploy")]
-    public partial class Deploy : global::Pulumi.CustomResource
+    [RenderResourceType("render:services:EnvVar")]
+    public partial class EnvVar : global::Pulumi.CustomResource
     {
-        [Output("clearCache")]
-        public Output<Pulumi.Render.Services.ClearCache?> ClearCache { get; private set; } = null!;
-
-        [Output("commit")]
-        public Output<Outputs.Commit?> Commit { get; private set; } = null!;
+        [Output("envVars")]
+        public Output<ImmutableArray<Outputs.EnvVarKeyValue>> EnvVars { get; private set; } = null!;
 
 
         /// <summary>
-        /// Create a Deploy resource with the given unique name, arguments, and options.
+        /// Create a EnvVar resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Deploy(string name, DeployArgs? args = null, CustomResourceOptions? options = null)
-            : base("render:services:Deploy", name, args ?? new DeployArgs(), MakeResourceOptions(options, ""))
+        public EnvVar(string name, EnvVarArgs? args = null, CustomResourceOptions? options = null)
+            : base("render:services:EnvVar", name, args ?? new EnvVarArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private Deploy(string name, Input<string> id, CustomResourceOptions? options = null)
-            : base("render:services:Deploy", name, null, MakeResourceOptions(options, id))
+        private EnvVar(string name, Input<string> id, CustomResourceOptions? options = null)
+            : base("render:services:EnvVar", name, null, MakeResourceOptions(options, id))
         {
         }
 
@@ -49,23 +46,28 @@ namespace Pulumi.Render.Services
             return merged;
         }
         /// <summary>
-        /// Get an existing Deploy resource's state with the given name, ID, and optional extra
+        /// Get an existing EnvVar resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resulting resource.</param>
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static Deploy Get(string name, Input<string> id, CustomResourceOptions? options = null)
+        public static EnvVar Get(string name, Input<string> id, CustomResourceOptions? options = null)
         {
-            return new Deploy(name, id, options);
+            return new EnvVar(name, id, options);
         }
     }
 
-    public sealed class DeployArgs : global::Pulumi.ResourceArgs
+    public sealed class EnvVarArgs : global::Pulumi.ResourceArgs
     {
-        [Input("clearCache")]
-        public Input<Pulumi.Render.Services.ClearCache>? ClearCache { get; set; }
+        [Input("envVars")]
+        private InputList<Inputs.EnvVarKeyValueArgs>? _envVars;
+        public InputList<Inputs.EnvVarKeyValueArgs> EnvVars
+        {
+            get => _envVars ?? (_envVars = new InputList<Inputs.EnvVarKeyValueArgs>());
+            set => _envVars = value;
+        }
 
         /// <summary>
         /// (Required) The ID of the service
@@ -73,10 +75,9 @@ namespace Pulumi.Render.Services
         [Input("serviceId")]
         public Input<string>? ServiceId { get; set; }
 
-        public DeployArgs()
+        public EnvVarArgs()
         {
-            ClearCache = Pulumi.Render.Services.ClearCache.DoNotClear;
         }
-        public static new DeployArgs Empty => new DeployArgs();
+        public static new EnvVarArgs Empty => new EnvVarArgs();
     }
 }

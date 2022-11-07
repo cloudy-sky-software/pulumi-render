@@ -736,6 +736,10 @@
                 {
                     "name": "Yes",
                     "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
                 }
             ]
         },
@@ -2361,7 +2365,30 @@
                     "$ref": "#/types/render:services:ClearCache",
                     "default": "do_not_clear"
                 },
-                "id": {
+                "serviceId": {
+                    "type": "string",
+                    "description": "(Required) The ID of the service"
+                }
+            }
+        },
+        "render:services:EnvVar": {
+            "properties": {
+                "envVars": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:EnvVarKeyValue"
+                    }
+                }
+            },
+            "type": "object",
+            "inputProperties": {
+                "envVars": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:EnvVarKeyValue"
+                    }
+                },
+                "serviceId": {
                     "type": "string",
                     "description": "(Required) The ID of the service"
                 }

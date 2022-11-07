@@ -740,15 +740,24 @@ components:
           type: string
           enum:
             - "yes"
+            - "no"
         value:
           type: string
       required:
         - "key"
     envVar:
       title: EnvVar
-      type: array
-      items:
-        $ref: "#/components/schemas/envVarKeyValue"
+      type: object
+      # Note: This is a departure from the actual API.
+      # The actual API for updating/replacing env vars
+      # actually just takes a top-level array of objects.
+      # We've nested it under an envVars property to help
+      # with resource construction via Pulumi.
+      properties:
+        envVars:
+          type: array
+          items:
+            $ref: "#/components/schemas/envVarKeyValue"
     listEnvVarsResponse:
       type: object
       properties:
@@ -2391,7 +2400,7 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: id
+        - name: serviceId
           in: path
           schema:
             type: string
@@ -3640,7 +3649,7 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: id
+        - name: serviceId
           in: path
           schema:
             type: string

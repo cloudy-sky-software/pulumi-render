@@ -24,6 +24,7 @@
         "services/cronJob.ts",
         "services/customDomain.ts",
         "services/deploy.ts",
+        "services/envVar.ts",
         "services/getBackgroundWorker.ts",
         "services/getCronJob.ts",
         "services/getCustomDomain.ts",

@@ -10,6 +10,7 @@ from .background_worker import *
 from .cron_job import *
 from .custom_domain import *
 from .deploy import *
+from .env_var import *
 from .get_background_worker import *
 from .get_cron_job import *
 from .get_custom_domain import *

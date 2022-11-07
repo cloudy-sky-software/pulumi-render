@@ -120,6 +120,7 @@ class DomainType(str, Enum):
 
 class EnvVarKeyValueGenerateValue(str, Enum):
     YES = "yes"
+    NO = "no"
 
 
 class OpenPortsProtocol(str, Enum):

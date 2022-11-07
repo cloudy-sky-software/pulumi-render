@@ -1,12 +1,15 @@
 package provider
 
 import (
+	"bytes"
 	"context"
+	"crypto/sha256"
 	"encoding/json"
 	"fmt"
-	"github.com/cloudy-sky-software/pulumi-provider-framework/state"
+	"io"
 	"net/http"
 	"os"
+	"strings"
 
 	"github.com/getkin/kin-openapi/openapi3"
 
@@ -21,8 +24,7 @@ import (
 
 	fwCallback "github.com/cloudy-sky-software/pulumi-provider-framework/callback"
 	fwRest "github.com/cloudy-sky-software/pulumi-provider-framework/rest"
-
-	"github.com/golang/glog"
+	"github.com/cloudy-sky-software/pulumi-provider-framework/state"
 )
 
 type renderProvider struct {
@@ -38,6 +40,8 @@ var (
 	handler  *fwRest.Provider
 	callback fwCallback.ProviderCallback
 )
+
+const envVarResourceTypeToken = "render:services:EnvVar"
 
 func makeProvider(host *provider.HostClient, name, version string, pulumiSchemaBytes, openapiDocBytes, metadataBytes []byte) (pulumirpc.ResourceProviderServer, error) {
 	p := &renderProvider{
@@ -104,7 +108,8 @@ func (p *renderProvider) OnDiff(ctx context.Context, req *pulumirpc.DiffRequest,
 	var replaces []string
 	var diffs []string
 
-	// HACK! Taking a shortcut to handle service type-specific updates.
+	// Taking a shortcut to handle service type-specific updates.
+	// TODO: Add the other service types as well.
 	switch resourceTypeToken {
 	case "render:services:StaticSite":
 		replaces, diffs = p.determineDiffsAndReplacements(diff, handler.GetOpenAPIDoc().Components.Schemas["patchStaticSite"].Value.Properties)
@@ -122,20 +127,60 @@ func (p *renderProvider) OnDiff(ctx context.Context, req *pulumirpc.DiffRequest,
 }
 
 func (p *renderProvider) OnPreCreate(ctx context.Context, req *pulumirpc.CreateRequest, httpReq *http.Request) error {
+	resourceTypeToken := fwRest.GetResourceTypeToken(req.GetUrn())
+	if resourceTypeToken != envVarResourceTypeToken {
+		return nil
+	}
+
+	body, err := io.ReadAll(httpReq.Body)
+	if err != nil {
+		return errors.Wrapf(err, "reading body in OnPreCreate while handling %s", resourceTypeToken)
+	}
+
+	var m map[string]interface{}
+	if err := json.Unmarshal(body, &m); err != nil {
+		return errors.Wrap(err, "unmarshaling body in OnPreCreate")
+	}
+
+	modifiedRequestBody, err := json.Marshal(m["envVars"])
+	if err != nil {
+		return errors.Wrap(err, "marshaling modified body in OnPreCreate")
+	}
+	httpReq.Body = io.NopCloser(bytes.NewBuffer(modifiedRequestBody))
+	httpReq.ContentLength = int64(len(modifiedRequestBody))
 	return nil
 }
 
 // OnPostCreate allocates a new instance of the provided resource and returns its unique ID afterwards.
-func (p *renderProvider) OnPostCreate(ctx context.Context, req *pulumirpc.CreateRequest, outputs map[string]interface{}) (map[string]interface{}, error) {
+func (p *renderProvider) OnPostCreate(ctx context.Context, req *pulumirpc.CreateRequest, outputs interface{}) (map[string]interface{}, error) {
+	resourceTypeToken := fwRest.GetResourceTypeToken(req.GetUrn())
+	var outputsMap map[string]interface{}
+
+	if resourceTypeToken == envVarResourceTypeToken {
+		envVarResp := outputs.([]interface{})
+		id := sha256.New()
+
+		b, _ := json.Marshal(envVarResp)
+
+		id.Write(b)
+
+		outputsMap = map[string]interface{}{
+			"id":      fmt.Sprintf("%x", id.Sum(nil)),
+			"envVars": envVarResp,
+		}
+		return outputsMap, nil
+	}
+
 	// Service resources return an object that has the deployment ID
 	// for the newly-created resources, as well as the newly-created service
 	// object.
-	if service, serviceOk := outputs["service"]; serviceOk {
-		glog.V(3).Info("Found service object in the response. Using that as the output result.")
-		outputs = service.(map[string]interface{})
+	outputsMap = outputs.(map[string]interface{})
+	if service, serviceOk := outputsMap["service"]; serviceOk {
+		logging.V(3).Info("Found service object in the response. Using that as the output result.")
+		outputsMap = service.(map[string]interface{})
 	}
 
-	return outputs, nil
+	return outputsMap, nil
 }
 
 func (p *renderProvider) OnPreRead(ctx context.Context, req *pulumirpc.ReadRequest, httpReq *http.Request) error {
@@ -147,19 +192,72 @@ func (p *renderProvider) OnPostRead(ctx context.Context, req *pulumirpc.ReadRequ
 }
 
 func (p *renderProvider) OnPreUpdate(ctx context.Context, req *pulumirpc.UpdateRequest, httpReq *http.Request) error {
+	resourceTypeToken := fwRest.GetResourceTypeToken(req.GetUrn())
+	if resourceTypeToken != envVarResourceTypeToken {
+		return nil
+	}
+
+	body, err := io.ReadAll(httpReq.Body)
+	if err != nil {
+		return errors.Wrapf(err, "reading body in OnPreUpdate while handling %s", resourceTypeToken)
+	}
+
+	var m map[string]interface{}
+	if err := json.Unmarshal(body, &m); err != nil {
+		return errors.Wrap(err, "unmarshaling body in OnPreUpdate")
+	}
+
+	modifiedRequestBody, err := json.Marshal(m["envVars"])
+	if err != nil {
+		return errors.Wrap(err, "marshaling modified body in OnPreUpdate")
+	}
+	httpReq.Body = io.NopCloser(bytes.NewBuffer(modifiedRequestBody))
+	httpReq.ContentLength = int64(len(modifiedRequestBody))
 	return nil
 }
 
-func (p *renderProvider) OnPostUpdate(ctx context.Context, req *pulumirpc.UpdateRequest, httpReq http.Request, outputs map[string]interface{}) (map[string]interface{}, error) {
+func (p *renderProvider) OnPostUpdate(ctx context.Context, req *pulumirpc.UpdateRequest, httpReq http.Request, outputs interface{}) (map[string]interface{}, error) {
 	resourceTypeToken := fwRest.GetResourceTypeToken(req.GetUrn())
-	url := httpReq.URL.String()
+	var outputsMap map[string]interface{}
 
-	if resourceTypeToken != "render:services:Service" {
-		return outputs, nil
+	if resourceTypeToken == envVarResourceTypeToken {
+		envVarResp := outputs.([]interface{})
+		id := sha256.New()
+
+		b, _ := json.Marshal(envVarResp)
+
+		id.Write(b)
+
+		outputsMap = map[string]interface{}{
+			"id":      fmt.Sprintf("%x", id.Sum(nil)),
+			"envVars": envVarResp,
+		}
+	} else {
+		outputsMap = outputs.(map[string]interface{})
 	}
 
-	// When a service is updated via the API, we should trigger a deployment.
+	// When a service or env var is updated via the API,
+	// we should trigger a deployment.
+	if resourceTypeToken != "render:services:StaticSite" &&
+		resourceTypeToken != "render:services:WebService" &&
+		resourceTypeToken != "render:services:PrivateService" &&
+		resourceTypeToken != "render:services:BackgroundWorker" &&
+		resourceTypeToken != "render:services:CronJob" &&
+		resourceTypeToken != envVarResourceTypeToken {
+		return outputsMap, nil
+	}
+
+	logging.V(3).Infof("Triggering a deployment since resource type %s was updated", resourceTypeToken)
+	urlPath := httpReq.URL.Path
+	urlPath = strings.ReplaceAll(urlPath, "/v1", "")
+	urlPath = strings.ReplaceAll(urlPath, "/env-vars", "")
+	urlPath = strings.TrimPrefix(urlPath, "/")
+
+	parts := strings.Split(urlPath, "/")
+	serviceID := parts[1]
+
 	// Check if we should also request to clear the cache.
+	//
 	// We are sort of cheating here by not using the API spec to derive the
 	// required input for the cache clear request. A fancier approach can be
 	// done in the future.
@@ -167,23 +265,33 @@ func (p *renderProvider) OnPostUpdate(ctx context.Context, req *pulumirpc.Update
 	if p.clearCacheOnServiceUpdateDeployments == "clear" {
 		reqBody, _ = json.Marshal(map[string]string{"clearCache": "clear"})
 	}
-	clearCacheHTTPReq, createReqErr := handler.CreatePostRequest(ctx, url+"/deploys", reqBody, nil)
+
+	inputs := resource.NewPropertyMapFromMap(map[string]interface{}{
+		"serviceId": serviceID,
+	})
+	clearCacheHTTPReq, createReqErr := handler.CreatePostRequest(ctx, "/services/{serviceId}/deploys", reqBody, inputs)
 	if createReqErr != nil {
-		glog.Warningf("Failed to create POST request object to clear the Render Service cache")
-		return outputs, nil
+		logging.Warningf("Failed to create POST request object to clear the Render Service cache: %v", createReqErr)
+		return outputsMap, nil
 	}
 
 	resp, err := handler.GetHTTPClient().Do(clearCacheHTTPReq)
 	if err != nil {
-		glog.Warningf("Service was updated successfully but triggering a deployment failed: %v. Trigger a deployment manually using the Render dashboard.", err)
+		logging.Warningf("Service was updated successfully but triggering a deployment failed: %v. Trigger a deployment manually using the Render dashboard.", err)
 	}
 
 	if resp == nil {
-		return outputs, nil
+		return outputsMap, nil
 	}
 
-	resp.Body.Close()
-	return outputs, nil
+	logging.V(3).Infof("Response for triggering a deployment (code: %d)", resp.StatusCode)
+
+	defer resp.Body.Close()
+
+	respBody, _ := io.ReadAll(resp.Body)
+	logging.V(3).Infof("Response body for triggering a deployment: %s", string(respBody))
+
+	return outputsMap, nil
 }
 
 func (p *renderProvider) executeResumeSerivce(ctx context.Context, serviceID string) error {

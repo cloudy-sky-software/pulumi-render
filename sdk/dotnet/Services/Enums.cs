@@ -376,6 +376,7 @@ namespace Pulumi.Render.Services
         }
 
         public static EnvVarKeyValueGenerateValue Yes { get; } = new EnvVarKeyValueGenerateValue("yes");
+        public static EnvVarKeyValueGenerateValue No { get; } = new EnvVarKeyValueGenerateValue("no");
 
         public static bool operator ==(EnvVarKeyValueGenerateValue left, EnvVarKeyValueGenerateValue right) => left.Equals(right);
         public static bool operator !=(EnvVarKeyValueGenerateValue left, EnvVarKeyValueGenerateValue right) => !left.Equals(right);

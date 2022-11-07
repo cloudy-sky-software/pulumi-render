@@ -110,6 +110,7 @@ export type DomainType = (typeof DomainType)[keyof typeof DomainType];
 
 export const EnvVarKeyValueGenerateValue = {
     Yes: "yes",
+    No: "no",
 } as const;
 
 export type EnvVarKeyValueGenerateValue = (typeof EnvVarKeyValueGenerateValue)[keyof typeof EnvVarKeyValueGenerateValue];

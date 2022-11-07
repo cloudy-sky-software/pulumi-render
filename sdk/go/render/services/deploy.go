@@ -62,14 +62,14 @@ func (DeployState) ElementType() reflect.Type {
 type deployArgs struct {
 	ClearCache *ClearCache `pulumi:"clearCache"`
 	// (Required) The ID of the service
-	Id *string `pulumi:"id"`
+	ServiceId *string `pulumi:"serviceId"`
 }
 
 // The set of arguments for constructing a Deploy resource.
 type DeployArgs struct {
 	ClearCache ClearCachePtrInput
 	// (Required) The ID of the service
-	Id pulumi.StringPtrInput
+	ServiceId pulumi.StringPtrInput
 }
 
 func (DeployArgs) ElementType() reflect.Type {

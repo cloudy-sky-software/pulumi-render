@@ -25,6 +25,11 @@ export type Deploy = import("./deploy").Deploy;
 export const Deploy: typeof import("./deploy").Deploy = null as any;
 utilities.lazyLoad(exports, ["Deploy"], () => require("./deploy"));
 
+export { EnvVarArgs } from "./envVar";
+export type EnvVar = import("./envVar").EnvVar;
+export const EnvVar: typeof import("./envVar").EnvVar = null as any;
+utilities.lazyLoad(exports, ["EnvVar"], () => require("./envVar"));
+
 export { GetBackgroundWorkerArgs, GetBackgroundWorkerResult, GetBackgroundWorkerOutputArgs } from "./getBackgroundWorker";
 export const getBackgroundWorker: typeof import("./getBackgroundWorker").getBackgroundWorker = null as any;
 export const getBackgroundWorkerOutput: typeof import("./getBackgroundWorker").getBackgroundWorkerOutput = null as any;
@@ -145,6 +150,8 @@ const _module = {
                 return new CustomDomain(name, <any>undefined, { urn })
             case "render:services:Deploy":
                 return new Deploy(name, <any>undefined, { urn })
+            case "render:services:EnvVar":
+                return new EnvVar(name, <any>undefined, { urn })
             case "render:services:Job":
                 return new Job(name, <any>undefined, { urn })
             case "render:services:PrivateService":

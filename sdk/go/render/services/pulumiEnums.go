@@ -1708,6 +1708,7 @@ type EnvVarKeyValueGenerateValue string
 
 const (
 	EnvVarKeyValueGenerateValueYes = EnvVarKeyValueGenerateValue("yes")
+	EnvVarKeyValueGenerateValueNo  = EnvVarKeyValueGenerateValue("no")
 )
 
 func (EnvVarKeyValueGenerateValue) ElementType() reflect.Type {

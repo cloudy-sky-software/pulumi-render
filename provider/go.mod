@@ -3,10 +3,9 @@ module github.com/cloudy-sky-software/pulumi-render/provider
 go 1.18
 
 require (
-	github.com/cloudy-sky-software/pulschema v0.0.0-20221104051020-853d9f9156af
-	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20221107030424-7a63acbe7fc5
+	github.com/cloudy-sky-software/pulschema v0.0.0-20221107123555-df1075036703
+	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20221107181606-38e86981846e
 	github.com/getkin/kin-openapi v0.107.0
-	github.com/golang/glog v1.0.0
 	github.com/pulumi/pulumi/pkg/v3 v3.46.0
 	github.com/pulumi/pulumi/sdk/v3 v3.46.0
 )
@@ -88,6 +87,7 @@ require (
 	github.com/gofrs/uuid v4.3.0+incompatible // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang-jwt/jwt/v4 v4.4.2 // indirect
+	github.com/golang/glog v1.0.0 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/golang/snappy v0.0.4 // indirect

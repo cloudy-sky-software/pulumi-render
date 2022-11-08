@@ -69,18 +69,18 @@ func (CustomDomainState) ElementType() reflect.Type {
 }
 
 type customDomainArgs struct {
-	// (Required) The ID of the service
-	Id     *string          `pulumi:"id"`
 	Name   string           `pulumi:"name"`
 	Server ServerProperties `pulumi:"server"`
+	// (Required) The ID of the service
+	ServiceId *string `pulumi:"serviceId"`
 }
 
 // The set of arguments for constructing a CustomDomain resource.
 type CustomDomainArgs struct {
-	// (Required) The ID of the service
-	Id     pulumi.StringPtrInput
 	Name   pulumi.StringInput
 	Server ServerPropertiesInput
+	// (Required) The ID of the service
+	ServiceId pulumi.StringPtrInput
 }
 
 func (CustomDomainArgs) ElementType() reflect.Type {

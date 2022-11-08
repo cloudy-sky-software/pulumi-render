@@ -55,8 +55,8 @@ export class Job extends pulumi.CustomResource {
             if ((!args || args.startCommand === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'startCommand'");
             }
-            resourceInputs["id"] = args ? args.id : undefined;
             resourceInputs["planId"] = args ? args.planId : undefined;
+            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
             resourceInputs["startCommand"] = args ? args.startCommand : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["finishedAt"] = undefined /*out*/;
@@ -79,10 +79,10 @@ export class Job extends pulumi.CustomResource {
  * The set of arguments for constructing a Job resource.
  */
 export interface JobArgs {
+    planId: pulumi.Input<string>;
     /**
      * (Required) The ID of the service
      */
-    id?: pulumi.Input<string>;
-    planId: pulumi.Input<string>;
+    serviceId?: pulumi.Input<string>;
     startCommand: pulumi.Input<string>;
 }

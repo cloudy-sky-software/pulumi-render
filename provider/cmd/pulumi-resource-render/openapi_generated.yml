@@ -4216,7 +4216,7 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: id
+        - name: serviceId
           in: path
           schema:
             type: string
@@ -5158,7 +5158,7 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: id
+        - name: serviceId
           in: path
           schema:
             type: string

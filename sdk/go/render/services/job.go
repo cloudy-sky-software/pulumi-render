@@ -68,17 +68,17 @@ func (JobState) ElementType() reflect.Type {
 }
 
 type jobArgs struct {
+	PlanId string `pulumi:"planId"`
 	// (Required) The ID of the service
-	Id           *string `pulumi:"id"`
-	PlanId       string  `pulumi:"planId"`
+	ServiceId    *string `pulumi:"serviceId"`
 	StartCommand string  `pulumi:"startCommand"`
 }
 
 // The set of arguments for constructing a Job resource.
 type JobArgs struct {
+	PlanId pulumi.StringInput
 	// (Required) The ID of the service
-	Id           pulumi.StringPtrInput
-	PlanId       pulumi.StringInput
+	ServiceId    pulumi.StringPtrInput
 	StartCommand pulumi.StringInput
 }
 

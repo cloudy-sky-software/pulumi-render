@@ -22,7 +22,6 @@ __all__ = [
     'PrivateServiceDetailsParentServerPropertiesArgs',
     'PrivateServiceDetailsArgs',
     'SecretFileArgs',
-    'ServerPropertiesArgs',
     'ServiceHeaderArgs',
     'StaticSiteRouteArgs',
     'StaticSiteServiceDetailsParentServerPropertiesArgs',
@@ -620,35 +619,6 @@ class SecretFileArgs:
 
     @name.setter
     def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-
-@pulumi.input_type
-class ServerPropertiesArgs:
-    def __init__(__self__, *,
-                 id: Optional[pulumi.Input[str]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
-        if id is not None:
-            pulumi.set(__self__, "id", id)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "id", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
 
 

@@ -39,7 +39,7 @@ export class CustomDomain extends pulumi.CustomResource {
     public readonly name!: pulumi.Output<string>;
     public /*out*/ readonly publicSuffix!: pulumi.Output<string | undefined>;
     public /*out*/ readonly redirectForName!: pulumi.Output<string>;
-    public readonly server!: pulumi.Output<outputs.services.ServerProperties>;
+    public /*out*/ readonly server!: pulumi.Output<outputs.services.ServerProperties>;
     public /*out*/ readonly verificationStatus!: pulumi.Output<enums.services.VerificationStatus>;
 
     /**
@@ -56,16 +56,13 @@ export class CustomDomain extends pulumi.CustomResource {
             if ((!args || args.name === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'name'");
             }
-            if ((!args || args.server === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'server'");
-            }
             resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["server"] = args ? args.server : undefined;
             resourceInputs["serviceId"] = args ? args.serviceId : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["domainType"] = undefined /*out*/;
             resourceInputs["publicSuffix"] = undefined /*out*/;
             resourceInputs["redirectForName"] = undefined /*out*/;
+            resourceInputs["server"] = undefined /*out*/;
             resourceInputs["verificationStatus"] = undefined /*out*/;
         } else {
             resourceInputs["createdAt"] = undefined /*out*/;
@@ -86,7 +83,6 @@ export class CustomDomain extends pulumi.CustomResource {
  */
 export interface CustomDomainArgs {
     name: pulumi.Input<string>;
-    server: pulumi.Input<inputs.services.ServerPropertiesArgs>;
     /**
      * (Required) The ID of the service
      */

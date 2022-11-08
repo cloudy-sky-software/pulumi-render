@@ -33,9 +33,6 @@ func NewCustomDomain(ctx *pulumi.Context,
 	if args.Name == nil {
 		return nil, errors.New("invalid value for required argument 'Name'")
 	}
-	if args.Server == nil {
-		return nil, errors.New("invalid value for required argument 'Server'")
-	}
 	opts = pkgResourceDefaultOpts(opts)
 	var resource CustomDomain
 	err := ctx.RegisterResource("render:services:CustomDomain", name, args, &resource, opts...)
@@ -69,16 +66,14 @@ func (CustomDomainState) ElementType() reflect.Type {
 }
 
 type customDomainArgs struct {
-	Name   string           `pulumi:"name"`
-	Server ServerProperties `pulumi:"server"`
+	Name string `pulumi:"name"`
 	// (Required) The ID of the service
 	ServiceId *string `pulumi:"serviceId"`
 }
 
 // The set of arguments for constructing a CustomDomain resource.
 type CustomDomainArgs struct {
-	Name   pulumi.StringInput
-	Server ServerPropertiesInput
+	Name pulumi.StringInput
 	// (Required) The ID of the service
 	ServiceId pulumi.StringPtrInput
 }

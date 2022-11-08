@@ -10,7 +10,6 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
 from ._enums import *
-from ._inputs import *
 
 __all__ = ['CustomDomainArgs', 'CustomDomain']
 
@@ -18,14 +17,12 @@ __all__ = ['CustomDomainArgs', 'CustomDomain']
 class CustomDomainArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
-                 server: pulumi.Input['ServerPropertiesArgs'],
                  service_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a CustomDomain resource.
         :param pulumi.Input[str] service_id: (Required) The ID of the service
         """
         pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "server", server)
         if service_id is not None:
             pulumi.set(__self__, "service_id", service_id)
 
@@ -37,15 +34,6 @@ class CustomDomainArgs:
     @name.setter
     def name(self, value: pulumi.Input[str]):
         pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def server(self) -> pulumi.Input['ServerPropertiesArgs']:
-        return pulumi.get(self, "server")
-
-    @server.setter
-    def server(self, value: pulumi.Input['ServerPropertiesArgs']):
-        pulumi.set(self, "server", value)
 
     @property
     @pulumi.getter(name="serviceId")
@@ -66,7 +54,6 @@ class CustomDomain(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 server: Optional[pulumi.Input[pulumi.InputType['ServerPropertiesArgs']]] = None,
                  service_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -99,7 +86,6 @@ class CustomDomain(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 server: Optional[pulumi.Input[pulumi.InputType['ServerPropertiesArgs']]] = None,
                  service_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -113,14 +99,12 @@ class CustomDomain(pulumi.CustomResource):
             if name is None and not opts.urn:
                 raise TypeError("Missing required property 'name'")
             __props__.__dict__["name"] = name
-            if server is None and not opts.urn:
-                raise TypeError("Missing required property 'server'")
-            __props__.__dict__["server"] = server
             __props__.__dict__["service_id"] = service_id
             __props__.__dict__["created_at"] = None
             __props__.__dict__["domain_type"] = None
             __props__.__dict__["public_suffix"] = None
             __props__.__dict__["redirect_for_name"] = None
+            __props__.__dict__["server"] = None
             __props__.__dict__["verification_status"] = None
         super(CustomDomain, __self__).__init__(
             'render:services:CustomDomain',

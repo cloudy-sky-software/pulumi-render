@@ -836,6 +836,7 @@ components:
           readOnly: true
         server:
           type: object
+          readOnly: true
           properties:
             id:
               type: string

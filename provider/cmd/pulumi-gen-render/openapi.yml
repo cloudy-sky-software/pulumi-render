@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.0.1
 info:
   title: Render Public API
   description: |-
@@ -836,6 +836,7 @@ components:
           readOnly: true
         server:
           type: object
+          readOnly: true
           properties:
             id:
               type: string
@@ -4216,7 +4217,7 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: id
+        - name: serviceId
           in: path
           schema:
             type: string
@@ -5158,7 +5159,7 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: id
+        - name: serviceId
           in: path
           schema:
             type: string

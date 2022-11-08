@@ -2333,20 +2333,16 @@
                 "server"
             ],
             "inputProperties": {
-                "id": {
-                    "type": "string",
-                    "description": "(Required) The ID of the service"
-                },
                 "name": {
                     "type": "string"
                 },
-                "server": {
-                    "$ref": "#/types/render:services:ServerProperties"
+                "serviceId": {
+                    "type": "string",
+                    "description": "(Required) The ID of the service"
                 }
             },
             "requiredInputs": [
-                "name",
-                "server"
+                "name"
             ]
         },
         "render:services:Deploy": {
@@ -2421,12 +2417,12 @@
                 "planId"
             ],
             "inputProperties": {
-                "id": {
-                    "type": "string",
-                    "description": "(Required) The ID of the service"
-                },
                 "planId": {
                     "type": "string"
+                },
+                "serviceId": {
+                    "type": "string",
+                    "description": "(Required) The ID of the service"
                 },
                 "startCommand": {
                     "type": "string"

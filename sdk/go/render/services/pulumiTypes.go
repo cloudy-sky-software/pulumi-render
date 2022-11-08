@@ -3272,34 +3272,6 @@ type ServerProperties struct {
 	Name *string `pulumi:"name"`
 }
 
-// ServerPropertiesInput is an input type that accepts ServerPropertiesArgs and ServerPropertiesOutput values.
-// You can construct a concrete instance of `ServerPropertiesInput` via:
-//
-//	ServerPropertiesArgs{...}
-type ServerPropertiesInput interface {
-	pulumi.Input
-
-	ToServerPropertiesOutput() ServerPropertiesOutput
-	ToServerPropertiesOutputWithContext(context.Context) ServerPropertiesOutput
-}
-
-type ServerPropertiesArgs struct {
-	Id   pulumi.StringPtrInput `pulumi:"id"`
-	Name pulumi.StringPtrInput `pulumi:"name"`
-}
-
-func (ServerPropertiesArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServerProperties)(nil)).Elem()
-}
-
-func (i ServerPropertiesArgs) ToServerPropertiesOutput() ServerPropertiesOutput {
-	return i.ToServerPropertiesOutputWithContext(context.Background())
-}
-
-func (i ServerPropertiesArgs) ToServerPropertiesOutputWithContext(ctx context.Context) ServerPropertiesOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServerPropertiesOutput)
-}
-
 type ServerPropertiesOutput struct{ *pulumi.OutputState }
 
 func (ServerPropertiesOutput) ElementType() reflect.Type {
@@ -4640,7 +4612,6 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceDetailsParentServerPropertiesPtrInput)(nil)).Elem(), PrivateServiceDetailsParentServerPropertiesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretFileInput)(nil)).Elem(), SecretFileArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretFileArrayInput)(nil)).Elem(), SecretFileArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ServerPropertiesInput)(nil)).Elem(), ServerPropertiesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceHeaderInput)(nil)).Elem(), ServiceHeaderArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceHeaderArrayInput)(nil)).Elem(), ServiceHeaderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteRouteInput)(nil)).Elem(), StaticSiteRouteArgs{})

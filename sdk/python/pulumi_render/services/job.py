@@ -16,15 +16,15 @@ class JobArgs:
     def __init__(__self__, *,
                  plan_id: pulumi.Input[str],
                  start_command: pulumi.Input[str],
-                 id: Optional[pulumi.Input[str]] = None):
+                 service_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Job resource.
-        :param pulumi.Input[str] id: (Required) The ID of the service
+        :param pulumi.Input[str] service_id: (Required) The ID of the service
         """
         pulumi.set(__self__, "plan_id", plan_id)
         pulumi.set(__self__, "start_command", start_command)
-        if id is not None:
-            pulumi.set(__self__, "id", id)
+        if service_id is not None:
+            pulumi.set(__self__, "service_id", service_id)
 
     @property
     @pulumi.getter(name="planId")
@@ -45,16 +45,16 @@ class JobArgs:
         pulumi.set(self, "start_command", value)
 
     @property
-    @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[str]]:
+    @pulumi.getter(name="serviceId")
+    def service_id(self) -> Optional[pulumi.Input[str]]:
         """
         (Required) The ID of the service
         """
-        return pulumi.get(self, "id")
+        return pulumi.get(self, "service_id")
 
-    @id.setter
-    def id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "id", value)
+    @service_id.setter
+    def service_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service_id", value)
 
 
 class Job(pulumi.CustomResource):
@@ -62,15 +62,15 @@ class Job(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 id: Optional[pulumi.Input[str]] = None,
                  plan_id: Optional[pulumi.Input[str]] = None,
+                 service_id: Optional[pulumi.Input[str]] = None,
                  start_command: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Create a Job resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] id: (Required) The ID of the service
+        :param pulumi.Input[str] service_id: (Required) The ID of the service
         """
         ...
     @overload
@@ -95,8 +95,8 @@ class Job(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 id: Optional[pulumi.Input[str]] = None,
                  plan_id: Optional[pulumi.Input[str]] = None,
+                 service_id: Optional[pulumi.Input[str]] = None,
                  start_command: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -107,10 +107,10 @@ class Job(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = JobArgs.__new__(JobArgs)
 
-            __props__.__dict__["id"] = id
             if plan_id is None and not opts.urn:
                 raise TypeError("Missing required property 'plan_id'")
             __props__.__dict__["plan_id"] = plan_id
+            __props__.__dict__["service_id"] = service_id
             if start_command is None and not opts.urn:
                 raise TypeError("Missing required property 'start_command'")
             __props__.__dict__["start_command"] = start_command

@@ -41,7 +41,10 @@ var (
 	callback fwCallback.ProviderCallback
 )
 
-const envVarResourceTypeToken = "render:services:EnvVar"
+const (
+	envVarResourceTypeToken       = "render:services:EnvVar"
+	customDomainResourceTypeToken = "render:services:CustomDomain"
+)
 
 func makeProvider(host *provider.HostClient, name, version string, pulumiSchemaBytes, openapiDocBytes, metadataBytes []byte) (pulumirpc.ResourceProviderServer, error) {
 	p := &renderProvider{
@@ -168,6 +171,30 @@ func (p *renderProvider) OnPostCreate(ctx context.Context, req *pulumirpc.Create
 			"id":      fmt.Sprintf("%x", id.Sum(nil)),
 			"envVars": envVarResp,
 		}
+		return outputsMap, nil
+	}
+
+	// Creating a custom domain resource returns a list response of all custom domains.
+	// We only need to return the custom domain object that this current resource
+	// represents as the output map. The remaining custom domains are either implicit
+	// domains (like apex records) or perhaps tied to other custom domain resources
+	// the user may have created which would be associated with those resources.
+	if resourceTypeToken == customDomainResourceTypeToken {
+		inputs, err := plugin.UnmarshalProperties(req.GetProperties(), state.DefaultUnmarshalOpts)
+		if err != nil {
+			return nil, errors.Wrap(err, "unmarshal input properties as propertymap")
+		}
+
+		custDomResp := outputs.([]interface{})
+
+		for _, c := range custDomResp {
+			cMap := c.(map[string]interface{})
+			if cMap["name"] == inputs["name"].StringValue() {
+				outputsMap = cMap
+				break
+			}
+		}
+
 		return outputsMap, nil
 	}
 

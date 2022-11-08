@@ -76,14 +76,14 @@ namespace Pulumi.Render.Services
 
     public sealed class JobArgs : global::Pulumi.ResourceArgs
     {
+        [Input("planId", required: true)]
+        public Input<string> PlanId { get; set; } = null!;
+
         /// <summary>
         /// (Required) The ID of the service
         /// </summary>
-        [Input("id")]
-        public Input<string>? Id { get; set; }
-
-        [Input("planId", required: true)]
-        public Input<string> PlanId { get; set; } = null!;
+        [Input("serviceId")]
+        public Input<string>? ServiceId { get; set; }
 
         [Input("startCommand", required: true)]
         public Input<string> StartCommand { get; set; } = null!;

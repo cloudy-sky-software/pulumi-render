@@ -134,11 +134,6 @@ export namespace services {
         name: pulumi.Input<string>;
     }
 
-    export interface ServerPropertiesArgs {
-        id?: pulumi.Input<string>;
-        name?: pulumi.Input<string>;
-    }
-
     /**
      * A service header object
      */

@@ -1,6 +1,10 @@
+## 0.0.46
+
+- Fix `CustomDomain` and `Job` resource inputs
+
 ## 0.0.45
 
-- Add support for EnvVar resource (#55)
+- Add support for EnvVar resource ([#55](cloudy-sky-software/pulumi-render#55))
 
 ## 0.0.42 - 0.0.44
 

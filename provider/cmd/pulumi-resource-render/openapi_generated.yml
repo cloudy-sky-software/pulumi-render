@@ -44,6 +44,7 @@ components:
           type: object
           $ref: "#/components/schemas/owner"
     listOwners:
+      title: ListOwners
       type: array
       items:
         $ref: "#/components/schemas/listOwnersResponse"
@@ -67,6 +68,7 @@ components:
           type: object
           $ref: "#/components/schemas/serviceHeader"
     listServiceHeaders:
+      title: ListServiceHeaders
       type: array
       items:
         $ref: "#/components/schemas/listServiceHeadersResponse"
@@ -91,6 +93,7 @@ components:
           type: object
           $ref: "#/components/schemas/staticSiteRoute"
     listStaticSiteRoutes:
+      title: ListStaticSiteRoutes
       type: array
       items:
         $ref: "#/components/schemas/listStaticSiteRoutesResponse"
@@ -728,6 +731,7 @@ components:
             - $ref: "#/components/schemas/backgroundWorker"
             - $ref: "#/components/schemas/cronJob"
     listServices:
+      title: ListServices
       type: array
       items:
         $ref: "#/components/schemas/listServiceResponse"
@@ -766,6 +770,7 @@ components:
         envVar:
           $ref: "#/components/schemas/envVarKeyValue"
     listEnvVars:
+      title: ListEnvVars
       type: array
       items:
         $ref: "#/components/schemas/listEnvVarsResponse"
@@ -804,6 +809,7 @@ components:
         customDomain:
           $ref: "#/components/schemas/deploy"
     listDeploys:
+      title: ListDeploys
       type: array
       items:
         $ref: "#/components/schemas/listDeploysResponse"
@@ -862,6 +868,7 @@ components:
         customDomain:
           $ref: "#/components/schemas/customDomain"
     listCustomDomains:
+      title: ListCustomDomains
       type: array
       items:
         $ref: "#/components/schemas/listCustomDomainsResponse"
@@ -896,6 +903,7 @@ components:
         job:
           $ref: "#/components/schemas/job"
     listJobs:
+      title: ListJobs
       type: array
       items:
         $ref: "#/components/schemas/listJobsResponse"
@@ -1420,6 +1428,7 @@ paths:
         content:
           application/json:
             schema:
+              title: CreateService
               discriminator:
                 propertyName: type
                 mapping:
@@ -1821,6 +1830,7 @@ paths:
         content:
           application/json:
             schema:
+              title: UpdateService
               anyOf:
                 - $ref: "#/components/schemas/patchStaticSite"
                 - $ref: "#/components/schemas/patchWebService"
@@ -2057,6 +2067,7 @@ paths:
         content:
           application/json:
             schema:
+              title: DeleteService
               discriminator:
                 propertyName: type
                 mapping:

@@ -64,8 +64,20 @@ func (p *renderProvider) GetAuthorizationHeader() string {
 	return fmt.Sprintf("%s %s", authSchemePrefix, p.apiKey)
 }
 
-func (p *renderProvider) OnInvoke(ctx context.Context, req *pulumirpc.InvokeRequest) (*pulumirpc.InvokeResponse, error) {
-	return nil, nil
+func (p *renderProvider) OnPreInvoke(ctx context.Context, req *pulumirpc.InvokeRequest, httpReq *http.Request) error {
+	return nil
+}
+
+func (p *renderProvider) OnPostInvoke(ctx context.Context, req *pulumirpc.InvokeRequest, outputs interface{}) (map[string]interface{}, error) {
+	invokeTypeToken := req.GetTok()
+
+	if strings.Contains(invokeTypeToken, ":list") {
+		m := make(map[string]interface{})
+		m["items"] = outputs
+		return m, nil
+	}
+
+	return outputs.(map[string]interface{}), nil
 }
 
 // OnConfigure is called by the provider framework when Pulumi calls Configure on

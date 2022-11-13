@@ -1,3 +1,7 @@
+## 0.0.47
+
+- Upgrade pulschema and pulumi-provider-framework modules to add auto-naming feature.
+
 ## 0.0.46
 
 - Fix `CustomDomain` and `Job` resource inputs

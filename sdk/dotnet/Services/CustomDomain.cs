@@ -41,7 +41,7 @@ namespace Pulumi.Render.Services
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public CustomDomain(string name, CustomDomainArgs args, CustomResourceOptions? options = null)
+        public CustomDomain(string name, CustomDomainArgs? args = null, CustomResourceOptions? options = null)
             : base("render:services:CustomDomain", name, args ?? new CustomDomainArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -79,8 +79,8 @@ namespace Pulumi.Render.Services
 
     public sealed class CustomDomainArgs : global::Pulumi.ResourceArgs
     {
-        [Input("name", required: true)]
-        public Input<string> Name { get; set; } = null!;
+        [Input("name")]
+        public Input<string>? Name { get; set; }
 
         /// <summary>
         /// (Required) The ID of the service

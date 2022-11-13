@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -27,12 +26,9 @@ type CustomDomain struct {
 func NewCustomDomain(ctx *pulumi.Context,
 	name string, args *CustomDomainArgs, opts ...pulumi.ResourceOption) (*CustomDomain, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &CustomDomainArgs{}
 	}
 
-	if args.Name == nil {
-		return nil, errors.New("invalid value for required argument 'Name'")
-	}
 	opts = pkgResourceDefaultOpts(opts)
 	var resource CustomDomain
 	err := ctx.RegisterResource("render:services:CustomDomain", name, args, &resource, opts...)
@@ -66,14 +62,14 @@ func (CustomDomainState) ElementType() reflect.Type {
 }
 
 type customDomainArgs struct {
-	Name string `pulumi:"name"`
+	Name *string `pulumi:"name"`
 	// (Required) The ID of the service
 	ServiceId *string `pulumi:"serviceId"`
 }
 
 // The set of arguments for constructing a CustomDomain resource.
 type CustomDomainArgs struct {
-	Name pulumi.StringInput
+	Name pulumi.StringPtrInput
 	// (Required) The ID of the service
 	ServiceId pulumi.StringPtrInput
 }

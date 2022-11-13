@@ -16,23 +16,24 @@ __all__ = ['CustomDomainArgs', 'CustomDomain']
 @pulumi.input_type
 class CustomDomainArgs:
     def __init__(__self__, *,
-                 name: pulumi.Input[str],
+                 name: Optional[pulumi.Input[str]] = None,
                  service_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a CustomDomain resource.
         :param pulumi.Input[str] service_id: (Required) The ID of the service
         """
-        pulumi.set(__self__, "name", name)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
         if service_id is not None:
             pulumi.set(__self__, "service_id", service_id)
 
     @property
     @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
+    def name(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: pulumi.Input[str]):
+    def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
 
     @property
@@ -66,7 +67,7 @@ class CustomDomain(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: CustomDomainArgs,
+                 args: Optional[CustomDomainArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a CustomDomain resource with the given unique name, props, and options.
@@ -96,8 +97,6 @@ class CustomDomain(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = CustomDomainArgs.__new__(CustomDomainArgs)
 
-            if name is None and not opts.urn:
-                raise TypeError("Missing required property 'name'")
             __props__.__dict__["name"] = name
             __props__.__dict__["service_id"] = service_id
             __props__.__dict__["created_at"] = None

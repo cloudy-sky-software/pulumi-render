@@ -49,13 +49,10 @@ export class CustomDomain extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: CustomDomainArgs, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args?: CustomDomainArgs, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.name === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'name'");
-            }
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["serviceId"] = args ? args.serviceId : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
@@ -82,7 +79,7 @@ export class CustomDomain extends pulumi.CustomResource {
  * The set of arguments for constructing a CustomDomain resource.
  */
 export interface CustomDomainArgs {
-    name: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * (Required) The ID of the service
      */

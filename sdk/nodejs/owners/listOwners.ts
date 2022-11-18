@@ -9,11 +9,8 @@ import * as utilities from "../utilities";
 
 export function listOwners(args?: ListOwnersArgs, opts?: pulumi.InvokeOptions): Promise<ListOwnersResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:owners:listOwners", {
     }, opts);
 }

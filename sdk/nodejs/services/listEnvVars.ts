@@ -8,11 +8,8 @@ import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export function listEnvVars(args: ListEnvVarsArgs, opts?: pulumi.InvokeOptions): Promise<ListEnvVarsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:listEnvVars", {
         "serviceId": args.serviceId,
     }, opts);

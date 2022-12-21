@@ -30,9 +30,8 @@ export interface GetCustomDomainArgs {
 export interface GetCustomDomainResult {
     readonly items: outputs.services.CustomDomain;
 }
-
 export function getCustomDomainOutput(args: GetCustomDomainOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCustomDomainResult> {
-    return pulumi.output(args).apply(a => getCustomDomain(a, opts))
+    return pulumi.output(args).apply((a: any) => getCustomDomain(a, opts))
 }
 
 export interface GetCustomDomainOutputArgs {

@@ -25,9 +25,8 @@ export interface GetOwnerArgs {
 export interface GetOwnerResult {
     readonly items: outputs.owners.Owner;
 }
-
 export function getOwnerOutput(args: GetOwnerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOwnerResult> {
-    return pulumi.output(args).apply(a => getOwner(a, opts))
+    return pulumi.output(args).apply((a: any) => getOwner(a, opts))
 }
 
 export interface GetOwnerOutputArgs {

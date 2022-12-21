@@ -30,9 +30,8 @@ export interface GetDeployArgs {
 export interface GetDeployResult {
     readonly items: outputs.services.Deploy;
 }
-
 export function getDeployOutput(args: GetDeployOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDeployResult> {
-    return pulumi.output(args).apply(a => getDeploy(a, opts))
+    return pulumi.output(args).apply((a: any) => getDeploy(a, opts))
 }
 
 export interface GetDeployOutputArgs {

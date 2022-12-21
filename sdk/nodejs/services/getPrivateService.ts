@@ -25,9 +25,8 @@ export interface GetPrivateServiceArgs {
 export interface GetPrivateServiceResult {
     readonly items: outputs.services.GetPrivateService;
 }
-
 export function getPrivateServiceOutput(args: GetPrivateServiceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPrivateServiceResult> {
-    return pulumi.output(args).apply(a => getPrivateService(a, opts))
+    return pulumi.output(args).apply((a: any) => getPrivateService(a, opts))
 }
 
 export interface GetPrivateServiceOutputArgs {

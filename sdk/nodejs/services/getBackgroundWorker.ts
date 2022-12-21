@@ -25,9 +25,8 @@ export interface GetBackgroundWorkerArgs {
 export interface GetBackgroundWorkerResult {
     readonly items: outputs.services.GetBackgroundWorker;
 }
-
 export function getBackgroundWorkerOutput(args: GetBackgroundWorkerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBackgroundWorkerResult> {
-    return pulumi.output(args).apply(a => getBackgroundWorker(a, opts))
+    return pulumi.output(args).apply((a: any) => getBackgroundWorker(a, opts))
 }
 
 export interface GetBackgroundWorkerOutputArgs {

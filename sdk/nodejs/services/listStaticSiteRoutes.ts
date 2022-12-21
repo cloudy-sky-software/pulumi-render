@@ -25,9 +25,8 @@ export interface ListStaticSiteRoutesArgs {
 export interface ListStaticSiteRoutesResult {
     readonly items: outputs.services.ListStaticSiteRoutesResponse[];
 }
-
 export function listStaticSiteRoutesOutput(args: ListStaticSiteRoutesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListStaticSiteRoutesResult> {
-    return pulumi.output(args).apply(a => listStaticSiteRoutes(a, opts))
+    return pulumi.output(args).apply((a: any) => listStaticSiteRoutes(a, opts))
 }
 
 export interface ListStaticSiteRoutesOutputArgs {

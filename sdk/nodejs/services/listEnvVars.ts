@@ -25,9 +25,8 @@ export interface ListEnvVarsArgs {
 export interface ListEnvVarsResult {
     readonly items: outputs.services.ListEnvVarsResponse[];
 }
-
 export function listEnvVarsOutput(args: ListEnvVarsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListEnvVarsResult> {
-    return pulumi.output(args).apply(a => listEnvVars(a, opts))
+    return pulumi.output(args).apply((a: any) => listEnvVars(a, opts))
 }
 
 export interface ListEnvVarsOutputArgs {

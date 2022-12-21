@@ -25,9 +25,8 @@ export interface GetCronJobArgs {
 export interface GetCronJobResult {
     readonly items: outputs.services.GetCronJob;
 }
-
 export function getCronJobOutput(args: GetCronJobOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCronJobResult> {
-    return pulumi.output(args).apply(a => getCronJob(a, opts))
+    return pulumi.output(args).apply((a: any) => getCronJob(a, opts))
 }
 
 export interface GetCronJobOutputArgs {

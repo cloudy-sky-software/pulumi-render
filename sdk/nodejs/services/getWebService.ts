@@ -25,9 +25,8 @@ export interface GetWebServiceArgs {
 export interface GetWebServiceResult {
     readonly items: outputs.services.GetWebService;
 }
-
 export function getWebServiceOutput(args: GetWebServiceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetWebServiceResult> {
-    return pulumi.output(args).apply(a => getWebService(a, opts))
+    return pulumi.output(args).apply((a: any) => getWebService(a, opts))
 }
 
 export interface GetWebServiceOutputArgs {

@@ -25,9 +25,8 @@ export interface ListJobsArgs {
 export interface ListJobsResult {
     readonly items: outputs.services.ListJobsResponse[];
 }
-
 export function listJobsOutput(args: ListJobsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListJobsResult> {
-    return pulumi.output(args).apply(a => listJobs(a, opts))
+    return pulumi.output(args).apply((a: any) => listJobs(a, opts))
 }
 
 export interface ListJobsOutputArgs {

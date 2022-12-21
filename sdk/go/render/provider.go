@@ -26,7 +26,7 @@ func NewProvider(ctx *pulumi.Context,
 		args.ApiKey = pulumi.StringPtr(getEnvOrDefault("", nil, "RENDER_APIKEY").(string))
 	}
 	if args.ApiKey != nil {
-		args.ApiKey = pulumi.ToSecret(args.ApiKey).(pulumi.StringPtrOutput)
+		args.ApiKey = pulumi.ToSecret(args.ApiKey).(pulumi.StringPtrInput)
 	}
 	opts = pkgResourceDefaultOpts(opts)
 	var resource Provider

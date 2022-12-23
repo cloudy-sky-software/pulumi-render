@@ -421,6 +421,8 @@ github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20221221233242-b
 github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20221221233242-ba63f41cbddd/go.mod h1:Xc71RC13bRVas4dy6AOLXZK/UlKR0/WKmRwBhQTwrSc=
 github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20221222023528-09df7e148cee h1:JT7IPzjDy5Zkf+nP7YW2xqJA1TCurpZCqBbvHzkExxM=
 github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20221222023528-09df7e148cee/go.mod h1:wZqGgc6e8k3M7Ie7gfS6pXbuAH2k2hDU7NhGj9U5PYE=
+github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20221223042017-cb28067df525 h1:qcM+5I6dnsjSmKPG4/zdDnFAfWdmmliGf5t5tueuZ2U=
+github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20221223042017-cb28067df525/go.mod h1:ltlrPcs9RrTBuHCqngif5WruNhRwHUD8Fa5Sk/IealA=
 github.com/cncf/udpa/go v0.0.0-20191209042840-269d4d468f6f/go.mod h1:M8M6+tZqaGXZJjfX53e64911xZQV5JYwmTeXPW+k8Sc=
 github.com/cncf/udpa/go v0.0.0-20200629203442-efcf912fb354/go.mod h1:WmhPx2Nbnhtbo57+VJT5O0JRkEi1Wbu0z5j0R8u5Hbk=
 github.com/cncf/udpa/go v0.0.0-20201120205902-5459f2c99403/go.mod h1:WmhPx2Nbnhtbo57+VJT5O0JRkEi1Wbu0z5j0R8u5Hbk=
@@ -673,6 +675,8 @@ github.com/getkin/kin-openapi v0.110.0 h1:1GnJALxsltcSzCMqgtqKlLhYQeULv3/jesmV2s
 github.com/getkin/kin-openapi v0.110.0/go.mod h1:QtwUNt0PAAgIIBEvFWYfB7dfngxtAaqCX1zYHMZDeK8=
 github.com/getkin/kin-openapi v0.111.0 h1:zspOcFKBCQOY8d9Yockcbit8iVR2hco9qLaoQoj7kmw=
 github.com/getkin/kin-openapi v0.111.0/go.mod h1:QtwUNt0PAAgIIBEvFWYfB7dfngxtAaqCX1zYHMZDeK8=
+github.com/getkin/kin-openapi v0.112.0 h1:lnLXx3bAG53EJVI4E/w0N8i1Y/vUZUEsnrXkgnfn7/Y=
+github.com/getkin/kin-openapi v0.112.0/go.mod h1:QtwUNt0PAAgIIBEvFWYfB7dfngxtAaqCX1zYHMZDeK8=
 github.com/getsentry/raven-go v0.2.0/go.mod h1:KungGk8q33+aIAZUIVWZDr2OfAEBsO49PX4NzFV5kcQ=
 github.com/ghodss/yaml v0.0.0-20150909031657-73d445a93680/go.mod h1:4dBDuWmgqj2HViK6kFavaiC9ZROes6MMH2rRYeMEF04=
 github.com/ghodss/yaml v1.0.0/go.mod h1:4dBDuWmgqj2HViK6kFavaiC9ZROes6MMH2rRYeMEF04=

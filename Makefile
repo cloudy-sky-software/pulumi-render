@@ -21,8 +21,8 @@ WORKING_DIR     := $(shell pwd)
 TESTPARALLELISM := 4
 
 ensure::
-	cd provider && go mod tidy -go=1.16 && go mod tidy -go=1.18
-	cd sdk && go mod tidy -go=1.16 && go mod tidy -go=1.17
+	cd provider && GO111MODULE=on go mod tidy
+	cd sdk && GO111MODULE=on go mod tidy
 
 gen::
 	(cd provider && go build -o $(WORKING_DIR)/bin/${CODEGEN} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/$(CODEGEN))

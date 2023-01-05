@@ -389,6 +389,8 @@ github.com/cloudy-sky-software/pulschema v0.0.0-20221222013450-a93d40601ce0 h1:U
 github.com/cloudy-sky-software/pulschema v0.0.0-20221222013450-a93d40601ce0/go.mod h1:W9uGS2YQFS0l/J5AXzKnbPsQZz0kUi4qZLpUjhuEeQE=
 github.com/cloudy-sky-software/pulschema v0.0.0-20221224030128-f14e67330970 h1:ZCxt9KsvYYiJpHPtRD+Lc1Mhp3knQ5dZE6sllQhPN2Q=
 github.com/cloudy-sky-software/pulschema v0.0.0-20221224030128-f14e67330970/go.mod h1:DGYr0LU4pXPMHq44aBJkOHEgVvWwila5vZfs5OjuYZ4=
+github.com/cloudy-sky-software/pulschema v0.0.0-20230105005202-85f498fcb1eb h1:+Kf02IsXQ3uXJJKyFkoHCAEoHg0YI+UXVO45Yx8yLvU=
+github.com/cloudy-sky-software/pulschema v0.0.0-20230105005202-85f498fcb1eb/go.mod h1:VBKtdnnAXnxc213opX2EJky6IE+AA6QtvUXrTXPD8YY=
 github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20221223042017-cb28067df525 h1:qcM+5I6dnsjSmKPG4/zdDnFAfWdmmliGf5t5tueuZ2U=
 github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20221223042017-cb28067df525/go.mod h1:ltlrPcs9RrTBuHCqngif5WruNhRwHUD8Fa5Sk/IealA=
 github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20221224173840-b76fb2f07746 h1:RjS+6YFMb3h3bmD4bD4FMIjpAqvPIFDpRxrXkLTtKRo=
@@ -1483,8 +1485,12 @@ github.com/prometheus/prometheus v0.37.0/go.mod h1:egARUgz+K93zwqsVIAneFlLZefyGO
 github.com/prometheus/tsdb v0.7.1/go.mod h1:qhTCs0VvXwvX/y3TZrWD7rabWM+ijKTux40TwIPHuXU=
 github.com/pulumi/pulumi/pkg/v3 v3.50.2 h1:WTcfXYsP43KutQpJf7mg3jgfBc183krwjA/Fhw12zrA=
 github.com/pulumi/pulumi/pkg/v3 v3.50.2/go.mod h1:ZLnrnHhhy7hUZwWBA2yGkflHpeIOHlPMwqIeMTArGms=
+github.com/pulumi/pulumi/pkg/v3 v3.51.0 h1:FAgWGex4SIMvu3wCIoANjhI4uEUXk4IgHM/HMVZnZ0M=
+github.com/pulumi/pulumi/pkg/v3 v3.51.0/go.mod h1:bFQ7L/kRgR7NIcVM4ET0Jm7n0k2oCeiEIUQtcEibKLs=
 github.com/pulumi/pulumi/sdk/v3 v3.50.2 h1:JA0nMC1nw2alLlbcdQ+jV7c2jclpJfPB1cvPpRJepFs=
 github.com/pulumi/pulumi/sdk/v3 v3.50.2/go.mod h1:tqQ4z9ocyM/UI2VQ7ZReWR3w6dF5ffEozoHipOMcDh4=
+github.com/pulumi/pulumi/sdk/v3 v3.51.0 h1:i9xhvte67aNNk9q9M8/KV7An3zWp6Na8huKRznZx1lw=
+github.com/pulumi/pulumi/sdk/v3 v3.51.0/go.mod h1:tqQ4z9ocyM/UI2VQ7ZReWR3w6dF5ffEozoHipOMcDh4=
 github.com/rakyll/embedmd v0.0.0-20171029212350-c8060a0752a2/go.mod h1:7jOTMgqac46PZcF54q6l2hkLEG8op93fZu61KmxWDV4=
 github.com/rcrowley/go-metrics v0.0.0-20181016184325-3113b8401b8a/go.mod h1:bCqnVzQkZxMG4s8nGwiZ5l3QUCyqpo9Y+/ZMZ9VjZe4=
 github.com/rivo/uniseg v0.2.0/go.mod h1:J6wj4VEh+S6ZtnVlnTBMWIodfgj8LQOQFoIToxlJtxc=

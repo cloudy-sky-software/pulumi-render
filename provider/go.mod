@@ -3,11 +3,11 @@ module github.com/cloudy-sky-software/pulumi-render/provider
 go 1.18
 
 require (
-	github.com/cloudy-sky-software/pulschema v0.0.0-20221224030128-f14e67330970
+	github.com/cloudy-sky-software/pulschema v0.0.0-20230105005202-85f498fcb1eb
 	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20221224173840-b76fb2f07746
 	github.com/getkin/kin-openapi v0.112.0
-	github.com/pulumi/pulumi/pkg/v3 v3.50.2
-	github.com/pulumi/pulumi/sdk/v3 v3.50.2
+	github.com/pulumi/pulumi/pkg/v3 v3.51.0
+	github.com/pulumi/pulumi/sdk/v3 v3.51.0
 )
 
 require github.com/stretchr/testify v1.8.1

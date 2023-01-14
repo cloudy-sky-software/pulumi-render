@@ -1,12 +1,16 @@
 {
-    "overrides": [
-        {
-            "files": [
-                ".github/workflows/*.yml"
-            ],
-            "options": {
-                "tabWidth": 2
-            }
-        }
-    ]
+  "overrides": [
+    {
+      "files": [".github/workflows/*.yml"],
+      "options": {
+        "tabWidth": 2
+      }
+    },
+    {
+      "files": ["examples/**/*.ts"],
+      "options": {
+        "tabWidth": 4
+      }
+    }
+  ]
 }

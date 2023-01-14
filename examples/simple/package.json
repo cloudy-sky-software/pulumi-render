@@ -1,11 +1,10 @@
 {
-  "name": "render-typescript",
-  "version": "0.1.0",
+  "name": "render-ts",
   "devDependencies": {
-    "@types/node": "latest"
+    "@types/node": "^14"
   },
   "dependencies": {
-    "@cloudyskysoftware/render": "latest",
+    "@cloudyskysoftware/pulumi-render": "latest",
     "@pulumi/pulumi": "latest"
   }
 }

@@ -4,10 +4,10 @@
 
 ## Package SDKs
 
-Node.js: https://www.npmjs.com/package/@cloudyskysoftware/pulumi-render
-Python: https://pypi.org/project/pulumi-render/
-.NET: https://www.nuget.org/packages/Pulumi.Render
-Go: `import github.com/cloudyskysoftware/pulumi-render/sdk/go/render`
+- Node.js: https://www.npmjs.com/package/@cloudyskysoftware/pulumi-render
+- Python: https://pypi.org/project/pulumi-render/
+- .NET: https://www.nuget.org/packages/Pulumi.Render
+- Go: `import github.com/cloudyskysoftware/pulumi-render/sdk/go/render`
 
 ## Using The Provider
 

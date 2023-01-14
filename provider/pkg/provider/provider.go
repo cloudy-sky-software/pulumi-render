@@ -124,8 +124,13 @@ func (p *renderProvider) OnDiff(ctx context.Context, req *pulumirpc.DiffRequest,
 	var diffs []string
 
 	// Taking a shortcut to handle service type-specific updates.
-	// TODO: Add the other service types as well.
 	switch resourceTypeToken {
+	case "render:services:BackgroundWorker":
+		replaces, diffs = p.determineDiffsAndReplacements(diff, handler.GetOpenAPIDoc().Components.Schemas["patchBackgroundWorker"].Value.Properties)
+	case "render:services:CronJob":
+		replaces, diffs = p.determineDiffsAndReplacements(diff, handler.GetOpenAPIDoc().Components.Schemas["patchCronJob"].Value.Properties)
+	case "render:services:PrivateService":
+		replaces, diffs = p.determineDiffsAndReplacements(diff, handler.GetOpenAPIDoc().Components.Schemas["patchPrivateService"].Value.Properties)
 	case "render:services:StaticSite":
 		replaces, diffs = p.determineDiffsAndReplacements(diff, handler.GetOpenAPIDoc().Components.Schemas["patchStaticSite"].Value.Properties)
 	case "render:services:WebService":
@@ -275,8 +280,6 @@ func (p *renderProvider) OnPostUpdate(ctx context.Context, req *pulumirpc.Update
 		outputsMap = outputs.(map[string]interface{})
 	}
 
-	// When a service or env var is updated via the API,
-	// we should trigger a deployment.
 	if resourceTypeToken != "render:services:StaticSite" &&
 		resourceTypeToken != "render:services:WebService" &&
 		resourceTypeToken != "render:services:PrivateService" &&
@@ -286,6 +289,8 @@ func (p *renderProvider) OnPostUpdate(ctx context.Context, req *pulumirpc.Update
 		return outputsMap, nil
 	}
 
+	// When a service or env var is updated via the API,
+	// we should trigger a deployment.
 	logging.V(3).Infof("Triggering a deployment since resource type %s was updated", resourceTypeToken)
 	urlPath := httpReq.URL.Path
 	urlPath = strings.ReplaceAll(urlPath, "/v1", "")
@@ -295,11 +300,11 @@ func (p *renderProvider) OnPostUpdate(ctx context.Context, req *pulumirpc.Update
 	parts := strings.Split(urlPath, "/")
 	serviceID := parts[1]
 
-	// Check if we should also request to clear the cache.
-	//
-	// We are sort of cheating here by not using the API spec to derive the
+	// TODO: We are sort of cheating here by not using the API spec to derive the
 	// required input for the cache clear request. A fancier approach can be
 	// done in the future.
+	//
+	// Check if we should also request to clear the cache.
 	var reqBody []byte
 	if p.clearCacheOnServiceUpdateDeployments == "clear" {
 		reqBody, _ = json.Marshal(map[string]string{"clearCache": "clear"})

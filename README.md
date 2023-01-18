@@ -2,6 +2,8 @@
 
 [Render](https://render.com/) is a unified cloud to build and run all your apps and websites with free TLS certificates, a global CDN, DDoS protection, private networks, and auto deploys from Git.
 
+> This provider was generated using [`pulschema`](https://github.com/cloudy-sky-software/pulschema) and [`pulumi-provider-framework`](https://github.com/cloudy-sky-software/pulumi-provider-framework).
+
 ## Package SDKs
 
 - Node.js: https://www.npmjs.com/package/@cloudyskysoftware/pulumi-render

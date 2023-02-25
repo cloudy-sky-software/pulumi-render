@@ -10,7 +10,7 @@ require (
 	github.com/pulumi/pulumi/sdk/v3 v3.51.1
 )
 
-require github.com/stretchr/testify v1.8.1
+require github.com/stretchr/testify v1.8.2
 
 require github.com/pkg/errors v0.9.1
 

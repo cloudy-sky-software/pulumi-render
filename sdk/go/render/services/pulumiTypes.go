@@ -40,13 +40,13 @@ func (val *BackgroundWorkerType) Defaults() *BackgroundWorkerType {
 		return nil
 	}
 	tmp := *val
-	if isZero(tmp.AutoDeploy) {
+	if tmp.AutoDeploy == nil {
 		autoDeploy_ := ServiceAutoDeploy("no")
 		tmp.AutoDeploy = &autoDeploy_
 	}
 	tmp.ServiceDetails = tmp.ServiceDetails.Defaults()
 
-	if isZero(tmp.Type) {
+	if tmp.Type == nil {
 		type_ := "background_worker"
 		tmp.Type = &type_
 	}
@@ -73,19 +73,19 @@ func (val *BackgroundWorkerServiceDetails) Defaults() *BackgroundWorkerServiceDe
 	tmp := *val
 	tmp.Disk = tmp.Disk.Defaults()
 
-	if isZero(tmp.NumInstances) {
+	if tmp.NumInstances == nil {
 		numInstances_ := 1.0
 		tmp.NumInstances = &numInstances_
 	}
-	if isZero(tmp.Plan) {
+	if tmp.Plan == nil {
 		plan_ := BackgroundWorkerServiceDetailsPlan("starter")
 		tmp.Plan = &plan_
 	}
-	if isZero(tmp.PullRequestPreviewsEnabled) {
+	if tmp.PullRequestPreviewsEnabled == nil {
 		pullRequestPreviewsEnabled_ := BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled("no")
 		tmp.PullRequestPreviewsEnabled = &pullRequestPreviewsEnabled_
 	}
-	if isZero(tmp.Region) {
+	if tmp.Region == nil {
 		region_ := BackgroundWorkerServiceDetailsRegion("oregon")
 		tmp.Region = &region_
 	}
@@ -122,16 +122,16 @@ func (val *BackgroundWorkerServiceDetailsArgs) Defaults() *BackgroundWorkerServi
 	}
 	tmp := *val
 
-	if isZero(tmp.NumInstances) {
+	if tmp.NumInstances == nil {
 		tmp.NumInstances = pulumi.Float64Ptr(1.0)
 	}
-	if isZero(tmp.Plan) {
+	if tmp.Plan == nil {
 		tmp.Plan = BackgroundWorkerServiceDetailsPlan("starter")
 	}
-	if isZero(tmp.PullRequestPreviewsEnabled) {
+	if tmp.PullRequestPreviewsEnabled == nil {
 		tmp.PullRequestPreviewsEnabled = BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled("no")
 	}
-	if isZero(tmp.Region) {
+	if tmp.Region == nil {
 		tmp.Region = BackgroundWorkerServiceDetailsRegion("oregon")
 	}
 	return &tmp
@@ -619,13 +619,13 @@ func (val *CronJobType) Defaults() *CronJobType {
 		return nil
 	}
 	tmp := *val
-	if isZero(tmp.AutoDeploy) {
+	if tmp.AutoDeploy == nil {
 		autoDeploy_ := ServiceAutoDeploy("no")
 		tmp.AutoDeploy = &autoDeploy_
 	}
 	tmp.ServiceDetails = tmp.ServiceDetails.Defaults()
 
-	if isZero(tmp.Type) {
+	if tmp.Type == nil {
 		type_ := "cron_job"
 		tmp.Type = &type_
 	}
@@ -647,11 +647,11 @@ func (val *CronJobServiceDetails) Defaults() *CronJobServiceDetails {
 		return nil
 	}
 	tmp := *val
-	if isZero(tmp.Plan) {
+	if tmp.Plan == nil {
 		plan_ := CronJobServiceDetailsPlan("starter")
 		tmp.Plan = &plan_
 	}
-	if isZero(tmp.Region) {
+	if tmp.Region == nil {
 		region_ := CronJobServiceDetailsRegion("oregon")
 		tmp.Region = &region_
 	}
@@ -684,10 +684,10 @@ func (val *CronJobServiceDetailsArgs) Defaults() *CronJobServiceDetailsArgs {
 		return nil
 	}
 	tmp := *val
-	if isZero(tmp.Plan) {
+	if tmp.Plan == nil {
 		tmp.Plan = CronJobServiceDetailsPlan("starter")
 	}
-	if isZero(tmp.Region) {
+	if tmp.Region == nil {
 		tmp.Region = CronJobServiceDetailsRegion("oregon")
 	}
 	return &tmp
@@ -1090,7 +1090,7 @@ func (val *DeployType) Defaults() *DeployType {
 		return nil
 	}
 	tmp := *val
-	if isZero(tmp.ClearCache) {
+	if tmp.ClearCache == nil {
 		clearCache_ := DeployClearCache("do_not_clear")
 		tmp.ClearCache = &clearCache_
 	}
@@ -1173,7 +1173,7 @@ func (val *Disk) Defaults() *Disk {
 		return nil
 	}
 	tmp := *val
-	if isZero(tmp.SizeGB) {
+	if tmp.SizeGB == nil {
 		sizeGB_ := 1.0
 		tmp.SizeGB = &sizeGB_
 	}
@@ -1203,7 +1203,7 @@ func (val *DiskArgs) Defaults() *DiskArgs {
 		return nil
 	}
 	tmp := *val
-	if isZero(tmp.SizeGB) {
+	if tmp.SizeGB == nil {
 		tmp.SizeGB = pulumi.Float64Ptr(1.0)
 	}
 	return &tmp
@@ -1541,13 +1541,13 @@ func (val *GetBackgroundWorkerType) Defaults() *GetBackgroundWorkerType {
 		return nil
 	}
 	tmp := *val
-	if isZero(tmp.AutoDeploy) {
+	if tmp.AutoDeploy == nil {
 		autoDeploy_ := ServiceAutoDeploy("no")
 		tmp.AutoDeploy = &autoDeploy_
 	}
 	tmp.ServiceDetails = tmp.ServiceDetails.Defaults()
 
-	if isZero(tmp.Type) {
+	if tmp.Type == nil {
 		type_ := "background_worker"
 		tmp.Type = &type_
 	}
@@ -1664,13 +1664,13 @@ func (val *GetCronJobType) Defaults() *GetCronJobType {
 		return nil
 	}
 	tmp := *val
-	if isZero(tmp.AutoDeploy) {
+	if tmp.AutoDeploy == nil {
 		autoDeploy_ := ServiceAutoDeploy("no")
 		tmp.AutoDeploy = &autoDeploy_
 	}
 	tmp.ServiceDetails = tmp.ServiceDetails.Defaults()
 
-	if isZero(tmp.Type) {
+	if tmp.Type == nil {
 		type_ := "cron_job"
 		tmp.Type = &type_
 	}
@@ -1787,13 +1787,13 @@ func (val *GetPrivateServiceType) Defaults() *GetPrivateServiceType {
 		return nil
 	}
 	tmp := *val
-	if isZero(tmp.AutoDeploy) {
+	if tmp.AutoDeploy == nil {
 		autoDeploy_ := ServiceAutoDeploy("no")
 		tmp.AutoDeploy = &autoDeploy_
 	}
 	tmp.ServiceDetails = tmp.ServiceDetails.Defaults()
 
-	if isZero(tmp.Type) {
+	if tmp.Type == nil {
 		type_ := "private_service"
 		tmp.Type = &type_
 	}
@@ -1910,13 +1910,13 @@ func (val *GetStaticSiteType) Defaults() *GetStaticSiteType {
 		return nil
 	}
 	tmp := *val
-	if isZero(tmp.AutoDeploy) {
+	if tmp.AutoDeploy == nil {
 		autoDeploy_ := ServiceAutoDeploy("no")
 		tmp.AutoDeploy = &autoDeploy_
 	}
 	tmp.ServiceDetails = tmp.ServiceDetails.Defaults()
 
-	if isZero(tmp.Type) {
+	if tmp.Type == nil {
 		type_ := "static_site"
 		tmp.Type = &type_
 	}
@@ -2033,13 +2033,13 @@ func (val *GetWebServiceType) Defaults() *GetWebServiceType {
 		return nil
 	}
 	tmp := *val
-	if isZero(tmp.AutoDeploy) {
+	if tmp.AutoDeploy == nil {
 		autoDeploy_ := ServiceAutoDeploy("no")
 		tmp.AutoDeploy = &autoDeploy_
 	}
 	tmp.ServiceDetails = tmp.ServiceDetails.Defaults()
 
-	if isZero(tmp.Type) {
+	if tmp.Type == nil {
 		type_ := "web_service"
 		tmp.Type = &type_
 	}
@@ -2688,13 +2688,13 @@ func (val *PrivateServiceType) Defaults() *PrivateServiceType {
 		return nil
 	}
 	tmp := *val
-	if isZero(tmp.AutoDeploy) {
+	if tmp.AutoDeploy == nil {
 		autoDeploy_ := ServiceAutoDeploy("no")
 		tmp.AutoDeploy = &autoDeploy_
 	}
 	tmp.ServiceDetails = tmp.ServiceDetails.Defaults()
 
-	if isZero(tmp.Type) {
+	if tmp.Type == nil {
 		type_ := "private_service"
 		tmp.Type = &type_
 	}
@@ -2722,19 +2722,19 @@ func (val *PrivateServiceDetails) Defaults() *PrivateServiceDetails {
 	tmp := *val
 	tmp.Disk = tmp.Disk.Defaults()
 
-	if isZero(tmp.NumInstances) {
+	if tmp.NumInstances == nil {
 		numInstances_ := 1.0
 		tmp.NumInstances = &numInstances_
 	}
-	if isZero(tmp.Plan) {
+	if tmp.Plan == nil {
 		plan_ := PrivateServiceDetailsPlan("starter")
 		tmp.Plan = &plan_
 	}
-	if isZero(tmp.PullRequestPreviewsEnabled) {
+	if tmp.PullRequestPreviewsEnabled == nil {
 		pullRequestPreviewsEnabled_ := PrivateServiceDetailsPullRequestPreviewsEnabled("no")
 		tmp.PullRequestPreviewsEnabled = &pullRequestPreviewsEnabled_
 	}
-	if isZero(tmp.Region) {
+	if tmp.Region == nil {
 		region_ := PrivateServiceDetailsRegion("oregon")
 		tmp.Region = &region_
 	}
@@ -2772,16 +2772,16 @@ func (val *PrivateServiceDetailsArgs) Defaults() *PrivateServiceDetailsArgs {
 	}
 	tmp := *val
 
-	if isZero(tmp.NumInstances) {
+	if tmp.NumInstances == nil {
 		tmp.NumInstances = pulumi.Float64Ptr(1.0)
 	}
-	if isZero(tmp.Plan) {
+	if tmp.Plan == nil {
 		tmp.Plan = PrivateServiceDetailsPlan("starter")
 	}
-	if isZero(tmp.PullRequestPreviewsEnabled) {
+	if tmp.PullRequestPreviewsEnabled == nil {
 		tmp.PullRequestPreviewsEnabled = PrivateServiceDetailsPullRequestPreviewsEnabled("no")
 	}
-	if isZero(tmp.Region) {
+	if tmp.Region == nil {
 		tmp.Region = PrivateServiceDetailsRegion("oregon")
 	}
 	return &tmp
@@ -3484,13 +3484,13 @@ func (val *StaticSiteType) Defaults() *StaticSiteType {
 		return nil
 	}
 	tmp := *val
-	if isZero(tmp.AutoDeploy) {
+	if tmp.AutoDeploy == nil {
 		autoDeploy_ := ServiceAutoDeploy("no")
 		tmp.AutoDeploy = &autoDeploy_
 	}
 	tmp.ServiceDetails = tmp.ServiceDetails.Defaults()
 
-	if isZero(tmp.Type) {
+	if tmp.Type == nil {
 		type_ := "static_site"
 		tmp.Type = &type_
 	}
@@ -3674,11 +3674,11 @@ func (val *StaticSiteServiceDetails) Defaults() *StaticSiteServiceDetails {
 		return nil
 	}
 	tmp := *val
-	if isZero(tmp.PublishPath) {
+	if tmp.PublishPath == nil {
 		publishPath_ := "public"
 		tmp.PublishPath = &publishPath_
 	}
-	if isZero(tmp.PullRequestPreviewsEnabled) {
+	if tmp.PullRequestPreviewsEnabled == nil {
 		pullRequestPreviewsEnabled_ := StaticSiteServiceDetailsPullRequestPreviewsEnabled("no")
 		tmp.PullRequestPreviewsEnabled = &pullRequestPreviewsEnabled_
 	}
@@ -3713,10 +3713,10 @@ func (val *StaticSiteServiceDetailsArgs) Defaults() *StaticSiteServiceDetailsArg
 		return nil
 	}
 	tmp := *val
-	if isZero(tmp.PublishPath) {
+	if tmp.PublishPath == nil {
 		tmp.PublishPath = pulumi.StringPtr("public")
 	}
-	if isZero(tmp.PullRequestPreviewsEnabled) {
+	if tmp.PullRequestPreviewsEnabled == nil {
 		tmp.PullRequestPreviewsEnabled = StaticSiteServiceDetailsPullRequestPreviewsEnabled("no")
 	}
 	return &tmp
@@ -4097,13 +4097,13 @@ func (val *WebServiceType) Defaults() *WebServiceType {
 		return nil
 	}
 	tmp := *val
-	if isZero(tmp.AutoDeploy) {
+	if tmp.AutoDeploy == nil {
 		autoDeploy_ := ServiceAutoDeploy("no")
 		tmp.AutoDeploy = &autoDeploy_
 	}
 	tmp.ServiceDetails = tmp.ServiceDetails.Defaults()
 
-	if isZero(tmp.Type) {
+	if tmp.Type == nil {
 		type_ := "web_service"
 		tmp.Type = &type_
 	}
@@ -4132,19 +4132,19 @@ func (val *WebServiceServiceDetails) Defaults() *WebServiceServiceDetails {
 	tmp := *val
 	tmp.Disk = tmp.Disk.Defaults()
 
-	if isZero(tmp.NumInstances) {
+	if tmp.NumInstances == nil {
 		numInstances_ := 1.0
 		tmp.NumInstances = &numInstances_
 	}
-	if isZero(tmp.Plan) {
+	if tmp.Plan == nil {
 		plan_ := WebServiceServiceDetailsPlan("starter")
 		tmp.Plan = &plan_
 	}
-	if isZero(tmp.PullRequestPreviewsEnabled) {
+	if tmp.PullRequestPreviewsEnabled == nil {
 		pullRequestPreviewsEnabled_ := WebServiceServiceDetailsPullRequestPreviewsEnabled("no")
 		tmp.PullRequestPreviewsEnabled = &pullRequestPreviewsEnabled_
 	}
-	if isZero(tmp.Region) {
+	if tmp.Region == nil {
 		region_ := WebServiceServiceDetailsRegion("oregon")
 		tmp.Region = &region_
 	}
@@ -4183,16 +4183,16 @@ func (val *WebServiceServiceDetailsArgs) Defaults() *WebServiceServiceDetailsArg
 	}
 	tmp := *val
 
-	if isZero(tmp.NumInstances) {
+	if tmp.NumInstances == nil {
 		tmp.NumInstances = pulumi.Float64Ptr(1.0)
 	}
-	if isZero(tmp.Plan) {
+	if tmp.Plan == nil {
 		tmp.Plan = WebServiceServiceDetailsPlan("starter")
 	}
-	if isZero(tmp.PullRequestPreviewsEnabled) {
+	if tmp.PullRequestPreviewsEnabled == nil {
 		tmp.PullRequestPreviewsEnabled = WebServiceServiceDetailsPullRequestPreviewsEnabled("no")
 	}
-	if isZero(tmp.Region) {
+	if tmp.Region == nil {
 		tmp.Region = WebServiceServiceDetailsRegion("oregon")
 	}
 	return &tmp

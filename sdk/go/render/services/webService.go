@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -53,13 +53,13 @@ func NewWebService(ctx *pulumi.Context,
 	if args.Repo == nil {
 		return nil, errors.New("invalid value for required argument 'Repo'")
 	}
-	if isZero(args.AutoDeploy) {
+	if args.AutoDeploy == nil {
 		args.AutoDeploy = ServiceAutoDeploy("no")
 	}
 	if args.ServiceDetails != nil {
 		args.ServiceDetails = args.ServiceDetails.ToWebServiceServiceDetailsPtrOutput().ApplyT(func(v *WebServiceServiceDetails) *WebServiceServiceDetails { return v.Defaults() }).(WebServiceServiceDetailsPtrOutput)
 	}
-	if isZero(args.Type) {
+	if args.Type == nil {
 		args.Type = pulumi.StringPtr("web_service")
 	}
 	opts = pkgResourceDefaultOpts(opts)

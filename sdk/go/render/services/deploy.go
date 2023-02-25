@@ -24,7 +24,7 @@ func NewDeploy(ctx *pulumi.Context,
 		args = &DeployArgs{}
 	}
 
-	if isZero(args.ClearCache) {
+	if args.ClearCache == nil {
 		args.ClearCache = ClearCache("do_not_clear")
 	}
 	opts = pkgResourceDefaultOpts(opts)

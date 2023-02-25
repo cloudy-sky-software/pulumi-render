@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -53,13 +53,13 @@ func NewPrivateService(ctx *pulumi.Context,
 	if args.Repo == nil {
 		return nil, errors.New("invalid value for required argument 'Repo'")
 	}
-	if isZero(args.AutoDeploy) {
+	if args.AutoDeploy == nil {
 		args.AutoDeploy = ServiceAutoDeploy("no")
 	}
 	if args.ServiceDetails != nil {
 		args.ServiceDetails = args.ServiceDetails.ToPrivateServiceDetailsPtrOutput().ApplyT(func(v *PrivateServiceDetails) *PrivateServiceDetails { return v.Defaults() }).(PrivateServiceDetailsPtrOutput)
 	}
-	if isZero(args.Type) {
+	if args.Type == nil {
 		args.Type = pulumi.StringPtr("private_service")
 	}
 	opts = pkgResourceDefaultOpts(opts)

@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -53,13 +53,13 @@ func NewCronJob(ctx *pulumi.Context,
 	if args.Repo == nil {
 		return nil, errors.New("invalid value for required argument 'Repo'")
 	}
-	if isZero(args.AutoDeploy) {
+	if args.AutoDeploy == nil {
 		args.AutoDeploy = ServiceAutoDeploy("no")
 	}
 	if args.ServiceDetails != nil {
 		args.ServiceDetails = args.ServiceDetails.ToCronJobServiceDetailsPtrOutput().ApplyT(func(v *CronJobServiceDetails) *CronJobServiceDetails { return v.Defaults() }).(CronJobServiceDetailsPtrOutput)
 	}
-	if isZero(args.Type) {
+	if args.Type == nil {
 		args.Type = pulumi.StringPtr("cron_job")
 	}
 	opts = pkgResourceDefaultOpts(opts)

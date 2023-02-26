@@ -11,6 +11,12 @@ on:
     paths-ignore:
       - "CHANGELOG.md"
 
+  pull_request_target:
+    branches:
+      - main
+    paths-ignore:
+      - "CHANGELOG.md"
+
 env:
   GOLANG_CI_LINT_VERSION: v1.50.0
   GOPRIVATE: "github.com/cloudy-sky-software/*"

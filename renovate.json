@@ -9,5 +9,20 @@
   "ignorePaths": [
     "sdk/**",
     "examples/**"
+  ],
+  "hostRules": [
+    {
+      "matchHost": "https://github.com/cloudy-sky-software",
+      "hostType": "go",
+      "encrypted": {
+        "token": "wcFMA/xDdHCJBTolAQ/7Bm4Fjn6Kk64EfRi6GtgwzaALcFmKpE96opW55fnKUtKl5KhSYfpBqHWfAvLQpOqJ1O6Ws6T6hy4FrPMyTBXSpgSLUH3SOZ81DzTP99KKZi6uOw+pGDnsv1Voa3ciBYeRfeyNcKtePMorCeDR7OCf45zUIMo+yT5vtoA+887j6rSGIxUD8gLuHiQsvI1HELvz1glVvkqIgEPCFRi5fBHiwTbWC6Y0RxWQ98cXZRM6ioB4hYO2cSPd8HCvJgsXjfd1y72Qs+zPp+mosL/9sx/JDwq/8aFQTpACFBgWmrwuhMTWnV8Un7B80w1Y5OQHjRKosSbxZyIKQ6ybKm1uWtqzEhAfOnEBub26S+YzidhXe/F6ZXZUP9YlJ5t7d0LHb5DYoRzo0q8iNBV5BpCRUkukdDu8eb0lBSv6NbHklswJJf/X9cOyoV3CRe60a6S1d/+SVcoBV48za0EKgKBaRYR6tfENoVE0c9362I8fomBTyjUgy0XJP7uZBLu4lK0COVqV24aC+38p7yWRsGeOITuYnpt4EDtRXunzCwdNOZXE0577j0Nn9Yk2IEoZCeOB/dG4xrEEBFIv4vmC0y2TdBzyxNG9P0sO9xj0NRURp/UbE37eFANHLRobYZFjmBXMYW85x9i9uGk25dCFeFDHNE6ytmRrRpMxnGj7RjmtfkK+krvSwAQBw45VqN65oNCfZRooFWcubbvnwq1TOiJB+KBtdYw7tNnKBD+k4qnAI5VP84znwj+h+gS+d0X+yykoxnws0i+T4zq2yJZvrUWsT+JiRh6nZh+MYACNFby5Li/6n1lP91p01wACqFprhz4El7ZJj2KptoTmYyovxPEsfO4D2UVaerNcEvBJpd400ZxgzsfDqHxIZ3u4ReHDhQGwjLgXxrSgHSkPr7fVrrCGj888AaUaDA50MNG4h7kjKhIh7hetn2NkZXPO"
+      }
+    }
+  ],
+  "customEnvVariables": {
+    "GOPRIVATE": "github.com/cloudy-sky-software/*"
+  },
+  "postUpdateOptions": [
+    "gomodTidy"
   ]
 }

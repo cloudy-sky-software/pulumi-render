@@ -392,8 +392,8 @@ github.com/cloudflare/circl v1.2.0 h1:NheeISPSUcYftKlfrLuOo4T62FkmD4t4jviLfFFYae
 github.com/cloudflare/circl v1.2.0/go.mod h1:Ch2UgYr6ti2KTtlejELlROl0YIYj7SLjAC8M+INXlMk=
 github.com/cloudy-sky-software/pulschema v0.0.0-20230316155028-bbf46cc56cdb h1:pj6zHK6SE2quQ/+hsPrq4GHIH9qpEivxEPJd4cU8RyI=
 github.com/cloudy-sky-software/pulschema v0.0.0-20230316155028-bbf46cc56cdb/go.mod h1:Ahn7QyGWus8mDf6L5Tq7ioWCS8zlahWsa+dkMojzD3I=
-github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20230317002347-45c8f29106f7 h1:9oVg4GMw6sp1aKuE3mXPS6xDMit63Gmcn3pcr9vxEb0=
-github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20230317002347-45c8f29106f7/go.mod h1:KByJLY0/FAWfQSpBMXctvp4LVjcqqSRfyYKxGLUTL0U=
+github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20230322031810-ce3ba6f8d3d0 h1:wlhSO2xxTQsnYHKM+dDcxZMTXw7GWPNU8ZR0NgVDC9Q=
+github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20230322031810-ce3ba6f8d3d0/go.mod h1:jueQbi194NMEJP0AJJs8RmuleH0QhfXEisbyKy9Eao4=
 github.com/cncf/udpa/go v0.0.0-20191209042840-269d4d468f6f/go.mod h1:M8M6+tZqaGXZJjfX53e64911xZQV5JYwmTeXPW+k8Sc=
 github.com/cncf/udpa/go v0.0.0-20200629203442-efcf912fb354/go.mod h1:WmhPx2Nbnhtbo57+VJT5O0JRkEi1Wbu0z5j0R8u5Hbk=
 github.com/cncf/udpa/go v0.0.0-20201120205902-5459f2c99403/go.mod h1:WmhPx2Nbnhtbo57+VJT5O0JRkEi1Wbu0z5j0R8u5Hbk=
@@ -2390,8 +2390,8 @@ google.golang.org/grpc v1.46.0/go.mod h1:vN9eftEi1UMyUsIF80+uQXhHjbXYbm0uXoFCACu
 google.golang.org/grpc v1.46.2/go.mod h1:vN9eftEi1UMyUsIF80+uQXhHjbXYbm0uXoFCACuMGWk=
 google.golang.org/grpc v1.47.0/go.mod h1:vN9eftEi1UMyUsIF80+uQXhHjbXYbm0uXoFCACuMGWk=
 google.golang.org/grpc v1.48.0/go.mod h1:vN9eftEi1UMyUsIF80+uQXhHjbXYbm0uXoFCACuMGWk=
-google.golang.org/grpc v1.53.0 h1:LAv2ds7cmFV/XTS3XG1NneeENYrXGmorPxsBbptIjNc=
-google.golang.org/grpc v1.53.0/go.mod h1:OnIrk0ipVdj4N5d9IUoFUx72/VlD7+jUsHwZgwSMQpw=
+google.golang.org/grpc v1.54.0 h1:EhTqbhiYeixwWQtAEZAxmV9MGqcjEU2mFx52xCzNyag=
+google.golang.org/grpc v1.54.0/go.mod h1:PUSEXI6iWghWaB6lXM4knEgpJNu2qUcKfDtNci3EC2g=
 google.golang.org/grpc/cmd/protoc-gen-go-grpc v1.1.0/go.mod h1:6Kw0yEErY5E/yWrBtf03jp27GLLJujG4z/JK95pnjjw=
 google.golang.org/protobuf v0.0.0-20200109180630-ec00e32a8dfd/go.mod h1:DFci5gLYBciE7Vtevhsrf46CRTquxDuWsQurQQe4oz8=
 google.golang.org/protobuf v0.0.0-20200221191635-4d8936d0db64/go.mod h1:kwYJMbMJ01Woi6D6+Kah6886xMZcty6N08ah7+eCXa0=

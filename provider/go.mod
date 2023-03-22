@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/cloudy-sky-software/pulschema v0.0.0-20230316155028-bbf46cc56cdb
-	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20230317002347-45c8f29106f7
+	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20230322031810-ce3ba6f8d3d0
 	github.com/getkin/kin-openapi v0.115.0
 	github.com/pulumi/pulumi/pkg/v3 v3.58.0
 	github.com/pulumi/pulumi/sdk/v3 v3.58.0
@@ -186,7 +186,7 @@ require (
 	gocloud.dev/secrets/hashivault v0.27.0 // indirect
 	golang.org/x/crypto v0.3.0 // indirect
 	golang.org/x/mod v0.8.0 // indirect
-	golang.org/x/net v0.7.0 // indirect
+	golang.org/x/net v0.8.0 // indirect
 	golang.org/x/oauth2 v0.4.0 // indirect
 	golang.org/x/sync v0.1.0 // indirect
 	golang.org/x/sys v0.6.0 // indirect
@@ -198,7 +198,7 @@ require (
 	google.golang.org/api v0.103.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/genproto v0.0.0-20230110181048-76db0878b65f // indirect
-	google.golang.org/grpc v1.53.0 // indirect
+	google.golang.org/grpc v1.54.0 // indirect
 	google.golang.org/protobuf v1.28.1 // indirect
 	gopkg.in/square/go-jose.v2 v2.6.0 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect

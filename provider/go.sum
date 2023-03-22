@@ -390,8 +390,8 @@ github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDk
 github.com/cloudflare/circl v1.1.0/go.mod h1:prBCrKB9DV4poKZY1l9zBXg2QJY7mvgRvtMxxK7fi4I=
 github.com/cloudflare/circl v1.2.0 h1:NheeISPSUcYftKlfrLuOo4T62FkmD4t4jviLfFFYaec=
 github.com/cloudflare/circl v1.2.0/go.mod h1:Ch2UgYr6ti2KTtlejELlROl0YIYj7SLjAC8M+INXlMk=
-github.com/cloudy-sky-software/pulschema v0.0.0-20230316155028-bbf46cc56cdb h1:pj6zHK6SE2quQ/+hsPrq4GHIH9qpEivxEPJd4cU8RyI=
-github.com/cloudy-sky-software/pulschema v0.0.0-20230316155028-bbf46cc56cdb/go.mod h1:Ahn7QyGWus8mDf6L5Tq7ioWCS8zlahWsa+dkMojzD3I=
+github.com/cloudy-sky-software/pulschema v0.0.0-20230322195134-eace404887de h1:B6Y4KvTJmvWi8DhtZBLSJYUNyjjw6kCWjsBa391RBe4=
+github.com/cloudy-sky-software/pulschema v0.0.0-20230322195134-eace404887de/go.mod h1:Z5BazEpAUAMiIWK63ujayNnWUV/GJt8mFYe/pW5zcUM=
 github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20230322031810-ce3ba6f8d3d0 h1:wlhSO2xxTQsnYHKM+dDcxZMTXw7GWPNU8ZR0NgVDC9Q=
 github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20230322031810-ce3ba6f8d3d0/go.mod h1:jueQbi194NMEJP0AJJs8RmuleH0QhfXEisbyKy9Eao4=
 github.com/cncf/udpa/go v0.0.0-20191209042840-269d4d468f6f/go.mod h1:M8M6+tZqaGXZJjfX53e64911xZQV5JYwmTeXPW+k8Sc=
@@ -785,8 +785,8 @@ github.com/golang-sql/civil v0.0.0-20190719163853-cb61b32ac6fe/go.mod h1:8vg3r2V
 github.com/golang-sql/sqlexp v0.1.0/go.mod h1:J4ad9Vo8ZCWQ2GMrC4UCQy1JpCbwU9m3EOqtpKwwwHI=
 github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b/go.mod h1:SBH7ygxi8pfUlaOkMMuAQtPIUF8ecWP5IEl/CR7VP2Q=
 github.com/golang/glog v1.0.0/go.mod h1:EWib/APOK0SL3dFbYqvxE3UYd8E6s1ouQ7iEp/0LWV4=
-github.com/golang/glog v1.1.0 h1:/d3pCKDPWNnvIWe0vVUpNP32qc8U3PDVxySP/y360qE=
-github.com/golang/glog v1.1.0/go.mod h1:pfYeQZ3JWZoXTV5sFc986z3HTpwQs9At6P4ImfuP3NQ=
+github.com/golang/glog v1.1.1 h1:jxpi2eWoU84wbX9iIEyAeeoac3FLuifZpY9tcNUD9kw=
+github.com/golang/glog v1.1.1/go.mod h1:zR+okUeTbrL6EL3xHUDxZuEtGv04p5shwip1+mL/rLQ=
 github.com/golang/groupcache v0.0.0-20160516000752-02826c3e7903/go.mod h1:cIg4eruTrX1D+g88fzRXU5OdNfaM+9IcxsU14FzY7Hc=
 github.com/golang/groupcache v0.0.0-20190129154638-5b532d6fd5ef/go.mod h1:cIg4eruTrX1D+g88fzRXU5OdNfaM+9IcxsU14FzY7Hc=
 github.com/golang/groupcache v0.0.0-20190702054246-869f871628b6/go.mod h1:cIg4eruTrX1D+g88fzRXU5OdNfaM+9IcxsU14FzY7Hc=

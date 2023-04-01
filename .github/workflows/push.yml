@@ -19,7 +19,6 @@ env:
 jobs:
   lint:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'pull_request' && github. }}
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3

@@ -1,4 +1,5 @@
 {
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "gopls": {
     "build.env": {
       "GOPRIVATE": "github.com/cloudy-sky-software/*"

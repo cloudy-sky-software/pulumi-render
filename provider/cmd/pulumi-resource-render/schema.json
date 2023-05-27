@@ -2326,11 +2326,11 @@
             },
             "type": "object",
             "required": [
-                "name",
                 "domainType",
+                "name",
                 "redirectForName",
-                "verificationStatus",
-                "server"
+                "server",
+                "verificationStatus"
             ],
             "inputProperties": {
                 "name": {
@@ -2410,8 +2410,8 @@
             },
             "type": "object",
             "required": [
-                "startCommand",
-                "planId"
+                "planId",
+                "startCommand"
             ],
             "inputProperties": {
                 "planId": {

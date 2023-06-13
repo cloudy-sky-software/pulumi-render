@@ -1,0 +1,12 @@
+on: issue_comment
+
+jobs:
+  call-workflow:
+    if: github.event.issue.pull_request
+    uses: cloudy-sky-software/pulumi-provider-workflows/.github/workflows/pr_comment.yml@main
+    with:
+      comment-action: ${{ github.event.action }}
+      comment-body: ${{ github.event.comment.body }}
+      pr-number: ${{ github.event.issue.number }}
+      state: ${{ github.event.issue.state }}
+    secrets: inherit

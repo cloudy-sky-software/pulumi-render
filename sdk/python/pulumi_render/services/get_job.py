@@ -55,7 +55,7 @@ def get_job(id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('render:services:getJob', __args__, opts=opts, typ=GetJobResult).value
 
     return AwaitableGetJobResult(
-        items=__ret__.items)
+        items=pulumi.get(__ret__, 'items'))
 
 
 @_utilities.lift_output_func(get_job)

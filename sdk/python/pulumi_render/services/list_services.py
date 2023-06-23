@@ -48,4 +48,4 @@ def list_services(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListS
     __ret__ = pulumi.runtime.invoke('render:services:listServices', __args__, opts=opts, typ=ListServicesResult).value
 
     return AwaitableListServicesResult(
-        items=__ret__.items)
+        items=pulumi.get(__ret__, 'items'))

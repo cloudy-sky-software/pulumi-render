@@ -53,7 +53,7 @@ def get_static_site(id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('render:services:getStaticSite', __args__, opts=opts, typ=GetStaticSiteResult).value
 
     return AwaitableGetStaticSiteResult(
-        items=__ret__.items)
+        items=pulumi.get(__ret__, 'items'))
 
 
 @_utilities.lift_output_func(get_static_site)

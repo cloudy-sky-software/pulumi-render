@@ -53,7 +53,7 @@ def get_background_worker(id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('render:services:getBackgroundWorker', __args__, opts=opts, typ=GetBackgroundWorkerResult).value
 
     return AwaitableGetBackgroundWorkerResult(
-        items=__ret__.items)
+        items=pulumi.get(__ret__, 'items'))
 
 
 @_utilities.lift_output_func(get_background_worker)

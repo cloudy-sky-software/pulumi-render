@@ -53,7 +53,7 @@ def get_private_service(id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('render:services:getPrivateService', __args__, opts=opts, typ=GetPrivateServiceResult).value
 
     return AwaitableGetPrivateServiceResult(
-        items=__ret__.items)
+        items=pulumi.get(__ret__, 'items'))
 
 
 @_utilities.lift_output_func(get_private_service)

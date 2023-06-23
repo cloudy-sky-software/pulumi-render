@@ -53,7 +53,7 @@ def list_env_vars(service_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('render:services:listEnvVars', __args__, opts=opts, typ=ListEnvVarsResult).value
 
     return AwaitableListEnvVarsResult(
-        items=__ret__.items)
+        items=pulumi.get(__ret__, 'items'))
 
 
 @_utilities.lift_output_func(list_env_vars)

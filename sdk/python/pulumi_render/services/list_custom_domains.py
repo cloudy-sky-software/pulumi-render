@@ -53,7 +53,7 @@ def list_custom_domains(service_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('render:services:listCustomDomains', __args__, opts=opts, typ=ListCustomDomainsResult).value
 
     return AwaitableListCustomDomainsResult(
-        items=__ret__.items)
+        items=pulumi.get(__ret__, 'items'))
 
 
 @_utilities.lift_output_func(list_custom_domains)

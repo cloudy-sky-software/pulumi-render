@@ -48,4 +48,4 @@ def list_owners(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListOwn
     __ret__ = pulumi.runtime.invoke('render:owners:listOwners', __args__, opts=opts, typ=ListOwnersResult).value
 
     return AwaitableListOwnersResult(
-        items=__ret__.items)
+        items=pulumi.get(__ret__, 'items'))

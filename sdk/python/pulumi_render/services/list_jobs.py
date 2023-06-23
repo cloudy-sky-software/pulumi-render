@@ -52,7 +52,7 @@ def list_jobs(service_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('render:services:listJobs', __args__, opts=opts, typ=ListJobsResult).value
 
     return AwaitableListJobsResult(
-        items=__ret__.items)
+        items=pulumi.get(__ret__, 'items'))
 
 
 @_utilities.lift_output_func(list_jobs)

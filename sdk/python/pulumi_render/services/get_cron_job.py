@@ -53,7 +53,7 @@ def get_cron_job(id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('render:services:getCronJob', __args__, opts=opts, typ=GetCronJobResult).value
 
     return AwaitableGetCronJobResult(
-        items=__ret__.items)
+        items=pulumi.get(__ret__, 'items'))
 
 
 @_utilities.lift_output_func(get_cron_job)

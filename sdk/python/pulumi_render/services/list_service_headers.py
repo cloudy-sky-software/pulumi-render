@@ -52,7 +52,7 @@ def list_service_headers(service_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('render:services:listServiceHeaders', __args__, opts=opts, typ=ListServiceHeadersResult).value
 
     return AwaitableListServiceHeadersResult(
-        items=__ret__.items)
+        items=pulumi.get(__ret__, 'items'))
 
 
 @_utilities.lift_output_func(list_service_headers)

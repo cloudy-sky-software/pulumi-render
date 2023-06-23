@@ -53,7 +53,7 @@ def list_deploys(service_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('render:services:listDeploys', __args__, opts=opts, typ=ListDeploysResult).value
 
     return AwaitableListDeploysResult(
-        items=__ret__.items)
+        items=pulumi.get(__ret__, 'items'))
 
 
 @_utilities.lift_output_func(list_deploys)

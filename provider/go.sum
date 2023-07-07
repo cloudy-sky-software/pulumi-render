@@ -396,8 +396,8 @@ github.com/cloudflare/circl v1.3.3 h1:fE/Qz0QdIGqeWfnwq0RE0R7MI51s0M2E4Ga9kq5AEM
 github.com/cloudflare/circl v1.3.3/go.mod h1:5XYMA4rFBvNIrhs50XuiBJ15vF2pZn4nnUKZrLbUZFA=
 github.com/cloudy-sky-software/pulschema v0.0.0-20230612223722-6c4c1e91820f h1:mPim76XcXhIMlB60VdYhzGP8hZBzQe86+pfPzh/R2zQ=
 github.com/cloudy-sky-software/pulschema v0.0.0-20230612223722-6c4c1e91820f/go.mod h1:Gci6EoJzAjrh8YiTc5vxRLkDXESyKCa+14JB4kFAwKs=
-github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20230704175411-f254a731425b h1:hc+bhl5CeNq+lcyY8sDnPHFaINSRuRbEPXUgp4eru1c=
-github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20230704175411-f254a731425b/go.mod h1:Z1XehXJFFMiLWYqewTo9j2tK6ELFo82eZkvxJClbMMU=
+github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20230707023757-be4a6994026e h1:Sc8P2E7B7pATdLFhZjdR2U+oJwUvg2mqyDRMqr3O+4w=
+github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20230707023757-be4a6994026e/go.mod h1:sJIjKkngylhAaxzcLsTVMSVtwLwEBUno1vKN+obrN80=
 github.com/cncf/udpa/go v0.0.0-20191209042840-269d4d468f6f/go.mod h1:M8M6+tZqaGXZJjfX53e64911xZQV5JYwmTeXPW+k8Sc=
 github.com/cncf/udpa/go v0.0.0-20200629203442-efcf912fb354/go.mod h1:WmhPx2Nbnhtbo57+VJT5O0JRkEi1Wbu0z5j0R8u5Hbk=
 github.com/cncf/udpa/go v0.0.0-20201120205902-5459f2c99403/go.mod h1:WmhPx2Nbnhtbo57+VJT5O0JRkEi1Wbu0z5j0R8u5Hbk=
@@ -2404,8 +2404,8 @@ google.golang.org/grpc v1.46.0/go.mod h1:vN9eftEi1UMyUsIF80+uQXhHjbXYbm0uXoFCACu
 google.golang.org/grpc v1.46.2/go.mod h1:vN9eftEi1UMyUsIF80+uQXhHjbXYbm0uXoFCACuMGWk=
 google.golang.org/grpc v1.47.0/go.mod h1:vN9eftEi1UMyUsIF80+uQXhHjbXYbm0uXoFCACuMGWk=
 google.golang.org/grpc v1.48.0/go.mod h1:vN9eftEi1UMyUsIF80+uQXhHjbXYbm0uXoFCACuMGWk=
-google.golang.org/grpc v1.56.1 h1:z0dNfjIl0VpaZ9iSVjA6daGatAYwPGstTjt5vkRMFkQ=
-google.golang.org/grpc v1.56.1/go.mod h1:I9bI3vqKfayGqPUAwGdOSu7kt6oIJLixfffKrpXqQ9s=
+google.golang.org/grpc v1.56.2 h1:fVRFRnXvU+x6C4IlHZewvJOVHoOv1TUuQyoRsYnB4bI=
+google.golang.org/grpc v1.56.2/go.mod h1:I9bI3vqKfayGqPUAwGdOSu7kt6oIJLixfffKrpXqQ9s=
 google.golang.org/grpc/cmd/protoc-gen-go-grpc v1.1.0/go.mod h1:6Kw0yEErY5E/yWrBtf03jp27GLLJujG4z/JK95pnjjw=
 google.golang.org/protobuf v0.0.0-20200109180630-ec00e32a8dfd/go.mod h1:DFci5gLYBciE7Vtevhsrf46CRTquxDuWsQurQQe4oz8=
 google.golang.org/protobuf v0.0.0-20200221191635-4d8936d0db64/go.mod h1:kwYJMbMJ01Woi6D6+Kah6886xMZcty6N08ah7+eCXa0=

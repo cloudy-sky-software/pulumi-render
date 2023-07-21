@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -21,7 +22,7 @@ func NewSuspend(ctx *pulumi.Context,
 		args = &SuspendArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Suspend
 	err := ctx.RegisterResource("render:services:Suspend", name, args, &resource, opts...)
 	if err != nil {

@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupPrivateService(ctx *pulumi.Context, args *LookupPrivateServiceArgs, opts ...pulumi.InvokeOption) (*LookupPrivateServiceResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupPrivateServiceResult
 	err := ctx.Invoke("render:services:getPrivateService", args, &rv, opts...)
 	if err != nil {

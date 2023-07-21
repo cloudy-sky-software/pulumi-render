@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func ListJobs(ctx *pulumi.Context, args *ListJobsArgs, opts ...pulumi.InvokeOption) (*ListJobsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListJobsResult
 	err := ctx.Invoke("render:services:listJobs", args, &rv, opts...)
 	if err != nil {

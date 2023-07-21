@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func ListCustomDomains(ctx *pulumi.Context, args *ListCustomDomainsArgs, opts ...pulumi.InvokeOption) (*ListCustomDomainsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListCustomDomainsResult
 	err := ctx.Invoke("render:services:listCustomDomains", args, &rv, opts...)
 	if err != nil {

@@ -4,11 +4,12 @@
 package services
 
 import (
+	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func ListServices(ctx *pulumi.Context, args *ListServicesArgs, opts ...pulumi.InvokeOption) (*ListServicesResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListServicesResult
 	err := ctx.Invoke("render:services:listServices", args, &rv, opts...)
 	if err != nil {

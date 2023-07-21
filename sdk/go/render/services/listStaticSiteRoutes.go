@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func ListStaticSiteRoutes(ctx *pulumi.Context, args *ListStaticSiteRoutesArgs, opts ...pulumi.InvokeOption) (*ListStaticSiteRoutesResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListStaticSiteRoutesResult
 	err := ctx.Invoke("render:services:listStaticSiteRoutes", args, &rv, opts...)
 	if err != nil {

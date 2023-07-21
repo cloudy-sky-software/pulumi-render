@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func ListEnvVars(ctx *pulumi.Context, args *ListEnvVarsArgs, opts ...pulumi.InvokeOption) (*ListEnvVarsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListEnvVarsResult
 	err := ctx.Invoke("render:services:listEnvVars", args, &rv, opts...)
 	if err != nil {

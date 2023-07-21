@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupBackgroundWorker(ctx *pulumi.Context, args *LookupBackgroundWorkerArgs, opts ...pulumi.InvokeOption) (*LookupBackgroundWorkerResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupBackgroundWorkerResult
 	err := ctx.Invoke("render:services:getBackgroundWorker", args, &rv, opts...)
 	if err != nil {

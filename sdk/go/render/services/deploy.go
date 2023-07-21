@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -27,7 +28,7 @@ func NewDeploy(ctx *pulumi.Context,
 	if args.ClearCache == nil {
 		args.ClearCache = ClearCache("do_not_clear")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Deploy
 	err := ctx.RegisterResource("render:services:Deploy", name, args, &resource, opts...)
 	if err != nil {

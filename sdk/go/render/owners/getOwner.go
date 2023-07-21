@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func GetOwner(ctx *pulumi.Context, args *GetOwnerArgs, opts ...pulumi.InvokeOption) (*GetOwnerResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetOwnerResult
 	err := ctx.Invoke("render:owners:getOwner", args, &rv, opts...)
 	if err != nil {

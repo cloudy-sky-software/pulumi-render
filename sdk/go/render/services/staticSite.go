@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -64,7 +65,7 @@ func NewStaticSite(ctx *pulumi.Context,
 	if args.Type == nil {
 		args.Type = pulumi.StringPtr("static_site")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource StaticSite
 	err := ctx.RegisterResource("render:services:StaticSite", name, args, &resource, opts...)
 	if err != nil {

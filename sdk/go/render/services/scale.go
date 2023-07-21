@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -27,7 +28,7 @@ func NewScale(ctx *pulumi.Context,
 	if args.NumInstances == nil {
 		return nil, errors.New("invalid value for required argument 'NumInstances'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Scale
 	err := ctx.RegisterResource("render:services:Scale", name, args, &resource, opts...)
 	if err != nil {

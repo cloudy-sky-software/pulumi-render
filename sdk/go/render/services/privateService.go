@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -62,7 +63,7 @@ func NewPrivateService(ctx *pulumi.Context,
 	if args.Type == nil {
 		args.Type = pulumi.StringPtr("private_service")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource PrivateService
 	err := ctx.RegisterResource("render:services:PrivateService", name, args, &resource, opts...)
 	if err != nil {

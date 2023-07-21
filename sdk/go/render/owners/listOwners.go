@@ -4,11 +4,12 @@
 package owners
 
 import (
+	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func ListOwners(ctx *pulumi.Context, args *ListOwnersArgs, opts ...pulumi.InvokeOption) (*ListOwnersResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListOwnersResult
 	err := ctx.Invoke("render:owners:listOwners", args, &rv, opts...)
 	if err != nil {

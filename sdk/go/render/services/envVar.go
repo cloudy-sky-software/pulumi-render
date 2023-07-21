@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -23,7 +24,7 @@ func NewEnvVar(ctx *pulumi.Context,
 		args = &EnvVarArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource EnvVar
 	err := ctx.RegisterResource("render:services:EnvVar", name, args, &resource, opts...)
 	if err != nil {

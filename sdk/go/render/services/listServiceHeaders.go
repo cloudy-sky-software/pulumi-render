@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func ListServiceHeaders(ctx *pulumi.Context, args *ListServiceHeadersArgs, opts ...pulumi.InvokeOption) (*ListServiceHeadersResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListServiceHeadersResult
 	err := ctx.Invoke("render:services:listServiceHeaders", args, &rv, opts...)
 	if err != nil {

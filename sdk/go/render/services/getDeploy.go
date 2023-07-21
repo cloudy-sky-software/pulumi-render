@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupDeploy(ctx *pulumi.Context, args *LookupDeployArgs, opts ...pulumi.InvokeOption) (*LookupDeployResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDeployResult
 	err := ctx.Invoke("render:services:getDeploy", args, &rv, opts...)
 	if err != nil {

@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupCronJob(ctx *pulumi.Context, args *LookupCronJobArgs, opts ...pulumi.InvokeOption) (*LookupCronJobResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCronJobResult
 	err := ctx.Invoke("render:services:getCronJob", args, &rv, opts...)
 	if err != nil {

@@ -4,10 +4,13 @@
 package config
 
 import (
+	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/services"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 )
+
+var _ = internal.GetEnvOrDefault
 
 // The Render API key
 func GetApiKey(ctx *pulumi.Context) string {

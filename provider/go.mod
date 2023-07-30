@@ -3,8 +3,8 @@ module github.com/cloudy-sky-software/pulumi-render/provider
 go 1.19
 
 require (
-	github.com/cloudy-sky-software/pulschema v0.0.0-20230721021051-5d31ec1dc4de
-	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20230721144207-dee1f3ea9b65
+	github.com/cloudy-sky-software/pulschema v0.0.0-20230727004739-de5575c8f176
+	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20230727010350-1c2ff48bfada
 	github.com/getkin/kin-openapi v0.118.0
 	github.com/pulumi/pulumi/pkg/v3 v3.76.1
 	github.com/pulumi/pulumi/sdk/v3 v3.76.1
@@ -191,8 +191,10 @@ require (
 	golang.org/x/xerrors v0.0.0-20220907171357-04be3eba64a2 // indirect
 	google.golang.org/api v0.114.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
-	google.golang.org/genproto v0.0.0-20230410155749-daa745c078e1 // indirect
-	google.golang.org/grpc v1.56.2 // indirect
+	google.golang.org/genproto v0.0.0-20230526161137-0005af68ea54 // indirect
+	google.golang.org/genproto/googleapis/api v0.0.0-20230525234035-dd9d682886f9 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20230525234030-28d5490b6b19 // indirect
+	google.golang.org/grpc v1.57.0 // indirect
 	google.golang.org/protobuf v1.30.0 // indirect
 	gopkg.in/square/go-jose.v2 v2.6.0 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect

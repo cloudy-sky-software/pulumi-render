@@ -204,4 +204,4 @@ require (
 )
 
 // For https://github.com/cloudy-sky-software/pulumi-render/security/dependabot/5.
-replace golang.org/x/net => golang.org/x/net v0.12.0
+replace golang.org/x/net => golang.org/x/net v0.13.0

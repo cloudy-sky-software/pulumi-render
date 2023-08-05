@@ -179,13 +179,13 @@ require (
 	go.uber.org/atomic v1.10.0 // indirect
 	gocloud.dev v0.29.0 // indirect
 	gocloud.dev/secrets/hashivault v0.27.0 // indirect
-	golang.org/x/crypto v0.11.0 // indirect
+	golang.org/x/crypto v0.12.0 // indirect
 	golang.org/x/mod v0.10.0 // indirect
 	golang.org/x/net v0.10.0 // indirect
 	golang.org/x/oauth2 v0.8.0 // indirect
 	golang.org/x/sync v0.2.0 // indirect
-	golang.org/x/sys v0.10.0 // indirect
-	golang.org/x/term v0.10.0 // indirect
+	golang.org/x/sys v0.11.0 // indirect
+	golang.org/x/term v0.11.0 // indirect
 	golang.org/x/text v0.12.0 // indirect
 	golang.org/x/time v0.3.0 // indirect
 	golang.org/x/tools v0.9.3 // indirect
@@ -205,4 +205,4 @@ require (
 )
 
 // For https://github.com/cloudy-sky-software/pulumi-render/security/dependabot/5.
-replace golang.org/x/net => golang.org/x/net v0.13.0
+replace golang.org/x/net => golang.org/x/net v0.14.0

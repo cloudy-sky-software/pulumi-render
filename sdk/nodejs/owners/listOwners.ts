@@ -21,3 +21,6 @@ export interface ListOwnersArgs {
 export interface ListOwnersResult {
     readonly items: outputs.owners.ListOwnersResponse[];
 }
+export function listOwnersOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListOwnersResult> {
+    return pulumi.output(listOwners(opts))
+}

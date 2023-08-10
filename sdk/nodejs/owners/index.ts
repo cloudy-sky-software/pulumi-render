@@ -11,7 +11,8 @@ utilities.lazyLoad(exports, ["getOwner","getOwnerOutput"], () => require("./getO
 
 export { ListOwnersArgs, ListOwnersResult } from "./listOwners";
 export const listOwners: typeof import("./listOwners").listOwners = null as any;
-utilities.lazyLoad(exports, ["listOwners"], () => require("./listOwners"));
+export const listOwnersOutput: typeof import("./listOwners").listOwnersOutput = null as any;
+utilities.lazyLoad(exports, ["listOwners","listOwnersOutput"], () => require("./listOwners"));
 
 
 // Export enums:

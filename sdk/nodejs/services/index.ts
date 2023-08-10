@@ -102,7 +102,8 @@ utilities.lazyLoad(exports, ["listServiceHeaders","listServiceHeadersOutput"], (
 
 export { ListServicesArgs, ListServicesResult } from "./listServices";
 export const listServices: typeof import("./listServices").listServices = null as any;
-utilities.lazyLoad(exports, ["listServices"], () => require("./listServices"));
+export const listServicesOutput: typeof import("./listServices").listServicesOutput = null as any;
+utilities.lazyLoad(exports, ["listServices","listServicesOutput"], () => require("./listServices"));
 
 export { ListStaticSiteRoutesArgs, ListStaticSiteRoutesResult, ListStaticSiteRoutesOutputArgs } from "./listStaticSiteRoutes";
 export const listStaticSiteRoutes: typeof import("./listStaticSiteRoutes").listStaticSiteRoutes = null as any;

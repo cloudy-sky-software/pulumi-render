@@ -13,6 +13,9 @@ namespace Pulumi.Render.Owners
     {
         public static Task<ListOwnersResult> InvokeAsync(ListOwnersArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ListOwnersResult>("render:owners:listOwners", args ?? new ListOwnersArgs(), options.WithDefaults());
+
+        public static Output<ListOwnersResult> Invoke(InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<ListOwnersResult>("render:owners:listOwners", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

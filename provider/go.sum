@@ -750,8 +750,8 @@ github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDk
 github.com/cloudflare/circl v1.1.0/go.mod h1:prBCrKB9DV4poKZY1l9zBXg2QJY7mvgRvtMxxK7fi4I=
 github.com/cloudflare/circl v1.3.3 h1:fE/Qz0QdIGqeWfnwq0RE0R7MI51s0M2E4Ga9kq5AEMs=
 github.com/cloudflare/circl v1.3.3/go.mod h1:5XYMA4rFBvNIrhs50XuiBJ15vF2pZn4nnUKZrLbUZFA=
-github.com/cloudy-sky-software/pulschema v0.0.0-20230811180152-a1c4be8f451a h1:0tmW/cVm9MBXNhzaY8y1LSmIWLRQ0JLZJ2iyWfgSz4U=
-github.com/cloudy-sky-software/pulschema v0.0.0-20230811180152-a1c4be8f451a/go.mod h1:Ov9RR5TbHicIpTbz0vGucDkEFw9RT94NOtnc7V4KrrY=
+github.com/cloudy-sky-software/pulschema v0.0.0-20230826032023-28f21c33e728 h1:k10S4unLopwtfYhhJkdXaEH7Vo3YwxArZNQRDGlbQl8=
+github.com/cloudy-sky-software/pulschema v0.0.0-20230826032023-28f21c33e728/go.mod h1:Dk8Dh2yd3NiDU25x03AQkvUGffrjz5qj50j32qr6MqY=
 github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20230811230117-9766cf80a619 h1:tt5ZT0GSV3YVli9I08saNU6cv5vsQOjHjZPU+1D5YRA=
 github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20230811230117-9766cf80a619/go.mod h1:BF7rHRTgC7smBiub8e3CZX/5GHzqhgWwCw8ALYJRA40=
 github.com/cncf/udpa/go v0.0.0-20191209042840-269d4d468f6f/go.mod h1:M8M6+tZqaGXZJjfX53e64911xZQV5JYwmTeXPW+k8Sc=

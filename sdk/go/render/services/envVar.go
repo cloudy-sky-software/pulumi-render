@@ -9,6 +9,7 @@ import (
 
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type EnvVar struct {
@@ -92,6 +93,12 @@ func (i *EnvVar) ToEnvVarOutputWithContext(ctx context.Context) EnvVarOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EnvVarOutput)
 }
 
+func (i *EnvVar) ToOutput(ctx context.Context) pulumix.Output[*EnvVar] {
+	return pulumix.Output[*EnvVar]{
+		OutputState: i.ToEnvVarOutputWithContext(ctx).OutputState,
+	}
+}
+
 type EnvVarOutput struct{ *pulumi.OutputState }
 
 func (EnvVarOutput) ElementType() reflect.Type {
@@ -104,6 +111,12 @@ func (o EnvVarOutput) ToEnvVarOutput() EnvVarOutput {
 
 func (o EnvVarOutput) ToEnvVarOutputWithContext(ctx context.Context) EnvVarOutput {
 	return o
+}
+
+func (o EnvVarOutput) ToOutput(ctx context.Context) pulumix.Output[*EnvVar] {
+	return pulumix.Output[*EnvVar]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o EnvVarOutput) EnvVars() EnvVarKeyValueArrayOutput {

@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // A web service
@@ -165,6 +166,12 @@ func (i *WebService) ToWebServiceOutputWithContext(ctx context.Context) WebServi
 	return pulumi.ToOutputWithContext(ctx, i).(WebServiceOutput)
 }
 
+func (i *WebService) ToOutput(ctx context.Context) pulumix.Output[*WebService] {
+	return pulumix.Output[*WebService]{
+		OutputState: i.ToWebServiceOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WebServiceOutput struct{ *pulumi.OutputState }
 
 func (WebServiceOutput) ElementType() reflect.Type {
@@ -177,6 +184,12 @@ func (o WebServiceOutput) ToWebServiceOutput() WebServiceOutput {
 
 func (o WebServiceOutput) ToWebServiceOutputWithContext(ctx context.Context) WebServiceOutput {
 	return o
+}
+
+func (o WebServiceOutput) ToOutput(ctx context.Context) pulumix.Output[*WebService] {
+	return pulumix.Output[*WebService]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Whether to auto deploy the service or not upon git push.

@@ -9,6 +9,7 @@ import (
 
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupCustomDomain(ctx *pulumi.Context, args *LookupCustomDomainArgs, opts ...pulumi.InvokeOption) (*LookupCustomDomainResult, error) {
@@ -68,6 +69,12 @@ func (o LookupCustomDomainResultOutput) ToLookupCustomDomainResultOutput() Looku
 
 func (o LookupCustomDomainResultOutput) ToLookupCustomDomainResultOutputWithContext(ctx context.Context) LookupCustomDomainResultOutput {
 	return o
+}
+
+func (o LookupCustomDomainResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupCustomDomainResult] {
+	return pulumix.Output[LookupCustomDomainResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupCustomDomainResultOutput) Items() CustomDomainTypeOutput {

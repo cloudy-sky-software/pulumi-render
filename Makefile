@@ -60,10 +60,8 @@ nodejs_sdk::
 	cd ${PACKDIR}/nodejs/ && \
 		yarn install && \
 		yarn run tsc && \
-		cp -R scripts bin/ && \
 		cp ../../README.md ../../LICENSE package.json yarn.lock bin/ && \
-		sed -i.bak 's/$${VERSION}/$(VERSION)/g' bin/package.json && \
-		rm ./bin/package.json.bak
+		sed -i.bak 's/$${VERSION}/$(VERSION)/g' bin/package.json
 
 python_sdk:: PYPI_VERSION := $(shell pulumictl get version --language python)
 python_sdk::

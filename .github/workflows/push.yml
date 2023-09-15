@@ -12,7 +12,7 @@ on:
       - "CHANGELOG.md"
 
 env:
-  GOLANG_CI_LINT_VERSION: v1.50.0
+  GOLANG_CI_LINT_VERSION: v1.54.2
   GOPRIVATE: "github.com/cloudy-sky-software/*"
   PROVIDER: "render"
 
@@ -29,7 +29,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v4
         with:
-          go-version: 1.19.x
+          go-version: 1.21.x
 
       - run: |
           git config --global url."https://praneetloke:${GH_REPO_PAT}@github.com/".insteadOf "https://github.com/"
@@ -62,12 +62,12 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v4
         with:
-          go-version: 1.19.x
+          go-version: 1.21.x
 
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 18.x
 
       - name: Setup DotNet
         uses: actions/setup-dotnet@v3

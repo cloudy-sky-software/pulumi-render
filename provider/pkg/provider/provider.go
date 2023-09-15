@@ -64,11 +64,11 @@ func (p *renderProvider) GetAuthorizationHeader() string {
 	return fmt.Sprintf("%s %s", authSchemePrefix, p.apiKey)
 }
 
-func (p *renderProvider) OnPreInvoke(ctx context.Context, req *pulumirpc.InvokeRequest, httpReq *http.Request) error {
+func (p *renderProvider) OnPreInvoke(_ context.Context, _ *pulumirpc.InvokeRequest, _ *http.Request) error {
 	return nil
 }
 
-func (p *renderProvider) OnPostInvoke(ctx context.Context, req *pulumirpc.InvokeRequest, outputs interface{}) (map[string]interface{}, error) {
+func (p *renderProvider) OnPostInvoke(_ context.Context, req *pulumirpc.InvokeRequest, outputs interface{}) (map[string]interface{}, error) {
 	invokeTypeToken := req.GetTok()
 
 	if strings.Contains(invokeTypeToken, ":list") {
@@ -114,7 +114,7 @@ func (p *renderProvider) OnConfigure(_ context.Context, req *pulumirpc.Configure
 }
 
 // OnDiff checks what impacts a hypothetical update will have on the resource's properties.
-func (p *renderProvider) OnDiff(ctx context.Context, req *pulumirpc.DiffRequest, resourceTypeToken string, diff *resource.ObjectDiff, jsonReq *openapi3.MediaType) (*pulumirpc.DiffResponse, error) {
+func (p *renderProvider) OnDiff(_ context.Context, _ *pulumirpc.DiffRequest, resourceTypeToken string, diff *resource.ObjectDiff, jsonReq *openapi3.MediaType) (*pulumirpc.DiffResponse, error) {
 	if len(jsonReq.Schema.Value.AnyOf) == 0 {
 		return nil, nil
 	}
@@ -146,7 +146,7 @@ func (p *renderProvider) OnDiff(ctx context.Context, req *pulumirpc.DiffRequest,
 	}, nil
 }
 
-func (p *renderProvider) OnPreCreate(ctx context.Context, req *pulumirpc.CreateRequest, httpReq *http.Request) error {
+func (p *renderProvider) OnPreCreate(_ context.Context, req *pulumirpc.CreateRequest, httpReq *http.Request) error {
 	resourceTypeToken := fwRest.GetResourceTypeToken(req.GetUrn())
 	if resourceTypeToken != envVarResourceTypeToken {
 		return nil
@@ -172,7 +172,7 @@ func (p *renderProvider) OnPreCreate(ctx context.Context, req *pulumirpc.CreateR
 }
 
 // OnPostCreate allocates a new instance of the provided resource and returns its unique ID afterwards.
-func (p *renderProvider) OnPostCreate(ctx context.Context, req *pulumirpc.CreateRequest, outputs interface{}) (map[string]interface{}, error) {
+func (p *renderProvider) OnPostCreate(_ context.Context, req *pulumirpc.CreateRequest, outputs interface{}) (map[string]interface{}, error) {
 	resourceTypeToken := fwRest.GetResourceTypeToken(req.GetUrn())
 	var outputsMap map[string]interface{}
 
@@ -227,15 +227,15 @@ func (p *renderProvider) OnPostCreate(ctx context.Context, req *pulumirpc.Create
 	return outputsMap, nil
 }
 
-func (p *renderProvider) OnPreRead(ctx context.Context, req *pulumirpc.ReadRequest, httpReq *http.Request) error {
+func (p *renderProvider) OnPreRead(_ context.Context, _ *pulumirpc.ReadRequest, _ *http.Request) error {
 	return nil
 }
 
-func (p *renderProvider) OnPostRead(ctx context.Context, req *pulumirpc.ReadRequest, outputs map[string]interface{}) (map[string]interface{}, error) {
+func (p *renderProvider) OnPostRead(_ context.Context, _ *pulumirpc.ReadRequest, outputs map[string]interface{}) (map[string]interface{}, error) {
 	return outputs, nil
 }
 
-func (p *renderProvider) OnPreUpdate(ctx context.Context, req *pulumirpc.UpdateRequest, httpReq *http.Request) error {
+func (p *renderProvider) OnPreUpdate(_ context.Context, req *pulumirpc.UpdateRequest, httpReq *http.Request) error {
 	resourceTypeToken := fwRest.GetResourceTypeToken(req.GetUrn())
 	if resourceTypeToken != envVarResourceTypeToken {
 		return nil
@@ -350,7 +350,7 @@ func (p *renderProvider) executeResumeSerivce(ctx context.Context, serviceID str
 	return nil
 }
 
-func (p *renderProvider) OnPreDelete(ctx context.Context, req *pulumirpc.DeleteRequest, httpReq *http.Request) error {
+func (p *renderProvider) OnPreDelete(_ context.Context, _ *pulumirpc.DeleteRequest, _ *http.Request) error {
 	return nil
 }
 

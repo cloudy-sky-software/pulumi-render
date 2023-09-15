@@ -9,6 +9,7 @@ import (
 
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 var _ = internal.GetEnvOrDefault
@@ -44,6 +45,12 @@ func (o OwnerOutput) ToOwnerOutput() OwnerOutput {
 
 func (o OwnerOutput) ToOwnerOutputWithContext(ctx context.Context) OwnerOutput {
 	return o
+}
+
+func (o OwnerOutput) ToOutput(ctx context.Context) pulumix.Output[Owner] {
+	return pulumix.Output[Owner]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The email of the owner.

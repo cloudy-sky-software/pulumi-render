@@ -9,6 +9,7 @@ import (
 
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupWebService(ctx *pulumi.Context, args *LookupWebServiceArgs, opts ...pulumi.InvokeOption) (*LookupWebServiceResult, error) {
@@ -75,6 +76,12 @@ func (o LookupWebServiceResultOutput) ToLookupWebServiceResultOutput() LookupWeb
 
 func (o LookupWebServiceResultOutput) ToLookupWebServiceResultOutputWithContext(ctx context.Context) LookupWebServiceResultOutput {
 	return o
+}
+
+func (o LookupWebServiceResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupWebServiceResult] {
+	return pulumix.Output[LookupWebServiceResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupWebServiceResultOutput) Items() GetWebServiceTypeOutput {

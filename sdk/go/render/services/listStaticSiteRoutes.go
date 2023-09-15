@@ -9,6 +9,7 @@ import (
 
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func ListStaticSiteRoutes(ctx *pulumi.Context, args *ListStaticSiteRoutesArgs, opts ...pulumi.InvokeOption) (*ListStaticSiteRoutesResult, error) {
@@ -64,6 +65,12 @@ func (o ListStaticSiteRoutesResultOutput) ToListStaticSiteRoutesResultOutput() L
 
 func (o ListStaticSiteRoutesResultOutput) ToListStaticSiteRoutesResultOutputWithContext(ctx context.Context) ListStaticSiteRoutesResultOutput {
 	return o
+}
+
+func (o ListStaticSiteRoutesResultOutput) ToOutput(ctx context.Context) pulumix.Output[ListStaticSiteRoutesResult] {
+	return pulumix.Output[ListStaticSiteRoutesResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ListStaticSiteRoutesResultOutput) Items() ListStaticSiteRoutesResponseArrayOutput {

@@ -11,8 +11,7 @@
     "repository": "https://github.com/cloudy-sky-software/pulumi-render",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "tsc",
-        "install": "node scripts/install-pulumi-plugin.js resource render ${VERSION}"
+        "build": "tsc"
     },
     "dependencies": {
         "@pulumi/pulumi": "^3.0.0",

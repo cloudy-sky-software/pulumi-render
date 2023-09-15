@@ -9,6 +9,7 @@ import (
 
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type Deploy struct {
@@ -96,6 +97,12 @@ func (i *Deploy) ToDeployOutputWithContext(ctx context.Context) DeployOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DeployOutput)
 }
 
+func (i *Deploy) ToOutput(ctx context.Context) pulumix.Output[*Deploy] {
+	return pulumix.Output[*Deploy]{
+		OutputState: i.ToDeployOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeployOutput struct{ *pulumi.OutputState }
 
 func (DeployOutput) ElementType() reflect.Type {
@@ -108,6 +115,12 @@ func (o DeployOutput) ToDeployOutput() DeployOutput {
 
 func (o DeployOutput) ToDeployOutputWithContext(ctx context.Context) DeployOutput {
 	return o
+}
+
+func (o DeployOutput) ToOutput(ctx context.Context) pulumix.Output[*Deploy] {
+	return pulumix.Output[*Deploy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeployOutput) ClearCache() ClearCachePtrOutput {

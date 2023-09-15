@@ -9,6 +9,7 @@ import (
 
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func ListServiceHeaders(ctx *pulumi.Context, args *ListServiceHeadersArgs, opts ...pulumi.InvokeOption) (*ListServiceHeadersResult, error) {
@@ -64,6 +65,12 @@ func (o ListServiceHeadersResultOutput) ToListServiceHeadersResultOutput() ListS
 
 func (o ListServiceHeadersResultOutput) ToListServiceHeadersResultOutputWithContext(ctx context.Context) ListServiceHeadersResultOutput {
 	return o
+}
+
+func (o ListServiceHeadersResultOutput) ToOutput(ctx context.Context) pulumix.Output[ListServiceHeadersResult] {
+	return pulumix.Output[ListServiceHeadersResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ListServiceHeadersResultOutput) Items() ListServiceHeadersResponseArrayOutput {

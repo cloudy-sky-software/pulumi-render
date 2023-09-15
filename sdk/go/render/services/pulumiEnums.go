@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type BackgroundWorkerServiceDetailsEnv string
@@ -82,6 +83,12 @@ func (o BackgroundWorkerServiceDetailsEnvOutput) ToBackgroundWorkerServiceDetail
 	}).(BackgroundWorkerServiceDetailsEnvPtrOutput)
 }
 
+func (o BackgroundWorkerServiceDetailsEnvOutput) ToOutput(ctx context.Context) pulumix.Output[BackgroundWorkerServiceDetailsEnv] {
+	return pulumix.Output[BackgroundWorkerServiceDetailsEnv]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o BackgroundWorkerServiceDetailsEnvOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -115,6 +122,12 @@ func (o BackgroundWorkerServiceDetailsEnvPtrOutput) ToBackgroundWorkerServiceDet
 
 func (o BackgroundWorkerServiceDetailsEnvPtrOutput) ToBackgroundWorkerServiceDetailsEnvPtrOutputWithContext(ctx context.Context) BackgroundWorkerServiceDetailsEnvPtrOutput {
 	return o
+}
+
+func (o BackgroundWorkerServiceDetailsEnvPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*BackgroundWorkerServiceDetailsEnv] {
+	return pulumix.Output[*BackgroundWorkerServiceDetailsEnv]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o BackgroundWorkerServiceDetailsEnvPtrOutput) Elem() BackgroundWorkerServiceDetailsEnvOutput {
@@ -177,6 +190,12 @@ func (in *backgroundWorkerServiceDetailsEnvPtr) ToBackgroundWorkerServiceDetails
 
 func (in *backgroundWorkerServiceDetailsEnvPtr) ToBackgroundWorkerServiceDetailsEnvPtrOutputWithContext(ctx context.Context) BackgroundWorkerServiceDetailsEnvPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(BackgroundWorkerServiceDetailsEnvPtrOutput)
+}
+
+func (in *backgroundWorkerServiceDetailsEnvPtr) ToOutput(ctx context.Context) pulumix.Output[*BackgroundWorkerServiceDetailsEnv] {
+	return pulumix.Output[*BackgroundWorkerServiceDetailsEnv]{
+		OutputState: in.ToBackgroundWorkerServiceDetailsEnvPtrOutputWithContext(ctx).OutputState,
+	}
 }
 
 type BackgroundWorkerServiceDetailsPlan string
@@ -252,6 +271,12 @@ func (o BackgroundWorkerServiceDetailsPlanOutput) ToBackgroundWorkerServiceDetai
 	}).(BackgroundWorkerServiceDetailsPlanPtrOutput)
 }
 
+func (o BackgroundWorkerServiceDetailsPlanOutput) ToOutput(ctx context.Context) pulumix.Output[BackgroundWorkerServiceDetailsPlan] {
+	return pulumix.Output[BackgroundWorkerServiceDetailsPlan]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o BackgroundWorkerServiceDetailsPlanOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -285,6 +310,12 @@ func (o BackgroundWorkerServiceDetailsPlanPtrOutput) ToBackgroundWorkerServiceDe
 
 func (o BackgroundWorkerServiceDetailsPlanPtrOutput) ToBackgroundWorkerServiceDetailsPlanPtrOutputWithContext(ctx context.Context) BackgroundWorkerServiceDetailsPlanPtrOutput {
 	return o
+}
+
+func (o BackgroundWorkerServiceDetailsPlanPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*BackgroundWorkerServiceDetailsPlan] {
+	return pulumix.Output[*BackgroundWorkerServiceDetailsPlan]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o BackgroundWorkerServiceDetailsPlanPtrOutput) Elem() BackgroundWorkerServiceDetailsPlanOutput {
@@ -347,6 +378,12 @@ func (in *backgroundWorkerServiceDetailsPlanPtr) ToBackgroundWorkerServiceDetail
 
 func (in *backgroundWorkerServiceDetailsPlanPtr) ToBackgroundWorkerServiceDetailsPlanPtrOutputWithContext(ctx context.Context) BackgroundWorkerServiceDetailsPlanPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(BackgroundWorkerServiceDetailsPlanPtrOutput)
+}
+
+func (in *backgroundWorkerServiceDetailsPlanPtr) ToOutput(ctx context.Context) pulumix.Output[*BackgroundWorkerServiceDetailsPlan] {
+	return pulumix.Output[*BackgroundWorkerServiceDetailsPlan]{
+		OutputState: in.ToBackgroundWorkerServiceDetailsPlanPtrOutputWithContext(ctx).OutputState,
+	}
 }
 
 type BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled string
@@ -416,6 +453,12 @@ func (o BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledOutput) ToBackgr
 	}).(BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledPtrOutput)
 }
 
+func (o BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledOutput) ToOutput(ctx context.Context) pulumix.Output[BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled] {
+	return pulumix.Output[BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -449,6 +492,12 @@ func (o BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToBac
 
 func (o BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToBackgroundWorkerServiceDetailsPullRequestPreviewsEnabledPtrOutputWithContext(ctx context.Context) BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledPtrOutput {
 	return o
+}
+
+func (o BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled] {
+	return pulumix.Output[*BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledPtrOutput) Elem() BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledOutput {
@@ -511,6 +560,12 @@ func (in *backgroundWorkerServiceDetailsPullRequestPreviewsEnabledPtr) ToBackgro
 
 func (in *backgroundWorkerServiceDetailsPullRequestPreviewsEnabledPtr) ToBackgroundWorkerServiceDetailsPullRequestPreviewsEnabledPtrOutputWithContext(ctx context.Context) BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledPtrOutput)
+}
+
+func (in *backgroundWorkerServiceDetailsPullRequestPreviewsEnabledPtr) ToOutput(ctx context.Context) pulumix.Output[*BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled] {
+	return pulumix.Output[*BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled]{
+		OutputState: in.ToBackgroundWorkerServiceDetailsPullRequestPreviewsEnabledPtrOutputWithContext(ctx).OutputState,
+	}
 }
 
 type BackgroundWorkerServiceDetailsRegion string
@@ -580,6 +635,12 @@ func (o BackgroundWorkerServiceDetailsRegionOutput) ToBackgroundWorkerServiceDet
 	}).(BackgroundWorkerServiceDetailsRegionPtrOutput)
 }
 
+func (o BackgroundWorkerServiceDetailsRegionOutput) ToOutput(ctx context.Context) pulumix.Output[BackgroundWorkerServiceDetailsRegion] {
+	return pulumix.Output[BackgroundWorkerServiceDetailsRegion]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o BackgroundWorkerServiceDetailsRegionOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -613,6 +674,12 @@ func (o BackgroundWorkerServiceDetailsRegionPtrOutput) ToBackgroundWorkerService
 
 func (o BackgroundWorkerServiceDetailsRegionPtrOutput) ToBackgroundWorkerServiceDetailsRegionPtrOutputWithContext(ctx context.Context) BackgroundWorkerServiceDetailsRegionPtrOutput {
 	return o
+}
+
+func (o BackgroundWorkerServiceDetailsRegionPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*BackgroundWorkerServiceDetailsRegion] {
+	return pulumix.Output[*BackgroundWorkerServiceDetailsRegion]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o BackgroundWorkerServiceDetailsRegionPtrOutput) Elem() BackgroundWorkerServiceDetailsRegionOutput {
@@ -675,6 +742,12 @@ func (in *backgroundWorkerServiceDetailsRegionPtr) ToBackgroundWorkerServiceDeta
 
 func (in *backgroundWorkerServiceDetailsRegionPtr) ToBackgroundWorkerServiceDetailsRegionPtrOutputWithContext(ctx context.Context) BackgroundWorkerServiceDetailsRegionPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(BackgroundWorkerServiceDetailsRegionPtrOutput)
+}
+
+func (in *backgroundWorkerServiceDetailsRegionPtr) ToOutput(ctx context.Context) pulumix.Output[*BackgroundWorkerServiceDetailsRegion] {
+	return pulumix.Output[*BackgroundWorkerServiceDetailsRegion]{
+		OutputState: in.ToBackgroundWorkerServiceDetailsRegionPtrOutputWithContext(ctx).OutputState,
+	}
 }
 
 type ClearCache string
@@ -744,6 +817,12 @@ func (o ClearCacheOutput) ToClearCachePtrOutputWithContext(ctx context.Context) 
 	}).(ClearCachePtrOutput)
 }
 
+func (o ClearCacheOutput) ToOutput(ctx context.Context) pulumix.Output[ClearCache] {
+	return pulumix.Output[ClearCache]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ClearCacheOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -777,6 +856,12 @@ func (o ClearCachePtrOutput) ToClearCachePtrOutput() ClearCachePtrOutput {
 
 func (o ClearCachePtrOutput) ToClearCachePtrOutputWithContext(ctx context.Context) ClearCachePtrOutput {
 	return o
+}
+
+func (o ClearCachePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ClearCache] {
+	return pulumix.Output[*ClearCache]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ClearCachePtrOutput) Elem() ClearCacheOutput {
@@ -839,6 +924,12 @@ func (in *clearCachePtr) ToClearCachePtrOutput() ClearCachePtrOutput {
 
 func (in *clearCachePtr) ToClearCachePtrOutputWithContext(ctx context.Context) ClearCachePtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(ClearCachePtrOutput)
+}
+
+func (in *clearCachePtr) ToOutput(ctx context.Context) pulumix.Output[*ClearCache] {
+	return pulumix.Output[*ClearCache]{
+		OutputState: in.ToClearCachePtrOutputWithContext(ctx).OutputState,
+	}
 }
 
 type CronJobServiceDetailsEnv string
@@ -913,6 +1004,12 @@ func (o CronJobServiceDetailsEnvOutput) ToCronJobServiceDetailsEnvPtrOutputWithC
 	}).(CronJobServiceDetailsEnvPtrOutput)
 }
 
+func (o CronJobServiceDetailsEnvOutput) ToOutput(ctx context.Context) pulumix.Output[CronJobServiceDetailsEnv] {
+	return pulumix.Output[CronJobServiceDetailsEnv]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o CronJobServiceDetailsEnvOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -946,6 +1043,12 @@ func (o CronJobServiceDetailsEnvPtrOutput) ToCronJobServiceDetailsEnvPtrOutput()
 
 func (o CronJobServiceDetailsEnvPtrOutput) ToCronJobServiceDetailsEnvPtrOutputWithContext(ctx context.Context) CronJobServiceDetailsEnvPtrOutput {
 	return o
+}
+
+func (o CronJobServiceDetailsEnvPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*CronJobServiceDetailsEnv] {
+	return pulumix.Output[*CronJobServiceDetailsEnv]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o CronJobServiceDetailsEnvPtrOutput) Elem() CronJobServiceDetailsEnvOutput {
@@ -1008,6 +1111,12 @@ func (in *cronJobServiceDetailsEnvPtr) ToCronJobServiceDetailsEnvPtrOutput() Cro
 
 func (in *cronJobServiceDetailsEnvPtr) ToCronJobServiceDetailsEnvPtrOutputWithContext(ctx context.Context) CronJobServiceDetailsEnvPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(CronJobServiceDetailsEnvPtrOutput)
+}
+
+func (in *cronJobServiceDetailsEnvPtr) ToOutput(ctx context.Context) pulumix.Output[*CronJobServiceDetailsEnv] {
+	return pulumix.Output[*CronJobServiceDetailsEnv]{
+		OutputState: in.ToCronJobServiceDetailsEnvPtrOutputWithContext(ctx).OutputState,
+	}
 }
 
 type CronJobServiceDetailsPlan string
@@ -1083,6 +1192,12 @@ func (o CronJobServiceDetailsPlanOutput) ToCronJobServiceDetailsPlanPtrOutputWit
 	}).(CronJobServiceDetailsPlanPtrOutput)
 }
 
+func (o CronJobServiceDetailsPlanOutput) ToOutput(ctx context.Context) pulumix.Output[CronJobServiceDetailsPlan] {
+	return pulumix.Output[CronJobServiceDetailsPlan]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o CronJobServiceDetailsPlanOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -1116,6 +1231,12 @@ func (o CronJobServiceDetailsPlanPtrOutput) ToCronJobServiceDetailsPlanPtrOutput
 
 func (o CronJobServiceDetailsPlanPtrOutput) ToCronJobServiceDetailsPlanPtrOutputWithContext(ctx context.Context) CronJobServiceDetailsPlanPtrOutput {
 	return o
+}
+
+func (o CronJobServiceDetailsPlanPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*CronJobServiceDetailsPlan] {
+	return pulumix.Output[*CronJobServiceDetailsPlan]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o CronJobServiceDetailsPlanPtrOutput) Elem() CronJobServiceDetailsPlanOutput {
@@ -1178,6 +1299,12 @@ func (in *cronJobServiceDetailsPlanPtr) ToCronJobServiceDetailsPlanPtrOutput() C
 
 func (in *cronJobServiceDetailsPlanPtr) ToCronJobServiceDetailsPlanPtrOutputWithContext(ctx context.Context) CronJobServiceDetailsPlanPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(CronJobServiceDetailsPlanPtrOutput)
+}
+
+func (in *cronJobServiceDetailsPlanPtr) ToOutput(ctx context.Context) pulumix.Output[*CronJobServiceDetailsPlan] {
+	return pulumix.Output[*CronJobServiceDetailsPlan]{
+		OutputState: in.ToCronJobServiceDetailsPlanPtrOutputWithContext(ctx).OutputState,
+	}
 }
 
 type CronJobServiceDetailsRegion string
@@ -1247,6 +1374,12 @@ func (o CronJobServiceDetailsRegionOutput) ToCronJobServiceDetailsRegionPtrOutpu
 	}).(CronJobServiceDetailsRegionPtrOutput)
 }
 
+func (o CronJobServiceDetailsRegionOutput) ToOutput(ctx context.Context) pulumix.Output[CronJobServiceDetailsRegion] {
+	return pulumix.Output[CronJobServiceDetailsRegion]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o CronJobServiceDetailsRegionOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -1280,6 +1413,12 @@ func (o CronJobServiceDetailsRegionPtrOutput) ToCronJobServiceDetailsRegionPtrOu
 
 func (o CronJobServiceDetailsRegionPtrOutput) ToCronJobServiceDetailsRegionPtrOutputWithContext(ctx context.Context) CronJobServiceDetailsRegionPtrOutput {
 	return o
+}
+
+func (o CronJobServiceDetailsRegionPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*CronJobServiceDetailsRegion] {
+	return pulumix.Output[*CronJobServiceDetailsRegion]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o CronJobServiceDetailsRegionPtrOutput) Elem() CronJobServiceDetailsRegionOutput {
@@ -1344,6 +1483,12 @@ func (in *cronJobServiceDetailsRegionPtr) ToCronJobServiceDetailsRegionPtrOutput
 	return pulumi.ToOutputWithContext(ctx, in).(CronJobServiceDetailsRegionPtrOutput)
 }
 
+func (in *cronJobServiceDetailsRegionPtr) ToOutput(ctx context.Context) pulumix.Output[*CronJobServiceDetailsRegion] {
+	return pulumix.Output[*CronJobServiceDetailsRegion]{
+		OutputState: in.ToCronJobServiceDetailsRegionPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type CustomDomainDomainType string
 
 const (
@@ -1373,6 +1518,12 @@ func (o CustomDomainDomainTypeOutput) ToCustomDomainDomainTypePtrOutputWithConte
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v CustomDomainDomainType) *CustomDomainDomainType {
 		return &v
 	}).(CustomDomainDomainTypePtrOutput)
+}
+
+func (o CustomDomainDomainTypeOutput) ToOutput(ctx context.Context) pulumix.Output[CustomDomainDomainType] {
+	return pulumix.Output[CustomDomainDomainType]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o CustomDomainDomainTypeOutput) ToStringOutput() pulumi.StringOutput {
@@ -1408,6 +1559,12 @@ func (o CustomDomainDomainTypePtrOutput) ToCustomDomainDomainTypePtrOutput() Cus
 
 func (o CustomDomainDomainTypePtrOutput) ToCustomDomainDomainTypePtrOutputWithContext(ctx context.Context) CustomDomainDomainTypePtrOutput {
 	return o
+}
+
+func (o CustomDomainDomainTypePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*CustomDomainDomainType] {
+	return pulumix.Output[*CustomDomainDomainType]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o CustomDomainDomainTypePtrOutput) Elem() CustomDomainDomainTypeOutput {
@@ -1465,6 +1622,12 @@ func (o CustomDomainVerificationStatusOutput) ToCustomDomainVerificationStatusPt
 	}).(CustomDomainVerificationStatusPtrOutput)
 }
 
+func (o CustomDomainVerificationStatusOutput) ToOutput(ctx context.Context) pulumix.Output[CustomDomainVerificationStatus] {
+	return pulumix.Output[CustomDomainVerificationStatus]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o CustomDomainVerificationStatusOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -1498,6 +1661,12 @@ func (o CustomDomainVerificationStatusPtrOutput) ToCustomDomainVerificationStatu
 
 func (o CustomDomainVerificationStatusPtrOutput) ToCustomDomainVerificationStatusPtrOutputWithContext(ctx context.Context) CustomDomainVerificationStatusPtrOutput {
 	return o
+}
+
+func (o CustomDomainVerificationStatusPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*CustomDomainVerificationStatus] {
+	return pulumix.Output[*CustomDomainVerificationStatus]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o CustomDomainVerificationStatusPtrOutput) Elem() CustomDomainVerificationStatusOutput {
@@ -1555,6 +1724,12 @@ func (o DeployClearCacheOutput) ToDeployClearCachePtrOutputWithContext(ctx conte
 	}).(DeployClearCachePtrOutput)
 }
 
+func (o DeployClearCacheOutput) ToOutput(ctx context.Context) pulumix.Output[DeployClearCache] {
+	return pulumix.Output[DeployClearCache]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DeployClearCacheOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -1588,6 +1763,12 @@ func (o DeployClearCachePtrOutput) ToDeployClearCachePtrOutput() DeployClearCach
 
 func (o DeployClearCachePtrOutput) ToDeployClearCachePtrOutputWithContext(ctx context.Context) DeployClearCachePtrOutput {
 	return o
+}
+
+func (o DeployClearCachePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DeployClearCache] {
+	return pulumix.Output[*DeployClearCache]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeployClearCachePtrOutput) Elem() DeployClearCacheOutput {
@@ -1645,6 +1826,12 @@ func (o DomainTypeOutput) ToDomainTypePtrOutputWithContext(ctx context.Context) 
 	}).(DomainTypePtrOutput)
 }
 
+func (o DomainTypeOutput) ToOutput(ctx context.Context) pulumix.Output[DomainType] {
+	return pulumix.Output[DomainType]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DomainTypeOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -1678,6 +1865,12 @@ func (o DomainTypePtrOutput) ToDomainTypePtrOutput() DomainTypePtrOutput {
 
 func (o DomainTypePtrOutput) ToDomainTypePtrOutputWithContext(ctx context.Context) DomainTypePtrOutput {
 	return o
+}
+
+func (o DomainTypePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DomainType] {
+	return pulumix.Output[*DomainType]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DomainTypePtrOutput) Elem() DomainTypeOutput {
@@ -1771,6 +1964,12 @@ func (o EnvVarKeyValueGenerateValueOutput) ToEnvVarKeyValueGenerateValuePtrOutpu
 	}).(EnvVarKeyValueGenerateValuePtrOutput)
 }
 
+func (o EnvVarKeyValueGenerateValueOutput) ToOutput(ctx context.Context) pulumix.Output[EnvVarKeyValueGenerateValue] {
+	return pulumix.Output[EnvVarKeyValueGenerateValue]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o EnvVarKeyValueGenerateValueOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -1804,6 +2003,12 @@ func (o EnvVarKeyValueGenerateValuePtrOutput) ToEnvVarKeyValueGenerateValuePtrOu
 
 func (o EnvVarKeyValueGenerateValuePtrOutput) ToEnvVarKeyValueGenerateValuePtrOutputWithContext(ctx context.Context) EnvVarKeyValueGenerateValuePtrOutput {
 	return o
+}
+
+func (o EnvVarKeyValueGenerateValuePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*EnvVarKeyValueGenerateValue] {
+	return pulumix.Output[*EnvVarKeyValueGenerateValue]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o EnvVarKeyValueGenerateValuePtrOutput) Elem() EnvVarKeyValueGenerateValueOutput {
@@ -1866,6 +2071,12 @@ func (in *envVarKeyValueGenerateValuePtr) ToEnvVarKeyValueGenerateValuePtrOutput
 
 func (in *envVarKeyValueGenerateValuePtr) ToEnvVarKeyValueGenerateValuePtrOutputWithContext(ctx context.Context) EnvVarKeyValueGenerateValuePtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(EnvVarKeyValueGenerateValuePtrOutput)
+}
+
+func (in *envVarKeyValueGenerateValuePtr) ToOutput(ctx context.Context) pulumix.Output[*EnvVarKeyValueGenerateValue] {
+	return pulumix.Output[*EnvVarKeyValueGenerateValue]{
+		OutputState: in.ToEnvVarKeyValueGenerateValuePtrOutputWithContext(ctx).OutputState,
+	}
 }
 
 type OpenPortsProtocol string
@@ -1935,6 +2146,12 @@ func (o OpenPortsProtocolOutput) ToOpenPortsProtocolPtrOutputWithContext(ctx con
 	}).(OpenPortsProtocolPtrOutput)
 }
 
+func (o OpenPortsProtocolOutput) ToOutput(ctx context.Context) pulumix.Output[OpenPortsProtocol] {
+	return pulumix.Output[OpenPortsProtocol]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o OpenPortsProtocolOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -1968,6 +2185,12 @@ func (o OpenPortsProtocolPtrOutput) ToOpenPortsProtocolPtrOutput() OpenPortsProt
 
 func (o OpenPortsProtocolPtrOutput) ToOpenPortsProtocolPtrOutputWithContext(ctx context.Context) OpenPortsProtocolPtrOutput {
 	return o
+}
+
+func (o OpenPortsProtocolPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*OpenPortsProtocol] {
+	return pulumix.Output[*OpenPortsProtocol]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o OpenPortsProtocolPtrOutput) Elem() OpenPortsProtocolOutput {
@@ -2030,6 +2253,12 @@ func (in *openPortsProtocolPtr) ToOpenPortsProtocolPtrOutput() OpenPortsProtocol
 
 func (in *openPortsProtocolPtr) ToOpenPortsProtocolPtrOutputWithContext(ctx context.Context) OpenPortsProtocolPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(OpenPortsProtocolPtrOutput)
+}
+
+func (in *openPortsProtocolPtr) ToOutput(ctx context.Context) pulumix.Output[*OpenPortsProtocol] {
+	return pulumix.Output[*OpenPortsProtocol]{
+		OutputState: in.ToOpenPortsProtocolPtrOutputWithContext(ctx).OutputState,
+	}
 }
 
 type PrivateServiceDetailsEnv string
@@ -2104,6 +2333,12 @@ func (o PrivateServiceDetailsEnvOutput) ToPrivateServiceDetailsEnvPtrOutputWithC
 	}).(PrivateServiceDetailsEnvPtrOutput)
 }
 
+func (o PrivateServiceDetailsEnvOutput) ToOutput(ctx context.Context) pulumix.Output[PrivateServiceDetailsEnv] {
+	return pulumix.Output[PrivateServiceDetailsEnv]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o PrivateServiceDetailsEnvOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -2137,6 +2372,12 @@ func (o PrivateServiceDetailsEnvPtrOutput) ToPrivateServiceDetailsEnvPtrOutput()
 
 func (o PrivateServiceDetailsEnvPtrOutput) ToPrivateServiceDetailsEnvPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsEnvPtrOutput {
 	return o
+}
+
+func (o PrivateServiceDetailsEnvPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*PrivateServiceDetailsEnv] {
+	return pulumix.Output[*PrivateServiceDetailsEnv]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o PrivateServiceDetailsEnvPtrOutput) Elem() PrivateServiceDetailsEnvOutput {
@@ -2199,6 +2440,12 @@ func (in *privateServiceDetailsEnvPtr) ToPrivateServiceDetailsEnvPtrOutput() Pri
 
 func (in *privateServiceDetailsEnvPtr) ToPrivateServiceDetailsEnvPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsEnvPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(PrivateServiceDetailsEnvPtrOutput)
+}
+
+func (in *privateServiceDetailsEnvPtr) ToOutput(ctx context.Context) pulumix.Output[*PrivateServiceDetailsEnv] {
+	return pulumix.Output[*PrivateServiceDetailsEnv]{
+		OutputState: in.ToPrivateServiceDetailsEnvPtrOutputWithContext(ctx).OutputState,
+	}
 }
 
 type PrivateServiceDetailsPlan string
@@ -2274,6 +2521,12 @@ func (o PrivateServiceDetailsPlanOutput) ToPrivateServiceDetailsPlanPtrOutputWit
 	}).(PrivateServiceDetailsPlanPtrOutput)
 }
 
+func (o PrivateServiceDetailsPlanOutput) ToOutput(ctx context.Context) pulumix.Output[PrivateServiceDetailsPlan] {
+	return pulumix.Output[PrivateServiceDetailsPlan]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o PrivateServiceDetailsPlanOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -2307,6 +2560,12 @@ func (o PrivateServiceDetailsPlanPtrOutput) ToPrivateServiceDetailsPlanPtrOutput
 
 func (o PrivateServiceDetailsPlanPtrOutput) ToPrivateServiceDetailsPlanPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsPlanPtrOutput {
 	return o
+}
+
+func (o PrivateServiceDetailsPlanPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*PrivateServiceDetailsPlan] {
+	return pulumix.Output[*PrivateServiceDetailsPlan]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o PrivateServiceDetailsPlanPtrOutput) Elem() PrivateServiceDetailsPlanOutput {
@@ -2369,6 +2628,12 @@ func (in *privateServiceDetailsPlanPtr) ToPrivateServiceDetailsPlanPtrOutput() P
 
 func (in *privateServiceDetailsPlanPtr) ToPrivateServiceDetailsPlanPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsPlanPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(PrivateServiceDetailsPlanPtrOutput)
+}
+
+func (in *privateServiceDetailsPlanPtr) ToOutput(ctx context.Context) pulumix.Output[*PrivateServiceDetailsPlan] {
+	return pulumix.Output[*PrivateServiceDetailsPlan]{
+		OutputState: in.ToPrivateServiceDetailsPlanPtrOutputWithContext(ctx).OutputState,
+	}
 }
 
 type PrivateServiceDetailsPullRequestPreviewsEnabled string
@@ -2438,6 +2703,12 @@ func (o PrivateServiceDetailsPullRequestPreviewsEnabledOutput) ToPrivateServiceD
 	}).(PrivateServiceDetailsPullRequestPreviewsEnabledPtrOutput)
 }
 
+func (o PrivateServiceDetailsPullRequestPreviewsEnabledOutput) ToOutput(ctx context.Context) pulumix.Output[PrivateServiceDetailsPullRequestPreviewsEnabled] {
+	return pulumix.Output[PrivateServiceDetailsPullRequestPreviewsEnabled]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o PrivateServiceDetailsPullRequestPreviewsEnabledOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -2471,6 +2742,12 @@ func (o PrivateServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToPrivateServi
 
 func (o PrivateServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToPrivateServiceDetailsPullRequestPreviewsEnabledPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsPullRequestPreviewsEnabledPtrOutput {
 	return o
+}
+
+func (o PrivateServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*PrivateServiceDetailsPullRequestPreviewsEnabled] {
+	return pulumix.Output[*PrivateServiceDetailsPullRequestPreviewsEnabled]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o PrivateServiceDetailsPullRequestPreviewsEnabledPtrOutput) Elem() PrivateServiceDetailsPullRequestPreviewsEnabledOutput {
@@ -2533,6 +2810,12 @@ func (in *privateServiceDetailsPullRequestPreviewsEnabledPtr) ToPrivateServiceDe
 
 func (in *privateServiceDetailsPullRequestPreviewsEnabledPtr) ToPrivateServiceDetailsPullRequestPreviewsEnabledPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsPullRequestPreviewsEnabledPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(PrivateServiceDetailsPullRequestPreviewsEnabledPtrOutput)
+}
+
+func (in *privateServiceDetailsPullRequestPreviewsEnabledPtr) ToOutput(ctx context.Context) pulumix.Output[*PrivateServiceDetailsPullRequestPreviewsEnabled] {
+	return pulumix.Output[*PrivateServiceDetailsPullRequestPreviewsEnabled]{
+		OutputState: in.ToPrivateServiceDetailsPullRequestPreviewsEnabledPtrOutputWithContext(ctx).OutputState,
+	}
 }
 
 type PrivateServiceDetailsRegion string
@@ -2602,6 +2885,12 @@ func (o PrivateServiceDetailsRegionOutput) ToPrivateServiceDetailsRegionPtrOutpu
 	}).(PrivateServiceDetailsRegionPtrOutput)
 }
 
+func (o PrivateServiceDetailsRegionOutput) ToOutput(ctx context.Context) pulumix.Output[PrivateServiceDetailsRegion] {
+	return pulumix.Output[PrivateServiceDetailsRegion]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o PrivateServiceDetailsRegionOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -2635,6 +2924,12 @@ func (o PrivateServiceDetailsRegionPtrOutput) ToPrivateServiceDetailsRegionPtrOu
 
 func (o PrivateServiceDetailsRegionPtrOutput) ToPrivateServiceDetailsRegionPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsRegionPtrOutput {
 	return o
+}
+
+func (o PrivateServiceDetailsRegionPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*PrivateServiceDetailsRegion] {
+	return pulumix.Output[*PrivateServiceDetailsRegion]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o PrivateServiceDetailsRegionPtrOutput) Elem() PrivateServiceDetailsRegionOutput {
@@ -2697,6 +2992,12 @@ func (in *privateServiceDetailsRegionPtr) ToPrivateServiceDetailsRegionPtrOutput
 
 func (in *privateServiceDetailsRegionPtr) ToPrivateServiceDetailsRegionPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsRegionPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(PrivateServiceDetailsRegionPtrOutput)
+}
+
+func (in *privateServiceDetailsRegionPtr) ToOutput(ctx context.Context) pulumix.Output[*PrivateServiceDetailsRegion] {
+	return pulumix.Output[*PrivateServiceDetailsRegion]{
+		OutputState: in.ToPrivateServiceDetailsRegionPtrOutputWithContext(ctx).OutputState,
+	}
 }
 
 // Whether to auto deploy the service or not upon git push.
@@ -2767,6 +3068,12 @@ func (o ServiceAutoDeployOutput) ToServiceAutoDeployPtrOutputWithContext(ctx con
 	}).(ServiceAutoDeployPtrOutput)
 }
 
+func (o ServiceAutoDeployOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceAutoDeploy] {
+	return pulumix.Output[ServiceAutoDeploy]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ServiceAutoDeployOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -2800,6 +3107,12 @@ func (o ServiceAutoDeployPtrOutput) ToServiceAutoDeployPtrOutput() ServiceAutoDe
 
 func (o ServiceAutoDeployPtrOutput) ToServiceAutoDeployPtrOutputWithContext(ctx context.Context) ServiceAutoDeployPtrOutput {
 	return o
+}
+
+func (o ServiceAutoDeployPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ServiceAutoDeploy] {
+	return pulumix.Output[*ServiceAutoDeploy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceAutoDeployPtrOutput) Elem() ServiceAutoDeployOutput {
@@ -2862,6 +3175,12 @@ func (in *serviceAutoDeployPtr) ToServiceAutoDeployPtrOutput() ServiceAutoDeploy
 
 func (in *serviceAutoDeployPtr) ToServiceAutoDeployPtrOutputWithContext(ctx context.Context) ServiceAutoDeployPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(ServiceAutoDeployPtrOutput)
+}
+
+func (in *serviceAutoDeployPtr) ToOutput(ctx context.Context) pulumix.Output[*ServiceAutoDeploy] {
+	return pulumix.Output[*ServiceAutoDeploy]{
+		OutputState: in.ToServiceAutoDeployPtrOutputWithContext(ctx).OutputState,
+	}
 }
 
 // The notification setting for this service upon deployment failure.
@@ -2933,6 +3252,12 @@ func (o ServiceNotifyOnFailOutput) ToServiceNotifyOnFailPtrOutputWithContext(ctx
 	}).(ServiceNotifyOnFailPtrOutput)
 }
 
+func (o ServiceNotifyOnFailOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceNotifyOnFail] {
+	return pulumix.Output[ServiceNotifyOnFail]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ServiceNotifyOnFailOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -2966,6 +3291,12 @@ func (o ServiceNotifyOnFailPtrOutput) ToServiceNotifyOnFailPtrOutput() ServiceNo
 
 func (o ServiceNotifyOnFailPtrOutput) ToServiceNotifyOnFailPtrOutputWithContext(ctx context.Context) ServiceNotifyOnFailPtrOutput {
 	return o
+}
+
+func (o ServiceNotifyOnFailPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ServiceNotifyOnFail] {
+	return pulumix.Output[*ServiceNotifyOnFail]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceNotifyOnFailPtrOutput) Elem() ServiceNotifyOnFailOutput {
@@ -3028,6 +3359,12 @@ func (in *serviceNotifyOnFailPtr) ToServiceNotifyOnFailPtrOutput() ServiceNotify
 
 func (in *serviceNotifyOnFailPtr) ToServiceNotifyOnFailPtrOutputWithContext(ctx context.Context) ServiceNotifyOnFailPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(ServiceNotifyOnFailPtrOutput)
+}
+
+func (in *serviceNotifyOnFailPtr) ToOutput(ctx context.Context) pulumix.Output[*ServiceNotifyOnFail] {
+	return pulumix.Output[*ServiceNotifyOnFail]{
+		OutputState: in.ToServiceNotifyOnFailPtrOutputWithContext(ctx).OutputState,
+	}
 }
 
 type ServiceSuspended string
@@ -3097,6 +3434,12 @@ func (o ServiceSuspendedOutput) ToServiceSuspendedPtrOutputWithContext(ctx conte
 	}).(ServiceSuspendedPtrOutput)
 }
 
+func (o ServiceSuspendedOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceSuspended] {
+	return pulumix.Output[ServiceSuspended]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ServiceSuspendedOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -3130,6 +3473,12 @@ func (o ServiceSuspendedPtrOutput) ToServiceSuspendedPtrOutput() ServiceSuspende
 
 func (o ServiceSuspendedPtrOutput) ToServiceSuspendedPtrOutputWithContext(ctx context.Context) ServiceSuspendedPtrOutput {
 	return o
+}
+
+func (o ServiceSuspendedPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ServiceSuspended] {
+	return pulumix.Output[*ServiceSuspended]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ServiceSuspendedPtrOutput) Elem() ServiceSuspendedOutput {
@@ -3192,6 +3541,12 @@ func (in *serviceSuspendedPtr) ToServiceSuspendedPtrOutput() ServiceSuspendedPtr
 
 func (in *serviceSuspendedPtr) ToServiceSuspendedPtrOutputWithContext(ctx context.Context) ServiceSuspendedPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(ServiceSuspendedPtrOutput)
+}
+
+func (in *serviceSuspendedPtr) ToOutput(ctx context.Context) pulumix.Output[*ServiceSuspended] {
+	return pulumix.Output[*ServiceSuspended]{
+		OutputState: in.ToServiceSuspendedPtrOutputWithContext(ctx).OutputState,
+	}
 }
 
 type StaticSiteRouteType string
@@ -3261,6 +3616,12 @@ func (o StaticSiteRouteTypeOutput) ToStaticSiteRouteTypePtrOutputWithContext(ctx
 	}).(StaticSiteRouteTypePtrOutput)
 }
 
+func (o StaticSiteRouteTypeOutput) ToOutput(ctx context.Context) pulumix.Output[StaticSiteRouteType] {
+	return pulumix.Output[StaticSiteRouteType]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o StaticSiteRouteTypeOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -3294,6 +3655,12 @@ func (o StaticSiteRouteTypePtrOutput) ToStaticSiteRouteTypePtrOutput() StaticSit
 
 func (o StaticSiteRouteTypePtrOutput) ToStaticSiteRouteTypePtrOutputWithContext(ctx context.Context) StaticSiteRouteTypePtrOutput {
 	return o
+}
+
+func (o StaticSiteRouteTypePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*StaticSiteRouteType] {
+	return pulumix.Output[*StaticSiteRouteType]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o StaticSiteRouteTypePtrOutput) Elem() StaticSiteRouteTypeOutput {
@@ -3356,6 +3723,12 @@ func (in *staticSiteRouteTypePtr) ToStaticSiteRouteTypePtrOutput() StaticSiteRou
 
 func (in *staticSiteRouteTypePtr) ToStaticSiteRouteTypePtrOutputWithContext(ctx context.Context) StaticSiteRouteTypePtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(StaticSiteRouteTypePtrOutput)
+}
+
+func (in *staticSiteRouteTypePtr) ToOutput(ctx context.Context) pulumix.Output[*StaticSiteRouteType] {
+	return pulumix.Output[*StaticSiteRouteType]{
+		OutputState: in.ToStaticSiteRouteTypePtrOutputWithContext(ctx).OutputState,
+	}
 }
 
 type StaticSiteServiceDetailsPullRequestPreviewsEnabled string
@@ -3425,6 +3798,12 @@ func (o StaticSiteServiceDetailsPullRequestPreviewsEnabledOutput) ToStaticSiteSe
 	}).(StaticSiteServiceDetailsPullRequestPreviewsEnabledPtrOutput)
 }
 
+func (o StaticSiteServiceDetailsPullRequestPreviewsEnabledOutput) ToOutput(ctx context.Context) pulumix.Output[StaticSiteServiceDetailsPullRequestPreviewsEnabled] {
+	return pulumix.Output[StaticSiteServiceDetailsPullRequestPreviewsEnabled]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o StaticSiteServiceDetailsPullRequestPreviewsEnabledOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -3458,6 +3837,12 @@ func (o StaticSiteServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToStaticSit
 
 func (o StaticSiteServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToStaticSiteServiceDetailsPullRequestPreviewsEnabledPtrOutputWithContext(ctx context.Context) StaticSiteServiceDetailsPullRequestPreviewsEnabledPtrOutput {
 	return o
+}
+
+func (o StaticSiteServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*StaticSiteServiceDetailsPullRequestPreviewsEnabled] {
+	return pulumix.Output[*StaticSiteServiceDetailsPullRequestPreviewsEnabled]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o StaticSiteServiceDetailsPullRequestPreviewsEnabledPtrOutput) Elem() StaticSiteServiceDetailsPullRequestPreviewsEnabledOutput {
@@ -3522,6 +3907,12 @@ func (in *staticSiteServiceDetailsPullRequestPreviewsEnabledPtr) ToStaticSiteSer
 	return pulumi.ToOutputWithContext(ctx, in).(StaticSiteServiceDetailsPullRequestPreviewsEnabledPtrOutput)
 }
 
+func (in *staticSiteServiceDetailsPullRequestPreviewsEnabledPtr) ToOutput(ctx context.Context) pulumix.Output[*StaticSiteServiceDetailsPullRequestPreviewsEnabled] {
+	return pulumix.Output[*StaticSiteServiceDetailsPullRequestPreviewsEnabled]{
+		OutputState: in.ToStaticSiteServiceDetailsPullRequestPreviewsEnabledPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VerificationStatus string
 
 const (
@@ -3551,6 +3942,12 @@ func (o VerificationStatusOutput) ToVerificationStatusPtrOutputWithContext(ctx c
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v VerificationStatus) *VerificationStatus {
 		return &v
 	}).(VerificationStatusPtrOutput)
+}
+
+func (o VerificationStatusOutput) ToOutput(ctx context.Context) pulumix.Output[VerificationStatus] {
+	return pulumix.Output[VerificationStatus]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VerificationStatusOutput) ToStringOutput() pulumi.StringOutput {
@@ -3586,6 +3983,12 @@ func (o VerificationStatusPtrOutput) ToVerificationStatusPtrOutput() Verificatio
 
 func (o VerificationStatusPtrOutput) ToVerificationStatusPtrOutputWithContext(ctx context.Context) VerificationStatusPtrOutput {
 	return o
+}
+
+func (o VerificationStatusPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*VerificationStatus] {
+	return pulumix.Output[*VerificationStatus]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VerificationStatusPtrOutput) Elem() VerificationStatusOutput {
@@ -3684,6 +4087,12 @@ func (o WebServiceServiceDetailsEnvOutput) ToWebServiceServiceDetailsEnvPtrOutpu
 	}).(WebServiceServiceDetailsEnvPtrOutput)
 }
 
+func (o WebServiceServiceDetailsEnvOutput) ToOutput(ctx context.Context) pulumix.Output[WebServiceServiceDetailsEnv] {
+	return pulumix.Output[WebServiceServiceDetailsEnv]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o WebServiceServiceDetailsEnvOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -3717,6 +4126,12 @@ func (o WebServiceServiceDetailsEnvPtrOutput) ToWebServiceServiceDetailsEnvPtrOu
 
 func (o WebServiceServiceDetailsEnvPtrOutput) ToWebServiceServiceDetailsEnvPtrOutputWithContext(ctx context.Context) WebServiceServiceDetailsEnvPtrOutput {
 	return o
+}
+
+func (o WebServiceServiceDetailsEnvPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WebServiceServiceDetailsEnv] {
+	return pulumix.Output[*WebServiceServiceDetailsEnv]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebServiceServiceDetailsEnvPtrOutput) Elem() WebServiceServiceDetailsEnvOutput {
@@ -3779,6 +4194,12 @@ func (in *webServiceServiceDetailsEnvPtr) ToWebServiceServiceDetailsEnvPtrOutput
 
 func (in *webServiceServiceDetailsEnvPtr) ToWebServiceServiceDetailsEnvPtrOutputWithContext(ctx context.Context) WebServiceServiceDetailsEnvPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(WebServiceServiceDetailsEnvPtrOutput)
+}
+
+func (in *webServiceServiceDetailsEnvPtr) ToOutput(ctx context.Context) pulumix.Output[*WebServiceServiceDetailsEnv] {
+	return pulumix.Output[*WebServiceServiceDetailsEnv]{
+		OutputState: in.ToWebServiceServiceDetailsEnvPtrOutputWithContext(ctx).OutputState,
+	}
 }
 
 type WebServiceServiceDetailsPlan string
@@ -3854,6 +4275,12 @@ func (o WebServiceServiceDetailsPlanOutput) ToWebServiceServiceDetailsPlanPtrOut
 	}).(WebServiceServiceDetailsPlanPtrOutput)
 }
 
+func (o WebServiceServiceDetailsPlanOutput) ToOutput(ctx context.Context) pulumix.Output[WebServiceServiceDetailsPlan] {
+	return pulumix.Output[WebServiceServiceDetailsPlan]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o WebServiceServiceDetailsPlanOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -3887,6 +4314,12 @@ func (o WebServiceServiceDetailsPlanPtrOutput) ToWebServiceServiceDetailsPlanPtr
 
 func (o WebServiceServiceDetailsPlanPtrOutput) ToWebServiceServiceDetailsPlanPtrOutputWithContext(ctx context.Context) WebServiceServiceDetailsPlanPtrOutput {
 	return o
+}
+
+func (o WebServiceServiceDetailsPlanPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WebServiceServiceDetailsPlan] {
+	return pulumix.Output[*WebServiceServiceDetailsPlan]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebServiceServiceDetailsPlanPtrOutput) Elem() WebServiceServiceDetailsPlanOutput {
@@ -3949,6 +4382,12 @@ func (in *webServiceServiceDetailsPlanPtr) ToWebServiceServiceDetailsPlanPtrOutp
 
 func (in *webServiceServiceDetailsPlanPtr) ToWebServiceServiceDetailsPlanPtrOutputWithContext(ctx context.Context) WebServiceServiceDetailsPlanPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(WebServiceServiceDetailsPlanPtrOutput)
+}
+
+func (in *webServiceServiceDetailsPlanPtr) ToOutput(ctx context.Context) pulumix.Output[*WebServiceServiceDetailsPlan] {
+	return pulumix.Output[*WebServiceServiceDetailsPlan]{
+		OutputState: in.ToWebServiceServiceDetailsPlanPtrOutputWithContext(ctx).OutputState,
+	}
 }
 
 type WebServiceServiceDetailsPullRequestPreviewsEnabled string
@@ -4018,6 +4457,12 @@ func (o WebServiceServiceDetailsPullRequestPreviewsEnabledOutput) ToWebServiceSe
 	}).(WebServiceServiceDetailsPullRequestPreviewsEnabledPtrOutput)
 }
 
+func (o WebServiceServiceDetailsPullRequestPreviewsEnabledOutput) ToOutput(ctx context.Context) pulumix.Output[WebServiceServiceDetailsPullRequestPreviewsEnabled] {
+	return pulumix.Output[WebServiceServiceDetailsPullRequestPreviewsEnabled]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o WebServiceServiceDetailsPullRequestPreviewsEnabledOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -4051,6 +4496,12 @@ func (o WebServiceServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToWebServic
 
 func (o WebServiceServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToWebServiceServiceDetailsPullRequestPreviewsEnabledPtrOutputWithContext(ctx context.Context) WebServiceServiceDetailsPullRequestPreviewsEnabledPtrOutput {
 	return o
+}
+
+func (o WebServiceServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WebServiceServiceDetailsPullRequestPreviewsEnabled] {
+	return pulumix.Output[*WebServiceServiceDetailsPullRequestPreviewsEnabled]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebServiceServiceDetailsPullRequestPreviewsEnabledPtrOutput) Elem() WebServiceServiceDetailsPullRequestPreviewsEnabledOutput {
@@ -4113,6 +4564,12 @@ func (in *webServiceServiceDetailsPullRequestPreviewsEnabledPtr) ToWebServiceSer
 
 func (in *webServiceServiceDetailsPullRequestPreviewsEnabledPtr) ToWebServiceServiceDetailsPullRequestPreviewsEnabledPtrOutputWithContext(ctx context.Context) WebServiceServiceDetailsPullRequestPreviewsEnabledPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(WebServiceServiceDetailsPullRequestPreviewsEnabledPtrOutput)
+}
+
+func (in *webServiceServiceDetailsPullRequestPreviewsEnabledPtr) ToOutput(ctx context.Context) pulumix.Output[*WebServiceServiceDetailsPullRequestPreviewsEnabled] {
+	return pulumix.Output[*WebServiceServiceDetailsPullRequestPreviewsEnabled]{
+		OutputState: in.ToWebServiceServiceDetailsPullRequestPreviewsEnabledPtrOutputWithContext(ctx).OutputState,
+	}
 }
 
 type WebServiceServiceDetailsRegion string
@@ -4182,6 +4639,12 @@ func (o WebServiceServiceDetailsRegionOutput) ToWebServiceServiceDetailsRegionPt
 	}).(WebServiceServiceDetailsRegionPtrOutput)
 }
 
+func (o WebServiceServiceDetailsRegionOutput) ToOutput(ctx context.Context) pulumix.Output[WebServiceServiceDetailsRegion] {
+	return pulumix.Output[WebServiceServiceDetailsRegion]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o WebServiceServiceDetailsRegionOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -4215,6 +4678,12 @@ func (o WebServiceServiceDetailsRegionPtrOutput) ToWebServiceServiceDetailsRegio
 
 func (o WebServiceServiceDetailsRegionPtrOutput) ToWebServiceServiceDetailsRegionPtrOutputWithContext(ctx context.Context) WebServiceServiceDetailsRegionPtrOutput {
 	return o
+}
+
+func (o WebServiceServiceDetailsRegionPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WebServiceServiceDetailsRegion] {
+	return pulumix.Output[*WebServiceServiceDetailsRegion]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebServiceServiceDetailsRegionPtrOutput) Elem() WebServiceServiceDetailsRegionOutput {
@@ -4277,6 +4746,12 @@ func (in *webServiceServiceDetailsRegionPtr) ToWebServiceServiceDetailsRegionPtr
 
 func (in *webServiceServiceDetailsRegionPtr) ToWebServiceServiceDetailsRegionPtrOutputWithContext(ctx context.Context) WebServiceServiceDetailsRegionPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(WebServiceServiceDetailsRegionPtrOutput)
+}
+
+func (in *webServiceServiceDetailsRegionPtr) ToOutput(ctx context.Context) pulumix.Output[*WebServiceServiceDetailsRegion] {
+	return pulumix.Output[*WebServiceServiceDetailsRegion]{
+		OutputState: in.ToWebServiceServiceDetailsRegionPtrOutputWithContext(ctx).OutputState,
+	}
 }
 
 func init() {

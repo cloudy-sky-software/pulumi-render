@@ -9,6 +9,7 @@ import (
 
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func ListDeploys(ctx *pulumi.Context, args *ListDeploysArgs, opts ...pulumi.InvokeOption) (*ListDeploysResult, error) {
@@ -64,6 +65,12 @@ func (o ListDeploysResultOutput) ToListDeploysResultOutput() ListDeploysResultOu
 
 func (o ListDeploysResultOutput) ToListDeploysResultOutputWithContext(ctx context.Context) ListDeploysResultOutput {
 	return o
+}
+
+func (o ListDeploysResultOutput) ToOutput(ctx context.Context) pulumix.Output[ListDeploysResult] {
+	return pulumix.Output[ListDeploysResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ListDeploysResultOutput) Items() ListDeploysResponseArrayOutput {

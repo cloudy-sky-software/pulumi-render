@@ -30,7 +30,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v4
         with:
-          go-version: 1.19.x
+          go-version: 1.21.x
 
       - run: |
           git config --global url."https://praneetloke:${GH_REPO_PAT}@github.com/".insteadOf "https://github.com/"
@@ -64,7 +64,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v4
         with:
-          go-version: 1.19.x
+          go-version: 1.21.x
 
       - name: Install pulumictl
         uses: jaxxstorm/action-install-gh-release@v1.10.0
@@ -189,13 +189,13 @@ jobs:
         dotnetversion:
           - 3.1.301
         goversion:
-          - 1.19.x
+          - 1.21.x
         language:
           - nodejs
           - python
           - dotnet
           - go
         nodeversion:
-          - 16.x
+          - 18.x
         pythonversion:
           - "3.9"

@@ -9,6 +9,7 @@ import (
 
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type Suspend struct {
@@ -88,6 +89,12 @@ func (i *Suspend) ToSuspendOutputWithContext(ctx context.Context) SuspendOutput 
 	return pulumi.ToOutputWithContext(ctx, i).(SuspendOutput)
 }
 
+func (i *Suspend) ToOutput(ctx context.Context) pulumix.Output[*Suspend] {
+	return pulumix.Output[*Suspend]{
+		OutputState: i.ToSuspendOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SuspendOutput struct{ *pulumi.OutputState }
 
 func (SuspendOutput) ElementType() reflect.Type {
@@ -100,6 +107,12 @@ func (o SuspendOutput) ToSuspendOutput() SuspendOutput {
 
 func (o SuspendOutput) ToSuspendOutputWithContext(ctx context.Context) SuspendOutput {
 	return o
+}
+
+func (o SuspendOutput) ToOutput(ctx context.Context) pulumix.Output[*Suspend] {
+	return pulumix.Output[*Suspend]{
+		OutputState: o.OutputState,
+	}
 }
 
 func init() {

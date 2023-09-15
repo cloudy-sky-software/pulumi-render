@@ -9,6 +9,7 @@ import (
 
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupCronJob(ctx *pulumi.Context, args *LookupCronJobArgs, opts ...pulumi.InvokeOption) (*LookupCronJobResult, error) {
@@ -75,6 +76,12 @@ func (o LookupCronJobResultOutput) ToLookupCronJobResultOutput() LookupCronJobRe
 
 func (o LookupCronJobResultOutput) ToLookupCronJobResultOutputWithContext(ctx context.Context) LookupCronJobResultOutput {
 	return o
+}
+
+func (o LookupCronJobResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupCronJobResult] {
+	return pulumix.Output[LookupCronJobResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupCronJobResultOutput) Items() GetCronJobTypeOutput {

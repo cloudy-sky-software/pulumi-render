@@ -9,6 +9,7 @@ import (
 
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type CustomDomain struct {
@@ -98,6 +99,12 @@ func (i *CustomDomain) ToCustomDomainOutputWithContext(ctx context.Context) Cust
 	return pulumi.ToOutputWithContext(ctx, i).(CustomDomainOutput)
 }
 
+func (i *CustomDomain) ToOutput(ctx context.Context) pulumix.Output[*CustomDomain] {
+	return pulumix.Output[*CustomDomain]{
+		OutputState: i.ToCustomDomainOutputWithContext(ctx).OutputState,
+	}
+}
+
 type CustomDomainOutput struct{ *pulumi.OutputState }
 
 func (CustomDomainOutput) ElementType() reflect.Type {
@@ -110,6 +117,12 @@ func (o CustomDomainOutput) ToCustomDomainOutput() CustomDomainOutput {
 
 func (o CustomDomainOutput) ToCustomDomainOutputWithContext(ctx context.Context) CustomDomainOutput {
 	return o
+}
+
+func (o CustomDomainOutput) ToOutput(ctx context.Context) pulumix.Output[*CustomDomain] {
+	return pulumix.Output[*CustomDomain]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o CustomDomainOutput) CreatedAt() pulumi.StringPtrOutput {

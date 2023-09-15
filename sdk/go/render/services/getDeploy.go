@@ -9,6 +9,7 @@ import (
 
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupDeploy(ctx *pulumi.Context, args *LookupDeployArgs, opts ...pulumi.InvokeOption) (*LookupDeployResult, error) {
@@ -79,6 +80,12 @@ func (o LookupDeployResultOutput) ToLookupDeployResultOutput() LookupDeployResul
 
 func (o LookupDeployResultOutput) ToLookupDeployResultOutputWithContext(ctx context.Context) LookupDeployResultOutput {
 	return o
+}
+
+func (o LookupDeployResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupDeployResult] {
+	return pulumix.Output[LookupDeployResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupDeployResultOutput) Items() DeployTypeOutput {

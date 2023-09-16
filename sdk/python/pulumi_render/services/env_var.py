@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
 from ._enums import *
@@ -23,10 +23,21 @@ class EnvVarArgs:
         The set of arguments for constructing a EnvVar resource.
         :param pulumi.Input[str] service_id: (Required) The ID of the service
         """
+        EnvVarArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            env_vars=env_vars,
+            service_id=service_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             env_vars: Optional[pulumi.Input[Sequence[pulumi.Input['EnvVarKeyValueArgs']]]] = None,
+             service_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if env_vars is not None:
-            pulumi.set(__self__, "env_vars", env_vars)
+            _setter("env_vars", env_vars)
         if service_id is not None:
-            pulumi.set(__self__, "service_id", service_id)
+            _setter("service_id", service_id)
 
     @property
     @pulumi.getter(name="envVars")
@@ -82,6 +93,10 @@ class EnvVar(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            EnvVarArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

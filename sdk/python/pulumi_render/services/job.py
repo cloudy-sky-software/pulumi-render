@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['JobArgs', 'Job']
@@ -21,10 +21,23 @@ class JobArgs:
         The set of arguments for constructing a Job resource.
         :param pulumi.Input[str] service_id: (Required) The ID of the service
         """
-        pulumi.set(__self__, "plan_id", plan_id)
-        pulumi.set(__self__, "start_command", start_command)
+        JobArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            plan_id=plan_id,
+            start_command=start_command,
+            service_id=service_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             plan_id: pulumi.Input[str],
+             start_command: pulumi.Input[str],
+             service_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("plan_id", plan_id)
+        _setter("start_command", start_command)
         if service_id is not None:
-            pulumi.set(__self__, "service_id", service_id)
+            _setter("service_id", service_id)
 
     @property
     @pulumi.getter(name="planId")
@@ -90,6 +103,10 @@ class Job(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            JobArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

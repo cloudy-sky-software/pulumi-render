@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
 from ._enums import *
@@ -22,12 +22,23 @@ class DeployArgs:
         The set of arguments for constructing a Deploy resource.
         :param pulumi.Input[str] service_id: (Required) The ID of the service
         """
+        DeployArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            clear_cache=clear_cache,
+            service_id=service_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             clear_cache: Optional[pulumi.Input['ClearCache']] = None,
+             service_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if clear_cache is None:
             clear_cache = 'do_not_clear'
         if clear_cache is not None:
-            pulumi.set(__self__, "clear_cache", clear_cache)
+            _setter("clear_cache", clear_cache)
         if service_id is not None:
-            pulumi.set(__self__, "service_id", service_id)
+            _setter("service_id", service_id)
 
     @property
     @pulumi.getter(name="clearCache")
@@ -83,6 +94,10 @@ class Deploy(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            DeployArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

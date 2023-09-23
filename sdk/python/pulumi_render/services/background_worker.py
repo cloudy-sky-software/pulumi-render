@@ -361,7 +361,7 @@ class BackgroundWorker(pulumi.CustomResource):
                 raise TypeError("Missing required property 'repo'")
             __props__.__dict__["repo"] = repo
             __props__.__dict__["secret_files"] = secret_files
-            if not isinstance(service_details, BackgroundWorkerServiceDetailsArgs):
+            if service_details is not None and not isinstance(service_details, BackgroundWorkerServiceDetailsArgs):
                 service_details = service_details or {}
                 def _setter(key, value):
                     service_details[key] = value

@@ -15,6 +15,7 @@ __all__ = [
     'ListServicesResult',
     'AwaitableListServicesResult',
     'list_services',
+    'list_services_output',
 ]
 
 @pulumi.output_type
@@ -49,3 +50,11 @@ def list_services(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListS
 
     return AwaitableListServicesResult(
         items=pulumi.get(__ret__, 'items'))
+
+
+@_utilities.lift_output_func(list_services)
+def list_services_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListServicesResult]:
+    """
+    Use this data source to access information about an existing resource.
+    """
+    ...

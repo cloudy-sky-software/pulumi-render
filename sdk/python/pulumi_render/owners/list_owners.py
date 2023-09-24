@@ -15,6 +15,7 @@ __all__ = [
     'ListOwnersResult',
     'AwaitableListOwnersResult',
     'list_owners',
+    'list_owners_output',
 ]
 
 @pulumi.output_type
@@ -49,3 +50,11 @@ def list_owners(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListOwn
 
     return AwaitableListOwnersResult(
         items=pulumi.get(__ret__, 'items'))
+
+
+@_utilities.lift_output_func(list_owners)
+def list_owners_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListOwnersResult]:
+    """
+    Use this data source to access information about an existing resource.
+    """
+    ...

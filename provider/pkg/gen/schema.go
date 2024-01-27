@@ -20,7 +20,7 @@ import (
 const packageName = "render"
 
 // PulumiSchema will generate a Pulumi schema for the given k8s schema.
-func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.ProviderMetadata) {
+func PulumiSchema(openAPIDoc openapi3.T) (pschema.PackageSpec, openapigen.ProviderMetadata, openapi3.T) {
 	pkg := pschema.PackageSpec{
 		Name:        packageName,
 		Description: "A Pulumi package for creating and managing Render resources.",
@@ -98,7 +98,7 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 	}
 
 	openAPICtx := &openapigen.OpenAPIContext{
-		Doc: openapiDoc,
+		Doc: openAPIDoc,
 		Pkg: &pkg,
 		ExcludedPaths: []string{
 			"/services/{serviceId}/resume",
@@ -106,7 +106,7 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 		},
 	}
 
-	providerMetadata, err := openAPICtx.GatherResourcesFromAPI(csharpNamespaces)
+	providerMetadata, updatedOpenAPIDoc, err := openAPICtx.GatherResourcesFromAPI(csharpNamespaces)
 	if err != nil {
 		contract.Failf("generating resources from OpenAPI spec: %v", err)
 	}
@@ -161,7 +161,7 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 		ResourceCRUDMap: providerMetadata.ResourceCRUDMap,
 		AutoNameMap:     providerMetadata.AutoNameMap,
 	}
-	return pkg, metadata
+	return pkg, metadata, updatedOpenAPIDoc
 }
 
 func rawMessage(v interface{}) pschema.RawMessage {

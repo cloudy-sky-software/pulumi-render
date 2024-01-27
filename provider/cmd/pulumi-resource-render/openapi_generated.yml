@@ -1,5417 +1,946 @@
 openapi: 3.0.1
-info:
-  title: Render Public API
-  description: |-
-    [https://render.com/docs/api](https://render.com/docs/api)
-
-    Contact Support:  
-    Name: Render API  
-    Email: [support@render.com](mailto:support@render.com)
-  version: 1.0.0
-servers:
-  - url: https://api.render.com/v1
 components:
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-  schemas:
-    owner:
-      title: "Owner"
-      description: "The owner object represents an authorized user or team. The `type` property indicates if the owner is a user or team."
-      type: object
-      properties:
-        id:
-          description: The owner ID.
-          readOnly: true
-          type: string
-        name:
-          description: The name of the owner.
-          type: string
-        email:
-          description: The email of the owner.
-          type: string
-        type:
-          description: The type of the authorized user.
-          type: string
-          enum: ["user", "team"]
-    listOwnersResponse:
-      type: object
-      properties:
-        cursor:
-          type: string
-        owner:
-          type: object
-          $ref: "#/components/schemas/owner"
-    listOwners:
-      title: ListOwners
-      type: array
-      items:
-        $ref: "#/components/schemas/listOwnersResponse"
-    serviceHeader:
-      description: "A service header object"
-      type: object
-      properties:
-        path:
-          type: string
-        name:
-          type: string
-        value:
-          type: string
-      required: ["path", "name", "value"]
-    listServiceHeadersResponse:
-      type: object
-      properties:
-        cursor:
-          type: string
-        header:
-          type: object
-          $ref: "#/components/schemas/serviceHeader"
-    listServiceHeaders:
-      title: ListServiceHeaders
-      type: array
-      items:
-        $ref: "#/components/schemas/listServiceHeadersResponse"
-    staticSiteRoute:
-      description: "A route object for a static site"
-      type: object
-      properties:
-        type:
-          type: string
-          enum: ["redirect", "rewrite"]
-        source:
-          type: string
-        destination:
-          type: string
-      required: ["type", "source", "destination"]
-    listStaticSiteRoutesResponse:
-      type: object
-      properties:
-        cursor:
-          type: string
-        route:
-          type: object
-          $ref: "#/components/schemas/staticSiteRoute"
-    listStaticSiteRoutes:
-      title: ListStaticSiteRoutes
-      type: array
-      items:
-        $ref: "#/components/schemas/listStaticSiteRoutesResponse"
-    staticSiteServiceDetails:
-      title: "StaticSite"
-      type: object
-      properties:
-        buildCommand:
-          type: string
-        headers:
-          type: array
-          items:
-            $ref: "#/components/schemas/serviceHeader"
-        parentServer:
-          type: object
-          readOnly: true
-          properties:
-            id:
-              type: string
-              readOnly: true
-            name:
-              type: string
-              readOnly: true
-        publishPath:
-          type: string
-          default: "public"
-        pullRequestPreviewsEnabled:
-          type: string
-          default: "no"
-          enum: ["yes", "no"]
-        routes:
-          type: array
-          items:
-            $ref: "#/components/schemas/staticSiteRoute"
-        url:
-          type: string
-          description: The HTTPS service URL. A subdomain of onrender.com, by default.
-          readOnly: true
-    staticSite:
-      title: "StaticSite"
-      description: "A static website service"
-      allOf:
-        - $ref: "#/components/schemas/service"
-        - type: object
-          properties:
-            type:
-              type: string
-              default: "static_site"
-            serviceDetails:
-              $ref: "#/components/schemas/staticSiteServiceDetails"
-    patchStaticSite:
-      title: "StaticSite"
-      description: "The PATCH object to update a static website service"
-      type: object
-      properties:
-        autoDeploy:
-          type: string
-          default: "no"
-          enum: ["yes", "no"]
-        branch:
-          type: string
-        buildCommand:
-          type: string
-        name:
-          type: string
-        publishPath:
-          type: string
-          default: "public"
-        pullRequestPreviewsEnabled:
-          type: string
-          default: "no"
-          enum: ["yes", "no"]
-    patchWebService:
-      title: "WebService"
-      description: "The PATCH object to update a web service"
-      type: object
-      properties:
-        autoDeploy:
-          type: string
-          default: "no"
-          enum: ["yes", "no"]
-        branch:
-          type: string
-        envSpecificDetails:
-          oneOf:
-            - $ref: "#/components/schemas/dockerDetails"
-            - $ref: "#/components/schemas/nativeEnvironmentDetails"
-        healthCheckPath:
-          type: string
-        name:
-          type: string
-        numInstances:
-          type: number
-          default: 1
-        plan:
-          type: string
-          default: "starter"
-          enum:
-            - "starter"
-            - "starter_plus"
-            - "standard"
-            - "standard_plus"
-            - "pro"
-            - "pro_plus"
-            - "pro_max"
-            - "pro_ultra"
-        pullRequestPreviewsEnabled:
-          type: string
-          default: "no"
-          enum: ["yes", "no"]
-    patchPrivateService:
-      title: "PrivateService"
-      description: "The PATCH object to update a private service"
-      type: object
-      properties:
-        autoDeploy:
-          type: string
-          default: "no"
-          enum: ["yes", "no"]
-        branch:
-          type: string
-        envSpecificDetails:
-          oneOf:
-            - $ref: "#/components/schemas/dockerDetails"
-            - $ref: "#/components/schemas/nativeEnvironmentDetails"
-        name:
-          type: string
-        numInstances:
-          type: number
-          default: 1
-        plan:
-          type: string
-          default: "starter"
-          enum:
-            - "starter"
-            - "starter_plus"
-            - "standard"
-            - "standard_plus"
-            - "pro"
-            - "pro_plus"
-            - "pro_max"
-            - "pro_ultra"
-        pullRequestPreviewsEnabled:
-          type: string
-          default: "no"
-          enum: ["yes", "no"]
-    patchBackgroundWorker:
-      title: "BackgroundWorker"
-      description: "The PATCH object to update a background worker"
-      type: object
-      properties:
-        autoDeploy:
-          type: string
-          default: "no"
-          enum: ["yes", "no"]
-        branch:
-          type: string
-        envSpecificDetails:
-          oneOf:
-            - $ref: "#/components/schemas/dockerDetails"
-            - $ref: "#/components/schemas/nativeEnvironmentDetails"
-        name:
-          type: string
-        numInstances:
-          type: number
-          default: 1
-        plan:
-          type: string
-          default: "starter"
-          enum:
-            - "starter"
-            - "starter_plus"
-            - "standard"
-            - "standard_plus"
-            - "pro"
-            - "pro_plus"
-            - "pro_max"
-            - "pro_ultra"
-        pullRequestPreviewsEnabled:
-          type: string
-          default: "no"
-          enum: ["yes", "no"]
-    patchCronJob:
-      title: "CronJob"
-      description: "The PATCH object to update a cron job"
-      type: object
-      properties:
-        autoDeploy:
-          type: string
-          default: "no"
-          enum: ["yes", "no"]
-        branch:
-          type: string
-        envSpecificDetails:
-          oneOf:
-            - $ref: "#/components/schemas/dockerDetails"
-            - $ref: "#/components/schemas/nativeEnvironmentDetails"
-        name:
-          type: string
-        plan:
-          type: string
-          default: "starter"
-          enum:
-            - "starter"
-            - "starter_plus"
-            - "standard"
-            - "standard_plus"
-            - "pro"
-            - "pro_plus"
-            - "pro_max"
-            - "pro_ultra"
-        schedule:
-          type: string
-    secretFile:
-      type: object
-      properties:
-        name:
-          type: string
-        contents:
-          type: string
-      required:
-        - "name"
-        - "contents"
-    disk:
-      type: object
-      properties:
-        name:
-          type: string
-        mountPath:
-          type: string
-        sizeGB:
-          type: number
-          default: 1
-      required:
-        - "name"
-        - "mountPath"
-    dockerDetails:
-      type: object
-      properties:
-        dockerCommand:
-          type: string
-        dockerContext:
-          type: string
-        dockerfilePath:
-          type: string
-      # Must specify required properties, otherwise
-      # kin-api cannot properly typecast an input
-      # object into a specific type. That's because
-      # without any required properties, it thinks
-      # the input object can be any object since all
-      # properties are optional.
-      required:
-        - "dockerCommand"
-        - "dockerContext"
-    nativeEnvironmentDetails:
-      type: object
-      properties:
-        buildCommand:
-          type: string
-        startCommand:
-          type: string
-      required:
-        - "buildCommand"
-        - "startCommand"
-    webServiceServiceDetails:
-      title: "WebService"
-      type: object
-      properties:
-        disk:
-          $ref: "#/components/schemas/disk"
-        env:
-          type: string
-          enum:
-            - docker
-            - elixir
-            - go
-            - node
-            - python
-            - ruby
-            - rust
-        envSpecificDetails:
-          oneOf:
-            - $ref: "#/components/schemas/dockerDetails"
-            - $ref: "#/components/schemas/nativeEnvironmentDetails"
-        healthCheckPath:
-          type: string
-        numInstances:
-          type: number
-          default: 1
-        openPorts:
-          type: array
-          readOnly: true
-          items:
-            $ref: "#/components/schemas/openPorts"
-        parentServer:
-          type: object
-          readOnly: true
-          properties:
-            id:
-              type: string
-              readOnly: true
-            name:
-              type: string
-              readOnly: true
-        plan:
-          type: string
-          default: "starter"
-          enum:
-            - "starter"
-            - "starter_plus"
-            - "standard"
-            - "standard_plus"
-            - "pro"
-            - "pro_plus"
-            - "pro_max"
-            - "pro_ultra"
-        pullRequestPreviewsEnabled:
-          type: string
-          default: "no"
-          enum: ["yes", "no"]
-        region:
-          type: string
-          default: "oregon"
-          enum:
-            - "oregon"
-            - "frankfurt"
-        url:
-          readOnly: true
-          type: string
-      required:
-        - "env"
-    webService:
-      title: "WebService"
-      description: "A web service"
-      allOf:
-        - $ref: "#/components/schemas/service"
-        - type: object
-          properties:
-            type:
-              type: string
-              default: "web_service"
-            serviceDetails:
-              $ref: "#/components/schemas/webServiceServiceDetails"
-    openPorts:
-      title: "OpenPorts"
-      type: object
-      properties:
-        port:
-          type: number
-        protocol:
-          type: string
-          enum:
-            - TCP
-            - UDP
-    privateServiceDetails:
-      title: "PrivateService"
-      type: object
-      properties:
-        disk:
-          $ref: "#/components/schemas/disk"
-        env:
-          type: string
-          enum:
-            - docker
-            - elixir
-            - go
-            - node
-            - python
-            - ruby
-            - rust
-        envSpecificDetails:
-          oneOf:
-            - $ref: "#/components/schemas/dockerDetails"
-            - $ref: "#/components/schemas/nativeEnvironmentDetails"
-        numInstances:
-          type: number
-          default: 1
-        openPorts:
-          type: array
-          readOnly: true
-          items:
-            $ref: "#/components/schemas/openPorts"
-        parentServer:
-          type: object
-          readOnly: true
-          properties:
-            id:
-              type: string
-              readOnly: true
-            name:
-              type: string
-              readOnly: true
-        plan:
-          type: string
-          default: "starter"
-          enum:
-            - "starter"
-            - "starter_plus"
-            - "standard"
-            - "standard_plus"
-            - "pro"
-            - "pro_plus"
-            - "pro_max"
-            - "pro_ultra"
-        pullRequestPreviewsEnabled:
-          type: string
-          default: "no"
-          enum: ["yes", "no"]
-        region:
-          type: string
-          default: "oregon"
-          enum:
-            - "oregon"
-            - "frankfurt"
-        url:
-          readOnly: true
-          type: string
-      required:
-        - "env"
-    privateService:
-      title: "PrivateService"
-      description: "A private service"
-      allOf:
-        - $ref: "#/components/schemas/service"
-        - type: object
-          properties:
-            type:
-              type: string
-              default: "private_service"
-              readOnly: true
-            serviceDetails:
-              $ref: "#/components/schemas/privateServiceDetails"
-    backgroundWorkerServiceDetails:
-      title: "PrivateService"
-      type: object
-      properties:
-        disk:
-          $ref: "#/components/schemas/disk"
-        env:
-          type: string
-          enum:
-            - docker
-            - elixir
-            - go
-            - node
-            - python
-            - ruby
-            - rust
-        envSpecificDetails:
-          oneOf:
-            - $ref: "#/components/schemas/dockerDetails"
-            - $ref: "#/components/schemas/nativeEnvironmentDetails"
-        numInstances:
-          type: number
-          default: 1
-        parentServer:
-          type: object
-          readOnly: true
-          properties:
-            id:
-              type: string
-              readOnly: true
-            name:
-              type: string
-              readOnly: true
-        plan:
-          type: string
-          default: "starter"
-          enum:
-            - "starter"
-            - "starter_plus"
-            - "standard"
-            - "standard_plus"
-            - "pro"
-            - "pro_plus"
-            - "pro_max"
-            - "pro_ultra"
-        pullRequestPreviewsEnabled:
-          type: string
-          default: "no"
-          enum: ["yes", "no"]
-        region:
-          type: string
-          default: "oregon"
-          enum:
-            - "oregon"
-            - "frankfurt"
-        url:
-          readOnly: true
-          type: string
-      required:
-        - "env"
-    backgroundWorker:
-      title: "BackgroundWorker"
-      description: "A background worker service"
-      allOf:
-        - $ref: "#/components/schemas/service"
-        - type: object
-          properties:
-            type:
-              type: string
-              default: "background_worker"
-            serviceDetails:
-              $ref: "#/components/schemas/backgroundWorkerServiceDetails"
-    cronJobServiceDetails:
-      title: "CronJob"
-      type: object
-      properties:
-        env:
-          type: string
-          enum:
-            - docker
-            - elixir
-            - go
-            - node
-            - python
-            - ruby
-            - rust
-        envSpecificDetails:
-          oneOf:
-            - $ref: "#/components/schemas/dockerDetails"
-            - $ref: "#/components/schemas/nativeEnvironmentDetails"
-        lastSuccessfulRunAt:
-          type: string
-        plan:
-          type: string
-          default: "starter"
-          enum:
-            - "starter"
-            - "starter_plus"
-            - "standard"
-            - "standard_plus"
-            - "pro"
-            - "pro_plus"
-            - "pro_max"
-            - "pro_ultra"
-        region:
-          type: string
-          default: "oregon"
-          enum:
-            - "oregon"
-            - "frankfurt"
-        schedule:
-          type: string
-      required:
-        - env
-        - schedule
-    cronJob:
-      title: "CronJob"
-      description: "A cron job"
-      allOf:
-        - $ref: "#/components/schemas/service"
-        - type: object
-          properties:
-            type:
-              type: string
-              default: "cron_job"
-            serviceDetails:
-              $ref: "#/components/schemas/cronJobServiceDetails"
-    service:
-      title: "Service"
-      description: "The service object represents a service. The type of service is discriminated by the type property which determines the type of object in the serviceDetails property."
-      type: object
-      properties:
-        autoDeploy:
-          description: Whether to auto deploy the service or not upon git push.
-          type: string
-          default: "no"
-          enum: ["yes", "no"]
-        branch:
-          type: string
-          description: "If left empty, this will fall back to the default branch of the repository."
-        createdAt:
-          type: string
-          readOnly: true
-        envVars:
-          type: array
-          items:
-            $ref: "#/components/schemas/envVarKeyValue"
-        name:
-          type: string
-        notifyOnFail:
-          description: The notification setting for this service upon deployment failure.
-          type: string
-          readOnly: true
-          enum: ["default", "notify", "ignore"]
-        ownerId:
-          type: string
-          description: The id of the owner (user/team).
-        repo:
-          type: string
-          description: "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
-        secretFiles:
-          type: array
-          items:
-            $ref: "#/components/schemas/secretFile"
-        slug:
-          type: string
-          readOnly: true
-        suspended:
-          type: string
-          readOnly: true
-          enum: ["suspended", "not_suspended"]
-        suspenders:
-          type: array
-          readOnly: true
-          items:
-            type: string
-        updatedAt:
-          type: string
-          readOnly: true
-      required:
-        - "type"
-        - "name"
-        - "ownerId"
-        - "repo"
-    listServiceResponse:
-      type: object
-      properties:
-        cursor:
-          type: string
-        service:
-          discriminator:
-            propertyName: type
-            mapping:
-              "static_site": "#/components/schemas/staticSite"
-              "web_service": "#/components/schemas/webService"
-              "private_service": "#/components/schemas/privateService"
-              "background_worker": "#/components/schemas/backgroundWorker"
-              "cron_job": "#/components/schemas/cronJob"
-          oneOf:
-            - $ref: "#/components/schemas/staticSite"
-            - $ref: "#/components/schemas/webService"
-            - $ref: "#/components/schemas/privateService"
-            - $ref: "#/components/schemas/backgroundWorker"
-            - $ref: "#/components/schemas/cronJob"
-    listServices:
-      title: ListServices
-      type: array
-      items:
-        $ref: "#/components/schemas/listServiceResponse"
-    envVarKeyValue:
-      type: object
-      properties:
-        key:
-          type: string
-        generateValue:
-          type: string
-          enum:
-            - "yes"
-            - "no"
-        value:
-          type: string
-      required:
-        - "key"
-    envVar:
-      title: EnvVar
-      type: object
-      # Note: This is a departure from the actual API.
-      # The actual API for updating/replacing env vars
-      # actually just takes a top-level array of objects.
-      # We've nested it under an envVars property to help
-      # with resource construction via Pulumi.
-      properties:
-        envVars:
-          type: array
-          items:
-            $ref: "#/components/schemas/envVarKeyValue"
-    listEnvVarsResponse:
-      type: object
-      properties:
-        cursor:
-          type: string
-        envVar:
-          $ref: "#/components/schemas/envVarKeyValue"
-    listEnvVars:
-      title: ListEnvVars
-      type: array
-      items:
-        $ref: "#/components/schemas/listEnvVarsResponse"
-    suspendService:
-      title: "Suspend"
-      type: object
-      properties: {}
-    commit:
-      type: object
-      readOnly: true
-      properties:
-        id:
-          type: string
-          readOnly: true
-        message:
-          type: string
-          readOnly: true
-        createdAt:
-          type: string
-          readOnly: true
-    deploy:
-      title: Deploy
-      type: object
-      properties:
-        commit:
-          $ref: "#/components/schemas/commit"
-        clearCache:
-          type: string
-          default: "do_not_clear"
-          enum: ["do_not_clear", "clear"]
-    listDeploysResponse:
-      type: object
-      properties:
-        cursor:
-          type: string
-        customDomain:
-          $ref: "#/components/schemas/deploy"
-    listDeploys:
-      title: ListDeploys
-      type: array
-      items:
-        $ref: "#/components/schemas/listDeploysResponse"
-    customDomain:
-      title: CustomDomain
-      type: object
-      properties:
-        name:
-          type: string
-        domainType:
-          type: string
-          readOnly: true
-          enum:
-            - "apex"
-            - "subdomain"
-        publicSuffix:
-          type: string
-          readOnly: true
-        redirectForName:
-          type: string
-          readOnly: true
-        verificationStatus:
-          type: string
-          readOnly: true
-          enum:
-            - "verified"
-            - "unverified"
-        createdAt:
-          type: string
-          readOnly: true
-        server:
-          type: object
-          readOnly: true
-          properties:
-            id:
-              type: string
-              readOnly: true
-            name:
-              type: string
-              readOnly: true
-      required:
-        - "name"
-        - "domainType"
-        - "redirectForName"
-        - "verificationStatus"
-        - "server"
-    createCustomDomainResponse:
-      type: array
-      items:
-        $ref: "#/components/schemas/customDomain"
-    listCustomDomainsResponse:
-      type: object
-      properties:
-        cursor:
-          type: string
-        customDomain:
-          $ref: "#/components/schemas/customDomain"
-    listCustomDomains:
-      title: ListCustomDomains
-      type: array
-      items:
-        $ref: "#/components/schemas/listCustomDomainsResponse"
-    job:
-      title: Job
-      type: object
-      properties:
-        startCommand:
-          type: string
-        planId:
-          type: string
-        status:
-          type: string
-          readOnly: true
-        createdAt:
-          type: string
-          readOnly: true
-        startedAt:
-          type: string
-          readOnly: true
-        finishedAt:
-          type: string
-          readOnly: true
-      required:
-        - startCommand
-        - planId
-    listJobsResponse:
-      type: object
-      properties:
-        cursor:
-          type: string
-        job:
-          $ref: "#/components/schemas/job"
-    listJobs:
-      title: ListJobs
-      type: array
-      items:
-        $ref: "#/components/schemas/listJobsResponse"
-security:
-  - bearerAuth: []
-tags:
-  - name: Owners
-    description: >-
-      [https://api-docs.render.com/reference/owners-1](https://api-docs.render.com/reference/owners-1)
-  - name: Services
-    description: >-
-      [https://api-docs.render.com/reference/service-fields](https://api-docs.render.com/reference/service-fields)
-  - name: Deploys
-    description: >-
-      [https://api-docs.render.com/reference/get-deploys](https://api-docs.render.com/reference/get-deploys)
-  - name: Custom Domains
-  - name: Jobs
-paths:
-  /owners:
-    get:
-      tags:
-        - Owners
-      summary: List authorized users and teams
-      description: >-
-        [https://api-docs.render.com/reference/get-owners](https://api-docs.render.com/reference/get-owners)
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: name
-          in: query
-          schema:
-            type: string
-          example: sed aliqua qui anim
-        - name: email
-          in: query
-          schema:
-            type: string
-          example: sed aliqua qui anim
-        - name: cursor
-          in: query
-          schema:
-            type: string
-          description: Cursor to begin retrieving entries for this query
-          example: Lorem amet sin
-        - name: limit
-          in: query
-          schema:
-            type: integer
-          description: Max number of items that can be returned
-          example: 20
-      responses:
-        "200":
-          description: OK
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/listOwners"
-              example:
-                - owner:
-                    id: tempor labore voluptate velit dolore
-                    name: amet enim qui adipisicing
-                    email: quis
-                    type: user
-                  cursor: incididunt labore occaecat eiusmod dolore
-                - owner:
-                    id: anim ea aute
-                    name: enim nostrud
-                    email: occa
-                    type: team
-                  cursor: consectetur ut
-        "401":
-          description: Unauthorized
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "406":
-          description: Not Acceptable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "429":
-          description: Too Many Requests
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "500":
-          description: Internal Server Error
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "503":
-          description: Service Unavailable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-  /owners/{id}:
-    get:
-      tags:
-        - Owners
-      summary: Retrieve user or team
-      description: >-
-        [https://api-docs.render.com/reference/get-owner](https://api-docs.render.com/reference/get-owner)
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-          description: (Required) The ID of the user or team
-          example: Lorem amet sin
-      responses:
-        "200":
-          description: OK
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/owner"
-              example:
-                id: nisi aute veniam elit
-                name: labore
-                email: id adipisicing Excepteur
-                type: user
-        "401":
-          description: Unauthorized
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "404":
-          description: Not Found
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "406":
-          description: Not Acceptable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "410":
-          description: Gone
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "429":
-          description: Too Many Requests
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "500":
-          description: Internal Server Error
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "503":
-          description: Service Unavailable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-  /services:
-    get:
-      tags:
-        - Services
-      summary: List services
-      description: >-
-        [https://api-docs.render.com/reference/get-services](https://api-docs.render.com/reference/get-services)
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: name
-          in: query
-          schema:
-            type: string
-          description: Filter for the names of services
-          example: sed aliqua qui anim,do
-        - name: type
-          in: query
-          schema:
-            type: string
-          description: Filter for types of services
-          example: web_service,cron_job
-        - name: env
-          in: query
-          schema:
-            type: string
-          description: Filter for environments of services
-          example: rust,node
-        - name: region
-          in: query
-          schema:
-            type: string
-          description: Filter for regions of services
-          example: frankfurt,frankfurt
-        - name: suspended
-          in: query
-          schema:
-            type: string
-          description: Filter services based on whether they're suspended or not suspended
-          example: suspended,not_suspended
-        - name: createdBefore
-          in: query
-          schema:
-            type: string
-          description: >-
-            Filter for services created before a certain time (specified as an
-            ISO 8601 timestamp)
-          example: "2021-06-17T08:15:30Z"
-        - name: createdAfter
-          in: query
-          schema:
-            type: string
-          description: >-
-            Filter for services created after a certain time (specified as an
-            ISO 8601 timestamp)
-          example: "2021-02-17T08:15:30Z"
-        - name: updatedBefore
-          in: query
-          schema:
-            type: string
-          description: >-
-            Filter for services updated before a certain time (specified as an
-            ISO 8601 timestamp)
-          example: "2021-06-17T08:15:30Z"
-        - name: updatedAfter
-          in: query
-          schema:
-            type: string
-          description: >-
-            Filter for services updated after a certain time (specified as an
-            ISO 8601 timestamp)
-          example: "2021-02-17T08:15:30Z"
-        - name: ownerId
-          in: query
-          schema:
-            type: string
-          description: >-
-            The ID of the owner (team or personal user) whose resources should
-            be returned
-          example: sed aliqua qui anim,do
-        - name: cursor
-          in: query
-          schema:
-            type: string
-          description: Cursor to begin retrieving entries for this query
-          example: Lorem amet sin
-        - name: limit
-          in: query
-          schema:
-            type: integer
-          description: Max number of items that can be returned
-          example: 20
-      responses:
-        "200":
-          description: OK
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/listServices"
-              example:
-                - service:
-                    id: irure occaecat aute reprehenderit
-                    autoDeploy: "no"
-                    branch: proident eu amet
-                    createdAt: "2019-10-01T21:05:43.378Z"
-                    name: qui
-                    notifyOnFail: ignore
-                    ownerId: ut laboris
-                    repo: https://github.com/render-examples/flask-hello-world
-                    slug: nulla dolore
-                    suspended: suspended
-                    suspenders:
-                      - unknown
-                      - billing
-                    type: web_service
-                    updatedAt: "2001-04-20T02:58:48.244Z"
+    schemas:
+        backgroundWorker:
+            allOf:
+                - $ref: '#/components/schemas/service'
+                - type: object
+                  properties:
                     serviceDetails:
-                      buildCommand: irure
-                      parentServer:
-                        id: nulla Duis et
-                        name: incididunt eiusmod
-                      publishPath: irure consectetur ex
-                      pullRequestPreviewsEnabled: "no"
-                      url: ut irure
-                      env: docker
-                  cursor: non aliquip culpa labore
-                - service:
-                    id: Duis ex enim
-                    autoDeploy: "no"
-                    branch: Lorem commodo in
-                    createdAt: "2012-11-16T11:56:07.514Z"
-                    name: laborum deserunt ullamco nostrud
-                    notifyOnFail: default
-                    ownerId: aliqua
-                    repo: https://github.com/render-examples/flask-hello-world
-                    slug: incididu
-                    suspended: suspended
-                    suspenders:
-                      - parent_service
-                      - user
-                    type: private_service
-                    updatedAt: "1976-10-06T18:26:05.215Z"
-                    serviceDetails:
-                      buildCommand: nisi sed sint aliqua exercitation
-                      parentServer:
-                        id: veniam voluptate incididunt
-                        name: anim non consectetur occaecat
-                      publishPath: cupidatat irure pariatur commodo dolor
-                      pullRequestPreviewsEnabled: "yes"
-                      url: velit lab
-                      env: docker
-                  cursor: ut pariatur
-        "401":
-          description: Unauthorized
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "406":
-          description: Not Acceptable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "429":
-          description: Too Many Requests
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "500":
-          description: Internal Server Error
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "503":
-          description: Service Unavailable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-    post:
-      tags:
-        - Services
-      summary: Create service
-      description: >-
-        [https://api-docs.render.com/reference/create-service](https://api-docs.render.com/reference/create-service)
-      requestBody:
-        content:
-          application/json:
-            schema:
-              title: CreateService
-              discriminator:
-                propertyName: type
-                mapping:
-                  "static_site": "#/components/schemas/staticSite"
-                  "web_service": "#/components/schemas/webService"
-                  "private_service": "#/components/schemas/privateService"
-                  "background_worker": "#/components/schemas/backgroundWorker"
-                  "cron_job": "#/components/schemas/cronJob"
-              oneOf:
-                - $ref: "#/components/schemas/staticSite"
-                - $ref: "#/components/schemas/webService"
-                - $ref: "#/components/schemas/privateService"
-                - $ref: "#/components/schemas/backgroundWorker"
-                - $ref: "#/components/schemas/cronJob"
-              example:
-                type: web_service
-                name: cillum ipsum
-                ownerId: iru
-                repo: https://github.com/render-examples/flask-hello-world
-                autoDeploy: "yes"
-                branch: Excepteur mollit in
-                envVars:
-                  - key: eu
-                    value: dolor
-                  - key: minim nisi voluptate non
-                    value: vol
-                secretFiles:
-                  - name: ad ex Duis
-                    contents: ipsum consequat dolor dolor
-                  - name: sunt paria
-                    contents: exercitation ut Duis ex
-                serviceDetails:
-                  buildCommand: dolore ex
-                  env: "docker"
-                  headers:
-                    - path: enim Excepteur p
-                      name: deserunt
-                      value: commodo nisi proident ad velit
-                    - path: labore vel
-                      name: exercitation dolor minim nostrud esse
-                      value: Lorem occaecat tempor
-                  publishPath: public
-                  pullRequestPreviewsEnabled: "no"
-                  routes:
-                    - type: redirect
-                      source: sed
-                      destination: dolor
-                    - type: redirect
-                      source: proident aute irure veniam occaecat
-                      destination: sit culpa a
-      parameters:
-        - name: Content-Type
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        "201":
-          description: Created
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                service:
-                  id: ea veniam
-                  autoDeploy: "yes"
-                  branch: Excepteur
-                  createdAt: "1999-10-21T15:43:09.576Z"
-                  name: e
-                  notifyOnFail: default
-                  ownerId: laborum mollit
-                  repo: https://github.com/render-examples/flask-hello-world
-                  slug: nisi tempor dolore
-                  suspended: not_suspended
-                  suspenders:
-                    - admin
-                    - unknown
-                  type: private_service
-                  updatedAt: "1988-04-27T23:28:54.313Z"
-                  serviceDetails:
-                    buildCommand: ut
-                    parentServer:
-                      id: es
-                      name: "sunt eu do amet "
-                    publishPath: ipsum ut
-                    pullRequestPreviewsEnabled: "no"
-                    url: officia ut Excepteur culpa
-                deployId: nostrud qui Excepteur commodo
-        "400":
-          description: Bad Request
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "401":
-          description: Unauthorized
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "402":
-          description: Payment Required
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "406":
-          description: Not Acceptable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "409":
-          description: Conflict
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "429":
-          description: Too Many Requests
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "500":
-          description: Internal Server Error
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "503":
-          description: Service Unavailable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-  /services/{id}:
-    get:
-      tags:
-        - Services
-      summary: Retrieve service
-      description: >-
-        [https://api-docs.render.com/reference/get-service](https://api-docs.render.com/reference/get-service)
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-          description: (Required) The ID of the service
-          example: Lorem amet sin
-      responses:
-        "200":
-          description: OK
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                discriminator:
-                  propertyName: type
-                  mapping:
-                    "static_site": "#/components/schemas/staticSite"
-                    "web_service": "#/components/schemas/webService"
-                    "private_service": "#/components/schemas/privateService"
-                    "background_worker": "#/components/schemas/backgroundWorker"
-                    "cron_job": "#/components/schemas/cronJob"
-                oneOf:
-                  - $ref: "#/components/schemas/staticSite"
-                  - $ref: "#/components/schemas/webService"
-                  - $ref: "#/components/schemas/privateService"
-                  - $ref: "#/components/schemas/backgroundWorker"
-                  - $ref: "#/components/schemas/cronJob"
-              example:
-                id: in deserunt laboris dolore
-                autoDeploy: "yes"
-                branch: nostrud Duis laboris nisi
-                createdAt: "1942-04-20T08:53:35.077Z"
-                name: amet ex Excepteur
-                notifyOnFail: notify
-                ownerId: est dolore eiusmod do
-                repo: https://github.com/render-examples/flask-hello-world
-                slug: ut proident ea sit
-                suspended: not_suspended
-                suspenders:
-                  - parent_service
-                  - unknown
-                type: static_site
-                updatedAt: "1983-02-10T05:26:21.960Z"
-                serviceDetails:
-                  buildCommand: aliquip in ea aliqua elit
-                  parentServer:
-                    id: aute consectetur ad consequat
-                    name: ut sed sint ipsum Duis
-                  publishPath: "incididunt in pariatur "
-                  pullRequestPreviewsEnabled: "yes"
-                  url: aliquip laboris
-        "401":
-          description: Unauthorized
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "403":
-          description: Forbidden
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "404":
-          description: Not Found
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "406":
-          description: Not Acceptable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "410":
-          description: Gone
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "429":
-          description: Too Many Requests
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "500":
-          description: Internal Server Error
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "503":
-          description: Service Unavailable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-    patch:
-      tags:
-        - Services
-      summary: Update service
-      description: >-
-        [https://api-docs.render.com/reference/update-service](https://api-docs.render.com/reference/update-service)
-      requestBody:
-        content:
-          application/json:
-            schema:
-              title: UpdateService
-              anyOf:
-                - $ref: "#/components/schemas/patchStaticSite"
-                - $ref: "#/components/schemas/patchWebService"
-                - $ref: "#/components/schemas/patchPrivateService"
-                - $ref: "#/components/schemas/patchBackgroundWorker"
-                - $ref: "#/components/schemas/patchCronJob"
-              example:
-                autoDeploy: "yes"
-                branch: amet dolore officia quis est
-                name: nisi minim et
-                serviceDetails:
-                  buildCommand: ex qui
-                  publishPath: dolor laboris Excepteur fugiat
-                  pullRequestPreviewsEnabled: "no"
-      parameters:
-        - name: Content-Type
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-          description: (Required) The ID of the service
-          example: Lorem amet sin
-      responses:
-        "200":
-          description: OK
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: in deserunt laboris dolore
-                autoDeploy: "yes"
-                branch: nostrud Duis laboris nisi
-                createdAt: "1942-04-20T08:53:35.077Z"
-                name: amet ex Excepteur
-                notifyOnFail: notify
-                ownerId: est dolore eiusmod do
-                repo: https://github.com/render-examples/flask-hello-world
-                slug: ut proident ea sit
-                suspended: not_suspended
-                suspenders:
-                  - parent_service
-                  - unknown
-                type: static_site
-                updatedAt: "1983-02-10T05:26:21.960Z"
-                serviceDetails:
-                  buildCommand: aliquip in ea aliqua elit
-                  parentServer:
-                    id: aute consectetur ad consequat
-                    name: ut sed sint ipsum Duis
-                  publishPath: "incididunt in pariatur "
-                  pullRequestPreviewsEnabled: "yes"
-                  url: aliquip laboris
-        "400":
-          description: Bad Request
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "401":
-          description: Unauthorized
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "402":
-          description: Payment Required
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "403":
-          description: Forbidden
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "404":
-          description: Not Found
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "406":
-          description: Not Acceptable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "409":
-          description: Conflict
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "410":
-          description: Gone
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "429":
-          description: Too Many Requests
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "500":
-          description: Internal Server Error
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "503":
-          description: Service Unavailable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-    delete:
-      tags:
-        - Services
-      summary: Delete service
-      description: >-
-        [https://api-docs.render.com/reference/delete-service](https://api-docs.render.com/reference/delete-service)
-      # DELETE operations actually don't have a request body, well, at least not very often
-      # and certainly not in Render. It's included here to help the provider make the link
-      # between this operation and the resources that should use this.
-      # TODO: Maybe there's a better way?
-      requestBody:
-        content:
-          application/json:
-            schema:
-              title: DeleteService
-              discriminator:
-                propertyName: type
-                mapping:
-                  "static_site": "#/components/schemas/staticSite"
-                  "web_service": "#/components/schemas/webService"
-                  "private_service": "#/components/schemas/privateService"
-                  "background_worker": "#/components/schemas/backgroundWorker"
-                  "cron_job": "#/components/schemas/cronJob"
-              oneOf:
-                - $ref: "#/components/schemas/staticSite"
-                - $ref: "#/components/schemas/webService"
-                - $ref: "#/components/schemas/privateService"
-                - $ref: "#/components/schemas/backgroundWorker"
-                - $ref: "#/components/schemas/cronJob"
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-          description: (Required) The ID of the service
-          example: Lorem amet sin
-      responses:
-        "204":
-          description: No Content
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: text/plain
-          content:
-            text/plain:
-              schema:
-                type: string
-              example: ""
-        "401":
-          description: Unauthorized
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "403":
-          description: Forbidden
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "404":
-          description: Not Found
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "406":
-          description: Not Acceptable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "410":
-          description: Gone
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "429":
-          description: Too Many Requests
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "500":
-          description: Internal Server Error
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "503":
-          description: Service Unavailable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/env-vars:
-    get:
-      tags:
-        - Services
-      summary: Retrieve environment variables
-      description: >-
-        [https://api-docs.render.com/reference/get-env-vars-for-service](https://api-docs.render.com/reference/get-env-vars-for-service)
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: cursor
-          in: query
-          schema:
-            type: string
-          description: Cursor to begin retrieving entries for this query
-          example: Lorem amet sin
-        - name: limit
-          in: query
-          schema:
-            type: integer
-          description: Max number of items that can be returned
-          example: 20
-        - name: serviceId
-          in: path
-          schema:
-            type: string
-          required: true
-          description: (Required) The ID of the service
-          example: Lorem amet sin
-      responses:
-        "200":
-          description: OK
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/listEnvVars"
-              example:
-                - envVar:
-                    key: eu mollit reprehenderit nulla
-                    value: ad
-                  cursor: magna aliquip cillum in
-                - envVar:
-                    key: fugiat non ut tempor
-                    value: vol
-                  cursor: mollit do nulla non
-        "401":
-          description: Unauthorized
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "403":
-          description: Forbidden
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "404":
-          description: Not Found
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "406":
-          description: Not Acceptable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "410":
-          description: Gone
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "429":
-          description: Too Many Requests
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "500":
-          description: Internal Server Error
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "503":
-          description: Service Unavailable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-    put:
-      tags:
-        - Services
-      summary: Update environment variables
-      description: >-
-        [https://api-docs.render.com/reference/update-env-vars-for-service](https://api-docs.render.com/reference/update-env-vars-for-service)
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/envVar"
-            example:
-              envVars:
-                - key: aute cupidatat
-                  value: esse
-                - key: officia esse nostrud Excepteur
-                  value: Lorem
-      parameters:
-        - name: Content-Type
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: serviceId
-          in: path
-          schema:
-            type: string
-          required: true
-          description: (Required) The ID of the service
-          example: Lorem amet sin
-      responses:
-        "200":
-          description: OK
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/listEnvVars"
-              example:
-                - envVar:
-                    key: eu mollit reprehenderit nulla
-                    value: ad
-                  cursor: magna aliquip cillum in
-                - envVar:
-                    key: fugiat non ut tempor
-                    value: vol
-                  cursor: mollit do nulla non
-        "400":
-          description: Bad Request
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "401":
-          description: Unauthorized
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "403":
-          description: Forbidden
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "404":
-          description: Not Found
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "406":
-          description: Not Acceptable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "410":
-          description: Gone
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "429":
-          description: Too Many Requests
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "500":
-          description: Internal Server Error
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "503":
-          description: Service Unavailable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/headers:
-    get:
-      tags:
-        - Services
-      summary: Retrieve headers
-      description: >-
-        [https://api-docs.render.com/reference/get-headers](https://api-docs.render.com/reference/get-headers)
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: path
-          in: query
-          schema:
-            type: string
-          description: Filter for specific paths that headers apply to
-          example: sed aliqua qui anim,do
-        - name: name
-          in: query
-          schema:
-            type: string
-          description: Filter for header names
-          example: sed aliqua qui anim,do
-        - name: value
-          in: query
-          schema:
-            type: string
-          description: Filter for header values
-          example: sed aliqua qui anim,do
-        - name: cursor
-          in: query
-          schema:
-            type: string
-          description: Cursor to begin retrieving entries for this query
-          example: Lorem amet sin
-        - name: limit
-          in: query
-          schema:
-            type: integer
-          description: Max number of items that can be returned
-          example: 20
-        - name: serviceId
-          in: path
-          schema:
-            type: string
-          required: true
-          description: (Required) The ID of the service
-          example: Lorem amet sin
-      responses:
-        "200":
-          description: OK
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/listServiceHeaders"
-              example:
-                - headers:
-                    path: in officia
-                    name: deserunt mollit enim nostrud
-                    value: ut ea
-                  cursor: officia dolore Excepteur
-                - headers:
-                    path: aliquip
-                    name: ullamco amet in
-                    value: ali
-                  cursor: Lorem reprehenderit
-        "401":
-          description: Unauthorized
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "403":
-          description: Forbidden
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "404":
-          description: Not Found
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "406":
-          description: Not Acceptable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "410":
-          description: Gone
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "429":
-          description: Too Many Requests
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "500":
-          description: Internal Server Error
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "503":
-          description: Service Unavailable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/routes:
-    get:
-      tags:
-        - Services
-      summary: Retrieve redirect and rewrite rules
-      description: >-
-        [https://api-docs.render.com/reference/get-routes](https://api-docs.render.com/reference/get-routes)
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: type
-          in: query
-          schema:
-            type: string
-          description: Filter for the type of route rule
-          example: redirect,redirect
-        - name: source
-          in: query
-          schema:
-            type: string
-          description: Filter for the source path of the route
-          example: sed aliqua qui anim,do
-        - name: destination
-          in: query
-          schema:
-            type: string
-          description: Filter for the destination path of the route
-          example: sed aliqua qui anim,do
-        - name: cursor
-          in: query
-          schema:
-            type: string
-          description: Cursor to begin retrieving entries for this query
-          example: Lorem amet sin
-        - name: limit
-          in: query
-          schema:
-            type: integer
-          description: Max number of items that can be returned
-          example: 20
-        - name: serviceId
-          in: path
-          schema:
-            type: string
-          required: true
-          description: (Required) The ID of the service
-          example: Lorem amet sin
-      responses:
-        "200":
-          description: OK
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/listStaticSiteRoutes"
-              example:
-                - route:
-                    type: rewrite
-                    source: fugiat Lorem dolor
-                    destination: in occaecat proident qui incididunt
-                  cursor: anim labore
-                - route:
-                    type: redirect
-                    source: anim dolor dolore
-                    destination: ad sint quis
-                  cursor: cillum reprehenderit esse
-        "401":
-          description: Unauthorized
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "403":
-          description: Forbidden
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "404":
-          description: Not Found
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "406":
-          description: Not Acceptable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "410":
-          description: Gone
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "429":
-          description: Too Many Requests
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "500":
-          description: Internal Server Error
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "503":
-          description: Service Unavailable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/suspend:
-    post:
-      tags:
-        - Services
-      summary: Suspend service
-      description: >-
-        [https://api-docs.render.com/reference/suspend-service-1](https://api-docs.render.com/reference/suspend-service-1)
-      requestBody:
-        content:
-          "application/json":
-            schema:
-              $ref: "#/components/schemas/suspendService"
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: serviceId
-          in: path
-          schema:
-            type: string
-          required: true
-          description: (Required) The ID of the service
-          example: Lorem amet sin
-      responses:
-        "202":
-          description: Accepted
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: text/plain
-          content:
-            text/plain:
-              schema:
-                type: string
-              example: ""
-        "400":
-          description: Bad Request
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "401":
-          description: Unauthorized
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "403":
-          description: Forbidden
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "404":
-          description: Not Found
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "406":
-          description: Not Acceptable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "410":
-          description: Gone
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "429":
-          description: Too Many Requests
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "500":
-          description: Internal Server Error
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "503":
-          description: Service Unavailable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/resume:
-    post:
-      tags:
-        - Services
-      summary: Resume service
-      description: >-
-        [https://api-docs.render.com/reference/resume-service-1](https://api-docs.render.com/reference/resume-service-1)
-      requestBody:
-        content: {}
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: serviceId
-          in: path
-          schema:
-            type: string
-          required: true
-          description: (Required) The ID of the service
-          example: Lorem amet sin
-      responses:
-        "202":
-          description: Accepted
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: text/plain
-          content:
-            text/plain:
-              schema:
-                type: string
-              example: ""
-        "400":
-          description: Bad Request
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "401":
-          description: Unauthorized
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "403":
-          description: Forbidden
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "404":
-          description: Not Found
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "406":
-          description: Not Acceptable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "410":
-          description: Gone
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "429":
-          description: Too Many Requests
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "500":
-          description: Internal Server Error
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "503":
-          description: Service Unavailable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/scale:
-    post:
-      tags:
-        - Services
-      summary: Scale service to desired number of instances
-      description: >-
-        [https://api-docs.render.com/reference/scale-service](https://api-docs.render.com/reference/scale-service)
-      requestBody:
-        content:
-          application/json:
-            schema:
-              title: Scale
-              type: object
-              properties:
+                        $ref: '#/components/schemas/backgroundWorkerServiceDetails'
+                    type:
+                        type: string
+                        default: background_worker
+            title: BackgroundWorker
+            description: A background worker service
+        backgroundWorkerServiceDetails:
+            type: object
+            title: PrivateService
+            required:
+                - env
+            properties:
+                disk:
+                    $ref: '#/components/schemas/disk'
+                env:
+                    type: string
+                    enum:
+                        - docker
+                        - elixir
+                        - go
+                        - node
+                        - python
+                        - ruby
+                        - rust
+                envSpecificDetails:
+                    oneOf:
+                        - $ref: '#/components/schemas/dockerDetails'
+                        - $ref: '#/components/schemas/nativeEnvironmentDetails'
                 numInstances:
-                  type: number
-              required: ["numInstances"]
-              example:
-                numInstances: 3
-      parameters:
-        - name: Content-Type
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: serviceId
-          in: path
-          schema:
-            type: string
-          required: true
-          description: (Required) The ID of the service
-          example: Lorem amet sin
-      responses:
-        "200":
-          description: OK
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: officia ut dolor
-                commit:
-                  id: incididunt in deserunt aliquip exerc
-                  message: aliquip non dolore
-                  createdAt: "1976-01-22T15:20:29.246Z"
-                status: created
-                finishedAt: "1959-01-25T18:23:55.820Z"
-                createdAt: "1969-09-01T14:51:32.931Z"
-                updatedAt: "1980-10-29T06:36:55.491Z"
-        "400":
-          description: Bad Request
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "401":
-          description: Unauthorized
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "403":
-          description: Forbidden
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "404":
-          description: Not Found
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "406":
-          description: Not Acceptable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "410":
-          description: Gone
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "429":
-          description: Too Many Requests
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "500":
-          description: Internal Server Error
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "503":
-          description: Service Unavailable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/deploys:
-    get:
-      tags:
-        - Deploys
-      summary: List deploys
-      description: >-
-        [https://api-docs.render.com/reference/get-deploys](https://api-docs.render.com/reference/get-deploys)
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: startTime
-          in: query
-          schema:
-            type: integer
-          description: Epoch/Unix timestamp of start of time range to return
-          example: 97254737
-        - name: endTime
-          in: query
-          schema:
-            type: integer
-          description: Epoch/Unix timestamp of end of time range to return
-          example: 97254737
-        - name: cursor
-          in: query
-          schema:
-            type: string
-          description: Cursor to begin retrieving entries for this query
-          example: Lorem amet sin
-        - name: limit
-          in: query
-          schema:
-            type: integer
-          description: Max number of items that can be returned
-          example: 20
-        - name: serviceId
-          in: path
-          schema:
-            type: string
-          required: true
-          description: (Required) The ID of the service
-          example: Lorem amet sin
-      responses:
-        "200":
-          description: OK
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/listDeploys"
-              example:
-                - deploy:
-                    id: enim Lorem amet
-                    commit:
-                      id: nostrud laborum
-                      message: dolore fugiat adipisicing Lorem commodo
-                      createdAt: "1978-04-16T20:55:25.900Z"
-                    status: update_in_progress
-                    finishedAt: "1943-06-10T00:28:23.857Z"
-                    createdAt: "1950-03-29T08:07:14.828Z"
-                    updatedAt: "1962-10-21T13:09:29.570Z"
-                  cursor: dolor Duis labore enim aute
-                - deploy:
-                    id: do non velit
-                    commit:
-                      id: pariatur
-                      message: ad consectetur aliquip
-                      createdAt: "1944-07-09T04:42:00.125Z"
-                    status: canceled
-                    finishedAt: "1972-06-29T05:52:13.073Z"
-                    createdAt: "1972-09-20T16:16:12.721Z"
-                    updatedAt: "1981-03-05T12:42:20.181Z"
-                  cursor: nostrud Ut Lorem non
-        "401":
-          description: Unauthorized
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "403":
-          description: Forbidden
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "404":
-          description: Not Found
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "406":
-          description: Not Acceptable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "410":
-          description: Gone
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "429":
-          description: Too Many Requests
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "500":
-          description: Internal Server Error
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "503":
-          description: Service Unavailable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-    post:
-      tags:
-        - Deploys
-      summary: Trigger a deploy
-      description: >-
-        [https://api-docs.render.com/reference/create-deploy](https://api-docs.render.com/reference/create-deploy)
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/deploy"
-            example:
-              clearCache: do_not_clear
-      parameters:
-        - name: Content-Type
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: serviceId
-          in: path
-          schema:
-            type: string
-          required: true
-          description: (Required) The ID of the service
-          example: Lorem amet sin
-      responses:
-        "201":
-          description: Created
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: officia ut dolor
-                commit:
-                  id: incididunt in deserunt aliquip exerc
-                  message: aliquip non dolore
-                  createdAt: "1976-01-22T15:20:29.246Z"
-                status: created
-                finishedAt: "1959-01-25T18:23:55.820Z"
-                createdAt: "1969-09-01T14:51:32.931Z"
-                updatedAt: "1980-10-29T06:36:55.491Z"
-        "400":
-          description: Bad Request
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "401":
-          description: Unauthorized
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "404":
-          description: Not Found
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "406":
-          description: Not Acceptable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "409":
-          description: Conflict
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "410":
-          description: Gone
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "429":
-          description: Too Many Requests
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "500":
-          description: Internal Server Error
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "503":
-          description: Service Unavailable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/deploys/{id}:
-    get:
-      tags:
-        - Deploys
-      summary: Retrieve deploy
-      description: >-
-        [https://api-docs.render.com/reference/get-deploy](https://api-docs.render.com/reference/get-deploy)
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: serviceId
-          in: path
-          schema:
-            type: string
-          required: true
-          description: (Required) The ID of the service
-          example: Lorem amet sin
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-          description: (Required) The ID of the deploy
-          example: Lorem amet sin
-      responses:
-        "200":
-          description: OK
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/deploy"
-              example:
-                id: officia ut dolor
-                commit:
-                  id: incididunt in deserunt aliquip exerc
-                  message: aliquip non dolore
-                  createdAt: "1976-01-22T15:20:29.246Z"
-                status: created
-                finishedAt: "1959-01-25T18:23:55.820Z"
-                createdAt: "1969-09-01T14:51:32.931Z"
-                updatedAt: "1980-10-29T06:36:55.491Z"
-        "401":
-          description: Unauthorized
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "403":
-          description: Forbidden
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "404":
-          description: Not Found
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "406":
-          description: Not Acceptable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "410":
-          description: Gone
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "429":
-          description: Too Many Requests
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "500":
-          description: Internal Server Error
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "503":
-          description: Service Unavailable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/custom-domains:
-    get:
-      tags:
-        - Custom Domains
-      summary: List custom domains
-      description: >-
-        [https://api-docs.render.com/reference/get-custom-domains](https://api-docs.render.com/reference/get-custom-domains)
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: cursor
-          in: query
-          schema:
-            type: string
-          description: Cursor to begin retrieving entries for this query
-          example: Lorem amet sin
-        - name: limit
-          in: query
-          schema:
-            type: integer
-          description: Max number of items that can be returned
-          example: 20
-        - name: name
-          in: query
-          schema:
-            type: string
-          description: Filter for the names of custom domain
-          example: sed aliqua qui anim,do
-        - name: domainType
-          in: query
-          schema:
-            type: string
-          description: Filter for apex or subdomains
-          example: subdomain
-        - name: verificationStatus
-          in: query
-          schema:
-            type: string
-          description: Filter for verified or unverified custom domains
-          example: verified
-        - name: createdBefore
-          in: query
-          schema:
-            type: string
-          description: >-
-            Filter for custom domains created before a certain time (specified
-            as an ISO 8601 timestamp)
-          example: "2021-06-17T08:15:30Z"
-        - name: createdAfter
-          in: query
-          schema:
-            type: string
-          description: >-
-            Filter for custom domains created after a certain time (specified as
-            an ISO 8601 timestamp)
-          example: "2021-02-17T08:15:30Z"
-        - name: serviceId
-          in: path
-          schema:
-            type: string
-          required: true
-          description: (Required) The ID of the service
-          example: Lorem amet sin
-      responses:
-        "200":
-          description: OK
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/listCustomDomains"
-              example:
-                - customDomain:
-                    id: fugiat dolore in ut in
-                    name: id commodo consectetur amet
-                    domainType: subdomain
-                    publicSuffix: in incididunt
-                    redirectForName: culpa mollit
-                    verificationStatus: verified
-                    createdAt: "1975-06-30T08:45:27.521Z"
-                    server:
-                      id: aliqua ut
-                      name: aliquip minim
-                  cursor: est sint
-                - customDomain:
-                    id: sed mollit
-                    name: enim sit laboris exercitation ullamco
-                    domainType: subdomain
-                    publicSuffix: pariatur
-                    redirectForName: et officia
-                    verificationStatus: unverified
-                    createdAt: "2010-09-20T23:48:01.957Z"
-                    server:
-                      id: quis mollit Lorem officia pari
-                      name: consequat aliqua in dolore
-                  cursor: dolor nostru
-        "400":
-          description: Bad Request
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "401":
-          description: Unauthorized
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "403":
-          description: Forbidden
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "404":
-          description: Not Found
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "406":
-          description: Not Acceptable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "410":
-          description: Gone
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "429":
-          description: Too Many Requests
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "500":
-          description: Internal Server Error
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "503":
-          description: Service Unavailable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-    post:
-      tags:
-        - Custom Domains
-      summary: Add custom domain
-      description: >-
-        [https://api-docs.render.com/reference/create-custom-domain](https://api-docs.render.com/reference/create-custom-domain)
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/customDomain"
-      parameters:
-        - name: Content-Type
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: serviceId
-          in: path
-          schema:
-            type: string
-          required: true
-          description: (Required) The ID of the service
-          example: Lorem amet sin
-      responses:
-        "201":
-          description: Created
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/createCustomDomainResponse"
-              example:
-                - id: dolore culpa
-                  name: esse dolor nulla dolor
-                  domainType: apex
-                  publicSuffix: do qui dolore
-                  redirectForName: velit incididunt est
-                  verificationStatus: unverified
-                  createdAt: "2013-03-17T18:01:01.797Z"
-                  server:
-                    id: Lorem elit ad
-                    name: consequat quis commodo eu
-                - id: ea in
-                  name: cupidatat adipisicing
-                  domainType: subdomain
-                  publicSuffix: id magna officia
-                  redirectForName: non
-                  verificationStatus: unverified
-                  createdAt: "1985-06-03T07:24:05.696Z"
-                  server:
-                    id: nulla sunt voluptate dolor ut
-                    name: minim sed
-        "400":
-          description: Bad Request
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "401":
-          description: Unauthorized
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "402":
-          description: Payment Required
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "403":
-          description: Forbidden
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "404":
-          description: Not Found
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "406":
-          description: Not Acceptable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "409":
-          description: Conflict
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "410":
-          description: Gone
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "429":
-          description: Too Many Requests
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "500":
-          description: Internal Server Error
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "503":
-          description: Service Unavailable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/custom-domains/{id}:
-    get:
-      tags:
-        - Custom Domains
-      summary: Retrieve custom domain
-      description: >-
-        [https://api-docs.render.com/reference/get-custom-domain](https://api-docs.render.com/reference/get-custom-domain)
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: serviceId
-          in: path
-          schema:
-            type: string
-          required: true
-          description: (Required) The ID of the service
-          example: Lorem amet sin
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-          description: (Required) The ID or name of the custom domain
-          example: Lorem amet sin
-      responses:
-        "200":
-          description: OK
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/customDomain"
-              example:
-                id: aliquip ipsum
-                name: aliquip incididunt mollit in
-                domainType: subdomain
-                publicSuffix: ea laborum reprehenderit
-                redirectForName: irure aliquip amet reprehenderit sunt
-                verificationStatus: unverified
-                createdAt: "1952-09-09T12:25:06.974Z"
+                    type: number
+                    default: 1
+                parentServer:
+                    type: object
+                    readOnly: true
+                    properties:
+                        id:
+                            type: string
+                            readOnly: true
+                        name:
+                            type: string
+                            readOnly: true
+                plan:
+                    type: string
+                    enum:
+                        - starter
+                        - starter_plus
+                        - standard
+                        - standard_plus
+                        - pro
+                        - pro_plus
+                        - pro_max
+                        - pro_ultra
+                    default: starter
+                pullRequestPreviewsEnabled:
+                    type: string
+                    enum:
+                        - "yes"
+                        - "no"
+                    default: "no"
+                region:
+                    type: string
+                    enum:
+                        - oregon
+                        - frankfurt
+                    default: oregon
+                url:
+                    type: string
+                    readOnly: true
+        commit:
+            type: object
+            readOnly: true
+            properties:
+                createdAt:
+                    type: string
+                    readOnly: true
+                id:
+                    type: string
+                    readOnly: true
+                message:
+                    type: string
+                    readOnly: true
+        createCustomDomainResponse:
+            type: array
+            items:
+                $ref: '#/components/schemas/customDomain'
+        cronJob:
+            allOf:
+                - $ref: '#/components/schemas/service'
+                - type: object
+                  properties:
+                    serviceDetails:
+                        $ref: '#/components/schemas/cronJobServiceDetails'
+                    type:
+                        type: string
+                        default: cron_job
+            title: CronJob
+            description: A cron job
+        cronJobServiceDetails:
+            type: object
+            title: CronJob
+            required:
+                - env
+                - schedule
+            properties:
+                env:
+                    type: string
+                    enum:
+                        - docker
+                        - elixir
+                        - go
+                        - node
+                        - python
+                        - ruby
+                        - rust
+                envSpecificDetails:
+                    oneOf:
+                        - $ref: '#/components/schemas/dockerDetails'
+                        - $ref: '#/components/schemas/nativeEnvironmentDetails'
+                lastSuccessfulRunAt:
+                    type: string
+                plan:
+                    type: string
+                    enum:
+                        - starter
+                        - starter_plus
+                        - standard
+                        - standard_plus
+                        - pro
+                        - pro_plus
+                        - pro_max
+                        - pro_ultra
+                    default: starter
+                region:
+                    type: string
+                    enum:
+                        - oregon
+                        - frankfurt
+                    default: oregon
+                schedule:
+                    type: string
+        customDomain:
+            type: object
+            title: CustomDomain
+            required:
+                - name
+                - domainType
+                - redirectForName
+                - verificationStatus
+                - server
+            properties:
+                createdAt:
+                    type: string
+                    readOnly: true
+                domainType:
+                    type: string
+                    enum:
+                        - apex
+                        - subdomain
+                    readOnly: true
+                name:
+                    type: string
+                publicSuffix:
+                    type: string
+                    readOnly: true
+                redirectForName:
+                    type: string
+                    readOnly: true
                 server:
-                  id: eiusmod
-                  name: mollit dolo
-        "400":
-          description: Bad Request
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "401":
-          description: Unauthorized
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "403":
-          description: Forbidden
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "404":
-          description: Not Found
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "406":
-          description: Not Acceptable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "410":
-          description: Gone
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "429":
-          description: Too Many Requests
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "500":
-          description: Internal Server Error
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "503":
-          description: Service Unavailable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-    delete:
-      tags:
-        - Custom Domains
-      summary: Delete custom domain
-      description: >-
-        [https://api-docs.render.com/reference/delete-custom-domain](https://api-docs.render.com/reference/delete-custom-domain)
-      # DELETE operations actually don't have a request body, well, at least not very often
-      # and certainly not in Render. It's included here to help the provider make the link
-      # between this operation and the resources that should use this.
-      # TODO: Maybe there's a better way?
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/customDomain"
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: serviceId
-          in: path
-          schema:
-            type: string
-          required: true
-          description: (Required) The ID of the service
-          example: Lorem amet sin
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-          description: (Required) The ID or name of the custom domain
-          example: Lorem amet sin
-      responses:
-        "204":
-          description: No Content
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: text/plain
-          content:
-            text/plain:
-              schema:
-                type: string
-              example: ""
-        "400":
-          description: Bad Request
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "401":
-          description: Unauthorized
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "403":
-          description: Forbidden
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "404":
-          description: Not Found
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "406":
-          description: Not Acceptable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "410":
-          description: Gone
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "429":
-          description: Too Many Requests
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "500":
-          description: Internal Server Error
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "503":
-          description: Service Unavailable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/custom-domains/{id}/verify:
-    post:
-      tags:
-        - Custom Domains
-      summary: Verify DNS configuration
-      description: >-
-        [https://api-docs.render.com/reference/refresh-custom-domain](https://api-docs.render.com/reference/refresh-custom-domain)
-      requestBody:
-        content: {}
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: serviceId
-          in: path
-          schema:
-            type: string
-          required: true
-          description: (Required) The ID of the service
-          example: Lorem amet sin
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-          description: (Required) The ID or name of the custom domain
-          example: Lorem amet sin
-      responses:
-        "202":
-          description: Accepted
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: text/plain
-          content:
-            text/plain:
-              schema:
-                type: string
-              example: ""
-        "400":
-          description: Bad Request
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "401":
-          description: Unauthorized
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "403":
-          description: Forbidden
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "404":
-          description: Not Found
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "406":
-          description: Not Acceptable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "410":
-          description: Gone
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "429":
-          description: Too Many Requests
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "500":
-          description: Internal Server Error
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "503":
-          description: Service Unavailable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/jobs:
-    get:
-      tags:
-        - Jobs
-      summary: List jobs
-      description: >-
-        [https://api-docs.render.com/reference/list-job](https://api-docs.render.com/reference/list-job)
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: cursor
-          in: query
-          schema:
-            type: string
-          description: Cursor to begin retrieving entries for this query
-          example: Lorem amet sin
-        - name: limit
-          in: query
-          schema:
-            type: integer
-          description: Max number of items that can be returned
-          example: 20
-        - name: status
-          in: query
-          schema:
-            type: string
-          description: >-
-            Filter for the status of the job (`pending`, `running`, `succeeded`,
-            or `failed`)
-          example: pending,succeeded
-        - name: createdBefore
-          in: query
-          schema:
-            type: string
-          description: >-
-            Filter for jobs created before a certain time (specified as an ISO
-            8601 timestamp)
-          example: "2021-06-17T08:15:30Z"
-        - name: createdAfter
-          in: query
-          schema:
-            type: string
-          description: >-
-            Filter for jobs created after a certain time (specified as an ISO
-            8601 timestamp)
-          example: "2021-02-17T08:15:30Z"
-        - name: startedBefore
-          in: query
-          schema:
-            type: string
-          description: >-
-            Filter for jobs started before a certain time (specified as an ISO
-            8601 timestamp)
-          example: "2021-06-17T08:15:30Z"
-        - name: startedAfter
-          in: query
-          schema:
-            type: string
-          description: >-
-            Filter for jobs started after a certain time (specified as an ISO
-            8601 timestamp)
-          example: "2021-02-17T08:15:30Z"
-        - name: finishedBefore
-          in: query
-          schema:
-            type: string
-          description: >-
-            Filter for jobs finished before a certain time (specified as an ISO
-            8601 timestamp)
-          example: "2021-06-17T08:15:30Z"
-        - name: finishedAfter
-          in: query
-          schema:
-            type: string
-          description: >-
-            Filter for jobs finished after a certain time (specified as an ISO
-            8601 timestamp)
-          example: "2021-02-17T08:15:30Z"
-        - name: serviceId
-          in: path
-          schema:
-            type: string
-          required: true
-          description: (Required) The ID of the service
-          example: Lorem amet sin
-      responses:
-        "200":
-          description: OK
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/listJobs"
-              example:
-                - job:
-                    id: job-xxxxx
-                    serviceId: srv-xxxxx
-                    startCommand: echo 'hello world'
-                    planId: plan-srv-004
-                    status: succeeded
-                    createdAt: "2021-07-15T07:20:05.777035-07:00"
-                    startedAt: "2021-07-15T07:20:05.777035-07:00"
-                    finishedAt: "2021-07-15T07:20:05.777035-07:00"
-                  cursor: abc123
-                - job:
-                    id: job-xxxxx
-                    serviceId: srv-xxxxx
-                    startCommand: echo 'hello world'
-                    planId: plan-srv-004
-                    status: succeeded
-                    createdAt: "2021-07-15T07:20:05.777035-07:00"
-                    startedAt: "2021-07-15T07:20:05.777035-07:00"
-                    finishedAt: "2021-07-15T07:20:05.777035-07:00"
-                  cursor: abc123
-        "400":
-          description: Bad Request
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "401":
-          description: Unauthorized
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "404":
-          description: Not Found
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "429":
-          description: Too Many Requests
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "500":
-          description: Internal Server Error
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "503":
-          description: Service Unavailable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-    post:
-      tags:
-        - Jobs
-      summary: Create job
-      description: >-
-        [https://api-docs.render.com/reference/post-job](https://api-docs.render.com/reference/post-job)
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/job"
-            example:
-              startCommand: et ex Duis sit
-              planId: cupidatat Duis ad
-      parameters:
-        - name: Content-Type
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: serviceId
-          in: path
-          schema:
-            type: string
-          required: true
-          description: (Required) The ID of the service
-          example: Lorem amet sin
-      responses:
-        "200":
-          description: OK
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: job-xxxxx
-                serviceId: srv-xxxxx
-                startCommand: echo 'hello world'
-                planId: plan-srv-004
-                status: succeeded
-                createdAt: "2021-07-15T07:20:05.777035-07:00"
-                startedAt: "2021-07-15T07:20:05.777035-07:00"
-                finishedAt: "2021-07-15T07:20:05.777035-07:00"
-        "400":
-          description: Bad Request
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "401":
-          description: Unauthorized
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "404":
-          description: Not Found
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "429":
-          description: Too Many Requests
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "500":
-          description: Internal Server Error
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "503":
-          description: Service Unavailable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-  /services/{serviceId}/jobs/{id}:
-    get:
-      tags:
-        - Jobs
-      summary: Retrieve job
-      description: >-
-        [https://api-docs.render.com/reference/get-job](https://api-docs.render.com/reference/get-job)
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: serviceId
-          in: path
-          schema:
-            type: string
-          required: true
-          description: (Required) The ID of the service
-          example: Lorem amet sin
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-          description: (Required) The ID of the job
-          example: Lorem amet sin
-      responses:
-        "200":
-          description: OK
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/job"
-              example:
-                id: job-xxxxx
-                serviceId: srv-xxxxx
-                startCommand: echo 'hello world'
-                planId: plan-srv-004
-                status: succeeded
-                createdAt: "2021-07-15T07:20:05.777035-07:00"
-                startedAt: "2021-07-15T07:20:05.777035-07:00"
-                finishedAt: "2021-07-15T07:20:05.777035-07:00"
-        "400":
-          description: Bad Request
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "401":
-          description: Unauthorized
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "404":
-          description: Not Found
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "429":
-          description: Too Many Requests
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "500":
-          description: Internal Server Error
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
-        "503":
-          description: Service Unavailable
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                id: dolor
-                message: sunt Excepteur deserunt dolor
+                    type: object
+                    readOnly: true
+                    properties:
+                        id:
+                            type: string
+                            readOnly: true
+                        name:
+                            type: string
+                            readOnly: true
+                verificationStatus:
+                    type: string
+                    enum:
+                        - verified
+                        - unverified
+                    readOnly: true
+        deploy:
+            type: object
+            title: Deploy
+            properties:
+                clearCache:
+                    type: string
+                    enum:
+                        - do_not_clear
+                        - clear
+                    default: do_not_clear
+                commit:
+                    $ref: '#/components/schemas/commit'
+        disk:
+            type: object
+            required:
+                - name
+                - mountPath
+            properties:
+                mountPath:
+                    type: string
+                name:
+                    type: string
+                sizeGB:
+                    type: number
+                    default: 1
+        dockerDetails:
+            type: object
+            required:
+                - dockerCommand
+                - dockerContext
+            properties:
+                dockerCommand:
+                    type: string
+                dockerContext:
+                    type: string
+                dockerfilePath:
+                    type: string
+        envVar:
+            type: object
+            title: EnvVar
+            properties:
+                envVars:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/envVarKeyValue'
+        envVarKeyValue:
+            type: object
+            required:
+                - key
+            properties:
+                generateValue:
+                    type: string
+                    enum:
+                        - "yes"
+                        - "no"
+                key:
+                    type: string
+                value:
+                    type: string
+        job:
+            type: object
+            title: Job
+            required:
+                - startCommand
+                - planId
+            properties:
+                createdAt:
+                    type: string
+                    readOnly: true
+                finishedAt:
+                    type: string
+                    readOnly: true
+                planId:
+                    type: string
+                startCommand:
+                    type: string
+                startedAt:
+                    type: string
+                    readOnly: true
+                status:
+                    type: string
+                    readOnly: true
+        listCustomDomains:
+            type: array
+            title: ListCustomDomains
+            items:
+                $ref: '#/components/schemas/listCustomDomainsResponse'
+        listCustomDomainsResponse:
+            type: object
+            properties:
+                cursor:
+                    type: string
+                customDomain:
+                    $ref: '#/components/schemas/customDomain'
+        listDeploys:
+            type: array
+            title: ListDeploys
+            items:
+                $ref: '#/components/schemas/listDeploysResponse'
+        listDeploysResponse:
+            type: object
+            properties:
+                cursor:
+                    type: string
+                customDomain:
+                    $ref: '#/components/schemas/deploy'
+        listEnvVars:
+            type: array
+            title: ListEnvVars
+            items:
+                $ref: '#/components/schemas/listEnvVarsResponse'
+        listEnvVarsResponse:
+            type: object
+            properties:
+                cursor:
+                    type: string
+                envVar:
+                    $ref: '#/components/schemas/envVarKeyValue'
+        listJobs:
+            type: array
+            title: ListJobs
+            items:
+                $ref: '#/components/schemas/listJobsResponse'
+        listJobsResponse:
+            type: object
+            properties:
+                cursor:
+                    type: string
+                job:
+                    $ref: '#/components/schemas/job'
+        listOwners:
+            type: array
+            title: ListOwners
+            items:
+                $ref: '#/components/schemas/listOwnersResponse'
+        listOwnersResponse:
+            type: object
+            properties:
+                cursor:
+                    type: string
+                owner:
+                    $ref: '#/components/schemas/owner'
+        listServiceHeaders:
+            type: array
+            title: ListServiceHeaders
+            items:
+                $ref: '#/components/schemas/listServiceHeadersResponse'
+        listServiceHeadersResponse:
+            type: object
+            properties:
+                cursor:
+                    type: string
+                header:
+                    $ref: '#/components/schemas/serviceHeader'
+        listServiceResponse:
+            type: object
+            properties:
+                cursor:
+                    type: string
+                service:
+                    oneOf:
+                        - $ref: '#/components/schemas/staticSite'
+                        - $ref: '#/components/schemas/webService'
+                        - $ref: '#/components/schemas/privateService'
+                        - $ref: '#/components/schemas/backgroundWorker'
+                        - $ref: '#/components/schemas/cronJob'
+                    discriminator:
+                        propertyName: type
+                        mapping:
+                            background_worker: '#/components/schemas/backgroundWorker'
+                            cron_job: '#/components/schemas/cronJob'
+                            private_service: '#/components/schemas/privateService'
+                            static_site: '#/components/schemas/staticSite'
+                            web_service: '#/components/schemas/webService'
+        listServices:
+            type: array
+            title: ListServices
+            items:
+                $ref: '#/components/schemas/listServiceResponse'
+        listStaticSiteRoutes:
+            type: array
+            title: ListStaticSiteRoutes
+            items:
+                $ref: '#/components/schemas/listStaticSiteRoutesResponse'
+        listStaticSiteRoutesResponse:
+            type: object
+            properties:
+                cursor:
+                    type: string
+                route:
+                    $ref: '#/components/schemas/staticSiteRoute'
+        nativeEnvironmentDetails:
+            type: object
+            required:
+                - buildCommand
+                - startCommand
+            properties:
+                buildCommand:
+                    type: string
+                startCommand:
+                    type: string
+        openPorts:
+            type: object
+            title: OpenPorts
+            properties:
+                port:
+                    type: number
+                protocol:
+                    type: string
+                    enum:
+                        - TCP
+                        - UDP
+        owner:
+            type: object
+            title: Owner
+            description: The owner object represents an authorized user or team. The `type` property indicates if the owner is a user or team.
+            properties:
+                email:
+                    type: string
+                    description: The email of the owner.
+                id:
+                    type: string
+                    description: The owner ID.
+                    readOnly: true
+                name:
+                    type: string
+                    description: The name of the owner.
+                type:
+                    type: string
+                    description: The type of the authorized user.
+                    enum:
+                        - user
+                        - team
+        patchBackgroundWorker:
+            type: object
+            title: BackgroundWorker
+            description: The PATCH object to update a background worker
+            properties:
+                autoDeploy:
+                    type: string
+                    enum:
+                        - "yes"
+                        - "no"
+                    default: "no"
+                branch:
+                    type: string
+                envSpecificDetails:
+                    oneOf:
+                        - $ref: '#/components/schemas/dockerDetails'
+                        - $ref: '#/components/schemas/nativeEnvironmentDetails'
+                name:
+                    type: string
+                numInstances:
+                    type: number
+                    default: 1
+                plan:
+                    type: string
+                    enum:
+                        - starter
+                        - starter_plus
+                        - standard
+                        - standard_plus
+                        - pro
+                        - pro_plus
+                        - pro_max
+                        - pro_ultra
+                    default: starter
+                pullRequestPreviewsEnabled:
+                    type: string
+                    enum:
+                        - "yes"
+                        - "no"
+                    default: "no"
+        patchCronJob:
+            type: object
+            title: CronJob
+            description: The PATCH object to update a cron job
+            properties:
+                autoDeploy:
+                    type: string
+                    enum:
+                        - "yes"
+                        - "no"
+                    default: "no"
+                branch:
+                    type: string
+                envSpecificDetails:
+                    oneOf:
+                        - $ref: '#/components/schemas/dockerDetails'
+                        - $ref: '#/components/schemas/nativeEnvironmentDetails'
+                name:
+                    type: string
+                plan:
+                    type: string
+                    enum:
+                        - starter
+                        - starter_plus
+                        - standard
+                        - standard_plus
+                        - pro
+                        - pro_plus
+                        - pro_max
+                        - pro_ultra
+                    default: starter
+                schedule:
+                    type: string
+        patchPrivateService:
+            type: object
+            title: PrivateService
+            description: The PATCH object to update a private service
+            properties:
+                autoDeploy:
+                    type: string
+                    enum:
+                        - "yes"
+                        - "no"
+                    default: "no"
+                branch:
+                    type: string
+                envSpecificDetails:
+                    oneOf:
+                        - $ref: '#/components/schemas/dockerDetails'
+                        - $ref: '#/components/schemas/nativeEnvironmentDetails'
+                name:
+                    type: string
+                numInstances:
+                    type: number
+                    default: 1
+                plan:
+                    type: string
+                    enum:
+                        - starter
+                        - starter_plus
+                        - standard
+                        - standard_plus
+                        - pro
+                        - pro_plus
+                        - pro_max
+                        - pro_ultra
+                    default: starter
+                pullRequestPreviewsEnabled:
+                    type: string
+                    enum:
+                        - "yes"
+                        - "no"
+                    default: "no"
+        patchStaticSite:
+            type: object
+            title: StaticSite
+            description: The PATCH object to update a static website service
+            properties:
+                autoDeploy:
+                    type: string
+                    enum:
+                        - "yes"
+                        - "no"
+                    default: "no"
+                branch:
+                    type: string
+                buildCommand:
+                    type: string
+                name:
+                    type: string
+                publishPath:
+                    type: string
+                    default: public
+                pullRequestPreviewsEnabled:
+                    type: string
+                    enum:
+                        - "yes"
+                        - "no"
+                    default: "no"
+        patchWebService:
+            type: object
+            title: WebService
+            description: The PATCH object to update a web service
+            properties:
+                autoDeploy:
+                    type: string
+                    enum:
+                        - "yes"
+                        - "no"
+                    default: "no"
+                branch:
+                    type: string
+                envSpecificDetails:
+                    oneOf:
+                        - $ref: '#/components/schemas/dockerDetails'
+                        - $ref: '#/components/schemas/nativeEnvironmentDetails'
+                healthCheckPath:
+                    type: string
+                name:
+                    type: string
+                numInstances:
+                    type: number
+                    default: 1
+                plan:
+                    type: string
+                    enum:
+                        - starter
+                        - starter_plus
+                        - standard
+                        - standard_plus
+                        - pro
+                        - pro_plus
+                        - pro_max
+                        - pro_ultra
+                    default: starter
+                pullRequestPreviewsEnabled:
+                    type: string
+                    enum:
+                        - "yes"
+                        - "no"
+                    default: "no"
+        privateService:
+            allOf:
+                - $ref: '#/components/schemas/service'
+                - type: object
+                  properties:
+                    serviceDetails:
+                        $ref: '#/components/schemas/privateServiceDetails'
+                    type:
+                        type: string
+                        default: private_service
+                        readOnly: true
+            title: PrivateService
+            description: A private service
+        privateServiceDetails:
+            type: object
+            title: PrivateService
+            required:
+                - env
+            properties:
+                disk:
+                    $ref: '#/components/schemas/disk'
+                env:
+                    type: string
+                    enum:
+                        - docker
+                        - elixir
+                        - go
+                        - node
+                        - python
+                        - ruby
+                        - rust
+                envSpecificDetails:
+                    oneOf:
+                        - $ref: '#/components/schemas/dockerDetails'
+                        - $ref: '#/components/schemas/nativeEnvironmentDetails'
+                numInstances:
+                    type: number
+                    default: 1
+                openPorts:
+                    type: array
+                    readOnly: true
+                    items:
+                        $ref: '#/components/schemas/openPorts'
+                parentServer:
+                    type: object
+                    readOnly: true
+                    properties:
+                        id:
+                            type: string
+                            readOnly: true
+                        name:
+                            type: string
+                            readOnly: true
+                plan:
+                    type: string
+                    enum:
+                        - starter
+                        - starter_plus
+                        - standard
+                        - standard_plus
+                        - pro
+                        - pro_plus
+                        - pro_max
+                        - pro_ultra
+                    default: starter
+                pullRequestPreviewsEnabled:
+                    type: string
+                    enum:
+                        - "yes"
+                        - "no"
+                    default: "no"
+                region:
+                    type: string
+                    enum:
+                        - oregon
+                        - frankfurt
+                    default: oregon
+                url:
+                    type: string
+                    readOnly: true
+        secretFile:
+            type: object
+            required:
+                - name
+                - contents
+            properties:
+                contents:
+                    type: string
+                name:
+                    type: string
+        service:
+            type: object
+            title: Service
+            description: The service object represents a service. The type of service is discriminated by the type property which determines the type of object in the serviceDetails property.
+            required:
+                - type
+                - name
+                - ownerId
+                - repo
+            properties:
+                autoDeploy:
+                    type: string
+                    description: Whether to auto deploy the service or not upon git push.
+                    enum:
+                        - "yes"
+                        - "no"
+                    default: "no"
+                branch:
+                    type: string
+                    description: If left empty, this will fall back to the default branch of the repository.
+                createdAt:
+                    type: string
+                    readOnly: true
+                envVars:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/envVarKeyValue'
+                name:
+                    type: string
+                notifyOnFail:
+                    type: string
+                    description: The notification setting for this service upon deployment failure.
+                    enum:
+                        - default
+                        - notify
+                        - ignore
+                    readOnly: true
+                ownerId:
+                    type: string
+                    description: The id of the owner (user/team).
+                repo:
+                    type: string
+                    description: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+                secretFiles:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/secretFile'
+                slug:
+                    type: string
+                    readOnly: true
+                suspended:
+                    type: string
+                    enum:
+                        - suspended
+                        - not_suspended
+                    readOnly: true
+                suspenders:
+                    type: array
+                    readOnly: true
+                    items:
+                        type: string
+                updatedAt:
+                    type: string
+                    readOnly: true
+        serviceHeader:
+            type: object
+            description: A service header object
+            required:
+                - path
+                - name
+                - value
+            properties:
+                name:
+                    type: string
+                path:
+                    type: string
+                value:
+                    type: string
+        staticSite:
+            allOf:
+                - $ref: '#/components/schemas/service'
+                - type: object
+                  properties:
+                    serviceDetails:
+                        $ref: '#/components/schemas/staticSiteServiceDetails'
+                    type:
+                        type: string
+                        default: static_site
+            title: StaticSite
+            description: A static website service
+        staticSiteRoute:
+            type: object
+            description: A route object for a static site
+            required:
+                - type
+                - source
+                - destination
+            properties:
+                destination:
+                    type: string
+                source:
+                    type: string
+                type:
+                    type: string
+                    enum:
+                        - redirect
+                        - rewrite
+        staticSiteServiceDetails:
+            type: object
+            title: StaticSite
+            properties:
+                buildCommand:
+                    type: string
+                headers:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/serviceHeader'
+                parentServer:
+                    type: object
+                    readOnly: true
+                    properties:
+                        id:
+                            type: string
+                            readOnly: true
+                        name:
+                            type: string
+                            readOnly: true
+                publishPath:
+                    type: string
+                    default: public
+                pullRequestPreviewsEnabled:
+                    type: string
+                    enum:
+                        - "yes"
+                        - "no"
+                    default: "no"
+                routes:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/staticSiteRoute'
+                url:
+                    type: string
+                    description: The HTTPS service URL. A subdomain of onrender.com, by default.
+                    readOnly: true
+        suspendService:
+            type: object
+            title: Suspend
+        webService:
+            allOf:
+                - $ref: '#/components/schemas/service'
+                - type: object
+                  properties:
+                    serviceDetails:
+                        $ref: '#/components/schemas/webServiceServiceDetails'
+                    type:
+                        type: string
+                        default: web_service
+            title: WebService
+            description: A web service
+        webServiceServiceDetails:
+            type: object
+            title: WebService
+            required:
+                - env
+            properties:
+                disk:
+                    $ref: '#/components/schemas/disk'
+                env:
+                    type: string
+                    enum:
+                        - docker
+                        - elixir
+                        - go
+                        - node
+                        - python
+                        - ruby
+                        - rust
+                envSpecificDetails:
+                    oneOf:
+                        - $ref: '#/components/schemas/dockerDetails'
+                        - $ref: '#/components/schemas/nativeEnvironmentDetails'
+                healthCheckPath:
+                    type: string
+                numInstances:
+                    type: number
+                    default: 1
+                openPorts:
+                    type: array
+                    readOnly: true
+                    items:
+                        $ref: '#/components/schemas/openPorts'
+                parentServer:
+                    type: object
+                    readOnly: true
+                    properties:
+                        id:
+                            type: string
+                            readOnly: true
+                        name:
+                            type: string
+                            readOnly: true
+                plan:
+                    type: string
+                    enum:
+                        - starter
+                        - starter_plus
+                        - standard
+                        - standard_plus
+                        - pro
+                        - pro_plus
+                        - pro_max
+                        - pro_ultra
+                    default: starter
+                pullRequestPreviewsEnabled:
+                    type: string
+                    enum:
+                        - "yes"
+                        - "no"
+                    default: "no"
+                region:
+                    type: string
+                    enum:
+                        - oregon
+                        - frankfurt
+                    default: oregon
+                url:
+                    type: string
+                    readOnly: true
+    securitySchemes:
+        bearerAuth:
+            type: http
+            scheme: bearer
+info:
+    title: Render Public API
+    description: "[https://render.com/docs/api](https://render.com/docs/api)\n\nContact Support:  \nName: Render API  \nEmail: [support@render.com](mailto:support@render.com)"
+    version: 1.0.0
+paths: {}
+security:
+    - bearerAuth: []
+servers:
+    - url: https://api.render.com/v1
+tags:
+    - name: Owners
+      description: '[https://api-docs.render.com/reference/owners-1](https://api-docs.render.com/reference/owners-1)'
+    - name: Services
+      description: '[https://api-docs.render.com/reference/service-fields](https://api-docs.render.com/reference/service-fields)'
+    - name: Deploys
+      description: '[https://api-docs.render.com/reference/get-deploys](https://api-docs.render.com/reference/get-deploys)'
+    - name: Custom Domains
+    - name: Jobs

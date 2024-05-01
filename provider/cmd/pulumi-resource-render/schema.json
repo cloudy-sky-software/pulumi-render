@@ -2095,6 +2095,39 @@
                 }
             }
         },
+        "render:services:EnvVars": {
+            "properties": {
+                "envVars": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:EnvVarKeyValue"
+                    },
+                    "language": {
+                        "csharp": {
+                            "name": "EnvVarsValue"
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "inputProperties": {
+                "envVars": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:EnvVarKeyValue"
+                    },
+                    "language": {
+                        "csharp": {
+                            "name": "EnvVarsValue"
+                        }
+                    }
+                },
+                "serviceId": {
+                    "type": "string",
+                    "description": "(Required) The ID of the service"
+                }
+            }
+        },
         "render:services:Jobs": {
             "properties": {
                 "createdAt": {
@@ -2137,29 +2170,6 @@
                 "planId",
                 "startCommand"
             ]
-        },
-        "render:services:ReplaceEnvVars": {
-            "properties": {
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:EnvVarKeyValue"
-                    }
-                }
-            },
-            "type": "object",
-            "inputProperties": {
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:EnvVarKeyValue"
-                    }
-                },
-                "serviceId": {
-                    "type": "string",
-                    "description": "(Required) The ID of the service"
-                }
-            }
         },
         "render:services:Scale": {
             "properties": {

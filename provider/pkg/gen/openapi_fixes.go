@@ -34,6 +34,9 @@ func getResourceFromPath(path string) (string, error) {
 	return pulschema_pkg.ToPascalCase(resourceName), nil
 }
 
+// Render's API operations do not have an operationId,
+// so we'll need to generate them based on the resource
+// in the operation path.
 func FixOpenAPIDoc(openAPIDoc *openapi3.T) error {
 	for _, path := range openAPIDoc.Paths.InMatchingOrder() {
 		pathItem := openAPIDoc.Paths.Find(path)
@@ -50,15 +53,7 @@ func FixOpenAPIDoc(openAPIDoc *openapi3.T) error {
 
 		if pathItem.Get != nil {
 			if endsWithPathParam {
-				// HACK! Use the singular version of the resource name
-				// where the current operation is fetching a single
-				// item instead of a list. Alternatively, we could
-				// look at the response type to see if it's an array.
-				if strings.HasSuffix(resourceName, "s") {
-					pathItem.Get.OperationID = "get" + resourceName[0:len(resourceName) - 1]
-				} else {
-					pathItem.Get.OperationID = "get" + resourceName
-				}
+				pathItem.Get.OperationID = "get" + resourceName
 			} else {
 				pathItem.Get.OperationID = "list" + resourceName
 			}

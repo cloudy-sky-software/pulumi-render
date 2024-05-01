@@ -196,8 +196,3 @@ require (
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 	lukechampine.com/frand v1.4.2 // indirect
 )
-
-// For https://github.com/cloudy-sky-software/pulumi-render/security/dependabot/5.
-replace golang.org/x/net => golang.org/x/net v0.20.0
-
-replace github.com/cloudy-sky-software/pulschema => ../../pulschema

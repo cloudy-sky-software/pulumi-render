@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type Scale struct {
@@ -97,12 +96,6 @@ func (i *Scale) ToScaleOutputWithContext(ctx context.Context) ScaleOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ScaleOutput)
 }
 
-func (i *Scale) ToOutput(ctx context.Context) pulumix.Output[*Scale] {
-	return pulumix.Output[*Scale]{
-		OutputState: i.ToScaleOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ScaleOutput struct{ *pulumi.OutputState }
 
 func (ScaleOutput) ElementType() reflect.Type {
@@ -115,12 +108,6 @@ func (o ScaleOutput) ToScaleOutput() ScaleOutput {
 
 func (o ScaleOutput) ToScaleOutputWithContext(ctx context.Context) ScaleOutput {
 	return o
-}
-
-func (o ScaleOutput) ToOutput(ctx context.Context) pulumix.Output[*Scale] {
-	return pulumix.Output[*Scale]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ScaleOutput) NumInstances() pulumi.Float64Output {

@@ -9,7 +9,6 @@ import (
 
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupStaticSite(ctx *pulumi.Context, args *LookupStaticSiteArgs, opts ...pulumi.InvokeOption) (*LookupStaticSiteResult, error) {
@@ -28,7 +27,7 @@ type LookupStaticSiteArgs struct {
 }
 
 type LookupStaticSiteResult struct {
-	Items GetStaticSiteType `pulumi:"items"`
+	Items GetStaticSite `pulumi:"items"`
 }
 
 // Defaults sets the appropriate defaults for LookupStaticSiteResult
@@ -78,14 +77,8 @@ func (o LookupStaticSiteResultOutput) ToLookupStaticSiteResultOutputWithContext(
 	return o
 }
 
-func (o LookupStaticSiteResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupStaticSiteResult] {
-	return pulumix.Output[LookupStaticSiteResult]{
-		OutputState: o.OutputState,
-	}
-}
-
-func (o LookupStaticSiteResultOutput) Items() GetStaticSiteTypeOutput {
-	return o.ApplyT(func(v LookupStaticSiteResult) GetStaticSiteType { return v.Items }).(GetStaticSiteTypeOutput)
+func (o LookupStaticSiteResultOutput) Items() GetStaticSiteOutput {
+	return o.ApplyT(func(v LookupStaticSiteResult) GetStaticSite { return v.Items }).(GetStaticSiteOutput)
 }
 
 func init() {

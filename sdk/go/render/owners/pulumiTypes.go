@@ -9,7 +9,6 @@ import (
 
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 var _ = internal.GetEnvOrDefault
@@ -18,6 +17,49 @@ type ListOwnersResponse struct {
 	Cursor *string `pulumi:"cursor"`
 	// The owner object represents an authorized user or team. The `type` property indicates if the owner is a user or team.
 	Owner *Owner `pulumi:"owner"`
+}
+
+type ListOwnersResponseOutput struct{ *pulumi.OutputState }
+
+func (ListOwnersResponseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListOwnersResponse)(nil)).Elem()
+}
+
+func (o ListOwnersResponseOutput) ToListOwnersResponseOutput() ListOwnersResponseOutput {
+	return o
+}
+
+func (o ListOwnersResponseOutput) ToListOwnersResponseOutputWithContext(ctx context.Context) ListOwnersResponseOutput {
+	return o
+}
+
+func (o ListOwnersResponseOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListOwnersResponse) *string { return v.Cursor }).(pulumi.StringPtrOutput)
+}
+
+// The owner object represents an authorized user or team. The `type` property indicates if the owner is a user or team.
+func (o ListOwnersResponseOutput) Owner() OwnerPtrOutput {
+	return o.ApplyT(func(v ListOwnersResponse) *Owner { return v.Owner }).(OwnerPtrOutput)
+}
+
+type ListOwnersResponseArrayOutput struct{ *pulumi.OutputState }
+
+func (ListOwnersResponseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListOwnersResponse)(nil)).Elem()
+}
+
+func (o ListOwnersResponseArrayOutput) ToListOwnersResponseArrayOutput() ListOwnersResponseArrayOutput {
+	return o
+}
+
+func (o ListOwnersResponseArrayOutput) ToListOwnersResponseArrayOutputWithContext(ctx context.Context) ListOwnersResponseArrayOutput {
+	return o
+}
+
+func (o ListOwnersResponseArrayOutput) Index(i pulumi.IntInput) ListOwnersResponseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListOwnersResponse {
+		return vs[0].([]ListOwnersResponse)[vs[1].(int)]
+	}).(ListOwnersResponseOutput)
 }
 
 // The owner object represents an authorized user or team. The `type` property indicates if the owner is a user or team.
@@ -47,12 +89,6 @@ func (o OwnerOutput) ToOwnerOutputWithContext(ctx context.Context) OwnerOutput {
 	return o
 }
 
-func (o OwnerOutput) ToOutput(ctx context.Context) pulumix.Output[Owner] {
-	return pulumix.Output[Owner]{
-		OutputState: o.OutputState,
-	}
-}
-
 // The email of the owner.
 func (o OwnerOutput) Email() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Owner) *string { return v.Email }).(pulumi.StringPtrOutput)
@@ -73,6 +109,73 @@ func (o OwnerOutput) Type() OwnerTypePtrOutput {
 	return o.ApplyT(func(v Owner) *OwnerType { return v.Type }).(OwnerTypePtrOutput)
 }
 
+type OwnerPtrOutput struct{ *pulumi.OutputState }
+
+func (OwnerPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Owner)(nil)).Elem()
+}
+
+func (o OwnerPtrOutput) ToOwnerPtrOutput() OwnerPtrOutput {
+	return o
+}
+
+func (o OwnerPtrOutput) ToOwnerPtrOutputWithContext(ctx context.Context) OwnerPtrOutput {
+	return o
+}
+
+func (o OwnerPtrOutput) Elem() OwnerOutput {
+	return o.ApplyT(func(v *Owner) Owner {
+		if v != nil {
+			return *v
+		}
+		var ret Owner
+		return ret
+	}).(OwnerOutput)
+}
+
+// The email of the owner.
+func (o OwnerPtrOutput) Email() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Owner) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Email
+	}).(pulumi.StringPtrOutput)
+}
+
+// The owner ID.
+func (o OwnerPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Owner) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// The name of the owner.
+func (o OwnerPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Owner) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+// The type of the authorized user.
+func (o OwnerPtrOutput) Type() OwnerTypePtrOutput {
+	return o.ApplyT(func(v *Owner) *OwnerType {
+		if v == nil {
+			return nil
+		}
+		return v.Type
+	}).(OwnerTypePtrOutput)
+}
+
 func init() {
+	pulumi.RegisterOutputType(ListOwnersResponseOutput{})
+	pulumi.RegisterOutputType(ListOwnersResponseArrayOutput{})
 	pulumi.RegisterOutputType(OwnerOutput{})
+	pulumi.RegisterOutputType(OwnerPtrOutput{})
 }

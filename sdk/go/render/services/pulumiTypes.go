@@ -9,13 +9,12 @@ import (
 
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 var _ = internal.GetEnvOrDefault
 
 // A background worker service
-type BackgroundWorkerType struct {
+type BackgroundWorker struct {
 	// Whether to auto deploy the service or not upon git push.
 	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
@@ -38,8 +37,8 @@ type BackgroundWorkerType struct {
 	UpdatedAt      *string                         `pulumi:"updatedAt"`
 }
 
-// Defaults sets the appropriate defaults for BackgroundWorkerType
-func (val *BackgroundWorkerType) Defaults() *BackgroundWorkerType {
+// Defaults sets the appropriate defaults for BackgroundWorker
+func (val *BackgroundWorker) Defaults() *BackgroundWorker {
 	if val == nil {
 		return nil
 	}
@@ -55,6 +54,250 @@ func (val *BackgroundWorkerType) Defaults() *BackgroundWorkerType {
 		tmp.Type = &type_
 	}
 	return &tmp
+}
+
+// A background worker service
+type BackgroundWorkerOutput struct{ *pulumi.OutputState }
+
+func (BackgroundWorkerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackgroundWorker)(nil)).Elem()
+}
+
+func (o BackgroundWorkerOutput) ToBackgroundWorkerOutput() BackgroundWorkerOutput {
+	return o
+}
+
+func (o BackgroundWorkerOutput) ToBackgroundWorkerOutputWithContext(ctx context.Context) BackgroundWorkerOutput {
+	return o
+}
+
+// Whether to auto deploy the service or not upon git push.
+func (o BackgroundWorkerOutput) AutoDeploy() ServiceAutoDeployPtrOutput {
+	return o.ApplyT(func(v BackgroundWorker) *ServiceAutoDeploy { return v.AutoDeploy }).(ServiceAutoDeployPtrOutput)
+}
+
+// If left empty, this will fall back to the default branch of the repository.
+func (o BackgroundWorkerOutput) Branch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BackgroundWorker) *string { return v.Branch }).(pulumi.StringPtrOutput)
+}
+
+func (o BackgroundWorkerOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BackgroundWorker) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+}
+
+func (o BackgroundWorkerOutput) EnvVars() EnvVarKeyValueArrayOutput {
+	return o.ApplyT(func(v BackgroundWorker) []EnvVarKeyValue { return v.EnvVars }).(EnvVarKeyValueArrayOutput)
+}
+
+func (o BackgroundWorkerOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v BackgroundWorker) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The notification setting for this service upon deployment failure.
+func (o BackgroundWorkerOutput) NotifyOnFail() ServiceNotifyOnFailPtrOutput {
+	return o.ApplyT(func(v BackgroundWorker) *ServiceNotifyOnFail { return v.NotifyOnFail }).(ServiceNotifyOnFailPtrOutput)
+}
+
+// The id of the owner (user/team).
+func (o BackgroundWorkerOutput) OwnerId() pulumi.StringOutput {
+	return o.ApplyT(func(v BackgroundWorker) string { return v.OwnerId }).(pulumi.StringOutput)
+}
+
+// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+func (o BackgroundWorkerOutput) Repo() pulumi.StringOutput {
+	return o.ApplyT(func(v BackgroundWorker) string { return v.Repo }).(pulumi.StringOutput)
+}
+
+func (o BackgroundWorkerOutput) SecretFiles() SecretFileArrayOutput {
+	return o.ApplyT(func(v BackgroundWorker) []SecretFile { return v.SecretFiles }).(SecretFileArrayOutput)
+}
+
+func (o BackgroundWorkerOutput) ServiceDetails() BackgroundWorkerServiceDetailsPtrOutput {
+	return o.ApplyT(func(v BackgroundWorker) *BackgroundWorkerServiceDetails { return v.ServiceDetails }).(BackgroundWorkerServiceDetailsPtrOutput)
+}
+
+func (o BackgroundWorkerOutput) Slug() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BackgroundWorker) *string { return v.Slug }).(pulumi.StringPtrOutput)
+}
+
+func (o BackgroundWorkerOutput) Suspended() ServiceSuspendedPtrOutput {
+	return o.ApplyT(func(v BackgroundWorker) *ServiceSuspended { return v.Suspended }).(ServiceSuspendedPtrOutput)
+}
+
+func (o BackgroundWorkerOutput) Suspenders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v BackgroundWorker) []string { return v.Suspenders }).(pulumi.StringArrayOutput)
+}
+
+func (o BackgroundWorkerOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BackgroundWorker) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+func (o BackgroundWorkerOutput) UpdatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BackgroundWorker) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
+}
+
+type BackgroundWorkerPtrOutput struct{ *pulumi.OutputState }
+
+func (BackgroundWorkerPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackgroundWorker)(nil)).Elem()
+}
+
+func (o BackgroundWorkerPtrOutput) ToBackgroundWorkerPtrOutput() BackgroundWorkerPtrOutput {
+	return o
+}
+
+func (o BackgroundWorkerPtrOutput) ToBackgroundWorkerPtrOutputWithContext(ctx context.Context) BackgroundWorkerPtrOutput {
+	return o
+}
+
+func (o BackgroundWorkerPtrOutput) Elem() BackgroundWorkerOutput {
+	return o.ApplyT(func(v *BackgroundWorker) BackgroundWorker {
+		if v != nil {
+			return *v
+		}
+		var ret BackgroundWorker
+		return ret
+	}).(BackgroundWorkerOutput)
+}
+
+// Whether to auto deploy the service or not upon git push.
+func (o BackgroundWorkerPtrOutput) AutoDeploy() ServiceAutoDeployPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorker) *ServiceAutoDeploy {
+		if v == nil {
+			return nil
+		}
+		return v.AutoDeploy
+	}).(ServiceAutoDeployPtrOutput)
+}
+
+// If left empty, this will fall back to the default branch of the repository.
+func (o BackgroundWorkerPtrOutput) Branch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorker) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Branch
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o BackgroundWorkerPtrOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorker) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedAt
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o BackgroundWorkerPtrOutput) EnvVars() EnvVarKeyValueArrayOutput {
+	return o.ApplyT(func(v *BackgroundWorker) []EnvVarKeyValue {
+		if v == nil {
+			return nil
+		}
+		return v.EnvVars
+	}).(EnvVarKeyValueArrayOutput)
+}
+
+func (o BackgroundWorkerPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorker) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+// The notification setting for this service upon deployment failure.
+func (o BackgroundWorkerPtrOutput) NotifyOnFail() ServiceNotifyOnFailPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorker) *ServiceNotifyOnFail {
+		if v == nil {
+			return nil
+		}
+		return v.NotifyOnFail
+	}).(ServiceNotifyOnFailPtrOutput)
+}
+
+// The id of the owner (user/team).
+func (o BackgroundWorkerPtrOutput) OwnerId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorker) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.OwnerId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+func (o BackgroundWorkerPtrOutput) Repo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorker) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Repo
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o BackgroundWorkerPtrOutput) SecretFiles() SecretFileArrayOutput {
+	return o.ApplyT(func(v *BackgroundWorker) []SecretFile {
+		if v == nil {
+			return nil
+		}
+		return v.SecretFiles
+	}).(SecretFileArrayOutput)
+}
+
+func (o BackgroundWorkerPtrOutput) ServiceDetails() BackgroundWorkerServiceDetailsPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorker) *BackgroundWorkerServiceDetails {
+		if v == nil {
+			return nil
+		}
+		return v.ServiceDetails
+	}).(BackgroundWorkerServiceDetailsPtrOutput)
+}
+
+func (o BackgroundWorkerPtrOutput) Slug() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorker) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Slug
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o BackgroundWorkerPtrOutput) Suspended() ServiceSuspendedPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorker) *ServiceSuspended {
+		if v == nil {
+			return nil
+		}
+		return v.Suspended
+	}).(ServiceSuspendedPtrOutput)
+}
+
+func (o BackgroundWorkerPtrOutput) Suspenders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *BackgroundWorker) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Suspenders
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o BackgroundWorkerPtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorker) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o BackgroundWorkerPtrOutput) UpdatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorker) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UpdatedAt
+	}).(pulumi.StringPtrOutput)
 }
 
 type BackgroundWorkerServiceDetails struct {
@@ -152,12 +395,6 @@ func (i BackgroundWorkerServiceDetailsArgs) ToBackgroundWorkerServiceDetailsOutp
 	return pulumi.ToOutputWithContext(ctx, i).(BackgroundWorkerServiceDetailsOutput)
 }
 
-func (i BackgroundWorkerServiceDetailsArgs) ToOutput(ctx context.Context) pulumix.Output[BackgroundWorkerServiceDetails] {
-	return pulumix.Output[BackgroundWorkerServiceDetails]{
-		OutputState: i.ToBackgroundWorkerServiceDetailsOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i BackgroundWorkerServiceDetailsArgs) ToBackgroundWorkerServiceDetailsPtrOutput() BackgroundWorkerServiceDetailsPtrOutput {
 	return i.ToBackgroundWorkerServiceDetailsPtrOutputWithContext(context.Background())
 }
@@ -199,12 +436,6 @@ func (i *backgroundWorkerServiceDetailsPtrType) ToBackgroundWorkerServiceDetails
 	return pulumi.ToOutputWithContext(ctx, i).(BackgroundWorkerServiceDetailsPtrOutput)
 }
 
-func (i *backgroundWorkerServiceDetailsPtrType) ToOutput(ctx context.Context) pulumix.Output[*BackgroundWorkerServiceDetails] {
-	return pulumix.Output[*BackgroundWorkerServiceDetails]{
-		OutputState: i.ToBackgroundWorkerServiceDetailsPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type BackgroundWorkerServiceDetailsOutput struct{ *pulumi.OutputState }
 
 func (BackgroundWorkerServiceDetailsOutput) ElementType() reflect.Type {
@@ -227,12 +458,6 @@ func (o BackgroundWorkerServiceDetailsOutput) ToBackgroundWorkerServiceDetailsPt
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v BackgroundWorkerServiceDetails) *BackgroundWorkerServiceDetails {
 		return &v
 	}).(BackgroundWorkerServiceDetailsPtrOutput)
-}
-
-func (o BackgroundWorkerServiceDetailsOutput) ToOutput(ctx context.Context) pulumix.Output[BackgroundWorkerServiceDetails] {
-	return pulumix.Output[BackgroundWorkerServiceDetails]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o BackgroundWorkerServiceDetailsOutput) Disk() DiskPtrOutput {
@@ -287,12 +512,6 @@ func (o BackgroundWorkerServiceDetailsPtrOutput) ToBackgroundWorkerServiceDetail
 
 func (o BackgroundWorkerServiceDetailsPtrOutput) ToBackgroundWorkerServiceDetailsPtrOutputWithContext(ctx context.Context) BackgroundWorkerServiceDetailsPtrOutput {
 	return o
-}
-
-func (o BackgroundWorkerServiceDetailsPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*BackgroundWorkerServiceDetails] {
-	return pulumix.Output[*BackgroundWorkerServiceDetails]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o BackgroundWorkerServiceDetailsPtrOutput) Elem() BackgroundWorkerServiceDetailsOutput {
@@ -419,12 +638,6 @@ func (i BackgroundWorkerServiceDetailsParentServerPropertiesArgs) ToBackgroundWo
 	return pulumi.ToOutputWithContext(ctx, i).(BackgroundWorkerServiceDetailsParentServerPropertiesOutput)
 }
 
-func (i BackgroundWorkerServiceDetailsParentServerPropertiesArgs) ToOutput(ctx context.Context) pulumix.Output[BackgroundWorkerServiceDetailsParentServerProperties] {
-	return pulumix.Output[BackgroundWorkerServiceDetailsParentServerProperties]{
-		OutputState: i.ToBackgroundWorkerServiceDetailsParentServerPropertiesOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i BackgroundWorkerServiceDetailsParentServerPropertiesArgs) ToBackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput() BackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput {
 	return i.ToBackgroundWorkerServiceDetailsParentServerPropertiesPtrOutputWithContext(context.Background())
 }
@@ -466,12 +679,6 @@ func (i *backgroundWorkerServiceDetailsParentServerPropertiesPtrType) ToBackgrou
 	return pulumi.ToOutputWithContext(ctx, i).(BackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput)
 }
 
-func (i *backgroundWorkerServiceDetailsParentServerPropertiesPtrType) ToOutput(ctx context.Context) pulumix.Output[*BackgroundWorkerServiceDetailsParentServerProperties] {
-	return pulumix.Output[*BackgroundWorkerServiceDetailsParentServerProperties]{
-		OutputState: i.ToBackgroundWorkerServiceDetailsParentServerPropertiesPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type BackgroundWorkerServiceDetailsParentServerPropertiesOutput struct{ *pulumi.OutputState }
 
 func (BackgroundWorkerServiceDetailsParentServerPropertiesOutput) ElementType() reflect.Type {
@@ -496,12 +703,6 @@ func (o BackgroundWorkerServiceDetailsParentServerPropertiesOutput) ToBackground
 	}).(BackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput)
 }
 
-func (o BackgroundWorkerServiceDetailsParentServerPropertiesOutput) ToOutput(ctx context.Context) pulumix.Output[BackgroundWorkerServiceDetailsParentServerProperties] {
-	return pulumix.Output[BackgroundWorkerServiceDetailsParentServerProperties]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o BackgroundWorkerServiceDetailsParentServerPropertiesOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BackgroundWorkerServiceDetailsParentServerProperties) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
@@ -522,12 +723,6 @@ func (o BackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput) ToBackgro
 
 func (o BackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput) ToBackgroundWorkerServiceDetailsParentServerPropertiesPtrOutputWithContext(ctx context.Context) BackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput {
 	return o
-}
-
-func (o BackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*BackgroundWorkerServiceDetailsParentServerProperties] {
-	return pulumix.Output[*BackgroundWorkerServiceDetailsParentServerProperties]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o BackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput) Elem() BackgroundWorkerServiceDetailsParentServerPropertiesOutput {
@@ -578,12 +773,6 @@ func (o CommitOutput) ToCommitOutputWithContext(ctx context.Context) CommitOutpu
 	return o
 }
 
-func (o CommitOutput) ToOutput(ctx context.Context) pulumix.Output[Commit] {
-	return pulumix.Output[Commit]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o CommitOutput) CreatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Commit) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
@@ -608,12 +797,6 @@ func (o CommitPtrOutput) ToCommitPtrOutput() CommitPtrOutput {
 
 func (o CommitPtrOutput) ToCommitPtrOutputWithContext(ctx context.Context) CommitPtrOutput {
 	return o
-}
-
-func (o CommitPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*Commit] {
-	return pulumix.Output[*Commit]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o CommitPtrOutput) Elem() CommitOutput {
@@ -654,7 +837,7 @@ func (o CommitPtrOutput) Message() pulumi.StringPtrOutput {
 }
 
 // A cron job
-type CronJobType struct {
+type CronJob struct {
 	// Whether to auto deploy the service or not upon git push.
 	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
@@ -677,8 +860,8 @@ type CronJobType struct {
 	UpdatedAt      *string                `pulumi:"updatedAt"`
 }
 
-// Defaults sets the appropriate defaults for CronJobType
-func (val *CronJobType) Defaults() *CronJobType {
+// Defaults sets the appropriate defaults for CronJob
+func (val *CronJob) Defaults() *CronJob {
 	if val == nil {
 		return nil
 	}
@@ -694,6 +877,250 @@ func (val *CronJobType) Defaults() *CronJobType {
 		tmp.Type = &type_
 	}
 	return &tmp
+}
+
+// A cron job
+type CronJobOutput struct{ *pulumi.OutputState }
+
+func (CronJobOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CronJob)(nil)).Elem()
+}
+
+func (o CronJobOutput) ToCronJobOutput() CronJobOutput {
+	return o
+}
+
+func (o CronJobOutput) ToCronJobOutputWithContext(ctx context.Context) CronJobOutput {
+	return o
+}
+
+// Whether to auto deploy the service or not upon git push.
+func (o CronJobOutput) AutoDeploy() ServiceAutoDeployPtrOutput {
+	return o.ApplyT(func(v CronJob) *ServiceAutoDeploy { return v.AutoDeploy }).(ServiceAutoDeployPtrOutput)
+}
+
+// If left empty, this will fall back to the default branch of the repository.
+func (o CronJobOutput) Branch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CronJob) *string { return v.Branch }).(pulumi.StringPtrOutput)
+}
+
+func (o CronJobOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CronJob) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+}
+
+func (o CronJobOutput) EnvVars() EnvVarKeyValueArrayOutput {
+	return o.ApplyT(func(v CronJob) []EnvVarKeyValue { return v.EnvVars }).(EnvVarKeyValueArrayOutput)
+}
+
+func (o CronJobOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v CronJob) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The notification setting for this service upon deployment failure.
+func (o CronJobOutput) NotifyOnFail() ServiceNotifyOnFailPtrOutput {
+	return o.ApplyT(func(v CronJob) *ServiceNotifyOnFail { return v.NotifyOnFail }).(ServiceNotifyOnFailPtrOutput)
+}
+
+// The id of the owner (user/team).
+func (o CronJobOutput) OwnerId() pulumi.StringOutput {
+	return o.ApplyT(func(v CronJob) string { return v.OwnerId }).(pulumi.StringOutput)
+}
+
+// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+func (o CronJobOutput) Repo() pulumi.StringOutput {
+	return o.ApplyT(func(v CronJob) string { return v.Repo }).(pulumi.StringOutput)
+}
+
+func (o CronJobOutput) SecretFiles() SecretFileArrayOutput {
+	return o.ApplyT(func(v CronJob) []SecretFile { return v.SecretFiles }).(SecretFileArrayOutput)
+}
+
+func (o CronJobOutput) ServiceDetails() CronJobServiceDetailsPtrOutput {
+	return o.ApplyT(func(v CronJob) *CronJobServiceDetails { return v.ServiceDetails }).(CronJobServiceDetailsPtrOutput)
+}
+
+func (o CronJobOutput) Slug() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CronJob) *string { return v.Slug }).(pulumi.StringPtrOutput)
+}
+
+func (o CronJobOutput) Suspended() ServiceSuspendedPtrOutput {
+	return o.ApplyT(func(v CronJob) *ServiceSuspended { return v.Suspended }).(ServiceSuspendedPtrOutput)
+}
+
+func (o CronJobOutput) Suspenders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v CronJob) []string { return v.Suspenders }).(pulumi.StringArrayOutput)
+}
+
+func (o CronJobOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CronJob) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+func (o CronJobOutput) UpdatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CronJob) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
+}
+
+type CronJobPtrOutput struct{ *pulumi.OutputState }
+
+func (CronJobPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CronJob)(nil)).Elem()
+}
+
+func (o CronJobPtrOutput) ToCronJobPtrOutput() CronJobPtrOutput {
+	return o
+}
+
+func (o CronJobPtrOutput) ToCronJobPtrOutputWithContext(ctx context.Context) CronJobPtrOutput {
+	return o
+}
+
+func (o CronJobPtrOutput) Elem() CronJobOutput {
+	return o.ApplyT(func(v *CronJob) CronJob {
+		if v != nil {
+			return *v
+		}
+		var ret CronJob
+		return ret
+	}).(CronJobOutput)
+}
+
+// Whether to auto deploy the service or not upon git push.
+func (o CronJobPtrOutput) AutoDeploy() ServiceAutoDeployPtrOutput {
+	return o.ApplyT(func(v *CronJob) *ServiceAutoDeploy {
+		if v == nil {
+			return nil
+		}
+		return v.AutoDeploy
+	}).(ServiceAutoDeployPtrOutput)
+}
+
+// If left empty, this will fall back to the default branch of the repository.
+func (o CronJobPtrOutput) Branch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CronJob) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Branch
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CronJobPtrOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CronJob) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedAt
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CronJobPtrOutput) EnvVars() EnvVarKeyValueArrayOutput {
+	return o.ApplyT(func(v *CronJob) []EnvVarKeyValue {
+		if v == nil {
+			return nil
+		}
+		return v.EnvVars
+	}).(EnvVarKeyValueArrayOutput)
+}
+
+func (o CronJobPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CronJob) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+// The notification setting for this service upon deployment failure.
+func (o CronJobPtrOutput) NotifyOnFail() ServiceNotifyOnFailPtrOutput {
+	return o.ApplyT(func(v *CronJob) *ServiceNotifyOnFail {
+		if v == nil {
+			return nil
+		}
+		return v.NotifyOnFail
+	}).(ServiceNotifyOnFailPtrOutput)
+}
+
+// The id of the owner (user/team).
+func (o CronJobPtrOutput) OwnerId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CronJob) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.OwnerId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+func (o CronJobPtrOutput) Repo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CronJob) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Repo
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CronJobPtrOutput) SecretFiles() SecretFileArrayOutput {
+	return o.ApplyT(func(v *CronJob) []SecretFile {
+		if v == nil {
+			return nil
+		}
+		return v.SecretFiles
+	}).(SecretFileArrayOutput)
+}
+
+func (o CronJobPtrOutput) ServiceDetails() CronJobServiceDetailsPtrOutput {
+	return o.ApplyT(func(v *CronJob) *CronJobServiceDetails {
+		if v == nil {
+			return nil
+		}
+		return v.ServiceDetails
+	}).(CronJobServiceDetailsPtrOutput)
+}
+
+func (o CronJobPtrOutput) Slug() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CronJob) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Slug
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CronJobPtrOutput) Suspended() ServiceSuspendedPtrOutput {
+	return o.ApplyT(func(v *CronJob) *ServiceSuspended {
+		if v == nil {
+			return nil
+		}
+		return v.Suspended
+	}).(ServiceSuspendedPtrOutput)
+}
+
+func (o CronJobPtrOutput) Suspenders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *CronJob) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Suspenders
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o CronJobPtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CronJob) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CronJobPtrOutput) UpdatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CronJob) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UpdatedAt
+	}).(pulumi.StringPtrOutput)
 }
 
 type CronJobServiceDetails struct {
@@ -768,12 +1195,6 @@ func (i CronJobServiceDetailsArgs) ToCronJobServiceDetailsOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(CronJobServiceDetailsOutput)
 }
 
-func (i CronJobServiceDetailsArgs) ToOutput(ctx context.Context) pulumix.Output[CronJobServiceDetails] {
-	return pulumix.Output[CronJobServiceDetails]{
-		OutputState: i.ToCronJobServiceDetailsOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i CronJobServiceDetailsArgs) ToCronJobServiceDetailsPtrOutput() CronJobServiceDetailsPtrOutput {
 	return i.ToCronJobServiceDetailsPtrOutputWithContext(context.Background())
 }
@@ -815,12 +1236,6 @@ func (i *cronJobServiceDetailsPtrType) ToCronJobServiceDetailsPtrOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(CronJobServiceDetailsPtrOutput)
 }
 
-func (i *cronJobServiceDetailsPtrType) ToOutput(ctx context.Context) pulumix.Output[*CronJobServiceDetails] {
-	return pulumix.Output[*CronJobServiceDetails]{
-		OutputState: i.ToCronJobServiceDetailsPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type CronJobServiceDetailsOutput struct{ *pulumi.OutputState }
 
 func (CronJobServiceDetailsOutput) ElementType() reflect.Type {
@@ -843,12 +1258,6 @@ func (o CronJobServiceDetailsOutput) ToCronJobServiceDetailsPtrOutputWithContext
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v CronJobServiceDetails) *CronJobServiceDetails {
 		return &v
 	}).(CronJobServiceDetailsPtrOutput)
-}
-
-func (o CronJobServiceDetailsOutput) ToOutput(ctx context.Context) pulumix.Output[CronJobServiceDetails] {
-	return pulumix.Output[CronJobServiceDetails]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o CronJobServiceDetailsOutput) Env() CronJobServiceDetailsEnvOutput {
@@ -887,12 +1296,6 @@ func (o CronJobServiceDetailsPtrOutput) ToCronJobServiceDetailsPtrOutput() CronJ
 
 func (o CronJobServiceDetailsPtrOutput) ToCronJobServiceDetailsPtrOutputWithContext(ctx context.Context) CronJobServiceDetailsPtrOutput {
 	return o
-}
-
-func (o CronJobServiceDetailsPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*CronJobServiceDetails] {
-	return pulumix.Output[*CronJobServiceDetails]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o CronJobServiceDetailsPtrOutput) Elem() CronJobServiceDetailsOutput {
@@ -959,7 +1362,7 @@ func (o CronJobServiceDetailsPtrOutput) Schedule() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-type CustomDomainType struct {
+type CustomDomain struct {
 	CreatedAt          *string                        `pulumi:"createdAt"`
 	DomainType         CustomDomainDomainType         `pulumi:"domainType"`
 	Name               string                         `pulumi:"name"`
@@ -969,86 +1372,74 @@ type CustomDomainType struct {
 	VerificationStatus CustomDomainVerificationStatus `pulumi:"verificationStatus"`
 }
 
-type CustomDomainTypeOutput struct{ *pulumi.OutputState }
+type CustomDomainOutput struct{ *pulumi.OutputState }
 
-func (CustomDomainTypeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CustomDomainType)(nil)).Elem()
+func (CustomDomainOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomDomain)(nil)).Elem()
 }
 
-func (o CustomDomainTypeOutput) ToCustomDomainTypeOutput() CustomDomainTypeOutput {
+func (o CustomDomainOutput) ToCustomDomainOutput() CustomDomainOutput {
 	return o
 }
 
-func (o CustomDomainTypeOutput) ToCustomDomainTypeOutputWithContext(ctx context.Context) CustomDomainTypeOutput {
+func (o CustomDomainOutput) ToCustomDomainOutputWithContext(ctx context.Context) CustomDomainOutput {
 	return o
 }
 
-func (o CustomDomainTypeOutput) ToOutput(ctx context.Context) pulumix.Output[CustomDomainType] {
-	return pulumix.Output[CustomDomainType]{
-		OutputState: o.OutputState,
-	}
+func (o CustomDomainOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CustomDomain) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
 
-func (o CustomDomainTypeOutput) CreatedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v CustomDomainType) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+func (o CustomDomainOutput) DomainType() CustomDomainDomainTypeOutput {
+	return o.ApplyT(func(v CustomDomain) CustomDomainDomainType { return v.DomainType }).(CustomDomainDomainTypeOutput)
 }
 
-func (o CustomDomainTypeOutput) DomainType() CustomDomainDomainTypeOutput {
-	return o.ApplyT(func(v CustomDomainType) CustomDomainDomainType { return v.DomainType }).(CustomDomainDomainTypeOutput)
+func (o CustomDomainOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v CustomDomain) string { return v.Name }).(pulumi.StringOutput)
 }
 
-func (o CustomDomainTypeOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v CustomDomainType) string { return v.Name }).(pulumi.StringOutput)
+func (o CustomDomainOutput) PublicSuffix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CustomDomain) *string { return v.PublicSuffix }).(pulumi.StringPtrOutput)
 }
 
-func (o CustomDomainTypeOutput) PublicSuffix() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v CustomDomainType) *string { return v.PublicSuffix }).(pulumi.StringPtrOutput)
+func (o CustomDomainOutput) RedirectForName() pulumi.StringOutput {
+	return o.ApplyT(func(v CustomDomain) string { return v.RedirectForName }).(pulumi.StringOutput)
 }
 
-func (o CustomDomainTypeOutput) RedirectForName() pulumi.StringOutput {
-	return o.ApplyT(func(v CustomDomainType) string { return v.RedirectForName }).(pulumi.StringOutput)
+func (o CustomDomainOutput) Server() CustomDomainServerPropertiesOutput {
+	return o.ApplyT(func(v CustomDomain) CustomDomainServerProperties { return v.Server }).(CustomDomainServerPropertiesOutput)
 }
 
-func (o CustomDomainTypeOutput) Server() CustomDomainServerPropertiesOutput {
-	return o.ApplyT(func(v CustomDomainType) CustomDomainServerProperties { return v.Server }).(CustomDomainServerPropertiesOutput)
+func (o CustomDomainOutput) VerificationStatus() CustomDomainVerificationStatusOutput {
+	return o.ApplyT(func(v CustomDomain) CustomDomainVerificationStatus { return v.VerificationStatus }).(CustomDomainVerificationStatusOutput)
 }
 
-func (o CustomDomainTypeOutput) VerificationStatus() CustomDomainVerificationStatusOutput {
-	return o.ApplyT(func(v CustomDomainType) CustomDomainVerificationStatus { return v.VerificationStatus }).(CustomDomainVerificationStatusOutput)
+type CustomDomainPtrOutput struct{ *pulumi.OutputState }
+
+func (CustomDomainPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CustomDomain)(nil)).Elem()
 }
 
-type CustomDomainTypePtrOutput struct{ *pulumi.OutputState }
-
-func (CustomDomainTypePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**CustomDomainType)(nil)).Elem()
-}
-
-func (o CustomDomainTypePtrOutput) ToCustomDomainTypePtrOutput() CustomDomainTypePtrOutput {
+func (o CustomDomainPtrOutput) ToCustomDomainPtrOutput() CustomDomainPtrOutput {
 	return o
 }
 
-func (o CustomDomainTypePtrOutput) ToCustomDomainTypePtrOutputWithContext(ctx context.Context) CustomDomainTypePtrOutput {
+func (o CustomDomainPtrOutput) ToCustomDomainPtrOutputWithContext(ctx context.Context) CustomDomainPtrOutput {
 	return o
 }
 
-func (o CustomDomainTypePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*CustomDomainType] {
-	return pulumix.Output[*CustomDomainType]{
-		OutputState: o.OutputState,
-	}
-}
-
-func (o CustomDomainTypePtrOutput) Elem() CustomDomainTypeOutput {
-	return o.ApplyT(func(v *CustomDomainType) CustomDomainType {
+func (o CustomDomainPtrOutput) Elem() CustomDomainOutput {
+	return o.ApplyT(func(v *CustomDomain) CustomDomain {
 		if v != nil {
 			return *v
 		}
-		var ret CustomDomainType
+		var ret CustomDomain
 		return ret
-	}).(CustomDomainTypeOutput)
+	}).(CustomDomainOutput)
 }
 
-func (o CustomDomainTypePtrOutput) CreatedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *CustomDomainType) *string {
+func (o CustomDomainPtrOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CustomDomain) *string {
 		if v == nil {
 			return nil
 		}
@@ -1056,8 +1447,8 @@ func (o CustomDomainTypePtrOutput) CreatedAt() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o CustomDomainTypePtrOutput) DomainType() CustomDomainDomainTypePtrOutput {
-	return o.ApplyT(func(v *CustomDomainType) *CustomDomainDomainType {
+func (o CustomDomainPtrOutput) DomainType() CustomDomainDomainTypePtrOutput {
+	return o.ApplyT(func(v *CustomDomain) *CustomDomainDomainType {
 		if v == nil {
 			return nil
 		}
@@ -1065,8 +1456,8 @@ func (o CustomDomainTypePtrOutput) DomainType() CustomDomainDomainTypePtrOutput 
 	}).(CustomDomainDomainTypePtrOutput)
 }
 
-func (o CustomDomainTypePtrOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *CustomDomainType) *string {
+func (o CustomDomainPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CustomDomain) *string {
 		if v == nil {
 			return nil
 		}
@@ -1074,8 +1465,8 @@ func (o CustomDomainTypePtrOutput) Name() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o CustomDomainTypePtrOutput) PublicSuffix() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *CustomDomainType) *string {
+func (o CustomDomainPtrOutput) PublicSuffix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CustomDomain) *string {
 		if v == nil {
 			return nil
 		}
@@ -1083,8 +1474,8 @@ func (o CustomDomainTypePtrOutput) PublicSuffix() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o CustomDomainTypePtrOutput) RedirectForName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *CustomDomainType) *string {
+func (o CustomDomainPtrOutput) RedirectForName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CustomDomain) *string {
 		if v == nil {
 			return nil
 		}
@@ -1092,8 +1483,8 @@ func (o CustomDomainTypePtrOutput) RedirectForName() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o CustomDomainTypePtrOutput) Server() CustomDomainServerPropertiesPtrOutput {
-	return o.ApplyT(func(v *CustomDomainType) *CustomDomainServerProperties {
+func (o CustomDomainPtrOutput) Server() CustomDomainServerPropertiesPtrOutput {
+	return o.ApplyT(func(v *CustomDomain) *CustomDomainServerProperties {
 		if v == nil {
 			return nil
 		}
@@ -1101,8 +1492,8 @@ func (o CustomDomainTypePtrOutput) Server() CustomDomainServerPropertiesPtrOutpu
 	}).(CustomDomainServerPropertiesPtrOutput)
 }
 
-func (o CustomDomainTypePtrOutput) VerificationStatus() CustomDomainVerificationStatusPtrOutput {
-	return o.ApplyT(func(v *CustomDomainType) *CustomDomainVerificationStatus {
+func (o CustomDomainPtrOutput) VerificationStatus() CustomDomainVerificationStatusPtrOutput {
+	return o.ApplyT(func(v *CustomDomain) *CustomDomainVerificationStatus {
 		if v == nil {
 			return nil
 		}
@@ -1129,12 +1520,6 @@ func (o CustomDomainServerPropertiesOutput) ToCustomDomainServerPropertiesOutput
 	return o
 }
 
-func (o CustomDomainServerPropertiesOutput) ToOutput(ctx context.Context) pulumix.Output[CustomDomainServerProperties] {
-	return pulumix.Output[CustomDomainServerProperties]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o CustomDomainServerPropertiesOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CustomDomainServerProperties) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
@@ -1155,12 +1540,6 @@ func (o CustomDomainServerPropertiesPtrOutput) ToCustomDomainServerPropertiesPtr
 
 func (o CustomDomainServerPropertiesPtrOutput) ToCustomDomainServerPropertiesPtrOutputWithContext(ctx context.Context) CustomDomainServerPropertiesPtrOutput {
 	return o
-}
-
-func (o CustomDomainServerPropertiesPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*CustomDomainServerProperties] {
-	return pulumix.Output[*CustomDomainServerProperties]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o CustomDomainServerPropertiesPtrOutput) Elem() CustomDomainServerPropertiesOutput {
@@ -1191,13 +1570,13 @@ func (o CustomDomainServerPropertiesPtrOutput) Name() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-type DeployType struct {
+type Deploy struct {
 	ClearCache *DeployClearCache `pulumi:"clearCache"`
 	Commit     *Commit           `pulumi:"commit"`
 }
 
-// Defaults sets the appropriate defaults for DeployType
-func (val *DeployType) Defaults() *DeployType {
+// Defaults sets the appropriate defaults for Deploy
+func (val *Deploy) Defaults() *Deploy {
 	if val == nil {
 		return nil
 	}
@@ -1209,66 +1588,54 @@ func (val *DeployType) Defaults() *DeployType {
 	return &tmp
 }
 
-type DeployTypeOutput struct{ *pulumi.OutputState }
+type DeployOutput struct{ *pulumi.OutputState }
 
-func (DeployTypeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DeployType)(nil)).Elem()
+func (DeployOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Deploy)(nil)).Elem()
 }
 
-func (o DeployTypeOutput) ToDeployTypeOutput() DeployTypeOutput {
+func (o DeployOutput) ToDeployOutput() DeployOutput {
 	return o
 }
 
-func (o DeployTypeOutput) ToDeployTypeOutputWithContext(ctx context.Context) DeployTypeOutput {
+func (o DeployOutput) ToDeployOutputWithContext(ctx context.Context) DeployOutput {
 	return o
 }
 
-func (o DeployTypeOutput) ToOutput(ctx context.Context) pulumix.Output[DeployType] {
-	return pulumix.Output[DeployType]{
-		OutputState: o.OutputState,
-	}
+func (o DeployOutput) ClearCache() DeployClearCachePtrOutput {
+	return o.ApplyT(func(v Deploy) *DeployClearCache { return v.ClearCache }).(DeployClearCachePtrOutput)
 }
 
-func (o DeployTypeOutput) ClearCache() DeployClearCachePtrOutput {
-	return o.ApplyT(func(v DeployType) *DeployClearCache { return v.ClearCache }).(DeployClearCachePtrOutput)
+func (o DeployOutput) Commit() CommitPtrOutput {
+	return o.ApplyT(func(v Deploy) *Commit { return v.Commit }).(CommitPtrOutput)
 }
 
-func (o DeployTypeOutput) Commit() CommitPtrOutput {
-	return o.ApplyT(func(v DeployType) *Commit { return v.Commit }).(CommitPtrOutput)
+type DeployPtrOutput struct{ *pulumi.OutputState }
+
+func (DeployPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Deploy)(nil)).Elem()
 }
 
-type DeployTypePtrOutput struct{ *pulumi.OutputState }
-
-func (DeployTypePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DeployType)(nil)).Elem()
-}
-
-func (o DeployTypePtrOutput) ToDeployTypePtrOutput() DeployTypePtrOutput {
+func (o DeployPtrOutput) ToDeployPtrOutput() DeployPtrOutput {
 	return o
 }
 
-func (o DeployTypePtrOutput) ToDeployTypePtrOutputWithContext(ctx context.Context) DeployTypePtrOutput {
+func (o DeployPtrOutput) ToDeployPtrOutputWithContext(ctx context.Context) DeployPtrOutput {
 	return o
 }
 
-func (o DeployTypePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DeployType] {
-	return pulumix.Output[*DeployType]{
-		OutputState: o.OutputState,
-	}
-}
-
-func (o DeployTypePtrOutput) Elem() DeployTypeOutput {
-	return o.ApplyT(func(v *DeployType) DeployType {
+func (o DeployPtrOutput) Elem() DeployOutput {
+	return o.ApplyT(func(v *Deploy) Deploy {
 		if v != nil {
 			return *v
 		}
-		var ret DeployType
+		var ret Deploy
 		return ret
-	}).(DeployTypeOutput)
+	}).(DeployOutput)
 }
 
-func (o DeployTypePtrOutput) ClearCache() DeployClearCachePtrOutput {
-	return o.ApplyT(func(v *DeployType) *DeployClearCache {
+func (o DeployPtrOutput) ClearCache() DeployClearCachePtrOutput {
+	return o.ApplyT(func(v *Deploy) *DeployClearCache {
 		if v == nil {
 			return nil
 		}
@@ -1276,8 +1643,8 @@ func (o DeployTypePtrOutput) ClearCache() DeployClearCachePtrOutput {
 	}).(DeployClearCachePtrOutput)
 }
 
-func (o DeployTypePtrOutput) Commit() CommitPtrOutput {
-	return o.ApplyT(func(v *DeployType) *Commit {
+func (o DeployPtrOutput) Commit() CommitPtrOutput {
+	return o.ApplyT(func(v *Deploy) *Commit {
 		if v == nil {
 			return nil
 		}
@@ -1344,12 +1711,6 @@ func (i DiskArgs) ToDiskOutputWithContext(ctx context.Context) DiskOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DiskOutput)
 }
 
-func (i DiskArgs) ToOutput(ctx context.Context) pulumix.Output[Disk] {
-	return pulumix.Output[Disk]{
-		OutputState: i.ToDiskOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i DiskArgs) ToDiskPtrOutput() DiskPtrOutput {
 	return i.ToDiskPtrOutputWithContext(context.Background())
 }
@@ -1391,12 +1752,6 @@ func (i *diskPtrType) ToDiskPtrOutputWithContext(ctx context.Context) DiskPtrOut
 	return pulumi.ToOutputWithContext(ctx, i).(DiskPtrOutput)
 }
 
-func (i *diskPtrType) ToOutput(ctx context.Context) pulumix.Output[*Disk] {
-	return pulumix.Output[*Disk]{
-		OutputState: i.ToDiskPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DiskOutput struct{ *pulumi.OutputState }
 
 func (DiskOutput) ElementType() reflect.Type {
@@ -1419,12 +1774,6 @@ func (o DiskOutput) ToDiskPtrOutputWithContext(ctx context.Context) DiskPtrOutpu
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v Disk) *Disk {
 		return &v
 	}).(DiskPtrOutput)
-}
-
-func (o DiskOutput) ToOutput(ctx context.Context) pulumix.Output[Disk] {
-	return pulumix.Output[Disk]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DiskOutput) MountPath() pulumi.StringOutput {
@@ -1451,12 +1800,6 @@ func (o DiskPtrOutput) ToDiskPtrOutput() DiskPtrOutput {
 
 func (o DiskPtrOutput) ToDiskPtrOutputWithContext(ctx context.Context) DiskPtrOutput {
 	return o
-}
-
-func (o DiskPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*Disk] {
-	return pulumix.Output[*Disk]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DiskPtrOutput) Elem() DiskOutput {
@@ -1502,6 +1845,163 @@ type DockerDetails struct {
 	DockerfilePath *string `pulumi:"dockerfilePath"`
 }
 
+// DockerDetailsInput is an input type that accepts DockerDetailsArgs and DockerDetailsOutput values.
+// You can construct a concrete instance of `DockerDetailsInput` via:
+//
+//	DockerDetailsArgs{...}
+type DockerDetailsInput interface {
+	pulumi.Input
+
+	ToDockerDetailsOutput() DockerDetailsOutput
+	ToDockerDetailsOutputWithContext(context.Context) DockerDetailsOutput
+}
+
+type DockerDetailsArgs struct {
+	DockerCommand  pulumi.StringInput    `pulumi:"dockerCommand"`
+	DockerContext  pulumi.StringInput    `pulumi:"dockerContext"`
+	DockerfilePath pulumi.StringPtrInput `pulumi:"dockerfilePath"`
+}
+
+func (DockerDetailsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DockerDetails)(nil)).Elem()
+}
+
+func (i DockerDetailsArgs) ToDockerDetailsOutput() DockerDetailsOutput {
+	return i.ToDockerDetailsOutputWithContext(context.Background())
+}
+
+func (i DockerDetailsArgs) ToDockerDetailsOutputWithContext(ctx context.Context) DockerDetailsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DockerDetailsOutput)
+}
+
+func (i DockerDetailsArgs) ToDockerDetailsPtrOutput() DockerDetailsPtrOutput {
+	return i.ToDockerDetailsPtrOutputWithContext(context.Background())
+}
+
+func (i DockerDetailsArgs) ToDockerDetailsPtrOutputWithContext(ctx context.Context) DockerDetailsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DockerDetailsOutput).ToDockerDetailsPtrOutputWithContext(ctx)
+}
+
+// DockerDetailsPtrInput is an input type that accepts DockerDetailsArgs, DockerDetailsPtr and DockerDetailsPtrOutput values.
+// You can construct a concrete instance of `DockerDetailsPtrInput` via:
+//
+//	        DockerDetailsArgs{...}
+//
+//	or:
+//
+//	        nil
+type DockerDetailsPtrInput interface {
+	pulumi.Input
+
+	ToDockerDetailsPtrOutput() DockerDetailsPtrOutput
+	ToDockerDetailsPtrOutputWithContext(context.Context) DockerDetailsPtrOutput
+}
+
+type dockerDetailsPtrType DockerDetailsArgs
+
+func DockerDetailsPtr(v *DockerDetailsArgs) DockerDetailsPtrInput {
+	return (*dockerDetailsPtrType)(v)
+}
+
+func (*dockerDetailsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DockerDetails)(nil)).Elem()
+}
+
+func (i *dockerDetailsPtrType) ToDockerDetailsPtrOutput() DockerDetailsPtrOutput {
+	return i.ToDockerDetailsPtrOutputWithContext(context.Background())
+}
+
+func (i *dockerDetailsPtrType) ToDockerDetailsPtrOutputWithContext(ctx context.Context) DockerDetailsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DockerDetailsPtrOutput)
+}
+
+type DockerDetailsOutput struct{ *pulumi.OutputState }
+
+func (DockerDetailsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DockerDetails)(nil)).Elem()
+}
+
+func (o DockerDetailsOutput) ToDockerDetailsOutput() DockerDetailsOutput {
+	return o
+}
+
+func (o DockerDetailsOutput) ToDockerDetailsOutputWithContext(ctx context.Context) DockerDetailsOutput {
+	return o
+}
+
+func (o DockerDetailsOutput) ToDockerDetailsPtrOutput() DockerDetailsPtrOutput {
+	return o.ToDockerDetailsPtrOutputWithContext(context.Background())
+}
+
+func (o DockerDetailsOutput) ToDockerDetailsPtrOutputWithContext(ctx context.Context) DockerDetailsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DockerDetails) *DockerDetails {
+		return &v
+	}).(DockerDetailsPtrOutput)
+}
+
+func (o DockerDetailsOutput) DockerCommand() pulumi.StringOutput {
+	return o.ApplyT(func(v DockerDetails) string { return v.DockerCommand }).(pulumi.StringOutput)
+}
+
+func (o DockerDetailsOutput) DockerContext() pulumi.StringOutput {
+	return o.ApplyT(func(v DockerDetails) string { return v.DockerContext }).(pulumi.StringOutput)
+}
+
+func (o DockerDetailsOutput) DockerfilePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DockerDetails) *string { return v.DockerfilePath }).(pulumi.StringPtrOutput)
+}
+
+type DockerDetailsPtrOutput struct{ *pulumi.OutputState }
+
+func (DockerDetailsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DockerDetails)(nil)).Elem()
+}
+
+func (o DockerDetailsPtrOutput) ToDockerDetailsPtrOutput() DockerDetailsPtrOutput {
+	return o
+}
+
+func (o DockerDetailsPtrOutput) ToDockerDetailsPtrOutputWithContext(ctx context.Context) DockerDetailsPtrOutput {
+	return o
+}
+
+func (o DockerDetailsPtrOutput) Elem() DockerDetailsOutput {
+	return o.ApplyT(func(v *DockerDetails) DockerDetails {
+		if v != nil {
+			return *v
+		}
+		var ret DockerDetails
+		return ret
+	}).(DockerDetailsOutput)
+}
+
+func (o DockerDetailsPtrOutput) DockerCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DockerDetails) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.DockerCommand
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DockerDetailsPtrOutput) DockerContext() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DockerDetails) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.DockerContext
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DockerDetailsPtrOutput) DockerfilePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DockerDetails) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DockerfilePath
+	}).(pulumi.StringPtrOutput)
+}
+
 type EnvVarKeyValue struct {
 	GenerateValue *EnvVarKeyValueGenerateValue `pulumi:"generateValue"`
 	Key           string                       `pulumi:"key"`
@@ -1537,12 +2037,6 @@ func (i EnvVarKeyValueArgs) ToEnvVarKeyValueOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(EnvVarKeyValueOutput)
 }
 
-func (i EnvVarKeyValueArgs) ToOutput(ctx context.Context) pulumix.Output[EnvVarKeyValue] {
-	return pulumix.Output[EnvVarKeyValue]{
-		OutputState: i.ToEnvVarKeyValueOutputWithContext(ctx).OutputState,
-	}
-}
-
 // EnvVarKeyValueArrayInput is an input type that accepts EnvVarKeyValueArray and EnvVarKeyValueArrayOutput values.
 // You can construct a concrete instance of `EnvVarKeyValueArrayInput` via:
 //
@@ -1568,12 +2062,6 @@ func (i EnvVarKeyValueArray) ToEnvVarKeyValueArrayOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(EnvVarKeyValueArrayOutput)
 }
 
-func (i EnvVarKeyValueArray) ToOutput(ctx context.Context) pulumix.Output[[]EnvVarKeyValue] {
-	return pulumix.Output[[]EnvVarKeyValue]{
-		OutputState: i.ToEnvVarKeyValueArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type EnvVarKeyValueOutput struct{ *pulumi.OutputState }
 
 func (EnvVarKeyValueOutput) ElementType() reflect.Type {
@@ -1586,12 +2074,6 @@ func (o EnvVarKeyValueOutput) ToEnvVarKeyValueOutput() EnvVarKeyValueOutput {
 
 func (o EnvVarKeyValueOutput) ToEnvVarKeyValueOutputWithContext(ctx context.Context) EnvVarKeyValueOutput {
 	return o
-}
-
-func (o EnvVarKeyValueOutput) ToOutput(ctx context.Context) pulumix.Output[EnvVarKeyValue] {
-	return pulumix.Output[EnvVarKeyValue]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o EnvVarKeyValueOutput) GenerateValue() EnvVarKeyValueGenerateValuePtrOutput {
@@ -1618,12 +2100,6 @@ func (o EnvVarKeyValuePtrOutput) ToEnvVarKeyValuePtrOutput() EnvVarKeyValuePtrOu
 
 func (o EnvVarKeyValuePtrOutput) ToEnvVarKeyValuePtrOutputWithContext(ctx context.Context) EnvVarKeyValuePtrOutput {
 	return o
-}
-
-func (o EnvVarKeyValuePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*EnvVarKeyValue] {
-	return pulumix.Output[*EnvVarKeyValue]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o EnvVarKeyValuePtrOutput) Elem() EnvVarKeyValueOutput {
@@ -1677,12 +2153,6 @@ func (o EnvVarKeyValueArrayOutput) ToEnvVarKeyValueArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o EnvVarKeyValueArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]EnvVarKeyValue] {
-	return pulumix.Output[[]EnvVarKeyValue]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o EnvVarKeyValueArrayOutput) Index(i pulumi.IntInput) EnvVarKeyValueOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EnvVarKeyValue {
 		return vs[0].([]EnvVarKeyValue)[vs[1].(int)]
@@ -1690,7 +2160,7 @@ func (o EnvVarKeyValueArrayOutput) Index(i pulumi.IntInput) EnvVarKeyValueOutput
 }
 
 // A background worker service
-type GetBackgroundWorkerType struct {
+type GetBackgroundWorker struct {
 	// Whether to auto deploy the service or not upon git push.
 	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
@@ -1713,8 +2183,8 @@ type GetBackgroundWorkerType struct {
 	UpdatedAt      *string                         `pulumi:"updatedAt"`
 }
 
-// Defaults sets the appropriate defaults for GetBackgroundWorkerType
-func (val *GetBackgroundWorkerType) Defaults() *GetBackgroundWorkerType {
+// Defaults sets the appropriate defaults for GetBackgroundWorker
+func (val *GetBackgroundWorker) Defaults() *GetBackgroundWorker {
 	if val == nil {
 		return nil
 	}
@@ -1733,93 +2203,87 @@ func (val *GetBackgroundWorkerType) Defaults() *GetBackgroundWorkerType {
 }
 
 // A background worker service
-type GetBackgroundWorkerTypeOutput struct{ *pulumi.OutputState }
+type GetBackgroundWorkerOutput struct{ *pulumi.OutputState }
 
-func (GetBackgroundWorkerTypeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetBackgroundWorkerType)(nil)).Elem()
+func (GetBackgroundWorkerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackgroundWorker)(nil)).Elem()
 }
 
-func (o GetBackgroundWorkerTypeOutput) ToGetBackgroundWorkerTypeOutput() GetBackgroundWorkerTypeOutput {
+func (o GetBackgroundWorkerOutput) ToGetBackgroundWorkerOutput() GetBackgroundWorkerOutput {
 	return o
 }
 
-func (o GetBackgroundWorkerTypeOutput) ToGetBackgroundWorkerTypeOutputWithContext(ctx context.Context) GetBackgroundWorkerTypeOutput {
+func (o GetBackgroundWorkerOutput) ToGetBackgroundWorkerOutputWithContext(ctx context.Context) GetBackgroundWorkerOutput {
 	return o
-}
-
-func (o GetBackgroundWorkerTypeOutput) ToOutput(ctx context.Context) pulumix.Output[GetBackgroundWorkerType] {
-	return pulumix.Output[GetBackgroundWorkerType]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Whether to auto deploy the service or not upon git push.
-func (o GetBackgroundWorkerTypeOutput) AutoDeploy() ServiceAutoDeployPtrOutput {
-	return o.ApplyT(func(v GetBackgroundWorkerType) *ServiceAutoDeploy { return v.AutoDeploy }).(ServiceAutoDeployPtrOutput)
+func (o GetBackgroundWorkerOutput) AutoDeploy() ServiceAutoDeployPtrOutput {
+	return o.ApplyT(func(v GetBackgroundWorker) *ServiceAutoDeploy { return v.AutoDeploy }).(ServiceAutoDeployPtrOutput)
 }
 
 // If left empty, this will fall back to the default branch of the repository.
-func (o GetBackgroundWorkerTypeOutput) Branch() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetBackgroundWorkerType) *string { return v.Branch }).(pulumi.StringPtrOutput)
+func (o GetBackgroundWorkerOutput) Branch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetBackgroundWorker) *string { return v.Branch }).(pulumi.StringPtrOutput)
 }
 
-func (o GetBackgroundWorkerTypeOutput) CreatedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetBackgroundWorkerType) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+func (o GetBackgroundWorkerOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetBackgroundWorker) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
 
-func (o GetBackgroundWorkerTypeOutput) EnvVars() EnvVarKeyValueArrayOutput {
-	return o.ApplyT(func(v GetBackgroundWorkerType) []EnvVarKeyValue { return v.EnvVars }).(EnvVarKeyValueArrayOutput)
+func (o GetBackgroundWorkerOutput) EnvVars() EnvVarKeyValueArrayOutput {
+	return o.ApplyT(func(v GetBackgroundWorker) []EnvVarKeyValue { return v.EnvVars }).(EnvVarKeyValueArrayOutput)
 }
 
-func (o GetBackgroundWorkerTypeOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetBackgroundWorkerType) string { return v.Name }).(pulumi.StringOutput)
+func (o GetBackgroundWorkerOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackgroundWorker) string { return v.Name }).(pulumi.StringOutput)
 }
 
 // The notification setting for this service upon deployment failure.
-func (o GetBackgroundWorkerTypeOutput) NotifyOnFail() ServiceNotifyOnFailPtrOutput {
-	return o.ApplyT(func(v GetBackgroundWorkerType) *ServiceNotifyOnFail { return v.NotifyOnFail }).(ServiceNotifyOnFailPtrOutput)
+func (o GetBackgroundWorkerOutput) NotifyOnFail() ServiceNotifyOnFailPtrOutput {
+	return o.ApplyT(func(v GetBackgroundWorker) *ServiceNotifyOnFail { return v.NotifyOnFail }).(ServiceNotifyOnFailPtrOutput)
 }
 
 // The id of the owner (user/team).
-func (o GetBackgroundWorkerTypeOutput) OwnerId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetBackgroundWorkerType) string { return v.OwnerId }).(pulumi.StringOutput)
+func (o GetBackgroundWorkerOutput) OwnerId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackgroundWorker) string { return v.OwnerId }).(pulumi.StringOutput)
 }
 
 // Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-func (o GetBackgroundWorkerTypeOutput) Repo() pulumi.StringOutput {
-	return o.ApplyT(func(v GetBackgroundWorkerType) string { return v.Repo }).(pulumi.StringOutput)
+func (o GetBackgroundWorkerOutput) Repo() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackgroundWorker) string { return v.Repo }).(pulumi.StringOutput)
 }
 
-func (o GetBackgroundWorkerTypeOutput) SecretFiles() SecretFileArrayOutput {
-	return o.ApplyT(func(v GetBackgroundWorkerType) []SecretFile { return v.SecretFiles }).(SecretFileArrayOutput)
+func (o GetBackgroundWorkerOutput) SecretFiles() SecretFileArrayOutput {
+	return o.ApplyT(func(v GetBackgroundWorker) []SecretFile { return v.SecretFiles }).(SecretFileArrayOutput)
 }
 
-func (o GetBackgroundWorkerTypeOutput) ServiceDetails() BackgroundWorkerServiceDetailsPtrOutput {
-	return o.ApplyT(func(v GetBackgroundWorkerType) *BackgroundWorkerServiceDetails { return v.ServiceDetails }).(BackgroundWorkerServiceDetailsPtrOutput)
+func (o GetBackgroundWorkerOutput) ServiceDetails() BackgroundWorkerServiceDetailsPtrOutput {
+	return o.ApplyT(func(v GetBackgroundWorker) *BackgroundWorkerServiceDetails { return v.ServiceDetails }).(BackgroundWorkerServiceDetailsPtrOutput)
 }
 
-func (o GetBackgroundWorkerTypeOutput) Slug() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetBackgroundWorkerType) *string { return v.Slug }).(pulumi.StringPtrOutput)
+func (o GetBackgroundWorkerOutput) Slug() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetBackgroundWorker) *string { return v.Slug }).(pulumi.StringPtrOutput)
 }
 
-func (o GetBackgroundWorkerTypeOutput) Suspended() ServiceSuspendedPtrOutput {
-	return o.ApplyT(func(v GetBackgroundWorkerType) *ServiceSuspended { return v.Suspended }).(ServiceSuspendedPtrOutput)
+func (o GetBackgroundWorkerOutput) Suspended() ServiceSuspendedPtrOutput {
+	return o.ApplyT(func(v GetBackgroundWorker) *ServiceSuspended { return v.Suspended }).(ServiceSuspendedPtrOutput)
 }
 
-func (o GetBackgroundWorkerTypeOutput) Suspenders() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetBackgroundWorkerType) []string { return v.Suspenders }).(pulumi.StringArrayOutput)
+func (o GetBackgroundWorkerOutput) Suspenders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetBackgroundWorker) []string { return v.Suspenders }).(pulumi.StringArrayOutput)
 }
 
-func (o GetBackgroundWorkerTypeOutput) Type() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetBackgroundWorkerType) *string { return v.Type }).(pulumi.StringPtrOutput)
+func (o GetBackgroundWorkerOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetBackgroundWorker) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
 
-func (o GetBackgroundWorkerTypeOutput) UpdatedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetBackgroundWorkerType) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
+func (o GetBackgroundWorkerOutput) UpdatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetBackgroundWorker) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
 }
 
 // A cron job
-type GetCronJobType struct {
+type GetCronJob struct {
 	// Whether to auto deploy the service or not upon git push.
 	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
@@ -1842,8 +2306,8 @@ type GetCronJobType struct {
 	UpdatedAt      *string                `pulumi:"updatedAt"`
 }
 
-// Defaults sets the appropriate defaults for GetCronJobType
-func (val *GetCronJobType) Defaults() *GetCronJobType {
+// Defaults sets the appropriate defaults for GetCronJob
+func (val *GetCronJob) Defaults() *GetCronJob {
 	if val == nil {
 		return nil
 	}
@@ -1862,93 +2326,87 @@ func (val *GetCronJobType) Defaults() *GetCronJobType {
 }
 
 // A cron job
-type GetCronJobTypeOutput struct{ *pulumi.OutputState }
+type GetCronJobOutput struct{ *pulumi.OutputState }
 
-func (GetCronJobTypeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetCronJobType)(nil)).Elem()
+func (GetCronJobOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCronJob)(nil)).Elem()
 }
 
-func (o GetCronJobTypeOutput) ToGetCronJobTypeOutput() GetCronJobTypeOutput {
+func (o GetCronJobOutput) ToGetCronJobOutput() GetCronJobOutput {
 	return o
 }
 
-func (o GetCronJobTypeOutput) ToGetCronJobTypeOutputWithContext(ctx context.Context) GetCronJobTypeOutput {
+func (o GetCronJobOutput) ToGetCronJobOutputWithContext(ctx context.Context) GetCronJobOutput {
 	return o
-}
-
-func (o GetCronJobTypeOutput) ToOutput(ctx context.Context) pulumix.Output[GetCronJobType] {
-	return pulumix.Output[GetCronJobType]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Whether to auto deploy the service or not upon git push.
-func (o GetCronJobTypeOutput) AutoDeploy() ServiceAutoDeployPtrOutput {
-	return o.ApplyT(func(v GetCronJobType) *ServiceAutoDeploy { return v.AutoDeploy }).(ServiceAutoDeployPtrOutput)
+func (o GetCronJobOutput) AutoDeploy() ServiceAutoDeployPtrOutput {
+	return o.ApplyT(func(v GetCronJob) *ServiceAutoDeploy { return v.AutoDeploy }).(ServiceAutoDeployPtrOutput)
 }
 
 // If left empty, this will fall back to the default branch of the repository.
-func (o GetCronJobTypeOutput) Branch() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetCronJobType) *string { return v.Branch }).(pulumi.StringPtrOutput)
+func (o GetCronJobOutput) Branch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetCronJob) *string { return v.Branch }).(pulumi.StringPtrOutput)
 }
 
-func (o GetCronJobTypeOutput) CreatedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetCronJobType) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+func (o GetCronJobOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetCronJob) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
 
-func (o GetCronJobTypeOutput) EnvVars() EnvVarKeyValueArrayOutput {
-	return o.ApplyT(func(v GetCronJobType) []EnvVarKeyValue { return v.EnvVars }).(EnvVarKeyValueArrayOutput)
+func (o GetCronJobOutput) EnvVars() EnvVarKeyValueArrayOutput {
+	return o.ApplyT(func(v GetCronJob) []EnvVarKeyValue { return v.EnvVars }).(EnvVarKeyValueArrayOutput)
 }
 
-func (o GetCronJobTypeOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCronJobType) string { return v.Name }).(pulumi.StringOutput)
+func (o GetCronJobOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCronJob) string { return v.Name }).(pulumi.StringOutput)
 }
 
 // The notification setting for this service upon deployment failure.
-func (o GetCronJobTypeOutput) NotifyOnFail() ServiceNotifyOnFailPtrOutput {
-	return o.ApplyT(func(v GetCronJobType) *ServiceNotifyOnFail { return v.NotifyOnFail }).(ServiceNotifyOnFailPtrOutput)
+func (o GetCronJobOutput) NotifyOnFail() ServiceNotifyOnFailPtrOutput {
+	return o.ApplyT(func(v GetCronJob) *ServiceNotifyOnFail { return v.NotifyOnFail }).(ServiceNotifyOnFailPtrOutput)
 }
 
 // The id of the owner (user/team).
-func (o GetCronJobTypeOutput) OwnerId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCronJobType) string { return v.OwnerId }).(pulumi.StringOutput)
+func (o GetCronJobOutput) OwnerId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCronJob) string { return v.OwnerId }).(pulumi.StringOutput)
 }
 
 // Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-func (o GetCronJobTypeOutput) Repo() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCronJobType) string { return v.Repo }).(pulumi.StringOutput)
+func (o GetCronJobOutput) Repo() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCronJob) string { return v.Repo }).(pulumi.StringOutput)
 }
 
-func (o GetCronJobTypeOutput) SecretFiles() SecretFileArrayOutput {
-	return o.ApplyT(func(v GetCronJobType) []SecretFile { return v.SecretFiles }).(SecretFileArrayOutput)
+func (o GetCronJobOutput) SecretFiles() SecretFileArrayOutput {
+	return o.ApplyT(func(v GetCronJob) []SecretFile { return v.SecretFiles }).(SecretFileArrayOutput)
 }
 
-func (o GetCronJobTypeOutput) ServiceDetails() CronJobServiceDetailsPtrOutput {
-	return o.ApplyT(func(v GetCronJobType) *CronJobServiceDetails { return v.ServiceDetails }).(CronJobServiceDetailsPtrOutput)
+func (o GetCronJobOutput) ServiceDetails() CronJobServiceDetailsPtrOutput {
+	return o.ApplyT(func(v GetCronJob) *CronJobServiceDetails { return v.ServiceDetails }).(CronJobServiceDetailsPtrOutput)
 }
 
-func (o GetCronJobTypeOutput) Slug() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetCronJobType) *string { return v.Slug }).(pulumi.StringPtrOutput)
+func (o GetCronJobOutput) Slug() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetCronJob) *string { return v.Slug }).(pulumi.StringPtrOutput)
 }
 
-func (o GetCronJobTypeOutput) Suspended() ServiceSuspendedPtrOutput {
-	return o.ApplyT(func(v GetCronJobType) *ServiceSuspended { return v.Suspended }).(ServiceSuspendedPtrOutput)
+func (o GetCronJobOutput) Suspended() ServiceSuspendedPtrOutput {
+	return o.ApplyT(func(v GetCronJob) *ServiceSuspended { return v.Suspended }).(ServiceSuspendedPtrOutput)
 }
 
-func (o GetCronJobTypeOutput) Suspenders() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetCronJobType) []string { return v.Suspenders }).(pulumi.StringArrayOutput)
+func (o GetCronJobOutput) Suspenders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetCronJob) []string { return v.Suspenders }).(pulumi.StringArrayOutput)
 }
 
-func (o GetCronJobTypeOutput) Type() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetCronJobType) *string { return v.Type }).(pulumi.StringPtrOutput)
+func (o GetCronJobOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetCronJob) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
 
-func (o GetCronJobTypeOutput) UpdatedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetCronJobType) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
+func (o GetCronJobOutput) UpdatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetCronJob) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
 }
 
 // A private service
-type GetPrivateServiceType struct {
+type GetPrivateService struct {
 	// Whether to auto deploy the service or not upon git push.
 	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
@@ -1971,8 +2429,8 @@ type GetPrivateServiceType struct {
 	UpdatedAt      *string                `pulumi:"updatedAt"`
 }
 
-// Defaults sets the appropriate defaults for GetPrivateServiceType
-func (val *GetPrivateServiceType) Defaults() *GetPrivateServiceType {
+// Defaults sets the appropriate defaults for GetPrivateService
+func (val *GetPrivateService) Defaults() *GetPrivateService {
 	if val == nil {
 		return nil
 	}
@@ -1991,93 +2449,87 @@ func (val *GetPrivateServiceType) Defaults() *GetPrivateServiceType {
 }
 
 // A private service
-type GetPrivateServiceTypeOutput struct{ *pulumi.OutputState }
+type GetPrivateServiceOutput struct{ *pulumi.OutputState }
 
-func (GetPrivateServiceTypeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetPrivateServiceType)(nil)).Elem()
+func (GetPrivateServiceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPrivateService)(nil)).Elem()
 }
 
-func (o GetPrivateServiceTypeOutput) ToGetPrivateServiceTypeOutput() GetPrivateServiceTypeOutput {
+func (o GetPrivateServiceOutput) ToGetPrivateServiceOutput() GetPrivateServiceOutput {
 	return o
 }
 
-func (o GetPrivateServiceTypeOutput) ToGetPrivateServiceTypeOutputWithContext(ctx context.Context) GetPrivateServiceTypeOutput {
+func (o GetPrivateServiceOutput) ToGetPrivateServiceOutputWithContext(ctx context.Context) GetPrivateServiceOutput {
 	return o
-}
-
-func (o GetPrivateServiceTypeOutput) ToOutput(ctx context.Context) pulumix.Output[GetPrivateServiceType] {
-	return pulumix.Output[GetPrivateServiceType]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Whether to auto deploy the service or not upon git push.
-func (o GetPrivateServiceTypeOutput) AutoDeploy() ServiceAutoDeployPtrOutput {
-	return o.ApplyT(func(v GetPrivateServiceType) *ServiceAutoDeploy { return v.AutoDeploy }).(ServiceAutoDeployPtrOutput)
+func (o GetPrivateServiceOutput) AutoDeploy() ServiceAutoDeployPtrOutput {
+	return o.ApplyT(func(v GetPrivateService) *ServiceAutoDeploy { return v.AutoDeploy }).(ServiceAutoDeployPtrOutput)
 }
 
 // If left empty, this will fall back to the default branch of the repository.
-func (o GetPrivateServiceTypeOutput) Branch() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetPrivateServiceType) *string { return v.Branch }).(pulumi.StringPtrOutput)
+func (o GetPrivateServiceOutput) Branch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetPrivateService) *string { return v.Branch }).(pulumi.StringPtrOutput)
 }
 
-func (o GetPrivateServiceTypeOutput) CreatedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetPrivateServiceType) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+func (o GetPrivateServiceOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetPrivateService) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
 
-func (o GetPrivateServiceTypeOutput) EnvVars() EnvVarKeyValueArrayOutput {
-	return o.ApplyT(func(v GetPrivateServiceType) []EnvVarKeyValue { return v.EnvVars }).(EnvVarKeyValueArrayOutput)
+func (o GetPrivateServiceOutput) EnvVars() EnvVarKeyValueArrayOutput {
+	return o.ApplyT(func(v GetPrivateService) []EnvVarKeyValue { return v.EnvVars }).(EnvVarKeyValueArrayOutput)
 }
 
-func (o GetPrivateServiceTypeOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetPrivateServiceType) string { return v.Name }).(pulumi.StringOutput)
+func (o GetPrivateServiceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivateService) string { return v.Name }).(pulumi.StringOutput)
 }
 
 // The notification setting for this service upon deployment failure.
-func (o GetPrivateServiceTypeOutput) NotifyOnFail() ServiceNotifyOnFailPtrOutput {
-	return o.ApplyT(func(v GetPrivateServiceType) *ServiceNotifyOnFail { return v.NotifyOnFail }).(ServiceNotifyOnFailPtrOutput)
+func (o GetPrivateServiceOutput) NotifyOnFail() ServiceNotifyOnFailPtrOutput {
+	return o.ApplyT(func(v GetPrivateService) *ServiceNotifyOnFail { return v.NotifyOnFail }).(ServiceNotifyOnFailPtrOutput)
 }
 
 // The id of the owner (user/team).
-func (o GetPrivateServiceTypeOutput) OwnerId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetPrivateServiceType) string { return v.OwnerId }).(pulumi.StringOutput)
+func (o GetPrivateServiceOutput) OwnerId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivateService) string { return v.OwnerId }).(pulumi.StringOutput)
 }
 
 // Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-func (o GetPrivateServiceTypeOutput) Repo() pulumi.StringOutput {
-	return o.ApplyT(func(v GetPrivateServiceType) string { return v.Repo }).(pulumi.StringOutput)
+func (o GetPrivateServiceOutput) Repo() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivateService) string { return v.Repo }).(pulumi.StringOutput)
 }
 
-func (o GetPrivateServiceTypeOutput) SecretFiles() SecretFileArrayOutput {
-	return o.ApplyT(func(v GetPrivateServiceType) []SecretFile { return v.SecretFiles }).(SecretFileArrayOutput)
+func (o GetPrivateServiceOutput) SecretFiles() SecretFileArrayOutput {
+	return o.ApplyT(func(v GetPrivateService) []SecretFile { return v.SecretFiles }).(SecretFileArrayOutput)
 }
 
-func (o GetPrivateServiceTypeOutput) ServiceDetails() PrivateServiceDetailsPtrOutput {
-	return o.ApplyT(func(v GetPrivateServiceType) *PrivateServiceDetails { return v.ServiceDetails }).(PrivateServiceDetailsPtrOutput)
+func (o GetPrivateServiceOutput) ServiceDetails() PrivateServiceDetailsPtrOutput {
+	return o.ApplyT(func(v GetPrivateService) *PrivateServiceDetails { return v.ServiceDetails }).(PrivateServiceDetailsPtrOutput)
 }
 
-func (o GetPrivateServiceTypeOutput) Slug() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetPrivateServiceType) *string { return v.Slug }).(pulumi.StringPtrOutput)
+func (o GetPrivateServiceOutput) Slug() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetPrivateService) *string { return v.Slug }).(pulumi.StringPtrOutput)
 }
 
-func (o GetPrivateServiceTypeOutput) Suspended() ServiceSuspendedPtrOutput {
-	return o.ApplyT(func(v GetPrivateServiceType) *ServiceSuspended { return v.Suspended }).(ServiceSuspendedPtrOutput)
+func (o GetPrivateServiceOutput) Suspended() ServiceSuspendedPtrOutput {
+	return o.ApplyT(func(v GetPrivateService) *ServiceSuspended { return v.Suspended }).(ServiceSuspendedPtrOutput)
 }
 
-func (o GetPrivateServiceTypeOutput) Suspenders() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetPrivateServiceType) []string { return v.Suspenders }).(pulumi.StringArrayOutput)
+func (o GetPrivateServiceOutput) Suspenders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetPrivateService) []string { return v.Suspenders }).(pulumi.StringArrayOutput)
 }
 
-func (o GetPrivateServiceTypeOutput) Type() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetPrivateServiceType) *string { return v.Type }).(pulumi.StringPtrOutput)
+func (o GetPrivateServiceOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetPrivateService) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
 
-func (o GetPrivateServiceTypeOutput) UpdatedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetPrivateServiceType) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
+func (o GetPrivateServiceOutput) UpdatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetPrivateService) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
 }
 
 // A static website service
-type GetStaticSiteType struct {
+type GetStaticSite struct {
 	// Whether to auto deploy the service or not upon git push.
 	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
@@ -2100,8 +2552,8 @@ type GetStaticSiteType struct {
 	UpdatedAt      *string                   `pulumi:"updatedAt"`
 }
 
-// Defaults sets the appropriate defaults for GetStaticSiteType
-func (val *GetStaticSiteType) Defaults() *GetStaticSiteType {
+// Defaults sets the appropriate defaults for GetStaticSite
+func (val *GetStaticSite) Defaults() *GetStaticSite {
 	if val == nil {
 		return nil
 	}
@@ -2120,93 +2572,87 @@ func (val *GetStaticSiteType) Defaults() *GetStaticSiteType {
 }
 
 // A static website service
-type GetStaticSiteTypeOutput struct{ *pulumi.OutputState }
+type GetStaticSiteOutput struct{ *pulumi.OutputState }
 
-func (GetStaticSiteTypeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStaticSiteType)(nil)).Elem()
+func (GetStaticSiteOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStaticSite)(nil)).Elem()
 }
 
-func (o GetStaticSiteTypeOutput) ToGetStaticSiteTypeOutput() GetStaticSiteTypeOutput {
+func (o GetStaticSiteOutput) ToGetStaticSiteOutput() GetStaticSiteOutput {
 	return o
 }
 
-func (o GetStaticSiteTypeOutput) ToGetStaticSiteTypeOutputWithContext(ctx context.Context) GetStaticSiteTypeOutput {
+func (o GetStaticSiteOutput) ToGetStaticSiteOutputWithContext(ctx context.Context) GetStaticSiteOutput {
 	return o
-}
-
-func (o GetStaticSiteTypeOutput) ToOutput(ctx context.Context) pulumix.Output[GetStaticSiteType] {
-	return pulumix.Output[GetStaticSiteType]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Whether to auto deploy the service or not upon git push.
-func (o GetStaticSiteTypeOutput) AutoDeploy() ServiceAutoDeployPtrOutput {
-	return o.ApplyT(func(v GetStaticSiteType) *ServiceAutoDeploy { return v.AutoDeploy }).(ServiceAutoDeployPtrOutput)
+func (o GetStaticSiteOutput) AutoDeploy() ServiceAutoDeployPtrOutput {
+	return o.ApplyT(func(v GetStaticSite) *ServiceAutoDeploy { return v.AutoDeploy }).(ServiceAutoDeployPtrOutput)
 }
 
 // If left empty, this will fall back to the default branch of the repository.
-func (o GetStaticSiteTypeOutput) Branch() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetStaticSiteType) *string { return v.Branch }).(pulumi.StringPtrOutput)
+func (o GetStaticSiteOutput) Branch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetStaticSite) *string { return v.Branch }).(pulumi.StringPtrOutput)
 }
 
-func (o GetStaticSiteTypeOutput) CreatedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetStaticSiteType) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+func (o GetStaticSiteOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetStaticSite) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
 
-func (o GetStaticSiteTypeOutput) EnvVars() EnvVarKeyValueArrayOutput {
-	return o.ApplyT(func(v GetStaticSiteType) []EnvVarKeyValue { return v.EnvVars }).(EnvVarKeyValueArrayOutput)
+func (o GetStaticSiteOutput) EnvVars() EnvVarKeyValueArrayOutput {
+	return o.ApplyT(func(v GetStaticSite) []EnvVarKeyValue { return v.EnvVars }).(EnvVarKeyValueArrayOutput)
 }
 
-func (o GetStaticSiteTypeOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStaticSiteType) string { return v.Name }).(pulumi.StringOutput)
+func (o GetStaticSiteOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStaticSite) string { return v.Name }).(pulumi.StringOutput)
 }
 
 // The notification setting for this service upon deployment failure.
-func (o GetStaticSiteTypeOutput) NotifyOnFail() ServiceNotifyOnFailPtrOutput {
-	return o.ApplyT(func(v GetStaticSiteType) *ServiceNotifyOnFail { return v.NotifyOnFail }).(ServiceNotifyOnFailPtrOutput)
+func (o GetStaticSiteOutput) NotifyOnFail() ServiceNotifyOnFailPtrOutput {
+	return o.ApplyT(func(v GetStaticSite) *ServiceNotifyOnFail { return v.NotifyOnFail }).(ServiceNotifyOnFailPtrOutput)
 }
 
 // The id of the owner (user/team).
-func (o GetStaticSiteTypeOutput) OwnerId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStaticSiteType) string { return v.OwnerId }).(pulumi.StringOutput)
+func (o GetStaticSiteOutput) OwnerId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStaticSite) string { return v.OwnerId }).(pulumi.StringOutput)
 }
 
 // Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-func (o GetStaticSiteTypeOutput) Repo() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStaticSiteType) string { return v.Repo }).(pulumi.StringOutput)
+func (o GetStaticSiteOutput) Repo() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStaticSite) string { return v.Repo }).(pulumi.StringOutput)
 }
 
-func (o GetStaticSiteTypeOutput) SecretFiles() SecretFileArrayOutput {
-	return o.ApplyT(func(v GetStaticSiteType) []SecretFile { return v.SecretFiles }).(SecretFileArrayOutput)
+func (o GetStaticSiteOutput) SecretFiles() SecretFileArrayOutput {
+	return o.ApplyT(func(v GetStaticSite) []SecretFile { return v.SecretFiles }).(SecretFileArrayOutput)
 }
 
-func (o GetStaticSiteTypeOutput) ServiceDetails() StaticSiteServiceDetailsPtrOutput {
-	return o.ApplyT(func(v GetStaticSiteType) *StaticSiteServiceDetails { return v.ServiceDetails }).(StaticSiteServiceDetailsPtrOutput)
+func (o GetStaticSiteOutput) ServiceDetails() StaticSiteServiceDetailsPtrOutput {
+	return o.ApplyT(func(v GetStaticSite) *StaticSiteServiceDetails { return v.ServiceDetails }).(StaticSiteServiceDetailsPtrOutput)
 }
 
-func (o GetStaticSiteTypeOutput) Slug() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetStaticSiteType) *string { return v.Slug }).(pulumi.StringPtrOutput)
+func (o GetStaticSiteOutput) Slug() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetStaticSite) *string { return v.Slug }).(pulumi.StringPtrOutput)
 }
 
-func (o GetStaticSiteTypeOutput) Suspended() ServiceSuspendedPtrOutput {
-	return o.ApplyT(func(v GetStaticSiteType) *ServiceSuspended { return v.Suspended }).(ServiceSuspendedPtrOutput)
+func (o GetStaticSiteOutput) Suspended() ServiceSuspendedPtrOutput {
+	return o.ApplyT(func(v GetStaticSite) *ServiceSuspended { return v.Suspended }).(ServiceSuspendedPtrOutput)
 }
 
-func (o GetStaticSiteTypeOutput) Suspenders() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetStaticSiteType) []string { return v.Suspenders }).(pulumi.StringArrayOutput)
+func (o GetStaticSiteOutput) Suspenders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetStaticSite) []string { return v.Suspenders }).(pulumi.StringArrayOutput)
 }
 
-func (o GetStaticSiteTypeOutput) Type() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetStaticSiteType) *string { return v.Type }).(pulumi.StringPtrOutput)
+func (o GetStaticSiteOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetStaticSite) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
 
-func (o GetStaticSiteTypeOutput) UpdatedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetStaticSiteType) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
+func (o GetStaticSiteOutput) UpdatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetStaticSite) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
 }
 
 // A web service
-type GetWebServiceType struct {
+type GetWebService struct {
 	// Whether to auto deploy the service or not upon git push.
 	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
@@ -2229,8 +2675,8 @@ type GetWebServiceType struct {
 	UpdatedAt      *string                   `pulumi:"updatedAt"`
 }
 
-// Defaults sets the appropriate defaults for GetWebServiceType
-func (val *GetWebServiceType) Defaults() *GetWebServiceType {
+// Defaults sets the appropriate defaults for GetWebService
+func (val *GetWebService) Defaults() *GetWebService {
 	if val == nil {
 		return nil
 	}
@@ -2249,92 +2695,86 @@ func (val *GetWebServiceType) Defaults() *GetWebServiceType {
 }
 
 // A web service
-type GetWebServiceTypeOutput struct{ *pulumi.OutputState }
+type GetWebServiceOutput struct{ *pulumi.OutputState }
 
-func (GetWebServiceTypeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetWebServiceType)(nil)).Elem()
+func (GetWebServiceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWebService)(nil)).Elem()
 }
 
-func (o GetWebServiceTypeOutput) ToGetWebServiceTypeOutput() GetWebServiceTypeOutput {
+func (o GetWebServiceOutput) ToGetWebServiceOutput() GetWebServiceOutput {
 	return o
 }
 
-func (o GetWebServiceTypeOutput) ToGetWebServiceTypeOutputWithContext(ctx context.Context) GetWebServiceTypeOutput {
+func (o GetWebServiceOutput) ToGetWebServiceOutputWithContext(ctx context.Context) GetWebServiceOutput {
 	return o
-}
-
-func (o GetWebServiceTypeOutput) ToOutput(ctx context.Context) pulumix.Output[GetWebServiceType] {
-	return pulumix.Output[GetWebServiceType]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Whether to auto deploy the service or not upon git push.
-func (o GetWebServiceTypeOutput) AutoDeploy() ServiceAutoDeployPtrOutput {
-	return o.ApplyT(func(v GetWebServiceType) *ServiceAutoDeploy { return v.AutoDeploy }).(ServiceAutoDeployPtrOutput)
+func (o GetWebServiceOutput) AutoDeploy() ServiceAutoDeployPtrOutput {
+	return o.ApplyT(func(v GetWebService) *ServiceAutoDeploy { return v.AutoDeploy }).(ServiceAutoDeployPtrOutput)
 }
 
 // If left empty, this will fall back to the default branch of the repository.
-func (o GetWebServiceTypeOutput) Branch() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetWebServiceType) *string { return v.Branch }).(pulumi.StringPtrOutput)
+func (o GetWebServiceOutput) Branch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetWebService) *string { return v.Branch }).(pulumi.StringPtrOutput)
 }
 
-func (o GetWebServiceTypeOutput) CreatedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetWebServiceType) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+func (o GetWebServiceOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetWebService) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
 
-func (o GetWebServiceTypeOutput) EnvVars() EnvVarKeyValueArrayOutput {
-	return o.ApplyT(func(v GetWebServiceType) []EnvVarKeyValue { return v.EnvVars }).(EnvVarKeyValueArrayOutput)
+func (o GetWebServiceOutput) EnvVars() EnvVarKeyValueArrayOutput {
+	return o.ApplyT(func(v GetWebService) []EnvVarKeyValue { return v.EnvVars }).(EnvVarKeyValueArrayOutput)
 }
 
-func (o GetWebServiceTypeOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetWebServiceType) string { return v.Name }).(pulumi.StringOutput)
+func (o GetWebServiceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebService) string { return v.Name }).(pulumi.StringOutput)
 }
 
 // The notification setting for this service upon deployment failure.
-func (o GetWebServiceTypeOutput) NotifyOnFail() ServiceNotifyOnFailPtrOutput {
-	return o.ApplyT(func(v GetWebServiceType) *ServiceNotifyOnFail { return v.NotifyOnFail }).(ServiceNotifyOnFailPtrOutput)
+func (o GetWebServiceOutput) NotifyOnFail() ServiceNotifyOnFailPtrOutput {
+	return o.ApplyT(func(v GetWebService) *ServiceNotifyOnFail { return v.NotifyOnFail }).(ServiceNotifyOnFailPtrOutput)
 }
 
 // The id of the owner (user/team).
-func (o GetWebServiceTypeOutput) OwnerId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetWebServiceType) string { return v.OwnerId }).(pulumi.StringOutput)
+func (o GetWebServiceOutput) OwnerId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebService) string { return v.OwnerId }).(pulumi.StringOutput)
 }
 
 // Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-func (o GetWebServiceTypeOutput) Repo() pulumi.StringOutput {
-	return o.ApplyT(func(v GetWebServiceType) string { return v.Repo }).(pulumi.StringOutput)
+func (o GetWebServiceOutput) Repo() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebService) string { return v.Repo }).(pulumi.StringOutput)
 }
 
-func (o GetWebServiceTypeOutput) SecretFiles() SecretFileArrayOutput {
-	return o.ApplyT(func(v GetWebServiceType) []SecretFile { return v.SecretFiles }).(SecretFileArrayOutput)
+func (o GetWebServiceOutput) SecretFiles() SecretFileArrayOutput {
+	return o.ApplyT(func(v GetWebService) []SecretFile { return v.SecretFiles }).(SecretFileArrayOutput)
 }
 
-func (o GetWebServiceTypeOutput) ServiceDetails() WebServiceServiceDetailsPtrOutput {
-	return o.ApplyT(func(v GetWebServiceType) *WebServiceServiceDetails { return v.ServiceDetails }).(WebServiceServiceDetailsPtrOutput)
+func (o GetWebServiceOutput) ServiceDetails() WebServiceServiceDetailsPtrOutput {
+	return o.ApplyT(func(v GetWebService) *WebServiceServiceDetails { return v.ServiceDetails }).(WebServiceServiceDetailsPtrOutput)
 }
 
-func (o GetWebServiceTypeOutput) Slug() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetWebServiceType) *string { return v.Slug }).(pulumi.StringPtrOutput)
+func (o GetWebServiceOutput) Slug() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetWebService) *string { return v.Slug }).(pulumi.StringPtrOutput)
 }
 
-func (o GetWebServiceTypeOutput) Suspended() ServiceSuspendedPtrOutput {
-	return o.ApplyT(func(v GetWebServiceType) *ServiceSuspended { return v.Suspended }).(ServiceSuspendedPtrOutput)
+func (o GetWebServiceOutput) Suspended() ServiceSuspendedPtrOutput {
+	return o.ApplyT(func(v GetWebService) *ServiceSuspended { return v.Suspended }).(ServiceSuspendedPtrOutput)
 }
 
-func (o GetWebServiceTypeOutput) Suspenders() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetWebServiceType) []string { return v.Suspenders }).(pulumi.StringArrayOutput)
+func (o GetWebServiceOutput) Suspenders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetWebService) []string { return v.Suspenders }).(pulumi.StringArrayOutput)
 }
 
-func (o GetWebServiceTypeOutput) Type() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetWebServiceType) *string { return v.Type }).(pulumi.StringPtrOutput)
+func (o GetWebServiceOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetWebService) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
 
-func (o GetWebServiceTypeOutput) UpdatedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetWebServiceType) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
+func (o GetWebServiceOutput) UpdatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetWebService) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
 }
 
-type JobType struct {
+type Job struct {
 	CreatedAt    *string `pulumi:"createdAt"`
 	FinishedAt   *string `pulumi:"finishedAt"`
 	PlanId       string  `pulumi:"planId"`
@@ -2343,82 +2783,70 @@ type JobType struct {
 	Status       *string `pulumi:"status"`
 }
 
-type JobTypeOutput struct{ *pulumi.OutputState }
+type JobOutput struct{ *pulumi.OutputState }
 
-func (JobTypeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*JobType)(nil)).Elem()
+func (JobOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Job)(nil)).Elem()
 }
 
-func (o JobTypeOutput) ToJobTypeOutput() JobTypeOutput {
+func (o JobOutput) ToJobOutput() JobOutput {
 	return o
 }
 
-func (o JobTypeOutput) ToJobTypeOutputWithContext(ctx context.Context) JobTypeOutput {
+func (o JobOutput) ToJobOutputWithContext(ctx context.Context) JobOutput {
 	return o
 }
 
-func (o JobTypeOutput) ToOutput(ctx context.Context) pulumix.Output[JobType] {
-	return pulumix.Output[JobType]{
-		OutputState: o.OutputState,
-	}
+func (o JobOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Job) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
 
-func (o JobTypeOutput) CreatedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v JobType) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+func (o JobOutput) FinishedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Job) *string { return v.FinishedAt }).(pulumi.StringPtrOutput)
 }
 
-func (o JobTypeOutput) FinishedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v JobType) *string { return v.FinishedAt }).(pulumi.StringPtrOutput)
+func (o JobOutput) PlanId() pulumi.StringOutput {
+	return o.ApplyT(func(v Job) string { return v.PlanId }).(pulumi.StringOutput)
 }
 
-func (o JobTypeOutput) PlanId() pulumi.StringOutput {
-	return o.ApplyT(func(v JobType) string { return v.PlanId }).(pulumi.StringOutput)
+func (o JobOutput) StartCommand() pulumi.StringOutput {
+	return o.ApplyT(func(v Job) string { return v.StartCommand }).(pulumi.StringOutput)
 }
 
-func (o JobTypeOutput) StartCommand() pulumi.StringOutput {
-	return o.ApplyT(func(v JobType) string { return v.StartCommand }).(pulumi.StringOutput)
+func (o JobOutput) StartedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Job) *string { return v.StartedAt }).(pulumi.StringPtrOutput)
 }
 
-func (o JobTypeOutput) StartedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v JobType) *string { return v.StartedAt }).(pulumi.StringPtrOutput)
+func (o JobOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Job) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
 
-func (o JobTypeOutput) Status() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v JobType) *string { return v.Status }).(pulumi.StringPtrOutput)
+type JobPtrOutput struct{ *pulumi.OutputState }
+
+func (JobPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Job)(nil)).Elem()
 }
 
-type JobTypePtrOutput struct{ *pulumi.OutputState }
-
-func (JobTypePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**JobType)(nil)).Elem()
-}
-
-func (o JobTypePtrOutput) ToJobTypePtrOutput() JobTypePtrOutput {
+func (o JobPtrOutput) ToJobPtrOutput() JobPtrOutput {
 	return o
 }
 
-func (o JobTypePtrOutput) ToJobTypePtrOutputWithContext(ctx context.Context) JobTypePtrOutput {
+func (o JobPtrOutput) ToJobPtrOutputWithContext(ctx context.Context) JobPtrOutput {
 	return o
 }
 
-func (o JobTypePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*JobType] {
-	return pulumix.Output[*JobType]{
-		OutputState: o.OutputState,
-	}
-}
-
-func (o JobTypePtrOutput) Elem() JobTypeOutput {
-	return o.ApplyT(func(v *JobType) JobType {
+func (o JobPtrOutput) Elem() JobOutput {
+	return o.ApplyT(func(v *Job) Job {
 		if v != nil {
 			return *v
 		}
-		var ret JobType
+		var ret Job
 		return ret
-	}).(JobTypeOutput)
+	}).(JobOutput)
 }
 
-func (o JobTypePtrOutput) CreatedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *JobType) *string {
+func (o JobPtrOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Job) *string {
 		if v == nil {
 			return nil
 		}
@@ -2426,8 +2854,8 @@ func (o JobTypePtrOutput) CreatedAt() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o JobTypePtrOutput) FinishedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *JobType) *string {
+func (o JobPtrOutput) FinishedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Job) *string {
 		if v == nil {
 			return nil
 		}
@@ -2435,8 +2863,8 @@ func (o JobTypePtrOutput) FinishedAt() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o JobTypePtrOutput) PlanId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *JobType) *string {
+func (o JobPtrOutput) PlanId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Job) *string {
 		if v == nil {
 			return nil
 		}
@@ -2444,8 +2872,8 @@ func (o JobTypePtrOutput) PlanId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o JobTypePtrOutput) StartCommand() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *JobType) *string {
+func (o JobPtrOutput) StartCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Job) *string {
 		if v == nil {
 			return nil
 		}
@@ -2453,8 +2881,8 @@ func (o JobTypePtrOutput) StartCommand() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o JobTypePtrOutput) StartedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *JobType) *string {
+func (o JobPtrOutput) StartedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Job) *string {
 		if v == nil {
 			return nil
 		}
@@ -2462,8 +2890,8 @@ func (o JobTypePtrOutput) StartedAt() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o JobTypePtrOutput) Status() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *JobType) *string {
+func (o JobPtrOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Job) *string {
 		if v == nil {
 			return nil
 		}
@@ -2472,8 +2900,8 @@ func (o JobTypePtrOutput) Status() pulumi.StringPtrOutput {
 }
 
 type ListCustomDomainsResponse struct {
-	Cursor       *string           `pulumi:"cursor"`
-	CustomDomain *CustomDomainType `pulumi:"customDomain"`
+	Cursor       *string       `pulumi:"cursor"`
+	CustomDomain *CustomDomain `pulumi:"customDomain"`
 }
 
 type ListCustomDomainsResponseOutput struct{ *pulumi.OutputState }
@@ -2490,18 +2918,12 @@ func (o ListCustomDomainsResponseOutput) ToListCustomDomainsResponseOutputWithCo
 	return o
 }
 
-func (o ListCustomDomainsResponseOutput) ToOutput(ctx context.Context) pulumix.Output[ListCustomDomainsResponse] {
-	return pulumix.Output[ListCustomDomainsResponse]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ListCustomDomainsResponseOutput) Cursor() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ListCustomDomainsResponse) *string { return v.Cursor }).(pulumi.StringPtrOutput)
 }
 
-func (o ListCustomDomainsResponseOutput) CustomDomain() CustomDomainTypePtrOutput {
-	return o.ApplyT(func(v ListCustomDomainsResponse) *CustomDomainType { return v.CustomDomain }).(CustomDomainTypePtrOutput)
+func (o ListCustomDomainsResponseOutput) CustomDomain() CustomDomainPtrOutput {
+	return o.ApplyT(func(v ListCustomDomainsResponse) *CustomDomain { return v.CustomDomain }).(CustomDomainPtrOutput)
 }
 
 type ListCustomDomainsResponseArrayOutput struct{ *pulumi.OutputState }
@@ -2518,12 +2940,6 @@ func (o ListCustomDomainsResponseArrayOutput) ToListCustomDomainsResponseArrayOu
 	return o
 }
 
-func (o ListCustomDomainsResponseArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ListCustomDomainsResponse] {
-	return pulumix.Output[[]ListCustomDomainsResponse]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ListCustomDomainsResponseArrayOutput) Index(i pulumi.IntInput) ListCustomDomainsResponseOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListCustomDomainsResponse {
 		return vs[0].([]ListCustomDomainsResponse)[vs[1].(int)]
@@ -2531,8 +2947,8 @@ func (o ListCustomDomainsResponseArrayOutput) Index(i pulumi.IntInput) ListCusto
 }
 
 type ListDeploysResponse struct {
-	Cursor       *string     `pulumi:"cursor"`
-	CustomDomain *DeployType `pulumi:"customDomain"`
+	Cursor       *string `pulumi:"cursor"`
+	CustomDomain *Deploy `pulumi:"customDomain"`
 }
 
 // Defaults sets the appropriate defaults for ListDeploysResponse
@@ -2560,18 +2976,12 @@ func (o ListDeploysResponseOutput) ToListDeploysResponseOutputWithContext(ctx co
 	return o
 }
 
-func (o ListDeploysResponseOutput) ToOutput(ctx context.Context) pulumix.Output[ListDeploysResponse] {
-	return pulumix.Output[ListDeploysResponse]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ListDeploysResponseOutput) Cursor() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ListDeploysResponse) *string { return v.Cursor }).(pulumi.StringPtrOutput)
 }
 
-func (o ListDeploysResponseOutput) CustomDomain() DeployTypePtrOutput {
-	return o.ApplyT(func(v ListDeploysResponse) *DeployType { return v.CustomDomain }).(DeployTypePtrOutput)
+func (o ListDeploysResponseOutput) CustomDomain() DeployPtrOutput {
+	return o.ApplyT(func(v ListDeploysResponse) *Deploy { return v.CustomDomain }).(DeployPtrOutput)
 }
 
 type ListDeploysResponseArrayOutput struct{ *pulumi.OutputState }
@@ -2586,12 +2996,6 @@ func (o ListDeploysResponseArrayOutput) ToListDeploysResponseArrayOutput() ListD
 
 func (o ListDeploysResponseArrayOutput) ToListDeploysResponseArrayOutputWithContext(ctx context.Context) ListDeploysResponseArrayOutput {
 	return o
-}
-
-func (o ListDeploysResponseArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ListDeploysResponse] {
-	return pulumix.Output[[]ListDeploysResponse]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ListDeploysResponseArrayOutput) Index(i pulumi.IntInput) ListDeploysResponseOutput {
@@ -2619,12 +3023,6 @@ func (o ListEnvVarsResponseOutput) ToListEnvVarsResponseOutputWithContext(ctx co
 	return o
 }
 
-func (o ListEnvVarsResponseOutput) ToOutput(ctx context.Context) pulumix.Output[ListEnvVarsResponse] {
-	return pulumix.Output[ListEnvVarsResponse]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ListEnvVarsResponseOutput) Cursor() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ListEnvVarsResponse) *string { return v.Cursor }).(pulumi.StringPtrOutput)
 }
@@ -2647,12 +3045,6 @@ func (o ListEnvVarsResponseArrayOutput) ToListEnvVarsResponseArrayOutputWithCont
 	return o
 }
 
-func (o ListEnvVarsResponseArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ListEnvVarsResponse] {
-	return pulumix.Output[[]ListEnvVarsResponse]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ListEnvVarsResponseArrayOutput) Index(i pulumi.IntInput) ListEnvVarsResponseOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListEnvVarsResponse {
 		return vs[0].([]ListEnvVarsResponse)[vs[1].(int)]
@@ -2660,8 +3052,8 @@ func (o ListEnvVarsResponseArrayOutput) Index(i pulumi.IntInput) ListEnvVarsResp
 }
 
 type ListJobsResponse struct {
-	Cursor *string  `pulumi:"cursor"`
-	Job    *JobType `pulumi:"job"`
+	Cursor *string `pulumi:"cursor"`
+	Job    *Job    `pulumi:"job"`
 }
 
 type ListJobsResponseOutput struct{ *pulumi.OutputState }
@@ -2678,18 +3070,12 @@ func (o ListJobsResponseOutput) ToListJobsResponseOutputWithContext(ctx context.
 	return o
 }
 
-func (o ListJobsResponseOutput) ToOutput(ctx context.Context) pulumix.Output[ListJobsResponse] {
-	return pulumix.Output[ListJobsResponse]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ListJobsResponseOutput) Cursor() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ListJobsResponse) *string { return v.Cursor }).(pulumi.StringPtrOutput)
 }
 
-func (o ListJobsResponseOutput) Job() JobTypePtrOutput {
-	return o.ApplyT(func(v ListJobsResponse) *JobType { return v.Job }).(JobTypePtrOutput)
+func (o ListJobsResponseOutput) Job() JobPtrOutput {
+	return o.ApplyT(func(v ListJobsResponse) *Job { return v.Job }).(JobPtrOutput)
 }
 
 type ListJobsResponseArrayOutput struct{ *pulumi.OutputState }
@@ -2704,12 +3090,6 @@ func (o ListJobsResponseArrayOutput) ToListJobsResponseArrayOutput() ListJobsRes
 
 func (o ListJobsResponseArrayOutput) ToListJobsResponseArrayOutputWithContext(ctx context.Context) ListJobsResponseArrayOutput {
 	return o
-}
-
-func (o ListJobsResponseArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ListJobsResponse] {
-	return pulumix.Output[[]ListJobsResponse]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ListJobsResponseArrayOutput) Index(i pulumi.IntInput) ListJobsResponseOutput {
@@ -2738,12 +3118,6 @@ func (o ListServiceHeadersResponseOutput) ToListServiceHeadersResponseOutputWith
 	return o
 }
 
-func (o ListServiceHeadersResponseOutput) ToOutput(ctx context.Context) pulumix.Output[ListServiceHeadersResponse] {
-	return pulumix.Output[ListServiceHeadersResponse]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ListServiceHeadersResponseOutput) Cursor() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ListServiceHeadersResponse) *string { return v.Cursor }).(pulumi.StringPtrOutput)
 }
@@ -2767,12 +3141,6 @@ func (o ListServiceHeadersResponseArrayOutput) ToListServiceHeadersResponseArray
 	return o
 }
 
-func (o ListServiceHeadersResponseArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ListServiceHeadersResponse] {
-	return pulumix.Output[[]ListServiceHeadersResponse]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ListServiceHeadersResponseArrayOutput) Index(i pulumi.IntInput) ListServiceHeadersResponseOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListServiceHeadersResponse {
 		return vs[0].([]ListServiceHeadersResponse)[vs[1].(int)]
@@ -2782,6 +3150,48 @@ func (o ListServiceHeadersResponseArrayOutput) Index(i pulumi.IntInput) ListServ
 type ListServiceResponse struct {
 	Cursor  *string     `pulumi:"cursor"`
 	Service interface{} `pulumi:"service"`
+}
+
+type ListServiceResponseOutput struct{ *pulumi.OutputState }
+
+func (ListServiceResponseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListServiceResponse)(nil)).Elem()
+}
+
+func (o ListServiceResponseOutput) ToListServiceResponseOutput() ListServiceResponseOutput {
+	return o
+}
+
+func (o ListServiceResponseOutput) ToListServiceResponseOutputWithContext(ctx context.Context) ListServiceResponseOutput {
+	return o
+}
+
+func (o ListServiceResponseOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListServiceResponse) *string { return v.Cursor }).(pulumi.StringPtrOutput)
+}
+
+func (o ListServiceResponseOutput) Service() pulumi.AnyOutput {
+	return o.ApplyT(func(v ListServiceResponse) interface{} { return v.Service }).(pulumi.AnyOutput)
+}
+
+type ListServiceResponseArrayOutput struct{ *pulumi.OutputState }
+
+func (ListServiceResponseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListServiceResponse)(nil)).Elem()
+}
+
+func (o ListServiceResponseArrayOutput) ToListServiceResponseArrayOutput() ListServiceResponseArrayOutput {
+	return o
+}
+
+func (o ListServiceResponseArrayOutput) ToListServiceResponseArrayOutputWithContext(ctx context.Context) ListServiceResponseArrayOutput {
+	return o
+}
+
+func (o ListServiceResponseArrayOutput) Index(i pulumi.IntInput) ListServiceResponseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListServiceResponse {
+		return vs[0].([]ListServiceResponse)[vs[1].(int)]
+	}).(ListServiceResponseOutput)
 }
 
 type ListStaticSiteRoutesResponse struct {
@@ -2802,12 +3212,6 @@ func (o ListStaticSiteRoutesResponseOutput) ToListStaticSiteRoutesResponseOutput
 
 func (o ListStaticSiteRoutesResponseOutput) ToListStaticSiteRoutesResponseOutputWithContext(ctx context.Context) ListStaticSiteRoutesResponseOutput {
 	return o
-}
-
-func (o ListStaticSiteRoutesResponseOutput) ToOutput(ctx context.Context) pulumix.Output[ListStaticSiteRoutesResponse] {
-	return pulumix.Output[ListStaticSiteRoutesResponse]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ListStaticSiteRoutesResponseOutput) Cursor() pulumi.StringPtrOutput {
@@ -2833,12 +3237,6 @@ func (o ListStaticSiteRoutesResponseArrayOutput) ToListStaticSiteRoutesResponseA
 	return o
 }
 
-func (o ListStaticSiteRoutesResponseArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ListStaticSiteRoutesResponse] {
-	return pulumix.Output[[]ListStaticSiteRoutesResponse]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ListStaticSiteRoutesResponseArrayOutput) Index(i pulumi.IntInput) ListStaticSiteRoutesResponseOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListStaticSiteRoutesResponse {
 		return vs[0].([]ListStaticSiteRoutesResponse)[vs[1].(int)]
@@ -2848,6 +3246,149 @@ func (o ListStaticSiteRoutesResponseArrayOutput) Index(i pulumi.IntInput) ListSt
 type NativeEnvironmentDetails struct {
 	BuildCommand string `pulumi:"buildCommand"`
 	StartCommand string `pulumi:"startCommand"`
+}
+
+// NativeEnvironmentDetailsInput is an input type that accepts NativeEnvironmentDetailsArgs and NativeEnvironmentDetailsOutput values.
+// You can construct a concrete instance of `NativeEnvironmentDetailsInput` via:
+//
+//	NativeEnvironmentDetailsArgs{...}
+type NativeEnvironmentDetailsInput interface {
+	pulumi.Input
+
+	ToNativeEnvironmentDetailsOutput() NativeEnvironmentDetailsOutput
+	ToNativeEnvironmentDetailsOutputWithContext(context.Context) NativeEnvironmentDetailsOutput
+}
+
+type NativeEnvironmentDetailsArgs struct {
+	BuildCommand pulumi.StringInput `pulumi:"buildCommand"`
+	StartCommand pulumi.StringInput `pulumi:"startCommand"`
+}
+
+func (NativeEnvironmentDetailsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NativeEnvironmentDetails)(nil)).Elem()
+}
+
+func (i NativeEnvironmentDetailsArgs) ToNativeEnvironmentDetailsOutput() NativeEnvironmentDetailsOutput {
+	return i.ToNativeEnvironmentDetailsOutputWithContext(context.Background())
+}
+
+func (i NativeEnvironmentDetailsArgs) ToNativeEnvironmentDetailsOutputWithContext(ctx context.Context) NativeEnvironmentDetailsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NativeEnvironmentDetailsOutput)
+}
+
+func (i NativeEnvironmentDetailsArgs) ToNativeEnvironmentDetailsPtrOutput() NativeEnvironmentDetailsPtrOutput {
+	return i.ToNativeEnvironmentDetailsPtrOutputWithContext(context.Background())
+}
+
+func (i NativeEnvironmentDetailsArgs) ToNativeEnvironmentDetailsPtrOutputWithContext(ctx context.Context) NativeEnvironmentDetailsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NativeEnvironmentDetailsOutput).ToNativeEnvironmentDetailsPtrOutputWithContext(ctx)
+}
+
+// NativeEnvironmentDetailsPtrInput is an input type that accepts NativeEnvironmentDetailsArgs, NativeEnvironmentDetailsPtr and NativeEnvironmentDetailsPtrOutput values.
+// You can construct a concrete instance of `NativeEnvironmentDetailsPtrInput` via:
+//
+//	        NativeEnvironmentDetailsArgs{...}
+//
+//	or:
+//
+//	        nil
+type NativeEnvironmentDetailsPtrInput interface {
+	pulumi.Input
+
+	ToNativeEnvironmentDetailsPtrOutput() NativeEnvironmentDetailsPtrOutput
+	ToNativeEnvironmentDetailsPtrOutputWithContext(context.Context) NativeEnvironmentDetailsPtrOutput
+}
+
+type nativeEnvironmentDetailsPtrType NativeEnvironmentDetailsArgs
+
+func NativeEnvironmentDetailsPtr(v *NativeEnvironmentDetailsArgs) NativeEnvironmentDetailsPtrInput {
+	return (*nativeEnvironmentDetailsPtrType)(v)
+}
+
+func (*nativeEnvironmentDetailsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**NativeEnvironmentDetails)(nil)).Elem()
+}
+
+func (i *nativeEnvironmentDetailsPtrType) ToNativeEnvironmentDetailsPtrOutput() NativeEnvironmentDetailsPtrOutput {
+	return i.ToNativeEnvironmentDetailsPtrOutputWithContext(context.Background())
+}
+
+func (i *nativeEnvironmentDetailsPtrType) ToNativeEnvironmentDetailsPtrOutputWithContext(ctx context.Context) NativeEnvironmentDetailsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NativeEnvironmentDetailsPtrOutput)
+}
+
+type NativeEnvironmentDetailsOutput struct{ *pulumi.OutputState }
+
+func (NativeEnvironmentDetailsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NativeEnvironmentDetails)(nil)).Elem()
+}
+
+func (o NativeEnvironmentDetailsOutput) ToNativeEnvironmentDetailsOutput() NativeEnvironmentDetailsOutput {
+	return o
+}
+
+func (o NativeEnvironmentDetailsOutput) ToNativeEnvironmentDetailsOutputWithContext(ctx context.Context) NativeEnvironmentDetailsOutput {
+	return o
+}
+
+func (o NativeEnvironmentDetailsOutput) ToNativeEnvironmentDetailsPtrOutput() NativeEnvironmentDetailsPtrOutput {
+	return o.ToNativeEnvironmentDetailsPtrOutputWithContext(context.Background())
+}
+
+func (o NativeEnvironmentDetailsOutput) ToNativeEnvironmentDetailsPtrOutputWithContext(ctx context.Context) NativeEnvironmentDetailsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NativeEnvironmentDetails) *NativeEnvironmentDetails {
+		return &v
+	}).(NativeEnvironmentDetailsPtrOutput)
+}
+
+func (o NativeEnvironmentDetailsOutput) BuildCommand() pulumi.StringOutput {
+	return o.ApplyT(func(v NativeEnvironmentDetails) string { return v.BuildCommand }).(pulumi.StringOutput)
+}
+
+func (o NativeEnvironmentDetailsOutput) StartCommand() pulumi.StringOutput {
+	return o.ApplyT(func(v NativeEnvironmentDetails) string { return v.StartCommand }).(pulumi.StringOutput)
+}
+
+type NativeEnvironmentDetailsPtrOutput struct{ *pulumi.OutputState }
+
+func (NativeEnvironmentDetailsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NativeEnvironmentDetails)(nil)).Elem()
+}
+
+func (o NativeEnvironmentDetailsPtrOutput) ToNativeEnvironmentDetailsPtrOutput() NativeEnvironmentDetailsPtrOutput {
+	return o
+}
+
+func (o NativeEnvironmentDetailsPtrOutput) ToNativeEnvironmentDetailsPtrOutputWithContext(ctx context.Context) NativeEnvironmentDetailsPtrOutput {
+	return o
+}
+
+func (o NativeEnvironmentDetailsPtrOutput) Elem() NativeEnvironmentDetailsOutput {
+	return o.ApplyT(func(v *NativeEnvironmentDetails) NativeEnvironmentDetails {
+		if v != nil {
+			return *v
+		}
+		var ret NativeEnvironmentDetails
+		return ret
+	}).(NativeEnvironmentDetailsOutput)
+}
+
+func (o NativeEnvironmentDetailsPtrOutput) BuildCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NativeEnvironmentDetails) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.BuildCommand
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o NativeEnvironmentDetailsPtrOutput) StartCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NativeEnvironmentDetails) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.StartCommand
+	}).(pulumi.StringPtrOutput)
 }
 
 type OpenPorts struct {
@@ -2883,12 +3424,6 @@ func (i OpenPortsArgs) ToOpenPortsOutputWithContext(ctx context.Context) OpenPor
 	return pulumi.ToOutputWithContext(ctx, i).(OpenPortsOutput)
 }
 
-func (i OpenPortsArgs) ToOutput(ctx context.Context) pulumix.Output[OpenPorts] {
-	return pulumix.Output[OpenPorts]{
-		OutputState: i.ToOpenPortsOutputWithContext(ctx).OutputState,
-	}
-}
-
 // OpenPortsArrayInput is an input type that accepts OpenPortsArray and OpenPortsArrayOutput values.
 // You can construct a concrete instance of `OpenPortsArrayInput` via:
 //
@@ -2914,12 +3449,6 @@ func (i OpenPortsArray) ToOpenPortsArrayOutputWithContext(ctx context.Context) O
 	return pulumi.ToOutputWithContext(ctx, i).(OpenPortsArrayOutput)
 }
 
-func (i OpenPortsArray) ToOutput(ctx context.Context) pulumix.Output[[]OpenPorts] {
-	return pulumix.Output[[]OpenPorts]{
-		OutputState: i.ToOpenPortsArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type OpenPortsOutput struct{ *pulumi.OutputState }
 
 func (OpenPortsOutput) ElementType() reflect.Type {
@@ -2932,12 +3461,6 @@ func (o OpenPortsOutput) ToOpenPortsOutput() OpenPortsOutput {
 
 func (o OpenPortsOutput) ToOpenPortsOutputWithContext(ctx context.Context) OpenPortsOutput {
 	return o
-}
-
-func (o OpenPortsOutput) ToOutput(ctx context.Context) pulumix.Output[OpenPorts] {
-	return pulumix.Output[OpenPorts]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o OpenPortsOutput) Port() pulumi.Float64PtrOutput {
@@ -2962,12 +3485,6 @@ func (o OpenPortsArrayOutput) ToOpenPortsArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o OpenPortsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]OpenPorts] {
-	return pulumix.Output[[]OpenPorts]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o OpenPortsArrayOutput) Index(i pulumi.IntInput) OpenPortsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) OpenPorts {
 		return vs[0].([]OpenPorts)[vs[1].(int)]
@@ -2975,7 +3492,7 @@ func (o OpenPortsArrayOutput) Index(i pulumi.IntInput) OpenPortsOutput {
 }
 
 // A private service
-type PrivateServiceType struct {
+type PrivateService struct {
 	// Whether to auto deploy the service or not upon git push.
 	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
@@ -2998,8 +3515,8 @@ type PrivateServiceType struct {
 	UpdatedAt      *string                `pulumi:"updatedAt"`
 }
 
-// Defaults sets the appropriate defaults for PrivateServiceType
-func (val *PrivateServiceType) Defaults() *PrivateServiceType {
+// Defaults sets the appropriate defaults for PrivateService
+func (val *PrivateService) Defaults() *PrivateService {
 	if val == nil {
 		return nil
 	}
@@ -3015,6 +3532,250 @@ func (val *PrivateServiceType) Defaults() *PrivateServiceType {
 		tmp.Type = &type_
 	}
 	return &tmp
+}
+
+// A private service
+type PrivateServiceOutput struct{ *pulumi.OutputState }
+
+func (PrivateServiceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivateService)(nil)).Elem()
+}
+
+func (o PrivateServiceOutput) ToPrivateServiceOutput() PrivateServiceOutput {
+	return o
+}
+
+func (o PrivateServiceOutput) ToPrivateServiceOutputWithContext(ctx context.Context) PrivateServiceOutput {
+	return o
+}
+
+// Whether to auto deploy the service or not upon git push.
+func (o PrivateServiceOutput) AutoDeploy() ServiceAutoDeployPtrOutput {
+	return o.ApplyT(func(v PrivateService) *ServiceAutoDeploy { return v.AutoDeploy }).(ServiceAutoDeployPtrOutput)
+}
+
+// If left empty, this will fall back to the default branch of the repository.
+func (o PrivateServiceOutput) Branch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PrivateService) *string { return v.Branch }).(pulumi.StringPtrOutput)
+}
+
+func (o PrivateServiceOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PrivateService) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+}
+
+func (o PrivateServiceOutput) EnvVars() EnvVarKeyValueArrayOutput {
+	return o.ApplyT(func(v PrivateService) []EnvVarKeyValue { return v.EnvVars }).(EnvVarKeyValueArrayOutput)
+}
+
+func (o PrivateServiceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v PrivateService) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The notification setting for this service upon deployment failure.
+func (o PrivateServiceOutput) NotifyOnFail() ServiceNotifyOnFailPtrOutput {
+	return o.ApplyT(func(v PrivateService) *ServiceNotifyOnFail { return v.NotifyOnFail }).(ServiceNotifyOnFailPtrOutput)
+}
+
+// The id of the owner (user/team).
+func (o PrivateServiceOutput) OwnerId() pulumi.StringOutput {
+	return o.ApplyT(func(v PrivateService) string { return v.OwnerId }).(pulumi.StringOutput)
+}
+
+// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+func (o PrivateServiceOutput) Repo() pulumi.StringOutput {
+	return o.ApplyT(func(v PrivateService) string { return v.Repo }).(pulumi.StringOutput)
+}
+
+func (o PrivateServiceOutput) SecretFiles() SecretFileArrayOutput {
+	return o.ApplyT(func(v PrivateService) []SecretFile { return v.SecretFiles }).(SecretFileArrayOutput)
+}
+
+func (o PrivateServiceOutput) ServiceDetails() PrivateServiceDetailsPtrOutput {
+	return o.ApplyT(func(v PrivateService) *PrivateServiceDetails { return v.ServiceDetails }).(PrivateServiceDetailsPtrOutput)
+}
+
+func (o PrivateServiceOutput) Slug() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PrivateService) *string { return v.Slug }).(pulumi.StringPtrOutput)
+}
+
+func (o PrivateServiceOutput) Suspended() ServiceSuspendedPtrOutput {
+	return o.ApplyT(func(v PrivateService) *ServiceSuspended { return v.Suspended }).(ServiceSuspendedPtrOutput)
+}
+
+func (o PrivateServiceOutput) Suspenders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v PrivateService) []string { return v.Suspenders }).(pulumi.StringArrayOutput)
+}
+
+func (o PrivateServiceOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PrivateService) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+func (o PrivateServiceOutput) UpdatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PrivateService) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
+}
+
+type PrivateServicePtrOutput struct{ *pulumi.OutputState }
+
+func (PrivateServicePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PrivateService)(nil)).Elem()
+}
+
+func (o PrivateServicePtrOutput) ToPrivateServicePtrOutput() PrivateServicePtrOutput {
+	return o
+}
+
+func (o PrivateServicePtrOutput) ToPrivateServicePtrOutputWithContext(ctx context.Context) PrivateServicePtrOutput {
+	return o
+}
+
+func (o PrivateServicePtrOutput) Elem() PrivateServiceOutput {
+	return o.ApplyT(func(v *PrivateService) PrivateService {
+		if v != nil {
+			return *v
+		}
+		var ret PrivateService
+		return ret
+	}).(PrivateServiceOutput)
+}
+
+// Whether to auto deploy the service or not upon git push.
+func (o PrivateServicePtrOutput) AutoDeploy() ServiceAutoDeployPtrOutput {
+	return o.ApplyT(func(v *PrivateService) *ServiceAutoDeploy {
+		if v == nil {
+			return nil
+		}
+		return v.AutoDeploy
+	}).(ServiceAutoDeployPtrOutput)
+}
+
+// If left empty, this will fall back to the default branch of the repository.
+func (o PrivateServicePtrOutput) Branch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PrivateService) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Branch
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o PrivateServicePtrOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PrivateService) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedAt
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o PrivateServicePtrOutput) EnvVars() EnvVarKeyValueArrayOutput {
+	return o.ApplyT(func(v *PrivateService) []EnvVarKeyValue {
+		if v == nil {
+			return nil
+		}
+		return v.EnvVars
+	}).(EnvVarKeyValueArrayOutput)
+}
+
+func (o PrivateServicePtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PrivateService) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+// The notification setting for this service upon deployment failure.
+func (o PrivateServicePtrOutput) NotifyOnFail() ServiceNotifyOnFailPtrOutput {
+	return o.ApplyT(func(v *PrivateService) *ServiceNotifyOnFail {
+		if v == nil {
+			return nil
+		}
+		return v.NotifyOnFail
+	}).(ServiceNotifyOnFailPtrOutput)
+}
+
+// The id of the owner (user/team).
+func (o PrivateServicePtrOutput) OwnerId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PrivateService) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.OwnerId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+func (o PrivateServicePtrOutput) Repo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PrivateService) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Repo
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o PrivateServicePtrOutput) SecretFiles() SecretFileArrayOutput {
+	return o.ApplyT(func(v *PrivateService) []SecretFile {
+		if v == nil {
+			return nil
+		}
+		return v.SecretFiles
+	}).(SecretFileArrayOutput)
+}
+
+func (o PrivateServicePtrOutput) ServiceDetails() PrivateServiceDetailsPtrOutput {
+	return o.ApplyT(func(v *PrivateService) *PrivateServiceDetails {
+		if v == nil {
+			return nil
+		}
+		return v.ServiceDetails
+	}).(PrivateServiceDetailsPtrOutput)
+}
+
+func (o PrivateServicePtrOutput) Slug() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PrivateService) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Slug
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o PrivateServicePtrOutput) Suspended() ServiceSuspendedPtrOutput {
+	return o.ApplyT(func(v *PrivateService) *ServiceSuspended {
+		if v == nil {
+			return nil
+		}
+		return v.Suspended
+	}).(ServiceSuspendedPtrOutput)
+}
+
+func (o PrivateServicePtrOutput) Suspenders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *PrivateService) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Suspenders
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o PrivateServicePtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PrivateService) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o PrivateServicePtrOutput) UpdatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PrivateService) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UpdatedAt
+	}).(pulumi.StringPtrOutput)
 }
 
 type PrivateServiceDetails struct {
@@ -3114,12 +3875,6 @@ func (i PrivateServiceDetailsArgs) ToPrivateServiceDetailsOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(PrivateServiceDetailsOutput)
 }
 
-func (i PrivateServiceDetailsArgs) ToOutput(ctx context.Context) pulumix.Output[PrivateServiceDetails] {
-	return pulumix.Output[PrivateServiceDetails]{
-		OutputState: i.ToPrivateServiceDetailsOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i PrivateServiceDetailsArgs) ToPrivateServiceDetailsPtrOutput() PrivateServiceDetailsPtrOutput {
 	return i.ToPrivateServiceDetailsPtrOutputWithContext(context.Background())
 }
@@ -3161,12 +3916,6 @@ func (i *privateServiceDetailsPtrType) ToPrivateServiceDetailsPtrOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(PrivateServiceDetailsPtrOutput)
 }
 
-func (i *privateServiceDetailsPtrType) ToOutput(ctx context.Context) pulumix.Output[*PrivateServiceDetails] {
-	return pulumix.Output[*PrivateServiceDetails]{
-		OutputState: i.ToPrivateServiceDetailsPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type PrivateServiceDetailsOutput struct{ *pulumi.OutputState }
 
 func (PrivateServiceDetailsOutput) ElementType() reflect.Type {
@@ -3189,12 +3938,6 @@ func (o PrivateServiceDetailsOutput) ToPrivateServiceDetailsPtrOutputWithContext
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v PrivateServiceDetails) *PrivateServiceDetails {
 		return &v
 	}).(PrivateServiceDetailsPtrOutput)
-}
-
-func (o PrivateServiceDetailsOutput) ToOutput(ctx context.Context) pulumix.Output[PrivateServiceDetails] {
-	return pulumix.Output[PrivateServiceDetails]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o PrivateServiceDetailsOutput) Disk() DiskPtrOutput {
@@ -3251,12 +3994,6 @@ func (o PrivateServiceDetailsPtrOutput) ToPrivateServiceDetailsPtrOutput() Priva
 
 func (o PrivateServiceDetailsPtrOutput) ToPrivateServiceDetailsPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsPtrOutput {
 	return o
-}
-
-func (o PrivateServiceDetailsPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*PrivateServiceDetails] {
-	return pulumix.Output[*PrivateServiceDetails]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o PrivateServiceDetailsPtrOutput) Elem() PrivateServiceDetailsOutput {
@@ -3392,12 +4129,6 @@ func (i PrivateServiceDetailsParentServerPropertiesArgs) ToPrivateServiceDetails
 	return pulumi.ToOutputWithContext(ctx, i).(PrivateServiceDetailsParentServerPropertiesOutput)
 }
 
-func (i PrivateServiceDetailsParentServerPropertiesArgs) ToOutput(ctx context.Context) pulumix.Output[PrivateServiceDetailsParentServerProperties] {
-	return pulumix.Output[PrivateServiceDetailsParentServerProperties]{
-		OutputState: i.ToPrivateServiceDetailsParentServerPropertiesOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i PrivateServiceDetailsParentServerPropertiesArgs) ToPrivateServiceDetailsParentServerPropertiesPtrOutput() PrivateServiceDetailsParentServerPropertiesPtrOutput {
 	return i.ToPrivateServiceDetailsParentServerPropertiesPtrOutputWithContext(context.Background())
 }
@@ -3439,12 +4170,6 @@ func (i *privateServiceDetailsParentServerPropertiesPtrType) ToPrivateServiceDet
 	return pulumi.ToOutputWithContext(ctx, i).(PrivateServiceDetailsParentServerPropertiesPtrOutput)
 }
 
-func (i *privateServiceDetailsParentServerPropertiesPtrType) ToOutput(ctx context.Context) pulumix.Output[*PrivateServiceDetailsParentServerProperties] {
-	return pulumix.Output[*PrivateServiceDetailsParentServerProperties]{
-		OutputState: i.ToPrivateServiceDetailsParentServerPropertiesPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type PrivateServiceDetailsParentServerPropertiesOutput struct{ *pulumi.OutputState }
 
 func (PrivateServiceDetailsParentServerPropertiesOutput) ElementType() reflect.Type {
@@ -3469,12 +4194,6 @@ func (o PrivateServiceDetailsParentServerPropertiesOutput) ToPrivateServiceDetai
 	}).(PrivateServiceDetailsParentServerPropertiesPtrOutput)
 }
 
-func (o PrivateServiceDetailsParentServerPropertiesOutput) ToOutput(ctx context.Context) pulumix.Output[PrivateServiceDetailsParentServerProperties] {
-	return pulumix.Output[PrivateServiceDetailsParentServerProperties]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o PrivateServiceDetailsParentServerPropertiesOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v PrivateServiceDetailsParentServerProperties) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
@@ -3495,12 +4214,6 @@ func (o PrivateServiceDetailsParentServerPropertiesPtrOutput) ToPrivateServiceDe
 
 func (o PrivateServiceDetailsParentServerPropertiesPtrOutput) ToPrivateServiceDetailsParentServerPropertiesPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsParentServerPropertiesPtrOutput {
 	return o
-}
-
-func (o PrivateServiceDetailsParentServerPropertiesPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*PrivateServiceDetailsParentServerProperties] {
-	return pulumix.Output[*PrivateServiceDetailsParentServerProperties]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o PrivateServiceDetailsParentServerPropertiesPtrOutput) Elem() PrivateServiceDetailsParentServerPropertiesOutput {
@@ -3564,12 +4277,6 @@ func (i SecretFileArgs) ToSecretFileOutputWithContext(ctx context.Context) Secre
 	return pulumi.ToOutputWithContext(ctx, i).(SecretFileOutput)
 }
 
-func (i SecretFileArgs) ToOutput(ctx context.Context) pulumix.Output[SecretFile] {
-	return pulumix.Output[SecretFile]{
-		OutputState: i.ToSecretFileOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretFileArrayInput is an input type that accepts SecretFileArray and SecretFileArrayOutput values.
 // You can construct a concrete instance of `SecretFileArrayInput` via:
 //
@@ -3595,12 +4302,6 @@ func (i SecretFileArray) ToSecretFileArrayOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(SecretFileArrayOutput)
 }
 
-func (i SecretFileArray) ToOutput(ctx context.Context) pulumix.Output[[]SecretFile] {
-	return pulumix.Output[[]SecretFile]{
-		OutputState: i.ToSecretFileArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretFileOutput struct{ *pulumi.OutputState }
 
 func (SecretFileOutput) ElementType() reflect.Type {
@@ -3613,12 +4314,6 @@ func (o SecretFileOutput) ToSecretFileOutput() SecretFileOutput {
 
 func (o SecretFileOutput) ToSecretFileOutputWithContext(ctx context.Context) SecretFileOutput {
 	return o
-}
-
-func (o SecretFileOutput) ToOutput(ctx context.Context) pulumix.Output[SecretFile] {
-	return pulumix.Output[SecretFile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretFileOutput) Contents() pulumi.StringOutput {
@@ -3641,12 +4336,6 @@ func (o SecretFileArrayOutput) ToSecretFileArrayOutput() SecretFileArrayOutput {
 
 func (o SecretFileArrayOutput) ToSecretFileArrayOutputWithContext(ctx context.Context) SecretFileArrayOutput {
 	return o
-}
-
-func (o SecretFileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SecretFile] {
-	return pulumix.Output[[]SecretFile]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretFileArrayOutput) Index(i pulumi.IntInput) SecretFileOutput {
@@ -3672,12 +4361,6 @@ func (o ServerPropertiesOutput) ToServerPropertiesOutput() ServerPropertiesOutpu
 
 func (o ServerPropertiesOutput) ToServerPropertiesOutputWithContext(ctx context.Context) ServerPropertiesOutput {
 	return o
-}
-
-func (o ServerPropertiesOutput) ToOutput(ctx context.Context) pulumix.Output[ServerProperties] {
-	return pulumix.Output[ServerProperties]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ServerPropertiesOutput) Id() pulumi.StringPtrOutput {
@@ -3725,12 +4408,6 @@ func (i ServiceHeaderArgs) ToServiceHeaderOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceHeaderOutput)
 }
 
-func (i ServiceHeaderArgs) ToOutput(ctx context.Context) pulumix.Output[ServiceHeader] {
-	return pulumix.Output[ServiceHeader]{
-		OutputState: i.ToServiceHeaderOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ServiceHeaderArrayInput is an input type that accepts ServiceHeaderArray and ServiceHeaderArrayOutput values.
 // You can construct a concrete instance of `ServiceHeaderArrayInput` via:
 //
@@ -3756,12 +4433,6 @@ func (i ServiceHeaderArray) ToServiceHeaderArrayOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(ServiceHeaderArrayOutput)
 }
 
-func (i ServiceHeaderArray) ToOutput(ctx context.Context) pulumix.Output[[]ServiceHeader] {
-	return pulumix.Output[[]ServiceHeader]{
-		OutputState: i.ToServiceHeaderArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 // A service header object
 type ServiceHeaderOutput struct{ *pulumi.OutputState }
 
@@ -3775,12 +4446,6 @@ func (o ServiceHeaderOutput) ToServiceHeaderOutput() ServiceHeaderOutput {
 
 func (o ServiceHeaderOutput) ToServiceHeaderOutputWithContext(ctx context.Context) ServiceHeaderOutput {
 	return o
-}
-
-func (o ServiceHeaderOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceHeader] {
-	return pulumix.Output[ServiceHeader]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ServiceHeaderOutput) Name() pulumi.StringOutput {
@@ -3807,12 +4472,6 @@ func (o ServiceHeaderPtrOutput) ToServiceHeaderPtrOutput() ServiceHeaderPtrOutpu
 
 func (o ServiceHeaderPtrOutput) ToServiceHeaderPtrOutputWithContext(ctx context.Context) ServiceHeaderPtrOutput {
 	return o
-}
-
-func (o ServiceHeaderPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ServiceHeader] {
-	return pulumix.Output[*ServiceHeader]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ServiceHeaderPtrOutput) Elem() ServiceHeaderOutput {
@@ -3866,12 +4525,6 @@ func (o ServiceHeaderArrayOutput) ToServiceHeaderArrayOutputWithContext(ctx cont
 	return o
 }
 
-func (o ServiceHeaderArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ServiceHeader] {
-	return pulumix.Output[[]ServiceHeader]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ServiceHeaderArrayOutput) Index(i pulumi.IntInput) ServiceHeaderOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceHeader {
 		return vs[0].([]ServiceHeader)[vs[1].(int)]
@@ -3879,7 +4532,7 @@ func (o ServiceHeaderArrayOutput) Index(i pulumi.IntInput) ServiceHeaderOutput {
 }
 
 // A static website service
-type StaticSiteType struct {
+type StaticSite struct {
 	// Whether to auto deploy the service or not upon git push.
 	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
@@ -3902,8 +4555,8 @@ type StaticSiteType struct {
 	UpdatedAt      *string                   `pulumi:"updatedAt"`
 }
 
-// Defaults sets the appropriate defaults for StaticSiteType
-func (val *StaticSiteType) Defaults() *StaticSiteType {
+// Defaults sets the appropriate defaults for StaticSite
+func (val *StaticSite) Defaults() *StaticSite {
 	if val == nil {
 		return nil
 	}
@@ -3919,6 +4572,250 @@ func (val *StaticSiteType) Defaults() *StaticSiteType {
 		tmp.Type = &type_
 	}
 	return &tmp
+}
+
+// A static website service
+type StaticSiteOutput struct{ *pulumi.OutputState }
+
+func (StaticSiteOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StaticSite)(nil)).Elem()
+}
+
+func (o StaticSiteOutput) ToStaticSiteOutput() StaticSiteOutput {
+	return o
+}
+
+func (o StaticSiteOutput) ToStaticSiteOutputWithContext(ctx context.Context) StaticSiteOutput {
+	return o
+}
+
+// Whether to auto deploy the service or not upon git push.
+func (o StaticSiteOutput) AutoDeploy() ServiceAutoDeployPtrOutput {
+	return o.ApplyT(func(v StaticSite) *ServiceAutoDeploy { return v.AutoDeploy }).(ServiceAutoDeployPtrOutput)
+}
+
+// If left empty, this will fall back to the default branch of the repository.
+func (o StaticSiteOutput) Branch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StaticSite) *string { return v.Branch }).(pulumi.StringPtrOutput)
+}
+
+func (o StaticSiteOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StaticSite) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+}
+
+func (o StaticSiteOutput) EnvVars() EnvVarKeyValueArrayOutput {
+	return o.ApplyT(func(v StaticSite) []EnvVarKeyValue { return v.EnvVars }).(EnvVarKeyValueArrayOutput)
+}
+
+func (o StaticSiteOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v StaticSite) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The notification setting for this service upon deployment failure.
+func (o StaticSiteOutput) NotifyOnFail() ServiceNotifyOnFailPtrOutput {
+	return o.ApplyT(func(v StaticSite) *ServiceNotifyOnFail { return v.NotifyOnFail }).(ServiceNotifyOnFailPtrOutput)
+}
+
+// The id of the owner (user/team).
+func (o StaticSiteOutput) OwnerId() pulumi.StringOutput {
+	return o.ApplyT(func(v StaticSite) string { return v.OwnerId }).(pulumi.StringOutput)
+}
+
+// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+func (o StaticSiteOutput) Repo() pulumi.StringOutput {
+	return o.ApplyT(func(v StaticSite) string { return v.Repo }).(pulumi.StringOutput)
+}
+
+func (o StaticSiteOutput) SecretFiles() SecretFileArrayOutput {
+	return o.ApplyT(func(v StaticSite) []SecretFile { return v.SecretFiles }).(SecretFileArrayOutput)
+}
+
+func (o StaticSiteOutput) ServiceDetails() StaticSiteServiceDetailsPtrOutput {
+	return o.ApplyT(func(v StaticSite) *StaticSiteServiceDetails { return v.ServiceDetails }).(StaticSiteServiceDetailsPtrOutput)
+}
+
+func (o StaticSiteOutput) Slug() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StaticSite) *string { return v.Slug }).(pulumi.StringPtrOutput)
+}
+
+func (o StaticSiteOutput) Suspended() ServiceSuspendedPtrOutput {
+	return o.ApplyT(func(v StaticSite) *ServiceSuspended { return v.Suspended }).(ServiceSuspendedPtrOutput)
+}
+
+func (o StaticSiteOutput) Suspenders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v StaticSite) []string { return v.Suspenders }).(pulumi.StringArrayOutput)
+}
+
+func (o StaticSiteOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StaticSite) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+func (o StaticSiteOutput) UpdatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StaticSite) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
+}
+
+type StaticSitePtrOutput struct{ *pulumi.OutputState }
+
+func (StaticSitePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StaticSite)(nil)).Elem()
+}
+
+func (o StaticSitePtrOutput) ToStaticSitePtrOutput() StaticSitePtrOutput {
+	return o
+}
+
+func (o StaticSitePtrOutput) ToStaticSitePtrOutputWithContext(ctx context.Context) StaticSitePtrOutput {
+	return o
+}
+
+func (o StaticSitePtrOutput) Elem() StaticSiteOutput {
+	return o.ApplyT(func(v *StaticSite) StaticSite {
+		if v != nil {
+			return *v
+		}
+		var ret StaticSite
+		return ret
+	}).(StaticSiteOutput)
+}
+
+// Whether to auto deploy the service or not upon git push.
+func (o StaticSitePtrOutput) AutoDeploy() ServiceAutoDeployPtrOutput {
+	return o.ApplyT(func(v *StaticSite) *ServiceAutoDeploy {
+		if v == nil {
+			return nil
+		}
+		return v.AutoDeploy
+	}).(ServiceAutoDeployPtrOutput)
+}
+
+// If left empty, this will fall back to the default branch of the repository.
+func (o StaticSitePtrOutput) Branch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StaticSite) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Branch
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o StaticSitePtrOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StaticSite) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedAt
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o StaticSitePtrOutput) EnvVars() EnvVarKeyValueArrayOutput {
+	return o.ApplyT(func(v *StaticSite) []EnvVarKeyValue {
+		if v == nil {
+			return nil
+		}
+		return v.EnvVars
+	}).(EnvVarKeyValueArrayOutput)
+}
+
+func (o StaticSitePtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StaticSite) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+// The notification setting for this service upon deployment failure.
+func (o StaticSitePtrOutput) NotifyOnFail() ServiceNotifyOnFailPtrOutput {
+	return o.ApplyT(func(v *StaticSite) *ServiceNotifyOnFail {
+		if v == nil {
+			return nil
+		}
+		return v.NotifyOnFail
+	}).(ServiceNotifyOnFailPtrOutput)
+}
+
+// The id of the owner (user/team).
+func (o StaticSitePtrOutput) OwnerId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StaticSite) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.OwnerId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+func (o StaticSitePtrOutput) Repo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StaticSite) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Repo
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o StaticSitePtrOutput) SecretFiles() SecretFileArrayOutput {
+	return o.ApplyT(func(v *StaticSite) []SecretFile {
+		if v == nil {
+			return nil
+		}
+		return v.SecretFiles
+	}).(SecretFileArrayOutput)
+}
+
+func (o StaticSitePtrOutput) ServiceDetails() StaticSiteServiceDetailsPtrOutput {
+	return o.ApplyT(func(v *StaticSite) *StaticSiteServiceDetails {
+		if v == nil {
+			return nil
+		}
+		return v.ServiceDetails
+	}).(StaticSiteServiceDetailsPtrOutput)
+}
+
+func (o StaticSitePtrOutput) Slug() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StaticSite) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Slug
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o StaticSitePtrOutput) Suspended() ServiceSuspendedPtrOutput {
+	return o.ApplyT(func(v *StaticSite) *ServiceSuspended {
+		if v == nil {
+			return nil
+		}
+		return v.Suspended
+	}).(ServiceSuspendedPtrOutput)
+}
+
+func (o StaticSitePtrOutput) Suspenders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *StaticSite) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Suspenders
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o StaticSitePtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StaticSite) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o StaticSitePtrOutput) UpdatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StaticSite) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UpdatedAt
+	}).(pulumi.StringPtrOutput)
 }
 
 // A route object for a static site
@@ -3958,12 +4855,6 @@ func (i StaticSiteRouteArgs) ToStaticSiteRouteOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteRouteOutput)
 }
 
-func (i StaticSiteRouteArgs) ToOutput(ctx context.Context) pulumix.Output[StaticSiteRoute] {
-	return pulumix.Output[StaticSiteRoute]{
-		OutputState: i.ToStaticSiteRouteOutputWithContext(ctx).OutputState,
-	}
-}
-
 // StaticSiteRouteArrayInput is an input type that accepts StaticSiteRouteArray and StaticSiteRouteArrayOutput values.
 // You can construct a concrete instance of `StaticSiteRouteArrayInput` via:
 //
@@ -3989,12 +4880,6 @@ func (i StaticSiteRouteArray) ToStaticSiteRouteArrayOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteRouteArrayOutput)
 }
 
-func (i StaticSiteRouteArray) ToOutput(ctx context.Context) pulumix.Output[[]StaticSiteRoute] {
-	return pulumix.Output[[]StaticSiteRoute]{
-		OutputState: i.ToStaticSiteRouteArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 // A route object for a static site
 type StaticSiteRouteOutput struct{ *pulumi.OutputState }
 
@@ -4008,12 +4893,6 @@ func (o StaticSiteRouteOutput) ToStaticSiteRouteOutput() StaticSiteRouteOutput {
 
 func (o StaticSiteRouteOutput) ToStaticSiteRouteOutputWithContext(ctx context.Context) StaticSiteRouteOutput {
 	return o
-}
-
-func (o StaticSiteRouteOutput) ToOutput(ctx context.Context) pulumix.Output[StaticSiteRoute] {
-	return pulumix.Output[StaticSiteRoute]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o StaticSiteRouteOutput) Destination() pulumi.StringOutput {
@@ -4040,12 +4919,6 @@ func (o StaticSiteRoutePtrOutput) ToStaticSiteRoutePtrOutput() StaticSiteRoutePt
 
 func (o StaticSiteRoutePtrOutput) ToStaticSiteRoutePtrOutputWithContext(ctx context.Context) StaticSiteRoutePtrOutput {
 	return o
-}
-
-func (o StaticSiteRoutePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*StaticSiteRoute] {
-	return pulumix.Output[*StaticSiteRoute]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o StaticSiteRoutePtrOutput) Elem() StaticSiteRouteOutput {
@@ -4097,12 +4970,6 @@ func (o StaticSiteRouteArrayOutput) ToStaticSiteRouteArrayOutput() StaticSiteRou
 
 func (o StaticSiteRouteArrayOutput) ToStaticSiteRouteArrayOutputWithContext(ctx context.Context) StaticSiteRouteArrayOutput {
 	return o
-}
-
-func (o StaticSiteRouteArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]StaticSiteRoute] {
-	return pulumix.Output[[]StaticSiteRoute]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o StaticSiteRouteArrayOutput) Index(i pulumi.IntInput) StaticSiteRouteOutput {
@@ -4187,12 +5054,6 @@ func (i StaticSiteServiceDetailsArgs) ToStaticSiteServiceDetailsOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteServiceDetailsOutput)
 }
 
-func (i StaticSiteServiceDetailsArgs) ToOutput(ctx context.Context) pulumix.Output[StaticSiteServiceDetails] {
-	return pulumix.Output[StaticSiteServiceDetails]{
-		OutputState: i.ToStaticSiteServiceDetailsOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i StaticSiteServiceDetailsArgs) ToStaticSiteServiceDetailsPtrOutput() StaticSiteServiceDetailsPtrOutput {
 	return i.ToStaticSiteServiceDetailsPtrOutputWithContext(context.Background())
 }
@@ -4234,12 +5095,6 @@ func (i *staticSiteServiceDetailsPtrType) ToStaticSiteServiceDetailsPtrOutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteServiceDetailsPtrOutput)
 }
 
-func (i *staticSiteServiceDetailsPtrType) ToOutput(ctx context.Context) pulumix.Output[*StaticSiteServiceDetails] {
-	return pulumix.Output[*StaticSiteServiceDetails]{
-		OutputState: i.ToStaticSiteServiceDetailsPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type StaticSiteServiceDetailsOutput struct{ *pulumi.OutputState }
 
 func (StaticSiteServiceDetailsOutput) ElementType() reflect.Type {
@@ -4262,12 +5117,6 @@ func (o StaticSiteServiceDetailsOutput) ToStaticSiteServiceDetailsPtrOutputWithC
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v StaticSiteServiceDetails) *StaticSiteServiceDetails {
 		return &v
 	}).(StaticSiteServiceDetailsPtrOutput)
-}
-
-func (o StaticSiteServiceDetailsOutput) ToOutput(ctx context.Context) pulumix.Output[StaticSiteServiceDetails] {
-	return pulumix.Output[StaticSiteServiceDetails]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o StaticSiteServiceDetailsOutput) BuildCommand() pulumi.StringPtrOutput {
@@ -4315,12 +5164,6 @@ func (o StaticSiteServiceDetailsPtrOutput) ToStaticSiteServiceDetailsPtrOutput()
 
 func (o StaticSiteServiceDetailsPtrOutput) ToStaticSiteServiceDetailsPtrOutputWithContext(ctx context.Context) StaticSiteServiceDetailsPtrOutput {
 	return o
-}
-
-func (o StaticSiteServiceDetailsPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*StaticSiteServiceDetails] {
-	return pulumix.Output[*StaticSiteServiceDetails]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o StaticSiteServiceDetailsPtrOutput) Elem() StaticSiteServiceDetailsOutput {
@@ -4430,12 +5273,6 @@ func (i StaticSiteServiceDetailsParentServerPropertiesArgs) ToStaticSiteServiceD
 	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteServiceDetailsParentServerPropertiesOutput)
 }
 
-func (i StaticSiteServiceDetailsParentServerPropertiesArgs) ToOutput(ctx context.Context) pulumix.Output[StaticSiteServiceDetailsParentServerProperties] {
-	return pulumix.Output[StaticSiteServiceDetailsParentServerProperties]{
-		OutputState: i.ToStaticSiteServiceDetailsParentServerPropertiesOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i StaticSiteServiceDetailsParentServerPropertiesArgs) ToStaticSiteServiceDetailsParentServerPropertiesPtrOutput() StaticSiteServiceDetailsParentServerPropertiesPtrOutput {
 	return i.ToStaticSiteServiceDetailsParentServerPropertiesPtrOutputWithContext(context.Background())
 }
@@ -4477,12 +5314,6 @@ func (i *staticSiteServiceDetailsParentServerPropertiesPtrType) ToStaticSiteServ
 	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteServiceDetailsParentServerPropertiesPtrOutput)
 }
 
-func (i *staticSiteServiceDetailsParentServerPropertiesPtrType) ToOutput(ctx context.Context) pulumix.Output[*StaticSiteServiceDetailsParentServerProperties] {
-	return pulumix.Output[*StaticSiteServiceDetailsParentServerProperties]{
-		OutputState: i.ToStaticSiteServiceDetailsParentServerPropertiesPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type StaticSiteServiceDetailsParentServerPropertiesOutput struct{ *pulumi.OutputState }
 
 func (StaticSiteServiceDetailsParentServerPropertiesOutput) ElementType() reflect.Type {
@@ -4507,12 +5338,6 @@ func (o StaticSiteServiceDetailsParentServerPropertiesOutput) ToStaticSiteServic
 	}).(StaticSiteServiceDetailsParentServerPropertiesPtrOutput)
 }
 
-func (o StaticSiteServiceDetailsParentServerPropertiesOutput) ToOutput(ctx context.Context) pulumix.Output[StaticSiteServiceDetailsParentServerProperties] {
-	return pulumix.Output[StaticSiteServiceDetailsParentServerProperties]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o StaticSiteServiceDetailsParentServerPropertiesOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v StaticSiteServiceDetailsParentServerProperties) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
@@ -4533,12 +5358,6 @@ func (o StaticSiteServiceDetailsParentServerPropertiesPtrOutput) ToStaticSiteSer
 
 func (o StaticSiteServiceDetailsParentServerPropertiesPtrOutput) ToStaticSiteServiceDetailsParentServerPropertiesPtrOutputWithContext(ctx context.Context) StaticSiteServiceDetailsParentServerPropertiesPtrOutput {
 	return o
-}
-
-func (o StaticSiteServiceDetailsParentServerPropertiesPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*StaticSiteServiceDetailsParentServerProperties] {
-	return pulumix.Output[*StaticSiteServiceDetailsParentServerProperties]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o StaticSiteServiceDetailsParentServerPropertiesPtrOutput) Elem() StaticSiteServiceDetailsParentServerPropertiesOutput {
@@ -4570,7 +5389,7 @@ func (o StaticSiteServiceDetailsParentServerPropertiesPtrOutput) Name() pulumi.S
 }
 
 // A web service
-type WebServiceType struct {
+type WebService struct {
 	// Whether to auto deploy the service or not upon git push.
 	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository.
@@ -4593,8 +5412,8 @@ type WebServiceType struct {
 	UpdatedAt      *string                   `pulumi:"updatedAt"`
 }
 
-// Defaults sets the appropriate defaults for WebServiceType
-func (val *WebServiceType) Defaults() *WebServiceType {
+// Defaults sets the appropriate defaults for WebService
+func (val *WebService) Defaults() *WebService {
 	if val == nil {
 		return nil
 	}
@@ -4610,6 +5429,250 @@ func (val *WebServiceType) Defaults() *WebServiceType {
 		tmp.Type = &type_
 	}
 	return &tmp
+}
+
+// A web service
+type WebServiceOutput struct{ *pulumi.OutputState }
+
+func (WebServiceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebService)(nil)).Elem()
+}
+
+func (o WebServiceOutput) ToWebServiceOutput() WebServiceOutput {
+	return o
+}
+
+func (o WebServiceOutput) ToWebServiceOutputWithContext(ctx context.Context) WebServiceOutput {
+	return o
+}
+
+// Whether to auto deploy the service or not upon git push.
+func (o WebServiceOutput) AutoDeploy() ServiceAutoDeployPtrOutput {
+	return o.ApplyT(func(v WebService) *ServiceAutoDeploy { return v.AutoDeploy }).(ServiceAutoDeployPtrOutput)
+}
+
+// If left empty, this will fall back to the default branch of the repository.
+func (o WebServiceOutput) Branch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WebService) *string { return v.Branch }).(pulumi.StringPtrOutput)
+}
+
+func (o WebServiceOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WebService) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+}
+
+func (o WebServiceOutput) EnvVars() EnvVarKeyValueArrayOutput {
+	return o.ApplyT(func(v WebService) []EnvVarKeyValue { return v.EnvVars }).(EnvVarKeyValueArrayOutput)
+}
+
+func (o WebServiceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v WebService) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The notification setting for this service upon deployment failure.
+func (o WebServiceOutput) NotifyOnFail() ServiceNotifyOnFailPtrOutput {
+	return o.ApplyT(func(v WebService) *ServiceNotifyOnFail { return v.NotifyOnFail }).(ServiceNotifyOnFailPtrOutput)
+}
+
+// The id of the owner (user/team).
+func (o WebServiceOutput) OwnerId() pulumi.StringOutput {
+	return o.ApplyT(func(v WebService) string { return v.OwnerId }).(pulumi.StringOutput)
+}
+
+// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+func (o WebServiceOutput) Repo() pulumi.StringOutput {
+	return o.ApplyT(func(v WebService) string { return v.Repo }).(pulumi.StringOutput)
+}
+
+func (o WebServiceOutput) SecretFiles() SecretFileArrayOutput {
+	return o.ApplyT(func(v WebService) []SecretFile { return v.SecretFiles }).(SecretFileArrayOutput)
+}
+
+func (o WebServiceOutput) ServiceDetails() WebServiceServiceDetailsPtrOutput {
+	return o.ApplyT(func(v WebService) *WebServiceServiceDetails { return v.ServiceDetails }).(WebServiceServiceDetailsPtrOutput)
+}
+
+func (o WebServiceOutput) Slug() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WebService) *string { return v.Slug }).(pulumi.StringPtrOutput)
+}
+
+func (o WebServiceOutput) Suspended() ServiceSuspendedPtrOutput {
+	return o.ApplyT(func(v WebService) *ServiceSuspended { return v.Suspended }).(ServiceSuspendedPtrOutput)
+}
+
+func (o WebServiceOutput) Suspenders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v WebService) []string { return v.Suspenders }).(pulumi.StringArrayOutput)
+}
+
+func (o WebServiceOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WebService) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+func (o WebServiceOutput) UpdatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WebService) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
+}
+
+type WebServicePtrOutput struct{ *pulumi.OutputState }
+
+func (WebServicePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebService)(nil)).Elem()
+}
+
+func (o WebServicePtrOutput) ToWebServicePtrOutput() WebServicePtrOutput {
+	return o
+}
+
+func (o WebServicePtrOutput) ToWebServicePtrOutputWithContext(ctx context.Context) WebServicePtrOutput {
+	return o
+}
+
+func (o WebServicePtrOutput) Elem() WebServiceOutput {
+	return o.ApplyT(func(v *WebService) WebService {
+		if v != nil {
+			return *v
+		}
+		var ret WebService
+		return ret
+	}).(WebServiceOutput)
+}
+
+// Whether to auto deploy the service or not upon git push.
+func (o WebServicePtrOutput) AutoDeploy() ServiceAutoDeployPtrOutput {
+	return o.ApplyT(func(v *WebService) *ServiceAutoDeploy {
+		if v == nil {
+			return nil
+		}
+		return v.AutoDeploy
+	}).(ServiceAutoDeployPtrOutput)
+}
+
+// If left empty, this will fall back to the default branch of the repository.
+func (o WebServicePtrOutput) Branch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebService) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Branch
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WebServicePtrOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebService) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedAt
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WebServicePtrOutput) EnvVars() EnvVarKeyValueArrayOutput {
+	return o.ApplyT(func(v *WebService) []EnvVarKeyValue {
+		if v == nil {
+			return nil
+		}
+		return v.EnvVars
+	}).(EnvVarKeyValueArrayOutput)
+}
+
+func (o WebServicePtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebService) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+// The notification setting for this service upon deployment failure.
+func (o WebServicePtrOutput) NotifyOnFail() ServiceNotifyOnFailPtrOutput {
+	return o.ApplyT(func(v *WebService) *ServiceNotifyOnFail {
+		if v == nil {
+			return nil
+		}
+		return v.NotifyOnFail
+	}).(ServiceNotifyOnFailPtrOutput)
+}
+
+// The id of the owner (user/team).
+func (o WebServicePtrOutput) OwnerId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebService) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.OwnerId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+func (o WebServicePtrOutput) Repo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebService) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Repo
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WebServicePtrOutput) SecretFiles() SecretFileArrayOutput {
+	return o.ApplyT(func(v *WebService) []SecretFile {
+		if v == nil {
+			return nil
+		}
+		return v.SecretFiles
+	}).(SecretFileArrayOutput)
+}
+
+func (o WebServicePtrOutput) ServiceDetails() WebServiceServiceDetailsPtrOutput {
+	return o.ApplyT(func(v *WebService) *WebServiceServiceDetails {
+		if v == nil {
+			return nil
+		}
+		return v.ServiceDetails
+	}).(WebServiceServiceDetailsPtrOutput)
+}
+
+func (o WebServicePtrOutput) Slug() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebService) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Slug
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WebServicePtrOutput) Suspended() ServiceSuspendedPtrOutput {
+	return o.ApplyT(func(v *WebService) *ServiceSuspended {
+		if v == nil {
+			return nil
+		}
+		return v.Suspended
+	}).(ServiceSuspendedPtrOutput)
+}
+
+func (o WebServicePtrOutput) Suspenders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *WebService) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Suspenders
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o WebServicePtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebService) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WebServicePtrOutput) UpdatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebService) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UpdatedAt
+	}).(pulumi.StringPtrOutput)
 }
 
 type WebServiceServiceDetails struct {
@@ -4711,12 +5774,6 @@ func (i WebServiceServiceDetailsArgs) ToWebServiceServiceDetailsOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(WebServiceServiceDetailsOutput)
 }
 
-func (i WebServiceServiceDetailsArgs) ToOutput(ctx context.Context) pulumix.Output[WebServiceServiceDetails] {
-	return pulumix.Output[WebServiceServiceDetails]{
-		OutputState: i.ToWebServiceServiceDetailsOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i WebServiceServiceDetailsArgs) ToWebServiceServiceDetailsPtrOutput() WebServiceServiceDetailsPtrOutput {
 	return i.ToWebServiceServiceDetailsPtrOutputWithContext(context.Background())
 }
@@ -4758,12 +5815,6 @@ func (i *webServiceServiceDetailsPtrType) ToWebServiceServiceDetailsPtrOutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(WebServiceServiceDetailsPtrOutput)
 }
 
-func (i *webServiceServiceDetailsPtrType) ToOutput(ctx context.Context) pulumix.Output[*WebServiceServiceDetails] {
-	return pulumix.Output[*WebServiceServiceDetails]{
-		OutputState: i.ToWebServiceServiceDetailsPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type WebServiceServiceDetailsOutput struct{ *pulumi.OutputState }
 
 func (WebServiceServiceDetailsOutput) ElementType() reflect.Type {
@@ -4786,12 +5837,6 @@ func (o WebServiceServiceDetailsOutput) ToWebServiceServiceDetailsPtrOutputWithC
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebServiceServiceDetails) *WebServiceServiceDetails {
 		return &v
 	}).(WebServiceServiceDetailsPtrOutput)
-}
-
-func (o WebServiceServiceDetailsOutput) ToOutput(ctx context.Context) pulumix.Output[WebServiceServiceDetails] {
-	return pulumix.Output[WebServiceServiceDetails]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WebServiceServiceDetailsOutput) Disk() DiskPtrOutput {
@@ -4854,12 +5899,6 @@ func (o WebServiceServiceDetailsPtrOutput) ToWebServiceServiceDetailsPtrOutput()
 
 func (o WebServiceServiceDetailsPtrOutput) ToWebServiceServiceDetailsPtrOutputWithContext(ctx context.Context) WebServiceServiceDetailsPtrOutput {
 	return o
-}
-
-func (o WebServiceServiceDetailsPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WebServiceServiceDetails] {
-	return pulumix.Output[*WebServiceServiceDetails]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WebServiceServiceDetailsPtrOutput) Elem() WebServiceServiceDetailsOutput {
@@ -5004,12 +6043,6 @@ func (i WebServiceServiceDetailsParentServerPropertiesArgs) ToWebServiceServiceD
 	return pulumi.ToOutputWithContext(ctx, i).(WebServiceServiceDetailsParentServerPropertiesOutput)
 }
 
-func (i WebServiceServiceDetailsParentServerPropertiesArgs) ToOutput(ctx context.Context) pulumix.Output[WebServiceServiceDetailsParentServerProperties] {
-	return pulumix.Output[WebServiceServiceDetailsParentServerProperties]{
-		OutputState: i.ToWebServiceServiceDetailsParentServerPropertiesOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i WebServiceServiceDetailsParentServerPropertiesArgs) ToWebServiceServiceDetailsParentServerPropertiesPtrOutput() WebServiceServiceDetailsParentServerPropertiesPtrOutput {
 	return i.ToWebServiceServiceDetailsParentServerPropertiesPtrOutputWithContext(context.Background())
 }
@@ -5051,12 +6084,6 @@ func (i *webServiceServiceDetailsParentServerPropertiesPtrType) ToWebServiceServ
 	return pulumi.ToOutputWithContext(ctx, i).(WebServiceServiceDetailsParentServerPropertiesPtrOutput)
 }
 
-func (i *webServiceServiceDetailsParentServerPropertiesPtrType) ToOutput(ctx context.Context) pulumix.Output[*WebServiceServiceDetailsParentServerProperties] {
-	return pulumix.Output[*WebServiceServiceDetailsParentServerProperties]{
-		OutputState: i.ToWebServiceServiceDetailsParentServerPropertiesPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type WebServiceServiceDetailsParentServerPropertiesOutput struct{ *pulumi.OutputState }
 
 func (WebServiceServiceDetailsParentServerPropertiesOutput) ElementType() reflect.Type {
@@ -5081,12 +6108,6 @@ func (o WebServiceServiceDetailsParentServerPropertiesOutput) ToWebServiceServic
 	}).(WebServiceServiceDetailsParentServerPropertiesPtrOutput)
 }
 
-func (o WebServiceServiceDetailsParentServerPropertiesOutput) ToOutput(ctx context.Context) pulumix.Output[WebServiceServiceDetailsParentServerProperties] {
-	return pulumix.Output[WebServiceServiceDetailsParentServerProperties]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WebServiceServiceDetailsParentServerPropertiesOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WebServiceServiceDetailsParentServerProperties) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
@@ -5107,12 +6128,6 @@ func (o WebServiceServiceDetailsParentServerPropertiesPtrOutput) ToWebServiceSer
 
 func (o WebServiceServiceDetailsParentServerPropertiesPtrOutput) ToWebServiceServiceDetailsParentServerPropertiesPtrOutputWithContext(ctx context.Context) WebServiceServiceDetailsParentServerPropertiesPtrOutput {
 	return o
-}
-
-func (o WebServiceServiceDetailsParentServerPropertiesPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WebServiceServiceDetailsParentServerProperties] {
-	return pulumix.Output[*WebServiceServiceDetailsParentServerProperties]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o WebServiceServiceDetailsParentServerPropertiesPtrOutput) Elem() WebServiceServiceDetailsParentServerPropertiesOutput {
@@ -5152,8 +6167,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CronJobServiceDetailsPtrInput)(nil)).Elem(), CronJobServiceDetailsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DiskInput)(nil)).Elem(), DiskArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DiskPtrInput)(nil)).Elem(), DiskArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DockerDetailsInput)(nil)).Elem(), DockerDetailsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DockerDetailsPtrInput)(nil)).Elem(), DockerDetailsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EnvVarKeyValueInput)(nil)).Elem(), EnvVarKeyValueArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EnvVarKeyValueArrayInput)(nil)).Elem(), EnvVarKeyValueArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NativeEnvironmentDetailsInput)(nil)).Elem(), NativeEnvironmentDetailsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NativeEnvironmentDetailsPtrInput)(nil)).Elem(), NativeEnvironmentDetailsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OpenPortsInput)(nil)).Elem(), OpenPortsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OpenPortsArrayInput)(nil)).Elem(), OpenPortsArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceDetailsInput)(nil)).Elem(), PrivateServiceDetailsArgs{})
@@ -5174,32 +6193,38 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceServiceDetailsPtrInput)(nil)).Elem(), WebServiceServiceDetailsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceServiceDetailsParentServerPropertiesInput)(nil)).Elem(), WebServiceServiceDetailsParentServerPropertiesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceServiceDetailsParentServerPropertiesPtrInput)(nil)).Elem(), WebServiceServiceDetailsParentServerPropertiesArgs{})
+	pulumi.RegisterOutputType(BackgroundWorkerOutput{})
+	pulumi.RegisterOutputType(BackgroundWorkerPtrOutput{})
 	pulumi.RegisterOutputType(BackgroundWorkerServiceDetailsOutput{})
 	pulumi.RegisterOutputType(BackgroundWorkerServiceDetailsPtrOutput{})
 	pulumi.RegisterOutputType(BackgroundWorkerServiceDetailsParentServerPropertiesOutput{})
 	pulumi.RegisterOutputType(BackgroundWorkerServiceDetailsParentServerPropertiesPtrOutput{})
 	pulumi.RegisterOutputType(CommitOutput{})
 	pulumi.RegisterOutputType(CommitPtrOutput{})
+	pulumi.RegisterOutputType(CronJobOutput{})
+	pulumi.RegisterOutputType(CronJobPtrOutput{})
 	pulumi.RegisterOutputType(CronJobServiceDetailsOutput{})
 	pulumi.RegisterOutputType(CronJobServiceDetailsPtrOutput{})
-	pulumi.RegisterOutputType(CustomDomainTypeOutput{})
-	pulumi.RegisterOutputType(CustomDomainTypePtrOutput{})
+	pulumi.RegisterOutputType(CustomDomainOutput{})
+	pulumi.RegisterOutputType(CustomDomainPtrOutput{})
 	pulumi.RegisterOutputType(CustomDomainServerPropertiesOutput{})
 	pulumi.RegisterOutputType(CustomDomainServerPropertiesPtrOutput{})
-	pulumi.RegisterOutputType(DeployTypeOutput{})
-	pulumi.RegisterOutputType(DeployTypePtrOutput{})
+	pulumi.RegisterOutputType(DeployOutput{})
+	pulumi.RegisterOutputType(DeployPtrOutput{})
 	pulumi.RegisterOutputType(DiskOutput{})
 	pulumi.RegisterOutputType(DiskPtrOutput{})
+	pulumi.RegisterOutputType(DockerDetailsOutput{})
+	pulumi.RegisterOutputType(DockerDetailsPtrOutput{})
 	pulumi.RegisterOutputType(EnvVarKeyValueOutput{})
 	pulumi.RegisterOutputType(EnvVarKeyValuePtrOutput{})
 	pulumi.RegisterOutputType(EnvVarKeyValueArrayOutput{})
-	pulumi.RegisterOutputType(GetBackgroundWorkerTypeOutput{})
-	pulumi.RegisterOutputType(GetCronJobTypeOutput{})
-	pulumi.RegisterOutputType(GetPrivateServiceTypeOutput{})
-	pulumi.RegisterOutputType(GetStaticSiteTypeOutput{})
-	pulumi.RegisterOutputType(GetWebServiceTypeOutput{})
-	pulumi.RegisterOutputType(JobTypeOutput{})
-	pulumi.RegisterOutputType(JobTypePtrOutput{})
+	pulumi.RegisterOutputType(GetBackgroundWorkerOutput{})
+	pulumi.RegisterOutputType(GetCronJobOutput{})
+	pulumi.RegisterOutputType(GetPrivateServiceOutput{})
+	pulumi.RegisterOutputType(GetStaticSiteOutput{})
+	pulumi.RegisterOutputType(GetWebServiceOutput{})
+	pulumi.RegisterOutputType(JobOutput{})
+	pulumi.RegisterOutputType(JobPtrOutput{})
 	pulumi.RegisterOutputType(ListCustomDomainsResponseOutput{})
 	pulumi.RegisterOutputType(ListCustomDomainsResponseArrayOutput{})
 	pulumi.RegisterOutputType(ListDeploysResponseOutput{})
@@ -5210,10 +6235,16 @@ func init() {
 	pulumi.RegisterOutputType(ListJobsResponseArrayOutput{})
 	pulumi.RegisterOutputType(ListServiceHeadersResponseOutput{})
 	pulumi.RegisterOutputType(ListServiceHeadersResponseArrayOutput{})
+	pulumi.RegisterOutputType(ListServiceResponseOutput{})
+	pulumi.RegisterOutputType(ListServiceResponseArrayOutput{})
 	pulumi.RegisterOutputType(ListStaticSiteRoutesResponseOutput{})
 	pulumi.RegisterOutputType(ListStaticSiteRoutesResponseArrayOutput{})
+	pulumi.RegisterOutputType(NativeEnvironmentDetailsOutput{})
+	pulumi.RegisterOutputType(NativeEnvironmentDetailsPtrOutput{})
 	pulumi.RegisterOutputType(OpenPortsOutput{})
 	pulumi.RegisterOutputType(OpenPortsArrayOutput{})
+	pulumi.RegisterOutputType(PrivateServiceOutput{})
+	pulumi.RegisterOutputType(PrivateServicePtrOutput{})
 	pulumi.RegisterOutputType(PrivateServiceDetailsOutput{})
 	pulumi.RegisterOutputType(PrivateServiceDetailsPtrOutput{})
 	pulumi.RegisterOutputType(PrivateServiceDetailsParentServerPropertiesOutput{})
@@ -5224,6 +6255,8 @@ func init() {
 	pulumi.RegisterOutputType(ServiceHeaderOutput{})
 	pulumi.RegisterOutputType(ServiceHeaderPtrOutput{})
 	pulumi.RegisterOutputType(ServiceHeaderArrayOutput{})
+	pulumi.RegisterOutputType(StaticSiteOutput{})
+	pulumi.RegisterOutputType(StaticSitePtrOutput{})
 	pulumi.RegisterOutputType(StaticSiteRouteOutput{})
 	pulumi.RegisterOutputType(StaticSiteRoutePtrOutput{})
 	pulumi.RegisterOutputType(StaticSiteRouteArrayOutput{})
@@ -5231,6 +6264,8 @@ func init() {
 	pulumi.RegisterOutputType(StaticSiteServiceDetailsPtrOutput{})
 	pulumi.RegisterOutputType(StaticSiteServiceDetailsParentServerPropertiesOutput{})
 	pulumi.RegisterOutputType(StaticSiteServiceDetailsParentServerPropertiesPtrOutput{})
+	pulumi.RegisterOutputType(WebServiceOutput{})
+	pulumi.RegisterOutputType(WebServicePtrOutput{})
 	pulumi.RegisterOutputType(WebServiceServiceDetailsOutput{})
 	pulumi.RegisterOutputType(WebServiceServiceDetailsPtrOutput{})
 	pulumi.RegisterOutputType(WebServiceServiceDetailsParentServerPropertiesOutput{})

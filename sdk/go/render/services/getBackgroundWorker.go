@@ -9,7 +9,6 @@ import (
 
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupBackgroundWorker(ctx *pulumi.Context, args *LookupBackgroundWorkerArgs, opts ...pulumi.InvokeOption) (*LookupBackgroundWorkerResult, error) {
@@ -28,7 +27,7 @@ type LookupBackgroundWorkerArgs struct {
 }
 
 type LookupBackgroundWorkerResult struct {
-	Items GetBackgroundWorkerType `pulumi:"items"`
+	Items GetBackgroundWorker `pulumi:"items"`
 }
 
 // Defaults sets the appropriate defaults for LookupBackgroundWorkerResult
@@ -78,14 +77,8 @@ func (o LookupBackgroundWorkerResultOutput) ToLookupBackgroundWorkerResultOutput
 	return o
 }
 
-func (o LookupBackgroundWorkerResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupBackgroundWorkerResult] {
-	return pulumix.Output[LookupBackgroundWorkerResult]{
-		OutputState: o.OutputState,
-	}
-}
-
-func (o LookupBackgroundWorkerResultOutput) Items() GetBackgroundWorkerTypeOutput {
-	return o.ApplyT(func(v LookupBackgroundWorkerResult) GetBackgroundWorkerType { return v.Items }).(GetBackgroundWorkerTypeOutput)
+func (o LookupBackgroundWorkerResultOutput) Items() GetBackgroundWorkerOutput {
+	return o.ApplyT(func(v LookupBackgroundWorkerResult) GetBackgroundWorker { return v.Items }).(GetBackgroundWorkerOutput)
 }
 
 func init() {

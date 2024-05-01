@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
 from ._enums import *
@@ -83,74 +83,37 @@ class BackgroundWorker(dict):
         :param str branch: If left empty, this will fall back to the default branch of the repository.
         :param 'ServiceNotifyOnFail' notify_on_fail: The notification setting for this service upon deployment failure.
         """
-        BackgroundWorker._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            owner_id=owner_id,
-            repo=repo,
-            auto_deploy=auto_deploy,
-            branch=branch,
-            created_at=created_at,
-            env_vars=env_vars,
-            notify_on_fail=notify_on_fail,
-            secret_files=secret_files,
-            service_details=service_details,
-            slug=slug,
-            suspended=suspended,
-            suspenders=suspenders,
-            type=type,
-            updated_at=updated_at,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: str,
-             owner_id: str,
-             repo: str,
-             auto_deploy: Optional['ServiceAutoDeploy'] = None,
-             branch: Optional[str] = None,
-             created_at: Optional[str] = None,
-             env_vars: Optional[Sequence['outputs.EnvVarKeyValue']] = None,
-             notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
-             secret_files: Optional[Sequence['outputs.SecretFile']] = None,
-             service_details: Optional['outputs.BackgroundWorkerServiceDetails'] = None,
-             slug: Optional[str] = None,
-             suspended: Optional['ServiceSuspended'] = None,
-             suspenders: Optional[Sequence[str]] = None,
-             type: Optional[str] = None,
-             updated_at: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("name", name)
-        _setter("owner_id", owner_id)
-        _setter("repo", repo)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "owner_id", owner_id)
+        pulumi.set(__self__, "repo", repo)
         if auto_deploy is None:
             auto_deploy = 'no'
         if auto_deploy is not None:
-            _setter("auto_deploy", auto_deploy)
+            pulumi.set(__self__, "auto_deploy", auto_deploy)
         if branch is not None:
-            _setter("branch", branch)
+            pulumi.set(__self__, "branch", branch)
         if created_at is not None:
-            _setter("created_at", created_at)
+            pulumi.set(__self__, "created_at", created_at)
         if env_vars is not None:
-            _setter("env_vars", env_vars)
+            pulumi.set(__self__, "env_vars", env_vars)
         if notify_on_fail is not None:
-            _setter("notify_on_fail", notify_on_fail)
+            pulumi.set(__self__, "notify_on_fail", notify_on_fail)
         if secret_files is not None:
-            _setter("secret_files", secret_files)
+            pulumi.set(__self__, "secret_files", secret_files)
         if service_details is not None:
-            _setter("service_details", service_details)
+            pulumi.set(__self__, "service_details", service_details)
         if slug is not None:
-            _setter("slug", slug)
+            pulumi.set(__self__, "slug", slug)
         if suspended is not None:
-            _setter("suspended", suspended)
+            pulumi.set(__self__, "suspended", suspended)
         if suspenders is not None:
-            _setter("suspenders", suspenders)
+            pulumi.set(__self__, "suspenders", suspenders)
         if type is None:
             type = 'background_worker'
         if type is not None:
-            _setter("type", type)
+            pulumi.set(__self__, "type", type)
         if updated_at is not None:
-            _setter("updated_at", updated_at)
+            pulumi.set(__self__, "updated_at", updated_at)
 
     @property
     @pulumi.getter
@@ -278,56 +241,31 @@ class BackgroundWorkerServiceDetails(dict):
                  pull_request_previews_enabled: Optional['BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled'] = None,
                  region: Optional['BackgroundWorkerServiceDetailsRegion'] = None,
                  url: Optional[str] = None):
-        BackgroundWorkerServiceDetails._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            env=env,
-            disk=disk,
-            env_specific_details=env_specific_details,
-            num_instances=num_instances,
-            parent_server=parent_server,
-            plan=plan,
-            pull_request_previews_enabled=pull_request_previews_enabled,
-            region=region,
-            url=url,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             env: 'BackgroundWorkerServiceDetailsEnv',
-             disk: Optional['outputs.Disk'] = None,
-             env_specific_details: Optional[Any] = None,
-             num_instances: Optional[float] = None,
-             parent_server: Optional['outputs.BackgroundWorkerServiceDetailsParentServerProperties'] = None,
-             plan: Optional['BackgroundWorkerServiceDetailsPlan'] = None,
-             pull_request_previews_enabled: Optional['BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled'] = None,
-             region: Optional['BackgroundWorkerServiceDetailsRegion'] = None,
-             url: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("env", env)
+        pulumi.set(__self__, "env", env)
         if disk is not None:
-            _setter("disk", disk)
+            pulumi.set(__self__, "disk", disk)
         if env_specific_details is not None:
-            _setter("env_specific_details", env_specific_details)
+            pulumi.set(__self__, "env_specific_details", env_specific_details)
         if num_instances is None:
             num_instances = 1
         if num_instances is not None:
-            _setter("num_instances", num_instances)
+            pulumi.set(__self__, "num_instances", num_instances)
         if parent_server is not None:
-            _setter("parent_server", parent_server)
+            pulumi.set(__self__, "parent_server", parent_server)
         if plan is None:
             plan = 'starter'
         if plan is not None:
-            _setter("plan", plan)
+            pulumi.set(__self__, "plan", plan)
         if pull_request_previews_enabled is None:
             pull_request_previews_enabled = 'no'
         if pull_request_previews_enabled is not None:
-            _setter("pull_request_previews_enabled", pull_request_previews_enabled)
+            pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
         if region is None:
             region = 'oregon'
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if url is not None:
-            _setter("url", url)
+            pulumi.set(__self__, "url", url)
 
     @property
     @pulumi.getter
@@ -380,21 +318,10 @@ class BackgroundWorkerServiceDetailsParentServerProperties(dict):
     def __init__(__self__, *,
                  id: Optional[str] = None,
                  name: Optional[str] = None):
-        BackgroundWorkerServiceDetailsParentServerProperties._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            id=id,
-            name=name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             id: Optional[str] = None,
-             name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
         if id is not None:
-            _setter("id", id)
+            pulumi.set(__self__, "id", id)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
@@ -430,25 +357,12 @@ class Commit(dict):
                  created_at: Optional[str] = None,
                  id: Optional[str] = None,
                  message: Optional[str] = None):
-        Commit._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            created_at=created_at,
-            id=id,
-            message=message,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             created_at: Optional[str] = None,
-             id: Optional[str] = None,
-             message: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
         if created_at is not None:
-            _setter("created_at", created_at)
+            pulumi.set(__self__, "created_at", created_at)
         if id is not None:
-            _setter("id", id)
+            pulumi.set(__self__, "id", id)
         if message is not None:
-            _setter("message", message)
+            pulumi.set(__self__, "message", message)
 
     @property
     @pulumi.getter(name="createdAt")
@@ -495,74 +409,37 @@ class CronJob(dict):
         :param str branch: If left empty, this will fall back to the default branch of the repository.
         :param 'ServiceNotifyOnFail' notify_on_fail: The notification setting for this service upon deployment failure.
         """
-        CronJob._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            owner_id=owner_id,
-            repo=repo,
-            auto_deploy=auto_deploy,
-            branch=branch,
-            created_at=created_at,
-            env_vars=env_vars,
-            notify_on_fail=notify_on_fail,
-            secret_files=secret_files,
-            service_details=service_details,
-            slug=slug,
-            suspended=suspended,
-            suspenders=suspenders,
-            type=type,
-            updated_at=updated_at,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: str,
-             owner_id: str,
-             repo: str,
-             auto_deploy: Optional['ServiceAutoDeploy'] = None,
-             branch: Optional[str] = None,
-             created_at: Optional[str] = None,
-             env_vars: Optional[Sequence['outputs.EnvVarKeyValue']] = None,
-             notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
-             secret_files: Optional[Sequence['outputs.SecretFile']] = None,
-             service_details: Optional['outputs.CronJobServiceDetails'] = None,
-             slug: Optional[str] = None,
-             suspended: Optional['ServiceSuspended'] = None,
-             suspenders: Optional[Sequence[str]] = None,
-             type: Optional[str] = None,
-             updated_at: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("name", name)
-        _setter("owner_id", owner_id)
-        _setter("repo", repo)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "owner_id", owner_id)
+        pulumi.set(__self__, "repo", repo)
         if auto_deploy is None:
             auto_deploy = 'no'
         if auto_deploy is not None:
-            _setter("auto_deploy", auto_deploy)
+            pulumi.set(__self__, "auto_deploy", auto_deploy)
         if branch is not None:
-            _setter("branch", branch)
+            pulumi.set(__self__, "branch", branch)
         if created_at is not None:
-            _setter("created_at", created_at)
+            pulumi.set(__self__, "created_at", created_at)
         if env_vars is not None:
-            _setter("env_vars", env_vars)
+            pulumi.set(__self__, "env_vars", env_vars)
         if notify_on_fail is not None:
-            _setter("notify_on_fail", notify_on_fail)
+            pulumi.set(__self__, "notify_on_fail", notify_on_fail)
         if secret_files is not None:
-            _setter("secret_files", secret_files)
+            pulumi.set(__self__, "secret_files", secret_files)
         if service_details is not None:
-            _setter("service_details", service_details)
+            pulumi.set(__self__, "service_details", service_details)
         if slug is not None:
-            _setter("slug", slug)
+            pulumi.set(__self__, "slug", slug)
         if suspended is not None:
-            _setter("suspended", suspended)
+            pulumi.set(__self__, "suspended", suspended)
         if suspenders is not None:
-            _setter("suspenders", suspenders)
+            pulumi.set(__self__, "suspenders", suspenders)
         if type is None:
             type = 'cron_job'
         if type is not None:
-            _setter("type", type)
+            pulumi.set(__self__, "type", type)
         if updated_at is not None:
-            _setter("updated_at", updated_at)
+            pulumi.set(__self__, "updated_at", updated_at)
 
     @property
     @pulumi.getter
@@ -683,39 +560,20 @@ class CronJobServiceDetails(dict):
                  last_successful_run_at: Optional[str] = None,
                  plan: Optional['CronJobServiceDetailsPlan'] = None,
                  region: Optional['CronJobServiceDetailsRegion'] = None):
-        CronJobServiceDetails._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            env=env,
-            schedule=schedule,
-            env_specific_details=env_specific_details,
-            last_successful_run_at=last_successful_run_at,
-            plan=plan,
-            region=region,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             env: 'CronJobServiceDetailsEnv',
-             schedule: str,
-             env_specific_details: Optional[Any] = None,
-             last_successful_run_at: Optional[str] = None,
-             plan: Optional['CronJobServiceDetailsPlan'] = None,
-             region: Optional['CronJobServiceDetailsRegion'] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("env", env)
-        _setter("schedule", schedule)
+        pulumi.set(__self__, "env", env)
+        pulumi.set(__self__, "schedule", schedule)
         if env_specific_details is not None:
-            _setter("env_specific_details", env_specific_details)
+            pulumi.set(__self__, "env_specific_details", env_specific_details)
         if last_successful_run_at is not None:
-            _setter("last_successful_run_at", last_successful_run_at)
+            pulumi.set(__self__, "last_successful_run_at", last_successful_run_at)
         if plan is None:
             plan = 'starter'
         if plan is not None:
-            _setter("plan", plan)
+            pulumi.set(__self__, "plan", plan)
         if region is None:
             region = 'oregon'
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter
@@ -758,36 +616,15 @@ class CustomDomain(dict):
                  verification_status: 'CustomDomainVerificationStatus',
                  created_at: Optional[str] = None,
                  public_suffix: Optional[str] = None):
-        CustomDomain._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            domain_type=domain_type,
-            name=name,
-            redirect_for_name=redirect_for_name,
-            server=server,
-            verification_status=verification_status,
-            created_at=created_at,
-            public_suffix=public_suffix,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             domain_type: 'CustomDomainDomainType',
-             name: str,
-             redirect_for_name: str,
-             server: 'outputs.CustomDomainServerProperties',
-             verification_status: 'CustomDomainVerificationStatus',
-             created_at: Optional[str] = None,
-             public_suffix: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("domain_type", domain_type)
-        _setter("name", name)
-        _setter("redirect_for_name", redirect_for_name)
-        _setter("server", server)
-        _setter("verification_status", verification_status)
+        pulumi.set(__self__, "domain_type", domain_type)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "redirect_for_name", redirect_for_name)
+        pulumi.set(__self__, "server", server)
+        pulumi.set(__self__, "verification_status", verification_status)
         if created_at is not None:
-            _setter("created_at", created_at)
+            pulumi.set(__self__, "created_at", created_at)
         if public_suffix is not None:
-            _setter("public_suffix", public_suffix)
+            pulumi.set(__self__, "public_suffix", public_suffix)
 
     @property
     @pulumi.getter(name="domainType")
@@ -830,21 +667,10 @@ class CustomDomainServerProperties(dict):
     def __init__(__self__, *,
                  id: Optional[str] = None,
                  name: Optional[str] = None):
-        CustomDomainServerProperties._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            id=id,
-            name=name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             id: Optional[str] = None,
-             name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
         if id is not None:
-            _setter("id", id)
+            pulumi.set(__self__, "id", id)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
@@ -862,23 +688,12 @@ class Deploy(dict):
     def __init__(__self__, *,
                  clear_cache: Optional['DeployClearCache'] = None,
                  commit: Optional['outputs.Commit'] = None):
-        Deploy._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            clear_cache=clear_cache,
-            commit=commit,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             clear_cache: Optional['DeployClearCache'] = None,
-             commit: Optional['outputs.Commit'] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
         if clear_cache is None:
             clear_cache = 'do_not_clear'
         if clear_cache is not None:
-            _setter("clear_cache", clear_cache)
+            pulumi.set(__self__, "clear_cache", clear_cache)
         if commit is not None:
-            _setter("commit", commit)
+            pulumi.set(__self__, "commit", commit)
 
     @property
     @pulumi.getter(name="clearCache")
@@ -916,25 +731,12 @@ class Disk(dict):
                  mount_path: str,
                  name: str,
                  size_gb: Optional[float] = None):
-        Disk._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            mount_path=mount_path,
-            name=name,
-            size_gb=size_gb,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             mount_path: str,
-             name: str,
-             size_gb: Optional[float] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("mount_path", mount_path)
-        _setter("name", name)
+        pulumi.set(__self__, "mount_path", mount_path)
+        pulumi.set(__self__, "name", name)
         if size_gb is None:
             size_gb = 1
         if size_gb is not None:
-            _setter("size_gb", size_gb)
+            pulumi.set(__self__, "size_gb", size_gb)
 
     @property
     @pulumi.getter(name="mountPath")
@@ -979,23 +781,10 @@ class DockerDetails(dict):
                  docker_command: str,
                  docker_context: str,
                  dockerfile_path: Optional[str] = None):
-        DockerDetails._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            docker_command=docker_command,
-            docker_context=docker_context,
-            dockerfile_path=dockerfile_path,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             docker_command: str,
-             docker_context: str,
-             dockerfile_path: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("docker_command", docker_command)
-        _setter("docker_context", docker_context)
+        pulumi.set(__self__, "docker_command", docker_command)
+        pulumi.set(__self__, "docker_context", docker_context)
         if dockerfile_path is not None:
-            _setter("dockerfile_path", dockerfile_path)
+            pulumi.set(__self__, "dockerfile_path", dockerfile_path)
 
     @property
     @pulumi.getter(name="dockerCommand")
@@ -1036,24 +825,11 @@ class EnvVarKeyValue(dict):
                  key: str,
                  generate_value: Optional['EnvVarKeyValueGenerateValue'] = None,
                  value: Optional[str] = None):
-        EnvVarKeyValue._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            key=key,
-            generate_value=generate_value,
-            value=value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             key: str,
-             generate_value: Optional['EnvVarKeyValueGenerateValue'] = None,
-             value: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("key", key)
+        pulumi.set(__self__, "key", key)
         if generate_value is not None:
-            _setter("generate_value", generate_value)
+            pulumi.set(__self__, "generate_value", generate_value)
         if value is not None:
-            _setter("value", value)
+            pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
@@ -1100,74 +876,37 @@ class GetBackgroundWorker(dict):
         :param str branch: If left empty, this will fall back to the default branch of the repository.
         :param 'ServiceNotifyOnFail' notify_on_fail: The notification setting for this service upon deployment failure.
         """
-        GetBackgroundWorker._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            owner_id=owner_id,
-            repo=repo,
-            auto_deploy=auto_deploy,
-            branch=branch,
-            created_at=created_at,
-            env_vars=env_vars,
-            notify_on_fail=notify_on_fail,
-            secret_files=secret_files,
-            service_details=service_details,
-            slug=slug,
-            suspended=suspended,
-            suspenders=suspenders,
-            type=type,
-            updated_at=updated_at,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: str,
-             owner_id: str,
-             repo: str,
-             auto_deploy: Optional['ServiceAutoDeploy'] = None,
-             branch: Optional[str] = None,
-             created_at: Optional[str] = None,
-             env_vars: Optional[Sequence['outputs.EnvVarKeyValue']] = None,
-             notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
-             secret_files: Optional[Sequence['outputs.SecretFile']] = None,
-             service_details: Optional['outputs.BackgroundWorkerServiceDetails'] = None,
-             slug: Optional[str] = None,
-             suspended: Optional['ServiceSuspended'] = None,
-             suspenders: Optional[Sequence[str]] = None,
-             type: Optional[str] = None,
-             updated_at: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("name", name)
-        _setter("owner_id", owner_id)
-        _setter("repo", repo)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "owner_id", owner_id)
+        pulumi.set(__self__, "repo", repo)
         if auto_deploy is None:
             auto_deploy = 'no'
         if auto_deploy is not None:
-            _setter("auto_deploy", auto_deploy)
+            pulumi.set(__self__, "auto_deploy", auto_deploy)
         if branch is not None:
-            _setter("branch", branch)
+            pulumi.set(__self__, "branch", branch)
         if created_at is not None:
-            _setter("created_at", created_at)
+            pulumi.set(__self__, "created_at", created_at)
         if env_vars is not None:
-            _setter("env_vars", env_vars)
+            pulumi.set(__self__, "env_vars", env_vars)
         if notify_on_fail is not None:
-            _setter("notify_on_fail", notify_on_fail)
+            pulumi.set(__self__, "notify_on_fail", notify_on_fail)
         if secret_files is not None:
-            _setter("secret_files", secret_files)
+            pulumi.set(__self__, "secret_files", secret_files)
         if service_details is not None:
-            _setter("service_details", service_details)
+            pulumi.set(__self__, "service_details", service_details)
         if slug is not None:
-            _setter("slug", slug)
+            pulumi.set(__self__, "slug", slug)
         if suspended is not None:
-            _setter("suspended", suspended)
+            pulumi.set(__self__, "suspended", suspended)
         if suspenders is not None:
-            _setter("suspenders", suspenders)
+            pulumi.set(__self__, "suspenders", suspenders)
         if type is None:
             type = 'background_worker'
         if type is not None:
-            _setter("type", type)
+            pulumi.set(__self__, "type", type)
         if updated_at is not None:
-            _setter("updated_at", updated_at)
+            pulumi.set(__self__, "updated_at", updated_at)
 
     @property
     @pulumi.getter
@@ -1289,74 +1028,37 @@ class GetCronJob(dict):
         :param str branch: If left empty, this will fall back to the default branch of the repository.
         :param 'ServiceNotifyOnFail' notify_on_fail: The notification setting for this service upon deployment failure.
         """
-        GetCronJob._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            owner_id=owner_id,
-            repo=repo,
-            auto_deploy=auto_deploy,
-            branch=branch,
-            created_at=created_at,
-            env_vars=env_vars,
-            notify_on_fail=notify_on_fail,
-            secret_files=secret_files,
-            service_details=service_details,
-            slug=slug,
-            suspended=suspended,
-            suspenders=suspenders,
-            type=type,
-            updated_at=updated_at,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: str,
-             owner_id: str,
-             repo: str,
-             auto_deploy: Optional['ServiceAutoDeploy'] = None,
-             branch: Optional[str] = None,
-             created_at: Optional[str] = None,
-             env_vars: Optional[Sequence['outputs.EnvVarKeyValue']] = None,
-             notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
-             secret_files: Optional[Sequence['outputs.SecretFile']] = None,
-             service_details: Optional['outputs.CronJobServiceDetails'] = None,
-             slug: Optional[str] = None,
-             suspended: Optional['ServiceSuspended'] = None,
-             suspenders: Optional[Sequence[str]] = None,
-             type: Optional[str] = None,
-             updated_at: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("name", name)
-        _setter("owner_id", owner_id)
-        _setter("repo", repo)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "owner_id", owner_id)
+        pulumi.set(__self__, "repo", repo)
         if auto_deploy is None:
             auto_deploy = 'no'
         if auto_deploy is not None:
-            _setter("auto_deploy", auto_deploy)
+            pulumi.set(__self__, "auto_deploy", auto_deploy)
         if branch is not None:
-            _setter("branch", branch)
+            pulumi.set(__self__, "branch", branch)
         if created_at is not None:
-            _setter("created_at", created_at)
+            pulumi.set(__self__, "created_at", created_at)
         if env_vars is not None:
-            _setter("env_vars", env_vars)
+            pulumi.set(__self__, "env_vars", env_vars)
         if notify_on_fail is not None:
-            _setter("notify_on_fail", notify_on_fail)
+            pulumi.set(__self__, "notify_on_fail", notify_on_fail)
         if secret_files is not None:
-            _setter("secret_files", secret_files)
+            pulumi.set(__self__, "secret_files", secret_files)
         if service_details is not None:
-            _setter("service_details", service_details)
+            pulumi.set(__self__, "service_details", service_details)
         if slug is not None:
-            _setter("slug", slug)
+            pulumi.set(__self__, "slug", slug)
         if suspended is not None:
-            _setter("suspended", suspended)
+            pulumi.set(__self__, "suspended", suspended)
         if suspenders is not None:
-            _setter("suspenders", suspenders)
+            pulumi.set(__self__, "suspenders", suspenders)
         if type is None:
             type = 'cron_job'
         if type is not None:
-            _setter("type", type)
+            pulumi.set(__self__, "type", type)
         if updated_at is not None:
-            _setter("updated_at", updated_at)
+            pulumi.set(__self__, "updated_at", updated_at)
 
     @property
     @pulumi.getter
@@ -1478,74 +1180,37 @@ class GetPrivateService(dict):
         :param str branch: If left empty, this will fall back to the default branch of the repository.
         :param 'ServiceNotifyOnFail' notify_on_fail: The notification setting for this service upon deployment failure.
         """
-        GetPrivateService._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            owner_id=owner_id,
-            repo=repo,
-            auto_deploy=auto_deploy,
-            branch=branch,
-            created_at=created_at,
-            env_vars=env_vars,
-            notify_on_fail=notify_on_fail,
-            secret_files=secret_files,
-            service_details=service_details,
-            slug=slug,
-            suspended=suspended,
-            suspenders=suspenders,
-            type=type,
-            updated_at=updated_at,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: str,
-             owner_id: str,
-             repo: str,
-             auto_deploy: Optional['ServiceAutoDeploy'] = None,
-             branch: Optional[str] = None,
-             created_at: Optional[str] = None,
-             env_vars: Optional[Sequence['outputs.EnvVarKeyValue']] = None,
-             notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
-             secret_files: Optional[Sequence['outputs.SecretFile']] = None,
-             service_details: Optional['outputs.PrivateServiceDetails'] = None,
-             slug: Optional[str] = None,
-             suspended: Optional['ServiceSuspended'] = None,
-             suspenders: Optional[Sequence[str]] = None,
-             type: Optional[str] = None,
-             updated_at: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("name", name)
-        _setter("owner_id", owner_id)
-        _setter("repo", repo)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "owner_id", owner_id)
+        pulumi.set(__self__, "repo", repo)
         if auto_deploy is None:
             auto_deploy = 'no'
         if auto_deploy is not None:
-            _setter("auto_deploy", auto_deploy)
+            pulumi.set(__self__, "auto_deploy", auto_deploy)
         if branch is not None:
-            _setter("branch", branch)
+            pulumi.set(__self__, "branch", branch)
         if created_at is not None:
-            _setter("created_at", created_at)
+            pulumi.set(__self__, "created_at", created_at)
         if env_vars is not None:
-            _setter("env_vars", env_vars)
+            pulumi.set(__self__, "env_vars", env_vars)
         if notify_on_fail is not None:
-            _setter("notify_on_fail", notify_on_fail)
+            pulumi.set(__self__, "notify_on_fail", notify_on_fail)
         if secret_files is not None:
-            _setter("secret_files", secret_files)
+            pulumi.set(__self__, "secret_files", secret_files)
         if service_details is not None:
-            _setter("service_details", service_details)
+            pulumi.set(__self__, "service_details", service_details)
         if slug is not None:
-            _setter("slug", slug)
+            pulumi.set(__self__, "slug", slug)
         if suspended is not None:
-            _setter("suspended", suspended)
+            pulumi.set(__self__, "suspended", suspended)
         if suspenders is not None:
-            _setter("suspenders", suspenders)
+            pulumi.set(__self__, "suspenders", suspenders)
         if type is None:
             type = 'private_service'
         if type is not None:
-            _setter("type", type)
+            pulumi.set(__self__, "type", type)
         if updated_at is not None:
-            _setter("updated_at", updated_at)
+            pulumi.set(__self__, "updated_at", updated_at)
 
     @property
     @pulumi.getter
@@ -1667,74 +1332,37 @@ class GetStaticSite(dict):
         :param str branch: If left empty, this will fall back to the default branch of the repository.
         :param 'ServiceNotifyOnFail' notify_on_fail: The notification setting for this service upon deployment failure.
         """
-        GetStaticSite._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            owner_id=owner_id,
-            repo=repo,
-            auto_deploy=auto_deploy,
-            branch=branch,
-            created_at=created_at,
-            env_vars=env_vars,
-            notify_on_fail=notify_on_fail,
-            secret_files=secret_files,
-            service_details=service_details,
-            slug=slug,
-            suspended=suspended,
-            suspenders=suspenders,
-            type=type,
-            updated_at=updated_at,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: str,
-             owner_id: str,
-             repo: str,
-             auto_deploy: Optional['ServiceAutoDeploy'] = None,
-             branch: Optional[str] = None,
-             created_at: Optional[str] = None,
-             env_vars: Optional[Sequence['outputs.EnvVarKeyValue']] = None,
-             notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
-             secret_files: Optional[Sequence['outputs.SecretFile']] = None,
-             service_details: Optional['outputs.StaticSiteServiceDetails'] = None,
-             slug: Optional[str] = None,
-             suspended: Optional['ServiceSuspended'] = None,
-             suspenders: Optional[Sequence[str]] = None,
-             type: Optional[str] = None,
-             updated_at: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("name", name)
-        _setter("owner_id", owner_id)
-        _setter("repo", repo)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "owner_id", owner_id)
+        pulumi.set(__self__, "repo", repo)
         if auto_deploy is None:
             auto_deploy = 'no'
         if auto_deploy is not None:
-            _setter("auto_deploy", auto_deploy)
+            pulumi.set(__self__, "auto_deploy", auto_deploy)
         if branch is not None:
-            _setter("branch", branch)
+            pulumi.set(__self__, "branch", branch)
         if created_at is not None:
-            _setter("created_at", created_at)
+            pulumi.set(__self__, "created_at", created_at)
         if env_vars is not None:
-            _setter("env_vars", env_vars)
+            pulumi.set(__self__, "env_vars", env_vars)
         if notify_on_fail is not None:
-            _setter("notify_on_fail", notify_on_fail)
+            pulumi.set(__self__, "notify_on_fail", notify_on_fail)
         if secret_files is not None:
-            _setter("secret_files", secret_files)
+            pulumi.set(__self__, "secret_files", secret_files)
         if service_details is not None:
-            _setter("service_details", service_details)
+            pulumi.set(__self__, "service_details", service_details)
         if slug is not None:
-            _setter("slug", slug)
+            pulumi.set(__self__, "slug", slug)
         if suspended is not None:
-            _setter("suspended", suspended)
+            pulumi.set(__self__, "suspended", suspended)
         if suspenders is not None:
-            _setter("suspenders", suspenders)
+            pulumi.set(__self__, "suspenders", suspenders)
         if type is None:
             type = 'static_site'
         if type is not None:
-            _setter("type", type)
+            pulumi.set(__self__, "type", type)
         if updated_at is not None:
-            _setter("updated_at", updated_at)
+            pulumi.set(__self__, "updated_at", updated_at)
 
     @property
     @pulumi.getter
@@ -1856,74 +1484,37 @@ class GetWebService(dict):
         :param str branch: If left empty, this will fall back to the default branch of the repository.
         :param 'ServiceNotifyOnFail' notify_on_fail: The notification setting for this service upon deployment failure.
         """
-        GetWebService._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            owner_id=owner_id,
-            repo=repo,
-            auto_deploy=auto_deploy,
-            branch=branch,
-            created_at=created_at,
-            env_vars=env_vars,
-            notify_on_fail=notify_on_fail,
-            secret_files=secret_files,
-            service_details=service_details,
-            slug=slug,
-            suspended=suspended,
-            suspenders=suspenders,
-            type=type,
-            updated_at=updated_at,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: str,
-             owner_id: str,
-             repo: str,
-             auto_deploy: Optional['ServiceAutoDeploy'] = None,
-             branch: Optional[str] = None,
-             created_at: Optional[str] = None,
-             env_vars: Optional[Sequence['outputs.EnvVarKeyValue']] = None,
-             notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
-             secret_files: Optional[Sequence['outputs.SecretFile']] = None,
-             service_details: Optional['outputs.WebServiceServiceDetails'] = None,
-             slug: Optional[str] = None,
-             suspended: Optional['ServiceSuspended'] = None,
-             suspenders: Optional[Sequence[str]] = None,
-             type: Optional[str] = None,
-             updated_at: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("name", name)
-        _setter("owner_id", owner_id)
-        _setter("repo", repo)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "owner_id", owner_id)
+        pulumi.set(__self__, "repo", repo)
         if auto_deploy is None:
             auto_deploy = 'no'
         if auto_deploy is not None:
-            _setter("auto_deploy", auto_deploy)
+            pulumi.set(__self__, "auto_deploy", auto_deploy)
         if branch is not None:
-            _setter("branch", branch)
+            pulumi.set(__self__, "branch", branch)
         if created_at is not None:
-            _setter("created_at", created_at)
+            pulumi.set(__self__, "created_at", created_at)
         if env_vars is not None:
-            _setter("env_vars", env_vars)
+            pulumi.set(__self__, "env_vars", env_vars)
         if notify_on_fail is not None:
-            _setter("notify_on_fail", notify_on_fail)
+            pulumi.set(__self__, "notify_on_fail", notify_on_fail)
         if secret_files is not None:
-            _setter("secret_files", secret_files)
+            pulumi.set(__self__, "secret_files", secret_files)
         if service_details is not None:
-            _setter("service_details", service_details)
+            pulumi.set(__self__, "service_details", service_details)
         if slug is not None:
-            _setter("slug", slug)
+            pulumi.set(__self__, "slug", slug)
         if suspended is not None:
-            _setter("suspended", suspended)
+            pulumi.set(__self__, "suspended", suspended)
         if suspenders is not None:
-            _setter("suspenders", suspenders)
+            pulumi.set(__self__, "suspenders", suspenders)
         if type is None:
             type = 'web_service'
         if type is not None:
-            _setter("type", type)
+            pulumi.set(__self__, "type", type)
         if updated_at is not None:
-            _setter("updated_at", updated_at)
+            pulumi.set(__self__, "updated_at", updated_at)
 
     @property
     @pulumi.getter
@@ -2025,35 +1616,16 @@ class Job(dict):
                  finished_at: Optional[str] = None,
                  started_at: Optional[str] = None,
                  status: Optional[str] = None):
-        Job._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            plan_id=plan_id,
-            start_command=start_command,
-            created_at=created_at,
-            finished_at=finished_at,
-            started_at=started_at,
-            status=status,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             plan_id: str,
-             start_command: str,
-             created_at: Optional[str] = None,
-             finished_at: Optional[str] = None,
-             started_at: Optional[str] = None,
-             status: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("plan_id", plan_id)
-        _setter("start_command", start_command)
+        pulumi.set(__self__, "plan_id", plan_id)
+        pulumi.set(__self__, "start_command", start_command)
         if created_at is not None:
-            _setter("created_at", created_at)
+            pulumi.set(__self__, "created_at", created_at)
         if finished_at is not None:
-            _setter("finished_at", finished_at)
+            pulumi.set(__self__, "finished_at", finished_at)
         if started_at is not None:
-            _setter("started_at", started_at)
+            pulumi.set(__self__, "started_at", started_at)
         if status is not None:
-            _setter("status", status)
+            pulumi.set(__self__, "status", status)
 
     @property
     @pulumi.getter(name="planId")
@@ -2091,21 +1663,10 @@ class ListCustomDomainsResponse(dict):
     def __init__(__self__, *,
                  cursor: Optional[str] = None,
                  custom_domain: Optional['outputs.CustomDomain'] = None):
-        ListCustomDomainsResponse._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cursor=cursor,
-            custom_domain=custom_domain,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cursor: Optional[str] = None,
-             custom_domain: Optional['outputs.CustomDomain'] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
         if cursor is not None:
-            _setter("cursor", cursor)
+            pulumi.set(__self__, "cursor", cursor)
         if custom_domain is not None:
-            _setter("custom_domain", custom_domain)
+            pulumi.set(__self__, "custom_domain", custom_domain)
 
     @property
     @pulumi.getter
@@ -2123,21 +1684,10 @@ class ListDeploysResponse(dict):
     def __init__(__self__, *,
                  cursor: Optional[str] = None,
                  custom_domain: Optional['outputs.Deploy'] = None):
-        ListDeploysResponse._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cursor=cursor,
-            custom_domain=custom_domain,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cursor: Optional[str] = None,
-             custom_domain: Optional['outputs.Deploy'] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
         if cursor is not None:
-            _setter("cursor", cursor)
+            pulumi.set(__self__, "cursor", cursor)
         if custom_domain is not None:
-            _setter("custom_domain", custom_domain)
+            pulumi.set(__self__, "custom_domain", custom_domain)
 
     @property
     @pulumi.getter
@@ -2155,21 +1705,10 @@ class ListEnvVarsResponse(dict):
     def __init__(__self__, *,
                  cursor: Optional[str] = None,
                  env_var: Optional['outputs.EnvVarKeyValue'] = None):
-        ListEnvVarsResponse._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cursor=cursor,
-            env_var=env_var,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cursor: Optional[str] = None,
-             env_var: Optional['outputs.EnvVarKeyValue'] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
         if cursor is not None:
-            _setter("cursor", cursor)
+            pulumi.set(__self__, "cursor", cursor)
         if env_var is not None:
-            _setter("env_var", env_var)
+            pulumi.set(__self__, "env_var", env_var)
 
     @property
     @pulumi.getter
@@ -2187,21 +1726,10 @@ class ListJobsResponse(dict):
     def __init__(__self__, *,
                  cursor: Optional[str] = None,
                  job: Optional['outputs.Job'] = None):
-        ListJobsResponse._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cursor=cursor,
-            job=job,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cursor: Optional[str] = None,
-             job: Optional['outputs.Job'] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
         if cursor is not None:
-            _setter("cursor", cursor)
+            pulumi.set(__self__, "cursor", cursor)
         if job is not None:
-            _setter("job", job)
+            pulumi.set(__self__, "job", job)
 
     @property
     @pulumi.getter
@@ -2222,21 +1750,10 @@ class ListServiceHeadersResponse(dict):
         """
         :param 'ServiceHeader' header: A service header object
         """
-        ListServiceHeadersResponse._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cursor=cursor,
-            header=header,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cursor: Optional[str] = None,
-             header: Optional['outputs.ServiceHeader'] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
         if cursor is not None:
-            _setter("cursor", cursor)
+            pulumi.set(__self__, "cursor", cursor)
         if header is not None:
-            _setter("header", header)
+            pulumi.set(__self__, "header", header)
 
     @property
     @pulumi.getter
@@ -2257,21 +1774,10 @@ class ListServiceResponse(dict):
     def __init__(__self__, *,
                  cursor: Optional[str] = None,
                  service: Optional[Any] = None):
-        ListServiceResponse._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cursor=cursor,
-            service=service,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cursor: Optional[str] = None,
-             service: Optional[Any] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
         if cursor is not None:
-            _setter("cursor", cursor)
+            pulumi.set(__self__, "cursor", cursor)
         if service is not None:
-            _setter("service", service)
+            pulumi.set(__self__, "service", service)
 
     @property
     @pulumi.getter
@@ -2292,21 +1798,10 @@ class ListStaticSiteRoutesResponse(dict):
         """
         :param 'StaticSiteRoute' route: A route object for a static site
         """
-        ListStaticSiteRoutesResponse._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cursor=cursor,
-            route=route,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cursor: Optional[str] = None,
-             route: Optional['outputs.StaticSiteRoute'] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
         if cursor is not None:
-            _setter("cursor", cursor)
+            pulumi.set(__self__, "cursor", cursor)
         if route is not None:
-            _setter("route", route)
+            pulumi.set(__self__, "route", route)
 
     @property
     @pulumi.getter
@@ -2346,19 +1841,8 @@ class NativeEnvironmentDetails(dict):
     def __init__(__self__, *,
                  build_command: str,
                  start_command: str):
-        NativeEnvironmentDetails._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            build_command=build_command,
-            start_command=start_command,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             build_command: str,
-             start_command: str,
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("build_command", build_command)
-        _setter("start_command", start_command)
+        pulumi.set(__self__, "build_command", build_command)
+        pulumi.set(__self__, "start_command", start_command)
 
     @property
     @pulumi.getter(name="buildCommand")
@@ -2376,21 +1860,10 @@ class OpenPorts(dict):
     def __init__(__self__, *,
                  port: Optional[float] = None,
                  protocol: Optional['OpenPortsProtocol'] = None):
-        OpenPorts._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            port=port,
-            protocol=protocol,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             port: Optional[float] = None,
-             protocol: Optional['OpenPortsProtocol'] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
         if port is not None:
-            _setter("port", port)
+            pulumi.set(__self__, "port", port)
         if protocol is not None:
-            _setter("protocol", protocol)
+            pulumi.set(__self__, "protocol", protocol)
 
     @property
     @pulumi.getter
@@ -2432,74 +1905,37 @@ class PrivateService(dict):
         :param str branch: If left empty, this will fall back to the default branch of the repository.
         :param 'ServiceNotifyOnFail' notify_on_fail: The notification setting for this service upon deployment failure.
         """
-        PrivateService._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            owner_id=owner_id,
-            repo=repo,
-            auto_deploy=auto_deploy,
-            branch=branch,
-            created_at=created_at,
-            env_vars=env_vars,
-            notify_on_fail=notify_on_fail,
-            secret_files=secret_files,
-            service_details=service_details,
-            slug=slug,
-            suspended=suspended,
-            suspenders=suspenders,
-            type=type,
-            updated_at=updated_at,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: str,
-             owner_id: str,
-             repo: str,
-             auto_deploy: Optional['ServiceAutoDeploy'] = None,
-             branch: Optional[str] = None,
-             created_at: Optional[str] = None,
-             env_vars: Optional[Sequence['outputs.EnvVarKeyValue']] = None,
-             notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
-             secret_files: Optional[Sequence['outputs.SecretFile']] = None,
-             service_details: Optional['outputs.PrivateServiceDetails'] = None,
-             slug: Optional[str] = None,
-             suspended: Optional['ServiceSuspended'] = None,
-             suspenders: Optional[Sequence[str]] = None,
-             type: Optional[str] = None,
-             updated_at: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("name", name)
-        _setter("owner_id", owner_id)
-        _setter("repo", repo)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "owner_id", owner_id)
+        pulumi.set(__self__, "repo", repo)
         if auto_deploy is None:
             auto_deploy = 'no'
         if auto_deploy is not None:
-            _setter("auto_deploy", auto_deploy)
+            pulumi.set(__self__, "auto_deploy", auto_deploy)
         if branch is not None:
-            _setter("branch", branch)
+            pulumi.set(__self__, "branch", branch)
         if created_at is not None:
-            _setter("created_at", created_at)
+            pulumi.set(__self__, "created_at", created_at)
         if env_vars is not None:
-            _setter("env_vars", env_vars)
+            pulumi.set(__self__, "env_vars", env_vars)
         if notify_on_fail is not None:
-            _setter("notify_on_fail", notify_on_fail)
+            pulumi.set(__self__, "notify_on_fail", notify_on_fail)
         if secret_files is not None:
-            _setter("secret_files", secret_files)
+            pulumi.set(__self__, "secret_files", secret_files)
         if service_details is not None:
-            _setter("service_details", service_details)
+            pulumi.set(__self__, "service_details", service_details)
         if slug is not None:
-            _setter("slug", slug)
+            pulumi.set(__self__, "slug", slug)
         if suspended is not None:
-            _setter("suspended", suspended)
+            pulumi.set(__self__, "suspended", suspended)
         if suspenders is not None:
-            _setter("suspenders", suspenders)
+            pulumi.set(__self__, "suspenders", suspenders)
         if type is None:
             type = 'private_service'
         if type is not None:
-            _setter("type", type)
+            pulumi.set(__self__, "type", type)
         if updated_at is not None:
-            _setter("updated_at", updated_at)
+            pulumi.set(__self__, "updated_at", updated_at)
 
     @property
     @pulumi.getter
@@ -2630,60 +2066,33 @@ class PrivateServiceDetails(dict):
                  pull_request_previews_enabled: Optional['PrivateServiceDetailsPullRequestPreviewsEnabled'] = None,
                  region: Optional['PrivateServiceDetailsRegion'] = None,
                  url: Optional[str] = None):
-        PrivateServiceDetails._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            env=env,
-            disk=disk,
-            env_specific_details=env_specific_details,
-            num_instances=num_instances,
-            open_ports=open_ports,
-            parent_server=parent_server,
-            plan=plan,
-            pull_request_previews_enabled=pull_request_previews_enabled,
-            region=region,
-            url=url,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             env: 'PrivateServiceDetailsEnv',
-             disk: Optional['outputs.Disk'] = None,
-             env_specific_details: Optional[Any] = None,
-             num_instances: Optional[float] = None,
-             open_ports: Optional[Sequence['outputs.OpenPorts']] = None,
-             parent_server: Optional['outputs.PrivateServiceDetailsParentServerProperties'] = None,
-             plan: Optional['PrivateServiceDetailsPlan'] = None,
-             pull_request_previews_enabled: Optional['PrivateServiceDetailsPullRequestPreviewsEnabled'] = None,
-             region: Optional['PrivateServiceDetailsRegion'] = None,
-             url: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("env", env)
+        pulumi.set(__self__, "env", env)
         if disk is not None:
-            _setter("disk", disk)
+            pulumi.set(__self__, "disk", disk)
         if env_specific_details is not None:
-            _setter("env_specific_details", env_specific_details)
+            pulumi.set(__self__, "env_specific_details", env_specific_details)
         if num_instances is None:
             num_instances = 1
         if num_instances is not None:
-            _setter("num_instances", num_instances)
+            pulumi.set(__self__, "num_instances", num_instances)
         if open_ports is not None:
-            _setter("open_ports", open_ports)
+            pulumi.set(__self__, "open_ports", open_ports)
         if parent_server is not None:
-            _setter("parent_server", parent_server)
+            pulumi.set(__self__, "parent_server", parent_server)
         if plan is None:
             plan = 'starter'
         if plan is not None:
-            _setter("plan", plan)
+            pulumi.set(__self__, "plan", plan)
         if pull_request_previews_enabled is None:
             pull_request_previews_enabled = 'no'
         if pull_request_previews_enabled is not None:
-            _setter("pull_request_previews_enabled", pull_request_previews_enabled)
+            pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
         if region is None:
             region = 'oregon'
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if url is not None:
-            _setter("url", url)
+            pulumi.set(__self__, "url", url)
 
     @property
     @pulumi.getter
@@ -2741,21 +2150,10 @@ class PrivateServiceDetailsParentServerProperties(dict):
     def __init__(__self__, *,
                  id: Optional[str] = None,
                  name: Optional[str] = None):
-        PrivateServiceDetailsParentServerProperties._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            id=id,
-            name=name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             id: Optional[str] = None,
-             name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
         if id is not None:
-            _setter("id", id)
+            pulumi.set(__self__, "id", id)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
@@ -2773,19 +2171,8 @@ class SecretFile(dict):
     def __init__(__self__, *,
                  contents: str,
                  name: str):
-        SecretFile._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            contents=contents,
-            name=name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             contents: str,
-             name: str,
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("contents", contents)
-        _setter("name", name)
+        pulumi.set(__self__, "contents", contents)
+        pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
@@ -2803,21 +2190,10 @@ class ServerProperties(dict):
     def __init__(__self__, *,
                  id: Optional[str] = None,
                  name: Optional[str] = None):
-        ServerProperties._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            id=id,
-            name=name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             id: Optional[str] = None,
-             name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
         if id is not None:
-            _setter("id", id)
+            pulumi.set(__self__, "id", id)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
@@ -2842,22 +2218,9 @@ class ServiceHeader(dict):
         """
         A service header object
         """
-        ServiceHeader._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            path=path,
-            value=value,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: str,
-             path: str,
-             value: str,
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("name", name)
-        _setter("path", path)
-        _setter("value", value)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "path", path)
+        pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
@@ -2904,74 +2267,37 @@ class StaticSite(dict):
         :param str branch: If left empty, this will fall back to the default branch of the repository.
         :param 'ServiceNotifyOnFail' notify_on_fail: The notification setting for this service upon deployment failure.
         """
-        StaticSite._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            owner_id=owner_id,
-            repo=repo,
-            auto_deploy=auto_deploy,
-            branch=branch,
-            created_at=created_at,
-            env_vars=env_vars,
-            notify_on_fail=notify_on_fail,
-            secret_files=secret_files,
-            service_details=service_details,
-            slug=slug,
-            suspended=suspended,
-            suspenders=suspenders,
-            type=type,
-            updated_at=updated_at,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: str,
-             owner_id: str,
-             repo: str,
-             auto_deploy: Optional['ServiceAutoDeploy'] = None,
-             branch: Optional[str] = None,
-             created_at: Optional[str] = None,
-             env_vars: Optional[Sequence['outputs.EnvVarKeyValue']] = None,
-             notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
-             secret_files: Optional[Sequence['outputs.SecretFile']] = None,
-             service_details: Optional['outputs.StaticSiteServiceDetails'] = None,
-             slug: Optional[str] = None,
-             suspended: Optional['ServiceSuspended'] = None,
-             suspenders: Optional[Sequence[str]] = None,
-             type: Optional[str] = None,
-             updated_at: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("name", name)
-        _setter("owner_id", owner_id)
-        _setter("repo", repo)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "owner_id", owner_id)
+        pulumi.set(__self__, "repo", repo)
         if auto_deploy is None:
             auto_deploy = 'no'
         if auto_deploy is not None:
-            _setter("auto_deploy", auto_deploy)
+            pulumi.set(__self__, "auto_deploy", auto_deploy)
         if branch is not None:
-            _setter("branch", branch)
+            pulumi.set(__self__, "branch", branch)
         if created_at is not None:
-            _setter("created_at", created_at)
+            pulumi.set(__self__, "created_at", created_at)
         if env_vars is not None:
-            _setter("env_vars", env_vars)
+            pulumi.set(__self__, "env_vars", env_vars)
         if notify_on_fail is not None:
-            _setter("notify_on_fail", notify_on_fail)
+            pulumi.set(__self__, "notify_on_fail", notify_on_fail)
         if secret_files is not None:
-            _setter("secret_files", secret_files)
+            pulumi.set(__self__, "secret_files", secret_files)
         if service_details is not None:
-            _setter("service_details", service_details)
+            pulumi.set(__self__, "service_details", service_details)
         if slug is not None:
-            _setter("slug", slug)
+            pulumi.set(__self__, "slug", slug)
         if suspended is not None:
-            _setter("suspended", suspended)
+            pulumi.set(__self__, "suspended", suspended)
         if suspenders is not None:
-            _setter("suspenders", suspenders)
+            pulumi.set(__self__, "suspenders", suspenders)
         if type is None:
             type = 'static_site'
         if type is not None:
-            _setter("type", type)
+            pulumi.set(__self__, "type", type)
         if updated_at is not None:
-            _setter("updated_at", updated_at)
+            pulumi.set(__self__, "updated_at", updated_at)
 
     @property
     @pulumi.getter
@@ -3076,22 +2402,9 @@ class StaticSiteRoute(dict):
         """
         A route object for a static site
         """
-        StaticSiteRoute._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            destination=destination,
-            source=source,
-            type=type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             destination: str,
-             source: str,
-             type: 'StaticSiteRouteType',
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("destination", destination)
-        _setter("source", source)
-        _setter("type", type)
+        pulumi.set(__self__, "destination", destination)
+        pulumi.set(__self__, "source", source)
+        pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
@@ -3145,45 +2458,24 @@ class StaticSiteServiceDetails(dict):
         """
         :param str url: The HTTPS service URL. A subdomain of onrender.com, by default.
         """
-        StaticSiteServiceDetails._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            build_command=build_command,
-            headers=headers,
-            parent_server=parent_server,
-            publish_path=publish_path,
-            pull_request_previews_enabled=pull_request_previews_enabled,
-            routes=routes,
-            url=url,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             build_command: Optional[str] = None,
-             headers: Optional[Sequence['outputs.ServiceHeader']] = None,
-             parent_server: Optional['outputs.StaticSiteServiceDetailsParentServerProperties'] = None,
-             publish_path: Optional[str] = None,
-             pull_request_previews_enabled: Optional['StaticSiteServiceDetailsPullRequestPreviewsEnabled'] = None,
-             routes: Optional[Sequence['outputs.StaticSiteRoute']] = None,
-             url: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
         if build_command is not None:
-            _setter("build_command", build_command)
+            pulumi.set(__self__, "build_command", build_command)
         if headers is not None:
-            _setter("headers", headers)
+            pulumi.set(__self__, "headers", headers)
         if parent_server is not None:
-            _setter("parent_server", parent_server)
+            pulumi.set(__self__, "parent_server", parent_server)
         if publish_path is None:
             publish_path = 'public'
         if publish_path is not None:
-            _setter("publish_path", publish_path)
+            pulumi.set(__self__, "publish_path", publish_path)
         if pull_request_previews_enabled is None:
             pull_request_previews_enabled = 'no'
         if pull_request_previews_enabled is not None:
-            _setter("pull_request_previews_enabled", pull_request_previews_enabled)
+            pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
         if routes is not None:
-            _setter("routes", routes)
+            pulumi.set(__self__, "routes", routes)
         if url is not None:
-            _setter("url", url)
+            pulumi.set(__self__, "url", url)
 
     @property
     @pulumi.getter(name="buildCommand")
@@ -3229,21 +2521,10 @@ class StaticSiteServiceDetailsParentServerProperties(dict):
     def __init__(__self__, *,
                  id: Optional[str] = None,
                  name: Optional[str] = None):
-        StaticSiteServiceDetailsParentServerProperties._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            id=id,
-            name=name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             id: Optional[str] = None,
-             name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
         if id is not None:
-            _setter("id", id)
+            pulumi.set(__self__, "id", id)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
@@ -3285,74 +2566,37 @@ class WebService(dict):
         :param str branch: If left empty, this will fall back to the default branch of the repository.
         :param 'ServiceNotifyOnFail' notify_on_fail: The notification setting for this service upon deployment failure.
         """
-        WebService._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            owner_id=owner_id,
-            repo=repo,
-            auto_deploy=auto_deploy,
-            branch=branch,
-            created_at=created_at,
-            env_vars=env_vars,
-            notify_on_fail=notify_on_fail,
-            secret_files=secret_files,
-            service_details=service_details,
-            slug=slug,
-            suspended=suspended,
-            suspenders=suspenders,
-            type=type,
-            updated_at=updated_at,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: str,
-             owner_id: str,
-             repo: str,
-             auto_deploy: Optional['ServiceAutoDeploy'] = None,
-             branch: Optional[str] = None,
-             created_at: Optional[str] = None,
-             env_vars: Optional[Sequence['outputs.EnvVarKeyValue']] = None,
-             notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
-             secret_files: Optional[Sequence['outputs.SecretFile']] = None,
-             service_details: Optional['outputs.WebServiceServiceDetails'] = None,
-             slug: Optional[str] = None,
-             suspended: Optional['ServiceSuspended'] = None,
-             suspenders: Optional[Sequence[str]] = None,
-             type: Optional[str] = None,
-             updated_at: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("name", name)
-        _setter("owner_id", owner_id)
-        _setter("repo", repo)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "owner_id", owner_id)
+        pulumi.set(__self__, "repo", repo)
         if auto_deploy is None:
             auto_deploy = 'no'
         if auto_deploy is not None:
-            _setter("auto_deploy", auto_deploy)
+            pulumi.set(__self__, "auto_deploy", auto_deploy)
         if branch is not None:
-            _setter("branch", branch)
+            pulumi.set(__self__, "branch", branch)
         if created_at is not None:
-            _setter("created_at", created_at)
+            pulumi.set(__self__, "created_at", created_at)
         if env_vars is not None:
-            _setter("env_vars", env_vars)
+            pulumi.set(__self__, "env_vars", env_vars)
         if notify_on_fail is not None:
-            _setter("notify_on_fail", notify_on_fail)
+            pulumi.set(__self__, "notify_on_fail", notify_on_fail)
         if secret_files is not None:
-            _setter("secret_files", secret_files)
+            pulumi.set(__self__, "secret_files", secret_files)
         if service_details is not None:
-            _setter("service_details", service_details)
+            pulumi.set(__self__, "service_details", service_details)
         if slug is not None:
-            _setter("slug", slug)
+            pulumi.set(__self__, "slug", slug)
         if suspended is not None:
-            _setter("suspended", suspended)
+            pulumi.set(__self__, "suspended", suspended)
         if suspenders is not None:
-            _setter("suspenders", suspenders)
+            pulumi.set(__self__, "suspenders", suspenders)
         if type is None:
             type = 'web_service'
         if type is not None:
-            _setter("type", type)
+            pulumi.set(__self__, "type", type)
         if updated_at is not None:
-            _setter("updated_at", updated_at)
+            pulumi.set(__self__, "updated_at", updated_at)
 
     @property
     @pulumi.getter
@@ -3486,64 +2730,35 @@ class WebServiceServiceDetails(dict):
                  pull_request_previews_enabled: Optional['WebServiceServiceDetailsPullRequestPreviewsEnabled'] = None,
                  region: Optional['WebServiceServiceDetailsRegion'] = None,
                  url: Optional[str] = None):
-        WebServiceServiceDetails._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            env=env,
-            disk=disk,
-            env_specific_details=env_specific_details,
-            health_check_path=health_check_path,
-            num_instances=num_instances,
-            open_ports=open_ports,
-            parent_server=parent_server,
-            plan=plan,
-            pull_request_previews_enabled=pull_request_previews_enabled,
-            region=region,
-            url=url,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             env: 'WebServiceServiceDetailsEnv',
-             disk: Optional['outputs.Disk'] = None,
-             env_specific_details: Optional[Any] = None,
-             health_check_path: Optional[str] = None,
-             num_instances: Optional[float] = None,
-             open_ports: Optional[Sequence['outputs.OpenPorts']] = None,
-             parent_server: Optional['outputs.WebServiceServiceDetailsParentServerProperties'] = None,
-             plan: Optional['WebServiceServiceDetailsPlan'] = None,
-             pull_request_previews_enabled: Optional['WebServiceServiceDetailsPullRequestPreviewsEnabled'] = None,
-             region: Optional['WebServiceServiceDetailsRegion'] = None,
-             url: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("env", env)
+        pulumi.set(__self__, "env", env)
         if disk is not None:
-            _setter("disk", disk)
+            pulumi.set(__self__, "disk", disk)
         if env_specific_details is not None:
-            _setter("env_specific_details", env_specific_details)
+            pulumi.set(__self__, "env_specific_details", env_specific_details)
         if health_check_path is not None:
-            _setter("health_check_path", health_check_path)
+            pulumi.set(__self__, "health_check_path", health_check_path)
         if num_instances is None:
             num_instances = 1
         if num_instances is not None:
-            _setter("num_instances", num_instances)
+            pulumi.set(__self__, "num_instances", num_instances)
         if open_ports is not None:
-            _setter("open_ports", open_ports)
+            pulumi.set(__self__, "open_ports", open_ports)
         if parent_server is not None:
-            _setter("parent_server", parent_server)
+            pulumi.set(__self__, "parent_server", parent_server)
         if plan is None:
             plan = 'starter'
         if plan is not None:
-            _setter("plan", plan)
+            pulumi.set(__self__, "plan", plan)
         if pull_request_previews_enabled is None:
             pull_request_previews_enabled = 'no'
         if pull_request_previews_enabled is not None:
-            _setter("pull_request_previews_enabled", pull_request_previews_enabled)
+            pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
         if region is None:
             region = 'oregon'
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if url is not None:
-            _setter("url", url)
+            pulumi.set(__self__, "url", url)
 
     @property
     @pulumi.getter
@@ -3606,21 +2821,10 @@ class WebServiceServiceDetailsParentServerProperties(dict):
     def __init__(__self__, *,
                  id: Optional[str] = None,
                  name: Optional[str] = None):
-        WebServiceServiceDetailsParentServerProperties._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            id=id,
-            name=name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             id: Optional[str] = None,
-             name: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
         if id is not None:
-            _setter("id", id)
+            pulumi.set(__self__, "id", id)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter

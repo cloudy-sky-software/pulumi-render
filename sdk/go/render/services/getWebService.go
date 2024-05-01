@@ -9,7 +9,6 @@ import (
 
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupWebService(ctx *pulumi.Context, args *LookupWebServiceArgs, opts ...pulumi.InvokeOption) (*LookupWebServiceResult, error) {
@@ -28,7 +27,7 @@ type LookupWebServiceArgs struct {
 }
 
 type LookupWebServiceResult struct {
-	Items GetWebServiceType `pulumi:"items"`
+	Items GetWebService `pulumi:"items"`
 }
 
 // Defaults sets the appropriate defaults for LookupWebServiceResult
@@ -78,14 +77,8 @@ func (o LookupWebServiceResultOutput) ToLookupWebServiceResultOutputWithContext(
 	return o
 }
 
-func (o LookupWebServiceResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupWebServiceResult] {
-	return pulumix.Output[LookupWebServiceResult]{
-		OutputState: o.OutputState,
-	}
-}
-
-func (o LookupWebServiceResultOutput) Items() GetWebServiceTypeOutput {
-	return o.ApplyT(func(v LookupWebServiceResult) GetWebServiceType { return v.Items }).(GetWebServiceTypeOutput)
+func (o LookupWebServiceResultOutput) Items() GetWebServiceOutput {
+	return o.ApplyT(func(v LookupWebServiceResult) GetWebService { return v.Items }).(GetWebServiceOutput)
 }
 
 func init() {

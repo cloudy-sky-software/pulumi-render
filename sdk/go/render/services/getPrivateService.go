@@ -9,7 +9,6 @@ import (
 
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupPrivateService(ctx *pulumi.Context, args *LookupPrivateServiceArgs, opts ...pulumi.InvokeOption) (*LookupPrivateServiceResult, error) {
@@ -28,7 +27,7 @@ type LookupPrivateServiceArgs struct {
 }
 
 type LookupPrivateServiceResult struct {
-	Items GetPrivateServiceType `pulumi:"items"`
+	Items GetPrivateService `pulumi:"items"`
 }
 
 // Defaults sets the appropriate defaults for LookupPrivateServiceResult
@@ -78,14 +77,8 @@ func (o LookupPrivateServiceResultOutput) ToLookupPrivateServiceResultOutputWith
 	return o
 }
 
-func (o LookupPrivateServiceResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupPrivateServiceResult] {
-	return pulumix.Output[LookupPrivateServiceResult]{
-		OutputState: o.OutputState,
-	}
-}
-
-func (o LookupPrivateServiceResultOutput) Items() GetPrivateServiceTypeOutput {
-	return o.ApplyT(func(v LookupPrivateServiceResult) GetPrivateServiceType { return v.Items }).(GetPrivateServiceTypeOutput)
+func (o LookupPrivateServiceResultOutput) Items() GetPrivateServiceOutput {
+	return o.ApplyT(func(v LookupPrivateServiceResult) GetPrivateService { return v.Items }).(GetPrivateServiceOutput)
 }
 
 func init() {

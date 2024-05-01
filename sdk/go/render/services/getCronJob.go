@@ -9,7 +9,6 @@ import (
 
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupCronJob(ctx *pulumi.Context, args *LookupCronJobArgs, opts ...pulumi.InvokeOption) (*LookupCronJobResult, error) {
@@ -28,7 +27,7 @@ type LookupCronJobArgs struct {
 }
 
 type LookupCronJobResult struct {
-	Items GetCronJobType `pulumi:"items"`
+	Items GetCronJob `pulumi:"items"`
 }
 
 // Defaults sets the appropriate defaults for LookupCronJobResult
@@ -78,14 +77,8 @@ func (o LookupCronJobResultOutput) ToLookupCronJobResultOutputWithContext(ctx co
 	return o
 }
 
-func (o LookupCronJobResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupCronJobResult] {
-	return pulumix.Output[LookupCronJobResult]{
-		OutputState: o.OutputState,
-	}
-}
-
-func (o LookupCronJobResultOutput) Items() GetCronJobTypeOutput {
-	return o.ApplyT(func(v LookupCronJobResult) GetCronJobType { return v.Items }).(GetCronJobTypeOutput)
+func (o LookupCronJobResultOutput) Items() GetCronJobOutput {
+	return o.ApplyT(func(v LookupCronJobResult) GetCronJob { return v.Items }).(GetCronJobOutput)
 }
 
 func init() {

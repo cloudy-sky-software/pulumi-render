@@ -9,12 +9,11 @@ import (
 
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
-func LookupDeploy(ctx *pulumi.Context, args *LookupDeployArgs, opts ...pulumi.InvokeOption) (*LookupDeployResult, error) {
+func GetDeploy(ctx *pulumi.Context, args *GetDeployArgs, opts ...pulumi.InvokeOption) (*GetDeployResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupDeployResult
+	var rv GetDeployResult
 	err := ctx.Invoke("render:services:getDeploy", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -22,19 +21,19 @@ func LookupDeploy(ctx *pulumi.Context, args *LookupDeployArgs, opts ...pulumi.In
 	return rv.Defaults(), nil
 }
 
-type LookupDeployArgs struct {
+type GetDeployArgs struct {
 	// (Required) The ID of the deploy
 	Id string `pulumi:"id"`
 	// (Required) The ID of the service
 	ServiceId string `pulumi:"serviceId"`
 }
 
-type LookupDeployResult struct {
-	Items DeployType `pulumi:"items"`
+type GetDeployResult struct {
+	Items Deploy `pulumi:"items"`
 }
 
-// Defaults sets the appropriate defaults for LookupDeployResult
-func (val *LookupDeployResult) Defaults() *LookupDeployResult {
+// Defaults sets the appropriate defaults for GetDeployResult
+func (val *GetDeployResult) Defaults() *GetDeployResult {
 	if val == nil {
 		return nil
 	}
@@ -44,54 +43,48 @@ func (val *LookupDeployResult) Defaults() *LookupDeployResult {
 	return &tmp
 }
 
-func LookupDeployOutput(ctx *pulumi.Context, args LookupDeployOutputArgs, opts ...pulumi.InvokeOption) LookupDeployResultOutput {
+func GetDeployOutput(ctx *pulumi.Context, args GetDeployOutputArgs, opts ...pulumi.InvokeOption) GetDeployResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupDeployResult, error) {
-			args := v.(LookupDeployArgs)
-			r, err := LookupDeploy(ctx, &args, opts...)
-			var s LookupDeployResult
+		ApplyT(func(v interface{}) (GetDeployResult, error) {
+			args := v.(GetDeployArgs)
+			r, err := GetDeploy(ctx, &args, opts...)
+			var s GetDeployResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupDeployResultOutput)
+		}).(GetDeployResultOutput)
 }
 
-type LookupDeployOutputArgs struct {
+type GetDeployOutputArgs struct {
 	// (Required) The ID of the deploy
 	Id pulumi.StringInput `pulumi:"id"`
 	// (Required) The ID of the service
 	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }
 
-func (LookupDeployOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupDeployArgs)(nil)).Elem()
+func (GetDeployOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeployArgs)(nil)).Elem()
 }
 
-type LookupDeployResultOutput struct{ *pulumi.OutputState }
+type GetDeployResultOutput struct{ *pulumi.OutputState }
 
-func (LookupDeployResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupDeployResult)(nil)).Elem()
+func (GetDeployResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeployResult)(nil)).Elem()
 }
 
-func (o LookupDeployResultOutput) ToLookupDeployResultOutput() LookupDeployResultOutput {
+func (o GetDeployResultOutput) ToGetDeployResultOutput() GetDeployResultOutput {
 	return o
 }
 
-func (o LookupDeployResultOutput) ToLookupDeployResultOutputWithContext(ctx context.Context) LookupDeployResultOutput {
+func (o GetDeployResultOutput) ToGetDeployResultOutputWithContext(ctx context.Context) GetDeployResultOutput {
 	return o
 }
 
-func (o LookupDeployResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupDeployResult] {
-	return pulumix.Output[LookupDeployResult]{
-		OutputState: o.OutputState,
-	}
-}
-
-func (o LookupDeployResultOutput) Items() DeployTypeOutput {
-	return o.ApplyT(func(v LookupDeployResult) DeployType { return v.Items }).(DeployTypeOutput)
+func (o GetDeployResultOutput) Items() DeployOutput {
+	return o.ApplyT(func(v GetDeployResult) Deploy { return v.Items }).(DeployOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupDeployResultOutput{})
+	pulumi.RegisterOutputType(GetDeployResultOutput{})
 }

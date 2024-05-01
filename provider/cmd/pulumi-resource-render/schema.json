@@ -30,21 +30,6 @@
             "importBasePath": "github.com/cloudy-sky-software/pulumi-render/sdk/go/render"
         },
         "nodejs": {
-            "dependencies": {
-                "@pulumi/pulumi": "^3.0.0",
-                "@types/glob": "^5.0.35",
-                "@types/node-fetch": "^2.1.4",
-                "@types/tmp": "^0.0.33",
-                "glob": "^7.1.2",
-                "node-fetch": "^2.3.0",
-                "shell-quote": "^1.6.1",
-                "tmp": "^0.0.33"
-            },
-            "devDependencies": {
-                "@types/mocha": "^5.2.5",
-                "@types/shell-quote": "^1.6.0",
-                "mocha": "^5.2.0"
-            },
             "packageName": "@cloudyskysoftware/pulumi-render"
         },
         "python": {

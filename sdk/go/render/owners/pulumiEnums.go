@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // The type of the authorized user.
@@ -41,12 +40,6 @@ func (o OwnerTypeOutput) ToOwnerTypePtrOutputWithContext(ctx context.Context) Ow
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v OwnerType) *OwnerType {
 		return &v
 	}).(OwnerTypePtrOutput)
-}
-
-func (o OwnerTypeOutput) ToOutput(ctx context.Context) pulumix.Output[OwnerType] {
-	return pulumix.Output[OwnerType]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o OwnerTypeOutput) ToStringOutput() pulumi.StringOutput {
@@ -82,12 +75,6 @@ func (o OwnerTypePtrOutput) ToOwnerTypePtrOutput() OwnerTypePtrOutput {
 
 func (o OwnerTypePtrOutput) ToOwnerTypePtrOutputWithContext(ctx context.Context) OwnerTypePtrOutput {
 	return o
-}
-
-func (o OwnerTypePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*OwnerType] {
-	return pulumix.Output[*OwnerType]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o OwnerTypePtrOutput) Elem() OwnerTypeOutput {

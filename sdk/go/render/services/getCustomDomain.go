@@ -9,12 +9,11 @@ import (
 
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
-func LookupCustomDomain(ctx *pulumi.Context, args *LookupCustomDomainArgs, opts ...pulumi.InvokeOption) (*LookupCustomDomainResult, error) {
+func GetCustomDomain(ctx *pulumi.Context, args *GetCustomDomainArgs, opts ...pulumi.InvokeOption) (*GetCustomDomainResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupCustomDomainResult
+	var rv GetCustomDomainResult
 	err := ctx.Invoke("render:services:getCustomDomain", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -22,65 +21,59 @@ func LookupCustomDomain(ctx *pulumi.Context, args *LookupCustomDomainArgs, opts 
 	return &rv, nil
 }
 
-type LookupCustomDomainArgs struct {
+type GetCustomDomainArgs struct {
 	// (Required) The ID or name of the custom domain
 	Id string `pulumi:"id"`
 	// (Required) The ID of the service
 	ServiceId string `pulumi:"serviceId"`
 }
 
-type LookupCustomDomainResult struct {
-	Items CustomDomainType `pulumi:"items"`
+type GetCustomDomainResult struct {
+	Items CustomDomain `pulumi:"items"`
 }
 
-func LookupCustomDomainOutput(ctx *pulumi.Context, args LookupCustomDomainOutputArgs, opts ...pulumi.InvokeOption) LookupCustomDomainResultOutput {
+func GetCustomDomainOutput(ctx *pulumi.Context, args GetCustomDomainOutputArgs, opts ...pulumi.InvokeOption) GetCustomDomainResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupCustomDomainResult, error) {
-			args := v.(LookupCustomDomainArgs)
-			r, err := LookupCustomDomain(ctx, &args, opts...)
-			var s LookupCustomDomainResult
+		ApplyT(func(v interface{}) (GetCustomDomainResult, error) {
+			args := v.(GetCustomDomainArgs)
+			r, err := GetCustomDomain(ctx, &args, opts...)
+			var s GetCustomDomainResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupCustomDomainResultOutput)
+		}).(GetCustomDomainResultOutput)
 }
 
-type LookupCustomDomainOutputArgs struct {
+type GetCustomDomainOutputArgs struct {
 	// (Required) The ID or name of the custom domain
 	Id pulumi.StringInput `pulumi:"id"`
 	// (Required) The ID of the service
 	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }
 
-func (LookupCustomDomainOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupCustomDomainArgs)(nil)).Elem()
+func (GetCustomDomainOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCustomDomainArgs)(nil)).Elem()
 }
 
-type LookupCustomDomainResultOutput struct{ *pulumi.OutputState }
+type GetCustomDomainResultOutput struct{ *pulumi.OutputState }
 
-func (LookupCustomDomainResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupCustomDomainResult)(nil)).Elem()
+func (GetCustomDomainResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCustomDomainResult)(nil)).Elem()
 }
 
-func (o LookupCustomDomainResultOutput) ToLookupCustomDomainResultOutput() LookupCustomDomainResultOutput {
+func (o GetCustomDomainResultOutput) ToGetCustomDomainResultOutput() GetCustomDomainResultOutput {
 	return o
 }
 
-func (o LookupCustomDomainResultOutput) ToLookupCustomDomainResultOutputWithContext(ctx context.Context) LookupCustomDomainResultOutput {
+func (o GetCustomDomainResultOutput) ToGetCustomDomainResultOutputWithContext(ctx context.Context) GetCustomDomainResultOutput {
 	return o
 }
 
-func (o LookupCustomDomainResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupCustomDomainResult] {
-	return pulumix.Output[LookupCustomDomainResult]{
-		OutputState: o.OutputState,
-	}
-}
-
-func (o LookupCustomDomainResultOutput) Items() CustomDomainTypeOutput {
-	return o.ApplyT(func(v LookupCustomDomainResult) CustomDomainType { return v.Items }).(CustomDomainTypeOutput)
+func (o GetCustomDomainResultOutput) Items() CustomDomainOutput {
+	return o.ApplyT(func(v GetCustomDomainResult) CustomDomain { return v.Items }).(CustomDomainOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupCustomDomainResultOutput{})
+	pulumi.RegisterOutputType(GetCustomDomainResultOutput{})
 }

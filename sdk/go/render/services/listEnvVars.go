@@ -9,7 +9,6 @@ import (
 
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func ListEnvVars(ctx *pulumi.Context, args *ListEnvVarsArgs, opts ...pulumi.InvokeOption) (*ListEnvVarsResult, error) {
@@ -65,12 +64,6 @@ func (o ListEnvVarsResultOutput) ToListEnvVarsResultOutput() ListEnvVarsResultOu
 
 func (o ListEnvVarsResultOutput) ToListEnvVarsResultOutputWithContext(ctx context.Context) ListEnvVarsResultOutput {
 	return o
-}
-
-func (o ListEnvVarsResultOutput) ToOutput(ctx context.Context) pulumix.Output[ListEnvVarsResult] {
-	return pulumix.Output[ListEnvVarsResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ListEnvVarsResultOutput) Items() ListEnvVarsResponseArrayOutput {

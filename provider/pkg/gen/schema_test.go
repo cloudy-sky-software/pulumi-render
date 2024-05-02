@@ -15,6 +15,6 @@ func TestPulumiSchema(t *testing.T) {
 	}
 
 	oaSpec := openapi.GetOpenAPISpec(b)
-
+	FixOpenAPIDoc(oaSpec)
 	PulumiSchema(*oaSpec)
 }

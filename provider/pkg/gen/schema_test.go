@@ -6,6 +6,7 @@ import (
 	"testing"
 
 	"github.com/cloudy-sky-software/pulumi-provider-framework/openapi"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestPulumiSchema(t *testing.T) {
@@ -15,6 +16,7 @@ func TestPulumiSchema(t *testing.T) {
 	}
 
 	oaSpec := openapi.GetOpenAPISpec(b)
-	FixOpenAPIDoc(oaSpec)
+	err = FixOpenAPIDoc(oaSpec)
+	assert.Nil(t, err)
 	PulumiSchema(*oaSpec)
 }

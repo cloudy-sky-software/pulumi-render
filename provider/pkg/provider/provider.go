@@ -126,14 +126,24 @@ func (p *renderProvider) OnDiff(_ context.Context, _ *pulumirpc.DiffRequest, res
 	// Taking a shortcut to handle service type-specific updates.
 	switch resourceTypeToken {
 	case "render:services:BackgroundWorker":
+		fallthrough
+	case "render:services:ServicesBackgroundWorker":
 		replaces, diffs = p.determineDiffsAndReplacements(diff, handler.GetOpenAPIDoc().Components.Schemas["patchBackgroundWorker"].Value.Properties)
 	case "render:services:CronJob":
+		fallthrough
+	case "render:services:ServicesCronJob":
 		replaces, diffs = p.determineDiffsAndReplacements(diff, handler.GetOpenAPIDoc().Components.Schemas["patchCronJob"].Value.Properties)
 	case "render:services:PrivateService":
+		fallthrough
+	case "render:services:ServicesPrivateService":
 		replaces, diffs = p.determineDiffsAndReplacements(diff, handler.GetOpenAPIDoc().Components.Schemas["patchPrivateService"].Value.Properties)
 	case "render:services:StaticSite":
+		fallthrough
+	case "render:services:ServicesStaticSite":
 		replaces, diffs = p.determineDiffsAndReplacements(diff, handler.GetOpenAPIDoc().Components.Schemas["patchStaticSite"].Value.Properties)
 	case "render:services:WebService":
+		fallthrough
+	case "render:services:ServicesWebService":
 		replaces, diffs = p.determineDiffsAndReplacements(diff, handler.GetOpenAPIDoc().Components.Schemas["patchWebService"].Value.Properties)
 	}
 

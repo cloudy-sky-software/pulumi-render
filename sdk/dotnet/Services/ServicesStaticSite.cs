@@ -11,6 +11,8 @@ namespace Pulumi.Render.Services
 {
     /// <summary>
     /// A static website service
+    /// 
+    /// ## Example Usage
     /// </summary>
     [RenderResourceType("render:services:ServicesStaticSite")]
     public partial class ServicesStaticSite : global::Pulumi.CustomResource

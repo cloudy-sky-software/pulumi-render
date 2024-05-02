@@ -2585,7 +2585,7 @@
             ]
         },
         "render:services:ServicesStaticSite": {
-            "description": "A static website service",
+            "description": "A static website service\n\n{{% examples %}}\n\n## Example Usage\n\n{{% example %}}\n\n### Create a service\n\n```typescript\nimport * as render from \"@cloudyskysoftware/render\";\n\n// TODO: Fill me in!\nconst service = new render.services.ServicesStaticSite(\"staticSite\", {});\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
             "properties": {
                 "autoDeploy": {
                     "$ref": "#/types/render:services:ServiceAutoDeploy",

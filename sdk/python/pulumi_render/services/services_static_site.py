@@ -247,6 +247,8 @@ class ServicesStaticSite(pulumi.CustomResource):
         """
         A static website service
 
+        ## Example Usage
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input['ServiceAutoDeploy'] auto_deploy: Whether to auto deploy the service or not upon git push.
@@ -263,6 +265,8 @@ class ServicesStaticSite(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         A static website service
+
+        ## Example Usage
 
         :param str resource_name: The name of the resource.
         :param ServicesStaticSiteArgs args: The arguments to use to populate this resource's properties.

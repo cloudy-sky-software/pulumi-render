@@ -13,3 +13,5 @@ Pulumi.*.yaml
 
 /sdk/dotnet/version.txt
 **/dist
+
+go.work.sum

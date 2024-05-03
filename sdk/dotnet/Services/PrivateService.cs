@@ -12,8 +12,8 @@ namespace Pulumi.Render.Services
     /// <summary>
     /// A private service
     /// </summary>
-    [RenderResourceType("render:services:ServicesPrivateService")]
-    public partial class ServicesPrivateService : global::Pulumi.CustomResource
+    [RenderResourceType("render:services:PrivateService")]
+    public partial class PrivateService : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Whether to auto deploy the service or not upon git push.
@@ -77,19 +77,19 @@ namespace Pulumi.Render.Services
 
 
         /// <summary>
-        /// Create a ServicesPrivateService resource with the given unique name, arguments, and options.
+        /// Create a PrivateService resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public ServicesPrivateService(string name, ServicesPrivateServiceArgs args, CustomResourceOptions? options = null)
-            : base("render:services:ServicesPrivateService", name, args ?? new ServicesPrivateServiceArgs(), MakeResourceOptions(options, ""))
+        public PrivateService(string name, PrivateServiceArgs args, CustomResourceOptions? options = null)
+            : base("render:services:PrivateService", name, args ?? new PrivateServiceArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private ServicesPrivateService(string name, Input<string> id, CustomResourceOptions? options = null)
-            : base("render:services:ServicesPrivateService", name, null, MakeResourceOptions(options, id))
+        private PrivateService(string name, Input<string> id, CustomResourceOptions? options = null)
+            : base("render:services:PrivateService", name, null, MakeResourceOptions(options, id))
         {
         }
 
@@ -106,20 +106,20 @@ namespace Pulumi.Render.Services
             return merged;
         }
         /// <summary>
-        /// Get an existing ServicesPrivateService resource's state with the given name, ID, and optional extra
+        /// Get an existing PrivateService resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resulting resource.</param>
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static ServicesPrivateService Get(string name, Input<string> id, CustomResourceOptions? options = null)
+        public static PrivateService Get(string name, Input<string> id, CustomResourceOptions? options = null)
         {
-            return new ServicesPrivateService(name, id, options);
+            return new PrivateService(name, id, options);
         }
     }
 
-    public sealed class ServicesPrivateServiceArgs : global::Pulumi.ResourceArgs
+    public sealed class PrivateServiceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether to auto deploy the service or not upon git push.
@@ -196,11 +196,11 @@ namespace Pulumi.Render.Services
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }
 
-        public ServicesPrivateServiceArgs()
+        public PrivateServiceArgs()
         {
             AutoDeploy = Pulumi.Render.Services.ServiceAutoDeploy.No;
             Type = "private_service";
         }
-        public static new ServicesPrivateServiceArgs Empty => new ServicesPrivateServiceArgs();
+        public static new PrivateServiceArgs Empty => new PrivateServiceArgs();
     }
 }

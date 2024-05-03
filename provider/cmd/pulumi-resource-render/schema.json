@@ -2016,6 +2016,276 @@
         }
     },
     "resources": {
+        "render:services:BackgroundWorker": {
+            "description": "A background worker service",
+            "properties": {
+                "autoDeploy": {
+                    "$ref": "#/types/render:services:ServiceAutoDeploy",
+                    "description": "Whether to auto deploy the service or not upon git push.",
+                    "default": "no"
+                },
+                "branch": {
+                    "type": "string",
+                    "description": "If left empty, this will fall back to the default branch of the repository."
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "envVars": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:EnvVarKeyValue"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "notifyOnFail": {
+                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
+                    "description": "The notification setting for this service upon deployment failure."
+                },
+                "ownerId": {
+                    "type": "string",
+                    "description": "The id of the owner (user/team)."
+                },
+                "repo": {
+                    "type": "string",
+                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                },
+                "secretFiles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:SecretFile"
+                    }
+                },
+                "serviceDetails": {
+                    "$ref": "#/types/render:services:BackgroundWorkerServiceDetails"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "suspended": {
+                    "$ref": "#/types/render:services:ServiceSuspended"
+                },
+                "suspenders": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "default": "background_worker"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "inputProperties": {
+                "autoDeploy": {
+                    "$ref": "#/types/render:services:ServiceAutoDeploy",
+                    "description": "Whether to auto deploy the service or not upon git push.",
+                    "default": "no"
+                },
+                "branch": {
+                    "type": "string",
+                    "description": "If left empty, this will fall back to the default branch of the repository."
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "envVars": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:EnvVarKeyValue"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "notifyOnFail": {
+                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
+                    "description": "The notification setting for this service upon deployment failure."
+                },
+                "ownerId": {
+                    "type": "string",
+                    "description": "The id of the owner (user/team)."
+                },
+                "repo": {
+                    "type": "string",
+                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                },
+                "secretFiles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:SecretFile"
+                    }
+                },
+                "serviceDetails": {
+                    "$ref": "#/types/render:services:BackgroundWorkerServiceDetails"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "suspended": {
+                    "$ref": "#/types/render:services:ServiceSuspended"
+                },
+                "suspenders": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "default": "background_worker"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            },
+            "requiredInputs": [
+                "name",
+                "ownerId",
+                "repo"
+            ]
+        },
+        "render:services:CronJob": {
+            "description": "A cron job",
+            "properties": {
+                "autoDeploy": {
+                    "$ref": "#/types/render:services:ServiceAutoDeploy",
+                    "description": "Whether to auto deploy the service or not upon git push.",
+                    "default": "no"
+                },
+                "branch": {
+                    "type": "string",
+                    "description": "If left empty, this will fall back to the default branch of the repository."
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "envVars": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:EnvVarKeyValue"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "notifyOnFail": {
+                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
+                    "description": "The notification setting for this service upon deployment failure."
+                },
+                "ownerId": {
+                    "type": "string",
+                    "description": "The id of the owner (user/team)."
+                },
+                "repo": {
+                    "type": "string",
+                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                },
+                "secretFiles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:SecretFile"
+                    }
+                },
+                "serviceDetails": {
+                    "$ref": "#/types/render:services:CronJobServiceDetails"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "suspended": {
+                    "$ref": "#/types/render:services:ServiceSuspended"
+                },
+                "suspenders": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "default": "cron_job"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "inputProperties": {
+                "autoDeploy": {
+                    "$ref": "#/types/render:services:ServiceAutoDeploy",
+                    "description": "Whether to auto deploy the service or not upon git push.",
+                    "default": "no"
+                },
+                "branch": {
+                    "type": "string",
+                    "description": "If left empty, this will fall back to the default branch of the repository."
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "envVars": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:EnvVarKeyValue"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "notifyOnFail": {
+                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
+                    "description": "The notification setting for this service upon deployment failure."
+                },
+                "ownerId": {
+                    "type": "string",
+                    "description": "The id of the owner (user/team)."
+                },
+                "repo": {
+                    "type": "string",
+                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                },
+                "secretFiles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:SecretFile"
+                    }
+                },
+                "serviceDetails": {
+                    "$ref": "#/types/render:services:CronJobServiceDetails"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "suspended": {
+                    "$ref": "#/types/render:services:ServiceSuspended"
+                },
+                "suspenders": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "default": "cron_job"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            },
+            "requiredInputs": [
+                "name",
+                "ownerId",
+                "repo"
+            ]
+        },
         "render:services:CustomDomains": {
             "properties": {
                 "createdAt": {
@@ -2156,300 +2426,7 @@
                 "startCommand"
             ]
         },
-        "render:services:Scale": {
-            "properties": {
-                "numInstances": {
-                    "type": "number"
-                }
-            },
-            "type": "object",
-            "required": [
-                "numInstances"
-            ],
-            "inputProperties": {
-                "numInstances": {
-                    "type": "number"
-                },
-                "serviceId": {
-                    "type": "string",
-                    "description": "(Required) The ID of the service"
-                }
-            },
-            "requiredInputs": [
-                "numInstances"
-            ]
-        },
-        "render:services:ServicesBackgroundWorker": {
-            "description": "A background worker service",
-            "properties": {
-                "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy",
-                    "description": "Whether to auto deploy the service or not upon git push.",
-                    "default": "no"
-                },
-                "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository."
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:EnvVarKeyValue"
-                    }
-                },
-                "name": {
-                    "type": "string"
-                },
-                "notifyOnFail": {
-                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
-                    "description": "The notification setting for this service upon deployment failure."
-                },
-                "ownerId": {
-                    "type": "string",
-                    "description": "The id of the owner (user/team)."
-                },
-                "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
-                },
-                "secretFiles": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:SecretFile"
-                    }
-                },
-                "serviceDetails": {
-                    "$ref": "#/types/render:services:BackgroundWorkerServiceDetails"
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:services:ServiceSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "type": {
-                    "type": "string",
-                    "default": "background_worker"
-                },
-                "updatedAt": {
-                    "type": "string"
-                }
-            },
-            "type": "object",
-            "inputProperties": {
-                "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy",
-                    "description": "Whether to auto deploy the service or not upon git push.",
-                    "default": "no"
-                },
-                "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository."
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:EnvVarKeyValue"
-                    }
-                },
-                "name": {
-                    "type": "string"
-                },
-                "notifyOnFail": {
-                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
-                    "description": "The notification setting for this service upon deployment failure."
-                },
-                "ownerId": {
-                    "type": "string",
-                    "description": "The id of the owner (user/team)."
-                },
-                "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
-                },
-                "secretFiles": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:SecretFile"
-                    }
-                },
-                "serviceDetails": {
-                    "$ref": "#/types/render:services:BackgroundWorkerServiceDetails"
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:services:ServiceSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "type": {
-                    "type": "string",
-                    "default": "background_worker"
-                },
-                "updatedAt": {
-                    "type": "string"
-                }
-            },
-            "requiredInputs": [
-                "name",
-                "ownerId",
-                "repo"
-            ]
-        },
-        "render:services:ServicesCronJob": {
-            "description": "A cron job",
-            "properties": {
-                "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy",
-                    "description": "Whether to auto deploy the service or not upon git push.",
-                    "default": "no"
-                },
-                "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository."
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:EnvVarKeyValue"
-                    }
-                },
-                "name": {
-                    "type": "string"
-                },
-                "notifyOnFail": {
-                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
-                    "description": "The notification setting for this service upon deployment failure."
-                },
-                "ownerId": {
-                    "type": "string",
-                    "description": "The id of the owner (user/team)."
-                },
-                "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
-                },
-                "secretFiles": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:SecretFile"
-                    }
-                },
-                "serviceDetails": {
-                    "$ref": "#/types/render:services:CronJobServiceDetails"
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:services:ServiceSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "type": {
-                    "type": "string",
-                    "default": "cron_job"
-                },
-                "updatedAt": {
-                    "type": "string"
-                }
-            },
-            "type": "object",
-            "inputProperties": {
-                "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy",
-                    "description": "Whether to auto deploy the service or not upon git push.",
-                    "default": "no"
-                },
-                "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository."
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:EnvVarKeyValue"
-                    }
-                },
-                "name": {
-                    "type": "string"
-                },
-                "notifyOnFail": {
-                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
-                    "description": "The notification setting for this service upon deployment failure."
-                },
-                "ownerId": {
-                    "type": "string",
-                    "description": "The id of the owner (user/team)."
-                },
-                "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
-                },
-                "secretFiles": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:SecretFile"
-                    }
-                },
-                "serviceDetails": {
-                    "$ref": "#/types/render:services:CronJobServiceDetails"
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:services:ServiceSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "type": {
-                    "type": "string",
-                    "default": "cron_job"
-                },
-                "updatedAt": {
-                    "type": "string"
-                }
-            },
-            "requiredInputs": [
-                "name",
-                "ownerId",
-                "repo"
-            ]
-        },
-        "render:services:ServicesPrivateService": {
+        "render:services:PrivateService": {
             "description": "A private service",
             "properties": {
                 "autoDeploy": {
@@ -2584,8 +2561,31 @@
                 "repo"
             ]
         },
-        "render:services:ServicesStaticSite": {
-            "description": "A static website service\n\n{{% examples %}}\n\n## Example Usage\n\n{{% example %}}\n\n### Create a service\n\n```typescript\nimport * as render from \"@cloudyskysoftware/render\";\n\n// TODO: Fill me in!\nconst service = new render.services.ServicesStaticSite(\"staticSite\", {});\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
+        "render:services:Scale": {
+            "properties": {
+                "numInstances": {
+                    "type": "number"
+                }
+            },
+            "type": "object",
+            "required": [
+                "numInstances"
+            ],
+            "inputProperties": {
+                "numInstances": {
+                    "type": "number"
+                },
+                "serviceId": {
+                    "type": "string",
+                    "description": "(Required) The ID of the service"
+                }
+            },
+            "requiredInputs": [
+                "numInstances"
+            ]
+        },
+        "render:services:StaticSite": {
+            "description": "A static website service",
             "properties": {
                 "autoDeploy": {
                     "$ref": "#/types/render:services:ServiceAutoDeploy",
@@ -2719,7 +2719,16 @@
                 "repo"
             ]
         },
-        "render:services:ServicesWebService": {
+        "render:services:Suspend": {
+            "type": "object",
+            "inputProperties": {
+                "serviceId": {
+                    "type": "string",
+                    "description": "(Required) The ID of the service"
+                }
+            }
+        },
+        "render:services:WebService": {
             "description": "A web service",
             "properties": {
                 "autoDeploy": {
@@ -2853,15 +2862,6 @@
                 "ownerId",
                 "repo"
             ]
-        },
-        "render:services:Suspend": {
-            "type": "object",
-            "inputProperties": {
-                "serviceId": {
-                    "type": "string",
-                    "description": "(Required) The ID of the service"
-                }
-            }
         }
     },
     "functions": {

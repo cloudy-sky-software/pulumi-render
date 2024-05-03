@@ -27,7 +27,7 @@ type LookupWebServiceArgs struct {
 }
 
 type LookupWebServiceResult struct {
-	Items GetWebService `pulumi:"items"`
+	Items GetWebServiceType `pulumi:"items"`
 }
 
 // Defaults sets the appropriate defaults for LookupWebServiceResult
@@ -77,8 +77,8 @@ func (o LookupWebServiceResultOutput) ToLookupWebServiceResultOutputWithContext(
 	return o
 }
 
-func (o LookupWebServiceResultOutput) Items() GetWebServiceOutput {
-	return o.ApplyT(func(v LookupWebServiceResult) GetWebService { return v.Items }).(GetWebServiceOutput)
+func (o LookupWebServiceResultOutput) Items() GetWebServiceTypeOutput {
+	return o.ApplyT(func(v LookupWebServiceResult) GetWebServiceType { return v.Items }).(GetWebServiceTypeOutput)
 }
 
 func init() {

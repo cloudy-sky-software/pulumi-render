@@ -10,12 +10,10 @@ using Pulumi.Serialization;
 namespace Pulumi.Render.Services
 {
     /// <summary>
-    /// A static website service
-    /// 
-    /// ## Example Usage
+    /// A web service
     /// </summary>
-    [RenderResourceType("render:services:ServicesStaticSite")]
-    public partial class ServicesStaticSite : global::Pulumi.CustomResource
+    [RenderResourceType("render:services:WebService")]
+    public partial class WebService : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Whether to auto deploy the service or not upon git push.
@@ -60,7 +58,7 @@ namespace Pulumi.Render.Services
         public Output<ImmutableArray<Outputs.SecretFile>> SecretFiles { get; private set; } = null!;
 
         [Output("serviceDetails")]
-        public Output<Outputs.StaticSiteServiceDetails?> ServiceDetails { get; private set; } = null!;
+        public Output<Outputs.WebServiceServiceDetails?> ServiceDetails { get; private set; } = null!;
 
         [Output("slug")]
         public Output<string?> Slug { get; private set; } = null!;
@@ -79,19 +77,19 @@ namespace Pulumi.Render.Services
 
 
         /// <summary>
-        /// Create a ServicesStaticSite resource with the given unique name, arguments, and options.
+        /// Create a WebService resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public ServicesStaticSite(string name, ServicesStaticSiteArgs args, CustomResourceOptions? options = null)
-            : base("render:services:ServicesStaticSite", name, args ?? new ServicesStaticSiteArgs(), MakeResourceOptions(options, ""))
+        public WebService(string name, WebServiceArgs args, CustomResourceOptions? options = null)
+            : base("render:services:WebService", name, args ?? new WebServiceArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private ServicesStaticSite(string name, Input<string> id, CustomResourceOptions? options = null)
-            : base("render:services:ServicesStaticSite", name, null, MakeResourceOptions(options, id))
+        private WebService(string name, Input<string> id, CustomResourceOptions? options = null)
+            : base("render:services:WebService", name, null, MakeResourceOptions(options, id))
         {
         }
 
@@ -108,20 +106,20 @@ namespace Pulumi.Render.Services
             return merged;
         }
         /// <summary>
-        /// Get an existing ServicesStaticSite resource's state with the given name, ID, and optional extra
+        /// Get an existing WebService resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resulting resource.</param>
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static ServicesStaticSite Get(string name, Input<string> id, CustomResourceOptions? options = null)
+        public static WebService Get(string name, Input<string> id, CustomResourceOptions? options = null)
         {
-            return new ServicesStaticSite(name, id, options);
+            return new WebService(name, id, options);
         }
     }
 
-    public sealed class ServicesStaticSiteArgs : global::Pulumi.ResourceArgs
+    public sealed class WebServiceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether to auto deploy the service or not upon git push.
@@ -176,7 +174,7 @@ namespace Pulumi.Render.Services
         }
 
         [Input("serviceDetails")]
-        public Input<Inputs.StaticSiteServiceDetailsArgs>? ServiceDetails { get; set; }
+        public Input<Inputs.WebServiceServiceDetailsArgs>? ServiceDetails { get; set; }
 
         [Input("slug")]
         public Input<string>? Slug { get; set; }
@@ -198,11 +196,11 @@ namespace Pulumi.Render.Services
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }
 
-        public ServicesStaticSiteArgs()
+        public WebServiceArgs()
         {
             AutoDeploy = Pulumi.Render.Services.ServiceAutoDeploy.No;
-            Type = "static_site";
+            Type = "web_service";
         }
-        public static new ServicesStaticSiteArgs Empty => new ServicesStaticSiteArgs();
+        public static new WebServiceArgs Empty => new WebServiceArgs();
     }
 }

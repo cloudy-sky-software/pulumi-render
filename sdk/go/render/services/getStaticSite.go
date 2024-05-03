@@ -27,7 +27,7 @@ type LookupStaticSiteArgs struct {
 }
 
 type LookupStaticSiteResult struct {
-	Items GetStaticSite `pulumi:"items"`
+	Items GetStaticSiteType `pulumi:"items"`
 }
 
 // Defaults sets the appropriate defaults for LookupStaticSiteResult
@@ -77,8 +77,8 @@ func (o LookupStaticSiteResultOutput) ToLookupStaticSiteResultOutputWithContext(
 	return o
 }
 
-func (o LookupStaticSiteResultOutput) Items() GetStaticSiteOutput {
-	return o.ApplyT(func(v LookupStaticSiteResult) GetStaticSite { return v.Items }).(GetStaticSiteOutput)
+func (o LookupStaticSiteResultOutput) Items() GetStaticSiteTypeOutput {
+	return o.ApplyT(func(v LookupStaticSiteResult) GetStaticSiteType { return v.Items }).(GetStaticSiteTypeOutput)
 }
 
 func init() {

@@ -27,7 +27,7 @@ type LookupBackgroundWorkerArgs struct {
 }
 
 type LookupBackgroundWorkerResult struct {
-	Items GetBackgroundWorker `pulumi:"items"`
+	Items GetBackgroundWorkerType `pulumi:"items"`
 }
 
 // Defaults sets the appropriate defaults for LookupBackgroundWorkerResult
@@ -77,8 +77,8 @@ func (o LookupBackgroundWorkerResultOutput) ToLookupBackgroundWorkerResultOutput
 	return o
 }
 
-func (o LookupBackgroundWorkerResultOutput) Items() GetBackgroundWorkerOutput {
-	return o.ApplyT(func(v LookupBackgroundWorkerResult) GetBackgroundWorker { return v.Items }).(GetBackgroundWorkerOutput)
+func (o LookupBackgroundWorkerResultOutput) Items() GetBackgroundWorkerTypeOutput {
+	return o.ApplyT(func(v LookupBackgroundWorkerResult) GetBackgroundWorkerType { return v.Items }).(GetBackgroundWorkerTypeOutput)
 }
 
 func init() {

@@ -8,33 +8,33 @@ import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 /**
- * A web service
+ * A private service
  */
-export class ServicesWebService extends pulumi.CustomResource {
+export class PrivateService extends pulumi.CustomResource {
     /**
-     * Get an existing ServicesWebService resource's state with the given name, ID, and optional extra
+     * Get an existing PrivateService resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, opts?: pulumi.CustomResourceOptions): ServicesWebService {
-        return new ServicesWebService(name, undefined as any, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, opts?: pulumi.CustomResourceOptions): PrivateService {
+        return new PrivateService(name, undefined as any, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'render:services:ServicesWebService';
+    public static readonly __pulumiType = 'render:services:PrivateService';
 
     /**
-     * Returns true if the given object is an instance of ServicesWebService.  This is designed to work even
+     * Returns true if the given object is an instance of PrivateService.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is ServicesWebService {
+    public static isInstance(obj: any): obj is PrivateService {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === ServicesWebService.__pulumiType;
+        return obj['__pulumiType'] === PrivateService.__pulumiType;
     }
 
     /**
@@ -61,7 +61,7 @@ export class ServicesWebService extends pulumi.CustomResource {
      */
     public readonly repo!: pulumi.Output<string | undefined>;
     public readonly secretFiles!: pulumi.Output<outputs.services.SecretFile[] | undefined>;
-    public readonly serviceDetails!: pulumi.Output<outputs.services.WebServiceServiceDetails | undefined>;
+    public readonly serviceDetails!: pulumi.Output<outputs.services.PrivateServiceDetails | undefined>;
     public readonly slug!: pulumi.Output<string | undefined>;
     public readonly suspended!: pulumi.Output<enums.services.ServiceSuspended | undefined>;
     public readonly suspenders!: pulumi.Output<string[] | undefined>;
@@ -69,13 +69,13 @@ export class ServicesWebService extends pulumi.CustomResource {
     public readonly updatedAt!: pulumi.Output<string | undefined>;
 
     /**
-     * Create a ServicesWebService resource with the given unique name, arguments, and options.
+     * Create a PrivateService resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: ServicesWebServiceArgs, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: PrivateServiceArgs, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
@@ -97,11 +97,11 @@ export class ServicesWebService extends pulumi.CustomResource {
             resourceInputs["ownerId"] = args ? args.ownerId : undefined;
             resourceInputs["repo"] = args ? args.repo : undefined;
             resourceInputs["secretFiles"] = args ? args.secretFiles : undefined;
-            resourceInputs["serviceDetails"] = args ? (args.serviceDetails ? pulumi.output(args.serviceDetails).apply(inputs.services.webServiceServiceDetailsArgsProvideDefaults) : undefined) : undefined;
+            resourceInputs["serviceDetails"] = args ? (args.serviceDetails ? pulumi.output(args.serviceDetails).apply(inputs.services.privateServiceDetailsArgsProvideDefaults) : undefined) : undefined;
             resourceInputs["slug"] = args ? args.slug : undefined;
             resourceInputs["suspended"] = args ? args.suspended : undefined;
             resourceInputs["suspenders"] = args ? args.suspenders : undefined;
-            resourceInputs["type"] = (args ? args.type : undefined) ?? "web_service";
+            resourceInputs["type"] = (args ? args.type : undefined) ?? "private_service";
             resourceInputs["updatedAt"] = args ? args.updatedAt : undefined;
         } else {
             resourceInputs["autoDeploy"] = undefined /*out*/;
@@ -121,14 +121,14 @@ export class ServicesWebService extends pulumi.CustomResource {
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(ServicesWebService.__pulumiType, name, resourceInputs, opts);
+        super(PrivateService.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * The set of arguments for constructing a ServicesWebService resource.
+ * The set of arguments for constructing a PrivateService resource.
  */
-export interface ServicesWebServiceArgs {
+export interface PrivateServiceArgs {
     /**
      * Whether to auto deploy the service or not upon git push.
      */
@@ -153,7 +153,7 @@ export interface ServicesWebServiceArgs {
      */
     repo: pulumi.Input<string>;
     secretFiles?: pulumi.Input<pulumi.Input<inputs.services.SecretFileArgs>[]>;
-    serviceDetails?: pulumi.Input<inputs.services.WebServiceServiceDetailsArgs>;
+    serviceDetails?: pulumi.Input<inputs.services.PrivateServiceDetailsArgs>;
     slug?: pulumi.Input<string>;
     suspended?: pulumi.Input<enums.services.ServiceSuspended>;
     suspenders?: pulumi.Input<pulumi.Input<string>[]>;

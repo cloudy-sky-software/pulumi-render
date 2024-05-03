@@ -28,17 +28,17 @@ _utilities.register(
   "mod": "services",
   "fqn": "pulumi_render.services",
   "classes": {
+   "render:services:BackgroundWorker": "BackgroundWorker",
+   "render:services:CronJob": "CronJob",
    "render:services:CustomDomains": "CustomDomains",
    "render:services:Deploys": "Deploys",
    "render:services:EnvVars": "EnvVars",
    "render:services:Jobs": "Jobs",
+   "render:services:PrivateService": "PrivateService",
    "render:services:Scale": "Scale",
-   "render:services:ServicesBackgroundWorker": "ServicesBackgroundWorker",
-   "render:services:ServicesCronJob": "ServicesCronJob",
-   "render:services:ServicesPrivateService": "ServicesPrivateService",
-   "render:services:ServicesStaticSite": "ServicesStaticSite",
-   "render:services:ServicesWebService": "ServicesWebService",
-   "render:services:Suspend": "Suspend"
+   "render:services:StaticSite": "StaticSite",
+   "render:services:Suspend": "Suspend",
+   "render:services:WebService": "WebService"
   }
  }
 ]

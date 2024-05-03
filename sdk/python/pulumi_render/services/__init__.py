@@ -6,6 +6,8 @@ from .. import _utilities
 import typing
 # Export this package's modules as members:
 from ._enums import *
+from .background_worker import *
+from .cron_job import *
 from .custom_domains import *
 from .deploys import *
 from .env_vars import *
@@ -25,12 +27,10 @@ from .list_headers import *
 from .list_jobs import *
 from .list_routes import *
 from .list_services import *
+from .private_service import *
 from .scale import *
-from .services_background_worker import *
-from .services_cron_job import *
-from .services_private_service import *
-from .services_static_site import *
-from .services_web_service import *
+from .static_site import *
 from .suspend import *
+from .web_service import *
 from ._inputs import *
 from . import outputs

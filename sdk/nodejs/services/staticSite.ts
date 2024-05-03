@@ -8,33 +8,33 @@ import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 /**
- * A background worker service
+ * A static website service
  */
-export class ServicesBackgroundWorker extends pulumi.CustomResource {
+export class StaticSite extends pulumi.CustomResource {
     /**
-     * Get an existing ServicesBackgroundWorker resource's state with the given name, ID, and optional extra
+     * Get an existing StaticSite resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, opts?: pulumi.CustomResourceOptions): ServicesBackgroundWorker {
-        return new ServicesBackgroundWorker(name, undefined as any, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, opts?: pulumi.CustomResourceOptions): StaticSite {
+        return new StaticSite(name, undefined as any, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'render:services:ServicesBackgroundWorker';
+    public static readonly __pulumiType = 'render:services:StaticSite';
 
     /**
-     * Returns true if the given object is an instance of ServicesBackgroundWorker.  This is designed to work even
+     * Returns true if the given object is an instance of StaticSite.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is ServicesBackgroundWorker {
+    public static isInstance(obj: any): obj is StaticSite {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === ServicesBackgroundWorker.__pulumiType;
+        return obj['__pulumiType'] === StaticSite.__pulumiType;
     }
 
     /**
@@ -61,7 +61,7 @@ export class ServicesBackgroundWorker extends pulumi.CustomResource {
      */
     public readonly repo!: pulumi.Output<string | undefined>;
     public readonly secretFiles!: pulumi.Output<outputs.services.SecretFile[] | undefined>;
-    public readonly serviceDetails!: pulumi.Output<outputs.services.BackgroundWorkerServiceDetails | undefined>;
+    public readonly serviceDetails!: pulumi.Output<outputs.services.StaticSiteServiceDetails | undefined>;
     public readonly slug!: pulumi.Output<string | undefined>;
     public readonly suspended!: pulumi.Output<enums.services.ServiceSuspended | undefined>;
     public readonly suspenders!: pulumi.Output<string[] | undefined>;
@@ -69,13 +69,13 @@ export class ServicesBackgroundWorker extends pulumi.CustomResource {
     public readonly updatedAt!: pulumi.Output<string | undefined>;
 
     /**
-     * Create a ServicesBackgroundWorker resource with the given unique name, arguments, and options.
+     * Create a StaticSite resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: ServicesBackgroundWorkerArgs, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: StaticSiteArgs, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
@@ -97,11 +97,11 @@ export class ServicesBackgroundWorker extends pulumi.CustomResource {
             resourceInputs["ownerId"] = args ? args.ownerId : undefined;
             resourceInputs["repo"] = args ? args.repo : undefined;
             resourceInputs["secretFiles"] = args ? args.secretFiles : undefined;
-            resourceInputs["serviceDetails"] = args ? (args.serviceDetails ? pulumi.output(args.serviceDetails).apply(inputs.services.backgroundWorkerServiceDetailsArgsProvideDefaults) : undefined) : undefined;
+            resourceInputs["serviceDetails"] = args ? (args.serviceDetails ? pulumi.output(args.serviceDetails).apply(inputs.services.staticSiteServiceDetailsArgsProvideDefaults) : undefined) : undefined;
             resourceInputs["slug"] = args ? args.slug : undefined;
             resourceInputs["suspended"] = args ? args.suspended : undefined;
             resourceInputs["suspenders"] = args ? args.suspenders : undefined;
-            resourceInputs["type"] = (args ? args.type : undefined) ?? "background_worker";
+            resourceInputs["type"] = (args ? args.type : undefined) ?? "static_site";
             resourceInputs["updatedAt"] = args ? args.updatedAt : undefined;
         } else {
             resourceInputs["autoDeploy"] = undefined /*out*/;
@@ -121,14 +121,14 @@ export class ServicesBackgroundWorker extends pulumi.CustomResource {
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(ServicesBackgroundWorker.__pulumiType, name, resourceInputs, opts);
+        super(StaticSite.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * The set of arguments for constructing a ServicesBackgroundWorker resource.
+ * The set of arguments for constructing a StaticSite resource.
  */
-export interface ServicesBackgroundWorkerArgs {
+export interface StaticSiteArgs {
     /**
      * Whether to auto deploy the service or not upon git push.
      */
@@ -153,7 +153,7 @@ export interface ServicesBackgroundWorkerArgs {
      */
     repo: pulumi.Input<string>;
     secretFiles?: pulumi.Input<pulumi.Input<inputs.services.SecretFileArgs>[]>;
-    serviceDetails?: pulumi.Input<inputs.services.BackgroundWorkerServiceDetailsArgs>;
+    serviceDetails?: pulumi.Input<inputs.services.StaticSiteServiceDetailsArgs>;
     slug?: pulumi.Input<string>;
     suspended?: pulumi.Input<enums.services.ServiceSuspended>;
     suspenders?: pulumi.Input<pulumi.Input<string>[]>;

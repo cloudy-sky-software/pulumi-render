@@ -5,6 +5,16 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { BackgroundWorkerArgs } from "./backgroundWorker";
+export type BackgroundWorker = import("./backgroundWorker").BackgroundWorker;
+export const BackgroundWorker: typeof import("./backgroundWorker").BackgroundWorker = null as any;
+utilities.lazyLoad(exports, ["BackgroundWorker"], () => require("./backgroundWorker"));
+
+export { CronJobArgs } from "./cronJob";
+export type CronJob = import("./cronJob").CronJob;
+export const CronJob: typeof import("./cronJob").CronJob = null as any;
+utilities.lazyLoad(exports, ["CronJob"], () => require("./cronJob"));
+
 export { CustomDomainsArgs } from "./customDomains";
 export type CustomDomains = import("./customDomains").CustomDomains;
 export const CustomDomains: typeof import("./customDomains").CustomDomains = null as any;
@@ -100,40 +110,30 @@ export const listServices: typeof import("./listServices").listServices = null a
 export const listServicesOutput: typeof import("./listServices").listServicesOutput = null as any;
 utilities.lazyLoad(exports, ["listServices","listServicesOutput"], () => require("./listServices"));
 
+export { PrivateServiceArgs } from "./privateService";
+export type PrivateService = import("./privateService").PrivateService;
+export const PrivateService: typeof import("./privateService").PrivateService = null as any;
+utilities.lazyLoad(exports, ["PrivateService"], () => require("./privateService"));
+
 export { ScaleArgs } from "./scale";
 export type Scale = import("./scale").Scale;
 export const Scale: typeof import("./scale").Scale = null as any;
 utilities.lazyLoad(exports, ["Scale"], () => require("./scale"));
 
-export { ServicesBackgroundWorkerArgs } from "./servicesBackgroundWorker";
-export type ServicesBackgroundWorker = import("./servicesBackgroundWorker").ServicesBackgroundWorker;
-export const ServicesBackgroundWorker: typeof import("./servicesBackgroundWorker").ServicesBackgroundWorker = null as any;
-utilities.lazyLoad(exports, ["ServicesBackgroundWorker"], () => require("./servicesBackgroundWorker"));
-
-export { ServicesCronJobArgs } from "./servicesCronJob";
-export type ServicesCronJob = import("./servicesCronJob").ServicesCronJob;
-export const ServicesCronJob: typeof import("./servicesCronJob").ServicesCronJob = null as any;
-utilities.lazyLoad(exports, ["ServicesCronJob"], () => require("./servicesCronJob"));
-
-export { ServicesPrivateServiceArgs } from "./servicesPrivateService";
-export type ServicesPrivateService = import("./servicesPrivateService").ServicesPrivateService;
-export const ServicesPrivateService: typeof import("./servicesPrivateService").ServicesPrivateService = null as any;
-utilities.lazyLoad(exports, ["ServicesPrivateService"], () => require("./servicesPrivateService"));
-
-export { ServicesStaticSiteArgs } from "./servicesStaticSite";
-export type ServicesStaticSite = import("./servicesStaticSite").ServicesStaticSite;
-export const ServicesStaticSite: typeof import("./servicesStaticSite").ServicesStaticSite = null as any;
-utilities.lazyLoad(exports, ["ServicesStaticSite"], () => require("./servicesStaticSite"));
-
-export { ServicesWebServiceArgs } from "./servicesWebService";
-export type ServicesWebService = import("./servicesWebService").ServicesWebService;
-export const ServicesWebService: typeof import("./servicesWebService").ServicesWebService = null as any;
-utilities.lazyLoad(exports, ["ServicesWebService"], () => require("./servicesWebService"));
+export { StaticSiteArgs } from "./staticSite";
+export type StaticSite = import("./staticSite").StaticSite;
+export const StaticSite: typeof import("./staticSite").StaticSite = null as any;
+utilities.lazyLoad(exports, ["StaticSite"], () => require("./staticSite"));
 
 export { SuspendArgs } from "./suspend";
 export type Suspend = import("./suspend").Suspend;
 export const Suspend: typeof import("./suspend").Suspend = null as any;
 utilities.lazyLoad(exports, ["Suspend"], () => require("./suspend"));
+
+export { WebServiceArgs } from "./webService";
+export type WebService = import("./webService").WebService;
+export const WebService: typeof import("./webService").WebService = null as any;
+utilities.lazyLoad(exports, ["WebService"], () => require("./webService"));
 
 
 // Export enums:
@@ -143,6 +143,10 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "render:services:BackgroundWorker":
+                return new BackgroundWorker(name, <any>undefined, { urn })
+            case "render:services:CronJob":
+                return new CronJob(name, <any>undefined, { urn })
             case "render:services:CustomDomains":
                 return new CustomDomains(name, <any>undefined, { urn })
             case "render:services:Deploys":
@@ -151,20 +155,16 @@ const _module = {
                 return new EnvVars(name, <any>undefined, { urn })
             case "render:services:Jobs":
                 return new Jobs(name, <any>undefined, { urn })
+            case "render:services:PrivateService":
+                return new PrivateService(name, <any>undefined, { urn })
             case "render:services:Scale":
                 return new Scale(name, <any>undefined, { urn })
-            case "render:services:ServicesBackgroundWorker":
-                return new ServicesBackgroundWorker(name, <any>undefined, { urn })
-            case "render:services:ServicesCronJob":
-                return new ServicesCronJob(name, <any>undefined, { urn })
-            case "render:services:ServicesPrivateService":
-                return new ServicesPrivateService(name, <any>undefined, { urn })
-            case "render:services:ServicesStaticSite":
-                return new ServicesStaticSite(name, <any>undefined, { urn })
-            case "render:services:ServicesWebService":
-                return new ServicesWebService(name, <any>undefined, { urn })
+            case "render:services:StaticSite":
+                return new StaticSite(name, <any>undefined, { urn })
             case "render:services:Suspend":
                 return new Suspend(name, <any>undefined, { urn })
+            case "render:services:WebService":
+                return new WebService(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }

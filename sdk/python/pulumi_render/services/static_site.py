@@ -12,10 +12,10 @@ from . import outputs
 from ._enums import *
 from ._inputs import *
 
-__all__ = ['ServicesStaticSiteArgs', 'ServicesStaticSite']
+__all__ = ['StaticSiteArgs', 'StaticSite']
 
 @pulumi.input_type
-class ServicesStaticSiteArgs:
+class StaticSiteArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
                  owner_id: pulumi.Input[str],
@@ -33,7 +33,7 @@ class ServicesStaticSiteArgs:
                  type: Optional[pulumi.Input[str]] = None,
                  updated_at: Optional[pulumi.Input[str]] = None):
         """
-        The set of arguments for constructing a ServicesStaticSite resource.
+        The set of arguments for constructing a StaticSite resource.
         :param pulumi.Input[str] owner_id: The id of the owner (user/team).
         :param pulumi.Input[str] repo: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
         :param pulumi.Input['ServiceAutoDeploy'] auto_deploy: Whether to auto deploy the service or not upon git push.
@@ -223,7 +223,7 @@ class ServicesStaticSiteArgs:
         pulumi.set(self, "updated_at", value)
 
 
-class ServicesStaticSite(pulumi.CustomResource):
+class StaticSite(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -247,8 +247,6 @@ class ServicesStaticSite(pulumi.CustomResource):
         """
         A static website service
 
-        ## Example Usage
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input['ServiceAutoDeploy'] auto_deploy: Whether to auto deploy the service or not upon git push.
@@ -261,20 +259,18 @@ class ServicesStaticSite(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: ServicesStaticSiteArgs,
+                 args: StaticSiteArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         A static website service
 
-        ## Example Usage
-
         :param str resource_name: The name of the resource.
-        :param ServicesStaticSiteArgs args: The arguments to use to populate this resource's properties.
+        :param StaticSiteArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(ServicesStaticSiteArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(StaticSiteArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -305,7 +301,7 @@ class ServicesStaticSite(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = ServicesStaticSiteArgs.__new__(ServicesStaticSiteArgs)
+            __props__ = StaticSiteArgs.__new__(StaticSiteArgs)
 
             if auto_deploy is None:
                 auto_deploy = 'no'
@@ -332,8 +328,8 @@ class ServicesStaticSite(pulumi.CustomResource):
                 type = 'static_site'
             __props__.__dict__["type"] = type
             __props__.__dict__["updated_at"] = updated_at
-        super(ServicesStaticSite, __self__).__init__(
-            'render:services:ServicesStaticSite',
+        super(StaticSite, __self__).__init__(
+            'render:services:StaticSite',
             resource_name,
             __props__,
             opts)
@@ -341,9 +337,9 @@ class ServicesStaticSite(pulumi.CustomResource):
     @staticmethod
     def get(resource_name: str,
             id: pulumi.Input[str],
-            opts: Optional[pulumi.ResourceOptions] = None) -> 'ServicesStaticSite':
+            opts: Optional[pulumi.ResourceOptions] = None) -> 'StaticSite':
         """
-        Get an existing ServicesStaticSite resource's state with the given name, id, and optional extra
+        Get an existing StaticSite resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -352,7 +348,7 @@ class ServicesStaticSite(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = ServicesStaticSiteArgs.__new__(ServicesStaticSiteArgs)
+        __props__ = StaticSiteArgs.__new__(StaticSiteArgs)
 
         __props__.__dict__["auto_deploy"] = None
         __props__.__dict__["branch"] = None
@@ -369,7 +365,7 @@ class ServicesStaticSite(pulumi.CustomResource):
         __props__.__dict__["suspenders"] = None
         __props__.__dict__["type"] = None
         __props__.__dict__["updated_at"] = None
-        return ServicesStaticSite(resource_name, opts=opts, __props__=__props__)
+        return StaticSite(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="autoDeploy")

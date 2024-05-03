@@ -27,7 +27,7 @@ type LookupPrivateServiceArgs struct {
 }
 
 type LookupPrivateServiceResult struct {
-	Items GetPrivateService `pulumi:"items"`
+	Items GetPrivateServiceType `pulumi:"items"`
 }
 
 // Defaults sets the appropriate defaults for LookupPrivateServiceResult
@@ -77,8 +77,8 @@ func (o LookupPrivateServiceResultOutput) ToLookupPrivateServiceResultOutputWith
 	return o
 }
 
-func (o LookupPrivateServiceResultOutput) Items() GetPrivateServiceOutput {
-	return o.ApplyT(func(v LookupPrivateServiceResult) GetPrivateService { return v.Items }).(GetPrivateServiceOutput)
+func (o LookupPrivateServiceResultOutput) Items() GetPrivateServiceTypeOutput {
+	return o.ApplyT(func(v LookupPrivateServiceResult) GetPrivateServiceType { return v.Items }).(GetPrivateServiceTypeOutput)
 }
 
 func init() {

@@ -12,10 +12,10 @@ from . import outputs
 from ._enums import *
 from ._inputs import *
 
-__all__ = ['ServicesCronJobArgs', 'ServicesCronJob']
+__all__ = ['PrivateServiceArgs', 'PrivateService']
 
 @pulumi.input_type
-class ServicesCronJobArgs:
+class PrivateServiceArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
                  owner_id: pulumi.Input[str],
@@ -26,14 +26,14 @@ class ServicesCronJobArgs:
                  env_vars: Optional[pulumi.Input[Sequence[pulumi.Input['EnvVarKeyValueArgs']]]] = None,
                  notify_on_fail: Optional[pulumi.Input['ServiceNotifyOnFail']] = None,
                  secret_files: Optional[pulumi.Input[Sequence[pulumi.Input['SecretFileArgs']]]] = None,
-                 service_details: Optional[pulumi.Input['CronJobServiceDetailsArgs']] = None,
+                 service_details: Optional[pulumi.Input['PrivateServiceDetailsArgs']] = None,
                  slug: Optional[pulumi.Input[str]] = None,
                  suspended: Optional[pulumi.Input['ServiceSuspended']] = None,
                  suspenders: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  updated_at: Optional[pulumi.Input[str]] = None):
         """
-        The set of arguments for constructing a ServicesCronJob resource.
+        The set of arguments for constructing a PrivateService resource.
         :param pulumi.Input[str] owner_id: The id of the owner (user/team).
         :param pulumi.Input[str] repo: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
         :param pulumi.Input['ServiceAutoDeploy'] auto_deploy: Whether to auto deploy the service or not upon git push.
@@ -66,7 +66,7 @@ class ServicesCronJobArgs:
         if suspenders is not None:
             pulumi.set(__self__, "suspenders", suspenders)
         if type is None:
-            type = 'cron_job'
+            type = 'private_service'
         if type is not None:
             pulumi.set(__self__, "type", type)
         if updated_at is not None:
@@ -170,11 +170,11 @@ class ServicesCronJobArgs:
 
     @property
     @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> Optional[pulumi.Input['CronJobServiceDetailsArgs']]:
+    def service_details(self) -> Optional[pulumi.Input['PrivateServiceDetailsArgs']]:
         return pulumi.get(self, "service_details")
 
     @service_details.setter
-    def service_details(self, value: Optional[pulumi.Input['CronJobServiceDetailsArgs']]):
+    def service_details(self, value: Optional[pulumi.Input['PrivateServiceDetailsArgs']]):
         pulumi.set(self, "service_details", value)
 
     @property
@@ -223,7 +223,7 @@ class ServicesCronJobArgs:
         pulumi.set(self, "updated_at", value)
 
 
-class ServicesCronJob(pulumi.CustomResource):
+class PrivateService(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -237,7 +237,7 @@ class ServicesCronJob(pulumi.CustomResource):
                  owner_id: Optional[pulumi.Input[str]] = None,
                  repo: Optional[pulumi.Input[str]] = None,
                  secret_files: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretFileArgs']]]]] = None,
-                 service_details: Optional[pulumi.Input[pulumi.InputType['CronJobServiceDetailsArgs']]] = None,
+                 service_details: Optional[pulumi.Input[pulumi.InputType['PrivateServiceDetailsArgs']]] = None,
                  slug: Optional[pulumi.Input[str]] = None,
                  suspended: Optional[pulumi.Input['ServiceSuspended']] = None,
                  suspenders: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -245,7 +245,7 @@ class ServicesCronJob(pulumi.CustomResource):
                  updated_at: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        A cron job
+        A private service
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -259,18 +259,18 @@ class ServicesCronJob(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: ServicesCronJobArgs,
+                 args: PrivateServiceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        A cron job
+        A private service
 
         :param str resource_name: The name of the resource.
-        :param ServicesCronJobArgs args: The arguments to use to populate this resource's properties.
+        :param PrivateServiceArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(ServicesCronJobArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(PrivateServiceArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -288,7 +288,7 @@ class ServicesCronJob(pulumi.CustomResource):
                  owner_id: Optional[pulumi.Input[str]] = None,
                  repo: Optional[pulumi.Input[str]] = None,
                  secret_files: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretFileArgs']]]]] = None,
-                 service_details: Optional[pulumi.Input[pulumi.InputType['CronJobServiceDetailsArgs']]] = None,
+                 service_details: Optional[pulumi.Input[pulumi.InputType['PrivateServiceDetailsArgs']]] = None,
                  slug: Optional[pulumi.Input[str]] = None,
                  suspended: Optional[pulumi.Input['ServiceSuspended']] = None,
                  suspenders: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -301,7 +301,7 @@ class ServicesCronJob(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = ServicesCronJobArgs.__new__(ServicesCronJobArgs)
+            __props__ = PrivateServiceArgs.__new__(PrivateServiceArgs)
 
             if auto_deploy is None:
                 auto_deploy = 'no'
@@ -325,11 +325,11 @@ class ServicesCronJob(pulumi.CustomResource):
             __props__.__dict__["suspended"] = suspended
             __props__.__dict__["suspenders"] = suspenders
             if type is None:
-                type = 'cron_job'
+                type = 'private_service'
             __props__.__dict__["type"] = type
             __props__.__dict__["updated_at"] = updated_at
-        super(ServicesCronJob, __self__).__init__(
-            'render:services:ServicesCronJob',
+        super(PrivateService, __self__).__init__(
+            'render:services:PrivateService',
             resource_name,
             __props__,
             opts)
@@ -337,9 +337,9 @@ class ServicesCronJob(pulumi.CustomResource):
     @staticmethod
     def get(resource_name: str,
             id: pulumi.Input[str],
-            opts: Optional[pulumi.ResourceOptions] = None) -> 'ServicesCronJob':
+            opts: Optional[pulumi.ResourceOptions] = None) -> 'PrivateService':
         """
-        Get an existing ServicesCronJob resource's state with the given name, id, and optional extra
+        Get an existing PrivateService resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -348,7 +348,7 @@ class ServicesCronJob(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = ServicesCronJobArgs.__new__(ServicesCronJobArgs)
+        __props__ = PrivateServiceArgs.__new__(PrivateServiceArgs)
 
         __props__.__dict__["auto_deploy"] = None
         __props__.__dict__["branch"] = None
@@ -365,7 +365,7 @@ class ServicesCronJob(pulumi.CustomResource):
         __props__.__dict__["suspenders"] = None
         __props__.__dict__["type"] = None
         __props__.__dict__["updated_at"] = None
-        return ServicesCronJob(resource_name, opts=opts, __props__=__props__)
+        return PrivateService(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="autoDeploy")
@@ -429,7 +429,7 @@ class ServicesCronJob(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> pulumi.Output[Optional['outputs.CronJobServiceDetails']]:
+    def service_details(self) -> pulumi.Output[Optional['outputs.PrivateServiceDetails']]:
         return pulumi.get(self, "service_details")
 
     @property

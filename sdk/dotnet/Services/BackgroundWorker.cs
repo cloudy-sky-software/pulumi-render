@@ -10,10 +10,10 @@ using Pulumi.Serialization;
 namespace Pulumi.Render.Services
 {
     /// <summary>
-    /// A cron job
+    /// A background worker service
     /// </summary>
-    [RenderResourceType("render:services:ServicesCronJob")]
-    public partial class ServicesCronJob : global::Pulumi.CustomResource
+    [RenderResourceType("render:services:BackgroundWorker")]
+    public partial class BackgroundWorker : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Whether to auto deploy the service or not upon git push.
@@ -58,7 +58,7 @@ namespace Pulumi.Render.Services
         public Output<ImmutableArray<Outputs.SecretFile>> SecretFiles { get; private set; } = null!;
 
         [Output("serviceDetails")]
-        public Output<Outputs.CronJobServiceDetails?> ServiceDetails { get; private set; } = null!;
+        public Output<Outputs.BackgroundWorkerServiceDetails?> ServiceDetails { get; private set; } = null!;
 
         [Output("slug")]
         public Output<string?> Slug { get; private set; } = null!;
@@ -77,19 +77,19 @@ namespace Pulumi.Render.Services
 
 
         /// <summary>
-        /// Create a ServicesCronJob resource with the given unique name, arguments, and options.
+        /// Create a BackgroundWorker resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public ServicesCronJob(string name, ServicesCronJobArgs args, CustomResourceOptions? options = null)
-            : base("render:services:ServicesCronJob", name, args ?? new ServicesCronJobArgs(), MakeResourceOptions(options, ""))
+        public BackgroundWorker(string name, BackgroundWorkerArgs args, CustomResourceOptions? options = null)
+            : base("render:services:BackgroundWorker", name, args ?? new BackgroundWorkerArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private ServicesCronJob(string name, Input<string> id, CustomResourceOptions? options = null)
-            : base("render:services:ServicesCronJob", name, null, MakeResourceOptions(options, id))
+        private BackgroundWorker(string name, Input<string> id, CustomResourceOptions? options = null)
+            : base("render:services:BackgroundWorker", name, null, MakeResourceOptions(options, id))
         {
         }
 
@@ -106,20 +106,20 @@ namespace Pulumi.Render.Services
             return merged;
         }
         /// <summary>
-        /// Get an existing ServicesCronJob resource's state with the given name, ID, and optional extra
+        /// Get an existing BackgroundWorker resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resulting resource.</param>
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static ServicesCronJob Get(string name, Input<string> id, CustomResourceOptions? options = null)
+        public static BackgroundWorker Get(string name, Input<string> id, CustomResourceOptions? options = null)
         {
-            return new ServicesCronJob(name, id, options);
+            return new BackgroundWorker(name, id, options);
         }
     }
 
-    public sealed class ServicesCronJobArgs : global::Pulumi.ResourceArgs
+    public sealed class BackgroundWorkerArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether to auto deploy the service or not upon git push.
@@ -174,7 +174,7 @@ namespace Pulumi.Render.Services
         }
 
         [Input("serviceDetails")]
-        public Input<Inputs.CronJobServiceDetailsArgs>? ServiceDetails { get; set; }
+        public Input<Inputs.BackgroundWorkerServiceDetailsArgs>? ServiceDetails { get; set; }
 
         [Input("slug")]
         public Input<string>? Slug { get; set; }
@@ -196,11 +196,11 @@ namespace Pulumi.Render.Services
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }
 
-        public ServicesCronJobArgs()
+        public BackgroundWorkerArgs()
         {
             AutoDeploy = Pulumi.Render.Services.ServiceAutoDeploy.No;
-            Type = "cron_job";
+            Type = "background_worker";
         }
-        public static new ServicesCronJobArgs Empty => new ServicesCronJobArgs();
+        public static new BackgroundWorkerArgs Empty => new BackgroundWorkerArgs();
     }
 }

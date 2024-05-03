@@ -27,7 +27,7 @@ type LookupCronJobArgs struct {
 }
 
 type LookupCronJobResult struct {
-	Items GetCronJob `pulumi:"items"`
+	Items GetCronJobType `pulumi:"items"`
 }
 
 // Defaults sets the appropriate defaults for LookupCronJobResult
@@ -77,8 +77,8 @@ func (o LookupCronJobResultOutput) ToLookupCronJobResultOutputWithContext(ctx co
 	return o
 }
 
-func (o LookupCronJobResultOutput) Items() GetCronJobOutput {
-	return o.ApplyT(func(v LookupCronJobResult) GetCronJob { return v.Items }).(GetCronJobOutput)
+func (o LookupCronJobResultOutput) Items() GetCronJobTypeOutput {
+	return o.ApplyT(func(v LookupCronJobResult) GetCronJobType { return v.Items }).(GetCronJobTypeOutput)
 }
 
 func init() {

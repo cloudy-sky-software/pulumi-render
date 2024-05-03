@@ -12,10 +12,10 @@ from . import outputs
 from ._enums import *
 from ._inputs import *
 
-__all__ = ['ServicesBackgroundWorkerArgs', 'ServicesBackgroundWorker']
+__all__ = ['WebServiceArgs', 'WebService']
 
 @pulumi.input_type
-class ServicesBackgroundWorkerArgs:
+class WebServiceArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
                  owner_id: pulumi.Input[str],
@@ -26,14 +26,14 @@ class ServicesBackgroundWorkerArgs:
                  env_vars: Optional[pulumi.Input[Sequence[pulumi.Input['EnvVarKeyValueArgs']]]] = None,
                  notify_on_fail: Optional[pulumi.Input['ServiceNotifyOnFail']] = None,
                  secret_files: Optional[pulumi.Input[Sequence[pulumi.Input['SecretFileArgs']]]] = None,
-                 service_details: Optional[pulumi.Input['BackgroundWorkerServiceDetailsArgs']] = None,
+                 service_details: Optional[pulumi.Input['WebServiceServiceDetailsArgs']] = None,
                  slug: Optional[pulumi.Input[str]] = None,
                  suspended: Optional[pulumi.Input['ServiceSuspended']] = None,
                  suspenders: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  updated_at: Optional[pulumi.Input[str]] = None):
         """
-        The set of arguments for constructing a ServicesBackgroundWorker resource.
+        The set of arguments for constructing a WebService resource.
         :param pulumi.Input[str] owner_id: The id of the owner (user/team).
         :param pulumi.Input[str] repo: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
         :param pulumi.Input['ServiceAutoDeploy'] auto_deploy: Whether to auto deploy the service or not upon git push.
@@ -66,7 +66,7 @@ class ServicesBackgroundWorkerArgs:
         if suspenders is not None:
             pulumi.set(__self__, "suspenders", suspenders)
         if type is None:
-            type = 'background_worker'
+            type = 'web_service'
         if type is not None:
             pulumi.set(__self__, "type", type)
         if updated_at is not None:
@@ -170,11 +170,11 @@ class ServicesBackgroundWorkerArgs:
 
     @property
     @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> Optional[pulumi.Input['BackgroundWorkerServiceDetailsArgs']]:
+    def service_details(self) -> Optional[pulumi.Input['WebServiceServiceDetailsArgs']]:
         return pulumi.get(self, "service_details")
 
     @service_details.setter
-    def service_details(self, value: Optional[pulumi.Input['BackgroundWorkerServiceDetailsArgs']]):
+    def service_details(self, value: Optional[pulumi.Input['WebServiceServiceDetailsArgs']]):
         pulumi.set(self, "service_details", value)
 
     @property
@@ -223,7 +223,7 @@ class ServicesBackgroundWorkerArgs:
         pulumi.set(self, "updated_at", value)
 
 
-class ServicesBackgroundWorker(pulumi.CustomResource):
+class WebService(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -237,7 +237,7 @@ class ServicesBackgroundWorker(pulumi.CustomResource):
                  owner_id: Optional[pulumi.Input[str]] = None,
                  repo: Optional[pulumi.Input[str]] = None,
                  secret_files: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretFileArgs']]]]] = None,
-                 service_details: Optional[pulumi.Input[pulumi.InputType['BackgroundWorkerServiceDetailsArgs']]] = None,
+                 service_details: Optional[pulumi.Input[pulumi.InputType['WebServiceServiceDetailsArgs']]] = None,
                  slug: Optional[pulumi.Input[str]] = None,
                  suspended: Optional[pulumi.Input['ServiceSuspended']] = None,
                  suspenders: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -245,7 +245,7 @@ class ServicesBackgroundWorker(pulumi.CustomResource):
                  updated_at: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        A background worker service
+        A web service
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -259,18 +259,18 @@ class ServicesBackgroundWorker(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: ServicesBackgroundWorkerArgs,
+                 args: WebServiceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        A background worker service
+        A web service
 
         :param str resource_name: The name of the resource.
-        :param ServicesBackgroundWorkerArgs args: The arguments to use to populate this resource's properties.
+        :param WebServiceArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(ServicesBackgroundWorkerArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(WebServiceArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -288,7 +288,7 @@ class ServicesBackgroundWorker(pulumi.CustomResource):
                  owner_id: Optional[pulumi.Input[str]] = None,
                  repo: Optional[pulumi.Input[str]] = None,
                  secret_files: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretFileArgs']]]]] = None,
-                 service_details: Optional[pulumi.Input[pulumi.InputType['BackgroundWorkerServiceDetailsArgs']]] = None,
+                 service_details: Optional[pulumi.Input[pulumi.InputType['WebServiceServiceDetailsArgs']]] = None,
                  slug: Optional[pulumi.Input[str]] = None,
                  suspended: Optional[pulumi.Input['ServiceSuspended']] = None,
                  suspenders: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -301,7 +301,7 @@ class ServicesBackgroundWorker(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = ServicesBackgroundWorkerArgs.__new__(ServicesBackgroundWorkerArgs)
+            __props__ = WebServiceArgs.__new__(WebServiceArgs)
 
             if auto_deploy is None:
                 auto_deploy = 'no'
@@ -325,11 +325,11 @@ class ServicesBackgroundWorker(pulumi.CustomResource):
             __props__.__dict__["suspended"] = suspended
             __props__.__dict__["suspenders"] = suspenders
             if type is None:
-                type = 'background_worker'
+                type = 'web_service'
             __props__.__dict__["type"] = type
             __props__.__dict__["updated_at"] = updated_at
-        super(ServicesBackgroundWorker, __self__).__init__(
-            'render:services:ServicesBackgroundWorker',
+        super(WebService, __self__).__init__(
+            'render:services:WebService',
             resource_name,
             __props__,
             opts)
@@ -337,9 +337,9 @@ class ServicesBackgroundWorker(pulumi.CustomResource):
     @staticmethod
     def get(resource_name: str,
             id: pulumi.Input[str],
-            opts: Optional[pulumi.ResourceOptions] = None) -> 'ServicesBackgroundWorker':
+            opts: Optional[pulumi.ResourceOptions] = None) -> 'WebService':
         """
-        Get an existing ServicesBackgroundWorker resource's state with the given name, id, and optional extra
+        Get an existing WebService resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -348,7 +348,7 @@ class ServicesBackgroundWorker(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = ServicesBackgroundWorkerArgs.__new__(ServicesBackgroundWorkerArgs)
+        __props__ = WebServiceArgs.__new__(WebServiceArgs)
 
         __props__.__dict__["auto_deploy"] = None
         __props__.__dict__["branch"] = None
@@ -365,7 +365,7 @@ class ServicesBackgroundWorker(pulumi.CustomResource):
         __props__.__dict__["suspenders"] = None
         __props__.__dict__["type"] = None
         __props__.__dict__["updated_at"] = None
-        return ServicesBackgroundWorker(resource_name, opts=opts, __props__=__props__)
+        return WebService(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="autoDeploy")
@@ -429,7 +429,7 @@ class ServicesBackgroundWorker(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> pulumi.Output[Optional['outputs.BackgroundWorkerServiceDetails']]:
+    def service_details(self) -> pulumi.Output[Optional['outputs.WebServiceServiceDetails']]:
         return pulumi.get(self, "service_details")
 
     @property

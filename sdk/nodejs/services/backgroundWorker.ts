@@ -8,33 +8,33 @@ import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 /**
- * A cron job
+ * A background worker service
  */
-export class ServicesCronJob extends pulumi.CustomResource {
+export class BackgroundWorker extends pulumi.CustomResource {
     /**
-     * Get an existing ServicesCronJob resource's state with the given name, ID, and optional extra
+     * Get an existing BackgroundWorker resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, opts?: pulumi.CustomResourceOptions): ServicesCronJob {
-        return new ServicesCronJob(name, undefined as any, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, opts?: pulumi.CustomResourceOptions): BackgroundWorker {
+        return new BackgroundWorker(name, undefined as any, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'render:services:ServicesCronJob';
+    public static readonly __pulumiType = 'render:services:BackgroundWorker';
 
     /**
-     * Returns true if the given object is an instance of ServicesCronJob.  This is designed to work even
+     * Returns true if the given object is an instance of BackgroundWorker.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is ServicesCronJob {
+    public static isInstance(obj: any): obj is BackgroundWorker {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === ServicesCronJob.__pulumiType;
+        return obj['__pulumiType'] === BackgroundWorker.__pulumiType;
     }
 
     /**
@@ -61,7 +61,7 @@ export class ServicesCronJob extends pulumi.CustomResource {
      */
     public readonly repo!: pulumi.Output<string | undefined>;
     public readonly secretFiles!: pulumi.Output<outputs.services.SecretFile[] | undefined>;
-    public readonly serviceDetails!: pulumi.Output<outputs.services.CronJobServiceDetails | undefined>;
+    public readonly serviceDetails!: pulumi.Output<outputs.services.BackgroundWorkerServiceDetails | undefined>;
     public readonly slug!: pulumi.Output<string | undefined>;
     public readonly suspended!: pulumi.Output<enums.services.ServiceSuspended | undefined>;
     public readonly suspenders!: pulumi.Output<string[] | undefined>;
@@ -69,13 +69,13 @@ export class ServicesCronJob extends pulumi.CustomResource {
     public readonly updatedAt!: pulumi.Output<string | undefined>;
 
     /**
-     * Create a ServicesCronJob resource with the given unique name, arguments, and options.
+     * Create a BackgroundWorker resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: ServicesCronJobArgs, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: BackgroundWorkerArgs, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
@@ -97,11 +97,11 @@ export class ServicesCronJob extends pulumi.CustomResource {
             resourceInputs["ownerId"] = args ? args.ownerId : undefined;
             resourceInputs["repo"] = args ? args.repo : undefined;
             resourceInputs["secretFiles"] = args ? args.secretFiles : undefined;
-            resourceInputs["serviceDetails"] = args ? (args.serviceDetails ? pulumi.output(args.serviceDetails).apply(inputs.services.cronJobServiceDetailsArgsProvideDefaults) : undefined) : undefined;
+            resourceInputs["serviceDetails"] = args ? (args.serviceDetails ? pulumi.output(args.serviceDetails).apply(inputs.services.backgroundWorkerServiceDetailsArgsProvideDefaults) : undefined) : undefined;
             resourceInputs["slug"] = args ? args.slug : undefined;
             resourceInputs["suspended"] = args ? args.suspended : undefined;
             resourceInputs["suspenders"] = args ? args.suspenders : undefined;
-            resourceInputs["type"] = (args ? args.type : undefined) ?? "cron_job";
+            resourceInputs["type"] = (args ? args.type : undefined) ?? "background_worker";
             resourceInputs["updatedAt"] = args ? args.updatedAt : undefined;
         } else {
             resourceInputs["autoDeploy"] = undefined /*out*/;
@@ -121,14 +121,14 @@ export class ServicesCronJob extends pulumi.CustomResource {
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(ServicesCronJob.__pulumiType, name, resourceInputs, opts);
+        super(BackgroundWorker.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * The set of arguments for constructing a ServicesCronJob resource.
+ * The set of arguments for constructing a BackgroundWorker resource.
  */
-export interface ServicesCronJobArgs {
+export interface BackgroundWorkerArgs {
     /**
      * Whether to auto deploy the service or not upon git push.
      */
@@ -153,7 +153,7 @@ export interface ServicesCronJobArgs {
      */
     repo: pulumi.Input<string>;
     secretFiles?: pulumi.Input<pulumi.Input<inputs.services.SecretFileArgs>[]>;
-    serviceDetails?: pulumi.Input<inputs.services.CronJobServiceDetailsArgs>;
+    serviceDetails?: pulumi.Input<inputs.services.BackgroundWorkerServiceDetailsArgs>;
     slug?: pulumi.Input<string>;
     suspended?: pulumi.Input<enums.services.ServiceSuspended>;
     suspenders?: pulumi.Input<pulumi.Input<string>[]>;

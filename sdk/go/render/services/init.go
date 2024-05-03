@@ -21,6 +21,10 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "render:services:BackgroundWorker":
+		r = &BackgroundWorker{}
+	case "render:services:CronJob":
+		r = &CronJob{}
 	case "render:services:CustomDomains":
 		r = &CustomDomains{}
 	case "render:services:Deploys":
@@ -29,20 +33,16 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &EnvVars{}
 	case "render:services:Jobs":
 		r = &Jobs{}
+	case "render:services:PrivateService":
+		r = &PrivateService{}
 	case "render:services:Scale":
 		r = &Scale{}
-	case "render:services:ServicesBackgroundWorker":
-		r = &ServicesBackgroundWorker{}
-	case "render:services:ServicesCronJob":
-		r = &ServicesCronJob{}
-	case "render:services:ServicesPrivateService":
-		r = &ServicesPrivateService{}
-	case "render:services:ServicesStaticSite":
-		r = &ServicesStaticSite{}
-	case "render:services:ServicesWebService":
-		r = &ServicesWebService{}
+	case "render:services:StaticSite":
+		r = &StaticSite{}
 	case "render:services:Suspend":
 		r = &Suspend{}
+	case "render:services:WebService":
+		r = &WebService{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}

@@ -9,7 +9,6 @@ import (
 
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetOwner(ctx *pulumi.Context, args *GetOwnerArgs, opts ...pulumi.InvokeOption) (*GetOwnerResult, error) {
@@ -65,12 +64,6 @@ func (o GetOwnerResultOutput) ToGetOwnerResultOutput() GetOwnerResultOutput {
 
 func (o GetOwnerResultOutput) ToGetOwnerResultOutputWithContext(ctx context.Context) GetOwnerResultOutput {
 	return o
-}
-
-func (o GetOwnerResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetOwnerResult] {
-	return pulumix.Output[GetOwnerResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetOwnerResultOutput) Items() OwnerOutput {

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
 from ._enums import *
@@ -40,74 +40,37 @@ class WebServiceArgs:
         :param pulumi.Input[str] branch: If left empty, this will fall back to the default branch of the repository.
         :param pulumi.Input['ServiceNotifyOnFail'] notify_on_fail: The notification setting for this service upon deployment failure.
         """
-        WebServiceArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            owner_id=owner_id,
-            repo=repo,
-            auto_deploy=auto_deploy,
-            branch=branch,
-            created_at=created_at,
-            env_vars=env_vars,
-            notify_on_fail=notify_on_fail,
-            secret_files=secret_files,
-            service_details=service_details,
-            slug=slug,
-            suspended=suspended,
-            suspenders=suspenders,
-            type=type,
-            updated_at=updated_at,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: pulumi.Input[str],
-             owner_id: pulumi.Input[str],
-             repo: pulumi.Input[str],
-             auto_deploy: Optional[pulumi.Input['ServiceAutoDeploy']] = None,
-             branch: Optional[pulumi.Input[str]] = None,
-             created_at: Optional[pulumi.Input[str]] = None,
-             env_vars: Optional[pulumi.Input[Sequence[pulumi.Input['EnvVarKeyValueArgs']]]] = None,
-             notify_on_fail: Optional[pulumi.Input['ServiceNotifyOnFail']] = None,
-             secret_files: Optional[pulumi.Input[Sequence[pulumi.Input['SecretFileArgs']]]] = None,
-             service_details: Optional[pulumi.Input['WebServiceServiceDetailsArgs']] = None,
-             slug: Optional[pulumi.Input[str]] = None,
-             suspended: Optional[pulumi.Input['ServiceSuspended']] = None,
-             suspenders: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             type: Optional[pulumi.Input[str]] = None,
-             updated_at: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("name", name)
-        _setter("owner_id", owner_id)
-        _setter("repo", repo)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "owner_id", owner_id)
+        pulumi.set(__self__, "repo", repo)
         if auto_deploy is None:
             auto_deploy = 'no'
         if auto_deploy is not None:
-            _setter("auto_deploy", auto_deploy)
+            pulumi.set(__self__, "auto_deploy", auto_deploy)
         if branch is not None:
-            _setter("branch", branch)
+            pulumi.set(__self__, "branch", branch)
         if created_at is not None:
-            _setter("created_at", created_at)
+            pulumi.set(__self__, "created_at", created_at)
         if env_vars is not None:
-            _setter("env_vars", env_vars)
+            pulumi.set(__self__, "env_vars", env_vars)
         if notify_on_fail is not None:
-            _setter("notify_on_fail", notify_on_fail)
+            pulumi.set(__self__, "notify_on_fail", notify_on_fail)
         if secret_files is not None:
-            _setter("secret_files", secret_files)
+            pulumi.set(__self__, "secret_files", secret_files)
         if service_details is not None:
-            _setter("service_details", service_details)
+            pulumi.set(__self__, "service_details", service_details)
         if slug is not None:
-            _setter("slug", slug)
+            pulumi.set(__self__, "slug", slug)
         if suspended is not None:
-            _setter("suspended", suspended)
+            pulumi.set(__self__, "suspended", suspended)
         if suspenders is not None:
-            _setter("suspenders", suspenders)
+            pulumi.set(__self__, "suspenders", suspenders)
         if type is None:
             type = 'web_service'
         if type is not None:
-            _setter("type", type)
+            pulumi.set(__self__, "type", type)
         if updated_at is not None:
-            _setter("updated_at", updated_at)
+            pulumi.set(__self__, "updated_at", updated_at)
 
     @property
     @pulumi.getter
@@ -311,10 +274,6 @@ class WebService(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            WebServiceArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -361,11 +320,6 @@ class WebService(pulumi.CustomResource):
                 raise TypeError("Missing required property 'repo'")
             __props__.__dict__["repo"] = repo
             __props__.__dict__["secret_files"] = secret_files
-            if service_details is not None and not isinstance(service_details, WebServiceServiceDetailsArgs):
-                service_details = service_details or {}
-                def _setter(key, value):
-                    service_details[key] = value
-                WebServiceServiceDetailsArgs._configure(_setter, **service_details)
             __props__.__dict__["service_details"] = service_details
             __props__.__dict__["slug"] = slug
             __props__.__dict__["suspended"] = suspended

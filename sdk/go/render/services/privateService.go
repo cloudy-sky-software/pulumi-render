@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // A private service
@@ -166,12 +165,6 @@ func (i *PrivateService) ToPrivateServiceOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(PrivateServiceOutput)
 }
 
-func (i *PrivateService) ToOutput(ctx context.Context) pulumix.Output[*PrivateService] {
-	return pulumix.Output[*PrivateService]{
-		OutputState: i.ToPrivateServiceOutputWithContext(ctx).OutputState,
-	}
-}
-
 type PrivateServiceOutput struct{ *pulumi.OutputState }
 
 func (PrivateServiceOutput) ElementType() reflect.Type {
@@ -184,12 +177,6 @@ func (o PrivateServiceOutput) ToPrivateServiceOutput() PrivateServiceOutput {
 
 func (o PrivateServiceOutput) ToPrivateServiceOutputWithContext(ctx context.Context) PrivateServiceOutput {
 	return o
-}
-
-func (o PrivateServiceOutput) ToOutput(ctx context.Context) pulumix.Output[*PrivateService] {
-	return pulumix.Output[*PrivateService]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Whether to auto deploy the service or not upon git push.

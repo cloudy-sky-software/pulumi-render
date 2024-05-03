@@ -4,6 +4,9 @@
 package owners
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -23,4 +26,46 @@ type ListOwnersArgs struct {
 
 type ListOwnersResult struct {
 	Items []ListOwnersResponse `pulumi:"items"`
+}
+
+func ListOwnersOutput(ctx *pulumi.Context, args ListOwnersOutputArgs, opts ...pulumi.InvokeOption) ListOwnersResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (ListOwnersResult, error) {
+			args := v.(ListOwnersArgs)
+			r, err := ListOwners(ctx, &args, opts...)
+			var s ListOwnersResult
+			if r != nil {
+				s = *r
+			}
+			return s, err
+		}).(ListOwnersResultOutput)
+}
+
+type ListOwnersOutputArgs struct {
+}
+
+func (ListOwnersOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListOwnersArgs)(nil)).Elem()
+}
+
+type ListOwnersResultOutput struct{ *pulumi.OutputState }
+
+func (ListOwnersResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListOwnersResult)(nil)).Elem()
+}
+
+func (o ListOwnersResultOutput) ToListOwnersResultOutput() ListOwnersResultOutput {
+	return o
+}
+
+func (o ListOwnersResultOutput) ToListOwnersResultOutputWithContext(ctx context.Context) ListOwnersResultOutput {
+	return o
+}
+
+func (o ListOwnersResultOutput) Items() ListOwnersResponseArrayOutput {
+	return o.ApplyT(func(v ListOwnersResult) []ListOwnersResponse { return v.Items }).(ListOwnersResponseArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(ListOwnersResultOutput{})
 }

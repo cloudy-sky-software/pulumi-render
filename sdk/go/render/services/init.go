@@ -25,14 +25,14 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &BackgroundWorker{}
 	case "render:services:CronJob":
 		r = &CronJob{}
-	case "render:services:CustomDomain":
-		r = &CustomDomain{}
-	case "render:services:Deploy":
-		r = &Deploy{}
-	case "render:services:EnvVar":
-		r = &EnvVar{}
-	case "render:services:Job":
-		r = &Job{}
+	case "render:services:CustomDomains":
+		r = &CustomDomains{}
+	case "render:services:Deploys":
+		r = &Deploys{}
+	case "render:services:EnvVars":
+		r = &EnvVars{}
+	case "render:services:Jobs":
+		r = &Jobs{}
 	case "render:services:PrivateService":
 		r = &PrivateService{}
 	case "render:services:Scale":

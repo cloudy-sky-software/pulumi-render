@@ -6,48 +6,36 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
 from ._enums import *
+from ._inputs import *
 
-__all__ = ['DeployArgs', 'Deploy']
+__all__ = ['EnvVarsArgs', 'EnvVars']
 
 @pulumi.input_type
-class DeployArgs:
+class EnvVarsArgs:
     def __init__(__self__, *,
-                 clear_cache: Optional[pulumi.Input['ClearCache']] = None,
+                 env_vars: Optional[pulumi.Input[Sequence[pulumi.Input['EnvVarKeyValueArgs']]]] = None,
                  service_id: Optional[pulumi.Input[str]] = None):
         """
-        The set of arguments for constructing a Deploy resource.
+        The set of arguments for constructing a EnvVars resource.
         :param pulumi.Input[str] service_id: (Required) The ID of the service
         """
-        DeployArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            clear_cache=clear_cache,
-            service_id=service_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             clear_cache: Optional[pulumi.Input['ClearCache']] = None,
-             service_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
-        if clear_cache is None:
-            clear_cache = 'do_not_clear'
-        if clear_cache is not None:
-            _setter("clear_cache", clear_cache)
+        if env_vars is not None:
+            pulumi.set(__self__, "env_vars", env_vars)
         if service_id is not None:
-            _setter("service_id", service_id)
+            pulumi.set(__self__, "service_id", service_id)
 
     @property
-    @pulumi.getter(name="clearCache")
-    def clear_cache(self) -> Optional[pulumi.Input['ClearCache']]:
-        return pulumi.get(self, "clear_cache")
+    @pulumi.getter(name="envVars")
+    def env_vars(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['EnvVarKeyValueArgs']]]]:
+        return pulumi.get(self, "env_vars")
 
-    @clear_cache.setter
-    def clear_cache(self, value: Optional[pulumi.Input['ClearCache']]):
-        pulumi.set(self, "clear_cache", value)
+    @env_vars.setter
+    def env_vars(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['EnvVarKeyValueArgs']]]]):
+        pulumi.set(self, "env_vars", value)
 
     @property
     @pulumi.getter(name="serviceId")
@@ -62,16 +50,16 @@ class DeployArgs:
         pulumi.set(self, "service_id", value)
 
 
-class Deploy(pulumi.CustomResource):
+class EnvVars(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 clear_cache: Optional[pulumi.Input['ClearCache']] = None,
+                 env_vars: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['EnvVarKeyValueArgs']]]]] = None,
                  service_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a Deploy resource with the given unique name, props, and options.
+        Create a EnvVars resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] service_id: (Required) The ID of the service
@@ -80,30 +68,26 @@ class Deploy(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: Optional[DeployArgs] = None,
+                 args: Optional[EnvVarsArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a Deploy resource with the given unique name, props, and options.
+        Create a EnvVars resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
-        :param DeployArgs args: The arguments to use to populate this resource's properties.
+        :param EnvVarsArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(DeployArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(EnvVarsArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            DeployArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 clear_cache: Optional[pulumi.Input['ClearCache']] = None,
+                 env_vars: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['EnvVarKeyValueArgs']]]]] = None,
                  service_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -112,15 +96,12 @@ class Deploy(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = DeployArgs.__new__(DeployArgs)
+            __props__ = EnvVarsArgs.__new__(EnvVarsArgs)
 
-            if clear_cache is None:
-                clear_cache = 'do_not_clear'
-            __props__.__dict__["clear_cache"] = clear_cache
+            __props__.__dict__["env_vars"] = env_vars
             __props__.__dict__["service_id"] = service_id
-            __props__.__dict__["commit"] = None
-        super(Deploy, __self__).__init__(
-            'render:services:Deploy',
+        super(EnvVars, __self__).__init__(
+            'render:services:EnvVars',
             resource_name,
             __props__,
             opts)
@@ -128,9 +109,9 @@ class Deploy(pulumi.CustomResource):
     @staticmethod
     def get(resource_name: str,
             id: pulumi.Input[str],
-            opts: Optional[pulumi.ResourceOptions] = None) -> 'Deploy':
+            opts: Optional[pulumi.ResourceOptions] = None) -> 'EnvVars':
         """
-        Get an existing Deploy resource's state with the given name, id, and optional extra
+        Get an existing EnvVars resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -139,19 +120,13 @@ class Deploy(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = DeployArgs.__new__(DeployArgs)
+        __props__ = EnvVarsArgs.__new__(EnvVarsArgs)
 
-        __props__.__dict__["clear_cache"] = None
-        __props__.__dict__["commit"] = None
-        return Deploy(resource_name, opts=opts, __props__=__props__)
-
-    @property
-    @pulumi.getter(name="clearCache")
-    def clear_cache(self) -> pulumi.Output[Optional['ClearCache']]:
-        return pulumi.get(self, "clear_cache")
+        __props__.__dict__["env_vars"] = None
+        return EnvVars(resource_name, opts=opts, __props__=__props__)
 
     @property
-    @pulumi.getter
-    def commit(self) -> pulumi.Output[Optional['outputs.Commit']]:
-        return pulumi.get(self, "commit")
+    @pulumi.getter(name="envVars")
+    def env_vars(self) -> pulumi.Output[Optional[Sequence['outputs.EnvVarKeyValue']]]:
+        return pulumi.get(self, "env_vars")
 

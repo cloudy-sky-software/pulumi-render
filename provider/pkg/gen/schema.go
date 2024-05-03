@@ -20,7 +20,7 @@ import (
 const packageName = "render"
 
 // PulumiSchema will generate a Pulumi schema for the given k8s schema.
-func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.ProviderMetadata) {
+func PulumiSchema(openAPIDoc openapi3.T) (pschema.PackageSpec, openapigen.ProviderMetadata, openapi3.T) {
 	pkg := pschema.PackageSpec{
 		Name:        packageName,
 		Description: "A Pulumi package for creating and managing Render resources.",
@@ -98,7 +98,7 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 	}
 
 	openAPICtx := &openapigen.OpenAPIContext{
-		Doc: openapiDoc,
+		Doc: openAPIDoc,
 		Pkg: &pkg,
 		ExcludedPaths: []string{
 			"/services/{serviceId}/resume",
@@ -106,7 +106,7 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 		},
 	}
 
-	providerMetadata, err := openAPICtx.GatherResourcesFromAPI(csharpNamespaces)
+	providerMetadata, updatedOpenAPIDoc, err := openAPICtx.GatherResourcesFromAPI(csharpNamespaces)
 	if err != nil {
 		contract.Failf("generating resources from OpenAPI spec: %v", err)
 	}
@@ -134,21 +134,6 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 	})
 	pkg.Language["nodejs"] = rawMessage(map[string]interface{}{
 		"packageName": "@cloudyskysoftware/pulumi-render",
-		"dependencies": map[string]string{
-			"@pulumi/pulumi":    "^3.0.0",
-			"shell-quote":       "^1.6.1",
-			"tmp":               "^0.0.33",
-			"@types/tmp":        "^0.0.33",
-			"glob":              "^7.1.2",
-			"@types/glob":       "^5.0.35",
-			"node-fetch":        "^2.3.0",
-			"@types/node-fetch": "^2.1.4",
-		},
-		"devDependencies": map[string]string{
-			"mocha":              "^5.2.0",
-			"@types/mocha":       "^5.2.5",
-			"@types/shell-quote": "^1.6.0",
-		},
 	})
 	pkg.Language["python"] = rawMessage(map[string]interface{}{
 		"packageName": "pulumi_render",
@@ -161,7 +146,7 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 		ResourceCRUDMap: providerMetadata.ResourceCRUDMap,
 		AutoNameMap:     providerMetadata.AutoNameMap,
 	}
-	return pkg, metadata
+	return pkg, metadata, updatedOpenAPIDoc
 }
 
 func rawMessage(v interface{}) pschema.RawMessage {

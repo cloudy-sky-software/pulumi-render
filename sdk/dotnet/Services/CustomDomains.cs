@@ -9,8 +9,8 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Render.Services
 {
-    [RenderResourceType("render:services:CustomDomain")]
-    public partial class CustomDomain : global::Pulumi.CustomResource
+    [RenderResourceType("render:services:CustomDomains")]
+    public partial class CustomDomains : global::Pulumi.CustomResource
     {
         [Output("createdAt")]
         public Output<string?> CreatedAt { get; private set; } = null!;
@@ -35,19 +35,19 @@ namespace Pulumi.Render.Services
 
 
         /// <summary>
-        /// Create a CustomDomain resource with the given unique name, arguments, and options.
+        /// Create a CustomDomains resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public CustomDomain(string name, CustomDomainArgs? args = null, CustomResourceOptions? options = null)
-            : base("render:services:CustomDomain", name, args ?? new CustomDomainArgs(), MakeResourceOptions(options, ""))
+        public CustomDomains(string name, CustomDomainsArgs? args = null, CustomResourceOptions? options = null)
+            : base("render:services:CustomDomains", name, args ?? new CustomDomainsArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private CustomDomain(string name, Input<string> id, CustomResourceOptions? options = null)
-            : base("render:services:CustomDomain", name, null, MakeResourceOptions(options, id))
+        private CustomDomains(string name, Input<string> id, CustomResourceOptions? options = null)
+            : base("render:services:CustomDomains", name, null, MakeResourceOptions(options, id))
         {
         }
 
@@ -64,20 +64,20 @@ namespace Pulumi.Render.Services
             return merged;
         }
         /// <summary>
-        /// Get an existing CustomDomain resource's state with the given name, ID, and optional extra
+        /// Get an existing CustomDomains resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resulting resource.</param>
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static CustomDomain Get(string name, Input<string> id, CustomResourceOptions? options = null)
+        public static CustomDomains Get(string name, Input<string> id, CustomResourceOptions? options = null)
         {
-            return new CustomDomain(name, id, options);
+            return new CustomDomains(name, id, options);
         }
     }
 
-    public sealed class CustomDomainArgs : global::Pulumi.ResourceArgs
+    public sealed class CustomDomainsArgs : global::Pulumi.ResourceArgs
     {
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -88,9 +88,9 @@ namespace Pulumi.Render.Services
         [Input("serviceId")]
         public Input<string>? ServiceId { get; set; }
 
-        public CustomDomainArgs()
+        public CustomDomainsArgs()
         {
         }
-        public static new CustomDomainArgs Empty => new CustomDomainArgs();
+        public static new CustomDomainsArgs Empty => new CustomDomainsArgs();
     }
 }

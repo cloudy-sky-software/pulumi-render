@@ -6,19 +6,19 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
 
 __all__ = [
-    'ListServiceHeadersResult',
-    'AwaitableListServiceHeadersResult',
-    'list_service_headers',
-    'list_service_headers_output',
+    'ListHeadersResult',
+    'AwaitableListHeadersResult',
+    'list_headers',
+    'list_headers_output',
 ]
 
 @pulumi.output_type
-class ListServiceHeadersResult:
+class ListHeadersResult:
     def __init__(__self__, items=None):
         if items and not isinstance(items, list):
             raise TypeError("Expected argument 'items' to be a list")
@@ -30,17 +30,17 @@ class ListServiceHeadersResult:
         return pulumi.get(self, "items")
 
 
-class AwaitableListServiceHeadersResult(ListServiceHeadersResult):
+class AwaitableListHeadersResult(ListHeadersResult):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return ListServiceHeadersResult(
+        return ListHeadersResult(
             items=self.items)
 
 
-def list_service_headers(service_id: Optional[str] = None,
-                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListServiceHeadersResult:
+def list_headers(service_id: Optional[str] = None,
+                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListHeadersResult:
     """
     Use this data source to access information about an existing resource.
 
@@ -49,15 +49,15 @@ def list_service_headers(service_id: Optional[str] = None,
     __args__ = dict()
     __args__['serviceId'] = service_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('render:services:listServiceHeaders', __args__, opts=opts, typ=ListServiceHeadersResult).value
+    __ret__ = pulumi.runtime.invoke('render:services:listHeaders', __args__, opts=opts, typ=ListHeadersResult).value
 
-    return AwaitableListServiceHeadersResult(
+    return AwaitableListHeadersResult(
         items=pulumi.get(__ret__, 'items'))
 
 
-@_utilities.lift_output_func(list_service_headers)
-def list_service_headers_output(service_id: Optional[pulumi.Input[str]] = None,
-                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListServiceHeadersResult]:
+@_utilities.lift_output_func(list_headers)
+def list_headers_output(service_id: Optional[pulumi.Input[str]] = None,
+                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListHeadersResult]:
     """
     Use this data source to access information about an existing resource.
 

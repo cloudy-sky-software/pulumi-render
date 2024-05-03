@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // A background worker service
@@ -166,12 +165,6 @@ func (i *BackgroundWorker) ToBackgroundWorkerOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(BackgroundWorkerOutput)
 }
 
-func (i *BackgroundWorker) ToOutput(ctx context.Context) pulumix.Output[*BackgroundWorker] {
-	return pulumix.Output[*BackgroundWorker]{
-		OutputState: i.ToBackgroundWorkerOutputWithContext(ctx).OutputState,
-	}
-}
-
 type BackgroundWorkerOutput struct{ *pulumi.OutputState }
 
 func (BackgroundWorkerOutput) ElementType() reflect.Type {
@@ -184,12 +177,6 @@ func (o BackgroundWorkerOutput) ToBackgroundWorkerOutput() BackgroundWorkerOutpu
 
 func (o BackgroundWorkerOutput) ToBackgroundWorkerOutputWithContext(ctx context.Context) BackgroundWorkerOutput {
 	return o
-}
-
-func (o BackgroundWorkerOutput) ToOutput(ctx context.Context) pulumix.Output[*BackgroundWorker] {
-	return pulumix.Output[*BackgroundWorker]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Whether to auto deploy the service or not upon git push.

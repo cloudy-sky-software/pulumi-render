@@ -9,27 +9,42 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Render.Services
 {
-    [RenderResourceType("render:services:EnvVar")]
-    public partial class EnvVar : global::Pulumi.CustomResource
+    [RenderResourceType("render:services:Jobs")]
+    public partial class Jobs : global::Pulumi.CustomResource
     {
-        [Output("envVars")]
-        public Output<ImmutableArray<Outputs.EnvVarKeyValue>> EnvVars { get; private set; } = null!;
+        [Output("createdAt")]
+        public Output<string?> CreatedAt { get; private set; } = null!;
+
+        [Output("finishedAt")]
+        public Output<string?> FinishedAt { get; private set; } = null!;
+
+        [Output("planId")]
+        public Output<string> PlanId { get; private set; } = null!;
+
+        [Output("startCommand")]
+        public Output<string> StartCommand { get; private set; } = null!;
+
+        [Output("startedAt")]
+        public Output<string?> StartedAt { get; private set; } = null!;
+
+        [Output("status")]
+        public Output<string?> Status { get; private set; } = null!;
 
 
         /// <summary>
-        /// Create a EnvVar resource with the given unique name, arguments, and options.
+        /// Create a Jobs resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public EnvVar(string name, EnvVarArgs? args = null, CustomResourceOptions? options = null)
-            : base("render:services:EnvVar", name, args ?? new EnvVarArgs(), MakeResourceOptions(options, ""))
+        public Jobs(string name, JobsArgs args, CustomResourceOptions? options = null)
+            : base("render:services:Jobs", name, args ?? new JobsArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private EnvVar(string name, Input<string> id, CustomResourceOptions? options = null)
-            : base("render:services:EnvVar", name, null, MakeResourceOptions(options, id))
+        private Jobs(string name, Input<string> id, CustomResourceOptions? options = null)
+            : base("render:services:Jobs", name, null, MakeResourceOptions(options, id))
         {
         }
 
@@ -46,28 +61,23 @@ namespace Pulumi.Render.Services
             return merged;
         }
         /// <summary>
-        /// Get an existing EnvVar resource's state with the given name, ID, and optional extra
+        /// Get an existing Jobs resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resulting resource.</param>
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static EnvVar Get(string name, Input<string> id, CustomResourceOptions? options = null)
+        public static Jobs Get(string name, Input<string> id, CustomResourceOptions? options = null)
         {
-            return new EnvVar(name, id, options);
+            return new Jobs(name, id, options);
         }
     }
 
-    public sealed class EnvVarArgs : global::Pulumi.ResourceArgs
+    public sealed class JobsArgs : global::Pulumi.ResourceArgs
     {
-        [Input("envVars")]
-        private InputList<Inputs.EnvVarKeyValueArgs>? _envVars;
-        public InputList<Inputs.EnvVarKeyValueArgs> EnvVars
-        {
-            get => _envVars ?? (_envVars = new InputList<Inputs.EnvVarKeyValueArgs>());
-            set => _envVars = value;
-        }
+        [Input("planId", required: true)]
+        public Input<string> PlanId { get; set; } = null!;
 
         /// <summary>
         /// (Required) The ID of the service
@@ -75,9 +85,12 @@ namespace Pulumi.Render.Services
         [Input("serviceId")]
         public Input<string>? ServiceId { get; set; }
 
-        public EnvVarArgs()
+        [Input("startCommand", required: true)]
+        public Input<string> StartCommand { get; set; } = null!;
+
+        public JobsArgs()
         {
         }
-        public static new EnvVarArgs Empty => new EnvVarArgs();
+        public static new JobsArgs Empty => new JobsArgs();
     }
 }

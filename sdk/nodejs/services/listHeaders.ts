@@ -7,29 +7,29 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function listServiceHeaders(args: ListServiceHeadersArgs, opts?: pulumi.InvokeOptions): Promise<ListServiceHeadersResult> {
+export function listHeaders(args: ListHeadersArgs, opts?: pulumi.InvokeOptions): Promise<ListHeadersResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invoke("render:services:listServiceHeaders", {
+    return pulumi.runtime.invoke("render:services:listHeaders", {
         "serviceId": args.serviceId,
     }, opts);
 }
 
-export interface ListServiceHeadersArgs {
+export interface ListHeadersArgs {
     /**
      * (Required) The ID of the service
      */
     serviceId: string;
 }
 
-export interface ListServiceHeadersResult {
+export interface ListHeadersResult {
     readonly items: outputs.services.ListServiceHeadersResponse[];
 }
-export function listServiceHeadersOutput(args: ListServiceHeadersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListServiceHeadersResult> {
-    return pulumi.output(args).apply((a: any) => listServiceHeaders(a, opts))
+export function listHeadersOutput(args: ListHeadersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListHeadersResult> {
+    return pulumi.output(args).apply((a: any) => listHeaders(a, opts))
 }
 
-export interface ListServiceHeadersOutputArgs {
+export interface ListHeadersOutputArgs {
     /**
      * (Required) The ID of the service
      */

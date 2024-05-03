@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // A cron job
@@ -166,12 +165,6 @@ func (i *CronJob) ToCronJobOutputWithContext(ctx context.Context) CronJobOutput 
 	return pulumi.ToOutputWithContext(ctx, i).(CronJobOutput)
 }
 
-func (i *CronJob) ToOutput(ctx context.Context) pulumix.Output[*CronJob] {
-	return pulumix.Output[*CronJob]{
-		OutputState: i.ToCronJobOutputWithContext(ctx).OutputState,
-	}
-}
-
 type CronJobOutput struct{ *pulumi.OutputState }
 
 func (CronJobOutput) ElementType() reflect.Type {
@@ -184,12 +177,6 @@ func (o CronJobOutput) ToCronJobOutput() CronJobOutput {
 
 func (o CronJobOutput) ToCronJobOutputWithContext(ctx context.Context) CronJobOutput {
 	return o
-}
-
-func (o CronJobOutput) ToOutput(ctx context.Context) pulumix.Output[*CronJob] {
-	return pulumix.Output[*CronJob]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Whether to auto deploy the service or not upon git push.

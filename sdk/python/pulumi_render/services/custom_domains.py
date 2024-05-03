@@ -6,37 +6,26 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
 from ._enums import *
 
-__all__ = ['CustomDomainArgs', 'CustomDomain']
+__all__ = ['CustomDomainsArgs', 'CustomDomains']
 
 @pulumi.input_type
-class CustomDomainArgs:
+class CustomDomainsArgs:
     def __init__(__self__, *,
                  name: Optional[pulumi.Input[str]] = None,
                  service_id: Optional[pulumi.Input[str]] = None):
         """
-        The set of arguments for constructing a CustomDomain resource.
+        The set of arguments for constructing a CustomDomains resource.
         :param pulumi.Input[str] service_id: (Required) The ID of the service
         """
-        CustomDomainArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            service_id=service_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[pulumi.Input[str]] = None,
-             service_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if service_id is not None:
-            _setter("service_id", service_id)
+            pulumi.set(__self__, "service_id", service_id)
 
     @property
     @pulumi.getter
@@ -60,7 +49,7 @@ class CustomDomainArgs:
         pulumi.set(self, "service_id", value)
 
 
-class CustomDomain(pulumi.CustomResource):
+class CustomDomains(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -69,7 +58,7 @@ class CustomDomain(pulumi.CustomResource):
                  service_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a CustomDomain resource with the given unique name, props, and options.
+        Create a CustomDomains resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] service_id: (Required) The ID of the service
@@ -78,24 +67,20 @@ class CustomDomain(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: Optional[CustomDomainArgs] = None,
+                 args: Optional[CustomDomainsArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a CustomDomain resource with the given unique name, props, and options.
+        Create a CustomDomains resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
-        :param CustomDomainArgs args: The arguments to use to populate this resource's properties.
+        :param CustomDomainsArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(CustomDomainArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(CustomDomainsArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            CustomDomainArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -110,7 +95,7 @@ class CustomDomain(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = CustomDomainArgs.__new__(CustomDomainArgs)
+            __props__ = CustomDomainsArgs.__new__(CustomDomainsArgs)
 
             __props__.__dict__["name"] = name
             __props__.__dict__["service_id"] = service_id
@@ -120,8 +105,8 @@ class CustomDomain(pulumi.CustomResource):
             __props__.__dict__["redirect_for_name"] = None
             __props__.__dict__["server"] = None
             __props__.__dict__["verification_status"] = None
-        super(CustomDomain, __self__).__init__(
-            'render:services:CustomDomain',
+        super(CustomDomains, __self__).__init__(
+            'render:services:CustomDomains',
             resource_name,
             __props__,
             opts)
@@ -129,9 +114,9 @@ class CustomDomain(pulumi.CustomResource):
     @staticmethod
     def get(resource_name: str,
             id: pulumi.Input[str],
-            opts: Optional[pulumi.ResourceOptions] = None) -> 'CustomDomain':
+            opts: Optional[pulumi.ResourceOptions] = None) -> 'CustomDomains':
         """
-        Get an existing CustomDomain resource's state with the given name, id, and optional extra
+        Get an existing CustomDomains resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -140,7 +125,7 @@ class CustomDomain(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = CustomDomainArgs.__new__(CustomDomainArgs)
+        __props__ = CustomDomainsArgs.__new__(CustomDomainsArgs)
 
         __props__.__dict__["created_at"] = None
         __props__.__dict__["domain_type"] = None
@@ -149,7 +134,7 @@ class CustomDomain(pulumi.CustomResource):
         __props__.__dict__["redirect_for_name"] = None
         __props__.__dict__["server"] = None
         __props__.__dict__["verification_status"] = None
-        return CustomDomain(resource_name, opts=opts, __props__=__props__)
+        return CustomDomains(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="createdAt")

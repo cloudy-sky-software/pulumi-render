@@ -9,7 +9,6 @@ import (
 
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupBackgroundWorker(ctx *pulumi.Context, args *LookupBackgroundWorkerArgs, opts ...pulumi.InvokeOption) (*LookupBackgroundWorkerResult, error) {
@@ -76,12 +75,6 @@ func (o LookupBackgroundWorkerResultOutput) ToLookupBackgroundWorkerResultOutput
 
 func (o LookupBackgroundWorkerResultOutput) ToLookupBackgroundWorkerResultOutputWithContext(ctx context.Context) LookupBackgroundWorkerResultOutput {
 	return o
-}
-
-func (o LookupBackgroundWorkerResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupBackgroundWorkerResult] {
-	return pulumix.Output[LookupBackgroundWorkerResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupBackgroundWorkerResultOutput) Items() GetBackgroundWorkerTypeOutput {

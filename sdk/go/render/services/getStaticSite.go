@@ -9,7 +9,6 @@ import (
 
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupStaticSite(ctx *pulumi.Context, args *LookupStaticSiteArgs, opts ...pulumi.InvokeOption) (*LookupStaticSiteResult, error) {
@@ -76,12 +75,6 @@ func (o LookupStaticSiteResultOutput) ToLookupStaticSiteResultOutput() LookupSta
 
 func (o LookupStaticSiteResultOutput) ToLookupStaticSiteResultOutputWithContext(ctx context.Context) LookupStaticSiteResultOutput {
 	return o
-}
-
-func (o LookupStaticSiteResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupStaticSiteResult] {
-	return pulumix.Output[LookupStaticSiteResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupStaticSiteResultOutput) Items() GetStaticSiteTypeOutput {

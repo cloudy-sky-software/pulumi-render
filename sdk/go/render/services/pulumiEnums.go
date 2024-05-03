@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type BackgroundWorkerServiceDetailsEnv string
@@ -83,12 +82,6 @@ func (o BackgroundWorkerServiceDetailsEnvOutput) ToBackgroundWorkerServiceDetail
 	}).(BackgroundWorkerServiceDetailsEnvPtrOutput)
 }
 
-func (o BackgroundWorkerServiceDetailsEnvOutput) ToOutput(ctx context.Context) pulumix.Output[BackgroundWorkerServiceDetailsEnv] {
-	return pulumix.Output[BackgroundWorkerServiceDetailsEnv]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o BackgroundWorkerServiceDetailsEnvOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -124,12 +117,6 @@ func (o BackgroundWorkerServiceDetailsEnvPtrOutput) ToBackgroundWorkerServiceDet
 	return o
 }
 
-func (o BackgroundWorkerServiceDetailsEnvPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*BackgroundWorkerServiceDetailsEnv] {
-	return pulumix.Output[*BackgroundWorkerServiceDetailsEnv]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o BackgroundWorkerServiceDetailsEnvPtrOutput) Elem() BackgroundWorkerServiceDetailsEnvOutput {
 	return o.ApplyT(func(v *BackgroundWorkerServiceDetailsEnv) BackgroundWorkerServiceDetailsEnv {
 		if v != nil {
@@ -154,10 +141,16 @@ func (o BackgroundWorkerServiceDetailsEnvPtrOutput) ToStringPtrOutputWithContext
 	}).(pulumi.StringPtrOutput)
 }
 
-// BackgroundWorkerServiceDetailsEnvInput is an input type that accepts BackgroundWorkerServiceDetailsEnvArgs and BackgroundWorkerServiceDetailsEnvOutput values.
-// You can construct a concrete instance of `BackgroundWorkerServiceDetailsEnvInput` via:
+// BackgroundWorkerServiceDetailsEnvInput is an input type that accepts values of the BackgroundWorkerServiceDetailsEnv enum
+// A concrete instance of `BackgroundWorkerServiceDetailsEnvInput` can be one of the following:
 //
-//	BackgroundWorkerServiceDetailsEnvArgs{...}
+//	BackgroundWorkerServiceDetailsEnvDocker
+//	BackgroundWorkerServiceDetailsEnvElixir
+//	BackgroundWorkerServiceDetailsEnvGo
+//	BackgroundWorkerServiceDetailsEnvNode
+//	BackgroundWorkerServiceDetailsEnvPython
+//	BackgroundWorkerServiceDetailsEnvRuby
+//	BackgroundWorkerServiceDetailsEnvRust
 type BackgroundWorkerServiceDetailsEnvInput interface {
 	pulumi.Input
 
@@ -190,12 +183,6 @@ func (in *backgroundWorkerServiceDetailsEnvPtr) ToBackgroundWorkerServiceDetails
 
 func (in *backgroundWorkerServiceDetailsEnvPtr) ToBackgroundWorkerServiceDetailsEnvPtrOutputWithContext(ctx context.Context) BackgroundWorkerServiceDetailsEnvPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(BackgroundWorkerServiceDetailsEnvPtrOutput)
-}
-
-func (in *backgroundWorkerServiceDetailsEnvPtr) ToOutput(ctx context.Context) pulumix.Output[*BackgroundWorkerServiceDetailsEnv] {
-	return pulumix.Output[*BackgroundWorkerServiceDetailsEnv]{
-		OutputState: in.ToBackgroundWorkerServiceDetailsEnvPtrOutputWithContext(ctx).OutputState,
-	}
 }
 
 type BackgroundWorkerServiceDetailsPlan string
@@ -271,12 +258,6 @@ func (o BackgroundWorkerServiceDetailsPlanOutput) ToBackgroundWorkerServiceDetai
 	}).(BackgroundWorkerServiceDetailsPlanPtrOutput)
 }
 
-func (o BackgroundWorkerServiceDetailsPlanOutput) ToOutput(ctx context.Context) pulumix.Output[BackgroundWorkerServiceDetailsPlan] {
-	return pulumix.Output[BackgroundWorkerServiceDetailsPlan]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o BackgroundWorkerServiceDetailsPlanOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -312,12 +293,6 @@ func (o BackgroundWorkerServiceDetailsPlanPtrOutput) ToBackgroundWorkerServiceDe
 	return o
 }
 
-func (o BackgroundWorkerServiceDetailsPlanPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*BackgroundWorkerServiceDetailsPlan] {
-	return pulumix.Output[*BackgroundWorkerServiceDetailsPlan]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o BackgroundWorkerServiceDetailsPlanPtrOutput) Elem() BackgroundWorkerServiceDetailsPlanOutput {
 	return o.ApplyT(func(v *BackgroundWorkerServiceDetailsPlan) BackgroundWorkerServiceDetailsPlan {
 		if v != nil {
@@ -342,10 +317,17 @@ func (o BackgroundWorkerServiceDetailsPlanPtrOutput) ToStringPtrOutputWithContex
 	}).(pulumi.StringPtrOutput)
 }
 
-// BackgroundWorkerServiceDetailsPlanInput is an input type that accepts BackgroundWorkerServiceDetailsPlanArgs and BackgroundWorkerServiceDetailsPlanOutput values.
-// You can construct a concrete instance of `BackgroundWorkerServiceDetailsPlanInput` via:
+// BackgroundWorkerServiceDetailsPlanInput is an input type that accepts values of the BackgroundWorkerServiceDetailsPlan enum
+// A concrete instance of `BackgroundWorkerServiceDetailsPlanInput` can be one of the following:
 //
-//	BackgroundWorkerServiceDetailsPlanArgs{...}
+//	BackgroundWorkerServiceDetailsPlanStarter
+//	BackgroundWorkerServiceDetailsPlanStarterPlus
+//	BackgroundWorkerServiceDetailsPlanStandard
+//	BackgroundWorkerServiceDetailsPlanStandardPlus
+//	BackgroundWorkerServiceDetailsPlanPro
+//	BackgroundWorkerServiceDetailsPlanProPlus
+//	BackgroundWorkerServiceDetailsPlanProMax
+//	BackgroundWorkerServiceDetailsPlanProUltra
 type BackgroundWorkerServiceDetailsPlanInput interface {
 	pulumi.Input
 
@@ -378,12 +360,6 @@ func (in *backgroundWorkerServiceDetailsPlanPtr) ToBackgroundWorkerServiceDetail
 
 func (in *backgroundWorkerServiceDetailsPlanPtr) ToBackgroundWorkerServiceDetailsPlanPtrOutputWithContext(ctx context.Context) BackgroundWorkerServiceDetailsPlanPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(BackgroundWorkerServiceDetailsPlanPtrOutput)
-}
-
-func (in *backgroundWorkerServiceDetailsPlanPtr) ToOutput(ctx context.Context) pulumix.Output[*BackgroundWorkerServiceDetailsPlan] {
-	return pulumix.Output[*BackgroundWorkerServiceDetailsPlan]{
-		OutputState: in.ToBackgroundWorkerServiceDetailsPlanPtrOutputWithContext(ctx).OutputState,
-	}
 }
 
 type BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled string
@@ -453,12 +429,6 @@ func (o BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledOutput) ToBackgr
 	}).(BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledPtrOutput)
 }
 
-func (o BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledOutput) ToOutput(ctx context.Context) pulumix.Output[BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled] {
-	return pulumix.Output[BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -494,12 +464,6 @@ func (o BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToBac
 	return o
 }
 
-func (o BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled] {
-	return pulumix.Output[*BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledPtrOutput) Elem() BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledOutput {
 	return o.ApplyT(func(v *BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled) BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled {
 		if v != nil {
@@ -524,10 +488,11 @@ func (o BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToStr
 	}).(pulumi.StringPtrOutput)
 }
 
-// BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledInput is an input type that accepts BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledArgs and BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledOutput values.
-// You can construct a concrete instance of `BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledInput` via:
+// BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledInput is an input type that accepts values of the BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled enum
+// A concrete instance of `BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledInput` can be one of the following:
 //
-//	BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledArgs{...}
+//	BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledYes
+//	BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledNo
 type BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledInput interface {
 	pulumi.Input
 
@@ -560,12 +525,6 @@ func (in *backgroundWorkerServiceDetailsPullRequestPreviewsEnabledPtr) ToBackgro
 
 func (in *backgroundWorkerServiceDetailsPullRequestPreviewsEnabledPtr) ToBackgroundWorkerServiceDetailsPullRequestPreviewsEnabledPtrOutputWithContext(ctx context.Context) BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(BackgroundWorkerServiceDetailsPullRequestPreviewsEnabledPtrOutput)
-}
-
-func (in *backgroundWorkerServiceDetailsPullRequestPreviewsEnabledPtr) ToOutput(ctx context.Context) pulumix.Output[*BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled] {
-	return pulumix.Output[*BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled]{
-		OutputState: in.ToBackgroundWorkerServiceDetailsPullRequestPreviewsEnabledPtrOutputWithContext(ctx).OutputState,
-	}
 }
 
 type BackgroundWorkerServiceDetailsRegion string
@@ -635,12 +594,6 @@ func (o BackgroundWorkerServiceDetailsRegionOutput) ToBackgroundWorkerServiceDet
 	}).(BackgroundWorkerServiceDetailsRegionPtrOutput)
 }
 
-func (o BackgroundWorkerServiceDetailsRegionOutput) ToOutput(ctx context.Context) pulumix.Output[BackgroundWorkerServiceDetailsRegion] {
-	return pulumix.Output[BackgroundWorkerServiceDetailsRegion]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o BackgroundWorkerServiceDetailsRegionOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -676,12 +629,6 @@ func (o BackgroundWorkerServiceDetailsRegionPtrOutput) ToBackgroundWorkerService
 	return o
 }
 
-func (o BackgroundWorkerServiceDetailsRegionPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*BackgroundWorkerServiceDetailsRegion] {
-	return pulumix.Output[*BackgroundWorkerServiceDetailsRegion]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o BackgroundWorkerServiceDetailsRegionPtrOutput) Elem() BackgroundWorkerServiceDetailsRegionOutput {
 	return o.ApplyT(func(v *BackgroundWorkerServiceDetailsRegion) BackgroundWorkerServiceDetailsRegion {
 		if v != nil {
@@ -706,10 +653,11 @@ func (o BackgroundWorkerServiceDetailsRegionPtrOutput) ToStringPtrOutputWithCont
 	}).(pulumi.StringPtrOutput)
 }
 
-// BackgroundWorkerServiceDetailsRegionInput is an input type that accepts BackgroundWorkerServiceDetailsRegionArgs and BackgroundWorkerServiceDetailsRegionOutput values.
-// You can construct a concrete instance of `BackgroundWorkerServiceDetailsRegionInput` via:
+// BackgroundWorkerServiceDetailsRegionInput is an input type that accepts values of the BackgroundWorkerServiceDetailsRegion enum
+// A concrete instance of `BackgroundWorkerServiceDetailsRegionInput` can be one of the following:
 //
-//	BackgroundWorkerServiceDetailsRegionArgs{...}
+//	BackgroundWorkerServiceDetailsRegionOregon
+//	BackgroundWorkerServiceDetailsRegionFrankfurt
 type BackgroundWorkerServiceDetailsRegionInput interface {
 	pulumi.Input
 
@@ -742,12 +690,6 @@ func (in *backgroundWorkerServiceDetailsRegionPtr) ToBackgroundWorkerServiceDeta
 
 func (in *backgroundWorkerServiceDetailsRegionPtr) ToBackgroundWorkerServiceDetailsRegionPtrOutputWithContext(ctx context.Context) BackgroundWorkerServiceDetailsRegionPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(BackgroundWorkerServiceDetailsRegionPtrOutput)
-}
-
-func (in *backgroundWorkerServiceDetailsRegionPtr) ToOutput(ctx context.Context) pulumix.Output[*BackgroundWorkerServiceDetailsRegion] {
-	return pulumix.Output[*BackgroundWorkerServiceDetailsRegion]{
-		OutputState: in.ToBackgroundWorkerServiceDetailsRegionPtrOutputWithContext(ctx).OutputState,
-	}
 }
 
 type ClearCache string
@@ -817,12 +759,6 @@ func (o ClearCacheOutput) ToClearCachePtrOutputWithContext(ctx context.Context) 
 	}).(ClearCachePtrOutput)
 }
 
-func (o ClearCacheOutput) ToOutput(ctx context.Context) pulumix.Output[ClearCache] {
-	return pulumix.Output[ClearCache]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ClearCacheOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -858,12 +794,6 @@ func (o ClearCachePtrOutput) ToClearCachePtrOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o ClearCachePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ClearCache] {
-	return pulumix.Output[*ClearCache]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ClearCachePtrOutput) Elem() ClearCacheOutput {
 	return o.ApplyT(func(v *ClearCache) ClearCache {
 		if v != nil {
@@ -888,10 +818,11 @@ func (o ClearCachePtrOutput) ToStringPtrOutputWithContext(ctx context.Context) p
 	}).(pulumi.StringPtrOutput)
 }
 
-// ClearCacheInput is an input type that accepts ClearCacheArgs and ClearCacheOutput values.
-// You can construct a concrete instance of `ClearCacheInput` via:
+// ClearCacheInput is an input type that accepts values of the ClearCache enum
+// A concrete instance of `ClearCacheInput` can be one of the following:
 //
-//	ClearCacheArgs{...}
+//	ClearCacheDoNotClear
+//	ClearCacheClear
 type ClearCacheInput interface {
 	pulumi.Input
 
@@ -924,12 +855,6 @@ func (in *clearCachePtr) ToClearCachePtrOutput() ClearCachePtrOutput {
 
 func (in *clearCachePtr) ToClearCachePtrOutputWithContext(ctx context.Context) ClearCachePtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(ClearCachePtrOutput)
-}
-
-func (in *clearCachePtr) ToOutput(ctx context.Context) pulumix.Output[*ClearCache] {
-	return pulumix.Output[*ClearCache]{
-		OutputState: in.ToClearCachePtrOutputWithContext(ctx).OutputState,
-	}
 }
 
 type CronJobServiceDetailsEnv string
@@ -1004,12 +929,6 @@ func (o CronJobServiceDetailsEnvOutput) ToCronJobServiceDetailsEnvPtrOutputWithC
 	}).(CronJobServiceDetailsEnvPtrOutput)
 }
 
-func (o CronJobServiceDetailsEnvOutput) ToOutput(ctx context.Context) pulumix.Output[CronJobServiceDetailsEnv] {
-	return pulumix.Output[CronJobServiceDetailsEnv]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o CronJobServiceDetailsEnvOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -1045,12 +964,6 @@ func (o CronJobServiceDetailsEnvPtrOutput) ToCronJobServiceDetailsEnvPtrOutputWi
 	return o
 }
 
-func (o CronJobServiceDetailsEnvPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*CronJobServiceDetailsEnv] {
-	return pulumix.Output[*CronJobServiceDetailsEnv]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o CronJobServiceDetailsEnvPtrOutput) Elem() CronJobServiceDetailsEnvOutput {
 	return o.ApplyT(func(v *CronJobServiceDetailsEnv) CronJobServiceDetailsEnv {
 		if v != nil {
@@ -1075,10 +988,16 @@ func (o CronJobServiceDetailsEnvPtrOutput) ToStringPtrOutputWithContext(ctx cont
 	}).(pulumi.StringPtrOutput)
 }
 
-// CronJobServiceDetailsEnvInput is an input type that accepts CronJobServiceDetailsEnvArgs and CronJobServiceDetailsEnvOutput values.
-// You can construct a concrete instance of `CronJobServiceDetailsEnvInput` via:
+// CronJobServiceDetailsEnvInput is an input type that accepts values of the CronJobServiceDetailsEnv enum
+// A concrete instance of `CronJobServiceDetailsEnvInput` can be one of the following:
 //
-//	CronJobServiceDetailsEnvArgs{...}
+//	CronJobServiceDetailsEnvDocker
+//	CronJobServiceDetailsEnvElixir
+//	CronJobServiceDetailsEnvGo
+//	CronJobServiceDetailsEnvNode
+//	CronJobServiceDetailsEnvPython
+//	CronJobServiceDetailsEnvRuby
+//	CronJobServiceDetailsEnvRust
 type CronJobServiceDetailsEnvInput interface {
 	pulumi.Input
 
@@ -1111,12 +1030,6 @@ func (in *cronJobServiceDetailsEnvPtr) ToCronJobServiceDetailsEnvPtrOutput() Cro
 
 func (in *cronJobServiceDetailsEnvPtr) ToCronJobServiceDetailsEnvPtrOutputWithContext(ctx context.Context) CronJobServiceDetailsEnvPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(CronJobServiceDetailsEnvPtrOutput)
-}
-
-func (in *cronJobServiceDetailsEnvPtr) ToOutput(ctx context.Context) pulumix.Output[*CronJobServiceDetailsEnv] {
-	return pulumix.Output[*CronJobServiceDetailsEnv]{
-		OutputState: in.ToCronJobServiceDetailsEnvPtrOutputWithContext(ctx).OutputState,
-	}
 }
 
 type CronJobServiceDetailsPlan string
@@ -1192,12 +1105,6 @@ func (o CronJobServiceDetailsPlanOutput) ToCronJobServiceDetailsPlanPtrOutputWit
 	}).(CronJobServiceDetailsPlanPtrOutput)
 }
 
-func (o CronJobServiceDetailsPlanOutput) ToOutput(ctx context.Context) pulumix.Output[CronJobServiceDetailsPlan] {
-	return pulumix.Output[CronJobServiceDetailsPlan]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o CronJobServiceDetailsPlanOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -1233,12 +1140,6 @@ func (o CronJobServiceDetailsPlanPtrOutput) ToCronJobServiceDetailsPlanPtrOutput
 	return o
 }
 
-func (o CronJobServiceDetailsPlanPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*CronJobServiceDetailsPlan] {
-	return pulumix.Output[*CronJobServiceDetailsPlan]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o CronJobServiceDetailsPlanPtrOutput) Elem() CronJobServiceDetailsPlanOutput {
 	return o.ApplyT(func(v *CronJobServiceDetailsPlan) CronJobServiceDetailsPlan {
 		if v != nil {
@@ -1263,10 +1164,17 @@ func (o CronJobServiceDetailsPlanPtrOutput) ToStringPtrOutputWithContext(ctx con
 	}).(pulumi.StringPtrOutput)
 }
 
-// CronJobServiceDetailsPlanInput is an input type that accepts CronJobServiceDetailsPlanArgs and CronJobServiceDetailsPlanOutput values.
-// You can construct a concrete instance of `CronJobServiceDetailsPlanInput` via:
+// CronJobServiceDetailsPlanInput is an input type that accepts values of the CronJobServiceDetailsPlan enum
+// A concrete instance of `CronJobServiceDetailsPlanInput` can be one of the following:
 //
-//	CronJobServiceDetailsPlanArgs{...}
+//	CronJobServiceDetailsPlanStarter
+//	CronJobServiceDetailsPlanStarterPlus
+//	CronJobServiceDetailsPlanStandard
+//	CronJobServiceDetailsPlanStandardPlus
+//	CronJobServiceDetailsPlanPro
+//	CronJobServiceDetailsPlanProPlus
+//	CronJobServiceDetailsPlanProMax
+//	CronJobServiceDetailsPlanProUltra
 type CronJobServiceDetailsPlanInput interface {
 	pulumi.Input
 
@@ -1299,12 +1207,6 @@ func (in *cronJobServiceDetailsPlanPtr) ToCronJobServiceDetailsPlanPtrOutput() C
 
 func (in *cronJobServiceDetailsPlanPtr) ToCronJobServiceDetailsPlanPtrOutputWithContext(ctx context.Context) CronJobServiceDetailsPlanPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(CronJobServiceDetailsPlanPtrOutput)
-}
-
-func (in *cronJobServiceDetailsPlanPtr) ToOutput(ctx context.Context) pulumix.Output[*CronJobServiceDetailsPlan] {
-	return pulumix.Output[*CronJobServiceDetailsPlan]{
-		OutputState: in.ToCronJobServiceDetailsPlanPtrOutputWithContext(ctx).OutputState,
-	}
 }
 
 type CronJobServiceDetailsRegion string
@@ -1374,12 +1276,6 @@ func (o CronJobServiceDetailsRegionOutput) ToCronJobServiceDetailsRegionPtrOutpu
 	}).(CronJobServiceDetailsRegionPtrOutput)
 }
 
-func (o CronJobServiceDetailsRegionOutput) ToOutput(ctx context.Context) pulumix.Output[CronJobServiceDetailsRegion] {
-	return pulumix.Output[CronJobServiceDetailsRegion]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o CronJobServiceDetailsRegionOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -1415,12 +1311,6 @@ func (o CronJobServiceDetailsRegionPtrOutput) ToCronJobServiceDetailsRegionPtrOu
 	return o
 }
 
-func (o CronJobServiceDetailsRegionPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*CronJobServiceDetailsRegion] {
-	return pulumix.Output[*CronJobServiceDetailsRegion]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o CronJobServiceDetailsRegionPtrOutput) Elem() CronJobServiceDetailsRegionOutput {
 	return o.ApplyT(func(v *CronJobServiceDetailsRegion) CronJobServiceDetailsRegion {
 		if v != nil {
@@ -1445,10 +1335,11 @@ func (o CronJobServiceDetailsRegionPtrOutput) ToStringPtrOutputWithContext(ctx c
 	}).(pulumi.StringPtrOutput)
 }
 
-// CronJobServiceDetailsRegionInput is an input type that accepts CronJobServiceDetailsRegionArgs and CronJobServiceDetailsRegionOutput values.
-// You can construct a concrete instance of `CronJobServiceDetailsRegionInput` via:
+// CronJobServiceDetailsRegionInput is an input type that accepts values of the CronJobServiceDetailsRegion enum
+// A concrete instance of `CronJobServiceDetailsRegionInput` can be one of the following:
 //
-//	CronJobServiceDetailsRegionArgs{...}
+//	CronJobServiceDetailsRegionOregon
+//	CronJobServiceDetailsRegionFrankfurt
 type CronJobServiceDetailsRegionInput interface {
 	pulumi.Input
 
@@ -1483,12 +1374,6 @@ func (in *cronJobServiceDetailsRegionPtr) ToCronJobServiceDetailsRegionPtrOutput
 	return pulumi.ToOutputWithContext(ctx, in).(CronJobServiceDetailsRegionPtrOutput)
 }
 
-func (in *cronJobServiceDetailsRegionPtr) ToOutput(ctx context.Context) pulumix.Output[*CronJobServiceDetailsRegion] {
-	return pulumix.Output[*CronJobServiceDetailsRegion]{
-		OutputState: in.ToCronJobServiceDetailsRegionPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type CustomDomainDomainType string
 
 const (
@@ -1518,12 +1403,6 @@ func (o CustomDomainDomainTypeOutput) ToCustomDomainDomainTypePtrOutputWithConte
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v CustomDomainDomainType) *CustomDomainDomainType {
 		return &v
 	}).(CustomDomainDomainTypePtrOutput)
-}
-
-func (o CustomDomainDomainTypeOutput) ToOutput(ctx context.Context) pulumix.Output[CustomDomainDomainType] {
-	return pulumix.Output[CustomDomainDomainType]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o CustomDomainDomainTypeOutput) ToStringOutput() pulumi.StringOutput {
@@ -1559,12 +1438,6 @@ func (o CustomDomainDomainTypePtrOutput) ToCustomDomainDomainTypePtrOutput() Cus
 
 func (o CustomDomainDomainTypePtrOutput) ToCustomDomainDomainTypePtrOutputWithContext(ctx context.Context) CustomDomainDomainTypePtrOutput {
 	return o
-}
-
-func (o CustomDomainDomainTypePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*CustomDomainDomainType] {
-	return pulumix.Output[*CustomDomainDomainType]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o CustomDomainDomainTypePtrOutput) Elem() CustomDomainDomainTypeOutput {
@@ -1622,12 +1495,6 @@ func (o CustomDomainVerificationStatusOutput) ToCustomDomainVerificationStatusPt
 	}).(CustomDomainVerificationStatusPtrOutput)
 }
 
-func (o CustomDomainVerificationStatusOutput) ToOutput(ctx context.Context) pulumix.Output[CustomDomainVerificationStatus] {
-	return pulumix.Output[CustomDomainVerificationStatus]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o CustomDomainVerificationStatusOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -1661,12 +1528,6 @@ func (o CustomDomainVerificationStatusPtrOutput) ToCustomDomainVerificationStatu
 
 func (o CustomDomainVerificationStatusPtrOutput) ToCustomDomainVerificationStatusPtrOutputWithContext(ctx context.Context) CustomDomainVerificationStatusPtrOutput {
 	return o
-}
-
-func (o CustomDomainVerificationStatusPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*CustomDomainVerificationStatus] {
-	return pulumix.Output[*CustomDomainVerificationStatus]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o CustomDomainVerificationStatusPtrOutput) Elem() CustomDomainVerificationStatusOutput {
@@ -1724,12 +1585,6 @@ func (o DeployClearCacheOutput) ToDeployClearCachePtrOutputWithContext(ctx conte
 	}).(DeployClearCachePtrOutput)
 }
 
-func (o DeployClearCacheOutput) ToOutput(ctx context.Context) pulumix.Output[DeployClearCache] {
-	return pulumix.Output[DeployClearCache]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o DeployClearCacheOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -1763,12 +1618,6 @@ func (o DeployClearCachePtrOutput) ToDeployClearCachePtrOutput() DeployClearCach
 
 func (o DeployClearCachePtrOutput) ToDeployClearCachePtrOutputWithContext(ctx context.Context) DeployClearCachePtrOutput {
 	return o
-}
-
-func (o DeployClearCachePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DeployClearCache] {
-	return pulumix.Output[*DeployClearCache]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DeployClearCachePtrOutput) Elem() DeployClearCacheOutput {
@@ -1826,12 +1675,6 @@ func (o DomainTypeOutput) ToDomainTypePtrOutputWithContext(ctx context.Context) 
 	}).(DomainTypePtrOutput)
 }
 
-func (o DomainTypeOutput) ToOutput(ctx context.Context) pulumix.Output[DomainType] {
-	return pulumix.Output[DomainType]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o DomainTypeOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -1865,12 +1708,6 @@ func (o DomainTypePtrOutput) ToDomainTypePtrOutput() DomainTypePtrOutput {
 
 func (o DomainTypePtrOutput) ToDomainTypePtrOutputWithContext(ctx context.Context) DomainTypePtrOutput {
 	return o
-}
-
-func (o DomainTypePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DomainType] {
-	return pulumix.Output[*DomainType]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DomainTypePtrOutput) Elem() DomainTypeOutput {
@@ -1964,12 +1801,6 @@ func (o EnvVarKeyValueGenerateValueOutput) ToEnvVarKeyValueGenerateValuePtrOutpu
 	}).(EnvVarKeyValueGenerateValuePtrOutput)
 }
 
-func (o EnvVarKeyValueGenerateValueOutput) ToOutput(ctx context.Context) pulumix.Output[EnvVarKeyValueGenerateValue] {
-	return pulumix.Output[EnvVarKeyValueGenerateValue]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o EnvVarKeyValueGenerateValueOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -2005,12 +1836,6 @@ func (o EnvVarKeyValueGenerateValuePtrOutput) ToEnvVarKeyValueGenerateValuePtrOu
 	return o
 }
 
-func (o EnvVarKeyValueGenerateValuePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*EnvVarKeyValueGenerateValue] {
-	return pulumix.Output[*EnvVarKeyValueGenerateValue]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o EnvVarKeyValueGenerateValuePtrOutput) Elem() EnvVarKeyValueGenerateValueOutput {
 	return o.ApplyT(func(v *EnvVarKeyValueGenerateValue) EnvVarKeyValueGenerateValue {
 		if v != nil {
@@ -2035,10 +1860,11 @@ func (o EnvVarKeyValueGenerateValuePtrOutput) ToStringPtrOutputWithContext(ctx c
 	}).(pulumi.StringPtrOutput)
 }
 
-// EnvVarKeyValueGenerateValueInput is an input type that accepts EnvVarKeyValueGenerateValueArgs and EnvVarKeyValueGenerateValueOutput values.
-// You can construct a concrete instance of `EnvVarKeyValueGenerateValueInput` via:
+// EnvVarKeyValueGenerateValueInput is an input type that accepts values of the EnvVarKeyValueGenerateValue enum
+// A concrete instance of `EnvVarKeyValueGenerateValueInput` can be one of the following:
 //
-//	EnvVarKeyValueGenerateValueArgs{...}
+//	EnvVarKeyValueGenerateValueYes
+//	EnvVarKeyValueGenerateValueNo
 type EnvVarKeyValueGenerateValueInput interface {
 	pulumi.Input
 
@@ -2071,12 +1897,6 @@ func (in *envVarKeyValueGenerateValuePtr) ToEnvVarKeyValueGenerateValuePtrOutput
 
 func (in *envVarKeyValueGenerateValuePtr) ToEnvVarKeyValueGenerateValuePtrOutputWithContext(ctx context.Context) EnvVarKeyValueGenerateValuePtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(EnvVarKeyValueGenerateValuePtrOutput)
-}
-
-func (in *envVarKeyValueGenerateValuePtr) ToOutput(ctx context.Context) pulumix.Output[*EnvVarKeyValueGenerateValue] {
-	return pulumix.Output[*EnvVarKeyValueGenerateValue]{
-		OutputState: in.ToEnvVarKeyValueGenerateValuePtrOutputWithContext(ctx).OutputState,
-	}
 }
 
 type OpenPortsProtocol string
@@ -2146,12 +1966,6 @@ func (o OpenPortsProtocolOutput) ToOpenPortsProtocolPtrOutputWithContext(ctx con
 	}).(OpenPortsProtocolPtrOutput)
 }
 
-func (o OpenPortsProtocolOutput) ToOutput(ctx context.Context) pulumix.Output[OpenPortsProtocol] {
-	return pulumix.Output[OpenPortsProtocol]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o OpenPortsProtocolOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -2187,12 +2001,6 @@ func (o OpenPortsProtocolPtrOutput) ToOpenPortsProtocolPtrOutputWithContext(ctx 
 	return o
 }
 
-func (o OpenPortsProtocolPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*OpenPortsProtocol] {
-	return pulumix.Output[*OpenPortsProtocol]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o OpenPortsProtocolPtrOutput) Elem() OpenPortsProtocolOutput {
 	return o.ApplyT(func(v *OpenPortsProtocol) OpenPortsProtocol {
 		if v != nil {
@@ -2217,10 +2025,11 @@ func (o OpenPortsProtocolPtrOutput) ToStringPtrOutputWithContext(ctx context.Con
 	}).(pulumi.StringPtrOutput)
 }
 
-// OpenPortsProtocolInput is an input type that accepts OpenPortsProtocolArgs and OpenPortsProtocolOutput values.
-// You can construct a concrete instance of `OpenPortsProtocolInput` via:
+// OpenPortsProtocolInput is an input type that accepts values of the OpenPortsProtocol enum
+// A concrete instance of `OpenPortsProtocolInput` can be one of the following:
 //
-//	OpenPortsProtocolArgs{...}
+//	OpenPortsProtocolTcp
+//	OpenPortsProtocolUdp
 type OpenPortsProtocolInput interface {
 	pulumi.Input
 
@@ -2253,12 +2062,6 @@ func (in *openPortsProtocolPtr) ToOpenPortsProtocolPtrOutput() OpenPortsProtocol
 
 func (in *openPortsProtocolPtr) ToOpenPortsProtocolPtrOutputWithContext(ctx context.Context) OpenPortsProtocolPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(OpenPortsProtocolPtrOutput)
-}
-
-func (in *openPortsProtocolPtr) ToOutput(ctx context.Context) pulumix.Output[*OpenPortsProtocol] {
-	return pulumix.Output[*OpenPortsProtocol]{
-		OutputState: in.ToOpenPortsProtocolPtrOutputWithContext(ctx).OutputState,
-	}
 }
 
 type PrivateServiceDetailsEnv string
@@ -2333,12 +2136,6 @@ func (o PrivateServiceDetailsEnvOutput) ToPrivateServiceDetailsEnvPtrOutputWithC
 	}).(PrivateServiceDetailsEnvPtrOutput)
 }
 
-func (o PrivateServiceDetailsEnvOutput) ToOutput(ctx context.Context) pulumix.Output[PrivateServiceDetailsEnv] {
-	return pulumix.Output[PrivateServiceDetailsEnv]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o PrivateServiceDetailsEnvOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -2374,12 +2171,6 @@ func (o PrivateServiceDetailsEnvPtrOutput) ToPrivateServiceDetailsEnvPtrOutputWi
 	return o
 }
 
-func (o PrivateServiceDetailsEnvPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*PrivateServiceDetailsEnv] {
-	return pulumix.Output[*PrivateServiceDetailsEnv]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o PrivateServiceDetailsEnvPtrOutput) Elem() PrivateServiceDetailsEnvOutput {
 	return o.ApplyT(func(v *PrivateServiceDetailsEnv) PrivateServiceDetailsEnv {
 		if v != nil {
@@ -2404,10 +2195,16 @@ func (o PrivateServiceDetailsEnvPtrOutput) ToStringPtrOutputWithContext(ctx cont
 	}).(pulumi.StringPtrOutput)
 }
 
-// PrivateServiceDetailsEnvInput is an input type that accepts PrivateServiceDetailsEnvArgs and PrivateServiceDetailsEnvOutput values.
-// You can construct a concrete instance of `PrivateServiceDetailsEnvInput` via:
+// PrivateServiceDetailsEnvInput is an input type that accepts values of the PrivateServiceDetailsEnv enum
+// A concrete instance of `PrivateServiceDetailsEnvInput` can be one of the following:
 //
-//	PrivateServiceDetailsEnvArgs{...}
+//	PrivateServiceDetailsEnvDocker
+//	PrivateServiceDetailsEnvElixir
+//	PrivateServiceDetailsEnvGo
+//	PrivateServiceDetailsEnvNode
+//	PrivateServiceDetailsEnvPython
+//	PrivateServiceDetailsEnvRuby
+//	PrivateServiceDetailsEnvRust
 type PrivateServiceDetailsEnvInput interface {
 	pulumi.Input
 
@@ -2440,12 +2237,6 @@ func (in *privateServiceDetailsEnvPtr) ToPrivateServiceDetailsEnvPtrOutput() Pri
 
 func (in *privateServiceDetailsEnvPtr) ToPrivateServiceDetailsEnvPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsEnvPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(PrivateServiceDetailsEnvPtrOutput)
-}
-
-func (in *privateServiceDetailsEnvPtr) ToOutput(ctx context.Context) pulumix.Output[*PrivateServiceDetailsEnv] {
-	return pulumix.Output[*PrivateServiceDetailsEnv]{
-		OutputState: in.ToPrivateServiceDetailsEnvPtrOutputWithContext(ctx).OutputState,
-	}
 }
 
 type PrivateServiceDetailsPlan string
@@ -2521,12 +2312,6 @@ func (o PrivateServiceDetailsPlanOutput) ToPrivateServiceDetailsPlanPtrOutputWit
 	}).(PrivateServiceDetailsPlanPtrOutput)
 }
 
-func (o PrivateServiceDetailsPlanOutput) ToOutput(ctx context.Context) pulumix.Output[PrivateServiceDetailsPlan] {
-	return pulumix.Output[PrivateServiceDetailsPlan]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o PrivateServiceDetailsPlanOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -2562,12 +2347,6 @@ func (o PrivateServiceDetailsPlanPtrOutput) ToPrivateServiceDetailsPlanPtrOutput
 	return o
 }
 
-func (o PrivateServiceDetailsPlanPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*PrivateServiceDetailsPlan] {
-	return pulumix.Output[*PrivateServiceDetailsPlan]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o PrivateServiceDetailsPlanPtrOutput) Elem() PrivateServiceDetailsPlanOutput {
 	return o.ApplyT(func(v *PrivateServiceDetailsPlan) PrivateServiceDetailsPlan {
 		if v != nil {
@@ -2592,10 +2371,17 @@ func (o PrivateServiceDetailsPlanPtrOutput) ToStringPtrOutputWithContext(ctx con
 	}).(pulumi.StringPtrOutput)
 }
 
-// PrivateServiceDetailsPlanInput is an input type that accepts PrivateServiceDetailsPlanArgs and PrivateServiceDetailsPlanOutput values.
-// You can construct a concrete instance of `PrivateServiceDetailsPlanInput` via:
+// PrivateServiceDetailsPlanInput is an input type that accepts values of the PrivateServiceDetailsPlan enum
+// A concrete instance of `PrivateServiceDetailsPlanInput` can be one of the following:
 //
-//	PrivateServiceDetailsPlanArgs{...}
+//	PrivateServiceDetailsPlanStarter
+//	PrivateServiceDetailsPlanStarterPlus
+//	PrivateServiceDetailsPlanStandard
+//	PrivateServiceDetailsPlanStandardPlus
+//	PrivateServiceDetailsPlanPro
+//	PrivateServiceDetailsPlanProPlus
+//	PrivateServiceDetailsPlanProMax
+//	PrivateServiceDetailsPlanProUltra
 type PrivateServiceDetailsPlanInput interface {
 	pulumi.Input
 
@@ -2628,12 +2414,6 @@ func (in *privateServiceDetailsPlanPtr) ToPrivateServiceDetailsPlanPtrOutput() P
 
 func (in *privateServiceDetailsPlanPtr) ToPrivateServiceDetailsPlanPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsPlanPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(PrivateServiceDetailsPlanPtrOutput)
-}
-
-func (in *privateServiceDetailsPlanPtr) ToOutput(ctx context.Context) pulumix.Output[*PrivateServiceDetailsPlan] {
-	return pulumix.Output[*PrivateServiceDetailsPlan]{
-		OutputState: in.ToPrivateServiceDetailsPlanPtrOutputWithContext(ctx).OutputState,
-	}
 }
 
 type PrivateServiceDetailsPullRequestPreviewsEnabled string
@@ -2703,12 +2483,6 @@ func (o PrivateServiceDetailsPullRequestPreviewsEnabledOutput) ToPrivateServiceD
 	}).(PrivateServiceDetailsPullRequestPreviewsEnabledPtrOutput)
 }
 
-func (o PrivateServiceDetailsPullRequestPreviewsEnabledOutput) ToOutput(ctx context.Context) pulumix.Output[PrivateServiceDetailsPullRequestPreviewsEnabled] {
-	return pulumix.Output[PrivateServiceDetailsPullRequestPreviewsEnabled]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o PrivateServiceDetailsPullRequestPreviewsEnabledOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -2744,12 +2518,6 @@ func (o PrivateServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToPrivateServi
 	return o
 }
 
-func (o PrivateServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*PrivateServiceDetailsPullRequestPreviewsEnabled] {
-	return pulumix.Output[*PrivateServiceDetailsPullRequestPreviewsEnabled]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o PrivateServiceDetailsPullRequestPreviewsEnabledPtrOutput) Elem() PrivateServiceDetailsPullRequestPreviewsEnabledOutput {
 	return o.ApplyT(func(v *PrivateServiceDetailsPullRequestPreviewsEnabled) PrivateServiceDetailsPullRequestPreviewsEnabled {
 		if v != nil {
@@ -2774,10 +2542,11 @@ func (o PrivateServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToStringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
-// PrivateServiceDetailsPullRequestPreviewsEnabledInput is an input type that accepts PrivateServiceDetailsPullRequestPreviewsEnabledArgs and PrivateServiceDetailsPullRequestPreviewsEnabledOutput values.
-// You can construct a concrete instance of `PrivateServiceDetailsPullRequestPreviewsEnabledInput` via:
+// PrivateServiceDetailsPullRequestPreviewsEnabledInput is an input type that accepts values of the PrivateServiceDetailsPullRequestPreviewsEnabled enum
+// A concrete instance of `PrivateServiceDetailsPullRequestPreviewsEnabledInput` can be one of the following:
 //
-//	PrivateServiceDetailsPullRequestPreviewsEnabledArgs{...}
+//	PrivateServiceDetailsPullRequestPreviewsEnabledYes
+//	PrivateServiceDetailsPullRequestPreviewsEnabledNo
 type PrivateServiceDetailsPullRequestPreviewsEnabledInput interface {
 	pulumi.Input
 
@@ -2810,12 +2579,6 @@ func (in *privateServiceDetailsPullRequestPreviewsEnabledPtr) ToPrivateServiceDe
 
 func (in *privateServiceDetailsPullRequestPreviewsEnabledPtr) ToPrivateServiceDetailsPullRequestPreviewsEnabledPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsPullRequestPreviewsEnabledPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(PrivateServiceDetailsPullRequestPreviewsEnabledPtrOutput)
-}
-
-func (in *privateServiceDetailsPullRequestPreviewsEnabledPtr) ToOutput(ctx context.Context) pulumix.Output[*PrivateServiceDetailsPullRequestPreviewsEnabled] {
-	return pulumix.Output[*PrivateServiceDetailsPullRequestPreviewsEnabled]{
-		OutputState: in.ToPrivateServiceDetailsPullRequestPreviewsEnabledPtrOutputWithContext(ctx).OutputState,
-	}
 }
 
 type PrivateServiceDetailsRegion string
@@ -2885,12 +2648,6 @@ func (o PrivateServiceDetailsRegionOutput) ToPrivateServiceDetailsRegionPtrOutpu
 	}).(PrivateServiceDetailsRegionPtrOutput)
 }
 
-func (o PrivateServiceDetailsRegionOutput) ToOutput(ctx context.Context) pulumix.Output[PrivateServiceDetailsRegion] {
-	return pulumix.Output[PrivateServiceDetailsRegion]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o PrivateServiceDetailsRegionOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -2926,12 +2683,6 @@ func (o PrivateServiceDetailsRegionPtrOutput) ToPrivateServiceDetailsRegionPtrOu
 	return o
 }
 
-func (o PrivateServiceDetailsRegionPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*PrivateServiceDetailsRegion] {
-	return pulumix.Output[*PrivateServiceDetailsRegion]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o PrivateServiceDetailsRegionPtrOutput) Elem() PrivateServiceDetailsRegionOutput {
 	return o.ApplyT(func(v *PrivateServiceDetailsRegion) PrivateServiceDetailsRegion {
 		if v != nil {
@@ -2956,10 +2707,11 @@ func (o PrivateServiceDetailsRegionPtrOutput) ToStringPtrOutputWithContext(ctx c
 	}).(pulumi.StringPtrOutput)
 }
 
-// PrivateServiceDetailsRegionInput is an input type that accepts PrivateServiceDetailsRegionArgs and PrivateServiceDetailsRegionOutput values.
-// You can construct a concrete instance of `PrivateServiceDetailsRegionInput` via:
+// PrivateServiceDetailsRegionInput is an input type that accepts values of the PrivateServiceDetailsRegion enum
+// A concrete instance of `PrivateServiceDetailsRegionInput` can be one of the following:
 //
-//	PrivateServiceDetailsRegionArgs{...}
+//	PrivateServiceDetailsRegionOregon
+//	PrivateServiceDetailsRegionFrankfurt
 type PrivateServiceDetailsRegionInput interface {
 	pulumi.Input
 
@@ -2992,12 +2744,6 @@ func (in *privateServiceDetailsRegionPtr) ToPrivateServiceDetailsRegionPtrOutput
 
 func (in *privateServiceDetailsRegionPtr) ToPrivateServiceDetailsRegionPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsRegionPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(PrivateServiceDetailsRegionPtrOutput)
-}
-
-func (in *privateServiceDetailsRegionPtr) ToOutput(ctx context.Context) pulumix.Output[*PrivateServiceDetailsRegion] {
-	return pulumix.Output[*PrivateServiceDetailsRegion]{
-		OutputState: in.ToPrivateServiceDetailsRegionPtrOutputWithContext(ctx).OutputState,
-	}
 }
 
 // Whether to auto deploy the service or not upon git push.
@@ -3068,12 +2814,6 @@ func (o ServiceAutoDeployOutput) ToServiceAutoDeployPtrOutputWithContext(ctx con
 	}).(ServiceAutoDeployPtrOutput)
 }
 
-func (o ServiceAutoDeployOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceAutoDeploy] {
-	return pulumix.Output[ServiceAutoDeploy]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ServiceAutoDeployOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -3109,12 +2849,6 @@ func (o ServiceAutoDeployPtrOutput) ToServiceAutoDeployPtrOutputWithContext(ctx 
 	return o
 }
 
-func (o ServiceAutoDeployPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ServiceAutoDeploy] {
-	return pulumix.Output[*ServiceAutoDeploy]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ServiceAutoDeployPtrOutput) Elem() ServiceAutoDeployOutput {
 	return o.ApplyT(func(v *ServiceAutoDeploy) ServiceAutoDeploy {
 		if v != nil {
@@ -3139,10 +2873,11 @@ func (o ServiceAutoDeployPtrOutput) ToStringPtrOutputWithContext(ctx context.Con
 	}).(pulumi.StringPtrOutput)
 }
 
-// ServiceAutoDeployInput is an input type that accepts ServiceAutoDeployArgs and ServiceAutoDeployOutput values.
-// You can construct a concrete instance of `ServiceAutoDeployInput` via:
+// ServiceAutoDeployInput is an input type that accepts values of the ServiceAutoDeploy enum
+// A concrete instance of `ServiceAutoDeployInput` can be one of the following:
 //
-//	ServiceAutoDeployArgs{...}
+//	ServiceAutoDeployYes
+//	ServiceAutoDeployNo
 type ServiceAutoDeployInput interface {
 	pulumi.Input
 
@@ -3175,12 +2910,6 @@ func (in *serviceAutoDeployPtr) ToServiceAutoDeployPtrOutput() ServiceAutoDeploy
 
 func (in *serviceAutoDeployPtr) ToServiceAutoDeployPtrOutputWithContext(ctx context.Context) ServiceAutoDeployPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(ServiceAutoDeployPtrOutput)
-}
-
-func (in *serviceAutoDeployPtr) ToOutput(ctx context.Context) pulumix.Output[*ServiceAutoDeploy] {
-	return pulumix.Output[*ServiceAutoDeploy]{
-		OutputState: in.ToServiceAutoDeployPtrOutputWithContext(ctx).OutputState,
-	}
 }
 
 // The notification setting for this service upon deployment failure.
@@ -3252,12 +2981,6 @@ func (o ServiceNotifyOnFailOutput) ToServiceNotifyOnFailPtrOutputWithContext(ctx
 	}).(ServiceNotifyOnFailPtrOutput)
 }
 
-func (o ServiceNotifyOnFailOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceNotifyOnFail] {
-	return pulumix.Output[ServiceNotifyOnFail]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ServiceNotifyOnFailOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -3293,12 +3016,6 @@ func (o ServiceNotifyOnFailPtrOutput) ToServiceNotifyOnFailPtrOutputWithContext(
 	return o
 }
 
-func (o ServiceNotifyOnFailPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ServiceNotifyOnFail] {
-	return pulumix.Output[*ServiceNotifyOnFail]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ServiceNotifyOnFailPtrOutput) Elem() ServiceNotifyOnFailOutput {
 	return o.ApplyT(func(v *ServiceNotifyOnFail) ServiceNotifyOnFail {
 		if v != nil {
@@ -3323,10 +3040,12 @@ func (o ServiceNotifyOnFailPtrOutput) ToStringPtrOutputWithContext(ctx context.C
 	}).(pulumi.StringPtrOutput)
 }
 
-// ServiceNotifyOnFailInput is an input type that accepts ServiceNotifyOnFailArgs and ServiceNotifyOnFailOutput values.
-// You can construct a concrete instance of `ServiceNotifyOnFailInput` via:
+// ServiceNotifyOnFailInput is an input type that accepts values of the ServiceNotifyOnFail enum
+// A concrete instance of `ServiceNotifyOnFailInput` can be one of the following:
 //
-//	ServiceNotifyOnFailArgs{...}
+//	ServiceNotifyOnFailDefault
+//	ServiceNotifyOnFailNotify
+//	ServiceNotifyOnFailIgnore
 type ServiceNotifyOnFailInput interface {
 	pulumi.Input
 
@@ -3359,12 +3078,6 @@ func (in *serviceNotifyOnFailPtr) ToServiceNotifyOnFailPtrOutput() ServiceNotify
 
 func (in *serviceNotifyOnFailPtr) ToServiceNotifyOnFailPtrOutputWithContext(ctx context.Context) ServiceNotifyOnFailPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(ServiceNotifyOnFailPtrOutput)
-}
-
-func (in *serviceNotifyOnFailPtr) ToOutput(ctx context.Context) pulumix.Output[*ServiceNotifyOnFail] {
-	return pulumix.Output[*ServiceNotifyOnFail]{
-		OutputState: in.ToServiceNotifyOnFailPtrOutputWithContext(ctx).OutputState,
-	}
 }
 
 type ServiceSuspended string
@@ -3434,12 +3147,6 @@ func (o ServiceSuspendedOutput) ToServiceSuspendedPtrOutputWithContext(ctx conte
 	}).(ServiceSuspendedPtrOutput)
 }
 
-func (o ServiceSuspendedOutput) ToOutput(ctx context.Context) pulumix.Output[ServiceSuspended] {
-	return pulumix.Output[ServiceSuspended]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ServiceSuspendedOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -3475,12 +3182,6 @@ func (o ServiceSuspendedPtrOutput) ToServiceSuspendedPtrOutputWithContext(ctx co
 	return o
 }
 
-func (o ServiceSuspendedPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ServiceSuspended] {
-	return pulumix.Output[*ServiceSuspended]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ServiceSuspendedPtrOutput) Elem() ServiceSuspendedOutput {
 	return o.ApplyT(func(v *ServiceSuspended) ServiceSuspended {
 		if v != nil {
@@ -3505,10 +3206,11 @@ func (o ServiceSuspendedPtrOutput) ToStringPtrOutputWithContext(ctx context.Cont
 	}).(pulumi.StringPtrOutput)
 }
 
-// ServiceSuspendedInput is an input type that accepts ServiceSuspendedArgs and ServiceSuspendedOutput values.
-// You can construct a concrete instance of `ServiceSuspendedInput` via:
+// ServiceSuspendedInput is an input type that accepts values of the ServiceSuspended enum
+// A concrete instance of `ServiceSuspendedInput` can be one of the following:
 //
-//	ServiceSuspendedArgs{...}
+//	ServiceSuspendedSuspended
+//	ServiceSuspendedNotSuspended
 type ServiceSuspendedInput interface {
 	pulumi.Input
 
@@ -3541,12 +3243,6 @@ func (in *serviceSuspendedPtr) ToServiceSuspendedPtrOutput() ServiceSuspendedPtr
 
 func (in *serviceSuspendedPtr) ToServiceSuspendedPtrOutputWithContext(ctx context.Context) ServiceSuspendedPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(ServiceSuspendedPtrOutput)
-}
-
-func (in *serviceSuspendedPtr) ToOutput(ctx context.Context) pulumix.Output[*ServiceSuspended] {
-	return pulumix.Output[*ServiceSuspended]{
-		OutputState: in.ToServiceSuspendedPtrOutputWithContext(ctx).OutputState,
-	}
 }
 
 type StaticSiteRouteType string
@@ -3616,12 +3312,6 @@ func (o StaticSiteRouteTypeOutput) ToStaticSiteRouteTypePtrOutputWithContext(ctx
 	}).(StaticSiteRouteTypePtrOutput)
 }
 
-func (o StaticSiteRouteTypeOutput) ToOutput(ctx context.Context) pulumix.Output[StaticSiteRouteType] {
-	return pulumix.Output[StaticSiteRouteType]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o StaticSiteRouteTypeOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -3657,12 +3347,6 @@ func (o StaticSiteRouteTypePtrOutput) ToStaticSiteRouteTypePtrOutputWithContext(
 	return o
 }
 
-func (o StaticSiteRouteTypePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*StaticSiteRouteType] {
-	return pulumix.Output[*StaticSiteRouteType]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o StaticSiteRouteTypePtrOutput) Elem() StaticSiteRouteTypeOutput {
 	return o.ApplyT(func(v *StaticSiteRouteType) StaticSiteRouteType {
 		if v != nil {
@@ -3687,10 +3371,11 @@ func (o StaticSiteRouteTypePtrOutput) ToStringPtrOutputWithContext(ctx context.C
 	}).(pulumi.StringPtrOutput)
 }
 
-// StaticSiteRouteTypeInput is an input type that accepts StaticSiteRouteTypeArgs and StaticSiteRouteTypeOutput values.
-// You can construct a concrete instance of `StaticSiteRouteTypeInput` via:
+// StaticSiteRouteTypeInput is an input type that accepts values of the StaticSiteRouteType enum
+// A concrete instance of `StaticSiteRouteTypeInput` can be one of the following:
 //
-//	StaticSiteRouteTypeArgs{...}
+//	StaticSiteRouteTypeRedirect
+//	StaticSiteRouteTypeRewrite
 type StaticSiteRouteTypeInput interface {
 	pulumi.Input
 
@@ -3723,12 +3408,6 @@ func (in *staticSiteRouteTypePtr) ToStaticSiteRouteTypePtrOutput() StaticSiteRou
 
 func (in *staticSiteRouteTypePtr) ToStaticSiteRouteTypePtrOutputWithContext(ctx context.Context) StaticSiteRouteTypePtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(StaticSiteRouteTypePtrOutput)
-}
-
-func (in *staticSiteRouteTypePtr) ToOutput(ctx context.Context) pulumix.Output[*StaticSiteRouteType] {
-	return pulumix.Output[*StaticSiteRouteType]{
-		OutputState: in.ToStaticSiteRouteTypePtrOutputWithContext(ctx).OutputState,
-	}
 }
 
 type StaticSiteServiceDetailsPullRequestPreviewsEnabled string
@@ -3798,12 +3477,6 @@ func (o StaticSiteServiceDetailsPullRequestPreviewsEnabledOutput) ToStaticSiteSe
 	}).(StaticSiteServiceDetailsPullRequestPreviewsEnabledPtrOutput)
 }
 
-func (o StaticSiteServiceDetailsPullRequestPreviewsEnabledOutput) ToOutput(ctx context.Context) pulumix.Output[StaticSiteServiceDetailsPullRequestPreviewsEnabled] {
-	return pulumix.Output[StaticSiteServiceDetailsPullRequestPreviewsEnabled]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o StaticSiteServiceDetailsPullRequestPreviewsEnabledOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -3839,12 +3512,6 @@ func (o StaticSiteServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToStaticSit
 	return o
 }
 
-func (o StaticSiteServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*StaticSiteServiceDetailsPullRequestPreviewsEnabled] {
-	return pulumix.Output[*StaticSiteServiceDetailsPullRequestPreviewsEnabled]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o StaticSiteServiceDetailsPullRequestPreviewsEnabledPtrOutput) Elem() StaticSiteServiceDetailsPullRequestPreviewsEnabledOutput {
 	return o.ApplyT(func(v *StaticSiteServiceDetailsPullRequestPreviewsEnabled) StaticSiteServiceDetailsPullRequestPreviewsEnabled {
 		if v != nil {
@@ -3869,10 +3536,11 @@ func (o StaticSiteServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToStringPtr
 	}).(pulumi.StringPtrOutput)
 }
 
-// StaticSiteServiceDetailsPullRequestPreviewsEnabledInput is an input type that accepts StaticSiteServiceDetailsPullRequestPreviewsEnabledArgs and StaticSiteServiceDetailsPullRequestPreviewsEnabledOutput values.
-// You can construct a concrete instance of `StaticSiteServiceDetailsPullRequestPreviewsEnabledInput` via:
+// StaticSiteServiceDetailsPullRequestPreviewsEnabledInput is an input type that accepts values of the StaticSiteServiceDetailsPullRequestPreviewsEnabled enum
+// A concrete instance of `StaticSiteServiceDetailsPullRequestPreviewsEnabledInput` can be one of the following:
 //
-//	StaticSiteServiceDetailsPullRequestPreviewsEnabledArgs{...}
+//	StaticSiteServiceDetailsPullRequestPreviewsEnabledYes
+//	StaticSiteServiceDetailsPullRequestPreviewsEnabledNo
 type StaticSiteServiceDetailsPullRequestPreviewsEnabledInput interface {
 	pulumi.Input
 
@@ -3907,12 +3575,6 @@ func (in *staticSiteServiceDetailsPullRequestPreviewsEnabledPtr) ToStaticSiteSer
 	return pulumi.ToOutputWithContext(ctx, in).(StaticSiteServiceDetailsPullRequestPreviewsEnabledPtrOutput)
 }
 
-func (in *staticSiteServiceDetailsPullRequestPreviewsEnabledPtr) ToOutput(ctx context.Context) pulumix.Output[*StaticSiteServiceDetailsPullRequestPreviewsEnabled] {
-	return pulumix.Output[*StaticSiteServiceDetailsPullRequestPreviewsEnabled]{
-		OutputState: in.ToStaticSiteServiceDetailsPullRequestPreviewsEnabledPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type VerificationStatus string
 
 const (
@@ -3942,12 +3604,6 @@ func (o VerificationStatusOutput) ToVerificationStatusPtrOutputWithContext(ctx c
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v VerificationStatus) *VerificationStatus {
 		return &v
 	}).(VerificationStatusPtrOutput)
-}
-
-func (o VerificationStatusOutput) ToOutput(ctx context.Context) pulumix.Output[VerificationStatus] {
-	return pulumix.Output[VerificationStatus]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VerificationStatusOutput) ToStringOutput() pulumi.StringOutput {
@@ -3983,12 +3639,6 @@ func (o VerificationStatusPtrOutput) ToVerificationStatusPtrOutput() Verificatio
 
 func (o VerificationStatusPtrOutput) ToVerificationStatusPtrOutputWithContext(ctx context.Context) VerificationStatusPtrOutput {
 	return o
-}
-
-func (o VerificationStatusPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*VerificationStatus] {
-	return pulumix.Output[*VerificationStatus]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o VerificationStatusPtrOutput) Elem() VerificationStatusOutput {
@@ -4087,12 +3737,6 @@ func (o WebServiceServiceDetailsEnvOutput) ToWebServiceServiceDetailsEnvPtrOutpu
 	}).(WebServiceServiceDetailsEnvPtrOutput)
 }
 
-func (o WebServiceServiceDetailsEnvOutput) ToOutput(ctx context.Context) pulumix.Output[WebServiceServiceDetailsEnv] {
-	return pulumix.Output[WebServiceServiceDetailsEnv]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WebServiceServiceDetailsEnvOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -4128,12 +3772,6 @@ func (o WebServiceServiceDetailsEnvPtrOutput) ToWebServiceServiceDetailsEnvPtrOu
 	return o
 }
 
-func (o WebServiceServiceDetailsEnvPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WebServiceServiceDetailsEnv] {
-	return pulumix.Output[*WebServiceServiceDetailsEnv]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WebServiceServiceDetailsEnvPtrOutput) Elem() WebServiceServiceDetailsEnvOutput {
 	return o.ApplyT(func(v *WebServiceServiceDetailsEnv) WebServiceServiceDetailsEnv {
 		if v != nil {
@@ -4158,10 +3796,16 @@ func (o WebServiceServiceDetailsEnvPtrOutput) ToStringPtrOutputWithContext(ctx c
 	}).(pulumi.StringPtrOutput)
 }
 
-// WebServiceServiceDetailsEnvInput is an input type that accepts WebServiceServiceDetailsEnvArgs and WebServiceServiceDetailsEnvOutput values.
-// You can construct a concrete instance of `WebServiceServiceDetailsEnvInput` via:
+// WebServiceServiceDetailsEnvInput is an input type that accepts values of the WebServiceServiceDetailsEnv enum
+// A concrete instance of `WebServiceServiceDetailsEnvInput` can be one of the following:
 //
-//	WebServiceServiceDetailsEnvArgs{...}
+//	WebServiceServiceDetailsEnvDocker
+//	WebServiceServiceDetailsEnvElixir
+//	WebServiceServiceDetailsEnvGo
+//	WebServiceServiceDetailsEnvNode
+//	WebServiceServiceDetailsEnvPython
+//	WebServiceServiceDetailsEnvRuby
+//	WebServiceServiceDetailsEnvRust
 type WebServiceServiceDetailsEnvInput interface {
 	pulumi.Input
 
@@ -4194,12 +3838,6 @@ func (in *webServiceServiceDetailsEnvPtr) ToWebServiceServiceDetailsEnvPtrOutput
 
 func (in *webServiceServiceDetailsEnvPtr) ToWebServiceServiceDetailsEnvPtrOutputWithContext(ctx context.Context) WebServiceServiceDetailsEnvPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(WebServiceServiceDetailsEnvPtrOutput)
-}
-
-func (in *webServiceServiceDetailsEnvPtr) ToOutput(ctx context.Context) pulumix.Output[*WebServiceServiceDetailsEnv] {
-	return pulumix.Output[*WebServiceServiceDetailsEnv]{
-		OutputState: in.ToWebServiceServiceDetailsEnvPtrOutputWithContext(ctx).OutputState,
-	}
 }
 
 type WebServiceServiceDetailsPlan string
@@ -4275,12 +3913,6 @@ func (o WebServiceServiceDetailsPlanOutput) ToWebServiceServiceDetailsPlanPtrOut
 	}).(WebServiceServiceDetailsPlanPtrOutput)
 }
 
-func (o WebServiceServiceDetailsPlanOutput) ToOutput(ctx context.Context) pulumix.Output[WebServiceServiceDetailsPlan] {
-	return pulumix.Output[WebServiceServiceDetailsPlan]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WebServiceServiceDetailsPlanOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -4316,12 +3948,6 @@ func (o WebServiceServiceDetailsPlanPtrOutput) ToWebServiceServiceDetailsPlanPtr
 	return o
 }
 
-func (o WebServiceServiceDetailsPlanPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WebServiceServiceDetailsPlan] {
-	return pulumix.Output[*WebServiceServiceDetailsPlan]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WebServiceServiceDetailsPlanPtrOutput) Elem() WebServiceServiceDetailsPlanOutput {
 	return o.ApplyT(func(v *WebServiceServiceDetailsPlan) WebServiceServiceDetailsPlan {
 		if v != nil {
@@ -4346,10 +3972,17 @@ func (o WebServiceServiceDetailsPlanPtrOutput) ToStringPtrOutputWithContext(ctx 
 	}).(pulumi.StringPtrOutput)
 }
 
-// WebServiceServiceDetailsPlanInput is an input type that accepts WebServiceServiceDetailsPlanArgs and WebServiceServiceDetailsPlanOutput values.
-// You can construct a concrete instance of `WebServiceServiceDetailsPlanInput` via:
+// WebServiceServiceDetailsPlanInput is an input type that accepts values of the WebServiceServiceDetailsPlan enum
+// A concrete instance of `WebServiceServiceDetailsPlanInput` can be one of the following:
 //
-//	WebServiceServiceDetailsPlanArgs{...}
+//	WebServiceServiceDetailsPlanStarter
+//	WebServiceServiceDetailsPlanStarterPlus
+//	WebServiceServiceDetailsPlanStandard
+//	WebServiceServiceDetailsPlanStandardPlus
+//	WebServiceServiceDetailsPlanPro
+//	WebServiceServiceDetailsPlanProPlus
+//	WebServiceServiceDetailsPlanProMax
+//	WebServiceServiceDetailsPlanProUltra
 type WebServiceServiceDetailsPlanInput interface {
 	pulumi.Input
 
@@ -4382,12 +4015,6 @@ func (in *webServiceServiceDetailsPlanPtr) ToWebServiceServiceDetailsPlanPtrOutp
 
 func (in *webServiceServiceDetailsPlanPtr) ToWebServiceServiceDetailsPlanPtrOutputWithContext(ctx context.Context) WebServiceServiceDetailsPlanPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(WebServiceServiceDetailsPlanPtrOutput)
-}
-
-func (in *webServiceServiceDetailsPlanPtr) ToOutput(ctx context.Context) pulumix.Output[*WebServiceServiceDetailsPlan] {
-	return pulumix.Output[*WebServiceServiceDetailsPlan]{
-		OutputState: in.ToWebServiceServiceDetailsPlanPtrOutputWithContext(ctx).OutputState,
-	}
 }
 
 type WebServiceServiceDetailsPullRequestPreviewsEnabled string
@@ -4457,12 +4084,6 @@ func (o WebServiceServiceDetailsPullRequestPreviewsEnabledOutput) ToWebServiceSe
 	}).(WebServiceServiceDetailsPullRequestPreviewsEnabledPtrOutput)
 }
 
-func (o WebServiceServiceDetailsPullRequestPreviewsEnabledOutput) ToOutput(ctx context.Context) pulumix.Output[WebServiceServiceDetailsPullRequestPreviewsEnabled] {
-	return pulumix.Output[WebServiceServiceDetailsPullRequestPreviewsEnabled]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WebServiceServiceDetailsPullRequestPreviewsEnabledOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -4498,12 +4119,6 @@ func (o WebServiceServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToWebServic
 	return o
 }
 
-func (o WebServiceServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WebServiceServiceDetailsPullRequestPreviewsEnabled] {
-	return pulumix.Output[*WebServiceServiceDetailsPullRequestPreviewsEnabled]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WebServiceServiceDetailsPullRequestPreviewsEnabledPtrOutput) Elem() WebServiceServiceDetailsPullRequestPreviewsEnabledOutput {
 	return o.ApplyT(func(v *WebServiceServiceDetailsPullRequestPreviewsEnabled) WebServiceServiceDetailsPullRequestPreviewsEnabled {
 		if v != nil {
@@ -4528,10 +4143,11 @@ func (o WebServiceServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToStringPtr
 	}).(pulumi.StringPtrOutput)
 }
 
-// WebServiceServiceDetailsPullRequestPreviewsEnabledInput is an input type that accepts WebServiceServiceDetailsPullRequestPreviewsEnabledArgs and WebServiceServiceDetailsPullRequestPreviewsEnabledOutput values.
-// You can construct a concrete instance of `WebServiceServiceDetailsPullRequestPreviewsEnabledInput` via:
+// WebServiceServiceDetailsPullRequestPreviewsEnabledInput is an input type that accepts values of the WebServiceServiceDetailsPullRequestPreviewsEnabled enum
+// A concrete instance of `WebServiceServiceDetailsPullRequestPreviewsEnabledInput` can be one of the following:
 //
-//	WebServiceServiceDetailsPullRequestPreviewsEnabledArgs{...}
+//	WebServiceServiceDetailsPullRequestPreviewsEnabledYes
+//	WebServiceServiceDetailsPullRequestPreviewsEnabledNo
 type WebServiceServiceDetailsPullRequestPreviewsEnabledInput interface {
 	pulumi.Input
 
@@ -4564,12 +4180,6 @@ func (in *webServiceServiceDetailsPullRequestPreviewsEnabledPtr) ToWebServiceSer
 
 func (in *webServiceServiceDetailsPullRequestPreviewsEnabledPtr) ToWebServiceServiceDetailsPullRequestPreviewsEnabledPtrOutputWithContext(ctx context.Context) WebServiceServiceDetailsPullRequestPreviewsEnabledPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(WebServiceServiceDetailsPullRequestPreviewsEnabledPtrOutput)
-}
-
-func (in *webServiceServiceDetailsPullRequestPreviewsEnabledPtr) ToOutput(ctx context.Context) pulumix.Output[*WebServiceServiceDetailsPullRequestPreviewsEnabled] {
-	return pulumix.Output[*WebServiceServiceDetailsPullRequestPreviewsEnabled]{
-		OutputState: in.ToWebServiceServiceDetailsPullRequestPreviewsEnabledPtrOutputWithContext(ctx).OutputState,
-	}
 }
 
 type WebServiceServiceDetailsRegion string
@@ -4639,12 +4249,6 @@ func (o WebServiceServiceDetailsRegionOutput) ToWebServiceServiceDetailsRegionPt
 	}).(WebServiceServiceDetailsRegionPtrOutput)
 }
 
-func (o WebServiceServiceDetailsRegionOutput) ToOutput(ctx context.Context) pulumix.Output[WebServiceServiceDetailsRegion] {
-	return pulumix.Output[WebServiceServiceDetailsRegion]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WebServiceServiceDetailsRegionOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -4680,12 +4284,6 @@ func (o WebServiceServiceDetailsRegionPtrOutput) ToWebServiceServiceDetailsRegio
 	return o
 }
 
-func (o WebServiceServiceDetailsRegionPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WebServiceServiceDetailsRegion] {
-	return pulumix.Output[*WebServiceServiceDetailsRegion]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o WebServiceServiceDetailsRegionPtrOutput) Elem() WebServiceServiceDetailsRegionOutput {
 	return o.ApplyT(func(v *WebServiceServiceDetailsRegion) WebServiceServiceDetailsRegion {
 		if v != nil {
@@ -4710,10 +4308,11 @@ func (o WebServiceServiceDetailsRegionPtrOutput) ToStringPtrOutputWithContext(ct
 	}).(pulumi.StringPtrOutput)
 }
 
-// WebServiceServiceDetailsRegionInput is an input type that accepts WebServiceServiceDetailsRegionArgs and WebServiceServiceDetailsRegionOutput values.
-// You can construct a concrete instance of `WebServiceServiceDetailsRegionInput` via:
+// WebServiceServiceDetailsRegionInput is an input type that accepts values of the WebServiceServiceDetailsRegion enum
+// A concrete instance of `WebServiceServiceDetailsRegionInput` can be one of the following:
 //
-//	WebServiceServiceDetailsRegionArgs{...}
+//	WebServiceServiceDetailsRegionOregon
+//	WebServiceServiceDetailsRegionFrankfurt
 type WebServiceServiceDetailsRegionInput interface {
 	pulumi.Input
 
@@ -4746,12 +4345,6 @@ func (in *webServiceServiceDetailsRegionPtr) ToWebServiceServiceDetailsRegionPtr
 
 func (in *webServiceServiceDetailsRegionPtr) ToWebServiceServiceDetailsRegionPtrOutputWithContext(ctx context.Context) WebServiceServiceDetailsRegionPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(WebServiceServiceDetailsRegionPtrOutput)
-}
-
-func (in *webServiceServiceDetailsRegionPtr) ToOutput(ctx context.Context) pulumix.Output[*WebServiceServiceDetailsRegion] {
-	return pulumix.Output[*WebServiceServiceDetailsRegion]{
-		OutputState: in.ToWebServiceServiceDetailsRegionPtrOutputWithContext(ctx).OutputState,
-	}
 }
 
 func init() {

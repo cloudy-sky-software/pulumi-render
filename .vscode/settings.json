@@ -8,5 +8,8 @@
   },
   "[go.work]": {
     "editor.defaultFormatter": "golang.go"
+  },
+  "[go]": {
+    "editor.defaultFormatter": "golang.go"
   }
 }

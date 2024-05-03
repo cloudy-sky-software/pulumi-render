@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['ScaleArgs', 'Scale']
@@ -20,20 +20,9 @@ class ScaleArgs:
         The set of arguments for constructing a Scale resource.
         :param pulumi.Input[str] service_id: (Required) The ID of the service
         """
-        ScaleArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            num_instances=num_instances,
-            service_id=service_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             num_instances: pulumi.Input[float],
-             service_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("num_instances", num_instances)
+        pulumi.set(__self__, "num_instances", num_instances)
         if service_id is not None:
-            _setter("service_id", service_id)
+            pulumi.set(__self__, "service_id", service_id)
 
     @property
     @pulumi.getter(name="numInstances")
@@ -89,10 +78,6 @@ class Scale(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            ScaleArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

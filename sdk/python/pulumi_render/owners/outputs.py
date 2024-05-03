@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
 from ._enums import *
@@ -24,21 +24,10 @@ class ListOwnersResponse(dict):
         """
         :param 'Owner' owner: The owner object represents an authorized user or team. The `type` property indicates if the owner is a user or team.
         """
-        ListOwnersResponse._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cursor=cursor,
-            owner=owner,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cursor: Optional[str] = None,
-             owner: Optional['outputs.Owner'] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
         if cursor is not None:
-            _setter("cursor", cursor)
+            pulumi.set(__self__, "cursor", cursor)
         if owner is not None:
-            _setter("owner", owner)
+            pulumi.set(__self__, "owner", owner)
 
     @property
     @pulumi.getter
@@ -71,29 +60,14 @@ class Owner(dict):
         :param str name: The name of the owner.
         :param 'OwnerType' type: The type of the authorized user.
         """
-        Owner._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            email=email,
-            id=id,
-            name=name,
-            type=type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             email: Optional[str] = None,
-             id: Optional[str] = None,
-             name: Optional[str] = None,
-             type: Optional['OwnerType'] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
         if email is not None:
-            _setter("email", email)
+            pulumi.set(__self__, "email", email)
         if id is not None:
-            _setter("id", id)
+            pulumi.set(__self__, "id", id)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if type is not None:
-            _setter("type", type)
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter

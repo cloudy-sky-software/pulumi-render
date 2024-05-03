@@ -6,38 +6,25 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
-__all__ = ['JobArgs', 'Job']
+__all__ = ['JobsArgs', 'Jobs']
 
 @pulumi.input_type
-class JobArgs:
+class JobsArgs:
     def __init__(__self__, *,
                  plan_id: pulumi.Input[str],
                  start_command: pulumi.Input[str],
                  service_id: Optional[pulumi.Input[str]] = None):
         """
-        The set of arguments for constructing a Job resource.
+        The set of arguments for constructing a Jobs resource.
         :param pulumi.Input[str] service_id: (Required) The ID of the service
         """
-        JobArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            plan_id=plan_id,
-            start_command=start_command,
-            service_id=service_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             plan_id: pulumi.Input[str],
-             start_command: pulumi.Input[str],
-             service_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("plan_id", plan_id)
-        _setter("start_command", start_command)
+        pulumi.set(__self__, "plan_id", plan_id)
+        pulumi.set(__self__, "start_command", start_command)
         if service_id is not None:
-            _setter("service_id", service_id)
+            pulumi.set(__self__, "service_id", service_id)
 
     @property
     @pulumi.getter(name="planId")
@@ -70,7 +57,7 @@ class JobArgs:
         pulumi.set(self, "service_id", value)
 
 
-class Job(pulumi.CustomResource):
+class Jobs(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -80,7 +67,7 @@ class Job(pulumi.CustomResource):
                  start_command: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a Job resource with the given unique name, props, and options.
+        Create a Jobs resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] service_id: (Required) The ID of the service
@@ -89,24 +76,20 @@ class Job(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: JobArgs,
+                 args: JobsArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a Job resource with the given unique name, props, and options.
+        Create a Jobs resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
-        :param JobArgs args: The arguments to use to populate this resource's properties.
+        :param JobsArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(JobArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(JobsArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            JobArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -122,7 +105,7 @@ class Job(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = JobArgs.__new__(JobArgs)
+            __props__ = JobsArgs.__new__(JobsArgs)
 
             if plan_id is None and not opts.urn:
                 raise TypeError("Missing required property 'plan_id'")
@@ -135,8 +118,8 @@ class Job(pulumi.CustomResource):
             __props__.__dict__["finished_at"] = None
             __props__.__dict__["started_at"] = None
             __props__.__dict__["status"] = None
-        super(Job, __self__).__init__(
-            'render:services:Job',
+        super(Jobs, __self__).__init__(
+            'render:services:Jobs',
             resource_name,
             __props__,
             opts)
@@ -144,9 +127,9 @@ class Job(pulumi.CustomResource):
     @staticmethod
     def get(resource_name: str,
             id: pulumi.Input[str],
-            opts: Optional[pulumi.ResourceOptions] = None) -> 'Job':
+            opts: Optional[pulumi.ResourceOptions] = None) -> 'Jobs':
         """
-        Get an existing Job resource's state with the given name, id, and optional extra
+        Get an existing Jobs resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -155,7 +138,7 @@ class Job(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = JobArgs.__new__(JobArgs)
+        __props__ = JobsArgs.__new__(JobsArgs)
 
         __props__.__dict__["created_at"] = None
         __props__.__dict__["finished_at"] = None
@@ -163,7 +146,7 @@ class Job(pulumi.CustomResource):
         __props__.__dict__["start_command"] = None
         __props__.__dict__["started_at"] = None
         __props__.__dict__["status"] = None
-        return Job(resource_name, opts=opts, __props__=__props__)
+        return Jobs(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="createdAt")

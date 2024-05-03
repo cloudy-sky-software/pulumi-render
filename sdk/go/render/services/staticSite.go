@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // A static website service
@@ -168,12 +167,6 @@ func (i *StaticSite) ToStaticSiteOutputWithContext(ctx context.Context) StaticSi
 	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteOutput)
 }
 
-func (i *StaticSite) ToOutput(ctx context.Context) pulumix.Output[*StaticSite] {
-	return pulumix.Output[*StaticSite]{
-		OutputState: i.ToStaticSiteOutputWithContext(ctx).OutputState,
-	}
-}
-
 type StaticSiteOutput struct{ *pulumi.OutputState }
 
 func (StaticSiteOutput) ElementType() reflect.Type {
@@ -186,12 +179,6 @@ func (o StaticSiteOutput) ToStaticSiteOutput() StaticSiteOutput {
 
 func (o StaticSiteOutput) ToStaticSiteOutputWithContext(ctx context.Context) StaticSiteOutput {
 	return o
-}
-
-func (o StaticSiteOutput) ToOutput(ctx context.Context) pulumix.Output[*StaticSite] {
-	return pulumix.Output[*StaticSite]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Whether to auto deploy the service or not upon git push.

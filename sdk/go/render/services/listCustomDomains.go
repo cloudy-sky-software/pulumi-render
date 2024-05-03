@@ -9,7 +9,6 @@ import (
 
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func ListCustomDomains(ctx *pulumi.Context, args *ListCustomDomainsArgs, opts ...pulumi.InvokeOption) (*ListCustomDomainsResult, error) {
@@ -65,12 +64,6 @@ func (o ListCustomDomainsResultOutput) ToListCustomDomainsResultOutput() ListCus
 
 func (o ListCustomDomainsResultOutput) ToListCustomDomainsResultOutputWithContext(ctx context.Context) ListCustomDomainsResultOutput {
 	return o
-}
-
-func (o ListCustomDomainsResultOutput) ToOutput(ctx context.Context) pulumix.Output[ListCustomDomainsResult] {
-	return pulumix.Output[ListCustomDomainsResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ListCustomDomainsResultOutput) Items() ListCustomDomainsResponseArrayOutput {

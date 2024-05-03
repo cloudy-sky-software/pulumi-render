@@ -6,20 +6,20 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
 from ._enums import *
 
 __all__ = [
-    'ListStaticSiteRoutesResult',
-    'AwaitableListStaticSiteRoutesResult',
-    'list_static_site_routes',
-    'list_static_site_routes_output',
+    'ListRoutesResult',
+    'AwaitableListRoutesResult',
+    'list_routes',
+    'list_routes_output',
 ]
 
 @pulumi.output_type
-class ListStaticSiteRoutesResult:
+class ListRoutesResult:
     def __init__(__self__, items=None):
         if items and not isinstance(items, list):
             raise TypeError("Expected argument 'items' to be a list")
@@ -31,17 +31,17 @@ class ListStaticSiteRoutesResult:
         return pulumi.get(self, "items")
 
 
-class AwaitableListStaticSiteRoutesResult(ListStaticSiteRoutesResult):
+class AwaitableListRoutesResult(ListRoutesResult):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return ListStaticSiteRoutesResult(
+        return ListRoutesResult(
             items=self.items)
 
 
-def list_static_site_routes(service_id: Optional[str] = None,
-                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListStaticSiteRoutesResult:
+def list_routes(service_id: Optional[str] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListRoutesResult:
     """
     Use this data source to access information about an existing resource.
 
@@ -50,15 +50,15 @@ def list_static_site_routes(service_id: Optional[str] = None,
     __args__ = dict()
     __args__['serviceId'] = service_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('render:services:listStaticSiteRoutes', __args__, opts=opts, typ=ListStaticSiteRoutesResult).value
+    __ret__ = pulumi.runtime.invoke('render:services:listRoutes', __args__, opts=opts, typ=ListRoutesResult).value
 
-    return AwaitableListStaticSiteRoutesResult(
+    return AwaitableListRoutesResult(
         items=pulumi.get(__ret__, 'items'))
 
 
-@_utilities.lift_output_func(list_static_site_routes)
-def list_static_site_routes_output(service_id: Optional[pulumi.Input[str]] = None,
-                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListStaticSiteRoutesResult]:
+@_utilities.lift_output_func(list_routes)
+def list_routes_output(service_id: Optional[pulumi.Input[str]] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListRoutesResult]:
     """
     Use this data source to access information about an existing resource.
 

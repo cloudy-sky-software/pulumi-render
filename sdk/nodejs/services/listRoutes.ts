@@ -7,29 +7,29 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function listStaticSiteRoutes(args: ListStaticSiteRoutesArgs, opts?: pulumi.InvokeOptions): Promise<ListStaticSiteRoutesResult> {
+export function listRoutes(args: ListRoutesArgs, opts?: pulumi.InvokeOptions): Promise<ListRoutesResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invoke("render:services:listStaticSiteRoutes", {
+    return pulumi.runtime.invoke("render:services:listRoutes", {
         "serviceId": args.serviceId,
     }, opts);
 }
 
-export interface ListStaticSiteRoutesArgs {
+export interface ListRoutesArgs {
     /**
      * (Required) The ID of the service
      */
     serviceId: string;
 }
 
-export interface ListStaticSiteRoutesResult {
+export interface ListRoutesResult {
     readonly items: outputs.services.ListStaticSiteRoutesResponse[];
 }
-export function listStaticSiteRoutesOutput(args: ListStaticSiteRoutesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListStaticSiteRoutesResult> {
-    return pulumi.output(args).apply((a: any) => listStaticSiteRoutes(a, opts))
+export function listRoutesOutput(args: ListRoutesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListRoutesResult> {
+    return pulumi.output(args).apply((a: any) => listRoutes(a, opts))
 }
 
-export interface ListStaticSiteRoutesOutputArgs {
+export interface ListRoutesOutputArgs {
     /**
      * (Required) The ID of the service
      */

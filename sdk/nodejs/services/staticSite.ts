@@ -9,6 +9,17 @@ import * as utilities from "../utilities";
 
 /**
  * A static website service
+ *
+ * ## Example Usage
+ *
+ * ### Create a service
+ *
+ * ```typescript
+ * import * as render from "@cloudyskysoftware/render";
+ *
+ * // TODO: Fill me in!
+ * const service = new render.services.StaticSite("staticSite", {});
+ * ```
  */
 export class StaticSite extends pulumi.CustomResource {
     /**

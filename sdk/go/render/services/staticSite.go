@@ -13,6 +13,8 @@ import (
 )
 
 // A static website service
+//
+// ## Example Usage
 type StaticSite struct {
 	pulumi.CustomResourceState
 

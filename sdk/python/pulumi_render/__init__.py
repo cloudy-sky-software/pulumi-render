@@ -13,16 +13,27 @@ if typing.TYPE_CHECKING:
     config = __config
     import pulumi_render.owners as __owners
     owners = __owners
+    import pulumi_render.registrycredentials as __registrycredentials
+    registrycredentials = __registrycredentials
     import pulumi_render.services as __services
     services = __services
 else:
     config = _utilities.lazy_import('pulumi_render.config')
     owners = _utilities.lazy_import('pulumi_render.owners')
+    registrycredentials = _utilities.lazy_import('pulumi_render.registrycredentials')
     services = _utilities.lazy_import('pulumi_render.services')
 
 _utilities.register(
     resource_modules="""
 [
+ {
+  "pkg": "render",
+  "mod": "registrycredentials",
+  "fqn": "pulumi_render.registrycredentials",
+  "classes": {
+   "render:registrycredentials:Registrycredentials": "Registrycredentials"
+  }
+ },
  {
   "pkg": "render",
   "mod": "services",

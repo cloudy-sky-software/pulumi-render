@@ -6034,7 +6034,7 @@ paths:
         - registrycredentials
       summary: Get a list of registry credentials
       description: Get a list of registry credentials
-      operationId: getAListOfRegistryCredentials
+      operationId: listRegistryCredentials
       parameters:
         - name: name
           in: query

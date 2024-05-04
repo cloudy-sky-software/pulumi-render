@@ -11,6 +11,9 @@ import * as utilities from "../utilities";
 export namespace owners {
 }
 
+export namespace registrycredentials {
+}
+
 export namespace services {
     export interface BackgroundWorkerServiceDetailsArgs {
         disk?: pulumi.Input<inputs.services.DiskArgs>;

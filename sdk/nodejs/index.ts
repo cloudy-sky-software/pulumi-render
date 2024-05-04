@@ -14,12 +14,14 @@ utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
 // Export sub-modules:
 import * as config from "./config";
 import * as owners from "./owners";
+import * as registrycredentials from "./registrycredentials";
 import * as services from "./services";
 import * as types from "./types";
 
 export {
     config,
     owners,
+    registrycredentials,
     services,
     types,
 };

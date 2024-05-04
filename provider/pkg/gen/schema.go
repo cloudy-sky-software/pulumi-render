@@ -119,6 +119,9 @@ func PulumiSchema(openAPIDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 		}
 	}
 
+	// Override the namespace for registrycredentials.
+	csharpNamespaces["registrycredentials"] = "RegistryCredentials"
+
 	pkg.Language["csharp"] = rawMessage(map[string]interface{}{
 		"rootNamespace": "Pulumi",
 		"packageReferences": map[string]string{

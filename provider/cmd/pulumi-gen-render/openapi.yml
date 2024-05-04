@@ -5415,3 +5415,1036 @@ paths:
               example:
                 id: dolor
                 message: sunt Excepteur deserunt dolor
+  /registrycredentials/{registryCredentialId}:
+    get:
+      tags:
+        - registrycredentials
+        - '{registryCredentialId}'
+      summary: Retrieve registry credentials
+      description: Retrieve registry credentials
+      operationId: getRegistryCredential
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  name:
+                    type: string
+                    example: <string>
+                  registry:
+                    type: string
+                    example: DOCKER
+                  username:
+                    type: string
+                    example: <string>
+              examples:
+                OK:
+                  value:
+                    id: <string>
+                    name: <string>
+                    registry: DOCKER
+                    username: <string>
+        '401':
+          description: Authorization information is missing or invalid.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                Authorization information is missing or invalid.:
+                  value:
+                    id: <string>
+                    message: <string>
+        '403':
+          description: You do not have permissions for the requested resource.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                You do not have permissions for the requested resource.:
+                  value:
+                    id: <string>
+                    message: <string>
+        '404':
+          description: Unable to find the requested resource.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                Unable to find the requested resource.:
+                  value:
+                    id: <string>
+                    message: <string>
+        '406':
+          description: >-
+            Unable to generate preferred media types as specified by Accept
+            request header.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                Unable to generate preferred media types as specified by Accept request header.:
+                  value:
+                    id: <string>
+                    message: <string>
+        '410':
+          description: The requested resource is no longer available.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                The requested resource is no longer available.:
+                  value:
+                    id: <string>
+                    message: <string>
+        '429':
+          description: Rate limit has been surpassed.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                Rate limit has been surpassed.:
+                  value:
+                    id: <string>
+                    message: <string>
+        '500':
+          description: An unexpected server error has occurred.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                An unexpected server error has occurred.:
+                  value:
+                    id: <string>
+                    message: <string>
+        '503':
+          description: Server currently unavailable.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                Server currently unavailable.:
+                  value:
+                    id: <string>
+                    message: <string>
+    delete:
+      tags:
+        - registrycredentials
+        - '{registryCredentialId}'
+      summary: Delete registry credential
+      description: Delete registry credential
+      operationId: deleteRegistryCredential
+      responses:
+        '204':
+          description: Registry credential deleted
+          content:
+            text/plain:
+              examples:
+                Registry credential deleted:
+                  value: ''
+        '401':
+          description: Authorization information is missing or invalid.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                Authorization information is missing or invalid.:
+                  value:
+                    id: <string>
+                    message: <string>
+        '403':
+          description: You do not have permissions for the requested resource.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                You do not have permissions for the requested resource.:
+                  value:
+                    id: <string>
+                    message: <string>
+        '404':
+          description: Unable to find the requested resource.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                Unable to find the requested resource.:
+                  value:
+                    id: <string>
+                    message: <string>
+        '406':
+          description: >-
+            Unable to generate preferred media types as specified by Accept
+            request header.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                Unable to generate preferred media types as specified by Accept request header.:
+                  value:
+                    id: <string>
+                    message: <string>
+        '410':
+          description: The requested resource is no longer available.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                The requested resource is no longer available.:
+                  value:
+                    id: <string>
+                    message: <string>
+        '429':
+          description: Rate limit has been surpassed.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                Rate limit has been surpassed.:
+                  value:
+                    id: <string>
+                    message: <string>
+        '500':
+          description: An unexpected server error has occurred.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                An unexpected server error has occurred.:
+                  value:
+                    id: <string>
+                    message: <string>
+        '503':
+          description: Server currently unavailable.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                Server currently unavailable.:
+                  value:
+                    id: <string>
+                    message: <string>
+    patch:
+      tags:
+        - registrycredentials
+        - '{registryCredentialId}'
+      summary: Update registry credential
+      description: Update registry credential
+      operationId: updateRegistryCredential
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                authToken:
+                  type: string
+                  example: <string>
+                name:
+                  type: string
+                  example: <string>
+                ownerId:
+                  type: string
+                  example: <string>
+                registry:
+                  type: string
+                  example: GITLAB
+                username:
+                  type: string
+                  example: <string>
+            examples:
+              Update registry credential:
+                value:
+                  authToken: <string>
+                  name: <string>
+                  ownerId: <string>
+                  registry: GITLAB
+                  username: <string>
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  name:
+                    type: string
+                    example: <string>
+                  registry:
+                    type: string
+                    example: DOCKER
+                  username:
+                    type: string
+                    example: <string>
+              examples:
+                OK:
+                  value:
+                    id: <string>
+                    name: <string>
+                    registry: DOCKER
+                    username: <string>
+        '400':
+          description: The request could not be understood by the server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                The request could not be understood by the server.:
+                  value:
+                    id: <string>
+                    message: <string>
+        '401':
+          description: Authorization information is missing or invalid.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                Authorization information is missing or invalid.:
+                  value:
+                    id: <string>
+                    message: <string>
+        '402':
+          description: You must enter payment information to perform this request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                You must enter payment information to perform this request.:
+                  value:
+                    id: <string>
+                    message: <string>
+        '403':
+          description: You do not have permissions for the requested resource.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                You do not have permissions for the requested resource.:
+                  value:
+                    id: <string>
+                    message: <string>
+        '404':
+          description: Unable to find the requested resource.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                Unable to find the requested resource.:
+                  value:
+                    id: <string>
+                    message: <string>
+        '406':
+          description: >-
+            Unable to generate preferred media types as specified by Accept
+            request header.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                Unable to generate preferred media types as specified by Accept request header.:
+                  value:
+                    id: <string>
+                    message: <string>
+        '409':
+          description: The current state of the resource conflicts with this request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                The current state of the resource conflicts with this request.:
+                  value:
+                    id: <string>
+                    message: <string>
+        '410':
+          description: The requested resource is no longer available.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                The requested resource is no longer available.:
+                  value:
+                    id: <string>
+                    message: <string>
+        '429':
+          description: Rate limit has been surpassed.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                Rate limit has been surpassed.:
+                  value:
+                    id: <string>
+                    message: <string>
+        '500':
+          description: An unexpected server error has occurred.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                An unexpected server error has occurred.:
+                  value:
+                    id: <string>
+                    message: <string>
+        '503':
+          description: Server currently unavailable.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                Server currently unavailable.:
+                  value:
+                    id: <string>
+                    message: <string>
+    parameters:
+      - name: registryCredentialId
+        in: path
+        required: true
+        schema:
+          type: string
+          example: <string>
+        description: (Required) The ID of the registry credential
+  /registrycredentials:
+    get:
+      tags:
+        - registrycredentials
+      summary: Get a list of registry credentials
+      description: Get a list of registry credentials
+      operationId: listRegistryCredentials
+      parameters:
+        - name: name
+          in: query
+          schema:
+            type: string
+            example: <string>,<string>
+          description: Filter for the name of a credential
+        - name: username
+          in: query
+          schema:
+            type: string
+            example: <string>,<string>
+          description: Filter for the username of a credential
+        - name: type
+          in: query
+          schema:
+            type: string
+            example: GITHUB,DOCKER
+          description: Filter for the registry type for the credential
+        - name: createdBefore
+          in: query
+          schema:
+            type: string
+            example: <dateTime>
+          description: >-
+            Filter for services created before a certain time (specified as an
+            ISO 8601 timestamp)
+        - name: createdAfter
+          in: query
+          schema:
+            type: string
+            example: <dateTime>
+          description: >-
+            Filter for services created after a certain time (specified as an
+            ISO 8601 timestamp)
+        - name: updatedBefore
+          in: query
+          schema:
+            type: string
+            example: <dateTime>
+          description: >-
+            Filter for services updated before a certain time (specified as an
+            ISO 8601 timestamp)
+        - name: updatedAfter
+          in: query
+          schema:
+            type: string
+            example: <dateTime>
+          description: >-
+            Filter for services updated after a certain time (specified as an
+            ISO 8601 timestamp)
+        - name: ownerId
+          in: query
+          schema:
+            type: string
+            example: <string>,<string>
+          description: >-
+            The ID of the owner (team or personal user) whose resources should
+            be returned
+        - name: cursor
+          in: query
+          schema:
+            type: string
+            example: <string>
+          description: Cursor to begin retrieving entries for this query
+        - name: limit
+          in: query
+          schema:
+            type: string
+            example: '20'
+          description: Max number of items that can be returned
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: <string>
+                    name:
+                      type: string
+                      example: <string>
+                    registry:
+                      type: string
+                      example: GITLAB
+                    username:
+                      type: string
+                      example: <string>
+                example:
+                  - id: <string>
+                    name: <string>
+                    registry: GITLAB
+                    username: <string>
+                  - id: <string>
+                    name: <string>
+                    registry: GITHUB
+                    username: <string>
+              examples:
+                OK:
+                  value:
+                    - id: <string>
+                      name: <string>
+                      registry: GITLAB
+                      username: <string>
+                    - id: <string>
+                      name: <string>
+                      registry: GITHUB
+                      username: <string>
+        '401':
+          description: Authorization information is missing or invalid.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                Authorization information is missing or invalid.:
+                  value:
+                    id: <string>
+                    message: <string>
+        '406':
+          description: >-
+            Unable to generate preferred media types as specified by Accept
+            request header.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                Unable to generate preferred media types as specified by Accept request header.:
+                  value:
+                    id: <string>
+                    message: <string>
+        '429':
+          description: Rate limit has been surpassed.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                Rate limit has been surpassed.:
+                  value:
+                    id: <string>
+                    message: <string>
+        '500':
+          description: An unexpected server error has occurred.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                An unexpected server error has occurred.:
+                  value:
+                    id: <string>
+                    message: <string>
+        '503':
+          description: Server currently unavailable.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                Server currently unavailable.:
+                  value:
+                    id: <string>
+                    message: <string>
+    post:
+      tags:
+        - registrycredentials
+      summary: Create registry credential
+      description: Create registry credential
+      operationId: createRegistryCredential
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                authToken:
+                  type: string
+                  example: <string>
+                name:
+                  type: string
+                  example: <string>
+                ownerId:
+                  type: string
+                  example: <string>
+                registry:
+                  type: string
+                  example: GITLAB
+                username:
+                  type: string
+                  example: <string>
+            examples:
+              Create registry credential:
+                value:
+                  authToken: <string>
+                  name: <string>
+                  ownerId: <string>
+                  registry: GITLAB
+                  username: <string>
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  name:
+                    type: string
+                    example: <string>
+                  registry:
+                    type: string
+                    example: DOCKER
+                  username:
+                    type: string
+                    example: <string>
+              examples:
+                Created:
+                  value:
+                    id: <string>
+                    name: <string>
+                    registry: DOCKER
+                    username: <string>
+        '400':
+          description: The request could not be understood by the server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                The request could not be understood by the server.:
+                  value:
+                    id: <string>
+                    message: <string>
+        '401':
+          description: Authorization information is missing or invalid.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                Authorization information is missing or invalid.:
+                  value:
+                    id: <string>
+                    message: <string>
+        '402':
+          description: You must enter payment information to perform this request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                You must enter payment information to perform this request.:
+                  value:
+                    id: <string>
+                    message: <string>
+        '406':
+          description: >-
+            Unable to generate preferred media types as specified by Accept
+            request header.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                Unable to generate preferred media types as specified by Accept request header.:
+                  value:
+                    id: <string>
+                    message: <string>
+        '409':
+          description: The current state of the resource conflicts with this request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                The current state of the resource conflicts with this request.:
+                  value:
+                    id: <string>
+                    message: <string>
+        '429':
+          description: Rate limit has been surpassed.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                Rate limit has been surpassed.:
+                  value:
+                    id: <string>
+                    message: <string>
+        '500':
+          description: An unexpected server error has occurred.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                An unexpected server error has occurred.:
+                  value:
+                    id: <string>
+                    message: <string>
+        '503':
+          description: Server currently unavailable.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <string>
+                  message:
+                    type: string
+                    example: <string>
+              examples:
+                Server currently unavailable.:
+                  value:
+                    id: <string>
+                    message: <string>

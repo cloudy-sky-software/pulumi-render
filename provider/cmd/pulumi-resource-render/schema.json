@@ -18,6 +18,7 @@
             "namespaces": {
                 "": "Provider",
                 "owners": "Owners",
+                "registrycredentials": "RegistryCredentials",
                 "render": "Render",
                 "services": "Services"
             },
@@ -110,6 +111,40 @@
                     "value": "team"
                 }
             ]
+        },
+        "render:registrycredentials:GetRegistryCredentialProperties": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "registry": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "render:registrycredentials:ListRegistryCredentialsItemProperties": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "registry": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
         },
         "render:services:BackgroundWorker": {
             "description": "A background worker service",
@@ -2016,6 +2051,43 @@
         }
     },
     "resources": {
+        "render:registrycredentials:RegistryCredential": {
+            "properties": {
+                "authToken": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "ownerId": {
+                    "type": "string"
+                },
+                "registry": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "inputProperties": {
+                "authToken": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "ownerId": {
+                    "type": "string"
+                },
+                "registry": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
         "render:services:BackgroundWorker": {
             "description": "A background worker service",
             "properties": {
@@ -2896,6 +2968,35 @@
                         "type": "array",
                         "items": {
                             "$ref": "#/types/render:owners:ListOwnersResponse"
+                        }
+                    }
+                },
+                "required": [
+                    "items"
+                ]
+            }
+        },
+        "render:registrycredentials:getRegistryCredential": {
+            "inputs": {},
+            "outputs": {
+                "properties": {
+                    "items": {
+                        "$ref": "#/types/render:registrycredentials:GetRegistryCredentialProperties"
+                    }
+                },
+                "required": [
+                    "items"
+                ]
+            }
+        },
+        "render:registrycredentials:listRegistryCredentials": {
+            "inputs": {},
+            "outputs": {
+                "properties": {
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/render:registrycredentials:ListRegistryCredentialsItemProperties"
                         }
                     }
                 },

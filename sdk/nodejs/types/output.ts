@@ -41,6 +41,23 @@ export namespace owners {
 
 }
 
+export namespace registrycredentials {
+    export interface GetRegistryCredentialProperties {
+        id?: string;
+        name?: string;
+        registry?: string;
+        username?: string;
+    }
+
+    export interface ListRegistryCredentialsItemProperties {
+        id?: string;
+        name?: string;
+        registry?: string;
+        username?: string;
+    }
+
+}
+
 export namespace services {
     /**
      * A background worker service

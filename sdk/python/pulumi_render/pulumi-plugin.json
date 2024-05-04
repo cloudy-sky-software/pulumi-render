@@ -1,5 +1,0 @@
-{
-  "resource": true,
-  "name": "render",
-  "server": "github://api.github.com/cloudy-sky-software/pulumi-render"
-}

@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Render.Registrycredentials.Outputs
+namespace Pulumi.Render.RegistryCredentials.Outputs
 {
 
     [OutputType]

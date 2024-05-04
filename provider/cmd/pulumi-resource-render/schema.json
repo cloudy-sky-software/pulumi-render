@@ -18,7 +18,7 @@
             "namespaces": {
                 "": "Provider",
                 "owners": "Owners",
-                "registrycredentials": "Registrycredentials",
+                "registrycredentials": "RegistryCredentials",
                 "render": "Render",
                 "services": "Services"
             },

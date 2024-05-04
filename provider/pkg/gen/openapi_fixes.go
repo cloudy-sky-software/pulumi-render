@@ -51,7 +51,7 @@ func FixOpenAPIDoc(openAPIDoc *openapi3.T) error {
 
 		endsWithPathParam := strings.HasSuffix(path, "}")
 
-		if pathItem.Get != nil {
+		if pathItem.Get != nil && pathItem.Get.OperationID == "" {
 			if endsWithPathParam {
 				pathItem.Get.OperationID = "get" + resourceName
 			} else {
@@ -59,11 +59,11 @@ func FixOpenAPIDoc(openAPIDoc *openapi3.T) error {
 			}
 		}
 
-		if pathItem.Post != nil {
+		if pathItem.Post != nil && pathItem.Post.OperationID == "" {
 			pathItem.Post.OperationID = "create" + resourceName
 		}
 
-		if pathItem.Put != nil {
+		if pathItem.Put != nil && pathItem.Put.OperationID == "" {
 			// PUT request methods are special.
 			// If the current path does not also
 			// have a POST request endpoint, then
@@ -79,11 +79,11 @@ func FixOpenAPIDoc(openAPIDoc *openapi3.T) error {
 			}
 		}
 
-		if pathItem.Patch != nil {
+		if pathItem.Patch != nil && pathItem.Patch.OperationID == "" {
 			pathItem.Patch.OperationID = "update" + resourceName
 		}
 
-		if pathItem.Delete != nil {
+		if pathItem.Delete != nil && pathItem.Delete.OperationID == "" {
 			pathItem.Delete.OperationID = "delete" + resourceName
 		}
 	}

@@ -42,14 +42,14 @@ export namespace owners {
 }
 
 export namespace registrycredentials {
-    export interface GetRegistrycredentialProperties {
+    export interface GetRegistryCredentialProperties {
         id?: string;
         name?: string;
         registry?: string;
         username?: string;
     }
 
-    export interface ListRegistrycredentialsItemProperties {
+    export interface ListRegistryCredentialsItemProperties {
         id?: string;
         name?: string;
         registry?: string;

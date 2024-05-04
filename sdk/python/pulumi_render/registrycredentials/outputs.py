@@ -10,12 +10,12 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = [
-    'GetRegistrycredentialProperties',
-    'ListRegistrycredentialsItemProperties',
+    'GetRegistryCredentialProperties',
+    'ListRegistryCredentialsItemProperties',
 ]
 
 @pulumi.output_type
-class GetRegistrycredentialProperties(dict):
+class GetRegistryCredentialProperties(dict):
     def __init__(__self__, *,
                  id: Optional[str] = None,
                  name: Optional[str] = None,
@@ -52,7 +52,7 @@ class GetRegistrycredentialProperties(dict):
 
 
 @pulumi.output_type
-class ListRegistrycredentialsItemProperties(dict):
+class ListRegistryCredentialsItemProperties(dict):
     def __init__(__self__, *,
                  id: Optional[str] = None,
                  name: Optional[str] = None,

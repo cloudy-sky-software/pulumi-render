@@ -11,7 +11,7 @@ namespace Pulumi.Render.Registrycredentials.Outputs
 {
 
     [OutputType]
-    public sealed class GetRegistrycredentialProperties
+    public sealed class GetRegistryCredentialProperties
     {
         public readonly string? Id;
         public readonly string? Name;
@@ -19,7 +19,7 @@ namespace Pulumi.Render.Registrycredentials.Outputs
         public readonly string? Username;
 
         [OutputConstructor]
-        private GetRegistrycredentialProperties(
+        private GetRegistryCredentialProperties(
             string? id,
 
             string? name,

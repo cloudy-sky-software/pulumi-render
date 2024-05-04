@@ -31,7 +31,7 @@ _utilities.register(
   "mod": "registrycredentials",
   "fqn": "pulumi_render.registrycredentials",
   "classes": {
-   "render:registrycredentials:Registrycredentials": "Registrycredentials"
+   "render:registrycredentials:RegistryCredential": "RegistryCredential"
   }
  },
  {

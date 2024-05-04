@@ -9,8 +9,8 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Render.Registrycredentials
 {
-    [RenderResourceType("render:registrycredentials:Registrycredentials")]
-    public partial class Registrycredentials : global::Pulumi.CustomResource
+    [RenderResourceType("render:registrycredentials:RegistryCredential")]
+    public partial class RegistryCredential : global::Pulumi.CustomResource
     {
         [Output("authToken")]
         public Output<string?> AuthToken { get; private set; } = null!;
@@ -29,19 +29,19 @@ namespace Pulumi.Render.Registrycredentials
 
 
         /// <summary>
-        /// Create a Registrycredentials resource with the given unique name, arguments, and options.
+        /// Create a RegistryCredential resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Registrycredentials(string name, RegistrycredentialsArgs? args = null, CustomResourceOptions? options = null)
-            : base("render:registrycredentials:Registrycredentials", name, args ?? new RegistrycredentialsArgs(), MakeResourceOptions(options, ""))
+        public RegistryCredential(string name, RegistryCredentialArgs? args = null, CustomResourceOptions? options = null)
+            : base("render:registrycredentials:RegistryCredential", name, args ?? new RegistryCredentialArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private Registrycredentials(string name, Input<string> id, CustomResourceOptions? options = null)
-            : base("render:registrycredentials:Registrycredentials", name, null, MakeResourceOptions(options, id))
+        private RegistryCredential(string name, Input<string> id, CustomResourceOptions? options = null)
+            : base("render:registrycredentials:RegistryCredential", name, null, MakeResourceOptions(options, id))
         {
         }
 
@@ -58,20 +58,20 @@ namespace Pulumi.Render.Registrycredentials
             return merged;
         }
         /// <summary>
-        /// Get an existing Registrycredentials resource's state with the given name, ID, and optional extra
+        /// Get an existing RegistryCredential resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resulting resource.</param>
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static Registrycredentials Get(string name, Input<string> id, CustomResourceOptions? options = null)
+        public static RegistryCredential Get(string name, Input<string> id, CustomResourceOptions? options = null)
         {
-            return new Registrycredentials(name, id, options);
+            return new RegistryCredential(name, id, options);
         }
     }
 
-    public sealed class RegistrycredentialsArgs : global::Pulumi.ResourceArgs
+    public sealed class RegistryCredentialArgs : global::Pulumi.ResourceArgs
     {
         [Input("authToken")]
         public Input<string>? AuthToken { get; set; }
@@ -88,9 +88,9 @@ namespace Pulumi.Render.Registrycredentials
         [Input("username")]
         public Input<string>? Username { get; set; }
 
-        public RegistrycredentialsArgs()
+        public RegistryCredentialArgs()
         {
         }
-        public static new RegistrycredentialsArgs Empty => new RegistrycredentialsArgs();
+        public static new RegistryCredentialArgs Empty => new RegistryCredentialArgs();
     }
 }

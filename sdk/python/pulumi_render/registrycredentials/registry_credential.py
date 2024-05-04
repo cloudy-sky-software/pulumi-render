@@ -9,10 +9,10 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
-__all__ = ['RegistrycredentialsArgs', 'Registrycredentials']
+__all__ = ['RegistryCredentialArgs', 'RegistryCredential']
 
 @pulumi.input_type
-class RegistrycredentialsArgs:
+class RegistryCredentialArgs:
     def __init__(__self__, *,
                  auth_token: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -20,7 +20,7 @@ class RegistrycredentialsArgs:
                  registry: Optional[pulumi.Input[str]] = None,
                  username: Optional[pulumi.Input[str]] = None):
         """
-        The set of arguments for constructing a Registrycredentials resource.
+        The set of arguments for constructing a RegistryCredential resource.
         """
         if auth_token is not None:
             pulumi.set(__self__, "auth_token", auth_token)
@@ -79,7 +79,7 @@ class RegistrycredentialsArgs:
         pulumi.set(self, "username", value)
 
 
-class Registrycredentials(pulumi.CustomResource):
+class RegistryCredential(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -91,7 +91,7 @@ class Registrycredentials(pulumi.CustomResource):
                  username: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a Registrycredentials resource with the given unique name, props, and options.
+        Create a RegistryCredential resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -99,17 +99,17 @@ class Registrycredentials(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: Optional[RegistrycredentialsArgs] = None,
+                 args: Optional[RegistryCredentialArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a Registrycredentials resource with the given unique name, props, and options.
+        Create a RegistryCredential resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
-        :param RegistrycredentialsArgs args: The arguments to use to populate this resource's properties.
+        :param RegistryCredentialArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(RegistrycredentialsArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(RegistryCredentialArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -130,15 +130,15 @@ class Registrycredentials(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = RegistrycredentialsArgs.__new__(RegistrycredentialsArgs)
+            __props__ = RegistryCredentialArgs.__new__(RegistryCredentialArgs)
 
             __props__.__dict__["auth_token"] = auth_token
             __props__.__dict__["name"] = name
             __props__.__dict__["owner_id"] = owner_id
             __props__.__dict__["registry"] = registry
             __props__.__dict__["username"] = username
-        super(Registrycredentials, __self__).__init__(
-            'render:registrycredentials:Registrycredentials',
+        super(RegistryCredential, __self__).__init__(
+            'render:registrycredentials:RegistryCredential',
             resource_name,
             __props__,
             opts)
@@ -146,9 +146,9 @@ class Registrycredentials(pulumi.CustomResource):
     @staticmethod
     def get(resource_name: str,
             id: pulumi.Input[str],
-            opts: Optional[pulumi.ResourceOptions] = None) -> 'Registrycredentials':
+            opts: Optional[pulumi.ResourceOptions] = None) -> 'RegistryCredential':
         """
-        Get an existing Registrycredentials resource's state with the given name, id, and optional extra
+        Get an existing RegistryCredential resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -157,14 +157,14 @@ class Registrycredentials(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = RegistrycredentialsArgs.__new__(RegistrycredentialsArgs)
+        __props__ = RegistryCredentialArgs.__new__(RegistryCredentialArgs)
 
         __props__.__dict__["auth_token"] = None
         __props__.__dict__["name"] = None
         __props__.__dict__["owner_id"] = None
         __props__.__dict__["registry"] = None
         __props__.__dict__["username"] = None
-        return Registrycredentials(resource_name, opts=opts, __props__=__props__)
+        return RegistryCredential(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="authToken")

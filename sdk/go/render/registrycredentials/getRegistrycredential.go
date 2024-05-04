@@ -11,61 +11,61 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-func GetRegistrycredential(ctx *pulumi.Context, args *GetRegistrycredentialArgs, opts ...pulumi.InvokeOption) (*GetRegistrycredentialResult, error) {
+func LookupRegistryCredential(ctx *pulumi.Context, args *LookupRegistryCredentialArgs, opts ...pulumi.InvokeOption) (*LookupRegistryCredentialResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv GetRegistrycredentialResult
-	err := ctx.Invoke("render:registrycredentials:getRegistrycredential", args, &rv, opts...)
+	var rv LookupRegistryCredentialResult
+	err := ctx.Invoke("render:registrycredentials:getRegistryCredential", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &rv, nil
 }
 
-type GetRegistrycredentialArgs struct {
+type LookupRegistryCredentialArgs struct {
 }
 
-type GetRegistrycredentialResult struct {
-	Items GetRegistrycredentialProperties `pulumi:"items"`
+type LookupRegistryCredentialResult struct {
+	Items GetRegistryCredentialProperties `pulumi:"items"`
 }
 
-func GetRegistrycredentialOutput(ctx *pulumi.Context, args GetRegistrycredentialOutputArgs, opts ...pulumi.InvokeOption) GetRegistrycredentialResultOutput {
+func LookupRegistryCredentialOutput(ctx *pulumi.Context, args LookupRegistryCredentialOutputArgs, opts ...pulumi.InvokeOption) LookupRegistryCredentialResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetRegistrycredentialResult, error) {
-			args := v.(GetRegistrycredentialArgs)
-			r, err := GetRegistrycredential(ctx, &args, opts...)
-			var s GetRegistrycredentialResult
+		ApplyT(func(v interface{}) (LookupRegistryCredentialResult, error) {
+			args := v.(LookupRegistryCredentialArgs)
+			r, err := LookupRegistryCredential(ctx, &args, opts...)
+			var s LookupRegistryCredentialResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(GetRegistrycredentialResultOutput)
+		}).(LookupRegistryCredentialResultOutput)
 }
 
-type GetRegistrycredentialOutputArgs struct {
+type LookupRegistryCredentialOutputArgs struct {
 }
 
-func (GetRegistrycredentialOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetRegistrycredentialArgs)(nil)).Elem()
+func (LookupRegistryCredentialOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupRegistryCredentialArgs)(nil)).Elem()
 }
 
-type GetRegistrycredentialResultOutput struct{ *pulumi.OutputState }
+type LookupRegistryCredentialResultOutput struct{ *pulumi.OutputState }
 
-func (GetRegistrycredentialResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetRegistrycredentialResult)(nil)).Elem()
+func (LookupRegistryCredentialResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupRegistryCredentialResult)(nil)).Elem()
 }
 
-func (o GetRegistrycredentialResultOutput) ToGetRegistrycredentialResultOutput() GetRegistrycredentialResultOutput {
+func (o LookupRegistryCredentialResultOutput) ToLookupRegistryCredentialResultOutput() LookupRegistryCredentialResultOutput {
 	return o
 }
 
-func (o GetRegistrycredentialResultOutput) ToGetRegistrycredentialResultOutputWithContext(ctx context.Context) GetRegistrycredentialResultOutput {
+func (o LookupRegistryCredentialResultOutput) ToLookupRegistryCredentialResultOutputWithContext(ctx context.Context) LookupRegistryCredentialResultOutput {
 	return o
 }
 
-func (o GetRegistrycredentialResultOutput) Items() GetRegistrycredentialPropertiesOutput {
-	return o.ApplyT(func(v GetRegistrycredentialResult) GetRegistrycredentialProperties { return v.Items }).(GetRegistrycredentialPropertiesOutput)
+func (o LookupRegistryCredentialResultOutput) Items() GetRegistryCredentialPropertiesOutput {
+	return o.ApplyT(func(v LookupRegistryCredentialResult) GetRegistryCredentialProperties { return v.Items }).(GetRegistryCredentialPropertiesOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(GetRegistrycredentialResultOutput{})
+	pulumi.RegisterOutputType(LookupRegistryCredentialResultOutput{})
 }

@@ -5,28 +5,28 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export { GetRegistrycredentialArgs, GetRegistrycredentialResult } from "./getRegistrycredential";
-export const getRegistrycredential: typeof import("./getRegistrycredential").getRegistrycredential = null as any;
-export const getRegistrycredentialOutput: typeof import("./getRegistrycredential").getRegistrycredentialOutput = null as any;
-utilities.lazyLoad(exports, ["getRegistrycredential","getRegistrycredentialOutput"], () => require("./getRegistrycredential"));
+export { GetRegistryCredentialArgs, GetRegistryCredentialResult } from "./getRegistryCredential";
+export const getRegistryCredential: typeof import("./getRegistryCredential").getRegistryCredential = null as any;
+export const getRegistryCredentialOutput: typeof import("./getRegistryCredential").getRegistryCredentialOutput = null as any;
+utilities.lazyLoad(exports, ["getRegistryCredential","getRegistryCredentialOutput"], () => require("./getRegistryCredential"));
 
-export { ListRegistrycredentialsArgs, ListRegistrycredentialsResult } from "./listRegistrycredentials";
-export const listRegistrycredentials: typeof import("./listRegistrycredentials").listRegistrycredentials = null as any;
-export const listRegistrycredentialsOutput: typeof import("./listRegistrycredentials").listRegistrycredentialsOutput = null as any;
-utilities.lazyLoad(exports, ["listRegistrycredentials","listRegistrycredentialsOutput"], () => require("./listRegistrycredentials"));
+export { ListRegistryCredentialsArgs, ListRegistryCredentialsResult } from "./listRegistryCredentials";
+export const listRegistryCredentials: typeof import("./listRegistryCredentials").listRegistryCredentials = null as any;
+export const listRegistryCredentialsOutput: typeof import("./listRegistryCredentials").listRegistryCredentialsOutput = null as any;
+utilities.lazyLoad(exports, ["listRegistryCredentials","listRegistryCredentialsOutput"], () => require("./listRegistryCredentials"));
 
-export { RegistrycredentialsArgs } from "./registrycredentials";
-export type Registrycredentials = import("./registrycredentials").Registrycredentials;
-export const Registrycredentials: typeof import("./registrycredentials").Registrycredentials = null as any;
-utilities.lazyLoad(exports, ["Registrycredentials"], () => require("./registrycredentials"));
+export { RegistryCredentialArgs } from "./registryCredential";
+export type RegistryCredential = import("./registryCredential").RegistryCredential;
+export const RegistryCredential: typeof import("./registryCredential").RegistryCredential = null as any;
+utilities.lazyLoad(exports, ["RegistryCredential"], () => require("./registryCredential"));
 
 
 const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
-            case "render:registrycredentials:Registrycredentials":
-                return new Registrycredentials(name, <any>undefined, { urn })
+            case "render:registrycredentials:RegistryCredential":
+                return new RegistryCredential(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }

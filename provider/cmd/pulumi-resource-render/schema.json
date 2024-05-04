@@ -112,7 +112,7 @@
                 }
             ]
         },
-        "render:registrycredentials:GetRegistrycredentialProperties": {
+        "render:registrycredentials:GetRegistryCredentialProperties": {
             "properties": {
                 "id": {
                     "type": "string"
@@ -129,7 +129,7 @@
             },
             "type": "object"
         },
-        "render:registrycredentials:ListRegistrycredentialsItemProperties": {
+        "render:registrycredentials:ListRegistryCredentialsItemProperties": {
             "properties": {
                 "id": {
                     "type": "string"
@@ -2051,7 +2051,7 @@
         }
     },
     "resources": {
-        "render:registrycredentials:Registrycredentials": {
+        "render:registrycredentials:RegistryCredential": {
             "properties": {
                 "authToken": {
                     "type": "string"
@@ -2976,12 +2976,12 @@
                 ]
             }
         },
-        "render:registrycredentials:getRegistrycredential": {
+        "render:registrycredentials:getRegistryCredential": {
             "inputs": {},
             "outputs": {
                 "properties": {
                     "items": {
-                        "$ref": "#/types/render:registrycredentials:GetRegistrycredentialProperties"
+                        "$ref": "#/types/render:registrycredentials:GetRegistryCredentialProperties"
                     }
                 },
                 "required": [
@@ -2989,14 +2989,14 @@
                 ]
             }
         },
-        "render:registrycredentials:listRegistrycredentials": {
+        "render:registrycredentials:listRegistryCredentials": {
             "inputs": {},
             "outputs": {
                 "properties": {
                     "items": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/render:registrycredentials:ListRegistrycredentialsItemProperties"
+                            "$ref": "#/types/render:registrycredentials:ListRegistryCredentialsItemProperties"
                         }
                     }
                 },

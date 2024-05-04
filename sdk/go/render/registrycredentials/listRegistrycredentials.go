@@ -11,61 +11,61 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-func ListRegistrycredentials(ctx *pulumi.Context, args *ListRegistrycredentialsArgs, opts ...pulumi.InvokeOption) (*ListRegistrycredentialsResult, error) {
+func ListRegistryCredentials(ctx *pulumi.Context, args *ListRegistryCredentialsArgs, opts ...pulumi.InvokeOption) (*ListRegistryCredentialsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv ListRegistrycredentialsResult
-	err := ctx.Invoke("render:registrycredentials:listRegistrycredentials", args, &rv, opts...)
+	var rv ListRegistryCredentialsResult
+	err := ctx.Invoke("render:registrycredentials:listRegistryCredentials", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &rv, nil
 }
 
-type ListRegistrycredentialsArgs struct {
+type ListRegistryCredentialsArgs struct {
 }
 
-type ListRegistrycredentialsResult struct {
-	Items []ListRegistrycredentialsItemProperties `pulumi:"items"`
+type ListRegistryCredentialsResult struct {
+	Items []ListRegistryCredentialsItemProperties `pulumi:"items"`
 }
 
-func ListRegistrycredentialsOutput(ctx *pulumi.Context, args ListRegistrycredentialsOutputArgs, opts ...pulumi.InvokeOption) ListRegistrycredentialsResultOutput {
+func ListRegistryCredentialsOutput(ctx *pulumi.Context, args ListRegistryCredentialsOutputArgs, opts ...pulumi.InvokeOption) ListRegistryCredentialsResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (ListRegistrycredentialsResult, error) {
-			args := v.(ListRegistrycredentialsArgs)
-			r, err := ListRegistrycredentials(ctx, &args, opts...)
-			var s ListRegistrycredentialsResult
+		ApplyT(func(v interface{}) (ListRegistryCredentialsResult, error) {
+			args := v.(ListRegistryCredentialsArgs)
+			r, err := ListRegistryCredentials(ctx, &args, opts...)
+			var s ListRegistryCredentialsResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(ListRegistrycredentialsResultOutput)
+		}).(ListRegistryCredentialsResultOutput)
 }
 
-type ListRegistrycredentialsOutputArgs struct {
+type ListRegistryCredentialsOutputArgs struct {
 }
 
-func (ListRegistrycredentialsOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ListRegistrycredentialsArgs)(nil)).Elem()
+func (ListRegistryCredentialsOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListRegistryCredentialsArgs)(nil)).Elem()
 }
 
-type ListRegistrycredentialsResultOutput struct{ *pulumi.OutputState }
+type ListRegistryCredentialsResultOutput struct{ *pulumi.OutputState }
 
-func (ListRegistrycredentialsResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ListRegistrycredentialsResult)(nil)).Elem()
+func (ListRegistryCredentialsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListRegistryCredentialsResult)(nil)).Elem()
 }
 
-func (o ListRegistrycredentialsResultOutput) ToListRegistrycredentialsResultOutput() ListRegistrycredentialsResultOutput {
+func (o ListRegistryCredentialsResultOutput) ToListRegistryCredentialsResultOutput() ListRegistryCredentialsResultOutput {
 	return o
 }
 
-func (o ListRegistrycredentialsResultOutput) ToListRegistrycredentialsResultOutputWithContext(ctx context.Context) ListRegistrycredentialsResultOutput {
+func (o ListRegistryCredentialsResultOutput) ToListRegistryCredentialsResultOutputWithContext(ctx context.Context) ListRegistryCredentialsResultOutput {
 	return o
 }
 
-func (o ListRegistrycredentialsResultOutput) Items() ListRegistrycredentialsItemPropertiesArrayOutput {
-	return o.ApplyT(func(v ListRegistrycredentialsResult) []ListRegistrycredentialsItemProperties { return v.Items }).(ListRegistrycredentialsItemPropertiesArrayOutput)
+func (o ListRegistryCredentialsResultOutput) Items() ListRegistryCredentialsItemPropertiesArrayOutput {
+	return o.ApplyT(func(v ListRegistryCredentialsResult) []ListRegistryCredentialsItemProperties { return v.Items }).(ListRegistryCredentialsItemPropertiesArrayOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(ListRegistrycredentialsResultOutput{})
+	pulumi.RegisterOutputType(ListRegistryCredentialsResultOutput{})
 }

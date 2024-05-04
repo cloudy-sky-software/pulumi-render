@@ -11,14 +11,14 @@ from .. import _utilities
 from . import outputs
 
 __all__ = [
-    'ListRegistrycredentialsResult',
-    'AwaitableListRegistrycredentialsResult',
-    'list_registrycredentials',
-    'list_registrycredentials_output',
+    'ListRegistryCredentialsResult',
+    'AwaitableListRegistryCredentialsResult',
+    'list_registry_credentials',
+    'list_registry_credentials_output',
 ]
 
 @pulumi.output_type
-class ListRegistrycredentialsResult:
+class ListRegistryCredentialsResult:
     def __init__(__self__, items=None):
         if items and not isinstance(items, list):
             raise TypeError("Expected argument 'items' to be a list")
@@ -26,33 +26,33 @@ class ListRegistrycredentialsResult:
 
     @property
     @pulumi.getter
-    def items(self) -> Sequence['outputs.ListRegistrycredentialsItemProperties']:
+    def items(self) -> Sequence['outputs.ListRegistryCredentialsItemProperties']:
         return pulumi.get(self, "items")
 
 
-class AwaitableListRegistrycredentialsResult(ListRegistrycredentialsResult):
+class AwaitableListRegistryCredentialsResult(ListRegistryCredentialsResult):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return ListRegistrycredentialsResult(
+        return ListRegistryCredentialsResult(
             items=self.items)
 
 
-def list_registrycredentials(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListRegistrycredentialsResult:
+def list_registry_credentials(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListRegistryCredentialsResult:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('render:registrycredentials:listRegistrycredentials', __args__, opts=opts, typ=ListRegistrycredentialsResult).value
+    __ret__ = pulumi.runtime.invoke('render:registrycredentials:listRegistryCredentials', __args__, opts=opts, typ=ListRegistryCredentialsResult).value
 
-    return AwaitableListRegistrycredentialsResult(
+    return AwaitableListRegistryCredentialsResult(
         items=pulumi.get(__ret__, 'items'))
 
 
-@_utilities.lift_output_func(list_registrycredentials)
-def list_registrycredentials_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListRegistrycredentialsResult]:
+@_utilities.lift_output_func(list_registry_credentials)
+def list_registry_credentials_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListRegistryCredentialsResult]:
     """
     Use this data source to access information about an existing resource.
     """

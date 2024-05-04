@@ -5,7 +5,7 @@
 from .. import _utilities
 import typing
 # Export this package's modules as members:
-from .get_registrycredential import *
-from .list_registrycredentials import *
-from .registrycredentials import *
+from .get_registry_credential import *
+from .list_registry_credentials import *
+from .registry_credential import *
 from . import outputs

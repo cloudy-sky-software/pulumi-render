@@ -9,32 +9,32 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Render.Registrycredentials
 {
-    public static class GetRegistrycredential
+    public static class GetRegistryCredential
     {
-        public static Task<GetRegistrycredentialResult> InvokeAsync(GetRegistrycredentialArgs? args = null, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetRegistrycredentialResult>("render:registrycredentials:getRegistrycredential", args ?? new GetRegistrycredentialArgs(), options.WithDefaults());
+        public static Task<GetRegistryCredentialResult> InvokeAsync(GetRegistryCredentialArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetRegistryCredentialResult>("render:registrycredentials:getRegistryCredential", args ?? new GetRegistryCredentialArgs(), options.WithDefaults());
 
-        public static Output<GetRegistrycredentialResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetRegistrycredentialResult>("render:registrycredentials:getRegistrycredential", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<GetRegistryCredentialResult> Invoke(InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetRegistryCredentialResult>("render:registrycredentials:getRegistryCredential", InvokeArgs.Empty, options.WithDefaults());
     }
 
 
-    public sealed class GetRegistrycredentialArgs : global::Pulumi.InvokeArgs
+    public sealed class GetRegistryCredentialArgs : global::Pulumi.InvokeArgs
     {
-        public GetRegistrycredentialArgs()
+        public GetRegistryCredentialArgs()
         {
         }
-        public static new GetRegistrycredentialArgs Empty => new GetRegistrycredentialArgs();
+        public static new GetRegistryCredentialArgs Empty => new GetRegistryCredentialArgs();
     }
 
 
     [OutputType]
-    public sealed class GetRegistrycredentialResult
+    public sealed class GetRegistryCredentialResult
     {
-        public readonly Outputs.GetRegistrycredentialProperties Items;
+        public readonly Outputs.GetRegistryCredentialProperties Items;
 
         [OutputConstructor]
-        private GetRegistrycredentialResult(Outputs.GetRegistrycredentialProperties items)
+        private GetRegistryCredentialResult(Outputs.GetRegistryCredentialProperties items)
         {
             Items = items;
         }

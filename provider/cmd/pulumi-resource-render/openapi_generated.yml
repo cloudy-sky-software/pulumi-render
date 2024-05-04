@@ -1202,7 +1202,7 @@ paths:
                 - registrycredentials
             summary: Get a list of registry credentials
             description: Get a list of registry credentials
-            operationId: listRegistrycredentials
+            operationId: listRegistryCredentials
             parameters:
                 - name: name
                   in: query
@@ -1401,7 +1401,7 @@ paths:
                 - registrycredentials
             summary: Create registry credential
             description: Create registry credential
-            operationId: createRegistrycredentials
+            operationId: createRegistryCredential
             requestBody:
                 content:
                     application/json:
@@ -1609,7 +1609,7 @@ paths:
                 - '{registryCredentialId}'
             summary: Delete registry credential
             description: Delete registry credential
-            operationId: deleteRegistrycredentials
+            operationId: deleteRegistryCredential
             responses:
                 "204":
                     description: Registry credential deleted
@@ -1768,7 +1768,7 @@ paths:
                 - '{registryCredentialId}'
             summary: Retrieve registry credentials
             description: Retrieve registry credentials
-            operationId: getRegistrycredentials
+            operationId: getRegistryCredential
             responses:
                 "200":
                     description: OK
@@ -1946,7 +1946,7 @@ paths:
                 - '{registryCredentialId}'
             summary: Update registry credential
             description: Update registry credential
-            operationId: updateRegistrycredentials
+            operationId: updateRegistryCredential
             requestBody:
                 content:
                     application/json:

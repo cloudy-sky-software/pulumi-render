@@ -4,31 +4,31 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-export class Registrycredentials extends pulumi.CustomResource {
+export class RegistryCredential extends pulumi.CustomResource {
     /**
-     * Get an existing Registrycredentials resource's state with the given name, ID, and optional extra
+     * Get an existing RegistryCredential resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, opts?: pulumi.CustomResourceOptions): Registrycredentials {
-        return new Registrycredentials(name, undefined as any, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, opts?: pulumi.CustomResourceOptions): RegistryCredential {
+        return new RegistryCredential(name, undefined as any, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'render:registrycredentials:Registrycredentials';
+    public static readonly __pulumiType = 'render:registrycredentials:RegistryCredential';
 
     /**
-     * Returns true if the given object is an instance of Registrycredentials.  This is designed to work even
+     * Returns true if the given object is an instance of RegistryCredential.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is Registrycredentials {
+    public static isInstance(obj: any): obj is RegistryCredential {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === Registrycredentials.__pulumiType;
+        return obj['__pulumiType'] === RegistryCredential.__pulumiType;
     }
 
     public readonly authToken!: pulumi.Output<string | undefined>;
@@ -38,13 +38,13 @@ export class Registrycredentials extends pulumi.CustomResource {
     public readonly username!: pulumi.Output<string | undefined>;
 
     /**
-     * Create a Registrycredentials resource with the given unique name, arguments, and options.
+     * Create a RegistryCredential resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: RegistrycredentialsArgs, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args?: RegistryCredentialArgs, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
@@ -61,14 +61,14 @@ export class Registrycredentials extends pulumi.CustomResource {
             resourceInputs["username"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(Registrycredentials.__pulumiType, name, resourceInputs, opts);
+        super(RegistryCredential.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * The set of arguments for constructing a Registrycredentials resource.
+ * The set of arguments for constructing a RegistryCredential resource.
  */
-export interface RegistrycredentialsArgs {
+export interface RegistryCredentialArgs {
     authToken?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     ownerId?: pulumi.Input<string>;

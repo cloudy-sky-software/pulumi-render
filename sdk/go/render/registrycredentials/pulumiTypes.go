@@ -13,102 +13,102 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
-type GetRegistrycredentialProperties struct {
+type GetRegistryCredentialProperties struct {
 	Id       *string `pulumi:"id"`
 	Name     *string `pulumi:"name"`
 	Registry *string `pulumi:"registry"`
 	Username *string `pulumi:"username"`
 }
 
-type GetRegistrycredentialPropertiesOutput struct{ *pulumi.OutputState }
+type GetRegistryCredentialPropertiesOutput struct{ *pulumi.OutputState }
 
-func (GetRegistrycredentialPropertiesOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetRegistrycredentialProperties)(nil)).Elem()
+func (GetRegistryCredentialPropertiesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistryCredentialProperties)(nil)).Elem()
 }
 
-func (o GetRegistrycredentialPropertiesOutput) ToGetRegistrycredentialPropertiesOutput() GetRegistrycredentialPropertiesOutput {
+func (o GetRegistryCredentialPropertiesOutput) ToGetRegistryCredentialPropertiesOutput() GetRegistryCredentialPropertiesOutput {
 	return o
 }
 
-func (o GetRegistrycredentialPropertiesOutput) ToGetRegistrycredentialPropertiesOutputWithContext(ctx context.Context) GetRegistrycredentialPropertiesOutput {
+func (o GetRegistryCredentialPropertiesOutput) ToGetRegistryCredentialPropertiesOutputWithContext(ctx context.Context) GetRegistryCredentialPropertiesOutput {
 	return o
 }
 
-func (o GetRegistrycredentialPropertiesOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetRegistrycredentialProperties) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o GetRegistryCredentialPropertiesOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRegistryCredentialProperties) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-func (o GetRegistrycredentialPropertiesOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetRegistrycredentialProperties) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o GetRegistryCredentialPropertiesOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRegistryCredentialProperties) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-func (o GetRegistrycredentialPropertiesOutput) Registry() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetRegistrycredentialProperties) *string { return v.Registry }).(pulumi.StringPtrOutput)
+func (o GetRegistryCredentialPropertiesOutput) Registry() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRegistryCredentialProperties) *string { return v.Registry }).(pulumi.StringPtrOutput)
 }
 
-func (o GetRegistrycredentialPropertiesOutput) Username() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetRegistrycredentialProperties) *string { return v.Username }).(pulumi.StringPtrOutput)
+func (o GetRegistryCredentialPropertiesOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRegistryCredentialProperties) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
 
-type ListRegistrycredentialsItemProperties struct {
+type ListRegistryCredentialsItemProperties struct {
 	Id       *string `pulumi:"id"`
 	Name     *string `pulumi:"name"`
 	Registry *string `pulumi:"registry"`
 	Username *string `pulumi:"username"`
 }
 
-type ListRegistrycredentialsItemPropertiesOutput struct{ *pulumi.OutputState }
+type ListRegistryCredentialsItemPropertiesOutput struct{ *pulumi.OutputState }
 
-func (ListRegistrycredentialsItemPropertiesOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ListRegistrycredentialsItemProperties)(nil)).Elem()
+func (ListRegistryCredentialsItemPropertiesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListRegistryCredentialsItemProperties)(nil)).Elem()
 }
 
-func (o ListRegistrycredentialsItemPropertiesOutput) ToListRegistrycredentialsItemPropertiesOutput() ListRegistrycredentialsItemPropertiesOutput {
+func (o ListRegistryCredentialsItemPropertiesOutput) ToListRegistryCredentialsItemPropertiesOutput() ListRegistryCredentialsItemPropertiesOutput {
 	return o
 }
 
-func (o ListRegistrycredentialsItemPropertiesOutput) ToListRegistrycredentialsItemPropertiesOutputWithContext(ctx context.Context) ListRegistrycredentialsItemPropertiesOutput {
+func (o ListRegistryCredentialsItemPropertiesOutput) ToListRegistryCredentialsItemPropertiesOutputWithContext(ctx context.Context) ListRegistryCredentialsItemPropertiesOutput {
 	return o
 }
 
-func (o ListRegistrycredentialsItemPropertiesOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ListRegistrycredentialsItemProperties) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o ListRegistryCredentialsItemPropertiesOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListRegistryCredentialsItemProperties) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-func (o ListRegistrycredentialsItemPropertiesOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ListRegistrycredentialsItemProperties) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o ListRegistryCredentialsItemPropertiesOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListRegistryCredentialsItemProperties) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-func (o ListRegistrycredentialsItemPropertiesOutput) Registry() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ListRegistrycredentialsItemProperties) *string { return v.Registry }).(pulumi.StringPtrOutput)
+func (o ListRegistryCredentialsItemPropertiesOutput) Registry() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListRegistryCredentialsItemProperties) *string { return v.Registry }).(pulumi.StringPtrOutput)
 }
 
-func (o ListRegistrycredentialsItemPropertiesOutput) Username() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ListRegistrycredentialsItemProperties) *string { return v.Username }).(pulumi.StringPtrOutput)
+func (o ListRegistryCredentialsItemPropertiesOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListRegistryCredentialsItemProperties) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
 
-type ListRegistrycredentialsItemPropertiesArrayOutput struct{ *pulumi.OutputState }
+type ListRegistryCredentialsItemPropertiesArrayOutput struct{ *pulumi.OutputState }
 
-func (ListRegistrycredentialsItemPropertiesArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ListRegistrycredentialsItemProperties)(nil)).Elem()
+func (ListRegistryCredentialsItemPropertiesArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListRegistryCredentialsItemProperties)(nil)).Elem()
 }
 
-func (o ListRegistrycredentialsItemPropertiesArrayOutput) ToListRegistrycredentialsItemPropertiesArrayOutput() ListRegistrycredentialsItemPropertiesArrayOutput {
+func (o ListRegistryCredentialsItemPropertiesArrayOutput) ToListRegistryCredentialsItemPropertiesArrayOutput() ListRegistryCredentialsItemPropertiesArrayOutput {
 	return o
 }
 
-func (o ListRegistrycredentialsItemPropertiesArrayOutput) ToListRegistrycredentialsItemPropertiesArrayOutputWithContext(ctx context.Context) ListRegistrycredentialsItemPropertiesArrayOutput {
+func (o ListRegistryCredentialsItemPropertiesArrayOutput) ToListRegistryCredentialsItemPropertiesArrayOutputWithContext(ctx context.Context) ListRegistryCredentialsItemPropertiesArrayOutput {
 	return o
 }
 
-func (o ListRegistrycredentialsItemPropertiesArrayOutput) Index(i pulumi.IntInput) ListRegistrycredentialsItemPropertiesOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListRegistrycredentialsItemProperties {
-		return vs[0].([]ListRegistrycredentialsItemProperties)[vs[1].(int)]
-	}).(ListRegistrycredentialsItemPropertiesOutput)
+func (o ListRegistryCredentialsItemPropertiesArrayOutput) Index(i pulumi.IntInput) ListRegistryCredentialsItemPropertiesOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListRegistryCredentialsItemProperties {
+		return vs[0].([]ListRegistryCredentialsItemProperties)[vs[1].(int)]
+	}).(ListRegistryCredentialsItemPropertiesOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(GetRegistrycredentialPropertiesOutput{})
-	pulumi.RegisterOutputType(ListRegistrycredentialsItemPropertiesOutput{})
-	pulumi.RegisterOutputType(ListRegistrycredentialsItemPropertiesArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistryCredentialPropertiesOutput{})
+	pulumi.RegisterOutputType(ListRegistryCredentialsItemPropertiesOutput{})
+	pulumi.RegisterOutputType(ListRegistryCredentialsItemPropertiesArrayOutput{})
 }

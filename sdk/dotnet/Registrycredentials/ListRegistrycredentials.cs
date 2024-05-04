@@ -9,32 +9,32 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Render.Registrycredentials
 {
-    public static class ListRegistrycredentials
+    public static class ListRegistryCredentials
     {
-        public static Task<ListRegistrycredentialsResult> InvokeAsync(ListRegistrycredentialsArgs? args = null, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<ListRegistrycredentialsResult>("render:registrycredentials:listRegistrycredentials", args ?? new ListRegistrycredentialsArgs(), options.WithDefaults());
+        public static Task<ListRegistryCredentialsResult> InvokeAsync(ListRegistryCredentialsArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<ListRegistryCredentialsResult>("render:registrycredentials:listRegistryCredentials", args ?? new ListRegistryCredentialsArgs(), options.WithDefaults());
 
-        public static Output<ListRegistrycredentialsResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<ListRegistrycredentialsResult>("render:registrycredentials:listRegistrycredentials", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<ListRegistryCredentialsResult> Invoke(InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<ListRegistryCredentialsResult>("render:registrycredentials:listRegistryCredentials", InvokeArgs.Empty, options.WithDefaults());
     }
 
 
-    public sealed class ListRegistrycredentialsArgs : global::Pulumi.InvokeArgs
+    public sealed class ListRegistryCredentialsArgs : global::Pulumi.InvokeArgs
     {
-        public ListRegistrycredentialsArgs()
+        public ListRegistryCredentialsArgs()
         {
         }
-        public static new ListRegistrycredentialsArgs Empty => new ListRegistrycredentialsArgs();
+        public static new ListRegistryCredentialsArgs Empty => new ListRegistryCredentialsArgs();
     }
 
 
     [OutputType]
-    public sealed class ListRegistrycredentialsResult
+    public sealed class ListRegistryCredentialsResult
     {
-        public readonly ImmutableArray<Outputs.ListRegistrycredentialsItemProperties> Items;
+        public readonly ImmutableArray<Outputs.ListRegistryCredentialsItemProperties> Items;
 
         [OutputConstructor]
-        private ListRegistrycredentialsResult(ImmutableArray<Outputs.ListRegistrycredentialsItemProperties> items)
+        private ListRegistryCredentialsResult(ImmutableArray<Outputs.ListRegistryCredentialsItemProperties> items)
         {
             Items = items;
         }

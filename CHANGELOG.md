@@ -1,4 +1,4 @@
-## 0.1.0
+## 0.1.0, 0.1.1
 
 This release contains some breaking changes related to the names of functions but does not change any resource names.
 

@@ -1,3 +1,12 @@
+## 0.1.0
+
+This release contains some breaking changes related to the names of functions but does not change any resource names.
+
+- Upgrade pulschema and pulumi-provider-framework which changes the names of certain get/list functions.
+- New resources have been added:
+  - `RegistryCredential`
+  - `AutoScaling`
+
 ## 0.0.47
 
 - Upgrade pulschema and pulumi-provider-framework modules to add auto-naming feature.

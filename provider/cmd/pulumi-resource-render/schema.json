@@ -35,6 +35,9 @@
         },
         "python": {
             "packageName": "pulumi_render",
+            "pyproject": {
+                "enabled": true
+            },
             "requires": {
                 "pulumi": "\u003e=3.0.0,\u003c4.0.0"
             }

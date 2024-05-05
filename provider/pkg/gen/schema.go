@@ -143,6 +143,9 @@ func PulumiSchema(openAPIDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 		"requires": map[string]string{
 			"pulumi": ">=3.0.0,<4.0.0",
 		},
+		"pyproject": map[string]bool{
+			"enabled": true,
+		},
 	})
 
 	metadata := openapigen.ProviderMetadata{

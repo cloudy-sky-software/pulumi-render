@@ -67,13 +67,16 @@ python_sdk:: PYPI_VERSION := $(shell pulumictl get version --language python)
 python_sdk::
 	rm -rf sdk/python
 	$(WORKING_DIR)/bin/$(CODEGEN) -version=${VERSION} python $(SCHEMA_FILE) $(CURDIR)
+
 	cp README.md ${PACKDIR}/python/
 	cd ${PACKDIR}/python/ && \
-		python3 setup.py clean --all 2>/dev/null && \
 		rm -rf ./bin/ ../python.bin/ && cp -R . ../python.bin && mv ../python.bin ./bin && \
-		sed -i.bak -e 's/^VERSION = .*/VERSION = "$(PYPI_VERSION)"/g' -e 's/^PLUGIN_VERSION = .*/PLUGIN_VERSION = "$(VERSION)"/g' ./bin/setup.py && \
-		rm ./bin/setup.py.bak && \
-		cd ./bin && python3 setup.py build sdist
+		sed -i.bak -e 's/^  version = .*/  version = "$(PYPI_VERSION)"/g' ./bin/pyproject.toml && \
+        rm ./bin/pyproject.toml.bak && \
+		python3 -m venv venv && \
+		./venv/bin/python -m pip install build && \
+		cd ./bin && \
+		../venv/bin/python -m build .
 
 .PHONY: build
 build:: gen provider dotnet_sdk go_sdk nodejs_sdk python_sdk

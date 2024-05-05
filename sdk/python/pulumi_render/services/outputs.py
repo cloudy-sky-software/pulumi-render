@@ -12,6 +12,8 @@ from . import outputs
 from ._enums import *
 
 __all__ = [
+    'AutoScalingCriteria',
+    'AutoScalingCriteriaSpec',
     'BackgroundWorker',
     'BackgroundWorkerServiceDetails',
     'BackgroundWorkerServiceDetailsParentServerProperties',
@@ -53,6 +55,54 @@ __all__ = [
     'WebServiceServiceDetails',
     'WebServiceServiceDetailsParentServerProperties',
 ]
+
+@pulumi.output_type
+class AutoScalingCriteria(dict):
+    def __init__(__self__, *,
+                 cpu: Optional['outputs.AutoScalingCriteriaSpec'] = None,
+                 memory: Optional['outputs.AutoScalingCriteriaSpec'] = None):
+        if cpu is not None:
+            pulumi.set(__self__, "cpu", cpu)
+        if memory is not None:
+            pulumi.set(__self__, "memory", memory)
+
+    @property
+    @pulumi.getter
+    def cpu(self) -> Optional['outputs.AutoScalingCriteriaSpec']:
+        return pulumi.get(self, "cpu")
+
+    @property
+    @pulumi.getter
+    def memory(self) -> Optional['outputs.AutoScalingCriteriaSpec']:
+        return pulumi.get(self, "memory")
+
+
+@pulumi.output_type
+class AutoScalingCriteriaSpec(dict):
+    def __init__(__self__, *,
+                 enabled: Optional[bool] = None,
+                 percentage: Optional[float] = None):
+        """
+        :param float percentage: Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+        """
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if percentage is not None:
+            pulumi.set(__self__, "percentage", percentage)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter
+    def percentage(self) -> Optional[float]:
+        """
+        Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+        """
+        return pulumi.get(self, "percentage")
+
 
 @pulumi.output_type
 class BackgroundWorker(dict):

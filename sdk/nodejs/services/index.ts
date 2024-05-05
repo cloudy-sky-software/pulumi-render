@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { AutoScalingArgs } from "./autoScaling";
+export type AutoScaling = import("./autoScaling").AutoScaling;
+export const AutoScaling: typeof import("./autoScaling").AutoScaling = null as any;
+utilities.lazyLoad(exports, ["AutoScaling"], () => require("./autoScaling"));
+
 export { BackgroundWorkerArgs } from "./backgroundWorker";
 export type BackgroundWorker = import("./backgroundWorker").BackgroundWorker;
 export const BackgroundWorker: typeof import("./backgroundWorker").BackgroundWorker = null as any;
@@ -143,6 +148,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "render:services:AutoScaling":
+                return new AutoScaling(name, <any>undefined, { urn })
             case "render:services:BackgroundWorker":
                 return new BackgroundWorker(name, <any>undefined, { urn })
             case "render:services:CronJob":

@@ -59,6 +59,19 @@ export namespace registrycredentials {
 }
 
 export namespace services {
+    export interface AutoScalingCriteria {
+        cpu?: outputs.services.AutoScalingCriteriaSpec;
+        memory?: outputs.services.AutoScalingCriteriaSpec;
+    }
+
+    export interface AutoScalingCriteriaSpec {
+        enabled?: boolean;
+        /**
+         * Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+         */
+        percentage?: number;
+    }
+
     /**
      * A background worker service
      */

@@ -66,7 +66,7 @@ nodejs_sdk::
 python_sdk:: PYPI_VERSION := $(shell pulumictl get version --language python)
 python_sdk::
 	# Delete files not tracked in Git
-	cd ${PACKDIR}/python/ && git clean -fxd && cd ../../
+	cd ${PACKDIR}/python/ && git clean -df && cd ../../
 	pulumi package gen-sdk $(SCHEMA_FILE) --language python
 
 	cp README.md ${PACKDIR}/python/

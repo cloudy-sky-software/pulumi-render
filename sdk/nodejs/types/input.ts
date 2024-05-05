@@ -15,6 +15,19 @@ export namespace registrycredentials {
 }
 
 export namespace services {
+    export interface AutoScalingCriteriaArgs {
+        cpu?: pulumi.Input<inputs.services.AutoScalingCriteriaSpecArgs>;
+        memory?: pulumi.Input<inputs.services.AutoScalingCriteriaSpecArgs>;
+    }
+
+    export interface AutoScalingCriteriaSpecArgs {
+        enabled?: pulumi.Input<boolean>;
+        /**
+         * Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+         */
+        percentage?: pulumi.Input<number>;
+    }
+
     export interface BackgroundWorkerServiceDetailsArgs {
         disk?: pulumi.Input<inputs.services.DiskArgs>;
         env: pulumi.Input<enums.services.BackgroundWorkerServiceDetailsEnv>;

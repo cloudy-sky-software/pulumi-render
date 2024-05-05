@@ -39,6 +39,7 @@ _utilities.register(
   "mod": "services",
   "fqn": "pulumi_render.services",
   "classes": {
+   "render:services:AutoScaling": "AutoScaling",
    "render:services:BackgroundWorker": "BackgroundWorker",
    "render:services:CronJob": "CronJob",
    "render:services:CustomDomains": "CustomDomains",

@@ -6,6 +6,7 @@ from .. import _utilities
 import typing
 # Export this package's modules as members:
 from ._enums import *
+from .auto_scaling import *
 from .background_worker import *
 from .cron_job import *
 from .custom_domains import *

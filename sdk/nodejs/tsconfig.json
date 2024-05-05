@@ -24,6 +24,7 @@
         "registrycredentials/index.ts",
         "registrycredentials/listRegistryCredentials.ts",
         "registrycredentials/registryCredential.ts",
+        "services/autoScaling.ts",
         "services/backgroundWorker.ts",
         "services/cronJob.ts",
         "services/customDomains.ts",

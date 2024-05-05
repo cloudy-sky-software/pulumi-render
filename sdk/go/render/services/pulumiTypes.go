@@ -13,6 +13,306 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type AutoScalingCriteria struct {
+	Cpu    *AutoScalingCriteriaSpec `pulumi:"cpu"`
+	Memory *AutoScalingCriteriaSpec `pulumi:"memory"`
+}
+
+// AutoScalingCriteriaInput is an input type that accepts AutoScalingCriteriaArgs and AutoScalingCriteriaOutput values.
+// You can construct a concrete instance of `AutoScalingCriteriaInput` via:
+//
+//	AutoScalingCriteriaArgs{...}
+type AutoScalingCriteriaInput interface {
+	pulumi.Input
+
+	ToAutoScalingCriteriaOutput() AutoScalingCriteriaOutput
+	ToAutoScalingCriteriaOutputWithContext(context.Context) AutoScalingCriteriaOutput
+}
+
+type AutoScalingCriteriaArgs struct {
+	Cpu    AutoScalingCriteriaSpecPtrInput `pulumi:"cpu"`
+	Memory AutoScalingCriteriaSpecPtrInput `pulumi:"memory"`
+}
+
+func (AutoScalingCriteriaArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutoScalingCriteria)(nil)).Elem()
+}
+
+func (i AutoScalingCriteriaArgs) ToAutoScalingCriteriaOutput() AutoScalingCriteriaOutput {
+	return i.ToAutoScalingCriteriaOutputWithContext(context.Background())
+}
+
+func (i AutoScalingCriteriaArgs) ToAutoScalingCriteriaOutputWithContext(ctx context.Context) AutoScalingCriteriaOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoScalingCriteriaOutput)
+}
+
+func (i AutoScalingCriteriaArgs) ToAutoScalingCriteriaPtrOutput() AutoScalingCriteriaPtrOutput {
+	return i.ToAutoScalingCriteriaPtrOutputWithContext(context.Background())
+}
+
+func (i AutoScalingCriteriaArgs) ToAutoScalingCriteriaPtrOutputWithContext(ctx context.Context) AutoScalingCriteriaPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoScalingCriteriaOutput).ToAutoScalingCriteriaPtrOutputWithContext(ctx)
+}
+
+// AutoScalingCriteriaPtrInput is an input type that accepts AutoScalingCriteriaArgs, AutoScalingCriteriaPtr and AutoScalingCriteriaPtrOutput values.
+// You can construct a concrete instance of `AutoScalingCriteriaPtrInput` via:
+//
+//	        AutoScalingCriteriaArgs{...}
+//
+//	or:
+//
+//	        nil
+type AutoScalingCriteriaPtrInput interface {
+	pulumi.Input
+
+	ToAutoScalingCriteriaPtrOutput() AutoScalingCriteriaPtrOutput
+	ToAutoScalingCriteriaPtrOutputWithContext(context.Context) AutoScalingCriteriaPtrOutput
+}
+
+type autoScalingCriteriaPtrType AutoScalingCriteriaArgs
+
+func AutoScalingCriteriaPtr(v *AutoScalingCriteriaArgs) AutoScalingCriteriaPtrInput {
+	return (*autoScalingCriteriaPtrType)(v)
+}
+
+func (*autoScalingCriteriaPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AutoScalingCriteria)(nil)).Elem()
+}
+
+func (i *autoScalingCriteriaPtrType) ToAutoScalingCriteriaPtrOutput() AutoScalingCriteriaPtrOutput {
+	return i.ToAutoScalingCriteriaPtrOutputWithContext(context.Background())
+}
+
+func (i *autoScalingCriteriaPtrType) ToAutoScalingCriteriaPtrOutputWithContext(ctx context.Context) AutoScalingCriteriaPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoScalingCriteriaPtrOutput)
+}
+
+type AutoScalingCriteriaOutput struct{ *pulumi.OutputState }
+
+func (AutoScalingCriteriaOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutoScalingCriteria)(nil)).Elem()
+}
+
+func (o AutoScalingCriteriaOutput) ToAutoScalingCriteriaOutput() AutoScalingCriteriaOutput {
+	return o
+}
+
+func (o AutoScalingCriteriaOutput) ToAutoScalingCriteriaOutputWithContext(ctx context.Context) AutoScalingCriteriaOutput {
+	return o
+}
+
+func (o AutoScalingCriteriaOutput) ToAutoScalingCriteriaPtrOutput() AutoScalingCriteriaPtrOutput {
+	return o.ToAutoScalingCriteriaPtrOutputWithContext(context.Background())
+}
+
+func (o AutoScalingCriteriaOutput) ToAutoScalingCriteriaPtrOutputWithContext(ctx context.Context) AutoScalingCriteriaPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AutoScalingCriteria) *AutoScalingCriteria {
+		return &v
+	}).(AutoScalingCriteriaPtrOutput)
+}
+
+func (o AutoScalingCriteriaOutput) Cpu() AutoScalingCriteriaSpecPtrOutput {
+	return o.ApplyT(func(v AutoScalingCriteria) *AutoScalingCriteriaSpec { return v.Cpu }).(AutoScalingCriteriaSpecPtrOutput)
+}
+
+func (o AutoScalingCriteriaOutput) Memory() AutoScalingCriteriaSpecPtrOutput {
+	return o.ApplyT(func(v AutoScalingCriteria) *AutoScalingCriteriaSpec { return v.Memory }).(AutoScalingCriteriaSpecPtrOutput)
+}
+
+type AutoScalingCriteriaPtrOutput struct{ *pulumi.OutputState }
+
+func (AutoScalingCriteriaPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AutoScalingCriteria)(nil)).Elem()
+}
+
+func (o AutoScalingCriteriaPtrOutput) ToAutoScalingCriteriaPtrOutput() AutoScalingCriteriaPtrOutput {
+	return o
+}
+
+func (o AutoScalingCriteriaPtrOutput) ToAutoScalingCriteriaPtrOutputWithContext(ctx context.Context) AutoScalingCriteriaPtrOutput {
+	return o
+}
+
+func (o AutoScalingCriteriaPtrOutput) Elem() AutoScalingCriteriaOutput {
+	return o.ApplyT(func(v *AutoScalingCriteria) AutoScalingCriteria {
+		if v != nil {
+			return *v
+		}
+		var ret AutoScalingCriteria
+		return ret
+	}).(AutoScalingCriteriaOutput)
+}
+
+func (o AutoScalingCriteriaPtrOutput) Cpu() AutoScalingCriteriaSpecPtrOutput {
+	return o.ApplyT(func(v *AutoScalingCriteria) *AutoScalingCriteriaSpec {
+		if v == nil {
+			return nil
+		}
+		return v.Cpu
+	}).(AutoScalingCriteriaSpecPtrOutput)
+}
+
+func (o AutoScalingCriteriaPtrOutput) Memory() AutoScalingCriteriaSpecPtrOutput {
+	return o.ApplyT(func(v *AutoScalingCriteria) *AutoScalingCriteriaSpec {
+		if v == nil {
+			return nil
+		}
+		return v.Memory
+	}).(AutoScalingCriteriaSpecPtrOutput)
+}
+
+type AutoScalingCriteriaSpec struct {
+	Enabled *bool `pulumi:"enabled"`
+	// Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+	Percentage *float64 `pulumi:"percentage"`
+}
+
+// AutoScalingCriteriaSpecInput is an input type that accepts AutoScalingCriteriaSpecArgs and AutoScalingCriteriaSpecOutput values.
+// You can construct a concrete instance of `AutoScalingCriteriaSpecInput` via:
+//
+//	AutoScalingCriteriaSpecArgs{...}
+type AutoScalingCriteriaSpecInput interface {
+	pulumi.Input
+
+	ToAutoScalingCriteriaSpecOutput() AutoScalingCriteriaSpecOutput
+	ToAutoScalingCriteriaSpecOutputWithContext(context.Context) AutoScalingCriteriaSpecOutput
+}
+
+type AutoScalingCriteriaSpecArgs struct {
+	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
+	// Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+	Percentage pulumi.Float64PtrInput `pulumi:"percentage"`
+}
+
+func (AutoScalingCriteriaSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutoScalingCriteriaSpec)(nil)).Elem()
+}
+
+func (i AutoScalingCriteriaSpecArgs) ToAutoScalingCriteriaSpecOutput() AutoScalingCriteriaSpecOutput {
+	return i.ToAutoScalingCriteriaSpecOutputWithContext(context.Background())
+}
+
+func (i AutoScalingCriteriaSpecArgs) ToAutoScalingCriteriaSpecOutputWithContext(ctx context.Context) AutoScalingCriteriaSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoScalingCriteriaSpecOutput)
+}
+
+func (i AutoScalingCriteriaSpecArgs) ToAutoScalingCriteriaSpecPtrOutput() AutoScalingCriteriaSpecPtrOutput {
+	return i.ToAutoScalingCriteriaSpecPtrOutputWithContext(context.Background())
+}
+
+func (i AutoScalingCriteriaSpecArgs) ToAutoScalingCriteriaSpecPtrOutputWithContext(ctx context.Context) AutoScalingCriteriaSpecPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoScalingCriteriaSpecOutput).ToAutoScalingCriteriaSpecPtrOutputWithContext(ctx)
+}
+
+// AutoScalingCriteriaSpecPtrInput is an input type that accepts AutoScalingCriteriaSpecArgs, AutoScalingCriteriaSpecPtr and AutoScalingCriteriaSpecPtrOutput values.
+// You can construct a concrete instance of `AutoScalingCriteriaSpecPtrInput` via:
+//
+//	        AutoScalingCriteriaSpecArgs{...}
+//
+//	or:
+//
+//	        nil
+type AutoScalingCriteriaSpecPtrInput interface {
+	pulumi.Input
+
+	ToAutoScalingCriteriaSpecPtrOutput() AutoScalingCriteriaSpecPtrOutput
+	ToAutoScalingCriteriaSpecPtrOutputWithContext(context.Context) AutoScalingCriteriaSpecPtrOutput
+}
+
+type autoScalingCriteriaSpecPtrType AutoScalingCriteriaSpecArgs
+
+func AutoScalingCriteriaSpecPtr(v *AutoScalingCriteriaSpecArgs) AutoScalingCriteriaSpecPtrInput {
+	return (*autoScalingCriteriaSpecPtrType)(v)
+}
+
+func (*autoScalingCriteriaSpecPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AutoScalingCriteriaSpec)(nil)).Elem()
+}
+
+func (i *autoScalingCriteriaSpecPtrType) ToAutoScalingCriteriaSpecPtrOutput() AutoScalingCriteriaSpecPtrOutput {
+	return i.ToAutoScalingCriteriaSpecPtrOutputWithContext(context.Background())
+}
+
+func (i *autoScalingCriteriaSpecPtrType) ToAutoScalingCriteriaSpecPtrOutputWithContext(ctx context.Context) AutoScalingCriteriaSpecPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoScalingCriteriaSpecPtrOutput)
+}
+
+type AutoScalingCriteriaSpecOutput struct{ *pulumi.OutputState }
+
+func (AutoScalingCriteriaSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutoScalingCriteriaSpec)(nil)).Elem()
+}
+
+func (o AutoScalingCriteriaSpecOutput) ToAutoScalingCriteriaSpecOutput() AutoScalingCriteriaSpecOutput {
+	return o
+}
+
+func (o AutoScalingCriteriaSpecOutput) ToAutoScalingCriteriaSpecOutputWithContext(ctx context.Context) AutoScalingCriteriaSpecOutput {
+	return o
+}
+
+func (o AutoScalingCriteriaSpecOutput) ToAutoScalingCriteriaSpecPtrOutput() AutoScalingCriteriaSpecPtrOutput {
+	return o.ToAutoScalingCriteriaSpecPtrOutputWithContext(context.Background())
+}
+
+func (o AutoScalingCriteriaSpecOutput) ToAutoScalingCriteriaSpecPtrOutputWithContext(ctx context.Context) AutoScalingCriteriaSpecPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AutoScalingCriteriaSpec) *AutoScalingCriteriaSpec {
+		return &v
+	}).(AutoScalingCriteriaSpecPtrOutput)
+}
+
+func (o AutoScalingCriteriaSpecOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v AutoScalingCriteriaSpec) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+func (o AutoScalingCriteriaSpecOutput) Percentage() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v AutoScalingCriteriaSpec) *float64 { return v.Percentage }).(pulumi.Float64PtrOutput)
+}
+
+type AutoScalingCriteriaSpecPtrOutput struct{ *pulumi.OutputState }
+
+func (AutoScalingCriteriaSpecPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AutoScalingCriteriaSpec)(nil)).Elem()
+}
+
+func (o AutoScalingCriteriaSpecPtrOutput) ToAutoScalingCriteriaSpecPtrOutput() AutoScalingCriteriaSpecPtrOutput {
+	return o
+}
+
+func (o AutoScalingCriteriaSpecPtrOutput) ToAutoScalingCriteriaSpecPtrOutputWithContext(ctx context.Context) AutoScalingCriteriaSpecPtrOutput {
+	return o
+}
+
+func (o AutoScalingCriteriaSpecPtrOutput) Elem() AutoScalingCriteriaSpecOutput {
+	return o.ApplyT(func(v *AutoScalingCriteriaSpec) AutoScalingCriteriaSpec {
+		if v != nil {
+			return *v
+		}
+		var ret AutoScalingCriteriaSpec
+		return ret
+	}).(AutoScalingCriteriaSpecOutput)
+}
+
+func (o AutoScalingCriteriaSpecPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AutoScalingCriteriaSpec) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+func (o AutoScalingCriteriaSpecPtrOutput) Percentage() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *AutoScalingCriteriaSpec) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.Percentage
+	}).(pulumi.Float64PtrOutput)
+}
+
 // A background worker service
 type BackgroundWorkerType struct {
 	// Whether to auto deploy the service or not upon git push.
@@ -6159,6 +6459,10 @@ func (o WebServiceServiceDetailsParentServerPropertiesPtrOutput) Name() pulumi.S
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AutoScalingCriteriaInput)(nil)).Elem(), AutoScalingCriteriaArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AutoScalingCriteriaPtrInput)(nil)).Elem(), AutoScalingCriteriaArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AutoScalingCriteriaSpecInput)(nil)).Elem(), AutoScalingCriteriaSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AutoScalingCriteriaSpecPtrInput)(nil)).Elem(), AutoScalingCriteriaSpecArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BackgroundWorkerServiceDetailsInput)(nil)).Elem(), BackgroundWorkerServiceDetailsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BackgroundWorkerServiceDetailsPtrInput)(nil)).Elem(), BackgroundWorkerServiceDetailsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BackgroundWorkerServiceDetailsParentServerPropertiesInput)(nil)).Elem(), BackgroundWorkerServiceDetailsParentServerPropertiesArgs{})
@@ -6193,6 +6497,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceServiceDetailsPtrInput)(nil)).Elem(), WebServiceServiceDetailsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceServiceDetailsParentServerPropertiesInput)(nil)).Elem(), WebServiceServiceDetailsParentServerPropertiesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceServiceDetailsParentServerPropertiesPtrInput)(nil)).Elem(), WebServiceServiceDetailsParentServerPropertiesArgs{})
+	pulumi.RegisterOutputType(AutoScalingCriteriaOutput{})
+	pulumi.RegisterOutputType(AutoScalingCriteriaPtrOutput{})
+	pulumi.RegisterOutputType(AutoScalingCriteriaSpecOutput{})
+	pulumi.RegisterOutputType(AutoScalingCriteriaSpecPtrOutput{})
 	pulumi.RegisterOutputType(BackgroundWorkerTypeOutput{})
 	pulumi.RegisterOutputType(BackgroundWorkerTypePtrOutput{})
 	pulumi.RegisterOutputType(BackgroundWorkerServiceDetailsOutput{})

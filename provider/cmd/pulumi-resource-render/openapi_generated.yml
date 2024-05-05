@@ -1,6 +1,37 @@
 openapi: 3.0.1
 components:
     schemas:
+        autoScaling:
+            type: object
+            title: AutoScaling
+            properties:
+                criteria:
+                    $ref: '#/components/schemas/autoScalingCriteria'
+                enabled:
+                    type: boolean
+                max:
+                    type: number
+                    description: The maximum number of instances for the service
+                min:
+                    type: number
+                    description: The minimum number of instances for the service
+        autoScalingCriteria:
+            type: object
+            title: AutoScalingCriteria
+            properties:
+                cpu:
+                    $ref: '#/components/schemas/autoScalingCriteriaSpec'
+                memory:
+                    $ref: '#/components/schemas/autoScalingCriteriaSpec'
+        autoScalingCriteriaSpec:
+            type: object
+            title: AutoScalingCriteriaSpec
+            properties:
+                enabled:
+                    type: boolean
+                percentage:
+                    type: number
+                    description: Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
         backgroundWorker:
             allOf:
                 - $ref: '#/components/schemas/service'
@@ -3160,6 +3191,172 @@ paths:
                                 message: sunt Excepteur deserunt dolor
                 "409":
                     description: Conflict
+                    headers:
+                        Content-Type:
+                            schema:
+                                type: string
+                                example: application/json
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                            example:
+                                id: dolor
+                                message: sunt Excepteur deserunt dolor
+                "410":
+                    description: Gone
+                    headers:
+                        Content-Type:
+                            schema:
+                                type: string
+                                example: application/json
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                            example:
+                                id: dolor
+                                message: sunt Excepteur deserunt dolor
+                "429":
+                    description: Too Many Requests
+                    headers:
+                        Content-Type:
+                            schema:
+                                type: string
+                                example: application/json
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                            example:
+                                id: dolor
+                                message: sunt Excepteur deserunt dolor
+                "500":
+                    description: Internal Server Error
+                    headers:
+                        Content-Type:
+                            schema:
+                                type: string
+                                example: application/json
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                            example:
+                                id: dolor
+                                message: sunt Excepteur deserunt dolor
+                "503":
+                    description: Service Unavailable
+                    headers:
+                        Content-Type:
+                            schema:
+                                type: string
+                                example: application/json
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                            example:
+                                id: dolor
+                                message: sunt Excepteur deserunt dolor
+    /services/{serviceId}/autoscaling:
+        put:
+            summary: Update the autoscaling config for a service
+            description: '[https://api-docs.render.com/reference/autoscale-service](https://api-docs.render.com/reference/autoscale-service)'
+            operationId: updateAutoScaling
+            parameters:
+                - name: Content-Type
+                  in: header
+                  schema:
+                    type: string
+                  example: application/json
+                - name: Accept
+                  in: header
+                  schema:
+                    type: string
+                  example: application/json
+                - name: serviceId
+                  in: path
+                  description: (Required) The ID of the service
+                  required: true
+                  schema:
+                    type: string
+                  example: Lorem amet sin
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/autoScaling'
+            responses:
+                "200":
+                    description: OK
+                    headers:
+                        Content-Type:
+                            schema:
+                                type: string
+                                example: application/json
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/autoScaling'
+                "400":
+                    description: Bad Request
+                    headers:
+                        Content-Type:
+                            schema:
+                                type: string
+                                example: application/json
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                            example:
+                                id: dolor
+                                message: sunt Excepteur deserunt dolor
+                "401":
+                    description: Unauthorized
+                    headers:
+                        Content-Type:
+                            schema:
+                                type: string
+                                example: application/json
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                            example:
+                                id: dolor
+                                message: sunt Excepteur deserunt dolor
+                "403":
+                    description: Forbidden
+                    headers:
+                        Content-Type:
+                            schema:
+                                type: string
+                                example: application/json
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                            example:
+                                id: dolor
+                                message: sunt Excepteur deserunt dolor
+                "404":
+                    description: Not Found
+                    headers:
+                        Content-Type:
+                            schema:
+                                type: string
+                                example: application/json
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                            example:
+                                id: dolor
+                                message: sunt Excepteur deserunt dolor
+                "406":
+                    description: Not Acceptable
                     headers:
                         Content-Type:
                             schema:

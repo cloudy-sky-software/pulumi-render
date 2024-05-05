@@ -146,6 +146,29 @@
             },
             "type": "object"
         },
+        "render:services:AutoScalingCriteria": {
+            "properties": {
+                "cpu": {
+                    "$ref": "#/types/render:services:AutoScalingCriteriaSpec"
+                },
+                "memory": {
+                    "$ref": "#/types/render:services:AutoScalingCriteriaSpec"
+                }
+            },
+            "type": "object"
+        },
+        "render:services:AutoScalingCriteriaSpec": {
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "percentage": {
+                    "type": "number",
+                    "description": "Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances."
+                }
+            },
+            "type": "object"
+        },
         "render:services:BackgroundWorker": {
             "description": "A background worker service",
             "properties": {
@@ -2085,6 +2108,45 @@
                 },
                 "username": {
                     "type": "string"
+                }
+            }
+        },
+        "render:services:AutoScaling": {
+            "properties": {
+                "criteria": {
+                    "$ref": "#/types/render:services:AutoScalingCriteria"
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "max": {
+                    "type": "number",
+                    "description": "The maximum number of instances for the service"
+                },
+                "min": {
+                    "type": "number",
+                    "description": "The minimum number of instances for the service"
+                }
+            },
+            "type": "object",
+            "inputProperties": {
+                "criteria": {
+                    "$ref": "#/types/render:services:AutoScalingCriteria"
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "max": {
+                    "type": "number",
+                    "description": "The maximum number of instances for the service"
+                },
+                "min": {
+                    "type": "number",
+                    "description": "The minimum number of instances for the service"
+                },
+                "serviceId": {
+                    "type": "string",
+                    "description": "(Required) The ID of the service"
                 }
             }
         },

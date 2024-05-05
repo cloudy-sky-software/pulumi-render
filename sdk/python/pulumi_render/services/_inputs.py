@@ -11,6 +11,8 @@ from .. import _utilities
 from ._enums import *
 
 __all__ = [
+    'AutoScalingCriteriaSpecArgs',
+    'AutoScalingCriteriaArgs',
     'BackgroundWorkerServiceDetailsParentServerPropertiesArgs',
     'BackgroundWorkerServiceDetailsArgs',
     'CronJobServiceDetailsArgs',
@@ -29,6 +31,70 @@ __all__ = [
     'WebServiceServiceDetailsParentServerPropertiesArgs',
     'WebServiceServiceDetailsArgs',
 ]
+
+@pulumi.input_type
+class AutoScalingCriteriaSpecArgs:
+    def __init__(__self__, *,
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 percentage: Optional[pulumi.Input[float]] = None):
+        """
+        :param pulumi.Input[float] percentage: Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+        """
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if percentage is not None:
+            pulumi.set(__self__, "percentage", percentage)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter
+    def percentage(self) -> Optional[pulumi.Input[float]]:
+        """
+        Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+        """
+        return pulumi.get(self, "percentage")
+
+    @percentage.setter
+    def percentage(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "percentage", value)
+
+
+@pulumi.input_type
+class AutoScalingCriteriaArgs:
+    def __init__(__self__, *,
+                 cpu: Optional[pulumi.Input['AutoScalingCriteriaSpecArgs']] = None,
+                 memory: Optional[pulumi.Input['AutoScalingCriteriaSpecArgs']] = None):
+        if cpu is not None:
+            pulumi.set(__self__, "cpu", cpu)
+        if memory is not None:
+            pulumi.set(__self__, "memory", memory)
+
+    @property
+    @pulumi.getter
+    def cpu(self) -> Optional[pulumi.Input['AutoScalingCriteriaSpecArgs']]:
+        return pulumi.get(self, "cpu")
+
+    @cpu.setter
+    def cpu(self, value: Optional[pulumi.Input['AutoScalingCriteriaSpecArgs']]):
+        pulumi.set(self, "cpu", value)
+
+    @property
+    @pulumi.getter
+    def memory(self) -> Optional[pulumi.Input['AutoScalingCriteriaSpecArgs']]:
+        return pulumi.get(self, "memory")
+
+    @memory.setter
+    def memory(self, value: Optional[pulumi.Input['AutoScalingCriteriaSpecArgs']]):
+        pulumi.set(self, "memory", value)
+
 
 @pulumi.input_type
 class BackgroundWorkerServiceDetailsParentServerPropertiesArgs:

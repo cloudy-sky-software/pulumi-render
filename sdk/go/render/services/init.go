@@ -21,6 +21,8 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "render:services:AutoScaling":
+		r = &AutoScaling{}
 	case "render:services:BackgroundWorker":
 		r = &BackgroundWorker{}
 	case "render:services:CronJob":

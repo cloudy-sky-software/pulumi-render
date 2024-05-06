@@ -3,7 +3,7 @@ module github.com/cloudy-sky-software/pulumi-render/provider
 go 1.21
 
 require (
-	github.com/cloudy-sky-software/pulschema v0.0.0-20240503160213-b0b52f7ae879
+	github.com/cloudy-sky-software/pulschema v0.0.0-20240506145847-28e33e32d03e
 	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20240506033923-de3ca24aed1d
 	github.com/getkin/kin-openapi v0.124.0
 	github.com/pulumi/pulumi/pkg/v3 v3.115.1

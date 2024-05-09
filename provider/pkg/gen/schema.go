@@ -103,6 +103,21 @@ func PulumiSchema(openAPIDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 		ExcludedPaths: []string{
 			"/services/{serviceId}/resume",
 			"/services/{serviceId}/custom-domains/{id}/verify",
+			"/metrics/cpu",
+			"/metrics/cpu-limit",
+			"/metrics/cpu-target",
+			"/metrics/memory",
+			"/metrics/memory-limit",
+			"/metrics/memory-target",
+			"/metrics/http-requests",
+			"/metrics/http-latency",
+			"/metrics/bandwidth",
+			"/metrics/disk-usage",
+			"/metrics/disk-capacity",
+			"/metrics/instance-count",
+			"/metrics/filters/application",
+			"/metrics/filters/http",
+			"/metrics/filters/path",
 		},
 	}
 

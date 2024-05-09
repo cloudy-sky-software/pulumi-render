@@ -67,42 +67,41 @@
         }
     },
     "types": {
-        "render:owners:ListOwnersResponse": {
+        "render:owners:ListOwnersItemProperties": {
             "properties": {
                 "cursor": {
                     "type": "string"
                 },
                 "owner": {
-                    "$ref": "#/types/render:owners:Owner",
-                    "description": "The owner object represents an authorized user or team. The `type` property indicates if the owner is a user or team."
+                    "$ref": "#/types/render:owners:Owner"
                 }
             },
             "type": "object"
         },
         "render:owners:Owner": {
-            "description": "The owner object represents an authorized user or team. The `type` property indicates if the owner is a user or team.",
             "properties": {
                 "email": {
-                    "type": "string",
-                    "description": "The email of the owner."
+                    "type": "string"
                 },
                 "id": {
-                    "type": "string",
-                    "description": "The owner ID."
+                    "type": "string"
                 },
                 "name": {
-                    "type": "string",
-                    "description": "The name of the owner."
+                    "type": "string"
                 },
                 "type": {
-                    "$ref": "#/types/render:owners:OwnerType",
-                    "description": "The type of the authorized user."
+                    "$ref": "#/types/render:owners:OwnerType"
                 }
             },
-            "type": "object"
+            "type": "object",
+            "required": [
+                "email",
+                "id",
+                "name",
+                "type"
+            ]
         },
         "render:owners:OwnerType": {
-            "description": "The type of the authorized user.",
             "type": "string",
             "enum": [
                 {
@@ -115,182 +114,189 @@
                 }
             ]
         },
-        "render:registrycredentials:GetRegistryCredentialProperties": {
+        "render:registrycredentials:Registry": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Github",
+                    "value": "GITHUB"
+                },
+                {
+                    "name": "Gitlab",
+                    "value": "GITLAB"
+                },
+                {
+                    "name": "Docker",
+                    "value": "DOCKER"
+                }
+            ]
+        },
+        "render:registrycredentials:RegistryCredential": {
             "properties": {
                 "id": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Unique identifier for this credential"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Descriptive name for this credential"
                 },
                 "registry": {
-                    "type": "string"
+                    "$ref": "#/types/render:registrycredentials:RegistryCredentialRegistry",
+                    "description": "The registry to use this credential with"
                 },
                 "username": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        },
-        "render:registrycredentials:ListRegistryCredentialsItemProperties": {
-            "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "registry": {
-                    "type": "string"
-                },
-                "username": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        },
-        "render:services:AutoScalingCriteria": {
-            "properties": {
-                "cpu": {
-                    "$ref": "#/types/render:services:AutoScalingCriteriaSpec"
-                },
-                "memory": {
-                    "$ref": "#/types/render:services:AutoScalingCriteriaSpec"
-                }
-            },
-            "type": "object"
-        },
-        "render:services:AutoScalingCriteriaSpec": {
-            "properties": {
-                "enabled": {
-                    "type": "boolean"
-                },
-                "percentage": {
-                    "type": "number",
-                    "description": "Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances."
-                }
-            },
-            "type": "object"
-        },
-        "render:services:BackgroundWorker": {
-            "description": "A background worker service",
-            "properties": {
-                "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy",
-                    "description": "Whether to auto deploy the service or not upon git push.",
-                    "default": "no"
-                },
-                "branch": {
                     "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository."
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:EnvVarKeyValue"
-                    }
-                },
-                "name": {
-                    "type": "string"
-                },
-                "notifyOnFail": {
-                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
-                    "description": "The notification setting for this service upon deployment failure."
-                },
-                "ownerId": {
-                    "type": "string",
-                    "description": "The id of the owner (user/team)."
-                },
-                "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
-                },
-                "secretFiles": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:SecretFile"
-                    }
-                },
-                "serviceDetails": {
-                    "$ref": "#/types/render:services:BackgroundWorkerServiceDetails"
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:services:ServiceSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "type": {
-                    "type": "string",
-                    "default": "background_worker"
-                },
-                "updatedAt": {
-                    "type": "string"
+                    "description": "The username associated with the credential"
                 }
             },
             "type": "object",
             "required": [
+                "id",
                 "name",
-                "ownerId",
-                "repo"
+                "registry",
+                "username"
             ]
         },
-        "render:services:BackgroundWorkerServiceDetails": {
+        "render:registrycredentials:RegistryCredentialRegistry": {
+            "description": "The registry to use this credential with",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Github",
+                    "value": "GITHUB"
+                },
+                {
+                    "name": "Gitlab",
+                    "value": "GITLAB"
+                },
+                {
+                    "name": "Docker",
+                    "value": "DOCKER"
+                }
+            ]
+        },
+        "render:services:AutoDeploy": {
+            "description": "Defaults to \"yes\"",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
+        "render:services:AutoscalingConfig": {
             "properties": {
+                "criteria": {
+                    "$ref": "#/types/render:services:AutoscalingCriteria"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "max": {
+                    "type": "integer",
+                    "description": "The maximum number of instances for the service"
+                },
+                "min": {
+                    "type": "integer",
+                    "description": "The minimum number of instances for the service"
+                }
+            },
+            "type": "object",
+            "required": [
+                "criteria",
+                "enabled",
+                "max",
+                "min"
+            ]
+        },
+        "render:services:AutoscalingCriteria": {
+            "properties": {
+                "cpu": {
+                    "$ref": "#/types/render:services:AutoscalingCriteriaPercentage"
+                },
+                "memory": {
+                    "$ref": "#/types/render:services:AutoscalingCriteriaPercentage"
+                }
+            },
+            "type": "object",
+            "required": [
+                "cpu",
+                "memory"
+            ]
+        },
+        "render:services:AutoscalingCriteriaPercentage": {
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "percentage": {
+                    "type": "integer",
+                    "description": "Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "enabled",
+                "percentage"
+            ]
+        },
+        "render:services:BackgroundWorkerDetails": {
+            "properties": {
+                "autoscaling": {
+                    "$ref": "#/types/render:services:AutoscalingConfig"
+                },
+                "buildPlan": {
+                    "type": "string"
+                },
                 "disk": {
                     "$ref": "#/types/render:services:Disk"
                 },
                 "env": {
-                    "$ref": "#/types/render:services:BackgroundWorkerServiceDetailsEnv"
+                    "$ref": "#/types/render:services:BackgroundWorkerDetailsEnv",
+                    "description": "Environment (runtime)"
                 },
                 "envSpecificDetails": {
-                    "oneOf": [
-                        {
-                            "$ref": "#/types/render:services:DockerDetails"
-                        },
-                        {
-                            "$ref": "#/types/render:services:NativeEnvironmentDetails"
-                        }
-                    ]
+                    "$ref": "#/types/render:services:EnvSpecificDetails"
                 },
                 "numInstances": {
-                    "type": "number",
-                    "default": 1
+                    "type": "integer",
+                    "description": "For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service."
                 },
                 "parentServer": {
-                    "$ref": "#/types/render:services:BackgroundWorkerServiceDetailsParentServerProperties"
+                    "$ref": "#/types/render:services:Resource"
                 },
                 "plan": {
-                    "$ref": "#/types/render:services:BackgroundWorkerServiceDetailsPlan",
-                    "default": "starter"
+                    "$ref": "#/types/render:services:BackgroundWorkerDetailsPlan",
+                    "description": "The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type."
                 },
                 "pullRequestPreviewsEnabled": {
-                    "$ref": "#/types/render:services:BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled",
-                    "default": "no"
+                    "$ref": "#/types/render:services:BackgroundWorkerDetailsPullRequestPreviewsEnabled"
                 },
                 "region": {
-                    "$ref": "#/types/render:services:BackgroundWorkerServiceDetailsRegion",
-                    "default": "oregon"
-                },
-                "url": {
-                    "type": "string"
+                    "$ref": "#/types/render:services:BackgroundWorkerDetailsRegion"
                 }
             },
             "type": "object",
             "required": [
-                "env"
+                "buildPlan",
+                "env",
+                "envSpecificDetails",
+                "numInstances",
+                "plan",
+                "pullRequestPreviewsEnabled",
+                "region"
             ]
         },
-        "render:services:BackgroundWorkerServiceDetailsEnv": {
+        "render:services:BackgroundWorkerDetailsEnv": {
+            "description": "Environment (runtime)",
             "type": "string",
             "enum": [
                 {
@@ -320,21 +326,170 @@
                 {
                     "name": "Rust",
                     "value": "rust"
+                },
+                {
+                    "name": "Image",
+                    "value": "image"
                 }
             ]
         },
-        "render:services:BackgroundWorkerServiceDetailsParentServerProperties": {
+        "render:services:BackgroundWorkerDetailsPOST": {
             "properties": {
-                "id": {
+                "disk": {
+                    "$ref": "#/types/render:services:BackgroundWorkerDetailsPOSTDiskProperties"
+                },
+                "env": {
+                    "$ref": "#/types/render:services:BackgroundWorkerDetailsPOSTEnv",
+                    "description": "Environment (runtime)"
+                },
+                "envSpecificDetails": {
+                    "$ref": "#/types/render:services:EnvSpecificDetails"
+                },
+                "numInstances": {
+                    "type": "integer",
+                    "description": "Defaults to 1",
+                    "default": 1
+                },
+                "plan": {
+                    "$ref": "#/types/render:services:BackgroundWorkerDetailsPOSTPlan"
+                },
+                "pullRequestPreviewsEnabled": {
+                    "$ref": "#/types/render:services:BackgroundWorkerDetailsPOSTPullRequestPreviewsEnabled",
+                    "description": "Defaults to \"no\"",
+                    "default": "no"
+                },
+                "region": {
+                    "$ref": "#/types/render:services:BackgroundWorkerDetailsPOSTRegion"
+                }
+            },
+            "type": "object",
+            "required": [
+                "env"
+            ]
+        },
+        "render:services:BackgroundWorkerDetailsPOSTDiskProperties": {
+            "properties": {
+                "mountPath": {
                     "type": "string"
                 },
                 "name": {
                     "type": "string"
+                },
+                "sizeGB": {
+                    "type": "integer",
+                    "description": "Defaults to 1"
                 }
             },
-            "type": "object"
+            "type": "object",
+            "required": [
+                "mountPath",
+                "name"
+            ]
         },
-        "render:services:BackgroundWorkerServiceDetailsPlan": {
+        "render:services:BackgroundWorkerDetailsPOSTEnv": {
+            "description": "Environment (runtime)",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Docker",
+                    "value": "docker"
+                },
+                {
+                    "name": "Elixir",
+                    "value": "elixir"
+                },
+                {
+                    "name": "Go",
+                    "value": "go"
+                },
+                {
+                    "name": "Node",
+                    "value": "node"
+                },
+                {
+                    "name": "Python",
+                    "value": "python"
+                },
+                {
+                    "name": "Ruby",
+                    "value": "ruby"
+                },
+                {
+                    "name": "Rust",
+                    "value": "rust"
+                },
+                {
+                    "name": "Image",
+                    "value": "image"
+                }
+            ]
+        },
+        "render:services:BackgroundWorkerDetailsPOSTPlan": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Starter",
+                    "value": "starter"
+                },
+                {
+                    "name": "Standard",
+                    "value": "standard"
+                },
+                {
+                    "name": "Pro",
+                    "value": "pro"
+                },
+                {
+                    "name": "ProPlus",
+                    "value": "pro_plus"
+                },
+                {
+                    "name": "ProMax",
+                    "value": "pro_max"
+                },
+                {
+                    "name": "ProUltra",
+                    "value": "pro_ultra"
+                }
+            ]
+        },
+        "render:services:BackgroundWorkerDetailsPOSTPullRequestPreviewsEnabled": {
+            "description": "Defaults to \"no\"",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
+        "render:services:BackgroundWorkerDetailsPOSTRegion": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Frankfurt",
+                    "value": "frankfurt"
+                },
+                {
+                    "name": "Oregon",
+                    "value": "oregon"
+                },
+                {
+                    "name": "Ohio",
+                    "value": "ohio"
+                },
+                {
+                    "name": "Singapore",
+                    "value": "singapore"
+                }
+            ]
+        },
+        "render:services:BackgroundWorkerDetailsPlan": {
+            "description": "The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.",
             "type": "string",
             "enum": [
                 {
@@ -368,10 +523,18 @@
                 {
                     "name": "ProUltra",
                     "value": "pro_ultra"
+                },
+                {
+                    "name": "Free",
+                    "value": "free"
+                },
+                {
+                    "name": "Custom",
+                    "value": "custom"
                 }
             ]
         },
-        "render:services:BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled": {
+        "render:services:BackgroundWorkerDetailsPullRequestPreviewsEnabled": {
             "type": "string",
             "enum": [
                 {
@@ -384,33 +547,63 @@
                 }
             ]
         },
-        "render:services:BackgroundWorkerServiceDetailsRegion": {
+        "render:services:BackgroundWorkerDetailsRegion": {
             "type": "string",
             "enum": [
+                {
+                    "name": "Frankfurt",
+                    "value": "frankfurt"
+                },
                 {
                     "name": "Oregon",
                     "value": "oregon"
                 },
                 {
-                    "name": "Frankfurt",
-                    "value": "frankfurt"
+                    "name": "Ohio",
+                    "value": "ohio"
+                },
+                {
+                    "name": "Singapore",
+                    "value": "singapore"
                 }
+            ]
+        },
+        "render:services:BuildFilter": {
+            "properties": {
+                "ignoredPaths": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "paths": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "ignoredPaths",
+                "paths"
             ]
         },
         "render:services:ClearCache": {
+            "description": "Defaults to \"do_not_clear\"",
             "type": "string",
             "enum": [
                 {
-                    "name": "DoNotClear",
-                    "value": "do_not_clear"
-                },
-                {
                     "name": "Clear",
                     "value": "clear"
+                },
+                {
+                    "name": "DoNotClear",
+                    "value": "do_not_clear"
                 }
             ]
         },
-        "render:services:Commit": {
+        "render:services:CommitProperties": {
             "properties": {
                 "createdAt": {
                     "type": "string"
@@ -424,103 +617,27 @@
             },
             "type": "object"
         },
-        "render:services:CronJob": {
-            "description": "A cron job",
+        "render:services:CronJobDetails": {
             "properties": {
-                "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy",
-                    "description": "Whether to auto deploy the service or not upon git push.",
-                    "default": "no"
-                },
-                "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository."
-                },
-                "createdAt": {
+                "buildPlan": {
                     "type": "string"
                 },
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:EnvVarKeyValue"
-                    }
-                },
-                "name": {
-                    "type": "string"
-                },
-                "notifyOnFail": {
-                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
-                    "description": "The notification setting for this service upon deployment failure."
-                },
-                "ownerId": {
-                    "type": "string",
-                    "description": "The id of the owner (user/team)."
-                },
-                "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
-                },
-                "secretFiles": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:SecretFile"
-                    }
-                },
-                "serviceDetails": {
-                    "$ref": "#/types/render:services:CronJobServiceDetails"
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:services:ServiceSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "type": {
-                    "type": "string",
-                    "default": "cron_job"
-                },
-                "updatedAt": {
-                    "type": "string"
-                }
-            },
-            "type": "object",
-            "required": [
-                "name",
-                "ownerId",
-                "repo"
-            ]
-        },
-        "render:services:CronJobServiceDetails": {
-            "properties": {
                 "env": {
-                    "$ref": "#/types/render:services:CronJobServiceDetailsEnv"
+                    "$ref": "#/types/render:services:CronJobDetailsEnv",
+                    "description": "Environment (runtime)"
                 },
                 "envSpecificDetails": {
-                    "oneOf": [
-                        {
-                            "$ref": "#/types/render:services:DockerDetails"
-                        },
-                        {
-                            "$ref": "#/types/render:services:NativeEnvironmentDetails"
-                        }
-                    ]
+                    "$ref": "#/types/render:services:EnvSpecificDetails"
                 },
                 "lastSuccessfulRunAt": {
                     "type": "string"
                 },
                 "plan": {
-                    "$ref": "#/types/render:services:CronJobServiceDetailsPlan",
-                    "default": "starter"
+                    "$ref": "#/types/render:services:CronJobDetailsPlan",
+                    "description": "The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type."
                 },
                 "region": {
-                    "$ref": "#/types/render:services:CronJobServiceDetailsRegion",
-                    "default": "oregon"
+                    "$ref": "#/types/render:services:CronJobDetailsRegion"
                 },
                 "schedule": {
                     "type": "string"
@@ -528,11 +645,16 @@
             },
             "type": "object",
             "required": [
+                "buildPlan",
                 "env",
+                "envSpecificDetails",
+                "plan",
+                "region",
                 "schedule"
             ]
         },
-        "render:services:CronJobServiceDetailsEnv": {
+        "render:services:CronJobDetailsEnv": {
+            "description": "Environment (runtime)",
             "type": "string",
             "enum": [
                 {
@@ -562,10 +684,128 @@
                 {
                     "name": "Rust",
                     "value": "rust"
+                },
+                {
+                    "name": "Image",
+                    "value": "image"
                 }
             ]
         },
-        "render:services:CronJobServiceDetailsPlan": {
+        "render:services:CronJobDetailsPOST": {
+            "properties": {
+                "env": {
+                    "$ref": "#/types/render:services:CronJobDetailsPOSTEnv",
+                    "description": "Environment (runtime)"
+                },
+                "envSpecificDetails": {
+                    "$ref": "#/types/render:services:EnvSpecificDetails"
+                },
+                "plan": {
+                    "$ref": "#/types/render:services:CronJobDetailsPOSTPlan"
+                },
+                "region": {
+                    "$ref": "#/types/render:services:CronJobDetailsPOSTRegion"
+                },
+                "schedule": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "env",
+                "schedule"
+            ]
+        },
+        "render:services:CronJobDetailsPOSTEnv": {
+            "description": "Environment (runtime)",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Docker",
+                    "value": "docker"
+                },
+                {
+                    "name": "Elixir",
+                    "value": "elixir"
+                },
+                {
+                    "name": "Go",
+                    "value": "go"
+                },
+                {
+                    "name": "Node",
+                    "value": "node"
+                },
+                {
+                    "name": "Python",
+                    "value": "python"
+                },
+                {
+                    "name": "Ruby",
+                    "value": "ruby"
+                },
+                {
+                    "name": "Rust",
+                    "value": "rust"
+                },
+                {
+                    "name": "Image",
+                    "value": "image"
+                }
+            ]
+        },
+        "render:services:CronJobDetailsPOSTPlan": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Starter",
+                    "value": "starter"
+                },
+                {
+                    "name": "Standard",
+                    "value": "standard"
+                },
+                {
+                    "name": "Pro",
+                    "value": "pro"
+                },
+                {
+                    "name": "ProPlus",
+                    "value": "pro_plus"
+                },
+                {
+                    "name": "ProMax",
+                    "value": "pro_max"
+                },
+                {
+                    "name": "ProUltra",
+                    "value": "pro_ultra"
+                }
+            ]
+        },
+        "render:services:CronJobDetailsPOSTRegion": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Frankfurt",
+                    "value": "frankfurt"
+                },
+                {
+                    "name": "Oregon",
+                    "value": "oregon"
+                },
+                {
+                    "name": "Ohio",
+                    "value": "ohio"
+                },
+                {
+                    "name": "Singapore",
+                    "value": "singapore"
+                }
+            ]
+        },
+        "render:services:CronJobDetailsPlan": {
+            "description": "The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.",
             "type": "string",
             "enum": [
                 {
@@ -599,19 +839,35 @@
                 {
                     "name": "ProUltra",
                     "value": "pro_ultra"
+                },
+                {
+                    "name": "Free",
+                    "value": "free"
+                },
+                {
+                    "name": "Custom",
+                    "value": "custom"
                 }
             ]
         },
-        "render:services:CronJobServiceDetailsRegion": {
+        "render:services:CronJobDetailsRegion": {
             "type": "string",
             "enum": [
+                {
+                    "name": "Frankfurt",
+                    "value": "frankfurt"
+                },
                 {
                     "name": "Oregon",
                     "value": "oregon"
                 },
                 {
-                    "name": "Frankfurt",
-                    "value": "frankfurt"
+                    "name": "Ohio",
+                    "value": "ohio"
+                },
+                {
+                    "name": "Singapore",
+                    "value": "singapore"
                 }
             ]
         },
@@ -622,6 +878,9 @@
                 },
                 "domainType": {
                     "$ref": "#/types/render:services:CustomDomainDomainType"
+                },
+                "id": {
+                    "type": "string"
                 },
                 "name": {
                     "type": "string"
@@ -641,10 +900,12 @@
             },
             "type": "object",
             "required": [
+                "createdAt",
                 "domainType",
+                "id",
                 "name",
+                "publicSuffix",
                 "redirectForName",
-                "server",
                 "verificationStatus"
             ]
         },
@@ -687,31 +948,164 @@
         },
         "render:services:Deploy": {
             "properties": {
-                "clearCache": {
-                    "$ref": "#/types/render:services:DeployClearCache",
-                    "default": "do_not_clear"
-                },
                 "commit": {
-                    "$ref": "#/types/render:services:Commit"
+                    "$ref": "#/types/render:services:DeployCommitProperties"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "finishedAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "image": {
+                    "$ref": "#/types/render:services:DeployImageProperties",
+                    "description": "Image information used when creating the deploy. Not present for Git-backed deploys"
+                },
+                "status": {
+                    "$ref": "#/types/render:services:DeployStatus"
+                },
+                "trigger": {
+                    "$ref": "#/types/render:services:DeployTrigger"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "id"
+            ]
+        },
+        "render:services:DeployCommitProperties": {
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
                 }
             },
             "type": "object"
         },
-        "render:services:DeployClearCache": {
+        "render:services:DeployImageProperties": {
+            "description": "Image information used when creating the deploy. Not present for Git-backed deploys",
+            "properties": {
+                "ref": {
+                    "type": "string",
+                    "description": "Image reference used when creating the deploy"
+                },
+                "registryCredential": {
+                    "type": "string",
+                    "description": "Name of credential used to pull the image, if provided"
+                },
+                "sha": {
+                    "type": "string",
+                    "description": "SHA that the image reference was resolved to when creating the deploy"
+                }
+            },
+            "type": "object"
+        },
+        "render:services:DeployStatus": {
             "type": "string",
             "enum": [
                 {
-                    "name": "DoNotClear",
-                    "value": "do_not_clear"
+                    "name": "Created",
+                    "value": "created"
                 },
                 {
-                    "name": "Clear",
-                    "value": "clear"
+                    "name": "BuildInProgress",
+                    "value": "build_in_progress"
+                },
+                {
+                    "name": "UpdateInProgress",
+                    "value": "update_in_progress"
+                },
+                {
+                    "name": "Live",
+                    "value": "live"
+                },
+                {
+                    "name": "Deactivated",
+                    "value": "deactivated"
+                },
+                {
+                    "name": "BuildFailed",
+                    "value": "build_failed"
+                },
+                {
+                    "name": "UpdateFailed",
+                    "value": "update_failed"
+                },
+                {
+                    "name": "Canceled",
+                    "value": "canceled"
+                },
+                {
+                    "name": "PreDeployInProgress",
+                    "value": "pre_deploy_in_progress"
+                },
+                {
+                    "name": "PreDeployFailed",
+                    "value": "pre_deploy_failed"
+                }
+            ]
+        },
+        "render:services:DeployTrigger": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Api",
+                    "value": "api"
+                },
+                {
+                    "name": "BlueprintSync",
+                    "value": "blueprint_sync"
+                },
+                {
+                    "name": "DeployHook",
+                    "value": "deploy_hook"
+                },
+                {
+                    "name": "DeployedByRender",
+                    "value": "deployed_by_render"
+                },
+                {
+                    "name": "Manual",
+                    "value": "manual"
+                },
+                {
+                    "name": "Other",
+                    "value": "other"
+                },
+                {
+                    "name": "NewCommit",
+                    "value": "new_commit"
+                },
+                {
+                    "name": "Rollback",
+                    "value": "rollback"
+                },
+                {
+                    "name": "ServiceResumed",
+                    "value": "service_resumed"
+                },
+                {
+                    "name": "ServiceUpdated",
+                    "value": "service_updated"
                 }
             ]
         },
         "render:services:Disk": {
             "properties": {
+                "id": {
+                    "type": "string"
+                },
                 "mountPath": {
                     "type": "string"
                 },
@@ -719,52 +1113,22 @@
                     "type": "string"
                 },
                 "sizeGB": {
-                    "type": "number",
-                    "default": 1
+                    "type": "integer"
                 }
             },
             "type": "object",
             "required": [
+                "id",
                 "mountPath",
-                "name"
+                "name",
+                "sizeGB"
             ]
         },
-        "render:services:DockerDetails": {
+        "render:services:EnvSpecificDetails": {
+            "type": "object"
+        },
+        "render:services:EnvVar": {
             "properties": {
-                "dockerCommand": {
-                    "type": "string"
-                },
-                "dockerContext": {
-                    "type": "string"
-                },
-                "dockerfilePath": {
-                    "type": "string"
-                }
-            },
-            "type": "object",
-            "required": [
-                "dockerCommand",
-                "dockerContext"
-            ]
-        },
-        "render:services:DomainType": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Apex",
-                    "value": "apex"
-                },
-                {
-                    "name": "Subdomain",
-                    "value": "subdomain"
-                }
-            ]
-        },
-        "render:services:EnvVarKeyValue": {
-            "properties": {
-                "generateValue": {
-                    "$ref": "#/types/render:services:EnvVarKeyValueGenerateValue"
-                },
                 "key": {
                     "type": "string"
                 },
@@ -774,381 +1138,111 @@
             },
             "type": "object",
             "required": [
-                "key"
+                "key",
+                "value"
             ]
         },
-        "render:services:EnvVarKeyValueGenerateValue": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Yes",
-                    "value": "yes"
-                },
-                {
-                    "name": "No",
-                    "value": "no"
-                }
-            ]
+        "render:services:EnvVarInput": {
+            "type": "object"
         },
-        "render:services:GetBackgroundWorker": {
-            "description": "A background worker service",
+        "render:services:EnvVarWithCursor": {
             "properties": {
-                "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy",
-                    "description": "Whether to auto deploy the service or not upon git push.",
-                    "default": "no"
-                },
-                "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository."
-                },
-                "createdAt": {
+                "cursor": {
                     "type": "string"
                 },
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:EnvVarKeyValue"
-                    }
+                "envVar": {
+                    "$ref": "#/types/render:services:EnvVar"
+                }
+            },
+            "type": "object",
+            "required": [
+                "cursor",
+                "envVar"
+            ]
+        },
+        "render:services:Header": {
+            "properties": {
+                "id": {
+                    "type": "string"
                 },
                 "name": {
                     "type": "string"
                 },
-                "notifyOnFail": {
-                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
-                    "description": "The notification setting for this service upon deployment failure."
-                },
-                "ownerId": {
-                    "type": "string",
-                    "description": "The id of the owner (user/team)."
-                },
-                "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
-                },
-                "secretFiles": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:SecretFile"
-                    }
-                },
-                "serviceDetails": {
-                    "$ref": "#/types/render:services:BackgroundWorkerServiceDetails"
-                },
-                "slug": {
+                "path": {
                     "type": "string"
                 },
-                "suspended": {
-                    "$ref": "#/types/render:services:ServiceSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "type": {
-                    "type": "string",
-                    "default": "background_worker"
-                },
-                "updatedAt": {
+                "value": {
                     "type": "string"
                 }
             },
             "type": "object",
             "required": [
+                "id",
                 "name",
-                "ownerId",
-                "repo"
+                "path",
+                "value"
             ]
         },
-        "render:services:GetCronJob": {
-            "description": "A cron job",
+        "render:services:HeaderPost": {
             "properties": {
-                "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy",
-                    "description": "Whether to auto deploy the service or not upon git push.",
-                    "default": "no"
-                },
-                "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository."
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:EnvVarKeyValue"
-                    }
-                },
                 "name": {
-                    "type": "string"
-                },
-                "notifyOnFail": {
-                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
-                    "description": "The notification setting for this service upon deployment failure."
-                },
-                "ownerId": {
                     "type": "string",
-                    "description": "The id of the owner (user/team)."
+                    "description": "Header name"
                 },
-                "repo": {
+                "path": {
                     "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                    "description": "The request path to add the header to. Wildcards will cause headers to be applied to all matching paths."
                 },
-                "secretFiles": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:SecretFile"
-                    }
-                },
-                "serviceDetails": {
-                    "$ref": "#/types/render:services:CronJobServiceDetails"
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:services:ServiceSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "type": {
+                "value": {
                     "type": "string",
-                    "default": "cron_job"
-                },
-                "updatedAt": {
-                    "type": "string"
+                    "description": "Header value"
                 }
             },
             "type": "object",
             "required": [
                 "name",
-                "ownerId",
-                "repo"
+                "path",
+                "value"
             ]
         },
-        "render:services:GetPrivateService": {
-            "description": "A private service",
+        "render:services:Image": {
             "properties": {
-                "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy",
-                    "description": "Whether to auto deploy the service or not upon git push.",
-                    "default": "no"
-                },
-                "branch": {
+                "imagePath": {
                     "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository."
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:EnvVarKeyValue"
-                    }
-                },
-                "name": {
-                    "type": "string"
-                },
-                "notifyOnFail": {
-                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
-                    "description": "The notification setting for this service upon deployment failure."
+                    "description": "Path to the image used for this server (e.g docker.io/library/nginx:latest)."
                 },
                 "ownerId": {
                     "type": "string",
-                    "description": "The id of the owner (user/team)."
+                    "description": "The ID of the owner for this image. This should match the owner of the service as well as the owner of any specified registry credential."
                 },
-                "repo": {
+                "registryCredentialId": {
                     "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
-                },
-                "secretFiles": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:SecretFile"
-                    }
-                },
-                "serviceDetails": {
-                    "$ref": "#/types/render:services:PrivateServiceDetails"
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:services:ServiceSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "type": {
-                    "type": "string",
-                    "default": "private_service"
-                },
-                "updatedAt": {
-                    "type": "string"
+                    "description": "Optional reference to the registry credential passed to the image repository to retrieve this image."
                 }
             },
             "type": "object",
             "required": [
-                "name",
-                "ownerId",
-                "repo"
+                "imagePath",
+                "ownerId"
             ]
         },
-        "render:services:GetStaticSite": {
-            "description": "A static website service",
+        "render:services:ImageProperties": {
+            "description": "Image information used when creating the deploy. Not present for Git-backed deploys",
             "properties": {
-                "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy",
-                    "description": "Whether to auto deploy the service or not upon git push.",
-                    "default": "no"
-                },
-                "branch": {
+                "ref": {
                     "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository."
+                    "description": "Image reference used when creating the deploy"
                 },
-                "createdAt": {
-                    "type": "string"
-                },
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:EnvVarKeyValue"
-                    }
-                },
-                "name": {
-                    "type": "string"
-                },
-                "notifyOnFail": {
-                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
-                    "description": "The notification setting for this service upon deployment failure."
-                },
-                "ownerId": {
+                "registryCredential": {
                     "type": "string",
-                    "description": "The id of the owner (user/team)."
+                    "description": "Name of credential used to pull the image, if provided"
                 },
-                "repo": {
+                "sha": {
                     "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
-                },
-                "secretFiles": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:SecretFile"
-                    }
-                },
-                "serviceDetails": {
-                    "$ref": "#/types/render:services:StaticSiteServiceDetails"
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:services:ServiceSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "type": {
-                    "type": "string",
-                    "default": "static_site"
-                },
-                "updatedAt": {
-                    "type": "string"
+                    "description": "SHA that the image reference was resolved to when creating the deploy"
                 }
             },
-            "type": "object",
-            "required": [
-                "name",
-                "ownerId",
-                "repo"
-            ]
-        },
-        "render:services:GetWebService": {
-            "description": "A web service",
-            "properties": {
-                "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy",
-                    "description": "Whether to auto deploy the service or not upon git push.",
-                    "default": "no"
-                },
-                "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository."
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:EnvVarKeyValue"
-                    }
-                },
-                "name": {
-                    "type": "string"
-                },
-                "notifyOnFail": {
-                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
-                    "description": "The notification setting for this service upon deployment failure."
-                },
-                "ownerId": {
-                    "type": "string",
-                    "description": "The id of the owner (user/team)."
-                },
-                "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
-                },
-                "secretFiles": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:SecretFile"
-                    }
-                },
-                "serviceDetails": {
-                    "$ref": "#/types/render:services:WebServiceServiceDetails"
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:services:ServiceSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "type": {
-                    "type": "string",
-                    "default": "web_service"
-                },
-                "updatedAt": {
-                    "type": "string"
-                }
-            },
-            "type": "object",
-            "required": [
-                "name",
-                "ownerId",
-                "repo"
-            ]
+            "type": "object"
         },
         "render:services:Job": {
             "properties": {
@@ -1158,7 +1252,13 @@
                 "finishedAt": {
                     "type": "string"
                 },
+                "id": {
+                    "type": "string"
+                },
                 "planId": {
+                    "type": "string"
+                },
+                "serviceId": {
                     "type": "string"
                 },
                 "startCommand": {
@@ -1173,11 +1273,14 @@
             },
             "type": "object",
             "required": [
+                "createdAt",
+                "id",
                 "planId",
+                "serviceId",
                 "startCommand"
             ]
         },
-        "render:services:ListCustomDomainsResponse": {
+        "render:services:ListCustomDomainsItemProperties": {
             "properties": {
                 "cursor": {
                     "type": "string"
@@ -1188,29 +1291,18 @@
             },
             "type": "object"
         },
-        "render:services:ListDeploysResponse": {
+        "render:services:ListDeploysItemProperties": {
             "properties": {
                 "cursor": {
                     "type": "string"
                 },
-                "customDomain": {
+                "deploy": {
                     "$ref": "#/types/render:services:Deploy"
                 }
             },
             "type": "object"
         },
-        "render:services:ListEnvVarsResponse": {
-            "properties": {
-                "cursor": {
-                    "type": "string"
-                },
-                "envVar": {
-                    "$ref": "#/types/render:services:EnvVarKeyValue"
-                }
-            },
-            "type": "object"
-        },
-        "render:services:ListJobsResponse": {
+        "render:services:ListJobItemProperties": {
             "properties": {
                 "cursor": {
                     "type": "string"
@@ -1221,275 +1313,41 @@
             },
             "type": "object"
         },
-        "render:services:ListServiceHeadersResponse": {
+        "render:services:ListRetrieveHeadersItemProperties": {
             "properties": {
                 "cursor": {
                     "type": "string"
                 },
-                "header": {
-                    "$ref": "#/types/render:services:ServiceHeader",
-                    "description": "A service header object"
+                "headers": {
+                    "$ref": "#/types/render:services:Header"
                 }
             },
             "type": "object"
         },
-        "render:services:ListServiceResponse": {
+        "render:services:ListRetrieveRoutesItemProperties": {
+            "properties": {
+                "cursor": {
+                    "type": "string"
+                },
+                "routes": {
+                    "$ref": "#/types/render:services:Route"
+                }
+            },
+            "type": "object"
+        },
+        "render:services:ListServicesItemProperties": {
             "properties": {
                 "cursor": {
                     "type": "string"
                 },
                 "service": {
-                    "oneOf": [
-                        {
-                            "$ref": "#/types/render:services:StaticSite"
-                        },
-                        {
-                            "$ref": "#/types/render:services:WebService"
-                        },
-                        {
-                            "$ref": "#/types/render:services:PrivateService"
-                        },
-                        {
-                            "$ref": "#/types/render:services:BackgroundWorker"
-                        },
-                        {
-                            "$ref": "#/types/render:services:CronJob"
-                        }
-                    ],
-                    "discriminator": {
-                        "propertyName": "type",
-                        "mapping": {
-                            "background_worker": "#/types/render:services:BackgroundWorker",
-                            "cron_job": "#/types/render:services:CronJob",
-                            "private_service": "#/types/render:services:PrivateService",
-                            "static_site": "#/types/render:services:StaticSite",
-                            "web_service": "#/types/render:services:WebService"
-                        }
-                    }
+                    "$ref": "#/types/render:services:Service"
                 }
             },
             "type": "object"
         },
-        "render:services:ListStaticSiteRoutesResponse": {
-            "properties": {
-                "cursor": {
-                    "type": "string"
-                },
-                "route": {
-                    "$ref": "#/types/render:services:StaticSiteRoute",
-                    "description": "A route object for a static site"
-                }
-            },
-            "type": "object"
-        },
-        "render:services:NativeEnvironmentDetails": {
-            "properties": {
-                "buildCommand": {
-                    "type": "string"
-                },
-                "startCommand": {
-                    "type": "string"
-                }
-            },
-            "type": "object",
-            "required": [
-                "buildCommand",
-                "startCommand"
-            ]
-        },
-        "render:services:OpenPorts": {
-            "properties": {
-                "port": {
-                    "type": "number"
-                },
-                "protocol": {
-                    "$ref": "#/types/render:services:OpenPortsProtocol"
-                }
-            },
-            "type": "object"
-        },
-        "render:services:OpenPortsProtocol": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Tcp",
-                    "value": "TCP"
-                },
-                {
-                    "name": "Udp",
-                    "value": "UDP"
-                }
-            ]
-        },
-        "render:services:PrivateService": {
-            "description": "A private service",
-            "properties": {
-                "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy",
-                    "description": "Whether to auto deploy the service or not upon git push.",
-                    "default": "no"
-                },
-                "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository."
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:EnvVarKeyValue"
-                    }
-                },
-                "name": {
-                    "type": "string"
-                },
-                "notifyOnFail": {
-                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
-                    "description": "The notification setting for this service upon deployment failure."
-                },
-                "ownerId": {
-                    "type": "string",
-                    "description": "The id of the owner (user/team)."
-                },
-                "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
-                },
-                "secretFiles": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:SecretFile"
-                    }
-                },
-                "serviceDetails": {
-                    "$ref": "#/types/render:services:PrivateServiceDetails"
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:services:ServiceSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "type": {
-                    "type": "string",
-                    "default": "private_service"
-                },
-                "updatedAt": {
-                    "type": "string"
-                }
-            },
-            "type": "object",
-            "required": [
-                "name",
-                "ownerId",
-                "repo"
-            ]
-        },
-        "render:services:PrivateServiceDetails": {
-            "properties": {
-                "disk": {
-                    "$ref": "#/types/render:services:Disk"
-                },
-                "env": {
-                    "$ref": "#/types/render:services:PrivateServiceDetailsEnv"
-                },
-                "envSpecificDetails": {
-                    "oneOf": [
-                        {
-                            "$ref": "#/types/render:services:DockerDetails"
-                        },
-                        {
-                            "$ref": "#/types/render:services:NativeEnvironmentDetails"
-                        }
-                    ]
-                },
-                "numInstances": {
-                    "type": "number",
-                    "default": 1
-                },
-                "openPorts": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:OpenPorts"
-                    }
-                },
-                "parentServer": {
-                    "$ref": "#/types/render:services:PrivateServiceDetailsParentServerProperties"
-                },
-                "plan": {
-                    "$ref": "#/types/render:services:PrivateServiceDetailsPlan",
-                    "default": "starter"
-                },
-                "pullRequestPreviewsEnabled": {
-                    "$ref": "#/types/render:services:PrivateServiceDetailsPullRequestPreviewsEnabled",
-                    "default": "no"
-                },
-                "region": {
-                    "$ref": "#/types/render:services:PrivateServiceDetailsRegion",
-                    "default": "oregon"
-                },
-                "url": {
-                    "type": "string"
-                }
-            },
-            "type": "object",
-            "required": [
-                "env"
-            ]
-        },
-        "render:services:PrivateServiceDetailsEnv": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Docker",
-                    "value": "docker"
-                },
-                {
-                    "name": "Elixir",
-                    "value": "elixir"
-                },
-                {
-                    "name": "Go",
-                    "value": "go"
-                },
-                {
-                    "name": "Node",
-                    "value": "node"
-                },
-                {
-                    "name": "Python",
-                    "value": "python"
-                },
-                {
-                    "name": "Ruby",
-                    "value": "ruby"
-                },
-                {
-                    "name": "Rust",
-                    "value": "rust"
-                }
-            ]
-        },
-        "render:services:PrivateServiceDetailsParentServerProperties": {
-            "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        },
-        "render:services:PrivateServiceDetailsPlan": {
+        "render:services:Plan": {
+            "description": "The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.",
             "type": "string",
             "enum": [
                 {
@@ -1523,6 +1381,311 @@
                 {
                     "name": "ProUltra",
                     "value": "pro_ultra"
+                },
+                {
+                    "name": "Free",
+                    "value": "free"
+                },
+                {
+                    "name": "Custom",
+                    "value": "custom"
+                }
+            ]
+        },
+        "render:services:PrivateServiceDetails": {
+            "properties": {
+                "autoscaling": {
+                    "$ref": "#/types/render:services:AutoscalingConfig"
+                },
+                "buildPlan": {
+                    "type": "string"
+                },
+                "disk": {
+                    "$ref": "#/types/render:services:Disk"
+                },
+                "env": {
+                    "$ref": "#/types/render:services:PrivateServiceDetailsEnv",
+                    "description": "Environment (runtime)"
+                },
+                "envSpecificDetails": {
+                    "$ref": "#/types/render:services:EnvSpecificDetails"
+                },
+                "numInstances": {
+                    "type": "integer",
+                    "description": "For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service."
+                },
+                "openPorts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:ServerPort"
+                    }
+                },
+                "parentServer": {
+                    "$ref": "#/types/render:services:Resource"
+                },
+                "plan": {
+                    "$ref": "#/types/render:services:PrivateServiceDetailsPlan",
+                    "description": "The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type."
+                },
+                "pullRequestPreviewsEnabled": {
+                    "$ref": "#/types/render:services:PrivateServiceDetailsPullRequestPreviewsEnabled"
+                },
+                "region": {
+                    "$ref": "#/types/render:services:PrivateServiceDetailsRegion"
+                },
+                "url": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "buildPlan",
+                "env",
+                "envSpecificDetails",
+                "numInstances",
+                "openPorts",
+                "plan",
+                "pullRequestPreviewsEnabled",
+                "region",
+                "url"
+            ]
+        },
+        "render:services:PrivateServiceDetailsEnv": {
+            "description": "Environment (runtime)",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Docker",
+                    "value": "docker"
+                },
+                {
+                    "name": "Elixir",
+                    "value": "elixir"
+                },
+                {
+                    "name": "Go",
+                    "value": "go"
+                },
+                {
+                    "name": "Node",
+                    "value": "node"
+                },
+                {
+                    "name": "Python",
+                    "value": "python"
+                },
+                {
+                    "name": "Ruby",
+                    "value": "ruby"
+                },
+                {
+                    "name": "Rust",
+                    "value": "rust"
+                },
+                {
+                    "name": "Image",
+                    "value": "image"
+                }
+            ]
+        },
+        "render:services:PrivateServiceDetailsPOST": {
+            "properties": {
+                "disk": {
+                    "$ref": "#/types/render:services:PrivateServiceDetailsPOSTDiskProperties"
+                },
+                "env": {
+                    "$ref": "#/types/render:services:PrivateServiceDetailsPOSTEnv",
+                    "description": "Environment (runtime)"
+                },
+                "envSpecificDetails": {
+                    "$ref": "#/types/render:services:EnvSpecificDetails"
+                },
+                "numInstances": {
+                    "type": "integer",
+                    "description": "Defaults to 1",
+                    "default": 1
+                },
+                "plan": {
+                    "$ref": "#/types/render:services:PrivateServiceDetailsPOSTPlan"
+                },
+                "pullRequestPreviewsEnabled": {
+                    "$ref": "#/types/render:services:PrivateServiceDetailsPOSTPullRequestPreviewsEnabled",
+                    "description": "Defaults to \"no\"",
+                    "default": "no"
+                },
+                "region": {
+                    "$ref": "#/types/render:services:PrivateServiceDetailsPOSTRegion"
+                }
+            },
+            "type": "object",
+            "required": [
+                "env"
+            ]
+        },
+        "render:services:PrivateServiceDetailsPOSTDiskProperties": {
+            "properties": {
+                "mountPath": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "sizeGB": {
+                    "type": "integer",
+                    "description": "Defaults to 1"
+                }
+            },
+            "type": "object",
+            "required": [
+                "mountPath",
+                "name"
+            ]
+        },
+        "render:services:PrivateServiceDetailsPOSTEnv": {
+            "description": "Environment (runtime)",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Docker",
+                    "value": "docker"
+                },
+                {
+                    "name": "Elixir",
+                    "value": "elixir"
+                },
+                {
+                    "name": "Go",
+                    "value": "go"
+                },
+                {
+                    "name": "Node",
+                    "value": "node"
+                },
+                {
+                    "name": "Python",
+                    "value": "python"
+                },
+                {
+                    "name": "Ruby",
+                    "value": "ruby"
+                },
+                {
+                    "name": "Rust",
+                    "value": "rust"
+                },
+                {
+                    "name": "Image",
+                    "value": "image"
+                }
+            ]
+        },
+        "render:services:PrivateServiceDetailsPOSTPlan": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Starter",
+                    "value": "starter"
+                },
+                {
+                    "name": "Standard",
+                    "value": "standard"
+                },
+                {
+                    "name": "Pro",
+                    "value": "pro"
+                },
+                {
+                    "name": "ProPlus",
+                    "value": "pro_plus"
+                },
+                {
+                    "name": "ProMax",
+                    "value": "pro_max"
+                },
+                {
+                    "name": "ProUltra",
+                    "value": "pro_ultra"
+                }
+            ]
+        },
+        "render:services:PrivateServiceDetailsPOSTPullRequestPreviewsEnabled": {
+            "description": "Defaults to \"no\"",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
+        "render:services:PrivateServiceDetailsPOSTRegion": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Frankfurt",
+                    "value": "frankfurt"
+                },
+                {
+                    "name": "Oregon",
+                    "value": "oregon"
+                },
+                {
+                    "name": "Ohio",
+                    "value": "ohio"
+                },
+                {
+                    "name": "Singapore",
+                    "value": "singapore"
+                }
+            ]
+        },
+        "render:services:PrivateServiceDetailsPlan": {
+            "description": "The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Starter",
+                    "value": "starter"
+                },
+                {
+                    "name": "StarterPlus",
+                    "value": "starter_plus"
+                },
+                {
+                    "name": "Standard",
+                    "value": "standard"
+                },
+                {
+                    "name": "StandardPlus",
+                    "value": "standard_plus"
+                },
+                {
+                    "name": "Pro",
+                    "value": "pro"
+                },
+                {
+                    "name": "ProPlus",
+                    "value": "pro_plus"
+                },
+                {
+                    "name": "ProMax",
+                    "value": "pro_max"
+                },
+                {
+                    "name": "ProUltra",
+                    "value": "pro_ultra"
+                },
+                {
+                    "name": "Free",
+                    "value": "free"
+                },
+                {
+                    "name": "Custom",
+                    "value": "custom"
                 }
             ]
         },
@@ -1543,31 +1706,24 @@
             "type": "string",
             "enum": [
                 {
+                    "name": "Frankfurt",
+                    "value": "frankfurt"
+                },
+                {
                     "name": "Oregon",
                     "value": "oregon"
                 },
                 {
-                    "name": "Frankfurt",
-                    "value": "frankfurt"
-                }
-            ]
-        },
-        "render:services:SecretFile": {
-            "properties": {
-                "contents": {
-                    "type": "string"
+                    "name": "Ohio",
+                    "value": "ohio"
                 },
-                "name": {
-                    "type": "string"
+                {
+                    "name": "Singapore",
+                    "value": "singapore"
                 }
-            },
-            "type": "object",
-            "required": [
-                "contents",
-                "name"
             ]
         },
-        "render:services:ServerProperties": {
+        "render:services:Resource": {
             "properties": {
                 "id": {
                     "type": "string"
@@ -1576,10 +1732,187 @@
                     "type": "string"
                 }
             },
-            "type": "object"
+            "type": "object",
+            "required": [
+                "id",
+                "name"
+            ]
+        },
+        "render:services:Route": {
+            "properties": {
+                "destination": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "priority": {
+                    "type": "integer",
+                    "description": "Redirect and Rewrite Rules are applied in priority order starting at 0"
+                },
+                "source": {
+                    "type": "string"
+                },
+                "type": {
+                    "$ref": "#/types/render:services:RouteType"
+                }
+            },
+            "type": "object",
+            "required": [
+                "destination",
+                "id",
+                "priority",
+                "source",
+                "type"
+            ]
+        },
+        "render:services:RouteType": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Redirect",
+                    "value": "redirect"
+                },
+                {
+                    "name": "Rewrite",
+                    "value": "rewrite"
+                }
+            ]
+        },
+        "render:services:SecretFile": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "id",
+                "name"
+            ]
+        },
+        "render:services:ServerPort": {
+            "properties": {
+                "port": {
+                    "type": "integer"
+                },
+                "protocol": {
+                    "$ref": "#/types/render:services:ServerPortProtocol"
+                }
+            },
+            "type": "object",
+            "required": [
+                "port",
+                "protocol"
+            ]
+        },
+        "render:services:ServerPortProtocol": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Tcp",
+                    "value": "TCP"
+                },
+                {
+                    "name": "Udp",
+                    "value": "UDP"
+                }
+            ]
+        },
+        "render:services:Service": {
+            "properties": {
+                "autoDeploy": {
+                    "$ref": "#/types/render:services:ServiceAutoDeploy"
+                },
+                "branch": {
+                    "type": "string"
+                },
+                "buildFilter": {
+                    "$ref": "#/types/render:services:BuildFilter"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "imagePath": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "notifyOnFail": {
+                    "$ref": "#/types/render:services:ServiceNotifyOnFail"
+                },
+                "ownerId": {
+                    "type": "string"
+                },
+                "repo": {
+                    "type": "string"
+                },
+                "rootDir": {
+                    "type": "string"
+                },
+                "serviceDetails": {
+                    "oneOf": [
+                        {
+                            "$ref": "#/types/render:services:StaticSiteDetails"
+                        },
+                        {
+                            "$ref": "#/types/render:services:WebServiceDetails"
+                        },
+                        {
+                            "$ref": "#/types/render:services:PrivateServiceDetails"
+                        },
+                        {
+                            "$ref": "#/types/render:services:BackgroundWorkerDetails"
+                        },
+                        {
+                            "$ref": "#/types/render:services:CronJobDetails"
+                        }
+                    ]
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "suspended": {
+                    "$ref": "#/types/render:services:ServiceSuspended"
+                },
+                "suspenders": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:ServiceSuspendersItem"
+                    }
+                },
+                "type": {
+                    "$ref": "#/types/render:services:ServiceType"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "autoDeploy",
+                "createdAt",
+                "id",
+                "name",
+                "notifyOnFail",
+                "ownerId",
+                "rootDir",
+                "serviceDetails",
+                "slug",
+                "suspended",
+                "suspenders",
+                "type",
+                "updatedAt"
+            ]
         },
         "render:services:ServiceAutoDeploy": {
-            "description": "Whether to auto deploy the service or not upon git push.",
             "type": "string",
             "enum": [
                 {
@@ -1592,28 +1925,7 @@
                 }
             ]
         },
-        "render:services:ServiceHeader": {
-            "description": "A service header object",
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "path": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": "string"
-                }
-            },
-            "type": "object",
-            "required": [
-                "name",
-                "path",
-                "value"
-            ]
-        },
         "render:services:ServiceNotifyOnFail": {
-            "description": "The notification setting for this service upon deployment failure.",
             "type": "string",
             "enum": [
                 {
@@ -1643,112 +1955,87 @@
                 }
             ]
         },
-        "render:services:StaticSite": {
-            "description": "A static website service",
-            "properties": {
-                "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy",
-                    "description": "Whether to auto deploy the service or not upon git push.",
-                    "default": "no"
-                },
-                "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository."
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:EnvVarKeyValue"
-                    }
-                },
-                "name": {
-                    "type": "string"
-                },
-                "notifyOnFail": {
-                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
-                    "description": "The notification setting for this service upon deployment failure."
-                },
-                "ownerId": {
-                    "type": "string",
-                    "description": "The id of the owner (user/team)."
-                },
-                "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
-                },
-                "secretFiles": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:SecretFile"
-                    }
-                },
-                "serviceDetails": {
-                    "$ref": "#/types/render:services:StaticSiteServiceDetails"
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:services:ServiceSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "type": {
-                    "type": "string",
-                    "default": "static_site"
-                },
-                "updatedAt": {
-                    "type": "string"
-                }
-            },
-            "type": "object",
-            "required": [
-                "name",
-                "ownerId",
-                "repo"
-            ]
-        },
-        "render:services:StaticSiteRoute": {
-            "description": "A route object for a static site",
-            "properties": {
-                "destination": {
-                    "type": "string"
-                },
-                "source": {
-                    "type": "string"
-                },
-                "type": {
-                    "$ref": "#/types/render:services:StaticSiteRouteType"
-                }
-            },
-            "type": "object",
-            "required": [
-                "destination",
-                "source",
-                "type"
-            ]
-        },
-        "render:services:StaticSiteRouteType": {
+        "render:services:ServiceSuspendersItem": {
             "type": "string",
             "enum": [
                 {
-                    "name": "Redirect",
-                    "value": "redirect"
+                    "name": "Admin",
+                    "value": "admin"
                 },
                 {
-                    "name": "Rewrite",
-                    "value": "rewrite"
+                    "name": "Billing",
+                    "value": "billing"
+                },
+                {
+                    "name": "User",
+                    "value": "user"
+                },
+                {
+                    "name": "ParentService",
+                    "value": "parent_service"
+                },
+                {
+                    "name": "Unknown",
+                    "value": "unknown"
                 }
             ]
         },
-        "render:services:StaticSiteServiceDetails": {
+        "render:services:ServiceType": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "StaticSite",
+                    "value": "static_site"
+                },
+                {
+                    "name": "WebService",
+                    "value": "web_service"
+                },
+                {
+                    "name": "PrivateService",
+                    "value": "private_service"
+                },
+                {
+                    "name": "BackgroundWorker",
+                    "value": "background_worker"
+                },
+                {
+                    "name": "CronJob",
+                    "value": "cron_job"
+                }
+            ]
+        },
+        "render:services:StaticSiteDetails": {
+            "properties": {
+                "buildCommand": {
+                    "type": "string"
+                },
+                "buildPlan": {
+                    "type": "string"
+                },
+                "parentServer": {
+                    "$ref": "#/types/render:services:Resource"
+                },
+                "publishPath": {
+                    "type": "string"
+                },
+                "pullRequestPreviewsEnabled": {
+                    "$ref": "#/types/render:services:StaticSiteDetailsPullRequestPreviewsEnabled"
+                },
+                "url": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "buildCommand",
+                "buildPlan",
+                "publishPath",
+                "pullRequestPreviewsEnabled",
+                "url"
+            ]
+        },
+        "render:services:StaticSiteDetailsPOST": {
             "properties": {
                 "buildCommand": {
                     "type": "string"
@@ -1756,45 +2043,29 @@
                 "headers": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/render:services:ServiceHeader"
+                        "$ref": "#/types/render:services:HeaderPost"
                     }
-                },
-                "parentServer": {
-                    "$ref": "#/types/render:services:StaticSiteServiceDetailsParentServerProperties"
                 },
                 "publishPath": {
                     "type": "string",
-                    "default": "public"
+                    "description": "Defaults to \"public\""
                 },
                 "pullRequestPreviewsEnabled": {
-                    "$ref": "#/types/render:services:StaticSiteServiceDetailsPullRequestPreviewsEnabled",
+                    "$ref": "#/types/render:services:StaticSiteDetailsPOSTPullRequestPreviewsEnabled",
+                    "description": "Defaults to \"no\"",
                     "default": "no"
                 },
                 "routes": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/render:services:StaticSiteRoute"
+                        "$ref": "#/types/render:services:Route"
                     }
-                },
-                "url": {
-                    "type": "string",
-                    "description": "The HTTPS service URL. A subdomain of onrender.com, by default."
                 }
             },
             "type": "object"
         },
-        "render:services:StaticSiteServiceDetailsParentServerProperties": {
-            "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        },
-        "render:services:StaticSiteServiceDetailsPullRequestPreviewsEnabled": {
+        "render:services:StaticSiteDetailsPOSTPullRequestPreviewsEnabled": {
+            "description": "Defaults to \"no\"",
             "type": "string",
             "enum": [
                 {
@@ -1807,136 +2078,177 @@
                 }
             ]
         },
-        "render:services:VerificationStatus": {
+        "render:services:StaticSiteDetailsPullRequestPreviewsEnabled": {
             "type": "string",
             "enum": [
                 {
-                    "name": "Verified",
-                    "value": "verified"
+                    "name": "Yes",
+                    "value": "yes"
                 },
                 {
-                    "name": "Unverified",
-                    "value": "unverified"
+                    "name": "No",
+                    "value": "no"
                 }
             ]
         },
-        "render:services:WebService": {
-            "description": "A web service",
-            "properties": {
-                "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy",
-                    "description": "Whether to auto deploy the service or not upon git push.",
-                    "default": "no"
+        "render:services:Status": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Created",
+                    "value": "created"
                 },
-                "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository."
+                {
+                    "name": "BuildInProgress",
+                    "value": "build_in_progress"
                 },
-                "createdAt": {
-                    "type": "string"
+                {
+                    "name": "UpdateInProgress",
+                    "value": "update_in_progress"
                 },
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:EnvVarKeyValue"
-                    }
+                {
+                    "name": "Live",
+                    "value": "live"
                 },
-                "name": {
-                    "type": "string"
+                {
+                    "name": "Deactivated",
+                    "value": "deactivated"
                 },
-                "notifyOnFail": {
-                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
-                    "description": "The notification setting for this service upon deployment failure."
+                {
+                    "name": "BuildFailed",
+                    "value": "build_failed"
                 },
-                "ownerId": {
-                    "type": "string",
-                    "description": "The id of the owner (user/team)."
+                {
+                    "name": "UpdateFailed",
+                    "value": "update_failed"
                 },
-                "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                {
+                    "name": "Canceled",
+                    "value": "canceled"
                 },
-                "secretFiles": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:SecretFile"
-                    }
+                {
+                    "name": "PreDeployInProgress",
+                    "value": "pre_deploy_in_progress"
                 },
-                "serviceDetails": {
-                    "$ref": "#/types/render:services:WebServiceServiceDetails"
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:services:ServiceSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "type": {
-                    "type": "string",
-                    "default": "web_service"
-                },
-                "updatedAt": {
-                    "type": "string"
+                {
+                    "name": "PreDeployFailed",
+                    "value": "pre_deploy_failed"
                 }
-            },
-            "type": "object",
-            "required": [
-                "name",
-                "ownerId",
-                "repo"
             ]
         },
-        "render:services:WebServiceServiceDetails": {
+        "render:services:Trigger": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Api",
+                    "value": "api"
+                },
+                {
+                    "name": "BlueprintSync",
+                    "value": "blueprint_sync"
+                },
+                {
+                    "name": "DeployHook",
+                    "value": "deploy_hook"
+                },
+                {
+                    "name": "DeployedByRender",
+                    "value": "deployed_by_render"
+                },
+                {
+                    "name": "Manual",
+                    "value": "manual"
+                },
+                {
+                    "name": "Other",
+                    "value": "other"
+                },
+                {
+                    "name": "NewCommit",
+                    "value": "new_commit"
+                },
+                {
+                    "name": "Rollback",
+                    "value": "rollback"
+                },
+                {
+                    "name": "ServiceResumed",
+                    "value": "service_resumed"
+                },
+                {
+                    "name": "ServiceUpdated",
+                    "value": "service_updated"
+                }
+            ]
+        },
+        "render:services:Type": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "StaticSite",
+                    "value": "static_site"
+                },
+                {
+                    "name": "WebService",
+                    "value": "web_service"
+                },
+                {
+                    "name": "PrivateService",
+                    "value": "private_service"
+                },
+                {
+                    "name": "BackgroundWorker",
+                    "value": "background_worker"
+                },
+                {
+                    "name": "CronJob",
+                    "value": "cron_job"
+                }
+            ]
+        },
+        "render:services:WebServiceDetails": {
             "properties": {
+                "autoscaling": {
+                    "$ref": "#/types/render:services:AutoscalingConfig"
+                },
+                "buildPlan": {
+                    "type": "string"
+                },
                 "disk": {
                     "$ref": "#/types/render:services:Disk"
                 },
                 "env": {
-                    "$ref": "#/types/render:services:WebServiceServiceDetailsEnv"
+                    "$ref": "#/types/render:services:WebServiceDetailsEnv",
+                    "description": "Environment (runtime)"
                 },
                 "envSpecificDetails": {
-                    "oneOf": [
-                        {
-                            "$ref": "#/types/render:services:DockerDetails"
-                        },
-                        {
-                            "$ref": "#/types/render:services:NativeEnvironmentDetails"
-                        }
-                    ]
+                    "$ref": "#/types/render:services:EnvSpecificDetails"
                 },
                 "healthCheckPath": {
                     "type": "string"
                 },
                 "numInstances": {
-                    "type": "number",
-                    "default": 1
+                    "type": "integer",
+                    "description": "For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service."
                 },
                 "openPorts": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/render:services:OpenPorts"
+                        "$ref": "#/types/render:services:ServerPort"
                     }
                 },
                 "parentServer": {
-                    "$ref": "#/types/render:services:WebServiceServiceDetailsParentServerProperties"
+                    "$ref": "#/types/render:services:Resource"
                 },
                 "plan": {
-                    "$ref": "#/types/render:services:WebServiceServiceDetailsPlan",
-                    "default": "starter"
+                    "$ref": "#/types/render:services:WebServiceDetailsPlan",
+                    "description": "The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type."
                 },
                 "pullRequestPreviewsEnabled": {
-                    "$ref": "#/types/render:services:WebServiceServiceDetailsPullRequestPreviewsEnabled",
-                    "default": "no"
+                    "$ref": "#/types/render:services:WebServiceDetailsPullRequestPreviewsEnabled"
                 },
                 "region": {
-                    "$ref": "#/types/render:services:WebServiceServiceDetailsRegion",
-                    "default": "oregon"
+                    "$ref": "#/types/render:services:WebServiceDetailsRegion"
                 },
                 "url": {
                     "type": "string"
@@ -1944,10 +2256,20 @@
             },
             "type": "object",
             "required": [
-                "env"
+                "buildPlan",
+                "env",
+                "envSpecificDetails",
+                "healthCheckPath",
+                "numInstances",
+                "openPorts",
+                "plan",
+                "pullRequestPreviewsEnabled",
+                "region",
+                "url"
             ]
         },
-        "render:services:WebServiceServiceDetailsEnv": {
+        "render:services:WebServiceDetailsEnv": {
+            "description": "Environment (runtime)",
             "type": "string",
             "enum": [
                 {
@@ -1977,21 +2299,172 @@
                 {
                     "name": "Rust",
                     "value": "rust"
+                },
+                {
+                    "name": "Image",
+                    "value": "image"
                 }
             ]
         },
-        "render:services:WebServiceServiceDetailsParentServerProperties": {
+        "render:services:WebServiceDetailsPOST": {
             "properties": {
-                "id": {
+                "disk": {
+                    "$ref": "#/types/render:services:WebServiceDetailsPOSTDiskProperties"
+                },
+                "env": {
+                    "$ref": "#/types/render:services:WebServiceDetailsPOSTEnv",
+                    "description": "Environment (runtime)"
+                },
+                "envSpecificDetails": {
+                    "$ref": "#/types/render:services:EnvSpecificDetails"
+                },
+                "healthCheckPath": {
+                    "type": "string"
+                },
+                "numInstances": {
+                    "type": "integer",
+                    "description": "Defaults to 1"
+                },
+                "plan": {
+                    "$ref": "#/types/render:services:WebServiceDetailsPOSTPlan"
+                },
+                "pullRequestPreviewsEnabled": {
+                    "$ref": "#/types/render:services:WebServiceDetailsPOSTPullRequestPreviewsEnabled",
+                    "description": "Defaults to \"no\"",
+                    "default": "no"
+                },
+                "region": {
+                    "$ref": "#/types/render:services:WebServiceDetailsPOSTRegion"
+                }
+            },
+            "type": "object",
+            "required": [
+                "env"
+            ]
+        },
+        "render:services:WebServiceDetailsPOSTDiskProperties": {
+            "properties": {
+                "mountPath": {
                     "type": "string"
                 },
                 "name": {
                     "type": "string"
+                },
+                "sizeGB": {
+                    "type": "integer",
+                    "description": "Defaults to 1"
                 }
             },
-            "type": "object"
+            "type": "object",
+            "required": [
+                "mountPath",
+                "name"
+            ]
         },
-        "render:services:WebServiceServiceDetailsPlan": {
+        "render:services:WebServiceDetailsPOSTEnv": {
+            "description": "Environment (runtime)",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Docker",
+                    "value": "docker"
+                },
+                {
+                    "name": "Elixir",
+                    "value": "elixir"
+                },
+                {
+                    "name": "Go",
+                    "value": "go"
+                },
+                {
+                    "name": "Node",
+                    "value": "node"
+                },
+                {
+                    "name": "Python",
+                    "value": "python"
+                },
+                {
+                    "name": "Ruby",
+                    "value": "ruby"
+                },
+                {
+                    "name": "Rust",
+                    "value": "rust"
+                },
+                {
+                    "name": "Image",
+                    "value": "image"
+                }
+            ]
+        },
+        "render:services:WebServiceDetailsPOSTPlan": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Starter",
+                    "value": "starter"
+                },
+                {
+                    "name": "Standard",
+                    "value": "standard"
+                },
+                {
+                    "name": "Pro",
+                    "value": "pro"
+                },
+                {
+                    "name": "ProPlus",
+                    "value": "pro_plus"
+                },
+                {
+                    "name": "ProMax",
+                    "value": "pro_max"
+                },
+                {
+                    "name": "ProUltra",
+                    "value": "pro_ultra"
+                }
+            ]
+        },
+        "render:services:WebServiceDetailsPOSTPullRequestPreviewsEnabled": {
+            "description": "Defaults to \"no\"",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
+        "render:services:WebServiceDetailsPOSTRegion": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Frankfurt",
+                    "value": "frankfurt"
+                },
+                {
+                    "name": "Oregon",
+                    "value": "oregon"
+                },
+                {
+                    "name": "Ohio",
+                    "value": "ohio"
+                },
+                {
+                    "name": "Singapore",
+                    "value": "singapore"
+                }
+            ]
+        },
+        "render:services:WebServiceDetailsPlan": {
+            "description": "The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.",
             "type": "string",
             "enum": [
                 {
@@ -2025,10 +2498,18 @@
                 {
                     "name": "ProUltra",
                     "value": "pro_ultra"
+                },
+                {
+                    "name": "Free",
+                    "value": "free"
+                },
+                {
+                    "name": "Custom",
+                    "value": "custom"
                 }
             ]
         },
-        "render:services:WebServiceServiceDetailsPullRequestPreviewsEnabled": {
+        "render:services:WebServiceDetailsPullRequestPreviewsEnabled": {
             "type": "string",
             "enum": [
                 {
@@ -2041,16 +2522,24 @@
                 }
             ]
         },
-        "render:services:WebServiceServiceDetailsRegion": {
+        "render:services:WebServiceDetailsRegion": {
             "type": "string",
             "enum": [
+                {
+                    "name": "Frankfurt",
+                    "value": "frankfurt"
+                },
                 {
                     "name": "Oregon",
                     "value": "oregon"
                 },
                 {
-                    "name": "Frankfurt",
-                    "value": "frankfurt"
+                    "name": "Ohio",
+                    "value": "ohio"
+                },
+                {
+                    "name": "Singapore",
+                    "value": "singapore"
                 }
             ]
         }
@@ -2083,19 +2572,30 @@
                     "type": "string"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Descriptive name for this credential"
                 },
                 "ownerId": {
                     "type": "string"
                 },
                 "registry": {
-                    "type": "string"
+                    "$ref": "#/types/render:registrycredentials:Registry",
+                    "description": "The registry to use this credential with"
                 },
                 "username": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The username associated with the credential"
                 }
             },
             "type": "object",
+            "required": [
+                "authToken",
+                "id",
+                "name",
+                "ownerId",
+                "registry",
+                "username"
+            ],
             "inputProperties": {
                 "authToken": {
                     "type": "string"
@@ -2107,420 +2607,99 @@
                     "type": "string"
                 },
                 "registry": {
-                    "type": "string"
+                    "$ref": "#/types/render:registrycredentials:Registry"
                 },
                 "username": {
                     "type": "string"
                 }
-            }
+            },
+            "requiredInputs": [
+                "authToken",
+                "ownerId",
+                "registry",
+                "username"
+            ]
         },
-        "render:services:AutoScaling": {
+        "render:services:AutoscaleService": {
             "properties": {
                 "criteria": {
-                    "$ref": "#/types/render:services:AutoScalingCriteria"
+                    "$ref": "#/types/render:services:AutoscalingCriteria"
                 },
                 "enabled": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
                 },
                 "max": {
-                    "type": "number",
+                    "type": "integer",
                     "description": "The maximum number of instances for the service"
                 },
                 "min": {
-                    "type": "number",
+                    "type": "integer",
                     "description": "The minimum number of instances for the service"
-                }
-            },
-            "type": "object",
-            "inputProperties": {
-                "criteria": {
-                    "$ref": "#/types/render:services:AutoScalingCriteria"
-                },
-                "enabled": {
-                    "type": "boolean"
-                },
-                "max": {
-                    "type": "number",
-                    "description": "The maximum number of instances for the service"
-                },
-                "min": {
-                    "type": "number",
-                    "description": "The minimum number of instances for the service"
-                },
-                "serviceId": {
-                    "type": "string",
-                    "description": "(Required) The ID of the service"
-                }
-            }
-        },
-        "render:services:BackgroundWorker": {
-            "description": "A background worker service",
-            "properties": {
-                "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy",
-                    "description": "Whether to auto deploy the service or not upon git push.",
-                    "default": "no"
-                },
-                "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository."
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:EnvVarKeyValue"
-                    }
-                },
-                "name": {
-                    "type": "string"
-                },
-                "notifyOnFail": {
-                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
-                    "description": "The notification setting for this service upon deployment failure."
-                },
-                "ownerId": {
-                    "type": "string",
-                    "description": "The id of the owner (user/team)."
-                },
-                "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
-                },
-                "secretFiles": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:SecretFile"
-                    }
-                },
-                "serviceDetails": {
-                    "$ref": "#/types/render:services:BackgroundWorkerServiceDetails"
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:services:ServiceSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "type": {
-                    "type": "string",
-                    "default": "background_worker"
-                },
-                "updatedAt": {
-                    "type": "string"
-                }
-            },
-            "type": "object",
-            "inputProperties": {
-                "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy",
-                    "description": "Whether to auto deploy the service or not upon git push.",
-                    "default": "no"
-                },
-                "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository."
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:EnvVarKeyValue"
-                    }
-                },
-                "name": {
-                    "type": "string"
-                },
-                "notifyOnFail": {
-                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
-                    "description": "The notification setting for this service upon deployment failure."
-                },
-                "ownerId": {
-                    "type": "string",
-                    "description": "The id of the owner (user/team)."
-                },
-                "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
-                },
-                "secretFiles": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:SecretFile"
-                    }
-                },
-                "serviceDetails": {
-                    "$ref": "#/types/render:services:BackgroundWorkerServiceDetails"
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:services:ServiceSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "type": {
-                    "type": "string",
-                    "default": "background_worker"
-                },
-                "updatedAt": {
-                    "type": "string"
-                }
-            },
-            "requiredInputs": [
-                "name",
-                "ownerId",
-                "repo"
-            ]
-        },
-        "render:services:CronJob": {
-            "description": "A cron job",
-            "properties": {
-                "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy",
-                    "description": "Whether to auto deploy the service or not upon git push.",
-                    "default": "no"
-                },
-                "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository."
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:EnvVarKeyValue"
-                    }
-                },
-                "name": {
-                    "type": "string"
-                },
-                "notifyOnFail": {
-                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
-                    "description": "The notification setting for this service upon deployment failure."
-                },
-                "ownerId": {
-                    "type": "string",
-                    "description": "The id of the owner (user/team)."
-                },
-                "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
-                },
-                "secretFiles": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:SecretFile"
-                    }
-                },
-                "serviceDetails": {
-                    "$ref": "#/types/render:services:CronJobServiceDetails"
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:services:ServiceSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "type": {
-                    "type": "string",
-                    "default": "cron_job"
-                },
-                "updatedAt": {
-                    "type": "string"
-                }
-            },
-            "type": "object",
-            "inputProperties": {
-                "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy",
-                    "description": "Whether to auto deploy the service or not upon git push.",
-                    "default": "no"
-                },
-                "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository."
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:EnvVarKeyValue"
-                    }
-                },
-                "name": {
-                    "type": "string"
-                },
-                "notifyOnFail": {
-                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
-                    "description": "The notification setting for this service upon deployment failure."
-                },
-                "ownerId": {
-                    "type": "string",
-                    "description": "The id of the owner (user/team)."
-                },
-                "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
-                },
-                "secretFiles": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:SecretFile"
-                    }
-                },
-                "serviceDetails": {
-                    "$ref": "#/types/render:services:CronJobServiceDetails"
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:services:ServiceSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "type": {
-                    "type": "string",
-                    "default": "cron_job"
-                },
-                "updatedAt": {
-                    "type": "string"
-                }
-            },
-            "requiredInputs": [
-                "name",
-                "ownerId",
-                "repo"
-            ]
-        },
-        "render:services:CustomDomains": {
-            "properties": {
-                "createdAt": {
-                    "type": "string"
-                },
-                "domainType": {
-                    "$ref": "#/types/render:services:DomainType"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "publicSuffix": {
-                    "type": "string"
-                },
-                "redirectForName": {
-                    "type": "string"
-                },
-                "server": {
-                    "$ref": "#/types/render:services:ServerProperties"
-                },
-                "verificationStatus": {
-                    "$ref": "#/types/render:services:VerificationStatus"
                 }
             },
             "type": "object",
             "required": [
-                "domainType",
-                "name",
-                "redirectForName",
-                "server",
-                "verificationStatus"
+                "criteria",
+                "enabled",
+                "max",
+                "min"
             ],
             "inputProperties": {
-                "name": {
+                "criteria": {
+                    "$ref": "#/types/render:services:AutoscalingCriteria"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "max": {
+                    "type": "integer",
+                    "description": "The maximum number of instances for the service"
+                },
+                "min": {
+                    "type": "integer",
+                    "description": "The minimum number of instances for the service"
+                }
+            },
+            "requiredInputs": [
+                "criteria",
+                "enabled",
+                "max",
+                "min"
+            ]
+        },
+        "render:services:CancelDeploy": {
+            "properties": {
+                "commit": {
+                    "$ref": "#/types/render:services:CommitProperties"
+                },
+                "createdAt": {
                     "type": "string"
                 },
-                "serviceId": {
-                    "type": "string",
-                    "description": "(Required) The ID of the service"
-                }
-            }
-        },
-        "render:services:Deploys": {
-            "properties": {
-                "clearCache": {
-                    "$ref": "#/types/render:services:ClearCache",
-                    "default": "do_not_clear"
+                "finishedAt": {
+                    "type": "string"
                 },
-                "commit": {
-                    "$ref": "#/types/render:services:Commit"
+                "image": {
+                    "$ref": "#/types/render:services:ImageProperties",
+                    "description": "Image information used when creating the deploy. Not present for Git-backed deploys"
+                },
+                "status": {
+                    "$ref": "#/types/render:services:Status"
+                },
+                "trigger": {
+                    "$ref": "#/types/render:services:Trigger"
+                },
+                "updatedAt": {
+                    "type": "string"
                 }
             },
             "type": "object",
-            "inputProperties": {
-                "clearCache": {
-                    "$ref": "#/types/render:services:ClearCache",
-                    "default": "do_not_clear"
-                },
-                "serviceId": {
-                    "type": "string",
-                    "description": "(Required) The ID of the service"
-                }
-            }
+            "required": [
+                "id"
+            ]
         },
-        "render:services:EnvVars": {
-            "properties": {
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:EnvVarKeyValue"
-                    },
-                    "language": {
-                        "csharp": {
-                            "name": "EnvVarsValue"
-                        }
-                    }
-                }
-            },
-            "type": "object",
-            "inputProperties": {
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:EnvVarKeyValue"
-                    },
-                    "language": {
-                        "csharp": {
-                            "name": "EnvVarsValue"
-                        }
-                    }
-                },
-                "serviceId": {
-                    "type": "string",
-                    "description": "(Required) The ID of the service"
-                }
-            }
-        },
-        "render:services:Jobs": {
+        "render:services:CancelJob": {
             "properties": {
                 "createdAt": {
                     "type": "string"
@@ -2529,6 +2708,9 @@
                     "type": "string"
                 },
                 "planId": {
+                    "type": "string"
+                },
+                "serviceId": {
                     "type": "string"
                 },
                 "startCommand": {
@@ -2543,165 +2725,231 @@
             },
             "type": "object",
             "required": [
+                "createdAt",
+                "id",
                 "planId",
-                "startCommand"
-            ],
-            "inputProperties": {
-                "planId": {
-                    "type": "string"
-                },
-                "serviceId": {
-                    "type": "string",
-                    "description": "(Required) The ID of the service"
-                },
-                "startCommand": {
-                    "type": "string"
-                }
-            },
-            "requiredInputs": [
-                "planId",
+                "serviceId",
                 "startCommand"
             ]
         },
-        "render:services:PrivateService": {
-            "description": "A private service",
+        "render:services:CustomDomain": {
             "properties": {
-                "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy",
-                    "description": "Whether to auto deploy the service or not upon git push.",
-                    "default": "no"
+                "name": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ],
+            "inputProperties": {
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "render:services:Deploy": {
+            "properties": {
+                "clearCache": {
+                    "$ref": "#/types/render:services:ClearCache",
+                    "description": "Defaults to \"do_not_clear\"",
+                    "default": "do_not_clear"
                 },
-                "branch": {
+                "commit": {
+                    "$ref": "#/types/render:services:CommitProperties"
+                },
+                "commitId": {
                     "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository."
+                    "description": "Specific ID of commit to deploy for a web service, defaults to latest commit. Not supported for Cron Job deploys."
                 },
                 "createdAt": {
                     "type": "string"
                 },
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:EnvVarKeyValue"
-                    }
-                },
-                "name": {
+                "finishedAt": {
                     "type": "string"
                 },
-                "notifyOnFail": {
-                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
-                    "description": "The notification setting for this service upon deployment failure."
+                "image": {
+                    "$ref": "#/types/render:services:ImageProperties",
+                    "description": "Image information used when creating the deploy. Not present for Git-backed deploys"
                 },
-                "ownerId": {
+                "imageUrl": {
                     "type": "string",
-                    "description": "The id of the owner (user/team)."
+                    "description": "URL of the image to deploy for an image-backed service. The host, repository, and image name must match the currently configured image for the service."
                 },
-                "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                "status": {
+                    "$ref": "#/types/render:services:Status"
                 },
-                "secretFiles": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:SecretFile"
-                    }
-                },
-                "serviceDetails": {
-                    "$ref": "#/types/render:services:PrivateServiceDetails"
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:services:ServiceSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "type": {
-                    "type": "string",
-                    "default": "private_service"
+                "trigger": {
+                    "$ref": "#/types/render:services:Trigger"
                 },
                 "updatedAt": {
                     "type": "string"
                 }
             },
             "type": "object",
+            "required": [
+                "id"
+            ],
             "inputProperties": {
-                "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy",
-                    "description": "Whether to auto deploy the service or not upon git push.",
-                    "default": "no"
+                "clearCache": {
+                    "$ref": "#/types/render:services:ClearCache",
+                    "description": "Defaults to \"do_not_clear\"",
+                    "default": "do_not_clear"
                 },
-                "branch": {
+                "commitId": {
                     "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository."
+                    "description": "Specific ID of commit to deploy for a web service, defaults to latest commit. Not supported for Cron Job deploys."
+                },
+                "imageUrl": {
+                    "type": "string",
+                    "description": "URL of the image to deploy for an image-backed service. The host, repository, and image name must match the currently configured image for the service."
+                }
+            }
+        },
+        "render:services:EnvVarsForService": {
+            "type": "object"
+        },
+        "render:services:Job": {
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "finishedAt": {
+                    "type": "string"
+                },
+                "planId": {
+                    "type": "string"
+                },
+                "serviceId": {
+                    "type": "string"
+                },
+                "startCommand": {
+                    "type": "string"
+                },
+                "startedAt": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "createdAt",
+                "id",
+                "planId",
+                "serviceId",
+                "startCommand"
+            ],
+            "inputProperties": {
+                "planId": {
+                    "type": "string"
+                },
+                "startCommand": {
+                    "type": "string"
+                }
+            },
+            "requiredInputs": [
+                "startCommand"
+            ]
+        },
+        "render:services:PreviewService": {
+            "properties": {
+                "deployId": {
+                    "type": "string"
+                },
+                "imagePath": {
+                    "type": "string",
+                    "description": "Must be either a full URL or the relative path to an image. If a relative path, Render uses the base service's image URL as its root. For example, if the base service's image URL is `docker.io/library/nginx:latest`, then valid values are: `docker.io/library/nginx:\u003cany tag or SHA\u003e`, `library/nginx:\u003cany tag or SHA\u003e`, or `nginx:\u003cany tag or SHA\u003e`. Note that the path must match (only the tag or SHA can vary)."
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A name for the service preview instance. If not specified, Render generates the name using the base service's name and the specified tag or SHA."
+                },
+                "plan": {
+                    "$ref": "#/types/render:services:Plan",
+                    "description": "The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type."
+                },
+                "service": {
+                    "$ref": "#/types/render:services:Service"
+                }
+            },
+            "type": "object",
+            "required": [
+                "imagePath"
+            ],
+            "inputProperties": {
+                "imagePath": {
+                    "type": "string",
+                    "description": "Must be either a full URL or the relative path to an image. If a relative path, Render uses the base service's image URL as its root. For example, if the base service's image URL is `docker.io/library/nginx:latest`, then valid values are: `docker.io/library/nginx:\u003cany tag or SHA\u003e`, `library/nginx:\u003cany tag or SHA\u003e`, or `nginx:\u003cany tag or SHA\u003e`. Note that the path must match (only the tag or SHA can vary)."
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A name for the service preview instance. If not specified, Render generates the name using the base service's name and the specified tag or SHA."
+                },
+                "plan": {
+                    "$ref": "#/types/render:services:Plan",
+                    "description": "The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type."
+                }
+            },
+            "requiredInputs": [
+                "imagePath"
+            ]
+        },
+        "render:services:RefreshCustomDomain": {
+            "type": "object"
+        },
+        "render:services:RestartServer": {
+            "type": "object"
+        },
+        "render:services:RollbackDeploy": {
+            "properties": {
+                "commit": {
+                    "$ref": "#/types/render:services:CommitProperties"
                 },
                 "createdAt": {
                     "type": "string"
                 },
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:EnvVarKeyValue"
-                    }
+                "deployId": {
+                    "type": "string",
+                    "description": "The ID of the deploy to rollback to"
                 },
-                "name": {
+                "finishedAt": {
                     "type": "string"
                 },
-                "notifyOnFail": {
-                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
-                    "description": "The notification setting for this service upon deployment failure."
+                "image": {
+                    "$ref": "#/types/render:services:ImageProperties",
+                    "description": "Image information used when creating the deploy. Not present for Git-backed deploys"
                 },
-                "ownerId": {
-                    "type": "string",
-                    "description": "The id of the owner (user/team)."
+                "status": {
+                    "$ref": "#/types/render:services:Status"
                 },
-                "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
-                },
-                "secretFiles": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:SecretFile"
-                    }
-                },
-                "serviceDetails": {
-                    "$ref": "#/types/render:services:PrivateServiceDetails"
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:services:ServiceSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "type": {
-                    "type": "string",
-                    "default": "private_service"
+                "trigger": {
+                    "$ref": "#/types/render:services:Trigger"
                 },
                 "updatedAt": {
                     "type": "string"
                 }
             },
+            "type": "object",
+            "required": [
+                "deployId",
+                "id"
+            ],
+            "inputProperties": {
+                "deployId": {
+                    "type": "string",
+                    "description": "The ID of the deploy to rollback to"
+                }
+            },
             "requiredInputs": [
-                "name",
-                "ownerId",
-                "repo"
+                "deployId"
             ]
         },
-        "render:services:Scale": {
+        "render:services:ScaleService": {
             "properties": {
                 "numInstances": {
-                    "type": "number"
+                    "type": "integer"
                 }
             },
             "type": "object",
@@ -2710,52 +2958,51 @@
             ],
             "inputProperties": {
                 "numInstances": {
-                    "type": "number"
-                },
-                "serviceId": {
-                    "type": "string",
-                    "description": "(Required) The ID of the service"
+                    "type": "integer"
                 }
             },
             "requiredInputs": [
                 "numInstances"
             ]
         },
-        "render:services:StaticSite": {
-            "description": "A static website service\n\n{{% examples %}}\n\n## Example Usage\n\n{{% example %}}\n\n### Create a service\n\n```typescript\nimport * as render from \"@cloudyskysoftware/render\";\n\n// TODO: Fill me in!\nconst service = new render.services.StaticSite(\"staticSite\", {});\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
+        "render:services:Service": {
             "properties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy",
-                    "description": "Whether to auto deploy the service or not upon git push.",
-                    "default": "no"
+                    "$ref": "#/types/render:services:AutoDeploy",
+                    "description": "Defaults to \"yes\"",
+                    "default": "yes"
                 },
                 "branch": {
                     "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository."
+                    "description": "If left empty, this will fall back to the default branch of the repository"
                 },
-                "createdAt": {
+                "buildFilter": {
+                    "$ref": "#/types/render:services:BuildFilter"
+                },
+                "deployId": {
                     "type": "string"
                 },
                 "envVars": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/render:services:EnvVarKeyValue"
+                        "$ref": "#/types/render:services:EnvVarInput"
                     }
+                },
+                "image": {
+                    "$ref": "#/types/render:services:Image"
                 },
                 "name": {
                     "type": "string"
                 },
-                "notifyOnFail": {
-                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
-                    "description": "The notification setting for this service upon deployment failure."
-                },
                 "ownerId": {
-                    "type": "string",
-                    "description": "The id of the owner (user/team)."
+                    "type": "string"
                 },
                 "repo": {
                     "type": "string",
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                },
+                "rootDir": {
+                    "type": "string"
                 },
                 "secretFiles": {
                     "type": "array",
@@ -2763,63 +3010,77 @@
                         "$ref": "#/types/render:services:SecretFile"
                     }
                 },
-                "serviceDetails": {
-                    "$ref": "#/types/render:services:StaticSiteServiceDetails"
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:services:ServiceSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
+                "service": {
+                    "$ref": "#/types/render:services:Service",
+                    "language": {
+                        "csharp": {
+                            "name": "ServiceValue"
+                        }
                     }
                 },
-                "type": {
-                    "type": "string",
-                    "default": "static_site"
+                "serviceDetails": {
+                    "oneOf": [
+                        {
+                            "$ref": "#/types/render:services:StaticSiteDetailsPOST"
+                        },
+                        {
+                            "$ref": "#/types/render:services:WebServiceDetailsPOST"
+                        },
+                        {
+                            "$ref": "#/types/render:services:PrivateServiceDetailsPOST"
+                        },
+                        {
+                            "$ref": "#/types/render:services:BackgroundWorkerDetailsPOST"
+                        },
+                        {
+                            "$ref": "#/types/render:services:CronJobDetailsPOST"
+                        }
+                    ]
                 },
-                "updatedAt": {
-                    "type": "string"
+                "type": {
+                    "$ref": "#/types/render:services:Type"
                 }
             },
             "type": "object",
+            "required": [
+                "name",
+                "ownerId",
+                "type"
+            ],
             "inputProperties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy",
-                    "description": "Whether to auto deploy the service or not upon git push.",
-                    "default": "no"
+                    "$ref": "#/types/render:services:AutoDeploy",
+                    "description": "Defaults to \"yes\"",
+                    "default": "yes"
                 },
                 "branch": {
                     "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository."
+                    "description": "If left empty, this will fall back to the default branch of the repository"
                 },
-                "createdAt": {
-                    "type": "string"
+                "buildFilter": {
+                    "$ref": "#/types/render:services:BuildFilter"
                 },
                 "envVars": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/render:services:EnvVarKeyValue"
+                        "$ref": "#/types/render:services:EnvVarInput"
                     }
+                },
+                "image": {
+                    "$ref": "#/types/render:services:Image"
                 },
                 "name": {
                     "type": "string"
                 },
-                "notifyOnFail": {
-                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
-                    "description": "The notification setting for this service upon deployment failure."
-                },
                 "ownerId": {
-                    "type": "string",
-                    "description": "The id of the owner (user/team)."
+                    "type": "string"
                 },
                 "repo": {
                     "type": "string",
                     "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                },
+                "rootDir": {
+                    "type": "string"
                 },
                 "secretFiles": {
                     "type": "array",
@@ -2828,192 +3089,40 @@
                     }
                 },
                 "serviceDetails": {
-                    "$ref": "#/types/render:services:StaticSiteServiceDetails"
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:services:ServiceSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
+                    "oneOf": [
+                        {
+                            "$ref": "#/types/render:services:StaticSiteDetailsPOST"
+                        },
+                        {
+                            "$ref": "#/types/render:services:WebServiceDetailsPOST"
+                        },
+                        {
+                            "$ref": "#/types/render:services:PrivateServiceDetailsPOST"
+                        },
+                        {
+                            "$ref": "#/types/render:services:BackgroundWorkerDetailsPOST"
+                        },
+                        {
+                            "$ref": "#/types/render:services:CronJobDetailsPOST"
+                        }
+                    ]
                 },
                 "type": {
-                    "type": "string",
-                    "default": "static_site"
-                },
-                "updatedAt": {
-                    "type": "string"
+                    "$ref": "#/types/render:services:Type"
                 }
             },
             "requiredInputs": [
-                "name",
                 "ownerId",
-                "repo"
+                "type"
             ]
         },
-        "render:services:Suspend": {
-            "type": "object",
-            "inputProperties": {
-                "serviceId": {
-                    "type": "string",
-                    "description": "(Required) The ID of the service"
-                }
-            }
-        },
-        "render:services:WebService": {
-            "description": "A web service",
-            "properties": {
-                "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy",
-                    "description": "Whether to auto deploy the service or not upon git push.",
-                    "default": "no"
-                },
-                "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository."
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:EnvVarKeyValue"
-                    }
-                },
-                "name": {
-                    "type": "string"
-                },
-                "notifyOnFail": {
-                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
-                    "description": "The notification setting for this service upon deployment failure."
-                },
-                "ownerId": {
-                    "type": "string",
-                    "description": "The id of the owner (user/team)."
-                },
-                "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
-                },
-                "secretFiles": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:SecretFile"
-                    }
-                },
-                "serviceDetails": {
-                    "$ref": "#/types/render:services:WebServiceServiceDetails"
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:services:ServiceSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "type": {
-                    "type": "string",
-                    "default": "web_service"
-                },
-                "updatedAt": {
-                    "type": "string"
-                }
-            },
-            "type": "object",
-            "inputProperties": {
-                "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy",
-                    "description": "Whether to auto deploy the service or not upon git push.",
-                    "default": "no"
-                },
-                "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository."
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:EnvVarKeyValue"
-                    }
-                },
-                "name": {
-                    "type": "string"
-                },
-                "notifyOnFail": {
-                    "$ref": "#/types/render:services:ServiceNotifyOnFail",
-                    "description": "The notification setting for this service upon deployment failure."
-                },
-                "ownerId": {
-                    "type": "string",
-                    "description": "The id of the owner (user/team)."
-                },
-                "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
-                },
-                "secretFiles": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:SecretFile"
-                    }
-                },
-                "serviceDetails": {
-                    "$ref": "#/types/render:services:WebServiceServiceDetails"
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:services:ServiceSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "type": {
-                    "type": "string",
-                    "default": "web_service"
-                },
-                "updatedAt": {
-                    "type": "string"
-                }
-            },
-            "requiredInputs": [
-                "name",
-                "ownerId",
-                "repo"
-            ]
+        "render:services:SuspendService": {
+            "type": "object"
         }
     },
     "functions": {
         "render:owners:getOwner": {
-            "inputs": {
-                "properties": {
-                    "id": {
-                        "type": "string",
-                        "description": "(Required) The ID of the user or team"
-                    }
-                },
-                "required": [
-                    "id"
-                ]
-            },
+            "inputs": {},
             "outputs": {
                 "properties": {
                     "items": {
@@ -3032,7 +3141,7 @@
                     "items": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/render:owners:ListOwnersResponse"
+                            "$ref": "#/types/render:owners:ListOwnersItemProperties"
                         }
                     }
                 },
@@ -3041,12 +3150,12 @@
                 ]
             }
         },
-        "render:registrycredentials:getRegistryCredential": {
+        "render:registrycredentials:getRegistrycredential": {
             "inputs": {},
             "outputs": {
                 "properties": {
                     "items": {
-                        "$ref": "#/types/render:registrycredentials:GetRegistryCredentialProperties"
+                        "$ref": "#/types/render:registrycredentials:RegistryCredential"
                     }
                 },
                 "required": [
@@ -3061,7 +3170,7 @@
                     "items": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/render:registrycredentials:ListRegistryCredentialsItemProperties"
+                            "$ref": "#/types/render:registrycredentials:RegistryCredential"
                         }
                     }
                 },
@@ -3070,69 +3179,8 @@
                 ]
             }
         },
-        "render:services:getBackgroundWorker": {
-            "inputs": {
-                "properties": {
-                    "id": {
-                        "type": "string",
-                        "description": "(Required) The ID of the service"
-                    }
-                },
-                "required": [
-                    "id"
-                ]
-            },
-            "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/render:services:GetBackgroundWorker"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
-            }
-        },
-        "render:services:getCronJob": {
-            "inputs": {
-                "properties": {
-                    "id": {
-                        "type": "string",
-                        "description": "(Required) The ID of the service"
-                    }
-                },
-                "required": [
-                    "id"
-                ]
-            },
-            "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/render:services:GetCronJob"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
-            }
-        },
         "render:services:getCustomDomain": {
-            "inputs": {
-                "properties": {
-                    "id": {
-                        "type": "string",
-                        "description": "(Required) The ID or name of the custom domain"
-                    },
-                    "serviceId": {
-                        "type": "string",
-                        "description": "(Required) The ID of the service"
-                    }
-                },
-                "required": [
-                    "id",
-                    "serviceId"
-                ]
-            },
+            "inputs": {},
             "outputs": {
                 "properties": {
                     "items": {
@@ -3145,22 +3193,7 @@
             }
         },
         "render:services:getDeploy": {
-            "inputs": {
-                "properties": {
-                    "id": {
-                        "type": "string",
-                        "description": "(Required) The ID of the deploy"
-                    },
-                    "serviceId": {
-                        "type": "string",
-                        "description": "(Required) The ID of the service"
-                    }
-                },
-                "required": [
-                    "id",
-                    "serviceId"
-                ]
-            },
+            "inputs": {},
             "outputs": {
                 "properties": {
                     "items": {
@@ -3173,22 +3206,7 @@
             }
         },
         "render:services:getJob": {
-            "inputs": {
-                "properties": {
-                    "id": {
-                        "type": "string",
-                        "description": "(Required) The ID of the job"
-                    },
-                    "serviceId": {
-                        "type": "string",
-                        "description": "(Required) The ID of the service"
-                    }
-                },
-                "required": [
-                    "id",
-                    "serviceId"
-                ]
-            },
+            "inputs": {},
             "outputs": {
                 "properties": {
                     "items": {
@@ -3200,68 +3218,12 @@
                 ]
             }
         },
-        "render:services:getPrivateService": {
-            "inputs": {
-                "properties": {
-                    "id": {
-                        "type": "string",
-                        "description": "(Required) The ID of the service"
-                    }
-                },
-                "required": [
-                    "id"
-                ]
-            },
+        "render:services:getService": {
+            "inputs": {},
             "outputs": {
                 "properties": {
                     "items": {
-                        "$ref": "#/types/render:services:GetPrivateService"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
-            }
-        },
-        "render:services:getStaticSite": {
-            "inputs": {
-                "properties": {
-                    "id": {
-                        "type": "string",
-                        "description": "(Required) The ID of the service"
-                    }
-                },
-                "required": [
-                    "id"
-                ]
-            },
-            "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/render:services:GetStaticSite"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
-            }
-        },
-        "render:services:getWebService": {
-            "inputs": {
-                "properties": {
-                    "id": {
-                        "type": "string",
-                        "description": "(Required) The ID of the service"
-                    }
-                },
-                "required": [
-                    "id"
-                ]
-            },
-            "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/render:services:GetWebService"
+                        "$ref": "#/types/render:services:Service"
                     }
                 },
                 "required": [
@@ -3270,23 +3232,13 @@
             }
         },
         "render:services:listCustomDomains": {
-            "inputs": {
-                "properties": {
-                    "serviceId": {
-                        "type": "string",
-                        "description": "(Required) The ID of the service"
-                    }
-                },
-                "required": [
-                    "serviceId"
-                ]
-            },
+            "inputs": {},
             "outputs": {
                 "properties": {
                     "items": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/render:services:ListCustomDomainsResponse"
+                            "$ref": "#/types/render:services:ListCustomDomainsItemProperties"
                         }
                     }
                 },
@@ -3296,23 +3248,13 @@
             }
         },
         "render:services:listDeploys": {
-            "inputs": {
-                "properties": {
-                    "serviceId": {
-                        "type": "string",
-                        "description": "(Required) The ID of the service"
-                    }
-                },
-                "required": [
-                    "serviceId"
-                ]
-            },
+            "inputs": {},
             "outputs": {
                 "properties": {
                     "items": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/render:services:ListDeploysResponse"
+                            "$ref": "#/types/render:services:ListDeploysItemProperties"
                         }
                     }
                 },
@@ -3321,24 +3263,14 @@
                 ]
             }
         },
-        "render:services:listEnvVars": {
-            "inputs": {
-                "properties": {
-                    "serviceId": {
-                        "type": "string",
-                        "description": "(Required) The ID of the service"
-                    }
-                },
-                "required": [
-                    "serviceId"
-                ]
-            },
+        "render:services:listEnvVarsForService": {
+            "inputs": {},
             "outputs": {
                 "properties": {
                     "items": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/render:services:ListEnvVarsResponse"
+                            "$ref": "#/types/render:services:EnvVarWithCursor"
                         }
                     }
                 },
@@ -3347,24 +3279,14 @@
                 ]
             }
         },
-        "render:services:listHeaders": {
-            "inputs": {
-                "properties": {
-                    "serviceId": {
-                        "type": "string",
-                        "description": "(Required) The ID of the service"
-                    }
-                },
-                "required": [
-                    "serviceId"
-                ]
-            },
+        "render:services:listJob": {
+            "inputs": {},
             "outputs": {
                 "properties": {
                     "items": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/render:services:ListServiceHeadersResponse"
+                            "$ref": "#/types/render:services:ListJobItemProperties"
                         }
                     }
                 },
@@ -3373,24 +3295,14 @@
                 ]
             }
         },
-        "render:services:listJobs": {
-            "inputs": {
-                "properties": {
-                    "serviceId": {
-                        "type": "string",
-                        "description": "(Required) The ID of the service"
-                    }
-                },
-                "required": [
-                    "serviceId"
-                ]
-            },
+        "render:services:listRetrieveHeaders": {
+            "inputs": {},
             "outputs": {
                 "properties": {
                     "items": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/render:services:ListJobsResponse"
+                            "$ref": "#/types/render:services:ListRetrieveHeadersItemProperties"
                         }
                     }
                 },
@@ -3399,24 +3311,14 @@
                 ]
             }
         },
-        "render:services:listRoutes": {
-            "inputs": {
-                "properties": {
-                    "serviceId": {
-                        "type": "string",
-                        "description": "(Required) The ID of the service"
-                    }
-                },
-                "required": [
-                    "serviceId"
-                ]
-            },
+        "render:services:listRetrieveRoutes": {
+            "inputs": {},
             "outputs": {
                 "properties": {
                     "items": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/render:services:ListStaticSiteRoutesResponse"
+                            "$ref": "#/types/render:services:ListRetrieveRoutesItemProperties"
                         }
                     }
                 },
@@ -3432,7 +3334,7 @@
                     "items": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/render:services:ListServiceResponse"
+                            "$ref": "#/types/render:services:ListServicesItemProperties"
                         }
                     }
                 },

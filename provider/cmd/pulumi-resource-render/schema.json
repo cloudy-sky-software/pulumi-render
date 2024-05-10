@@ -324,161 +324,6 @@
                 }
             ]
         },
-        "render:services:BackgroundWorkerDetailsPOST": {
-            "properties": {
-                "disk": {
-                    "$ref": "#/types/render:services:BackgroundWorkerDetailsPOSTDiskProperties"
-                },
-                "env": {
-                    "$ref": "#/types/render:services:BackgroundWorkerDetailsPOSTEnv",
-                    "description": "Environment (runtime)"
-                },
-                "envSpecificDetails": {
-                    "$ref": "#/types/render:services:EnvSpecificDetails"
-                },
-                "numInstances": {
-                    "type": "integer",
-                    "description": "Defaults to 1",
-                    "default": 1
-                },
-                "plan": {
-                    "$ref": "#/types/render:services:BackgroundWorkerDetailsPOSTPlan"
-                },
-                "pullRequestPreviewsEnabled": {
-                    "$ref": "#/types/render:services:BackgroundWorkerDetailsPOSTPullRequestPreviewsEnabled",
-                    "description": "Defaults to \"no\"",
-                    "default": "no"
-                },
-                "region": {
-                    "$ref": "#/types/render:services:BackgroundWorkerDetailsPOSTRegion"
-                }
-            },
-            "type": "object",
-            "required": [
-                "env"
-            ]
-        },
-        "render:services:BackgroundWorkerDetailsPOSTDiskProperties": {
-            "properties": {
-                "mountPath": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "sizeGB": {
-                    "type": "integer",
-                    "description": "Defaults to 1"
-                }
-            },
-            "type": "object",
-            "required": [
-                "mountPath",
-                "name"
-            ]
-        },
-        "render:services:BackgroundWorkerDetailsPOSTEnv": {
-            "description": "Environment (runtime)",
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Docker",
-                    "value": "docker"
-                },
-                {
-                    "name": "Elixir",
-                    "value": "elixir"
-                },
-                {
-                    "name": "Go",
-                    "value": "go"
-                },
-                {
-                    "name": "Node",
-                    "value": "node"
-                },
-                {
-                    "name": "Python",
-                    "value": "python"
-                },
-                {
-                    "name": "Ruby",
-                    "value": "ruby"
-                },
-                {
-                    "name": "Rust",
-                    "value": "rust"
-                },
-                {
-                    "name": "Image",
-                    "value": "image"
-                }
-            ]
-        },
-        "render:services:BackgroundWorkerDetailsPOSTPlan": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Starter",
-                    "value": "starter"
-                },
-                {
-                    "name": "Standard",
-                    "value": "standard"
-                },
-                {
-                    "name": "Pro",
-                    "value": "pro"
-                },
-                {
-                    "name": "ProPlus",
-                    "value": "pro_plus"
-                },
-                {
-                    "name": "ProMax",
-                    "value": "pro_max"
-                },
-                {
-                    "name": "ProUltra",
-                    "value": "pro_ultra"
-                }
-            ]
-        },
-        "render:services:BackgroundWorkerDetailsPOSTPullRequestPreviewsEnabled": {
-            "description": "Defaults to \"no\"",
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Yes",
-                    "value": "yes"
-                },
-                {
-                    "name": "No",
-                    "value": "no"
-                }
-            ]
-        },
-        "render:services:BackgroundWorkerDetailsPOSTRegion": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Frankfurt",
-                    "value": "frankfurt"
-                },
-                {
-                    "name": "Oregon",
-                    "value": "oregon"
-                },
-                {
-                    "name": "Ohio",
-                    "value": "ohio"
-                },
-                {
-                    "name": "Singapore",
-                    "value": "singapore"
-                }
-            ]
-        },
         "render:services:BackgroundWorkerDetailsPlan": {
             "description": "The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.",
             "type": "string",
@@ -676,119 +521,6 @@
                 {
                     "name": "Image",
                     "value": "image"
-                }
-            ]
-        },
-        "render:services:CronJobDetailsPOST": {
-            "properties": {
-                "env": {
-                    "$ref": "#/types/render:services:CronJobDetailsPOSTEnv",
-                    "description": "Environment (runtime)"
-                },
-                "envSpecificDetails": {
-                    "$ref": "#/types/render:services:EnvSpecificDetails"
-                },
-                "plan": {
-                    "$ref": "#/types/render:services:CronJobDetailsPOSTPlan"
-                },
-                "region": {
-                    "$ref": "#/types/render:services:CronJobDetailsPOSTRegion"
-                },
-                "schedule": {
-                    "type": "string"
-                }
-            },
-            "type": "object",
-            "required": [
-                "env",
-                "schedule"
-            ]
-        },
-        "render:services:CronJobDetailsPOSTEnv": {
-            "description": "Environment (runtime)",
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Docker",
-                    "value": "docker"
-                },
-                {
-                    "name": "Elixir",
-                    "value": "elixir"
-                },
-                {
-                    "name": "Go",
-                    "value": "go"
-                },
-                {
-                    "name": "Node",
-                    "value": "node"
-                },
-                {
-                    "name": "Python",
-                    "value": "python"
-                },
-                {
-                    "name": "Ruby",
-                    "value": "ruby"
-                },
-                {
-                    "name": "Rust",
-                    "value": "rust"
-                },
-                {
-                    "name": "Image",
-                    "value": "image"
-                }
-            ]
-        },
-        "render:services:CronJobDetailsPOSTPlan": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Starter",
-                    "value": "starter"
-                },
-                {
-                    "name": "Standard",
-                    "value": "standard"
-                },
-                {
-                    "name": "Pro",
-                    "value": "pro"
-                },
-                {
-                    "name": "ProPlus",
-                    "value": "pro_plus"
-                },
-                {
-                    "name": "ProMax",
-                    "value": "pro_max"
-                },
-                {
-                    "name": "ProUltra",
-                    "value": "pro_ultra"
-                }
-            ]
-        },
-        "render:services:CronJobDetailsPOSTRegion": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Frankfurt",
-                    "value": "frankfurt"
-                },
-                {
-                    "name": "Oregon",
-                    "value": "oregon"
-                },
-                {
-                    "name": "Ohio",
-                    "value": "ohio"
-                },
-                {
-                    "name": "Singapore",
-                    "value": "singapore"
                 }
             ]
         },
@@ -1196,28 +928,6 @@
                 "value"
             ]
         },
-        "render:services:HeaderPost": {
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "description": "Header name"
-                },
-                "path": {
-                    "type": "string",
-                    "description": "The request path to add the header to. Wildcards will cause headers to be applied to all matching paths."
-                },
-                "value": {
-                    "type": "string",
-                    "description": "Header value"
-                }
-            },
-            "type": "object",
-            "required": [
-                "name",
-                "path",
-                "value"
-            ]
-        },
         "render:services:Image": {
             "properties": {
                 "imagePath": {
@@ -1512,161 +1222,6 @@
                 {
                     "name": "Image",
                     "value": "image"
-                }
-            ]
-        },
-        "render:services:PrivateServiceDetailsPOST": {
-            "properties": {
-                "disk": {
-                    "$ref": "#/types/render:services:PrivateServiceDetailsPOSTDiskProperties"
-                },
-                "env": {
-                    "$ref": "#/types/render:services:PrivateServiceDetailsPOSTEnv",
-                    "description": "Environment (runtime)"
-                },
-                "envSpecificDetails": {
-                    "$ref": "#/types/render:services:EnvSpecificDetails"
-                },
-                "numInstances": {
-                    "type": "integer",
-                    "description": "Defaults to 1",
-                    "default": 1
-                },
-                "plan": {
-                    "$ref": "#/types/render:services:PrivateServiceDetailsPOSTPlan"
-                },
-                "pullRequestPreviewsEnabled": {
-                    "$ref": "#/types/render:services:PrivateServiceDetailsPOSTPullRequestPreviewsEnabled",
-                    "description": "Defaults to \"no\"",
-                    "default": "no"
-                },
-                "region": {
-                    "$ref": "#/types/render:services:PrivateServiceDetailsPOSTRegion"
-                }
-            },
-            "type": "object",
-            "required": [
-                "env"
-            ]
-        },
-        "render:services:PrivateServiceDetailsPOSTDiskProperties": {
-            "properties": {
-                "mountPath": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "sizeGB": {
-                    "type": "integer",
-                    "description": "Defaults to 1"
-                }
-            },
-            "type": "object",
-            "required": [
-                "mountPath",
-                "name"
-            ]
-        },
-        "render:services:PrivateServiceDetailsPOSTEnv": {
-            "description": "Environment (runtime)",
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Docker",
-                    "value": "docker"
-                },
-                {
-                    "name": "Elixir",
-                    "value": "elixir"
-                },
-                {
-                    "name": "Go",
-                    "value": "go"
-                },
-                {
-                    "name": "Node",
-                    "value": "node"
-                },
-                {
-                    "name": "Python",
-                    "value": "python"
-                },
-                {
-                    "name": "Ruby",
-                    "value": "ruby"
-                },
-                {
-                    "name": "Rust",
-                    "value": "rust"
-                },
-                {
-                    "name": "Image",
-                    "value": "image"
-                }
-            ]
-        },
-        "render:services:PrivateServiceDetailsPOSTPlan": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Starter",
-                    "value": "starter"
-                },
-                {
-                    "name": "Standard",
-                    "value": "standard"
-                },
-                {
-                    "name": "Pro",
-                    "value": "pro"
-                },
-                {
-                    "name": "ProPlus",
-                    "value": "pro_plus"
-                },
-                {
-                    "name": "ProMax",
-                    "value": "pro_max"
-                },
-                {
-                    "name": "ProUltra",
-                    "value": "pro_ultra"
-                }
-            ]
-        },
-        "render:services:PrivateServiceDetailsPOSTPullRequestPreviewsEnabled": {
-            "description": "Defaults to \"no\"",
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Yes",
-                    "value": "yes"
-                },
-                {
-                    "name": "No",
-                    "value": "no"
-                }
-            ]
-        },
-        "render:services:PrivateServiceDetailsPOSTRegion": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Frankfurt",
-                    "value": "frankfurt"
-                },
-                {
-                    "name": "Oregon",
-                    "value": "oregon"
-                },
-                {
-                    "name": "Ohio",
-                    "value": "ohio"
-                },
-                {
-                    "name": "Singapore",
-                    "value": "singapore"
                 }
             ]
         },
@@ -2086,49 +1641,6 @@
                 "url"
             ]
         },
-        "render:services:StaticSiteDetailsPOST": {
-            "properties": {
-                "buildCommand": {
-                    "type": "string"
-                },
-                "headers": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:HeaderPost"
-                    }
-                },
-                "publishPath": {
-                    "type": "string",
-                    "description": "Defaults to \"public\""
-                },
-                "pullRequestPreviewsEnabled": {
-                    "$ref": "#/types/render:services:StaticSiteDetailsPOSTPullRequestPreviewsEnabled",
-                    "description": "Defaults to \"no\"",
-                    "default": "no"
-                },
-                "routes": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:Route"
-                    }
-                }
-            },
-            "type": "object"
-        },
-        "render:services:StaticSiteDetailsPOSTPullRequestPreviewsEnabled": {
-            "description": "Defaults to \"no\"",
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Yes",
-                    "value": "yes"
-                },
-                {
-                    "name": "No",
-                    "value": "no"
-                }
-            ]
-        },
         "render:services:StaticSiteDetailsPullRequestPreviewsEnabled": {
             "type": "string",
             "enum": [
@@ -2361,163 +1873,6 @@
                 {
                     "name": "Image",
                     "value": "image"
-                }
-            ]
-        },
-        "render:services:WebServiceDetailsPOST": {
-            "properties": {
-                "disk": {
-                    "$ref": "#/types/render:services:WebServiceDetailsPOSTDiskProperties"
-                },
-                "env": {
-                    "$ref": "#/types/render:services:WebServiceDetailsPOSTEnv",
-                    "description": "Environment (runtime)"
-                },
-                "envSpecificDetails": {
-                    "$ref": "#/types/render:services:EnvSpecificDetails"
-                },
-                "healthCheckPath": {
-                    "type": "string"
-                },
-                "numInstances": {
-                    "type": "integer",
-                    "description": "Defaults to 1"
-                },
-                "plan": {
-                    "$ref": "#/types/render:services:WebServiceDetailsPOSTPlan"
-                },
-                "pullRequestPreviewsEnabled": {
-                    "$ref": "#/types/render:services:WebServiceDetailsPOSTPullRequestPreviewsEnabled",
-                    "description": "Defaults to \"no\"",
-                    "default": "no"
-                },
-                "region": {
-                    "$ref": "#/types/render:services:WebServiceDetailsPOSTRegion"
-                }
-            },
-            "type": "object",
-            "required": [
-                "env"
-            ]
-        },
-        "render:services:WebServiceDetailsPOSTDiskProperties": {
-            "properties": {
-                "mountPath": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "sizeGB": {
-                    "type": "integer",
-                    "description": "Defaults to 1"
-                }
-            },
-            "type": "object",
-            "required": [
-                "mountPath",
-                "name"
-            ]
-        },
-        "render:services:WebServiceDetailsPOSTEnv": {
-            "description": "Environment (runtime)",
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Docker",
-                    "value": "docker"
-                },
-                {
-                    "name": "Elixir",
-                    "value": "elixir"
-                },
-                {
-                    "name": "Go",
-                    "value": "go"
-                },
-                {
-                    "name": "Node",
-                    "value": "node"
-                },
-                {
-                    "name": "Python",
-                    "value": "python"
-                },
-                {
-                    "name": "Ruby",
-                    "value": "ruby"
-                },
-                {
-                    "name": "Rust",
-                    "value": "rust"
-                },
-                {
-                    "name": "Image",
-                    "value": "image"
-                }
-            ]
-        },
-        "render:services:WebServiceDetailsPOSTPlan": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Starter",
-                    "value": "starter"
-                },
-                {
-                    "name": "Standard",
-                    "value": "standard"
-                },
-                {
-                    "name": "Pro",
-                    "value": "pro"
-                },
-                {
-                    "name": "ProPlus",
-                    "value": "pro_plus"
-                },
-                {
-                    "name": "ProMax",
-                    "value": "pro_max"
-                },
-                {
-                    "name": "ProUltra",
-                    "value": "pro_ultra"
-                }
-            ]
-        },
-        "render:services:WebServiceDetailsPOSTPullRequestPreviewsEnabled": {
-            "description": "Defaults to \"no\"",
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Yes",
-                    "value": "yes"
-                },
-                {
-                    "name": "No",
-                    "value": "no"
-                }
-            ]
-        },
-        "render:services:WebServiceDetailsPOSTRegion": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Frankfurt",
-                    "value": "frankfurt"
-                },
-                {
-                    "name": "Oregon",
-                    "value": "oregon"
-                },
-                {
-                    "name": "Ohio",
-                    "value": "ohio"
-                },
-                {
-                    "name": "Singapore",
-                    "value": "singapore"
                 }
             ]
         },
@@ -3076,19 +2431,19 @@
                 "serviceDetails": {
                     "oneOf": [
                         {
-                            "$ref": "#/types/render:services:StaticSiteDetailsPOST"
+                            "$ref": "#/types/render:services:StaticSiteDetails"
                         },
                         {
-                            "$ref": "#/types/render:services:WebServiceDetailsPOST"
+                            "$ref": "#/types/render:services:WebServiceDetails"
                         },
                         {
-                            "$ref": "#/types/render:services:PrivateServiceDetailsPOST"
+                            "$ref": "#/types/render:services:PrivateServiceDetails"
                         },
                         {
-                            "$ref": "#/types/render:services:BackgroundWorkerDetailsPOST"
+                            "$ref": "#/types/render:services:BackgroundWorkerDetails"
                         },
                         {
-                            "$ref": "#/types/render:services:CronJobDetailsPOST"
+                            "$ref": "#/types/render:services:CronJobDetails"
                         }
                     ]
                 },
@@ -3153,19 +2508,19 @@
                 "serviceDetails": {
                     "oneOf": [
                         {
-                            "$ref": "#/types/render:services:StaticSiteDetailsPOST"
+                            "$ref": "#/types/render:services:StaticSiteDetails"
                         },
                         {
-                            "$ref": "#/types/render:services:WebServiceDetailsPOST"
+                            "$ref": "#/types/render:services:WebServiceDetails"
                         },
                         {
-                            "$ref": "#/types/render:services:PrivateServiceDetailsPOST"
+                            "$ref": "#/types/render:services:PrivateServiceDetails"
                         },
                         {
-                            "$ref": "#/types/render:services:BackgroundWorkerDetailsPOST"
+                            "$ref": "#/types/render:services:BackgroundWorkerDetails"
                         },
                         {
-                            "$ref": "#/types/render:services:CronJobDetailsPOST"
+                            "$ref": "#/types/render:services:CronJobDetails"
                         }
                     ]
                 },

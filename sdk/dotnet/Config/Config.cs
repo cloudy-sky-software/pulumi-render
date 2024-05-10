@@ -42,11 +42,11 @@ namespace Pulumi.Render
             set => _apiKey.Set(value);
         }
 
-        private static readonly __Value<Pulumi.Render.Services.Types.DeployClearCache?> _clearCacheOnServiceUpdateDeployments = new __Value<Pulumi.Render.Services.Types.DeployClearCache?>(() => __config.GetObject<Pulumi.Render.Services.Types.DeployClearCache>("clearCacheOnServiceUpdateDeployments"));
+        private static readonly __Value<Pulumi.Render.Services.ClearCache?> _clearCacheOnServiceUpdateDeployments = new __Value<Pulumi.Render.Services.ClearCache?>(() => __config.GetObject<Pulumi.Render.Services.ClearCache>("clearCacheOnServiceUpdateDeployments"));
         /// <summary>
         /// When a service is updated, a deployment is automatically triggered. This variable controls whether or not the service cache should be cleared upon deployment.
         /// </summary>
-        public static Pulumi.Render.Services.Types.DeployClearCache? ClearCacheOnServiceUpdateDeployments
+        public static Pulumi.Render.Services.ClearCache? ClearCacheOnServiceUpdateDeployments
         {
             get => _clearCacheOnServiceUpdateDeployments.Get();
             set => _clearCacheOnServiceUpdateDeployments.Set(value);

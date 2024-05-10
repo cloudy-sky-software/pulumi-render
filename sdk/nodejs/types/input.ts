@@ -15,116 +15,180 @@ export namespace registrycredentials {
 }
 
 export namespace services {
-    export interface AutoScalingCriteriaArgs {
-        cpu?: pulumi.Input<inputs.services.AutoScalingCriteriaSpecArgs>;
-        memory?: pulumi.Input<inputs.services.AutoScalingCriteriaSpecArgs>;
+    export interface AutoscalingConfigArgs {
+        criteria: pulumi.Input<inputs.services.AutoscalingCriteriaArgs>;
+        enabled: pulumi.Input<boolean>;
+        /**
+         * The maximum number of instances for the service
+         */
+        max: pulumi.Input<number>;
+        /**
+         * The minimum number of instances for the service
+         */
+        min: pulumi.Input<number>;
+    }
+    /**
+     * autoscalingConfigArgsProvideDefaults sets the appropriate defaults for AutoscalingConfigArgs
+     */
+    export function autoscalingConfigArgsProvideDefaults(val: AutoscalingConfigArgs): AutoscalingConfigArgs {
+        return {
+            ...val,
+            criteria: pulumi.output(val.criteria).apply(inputs.services.autoscalingCriteriaArgsProvideDefaults),
+            enabled: (val.enabled) ?? false,
+        };
     }
 
-    export interface AutoScalingCriteriaSpecArgs {
-        enabled?: pulumi.Input<boolean>;
+    export interface AutoscalingCriteriaArgs {
+        cpu: pulumi.Input<inputs.services.AutoscalingCriteriaPercentageArgs>;
+        memory: pulumi.Input<inputs.services.AutoscalingCriteriaPercentageArgs>;
+    }
+    /**
+     * autoscalingCriteriaArgsProvideDefaults sets the appropriate defaults for AutoscalingCriteriaArgs
+     */
+    export function autoscalingCriteriaArgsProvideDefaults(val: AutoscalingCriteriaArgs): AutoscalingCriteriaArgs {
+        return {
+            ...val,
+            cpu: pulumi.output(val.cpu).apply(inputs.services.autoscalingCriteriaPercentageArgsProvideDefaults),
+            memory: pulumi.output(val.memory).apply(inputs.services.autoscalingCriteriaPercentageArgsProvideDefaults),
+        };
+    }
+
+    export interface AutoscalingCriteriaPercentageArgs {
+        enabled: pulumi.Input<boolean>;
         /**
          * Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
          */
-        percentage?: pulumi.Input<number>;
+        percentage: pulumi.Input<number>;
+    }
+    /**
+     * autoscalingCriteriaPercentageArgsProvideDefaults sets the appropriate defaults for AutoscalingCriteriaPercentageArgs
+     */
+    export function autoscalingCriteriaPercentageArgsProvideDefaults(val: AutoscalingCriteriaPercentageArgs): AutoscalingCriteriaPercentageArgs {
+        return {
+            ...val,
+            enabled: (val.enabled) ?? false,
+        };
     }
 
-    export interface BackgroundWorkerServiceDetailsArgs {
+    export interface BackgroundWorkerDetailsArgs {
+        autoscaling?: pulumi.Input<inputs.services.AutoscalingConfigArgs>;
+        buildPlan: pulumi.Input<string>;
         disk?: pulumi.Input<inputs.services.DiskArgs>;
-        env: pulumi.Input<enums.services.BackgroundWorkerServiceDetailsEnv>;
-        envSpecificDetails?: pulumi.Input<inputs.services.DockerDetailsArgs | inputs.services.NativeEnvironmentDetailsArgs>;
-        numInstances?: pulumi.Input<number>;
-        parentServer?: pulumi.Input<inputs.services.BackgroundWorkerServiceDetailsParentServerPropertiesArgs>;
-        plan?: pulumi.Input<enums.services.BackgroundWorkerServiceDetailsPlan>;
-        pullRequestPreviewsEnabled?: pulumi.Input<enums.services.BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled>;
-        region?: pulumi.Input<enums.services.BackgroundWorkerServiceDetailsRegion>;
-        url?: pulumi.Input<string>;
+        /**
+         * Environment (runtime)
+         */
+        env: pulumi.Input<enums.services.BackgroundWorkerDetailsEnv>;
+        envSpecificDetails: pulumi.Input<inputs.services.DockerDetailsArgs | inputs.services.NativeEnvironmentDetailsArgs>;
+        /**
+         * For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
+         */
+        numInstances: pulumi.Input<number>;
+        parentServer?: pulumi.Input<inputs.services.ResourceArgs>;
+        /**
+         * The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+         */
+        plan: pulumi.Input<enums.services.BackgroundWorkerDetailsPlan>;
+        pullRequestPreviewsEnabled: pulumi.Input<enums.services.BackgroundWorkerDetailsPullRequestPreviewsEnabled>;
+        region: pulumi.Input<enums.services.BackgroundWorkerDetailsRegion>;
     }
     /**
-     * backgroundWorkerServiceDetailsArgsProvideDefaults sets the appropriate defaults for BackgroundWorkerServiceDetailsArgs
+     * backgroundWorkerDetailsArgsProvideDefaults sets the appropriate defaults for BackgroundWorkerDetailsArgs
      */
-    export function backgroundWorkerServiceDetailsArgsProvideDefaults(val: BackgroundWorkerServiceDetailsArgs): BackgroundWorkerServiceDetailsArgs {
+    export function backgroundWorkerDetailsArgsProvideDefaults(val: BackgroundWorkerDetailsArgs): BackgroundWorkerDetailsArgs {
         return {
             ...val,
-            disk: (val.disk ? pulumi.output(val.disk).apply(inputs.services.diskArgsProvideDefaults) : undefined),
-            numInstances: (val.numInstances) ?? 1,
-            plan: (val.plan) ?? "starter",
-            pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
-            region: (val.region) ?? "oregon",
+            autoscaling: (val.autoscaling ? pulumi.output(val.autoscaling).apply(inputs.services.autoscalingConfigArgsProvideDefaults) : undefined),
         };
     }
 
-    export interface BackgroundWorkerServiceDetailsParentServerPropertiesArgs {
-        id?: pulumi.Input<string>;
-        name?: pulumi.Input<string>;
+    export interface BuildFilterArgs {
+        ignoredPaths: pulumi.Input<pulumi.Input<string>[]>;
+        paths: pulumi.Input<pulumi.Input<string>[]>;
     }
 
-    export interface CronJobServiceDetailsArgs {
-        env: pulumi.Input<enums.services.CronJobServiceDetailsEnv>;
-        envSpecificDetails?: pulumi.Input<inputs.services.DockerDetailsArgs | inputs.services.NativeEnvironmentDetailsArgs>;
+    export interface CronJobDetailsArgs {
+        buildPlan: pulumi.Input<string>;
+        /**
+         * Environment (runtime)
+         */
+        env: pulumi.Input<enums.services.CronJobDetailsEnv>;
+        envSpecificDetails: pulumi.Input<inputs.services.DockerDetailsArgs | inputs.services.NativeEnvironmentDetailsArgs>;
         lastSuccessfulRunAt?: pulumi.Input<string>;
-        plan?: pulumi.Input<enums.services.CronJobServiceDetailsPlan>;
-        region?: pulumi.Input<enums.services.CronJobServiceDetailsRegion>;
+        /**
+         * The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+         */
+        plan: pulumi.Input<enums.services.CronJobDetailsPlan>;
+        region: pulumi.Input<enums.services.CronJobDetailsRegion>;
         schedule: pulumi.Input<string>;
-    }
-    /**
-     * cronJobServiceDetailsArgsProvideDefaults sets the appropriate defaults for CronJobServiceDetailsArgs
-     */
-    export function cronJobServiceDetailsArgsProvideDefaults(val: CronJobServiceDetailsArgs): CronJobServiceDetailsArgs {
-        return {
-            ...val,
-            plan: (val.plan) ?? "starter",
-            region: (val.region) ?? "oregon",
-        };
     }
 
     export interface DiskArgs {
         mountPath: pulumi.Input<string>;
         name: pulumi.Input<string>;
-        sizeGB?: pulumi.Input<number>;
-    }
-    /**
-     * diskArgsProvideDefaults sets the appropriate defaults for DiskArgs
-     */
-    export function diskArgsProvideDefaults(val: DiskArgs): DiskArgs {
-        return {
-            ...val,
-            sizeGB: (val.sizeGB) ?? 1,
-        };
+        sizeGB: pulumi.Input<number>;
     }
 
     export interface DockerDetailsArgs {
         dockerCommand: pulumi.Input<string>;
         dockerContext: pulumi.Input<string>;
-        dockerfilePath?: pulumi.Input<string>;
+        dockerfilePath: pulumi.Input<string>;
+        preDeployCommand?: pulumi.Input<string>;
+        registryCredential?: pulumi.Input<inputs.services.RegistryCredentialArgs>;
+    }
+
+    export interface EnvVarKeyGenerateValueArgs {
+        generateValue: pulumi.Input<boolean>;
+        key: pulumi.Input<string>;
     }
 
     export interface EnvVarKeyValueArgs {
-        generateValue?: pulumi.Input<enums.services.EnvVarKeyValueGenerateValue>;
         key: pulumi.Input<string>;
-        value?: pulumi.Input<string>;
+        value: pulumi.Input<string>;
+    }
+
+    export interface ImageArgs {
+        /**
+         * Path to the image used for this server (e.g docker.io/library/nginx:latest).
+         */
+        imagePath: pulumi.Input<string>;
+        /**
+         * The ID of the owner for this image. This should match the owner of the service as well as the owner of any specified registry credential.
+         */
+        ownerId: pulumi.Input<string>;
+        /**
+         * Optional reference to the registry credential passed to the image repository to retrieve this image.
+         */
+        registryCredentialId?: pulumi.Input<string>;
     }
 
     export interface NativeEnvironmentDetailsArgs {
         buildCommand: pulumi.Input<string>;
+        preDeployCommand?: pulumi.Input<string>;
         startCommand: pulumi.Input<string>;
     }
 
-    export interface OpenPortsArgs {
-        port?: pulumi.Input<number>;
-        protocol?: pulumi.Input<enums.services.OpenPortsProtocol>;
-    }
-
     export interface PrivateServiceDetailsArgs {
+        autoscaling?: pulumi.Input<inputs.services.AutoscalingConfigArgs>;
+        buildPlan: pulumi.Input<string>;
         disk?: pulumi.Input<inputs.services.DiskArgs>;
+        /**
+         * Environment (runtime)
+         */
         env: pulumi.Input<enums.services.PrivateServiceDetailsEnv>;
-        envSpecificDetails?: pulumi.Input<inputs.services.DockerDetailsArgs | inputs.services.NativeEnvironmentDetailsArgs>;
-        numInstances?: pulumi.Input<number>;
-        openPorts?: pulumi.Input<pulumi.Input<inputs.services.OpenPortsArgs>[]>;
-        parentServer?: pulumi.Input<inputs.services.PrivateServiceDetailsParentServerPropertiesArgs>;
-        plan?: pulumi.Input<enums.services.PrivateServiceDetailsPlan>;
-        pullRequestPreviewsEnabled?: pulumi.Input<enums.services.PrivateServiceDetailsPullRequestPreviewsEnabled>;
-        region?: pulumi.Input<enums.services.PrivateServiceDetailsRegion>;
-        url?: pulumi.Input<string>;
+        envSpecificDetails: pulumi.Input<inputs.services.DockerDetailsArgs | inputs.services.NativeEnvironmentDetailsArgs>;
+        /**
+         * For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
+         */
+        numInstances: pulumi.Input<number>;
+        openPorts: pulumi.Input<pulumi.Input<inputs.services.ServerPortArgs>[]>;
+        parentServer?: pulumi.Input<inputs.services.ResourceArgs>;
+        /**
+         * The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+         */
+        plan: pulumi.Input<enums.services.PrivateServiceDetailsPlan>;
+        pullRequestPreviewsEnabled: pulumi.Input<enums.services.PrivateServiceDetailsPullRequestPreviewsEnabled>;
+        region: pulumi.Input<enums.services.PrivateServiceDetailsRegion>;
+        url: pulumi.Input<string>;
     }
     /**
      * privateServiceDetailsArgsProvideDefaults sets the appropriate defaults for PrivateServiceDetailsArgs
@@ -132,99 +196,78 @@ export namespace services {
     export function privateServiceDetailsArgsProvideDefaults(val: PrivateServiceDetailsArgs): PrivateServiceDetailsArgs {
         return {
             ...val,
-            disk: (val.disk ? pulumi.output(val.disk).apply(inputs.services.diskArgsProvideDefaults) : undefined),
-            numInstances: (val.numInstances) ?? 1,
-            plan: (val.plan) ?? "starter",
-            pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
-            region: (val.region) ?? "oregon",
+            autoscaling: (val.autoscaling ? pulumi.output(val.autoscaling).apply(inputs.services.autoscalingConfigArgsProvideDefaults) : undefined),
         };
     }
 
-    export interface PrivateServiceDetailsParentServerPropertiesArgs {
-        id?: pulumi.Input<string>;
-        name?: pulumi.Input<string>;
+    export interface RegistryCredentialArgs {
+        /**
+         * Descriptive name for this credential
+         */
+        name: pulumi.Input<string>;
+        /**
+         * The registry to use this credential with
+         */
+        registry: pulumi.Input<enums.services.RegistryCredentialRegistry>;
+        /**
+         * The username associated with the credential
+         */
+        username: pulumi.Input<string>;
+    }
+
+    export interface ResourceArgs {
+        name: pulumi.Input<string>;
     }
 
     export interface SecretFileArgs {
-        contents: pulumi.Input<string>;
         name: pulumi.Input<string>;
     }
 
-    /**
-     * A service header object
-     */
-    export interface ServiceHeaderArgs {
-        name: pulumi.Input<string>;
-        path: pulumi.Input<string>;
-        value: pulumi.Input<string>;
+    export interface ServerPortArgs {
+        port: pulumi.Input<number>;
+        protocol: pulumi.Input<enums.services.ServerPortProtocol>;
     }
 
-    /**
-     * A route object for a static site
-     */
-    export interface StaticSiteRouteArgs {
-        destination: pulumi.Input<string>;
-        source: pulumi.Input<string>;
-        type: pulumi.Input<enums.services.StaticSiteRouteType>;
+    export interface StaticSiteDetailsArgs {
+        buildCommand: pulumi.Input<string>;
+        buildPlan: pulumi.Input<string>;
+        parentServer?: pulumi.Input<inputs.services.ResourceArgs>;
+        publishPath: pulumi.Input<string>;
+        pullRequestPreviewsEnabled: pulumi.Input<enums.services.StaticSiteDetailsPullRequestPreviewsEnabled>;
+        url: pulumi.Input<string>;
     }
 
-    export interface StaticSiteServiceDetailsArgs {
-        buildCommand?: pulumi.Input<string>;
-        headers?: pulumi.Input<pulumi.Input<inputs.services.ServiceHeaderArgs>[]>;
-        parentServer?: pulumi.Input<inputs.services.StaticSiteServiceDetailsParentServerPropertiesArgs>;
-        publishPath?: pulumi.Input<string>;
-        pullRequestPreviewsEnabled?: pulumi.Input<enums.services.StaticSiteServiceDetailsPullRequestPreviewsEnabled>;
-        routes?: pulumi.Input<pulumi.Input<inputs.services.StaticSiteRouteArgs>[]>;
-        /**
-         * The HTTPS service URL. A subdomain of onrender.com, by default.
-         */
-        url?: pulumi.Input<string>;
-    }
-    /**
-     * staticSiteServiceDetailsArgsProvideDefaults sets the appropriate defaults for StaticSiteServiceDetailsArgs
-     */
-    export function staticSiteServiceDetailsArgsProvideDefaults(val: StaticSiteServiceDetailsArgs): StaticSiteServiceDetailsArgs {
-        return {
-            ...val,
-            publishPath: (val.publishPath) ?? "public",
-            pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
-        };
-    }
-
-    export interface StaticSiteServiceDetailsParentServerPropertiesArgs {
-        id?: pulumi.Input<string>;
-        name?: pulumi.Input<string>;
-    }
-
-    export interface WebServiceServiceDetailsArgs {
+    export interface WebServiceDetailsArgs {
+        autoscaling?: pulumi.Input<inputs.services.AutoscalingConfigArgs>;
+        buildPlan: pulumi.Input<string>;
         disk?: pulumi.Input<inputs.services.DiskArgs>;
-        env: pulumi.Input<enums.services.WebServiceServiceDetailsEnv>;
-        envSpecificDetails?: pulumi.Input<inputs.services.DockerDetailsArgs | inputs.services.NativeEnvironmentDetailsArgs>;
-        healthCheckPath?: pulumi.Input<string>;
-        numInstances?: pulumi.Input<number>;
-        openPorts?: pulumi.Input<pulumi.Input<inputs.services.OpenPortsArgs>[]>;
-        parentServer?: pulumi.Input<inputs.services.WebServiceServiceDetailsParentServerPropertiesArgs>;
-        plan?: pulumi.Input<enums.services.WebServiceServiceDetailsPlan>;
-        pullRequestPreviewsEnabled?: pulumi.Input<enums.services.WebServiceServiceDetailsPullRequestPreviewsEnabled>;
-        region?: pulumi.Input<enums.services.WebServiceServiceDetailsRegion>;
-        url?: pulumi.Input<string>;
+        /**
+         * Environment (runtime)
+         */
+        env: pulumi.Input<enums.services.WebServiceDetailsEnv>;
+        envSpecificDetails: pulumi.Input<inputs.services.DockerDetailsArgs | inputs.services.NativeEnvironmentDetailsArgs>;
+        healthCheckPath: pulumi.Input<string>;
+        /**
+         * For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
+         */
+        numInstances: pulumi.Input<number>;
+        openPorts: pulumi.Input<pulumi.Input<inputs.services.ServerPortArgs>[]>;
+        parentServer?: pulumi.Input<inputs.services.ResourceArgs>;
+        /**
+         * The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+         */
+        plan: pulumi.Input<enums.services.WebServiceDetailsPlan>;
+        pullRequestPreviewsEnabled: pulumi.Input<enums.services.WebServiceDetailsPullRequestPreviewsEnabled>;
+        region: pulumi.Input<enums.services.WebServiceDetailsRegion>;
+        url: pulumi.Input<string>;
     }
     /**
-     * webServiceServiceDetailsArgsProvideDefaults sets the appropriate defaults for WebServiceServiceDetailsArgs
+     * webServiceDetailsArgsProvideDefaults sets the appropriate defaults for WebServiceDetailsArgs
      */
-    export function webServiceServiceDetailsArgsProvideDefaults(val: WebServiceServiceDetailsArgs): WebServiceServiceDetailsArgs {
+    export function webServiceDetailsArgsProvideDefaults(val: WebServiceDetailsArgs): WebServiceDetailsArgs {
         return {
             ...val,
-            disk: (val.disk ? pulumi.output(val.disk).apply(inputs.services.diskArgsProvideDefaults) : undefined),
-            numInstances: (val.numInstances) ?? 1,
-            plan: (val.plan) ?? "starter",
-            pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
-            region: (val.region) ?? "oregon",
+            autoscaling: (val.autoscaling ? pulumi.output(val.autoscaling).apply(inputs.services.autoscalingConfigArgsProvideDefaults) : undefined),
         };
-    }
-
-    export interface WebServiceServiceDetailsParentServerPropertiesArgs {
-        id?: pulumi.Input<string>;
-        name?: pulumi.Input<string>;
     }
 }

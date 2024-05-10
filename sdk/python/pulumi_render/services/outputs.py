@@ -12,92 +12,131 @@ from . import outputs
 from ._enums import *
 
 __all__ = [
-    'AutoScalingCriteria',
-    'AutoScalingCriteriaSpec',
-    'BackgroundWorker',
-    'BackgroundWorkerServiceDetails',
-    'BackgroundWorkerServiceDetailsParentServerProperties',
-    'Commit',
-    'CronJob',
-    'CronJobServiceDetails',
+    'AutoscalingConfig',
+    'AutoscalingCriteria',
+    'AutoscalingCriteriaPercentage',
+    'BackgroundWorkerDetails',
+    'BuildFilter',
+    'CommitProperties',
+    'CronJobDetails',
     'CustomDomain',
     'CustomDomainServerProperties',
     'Deploy',
+    'DeployCommitProperties',
+    'DeployImageProperties',
     'Disk',
     'DockerDetails',
+    'EnvVar',
+    'EnvVarKeyGenerateValue',
     'EnvVarKeyValue',
-    'GetBackgroundWorker',
-    'GetCronJob',
-    'GetPrivateService',
-    'GetStaticSite',
-    'GetWebService',
+    'EnvVarWithCursor',
+    'Header',
+    'Image',
+    'ImageProperties',
     'Job',
-    'ListCustomDomainsResponse',
-    'ListDeploysResponse',
-    'ListEnvVarsResponse',
-    'ListJobsResponse',
-    'ListServiceHeadersResponse',
-    'ListServiceResponse',
-    'ListStaticSiteRoutesResponse',
+    'ListCustomDomainsItemProperties',
+    'ListDeploysItemProperties',
+    'ListJobItemProperties',
+    'ListRetrieveHeadersItemProperties',
+    'ListRetrieveRoutesItemProperties',
+    'ListServicesItemProperties',
     'NativeEnvironmentDetails',
-    'OpenPorts',
-    'PrivateService',
     'PrivateServiceDetails',
-    'PrivateServiceDetailsParentServerProperties',
+    'RegistryCredential',
+    'Resource',
+    'Route',
     'SecretFile',
-    'ServerProperties',
-    'ServiceHeader',
-    'StaticSite',
-    'StaticSiteRoute',
-    'StaticSiteServiceDetails',
-    'StaticSiteServiceDetailsParentServerProperties',
-    'WebService',
-    'WebServiceServiceDetails',
-    'WebServiceServiceDetailsParentServerProperties',
+    'ServerPort',
+    'Service',
+    'StaticSiteDetails',
+    'WebServiceDetails',
 ]
 
 @pulumi.output_type
-class AutoScalingCriteria(dict):
+class AutoscalingConfig(dict):
     def __init__(__self__, *,
-                 cpu: Optional['outputs.AutoScalingCriteriaSpec'] = None,
-                 memory: Optional['outputs.AutoScalingCriteriaSpec'] = None):
-        if cpu is not None:
-            pulumi.set(__self__, "cpu", cpu)
-        if memory is not None:
-            pulumi.set(__self__, "memory", memory)
-
-    @property
-    @pulumi.getter
-    def cpu(self) -> Optional['outputs.AutoScalingCriteriaSpec']:
-        return pulumi.get(self, "cpu")
-
-    @property
-    @pulumi.getter
-    def memory(self) -> Optional['outputs.AutoScalingCriteriaSpec']:
-        return pulumi.get(self, "memory")
-
-
-@pulumi.output_type
-class AutoScalingCriteriaSpec(dict):
-    def __init__(__self__, *,
+                 criteria: 'outputs.AutoscalingCriteria',
                  enabled: Optional[bool] = None,
-                 percentage: Optional[float] = None):
+                 max: int,
+                 min: int):
         """
-        :param float percentage: Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+        :param int max: The maximum number of instances for the service
+        :param int min: The minimum number of instances for the service
         """
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
-        if percentage is not None:
-            pulumi.set(__self__, "percentage", percentage)
+        pulumi.set(__self__, "criteria", criteria)
+        if enabled is None:
+            enabled = False
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "max", max)
+        pulumi.set(__self__, "min", min)
 
     @property
     @pulumi.getter
-    def enabled(self) -> Optional[bool]:
+    def criteria(self) -> 'outputs.AutoscalingCriteria':
+        return pulumi.get(self, "criteria")
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
         return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter
-    def percentage(self) -> Optional[float]:
+    def max(self) -> int:
+        """
+        The maximum number of instances for the service
+        """
+        return pulumi.get(self, "max")
+
+    @property
+    @pulumi.getter
+    def min(self) -> int:
+        """
+        The minimum number of instances for the service
+        """
+        return pulumi.get(self, "min")
+
+
+@pulumi.output_type
+class AutoscalingCriteria(dict):
+    def __init__(__self__, *,
+                 cpu: 'outputs.AutoscalingCriteriaPercentage',
+                 memory: 'outputs.AutoscalingCriteriaPercentage'):
+        pulumi.set(__self__, "cpu", cpu)
+        pulumi.set(__self__, "memory", memory)
+
+    @property
+    @pulumi.getter
+    def cpu(self) -> 'outputs.AutoscalingCriteriaPercentage':
+        return pulumi.get(self, "cpu")
+
+    @property
+    @pulumi.getter
+    def memory(self) -> 'outputs.AutoscalingCriteriaPercentage':
+        return pulumi.get(self, "memory")
+
+
+@pulumi.output_type
+class AutoscalingCriteriaPercentage(dict):
+    def __init__(__self__, *,
+                 enabled: Optional[bool] = None,
+                 percentage: int):
+        """
+        :param int percentage: Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+        """
+        if enabled is None:
+            enabled = False
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "percentage", percentage)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter
+    def percentage(self) -> int:
         """
         Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
         """
@@ -105,222 +144,110 @@ class AutoScalingCriteriaSpec(dict):
 
 
 @pulumi.output_type
-class BackgroundWorker(dict):
-    """
-    A background worker service
-    """
-    def __init__(__self__, *,
-                 name: str,
-                 owner_id: str,
-                 repo: str,
-                 auto_deploy: Optional['ServiceAutoDeploy'] = None,
-                 branch: Optional[str] = None,
-                 created_at: Optional[str] = None,
-                 env_vars: Optional[Sequence['outputs.EnvVarKeyValue']] = None,
-                 notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
-                 secret_files: Optional[Sequence['outputs.SecretFile']] = None,
-                 service_details: Optional['outputs.BackgroundWorkerServiceDetails'] = None,
-                 slug: Optional[str] = None,
-                 suspended: Optional['ServiceSuspended'] = None,
-                 suspenders: Optional[Sequence[str]] = None,
-                 type: Optional[str] = None,
-                 updated_at: Optional[str] = None):
-        """
-        A background worker service
-        :param str owner_id: The id of the owner (user/team).
-        :param str repo: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-        :param 'ServiceAutoDeploy' auto_deploy: Whether to auto deploy the service or not upon git push.
-        :param str branch: If left empty, this will fall back to the default branch of the repository.
-        :param 'ServiceNotifyOnFail' notify_on_fail: The notification setting for this service upon deployment failure.
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "owner_id", owner_id)
-        pulumi.set(__self__, "repo", repo)
-        if auto_deploy is None:
-            auto_deploy = 'no'
-        if auto_deploy is not None:
-            pulumi.set(__self__, "auto_deploy", auto_deploy)
-        if branch is not None:
-            pulumi.set(__self__, "branch", branch)
-        if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
-        if env_vars is not None:
-            pulumi.set(__self__, "env_vars", env_vars)
-        if notify_on_fail is not None:
-            pulumi.set(__self__, "notify_on_fail", notify_on_fail)
-        if secret_files is not None:
-            pulumi.set(__self__, "secret_files", secret_files)
-        if service_details is not None:
-            pulumi.set(__self__, "service_details", service_details)
-        if slug is not None:
-            pulumi.set(__self__, "slug", slug)
-        if suspended is not None:
-            pulumi.set(__self__, "suspended", suspended)
-        if suspenders is not None:
-            pulumi.set(__self__, "suspenders", suspenders)
-        if type is None:
-            type = 'background_worker'
-        if type is not None:
-            pulumi.set(__self__, "type", type)
-        if updated_at is not None:
-            pulumi.set(__self__, "updated_at", updated_at)
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter(name="ownerId")
-    def owner_id(self) -> str:
-        """
-        The id of the owner (user/team).
-        """
-        return pulumi.get(self, "owner_id")
-
-    @property
-    @pulumi.getter
-    def repo(self) -> str:
-        """
-        Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-        """
-        return pulumi.get(self, "repo")
-
-    @property
-    @pulumi.getter(name="autoDeploy")
-    def auto_deploy(self) -> Optional['ServiceAutoDeploy']:
-        """
-        Whether to auto deploy the service or not upon git push.
-        """
-        return pulumi.get(self, "auto_deploy")
-
-    @property
-    @pulumi.getter
-    def branch(self) -> Optional[str]:
-        """
-        If left empty, this will fall back to the default branch of the repository.
-        """
-        return pulumi.get(self, "branch")
-
-    @property
-    @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[str]:
-        return pulumi.get(self, "created_at")
-
-    @property
-    @pulumi.getter(name="envVars")
-    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValue']]:
-        return pulumi.get(self, "env_vars")
-
-    @property
-    @pulumi.getter(name="notifyOnFail")
-    def notify_on_fail(self) -> Optional['ServiceNotifyOnFail']:
-        """
-        The notification setting for this service upon deployment failure.
-        """
-        return pulumi.get(self, "notify_on_fail")
-
-    @property
-    @pulumi.getter(name="secretFiles")
-    def secret_files(self) -> Optional[Sequence['outputs.SecretFile']]:
-        return pulumi.get(self, "secret_files")
-
-    @property
-    @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> Optional['outputs.BackgroundWorkerServiceDetails']:
-        return pulumi.get(self, "service_details")
-
-    @property
-    @pulumi.getter
-    def slug(self) -> Optional[str]:
-        return pulumi.get(self, "slug")
-
-    @property
-    @pulumi.getter
-    def suspended(self) -> Optional['ServiceSuspended']:
-        return pulumi.get(self, "suspended")
-
-    @property
-    @pulumi.getter
-    def suspenders(self) -> Optional[Sequence[str]]:
-        return pulumi.get(self, "suspenders")
-
-    @property
-    @pulumi.getter
-    def type(self) -> Optional[str]:
-        return pulumi.get(self, "type")
-
-    @property
-    @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[str]:
-        return pulumi.get(self, "updated_at")
-
-
-@pulumi.output_type
-class BackgroundWorkerServiceDetails(dict):
+class BackgroundWorkerDetails(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "envSpecificDetails":
+        if key == "buildPlan":
+            suggest = "build_plan"
+        elif key == "envSpecificDetails":
             suggest = "env_specific_details"
         elif key == "numInstances":
             suggest = "num_instances"
-        elif key == "parentServer":
-            suggest = "parent_server"
         elif key == "pullRequestPreviewsEnabled":
             suggest = "pull_request_previews_enabled"
+        elif key == "parentServer":
+            suggest = "parent_server"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in BackgroundWorkerServiceDetails. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in BackgroundWorkerDetails. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        BackgroundWorkerServiceDetails.__key_warning(key)
+        BackgroundWorkerDetails.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        BackgroundWorkerServiceDetails.__key_warning(key)
+        BackgroundWorkerDetails.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 env: 'BackgroundWorkerServiceDetailsEnv',
+                 build_plan: str,
+                 env: 'BackgroundWorkerDetailsEnv',
+                 env_specific_details: Any,
+                 num_instances: int,
+                 plan: 'BackgroundWorkerDetailsPlan',
+                 pull_request_previews_enabled: 'BackgroundWorkerDetailsPullRequestPreviewsEnabled',
+                 region: 'BackgroundWorkerDetailsRegion',
+                 autoscaling: Optional['outputs.AutoscalingConfig'] = None,
                  disk: Optional['outputs.Disk'] = None,
-                 env_specific_details: Optional[Any] = None,
-                 num_instances: Optional[float] = None,
-                 parent_server: Optional['outputs.BackgroundWorkerServiceDetailsParentServerProperties'] = None,
-                 plan: Optional['BackgroundWorkerServiceDetailsPlan'] = None,
-                 pull_request_previews_enabled: Optional['BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled'] = None,
-                 region: Optional['BackgroundWorkerServiceDetailsRegion'] = None,
-                 url: Optional[str] = None):
+                 parent_server: Optional['outputs.Resource'] = None):
+        """
+        :param 'BackgroundWorkerDetailsEnv' env: Environment (runtime)
+        :param int num_instances: For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
+        :param 'BackgroundWorkerDetailsPlan' plan: The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+        """
+        pulumi.set(__self__, "build_plan", build_plan)
         pulumi.set(__self__, "env", env)
+        pulumi.set(__self__, "env_specific_details", env_specific_details)
+        pulumi.set(__self__, "num_instances", num_instances)
+        pulumi.set(__self__, "plan", plan)
+        pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
+        pulumi.set(__self__, "region", region)
+        if autoscaling is not None:
+            pulumi.set(__self__, "autoscaling", autoscaling)
         if disk is not None:
             pulumi.set(__self__, "disk", disk)
-        if env_specific_details is not None:
-            pulumi.set(__self__, "env_specific_details", env_specific_details)
-        if num_instances is None:
-            num_instances = 1
-        if num_instances is not None:
-            pulumi.set(__self__, "num_instances", num_instances)
         if parent_server is not None:
             pulumi.set(__self__, "parent_server", parent_server)
-        if plan is None:
-            plan = 'starter'
-        if plan is not None:
-            pulumi.set(__self__, "plan", plan)
-        if pull_request_previews_enabled is None:
-            pull_request_previews_enabled = 'no'
-        if pull_request_previews_enabled is not None:
-            pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
-        if region is None:
-            region = 'oregon'
-        if region is not None:
-            pulumi.set(__self__, "region", region)
-        if url is not None:
-            pulumi.set(__self__, "url", url)
+
+    @property
+    @pulumi.getter(name="buildPlan")
+    def build_plan(self) -> str:
+        return pulumi.get(self, "build_plan")
 
     @property
     @pulumi.getter
-    def env(self) -> 'BackgroundWorkerServiceDetailsEnv':
+    def env(self) -> 'BackgroundWorkerDetailsEnv':
+        """
+        Environment (runtime)
+        """
         return pulumi.get(self, "env")
+
+    @property
+    @pulumi.getter(name="envSpecificDetails")
+    def env_specific_details(self) -> Any:
+        return pulumi.get(self, "env_specific_details")
+
+    @property
+    @pulumi.getter(name="numInstances")
+    def num_instances(self) -> int:
+        """
+        For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
+        """
+        return pulumi.get(self, "num_instances")
+
+    @property
+    @pulumi.getter
+    def plan(self) -> 'BackgroundWorkerDetailsPlan':
+        """
+        The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+        """
+        return pulumi.get(self, "plan")
+
+    @property
+    @pulumi.getter(name="pullRequestPreviewsEnabled")
+    def pull_request_previews_enabled(self) -> 'BackgroundWorkerDetailsPullRequestPreviewsEnabled':
+        return pulumi.get(self, "pull_request_previews_enabled")
+
+    @property
+    @pulumi.getter
+    def region(self) -> 'BackgroundWorkerDetailsRegion':
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter
+    def autoscaling(self) -> Optional['outputs.AutoscalingConfig']:
+        return pulumi.get(self, "autoscaling")
 
     @property
     @pulumi.getter
@@ -328,64 +255,49 @@ class BackgroundWorkerServiceDetails(dict):
         return pulumi.get(self, "disk")
 
     @property
-    @pulumi.getter(name="envSpecificDetails")
-    def env_specific_details(self) -> Optional[Any]:
-        return pulumi.get(self, "env_specific_details")
-
-    @property
-    @pulumi.getter(name="numInstances")
-    def num_instances(self) -> Optional[float]:
-        return pulumi.get(self, "num_instances")
-
-    @property
     @pulumi.getter(name="parentServer")
-    def parent_server(self) -> Optional['outputs.BackgroundWorkerServiceDetailsParentServerProperties']:
+    def parent_server(self) -> Optional['outputs.Resource']:
         return pulumi.get(self, "parent_server")
 
-    @property
-    @pulumi.getter
-    def plan(self) -> Optional['BackgroundWorkerServiceDetailsPlan']:
-        return pulumi.get(self, "plan")
-
-    @property
-    @pulumi.getter(name="pullRequestPreviewsEnabled")
-    def pull_request_previews_enabled(self) -> Optional['BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled']:
-        return pulumi.get(self, "pull_request_previews_enabled")
-
-    @property
-    @pulumi.getter
-    def region(self) -> Optional['BackgroundWorkerServiceDetailsRegion']:
-        return pulumi.get(self, "region")
-
-    @property
-    @pulumi.getter
-    def url(self) -> Optional[str]:
-        return pulumi.get(self, "url")
-
 
 @pulumi.output_type
-class BackgroundWorkerServiceDetailsParentServerProperties(dict):
+class BuildFilter(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "ignoredPaths":
+            suggest = "ignored_paths"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BuildFilter. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BuildFilter.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BuildFilter.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
-                 id: Optional[str] = None,
-                 name: Optional[str] = None):
-        if id is not None:
-            pulumi.set(__self__, "id", id)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
+                 ignored_paths: Sequence[str],
+                 paths: Sequence[str]):
+        pulumi.set(__self__, "ignored_paths", ignored_paths)
+        pulumi.set(__self__, "paths", paths)
+
+    @property
+    @pulumi.getter(name="ignoredPaths")
+    def ignored_paths(self) -> Sequence[str]:
+        return pulumi.get(self, "ignored_paths")
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
-        return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[str]:
-        return pulumi.get(self, "name")
+    def paths(self) -> Sequence[str]:
+        return pulumi.get(self, "paths")
 
 
 @pulumi.output_type
-class Commit(dict):
+class CommitProperties(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -393,24 +305,21 @@ class Commit(dict):
             suggest = "created_at"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Commit. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in CommitProperties. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        Commit.__key_warning(key)
+        CommitProperties.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        Commit.__key_warning(key)
+        CommitProperties.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
                  created_at: Optional[str] = None,
-                 id: Optional[str] = None,
                  message: Optional[str] = None):
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
-        if id is not None:
-            pulumi.set(__self__, "id", id)
         if message is not None:
             pulumi.set(__self__, "message", message)
 
@@ -421,214 +330,84 @@ class Commit(dict):
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
-        return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter
     def message(self) -> Optional[str]:
         return pulumi.get(self, "message")
 
 
 @pulumi.output_type
-class CronJob(dict):
-    """
-    A cron job
-    """
-    def __init__(__self__, *,
-                 name: str,
-                 owner_id: str,
-                 repo: str,
-                 auto_deploy: Optional['ServiceAutoDeploy'] = None,
-                 branch: Optional[str] = None,
-                 created_at: Optional[str] = None,
-                 env_vars: Optional[Sequence['outputs.EnvVarKeyValue']] = None,
-                 notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
-                 secret_files: Optional[Sequence['outputs.SecretFile']] = None,
-                 service_details: Optional['outputs.CronJobServiceDetails'] = None,
-                 slug: Optional[str] = None,
-                 suspended: Optional['ServiceSuspended'] = None,
-                 suspenders: Optional[Sequence[str]] = None,
-                 type: Optional[str] = None,
-                 updated_at: Optional[str] = None):
-        """
-        A cron job
-        :param str owner_id: The id of the owner (user/team).
-        :param str repo: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-        :param 'ServiceAutoDeploy' auto_deploy: Whether to auto deploy the service or not upon git push.
-        :param str branch: If left empty, this will fall back to the default branch of the repository.
-        :param 'ServiceNotifyOnFail' notify_on_fail: The notification setting for this service upon deployment failure.
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "owner_id", owner_id)
-        pulumi.set(__self__, "repo", repo)
-        if auto_deploy is None:
-            auto_deploy = 'no'
-        if auto_deploy is not None:
-            pulumi.set(__self__, "auto_deploy", auto_deploy)
-        if branch is not None:
-            pulumi.set(__self__, "branch", branch)
-        if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
-        if env_vars is not None:
-            pulumi.set(__self__, "env_vars", env_vars)
-        if notify_on_fail is not None:
-            pulumi.set(__self__, "notify_on_fail", notify_on_fail)
-        if secret_files is not None:
-            pulumi.set(__self__, "secret_files", secret_files)
-        if service_details is not None:
-            pulumi.set(__self__, "service_details", service_details)
-        if slug is not None:
-            pulumi.set(__self__, "slug", slug)
-        if suspended is not None:
-            pulumi.set(__self__, "suspended", suspended)
-        if suspenders is not None:
-            pulumi.set(__self__, "suspenders", suspenders)
-        if type is None:
-            type = 'cron_job'
-        if type is not None:
-            pulumi.set(__self__, "type", type)
-        if updated_at is not None:
-            pulumi.set(__self__, "updated_at", updated_at)
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter(name="ownerId")
-    def owner_id(self) -> str:
-        """
-        The id of the owner (user/team).
-        """
-        return pulumi.get(self, "owner_id")
-
-    @property
-    @pulumi.getter
-    def repo(self) -> str:
-        """
-        Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-        """
-        return pulumi.get(self, "repo")
-
-    @property
-    @pulumi.getter(name="autoDeploy")
-    def auto_deploy(self) -> Optional['ServiceAutoDeploy']:
-        """
-        Whether to auto deploy the service or not upon git push.
-        """
-        return pulumi.get(self, "auto_deploy")
-
-    @property
-    @pulumi.getter
-    def branch(self) -> Optional[str]:
-        """
-        If left empty, this will fall back to the default branch of the repository.
-        """
-        return pulumi.get(self, "branch")
-
-    @property
-    @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[str]:
-        return pulumi.get(self, "created_at")
-
-    @property
-    @pulumi.getter(name="envVars")
-    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValue']]:
-        return pulumi.get(self, "env_vars")
-
-    @property
-    @pulumi.getter(name="notifyOnFail")
-    def notify_on_fail(self) -> Optional['ServiceNotifyOnFail']:
-        """
-        The notification setting for this service upon deployment failure.
-        """
-        return pulumi.get(self, "notify_on_fail")
-
-    @property
-    @pulumi.getter(name="secretFiles")
-    def secret_files(self) -> Optional[Sequence['outputs.SecretFile']]:
-        return pulumi.get(self, "secret_files")
-
-    @property
-    @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> Optional['outputs.CronJobServiceDetails']:
-        return pulumi.get(self, "service_details")
-
-    @property
-    @pulumi.getter
-    def slug(self) -> Optional[str]:
-        return pulumi.get(self, "slug")
-
-    @property
-    @pulumi.getter
-    def suspended(self) -> Optional['ServiceSuspended']:
-        return pulumi.get(self, "suspended")
-
-    @property
-    @pulumi.getter
-    def suspenders(self) -> Optional[Sequence[str]]:
-        return pulumi.get(self, "suspenders")
-
-    @property
-    @pulumi.getter
-    def type(self) -> Optional[str]:
-        return pulumi.get(self, "type")
-
-    @property
-    @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[str]:
-        return pulumi.get(self, "updated_at")
-
-
-@pulumi.output_type
-class CronJobServiceDetails(dict):
+class CronJobDetails(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "envSpecificDetails":
+        if key == "buildPlan":
+            suggest = "build_plan"
+        elif key == "envSpecificDetails":
             suggest = "env_specific_details"
         elif key == "lastSuccessfulRunAt":
             suggest = "last_successful_run_at"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in CronJobServiceDetails. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in CronJobDetails. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        CronJobServiceDetails.__key_warning(key)
+        CronJobDetails.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        CronJobServiceDetails.__key_warning(key)
+        CronJobDetails.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 env: 'CronJobServiceDetailsEnv',
+                 build_plan: str,
+                 env: 'CronJobDetailsEnv',
+                 env_specific_details: Any,
+                 plan: 'CronJobDetailsPlan',
+                 region: 'CronJobDetailsRegion',
                  schedule: str,
-                 env_specific_details: Optional[Any] = None,
-                 last_successful_run_at: Optional[str] = None,
-                 plan: Optional['CronJobServiceDetailsPlan'] = None,
-                 region: Optional['CronJobServiceDetailsRegion'] = None):
+                 last_successful_run_at: Optional[str] = None):
+        """
+        :param 'CronJobDetailsEnv' env: Environment (runtime)
+        :param 'CronJobDetailsPlan' plan: The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+        """
+        pulumi.set(__self__, "build_plan", build_plan)
         pulumi.set(__self__, "env", env)
+        pulumi.set(__self__, "env_specific_details", env_specific_details)
+        pulumi.set(__self__, "plan", plan)
+        pulumi.set(__self__, "region", region)
         pulumi.set(__self__, "schedule", schedule)
-        if env_specific_details is not None:
-            pulumi.set(__self__, "env_specific_details", env_specific_details)
         if last_successful_run_at is not None:
             pulumi.set(__self__, "last_successful_run_at", last_successful_run_at)
-        if plan is None:
-            plan = 'starter'
-        if plan is not None:
-            pulumi.set(__self__, "plan", plan)
-        if region is None:
-            region = 'oregon'
-        if region is not None:
-            pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter(name="buildPlan")
+    def build_plan(self) -> str:
+        return pulumi.get(self, "build_plan")
 
     @property
     @pulumi.getter
-    def env(self) -> 'CronJobServiceDetailsEnv':
+    def env(self) -> 'CronJobDetailsEnv':
+        """
+        Environment (runtime)
+        """
         return pulumi.get(self, "env")
+
+    @property
+    @pulumi.getter(name="envSpecificDetails")
+    def env_specific_details(self) -> Any:
+        return pulumi.get(self, "env_specific_details")
+
+    @property
+    @pulumi.getter
+    def plan(self) -> 'CronJobDetailsPlan':
+        """
+        The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+        """
+        return pulumi.get(self, "plan")
+
+    @property
+    @pulumi.getter
+    def region(self) -> 'CronJobDetailsRegion':
+        return pulumi.get(self, "region")
 
     @property
     @pulumi.getter
@@ -636,45 +415,34 @@ class CronJobServiceDetails(dict):
         return pulumi.get(self, "schedule")
 
     @property
-    @pulumi.getter(name="envSpecificDetails")
-    def env_specific_details(self) -> Optional[Any]:
-        return pulumi.get(self, "env_specific_details")
-
-    @property
     @pulumi.getter(name="lastSuccessfulRunAt")
     def last_successful_run_at(self) -> Optional[str]:
         return pulumi.get(self, "last_successful_run_at")
-
-    @property
-    @pulumi.getter
-    def plan(self) -> Optional['CronJobServiceDetailsPlan']:
-        return pulumi.get(self, "plan")
-
-    @property
-    @pulumi.getter
-    def region(self) -> Optional['CronJobServiceDetailsRegion']:
-        return pulumi.get(self, "region")
 
 
 @pulumi.output_type
 class CustomDomain(dict):
     def __init__(__self__, *,
+                 created_at: str,
                  domain_type: 'CustomDomainDomainType',
                  name: str,
+                 public_suffix: str,
                  redirect_for_name: str,
-                 server: 'outputs.CustomDomainServerProperties',
                  verification_status: 'CustomDomainVerificationStatus',
-                 created_at: Optional[str] = None,
-                 public_suffix: Optional[str] = None):
+                 server: Optional['outputs.CustomDomainServerProperties'] = None):
+        pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "domain_type", domain_type)
         pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "public_suffix", public_suffix)
         pulumi.set(__self__, "redirect_for_name", redirect_for_name)
-        pulumi.set(__self__, "server", server)
         pulumi.set(__self__, "verification_status", verification_status)
-        if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
-        if public_suffix is not None:
-            pulumi.set(__self__, "public_suffix", public_suffix)
+        if server is not None:
+            pulumi.set(__self__, "server", server)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="domainType")
@@ -687,14 +455,14 @@ class CustomDomain(dict):
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter(name="publicSuffix")
+    def public_suffix(self) -> str:
+        return pulumi.get(self, "public_suffix")
+
+    @property
     @pulumi.getter(name="redirectForName")
     def redirect_for_name(self) -> str:
         return pulumi.get(self, "redirect_for_name")
-
-    @property
-    @pulumi.getter
-    def server(self) -> 'outputs.CustomDomainServerProperties':
-        return pulumi.get(self, "server")
 
     @property
     @pulumi.getter(name="verificationStatus")
@@ -702,30 +470,17 @@ class CustomDomain(dict):
         return pulumi.get(self, "verification_status")
 
     @property
-    @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[str]:
-        return pulumi.get(self, "created_at")
-
-    @property
-    @pulumi.getter(name="publicSuffix")
-    def public_suffix(self) -> Optional[str]:
-        return pulumi.get(self, "public_suffix")
+    @pulumi.getter
+    def server(self) -> Optional['outputs.CustomDomainServerProperties']:
+        return pulumi.get(self, "server")
 
 
 @pulumi.output_type
 class CustomDomainServerProperties(dict):
     def __init__(__self__, *,
-                 id: Optional[str] = None,
                  name: Optional[str] = None):
-        if id is not None:
-            pulumi.set(__self__, "id", id)
         if name is not None:
             pulumi.set(__self__, "name", name)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[str]:
-        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -736,24 +491,136 @@ class CustomDomainServerProperties(dict):
 @pulumi.output_type
 class Deploy(dict):
     def __init__(__self__, *,
-                 clear_cache: Optional['DeployClearCache'] = None,
-                 commit: Optional['outputs.Commit'] = None):
-        if clear_cache is None:
-            clear_cache = 'do_not_clear'
-        if clear_cache is not None:
-            pulumi.set(__self__, "clear_cache", clear_cache)
+                 commit: Optional['outputs.DeployCommitProperties'] = None,
+                 created_at: Optional[str] = None,
+                 finished_at: Optional[str] = None,
+                 image: Optional['outputs.DeployImageProperties'] = None,
+                 status: Optional['DeployStatus'] = None,
+                 trigger: Optional['DeployTrigger'] = None,
+                 updated_at: Optional[str] = None):
+        """
+        :param 'DeployImageProperties' image: Image information used when creating the deploy. Not present for Git-backed deploys
+        """
         if commit is not None:
             pulumi.set(__self__, "commit", commit)
-
-    @property
-    @pulumi.getter(name="clearCache")
-    def clear_cache(self) -> Optional['DeployClearCache']:
-        return pulumi.get(self, "clear_cache")
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if finished_at is not None:
+            pulumi.set(__self__, "finished_at", finished_at)
+        if image is not None:
+            pulumi.set(__self__, "image", image)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if trigger is not None:
+            pulumi.set(__self__, "trigger", trigger)
+        if updated_at is not None:
+            pulumi.set(__self__, "updated_at", updated_at)
 
     @property
     @pulumi.getter
-    def commit(self) -> Optional['outputs.Commit']:
+    def commit(self) -> Optional['outputs.DeployCommitProperties']:
         return pulumi.get(self, "commit")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[str]:
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="finishedAt")
+    def finished_at(self) -> Optional[str]:
+        return pulumi.get(self, "finished_at")
+
+    @property
+    @pulumi.getter
+    def image(self) -> Optional['outputs.DeployImageProperties']:
+        """
+        Image information used when creating the deploy. Not present for Git-backed deploys
+        """
+        return pulumi.get(self, "image")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional['DeployStatus']:
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def trigger(self) -> Optional['DeployTrigger']:
+        return pulumi.get(self, "trigger")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> Optional[str]:
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class DeployCommitProperties(dict):
+    def __init__(__self__, *,
+                 created_at: Optional[str] = None,
+                 message: Optional[str] = None):
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[str]:
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def message(self) -> Optional[str]:
+        return pulumi.get(self, "message")
+
+
+@pulumi.output_type
+class DeployImageProperties(dict):
+    """
+    Image information used when creating the deploy. Not present for Git-backed deploys
+    """
+    def __init__(__self__, *,
+                 ref: Optional[str] = None,
+                 registry_credential: Optional[str] = None,
+                 sha: Optional[str] = None):
+        """
+        Image information used when creating the deploy. Not present for Git-backed deploys
+        :param str ref: Image reference used when creating the deploy
+        :param str registry_credential: Name of credential used to pull the image, if provided
+        :param str sha: SHA that the image reference was resolved to when creating the deploy
+        """
+        if ref is not None:
+            pulumi.set(__self__, "ref", ref)
+        if registry_credential is not None:
+            pulumi.set(__self__, "registry_credential", registry_credential)
+        if sha is not None:
+            pulumi.set(__self__, "sha", sha)
+
+    @property
+    @pulumi.getter
+    def ref(self) -> Optional[str]:
+        """
+        Image reference used when creating the deploy
+        """
+        return pulumi.get(self, "ref")
+
+    @property
+    @pulumi.getter(name="registryCredential")
+    def registry_credential(self) -> Optional[str]:
+        """
+        Name of credential used to pull the image, if provided
+        """
+        return pulumi.get(self, "registry_credential")
+
+    @property
+    @pulumi.getter
+    def sha(self) -> Optional[str]:
+        """
+        SHA that the image reference was resolved to when creating the deploy
+        """
+        return pulumi.get(self, "sha")
 
 
 @pulumi.output_type
@@ -780,13 +647,10 @@ class Disk(dict):
     def __init__(__self__, *,
                  mount_path: str,
                  name: str,
-                 size_gb: Optional[float] = None):
+                 size_gb: int):
         pulumi.set(__self__, "mount_path", mount_path)
         pulumi.set(__self__, "name", name)
-        if size_gb is None:
-            size_gb = 1
-        if size_gb is not None:
-            pulumi.set(__self__, "size_gb", size_gb)
+        pulumi.set(__self__, "size_gb", size_gb)
 
     @property
     @pulumi.getter(name="mountPath")
@@ -800,7 +664,7 @@ class Disk(dict):
 
     @property
     @pulumi.getter(name="sizeGB")
-    def size_gb(self) -> Optional[float]:
+    def size_gb(self) -> int:
         return pulumi.get(self, "size_gb")
 
 
@@ -815,6 +679,10 @@ class DockerDetails(dict):
             suggest = "docker_context"
         elif key == "dockerfilePath":
             suggest = "dockerfile_path"
+        elif key == "preDeployCommand":
+            suggest = "pre_deploy_command"
+        elif key == "registryCredential":
+            suggest = "registry_credential"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in DockerDetails. Access the value via the '{suggest}' property getter instead.")
@@ -830,11 +698,16 @@ class DockerDetails(dict):
     def __init__(__self__, *,
                  docker_command: str,
                  docker_context: str,
-                 dockerfile_path: Optional[str] = None):
+                 dockerfile_path: str,
+                 pre_deploy_command: Optional[str] = None,
+                 registry_credential: Optional['outputs.RegistryCredential'] = None):
         pulumi.set(__self__, "docker_command", docker_command)
         pulumi.set(__self__, "docker_context", docker_context)
-        if dockerfile_path is not None:
-            pulumi.set(__self__, "dockerfile_path", dockerfile_path)
+        pulumi.set(__self__, "dockerfile_path", dockerfile_path)
+        if pre_deploy_command is not None:
+            pulumi.set(__self__, "pre_deploy_command", pre_deploy_command)
+        if registry_credential is not None:
+            pulumi.set(__self__, "registry_credential", registry_credential)
 
     @property
     @pulumi.getter(name="dockerCommand")
@@ -848,38 +721,27 @@ class DockerDetails(dict):
 
     @property
     @pulumi.getter(name="dockerfilePath")
-    def dockerfile_path(self) -> Optional[str]:
+    def dockerfile_path(self) -> str:
         return pulumi.get(self, "dockerfile_path")
+
+    @property
+    @pulumi.getter(name="preDeployCommand")
+    def pre_deploy_command(self) -> Optional[str]:
+        return pulumi.get(self, "pre_deploy_command")
+
+    @property
+    @pulumi.getter(name="registryCredential")
+    def registry_credential(self) -> Optional['outputs.RegistryCredential']:
+        return pulumi.get(self, "registry_credential")
 
 
 @pulumi.output_type
-class EnvVarKeyValue(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "generateValue":
-            suggest = "generate_value"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in EnvVarKeyValue. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        EnvVarKeyValue.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        EnvVarKeyValue.__key_warning(key)
-        return super().get(key, default)
-
+class EnvVar(dict):
     def __init__(__self__, *,
                  key: str,
-                 generate_value: Optional['EnvVarKeyValueGenerateValue'] = None,
-                 value: Optional[str] = None):
+                 value: str):
         pulumi.set(__self__, "key", key)
-        if generate_value is not None:
-            pulumi.set(__self__, "generate_value", generate_value)
-        if value is not None:
-            pulumi.set(__self__, "value", value)
+        pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
@@ -887,1387 +749,91 @@ class EnvVarKeyValue(dict):
         return pulumi.get(self, "key")
 
     @property
-    @pulumi.getter(name="generateValue")
-    def generate_value(self) -> Optional['EnvVarKeyValueGenerateValue']:
-        return pulumi.get(self, "generate_value")
-
-    @property
     @pulumi.getter
-    def value(self) -> Optional[str]:
+    def value(self) -> str:
         return pulumi.get(self, "value")
 
 
 @pulumi.output_type
-class GetBackgroundWorker(dict):
-    """
-    A background worker service
-    """
+class EnvVarKeyGenerateValue(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "generateValue":
+            suggest = "generate_value"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in EnvVarKeyGenerateValue. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        EnvVarKeyGenerateValue.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        EnvVarKeyGenerateValue.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
-                 name: str,
-                 owner_id: str,
-                 repo: str,
-                 auto_deploy: Optional['ServiceAutoDeploy'] = None,
-                 branch: Optional[str] = None,
-                 created_at: Optional[str] = None,
-                 env_vars: Optional[Sequence['outputs.EnvVarKeyValue']] = None,
-                 notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
-                 secret_files: Optional[Sequence['outputs.SecretFile']] = None,
-                 service_details: Optional['outputs.BackgroundWorkerServiceDetails'] = None,
-                 slug: Optional[str] = None,
-                 suspended: Optional['ServiceSuspended'] = None,
-                 suspenders: Optional[Sequence[str]] = None,
-                 type: Optional[str] = None,
-                 updated_at: Optional[str] = None):
-        """
-        A background worker service
-        :param str owner_id: The id of the owner (user/team).
-        :param str repo: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-        :param 'ServiceAutoDeploy' auto_deploy: Whether to auto deploy the service or not upon git push.
-        :param str branch: If left empty, this will fall back to the default branch of the repository.
-        :param 'ServiceNotifyOnFail' notify_on_fail: The notification setting for this service upon deployment failure.
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "owner_id", owner_id)
-        pulumi.set(__self__, "repo", repo)
-        if auto_deploy is None:
-            auto_deploy = 'no'
-        if auto_deploy is not None:
-            pulumi.set(__self__, "auto_deploy", auto_deploy)
-        if branch is not None:
-            pulumi.set(__self__, "branch", branch)
-        if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
-        if env_vars is not None:
-            pulumi.set(__self__, "env_vars", env_vars)
-        if notify_on_fail is not None:
-            pulumi.set(__self__, "notify_on_fail", notify_on_fail)
-        if secret_files is not None:
-            pulumi.set(__self__, "secret_files", secret_files)
-        if service_details is not None:
-            pulumi.set(__self__, "service_details", service_details)
-        if slug is not None:
-            pulumi.set(__self__, "slug", slug)
-        if suspended is not None:
-            pulumi.set(__self__, "suspended", suspended)
-        if suspenders is not None:
-            pulumi.set(__self__, "suspenders", suspenders)
-        if type is None:
-            type = 'background_worker'
-        if type is not None:
-            pulumi.set(__self__, "type", type)
-        if updated_at is not None:
-            pulumi.set(__self__, "updated_at", updated_at)
+                 generate_value: bool,
+                 key: str):
+        pulumi.set(__self__, "generate_value", generate_value)
+        pulumi.set(__self__, "key", key)
+
+    @property
+    @pulumi.getter(name="generateValue")
+    def generate_value(self) -> bool:
+        return pulumi.get(self, "generate_value")
 
     @property
     @pulumi.getter
-    def name(self) -> str:
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter(name="ownerId")
-    def owner_id(self) -> str:
-        """
-        The id of the owner (user/team).
-        """
-        return pulumi.get(self, "owner_id")
-
-    @property
-    @pulumi.getter
-    def repo(self) -> str:
-        """
-        Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-        """
-        return pulumi.get(self, "repo")
-
-    @property
-    @pulumi.getter(name="autoDeploy")
-    def auto_deploy(self) -> Optional['ServiceAutoDeploy']:
-        """
-        Whether to auto deploy the service or not upon git push.
-        """
-        return pulumi.get(self, "auto_deploy")
-
-    @property
-    @pulumi.getter
-    def branch(self) -> Optional[str]:
-        """
-        If left empty, this will fall back to the default branch of the repository.
-        """
-        return pulumi.get(self, "branch")
-
-    @property
-    @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[str]:
-        return pulumi.get(self, "created_at")
-
-    @property
-    @pulumi.getter(name="envVars")
-    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValue']]:
-        return pulumi.get(self, "env_vars")
-
-    @property
-    @pulumi.getter(name="notifyOnFail")
-    def notify_on_fail(self) -> Optional['ServiceNotifyOnFail']:
-        """
-        The notification setting for this service upon deployment failure.
-        """
-        return pulumi.get(self, "notify_on_fail")
-
-    @property
-    @pulumi.getter(name="secretFiles")
-    def secret_files(self) -> Optional[Sequence['outputs.SecretFile']]:
-        return pulumi.get(self, "secret_files")
-
-    @property
-    @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> Optional['outputs.BackgroundWorkerServiceDetails']:
-        return pulumi.get(self, "service_details")
-
-    @property
-    @pulumi.getter
-    def slug(self) -> Optional[str]:
-        return pulumi.get(self, "slug")
-
-    @property
-    @pulumi.getter
-    def suspended(self) -> Optional['ServiceSuspended']:
-        return pulumi.get(self, "suspended")
-
-    @property
-    @pulumi.getter
-    def suspenders(self) -> Optional[Sequence[str]]:
-        return pulumi.get(self, "suspenders")
-
-    @property
-    @pulumi.getter
-    def type(self) -> Optional[str]:
-        return pulumi.get(self, "type")
-
-    @property
-    @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[str]:
-        return pulumi.get(self, "updated_at")
+    def key(self) -> str:
+        return pulumi.get(self, "key")
 
 
 @pulumi.output_type
-class GetCronJob(dict):
-    """
-    A cron job
-    """
+class EnvVarKeyValue(dict):
     def __init__(__self__, *,
-                 name: str,
-                 owner_id: str,
-                 repo: str,
-                 auto_deploy: Optional['ServiceAutoDeploy'] = None,
-                 branch: Optional[str] = None,
-                 created_at: Optional[str] = None,
-                 env_vars: Optional[Sequence['outputs.EnvVarKeyValue']] = None,
-                 notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
-                 secret_files: Optional[Sequence['outputs.SecretFile']] = None,
-                 service_details: Optional['outputs.CronJobServiceDetails'] = None,
-                 slug: Optional[str] = None,
-                 suspended: Optional['ServiceSuspended'] = None,
-                 suspenders: Optional[Sequence[str]] = None,
-                 type: Optional[str] = None,
-                 updated_at: Optional[str] = None):
-        """
-        A cron job
-        :param str owner_id: The id of the owner (user/team).
-        :param str repo: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-        :param 'ServiceAutoDeploy' auto_deploy: Whether to auto deploy the service or not upon git push.
-        :param str branch: If left empty, this will fall back to the default branch of the repository.
-        :param 'ServiceNotifyOnFail' notify_on_fail: The notification setting for this service upon deployment failure.
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "owner_id", owner_id)
-        pulumi.set(__self__, "repo", repo)
-        if auto_deploy is None:
-            auto_deploy = 'no'
-        if auto_deploy is not None:
-            pulumi.set(__self__, "auto_deploy", auto_deploy)
-        if branch is not None:
-            pulumi.set(__self__, "branch", branch)
-        if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
-        if env_vars is not None:
-            pulumi.set(__self__, "env_vars", env_vars)
-        if notify_on_fail is not None:
-            pulumi.set(__self__, "notify_on_fail", notify_on_fail)
-        if secret_files is not None:
-            pulumi.set(__self__, "secret_files", secret_files)
-        if service_details is not None:
-            pulumi.set(__self__, "service_details", service_details)
-        if slug is not None:
-            pulumi.set(__self__, "slug", slug)
-        if suspended is not None:
-            pulumi.set(__self__, "suspended", suspended)
-        if suspenders is not None:
-            pulumi.set(__self__, "suspenders", suspenders)
-        if type is None:
-            type = 'cron_job'
-        if type is not None:
-            pulumi.set(__self__, "type", type)
-        if updated_at is not None:
-            pulumi.set(__self__, "updated_at", updated_at)
+                 key: str,
+                 value: str):
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
-    def name(self) -> str:
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter(name="ownerId")
-    def owner_id(self) -> str:
-        """
-        The id of the owner (user/team).
-        """
-        return pulumi.get(self, "owner_id")
+    def key(self) -> str:
+        return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
-    def repo(self) -> str:
-        """
-        Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-        """
-        return pulumi.get(self, "repo")
-
-    @property
-    @pulumi.getter(name="autoDeploy")
-    def auto_deploy(self) -> Optional['ServiceAutoDeploy']:
-        """
-        Whether to auto deploy the service or not upon git push.
-        """
-        return pulumi.get(self, "auto_deploy")
-
-    @property
-    @pulumi.getter
-    def branch(self) -> Optional[str]:
-        """
-        If left empty, this will fall back to the default branch of the repository.
-        """
-        return pulumi.get(self, "branch")
-
-    @property
-    @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[str]:
-        return pulumi.get(self, "created_at")
-
-    @property
-    @pulumi.getter(name="envVars")
-    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValue']]:
-        return pulumi.get(self, "env_vars")
-
-    @property
-    @pulumi.getter(name="notifyOnFail")
-    def notify_on_fail(self) -> Optional['ServiceNotifyOnFail']:
-        """
-        The notification setting for this service upon deployment failure.
-        """
-        return pulumi.get(self, "notify_on_fail")
-
-    @property
-    @pulumi.getter(name="secretFiles")
-    def secret_files(self) -> Optional[Sequence['outputs.SecretFile']]:
-        return pulumi.get(self, "secret_files")
-
-    @property
-    @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> Optional['outputs.CronJobServiceDetails']:
-        return pulumi.get(self, "service_details")
-
-    @property
-    @pulumi.getter
-    def slug(self) -> Optional[str]:
-        return pulumi.get(self, "slug")
-
-    @property
-    @pulumi.getter
-    def suspended(self) -> Optional['ServiceSuspended']:
-        return pulumi.get(self, "suspended")
-
-    @property
-    @pulumi.getter
-    def suspenders(self) -> Optional[Sequence[str]]:
-        return pulumi.get(self, "suspenders")
-
-    @property
-    @pulumi.getter
-    def type(self) -> Optional[str]:
-        return pulumi.get(self, "type")
-
-    @property
-    @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[str]:
-        return pulumi.get(self, "updated_at")
+    def value(self) -> str:
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
-class GetPrivateService(dict):
-    """
-    A private service
-    """
+class EnvVarWithCursor(dict):
     def __init__(__self__, *,
-                 name: str,
-                 owner_id: str,
-                 repo: str,
-                 auto_deploy: Optional['ServiceAutoDeploy'] = None,
-                 branch: Optional[str] = None,
-                 created_at: Optional[str] = None,
-                 env_vars: Optional[Sequence['outputs.EnvVarKeyValue']] = None,
-                 notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
-                 secret_files: Optional[Sequence['outputs.SecretFile']] = None,
-                 service_details: Optional['outputs.PrivateServiceDetails'] = None,
-                 slug: Optional[str] = None,
-                 suspended: Optional['ServiceSuspended'] = None,
-                 suspenders: Optional[Sequence[str]] = None,
-                 type: Optional[str] = None,
-                 updated_at: Optional[str] = None):
-        """
-        A private service
-        :param str owner_id: The id of the owner (user/team).
-        :param str repo: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-        :param 'ServiceAutoDeploy' auto_deploy: Whether to auto deploy the service or not upon git push.
-        :param str branch: If left empty, this will fall back to the default branch of the repository.
-        :param 'ServiceNotifyOnFail' notify_on_fail: The notification setting for this service upon deployment failure.
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "owner_id", owner_id)
-        pulumi.set(__self__, "repo", repo)
-        if auto_deploy is None:
-            auto_deploy = 'no'
-        if auto_deploy is not None:
-            pulumi.set(__self__, "auto_deploy", auto_deploy)
-        if branch is not None:
-            pulumi.set(__self__, "branch", branch)
-        if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
-        if env_vars is not None:
-            pulumi.set(__self__, "env_vars", env_vars)
-        if notify_on_fail is not None:
-            pulumi.set(__self__, "notify_on_fail", notify_on_fail)
-        if secret_files is not None:
-            pulumi.set(__self__, "secret_files", secret_files)
-        if service_details is not None:
-            pulumi.set(__self__, "service_details", service_details)
-        if slug is not None:
-            pulumi.set(__self__, "slug", slug)
-        if suspended is not None:
-            pulumi.set(__self__, "suspended", suspended)
-        if suspenders is not None:
-            pulumi.set(__self__, "suspenders", suspenders)
-        if type is None:
-            type = 'private_service'
-        if type is not None:
-            pulumi.set(__self__, "type", type)
-        if updated_at is not None:
-            pulumi.set(__self__, "updated_at", updated_at)
+                 cursor: str,
+                 env_var: 'outputs.EnvVar'):
+        pulumi.set(__self__, "cursor", cursor)
+        pulumi.set(__self__, "env_var", env_var)
 
     @property
     @pulumi.getter
-    def name(self) -> str:
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter(name="ownerId")
-    def owner_id(self) -> str:
-        """
-        The id of the owner (user/team).
-        """
-        return pulumi.get(self, "owner_id")
-
-    @property
-    @pulumi.getter
-    def repo(self) -> str:
-        """
-        Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-        """
-        return pulumi.get(self, "repo")
-
-    @property
-    @pulumi.getter(name="autoDeploy")
-    def auto_deploy(self) -> Optional['ServiceAutoDeploy']:
-        """
-        Whether to auto deploy the service or not upon git push.
-        """
-        return pulumi.get(self, "auto_deploy")
-
-    @property
-    @pulumi.getter
-    def branch(self) -> Optional[str]:
-        """
-        If left empty, this will fall back to the default branch of the repository.
-        """
-        return pulumi.get(self, "branch")
-
-    @property
-    @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[str]:
-        return pulumi.get(self, "created_at")
-
-    @property
-    @pulumi.getter(name="envVars")
-    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValue']]:
-        return pulumi.get(self, "env_vars")
-
-    @property
-    @pulumi.getter(name="notifyOnFail")
-    def notify_on_fail(self) -> Optional['ServiceNotifyOnFail']:
-        """
-        The notification setting for this service upon deployment failure.
-        """
-        return pulumi.get(self, "notify_on_fail")
-
-    @property
-    @pulumi.getter(name="secretFiles")
-    def secret_files(self) -> Optional[Sequence['outputs.SecretFile']]:
-        return pulumi.get(self, "secret_files")
-
-    @property
-    @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> Optional['outputs.PrivateServiceDetails']:
-        return pulumi.get(self, "service_details")
-
-    @property
-    @pulumi.getter
-    def slug(self) -> Optional[str]:
-        return pulumi.get(self, "slug")
-
-    @property
-    @pulumi.getter
-    def suspended(self) -> Optional['ServiceSuspended']:
-        return pulumi.get(self, "suspended")
-
-    @property
-    @pulumi.getter
-    def suspenders(self) -> Optional[Sequence[str]]:
-        return pulumi.get(self, "suspenders")
-
-    @property
-    @pulumi.getter
-    def type(self) -> Optional[str]:
-        return pulumi.get(self, "type")
-
-    @property
-    @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[str]:
-        return pulumi.get(self, "updated_at")
-
-
-@pulumi.output_type
-class GetStaticSite(dict):
-    """
-    A static website service
-    """
-    def __init__(__self__, *,
-                 name: str,
-                 owner_id: str,
-                 repo: str,
-                 auto_deploy: Optional['ServiceAutoDeploy'] = None,
-                 branch: Optional[str] = None,
-                 created_at: Optional[str] = None,
-                 env_vars: Optional[Sequence['outputs.EnvVarKeyValue']] = None,
-                 notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
-                 secret_files: Optional[Sequence['outputs.SecretFile']] = None,
-                 service_details: Optional['outputs.StaticSiteServiceDetails'] = None,
-                 slug: Optional[str] = None,
-                 suspended: Optional['ServiceSuspended'] = None,
-                 suspenders: Optional[Sequence[str]] = None,
-                 type: Optional[str] = None,
-                 updated_at: Optional[str] = None):
-        """
-        A static website service
-        :param str owner_id: The id of the owner (user/team).
-        :param str repo: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-        :param 'ServiceAutoDeploy' auto_deploy: Whether to auto deploy the service or not upon git push.
-        :param str branch: If left empty, this will fall back to the default branch of the repository.
-        :param 'ServiceNotifyOnFail' notify_on_fail: The notification setting for this service upon deployment failure.
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "owner_id", owner_id)
-        pulumi.set(__self__, "repo", repo)
-        if auto_deploy is None:
-            auto_deploy = 'no'
-        if auto_deploy is not None:
-            pulumi.set(__self__, "auto_deploy", auto_deploy)
-        if branch is not None:
-            pulumi.set(__self__, "branch", branch)
-        if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
-        if env_vars is not None:
-            pulumi.set(__self__, "env_vars", env_vars)
-        if notify_on_fail is not None:
-            pulumi.set(__self__, "notify_on_fail", notify_on_fail)
-        if secret_files is not None:
-            pulumi.set(__self__, "secret_files", secret_files)
-        if service_details is not None:
-            pulumi.set(__self__, "service_details", service_details)
-        if slug is not None:
-            pulumi.set(__self__, "slug", slug)
-        if suspended is not None:
-            pulumi.set(__self__, "suspended", suspended)
-        if suspenders is not None:
-            pulumi.set(__self__, "suspenders", suspenders)
-        if type is None:
-            type = 'static_site'
-        if type is not None:
-            pulumi.set(__self__, "type", type)
-        if updated_at is not None:
-            pulumi.set(__self__, "updated_at", updated_at)
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter(name="ownerId")
-    def owner_id(self) -> str:
-        """
-        The id of the owner (user/team).
-        """
-        return pulumi.get(self, "owner_id")
-
-    @property
-    @pulumi.getter
-    def repo(self) -> str:
-        """
-        Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-        """
-        return pulumi.get(self, "repo")
-
-    @property
-    @pulumi.getter(name="autoDeploy")
-    def auto_deploy(self) -> Optional['ServiceAutoDeploy']:
-        """
-        Whether to auto deploy the service or not upon git push.
-        """
-        return pulumi.get(self, "auto_deploy")
-
-    @property
-    @pulumi.getter
-    def branch(self) -> Optional[str]:
-        """
-        If left empty, this will fall back to the default branch of the repository.
-        """
-        return pulumi.get(self, "branch")
-
-    @property
-    @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[str]:
-        return pulumi.get(self, "created_at")
-
-    @property
-    @pulumi.getter(name="envVars")
-    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValue']]:
-        return pulumi.get(self, "env_vars")
-
-    @property
-    @pulumi.getter(name="notifyOnFail")
-    def notify_on_fail(self) -> Optional['ServiceNotifyOnFail']:
-        """
-        The notification setting for this service upon deployment failure.
-        """
-        return pulumi.get(self, "notify_on_fail")
-
-    @property
-    @pulumi.getter(name="secretFiles")
-    def secret_files(self) -> Optional[Sequence['outputs.SecretFile']]:
-        return pulumi.get(self, "secret_files")
-
-    @property
-    @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> Optional['outputs.StaticSiteServiceDetails']:
-        return pulumi.get(self, "service_details")
-
-    @property
-    @pulumi.getter
-    def slug(self) -> Optional[str]:
-        return pulumi.get(self, "slug")
-
-    @property
-    @pulumi.getter
-    def suspended(self) -> Optional['ServiceSuspended']:
-        return pulumi.get(self, "suspended")
-
-    @property
-    @pulumi.getter
-    def suspenders(self) -> Optional[Sequence[str]]:
-        return pulumi.get(self, "suspenders")
-
-    @property
-    @pulumi.getter
-    def type(self) -> Optional[str]:
-        return pulumi.get(self, "type")
-
-    @property
-    @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[str]:
-        return pulumi.get(self, "updated_at")
-
-
-@pulumi.output_type
-class GetWebService(dict):
-    """
-    A web service
-    """
-    def __init__(__self__, *,
-                 name: str,
-                 owner_id: str,
-                 repo: str,
-                 auto_deploy: Optional['ServiceAutoDeploy'] = None,
-                 branch: Optional[str] = None,
-                 created_at: Optional[str] = None,
-                 env_vars: Optional[Sequence['outputs.EnvVarKeyValue']] = None,
-                 notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
-                 secret_files: Optional[Sequence['outputs.SecretFile']] = None,
-                 service_details: Optional['outputs.WebServiceServiceDetails'] = None,
-                 slug: Optional[str] = None,
-                 suspended: Optional['ServiceSuspended'] = None,
-                 suspenders: Optional[Sequence[str]] = None,
-                 type: Optional[str] = None,
-                 updated_at: Optional[str] = None):
-        """
-        A web service
-        :param str owner_id: The id of the owner (user/team).
-        :param str repo: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-        :param 'ServiceAutoDeploy' auto_deploy: Whether to auto deploy the service or not upon git push.
-        :param str branch: If left empty, this will fall back to the default branch of the repository.
-        :param 'ServiceNotifyOnFail' notify_on_fail: The notification setting for this service upon deployment failure.
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "owner_id", owner_id)
-        pulumi.set(__self__, "repo", repo)
-        if auto_deploy is None:
-            auto_deploy = 'no'
-        if auto_deploy is not None:
-            pulumi.set(__self__, "auto_deploy", auto_deploy)
-        if branch is not None:
-            pulumi.set(__self__, "branch", branch)
-        if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
-        if env_vars is not None:
-            pulumi.set(__self__, "env_vars", env_vars)
-        if notify_on_fail is not None:
-            pulumi.set(__self__, "notify_on_fail", notify_on_fail)
-        if secret_files is not None:
-            pulumi.set(__self__, "secret_files", secret_files)
-        if service_details is not None:
-            pulumi.set(__self__, "service_details", service_details)
-        if slug is not None:
-            pulumi.set(__self__, "slug", slug)
-        if suspended is not None:
-            pulumi.set(__self__, "suspended", suspended)
-        if suspenders is not None:
-            pulumi.set(__self__, "suspenders", suspenders)
-        if type is None:
-            type = 'web_service'
-        if type is not None:
-            pulumi.set(__self__, "type", type)
-        if updated_at is not None:
-            pulumi.set(__self__, "updated_at", updated_at)
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter(name="ownerId")
-    def owner_id(self) -> str:
-        """
-        The id of the owner (user/team).
-        """
-        return pulumi.get(self, "owner_id")
-
-    @property
-    @pulumi.getter
-    def repo(self) -> str:
-        """
-        Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-        """
-        return pulumi.get(self, "repo")
-
-    @property
-    @pulumi.getter(name="autoDeploy")
-    def auto_deploy(self) -> Optional['ServiceAutoDeploy']:
-        """
-        Whether to auto deploy the service or not upon git push.
-        """
-        return pulumi.get(self, "auto_deploy")
-
-    @property
-    @pulumi.getter
-    def branch(self) -> Optional[str]:
-        """
-        If left empty, this will fall back to the default branch of the repository.
-        """
-        return pulumi.get(self, "branch")
-
-    @property
-    @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[str]:
-        return pulumi.get(self, "created_at")
-
-    @property
-    @pulumi.getter(name="envVars")
-    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValue']]:
-        return pulumi.get(self, "env_vars")
-
-    @property
-    @pulumi.getter(name="notifyOnFail")
-    def notify_on_fail(self) -> Optional['ServiceNotifyOnFail']:
-        """
-        The notification setting for this service upon deployment failure.
-        """
-        return pulumi.get(self, "notify_on_fail")
-
-    @property
-    @pulumi.getter(name="secretFiles")
-    def secret_files(self) -> Optional[Sequence['outputs.SecretFile']]:
-        return pulumi.get(self, "secret_files")
-
-    @property
-    @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> Optional['outputs.WebServiceServiceDetails']:
-        return pulumi.get(self, "service_details")
-
-    @property
-    @pulumi.getter
-    def slug(self) -> Optional[str]:
-        return pulumi.get(self, "slug")
-
-    @property
-    @pulumi.getter
-    def suspended(self) -> Optional['ServiceSuspended']:
-        return pulumi.get(self, "suspended")
-
-    @property
-    @pulumi.getter
-    def suspenders(self) -> Optional[Sequence[str]]:
-        return pulumi.get(self, "suspenders")
-
-    @property
-    @pulumi.getter
-    def type(self) -> Optional[str]:
-        return pulumi.get(self, "type")
-
-    @property
-    @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[str]:
-        return pulumi.get(self, "updated_at")
-
-
-@pulumi.output_type
-class Job(dict):
-    def __init__(__self__, *,
-                 plan_id: str,
-                 start_command: str,
-                 created_at: Optional[str] = None,
-                 finished_at: Optional[str] = None,
-                 started_at: Optional[str] = None,
-                 status: Optional[str] = None):
-        pulumi.set(__self__, "plan_id", plan_id)
-        pulumi.set(__self__, "start_command", start_command)
-        if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
-        if finished_at is not None:
-            pulumi.set(__self__, "finished_at", finished_at)
-        if started_at is not None:
-            pulumi.set(__self__, "started_at", started_at)
-        if status is not None:
-            pulumi.set(__self__, "status", status)
-
-    @property
-    @pulumi.getter(name="planId")
-    def plan_id(self) -> str:
-        return pulumi.get(self, "plan_id")
-
-    @property
-    @pulumi.getter(name="startCommand")
-    def start_command(self) -> str:
-        return pulumi.get(self, "start_command")
-
-    @property
-    @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[str]:
-        return pulumi.get(self, "created_at")
-
-    @property
-    @pulumi.getter(name="finishedAt")
-    def finished_at(self) -> Optional[str]:
-        return pulumi.get(self, "finished_at")
-
-    @property
-    @pulumi.getter(name="startedAt")
-    def started_at(self) -> Optional[str]:
-        return pulumi.get(self, "started_at")
-
-    @property
-    @pulumi.getter
-    def status(self) -> Optional[str]:
-        return pulumi.get(self, "status")
-
-
-@pulumi.output_type
-class ListCustomDomainsResponse(dict):
-    def __init__(__self__, *,
-                 cursor: Optional[str] = None,
-                 custom_domain: Optional['outputs.CustomDomain'] = None):
-        if cursor is not None:
-            pulumi.set(__self__, "cursor", cursor)
-        if custom_domain is not None:
-            pulumi.set(__self__, "custom_domain", custom_domain)
-
-    @property
-    @pulumi.getter
-    def cursor(self) -> Optional[str]:
-        return pulumi.get(self, "cursor")
-
-    @property
-    @pulumi.getter(name="customDomain")
-    def custom_domain(self) -> Optional['outputs.CustomDomain']:
-        return pulumi.get(self, "custom_domain")
-
-
-@pulumi.output_type
-class ListDeploysResponse(dict):
-    def __init__(__self__, *,
-                 cursor: Optional[str] = None,
-                 custom_domain: Optional['outputs.Deploy'] = None):
-        if cursor is not None:
-            pulumi.set(__self__, "cursor", cursor)
-        if custom_domain is not None:
-            pulumi.set(__self__, "custom_domain", custom_domain)
-
-    @property
-    @pulumi.getter
-    def cursor(self) -> Optional[str]:
-        return pulumi.get(self, "cursor")
-
-    @property
-    @pulumi.getter(name="customDomain")
-    def custom_domain(self) -> Optional['outputs.Deploy']:
-        return pulumi.get(self, "custom_domain")
-
-
-@pulumi.output_type
-class ListEnvVarsResponse(dict):
-    def __init__(__self__, *,
-                 cursor: Optional[str] = None,
-                 env_var: Optional['outputs.EnvVarKeyValue'] = None):
-        if cursor is not None:
-            pulumi.set(__self__, "cursor", cursor)
-        if env_var is not None:
-            pulumi.set(__self__, "env_var", env_var)
-
-    @property
-    @pulumi.getter
-    def cursor(self) -> Optional[str]:
+    def cursor(self) -> str:
         return pulumi.get(self, "cursor")
 
     @property
     @pulumi.getter(name="envVar")
-    def env_var(self) -> Optional['outputs.EnvVarKeyValue']:
+    def env_var(self) -> 'outputs.EnvVar':
         return pulumi.get(self, "env_var")
 
 
 @pulumi.output_type
-class ListJobsResponse(dict):
-    def __init__(__self__, *,
-                 cursor: Optional[str] = None,
-                 job: Optional['outputs.Job'] = None):
-        if cursor is not None:
-            pulumi.set(__self__, "cursor", cursor)
-        if job is not None:
-            pulumi.set(__self__, "job", job)
-
-    @property
-    @pulumi.getter
-    def cursor(self) -> Optional[str]:
-        return pulumi.get(self, "cursor")
-
-    @property
-    @pulumi.getter
-    def job(self) -> Optional['outputs.Job']:
-        return pulumi.get(self, "job")
-
-
-@pulumi.output_type
-class ListServiceHeadersResponse(dict):
-    def __init__(__self__, *,
-                 cursor: Optional[str] = None,
-                 header: Optional['outputs.ServiceHeader'] = None):
-        """
-        :param 'ServiceHeader' header: A service header object
-        """
-        if cursor is not None:
-            pulumi.set(__self__, "cursor", cursor)
-        if header is not None:
-            pulumi.set(__self__, "header", header)
-
-    @property
-    @pulumi.getter
-    def cursor(self) -> Optional[str]:
-        return pulumi.get(self, "cursor")
-
-    @property
-    @pulumi.getter
-    def header(self) -> Optional['outputs.ServiceHeader']:
-        """
-        A service header object
-        """
-        return pulumi.get(self, "header")
-
-
-@pulumi.output_type
-class ListServiceResponse(dict):
-    def __init__(__self__, *,
-                 cursor: Optional[str] = None,
-                 service: Optional[Any] = None):
-        if cursor is not None:
-            pulumi.set(__self__, "cursor", cursor)
-        if service is not None:
-            pulumi.set(__self__, "service", service)
-
-    @property
-    @pulumi.getter
-    def cursor(self) -> Optional[str]:
-        return pulumi.get(self, "cursor")
-
-    @property
-    @pulumi.getter
-    def service(self) -> Optional[Any]:
-        return pulumi.get(self, "service")
-
-
-@pulumi.output_type
-class ListStaticSiteRoutesResponse(dict):
-    def __init__(__self__, *,
-                 cursor: Optional[str] = None,
-                 route: Optional['outputs.StaticSiteRoute'] = None):
-        """
-        :param 'StaticSiteRoute' route: A route object for a static site
-        """
-        if cursor is not None:
-            pulumi.set(__self__, "cursor", cursor)
-        if route is not None:
-            pulumi.set(__self__, "route", route)
-
-    @property
-    @pulumi.getter
-    def cursor(self) -> Optional[str]:
-        return pulumi.get(self, "cursor")
-
-    @property
-    @pulumi.getter
-    def route(self) -> Optional['outputs.StaticSiteRoute']:
-        """
-        A route object for a static site
-        """
-        return pulumi.get(self, "route")
-
-
-@pulumi.output_type
-class NativeEnvironmentDetails(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "buildCommand":
-            suggest = "build_command"
-        elif key == "startCommand":
-            suggest = "start_command"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in NativeEnvironmentDetails. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        NativeEnvironmentDetails.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        NativeEnvironmentDetails.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 build_command: str,
-                 start_command: str):
-        pulumi.set(__self__, "build_command", build_command)
-        pulumi.set(__self__, "start_command", start_command)
-
-    @property
-    @pulumi.getter(name="buildCommand")
-    def build_command(self) -> str:
-        return pulumi.get(self, "build_command")
-
-    @property
-    @pulumi.getter(name="startCommand")
-    def start_command(self) -> str:
-        return pulumi.get(self, "start_command")
-
-
-@pulumi.output_type
-class OpenPorts(dict):
-    def __init__(__self__, *,
-                 port: Optional[float] = None,
-                 protocol: Optional['OpenPortsProtocol'] = None):
-        if port is not None:
-            pulumi.set(__self__, "port", port)
-        if protocol is not None:
-            pulumi.set(__self__, "protocol", protocol)
-
-    @property
-    @pulumi.getter
-    def port(self) -> Optional[float]:
-        return pulumi.get(self, "port")
-
-    @property
-    @pulumi.getter
-    def protocol(self) -> Optional['OpenPortsProtocol']:
-        return pulumi.get(self, "protocol")
-
-
-@pulumi.output_type
-class PrivateService(dict):
-    """
-    A private service
-    """
-    def __init__(__self__, *,
-                 name: str,
-                 owner_id: str,
-                 repo: str,
-                 auto_deploy: Optional['ServiceAutoDeploy'] = None,
-                 branch: Optional[str] = None,
-                 created_at: Optional[str] = None,
-                 env_vars: Optional[Sequence['outputs.EnvVarKeyValue']] = None,
-                 notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
-                 secret_files: Optional[Sequence['outputs.SecretFile']] = None,
-                 service_details: Optional['outputs.PrivateServiceDetails'] = None,
-                 slug: Optional[str] = None,
-                 suspended: Optional['ServiceSuspended'] = None,
-                 suspenders: Optional[Sequence[str]] = None,
-                 type: Optional[str] = None,
-                 updated_at: Optional[str] = None):
-        """
-        A private service
-        :param str owner_id: The id of the owner (user/team).
-        :param str repo: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-        :param 'ServiceAutoDeploy' auto_deploy: Whether to auto deploy the service or not upon git push.
-        :param str branch: If left empty, this will fall back to the default branch of the repository.
-        :param 'ServiceNotifyOnFail' notify_on_fail: The notification setting for this service upon deployment failure.
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "owner_id", owner_id)
-        pulumi.set(__self__, "repo", repo)
-        if auto_deploy is None:
-            auto_deploy = 'no'
-        if auto_deploy is not None:
-            pulumi.set(__self__, "auto_deploy", auto_deploy)
-        if branch is not None:
-            pulumi.set(__self__, "branch", branch)
-        if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
-        if env_vars is not None:
-            pulumi.set(__self__, "env_vars", env_vars)
-        if notify_on_fail is not None:
-            pulumi.set(__self__, "notify_on_fail", notify_on_fail)
-        if secret_files is not None:
-            pulumi.set(__self__, "secret_files", secret_files)
-        if service_details is not None:
-            pulumi.set(__self__, "service_details", service_details)
-        if slug is not None:
-            pulumi.set(__self__, "slug", slug)
-        if suspended is not None:
-            pulumi.set(__self__, "suspended", suspended)
-        if suspenders is not None:
-            pulumi.set(__self__, "suspenders", suspenders)
-        if type is None:
-            type = 'private_service'
-        if type is not None:
-            pulumi.set(__self__, "type", type)
-        if updated_at is not None:
-            pulumi.set(__self__, "updated_at", updated_at)
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter(name="ownerId")
-    def owner_id(self) -> str:
-        """
-        The id of the owner (user/team).
-        """
-        return pulumi.get(self, "owner_id")
-
-    @property
-    @pulumi.getter
-    def repo(self) -> str:
-        """
-        Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-        """
-        return pulumi.get(self, "repo")
-
-    @property
-    @pulumi.getter(name="autoDeploy")
-    def auto_deploy(self) -> Optional['ServiceAutoDeploy']:
-        """
-        Whether to auto deploy the service or not upon git push.
-        """
-        return pulumi.get(self, "auto_deploy")
-
-    @property
-    @pulumi.getter
-    def branch(self) -> Optional[str]:
-        """
-        If left empty, this will fall back to the default branch of the repository.
-        """
-        return pulumi.get(self, "branch")
-
-    @property
-    @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[str]:
-        return pulumi.get(self, "created_at")
-
-    @property
-    @pulumi.getter(name="envVars")
-    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValue']]:
-        return pulumi.get(self, "env_vars")
-
-    @property
-    @pulumi.getter(name="notifyOnFail")
-    def notify_on_fail(self) -> Optional['ServiceNotifyOnFail']:
-        """
-        The notification setting for this service upon deployment failure.
-        """
-        return pulumi.get(self, "notify_on_fail")
-
-    @property
-    @pulumi.getter(name="secretFiles")
-    def secret_files(self) -> Optional[Sequence['outputs.SecretFile']]:
-        return pulumi.get(self, "secret_files")
-
-    @property
-    @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> Optional['outputs.PrivateServiceDetails']:
-        return pulumi.get(self, "service_details")
-
-    @property
-    @pulumi.getter
-    def slug(self) -> Optional[str]:
-        return pulumi.get(self, "slug")
-
-    @property
-    @pulumi.getter
-    def suspended(self) -> Optional['ServiceSuspended']:
-        return pulumi.get(self, "suspended")
-
-    @property
-    @pulumi.getter
-    def suspenders(self) -> Optional[Sequence[str]]:
-        return pulumi.get(self, "suspenders")
-
-    @property
-    @pulumi.getter
-    def type(self) -> Optional[str]:
-        return pulumi.get(self, "type")
-
-    @property
-    @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[str]:
-        return pulumi.get(self, "updated_at")
-
-
-@pulumi.output_type
-class PrivateServiceDetails(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "envSpecificDetails":
-            suggest = "env_specific_details"
-        elif key == "numInstances":
-            suggest = "num_instances"
-        elif key == "openPorts":
-            suggest = "open_ports"
-        elif key == "parentServer":
-            suggest = "parent_server"
-        elif key == "pullRequestPreviewsEnabled":
-            suggest = "pull_request_previews_enabled"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in PrivateServiceDetails. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        PrivateServiceDetails.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        PrivateServiceDetails.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 env: 'PrivateServiceDetailsEnv',
-                 disk: Optional['outputs.Disk'] = None,
-                 env_specific_details: Optional[Any] = None,
-                 num_instances: Optional[float] = None,
-                 open_ports: Optional[Sequence['outputs.OpenPorts']] = None,
-                 parent_server: Optional['outputs.PrivateServiceDetailsParentServerProperties'] = None,
-                 plan: Optional['PrivateServiceDetailsPlan'] = None,
-                 pull_request_previews_enabled: Optional['PrivateServiceDetailsPullRequestPreviewsEnabled'] = None,
-                 region: Optional['PrivateServiceDetailsRegion'] = None,
-                 url: Optional[str] = None):
-        pulumi.set(__self__, "env", env)
-        if disk is not None:
-            pulumi.set(__self__, "disk", disk)
-        if env_specific_details is not None:
-            pulumi.set(__self__, "env_specific_details", env_specific_details)
-        if num_instances is None:
-            num_instances = 1
-        if num_instances is not None:
-            pulumi.set(__self__, "num_instances", num_instances)
-        if open_ports is not None:
-            pulumi.set(__self__, "open_ports", open_ports)
-        if parent_server is not None:
-            pulumi.set(__self__, "parent_server", parent_server)
-        if plan is None:
-            plan = 'starter'
-        if plan is not None:
-            pulumi.set(__self__, "plan", plan)
-        if pull_request_previews_enabled is None:
-            pull_request_previews_enabled = 'no'
-        if pull_request_previews_enabled is not None:
-            pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
-        if region is None:
-            region = 'oregon'
-        if region is not None:
-            pulumi.set(__self__, "region", region)
-        if url is not None:
-            pulumi.set(__self__, "url", url)
-
-    @property
-    @pulumi.getter
-    def env(self) -> 'PrivateServiceDetailsEnv':
-        return pulumi.get(self, "env")
-
-    @property
-    @pulumi.getter
-    def disk(self) -> Optional['outputs.Disk']:
-        return pulumi.get(self, "disk")
-
-    @property
-    @pulumi.getter(name="envSpecificDetails")
-    def env_specific_details(self) -> Optional[Any]:
-        return pulumi.get(self, "env_specific_details")
-
-    @property
-    @pulumi.getter(name="numInstances")
-    def num_instances(self) -> Optional[float]:
-        return pulumi.get(self, "num_instances")
-
-    @property
-    @pulumi.getter(name="openPorts")
-    def open_ports(self) -> Optional[Sequence['outputs.OpenPorts']]:
-        return pulumi.get(self, "open_ports")
-
-    @property
-    @pulumi.getter(name="parentServer")
-    def parent_server(self) -> Optional['outputs.PrivateServiceDetailsParentServerProperties']:
-        return pulumi.get(self, "parent_server")
-
-    @property
-    @pulumi.getter
-    def plan(self) -> Optional['PrivateServiceDetailsPlan']:
-        return pulumi.get(self, "plan")
-
-    @property
-    @pulumi.getter(name="pullRequestPreviewsEnabled")
-    def pull_request_previews_enabled(self) -> Optional['PrivateServiceDetailsPullRequestPreviewsEnabled']:
-        return pulumi.get(self, "pull_request_previews_enabled")
-
-    @property
-    @pulumi.getter
-    def region(self) -> Optional['PrivateServiceDetailsRegion']:
-        return pulumi.get(self, "region")
-
-    @property
-    @pulumi.getter
-    def url(self) -> Optional[str]:
-        return pulumi.get(self, "url")
-
-
-@pulumi.output_type
-class PrivateServiceDetailsParentServerProperties(dict):
-    def __init__(__self__, *,
-                 id: Optional[str] = None,
-                 name: Optional[str] = None):
-        if id is not None:
-            pulumi.set(__self__, "id", id)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[str]:
-        return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[str]:
-        return pulumi.get(self, "name")
-
-
-@pulumi.output_type
-class SecretFile(dict):
-    def __init__(__self__, *,
-                 contents: str,
-                 name: str):
-        pulumi.set(__self__, "contents", contents)
-        pulumi.set(__self__, "name", name)
-
-    @property
-    @pulumi.getter
-    def contents(self) -> str:
-        return pulumi.get(self, "contents")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        return pulumi.get(self, "name")
-
-
-@pulumi.output_type
-class ServerProperties(dict):
-    def __init__(__self__, *,
-                 id: Optional[str] = None,
-                 name: Optional[str] = None):
-        if id is not None:
-            pulumi.set(__self__, "id", id)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[str]:
-        return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[str]:
-        return pulumi.get(self, "name")
-
-
-@pulumi.output_type
-class ServiceHeader(dict):
-    """
-    A service header object
-    """
+class Header(dict):
     def __init__(__self__, *,
                  name: str,
                  path: str,
                  value: str):
-        """
-        A service header object
-        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "path", path)
         pulumi.set(__self__, "value", value)
@@ -2289,170 +855,559 @@ class ServiceHeader(dict):
 
 
 @pulumi.output_type
-class StaticSite(dict):
+class Image(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "imagePath":
+            suggest = "image_path"
+        elif key == "ownerId":
+            suggest = "owner_id"
+        elif key == "registryCredentialId":
+            suggest = "registry_credential_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Image. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Image.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Image.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 image_path: str,
+                 owner_id: str,
+                 registry_credential_id: Optional[str] = None):
+        """
+        :param str image_path: Path to the image used for this server (e.g docker.io/library/nginx:latest).
+        :param str owner_id: The ID of the owner for this image. This should match the owner of the service as well as the owner of any specified registry credential.
+        :param str registry_credential_id: Optional reference to the registry credential passed to the image repository to retrieve this image.
+        """
+        pulumi.set(__self__, "image_path", image_path)
+        pulumi.set(__self__, "owner_id", owner_id)
+        if registry_credential_id is not None:
+            pulumi.set(__self__, "registry_credential_id", registry_credential_id)
+
+    @property
+    @pulumi.getter(name="imagePath")
+    def image_path(self) -> str:
+        """
+        Path to the image used for this server (e.g docker.io/library/nginx:latest).
+        """
+        return pulumi.get(self, "image_path")
+
+    @property
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> str:
+        """
+        The ID of the owner for this image. This should match the owner of the service as well as the owner of any specified registry credential.
+        """
+        return pulumi.get(self, "owner_id")
+
+    @property
+    @pulumi.getter(name="registryCredentialId")
+    def registry_credential_id(self) -> Optional[str]:
+        """
+        Optional reference to the registry credential passed to the image repository to retrieve this image.
+        """
+        return pulumi.get(self, "registry_credential_id")
+
+
+@pulumi.output_type
+class ImageProperties(dict):
     """
-    A static website service
+    Image information used when creating the deploy. Not present for Git-backed deploys
     """
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "registryCredential":
+            suggest = "registry_credential"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ImageProperties. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ImageProperties.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ImageProperties.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 ref: Optional[str] = None,
+                 registry_credential: Optional[str] = None,
+                 sha: Optional[str] = None):
+        """
+        Image information used when creating the deploy. Not present for Git-backed deploys
+        :param str ref: Image reference used when creating the deploy
+        :param str registry_credential: Name of credential used to pull the image, if provided
+        :param str sha: SHA that the image reference was resolved to when creating the deploy
+        """
+        if ref is not None:
+            pulumi.set(__self__, "ref", ref)
+        if registry_credential is not None:
+            pulumi.set(__self__, "registry_credential", registry_credential)
+        if sha is not None:
+            pulumi.set(__self__, "sha", sha)
+
+    @property
+    @pulumi.getter
+    def ref(self) -> Optional[str]:
+        """
+        Image reference used when creating the deploy
+        """
+        return pulumi.get(self, "ref")
+
+    @property
+    @pulumi.getter(name="registryCredential")
+    def registry_credential(self) -> Optional[str]:
+        """
+        Name of credential used to pull the image, if provided
+        """
+        return pulumi.get(self, "registry_credential")
+
+    @property
+    @pulumi.getter
+    def sha(self) -> Optional[str]:
+        """
+        SHA that the image reference was resolved to when creating the deploy
+        """
+        return pulumi.get(self, "sha")
+
+
+@pulumi.output_type
+class Job(dict):
+    def __init__(__self__, *,
+                 created_at: str,
+                 plan_id: str,
+                 service_id: str,
+                 start_command: str,
+                 finished_at: Optional[str] = None,
+                 started_at: Optional[str] = None,
+                 status: Optional[str] = None):
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "plan_id", plan_id)
+        pulumi.set(__self__, "service_id", service_id)
+        pulumi.set(__self__, "start_command", start_command)
+        if finished_at is not None:
+            pulumi.set(__self__, "finished_at", finished_at)
+        if started_at is not None:
+            pulumi.set(__self__, "started_at", started_at)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="planId")
+    def plan_id(self) -> str:
+        return pulumi.get(self, "plan_id")
+
+    @property
+    @pulumi.getter(name="serviceId")
+    def service_id(self) -> str:
+        return pulumi.get(self, "service_id")
+
+    @property
+    @pulumi.getter(name="startCommand")
+    def start_command(self) -> str:
+        return pulumi.get(self, "start_command")
+
+    @property
+    @pulumi.getter(name="finishedAt")
+    def finished_at(self) -> Optional[str]:
+        return pulumi.get(self, "finished_at")
+
+    @property
+    @pulumi.getter(name="startedAt")
+    def started_at(self) -> Optional[str]:
+        return pulumi.get(self, "started_at")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[str]:
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class ListCustomDomainsItemProperties(dict):
+    def __init__(__self__, *,
+                 cursor: Optional[str] = None,
+                 custom_domain: Optional['outputs.CustomDomain'] = None):
+        if cursor is not None:
+            pulumi.set(__self__, "cursor", cursor)
+        if custom_domain is not None:
+            pulumi.set(__self__, "custom_domain", custom_domain)
+
+    @property
+    @pulumi.getter
+    def cursor(self) -> Optional[str]:
+        return pulumi.get(self, "cursor")
+
+    @property
+    @pulumi.getter(name="customDomain")
+    def custom_domain(self) -> Optional['outputs.CustomDomain']:
+        return pulumi.get(self, "custom_domain")
+
+
+@pulumi.output_type
+class ListDeploysItemProperties(dict):
+    def __init__(__self__, *,
+                 cursor: Optional[str] = None,
+                 deploy: Optional['outputs.Deploy'] = None):
+        if cursor is not None:
+            pulumi.set(__self__, "cursor", cursor)
+        if deploy is not None:
+            pulumi.set(__self__, "deploy", deploy)
+
+    @property
+    @pulumi.getter
+    def cursor(self) -> Optional[str]:
+        return pulumi.get(self, "cursor")
+
+    @property
+    @pulumi.getter
+    def deploy(self) -> Optional['outputs.Deploy']:
+        return pulumi.get(self, "deploy")
+
+
+@pulumi.output_type
+class ListJobItemProperties(dict):
+    def __init__(__self__, *,
+                 cursor: Optional[str] = None,
+                 job: Optional['outputs.Job'] = None):
+        if cursor is not None:
+            pulumi.set(__self__, "cursor", cursor)
+        if job is not None:
+            pulumi.set(__self__, "job", job)
+
+    @property
+    @pulumi.getter
+    def cursor(self) -> Optional[str]:
+        return pulumi.get(self, "cursor")
+
+    @property
+    @pulumi.getter
+    def job(self) -> Optional['outputs.Job']:
+        return pulumi.get(self, "job")
+
+
+@pulumi.output_type
+class ListRetrieveHeadersItemProperties(dict):
+    def __init__(__self__, *,
+                 cursor: Optional[str] = None,
+                 headers: Optional['outputs.Header'] = None):
+        if cursor is not None:
+            pulumi.set(__self__, "cursor", cursor)
+        if headers is not None:
+            pulumi.set(__self__, "headers", headers)
+
+    @property
+    @pulumi.getter
+    def cursor(self) -> Optional[str]:
+        return pulumi.get(self, "cursor")
+
+    @property
+    @pulumi.getter
+    def headers(self) -> Optional['outputs.Header']:
+        return pulumi.get(self, "headers")
+
+
+@pulumi.output_type
+class ListRetrieveRoutesItemProperties(dict):
+    def __init__(__self__, *,
+                 cursor: Optional[str] = None,
+                 routes: Optional['outputs.Route'] = None):
+        if cursor is not None:
+            pulumi.set(__self__, "cursor", cursor)
+        if routes is not None:
+            pulumi.set(__self__, "routes", routes)
+
+    @property
+    @pulumi.getter
+    def cursor(self) -> Optional[str]:
+        return pulumi.get(self, "cursor")
+
+    @property
+    @pulumi.getter
+    def routes(self) -> Optional['outputs.Route']:
+        return pulumi.get(self, "routes")
+
+
+@pulumi.output_type
+class ListServicesItemProperties(dict):
+    def __init__(__self__, *,
+                 cursor: Optional[str] = None,
+                 service: Optional['outputs.Service'] = None):
+        if cursor is not None:
+            pulumi.set(__self__, "cursor", cursor)
+        if service is not None:
+            pulumi.set(__self__, "service", service)
+
+    @property
+    @pulumi.getter
+    def cursor(self) -> Optional[str]:
+        return pulumi.get(self, "cursor")
+
+    @property
+    @pulumi.getter
+    def service(self) -> Optional['outputs.Service']:
+        return pulumi.get(self, "service")
+
+
+@pulumi.output_type
+class NativeEnvironmentDetails(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "buildCommand":
+            suggest = "build_command"
+        elif key == "startCommand":
+            suggest = "start_command"
+        elif key == "preDeployCommand":
+            suggest = "pre_deploy_command"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NativeEnvironmentDetails. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NativeEnvironmentDetails.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NativeEnvironmentDetails.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 build_command: str,
+                 start_command: str,
+                 pre_deploy_command: Optional[str] = None):
+        pulumi.set(__self__, "build_command", build_command)
+        pulumi.set(__self__, "start_command", start_command)
+        if pre_deploy_command is not None:
+            pulumi.set(__self__, "pre_deploy_command", pre_deploy_command)
+
+    @property
+    @pulumi.getter(name="buildCommand")
+    def build_command(self) -> str:
+        return pulumi.get(self, "build_command")
+
+    @property
+    @pulumi.getter(name="startCommand")
+    def start_command(self) -> str:
+        return pulumi.get(self, "start_command")
+
+    @property
+    @pulumi.getter(name="preDeployCommand")
+    def pre_deploy_command(self) -> Optional[str]:
+        return pulumi.get(self, "pre_deploy_command")
+
+
+@pulumi.output_type
+class PrivateServiceDetails(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "buildPlan":
+            suggest = "build_plan"
+        elif key == "envSpecificDetails":
+            suggest = "env_specific_details"
+        elif key == "numInstances":
+            suggest = "num_instances"
+        elif key == "openPorts":
+            suggest = "open_ports"
+        elif key == "pullRequestPreviewsEnabled":
+            suggest = "pull_request_previews_enabled"
+        elif key == "parentServer":
+            suggest = "parent_server"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PrivateServiceDetails. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PrivateServiceDetails.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PrivateServiceDetails.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 build_plan: str,
+                 env: 'PrivateServiceDetailsEnv',
+                 env_specific_details: Any,
+                 num_instances: int,
+                 open_ports: Sequence['outputs.ServerPort'],
+                 plan: 'PrivateServiceDetailsPlan',
+                 pull_request_previews_enabled: 'PrivateServiceDetailsPullRequestPreviewsEnabled',
+                 region: 'PrivateServiceDetailsRegion',
+                 url: str,
+                 autoscaling: Optional['outputs.AutoscalingConfig'] = None,
+                 disk: Optional['outputs.Disk'] = None,
+                 parent_server: Optional['outputs.Resource'] = None):
+        """
+        :param 'PrivateServiceDetailsEnv' env: Environment (runtime)
+        :param int num_instances: For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
+        :param 'PrivateServiceDetailsPlan' plan: The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+        """
+        pulumi.set(__self__, "build_plan", build_plan)
+        pulumi.set(__self__, "env", env)
+        pulumi.set(__self__, "env_specific_details", env_specific_details)
+        pulumi.set(__self__, "num_instances", num_instances)
+        pulumi.set(__self__, "open_ports", open_ports)
+        pulumi.set(__self__, "plan", plan)
+        pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "url", url)
+        if autoscaling is not None:
+            pulumi.set(__self__, "autoscaling", autoscaling)
+        if disk is not None:
+            pulumi.set(__self__, "disk", disk)
+        if parent_server is not None:
+            pulumi.set(__self__, "parent_server", parent_server)
+
+    @property
+    @pulumi.getter(name="buildPlan")
+    def build_plan(self) -> str:
+        return pulumi.get(self, "build_plan")
+
+    @property
+    @pulumi.getter
+    def env(self) -> 'PrivateServiceDetailsEnv':
+        """
+        Environment (runtime)
+        """
+        return pulumi.get(self, "env")
+
+    @property
+    @pulumi.getter(name="envSpecificDetails")
+    def env_specific_details(self) -> Any:
+        return pulumi.get(self, "env_specific_details")
+
+    @property
+    @pulumi.getter(name="numInstances")
+    def num_instances(self) -> int:
+        """
+        For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
+        """
+        return pulumi.get(self, "num_instances")
+
+    @property
+    @pulumi.getter(name="openPorts")
+    def open_ports(self) -> Sequence['outputs.ServerPort']:
+        return pulumi.get(self, "open_ports")
+
+    @property
+    @pulumi.getter
+    def plan(self) -> 'PrivateServiceDetailsPlan':
+        """
+        The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+        """
+        return pulumi.get(self, "plan")
+
+    @property
+    @pulumi.getter(name="pullRequestPreviewsEnabled")
+    def pull_request_previews_enabled(self) -> 'PrivateServiceDetailsPullRequestPreviewsEnabled':
+        return pulumi.get(self, "pull_request_previews_enabled")
+
+    @property
+    @pulumi.getter
+    def region(self) -> 'PrivateServiceDetailsRegion':
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter
+    def url(self) -> str:
+        return pulumi.get(self, "url")
+
+    @property
+    @pulumi.getter
+    def autoscaling(self) -> Optional['outputs.AutoscalingConfig']:
+        return pulumi.get(self, "autoscaling")
+
+    @property
+    @pulumi.getter
+    def disk(self) -> Optional['outputs.Disk']:
+        return pulumi.get(self, "disk")
+
+    @property
+    @pulumi.getter(name="parentServer")
+    def parent_server(self) -> Optional['outputs.Resource']:
+        return pulumi.get(self, "parent_server")
+
+
+@pulumi.output_type
+class RegistryCredential(dict):
     def __init__(__self__, *,
                  name: str,
-                 owner_id: str,
-                 repo: str,
-                 auto_deploy: Optional['ServiceAutoDeploy'] = None,
-                 branch: Optional[str] = None,
-                 created_at: Optional[str] = None,
-                 env_vars: Optional[Sequence['outputs.EnvVarKeyValue']] = None,
-                 notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
-                 secret_files: Optional[Sequence['outputs.SecretFile']] = None,
-                 service_details: Optional['outputs.StaticSiteServiceDetails'] = None,
-                 slug: Optional[str] = None,
-                 suspended: Optional['ServiceSuspended'] = None,
-                 suspenders: Optional[Sequence[str]] = None,
-                 type: Optional[str] = None,
-                 updated_at: Optional[str] = None):
+                 registry: 'RegistryCredentialRegistry',
+                 username: str):
         """
-        A static website service
-        :param str owner_id: The id of the owner (user/team).
-        :param str repo: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-        :param 'ServiceAutoDeploy' auto_deploy: Whether to auto deploy the service or not upon git push.
-        :param str branch: If left empty, this will fall back to the default branch of the repository.
-        :param 'ServiceNotifyOnFail' notify_on_fail: The notification setting for this service upon deployment failure.
+        :param str name: Descriptive name for this credential
+        :param 'RegistryCredentialRegistry' registry: The registry to use this credential with
+        :param str username: The username associated with the credential
         """
         pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "owner_id", owner_id)
-        pulumi.set(__self__, "repo", repo)
-        if auto_deploy is None:
-            auto_deploy = 'no'
-        if auto_deploy is not None:
-            pulumi.set(__self__, "auto_deploy", auto_deploy)
-        if branch is not None:
-            pulumi.set(__self__, "branch", branch)
-        if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
-        if env_vars is not None:
-            pulumi.set(__self__, "env_vars", env_vars)
-        if notify_on_fail is not None:
-            pulumi.set(__self__, "notify_on_fail", notify_on_fail)
-        if secret_files is not None:
-            pulumi.set(__self__, "secret_files", secret_files)
-        if service_details is not None:
-            pulumi.set(__self__, "service_details", service_details)
-        if slug is not None:
-            pulumi.set(__self__, "slug", slug)
-        if suspended is not None:
-            pulumi.set(__self__, "suspended", suspended)
-        if suspenders is not None:
-            pulumi.set(__self__, "suspenders", suspenders)
-        if type is None:
-            type = 'static_site'
-        if type is not None:
-            pulumi.set(__self__, "type", type)
-        if updated_at is not None:
-            pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "registry", registry)
+        pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Descriptive name for this credential
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def registry(self) -> 'RegistryCredentialRegistry':
+        """
+        The registry to use this credential with
+        """
+        return pulumi.get(self, "registry")
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        """
+        The username associated with the credential
+        """
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class Resource(dict):
+    def __init__(__self__, *,
+                 name: str):
+        pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
     def name(self) -> str:
         return pulumi.get(self, "name")
 
-    @property
-    @pulumi.getter(name="ownerId")
-    def owner_id(self) -> str:
-        """
-        The id of the owner (user/team).
-        """
-        return pulumi.get(self, "owner_id")
-
-    @property
-    @pulumi.getter
-    def repo(self) -> str:
-        """
-        Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-        """
-        return pulumi.get(self, "repo")
-
-    @property
-    @pulumi.getter(name="autoDeploy")
-    def auto_deploy(self) -> Optional['ServiceAutoDeploy']:
-        """
-        Whether to auto deploy the service or not upon git push.
-        """
-        return pulumi.get(self, "auto_deploy")
-
-    @property
-    @pulumi.getter
-    def branch(self) -> Optional[str]:
-        """
-        If left empty, this will fall back to the default branch of the repository.
-        """
-        return pulumi.get(self, "branch")
-
-    @property
-    @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[str]:
-        return pulumi.get(self, "created_at")
-
-    @property
-    @pulumi.getter(name="envVars")
-    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValue']]:
-        return pulumi.get(self, "env_vars")
-
-    @property
-    @pulumi.getter(name="notifyOnFail")
-    def notify_on_fail(self) -> Optional['ServiceNotifyOnFail']:
-        """
-        The notification setting for this service upon deployment failure.
-        """
-        return pulumi.get(self, "notify_on_fail")
-
-    @property
-    @pulumi.getter(name="secretFiles")
-    def secret_files(self) -> Optional[Sequence['outputs.SecretFile']]:
-        return pulumi.get(self, "secret_files")
-
-    @property
-    @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> Optional['outputs.StaticSiteServiceDetails']:
-        return pulumi.get(self, "service_details")
-
-    @property
-    @pulumi.getter
-    def slug(self) -> Optional[str]:
-        return pulumi.get(self, "slug")
-
-    @property
-    @pulumi.getter
-    def suspended(self) -> Optional['ServiceSuspended']:
-        return pulumi.get(self, "suspended")
-
-    @property
-    @pulumi.getter
-    def suspenders(self) -> Optional[Sequence[str]]:
-        return pulumi.get(self, "suspenders")
-
-    @property
-    @pulumi.getter
-    def type(self) -> Optional[str]:
-        return pulumi.get(self, "type")
-
-    @property
-    @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[str]:
-        return pulumi.get(self, "updated_at")
-
 
 @pulumi.output_type
-class StaticSiteRoute(dict):
-    """
-    A route object for a static site
-    """
+class Route(dict):
     def __init__(__self__, *,
                  destination: str,
+                 priority: int,
                  source: str,
-                 type: 'StaticSiteRouteType'):
+                 type: 'RouteType'):
         """
-        A route object for a static site
+        :param int priority: Redirect and Rewrite Rules are applied in priority order starting at 0
         """
         pulumi.set(__self__, "destination", destination)
+        pulumi.set(__self__, "priority", priority)
         pulumi.set(__self__, "source", source)
         pulumi.set(__self__, "type", type)
 
@@ -2463,190 +1418,136 @@ class StaticSiteRoute(dict):
 
     @property
     @pulumi.getter
+    def priority(self) -> int:
+        """
+        Redirect and Rewrite Rules are applied in priority order starting at 0
+        """
+        return pulumi.get(self, "priority")
+
+    @property
+    @pulumi.getter
     def source(self) -> str:
         return pulumi.get(self, "source")
 
     @property
     @pulumi.getter
-    def type(self) -> 'StaticSiteRouteType':
+    def type(self) -> 'RouteType':
         return pulumi.get(self, "type")
 
 
 @pulumi.output_type
-class StaticSiteServiceDetails(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "buildCommand":
-            suggest = "build_command"
-        elif key == "parentServer":
-            suggest = "parent_server"
-        elif key == "publishPath":
-            suggest = "publish_path"
-        elif key == "pullRequestPreviewsEnabled":
-            suggest = "pull_request_previews_enabled"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in StaticSiteServiceDetails. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        StaticSiteServiceDetails.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        StaticSiteServiceDetails.__key_warning(key)
-        return super().get(key, default)
-
+class SecretFile(dict):
     def __init__(__self__, *,
-                 build_command: Optional[str] = None,
-                 headers: Optional[Sequence['outputs.ServiceHeader']] = None,
-                 parent_server: Optional['outputs.StaticSiteServiceDetailsParentServerProperties'] = None,
-                 publish_path: Optional[str] = None,
-                 pull_request_previews_enabled: Optional['StaticSiteServiceDetailsPullRequestPreviewsEnabled'] = None,
-                 routes: Optional[Sequence['outputs.StaticSiteRoute']] = None,
-                 url: Optional[str] = None):
-        """
-        :param str url: The HTTPS service URL. A subdomain of onrender.com, by default.
-        """
-        if build_command is not None:
-            pulumi.set(__self__, "build_command", build_command)
-        if headers is not None:
-            pulumi.set(__self__, "headers", headers)
-        if parent_server is not None:
-            pulumi.set(__self__, "parent_server", parent_server)
-        if publish_path is None:
-            publish_path = 'public'
-        if publish_path is not None:
-            pulumi.set(__self__, "publish_path", publish_path)
-        if pull_request_previews_enabled is None:
-            pull_request_previews_enabled = 'no'
-        if pull_request_previews_enabled is not None:
-            pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
-        if routes is not None:
-            pulumi.set(__self__, "routes", routes)
-        if url is not None:
-            pulumi.set(__self__, "url", url)
-
-    @property
-    @pulumi.getter(name="buildCommand")
-    def build_command(self) -> Optional[str]:
-        return pulumi.get(self, "build_command")
+                 name: str):
+        pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
-    def headers(self) -> Optional[Sequence['outputs.ServiceHeader']]:
-        return pulumi.get(self, "headers")
-
-    @property
-    @pulumi.getter(name="parentServer")
-    def parent_server(self) -> Optional['outputs.StaticSiteServiceDetailsParentServerProperties']:
-        return pulumi.get(self, "parent_server")
-
-    @property
-    @pulumi.getter(name="publishPath")
-    def publish_path(self) -> Optional[str]:
-        return pulumi.get(self, "publish_path")
-
-    @property
-    @pulumi.getter(name="pullRequestPreviewsEnabled")
-    def pull_request_previews_enabled(self) -> Optional['StaticSiteServiceDetailsPullRequestPreviewsEnabled']:
-        return pulumi.get(self, "pull_request_previews_enabled")
-
-    @property
-    @pulumi.getter
-    def routes(self) -> Optional[Sequence['outputs.StaticSiteRoute']]:
-        return pulumi.get(self, "routes")
-
-    @property
-    @pulumi.getter
-    def url(self) -> Optional[str]:
-        """
-        The HTTPS service URL. A subdomain of onrender.com, by default.
-        """
-        return pulumi.get(self, "url")
-
-
-@pulumi.output_type
-class StaticSiteServiceDetailsParentServerProperties(dict):
-    def __init__(__self__, *,
-                 id: Optional[str] = None,
-                 name: Optional[str] = None):
-        if id is not None:
-            pulumi.set(__self__, "id", id)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[str]:
-        return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[str]:
+    def name(self) -> str:
         return pulumi.get(self, "name")
 
 
 @pulumi.output_type
-class WebService(dict):
-    """
-    A web service
-    """
+class ServerPort(dict):
     def __init__(__self__, *,
+                 port: int,
+                 protocol: 'ServerPortProtocol'):
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "protocol", protocol)
+
+    @property
+    @pulumi.getter
+    def port(self) -> int:
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> 'ServerPortProtocol':
+        return pulumi.get(self, "protocol")
+
+
+@pulumi.output_type
+class Service(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "autoDeploy":
+            suggest = "auto_deploy"
+        elif key == "createdAt":
+            suggest = "created_at"
+        elif key == "notifyOnFail":
+            suggest = "notify_on_fail"
+        elif key == "ownerId":
+            suggest = "owner_id"
+        elif key == "rootDir":
+            suggest = "root_dir"
+        elif key == "serviceDetails":
+            suggest = "service_details"
+        elif key == "updatedAt":
+            suggest = "updated_at"
+        elif key == "buildFilter":
+            suggest = "build_filter"
+        elif key == "imagePath":
+            suggest = "image_path"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Service. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Service.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Service.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 auto_deploy: 'ServiceAutoDeploy',
+                 created_at: str,
                  name: str,
+                 notify_on_fail: 'ServiceNotifyOnFail',
                  owner_id: str,
-                 repo: str,
-                 auto_deploy: Optional['ServiceAutoDeploy'] = None,
+                 root_dir: str,
+                 service_details: Any,
+                 slug: str,
+                 suspended: 'ServiceSuspended',
+                 suspenders: Sequence['ServiceSuspendersItem'],
+                 type: 'ServiceType',
+                 updated_at: str,
                  branch: Optional[str] = None,
-                 created_at: Optional[str] = None,
-                 env_vars: Optional[Sequence['outputs.EnvVarKeyValue']] = None,
-                 notify_on_fail: Optional['ServiceNotifyOnFail'] = None,
-                 secret_files: Optional[Sequence['outputs.SecretFile']] = None,
-                 service_details: Optional['outputs.WebServiceServiceDetails'] = None,
-                 slug: Optional[str] = None,
-                 suspended: Optional['ServiceSuspended'] = None,
-                 suspenders: Optional[Sequence[str]] = None,
-                 type: Optional[str] = None,
-                 updated_at: Optional[str] = None):
-        """
-        A web service
-        :param str owner_id: The id of the owner (user/team).
-        :param str repo: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-        :param 'ServiceAutoDeploy' auto_deploy: Whether to auto deploy the service or not upon git push.
-        :param str branch: If left empty, this will fall back to the default branch of the repository.
-        :param 'ServiceNotifyOnFail' notify_on_fail: The notification setting for this service upon deployment failure.
-        """
+                 build_filter: Optional['outputs.BuildFilter'] = None,
+                 image_path: Optional[str] = None,
+                 repo: Optional[str] = None):
+        pulumi.set(__self__, "auto_deploy", auto_deploy)
+        pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "notify_on_fail", notify_on_fail)
         pulumi.set(__self__, "owner_id", owner_id)
-        pulumi.set(__self__, "repo", repo)
-        if auto_deploy is None:
-            auto_deploy = 'no'
-        if auto_deploy is not None:
-            pulumi.set(__self__, "auto_deploy", auto_deploy)
+        pulumi.set(__self__, "root_dir", root_dir)
+        pulumi.set(__self__, "service_details", service_details)
+        pulumi.set(__self__, "slug", slug)
+        pulumi.set(__self__, "suspended", suspended)
+        pulumi.set(__self__, "suspenders", suspenders)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "updated_at", updated_at)
         if branch is not None:
             pulumi.set(__self__, "branch", branch)
-        if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
-        if env_vars is not None:
-            pulumi.set(__self__, "env_vars", env_vars)
-        if notify_on_fail is not None:
-            pulumi.set(__self__, "notify_on_fail", notify_on_fail)
-        if secret_files is not None:
-            pulumi.set(__self__, "secret_files", secret_files)
-        if service_details is not None:
-            pulumi.set(__self__, "service_details", service_details)
-        if slug is not None:
-            pulumi.set(__self__, "slug", slug)
-        if suspended is not None:
-            pulumi.set(__self__, "suspended", suspended)
-        if suspenders is not None:
-            pulumi.set(__self__, "suspenders", suspenders)
-        if type is None:
-            type = 'web_service'
-        if type is not None:
-            pulumi.set(__self__, "type", type)
-        if updated_at is not None:
-            pulumi.set(__self__, "updated_at", updated_at)
+        if build_filter is not None:
+            pulumi.set(__self__, "build_filter", build_filter)
+        if image_path is not None:
+            pulumi.set(__self__, "image_path", image_path)
+        if repo is not None:
+            pulumi.set(__self__, "repo", repo)
+
+    @property
+    @pulumi.getter(name="autoDeploy")
+    def auto_deploy(self) -> 'ServiceAutoDeploy':
+        return pulumi.get(self, "auto_deploy")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
@@ -2654,97 +1555,152 @@ class WebService(dict):
         return pulumi.get(self, "name")
 
     @property
-    @pulumi.getter(name="ownerId")
-    def owner_id(self) -> str:
-        """
-        The id of the owner (user/team).
-        """
-        return pulumi.get(self, "owner_id")
-
-    @property
-    @pulumi.getter
-    def repo(self) -> str:
-        """
-        Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-        """
-        return pulumi.get(self, "repo")
-
-    @property
-    @pulumi.getter(name="autoDeploy")
-    def auto_deploy(self) -> Optional['ServiceAutoDeploy']:
-        """
-        Whether to auto deploy the service or not upon git push.
-        """
-        return pulumi.get(self, "auto_deploy")
-
-    @property
-    @pulumi.getter
-    def branch(self) -> Optional[str]:
-        """
-        If left empty, this will fall back to the default branch of the repository.
-        """
-        return pulumi.get(self, "branch")
-
-    @property
-    @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[str]:
-        return pulumi.get(self, "created_at")
-
-    @property
-    @pulumi.getter(name="envVars")
-    def env_vars(self) -> Optional[Sequence['outputs.EnvVarKeyValue']]:
-        return pulumi.get(self, "env_vars")
-
-    @property
     @pulumi.getter(name="notifyOnFail")
-    def notify_on_fail(self) -> Optional['ServiceNotifyOnFail']:
-        """
-        The notification setting for this service upon deployment failure.
-        """
+    def notify_on_fail(self) -> 'ServiceNotifyOnFail':
         return pulumi.get(self, "notify_on_fail")
 
     @property
-    @pulumi.getter(name="secretFiles")
-    def secret_files(self) -> Optional[Sequence['outputs.SecretFile']]:
-        return pulumi.get(self, "secret_files")
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> str:
+        return pulumi.get(self, "owner_id")
+
+    @property
+    @pulumi.getter(name="rootDir")
+    def root_dir(self) -> str:
+        return pulumi.get(self, "root_dir")
 
     @property
     @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> Optional['outputs.WebServiceServiceDetails']:
+    def service_details(self) -> Any:
         return pulumi.get(self, "service_details")
 
     @property
     @pulumi.getter
-    def slug(self) -> Optional[str]:
+    def slug(self) -> str:
         return pulumi.get(self, "slug")
 
     @property
     @pulumi.getter
-    def suspended(self) -> Optional['ServiceSuspended']:
+    def suspended(self) -> 'ServiceSuspended':
         return pulumi.get(self, "suspended")
 
     @property
     @pulumi.getter
-    def suspenders(self) -> Optional[Sequence[str]]:
+    def suspenders(self) -> Sequence['ServiceSuspendersItem']:
         return pulumi.get(self, "suspenders")
 
     @property
     @pulumi.getter
-    def type(self) -> Optional[str]:
+    def type(self) -> 'ServiceType':
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[str]:
+    def updated_at(self) -> str:
         return pulumi.get(self, "updated_at")
+
+    @property
+    @pulumi.getter
+    def branch(self) -> Optional[str]:
+        return pulumi.get(self, "branch")
+
+    @property
+    @pulumi.getter(name="buildFilter")
+    def build_filter(self) -> Optional['outputs.BuildFilter']:
+        return pulumi.get(self, "build_filter")
+
+    @property
+    @pulumi.getter(name="imagePath")
+    def image_path(self) -> Optional[str]:
+        return pulumi.get(self, "image_path")
+
+    @property
+    @pulumi.getter
+    def repo(self) -> Optional[str]:
+        return pulumi.get(self, "repo")
 
 
 @pulumi.output_type
-class WebServiceServiceDetails(dict):
+class StaticSiteDetails(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "envSpecificDetails":
+        if key == "buildCommand":
+            suggest = "build_command"
+        elif key == "buildPlan":
+            suggest = "build_plan"
+        elif key == "publishPath":
+            suggest = "publish_path"
+        elif key == "pullRequestPreviewsEnabled":
+            suggest = "pull_request_previews_enabled"
+        elif key == "parentServer":
+            suggest = "parent_server"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in StaticSiteDetails. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        StaticSiteDetails.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        StaticSiteDetails.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 build_command: str,
+                 build_plan: str,
+                 publish_path: str,
+                 pull_request_previews_enabled: 'StaticSiteDetailsPullRequestPreviewsEnabled',
+                 url: str,
+                 parent_server: Optional['outputs.Resource'] = None):
+        pulumi.set(__self__, "build_command", build_command)
+        pulumi.set(__self__, "build_plan", build_plan)
+        pulumi.set(__self__, "publish_path", publish_path)
+        pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
+        pulumi.set(__self__, "url", url)
+        if parent_server is not None:
+            pulumi.set(__self__, "parent_server", parent_server)
+
+    @property
+    @pulumi.getter(name="buildCommand")
+    def build_command(self) -> str:
+        return pulumi.get(self, "build_command")
+
+    @property
+    @pulumi.getter(name="buildPlan")
+    def build_plan(self) -> str:
+        return pulumi.get(self, "build_plan")
+
+    @property
+    @pulumi.getter(name="publishPath")
+    def publish_path(self) -> str:
+        return pulumi.get(self, "publish_path")
+
+    @property
+    @pulumi.getter(name="pullRequestPreviewsEnabled")
+    def pull_request_previews_enabled(self) -> 'StaticSiteDetailsPullRequestPreviewsEnabled':
+        return pulumi.get(self, "pull_request_previews_enabled")
+
+    @property
+    @pulumi.getter
+    def url(self) -> str:
+        return pulumi.get(self, "url")
+
+    @property
+    @pulumi.getter(name="parentServer")
+    def parent_server(self) -> Optional['outputs.Resource']:
+        return pulumi.get(self, "parent_server")
+
+
+@pulumi.output_type
+class WebServiceDetails(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "buildPlan":
+            suggest = "build_plan"
+        elif key == "envSpecificDetails":
             suggest = "env_specific_details"
         elif key == "healthCheckPath":
             suggest = "health_check_path"
@@ -2752,68 +1708,121 @@ class WebServiceServiceDetails(dict):
             suggest = "num_instances"
         elif key == "openPorts":
             suggest = "open_ports"
-        elif key == "parentServer":
-            suggest = "parent_server"
         elif key == "pullRequestPreviewsEnabled":
             suggest = "pull_request_previews_enabled"
+        elif key == "parentServer":
+            suggest = "parent_server"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in WebServiceServiceDetails. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in WebServiceDetails. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        WebServiceServiceDetails.__key_warning(key)
+        WebServiceDetails.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        WebServiceServiceDetails.__key_warning(key)
+        WebServiceDetails.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 env: 'WebServiceServiceDetailsEnv',
+                 build_plan: str,
+                 env: 'WebServiceDetailsEnv',
+                 env_specific_details: Any,
+                 health_check_path: str,
+                 num_instances: int,
+                 open_ports: Sequence['outputs.ServerPort'],
+                 plan: 'WebServiceDetailsPlan',
+                 pull_request_previews_enabled: 'WebServiceDetailsPullRequestPreviewsEnabled',
+                 region: 'WebServiceDetailsRegion',
+                 url: str,
+                 autoscaling: Optional['outputs.AutoscalingConfig'] = None,
                  disk: Optional['outputs.Disk'] = None,
-                 env_specific_details: Optional[Any] = None,
-                 health_check_path: Optional[str] = None,
-                 num_instances: Optional[float] = None,
-                 open_ports: Optional[Sequence['outputs.OpenPorts']] = None,
-                 parent_server: Optional['outputs.WebServiceServiceDetailsParentServerProperties'] = None,
-                 plan: Optional['WebServiceServiceDetailsPlan'] = None,
-                 pull_request_previews_enabled: Optional['WebServiceServiceDetailsPullRequestPreviewsEnabled'] = None,
-                 region: Optional['WebServiceServiceDetailsRegion'] = None,
-                 url: Optional[str] = None):
+                 parent_server: Optional['outputs.Resource'] = None):
+        """
+        :param 'WebServiceDetailsEnv' env: Environment (runtime)
+        :param int num_instances: For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
+        :param 'WebServiceDetailsPlan' plan: The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+        """
+        pulumi.set(__self__, "build_plan", build_plan)
         pulumi.set(__self__, "env", env)
+        pulumi.set(__self__, "env_specific_details", env_specific_details)
+        pulumi.set(__self__, "health_check_path", health_check_path)
+        pulumi.set(__self__, "num_instances", num_instances)
+        pulumi.set(__self__, "open_ports", open_ports)
+        pulumi.set(__self__, "plan", plan)
+        pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "url", url)
+        if autoscaling is not None:
+            pulumi.set(__self__, "autoscaling", autoscaling)
         if disk is not None:
             pulumi.set(__self__, "disk", disk)
-        if env_specific_details is not None:
-            pulumi.set(__self__, "env_specific_details", env_specific_details)
-        if health_check_path is not None:
-            pulumi.set(__self__, "health_check_path", health_check_path)
-        if num_instances is None:
-            num_instances = 1
-        if num_instances is not None:
-            pulumi.set(__self__, "num_instances", num_instances)
-        if open_ports is not None:
-            pulumi.set(__self__, "open_ports", open_ports)
         if parent_server is not None:
             pulumi.set(__self__, "parent_server", parent_server)
-        if plan is None:
-            plan = 'starter'
-        if plan is not None:
-            pulumi.set(__self__, "plan", plan)
-        if pull_request_previews_enabled is None:
-            pull_request_previews_enabled = 'no'
-        if pull_request_previews_enabled is not None:
-            pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
-        if region is None:
-            region = 'oregon'
-        if region is not None:
-            pulumi.set(__self__, "region", region)
-        if url is not None:
-            pulumi.set(__self__, "url", url)
+
+    @property
+    @pulumi.getter(name="buildPlan")
+    def build_plan(self) -> str:
+        return pulumi.get(self, "build_plan")
 
     @property
     @pulumi.getter
-    def env(self) -> 'WebServiceServiceDetailsEnv':
+    def env(self) -> 'WebServiceDetailsEnv':
+        """
+        Environment (runtime)
+        """
         return pulumi.get(self, "env")
+
+    @property
+    @pulumi.getter(name="envSpecificDetails")
+    def env_specific_details(self) -> Any:
+        return pulumi.get(self, "env_specific_details")
+
+    @property
+    @pulumi.getter(name="healthCheckPath")
+    def health_check_path(self) -> str:
+        return pulumi.get(self, "health_check_path")
+
+    @property
+    @pulumi.getter(name="numInstances")
+    def num_instances(self) -> int:
+        """
+        For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
+        """
+        return pulumi.get(self, "num_instances")
+
+    @property
+    @pulumi.getter(name="openPorts")
+    def open_ports(self) -> Sequence['outputs.ServerPort']:
+        return pulumi.get(self, "open_ports")
+
+    @property
+    @pulumi.getter
+    def plan(self) -> 'WebServiceDetailsPlan':
+        """
+        The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+        """
+        return pulumi.get(self, "plan")
+
+    @property
+    @pulumi.getter(name="pullRequestPreviewsEnabled")
+    def pull_request_previews_enabled(self) -> 'WebServiceDetailsPullRequestPreviewsEnabled':
+        return pulumi.get(self, "pull_request_previews_enabled")
+
+    @property
+    @pulumi.getter
+    def region(self) -> 'WebServiceDetailsRegion':
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter
+    def url(self) -> str:
+        return pulumi.get(self, "url")
+
+    @property
+    @pulumi.getter
+    def autoscaling(self) -> Optional['outputs.AutoscalingConfig']:
+        return pulumi.get(self, "autoscaling")
 
     @property
     @pulumi.getter
@@ -2821,69 +1830,8 @@ class WebServiceServiceDetails(dict):
         return pulumi.get(self, "disk")
 
     @property
-    @pulumi.getter(name="envSpecificDetails")
-    def env_specific_details(self) -> Optional[Any]:
-        return pulumi.get(self, "env_specific_details")
-
-    @property
-    @pulumi.getter(name="healthCheckPath")
-    def health_check_path(self) -> Optional[str]:
-        return pulumi.get(self, "health_check_path")
-
-    @property
-    @pulumi.getter(name="numInstances")
-    def num_instances(self) -> Optional[float]:
-        return pulumi.get(self, "num_instances")
-
-    @property
-    @pulumi.getter(name="openPorts")
-    def open_ports(self) -> Optional[Sequence['outputs.OpenPorts']]:
-        return pulumi.get(self, "open_ports")
-
-    @property
     @pulumi.getter(name="parentServer")
-    def parent_server(self) -> Optional['outputs.WebServiceServiceDetailsParentServerProperties']:
+    def parent_server(self) -> Optional['outputs.Resource']:
         return pulumi.get(self, "parent_server")
-
-    @property
-    @pulumi.getter
-    def plan(self) -> Optional['WebServiceServiceDetailsPlan']:
-        return pulumi.get(self, "plan")
-
-    @property
-    @pulumi.getter(name="pullRequestPreviewsEnabled")
-    def pull_request_previews_enabled(self) -> Optional['WebServiceServiceDetailsPullRequestPreviewsEnabled']:
-        return pulumi.get(self, "pull_request_previews_enabled")
-
-    @property
-    @pulumi.getter
-    def region(self) -> Optional['WebServiceServiceDetailsRegion']:
-        return pulumi.get(self, "region")
-
-    @property
-    @pulumi.getter
-    def url(self) -> Optional[str]:
-        return pulumi.get(self, "url")
-
-
-@pulumi.output_type
-class WebServiceServiceDetailsParentServerProperties(dict):
-    def __init__(__self__, *,
-                 id: Optional[str] = None,
-                 name: Optional[str] = None):
-        if id is not None:
-            pulumi.set(__self__, "id", id)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[str]:
-        return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[str]:
-        return pulumi.get(self, "name")
 
 

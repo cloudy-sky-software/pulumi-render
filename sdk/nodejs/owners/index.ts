@@ -4,7 +4,7 @@
 import * as utilities from "../utilities";
 
 // Export members:
-export { GetOwnerArgs, GetOwnerResult, GetOwnerOutputArgs } from "./getOwner";
+export { GetOwnerArgs, GetOwnerResult } from "./getOwner";
 export const getOwner: typeof import("./getOwner").getOwner = null as any;
 export const getOwnerOutput: typeof import("./getOwner").getOwnerOutput = null as any;
 utilities.lazyLoad(exports, ["getOwner","getOwnerOutput"], () => require("./getOwner"));

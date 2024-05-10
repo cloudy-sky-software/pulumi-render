@@ -3,9 +3,11 @@
 
 // Export sub-modules:
 import * as owners from "./owners";
+import * as registrycredentials from "./registrycredentials";
 import * as services from "./services";
 
 export {
     owners,
+    registrycredentials,
     services,
 };

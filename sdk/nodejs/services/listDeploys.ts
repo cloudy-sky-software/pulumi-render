@@ -7,31 +7,20 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function listDeploys(args: ListDeploysArgs, opts?: pulumi.InvokeOptions): Promise<ListDeploysResult> {
+export function listDeploys(args?: ListDeploysArgs, opts?: pulumi.InvokeOptions): Promise<ListDeploysResult> {
+    args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:listDeploys", {
-        "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface ListDeploysArgs {
-    /**
-     * (Required) The ID of the service
-     */
-    serviceId: string;
 }
 
 export interface ListDeploysResult {
-    readonly items: outputs.services.ListDeploysResponse[];
+    readonly items: outputs.services.ListDeploysItemProperties[];
 }
-export function listDeploysOutput(args: ListDeploysOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListDeploysResult> {
-    return pulumi.output(args).apply((a: any) => listDeploys(a, opts))
-}
-
-export interface ListDeploysOutputArgs {
-    /**
-     * (Required) The ID of the service
-     */
-    serviceId: pulumi.Input<string>;
+export function listDeploysOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListDeploysResult> {
+    return pulumi.output(listDeploys(opts))
 }

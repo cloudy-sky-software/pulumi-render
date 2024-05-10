@@ -2,6 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export class RegistryCredential extends pulumi.CustomResource {
@@ -31,11 +34,20 @@ export class RegistryCredential extends pulumi.CustomResource {
         return obj['__pulumiType'] === RegistryCredential.__pulumiType;
     }
 
-    public readonly authToken!: pulumi.Output<string | undefined>;
-    public readonly name!: pulumi.Output<string | undefined>;
-    public readonly ownerId!: pulumi.Output<string | undefined>;
-    public readonly registry!: pulumi.Output<string | undefined>;
-    public readonly username!: pulumi.Output<string | undefined>;
+    public readonly authToken!: pulumi.Output<string>;
+    /**
+     * Descriptive name for this credential
+     */
+    public readonly name!: pulumi.Output<string>;
+    public readonly ownerId!: pulumi.Output<string>;
+    /**
+     * The registry to use this credential with
+     */
+    public readonly registry!: pulumi.Output<enums.registrycredentials.Registry>;
+    /**
+     * The username associated with the credential
+     */
+    public readonly username!: pulumi.Output<string>;
 
     /**
      * Create a RegistryCredential resource with the given unique name, arguments, and options.
@@ -44,10 +56,22 @@ export class RegistryCredential extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: RegistryCredentialArgs, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: RegistryCredentialArgs, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
+            if ((!args || args.authToken === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'authToken'");
+            }
+            if ((!args || args.ownerId === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'ownerId'");
+            }
+            if ((!args || args.registry === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'registry'");
+            }
+            if ((!args || args.username === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'username'");
+            }
             resourceInputs["authToken"] = args ? args.authToken : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["ownerId"] = args ? args.ownerId : undefined;
@@ -69,9 +93,9 @@ export class RegistryCredential extends pulumi.CustomResource {
  * The set of arguments for constructing a RegistryCredential resource.
  */
 export interface RegistryCredentialArgs {
-    authToken?: pulumi.Input<string>;
+    authToken: pulumi.Input<string>;
     name?: pulumi.Input<string>;
-    ownerId?: pulumi.Input<string>;
-    registry?: pulumi.Input<string>;
-    username?: pulumi.Input<string>;
+    ownerId: pulumi.Input<string>;
+    registry: pulumi.Input<enums.registrycredentials.Registry>;
+    username: pulumi.Input<string>;
 }

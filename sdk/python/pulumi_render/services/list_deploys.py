@@ -27,7 +27,7 @@ class ListDeploysResult:
 
     @property
     @pulumi.getter
-    def items(self) -> Sequence['outputs.ListDeploysResponse']:
+    def items(self) -> Sequence['outputs.ListDeploysItemProperties']:
         return pulumi.get(self, "items")
 
 
@@ -40,15 +40,11 @@ class AwaitableListDeploysResult(ListDeploysResult):
             items=self.items)
 
 
-def list_deploys(service_id: Optional[str] = None,
-                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListDeploysResult:
+def list_deploys(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListDeploysResult:
     """
     Use this data source to access information about an existing resource.
-
-    :param str service_id: (Required) The ID of the service
     """
     __args__ = dict()
-    __args__['serviceId'] = service_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:services:listDeploys', __args__, opts=opts, typ=ListDeploysResult).value
 
@@ -57,11 +53,8 @@ def list_deploys(service_id: Optional[str] = None,
 
 
 @_utilities.lift_output_func(list_deploys)
-def list_deploys_output(service_id: Optional[pulumi.Input[str]] = None,
-                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListDeploysResult]:
+def list_deploys_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListDeploysResult]:
     """
     Use this data source to access information about an existing resource.
-
-    :param str service_id: (Required) The ID of the service
     """
     ...

@@ -7,40 +7,20 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function getCustomDomain(args: GetCustomDomainArgs, opts?: pulumi.InvokeOptions): Promise<GetCustomDomainResult> {
+export function getCustomDomain(args?: GetCustomDomainArgs, opts?: pulumi.InvokeOptions): Promise<GetCustomDomainResult> {
+    args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:getCustomDomain", {
-        "id": args.id,
-        "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface GetCustomDomainArgs {
-    /**
-     * (Required) The ID or name of the custom domain
-     */
-    id: string;
-    /**
-     * (Required) The ID of the service
-     */
-    serviceId: string;
 }
 
 export interface GetCustomDomainResult {
     readonly items: outputs.services.CustomDomain;
 }
-export function getCustomDomainOutput(args: GetCustomDomainOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCustomDomainResult> {
-    return pulumi.output(args).apply((a: any) => getCustomDomain(a, opts))
-}
-
-export interface GetCustomDomainOutputArgs {
-    /**
-     * (Required) The ID or name of the custom domain
-     */
-    id: pulumi.Input<string>;
-    /**
-     * (Required) The ID of the service
-     */
-    serviceId: pulumi.Input<string>;
+export function getCustomDomainOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetCustomDomainResult> {
+    return pulumi.output(getCustomDomain(opts))
 }

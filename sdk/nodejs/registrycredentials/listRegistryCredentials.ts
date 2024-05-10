@@ -19,7 +19,7 @@ export interface ListRegistryCredentialsArgs {
 }
 
 export interface ListRegistryCredentialsResult {
-    readonly items: outputs.registrycredentials.ListRegistryCredentialsItemProperties[];
+    readonly items: outputs.registrycredentials.RegistryCredential[];
 }
 export function listRegistryCredentialsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListRegistryCredentialsResult> {
     return pulumi.output(listRegistryCredentials(opts))

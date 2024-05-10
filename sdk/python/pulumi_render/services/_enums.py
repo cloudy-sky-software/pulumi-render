@@ -5,74 +5,55 @@
 from enum import Enum
 
 __all__ = [
-    'BackgroundWorkerServiceDetailsEnv',
-    'BackgroundWorkerServiceDetailsPlan',
-    'BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled',
-    'BackgroundWorkerServiceDetailsRegion',
+    'AutoDeploy',
+    'BackgroundWorkerDetailsEnv',
+    'BackgroundWorkerDetailsPlan',
+    'BackgroundWorkerDetailsPullRequestPreviewsEnabled',
+    'BackgroundWorkerDetailsRegion',
     'ClearCache',
-    'CronJobServiceDetailsEnv',
-    'CronJobServiceDetailsPlan',
-    'CronJobServiceDetailsRegion',
+    'CronJobDetailsEnv',
+    'CronJobDetailsPlan',
+    'CronJobDetailsRegion',
     'CustomDomainDomainType',
     'CustomDomainVerificationStatus',
-    'DeployClearCache',
-    'DomainType',
-    'EnvVarKeyValueGenerateValue',
-    'OpenPortsProtocol',
+    'DeployStatus',
+    'DeployTrigger',
+    'Plan',
     'PrivateServiceDetailsEnv',
     'PrivateServiceDetailsPlan',
     'PrivateServiceDetailsPullRequestPreviewsEnabled',
     'PrivateServiceDetailsRegion',
+    'RegistryCredentialRegistry',
+    'RouteType',
+    'ServerPortProtocol',
     'ServiceAutoDeploy',
     'ServiceNotifyOnFail',
     'ServiceSuspended',
-    'StaticSiteRouteType',
-    'StaticSiteServiceDetailsPullRequestPreviewsEnabled',
-    'VerificationStatus',
-    'WebServiceServiceDetailsEnv',
-    'WebServiceServiceDetailsPlan',
-    'WebServiceServiceDetailsPullRequestPreviewsEnabled',
-    'WebServiceServiceDetailsRegion',
+    'ServiceSuspendersItem',
+    'ServiceType',
+    'StaticSiteDetailsPullRequestPreviewsEnabled',
+    'Status',
+    'Trigger',
+    'Type',
+    'WebServiceDetailsEnv',
+    'WebServiceDetailsPlan',
+    'WebServiceDetailsPullRequestPreviewsEnabled',
+    'WebServiceDetailsRegion',
 ]
 
 
-class BackgroundWorkerServiceDetailsEnv(str, Enum):
-    DOCKER = "docker"
-    ELIXIR = "elixir"
-    GO = "go"
-    NODE = "node"
-    PYTHON = "python"
-    RUBY = "ruby"
-    RUST = "rust"
-
-
-class BackgroundWorkerServiceDetailsPlan(str, Enum):
-    STARTER = "starter"
-    STARTER_PLUS = "starter_plus"
-    STANDARD = "standard"
-    STANDARD_PLUS = "standard_plus"
-    PRO = "pro"
-    PRO_PLUS = "pro_plus"
-    PRO_MAX = "pro_max"
-    PRO_ULTRA = "pro_ultra"
-
-
-class BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled(str, Enum):
+class AutoDeploy(str, Enum):
+    """
+    Defaults to "yes"
+    """
     YES = "yes"
     NO = "no"
 
 
-class BackgroundWorkerServiceDetailsRegion(str, Enum):
-    OREGON = "oregon"
-    FRANKFURT = "frankfurt"
-
-
-class ClearCache(str, Enum):
-    DO_NOT_CLEAR = "do_not_clear"
-    CLEAR = "clear"
-
-
-class CronJobServiceDetailsEnv(str, Enum):
+class BackgroundWorkerDetailsEnv(str, Enum):
+    """
+    Environment (runtime)
+    """
     DOCKER = "docker"
     ELIXIR = "elixir"
     GO = "go"
@@ -80,9 +61,13 @@ class CronJobServiceDetailsEnv(str, Enum):
     PYTHON = "python"
     RUBY = "ruby"
     RUST = "rust"
+    IMAGE = "image"
 
 
-class CronJobServiceDetailsPlan(str, Enum):
+class BackgroundWorkerDetailsPlan(str, Enum):
+    """
+    The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+    """
     STARTER = "starter"
     STARTER_PLUS = "starter_plus"
     STANDARD = "standard"
@@ -91,11 +76,65 @@ class CronJobServiceDetailsPlan(str, Enum):
     PRO_PLUS = "pro_plus"
     PRO_MAX = "pro_max"
     PRO_ULTRA = "pro_ultra"
+    FREE = "free"
+    CUSTOM = "custom"
 
 
-class CronJobServiceDetailsRegion(str, Enum):
-    OREGON = "oregon"
+class BackgroundWorkerDetailsPullRequestPreviewsEnabled(str, Enum):
+    YES = "yes"
+    NO = "no"
+
+
+class BackgroundWorkerDetailsRegion(str, Enum):
     FRANKFURT = "frankfurt"
+    OREGON = "oregon"
+    OHIO = "ohio"
+    SINGAPORE = "singapore"
+
+
+class ClearCache(str, Enum):
+    """
+    Defaults to "do_not_clear"
+    """
+    CLEAR = "clear"
+    DO_NOT_CLEAR = "do_not_clear"
+
+
+class CronJobDetailsEnv(str, Enum):
+    """
+    Environment (runtime)
+    """
+    DOCKER = "docker"
+    ELIXIR = "elixir"
+    GO = "go"
+    NODE = "node"
+    PYTHON = "python"
+    RUBY = "ruby"
+    RUST = "rust"
+    IMAGE = "image"
+
+
+class CronJobDetailsPlan(str, Enum):
+    """
+    The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+    """
+    STARTER = "starter"
+    STARTER_PLUS = "starter_plus"
+    STANDARD = "standard"
+    STANDARD_PLUS = "standard_plus"
+    PRO = "pro"
+    PRO_PLUS = "pro_plus"
+    PRO_MAX = "pro_max"
+    PRO_ULTRA = "pro_ultra"
+    FREE = "free"
+    CUSTOM = "custom"
+
+
+class CronJobDetailsRegion(str, Enum):
+    FRANKFURT = "frankfurt"
+    OREGON = "oregon"
+    OHIO = "ohio"
+    SINGAPORE = "singapore"
 
 
 class CustomDomainDomainType(str, Enum):
@@ -108,37 +147,36 @@ class CustomDomainVerificationStatus(str, Enum):
     UNVERIFIED = "unverified"
 
 
-class DeployClearCache(str, Enum):
-    DO_NOT_CLEAR = "do_not_clear"
-    CLEAR = "clear"
+class DeployStatus(str, Enum):
+    CREATED = "created"
+    BUILD_IN_PROGRESS = "build_in_progress"
+    UPDATE_IN_PROGRESS = "update_in_progress"
+    LIVE = "live"
+    DEACTIVATED = "deactivated"
+    BUILD_FAILED = "build_failed"
+    UPDATE_FAILED = "update_failed"
+    CANCELED = "canceled"
+    PRE_DEPLOY_IN_PROGRESS = "pre_deploy_in_progress"
+    PRE_DEPLOY_FAILED = "pre_deploy_failed"
 
 
-class DomainType(str, Enum):
-    APEX = "apex"
-    SUBDOMAIN = "subdomain"
+class DeployTrigger(str, Enum):
+    API = "api"
+    BLUEPRINT_SYNC = "blueprint_sync"
+    DEPLOY_HOOK = "deploy_hook"
+    DEPLOYED_BY_RENDER = "deployed_by_render"
+    MANUAL = "manual"
+    OTHER = "other"
+    NEW_COMMIT = "new_commit"
+    ROLLBACK = "rollback"
+    SERVICE_RESUMED = "service_resumed"
+    SERVICE_UPDATED = "service_updated"
 
 
-class EnvVarKeyValueGenerateValue(str, Enum):
-    YES = "yes"
-    NO = "no"
-
-
-class OpenPortsProtocol(str, Enum):
-    TCP = "TCP"
-    UDP = "UDP"
-
-
-class PrivateServiceDetailsEnv(str, Enum):
-    DOCKER = "docker"
-    ELIXIR = "elixir"
-    GO = "go"
-    NODE = "node"
-    PYTHON = "python"
-    RUBY = "ruby"
-    RUST = "rust"
-
-
-class PrivateServiceDetailsPlan(str, Enum):
+class Plan(str, Enum):
+    """
+    The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+    """
     STARTER = "starter"
     STARTER_PLUS = "starter_plus"
     STANDARD = "standard"
@@ -147,6 +185,38 @@ class PrivateServiceDetailsPlan(str, Enum):
     PRO_PLUS = "pro_plus"
     PRO_MAX = "pro_max"
     PRO_ULTRA = "pro_ultra"
+    FREE = "free"
+    CUSTOM = "custom"
+
+
+class PrivateServiceDetailsEnv(str, Enum):
+    """
+    Environment (runtime)
+    """
+    DOCKER = "docker"
+    ELIXIR = "elixir"
+    GO = "go"
+    NODE = "node"
+    PYTHON = "python"
+    RUBY = "ruby"
+    RUST = "rust"
+    IMAGE = "image"
+
+
+class PrivateServiceDetailsPlan(str, Enum):
+    """
+    The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+    """
+    STARTER = "starter"
+    STARTER_PLUS = "starter_plus"
+    STANDARD = "standard"
+    STANDARD_PLUS = "standard_plus"
+    PRO = "pro"
+    PRO_PLUS = "pro_plus"
+    PRO_MAX = "pro_max"
+    PRO_ULTRA = "pro_ultra"
+    FREE = "free"
+    CUSTOM = "custom"
 
 
 class PrivateServiceDetailsPullRequestPreviewsEnabled(str, Enum):
@@ -155,22 +225,37 @@ class PrivateServiceDetailsPullRequestPreviewsEnabled(str, Enum):
 
 
 class PrivateServiceDetailsRegion(str, Enum):
-    OREGON = "oregon"
     FRANKFURT = "frankfurt"
+    OREGON = "oregon"
+    OHIO = "ohio"
+    SINGAPORE = "singapore"
+
+
+class RegistryCredentialRegistry(str, Enum):
+    """
+    The registry to use this credential with
+    """
+    GITHUB = "GITHUB"
+    GITLAB = "GITLAB"
+    DOCKER = "DOCKER"
+
+
+class RouteType(str, Enum):
+    REDIRECT = "redirect"
+    REWRITE = "rewrite"
+
+
+class ServerPortProtocol(str, Enum):
+    TCP = "TCP"
+    UDP = "UDP"
 
 
 class ServiceAutoDeploy(str, Enum):
-    """
-    Whether to auto deploy the service or not upon git push.
-    """
     YES = "yes"
     NO = "no"
 
 
 class ServiceNotifyOnFail(str, Enum):
-    """
-    The notification setting for this service upon deployment failure.
-    """
     DEFAULT = "default"
     NOTIFY = "notify"
     IGNORE = "ignore"
@@ -181,22 +266,65 @@ class ServiceSuspended(str, Enum):
     NOT_SUSPENDED = "not_suspended"
 
 
-class StaticSiteRouteType(str, Enum):
-    REDIRECT = "redirect"
-    REWRITE = "rewrite"
+class ServiceSuspendersItem(str, Enum):
+    ADMIN = "admin"
+    BILLING = "billing"
+    USER = "user"
+    PARENT_SERVICE = "parent_service"
+    UNKNOWN = "unknown"
 
 
-class StaticSiteServiceDetailsPullRequestPreviewsEnabled(str, Enum):
+class ServiceType(str, Enum):
+    STATIC_SITE = "static_site"
+    WEB_SERVICE = "web_service"
+    PRIVATE_SERVICE = "private_service"
+    BACKGROUND_WORKER = "background_worker"
+    CRON_JOB = "cron_job"
+
+
+class StaticSiteDetailsPullRequestPreviewsEnabled(str, Enum):
     YES = "yes"
     NO = "no"
 
 
-class VerificationStatus(str, Enum):
-    VERIFIED = "verified"
-    UNVERIFIED = "unverified"
+class Status(str, Enum):
+    CREATED = "created"
+    BUILD_IN_PROGRESS = "build_in_progress"
+    UPDATE_IN_PROGRESS = "update_in_progress"
+    LIVE = "live"
+    DEACTIVATED = "deactivated"
+    BUILD_FAILED = "build_failed"
+    UPDATE_FAILED = "update_failed"
+    CANCELED = "canceled"
+    PRE_DEPLOY_IN_PROGRESS = "pre_deploy_in_progress"
+    PRE_DEPLOY_FAILED = "pre_deploy_failed"
 
 
-class WebServiceServiceDetailsEnv(str, Enum):
+class Trigger(str, Enum):
+    API = "api"
+    BLUEPRINT_SYNC = "blueprint_sync"
+    DEPLOY_HOOK = "deploy_hook"
+    DEPLOYED_BY_RENDER = "deployed_by_render"
+    MANUAL = "manual"
+    OTHER = "other"
+    NEW_COMMIT = "new_commit"
+    ROLLBACK = "rollback"
+    SERVICE_RESUMED = "service_resumed"
+    SERVICE_UPDATED = "service_updated"
+
+
+class Type(str, Enum):
+    STATIC_SITE = "static_site"
+    WEB_SERVICE = "web_service"
+    PRIVATE_SERVICE = "private_service"
+    BACKGROUND_WORKER = "background_worker"
+    CRON_JOB = "cron_job"
+
+
+class WebServiceDetailsEnv(str, Enum):
+    """
+    Environment (runtime)
+    """
     DOCKER = "docker"
     ELIXIR = "elixir"
     GO = "go"
@@ -204,9 +332,13 @@ class WebServiceServiceDetailsEnv(str, Enum):
     PYTHON = "python"
     RUBY = "ruby"
     RUST = "rust"
+    IMAGE = "image"
 
 
-class WebServiceServiceDetailsPlan(str, Enum):
+class WebServiceDetailsPlan(str, Enum):
+    """
+    The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+    """
     STARTER = "starter"
     STARTER_PLUS = "starter_plus"
     STANDARD = "standard"
@@ -215,13 +347,17 @@ class WebServiceServiceDetailsPlan(str, Enum):
     PRO_PLUS = "pro_plus"
     PRO_MAX = "pro_max"
     PRO_ULTRA = "pro_ultra"
+    FREE = "free"
+    CUSTOM = "custom"
 
 
-class WebServiceServiceDetailsPullRequestPreviewsEnabled(str, Enum):
+class WebServiceDetailsPullRequestPreviewsEnabled(str, Enum):
     YES = "yes"
     NO = "no"
 
 
-class WebServiceServiceDetailsRegion(str, Enum):
-    OREGON = "oregon"
+class WebServiceDetailsRegion(str, Enum):
     FRANKFURT = "frankfurt"
+    OREGON = "oregon"
+    OHIO = "ohio"
+    SINGAPORE = "singapore"

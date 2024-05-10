@@ -39,18 +39,20 @@ _utilities.register(
   "mod": "services",
   "fqn": "pulumi_render.services",
   "classes": {
-   "render:services:AutoScaling": "AutoScaling",
-   "render:services:BackgroundWorker": "BackgroundWorker",
-   "render:services:CronJob": "CronJob",
-   "render:services:CustomDomains": "CustomDomains",
-   "render:services:Deploys": "Deploys",
-   "render:services:EnvVars": "EnvVars",
-   "render:services:Jobs": "Jobs",
-   "render:services:PrivateService": "PrivateService",
-   "render:services:Scale": "Scale",
-   "render:services:StaticSite": "StaticSite",
-   "render:services:Suspend": "Suspend",
-   "render:services:WebService": "WebService"
+   "render:services:AutoscaleService": "AutoscaleService",
+   "render:services:CancelDeploy": "CancelDeploy",
+   "render:services:CancelJob": "CancelJob",
+   "render:services:CustomDomain": "CustomDomain",
+   "render:services:Deploy": "Deploy",
+   "render:services:EnvVarsForService": "EnvVarsForService",
+   "render:services:Job": "Job",
+   "render:services:PreviewService": "PreviewService",
+   "render:services:RefreshCustomDomain": "RefreshCustomDomain",
+   "render:services:RestartServer": "RestartServer",
+   "render:services:RollbackDeploy": "RollbackDeploy",
+   "render:services:ScaleService": "ScaleService",
+   "render:services:Service": "Service",
+   "render:services:SuspendService": "SuspendService"
   }
  }
 ]

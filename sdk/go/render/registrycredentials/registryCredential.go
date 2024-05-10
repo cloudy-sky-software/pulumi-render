@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"errors"
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -14,20 +15,35 @@ import (
 type RegistryCredential struct {
 	pulumi.CustomResourceState
 
-	AuthToken pulumi.StringPtrOutput `pulumi:"authToken"`
-	Name      pulumi.StringPtrOutput `pulumi:"name"`
-	OwnerId   pulumi.StringPtrOutput `pulumi:"ownerId"`
-	Registry  pulumi.StringPtrOutput `pulumi:"registry"`
-	Username  pulumi.StringPtrOutput `pulumi:"username"`
+	AuthToken pulumi.StringOutput `pulumi:"authToken"`
+	// Descriptive name for this credential
+	Name    pulumi.StringOutput `pulumi:"name"`
+	OwnerId pulumi.StringOutput `pulumi:"ownerId"`
+	// The registry to use this credential with
+	Registry RegistryOutput `pulumi:"registry"`
+	// The username associated with the credential
+	Username pulumi.StringOutput `pulumi:"username"`
 }
 
 // NewRegistryCredential registers a new resource with the given unique name, arguments, and options.
 func NewRegistryCredential(ctx *pulumi.Context,
 	name string, args *RegistryCredentialArgs, opts ...pulumi.ResourceOption) (*RegistryCredential, error) {
 	if args == nil {
-		args = &RegistryCredentialArgs{}
+		return nil, errors.New("missing one or more required arguments")
 	}
 
+	if args.AuthToken == nil {
+		return nil, errors.New("invalid value for required argument 'AuthToken'")
+	}
+	if args.OwnerId == nil {
+		return nil, errors.New("invalid value for required argument 'OwnerId'")
+	}
+	if args.Registry == nil {
+		return nil, errors.New("invalid value for required argument 'Registry'")
+	}
+	if args.Username == nil {
+		return nil, errors.New("invalid value for required argument 'Username'")
+	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RegistryCredential
 	err := ctx.RegisterResource("render:registrycredentials:RegistryCredential", name, args, &resource, opts...)
@@ -61,20 +77,20 @@ func (RegistryCredentialState) ElementType() reflect.Type {
 }
 
 type registryCredentialArgs struct {
-	AuthToken *string `pulumi:"authToken"`
-	Name      *string `pulumi:"name"`
-	OwnerId   *string `pulumi:"ownerId"`
-	Registry  *string `pulumi:"registry"`
-	Username  *string `pulumi:"username"`
+	AuthToken string   `pulumi:"authToken"`
+	Name      *string  `pulumi:"name"`
+	OwnerId   string   `pulumi:"ownerId"`
+	Registry  Registry `pulumi:"registry"`
+	Username  string   `pulumi:"username"`
 }
 
 // The set of arguments for constructing a RegistryCredential resource.
 type RegistryCredentialArgs struct {
-	AuthToken pulumi.StringPtrInput
+	AuthToken pulumi.StringInput
 	Name      pulumi.StringPtrInput
-	OwnerId   pulumi.StringPtrInput
-	Registry  pulumi.StringPtrInput
-	Username  pulumi.StringPtrInput
+	OwnerId   pulumi.StringInput
+	Registry  RegistryInput
+	Username  pulumi.StringInput
 }
 
 func (RegistryCredentialArgs) ElementType() reflect.Type {
@@ -114,24 +130,27 @@ func (o RegistryCredentialOutput) ToRegistryCredentialOutputWithContext(ctx cont
 	return o
 }
 
-func (o RegistryCredentialOutput) AuthToken() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *RegistryCredential) pulumi.StringPtrOutput { return v.AuthToken }).(pulumi.StringPtrOutput)
+func (o RegistryCredentialOutput) AuthToken() pulumi.StringOutput {
+	return o.ApplyT(func(v *RegistryCredential) pulumi.StringOutput { return v.AuthToken }).(pulumi.StringOutput)
 }
 
-func (o RegistryCredentialOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *RegistryCredential) pulumi.StringPtrOutput { return v.Name }).(pulumi.StringPtrOutput)
+// Descriptive name for this credential
+func (o RegistryCredentialOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *RegistryCredential) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-func (o RegistryCredentialOutput) OwnerId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *RegistryCredential) pulumi.StringPtrOutput { return v.OwnerId }).(pulumi.StringPtrOutput)
+func (o RegistryCredentialOutput) OwnerId() pulumi.StringOutput {
+	return o.ApplyT(func(v *RegistryCredential) pulumi.StringOutput { return v.OwnerId }).(pulumi.StringOutput)
 }
 
-func (o RegistryCredentialOutput) Registry() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *RegistryCredential) pulumi.StringPtrOutput { return v.Registry }).(pulumi.StringPtrOutput)
+// The registry to use this credential with
+func (o RegistryCredentialOutput) Registry() RegistryOutput {
+	return o.ApplyT(func(v *RegistryCredential) RegistryOutput { return v.Registry }).(RegistryOutput)
 }
 
-func (o RegistryCredentialOutput) Username() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *RegistryCredential) pulumi.StringPtrOutput { return v.Username }).(pulumi.StringPtrOutput)
+// The username associated with the credential
+func (o RegistryCredentialOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v *RegistryCredential) pulumi.StringOutput { return v.Username }).(pulumi.StringOutput)
 }
 
 func init() {

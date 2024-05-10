@@ -8,83 +8,49 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from ._enums import *
 
 __all__ = [
-    'GetRegistryCredentialProperties',
-    'ListRegistryCredentialsItemProperties',
+    'RegistryCredential',
 ]
 
 @pulumi.output_type
-class GetRegistryCredentialProperties(dict):
+class RegistryCredential(dict):
     def __init__(__self__, *,
-                 id: Optional[str] = None,
-                 name: Optional[str] = None,
-                 registry: Optional[str] = None,
-                 username: Optional[str] = None):
-        if id is not None:
-            pulumi.set(__self__, "id", id)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if registry is not None:
-            pulumi.set(__self__, "registry", registry)
-        if username is not None:
-            pulumi.set(__self__, "username", username)
+                 name: str,
+                 registry: 'RegistryCredentialRegistry',
+                 username: str):
+        """
+        :param str name: Descriptive name for this credential
+        :param 'RegistryCredentialRegistry' registry: The registry to use this credential with
+        :param str username: The username associated with the credential
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "registry", registry)
+        pulumi.set(__self__, "username", username)
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
-        return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[str]:
+    def name(self) -> str:
+        """
+        Descriptive name for this credential
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
-    def registry(self) -> Optional[str]:
+    def registry(self) -> 'RegistryCredentialRegistry':
+        """
+        The registry to use this credential with
+        """
         return pulumi.get(self, "registry")
 
     @property
     @pulumi.getter
-    def username(self) -> Optional[str]:
-        return pulumi.get(self, "username")
-
-
-@pulumi.output_type
-class ListRegistryCredentialsItemProperties(dict):
-    def __init__(__self__, *,
-                 id: Optional[str] = None,
-                 name: Optional[str] = None,
-                 registry: Optional[str] = None,
-                 username: Optional[str] = None):
-        if id is not None:
-            pulumi.set(__self__, "id", id)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if registry is not None:
-            pulumi.set(__self__, "registry", registry)
-        if username is not None:
-            pulumi.set(__self__, "username", username)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[str]:
-        return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[str]:
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def registry(self) -> Optional[str]:
-        return pulumi.get(self, "registry")
-
-    @property
-    @pulumi.getter
-    def username(self) -> Optional[str]:
+    def username(self) -> str:
+        """
+        The username associated with the credential
+        """
         return pulumi.get(self, "username")
 
 

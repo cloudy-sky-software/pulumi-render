@@ -25,7 +25,7 @@ type ListRegistryCredentialsArgs struct {
 }
 
 type ListRegistryCredentialsResult struct {
-	Items []ListRegistryCredentialsItemProperties `pulumi:"items"`
+	Items []RegistryCredentialType `pulumi:"items"`
 }
 
 func ListRegistryCredentialsOutput(ctx *pulumi.Context, args ListRegistryCredentialsOutputArgs, opts ...pulumi.InvokeOption) ListRegistryCredentialsResultOutput {
@@ -62,8 +62,8 @@ func (o ListRegistryCredentialsResultOutput) ToListRegistryCredentialsResultOutp
 	return o
 }
 
-func (o ListRegistryCredentialsResultOutput) Items() ListRegistryCredentialsItemPropertiesArrayOutput {
-	return o.ApplyT(func(v ListRegistryCredentialsResult) []ListRegistryCredentialsItemProperties { return v.Items }).(ListRegistryCredentialsItemPropertiesArrayOutput)
+func (o ListRegistryCredentialsResultOutput) Items() RegistryCredentialTypeArrayOutput {
+	return o.ApplyT(func(v ListRegistryCredentialsResult) []RegistryCredentialType { return v.Items }).(RegistryCredentialTypeArrayOutput)
 }
 
 func init() {

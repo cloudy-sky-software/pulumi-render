@@ -27,7 +27,7 @@ class ListOwnersResult:
 
     @property
     @pulumi.getter
-    def items(self) -> Sequence['outputs.ListOwnersResponse']:
+    def items(self) -> Sequence['outputs.ListOwnersItemProperties']:
         return pulumi.get(self, "items")
 
 

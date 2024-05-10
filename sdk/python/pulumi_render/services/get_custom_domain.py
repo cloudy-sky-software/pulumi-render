@@ -40,18 +40,11 @@ class AwaitableGetCustomDomainResult(GetCustomDomainResult):
             items=self.items)
 
 
-def get_custom_domain(id: Optional[str] = None,
-                      service_id: Optional[str] = None,
-                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCustomDomainResult:
+def get_custom_domain(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCustomDomainResult:
     """
     Use this data source to access information about an existing resource.
-
-    :param str id: (Required) The ID or name of the custom domain
-    :param str service_id: (Required) The ID of the service
     """
     __args__ = dict()
-    __args__['id'] = id
-    __args__['serviceId'] = service_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:services:getCustomDomain', __args__, opts=opts, typ=GetCustomDomainResult).value
 
@@ -60,13 +53,8 @@ def get_custom_domain(id: Optional[str] = None,
 
 
 @_utilities.lift_output_func(get_custom_domain)
-def get_custom_domain_output(id: Optional[pulumi.Input[str]] = None,
-                             service_id: Optional[pulumi.Input[str]] = None,
-                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCustomDomainResult]:
+def get_custom_domain_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCustomDomainResult]:
     """
     Use this data source to access information about an existing resource.
-
-    :param str id: (Required) The ID or name of the custom domain
-    :param str service_id: (Required) The ID of the service
     """
     ...

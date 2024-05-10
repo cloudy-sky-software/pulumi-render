@@ -7,7 +7,4 @@ export const OwnerType = {
     Team: "team",
 } as const;
 
-/**
- * The type of the authorized user.
- */
 export type OwnerType = (typeof OwnerType)[keyof typeof OwnerType];

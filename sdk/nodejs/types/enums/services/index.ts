@@ -2,53 +2,17 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 
-export const BackgroundWorkerServiceDetailsEnv = {
-    Docker: "docker",
-    Elixir: "elixir",
-    Go: "go",
-    Node: "node",
-    Python: "python",
-    Ruby: "ruby",
-    Rust: "rust",
-} as const;
-
-export type BackgroundWorkerServiceDetailsEnv = (typeof BackgroundWorkerServiceDetailsEnv)[keyof typeof BackgroundWorkerServiceDetailsEnv];
-
-export const BackgroundWorkerServiceDetailsPlan = {
-    Starter: "starter",
-    StarterPlus: "starter_plus",
-    Standard: "standard",
-    StandardPlus: "standard_plus",
-    Pro: "pro",
-    ProPlus: "pro_plus",
-    ProMax: "pro_max",
-    ProUltra: "pro_ultra",
-} as const;
-
-export type BackgroundWorkerServiceDetailsPlan = (typeof BackgroundWorkerServiceDetailsPlan)[keyof typeof BackgroundWorkerServiceDetailsPlan];
-
-export const BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled = {
+export const AutoDeploy = {
     Yes: "yes",
     No: "no",
 } as const;
 
-export type BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled = (typeof BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled)[keyof typeof BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled];
+/**
+ * Defaults to "yes"
+ */
+export type AutoDeploy = (typeof AutoDeploy)[keyof typeof AutoDeploy];
 
-export const BackgroundWorkerServiceDetailsRegion = {
-    Oregon: "oregon",
-    Frankfurt: "frankfurt",
-} as const;
-
-export type BackgroundWorkerServiceDetailsRegion = (typeof BackgroundWorkerServiceDetailsRegion)[keyof typeof BackgroundWorkerServiceDetailsRegion];
-
-export const ClearCache = {
-    DoNotClear: "do_not_clear",
-    Clear: "clear",
-} as const;
-
-export type ClearCache = (typeof ClearCache)[keyof typeof ClearCache];
-
-export const CronJobServiceDetailsEnv = {
+export const BackgroundWorkerDetailsEnv = {
     Docker: "docker",
     Elixir: "elixir",
     Go: "go",
@@ -56,11 +20,15 @@ export const CronJobServiceDetailsEnv = {
     Python: "python",
     Ruby: "ruby",
     Rust: "rust",
+    Image: "image",
 } as const;
 
-export type CronJobServiceDetailsEnv = (typeof CronJobServiceDetailsEnv)[keyof typeof CronJobServiceDetailsEnv];
+/**
+ * Environment (runtime)
+ */
+export type BackgroundWorkerDetailsEnv = (typeof BackgroundWorkerDetailsEnv)[keyof typeof BackgroundWorkerDetailsEnv];
 
-export const CronJobServiceDetailsPlan = {
+export const BackgroundWorkerDetailsPlan = {
     Starter: "starter",
     StarterPlus: "starter_plus",
     Standard: "standard",
@@ -69,16 +37,83 @@ export const CronJobServiceDetailsPlan = {
     ProPlus: "pro_plus",
     ProMax: "pro_max",
     ProUltra: "pro_ultra",
+    Free: "free",
+    Custom: "custom",
 } as const;
 
-export type CronJobServiceDetailsPlan = (typeof CronJobServiceDetailsPlan)[keyof typeof CronJobServiceDetailsPlan];
+/**
+ * The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+ */
+export type BackgroundWorkerDetailsPlan = (typeof BackgroundWorkerDetailsPlan)[keyof typeof BackgroundWorkerDetailsPlan];
 
-export const CronJobServiceDetailsRegion = {
-    Oregon: "oregon",
+export const BackgroundWorkerDetailsPullRequestPreviewsEnabled = {
+    Yes: "yes",
+    No: "no",
+} as const;
+
+export type BackgroundWorkerDetailsPullRequestPreviewsEnabled = (typeof BackgroundWorkerDetailsPullRequestPreviewsEnabled)[keyof typeof BackgroundWorkerDetailsPullRequestPreviewsEnabled];
+
+export const BackgroundWorkerDetailsRegion = {
     Frankfurt: "frankfurt",
+    Oregon: "oregon",
+    Ohio: "ohio",
+    Singapore: "singapore",
 } as const;
 
-export type CronJobServiceDetailsRegion = (typeof CronJobServiceDetailsRegion)[keyof typeof CronJobServiceDetailsRegion];
+export type BackgroundWorkerDetailsRegion = (typeof BackgroundWorkerDetailsRegion)[keyof typeof BackgroundWorkerDetailsRegion];
+
+export const ClearCache = {
+    Clear: "clear",
+    DoNotClear: "do_not_clear",
+} as const;
+
+/**
+ * Defaults to "do_not_clear"
+ */
+export type ClearCache = (typeof ClearCache)[keyof typeof ClearCache];
+
+export const CronJobDetailsEnv = {
+    Docker: "docker",
+    Elixir: "elixir",
+    Go: "go",
+    Node: "node",
+    Python: "python",
+    Ruby: "ruby",
+    Rust: "rust",
+    Image: "image",
+} as const;
+
+/**
+ * Environment (runtime)
+ */
+export type CronJobDetailsEnv = (typeof CronJobDetailsEnv)[keyof typeof CronJobDetailsEnv];
+
+export const CronJobDetailsPlan = {
+    Starter: "starter",
+    StarterPlus: "starter_plus",
+    Standard: "standard",
+    StandardPlus: "standard_plus",
+    Pro: "pro",
+    ProPlus: "pro_plus",
+    ProMax: "pro_max",
+    ProUltra: "pro_ultra",
+    Free: "free",
+    Custom: "custom",
+} as const;
+
+/**
+ * The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+ */
+export type CronJobDetailsPlan = (typeof CronJobDetailsPlan)[keyof typeof CronJobDetailsPlan];
+
+export const CronJobDetailsRegion = {
+    Frankfurt: "frankfurt",
+    Oregon: "oregon",
+    Ohio: "ohio",
+    Singapore: "singapore",
+} as const;
+
+export type CronJobDetailsRegion = (typeof CronJobDetailsRegion)[keyof typeof CronJobDetailsRegion];
 
 export const CustomDomainDomainType = {
     Apex: "apex",
@@ -94,33 +129,53 @@ export const CustomDomainVerificationStatus = {
 
 export type CustomDomainVerificationStatus = (typeof CustomDomainVerificationStatus)[keyof typeof CustomDomainVerificationStatus];
 
-export const DeployClearCache = {
-    DoNotClear: "do_not_clear",
-    Clear: "clear",
+export const DeployStatus = {
+    Created: "created",
+    BuildInProgress: "build_in_progress",
+    UpdateInProgress: "update_in_progress",
+    Live: "live",
+    Deactivated: "deactivated",
+    BuildFailed: "build_failed",
+    UpdateFailed: "update_failed",
+    Canceled: "canceled",
+    PreDeployInProgress: "pre_deploy_in_progress",
+    PreDeployFailed: "pre_deploy_failed",
 } as const;
 
-export type DeployClearCache = (typeof DeployClearCache)[keyof typeof DeployClearCache];
+export type DeployStatus = (typeof DeployStatus)[keyof typeof DeployStatus];
 
-export const DomainType = {
-    Apex: "apex",
-    Subdomain: "subdomain",
+export const DeployTrigger = {
+    Api: "api",
+    BlueprintSync: "blueprint_sync",
+    DeployHook: "deploy_hook",
+    DeployedByRender: "deployed_by_render",
+    Manual: "manual",
+    Other: "other",
+    NewCommit: "new_commit",
+    Rollback: "rollback",
+    ServiceResumed: "service_resumed",
+    ServiceUpdated: "service_updated",
 } as const;
 
-export type DomainType = (typeof DomainType)[keyof typeof DomainType];
+export type DeployTrigger = (typeof DeployTrigger)[keyof typeof DeployTrigger];
 
-export const EnvVarKeyValueGenerateValue = {
-    Yes: "yes",
-    No: "no",
+export const Plan = {
+    Starter: "starter",
+    StarterPlus: "starter_plus",
+    Standard: "standard",
+    StandardPlus: "standard_plus",
+    Pro: "pro",
+    ProPlus: "pro_plus",
+    ProMax: "pro_max",
+    ProUltra: "pro_ultra",
+    Free: "free",
+    Custom: "custom",
 } as const;
 
-export type EnvVarKeyValueGenerateValue = (typeof EnvVarKeyValueGenerateValue)[keyof typeof EnvVarKeyValueGenerateValue];
-
-export const OpenPortsProtocol = {
-    Tcp: "TCP",
-    Udp: "UDP",
-} as const;
-
-export type OpenPortsProtocol = (typeof OpenPortsProtocol)[keyof typeof OpenPortsProtocol];
+/**
+ * The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+ */
+export type Plan = (typeof Plan)[keyof typeof Plan];
 
 export const PrivateServiceDetailsEnv = {
     Docker: "docker",
@@ -130,8 +185,12 @@ export const PrivateServiceDetailsEnv = {
     Python: "python",
     Ruby: "ruby",
     Rust: "rust",
+    Image: "image",
 } as const;
 
+/**
+ * Environment (runtime)
+ */
 export type PrivateServiceDetailsEnv = (typeof PrivateServiceDetailsEnv)[keyof typeof PrivateServiceDetailsEnv];
 
 export const PrivateServiceDetailsPlan = {
@@ -143,8 +202,13 @@ export const PrivateServiceDetailsPlan = {
     ProPlus: "pro_plus",
     ProMax: "pro_max",
     ProUltra: "pro_ultra",
+    Free: "free",
+    Custom: "custom",
 } as const;
 
+/**
+ * The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+ */
 export type PrivateServiceDetailsPlan = (typeof PrivateServiceDetailsPlan)[keyof typeof PrivateServiceDetailsPlan];
 
 export const PrivateServiceDetailsPullRequestPreviewsEnabled = {
@@ -155,20 +219,44 @@ export const PrivateServiceDetailsPullRequestPreviewsEnabled = {
 export type PrivateServiceDetailsPullRequestPreviewsEnabled = (typeof PrivateServiceDetailsPullRequestPreviewsEnabled)[keyof typeof PrivateServiceDetailsPullRequestPreviewsEnabled];
 
 export const PrivateServiceDetailsRegion = {
-    Oregon: "oregon",
     Frankfurt: "frankfurt",
+    Oregon: "oregon",
+    Ohio: "ohio",
+    Singapore: "singapore",
 } as const;
 
 export type PrivateServiceDetailsRegion = (typeof PrivateServiceDetailsRegion)[keyof typeof PrivateServiceDetailsRegion];
+
+export const RegistryCredentialRegistry = {
+    Github: "GITHUB",
+    Gitlab: "GITLAB",
+    Docker: "DOCKER",
+} as const;
+
+/**
+ * The registry to use this credential with
+ */
+export type RegistryCredentialRegistry = (typeof RegistryCredentialRegistry)[keyof typeof RegistryCredentialRegistry];
+
+export const RouteType = {
+    Redirect: "redirect",
+    Rewrite: "rewrite",
+} as const;
+
+export type RouteType = (typeof RouteType)[keyof typeof RouteType];
+
+export const ServerPortProtocol = {
+    Tcp: "TCP",
+    Udp: "UDP",
+} as const;
+
+export type ServerPortProtocol = (typeof ServerPortProtocol)[keyof typeof ServerPortProtocol];
 
 export const ServiceAutoDeploy = {
     Yes: "yes",
     No: "no",
 } as const;
 
-/**
- * Whether to auto deploy the service or not upon git push.
- */
 export type ServiceAutoDeploy = (typeof ServiceAutoDeploy)[keyof typeof ServiceAutoDeploy];
 
 export const ServiceNotifyOnFail = {
@@ -177,9 +265,6 @@ export const ServiceNotifyOnFail = {
     Ignore: "ignore",
 } as const;
 
-/**
- * The notification setting for this service upon deployment failure.
- */
 export type ServiceNotifyOnFail = (typeof ServiceNotifyOnFail)[keyof typeof ServiceNotifyOnFail];
 
 export const ServiceSuspended = {
@@ -189,28 +274,74 @@ export const ServiceSuspended = {
 
 export type ServiceSuspended = (typeof ServiceSuspended)[keyof typeof ServiceSuspended];
 
-export const StaticSiteRouteType = {
-    Redirect: "redirect",
-    Rewrite: "rewrite",
+export const ServiceSuspendersItem = {
+    Admin: "admin",
+    Billing: "billing",
+    User: "user",
+    ParentService: "parent_service",
+    Unknown: "unknown",
 } as const;
 
-export type StaticSiteRouteType = (typeof StaticSiteRouteType)[keyof typeof StaticSiteRouteType];
+export type ServiceSuspendersItem = (typeof ServiceSuspendersItem)[keyof typeof ServiceSuspendersItem];
 
-export const StaticSiteServiceDetailsPullRequestPreviewsEnabled = {
+export const ServiceType = {
+    StaticSite: "static_site",
+    WebService: "web_service",
+    PrivateService: "private_service",
+    BackgroundWorker: "background_worker",
+    CronJob: "cron_job",
+} as const;
+
+export type ServiceType = (typeof ServiceType)[keyof typeof ServiceType];
+
+export const StaticSiteDetailsPullRequestPreviewsEnabled = {
     Yes: "yes",
     No: "no",
 } as const;
 
-export type StaticSiteServiceDetailsPullRequestPreviewsEnabled = (typeof StaticSiteServiceDetailsPullRequestPreviewsEnabled)[keyof typeof StaticSiteServiceDetailsPullRequestPreviewsEnabled];
+export type StaticSiteDetailsPullRequestPreviewsEnabled = (typeof StaticSiteDetailsPullRequestPreviewsEnabled)[keyof typeof StaticSiteDetailsPullRequestPreviewsEnabled];
 
-export const VerificationStatus = {
-    Verified: "verified",
-    Unverified: "unverified",
+export const Status = {
+    Created: "created",
+    BuildInProgress: "build_in_progress",
+    UpdateInProgress: "update_in_progress",
+    Live: "live",
+    Deactivated: "deactivated",
+    BuildFailed: "build_failed",
+    UpdateFailed: "update_failed",
+    Canceled: "canceled",
+    PreDeployInProgress: "pre_deploy_in_progress",
+    PreDeployFailed: "pre_deploy_failed",
 } as const;
 
-export type VerificationStatus = (typeof VerificationStatus)[keyof typeof VerificationStatus];
+export type Status = (typeof Status)[keyof typeof Status];
 
-export const WebServiceServiceDetailsEnv = {
+export const Trigger = {
+    Api: "api",
+    BlueprintSync: "blueprint_sync",
+    DeployHook: "deploy_hook",
+    DeployedByRender: "deployed_by_render",
+    Manual: "manual",
+    Other: "other",
+    NewCommit: "new_commit",
+    Rollback: "rollback",
+    ServiceResumed: "service_resumed",
+    ServiceUpdated: "service_updated",
+} as const;
+
+export type Trigger = (typeof Trigger)[keyof typeof Trigger];
+
+export const Type = {
+    StaticSite: "static_site",
+    WebService: "web_service",
+    PrivateService: "private_service",
+    BackgroundWorker: "background_worker",
+    CronJob: "cron_job",
+} as const;
+
+export type Type = (typeof Type)[keyof typeof Type];
+
+export const WebServiceDetailsEnv = {
     Docker: "docker",
     Elixir: "elixir",
     Go: "go",
@@ -218,11 +349,15 @@ export const WebServiceServiceDetailsEnv = {
     Python: "python",
     Ruby: "ruby",
     Rust: "rust",
+    Image: "image",
 } as const;
 
-export type WebServiceServiceDetailsEnv = (typeof WebServiceServiceDetailsEnv)[keyof typeof WebServiceServiceDetailsEnv];
+/**
+ * Environment (runtime)
+ */
+export type WebServiceDetailsEnv = (typeof WebServiceDetailsEnv)[keyof typeof WebServiceDetailsEnv];
 
-export const WebServiceServiceDetailsPlan = {
+export const WebServiceDetailsPlan = {
     Starter: "starter",
     StarterPlus: "starter_plus",
     Standard: "standard",
@@ -231,20 +366,27 @@ export const WebServiceServiceDetailsPlan = {
     ProPlus: "pro_plus",
     ProMax: "pro_max",
     ProUltra: "pro_ultra",
+    Free: "free",
+    Custom: "custom",
 } as const;
 
-export type WebServiceServiceDetailsPlan = (typeof WebServiceServiceDetailsPlan)[keyof typeof WebServiceServiceDetailsPlan];
+/**
+ * The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+ */
+export type WebServiceDetailsPlan = (typeof WebServiceDetailsPlan)[keyof typeof WebServiceDetailsPlan];
 
-export const WebServiceServiceDetailsPullRequestPreviewsEnabled = {
+export const WebServiceDetailsPullRequestPreviewsEnabled = {
     Yes: "yes",
     No: "no",
 } as const;
 
-export type WebServiceServiceDetailsPullRequestPreviewsEnabled = (typeof WebServiceServiceDetailsPullRequestPreviewsEnabled)[keyof typeof WebServiceServiceDetailsPullRequestPreviewsEnabled];
+export type WebServiceDetailsPullRequestPreviewsEnabled = (typeof WebServiceDetailsPullRequestPreviewsEnabled)[keyof typeof WebServiceDetailsPullRequestPreviewsEnabled];
 
-export const WebServiceServiceDetailsRegion = {
-    Oregon: "oregon",
+export const WebServiceDetailsRegion = {
     Frankfurt: "frankfurt",
+    Oregon: "oregon",
+    Ohio: "ohio",
+    Singapore: "singapore",
 } as const;
 
-export type WebServiceServiceDetailsRegion = (typeof WebServiceServiceDetailsRegion)[keyof typeof WebServiceServiceDetailsRegion];
+export type WebServiceDetailsRegion = (typeof WebServiceDetailsRegion)[keyof typeof WebServiceDetailsRegion];

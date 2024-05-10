@@ -5,140 +5,130 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export { AutoScalingArgs } from "./autoScaling";
-export type AutoScaling = import("./autoScaling").AutoScaling;
-export const AutoScaling: typeof import("./autoScaling").AutoScaling = null as any;
-utilities.lazyLoad(exports, ["AutoScaling"], () => require("./autoScaling"));
+export { AutoscaleServiceArgs } from "./autoscaleService";
+export type AutoscaleService = import("./autoscaleService").AutoscaleService;
+export const AutoscaleService: typeof import("./autoscaleService").AutoscaleService = null as any;
+utilities.lazyLoad(exports, ["AutoscaleService"], () => require("./autoscaleService"));
 
-export { BackgroundWorkerArgs } from "./backgroundWorker";
-export type BackgroundWorker = import("./backgroundWorker").BackgroundWorker;
-export const BackgroundWorker: typeof import("./backgroundWorker").BackgroundWorker = null as any;
-utilities.lazyLoad(exports, ["BackgroundWorker"], () => require("./backgroundWorker"));
+export { CancelDeployArgs } from "./cancelDeploy";
+export type CancelDeploy = import("./cancelDeploy").CancelDeploy;
+export const CancelDeploy: typeof import("./cancelDeploy").CancelDeploy = null as any;
+utilities.lazyLoad(exports, ["CancelDeploy"], () => require("./cancelDeploy"));
 
-export { CronJobArgs } from "./cronJob";
-export type CronJob = import("./cronJob").CronJob;
-export const CronJob: typeof import("./cronJob").CronJob = null as any;
-utilities.lazyLoad(exports, ["CronJob"], () => require("./cronJob"));
+export { CancelJobArgs } from "./cancelJob";
+export type CancelJob = import("./cancelJob").CancelJob;
+export const CancelJob: typeof import("./cancelJob").CancelJob = null as any;
+utilities.lazyLoad(exports, ["CancelJob"], () => require("./cancelJob"));
 
-export { CustomDomainsArgs } from "./customDomains";
-export type CustomDomains = import("./customDomains").CustomDomains;
-export const CustomDomains: typeof import("./customDomains").CustomDomains = null as any;
-utilities.lazyLoad(exports, ["CustomDomains"], () => require("./customDomains"));
+export { CustomDomainArgs } from "./customDomain";
+export type CustomDomain = import("./customDomain").CustomDomain;
+export const CustomDomain: typeof import("./customDomain").CustomDomain = null as any;
+utilities.lazyLoad(exports, ["CustomDomain"], () => require("./customDomain"));
 
-export { DeploysArgs } from "./deploys";
-export type Deploys = import("./deploys").Deploys;
-export const Deploys: typeof import("./deploys").Deploys = null as any;
-utilities.lazyLoad(exports, ["Deploys"], () => require("./deploys"));
+export { DeployArgs } from "./deploy";
+export type Deploy = import("./deploy").Deploy;
+export const Deploy: typeof import("./deploy").Deploy = null as any;
+utilities.lazyLoad(exports, ["Deploy"], () => require("./deploy"));
 
-export { EnvVarsArgs } from "./envVars";
-export type EnvVars = import("./envVars").EnvVars;
-export const EnvVars: typeof import("./envVars").EnvVars = null as any;
-utilities.lazyLoad(exports, ["EnvVars"], () => require("./envVars"));
+export { EnvVarsForServiceArgs } from "./envVarsForService";
+export type EnvVarsForService = import("./envVarsForService").EnvVarsForService;
+export const EnvVarsForService: typeof import("./envVarsForService").EnvVarsForService = null as any;
+utilities.lazyLoad(exports, ["EnvVarsForService"], () => require("./envVarsForService"));
 
-export { GetBackgroundWorkerArgs, GetBackgroundWorkerResult, GetBackgroundWorkerOutputArgs } from "./getBackgroundWorker";
-export const getBackgroundWorker: typeof import("./getBackgroundWorker").getBackgroundWorker = null as any;
-export const getBackgroundWorkerOutput: typeof import("./getBackgroundWorker").getBackgroundWorkerOutput = null as any;
-utilities.lazyLoad(exports, ["getBackgroundWorker","getBackgroundWorkerOutput"], () => require("./getBackgroundWorker"));
-
-export { GetCronJobArgs, GetCronJobResult, GetCronJobOutputArgs } from "./getCronJob";
-export const getCronJob: typeof import("./getCronJob").getCronJob = null as any;
-export const getCronJobOutput: typeof import("./getCronJob").getCronJobOutput = null as any;
-utilities.lazyLoad(exports, ["getCronJob","getCronJobOutput"], () => require("./getCronJob"));
-
-export { GetCustomDomainArgs, GetCustomDomainResult, GetCustomDomainOutputArgs } from "./getCustomDomain";
+export { GetCustomDomainArgs, GetCustomDomainResult } from "./getCustomDomain";
 export const getCustomDomain: typeof import("./getCustomDomain").getCustomDomain = null as any;
 export const getCustomDomainOutput: typeof import("./getCustomDomain").getCustomDomainOutput = null as any;
 utilities.lazyLoad(exports, ["getCustomDomain","getCustomDomainOutput"], () => require("./getCustomDomain"));
 
-export { GetDeployArgs, GetDeployResult, GetDeployOutputArgs } from "./getDeploy";
+export { GetDeployArgs, GetDeployResult } from "./getDeploy";
 export const getDeploy: typeof import("./getDeploy").getDeploy = null as any;
 export const getDeployOutput: typeof import("./getDeploy").getDeployOutput = null as any;
 utilities.lazyLoad(exports, ["getDeploy","getDeployOutput"], () => require("./getDeploy"));
 
-export { GetJobArgs, GetJobResult, GetJobOutputArgs } from "./getJob";
+export { GetJobArgs, GetJobResult } from "./getJob";
 export const getJob: typeof import("./getJob").getJob = null as any;
 export const getJobOutput: typeof import("./getJob").getJobOutput = null as any;
 utilities.lazyLoad(exports, ["getJob","getJobOutput"], () => require("./getJob"));
 
-export { GetPrivateServiceArgs, GetPrivateServiceResult, GetPrivateServiceOutputArgs } from "./getPrivateService";
-export const getPrivateService: typeof import("./getPrivateService").getPrivateService = null as any;
-export const getPrivateServiceOutput: typeof import("./getPrivateService").getPrivateServiceOutput = null as any;
-utilities.lazyLoad(exports, ["getPrivateService","getPrivateServiceOutput"], () => require("./getPrivateService"));
+export { GetServiceArgs, GetServiceResult } from "./getService";
+export const getService: typeof import("./getService").getService = null as any;
+export const getServiceOutput: typeof import("./getService").getServiceOutput = null as any;
+utilities.lazyLoad(exports, ["getService","getServiceOutput"], () => require("./getService"));
 
-export { GetStaticSiteArgs, GetStaticSiteResult, GetStaticSiteOutputArgs } from "./getStaticSite";
-export const getStaticSite: typeof import("./getStaticSite").getStaticSite = null as any;
-export const getStaticSiteOutput: typeof import("./getStaticSite").getStaticSiteOutput = null as any;
-utilities.lazyLoad(exports, ["getStaticSite","getStaticSiteOutput"], () => require("./getStaticSite"));
+export { JobArgs } from "./job";
+export type Job = import("./job").Job;
+export const Job: typeof import("./job").Job = null as any;
+utilities.lazyLoad(exports, ["Job"], () => require("./job"));
 
-export { GetWebServiceArgs, GetWebServiceResult, GetWebServiceOutputArgs } from "./getWebService";
-export const getWebService: typeof import("./getWebService").getWebService = null as any;
-export const getWebServiceOutput: typeof import("./getWebService").getWebServiceOutput = null as any;
-utilities.lazyLoad(exports, ["getWebService","getWebServiceOutput"], () => require("./getWebService"));
-
-export { JobsArgs } from "./jobs";
-export type Jobs = import("./jobs").Jobs;
-export const Jobs: typeof import("./jobs").Jobs = null as any;
-utilities.lazyLoad(exports, ["Jobs"], () => require("./jobs"));
-
-export { ListCustomDomainsArgs, ListCustomDomainsResult, ListCustomDomainsOutputArgs } from "./listCustomDomains";
+export { ListCustomDomainsArgs, ListCustomDomainsResult } from "./listCustomDomains";
 export const listCustomDomains: typeof import("./listCustomDomains").listCustomDomains = null as any;
 export const listCustomDomainsOutput: typeof import("./listCustomDomains").listCustomDomainsOutput = null as any;
 utilities.lazyLoad(exports, ["listCustomDomains","listCustomDomainsOutput"], () => require("./listCustomDomains"));
 
-export { ListDeploysArgs, ListDeploysResult, ListDeploysOutputArgs } from "./listDeploys";
+export { ListDeploysArgs, ListDeploysResult } from "./listDeploys";
 export const listDeploys: typeof import("./listDeploys").listDeploys = null as any;
 export const listDeploysOutput: typeof import("./listDeploys").listDeploysOutput = null as any;
 utilities.lazyLoad(exports, ["listDeploys","listDeploysOutput"], () => require("./listDeploys"));
 
-export { ListEnvVarsArgs, ListEnvVarsResult, ListEnvVarsOutputArgs } from "./listEnvVars";
-export const listEnvVars: typeof import("./listEnvVars").listEnvVars = null as any;
-export const listEnvVarsOutput: typeof import("./listEnvVars").listEnvVarsOutput = null as any;
-utilities.lazyLoad(exports, ["listEnvVars","listEnvVarsOutput"], () => require("./listEnvVars"));
+export { ListEnvVarsForServiceArgs, ListEnvVarsForServiceResult } from "./listEnvVarsForService";
+export const listEnvVarsForService: typeof import("./listEnvVarsForService").listEnvVarsForService = null as any;
+export const listEnvVarsForServiceOutput: typeof import("./listEnvVarsForService").listEnvVarsForServiceOutput = null as any;
+utilities.lazyLoad(exports, ["listEnvVarsForService","listEnvVarsForServiceOutput"], () => require("./listEnvVarsForService"));
 
-export { ListHeadersArgs, ListHeadersResult, ListHeadersOutputArgs } from "./listHeaders";
-export const listHeaders: typeof import("./listHeaders").listHeaders = null as any;
-export const listHeadersOutput: typeof import("./listHeaders").listHeadersOutput = null as any;
-utilities.lazyLoad(exports, ["listHeaders","listHeadersOutput"], () => require("./listHeaders"));
+export { ListJobArgs, ListJobResult } from "./listJob";
+export const listJob: typeof import("./listJob").listJob = null as any;
+export const listJobOutput: typeof import("./listJob").listJobOutput = null as any;
+utilities.lazyLoad(exports, ["listJob","listJobOutput"], () => require("./listJob"));
 
-export { ListJobsArgs, ListJobsResult, ListJobsOutputArgs } from "./listJobs";
-export const listJobs: typeof import("./listJobs").listJobs = null as any;
-export const listJobsOutput: typeof import("./listJobs").listJobsOutput = null as any;
-utilities.lazyLoad(exports, ["listJobs","listJobsOutput"], () => require("./listJobs"));
+export { ListRetrieveHeadersArgs, ListRetrieveHeadersResult } from "./listRetrieveHeaders";
+export const listRetrieveHeaders: typeof import("./listRetrieveHeaders").listRetrieveHeaders = null as any;
+export const listRetrieveHeadersOutput: typeof import("./listRetrieveHeaders").listRetrieveHeadersOutput = null as any;
+utilities.lazyLoad(exports, ["listRetrieveHeaders","listRetrieveHeadersOutput"], () => require("./listRetrieveHeaders"));
 
-export { ListRoutesArgs, ListRoutesResult, ListRoutesOutputArgs } from "./listRoutes";
-export const listRoutes: typeof import("./listRoutes").listRoutes = null as any;
-export const listRoutesOutput: typeof import("./listRoutes").listRoutesOutput = null as any;
-utilities.lazyLoad(exports, ["listRoutes","listRoutesOutput"], () => require("./listRoutes"));
+export { ListRetrieveRoutesArgs, ListRetrieveRoutesResult } from "./listRetrieveRoutes";
+export const listRetrieveRoutes: typeof import("./listRetrieveRoutes").listRetrieveRoutes = null as any;
+export const listRetrieveRoutesOutput: typeof import("./listRetrieveRoutes").listRetrieveRoutesOutput = null as any;
+utilities.lazyLoad(exports, ["listRetrieveRoutes","listRetrieveRoutesOutput"], () => require("./listRetrieveRoutes"));
 
 export { ListServicesArgs, ListServicesResult } from "./listServices";
 export const listServices: typeof import("./listServices").listServices = null as any;
 export const listServicesOutput: typeof import("./listServices").listServicesOutput = null as any;
 utilities.lazyLoad(exports, ["listServices","listServicesOutput"], () => require("./listServices"));
 
-export { PrivateServiceArgs } from "./privateService";
-export type PrivateService = import("./privateService").PrivateService;
-export const PrivateService: typeof import("./privateService").PrivateService = null as any;
-utilities.lazyLoad(exports, ["PrivateService"], () => require("./privateService"));
+export { PreviewServiceArgs } from "./previewService";
+export type PreviewService = import("./previewService").PreviewService;
+export const PreviewService: typeof import("./previewService").PreviewService = null as any;
+utilities.lazyLoad(exports, ["PreviewService"], () => require("./previewService"));
 
-export { ScaleArgs } from "./scale";
-export type Scale = import("./scale").Scale;
-export const Scale: typeof import("./scale").Scale = null as any;
-utilities.lazyLoad(exports, ["Scale"], () => require("./scale"));
+export { RefreshCustomDomainArgs } from "./refreshCustomDomain";
+export type RefreshCustomDomain = import("./refreshCustomDomain").RefreshCustomDomain;
+export const RefreshCustomDomain: typeof import("./refreshCustomDomain").RefreshCustomDomain = null as any;
+utilities.lazyLoad(exports, ["RefreshCustomDomain"], () => require("./refreshCustomDomain"));
 
-export { StaticSiteArgs } from "./staticSite";
-export type StaticSite = import("./staticSite").StaticSite;
-export const StaticSite: typeof import("./staticSite").StaticSite = null as any;
-utilities.lazyLoad(exports, ["StaticSite"], () => require("./staticSite"));
+export { RestartServerArgs } from "./restartServer";
+export type RestartServer = import("./restartServer").RestartServer;
+export const RestartServer: typeof import("./restartServer").RestartServer = null as any;
+utilities.lazyLoad(exports, ["RestartServer"], () => require("./restartServer"));
 
-export { SuspendArgs } from "./suspend";
-export type Suspend = import("./suspend").Suspend;
-export const Suspend: typeof import("./suspend").Suspend = null as any;
-utilities.lazyLoad(exports, ["Suspend"], () => require("./suspend"));
+export { RollbackDeployArgs } from "./rollbackDeploy";
+export type RollbackDeploy = import("./rollbackDeploy").RollbackDeploy;
+export const RollbackDeploy: typeof import("./rollbackDeploy").RollbackDeploy = null as any;
+utilities.lazyLoad(exports, ["RollbackDeploy"], () => require("./rollbackDeploy"));
 
-export { WebServiceArgs } from "./webService";
-export type WebService = import("./webService").WebService;
-export const WebService: typeof import("./webService").WebService = null as any;
-utilities.lazyLoad(exports, ["WebService"], () => require("./webService"));
+export { ScaleServiceArgs } from "./scaleService";
+export type ScaleService = import("./scaleService").ScaleService;
+export const ScaleService: typeof import("./scaleService").ScaleService = null as any;
+utilities.lazyLoad(exports, ["ScaleService"], () => require("./scaleService"));
+
+export { ServiceArgs } from "./service";
+export type Service = import("./service").Service;
+export const Service: typeof import("./service").Service = null as any;
+utilities.lazyLoad(exports, ["Service"], () => require("./service"));
+
+export { SuspendServiceArgs } from "./suspendService";
+export type SuspendService = import("./suspendService").SuspendService;
+export const SuspendService: typeof import("./suspendService").SuspendService = null as any;
+utilities.lazyLoad(exports, ["SuspendService"], () => require("./suspendService"));
 
 
 // Export enums:
@@ -148,30 +138,34 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
-            case "render:services:AutoScaling":
-                return new AutoScaling(name, <any>undefined, { urn })
-            case "render:services:BackgroundWorker":
-                return new BackgroundWorker(name, <any>undefined, { urn })
-            case "render:services:CronJob":
-                return new CronJob(name, <any>undefined, { urn })
-            case "render:services:CustomDomains":
-                return new CustomDomains(name, <any>undefined, { urn })
-            case "render:services:Deploys":
-                return new Deploys(name, <any>undefined, { urn })
-            case "render:services:EnvVars":
-                return new EnvVars(name, <any>undefined, { urn })
-            case "render:services:Jobs":
-                return new Jobs(name, <any>undefined, { urn })
-            case "render:services:PrivateService":
-                return new PrivateService(name, <any>undefined, { urn })
-            case "render:services:Scale":
-                return new Scale(name, <any>undefined, { urn })
-            case "render:services:StaticSite":
-                return new StaticSite(name, <any>undefined, { urn })
-            case "render:services:Suspend":
-                return new Suspend(name, <any>undefined, { urn })
-            case "render:services:WebService":
-                return new WebService(name, <any>undefined, { urn })
+            case "render:services:AutoscaleService":
+                return new AutoscaleService(name, <any>undefined, { urn })
+            case "render:services:CancelDeploy":
+                return new CancelDeploy(name, <any>undefined, { urn })
+            case "render:services:CancelJob":
+                return new CancelJob(name, <any>undefined, { urn })
+            case "render:services:CustomDomain":
+                return new CustomDomain(name, <any>undefined, { urn })
+            case "render:services:Deploy":
+                return new Deploy(name, <any>undefined, { urn })
+            case "render:services:EnvVarsForService":
+                return new EnvVarsForService(name, <any>undefined, { urn })
+            case "render:services:Job":
+                return new Job(name, <any>undefined, { urn })
+            case "render:services:PreviewService":
+                return new PreviewService(name, <any>undefined, { urn })
+            case "render:services:RefreshCustomDomain":
+                return new RefreshCustomDomain(name, <any>undefined, { urn })
+            case "render:services:RestartServer":
+                return new RestartServer(name, <any>undefined, { urn })
+            case "render:services:RollbackDeploy":
+                return new RollbackDeploy(name, <any>undefined, { urn })
+            case "render:services:ScaleService":
+                return new ScaleService(name, <any>undefined, { urn })
+            case "render:services:Service":
+                return new Service(name, <any>undefined, { urn })
+            case "render:services:SuspendService":
+                return new SuspendService(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }

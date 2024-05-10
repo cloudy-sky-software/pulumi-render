@@ -13,39 +13,56 @@ namespace Pulumi.Render.Services.Outputs
     [OutputType]
     public sealed class PrivateServiceDetails
     {
+        public readonly Outputs.AutoscalingConfig? Autoscaling;
+        public readonly string BuildPlan;
         public readonly Outputs.Disk? Disk;
+        /// <summary>
+        /// Environment (runtime)
+        /// </summary>
         public readonly Pulumi.Render.Services.PrivateServiceDetailsEnv Env;
-        public readonly Union<Outputs.DockerDetails, Outputs.NativeEnvironmentDetails>? EnvSpecificDetails;
-        public readonly double? NumInstances;
-        public readonly ImmutableArray<Outputs.OpenPorts> OpenPorts;
-        public readonly Outputs.PrivateServiceDetailsParentServerProperties? ParentServer;
-        public readonly Pulumi.Render.Services.PrivateServiceDetailsPlan? Plan;
-        public readonly Pulumi.Render.Services.PrivateServiceDetailsPullRequestPreviewsEnabled? PullRequestPreviewsEnabled;
-        public readonly Pulumi.Render.Services.PrivateServiceDetailsRegion? Region;
-        public readonly string? Url;
+        public readonly Union<Outputs.DockerDetails, Outputs.NativeEnvironmentDetails> EnvSpecificDetails;
+        /// <summary>
+        /// For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
+        /// </summary>
+        public readonly int NumInstances;
+        public readonly ImmutableArray<Outputs.ServerPort> OpenPorts;
+        public readonly Outputs.Resource? ParentServer;
+        /// <summary>
+        /// The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+        /// </summary>
+        public readonly Pulumi.Render.Services.PrivateServiceDetailsPlan Plan;
+        public readonly Pulumi.Render.Services.PrivateServiceDetailsPullRequestPreviewsEnabled PullRequestPreviewsEnabled;
+        public readonly Pulumi.Render.Services.PrivateServiceDetailsRegion Region;
+        public readonly string Url;
 
         [OutputConstructor]
         private PrivateServiceDetails(
+            Outputs.AutoscalingConfig? autoscaling,
+
+            string buildPlan,
+
             Outputs.Disk? disk,
 
             Pulumi.Render.Services.PrivateServiceDetailsEnv env,
 
-            Union<Outputs.DockerDetails, Outputs.NativeEnvironmentDetails>? envSpecificDetails,
+            Union<Outputs.DockerDetails, Outputs.NativeEnvironmentDetails> envSpecificDetails,
 
-            double? numInstances,
+            int numInstances,
 
-            ImmutableArray<Outputs.OpenPorts> openPorts,
+            ImmutableArray<Outputs.ServerPort> openPorts,
 
-            Outputs.PrivateServiceDetailsParentServerProperties? parentServer,
+            Outputs.Resource? parentServer,
 
-            Pulumi.Render.Services.PrivateServiceDetailsPlan? plan,
+            Pulumi.Render.Services.PrivateServiceDetailsPlan plan,
 
-            Pulumi.Render.Services.PrivateServiceDetailsPullRequestPreviewsEnabled? pullRequestPreviewsEnabled,
+            Pulumi.Render.Services.PrivateServiceDetailsPullRequestPreviewsEnabled pullRequestPreviewsEnabled,
 
-            Pulumi.Render.Services.PrivateServiceDetailsRegion? region,
+            Pulumi.Render.Services.PrivateServiceDetailsRegion region,
 
-            string? url)
+            string url)
         {
+            Autoscaling = autoscaling;
+            BuildPlan = buildPlan;
             Disk = disk;
             Env = env;
             EnvSpecificDetails = envSpecificDetails;

@@ -11,52 +11,20 @@ namespace Pulumi.Render.Services
 {
     public static class GetJob
     {
-        public static Task<GetJobResult> InvokeAsync(GetJobArgs args, InvokeOptions? options = null)
+        public static Task<GetJobResult> InvokeAsync(GetJobArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetJobResult>("render:services:getJob", args ?? new GetJobArgs(), options.WithDefaults());
 
-        public static Output<GetJobResult> Invoke(GetJobInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetJobResult>("render:services:getJob", args ?? new GetJobInvokeArgs(), options.WithDefaults());
+        public static Output<GetJobResult> Invoke(InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetJobResult>("render:services:getJob", InvokeArgs.Empty, options.WithDefaults());
     }
 
 
     public sealed class GetJobArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// (Required) The ID of the job
-        /// </summary>
-        [Input("id", required: true)]
-        public string Id { get; set; } = null!;
-
-        /// <summary>
-        /// (Required) The ID of the service
-        /// </summary>
-        [Input("serviceId", required: true)]
-        public string ServiceId { get; set; } = null!;
-
         public GetJobArgs()
         {
         }
         public static new GetJobArgs Empty => new GetJobArgs();
-    }
-
-    public sealed class GetJobInvokeArgs : global::Pulumi.InvokeArgs
-    {
-        /// <summary>
-        /// (Required) The ID of the job
-        /// </summary>
-        [Input("id", required: true)]
-        public Input<string> Id { get; set; } = null!;
-
-        /// <summary>
-        /// (Required) The ID of the service
-        /// </summary>
-        [Input("serviceId", required: true)]
-        public Input<string> ServiceId { get; set; } = null!;
-
-        public GetJobInvokeArgs()
-        {
-        }
-        public static new GetJobInvokeArgs Empty => new GetJobInvokeArgs();
     }
 
 

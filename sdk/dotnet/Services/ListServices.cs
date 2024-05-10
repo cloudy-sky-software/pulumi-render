@@ -31,10 +31,10 @@ namespace Pulumi.Render.Services
     [OutputType]
     public sealed class ListServicesResult
     {
-        public readonly ImmutableArray<Outputs.ListServiceResponse> Items;
+        public readonly ImmutableArray<Outputs.ListServicesItemProperties> Items;
 
         [OutputConstructor]
-        private ListServicesResult(ImmutableArray<Outputs.ListServiceResponse> items)
+        private ListServicesResult(ImmutableArray<Outputs.ListServicesItemProperties> items)
         {
             Items = items;
         }

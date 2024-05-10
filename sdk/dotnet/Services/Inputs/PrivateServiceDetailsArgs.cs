@@ -12,47 +12,58 @@ namespace Pulumi.Render.Services.Inputs
 
     public sealed class PrivateServiceDetailsArgs : global::Pulumi.ResourceArgs
     {
+        [Input("autoscaling")]
+        public Input<Inputs.AutoscalingConfigArgs>? Autoscaling { get; set; }
+
+        [Input("buildPlan", required: true)]
+        public Input<string> BuildPlan { get; set; } = null!;
+
         [Input("disk")]
         public Input<Inputs.DiskArgs>? Disk { get; set; }
 
+        /// <summary>
+        /// Environment (runtime)
+        /// </summary>
         [Input("env", required: true)]
         public Input<Pulumi.Render.Services.PrivateServiceDetailsEnv> Env { get; set; } = null!;
 
-        [Input("envSpecificDetails")]
-        public InputUnion<Inputs.DockerDetailsArgs, Inputs.NativeEnvironmentDetailsArgs>? EnvSpecificDetails { get; set; }
+        [Input("envSpecificDetails", required: true)]
+        public InputUnion<Inputs.DockerDetailsArgs, Inputs.NativeEnvironmentDetailsArgs> EnvSpecificDetails { get; set; } = null!;
 
-        [Input("numInstances")]
-        public Input<double>? NumInstances { get; set; }
+        /// <summary>
+        /// For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
+        /// </summary>
+        [Input("numInstances", required: true)]
+        public Input<int> NumInstances { get; set; } = null!;
 
-        [Input("openPorts")]
-        private InputList<Inputs.OpenPortsArgs>? _openPorts;
-        public InputList<Inputs.OpenPortsArgs> OpenPorts
+        [Input("openPorts", required: true)]
+        private InputList<Inputs.ServerPortArgs>? _openPorts;
+        public InputList<Inputs.ServerPortArgs> OpenPorts
         {
-            get => _openPorts ?? (_openPorts = new InputList<Inputs.OpenPortsArgs>());
+            get => _openPorts ?? (_openPorts = new InputList<Inputs.ServerPortArgs>());
             set => _openPorts = value;
         }
 
         [Input("parentServer")]
-        public Input<Inputs.PrivateServiceDetailsParentServerPropertiesArgs>? ParentServer { get; set; }
+        public Input<Inputs.ResourceArgs>? ParentServer { get; set; }
 
-        [Input("plan")]
-        public Input<Pulumi.Render.Services.PrivateServiceDetailsPlan>? Plan { get; set; }
+        /// <summary>
+        /// The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+        /// </summary>
+        [Input("plan", required: true)]
+        public Input<Pulumi.Render.Services.PrivateServiceDetailsPlan> Plan { get; set; } = null!;
 
-        [Input("pullRequestPreviewsEnabled")]
-        public Input<Pulumi.Render.Services.PrivateServiceDetailsPullRequestPreviewsEnabled>? PullRequestPreviewsEnabled { get; set; }
+        [Input("pullRequestPreviewsEnabled", required: true)]
+        public Input<Pulumi.Render.Services.PrivateServiceDetailsPullRequestPreviewsEnabled> PullRequestPreviewsEnabled { get; set; } = null!;
 
-        [Input("region")]
-        public Input<Pulumi.Render.Services.PrivateServiceDetailsRegion>? Region { get; set; }
+        [Input("region", required: true)]
+        public Input<Pulumi.Render.Services.PrivateServiceDetailsRegion> Region { get; set; } = null!;
 
-        [Input("url")]
-        public Input<string>? Url { get; set; }
+        [Input("url", required: true)]
+        public Input<string> Url { get; set; } = null!;
 
         public PrivateServiceDetailsArgs()
         {
-            NumInstances = 1;
-            Plan = Pulumi.Render.Services.PrivateServiceDetailsPlan.Starter;
-            PullRequestPreviewsEnabled = Pulumi.Render.Services.PrivateServiceDetailsPullRequestPreviewsEnabled.No;
-            Region = Pulumi.Render.Services.PrivateServiceDetailsRegion.Oregon;
         }
         public static new PrivateServiceDetailsArgs Empty => new PrivateServiceDetailsArgs();
     }

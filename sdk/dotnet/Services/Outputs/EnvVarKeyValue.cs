@@ -13,19 +13,15 @@ namespace Pulumi.Render.Services.Outputs
     [OutputType]
     public sealed class EnvVarKeyValue
     {
-        public readonly Pulumi.Render.Services.EnvVarKeyValueGenerateValue? GenerateValue;
         public readonly string Key;
-        public readonly string? Value;
+        public readonly string Value;
 
         [OutputConstructor]
         private EnvVarKeyValue(
-            Pulumi.Render.Services.EnvVarKeyValueGenerateValue? generateValue,
-
             string key,
 
-            string? value)
+            string value)
         {
-            GenerateValue = generateValue;
             Key = key;
             Value = value;
         }

@@ -18,12 +18,11 @@ namespace Pulumi.Render.Services.Inputs
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
-        [Input("sizeGB")]
-        public Input<double>? SizeGB { get; set; }
+        [Input("sizeGB", required: true)]
+        public Input<int> SizeGB { get; set; } = null!;
 
         public DiskArgs()
         {
-            SizeGB = 1;
         }
         public static new DiskArgs Empty => new DiskArgs();
     }

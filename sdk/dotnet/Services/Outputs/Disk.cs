@@ -15,7 +15,7 @@ namespace Pulumi.Render.Services.Outputs
     {
         public readonly string MountPath;
         public readonly string Name;
-        public readonly double? SizeGB;
+        public readonly int SizeGB;
 
         [OutputConstructor]
         private Disk(
@@ -23,7 +23,7 @@ namespace Pulumi.Render.Services.Outputs
 
             string name,
 
-            double? sizeGB)
+            int sizeGB)
         {
             MountPath = mountPath;
             Name = name;

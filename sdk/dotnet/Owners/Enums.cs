@@ -7,9 +7,6 @@ using Pulumi;
 
 namespace Pulumi.Render.Owners
 {
-    /// <summary>
-    /// The type of the authorized user.
-    /// </summary>
     [EnumType]
     public readonly struct OwnerType : IEquatable<OwnerType>
     {

@@ -11,50 +11,30 @@ namespace Pulumi.Render.Services
 {
     public static class ListCustomDomains
     {
-        public static Task<ListCustomDomainsResult> InvokeAsync(ListCustomDomainsArgs args, InvokeOptions? options = null)
+        public static Task<ListCustomDomainsResult> InvokeAsync(ListCustomDomainsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ListCustomDomainsResult>("render:services:listCustomDomains", args ?? new ListCustomDomainsArgs(), options.WithDefaults());
 
-        public static Output<ListCustomDomainsResult> Invoke(ListCustomDomainsInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<ListCustomDomainsResult>("render:services:listCustomDomains", args ?? new ListCustomDomainsInvokeArgs(), options.WithDefaults());
+        public static Output<ListCustomDomainsResult> Invoke(InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<ListCustomDomainsResult>("render:services:listCustomDomains", InvokeArgs.Empty, options.WithDefaults());
     }
 
 
     public sealed class ListCustomDomainsArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// (Required) The ID of the service
-        /// </summary>
-        [Input("serviceId", required: true)]
-        public string ServiceId { get; set; } = null!;
-
         public ListCustomDomainsArgs()
         {
         }
         public static new ListCustomDomainsArgs Empty => new ListCustomDomainsArgs();
     }
 
-    public sealed class ListCustomDomainsInvokeArgs : global::Pulumi.InvokeArgs
-    {
-        /// <summary>
-        /// (Required) The ID of the service
-        /// </summary>
-        [Input("serviceId", required: true)]
-        public Input<string> ServiceId { get; set; } = null!;
-
-        public ListCustomDomainsInvokeArgs()
-        {
-        }
-        public static new ListCustomDomainsInvokeArgs Empty => new ListCustomDomainsInvokeArgs();
-    }
-
 
     [OutputType]
     public sealed class ListCustomDomainsResult
     {
-        public readonly ImmutableArray<Outputs.ListCustomDomainsResponse> Items;
+        public readonly ImmutableArray<Outputs.ListCustomDomainsItemProperties> Items;
 
         [OutputConstructor]
-        private ListCustomDomainsResult(ImmutableArray<Outputs.ListCustomDomainsResponse> items)
+        private ListCustomDomainsResult(ImmutableArray<Outputs.ListCustomDomainsItemProperties> items)
         {
             Items = items;
         }

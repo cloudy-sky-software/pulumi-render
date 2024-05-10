@@ -11,52 +11,20 @@ namespace Pulumi.Render.Services
 {
     public static class GetCustomDomain
     {
-        public static Task<GetCustomDomainResult> InvokeAsync(GetCustomDomainArgs args, InvokeOptions? options = null)
+        public static Task<GetCustomDomainResult> InvokeAsync(GetCustomDomainArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCustomDomainResult>("render:services:getCustomDomain", args ?? new GetCustomDomainArgs(), options.WithDefaults());
 
-        public static Output<GetCustomDomainResult> Invoke(GetCustomDomainInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetCustomDomainResult>("render:services:getCustomDomain", args ?? new GetCustomDomainInvokeArgs(), options.WithDefaults());
+        public static Output<GetCustomDomainResult> Invoke(InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetCustomDomainResult>("render:services:getCustomDomain", InvokeArgs.Empty, options.WithDefaults());
     }
 
 
     public sealed class GetCustomDomainArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// (Required) The ID or name of the custom domain
-        /// </summary>
-        [Input("id", required: true)]
-        public string Id { get; set; } = null!;
-
-        /// <summary>
-        /// (Required) The ID of the service
-        /// </summary>
-        [Input("serviceId", required: true)]
-        public string ServiceId { get; set; } = null!;
-
         public GetCustomDomainArgs()
         {
         }
         public static new GetCustomDomainArgs Empty => new GetCustomDomainArgs();
-    }
-
-    public sealed class GetCustomDomainInvokeArgs : global::Pulumi.InvokeArgs
-    {
-        /// <summary>
-        /// (Required) The ID or name of the custom domain
-        /// </summary>
-        [Input("id", required: true)]
-        public Input<string> Id { get; set; } = null!;
-
-        /// <summary>
-        /// (Required) The ID of the service
-        /// </summary>
-        [Input("serviceId", required: true)]
-        public Input<string> ServiceId { get; set; } = null!;
-
-        public GetCustomDomainInvokeArgs()
-        {
-        }
-        public static new GetCustomDomainInvokeArgs Empty => new GetCustomDomainInvokeArgs();
     }
 
 

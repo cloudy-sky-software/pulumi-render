@@ -15,6 +15,9 @@ namespace Pulumi.Render.Services.Inputs
         [Input("buildCommand", required: true)]
         public Input<string> BuildCommand { get; set; } = null!;
 
+        [Input("preDeployCommand")]
+        public Input<string>? PreDeployCommand { get; set; }
+
         [Input("startCommand", required: true)]
         public Input<string> StartCommand { get; set; } = null!;
 

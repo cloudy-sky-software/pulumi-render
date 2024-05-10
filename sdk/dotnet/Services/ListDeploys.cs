@@ -11,50 +11,30 @@ namespace Pulumi.Render.Services
 {
     public static class ListDeploys
     {
-        public static Task<ListDeploysResult> InvokeAsync(ListDeploysArgs args, InvokeOptions? options = null)
+        public static Task<ListDeploysResult> InvokeAsync(ListDeploysArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ListDeploysResult>("render:services:listDeploys", args ?? new ListDeploysArgs(), options.WithDefaults());
 
-        public static Output<ListDeploysResult> Invoke(ListDeploysInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<ListDeploysResult>("render:services:listDeploys", args ?? new ListDeploysInvokeArgs(), options.WithDefaults());
+        public static Output<ListDeploysResult> Invoke(InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<ListDeploysResult>("render:services:listDeploys", InvokeArgs.Empty, options.WithDefaults());
     }
 
 
     public sealed class ListDeploysArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// (Required) The ID of the service
-        /// </summary>
-        [Input("serviceId", required: true)]
-        public string ServiceId { get; set; } = null!;
-
         public ListDeploysArgs()
         {
         }
         public static new ListDeploysArgs Empty => new ListDeploysArgs();
     }
 
-    public sealed class ListDeploysInvokeArgs : global::Pulumi.InvokeArgs
-    {
-        /// <summary>
-        /// (Required) The ID of the service
-        /// </summary>
-        [Input("serviceId", required: true)]
-        public Input<string> ServiceId { get; set; } = null!;
-
-        public ListDeploysInvokeArgs()
-        {
-        }
-        public static new ListDeploysInvokeArgs Empty => new ListDeploysInvokeArgs();
-    }
-
 
     [OutputType]
     public sealed class ListDeploysResult
     {
-        public readonly ImmutableArray<Outputs.ListDeploysResponse> Items;
+        public readonly ImmutableArray<Outputs.ListDeploysItemProperties> Items;
 
         [OutputConstructor]
-        private ListDeploysResult(ImmutableArray<Outputs.ListDeploysResponse> items)
+        private ListDeploysResult(ImmutableArray<Outputs.ListDeploysItemProperties> items)
         {
             Items = items;
         }

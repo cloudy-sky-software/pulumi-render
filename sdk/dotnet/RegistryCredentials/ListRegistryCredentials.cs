@@ -31,10 +31,10 @@ namespace Pulumi.Render.RegistryCredentials
     [OutputType]
     public sealed class ListRegistryCredentialsResult
     {
-        public readonly ImmutableArray<Outputs.ListRegistryCredentialsItemProperties> Items;
+        public readonly ImmutableArray<Outputs.RegistryCredential> Items;
 
         [OutputConstructor]
-        private ListRegistryCredentialsResult(ImmutableArray<Outputs.ListRegistryCredentialsItemProperties> items)
+        private ListRegistryCredentialsResult(ImmutableArray<Outputs.RegistryCredential> items)
         {
             Items = items;
         }

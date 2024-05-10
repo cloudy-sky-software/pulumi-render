@@ -255,7 +255,14 @@
                     "description": "Environment (runtime)"
                 },
                 "envSpecificDetails": {
-                    "$ref": "#/types/render:services:EnvSpecificDetails"
+                    "oneOf": [
+                        {
+                            "$ref": "#/types/render:services:DockerDetails"
+                        },
+                        {
+                            "$ref": "#/types/render:services:NativeEnvironmentDetails"
+                        }
+                    ]
                 },
                 "numInstances": {
                     "type": "integer",
@@ -460,7 +467,14 @@
                     "description": "Environment (runtime)"
                 },
                 "envSpecificDetails": {
-                    "$ref": "#/types/render:services:EnvSpecificDetails"
+                    "oneOf": [
+                        {
+                            "$ref": "#/types/render:services:DockerDetails"
+                        },
+                        {
+                            "$ref": "#/types/render:services:NativeEnvironmentDetails"
+                        }
+                    ]
                 },
                 "lastSuccessfulRunAt": {
                     "type": "string"
@@ -1145,7 +1159,14 @@
                     "description": "Environment (runtime)"
                 },
                 "envSpecificDetails": {
-                    "$ref": "#/types/render:services:EnvSpecificDetails"
+                    "oneOf": [
+                        {
+                            "$ref": "#/types/render:services:DockerDetails"
+                        },
+                        {
+                            "$ref": "#/types/render:services:NativeEnvironmentDetails"
+                        }
+                    ]
                 },
                 "numInstances": {
                     "type": "integer",

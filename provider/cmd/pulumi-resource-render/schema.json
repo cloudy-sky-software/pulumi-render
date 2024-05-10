@@ -83,9 +83,6 @@
                 "email": {
                     "type": "string"
                 },
-                "id": {
-                    "type": "string"
-                },
                 "name": {
                     "type": "string"
                 },
@@ -96,7 +93,6 @@
             "type": "object",
             "required": [
                 "email",
-                "id",
                 "name",
                 "type"
             ]
@@ -133,10 +129,6 @@
         },
         "render:registrycredentials:RegistryCredential": {
             "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "Unique identifier for this credential"
-                },
                 "name": {
                     "type": "string",
                     "description": "Descriptive name for this credential"
@@ -152,7 +144,6 @@
             },
             "type": "object",
             "required": [
-                "id",
                 "name",
                 "registry",
                 "username"
@@ -608,9 +599,6 @@
                 "createdAt": {
                     "type": "string"
                 },
-                "id": {
-                    "type": "string"
-                },
                 "message": {
                     "type": "string"
                 }
@@ -879,9 +867,6 @@
                 "domainType": {
                     "$ref": "#/types/render:services:CustomDomainDomainType"
                 },
-                "id": {
-                    "type": "string"
-                },
                 "name": {
                     "type": "string"
                 },
@@ -902,7 +887,6 @@
             "required": [
                 "createdAt",
                 "domainType",
-                "id",
                 "name",
                 "publicSuffix",
                 "redirectForName",
@@ -924,9 +908,6 @@
         },
         "render:services:CustomDomainServerProperties": {
             "properties": {
-                "id": {
-                    "type": "string"
-                },
                 "name": {
                     "type": "string"
                 }
@@ -957,9 +938,6 @@
                 "finishedAt": {
                     "type": "string"
                 },
-                "id": {
-                    "type": "string"
-                },
                 "image": {
                     "$ref": "#/types/render:services:DeployImageProperties",
                     "description": "Image information used when creating the deploy. Not present for Git-backed deploys"
@@ -974,17 +952,11 @@
                     "type": "string"
                 }
             },
-            "type": "object",
-            "required": [
-                "id"
-            ]
+            "type": "object"
         },
         "render:services:DeployCommitProperties": {
             "properties": {
                 "createdAt": {
-                    "type": "string"
-                },
-                "id": {
                     "type": "string"
                 },
                 "message": {
@@ -1103,9 +1075,6 @@
         },
         "render:services:Disk": {
             "properties": {
-                "id": {
-                    "type": "string"
-                },
                 "mountPath": {
                     "type": "string"
                 },
@@ -1118,14 +1087,35 @@
             },
             "type": "object",
             "required": [
-                "id",
                 "mountPath",
                 "name",
                 "sizeGB"
             ]
         },
-        "render:services:EnvSpecificDetails": {
-            "type": "object"
+        "render:services:DockerDetails": {
+            "properties": {
+                "dockerCommand": {
+                    "type": "string"
+                },
+                "dockerContext": {
+                    "type": "string"
+                },
+                "dockerfilePath": {
+                    "type": "string"
+                },
+                "preDeployCommand": {
+                    "type": "string"
+                },
+                "registryCredential": {
+                    "$ref": "#/types/render:services:RegistryCredential"
+                }
+            },
+            "type": "object",
+            "required": [
+                "dockerCommand",
+                "dockerContext",
+                "dockerfilePath"
+            ]
         },
         "render:services:EnvVar": {
             "properties": {
@@ -1142,8 +1132,35 @@
                 "value"
             ]
         },
-        "render:services:EnvVarInput": {
-            "type": "object"
+        "render:services:EnvVarKeyGenerateValue": {
+            "properties": {
+                "generateValue": {
+                    "type": "boolean"
+                },
+                "key": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "generateValue",
+                "key"
+            ]
+        },
+        "render:services:EnvVarKeyValue": {
+            "properties": {
+                "key": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "key",
+                "value"
+            ]
         },
         "render:services:EnvVarWithCursor": {
             "properties": {
@@ -1162,9 +1179,6 @@
         },
         "render:services:Header": {
             "properties": {
-                "id": {
-                    "type": "string"
-                },
                 "name": {
                     "type": "string"
                 },
@@ -1177,7 +1191,6 @@
             },
             "type": "object",
             "required": [
-                "id",
                 "name",
                 "path",
                 "value"
@@ -1252,9 +1265,6 @@
                 "finishedAt": {
                     "type": "string"
                 },
-                "id": {
-                    "type": "string"
-                },
                 "planId": {
                     "type": "string"
                 },
@@ -1274,7 +1284,6 @@
             "type": "object",
             "required": [
                 "createdAt",
-                "id",
                 "planId",
                 "serviceId",
                 "startCommand"
@@ -1345,6 +1354,24 @@
                 }
             },
             "type": "object"
+        },
+        "render:services:NativeEnvironmentDetails": {
+            "properties": {
+                "buildCommand": {
+                    "type": "string"
+                },
+                "preDeployCommand": {
+                    "type": "string"
+                },
+                "startCommand": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "buildCommand",
+                "startCommand"
+            ]
         },
         "render:services:Plan": {
             "description": "The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.",
@@ -1723,27 +1750,60 @@
                 }
             ]
         },
+        "render:services:RegistryCredential": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Descriptive name for this credential"
+                },
+                "registry": {
+                    "$ref": "#/types/render:services:RegistryCredentialRegistry",
+                    "description": "The registry to use this credential with"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "The username associated with the credential"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "registry",
+                "username"
+            ]
+        },
+        "render:services:RegistryCredentialRegistry": {
+            "description": "The registry to use this credential with",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Github",
+                    "value": "GITHUB"
+                },
+                {
+                    "name": "Gitlab",
+                    "value": "GITLAB"
+                },
+                {
+                    "name": "Docker",
+                    "value": "DOCKER"
+                }
+            ]
+        },
         "render:services:Resource": {
             "properties": {
-                "id": {
-                    "type": "string"
-                },
                 "name": {
                     "type": "string"
                 }
             },
             "type": "object",
             "required": [
-                "id",
                 "name"
             ]
         },
         "render:services:Route": {
             "properties": {
                 "destination": {
-                    "type": "string"
-                },
-                "id": {
                     "type": "string"
                 },
                 "priority": {
@@ -1760,7 +1820,6 @@
             "type": "object",
             "required": [
                 "destination",
-                "id",
                 "priority",
                 "source",
                 "type"
@@ -1781,16 +1840,12 @@
         },
         "render:services:SecretFile": {
             "properties": {
-                "id": {
-                    "type": "string"
-                },
                 "name": {
                     "type": "string"
                 }
             },
             "type": "object",
             "required": [
-                "id",
                 "name"
             ]
         },
@@ -1834,9 +1889,6 @@
                     "$ref": "#/types/render:services:BuildFilter"
                 },
                 "createdAt": {
-                    "type": "string"
-                },
-                "id": {
                     "type": "string"
                 },
                 "imagePath": {
@@ -1899,7 +1951,6 @@
             "required": [
                 "autoDeploy",
                 "createdAt",
-                "id",
                 "name",
                 "notifyOnFail",
                 "ownerId",
@@ -2222,7 +2273,14 @@
                     "description": "Environment (runtime)"
                 },
                 "envSpecificDetails": {
-                    "$ref": "#/types/render:services:EnvSpecificDetails"
+                    "oneOf": [
+                        {
+                            "$ref": "#/types/render:services:DockerDetails"
+                        },
+                        {
+                            "$ref": "#/types/render:services:NativeEnvironmentDetails"
+                        }
+                    ]
                 },
                 "healthCheckPath": {
                     "type": "string"
@@ -2590,7 +2648,6 @@
             "type": "object",
             "required": [
                 "authToken",
-                "id",
                 "name",
                 "ownerId",
                 "registry",
@@ -2694,10 +2751,7 @@
                     "type": "string"
                 }
             },
-            "type": "object",
-            "required": [
-                "id"
-            ]
+            "type": "object"
         },
         "render:services:CancelJob": {
             "properties": {
@@ -2726,7 +2780,6 @@
             "type": "object",
             "required": [
                 "createdAt",
-                "id",
                 "planId",
                 "serviceId",
                 "startCommand"
@@ -2787,9 +2840,6 @@
                 }
             },
             "type": "object",
-            "required": [
-                "id"
-            ],
             "inputProperties": {
                 "clearCache": {
                     "$ref": "#/types/render:services:ClearCache",
@@ -2836,7 +2886,6 @@
             "type": "object",
             "required": [
                 "createdAt",
-                "id",
                 "planId",
                 "serviceId",
                 "startCommand"
@@ -2933,8 +2982,7 @@
             },
             "type": "object",
             "required": [
-                "deployId",
-                "id"
+                "deployId"
             ],
             "inputProperties": {
                 "deployId": {
@@ -2985,7 +3033,14 @@
                 "envVars": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/render:services:EnvVarInput"
+                        "oneOf": [
+                            {
+                                "$ref": "#/types/render:services:EnvVarKeyValue"
+                            },
+                            {
+                                "$ref": "#/types/render:services:EnvVarKeyGenerateValue"
+                            }
+                        ]
                     }
                 },
                 "image": {
@@ -3063,7 +3118,14 @@
                 "envVars": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/render:services:EnvVarInput"
+                        "oneOf": [
+                            {
+                                "$ref": "#/types/render:services:EnvVarKeyValue"
+                            },
+                            {
+                                "$ref": "#/types/render:services:EnvVarKeyGenerateValue"
+                            }
+                        ]
                     }
                 },
                 "image": {

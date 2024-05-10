@@ -56,7 +56,7 @@
                 "secret": true
             },
             "clearCacheOnServiceUpdateDeployments": {
-                "$ref": "#/types/render:services:DeployClearCache",
+                "$ref": "#/types/render:services:ClearCache",
                 "description": "When a service is updated, a deployment is automatically triggered. This variable controls whether or not the service cache should be cleared upon deployment.",
                 "language": {
                     "csharp": {

@@ -14,6 +14,7 @@ namespace Pulumi.Render.Owners.Outputs
     public sealed class Owner
     {
         public readonly string Email;
+        public readonly string Id;
         public readonly string Name;
         public readonly Pulumi.Render.Owners.OwnerType Type;
 
@@ -21,11 +22,14 @@ namespace Pulumi.Render.Owners.Outputs
         private Owner(
             string email,
 
+            string id,
+
             string name,
 
             Pulumi.Render.Owners.OwnerType type)
         {
             Email = email;
+            Id = id;
             Name = name;
             Type = type;
         }

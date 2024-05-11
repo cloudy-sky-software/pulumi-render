@@ -13,11 +13,16 @@ namespace Pulumi.Render.Services.Outputs
     [OutputType]
     public sealed class Resource
     {
+        public readonly string Id;
         public readonly string Name;
 
         [OutputConstructor]
-        private Resource(string name)
+        private Resource(
+            string id,
+
+            string name)
         {
+            Id = id;
             Name = name;
         }
     }

@@ -11,27 +11,26 @@ namespace Pulumi.Render.Services.Outputs
 {
 
     [OutputType]
-    public sealed class Header
+    public sealed class BackgroundWorkerDetailsCreateDiskProperties
     {
-        public readonly string Id;
+        public readonly string MountPath;
         public readonly string Name;
-        public readonly string Path;
-        public readonly string Value;
+        /// <summary>
+        /// Defaults to 1
+        /// </summary>
+        public readonly int? SizeGB;
 
         [OutputConstructor]
-        private Header(
-            string id,
+        private BackgroundWorkerDetailsCreateDiskProperties(
+            string mountPath,
 
             string name,
 
-            string path,
-
-            string value)
+            int? sizeGB)
         {
-            Id = id;
+            MountPath = mountPath;
             Name = name;
-            Path = path;
-            Value = value;
+            SizeGB = sizeGB;
         }
     }
 }

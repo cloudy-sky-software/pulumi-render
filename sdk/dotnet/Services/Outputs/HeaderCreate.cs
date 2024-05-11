@@ -11,24 +11,29 @@ namespace Pulumi.Render.Services.Outputs
 {
 
     [OutputType]
-    public sealed class Header
+    public sealed class HeaderCreate
     {
-        public readonly string Id;
+        /// <summary>
+        /// Header name
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// The request path to add the header to. Wildcards will cause headers to be applied to all matching paths.
+        /// </summary>
         public readonly string Path;
+        /// <summary>
+        /// Header value
+        /// </summary>
         public readonly string Value;
 
         [OutputConstructor]
-        private Header(
-            string id,
-
+        private HeaderCreate(
             string name,
 
             string path,
 
             string value)
         {
-            Id = id;
             Name = name;
             Path = path;
             Value = value;

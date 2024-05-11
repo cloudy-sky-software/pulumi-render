@@ -55,7 +55,7 @@ export class Service extends pulumi.CustomResource {
     public readonly rootDir!: pulumi.Output<string | undefined>;
     public readonly secretFiles!: pulumi.Output<outputs.services.SecretFile[] | undefined>;
     public /*out*/ readonly service!: pulumi.Output<outputs.services.Service | undefined>;
-    public readonly serviceDetails!: pulumi.Output<outputs.services.StaticSiteDetails | outputs.services.WebServiceDetails | outputs.services.PrivateServiceDetails | outputs.services.BackgroundWorkerDetails | outputs.services.CronJobDetails | undefined>;
+    public readonly serviceDetails!: pulumi.Output<outputs.services.StaticSiteDetailsCreate | outputs.services.WebServiceDetailsCreate | outputs.services.PrivateServiceDetailsCreate | outputs.services.BackgroundWorkerDetailsCreate | outputs.services.CronJobDetailsCreate | undefined>;
     public readonly type!: pulumi.Output<enums.services.Type>;
 
     /**
@@ -133,6 +133,6 @@ export interface ServiceArgs {
     repo?: pulumi.Input<string>;
     rootDir?: pulumi.Input<string>;
     secretFiles?: pulumi.Input<pulumi.Input<inputs.services.SecretFileArgs>[]>;
-    serviceDetails?: pulumi.Input<inputs.services.StaticSiteDetailsArgs | inputs.services.WebServiceDetailsArgs | inputs.services.PrivateServiceDetailsArgs | inputs.services.BackgroundWorkerDetailsArgs | inputs.services.CronJobDetailsArgs>;
+    serviceDetails?: pulumi.Input<inputs.services.StaticSiteDetailsCreateArgs | inputs.services.WebServiceDetailsCreateArgs | inputs.services.PrivateServiceDetailsCreateArgs | inputs.services.BackgroundWorkerDetailsCreateArgs | inputs.services.CronJobDetailsCreateArgs>;
     type: pulumi.Input<enums.services.Type>;
 }

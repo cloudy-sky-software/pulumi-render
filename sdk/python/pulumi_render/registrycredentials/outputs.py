@@ -17,17 +17,28 @@ __all__ = [
 @pulumi.output_type
 class RegistryCredential(dict):
     def __init__(__self__, *,
+                 id: str,
                  name: str,
                  registry: 'RegistryCredentialRegistry',
                  username: str):
         """
+        :param str id: Unique identifier for this credential
         :param str name: Descriptive name for this credential
         :param 'RegistryCredentialRegistry' registry: The registry to use this credential with
         :param str username: The username associated with the credential
         """
+        pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "registry", registry)
         pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        Unique identifier for this credential
+        """
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter

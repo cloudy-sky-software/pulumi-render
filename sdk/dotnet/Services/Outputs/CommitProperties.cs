@@ -14,15 +14,19 @@ namespace Pulumi.Render.Services.Outputs
     public sealed class CommitProperties
     {
         public readonly string? CreatedAt;
+        public readonly string? Id;
         public readonly string? Message;
 
         [OutputConstructor]
         private CommitProperties(
             string? createdAt,
 
+            string? id,
+
             string? message)
         {
             CreatedAt = createdAt;
+            Id = id;
             Message = message;
         }
     }

@@ -2,6 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export class EnvVarsForService extends pulumi.CustomResource {
@@ -31,6 +34,7 @@ export class EnvVarsForService extends pulumi.CustomResource {
         return obj['__pulumiType'] === EnvVarsForService.__pulumiType;
     }
 
+    public readonly envVars!: pulumi.Output<(outputs.services.EnvVarKeyValue | outputs.services.EnvVarKeyGenerateValue)[] | undefined>;
 
     /**
      * Create a EnvVarsForService resource with the given unique name, arguments, and options.
@@ -43,7 +47,9 @@ export class EnvVarsForService extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
+            resourceInputs["envVars"] = args ? args.envVars : undefined;
         } else {
+            resourceInputs["envVars"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(EnvVarsForService.__pulumiType, name, resourceInputs, opts);
@@ -54,4 +60,5 @@ export class EnvVarsForService extends pulumi.CustomResource {
  * The set of arguments for constructing a EnvVarsForService resource.
  */
 export interface EnvVarsForServiceArgs {
+    envVars?: pulumi.Input<pulumi.Input<inputs.services.EnvVarKeyValueArgs | inputs.services.EnvVarKeyGenerateValueArgs>[]>;
 }

@@ -62,6 +62,7 @@ func (o ListOwnersItemPropertiesArrayOutput) Index(i pulumi.IntInput) ListOwners
 
 type Owner struct {
 	Email string    `pulumi:"email"`
+	Id    string    `pulumi:"id"`
 	Name  string    `pulumi:"name"`
 	Type  OwnerType `pulumi:"type"`
 }
@@ -82,6 +83,10 @@ func (o OwnerOutput) ToOwnerOutputWithContext(ctx context.Context) OwnerOutput {
 
 func (o OwnerOutput) Email() pulumi.StringOutput {
 	return o.ApplyT(func(v Owner) string { return v.Email }).(pulumi.StringOutput)
+}
+
+func (o OwnerOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v Owner) string { return v.Id }).(pulumi.StringOutput)
 }
 
 func (o OwnerOutput) Name() pulumi.StringOutput {
@@ -122,6 +127,15 @@ func (o OwnerPtrOutput) Email() pulumi.StringPtrOutput {
 			return nil
 		}
 		return &v.Email
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o OwnerPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Owner) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Id
 	}).(pulumi.StringPtrOutput)
 }
 

@@ -41,9 +41,11 @@ class ListOwnersItemProperties(dict):
 class Owner(dict):
     def __init__(__self__, *,
                  email: str,
+                 id: str,
                  name: str,
                  type: 'OwnerType'):
         pulumi.set(__self__, "email", email)
+        pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "type", type)
 
@@ -51,6 +53,11 @@ class Owner(dict):
     @pulumi.getter
     def email(self) -> str:
         return pulumi.get(self, "email")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter

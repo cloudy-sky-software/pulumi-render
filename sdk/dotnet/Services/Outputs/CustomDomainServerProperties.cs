@@ -13,11 +13,16 @@ namespace Pulumi.Render.Services.Outputs
     [OutputType]
     public sealed class CustomDomainServerProperties
     {
+        public readonly string? Id;
         public readonly string? Name;
 
         [OutputConstructor]
-        private CustomDomainServerProperties(string? name)
+        private CustomDomainServerProperties(
+            string? id,
+
+            string? name)
         {
+            Id = id;
             Name = name;
         }
     }

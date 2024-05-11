@@ -13,6 +13,12 @@ namespace Pulumi.Render.Services.Inputs
     public sealed class RegistryCredentialArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Unique identifier for this credential
+        /// </summary>
+        [Input("id", required: true)]
+        public Input<string> Id { get; set; } = null!;
+
+        /// <summary>
         /// Descriptive name for this credential
         /// </summary>
         [Input("name", required: true)]

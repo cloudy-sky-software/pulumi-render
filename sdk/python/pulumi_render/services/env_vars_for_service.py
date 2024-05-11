@@ -8,16 +8,29 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['EnvVarsForServiceArgs', 'EnvVarsForService']
 
 @pulumi.input_type
 class EnvVarsForServiceArgs:
-    def __init__(__self__):
+    def __init__(__self__, *,
+                 env_vars: Optional[pulumi.Input[Sequence[pulumi.Input[Union['EnvVarKeyValueArgs', 'EnvVarKeyGenerateValueArgs']]]]] = None):
         """
         The set of arguments for constructing a EnvVarsForService resource.
         """
-        pass
+        if env_vars is not None:
+            pulumi.set(__self__, "env_vars", env_vars)
+
+    @property
+    @pulumi.getter(name="envVars")
+    def env_vars(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[Union['EnvVarKeyValueArgs', 'EnvVarKeyGenerateValueArgs']]]]]:
+        return pulumi.get(self, "env_vars")
+
+    @env_vars.setter
+    def env_vars(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[Union['EnvVarKeyValueArgs', 'EnvVarKeyGenerateValueArgs']]]]]):
+        pulumi.set(self, "env_vars", value)
 
 
 class EnvVarsForService(pulumi.CustomResource):
@@ -25,6 +38,7 @@ class EnvVarsForService(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 env_vars: Optional[pulumi.Input[Sequence[pulumi.Input[Union[pulumi.InputType['EnvVarKeyValueArgs'], pulumi.InputType['EnvVarKeyGenerateValueArgs']]]]]] = None,
                  __props__=None):
         """
         Create a EnvVarsForService resource with the given unique name, props, and options.
@@ -54,6 +68,7 @@ class EnvVarsForService(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 env_vars: Optional[pulumi.Input[Sequence[pulumi.Input[Union[pulumi.InputType['EnvVarKeyValueArgs'], pulumi.InputType['EnvVarKeyGenerateValueArgs']]]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -63,6 +78,7 @@ class EnvVarsForService(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = EnvVarsForServiceArgs.__new__(EnvVarsForServiceArgs)
 
+            __props__.__dict__["env_vars"] = env_vars
         super(EnvVarsForService, __self__).__init__(
             'render:services:EnvVarsForService',
             resource_name,
@@ -85,5 +101,11 @@ class EnvVarsForService(pulumi.CustomResource):
 
         __props__ = EnvVarsForServiceArgs.__new__(EnvVarsForServiceArgs)
 
+        __props__.__dict__["env_vars"] = None
         return EnvVarsForService(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="envVars")
+    def env_vars(self) -> pulumi.Output[Optional[Sequence[Any]]]:
+        return pulumi.get(self, "env_vars")
 

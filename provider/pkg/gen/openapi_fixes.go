@@ -5,8 +5,11 @@ import (
 	"net/url"
 	"strings"
 
-	pulschema_pkg "github.com/cloudy-sky-software/pulschema/pkg"
 	"github.com/getkin/kin-openapi/openapi3"
+
+	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+
+	pulschema_pkg "github.com/cloudy-sky-software/pulschema/pkg"
 
 	"github.com/pkg/errors"
 )
@@ -34,10 +37,32 @@ func getResourceFromPath(path string) (string, error) {
 	return pulschema_pkg.ToPascalCase(resourceName), nil
 }
 
+func patchEnvVarsPutEndpoint(openAPIDoc *openapi3.T) error {
+	// The actual API for updating/replacing env vars
+	//actually just takes a top-level array of objects.
+	// We've nested it under an envVars property to help
+	// with resource construction via Pulumi and handle
+	// the conversion in the OnPreCreate provider callback.
+	pathItem := openAPIDoc.Paths.Find("/services/{serviceId}/env-vars")
+	if pathItem == nil {
+		return errors.New("expected to find /services/{serviceId}/env-vars")
+	}
+
+	contract.Assertf(pathItem.Put != nil, "put operation is nil")
+
+	reqBodySchema := pathItem.Put.RequestBody.Value.Content.Get("application/json")
+	originalSchema := reqBodySchema.Schema.Value
+	reqBodySchema.Schema.Value = openapi3.NewSchema().WithProperties(map[string]*openapi3.Schema{
+		"envVars": originalSchema,
+	})
+
+	return nil
+}
+
 // Render's API operations do not have an operationId,
 // so we'll need to generate them based on the resource
 // in the operation path.
-func FixOpenAPIDoc(openAPIDoc *openapi3.T) error {
+func ensureOperationId(openAPIDoc *openapi3.T) error {
 	for _, path := range openAPIDoc.Paths.InMatchingOrder() {
 		pathItem := openAPIDoc.Paths.Find(path)
 		if pathItem == nil {
@@ -86,6 +111,18 @@ func FixOpenAPIDoc(openAPIDoc *openapi3.T) error {
 		if pathItem.Delete != nil && pathItem.Delete.OperationID == "" {
 			pathItem.Delete.OperationID = "delete" + resourceName
 		}
+	}
+
+	return nil
+}
+
+func FixOpenAPIDoc(openAPIDoc *openapi3.T) error {
+	if err := ensureOperationId(openAPIDoc); err != nil {
+		return err
+	}
+
+	if err := patchEnvVarsPutEndpoint(openAPIDoc); err != nil {
+		return err
 	}
 
 	return nil

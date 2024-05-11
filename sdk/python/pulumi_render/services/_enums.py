@@ -6,11 +6,18 @@ from enum import Enum
 
 __all__ = [
     'AutoDeploy',
+    'BackgroundWorkerDetailsCreateEnv',
+    'BackgroundWorkerDetailsCreatePlan',
+    'BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled',
+    'BackgroundWorkerDetailsCreateRegion',
     'BackgroundWorkerDetailsEnv',
     'BackgroundWorkerDetailsPlan',
     'BackgroundWorkerDetailsPullRequestPreviewsEnabled',
     'BackgroundWorkerDetailsRegion',
     'ClearCache',
+    'CronJobDetailsCreateEnv',
+    'CronJobDetailsCreatePlan',
+    'CronJobDetailsCreateRegion',
     'CronJobDetailsEnv',
     'CronJobDetailsPlan',
     'CronJobDetailsRegion',
@@ -19,6 +26,10 @@ __all__ = [
     'DeployStatus',
     'DeployTrigger',
     'Plan',
+    'PrivateServiceDetailsCreateEnv',
+    'PrivateServiceDetailsCreatePlan',
+    'PrivateServiceDetailsCreatePullRequestPreviewsEnabled',
+    'PrivateServiceDetailsCreateRegion',
     'PrivateServiceDetailsEnv',
     'PrivateServiceDetailsPlan',
     'PrivateServiceDetailsPullRequestPreviewsEnabled',
@@ -31,10 +42,15 @@ __all__ = [
     'ServiceSuspended',
     'ServiceSuspendersItem',
     'ServiceType',
+    'StaticSiteDetailsCreatePullRequestPreviewsEnabled',
     'StaticSiteDetailsPullRequestPreviewsEnabled',
     'Status',
     'Trigger',
     'Type',
+    'WebServiceDetailsCreateEnv',
+    'WebServiceDetailsCreatePlan',
+    'WebServiceDetailsCreatePullRequestPreviewsEnabled',
+    'WebServiceDetailsCreateRegion',
     'WebServiceDetailsEnv',
     'WebServiceDetailsPlan',
     'WebServiceDetailsPullRequestPreviewsEnabled',
@@ -48,6 +64,44 @@ class AutoDeploy(str, Enum):
     """
     YES = "yes"
     NO = "no"
+
+
+class BackgroundWorkerDetailsCreateEnv(str, Enum):
+    """
+    Environment (runtime)
+    """
+    DOCKER = "docker"
+    ELIXIR = "elixir"
+    GO = "go"
+    NODE = "node"
+    PYTHON = "python"
+    RUBY = "ruby"
+    RUST = "rust"
+    IMAGE = "image"
+
+
+class BackgroundWorkerDetailsCreatePlan(str, Enum):
+    STARTER = "starter"
+    STANDARD = "standard"
+    PRO = "pro"
+    PRO_PLUS = "pro_plus"
+    PRO_MAX = "pro_max"
+    PRO_ULTRA = "pro_ultra"
+
+
+class BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled(str, Enum):
+    """
+    Defaults to "no"
+    """
+    YES = "yes"
+    NO = "no"
+
+
+class BackgroundWorkerDetailsCreateRegion(str, Enum):
+    FRANKFURT = "frankfurt"
+    OREGON = "oregon"
+    OHIO = "ohio"
+    SINGAPORE = "singapore"
 
 
 class BackgroundWorkerDetailsEnv(str, Enum):
@@ -98,6 +152,36 @@ class ClearCache(str, Enum):
     """
     CLEAR = "clear"
     DO_NOT_CLEAR = "do_not_clear"
+
+
+class CronJobDetailsCreateEnv(str, Enum):
+    """
+    Environment (runtime)
+    """
+    DOCKER = "docker"
+    ELIXIR = "elixir"
+    GO = "go"
+    NODE = "node"
+    PYTHON = "python"
+    RUBY = "ruby"
+    RUST = "rust"
+    IMAGE = "image"
+
+
+class CronJobDetailsCreatePlan(str, Enum):
+    STARTER = "starter"
+    STANDARD = "standard"
+    PRO = "pro"
+    PRO_PLUS = "pro_plus"
+    PRO_MAX = "pro_max"
+    PRO_ULTRA = "pro_ultra"
+
+
+class CronJobDetailsCreateRegion(str, Enum):
+    FRANKFURT = "frankfurt"
+    OREGON = "oregon"
+    OHIO = "ohio"
+    SINGAPORE = "singapore"
 
 
 class CronJobDetailsEnv(str, Enum):
@@ -187,6 +271,44 @@ class Plan(str, Enum):
     PRO_ULTRA = "pro_ultra"
     FREE = "free"
     CUSTOM = "custom"
+
+
+class PrivateServiceDetailsCreateEnv(str, Enum):
+    """
+    Environment (runtime)
+    """
+    DOCKER = "docker"
+    ELIXIR = "elixir"
+    GO = "go"
+    NODE = "node"
+    PYTHON = "python"
+    RUBY = "ruby"
+    RUST = "rust"
+    IMAGE = "image"
+
+
+class PrivateServiceDetailsCreatePlan(str, Enum):
+    STARTER = "starter"
+    STANDARD = "standard"
+    PRO = "pro"
+    PRO_PLUS = "pro_plus"
+    PRO_MAX = "pro_max"
+    PRO_ULTRA = "pro_ultra"
+
+
+class PrivateServiceDetailsCreatePullRequestPreviewsEnabled(str, Enum):
+    """
+    Defaults to "no"
+    """
+    YES = "yes"
+    NO = "no"
+
+
+class PrivateServiceDetailsCreateRegion(str, Enum):
+    FRANKFURT = "frankfurt"
+    OREGON = "oregon"
+    OHIO = "ohio"
+    SINGAPORE = "singapore"
 
 
 class PrivateServiceDetailsEnv(str, Enum):
@@ -282,6 +404,14 @@ class ServiceType(str, Enum):
     CRON_JOB = "cron_job"
 
 
+class StaticSiteDetailsCreatePullRequestPreviewsEnabled(str, Enum):
+    """
+    Defaults to "no"
+    """
+    YES = "yes"
+    NO = "no"
+
+
 class StaticSiteDetailsPullRequestPreviewsEnabled(str, Enum):
     YES = "yes"
     NO = "no"
@@ -319,6 +449,44 @@ class Type(str, Enum):
     PRIVATE_SERVICE = "private_service"
     BACKGROUND_WORKER = "background_worker"
     CRON_JOB = "cron_job"
+
+
+class WebServiceDetailsCreateEnv(str, Enum):
+    """
+    Environment (runtime)
+    """
+    DOCKER = "docker"
+    ELIXIR = "elixir"
+    GO = "go"
+    NODE = "node"
+    PYTHON = "python"
+    RUBY = "ruby"
+    RUST = "rust"
+    IMAGE = "image"
+
+
+class WebServiceDetailsCreatePlan(str, Enum):
+    STARTER = "starter"
+    STANDARD = "standard"
+    PRO = "pro"
+    PRO_PLUS = "pro_plus"
+    PRO_MAX = "pro_max"
+    PRO_ULTRA = "pro_ultra"
+
+
+class WebServiceDetailsCreatePullRequestPreviewsEnabled(str, Enum):
+    """
+    Defaults to "no"
+    """
+    YES = "yes"
+    NO = "no"
+
+
+class WebServiceDetailsCreateRegion(str, Enum):
+    FRANKFURT = "frankfurt"
+    OREGON = "oregon"
+    OHIO = "ohio"
+    SINGAPORE = "singapore"
 
 
 class WebServiceDetailsEnv(str, Enum):

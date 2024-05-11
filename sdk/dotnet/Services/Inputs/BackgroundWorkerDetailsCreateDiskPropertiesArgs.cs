@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Render.Services.Inputs
 {
 
-    public sealed class DiskArgs : global::Pulumi.ResourceArgs
+    public sealed class BackgroundWorkerDetailsCreateDiskPropertiesArgs : global::Pulumi.ResourceArgs
     {
         [Input("mountPath", required: true)]
         public Input<string> MountPath { get; set; } = null!;
@@ -18,12 +18,15 @@ namespace Pulumi.Render.Services.Inputs
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
-        [Input("sizeGB", required: true)]
-        public Input<int> SizeGB { get; set; } = null!;
+        /// <summary>
+        /// Defaults to 1
+        /// </summary>
+        [Input("sizeGB")]
+        public Input<int>? SizeGB { get; set; }
 
-        public DiskArgs()
+        public BackgroundWorkerDetailsCreateDiskPropertiesArgs()
         {
         }
-        public static new DiskArgs Empty => new DiskArgs();
+        public static new BackgroundWorkerDetailsCreateDiskPropertiesArgs Empty => new BackgroundWorkerDetailsCreateDiskPropertiesArgs();
     }
 }

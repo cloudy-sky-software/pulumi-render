@@ -42,7 +42,7 @@ var (
 )
 
 const (
-	envVarResourceTypeToken       = "render:services:EnvVar"
+	envVarResourceTypeToken       = "render:services:EnvVarsForService"
 	customDomainResourceTypeToken = "render:services:CustomDomain"
 )
 
@@ -151,6 +151,8 @@ func (p *renderProvider) OnPreCreate(_ context.Context, req *pulumirpc.CreateReq
 	if resourceTypeToken != envVarResourceTypeToken {
 		return nil
 	}
+
+	logging.V(3).Infof("handling pre-create callback for %s", envVarResourceTypeToken)
 
 	body, err := io.ReadAll(httpReq.Body)
 	if err != nil {
@@ -280,11 +282,7 @@ func (p *renderProvider) OnPostUpdate(ctx context.Context, req *pulumirpc.Update
 		outputsMap = outputs.(map[string]interface{})
 	}
 
-	if resourceTypeToken != "render:services:StaticSite" &&
-		resourceTypeToken != "render:services:WebService" &&
-		resourceTypeToken != "render:services:PrivateService" &&
-		resourceTypeToken != "render:services:BackgroundWorker" &&
-		resourceTypeToken != "render:services:CronJob" &&
+	if resourceTypeToken != "render:services:Service" &&
 		resourceTypeToken != envVarResourceTypeToken {
 		return outputsMap, nil
 	}

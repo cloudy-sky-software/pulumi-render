@@ -16,6 +16,7 @@ export namespace owners {
 
     export interface Owner {
         email: string;
+        id: string;
         name: string;
         type: enums.owners.OwnerType;
     }
@@ -24,6 +25,10 @@ export namespace owners {
 
 export namespace registrycredentials {
     export interface RegistryCredential {
+        /**
+         * Unique identifier for this credential
+         */
+        id: string;
         /**
          * Descriptive name for this credential
          */
@@ -127,6 +132,44 @@ export namespace services {
         };
     }
 
+    export interface BackgroundWorkerDetailsCreate {
+        disk?: outputs.services.BackgroundWorkerDetailsCreateDiskProperties;
+        /**
+         * Environment (runtime)
+         */
+        env: enums.services.BackgroundWorkerDetailsCreateEnv;
+        envSpecificDetails?: outputs.services.DockerDetails | outputs.services.NativeEnvironmentDetails;
+        /**
+         * Defaults to 1
+         */
+        numInstances?: number;
+        plan?: enums.services.BackgroundWorkerDetailsCreatePlan;
+        /**
+         * Defaults to "no"
+         */
+        pullRequestPreviewsEnabled?: enums.services.BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled;
+        region?: enums.services.BackgroundWorkerDetailsCreateRegion;
+    }
+    /**
+     * backgroundWorkerDetailsCreateProvideDefaults sets the appropriate defaults for BackgroundWorkerDetailsCreate
+     */
+    export function backgroundWorkerDetailsCreateProvideDefaults(val: BackgroundWorkerDetailsCreate): BackgroundWorkerDetailsCreate {
+        return {
+            ...val,
+            numInstances: (val.numInstances) ?? 1,
+            pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
+        };
+    }
+
+    export interface BackgroundWorkerDetailsCreateDiskProperties {
+        mountPath: string;
+        name: string;
+        /**
+         * Defaults to 1
+         */
+        sizeGB?: number;
+    }
+
     export interface BuildFilter {
         ignoredPaths: string[];
         paths: string[];
@@ -134,6 +177,7 @@ export namespace services {
 
     export interface CommitProperties {
         createdAt?: string;
+        id?: string;
         message?: string;
     }
 
@@ -153,9 +197,21 @@ export namespace services {
         schedule: string;
     }
 
+    export interface CronJobDetailsCreate {
+        /**
+         * Environment (runtime)
+         */
+        env: enums.services.CronJobDetailsCreateEnv;
+        envSpecificDetails?: outputs.services.DockerDetails | outputs.services.NativeEnvironmentDetails;
+        plan?: enums.services.CronJobDetailsCreatePlan;
+        region?: enums.services.CronJobDetailsCreateRegion;
+        schedule: string;
+    }
+
     export interface CustomDomain {
         createdAt: string;
         domainType: enums.services.CustomDomainDomainType;
+        id: string;
         name: string;
         publicSuffix: string;
         redirectForName: string;
@@ -164,6 +220,7 @@ export namespace services {
     }
 
     export interface CustomDomainServerProperties {
+        id?: string;
         name?: string;
     }
 
@@ -171,6 +228,7 @@ export namespace services {
         commit?: outputs.services.DeployCommitProperties;
         createdAt?: string;
         finishedAt?: string;
+        id: string;
         /**
          * Image information used when creating the deploy. Not present for Git-backed deploys
          */
@@ -182,6 +240,7 @@ export namespace services {
 
     export interface DeployCommitProperties {
         createdAt?: string;
+        id?: string;
         message?: string;
     }
 
@@ -204,6 +263,7 @@ export namespace services {
     }
 
     export interface Disk {
+        id: string;
         mountPath: string;
         name: string;
         sizeGB: number;
@@ -238,8 +298,24 @@ export namespace services {
     }
 
     export interface Header {
+        id: string;
         name: string;
         path: string;
+        value: string;
+    }
+
+    export interface HeaderCreate {
+        /**
+         * Header name
+         */
+        name: string;
+        /**
+         * The request path to add the header to. Wildcards will cause headers to be applied to all matching paths.
+         */
+        path: string;
+        /**
+         * Header value
+         */
         value: string;
     }
 
@@ -279,6 +355,7 @@ export namespace services {
     export interface Job {
         createdAt: string;
         finishedAt?: string;
+        id: string;
         planId: string;
         serviceId: string;
         startCommand: string;
@@ -355,7 +432,49 @@ export namespace services {
         };
     }
 
+    export interface PrivateServiceDetailsCreate {
+        disk?: outputs.services.PrivateServiceDetailsCreateDiskProperties;
+        /**
+         * Environment (runtime)
+         */
+        env: enums.services.PrivateServiceDetailsCreateEnv;
+        envSpecificDetails?: outputs.services.DockerDetails | outputs.services.NativeEnvironmentDetails;
+        /**
+         * Defaults to 1
+         */
+        numInstances?: number;
+        plan?: enums.services.PrivateServiceDetailsCreatePlan;
+        /**
+         * Defaults to "no"
+         */
+        pullRequestPreviewsEnabled?: enums.services.PrivateServiceDetailsCreatePullRequestPreviewsEnabled;
+        region?: enums.services.PrivateServiceDetailsCreateRegion;
+    }
+    /**
+     * privateServiceDetailsCreateProvideDefaults sets the appropriate defaults for PrivateServiceDetailsCreate
+     */
+    export function privateServiceDetailsCreateProvideDefaults(val: PrivateServiceDetailsCreate): PrivateServiceDetailsCreate {
+        return {
+            ...val,
+            numInstances: (val.numInstances) ?? 1,
+            pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
+        };
+    }
+
+    export interface PrivateServiceDetailsCreateDiskProperties {
+        mountPath: string;
+        name: string;
+        /**
+         * Defaults to 1
+         */
+        sizeGB?: number;
+    }
+
     export interface RegistryCredential {
+        /**
+         * Unique identifier for this credential
+         */
+        id: string;
         /**
          * Descriptive name for this credential
          */
@@ -371,11 +490,13 @@ export namespace services {
     }
 
     export interface Resource {
+        id: string;
         name: string;
     }
 
     export interface Route {
         destination: string;
+        id: string;
         /**
          * Redirect and Rewrite Rules are applied in priority order starting at 0
          */
@@ -385,6 +506,7 @@ export namespace services {
     }
 
     export interface SecretFile {
+        id: string;
         name: string;
     }
 
@@ -398,6 +520,7 @@ export namespace services {
         branch?: string;
         buildFilter?: outputs.services.BuildFilter;
         createdAt: string;
+        id: string;
         imagePath?: string;
         name: string;
         notifyOnFail: enums.services.ServiceNotifyOnFail;
@@ -419,6 +542,29 @@ export namespace services {
         publishPath: string;
         pullRequestPreviewsEnabled: enums.services.StaticSiteDetailsPullRequestPreviewsEnabled;
         url: string;
+    }
+
+    export interface StaticSiteDetailsCreate {
+        buildCommand?: string;
+        headers?: outputs.services.HeaderCreate[];
+        /**
+         * Defaults to "public"
+         */
+        publishPath?: string;
+        /**
+         * Defaults to "no"
+         */
+        pullRequestPreviewsEnabled?: enums.services.StaticSiteDetailsCreatePullRequestPreviewsEnabled;
+        routes?: outputs.services.Route[];
+    }
+    /**
+     * staticSiteDetailsCreateProvideDefaults sets the appropriate defaults for StaticSiteDetailsCreate
+     */
+    export function staticSiteDetailsCreateProvideDefaults(val: StaticSiteDetailsCreate): StaticSiteDetailsCreate {
+        return {
+            ...val,
+            pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
+        };
     }
 
     export interface WebServiceDetails {
@@ -453,6 +599,44 @@ export namespace services {
             ...val,
             autoscaling: (val.autoscaling ? outputs.services.autoscalingConfigProvideDefaults(val.autoscaling) : undefined),
         };
+    }
+
+    export interface WebServiceDetailsCreate {
+        disk?: outputs.services.WebServiceDetailsCreateDiskProperties;
+        /**
+         * Environment (runtime)
+         */
+        env: enums.services.WebServiceDetailsCreateEnv;
+        envSpecificDetails?: outputs.services.DockerDetails | outputs.services.NativeEnvironmentDetails;
+        healthCheckPath?: string;
+        /**
+         * Defaults to 1
+         */
+        numInstances?: number;
+        plan?: enums.services.WebServiceDetailsCreatePlan;
+        /**
+         * Defaults to "no"
+         */
+        pullRequestPreviewsEnabled?: enums.services.WebServiceDetailsCreatePullRequestPreviewsEnabled;
+        region?: enums.services.WebServiceDetailsCreateRegion;
+    }
+    /**
+     * webServiceDetailsCreateProvideDefaults sets the appropriate defaults for WebServiceDetailsCreate
+     */
+    export function webServiceDetailsCreateProvideDefaults(val: WebServiceDetailsCreate): WebServiceDetailsCreate {
+        return {
+            ...val,
+            pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
+        };
+    }
+
+    export interface WebServiceDetailsCreateDiskProperties {
+        mountPath: string;
+        name: string;
+        /**
+         * Defaults to 1
+         */
+        sizeGB?: number;
     }
 
 }

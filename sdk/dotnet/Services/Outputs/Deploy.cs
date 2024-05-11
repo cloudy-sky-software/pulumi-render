@@ -16,6 +16,7 @@ namespace Pulumi.Render.Services.Outputs
         public readonly Outputs.DeployCommitProperties? Commit;
         public readonly string? CreatedAt;
         public readonly string? FinishedAt;
+        public readonly string Id;
         /// <summary>
         /// Image information used when creating the deploy. Not present for Git-backed deploys
         /// </summary>
@@ -32,6 +33,8 @@ namespace Pulumi.Render.Services.Outputs
 
             string? finishedAt,
 
+            string id,
+
             Outputs.DeployImageProperties? image,
 
             Pulumi.Render.Services.DeployStatus? status,
@@ -43,6 +46,7 @@ namespace Pulumi.Render.Services.Outputs
             Commit = commit;
             CreatedAt = createdAt;
             FinishedAt = finishedAt;
+            Id = id;
             Image = image;
             Status = status;
             Trigger = trigger;

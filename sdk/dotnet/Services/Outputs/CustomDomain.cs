@@ -15,6 +15,7 @@ namespace Pulumi.Render.Services.Outputs
     {
         public readonly string CreatedAt;
         public readonly Pulumi.Render.Services.CustomDomainDomainType DomainType;
+        public readonly string Id;
         public readonly string Name;
         public readonly string PublicSuffix;
         public readonly string RedirectForName;
@@ -26,6 +27,8 @@ namespace Pulumi.Render.Services.Outputs
             string createdAt,
 
             Pulumi.Render.Services.CustomDomainDomainType domainType,
+
+            string id,
 
             string name,
 
@@ -39,6 +42,7 @@ namespace Pulumi.Render.Services.Outputs
         {
             CreatedAt = createdAt;
             DomainType = domainType;
+            Id = id;
             Name = name;
             PublicSuffix = publicSuffix;
             RedirectForName = redirectForName;

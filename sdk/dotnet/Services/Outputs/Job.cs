@@ -15,6 +15,7 @@ namespace Pulumi.Render.Services.Outputs
     {
         public readonly string CreatedAt;
         public readonly string? FinishedAt;
+        public readonly string Id;
         public readonly string PlanId;
         public readonly string ServiceId;
         public readonly string StartCommand;
@@ -26,6 +27,8 @@ namespace Pulumi.Render.Services.Outputs
             string createdAt,
 
             string? finishedAt,
+
+            string id,
 
             string planId,
 
@@ -39,6 +42,7 @@ namespace Pulumi.Render.Services.Outputs
         {
             CreatedAt = createdAt;
             FinishedAt = finishedAt;
+            Id = id;
             PlanId = planId;
             ServiceId = serviceId;
             StartCommand = startCommand;

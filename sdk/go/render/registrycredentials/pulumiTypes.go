@@ -14,6 +14,8 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type RegistryCredentialType struct {
+	// Unique identifier for this credential
+	Id string `pulumi:"id"`
 	// Descriptive name for this credential
 	Name string `pulumi:"name"`
 	// The registry to use this credential with
@@ -34,6 +36,11 @@ func (o RegistryCredentialTypeOutput) ToRegistryCredentialTypeOutput() RegistryC
 
 func (o RegistryCredentialTypeOutput) ToRegistryCredentialTypeOutputWithContext(ctx context.Context) RegistryCredentialTypeOutput {
 	return o
+}
+
+// Unique identifier for this credential
+func (o RegistryCredentialTypeOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v RegistryCredentialType) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Descriptive name for this credential

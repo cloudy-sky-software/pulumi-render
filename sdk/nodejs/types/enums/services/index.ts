@@ -12,6 +12,52 @@ export const AutoDeploy = {
  */
 export type AutoDeploy = (typeof AutoDeploy)[keyof typeof AutoDeploy];
 
+export const BackgroundWorkerDetailsCreateEnv = {
+    Docker: "docker",
+    Elixir: "elixir",
+    Go: "go",
+    Node: "node",
+    Python: "python",
+    Ruby: "ruby",
+    Rust: "rust",
+    Image: "image",
+} as const;
+
+/**
+ * Environment (runtime)
+ */
+export type BackgroundWorkerDetailsCreateEnv = (typeof BackgroundWorkerDetailsCreateEnv)[keyof typeof BackgroundWorkerDetailsCreateEnv];
+
+export const BackgroundWorkerDetailsCreatePlan = {
+    Starter: "starter",
+    Standard: "standard",
+    Pro: "pro",
+    ProPlus: "pro_plus",
+    ProMax: "pro_max",
+    ProUltra: "pro_ultra",
+} as const;
+
+export type BackgroundWorkerDetailsCreatePlan = (typeof BackgroundWorkerDetailsCreatePlan)[keyof typeof BackgroundWorkerDetailsCreatePlan];
+
+export const BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled = {
+    Yes: "yes",
+    No: "no",
+} as const;
+
+/**
+ * Defaults to "no"
+ */
+export type BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled = (typeof BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled)[keyof typeof BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled];
+
+export const BackgroundWorkerDetailsCreateRegion = {
+    Frankfurt: "frankfurt",
+    Oregon: "oregon",
+    Ohio: "ohio",
+    Singapore: "singapore",
+} as const;
+
+export type BackgroundWorkerDetailsCreateRegion = (typeof BackgroundWorkerDetailsCreateRegion)[keyof typeof BackgroundWorkerDetailsCreateRegion];
+
 export const BackgroundWorkerDetailsEnv = {
     Docker: "docker",
     Elixir: "elixir",
@@ -71,6 +117,42 @@ export const ClearCache = {
  * Defaults to "do_not_clear"
  */
 export type ClearCache = (typeof ClearCache)[keyof typeof ClearCache];
+
+export const CronJobDetailsCreateEnv = {
+    Docker: "docker",
+    Elixir: "elixir",
+    Go: "go",
+    Node: "node",
+    Python: "python",
+    Ruby: "ruby",
+    Rust: "rust",
+    Image: "image",
+} as const;
+
+/**
+ * Environment (runtime)
+ */
+export type CronJobDetailsCreateEnv = (typeof CronJobDetailsCreateEnv)[keyof typeof CronJobDetailsCreateEnv];
+
+export const CronJobDetailsCreatePlan = {
+    Starter: "starter",
+    Standard: "standard",
+    Pro: "pro",
+    ProPlus: "pro_plus",
+    ProMax: "pro_max",
+    ProUltra: "pro_ultra",
+} as const;
+
+export type CronJobDetailsCreatePlan = (typeof CronJobDetailsCreatePlan)[keyof typeof CronJobDetailsCreatePlan];
+
+export const CronJobDetailsCreateRegion = {
+    Frankfurt: "frankfurt",
+    Oregon: "oregon",
+    Ohio: "ohio",
+    Singapore: "singapore",
+} as const;
+
+export type CronJobDetailsCreateRegion = (typeof CronJobDetailsCreateRegion)[keyof typeof CronJobDetailsCreateRegion];
 
 export const CronJobDetailsEnv = {
     Docker: "docker",
@@ -176,6 +258,52 @@ export const Plan = {
  * The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
  */
 export type Plan = (typeof Plan)[keyof typeof Plan];
+
+export const PrivateServiceDetailsCreateEnv = {
+    Docker: "docker",
+    Elixir: "elixir",
+    Go: "go",
+    Node: "node",
+    Python: "python",
+    Ruby: "ruby",
+    Rust: "rust",
+    Image: "image",
+} as const;
+
+/**
+ * Environment (runtime)
+ */
+export type PrivateServiceDetailsCreateEnv = (typeof PrivateServiceDetailsCreateEnv)[keyof typeof PrivateServiceDetailsCreateEnv];
+
+export const PrivateServiceDetailsCreatePlan = {
+    Starter: "starter",
+    Standard: "standard",
+    Pro: "pro",
+    ProPlus: "pro_plus",
+    ProMax: "pro_max",
+    ProUltra: "pro_ultra",
+} as const;
+
+export type PrivateServiceDetailsCreatePlan = (typeof PrivateServiceDetailsCreatePlan)[keyof typeof PrivateServiceDetailsCreatePlan];
+
+export const PrivateServiceDetailsCreatePullRequestPreviewsEnabled = {
+    Yes: "yes",
+    No: "no",
+} as const;
+
+/**
+ * Defaults to "no"
+ */
+export type PrivateServiceDetailsCreatePullRequestPreviewsEnabled = (typeof PrivateServiceDetailsCreatePullRequestPreviewsEnabled)[keyof typeof PrivateServiceDetailsCreatePullRequestPreviewsEnabled];
+
+export const PrivateServiceDetailsCreateRegion = {
+    Frankfurt: "frankfurt",
+    Oregon: "oregon",
+    Ohio: "ohio",
+    Singapore: "singapore",
+} as const;
+
+export type PrivateServiceDetailsCreateRegion = (typeof PrivateServiceDetailsCreateRegion)[keyof typeof PrivateServiceDetailsCreateRegion];
 
 export const PrivateServiceDetailsEnv = {
     Docker: "docker",
@@ -294,6 +422,16 @@ export const ServiceType = {
 
 export type ServiceType = (typeof ServiceType)[keyof typeof ServiceType];
 
+export const StaticSiteDetailsCreatePullRequestPreviewsEnabled = {
+    Yes: "yes",
+    No: "no",
+} as const;
+
+/**
+ * Defaults to "no"
+ */
+export type StaticSiteDetailsCreatePullRequestPreviewsEnabled = (typeof StaticSiteDetailsCreatePullRequestPreviewsEnabled)[keyof typeof StaticSiteDetailsCreatePullRequestPreviewsEnabled];
+
 export const StaticSiteDetailsPullRequestPreviewsEnabled = {
     Yes: "yes",
     No: "no",
@@ -340,6 +478,52 @@ export const Type = {
 } as const;
 
 export type Type = (typeof Type)[keyof typeof Type];
+
+export const WebServiceDetailsCreateEnv = {
+    Docker: "docker",
+    Elixir: "elixir",
+    Go: "go",
+    Node: "node",
+    Python: "python",
+    Ruby: "ruby",
+    Rust: "rust",
+    Image: "image",
+} as const;
+
+/**
+ * Environment (runtime)
+ */
+export type WebServiceDetailsCreateEnv = (typeof WebServiceDetailsCreateEnv)[keyof typeof WebServiceDetailsCreateEnv];
+
+export const WebServiceDetailsCreatePlan = {
+    Starter: "starter",
+    Standard: "standard",
+    Pro: "pro",
+    ProPlus: "pro_plus",
+    ProMax: "pro_max",
+    ProUltra: "pro_ultra",
+} as const;
+
+export type WebServiceDetailsCreatePlan = (typeof WebServiceDetailsCreatePlan)[keyof typeof WebServiceDetailsCreatePlan];
+
+export const WebServiceDetailsCreatePullRequestPreviewsEnabled = {
+    Yes: "yes",
+    No: "no",
+} as const;
+
+/**
+ * Defaults to "no"
+ */
+export type WebServiceDetailsCreatePullRequestPreviewsEnabled = (typeof WebServiceDetailsCreatePullRequestPreviewsEnabled)[keyof typeof WebServiceDetailsCreatePullRequestPreviewsEnabled];
+
+export const WebServiceDetailsCreateRegion = {
+    Frankfurt: "frankfurt",
+    Oregon: "oregon",
+    Ohio: "ohio",
+    Singapore: "singapore",
+} as const;
+
+export type WebServiceDetailsCreateRegion = (typeof WebServiceDetailsCreateRegion)[keyof typeof WebServiceDetailsCreateRegion];
 
 export const WebServiceDetailsEnv = {
     Docker: "docker",

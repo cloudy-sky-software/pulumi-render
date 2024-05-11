@@ -12,6 +12,10 @@ namespace Pulumi.Render.Services
     [RenderResourceType("render:services:EnvVarsForService")]
     public partial class EnvVarsForService : global::Pulumi.CustomResource
     {
+        [Output("envVars")]
+        public Output<ImmutableArray<Union<Outputs.EnvVarKeyValue, Outputs.EnvVarKeyGenerateValue>>> EnvVars { get; private set; } = null!;
+
+
         /// <summary>
         /// Create a EnvVarsForService resource with the given unique name, arguments, and options.
         /// </summary>
@@ -57,6 +61,14 @@ namespace Pulumi.Render.Services
 
     public sealed class EnvVarsForServiceArgs : global::Pulumi.ResourceArgs
     {
+        [Input("envVars")]
+        private InputList<Union<Inputs.EnvVarKeyValueArgs, Inputs.EnvVarKeyGenerateValueArgs>>? _envVars;
+        public InputList<Union<Inputs.EnvVarKeyValueArgs, Inputs.EnvVarKeyGenerateValueArgs>> EnvVars
+        {
+            get => _envVars ?? (_envVars = new InputList<Union<Inputs.EnvVarKeyValueArgs, Inputs.EnvVarKeyGenerateValueArgs>>());
+            set => _envVars = value;
+        }
+
         public EnvVarsForServiceArgs()
         {
         }

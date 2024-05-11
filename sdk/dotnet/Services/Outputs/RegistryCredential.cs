@@ -14,6 +14,10 @@ namespace Pulumi.Render.Services.Outputs
     public sealed class RegistryCredential
     {
         /// <summary>
+        /// Unique identifier for this credential
+        /// </summary>
+        public readonly string Id;
+        /// <summary>
         /// Descriptive name for this credential
         /// </summary>
         public readonly string Name;
@@ -28,12 +32,15 @@ namespace Pulumi.Render.Services.Outputs
 
         [OutputConstructor]
         private RegistryCredential(
+            string id,
+
             string name,
 
             Pulumi.Render.Services.RegistryCredentialRegistry registry,
 
             string username)
         {
+            Id = id;
             Name = name;
             Registry = registry;
             Username = username;

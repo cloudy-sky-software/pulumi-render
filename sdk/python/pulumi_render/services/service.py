@@ -28,7 +28,7 @@ class ServiceArgs:
                  repo: Optional[pulumi.Input[str]] = None,
                  root_dir: Optional[pulumi.Input[str]] = None,
                  secret_files: Optional[pulumi.Input[Sequence[pulumi.Input['SecretFileArgs']]]] = None,
-                 service_details: Optional[pulumi.Input[Union['StaticSiteDetailsArgs', 'WebServiceDetailsArgs', 'PrivateServiceDetailsArgs', 'BackgroundWorkerDetailsArgs', 'CronJobDetailsArgs']]] = None):
+                 service_details: Optional[pulumi.Input[Union['StaticSiteDetailsCreateArgs', 'WebServiceDetailsCreateArgs', 'PrivateServiceDetailsCreateArgs', 'BackgroundWorkerDetailsCreateArgs', 'CronJobDetailsCreateArgs']]] = None):
         """
         The set of arguments for constructing a Service resource.
         :param pulumi.Input['AutoDeploy'] auto_deploy: Defaults to "yes"
@@ -170,11 +170,11 @@ class ServiceArgs:
 
     @property
     @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> Optional[pulumi.Input[Union['StaticSiteDetailsArgs', 'WebServiceDetailsArgs', 'PrivateServiceDetailsArgs', 'BackgroundWorkerDetailsArgs', 'CronJobDetailsArgs']]]:
+    def service_details(self) -> Optional[pulumi.Input[Union['StaticSiteDetailsCreateArgs', 'WebServiceDetailsCreateArgs', 'PrivateServiceDetailsCreateArgs', 'BackgroundWorkerDetailsCreateArgs', 'CronJobDetailsCreateArgs']]]:
         return pulumi.get(self, "service_details")
 
     @service_details.setter
-    def service_details(self, value: Optional[pulumi.Input[Union['StaticSiteDetailsArgs', 'WebServiceDetailsArgs', 'PrivateServiceDetailsArgs', 'BackgroundWorkerDetailsArgs', 'CronJobDetailsArgs']]]):
+    def service_details(self, value: Optional[pulumi.Input[Union['StaticSiteDetailsCreateArgs', 'WebServiceDetailsCreateArgs', 'PrivateServiceDetailsCreateArgs', 'BackgroundWorkerDetailsCreateArgs', 'CronJobDetailsCreateArgs']]]):
         pulumi.set(self, "service_details", value)
 
 
@@ -193,7 +193,7 @@ class Service(pulumi.CustomResource):
                  repo: Optional[pulumi.Input[str]] = None,
                  root_dir: Optional[pulumi.Input[str]] = None,
                  secret_files: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretFileArgs']]]]] = None,
-                 service_details: Optional[pulumi.Input[Union[pulumi.InputType['StaticSiteDetailsArgs'], pulumi.InputType['WebServiceDetailsArgs'], pulumi.InputType['PrivateServiceDetailsArgs'], pulumi.InputType['BackgroundWorkerDetailsArgs'], pulumi.InputType['CronJobDetailsArgs']]]] = None,
+                 service_details: Optional[pulumi.Input[Union[pulumi.InputType['StaticSiteDetailsCreateArgs'], pulumi.InputType['WebServiceDetailsCreateArgs'], pulumi.InputType['PrivateServiceDetailsCreateArgs'], pulumi.InputType['BackgroundWorkerDetailsCreateArgs'], pulumi.InputType['CronJobDetailsCreateArgs']]]] = None,
                  type: Optional[pulumi.Input['Type']] = None,
                  __props__=None):
         """
@@ -237,7 +237,7 @@ class Service(pulumi.CustomResource):
                  repo: Optional[pulumi.Input[str]] = None,
                  root_dir: Optional[pulumi.Input[str]] = None,
                  secret_files: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretFileArgs']]]]] = None,
-                 service_details: Optional[pulumi.Input[Union[pulumi.InputType['StaticSiteDetailsArgs'], pulumi.InputType['WebServiceDetailsArgs'], pulumi.InputType['PrivateServiceDetailsArgs'], pulumi.InputType['BackgroundWorkerDetailsArgs'], pulumi.InputType['CronJobDetailsArgs']]]] = None,
+                 service_details: Optional[pulumi.Input[Union[pulumi.InputType['StaticSiteDetailsCreateArgs'], pulumi.InputType['WebServiceDetailsCreateArgs'], pulumi.InputType['PrivateServiceDetailsCreateArgs'], pulumi.InputType['BackgroundWorkerDetailsCreateArgs'], pulumi.InputType['CronJobDetailsCreateArgs']]]] = None,
                  type: Optional[pulumi.Input['Type']] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)

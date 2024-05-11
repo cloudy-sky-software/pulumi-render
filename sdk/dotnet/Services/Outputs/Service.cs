@@ -17,6 +17,7 @@ namespace Pulumi.Render.Services.Outputs
         public readonly string? Branch;
         public readonly Outputs.BuildFilter? BuildFilter;
         public readonly string CreatedAt;
+        public readonly string Id;
         public readonly string? ImagePath;
         public readonly string Name;
         public readonly Pulumi.Render.Services.ServiceNotifyOnFail NotifyOnFail;
@@ -39,6 +40,8 @@ namespace Pulumi.Render.Services.Outputs
             Outputs.BuildFilter? buildFilter,
 
             string createdAt,
+
+            string id,
 
             string? imagePath,
 
@@ -68,6 +71,7 @@ namespace Pulumi.Render.Services.Outputs
             Branch = branch;
             BuildFilter = buildFilter;
             CreatedAt = createdAt;
+            Id = id;
             ImagePath = imagePath;
             Name = name;
             NotifyOnFail = notifyOnFail;

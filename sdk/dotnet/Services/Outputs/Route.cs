@@ -14,6 +14,7 @@ namespace Pulumi.Render.Services.Outputs
     public sealed class Route
     {
         public readonly string Destination;
+        public readonly string Id;
         /// <summary>
         /// Redirect and Rewrite Rules are applied in priority order starting at 0
         /// </summary>
@@ -25,6 +26,8 @@ namespace Pulumi.Render.Services.Outputs
         private Route(
             string destination,
 
+            string id,
+
             int priority,
 
             string source,
@@ -32,6 +35,7 @@ namespace Pulumi.Render.Services.Outputs
             Pulumi.Render.Services.RouteType type)
         {
             Destination = destination;
+            Id = id;
             Priority = priority;
             Source = source;
             Type = type;

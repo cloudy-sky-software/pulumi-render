@@ -45,6 +45,7 @@ export class CustomDomain extends pulumi.CustomResource {
         opts = opts || {};
         if (!opts.id) {
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
         } else {
             resourceInputs["name"] = undefined /*out*/;
         }
@@ -58,4 +59,8 @@ export class CustomDomain extends pulumi.CustomResource {
  */
 export interface CustomDomainArgs {
     name?: pulumi.Input<string>;
+    /**
+     * The ID of the service
+     */
+    serviceId?: pulumi.Input<string>;
 }

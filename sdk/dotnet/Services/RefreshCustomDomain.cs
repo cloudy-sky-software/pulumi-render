@@ -57,6 +57,18 @@ namespace Pulumi.Render.Services
 
     public sealed class RefreshCustomDomainArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The ID or name of the custom domain
+        /// </summary>
+        [Input("customDomainIdOrName")]
+        public Input<string>? CustomDomainIdOrName { get; set; }
+
+        /// <summary>
+        /// The ID of the service
+        /// </summary>
+        [Input("serviceId")]
+        public Input<string>? ServiceId { get; set; }
+
         public RefreshCustomDomainArgs()
         {
         }

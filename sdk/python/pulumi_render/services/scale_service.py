@@ -14,11 +14,15 @@ __all__ = ['ScaleServiceArgs', 'ScaleService']
 @pulumi.input_type
 class ScaleServiceArgs:
     def __init__(__self__, *,
-                 num_instances: pulumi.Input[int]):
+                 num_instances: pulumi.Input[int],
+                 service_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ScaleService resource.
+        :param pulumi.Input[str] service_id: The ID of the service
         """
         pulumi.set(__self__, "num_instances", num_instances)
+        if service_id is not None:
+            pulumi.set(__self__, "service_id", service_id)
 
     @property
     @pulumi.getter(name="numInstances")
@@ -29,6 +33,18 @@ class ScaleServiceArgs:
     def num_instances(self, value: pulumi.Input[int]):
         pulumi.set(self, "num_instances", value)
 
+    @property
+    @pulumi.getter(name="serviceId")
+    def service_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the service
+        """
+        return pulumi.get(self, "service_id")
+
+    @service_id.setter
+    def service_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service_id", value)
+
 
 class ScaleService(pulumi.CustomResource):
     @overload
@@ -36,11 +52,13 @@ class ScaleService(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  num_instances: Optional[pulumi.Input[int]] = None,
+                 service_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Create a ScaleService resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] service_id: The ID of the service
         """
         ...
     @overload
@@ -66,6 +84,7 @@ class ScaleService(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  num_instances: Optional[pulumi.Input[int]] = None,
+                 service_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -78,6 +97,7 @@ class ScaleService(pulumi.CustomResource):
             if num_instances is None and not opts.urn:
                 raise TypeError("Missing required property 'num_instances'")
             __props__.__dict__["num_instances"] = num_instances
+            __props__.__dict__["service_id"] = service_id
         super(ScaleService, __self__).__init__(
             'render:services:ScaleService',
             resource_name,

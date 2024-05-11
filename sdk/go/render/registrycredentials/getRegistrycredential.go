@@ -22,6 +22,8 @@ func GetRegistrycredential(ctx *pulumi.Context, args *GetRegistrycredentialArgs,
 }
 
 type GetRegistrycredentialArgs struct {
+	// The ID of the registry credential
+	RegistryCredentialId string `pulumi:"registryCredentialId"`
 }
 
 type GetRegistrycredentialResult struct {
@@ -42,6 +44,8 @@ func GetRegistrycredentialOutput(ctx *pulumi.Context, args GetRegistrycredential
 }
 
 type GetRegistrycredentialOutputArgs struct {
+	// The ID of the registry credential
+	RegistryCredentialId pulumi.StringInput `pulumi:"registryCredentialId"`
 }
 
 func (GetRegistrycredentialOutputArgs) ElementType() reflect.Type {

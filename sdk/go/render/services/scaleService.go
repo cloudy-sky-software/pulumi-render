@@ -62,11 +62,15 @@ func (ScaleServiceState) ElementType() reflect.Type {
 
 type scaleServiceArgs struct {
 	NumInstances int `pulumi:"numInstances"`
+	// The ID of the service
+	ServiceId *string `pulumi:"serviceId"`
 }
 
 // The set of arguments for constructing a ScaleService resource.
 type ScaleServiceArgs struct {
 	NumInstances pulumi.IntInput
+	// The ID of the service
+	ServiceId pulumi.StringPtrInput
 }
 
 func (ScaleServiceArgs) ElementType() reflect.Type {

@@ -13,11 +13,42 @@ __all__ = ['RefreshCustomDomainArgs', 'RefreshCustomDomain']
 
 @pulumi.input_type
 class RefreshCustomDomainArgs:
-    def __init__(__self__):
+    def __init__(__self__, *,
+                 custom_domain_id_or_name: Optional[pulumi.Input[str]] = None,
+                 service_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a RefreshCustomDomain resource.
+        :param pulumi.Input[str] custom_domain_id_or_name: The ID or name of the custom domain
+        :param pulumi.Input[str] service_id: The ID of the service
         """
-        pass
+        if custom_domain_id_or_name is not None:
+            pulumi.set(__self__, "custom_domain_id_or_name", custom_domain_id_or_name)
+        if service_id is not None:
+            pulumi.set(__self__, "service_id", service_id)
+
+    @property
+    @pulumi.getter(name="customDomainIdOrName")
+    def custom_domain_id_or_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID or name of the custom domain
+        """
+        return pulumi.get(self, "custom_domain_id_or_name")
+
+    @custom_domain_id_or_name.setter
+    def custom_domain_id_or_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "custom_domain_id_or_name", value)
+
+    @property
+    @pulumi.getter(name="serviceId")
+    def service_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the service
+        """
+        return pulumi.get(self, "service_id")
+
+    @service_id.setter
+    def service_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service_id", value)
 
 
 class RefreshCustomDomain(pulumi.CustomResource):
@@ -25,11 +56,15 @@ class RefreshCustomDomain(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 custom_domain_id_or_name: Optional[pulumi.Input[str]] = None,
+                 service_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Create a RefreshCustomDomain resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] custom_domain_id_or_name: The ID or name of the custom domain
+        :param pulumi.Input[str] service_id: The ID of the service
         """
         ...
     @overload
@@ -54,6 +89,8 @@ class RefreshCustomDomain(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 custom_domain_id_or_name: Optional[pulumi.Input[str]] = None,
+                 service_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -63,6 +100,8 @@ class RefreshCustomDomain(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = RefreshCustomDomainArgs.__new__(RefreshCustomDomainArgs)
 
+            __props__.__dict__["custom_domain_id_or_name"] = custom_domain_id_or_name
+            __props__.__dict__["service_id"] = service_id
         super(RefreshCustomDomain, __self__).__init__(
             'render:services:RefreshCustomDomain',
             resource_name,

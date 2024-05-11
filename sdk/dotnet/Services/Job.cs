@@ -82,6 +82,12 @@ namespace Pulumi.Render.Services
         [Input("planId")]
         public Input<string>? PlanId { get; set; }
 
+        /// <summary>
+        /// The ID of the service
+        /// </summary>
+        [Input("serviceId")]
+        public Input<string>? ServiceId { get; set; }
+
         [Input("startCommand", required: true)]
         public Input<string> StartCommand { get; set; } = null!;
 

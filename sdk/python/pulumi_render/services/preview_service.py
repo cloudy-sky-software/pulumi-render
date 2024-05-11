@@ -18,18 +18,22 @@ class PreviewServiceArgs:
     def __init__(__self__, *,
                  image_path: pulumi.Input[str],
                  name: Optional[pulumi.Input[str]] = None,
-                 plan: Optional[pulumi.Input['Plan']] = None):
+                 plan: Optional[pulumi.Input['Plan']] = None,
+                 service_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a PreviewService resource.
         :param pulumi.Input[str] image_path: Must be either a full URL or the relative path to an image. If a relative path, Render uses the base service's image URL as its root. For example, if the base service's image URL is `docker.io/library/nginx:latest`, then valid values are: `docker.io/library/nginx:<any tag or SHA>`, `library/nginx:<any tag or SHA>`, or `nginx:<any tag or SHA>`. Note that the path must match (only the tag or SHA can vary).
         :param pulumi.Input[str] name: A name for the service preview instance. If not specified, Render generates the name using the base service's name and the specified tag or SHA.
         :param pulumi.Input['Plan'] plan: The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+        :param pulumi.Input[str] service_id: The ID of the service
         """
         pulumi.set(__self__, "image_path", image_path)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if plan is not None:
             pulumi.set(__self__, "plan", plan)
+        if service_id is not None:
+            pulumi.set(__self__, "service_id", service_id)
 
     @property
     @pulumi.getter(name="imagePath")
@@ -67,6 +71,18 @@ class PreviewServiceArgs:
     def plan(self, value: Optional[pulumi.Input['Plan']]):
         pulumi.set(self, "plan", value)
 
+    @property
+    @pulumi.getter(name="serviceId")
+    def service_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the service
+        """
+        return pulumi.get(self, "service_id")
+
+    @service_id.setter
+    def service_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service_id", value)
+
 
 class PreviewService(pulumi.CustomResource):
     @overload
@@ -76,6 +92,7 @@ class PreviewService(pulumi.CustomResource):
                  image_path: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  plan: Optional[pulumi.Input['Plan']] = None,
+                 service_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Create a PreviewService resource with the given unique name, props, and options.
@@ -84,6 +101,7 @@ class PreviewService(pulumi.CustomResource):
         :param pulumi.Input[str] image_path: Must be either a full URL or the relative path to an image. If a relative path, Render uses the base service's image URL as its root. For example, if the base service's image URL is `docker.io/library/nginx:latest`, then valid values are: `docker.io/library/nginx:<any tag or SHA>`, `library/nginx:<any tag or SHA>`, or `nginx:<any tag or SHA>`. Note that the path must match (only the tag or SHA can vary).
         :param pulumi.Input[str] name: A name for the service preview instance. If not specified, Render generates the name using the base service's name and the specified tag or SHA.
         :param pulumi.Input['Plan'] plan: The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+        :param pulumi.Input[str] service_id: The ID of the service
         """
         ...
     @overload
@@ -111,6 +129,7 @@ class PreviewService(pulumi.CustomResource):
                  image_path: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  plan: Optional[pulumi.Input['Plan']] = None,
+                 service_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -125,6 +144,7 @@ class PreviewService(pulumi.CustomResource):
             __props__.__dict__["image_path"] = image_path
             __props__.__dict__["name"] = name
             __props__.__dict__["plan"] = plan
+            __props__.__dict__["service_id"] = service_id
             __props__.__dict__["deploy_id"] = None
             __props__.__dict__["service"] = None
         super(PreviewService, __self__).__init__(

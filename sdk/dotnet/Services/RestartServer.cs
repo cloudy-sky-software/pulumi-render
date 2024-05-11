@@ -57,6 +57,12 @@ namespace Pulumi.Render.Services
 
     public sealed class RestartServerArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The ID of the service
+        /// </summary>
+        [Input("serviceId")]
+        public Input<string>? ServiceId { get; set; }
+
         public RestartServerArgs()
         {
         }

@@ -22,6 +22,8 @@ func ListDeploys(ctx *pulumi.Context, args *ListDeploysArgs, opts ...pulumi.Invo
 }
 
 type ListDeploysArgs struct {
+	// The ID of the service
+	ServiceId string `pulumi:"serviceId"`
 }
 
 type ListDeploysResult struct {
@@ -42,6 +44,8 @@ func ListDeploysOutput(ctx *pulumi.Context, args ListDeploysOutputArgs, opts ...
 }
 
 type ListDeploysOutputArgs struct {
+	// The ID of the service
+	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }
 
 func (ListDeploysOutputArgs) ElementType() reflect.Type {

@@ -11,20 +11,40 @@ namespace Pulumi.Render.Services
 {
     public static class ListJob
     {
-        public static Task<ListJobResult> InvokeAsync(ListJobArgs? args = null, InvokeOptions? options = null)
+        public static Task<ListJobResult> InvokeAsync(ListJobArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ListJobResult>("render:services:listJob", args ?? new ListJobArgs(), options.WithDefaults());
 
-        public static Output<ListJobResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<ListJobResult>("render:services:listJob", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<ListJobResult> Invoke(ListJobInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<ListJobResult>("render:services:listJob", args ?? new ListJobInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class ListJobArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of the service
+        /// </summary>
+        [Input("serviceId", required: true)]
+        public string ServiceId { get; set; } = null!;
+
         public ListJobArgs()
         {
         }
         public static new ListJobArgs Empty => new ListJobArgs();
+    }
+
+    public sealed class ListJobInvokeArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The ID of the service
+        /// </summary>
+        [Input("serviceId", required: true)]
+        public Input<string> ServiceId { get; set; } = null!;
+
+        public ListJobInvokeArgs()
+        {
+        }
+        public static new ListJobInvokeArgs Empty => new ListJobInvokeArgs();
     }
 
 

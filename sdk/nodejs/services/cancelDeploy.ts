@@ -56,6 +56,8 @@ export class CancelDeploy extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
+            resourceInputs["deployId"] = args ? args.deployId : undefined;
+            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
             resourceInputs["commit"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["finishedAt"] = undefined /*out*/;
@@ -81,4 +83,12 @@ export class CancelDeploy extends pulumi.CustomResource {
  * The set of arguments for constructing a CancelDeploy resource.
  */
 export interface CancelDeployArgs {
+    /**
+     * The ID of the deploy
+     */
+    deployId?: pulumi.Input<string>;
+    /**
+     * The ID of the service
+     */
+    serviceId?: pulumi.Input<string>;
 }

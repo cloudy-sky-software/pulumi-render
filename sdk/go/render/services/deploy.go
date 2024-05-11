@@ -79,6 +79,8 @@ type deployArgs struct {
 	CommitId *string `pulumi:"commitId"`
 	// URL of the image to deploy for an image-backed service. The host, repository, and image name must match the currently configured image for the service.
 	ImageUrl *string `pulumi:"imageUrl"`
+	// The ID of the service
+	ServiceId *string `pulumi:"serviceId"`
 }
 
 // The set of arguments for constructing a Deploy resource.
@@ -89,6 +91,8 @@ type DeployArgs struct {
 	CommitId pulumi.StringPtrInput
 	// URL of the image to deploy for an image-backed service. The host, repository, and image name must match the currently configured image for the service.
 	ImageUrl pulumi.StringPtrInput
+	// The ID of the service
+	ServiceId pulumi.StringPtrInput
 }
 
 func (DeployArgs) ElementType() reflect.Type {

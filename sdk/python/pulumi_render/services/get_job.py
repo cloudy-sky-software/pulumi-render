@@ -39,11 +39,18 @@ class AwaitableGetJobResult(GetJobResult):
             items=self.items)
 
 
-def get_job(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetJobResult:
+def get_job(job_id: Optional[str] = None,
+            service_id: Optional[str] = None,
+            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetJobResult:
     """
     Use this data source to access information about an existing resource.
+
+    :param str job_id: The ID of the job
+    :param str service_id: The ID of the service
     """
     __args__ = dict()
+    __args__['jobId'] = job_id
+    __args__['serviceId'] = service_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:services:getJob', __args__, opts=opts, typ=GetJobResult).value
 
@@ -52,8 +59,13 @@ def get_job(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetJobResul
 
 
 @_utilities.lift_output_func(get_job)
-def get_job_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetJobResult]:
+def get_job_output(job_id: Optional[pulumi.Input[str]] = None,
+                   service_id: Optional[pulumi.Input[str]] = None,
+                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetJobResult]:
     """
     Use this data source to access information about an existing resource.
+
+    :param str job_id: The ID of the job
+    :param str service_id: The ID of the service
     """
     ...

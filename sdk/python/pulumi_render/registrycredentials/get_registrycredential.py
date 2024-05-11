@@ -40,11 +40,15 @@ class AwaitableGetRegistrycredentialResult(GetRegistrycredentialResult):
             items=self.items)
 
 
-def get_registrycredential(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRegistrycredentialResult:
+def get_registrycredential(registry_credential_id: Optional[str] = None,
+                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRegistrycredentialResult:
     """
     Use this data source to access information about an existing resource.
+
+    :param str registry_credential_id: The ID of the registry credential
     """
     __args__ = dict()
+    __args__['registryCredentialId'] = registry_credential_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:registrycredentials:getRegistrycredential', __args__, opts=opts, typ=GetRegistrycredentialResult).value
 
@@ -53,8 +57,11 @@ def get_registrycredential(opts: Optional[pulumi.InvokeOptions] = None) -> Await
 
 
 @_utilities.lift_output_func(get_registrycredential)
-def get_registrycredential_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRegistrycredentialResult]:
+def get_registrycredential_output(registry_credential_id: Optional[pulumi.Input[str]] = None,
+                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRegistrycredentialResult]:
     """
     Use this data source to access information about an existing resource.
+
+    :param str registry_credential_id: The ID of the registry credential
     """
     ...

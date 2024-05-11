@@ -39,11 +39,15 @@ class AwaitableListEnvVarsForServiceResult(ListEnvVarsForServiceResult):
             items=self.items)
 
 
-def list_env_vars_for_service(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListEnvVarsForServiceResult:
+def list_env_vars_for_service(service_id: Optional[str] = None,
+                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListEnvVarsForServiceResult:
     """
     Use this data source to access information about an existing resource.
+
+    :param str service_id: The ID of the service
     """
     __args__ = dict()
+    __args__['serviceId'] = service_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:services:listEnvVarsForService', __args__, opts=opts, typ=ListEnvVarsForServiceResult).value
 
@@ -52,8 +56,11 @@ def list_env_vars_for_service(opts: Optional[pulumi.InvokeOptions] = None) -> Aw
 
 
 @_utilities.lift_output_func(list_env_vars_for_service)
-def list_env_vars_for_service_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListEnvVarsForServiceResult]:
+def list_env_vars_for_service_output(service_id: Optional[pulumi.Input[str]] = None,
+                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListEnvVarsForServiceResult]:
     """
     Use this data source to access information about an existing resource.
+
+    :param str service_id: The ID of the service
     """
     ...

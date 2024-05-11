@@ -11,20 +11,40 @@ namespace Pulumi.Render.Services
 {
     public static class ListDeploys
     {
-        public static Task<ListDeploysResult> InvokeAsync(ListDeploysArgs? args = null, InvokeOptions? options = null)
+        public static Task<ListDeploysResult> InvokeAsync(ListDeploysArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ListDeploysResult>("render:services:listDeploys", args ?? new ListDeploysArgs(), options.WithDefaults());
 
-        public static Output<ListDeploysResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<ListDeploysResult>("render:services:listDeploys", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<ListDeploysResult> Invoke(ListDeploysInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<ListDeploysResult>("render:services:listDeploys", args ?? new ListDeploysInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class ListDeploysArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of the service
+        /// </summary>
+        [Input("serviceId", required: true)]
+        public string ServiceId { get; set; } = null!;
+
         public ListDeploysArgs()
         {
         }
         public static new ListDeploysArgs Empty => new ListDeploysArgs();
+    }
+
+    public sealed class ListDeploysInvokeArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The ID of the service
+        /// </summary>
+        [Input("serviceId", required: true)]
+        public Input<string> ServiceId { get; set; } = null!;
+
+        public ListDeploysInvokeArgs()
+        {
+        }
+        public static new ListDeploysInvokeArgs Empty => new ListDeploysInvokeArgs();
     }
 
 

@@ -7,20 +7,31 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function listCustomDomains(args?: ListCustomDomainsArgs, opts?: pulumi.InvokeOptions): Promise<ListCustomDomainsResult> {
-    args = args || {};
+export function listCustomDomains(args: ListCustomDomainsArgs, opts?: pulumi.InvokeOptions): Promise<ListCustomDomainsResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:listCustomDomains", {
+        "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface ListCustomDomainsArgs {
+    /**
+     * The ID of the service
+     */
+    serviceId: string;
 }
 
 export interface ListCustomDomainsResult {
     readonly items: outputs.services.ListCustomDomainsItemProperties[];
 }
-export function listCustomDomainsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListCustomDomainsResult> {
-    return pulumi.output(listCustomDomains(opts))
+export function listCustomDomainsOutput(args: ListCustomDomainsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListCustomDomainsResult> {
+    return pulumi.output(args).apply((a: any) => listCustomDomains(a, opts))
+}
+
+export interface ListCustomDomainsOutputArgs {
+    /**
+     * The ID of the service
+     */
+    serviceId: pulumi.Input<string>;
 }

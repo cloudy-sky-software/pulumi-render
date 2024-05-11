@@ -7,20 +7,31 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function listRetrieveRoutes(args?: ListRetrieveRoutesArgs, opts?: pulumi.InvokeOptions): Promise<ListRetrieveRoutesResult> {
-    args = args || {};
+export function listRetrieveRoutes(args: ListRetrieveRoutesArgs, opts?: pulumi.InvokeOptions): Promise<ListRetrieveRoutesResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:listRetrieveRoutes", {
+        "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface ListRetrieveRoutesArgs {
+    /**
+     * The ID of the service
+     */
+    serviceId: string;
 }
 
 export interface ListRetrieveRoutesResult {
     readonly items: outputs.services.ListRetrieveRoutesItemProperties[];
 }
-export function listRetrieveRoutesOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListRetrieveRoutesResult> {
-    return pulumi.output(listRetrieveRoutes(opts))
+export function listRetrieveRoutesOutput(args: ListRetrieveRoutesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListRetrieveRoutesResult> {
+    return pulumi.output(args).apply((a: any) => listRetrieveRoutes(a, opts))
+}
+
+export interface ListRetrieveRoutesOutputArgs {
+    /**
+     * The ID of the service
+     */
+    serviceId: pulumi.Input<string>;
 }

@@ -55,10 +55,18 @@ func (RefreshCustomDomainState) ElementType() reflect.Type {
 }
 
 type refreshCustomDomainArgs struct {
+	// The ID or name of the custom domain
+	CustomDomainIdOrName *string `pulumi:"customDomainIdOrName"`
+	// The ID of the service
+	ServiceId *string `pulumi:"serviceId"`
 }
 
 // The set of arguments for constructing a RefreshCustomDomain resource.
 type RefreshCustomDomainArgs struct {
+	// The ID or name of the custom domain
+	CustomDomainIdOrName pulumi.StringPtrInput
+	// The ID of the service
+	ServiceId pulumi.StringPtrInput
 }
 
 func (RefreshCustomDomainArgs) ElementType() reflect.Type {

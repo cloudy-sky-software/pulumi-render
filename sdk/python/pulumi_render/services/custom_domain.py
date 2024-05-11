@@ -14,12 +14,16 @@ __all__ = ['CustomDomainArgs', 'CustomDomain']
 @pulumi.input_type
 class CustomDomainArgs:
     def __init__(__self__, *,
-                 name: Optional[pulumi.Input[str]] = None):
+                 name: Optional[pulumi.Input[str]] = None,
+                 service_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a CustomDomain resource.
+        :param pulumi.Input[str] service_id: The ID of the service
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if service_id is not None:
+            pulumi.set(__self__, "service_id", service_id)
 
     @property
     @pulumi.getter
@@ -30,6 +34,18 @@ class CustomDomainArgs:
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
 
+    @property
+    @pulumi.getter(name="serviceId")
+    def service_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the service
+        """
+        return pulumi.get(self, "service_id")
+
+    @service_id.setter
+    def service_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service_id", value)
+
 
 class CustomDomain(pulumi.CustomResource):
     @overload
@@ -37,11 +53,13 @@ class CustomDomain(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 service_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Create a CustomDomain resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] service_id: The ID of the service
         """
         ...
     @overload
@@ -67,6 +85,7 @@ class CustomDomain(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 service_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -77,6 +96,7 @@ class CustomDomain(pulumi.CustomResource):
             __props__ = CustomDomainArgs.__new__(CustomDomainArgs)
 
             __props__.__dict__["name"] = name
+            __props__.__dict__["service_id"] = service_id
         super(CustomDomain, __self__).__init__(
             'render:services:CustomDomain',
             resource_name,

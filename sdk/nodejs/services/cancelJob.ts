@@ -34,7 +34,7 @@ export class CancelJob extends pulumi.CustomResource {
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     public /*out*/ readonly finishedAt!: pulumi.Output<string | undefined>;
     public /*out*/ readonly planId!: pulumi.Output<string>;
-    public /*out*/ readonly serviceId!: pulumi.Output<string>;
+    public readonly serviceId!: pulumi.Output<string>;
     public /*out*/ readonly startCommand!: pulumi.Output<string>;
     public /*out*/ readonly startedAt!: pulumi.Output<string | undefined>;
     public /*out*/ readonly status!: pulumi.Output<string | undefined>;
@@ -50,10 +50,11 @@ export class CancelJob extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
+            resourceInputs["jobId"] = args ? args.jobId : undefined;
+            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["finishedAt"] = undefined /*out*/;
             resourceInputs["planId"] = undefined /*out*/;
-            resourceInputs["serviceId"] = undefined /*out*/;
             resourceInputs["startCommand"] = undefined /*out*/;
             resourceInputs["startedAt"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
@@ -75,4 +76,12 @@ export class CancelJob extends pulumi.CustomResource {
  * The set of arguments for constructing a CancelJob resource.
  */
 export interface CancelJobArgs {
+    /**
+     * The ID of the job
+     */
+    jobId?: pulumi.Input<string>;
+    /**
+     * The ID of the service
+     */
+    serviceId?: pulumi.Input<string>;
 }

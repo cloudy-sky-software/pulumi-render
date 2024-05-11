@@ -35,22 +35,22 @@ export type EnvVarsForService = import("./envVarsForService").EnvVarsForService;
 export const EnvVarsForService: typeof import("./envVarsForService").EnvVarsForService = null as any;
 utilities.lazyLoad(exports, ["EnvVarsForService"], () => require("./envVarsForService"));
 
-export { GetCustomDomainArgs, GetCustomDomainResult } from "./getCustomDomain";
+export { GetCustomDomainArgs, GetCustomDomainResult, GetCustomDomainOutputArgs } from "./getCustomDomain";
 export const getCustomDomain: typeof import("./getCustomDomain").getCustomDomain = null as any;
 export const getCustomDomainOutput: typeof import("./getCustomDomain").getCustomDomainOutput = null as any;
 utilities.lazyLoad(exports, ["getCustomDomain","getCustomDomainOutput"], () => require("./getCustomDomain"));
 
-export { GetDeployArgs, GetDeployResult } from "./getDeploy";
+export { GetDeployArgs, GetDeployResult, GetDeployOutputArgs } from "./getDeploy";
 export const getDeploy: typeof import("./getDeploy").getDeploy = null as any;
 export const getDeployOutput: typeof import("./getDeploy").getDeployOutput = null as any;
 utilities.lazyLoad(exports, ["getDeploy","getDeployOutput"], () => require("./getDeploy"));
 
-export { GetJobArgs, GetJobResult } from "./getJob";
+export { GetJobArgs, GetJobResult, GetJobOutputArgs } from "./getJob";
 export const getJob: typeof import("./getJob").getJob = null as any;
 export const getJobOutput: typeof import("./getJob").getJobOutput = null as any;
 utilities.lazyLoad(exports, ["getJob","getJobOutput"], () => require("./getJob"));
 
-export { GetServiceArgs, GetServiceResult } from "./getService";
+export { GetServiceArgs, GetServiceResult, GetServiceOutputArgs } from "./getService";
 export const getService: typeof import("./getService").getService = null as any;
 export const getServiceOutput: typeof import("./getService").getServiceOutput = null as any;
 utilities.lazyLoad(exports, ["getService","getServiceOutput"], () => require("./getService"));
@@ -60,32 +60,32 @@ export type Job = import("./job").Job;
 export const Job: typeof import("./job").Job = null as any;
 utilities.lazyLoad(exports, ["Job"], () => require("./job"));
 
-export { ListCustomDomainsArgs, ListCustomDomainsResult } from "./listCustomDomains";
+export { ListCustomDomainsArgs, ListCustomDomainsResult, ListCustomDomainsOutputArgs } from "./listCustomDomains";
 export const listCustomDomains: typeof import("./listCustomDomains").listCustomDomains = null as any;
 export const listCustomDomainsOutput: typeof import("./listCustomDomains").listCustomDomainsOutput = null as any;
 utilities.lazyLoad(exports, ["listCustomDomains","listCustomDomainsOutput"], () => require("./listCustomDomains"));
 
-export { ListDeploysArgs, ListDeploysResult } from "./listDeploys";
+export { ListDeploysArgs, ListDeploysResult, ListDeploysOutputArgs } from "./listDeploys";
 export const listDeploys: typeof import("./listDeploys").listDeploys = null as any;
 export const listDeploysOutput: typeof import("./listDeploys").listDeploysOutput = null as any;
 utilities.lazyLoad(exports, ["listDeploys","listDeploysOutput"], () => require("./listDeploys"));
 
-export { ListEnvVarsForServiceArgs, ListEnvVarsForServiceResult } from "./listEnvVarsForService";
+export { ListEnvVarsForServiceArgs, ListEnvVarsForServiceResult, ListEnvVarsForServiceOutputArgs } from "./listEnvVarsForService";
 export const listEnvVarsForService: typeof import("./listEnvVarsForService").listEnvVarsForService = null as any;
 export const listEnvVarsForServiceOutput: typeof import("./listEnvVarsForService").listEnvVarsForServiceOutput = null as any;
 utilities.lazyLoad(exports, ["listEnvVarsForService","listEnvVarsForServiceOutput"], () => require("./listEnvVarsForService"));
 
-export { ListJobArgs, ListJobResult } from "./listJob";
+export { ListJobArgs, ListJobResult, ListJobOutputArgs } from "./listJob";
 export const listJob: typeof import("./listJob").listJob = null as any;
 export const listJobOutput: typeof import("./listJob").listJobOutput = null as any;
 utilities.lazyLoad(exports, ["listJob","listJobOutput"], () => require("./listJob"));
 
-export { ListRetrieveHeadersArgs, ListRetrieveHeadersResult } from "./listRetrieveHeaders";
+export { ListRetrieveHeadersArgs, ListRetrieveHeadersResult, ListRetrieveHeadersOutputArgs } from "./listRetrieveHeaders";
 export const listRetrieveHeaders: typeof import("./listRetrieveHeaders").listRetrieveHeaders = null as any;
 export const listRetrieveHeadersOutput: typeof import("./listRetrieveHeaders").listRetrieveHeadersOutput = null as any;
 utilities.lazyLoad(exports, ["listRetrieveHeaders","listRetrieveHeadersOutput"], () => require("./listRetrieveHeaders"));
 
-export { ListRetrieveRoutesArgs, ListRetrieveRoutesResult } from "./listRetrieveRoutes";
+export { ListRetrieveRoutesArgs, ListRetrieveRoutesResult, ListRetrieveRoutesOutputArgs } from "./listRetrieveRoutes";
 export const listRetrieveRoutes: typeof import("./listRetrieveRoutes").listRetrieveRoutes = null as any;
 export const listRetrieveRoutesOutput: typeof import("./listRetrieveRoutes").listRetrieveRoutesOutput = null as any;
 utilities.lazyLoad(exports, ["listRetrieveRoutes","listRetrieveRoutesOutput"], () => require("./listRetrieveRoutes"));

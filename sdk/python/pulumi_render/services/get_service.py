@@ -40,11 +40,15 @@ class AwaitableGetServiceResult(GetServiceResult):
             items=self.items)
 
 
-def get_service(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServiceResult:
+def get_service(service_id: Optional[str] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServiceResult:
     """
     Use this data source to access information about an existing resource.
+
+    :param str service_id: The ID of the service
     """
     __args__ = dict()
+    __args__['serviceId'] = service_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:services:getService', __args__, opts=opts, typ=GetServiceResult).value
 
@@ -53,8 +57,11 @@ def get_service(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServ
 
 
 @_utilities.lift_output_func(get_service)
-def get_service_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetServiceResult]:
+def get_service_output(service_id: Optional[pulumi.Input[str]] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetServiceResult]:
     """
     Use this data source to access information about an existing resource.
+
+    :param str service_id: The ID of the service
     """
     ...

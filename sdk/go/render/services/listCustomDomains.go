@@ -22,6 +22,8 @@ func ListCustomDomains(ctx *pulumi.Context, args *ListCustomDomainsArgs, opts ..
 }
 
 type ListCustomDomainsArgs struct {
+	// The ID of the service
+	ServiceId string `pulumi:"serviceId"`
 }
 
 type ListCustomDomainsResult struct {
@@ -42,6 +44,8 @@ func ListCustomDomainsOutput(ctx *pulumi.Context, args ListCustomDomainsOutputAr
 }
 
 type ListCustomDomainsOutputArgs struct {
+	// The ID of the service
+	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }
 
 func (ListCustomDomainsOutputArgs) ElementType() reflect.Type {

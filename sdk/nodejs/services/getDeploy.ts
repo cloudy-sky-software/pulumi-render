@@ -7,20 +7,40 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function getDeploy(args?: GetDeployArgs, opts?: pulumi.InvokeOptions): Promise<GetDeployResult> {
-    args = args || {};
+export function getDeploy(args: GetDeployArgs, opts?: pulumi.InvokeOptions): Promise<GetDeployResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:getDeploy", {
+        "deployId": args.deployId,
+        "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface GetDeployArgs {
+    /**
+     * The ID of the deploy
+     */
+    deployId: string;
+    /**
+     * The ID of the service
+     */
+    serviceId: string;
 }
 
 export interface GetDeployResult {
     readonly items: outputs.services.Deploy;
 }
-export function getDeployOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetDeployResult> {
-    return pulumi.output(getDeploy(opts))
+export function getDeployOutput(args: GetDeployOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDeployResult> {
+    return pulumi.output(args).apply((a: any) => getDeploy(a, opts))
+}
+
+export interface GetDeployOutputArgs {
+    /**
+     * The ID of the deploy
+     */
+    deployId: pulumi.Input<string>;
+    /**
+     * The ID of the service
+     */
+    serviceId: pulumi.Input<string>;
 }

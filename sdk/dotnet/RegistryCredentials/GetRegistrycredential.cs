@@ -11,20 +11,40 @@ namespace Pulumi.Render.RegistryCredentials
 {
     public static class GetRegistrycredential
     {
-        public static Task<GetRegistrycredentialResult> InvokeAsync(GetRegistrycredentialArgs? args = null, InvokeOptions? options = null)
+        public static Task<GetRegistrycredentialResult> InvokeAsync(GetRegistrycredentialArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetRegistrycredentialResult>("render:registrycredentials:getRegistrycredential", args ?? new GetRegistrycredentialArgs(), options.WithDefaults());
 
-        public static Output<GetRegistrycredentialResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetRegistrycredentialResult>("render:registrycredentials:getRegistrycredential", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<GetRegistrycredentialResult> Invoke(GetRegistrycredentialInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetRegistrycredentialResult>("render:registrycredentials:getRegistrycredential", args ?? new GetRegistrycredentialInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class GetRegistrycredentialArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of the registry credential
+        /// </summary>
+        [Input("registryCredentialId", required: true)]
+        public string RegistryCredentialId { get; set; } = null!;
+
         public GetRegistrycredentialArgs()
         {
         }
         public static new GetRegistrycredentialArgs Empty => new GetRegistrycredentialArgs();
+    }
+
+    public sealed class GetRegistrycredentialInvokeArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The ID of the registry credential
+        /// </summary>
+        [Input("registryCredentialId", required: true)]
+        public Input<string> RegistryCredentialId { get; set; } = null!;
+
+        public GetRegistrycredentialInvokeArgs()
+        {
+        }
+        public static new GetRegistrycredentialInvokeArgs Empty => new GetRegistrycredentialInvokeArgs();
     }
 
 

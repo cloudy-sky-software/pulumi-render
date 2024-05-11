@@ -58,11 +58,15 @@ func (EnvVarsForServiceState) ElementType() reflect.Type {
 
 type envVarsForServiceArgs struct {
 	EnvVars []interface{} `pulumi:"envVars"`
+	// The ID of the service
+	ServiceId *string `pulumi:"serviceId"`
 }
 
 // The set of arguments for constructing a EnvVarsForService resource.
 type EnvVarsForServiceArgs struct {
 	EnvVars pulumi.ArrayInput
+	// The ID of the service
+	ServiceId pulumi.StringPtrInput
 }
 
 func (EnvVarsForServiceArgs) ElementType() reflect.Type {

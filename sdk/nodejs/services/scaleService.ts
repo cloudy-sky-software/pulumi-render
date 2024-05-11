@@ -48,6 +48,7 @@ export class ScaleService extends pulumi.CustomResource {
                 throw new Error("Missing required property 'numInstances'");
             }
             resourceInputs["numInstances"] = args ? args.numInstances : undefined;
+            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
         } else {
             resourceInputs["numInstances"] = undefined /*out*/;
         }
@@ -61,4 +62,8 @@ export class ScaleService extends pulumi.CustomResource {
  */
 export interface ScaleServiceArgs {
     numInstances: pulumi.Input<number>;
+    /**
+     * The ID of the service
+     */
+    serviceId?: pulumi.Input<string>;
 }

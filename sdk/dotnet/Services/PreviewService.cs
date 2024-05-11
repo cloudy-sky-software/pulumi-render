@@ -100,6 +100,12 @@ namespace Pulumi.Render.Services
         [Input("plan")]
         public Input<Pulumi.Render.Services.Plan>? Plan { get; set; }
 
+        /// <summary>
+        /// The ID of the service
+        /// </summary>
+        [Input("serviceId")]
+        public Input<string>? ServiceId { get; set; }
+
         public PreviewServiceArgs()
         {
         }

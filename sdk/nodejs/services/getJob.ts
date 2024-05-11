@@ -7,20 +7,40 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function getJob(args?: GetJobArgs, opts?: pulumi.InvokeOptions): Promise<GetJobResult> {
-    args = args || {};
+export function getJob(args: GetJobArgs, opts?: pulumi.InvokeOptions): Promise<GetJobResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:getJob", {
+        "jobId": args.jobId,
+        "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface GetJobArgs {
+    /**
+     * The ID of the job
+     */
+    jobId: string;
+    /**
+     * The ID of the service
+     */
+    serviceId: string;
 }
 
 export interface GetJobResult {
     readonly items: outputs.services.Job;
 }
-export function getJobOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetJobResult> {
-    return pulumi.output(getJob(opts))
+export function getJobOutput(args: GetJobOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetJobResult> {
+    return pulumi.output(args).apply((a: any) => getJob(a, opts))
+}
+
+export interface GetJobOutputArgs {
+    /**
+     * The ID of the job
+     */
+    jobId: pulumi.Input<string>;
+    /**
+     * The ID of the service
+     */
+    serviceId: pulumi.Input<string>;
 }

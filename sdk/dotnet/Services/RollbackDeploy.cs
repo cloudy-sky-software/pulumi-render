@@ -94,6 +94,12 @@ namespace Pulumi.Render.Services
         [Input("deployId", required: true)]
         public Input<string> DeployId { get; set; } = null!;
 
+        /// <summary>
+        /// The ID of the service
+        /// </summary>
+        [Input("serviceId")]
+        public Input<string>? ServiceId { get; set; }
+
         public RollbackDeployArgs()
         {
         }

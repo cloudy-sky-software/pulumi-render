@@ -19,11 +19,13 @@ class AutoscaleServiceArgs:
                  criteria: pulumi.Input['AutoscalingCriteriaArgs'],
                  enabled: Optional[pulumi.Input[bool]] = None,
                  max: pulumi.Input[int],
-                 min: pulumi.Input[int]):
+                 min: pulumi.Input[int],
+                 service_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a AutoscaleService resource.
         :param pulumi.Input[int] max: The maximum number of instances for the service
         :param pulumi.Input[int] min: The minimum number of instances for the service
+        :param pulumi.Input[str] service_id: The ID of the service
         """
         pulumi.set(__self__, "criteria", criteria)
         if enabled is None:
@@ -31,6 +33,8 @@ class AutoscaleServiceArgs:
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "max", max)
         pulumi.set(__self__, "min", min)
+        if service_id is not None:
+            pulumi.set(__self__, "service_id", service_id)
 
     @property
     @pulumi.getter
@@ -74,6 +78,18 @@ class AutoscaleServiceArgs:
     def min(self, value: pulumi.Input[int]):
         pulumi.set(self, "min", value)
 
+    @property
+    @pulumi.getter(name="serviceId")
+    def service_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the service
+        """
+        return pulumi.get(self, "service_id")
+
+    @service_id.setter
+    def service_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service_id", value)
+
 
 class AutoscaleService(pulumi.CustomResource):
     @overload
@@ -84,6 +100,7 @@ class AutoscaleService(pulumi.CustomResource):
                  enabled: Optional[pulumi.Input[bool]] = None,
                  max: Optional[pulumi.Input[int]] = None,
                  min: Optional[pulumi.Input[int]] = None,
+                 service_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Create a AutoscaleService resource with the given unique name, props, and options.
@@ -91,6 +108,7 @@ class AutoscaleService(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] max: The maximum number of instances for the service
         :param pulumi.Input[int] min: The minimum number of instances for the service
+        :param pulumi.Input[str] service_id: The ID of the service
         """
         ...
     @overload
@@ -119,6 +137,7 @@ class AutoscaleService(pulumi.CustomResource):
                  enabled: Optional[pulumi.Input[bool]] = None,
                  max: Optional[pulumi.Input[int]] = None,
                  min: Optional[pulumi.Input[int]] = None,
+                 service_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -142,6 +161,7 @@ class AutoscaleService(pulumi.CustomResource):
             if min is None and not opts.urn:
                 raise TypeError("Missing required property 'min'")
             __props__.__dict__["min"] = min
+            __props__.__dict__["service_id"] = service_id
         super(AutoscaleService, __self__).__init__(
             'render:services:AutoscaleService',
             resource_name,

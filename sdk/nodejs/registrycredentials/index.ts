@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export { GetRegistrycredentialArgs, GetRegistrycredentialResult } from "./getRegistrycredential";
+export { GetRegistrycredentialArgs, GetRegistrycredentialResult, GetRegistrycredentialOutputArgs } from "./getRegistrycredential";
 export const getRegistrycredential: typeof import("./getRegistrycredential").getRegistrycredential = null as any;
 export const getRegistrycredentialOutput: typeof import("./getRegistrycredential").getRegistrycredentialOutput = null as any;
 utilities.lazyLoad(exports, ["getRegistrycredential","getRegistrycredentialOutput"], () => require("./getRegistrycredential"));

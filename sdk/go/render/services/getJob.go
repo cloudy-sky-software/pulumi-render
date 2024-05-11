@@ -22,6 +22,10 @@ func LookupJob(ctx *pulumi.Context, args *LookupJobArgs, opts ...pulumi.InvokeOp
 }
 
 type LookupJobArgs struct {
+	// The ID of the job
+	JobId string `pulumi:"jobId"`
+	// The ID of the service
+	ServiceId string `pulumi:"serviceId"`
 }
 
 type LookupJobResult struct {
@@ -42,6 +46,10 @@ func LookupJobOutput(ctx *pulumi.Context, args LookupJobOutputArgs, opts ...pulu
 }
 
 type LookupJobOutputArgs struct {
+	// The ID of the job
+	JobId pulumi.StringInput `pulumi:"jobId"`
+	// The ID of the service
+	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }
 
 func (LookupJobOutputArgs) ElementType() reflect.Type {

@@ -74,6 +74,8 @@ type previewServiceArgs struct {
 	Name *string `pulumi:"name"`
 	// The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
 	Plan *Plan `pulumi:"plan"`
+	// The ID of the service
+	ServiceId *string `pulumi:"serviceId"`
 }
 
 // The set of arguments for constructing a PreviewService resource.
@@ -84,6 +86,8 @@ type PreviewServiceArgs struct {
 	Name pulumi.StringPtrInput
 	// The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
 	Plan PlanPtrInput
+	// The ID of the service
+	ServiceId pulumi.StringPtrInput
 }
 
 func (PreviewServiceArgs) ElementType() reflect.Type {

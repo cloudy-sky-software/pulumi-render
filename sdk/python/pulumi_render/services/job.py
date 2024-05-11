@@ -15,13 +15,17 @@ __all__ = ['JobArgs', 'Job']
 class JobArgs:
     def __init__(__self__, *,
                  start_command: pulumi.Input[str],
-                 plan_id: Optional[pulumi.Input[str]] = None):
+                 plan_id: Optional[pulumi.Input[str]] = None,
+                 service_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Job resource.
+        :param pulumi.Input[str] service_id: The ID of the service
         """
         pulumi.set(__self__, "start_command", start_command)
         if plan_id is not None:
             pulumi.set(__self__, "plan_id", plan_id)
+        if service_id is not None:
+            pulumi.set(__self__, "service_id", service_id)
 
     @property
     @pulumi.getter(name="startCommand")
@@ -41,6 +45,18 @@ class JobArgs:
     def plan_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "plan_id", value)
 
+    @property
+    @pulumi.getter(name="serviceId")
+    def service_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the service
+        """
+        return pulumi.get(self, "service_id")
+
+    @service_id.setter
+    def service_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service_id", value)
+
 
 class Job(pulumi.CustomResource):
     @overload
@@ -48,12 +64,14 @@ class Job(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  plan_id: Optional[pulumi.Input[str]] = None,
+                 service_id: Optional[pulumi.Input[str]] = None,
                  start_command: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Create a Job resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] service_id: The ID of the service
         """
         ...
     @overload
@@ -79,6 +97,7 @@ class Job(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  plan_id: Optional[pulumi.Input[str]] = None,
+                 service_id: Optional[pulumi.Input[str]] = None,
                  start_command: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -90,12 +109,12 @@ class Job(pulumi.CustomResource):
             __props__ = JobArgs.__new__(JobArgs)
 
             __props__.__dict__["plan_id"] = plan_id
+            __props__.__dict__["service_id"] = service_id
             if start_command is None and not opts.urn:
                 raise TypeError("Missing required property 'start_command'")
             __props__.__dict__["start_command"] = start_command
             __props__.__dict__["created_at"] = None
             __props__.__dict__["finished_at"] = None
-            __props__.__dict__["service_id"] = None
             __props__.__dict__["started_at"] = None
             __props__.__dict__["status"] = None
         super(Job, __self__).__init__(

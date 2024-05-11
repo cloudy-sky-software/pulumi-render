@@ -63,10 +63,18 @@ func (CancelJobState) ElementType() reflect.Type {
 }
 
 type cancelJobArgs struct {
+	// The ID of the job
+	JobId *string `pulumi:"jobId"`
+	// The ID of the service
+	ServiceId *string `pulumi:"serviceId"`
 }
 
 // The set of arguments for constructing a CancelJob resource.
 type CancelJobArgs struct {
+	// The ID of the job
+	JobId pulumi.StringPtrInput
+	// The ID of the service
+	ServiceId pulumi.StringPtrInput
 }
 
 func (CancelJobArgs) ElementType() reflect.Type {

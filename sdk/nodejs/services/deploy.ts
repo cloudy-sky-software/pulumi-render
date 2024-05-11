@@ -71,6 +71,7 @@ export class Deploy extends pulumi.CustomResource {
             resourceInputs["clearCache"] = (args ? args.clearCache : undefined) ?? "do_not_clear";
             resourceInputs["commitId"] = args ? args.commitId : undefined;
             resourceInputs["imageUrl"] = args ? args.imageUrl : undefined;
+            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
             resourceInputs["commit"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["finishedAt"] = undefined /*out*/;
@@ -111,4 +112,8 @@ export interface DeployArgs {
      * URL of the image to deploy for an image-backed service. The host, repository, and image name must match the currently configured image for the service.
      */
     imageUrl?: pulumi.Input<string>;
+    /**
+     * The ID of the service
+     */
+    serviceId?: pulumi.Input<string>;
 }

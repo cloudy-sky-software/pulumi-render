@@ -118,6 +118,12 @@ namespace Pulumi.Render.Services
         [Input("imageUrl")]
         public Input<string>? ImageUrl { get; set; }
 
+        /// <summary>
+        /// The ID of the service
+        /// </summary>
+        [Input("serviceId")]
+        public Input<string>? ServiceId { get; set; }
+
         public DeployArgs()
         {
             ClearCache = Pulumi.Render.Services.ClearCache.DoNotClear;

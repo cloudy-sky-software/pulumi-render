@@ -55,10 +55,14 @@ func (RestartServerState) ElementType() reflect.Type {
 }
 
 type restartServerArgs struct {
+	// The ID of the service
+	ServiceId *string `pulumi:"serviceId"`
 }
 
 // The set of arguments for constructing a RestartServer resource.
 type RestartServerArgs struct {
+	// The ID of the service
+	ServiceId pulumi.StringPtrInput
 }
 
 func (RestartServerArgs) ElementType() reflect.Type {

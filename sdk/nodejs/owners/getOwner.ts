@@ -7,20 +7,31 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function getOwner(args?: GetOwnerArgs, opts?: pulumi.InvokeOptions): Promise<GetOwnerResult> {
-    args = args || {};
+export function getOwner(args: GetOwnerArgs, opts?: pulumi.InvokeOptions): Promise<GetOwnerResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:owners:getOwner", {
+        "ownerId": args.ownerId,
     }, opts);
 }
 
 export interface GetOwnerArgs {
+    /**
+     * The ID of the user or team
+     */
+    ownerId: string;
 }
 
 export interface GetOwnerResult {
     readonly items: outputs.owners.Owner;
 }
-export function getOwnerOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetOwnerResult> {
-    return pulumi.output(getOwner(opts))
+export function getOwnerOutput(args: GetOwnerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOwnerResult> {
+    return pulumi.output(args).apply((a: any) => getOwner(a, opts))
+}
+
+export interface GetOwnerOutputArgs {
+    /**
+     * The ID of the user or team
+     */
+    ownerId: pulumi.Input<string>;
 }

@@ -55,10 +55,14 @@ func (SuspendServiceState) ElementType() reflect.Type {
 }
 
 type suspendServiceArgs struct {
+	// The ID of the service
+	ServiceId *string `pulumi:"serviceId"`
 }
 
 // The set of arguments for constructing a SuspendService resource.
 type SuspendServiceArgs struct {
+	// The ID of the service
+	ServiceId pulumi.StringPtrInput
 }
 
 func (SuspendServiceArgs) ElementType() reflect.Type {

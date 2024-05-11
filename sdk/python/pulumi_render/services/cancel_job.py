@@ -13,11 +13,42 @@ __all__ = ['CancelJobArgs', 'CancelJob']
 
 @pulumi.input_type
 class CancelJobArgs:
-    def __init__(__self__):
+    def __init__(__self__, *,
+                 job_id: Optional[pulumi.Input[str]] = None,
+                 service_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a CancelJob resource.
+        :param pulumi.Input[str] job_id: The ID of the job
+        :param pulumi.Input[str] service_id: The ID of the service
         """
-        pass
+        if job_id is not None:
+            pulumi.set(__self__, "job_id", job_id)
+        if service_id is not None:
+            pulumi.set(__self__, "service_id", service_id)
+
+    @property
+    @pulumi.getter(name="jobId")
+    def job_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the job
+        """
+        return pulumi.get(self, "job_id")
+
+    @job_id.setter
+    def job_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "job_id", value)
+
+    @property
+    @pulumi.getter(name="serviceId")
+    def service_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the service
+        """
+        return pulumi.get(self, "service_id")
+
+    @service_id.setter
+    def service_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service_id", value)
 
 
 class CancelJob(pulumi.CustomResource):
@@ -25,11 +56,15 @@ class CancelJob(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 job_id: Optional[pulumi.Input[str]] = None,
+                 service_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Create a CancelJob resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] job_id: The ID of the job
+        :param pulumi.Input[str] service_id: The ID of the service
         """
         ...
     @overload
@@ -54,6 +89,8 @@ class CancelJob(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 job_id: Optional[pulumi.Input[str]] = None,
+                 service_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -63,10 +100,11 @@ class CancelJob(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = CancelJobArgs.__new__(CancelJobArgs)
 
+            __props__.__dict__["job_id"] = job_id
+            __props__.__dict__["service_id"] = service_id
             __props__.__dict__["created_at"] = None
             __props__.__dict__["finished_at"] = None
             __props__.__dict__["plan_id"] = None
-            __props__.__dict__["service_id"] = None
             __props__.__dict__["start_command"] = None
             __props__.__dict__["started_at"] = None
             __props__.__dict__["status"] = None

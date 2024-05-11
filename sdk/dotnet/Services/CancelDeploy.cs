@@ -82,6 +82,18 @@ namespace Pulumi.Render.Services
 
     public sealed class CancelDeployArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The ID of the deploy
+        /// </summary>
+        [Input("deployId")]
+        public Input<string>? DeployId { get; set; }
+
+        /// <summary>
+        /// The ID of the service
+        /// </summary>
+        [Input("serviceId")]
+        public Input<string>? ServiceId { get; set; }
+
         public CancelDeployArgs()
         {
         }

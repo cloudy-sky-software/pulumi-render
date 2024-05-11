@@ -18,12 +18,14 @@ class DeployArgs:
     def __init__(__self__, *,
                  clear_cache: Optional[pulumi.Input['ClearCache']] = None,
                  commit_id: Optional[pulumi.Input[str]] = None,
-                 image_url: Optional[pulumi.Input[str]] = None):
+                 image_url: Optional[pulumi.Input[str]] = None,
+                 service_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Deploy resource.
         :param pulumi.Input['ClearCache'] clear_cache: Defaults to "do_not_clear"
         :param pulumi.Input[str] commit_id: Specific ID of commit to deploy for a web service, defaults to latest commit. Not supported for Cron Job deploys.
         :param pulumi.Input[str] image_url: URL of the image to deploy for an image-backed service. The host, repository, and image name must match the currently configured image for the service.
+        :param pulumi.Input[str] service_id: The ID of the service
         """
         if clear_cache is None:
             clear_cache = 'do_not_clear'
@@ -33,6 +35,8 @@ class DeployArgs:
             pulumi.set(__self__, "commit_id", commit_id)
         if image_url is not None:
             pulumi.set(__self__, "image_url", image_url)
+        if service_id is not None:
+            pulumi.set(__self__, "service_id", service_id)
 
     @property
     @pulumi.getter(name="clearCache")
@@ -70,6 +74,18 @@ class DeployArgs:
     def image_url(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "image_url", value)
 
+    @property
+    @pulumi.getter(name="serviceId")
+    def service_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the service
+        """
+        return pulumi.get(self, "service_id")
+
+    @service_id.setter
+    def service_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service_id", value)
+
 
 class Deploy(pulumi.CustomResource):
     @overload
@@ -79,6 +95,7 @@ class Deploy(pulumi.CustomResource):
                  clear_cache: Optional[pulumi.Input['ClearCache']] = None,
                  commit_id: Optional[pulumi.Input[str]] = None,
                  image_url: Optional[pulumi.Input[str]] = None,
+                 service_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Create a Deploy resource with the given unique name, props, and options.
@@ -87,6 +104,7 @@ class Deploy(pulumi.CustomResource):
         :param pulumi.Input['ClearCache'] clear_cache: Defaults to "do_not_clear"
         :param pulumi.Input[str] commit_id: Specific ID of commit to deploy for a web service, defaults to latest commit. Not supported for Cron Job deploys.
         :param pulumi.Input[str] image_url: URL of the image to deploy for an image-backed service. The host, repository, and image name must match the currently configured image for the service.
+        :param pulumi.Input[str] service_id: The ID of the service
         """
         ...
     @overload
@@ -114,6 +132,7 @@ class Deploy(pulumi.CustomResource):
                  clear_cache: Optional[pulumi.Input['ClearCache']] = None,
                  commit_id: Optional[pulumi.Input[str]] = None,
                  image_url: Optional[pulumi.Input[str]] = None,
+                 service_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -128,6 +147,7 @@ class Deploy(pulumi.CustomResource):
             __props__.__dict__["clear_cache"] = clear_cache
             __props__.__dict__["commit_id"] = commit_id
             __props__.__dict__["image_url"] = image_url
+            __props__.__dict__["service_id"] = service_id
             __props__.__dict__["commit"] = None
             __props__.__dict__["created_at"] = None
             __props__.__dict__["finished_at"] = None

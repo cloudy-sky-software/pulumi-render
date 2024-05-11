@@ -40,11 +40,15 @@ class AwaitableListCustomDomainsResult(ListCustomDomainsResult):
             items=self.items)
 
 
-def list_custom_domains(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListCustomDomainsResult:
+def list_custom_domains(service_id: Optional[str] = None,
+                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListCustomDomainsResult:
     """
     Use this data source to access information about an existing resource.
+
+    :param str service_id: The ID of the service
     """
     __args__ = dict()
+    __args__['serviceId'] = service_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:services:listCustomDomains', __args__, opts=opts, typ=ListCustomDomainsResult).value
 
@@ -53,8 +57,11 @@ def list_custom_domains(opts: Optional[pulumi.InvokeOptions] = None) -> Awaitabl
 
 
 @_utilities.lift_output_func(list_custom_domains)
-def list_custom_domains_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListCustomDomainsResult]:
+def list_custom_domains_output(service_id: Optional[pulumi.Input[str]] = None,
+                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListCustomDomainsResult]:
     """
     Use this data source to access information about an existing resource.
+
+    :param str service_id: The ID of the service
     """
     ...

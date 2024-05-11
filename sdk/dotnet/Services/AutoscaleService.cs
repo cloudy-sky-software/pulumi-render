@@ -94,6 +94,12 @@ namespace Pulumi.Render.Services
         [Input("min", required: true)]
         public Input<int> Min { get; set; } = null!;
 
+        /// <summary>
+        /// The ID of the service
+        /// </summary>
+        [Input("serviceId")]
+        public Input<string>? ServiceId { get; set; }
+
         public AutoscaleServiceArgs()
         {
             Enabled = false;

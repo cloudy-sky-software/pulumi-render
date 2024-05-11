@@ -22,6 +22,10 @@ func LookupCustomDomain(ctx *pulumi.Context, args *LookupCustomDomainArgs, opts 
 }
 
 type LookupCustomDomainArgs struct {
+	// The ID or name of the custom domain
+	CustomDomainIdOrName string `pulumi:"customDomainIdOrName"`
+	// The ID of the service
+	ServiceId string `pulumi:"serviceId"`
 }
 
 type LookupCustomDomainResult struct {
@@ -42,6 +46,10 @@ func LookupCustomDomainOutput(ctx *pulumi.Context, args LookupCustomDomainOutput
 }
 
 type LookupCustomDomainOutputArgs struct {
+	// The ID or name of the custom domain
+	CustomDomainIdOrName pulumi.StringInput `pulumi:"customDomainIdOrName"`
+	// The ID of the service
+	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }
 
 func (LookupCustomDomainOutputArgs) ElementType() reflect.Type {

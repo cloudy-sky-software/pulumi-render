@@ -39,11 +39,15 @@ class AwaitableListRetrieveHeadersResult(ListRetrieveHeadersResult):
             items=self.items)
 
 
-def list_retrieve_headers(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListRetrieveHeadersResult:
+def list_retrieve_headers(service_id: Optional[str] = None,
+                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListRetrieveHeadersResult:
     """
     Use this data source to access information about an existing resource.
+
+    :param str service_id: The ID of the service
     """
     __args__ = dict()
+    __args__['serviceId'] = service_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:services:listRetrieveHeaders', __args__, opts=opts, typ=ListRetrieveHeadersResult).value
 
@@ -52,8 +56,11 @@ def list_retrieve_headers(opts: Optional[pulumi.InvokeOptions] = None) -> Awaita
 
 
 @_utilities.lift_output_func(list_retrieve_headers)
-def list_retrieve_headers_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListRetrieveHeadersResult]:
+def list_retrieve_headers_output(service_id: Optional[pulumi.Input[str]] = None,
+                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListRetrieveHeadersResult]:
     """
     Use this data source to access information about an existing resource.
+
+    :param str service_id: The ID of the service
     """
     ...

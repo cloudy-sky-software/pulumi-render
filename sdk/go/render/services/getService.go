@@ -22,6 +22,8 @@ func LookupService(ctx *pulumi.Context, args *LookupServiceArgs, opts ...pulumi.
 }
 
 type LookupServiceArgs struct {
+	// The ID of the service
+	ServiceId string `pulumi:"serviceId"`
 }
 
 type LookupServiceResult struct {
@@ -42,6 +44,8 @@ func LookupServiceOutput(ctx *pulumi.Context, args LookupServiceOutputArgs, opts
 }
 
 type LookupServiceOutputArgs struct {
+	// The ID of the service
+	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }
 
 func (LookupServiceOutputArgs) ElementType() reflect.Type {

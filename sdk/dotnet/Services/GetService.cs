@@ -11,20 +11,40 @@ namespace Pulumi.Render.Services
 {
     public static class GetService
     {
-        public static Task<GetServiceResult> InvokeAsync(GetServiceArgs? args = null, InvokeOptions? options = null)
+        public static Task<GetServiceResult> InvokeAsync(GetServiceArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetServiceResult>("render:services:getService", args ?? new GetServiceArgs(), options.WithDefaults());
 
-        public static Output<GetServiceResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetServiceResult>("render:services:getService", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<GetServiceResult> Invoke(GetServiceInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetServiceResult>("render:services:getService", args ?? new GetServiceInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class GetServiceArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of the service
+        /// </summary>
+        [Input("serviceId", required: true)]
+        public string ServiceId { get; set; } = null!;
+
         public GetServiceArgs()
         {
         }
         public static new GetServiceArgs Empty => new GetServiceArgs();
+    }
+
+    public sealed class GetServiceInvokeArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The ID of the service
+        /// </summary>
+        [Input("serviceId", required: true)]
+        public Input<string> ServiceId { get; set; } = null!;
+
+        public GetServiceInvokeArgs()
+        {
+        }
+        public static new GetServiceInvokeArgs Empty => new GetServiceInvokeArgs();
     }
 
 

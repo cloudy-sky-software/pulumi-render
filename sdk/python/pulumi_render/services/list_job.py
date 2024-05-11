@@ -39,11 +39,15 @@ class AwaitableListJobResult(ListJobResult):
             items=self.items)
 
 
-def list_job(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListJobResult:
+def list_job(service_id: Optional[str] = None,
+             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListJobResult:
     """
     Use this data source to access information about an existing resource.
+
+    :param str service_id: The ID of the service
     """
     __args__ = dict()
+    __args__['serviceId'] = service_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:services:listJob', __args__, opts=opts, typ=ListJobResult).value
 
@@ -52,8 +56,11 @@ def list_job(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListJobRes
 
 
 @_utilities.lift_output_func(list_job)
-def list_job_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListJobResult]:
+def list_job_output(service_id: Optional[pulumi.Input[str]] = None,
+                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListJobResult]:
     """
     Use this data source to access information about an existing resource.
+
+    :param str service_id: The ID of the service
     """
     ...

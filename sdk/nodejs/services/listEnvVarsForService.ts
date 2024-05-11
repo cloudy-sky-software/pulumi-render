@@ -7,20 +7,31 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function listEnvVarsForService(args?: ListEnvVarsForServiceArgs, opts?: pulumi.InvokeOptions): Promise<ListEnvVarsForServiceResult> {
-    args = args || {};
+export function listEnvVarsForService(args: ListEnvVarsForServiceArgs, opts?: pulumi.InvokeOptions): Promise<ListEnvVarsForServiceResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:listEnvVarsForService", {
+        "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface ListEnvVarsForServiceArgs {
+    /**
+     * The ID of the service
+     */
+    serviceId: string;
 }
 
 export interface ListEnvVarsForServiceResult {
     readonly items: outputs.services.EnvVarWithCursor[];
 }
-export function listEnvVarsForServiceOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListEnvVarsForServiceResult> {
-    return pulumi.output(listEnvVarsForService(opts))
+export function listEnvVarsForServiceOutput(args: ListEnvVarsForServiceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListEnvVarsForServiceResult> {
+    return pulumi.output(args).apply((a: any) => listEnvVarsForService(a, opts))
+}
+
+export interface ListEnvVarsForServiceOutputArgs {
+    /**
+     * The ID of the service
+     */
+    serviceId: pulumi.Input<string>;
 }

@@ -43,6 +43,8 @@ export class RefreshCustomDomain extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
+            resourceInputs["customDomainIdOrName"] = args ? args.customDomainIdOrName : undefined;
+            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
         } else {
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -54,4 +56,12 @@ export class RefreshCustomDomain extends pulumi.CustomResource {
  * The set of arguments for constructing a RefreshCustomDomain resource.
  */
 export interface RefreshCustomDomainArgs {
+    /**
+     * The ID or name of the custom domain
+     */
+    customDomainIdOrName?: pulumi.Input<string>;
+    /**
+     * The ID of the service
+     */
+    serviceId?: pulumi.Input<string>;
 }

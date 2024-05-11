@@ -72,12 +72,16 @@ func (RollbackDeployState) ElementType() reflect.Type {
 type rollbackDeployArgs struct {
 	// The ID of the deploy to rollback to
 	DeployId string `pulumi:"deployId"`
+	// The ID of the service
+	ServiceId *string `pulumi:"serviceId"`
 }
 
 // The set of arguments for constructing a RollbackDeploy resource.
 type RollbackDeployArgs struct {
 	// The ID of the deploy to rollback to
 	DeployId pulumi.StringInput
+	// The ID of the service
+	ServiceId pulumi.StringPtrInput
 }
 
 func (RollbackDeployArgs) ElementType() reflect.Type {

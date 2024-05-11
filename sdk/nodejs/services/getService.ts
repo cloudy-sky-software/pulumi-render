@@ -7,20 +7,31 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function getService(args?: GetServiceArgs, opts?: pulumi.InvokeOptions): Promise<GetServiceResult> {
-    args = args || {};
+export function getService(args: GetServiceArgs, opts?: pulumi.InvokeOptions): Promise<GetServiceResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:getService", {
+        "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface GetServiceArgs {
+    /**
+     * The ID of the service
+     */
+    serviceId: string;
 }
 
 export interface GetServiceResult {
     readonly items: outputs.services.Service;
 }
-export function getServiceOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetServiceResult> {
-    return pulumi.output(getService(opts))
+export function getServiceOutput(args: GetServiceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetServiceResult> {
+    return pulumi.output(args).apply((a: any) => getService(a, opts))
+}
+
+export interface GetServiceOutputArgs {
+    /**
+     * The ID of the service
+     */
+    serviceId: pulumi.Input<string>;
 }

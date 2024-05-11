@@ -115,35 +115,7 @@ func (p *renderProvider) OnConfigure(_ context.Context, req *pulumirpc.Configure
 
 // OnDiff checks what impacts a hypothetical update will have on the resource's properties.
 func (p *renderProvider) OnDiff(_ context.Context, _ *pulumirpc.DiffRequest, resourceTypeToken string, diff *resource.ObjectDiff, jsonReq *openapi3.MediaType) (*pulumirpc.DiffResponse, error) {
-	if len(jsonReq.Schema.Value.AnyOf) == 0 {
-		return nil, nil
-	}
-
-	changes := pulumirpc.DiffResponse_DIFF_SOME
-	var replaces []string
-	var diffs []string
-
-	// Taking a shortcut to handle service type-specific updates.
-	switch resourceTypeToken {
-	case "render:services:BackgroundWorker":
-		replaces, diffs = p.determineDiffsAndReplacements(diff, handler.GetOpenAPIDoc().Components.Schemas["patchBackgroundWorker"].Value.Properties)
-	case "render:services:CronJob":
-		replaces, diffs = p.determineDiffsAndReplacements(diff, handler.GetOpenAPIDoc().Components.Schemas["patchCronJob"].Value.Properties)
-	case "render:services:PrivateService":
-		replaces, diffs = p.determineDiffsAndReplacements(diff, handler.GetOpenAPIDoc().Components.Schemas["patchPrivateService"].Value.Properties)
-	case "render:services:StaticSite":
-		replaces, diffs = p.determineDiffsAndReplacements(diff, handler.GetOpenAPIDoc().Components.Schemas["patchStaticSite"].Value.Properties)
-	case "render:services:WebService":
-		replaces, diffs = p.determineDiffsAndReplacements(diff, handler.GetOpenAPIDoc().Components.Schemas["patchWebService"].Value.Properties)
-	}
-
-	logging.V(3).Infof("Diff response: replaces: %v; diffs: %v", replaces, diffs)
-
-	return &pulumirpc.DiffResponse{
-		Changes:  changes,
-		Replaces: replaces,
-		Diffs:    diffs,
-	}, nil
+	return nil, nil
 }
 
 func (p *renderProvider) OnPreCreate(_ context.Context, req *pulumirpc.CreateRequest, httpReq *http.Request) error {

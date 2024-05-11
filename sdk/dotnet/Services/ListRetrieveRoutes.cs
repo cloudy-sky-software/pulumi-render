@@ -11,20 +11,40 @@ namespace Pulumi.Render.Services
 {
     public static class ListRetrieveRoutes
     {
-        public static Task<ListRetrieveRoutesResult> InvokeAsync(ListRetrieveRoutesArgs? args = null, InvokeOptions? options = null)
+        public static Task<ListRetrieveRoutesResult> InvokeAsync(ListRetrieveRoutesArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ListRetrieveRoutesResult>("render:services:listRetrieveRoutes", args ?? new ListRetrieveRoutesArgs(), options.WithDefaults());
 
-        public static Output<ListRetrieveRoutesResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<ListRetrieveRoutesResult>("render:services:listRetrieveRoutes", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<ListRetrieveRoutesResult> Invoke(ListRetrieveRoutesInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<ListRetrieveRoutesResult>("render:services:listRetrieveRoutes", args ?? new ListRetrieveRoutesInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class ListRetrieveRoutesArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of the service
+        /// </summary>
+        [Input("serviceId", required: true)]
+        public string ServiceId { get; set; } = null!;
+
         public ListRetrieveRoutesArgs()
         {
         }
         public static new ListRetrieveRoutesArgs Empty => new ListRetrieveRoutesArgs();
+    }
+
+    public sealed class ListRetrieveRoutesInvokeArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The ID of the service
+        /// </summary>
+        [Input("serviceId", required: true)]
+        public Input<string> ServiceId { get; set; } = null!;
+
+        public ListRetrieveRoutesInvokeArgs()
+        {
+        }
+        public static new ListRetrieveRoutesInvokeArgs Empty => new ListRetrieveRoutesInvokeArgs();
     }
 
 

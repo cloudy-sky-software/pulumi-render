@@ -13,11 +13,26 @@ __all__ = ['SuspendServiceArgs', 'SuspendService']
 
 @pulumi.input_type
 class SuspendServiceArgs:
-    def __init__(__self__):
+    def __init__(__self__, *,
+                 service_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SuspendService resource.
+        :param pulumi.Input[str] service_id: The ID of the service
         """
-        pass
+        if service_id is not None:
+            pulumi.set(__self__, "service_id", service_id)
+
+    @property
+    @pulumi.getter(name="serviceId")
+    def service_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the service
+        """
+        return pulumi.get(self, "service_id")
+
+    @service_id.setter
+    def service_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service_id", value)
 
 
 class SuspendService(pulumi.CustomResource):
@@ -25,11 +40,13 @@ class SuspendService(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 service_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Create a SuspendService resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] service_id: The ID of the service
         """
         ...
     @overload
@@ -54,6 +71,7 @@ class SuspendService(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 service_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -63,6 +81,7 @@ class SuspendService(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SuspendServiceArgs.__new__(SuspendServiceArgs)
 
+            __props__.__dict__["service_id"] = service_id
         super(SuspendService, __self__).__init__(
             'render:services:SuspendService',
             resource_name,

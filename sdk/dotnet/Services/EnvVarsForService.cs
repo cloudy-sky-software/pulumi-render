@@ -69,6 +69,12 @@ namespace Pulumi.Render.Services
             set => _envVars = value;
         }
 
+        /// <summary>
+        /// The ID of the service
+        /// </summary>
+        [Input("serviceId")]
+        public Input<string>? ServiceId { get; set; }
+
         public EnvVarsForServiceArgs()
         {
         }

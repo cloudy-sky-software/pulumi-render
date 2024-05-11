@@ -22,6 +22,8 @@ func ListRetrieveRoutes(ctx *pulumi.Context, args *ListRetrieveRoutesArgs, opts 
 }
 
 type ListRetrieveRoutesArgs struct {
+	// The ID of the service
+	ServiceId string `pulumi:"serviceId"`
 }
 
 type ListRetrieveRoutesResult struct {
@@ -42,6 +44,8 @@ func ListRetrieveRoutesOutput(ctx *pulumi.Context, args ListRetrieveRoutesOutput
 }
 
 type ListRetrieveRoutesOutputArgs struct {
+	// The ID of the service
+	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }
 
 func (ListRetrieveRoutesOutputArgs) ElementType() reflect.Type {

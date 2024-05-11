@@ -22,6 +22,8 @@ func ListJob(ctx *pulumi.Context, args *ListJobArgs, opts ...pulumi.InvokeOption
 }
 
 type ListJobArgs struct {
+	// The ID of the service
+	ServiceId string `pulumi:"serviceId"`
 }
 
 type ListJobResult struct {
@@ -42,6 +44,8 @@ func ListJobOutput(ctx *pulumi.Context, args ListJobOutputArgs, opts ...pulumi.I
 }
 
 type ListJobOutputArgs struct {
+	// The ID of the service
+	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }
 
 func (ListJobOutputArgs) ElementType() reflect.Type {

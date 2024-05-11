@@ -11,20 +11,40 @@ namespace Pulumi.Render.Services
 {
     public static class ListRetrieveHeaders
     {
-        public static Task<ListRetrieveHeadersResult> InvokeAsync(ListRetrieveHeadersArgs? args = null, InvokeOptions? options = null)
+        public static Task<ListRetrieveHeadersResult> InvokeAsync(ListRetrieveHeadersArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ListRetrieveHeadersResult>("render:services:listRetrieveHeaders", args ?? new ListRetrieveHeadersArgs(), options.WithDefaults());
 
-        public static Output<ListRetrieveHeadersResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<ListRetrieveHeadersResult>("render:services:listRetrieveHeaders", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<ListRetrieveHeadersResult> Invoke(ListRetrieveHeadersInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<ListRetrieveHeadersResult>("render:services:listRetrieveHeaders", args ?? new ListRetrieveHeadersInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class ListRetrieveHeadersArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of the service
+        /// </summary>
+        [Input("serviceId", required: true)]
+        public string ServiceId { get; set; } = null!;
+
         public ListRetrieveHeadersArgs()
         {
         }
         public static new ListRetrieveHeadersArgs Empty => new ListRetrieveHeadersArgs();
+    }
+
+    public sealed class ListRetrieveHeadersInvokeArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The ID of the service
+        /// </summary>
+        [Input("serviceId", required: true)]
+        public Input<string> ServiceId { get; set; } = null!;
+
+        public ListRetrieveHeadersInvokeArgs()
+        {
+        }
+        public static new ListRetrieveHeadersInvokeArgs Empty => new ListRetrieveHeadersInvokeArgs();
     }
 
 

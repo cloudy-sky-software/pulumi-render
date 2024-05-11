@@ -64,10 +64,18 @@ func (CancelDeployState) ElementType() reflect.Type {
 }
 
 type cancelDeployArgs struct {
+	// The ID of the deploy
+	DeployId *string `pulumi:"deployId"`
+	// The ID of the service
+	ServiceId *string `pulumi:"serviceId"`
 }
 
 // The set of arguments for constructing a CancelDeploy resource.
 type CancelDeployArgs struct {
+	// The ID of the deploy
+	DeployId pulumi.StringPtrInput
+	// The ID of the service
+	ServiceId pulumi.StringPtrInput
 }
 
 func (CancelDeployArgs) ElementType() reflect.Type {

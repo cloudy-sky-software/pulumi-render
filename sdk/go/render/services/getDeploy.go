@@ -22,6 +22,10 @@ func LookupDeploy(ctx *pulumi.Context, args *LookupDeployArgs, opts ...pulumi.In
 }
 
 type LookupDeployArgs struct {
+	// The ID of the deploy
+	DeployId string `pulumi:"deployId"`
+	// The ID of the service
+	ServiceId string `pulumi:"serviceId"`
 }
 
 type LookupDeployResult struct {
@@ -42,6 +46,10 @@ func LookupDeployOutput(ctx *pulumi.Context, args LookupDeployOutputArgs, opts .
 }
 
 type LookupDeployOutputArgs struct {
+	// The ID of the deploy
+	DeployId pulumi.StringInput `pulumi:"deployId"`
+	// The ID of the service
+	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }
 
 func (LookupDeployOutputArgs) ElementType() reflect.Type {

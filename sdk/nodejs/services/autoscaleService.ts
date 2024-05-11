@@ -72,6 +72,7 @@ export class AutoscaleService extends pulumi.CustomResource {
             resourceInputs["enabled"] = (args ? args.enabled : undefined) ?? false;
             resourceInputs["max"] = args ? args.max : undefined;
             resourceInputs["min"] = args ? args.min : undefined;
+            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
         } else {
             resourceInputs["criteria"] = undefined /*out*/;
             resourceInputs["enabled"] = undefined /*out*/;
@@ -97,4 +98,8 @@ export interface AutoscaleServiceArgs {
      * The minimum number of instances for the service
      */
     min: pulumi.Input<number>;
+    /**
+     * The ID of the service
+     */
+    serviceId?: pulumi.Input<string>;
 }

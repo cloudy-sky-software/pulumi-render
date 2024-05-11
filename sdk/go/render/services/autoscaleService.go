@@ -82,6 +82,8 @@ type autoscaleServiceArgs struct {
 	Max int `pulumi:"max"`
 	// The minimum number of instances for the service
 	Min int `pulumi:"min"`
+	// The ID of the service
+	ServiceId *string `pulumi:"serviceId"`
 }
 
 // The set of arguments for constructing a AutoscaleService resource.
@@ -92,6 +94,8 @@ type AutoscaleServiceArgs struct {
 	Max pulumi.IntInput
 	// The minimum number of instances for the service
 	Min pulumi.IntInput
+	// The ID of the service
+	ServiceId pulumi.StringPtrInput
 }
 
 func (AutoscaleServiceArgs) ElementType() reflect.Type {

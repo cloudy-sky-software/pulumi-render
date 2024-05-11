@@ -16,12 +16,16 @@ __all__ = ['RollbackDeployArgs', 'RollbackDeploy']
 @pulumi.input_type
 class RollbackDeployArgs:
     def __init__(__self__, *,
-                 deploy_id: pulumi.Input[str]):
+                 deploy_id: pulumi.Input[str],
+                 service_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a RollbackDeploy resource.
         :param pulumi.Input[str] deploy_id: The ID of the deploy to rollback to
+        :param pulumi.Input[str] service_id: The ID of the service
         """
         pulumi.set(__self__, "deploy_id", deploy_id)
+        if service_id is not None:
+            pulumi.set(__self__, "service_id", service_id)
 
     @property
     @pulumi.getter(name="deployId")
@@ -35,6 +39,18 @@ class RollbackDeployArgs:
     def deploy_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "deploy_id", value)
 
+    @property
+    @pulumi.getter(name="serviceId")
+    def service_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the service
+        """
+        return pulumi.get(self, "service_id")
+
+    @service_id.setter
+    def service_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service_id", value)
+
 
 class RollbackDeploy(pulumi.CustomResource):
     @overload
@@ -42,12 +58,14 @@ class RollbackDeploy(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  deploy_id: Optional[pulumi.Input[str]] = None,
+                 service_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Create a RollbackDeploy resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] deploy_id: The ID of the deploy to rollback to
+        :param pulumi.Input[str] service_id: The ID of the service
         """
         ...
     @overload
@@ -73,6 +91,7 @@ class RollbackDeploy(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  deploy_id: Optional[pulumi.Input[str]] = None,
+                 service_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -85,6 +104,7 @@ class RollbackDeploy(pulumi.CustomResource):
             if deploy_id is None and not opts.urn:
                 raise TypeError("Missing required property 'deploy_id'")
             __props__.__dict__["deploy_id"] = deploy_id
+            __props__.__dict__["service_id"] = service_id
             __props__.__dict__["commit"] = None
             __props__.__dict__["created_at"] = None
             __props__.__dict__["finished_at"] = None

@@ -22,6 +22,8 @@ func ListRetrieveHeaders(ctx *pulumi.Context, args *ListRetrieveHeadersArgs, opt
 }
 
 type ListRetrieveHeadersArgs struct {
+	// The ID of the service
+	ServiceId string `pulumi:"serviceId"`
 }
 
 type ListRetrieveHeadersResult struct {
@@ -42,6 +44,8 @@ func ListRetrieveHeadersOutput(ctx *pulumi.Context, args ListRetrieveHeadersOutp
 }
 
 type ListRetrieveHeadersOutputArgs struct {
+	// The ID of the service
+	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }
 
 func (ListRetrieveHeadersOutputArgs) ElementType() reflect.Type {

@@ -22,6 +22,8 @@ func ListEnvVarsForService(ctx *pulumi.Context, args *ListEnvVarsForServiceArgs,
 }
 
 type ListEnvVarsForServiceArgs struct {
+	// The ID of the service
+	ServiceId string `pulumi:"serviceId"`
 }
 
 type ListEnvVarsForServiceResult struct {
@@ -42,6 +44,8 @@ func ListEnvVarsForServiceOutput(ctx *pulumi.Context, args ListEnvVarsForService
 }
 
 type ListEnvVarsForServiceOutputArgs struct {
+	// The ID of the service
+	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }
 
 func (ListEnvVarsForServiceOutputArgs) ElementType() reflect.Type {

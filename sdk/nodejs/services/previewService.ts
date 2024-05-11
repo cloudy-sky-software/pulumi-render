@@ -66,6 +66,7 @@ export class PreviewService extends pulumi.CustomResource {
             resourceInputs["imagePath"] = args ? args.imagePath : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["plan"] = args ? args.plan : undefined;
+            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
             resourceInputs["deployId"] = undefined /*out*/;
             resourceInputs["service"] = undefined /*out*/;
         } else {
@@ -96,4 +97,8 @@ export interface PreviewServiceArgs {
      * The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
      */
     plan?: pulumi.Input<enums.services.Plan>;
+    /**
+     * The ID of the service
+     */
+    serviceId?: pulumi.Input<string>;
 }

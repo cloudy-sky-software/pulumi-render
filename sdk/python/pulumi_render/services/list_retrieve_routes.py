@@ -40,11 +40,15 @@ class AwaitableListRetrieveRoutesResult(ListRetrieveRoutesResult):
             items=self.items)
 
 
-def list_retrieve_routes(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListRetrieveRoutesResult:
+def list_retrieve_routes(service_id: Optional[str] = None,
+                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListRetrieveRoutesResult:
     """
     Use this data source to access information about an existing resource.
+
+    :param str service_id: The ID of the service
     """
     __args__ = dict()
+    __args__['serviceId'] = service_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:services:listRetrieveRoutes', __args__, opts=opts, typ=ListRetrieveRoutesResult).value
 
@@ -53,8 +57,11 @@ def list_retrieve_routes(opts: Optional[pulumi.InvokeOptions] = None) -> Awaitab
 
 
 @_utilities.lift_output_func(list_retrieve_routes)
-def list_retrieve_routes_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListRetrieveRoutesResult]:
+def list_retrieve_routes_output(service_id: Optional[pulumi.Input[str]] = None,
+                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListRetrieveRoutesResult]:
     """
     Use this data source to access information about an existing resource.
+
+    :param str service_id: The ID of the service
     """
     ...

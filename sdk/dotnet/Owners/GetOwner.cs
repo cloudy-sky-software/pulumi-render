@@ -11,20 +11,40 @@ namespace Pulumi.Render.Owners
 {
     public static class GetOwner
     {
-        public static Task<GetOwnerResult> InvokeAsync(GetOwnerArgs? args = null, InvokeOptions? options = null)
+        public static Task<GetOwnerResult> InvokeAsync(GetOwnerArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetOwnerResult>("render:owners:getOwner", args ?? new GetOwnerArgs(), options.WithDefaults());
 
-        public static Output<GetOwnerResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetOwnerResult>("render:owners:getOwner", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<GetOwnerResult> Invoke(GetOwnerInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetOwnerResult>("render:owners:getOwner", args ?? new GetOwnerInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class GetOwnerArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of the user or team
+        /// </summary>
+        [Input("ownerId", required: true)]
+        public string OwnerId { get; set; } = null!;
+
         public GetOwnerArgs()
         {
         }
         public static new GetOwnerArgs Empty => new GetOwnerArgs();
+    }
+
+    public sealed class GetOwnerInvokeArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The ID of the user or team
+        /// </summary>
+        [Input("ownerId", required: true)]
+        public Input<string> OwnerId { get; set; } = null!;
+
+        public GetOwnerInvokeArgs()
+        {
+        }
+        public static new GetOwnerInvokeArgs Empty => new GetOwnerInvokeArgs();
     }
 
 

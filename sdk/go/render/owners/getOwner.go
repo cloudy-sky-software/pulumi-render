@@ -22,6 +22,8 @@ func GetOwner(ctx *pulumi.Context, args *GetOwnerArgs, opts ...pulumi.InvokeOpti
 }
 
 type GetOwnerArgs struct {
+	// The ID of the user or team
+	OwnerId string `pulumi:"ownerId"`
 }
 
 type GetOwnerResult struct {
@@ -42,6 +44,8 @@ func GetOwnerOutput(ctx *pulumi.Context, args GetOwnerOutputArgs, opts ...pulumi
 }
 
 type GetOwnerOutputArgs struct {
+	// The ID of the user or team
+	OwnerId pulumi.StringInput `pulumi:"ownerId"`
 }
 
 func (GetOwnerOutputArgs) ElementType() reflect.Type {

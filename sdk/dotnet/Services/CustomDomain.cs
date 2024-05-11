@@ -64,6 +64,12 @@ namespace Pulumi.Render.Services
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The ID of the service
+        /// </summary>
+        [Input("serviceId")]
+        public Input<string>? ServiceId { get; set; }
+
         public CustomDomainArgs()
         {
         }

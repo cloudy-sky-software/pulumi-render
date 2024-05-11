@@ -2827,6 +2827,10 @@
                 "min": {
                     "type": "integer",
                     "description": "The minimum number of instances for the service"
+                },
+                "serviceId": {
+                    "type": "string",
+                    "description": "The ID of the service"
                 }
             },
             "requiredInputs": [
@@ -2861,7 +2865,17 @@
                     "type": "string"
                 }
             },
-            "type": "object"
+            "type": "object",
+            "inputProperties": {
+                "deployId": {
+                    "type": "string",
+                    "description": "The ID of the deploy"
+                },
+                "serviceId": {
+                    "type": "string",
+                    "description": "The ID of the service"
+                }
+            }
         },
         "render:services:CancelJob": {
             "properties": {
@@ -2893,7 +2907,17 @@
                 "planId",
                 "serviceId",
                 "startCommand"
-            ]
+            ],
+            "inputProperties": {
+                "jobId": {
+                    "type": "string",
+                    "description": "The ID of the job"
+                },
+                "serviceId": {
+                    "type": "string",
+                    "description": "The ID of the service"
+                }
+            }
         },
         "render:services:CustomDomain": {
             "properties": {
@@ -2908,6 +2932,10 @@
             "inputProperties": {
                 "name": {
                     "type": "string"
+                },
+                "serviceId": {
+                    "type": "string",
+                    "description": "The ID of the service"
                 }
             }
         },
@@ -2963,6 +2991,10 @@
                 "imageUrl": {
                     "type": "string",
                     "description": "URL of the image to deploy for an image-backed service. The host, repository, and image name must match the currently configured image for the service."
+                },
+                "serviceId": {
+                    "type": "string",
+                    "description": "The ID of the service"
                 }
             }
         },
@@ -2996,6 +3028,10 @@
                             }
                         ]
                     }
+                },
+                "serviceId": {
+                    "type": "string",
+                    "description": "The ID of the service"
                 }
             }
         },
@@ -3033,6 +3069,10 @@
             "inputProperties": {
                 "planId": {
                     "type": "string"
+                },
+                "serviceId": {
+                    "type": "string",
+                    "description": "The ID of the service"
                 },
                 "startCommand": {
                     "type": "string"
@@ -3079,6 +3119,10 @@
                 "plan": {
                     "$ref": "#/types/render:services:Plan",
                     "description": "The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type."
+                },
+                "serviceId": {
+                    "type": "string",
+                    "description": "The ID of the service"
                 }
             },
             "requiredInputs": [
@@ -3086,10 +3130,26 @@
             ]
         },
         "render:services:RefreshCustomDomain": {
-            "type": "object"
+            "type": "object",
+            "inputProperties": {
+                "customDomainIdOrName": {
+                    "type": "string",
+                    "description": "The ID or name of the custom domain"
+                },
+                "serviceId": {
+                    "type": "string",
+                    "description": "The ID of the service"
+                }
+            }
         },
         "render:services:RestartServer": {
-            "type": "object"
+            "type": "object",
+            "inputProperties": {
+                "serviceId": {
+                    "type": "string",
+                    "description": "The ID of the service"
+                }
+            }
         },
         "render:services:RollbackDeploy": {
             "properties": {
@@ -3128,6 +3188,10 @@
                 "deployId": {
                     "type": "string",
                     "description": "The ID of the deploy to rollback to"
+                },
+                "serviceId": {
+                    "type": "string",
+                    "description": "The ID of the service"
                 }
             },
             "requiredInputs": [
@@ -3147,6 +3211,10 @@
             "inputProperties": {
                 "numInstances": {
                     "type": "integer"
+                },
+                "serviceId": {
+                    "type": "string",
+                    "description": "The ID of the service"
                 }
             },
             "requiredInputs": [
@@ -3319,12 +3387,28 @@
             ]
         },
         "render:services:SuspendService": {
-            "type": "object"
+            "type": "object",
+            "inputProperties": {
+                "serviceId": {
+                    "type": "string",
+                    "description": "The ID of the service"
+                }
+            }
         }
     },
     "functions": {
         "render:owners:getOwner": {
-            "inputs": {},
+            "inputs": {
+                "properties": {
+                    "ownerId": {
+                        "type": "string",
+                        "description": "The ID of the user or team"
+                    }
+                },
+                "required": [
+                    "ownerId"
+                ]
+            },
             "outputs": {
                 "properties": {
                     "items": {
@@ -3353,7 +3437,17 @@
             }
         },
         "render:registrycredentials:getRegistrycredential": {
-            "inputs": {},
+            "inputs": {
+                "properties": {
+                    "registryCredentialId": {
+                        "type": "string",
+                        "description": "The ID of the registry credential"
+                    }
+                },
+                "required": [
+                    "registryCredentialId"
+                ]
+            },
             "outputs": {
                 "properties": {
                     "items": {
@@ -3382,7 +3476,22 @@
             }
         },
         "render:services:getCustomDomain": {
-            "inputs": {},
+            "inputs": {
+                "properties": {
+                    "customDomainIdOrName": {
+                        "type": "string",
+                        "description": "The ID or name of the custom domain"
+                    },
+                    "serviceId": {
+                        "type": "string",
+                        "description": "The ID of the service"
+                    }
+                },
+                "required": [
+                    "customDomainIdOrName",
+                    "serviceId"
+                ]
+            },
             "outputs": {
                 "properties": {
                     "items": {
@@ -3395,7 +3504,22 @@
             }
         },
         "render:services:getDeploy": {
-            "inputs": {},
+            "inputs": {
+                "properties": {
+                    "deployId": {
+                        "type": "string",
+                        "description": "The ID of the deploy"
+                    },
+                    "serviceId": {
+                        "type": "string",
+                        "description": "The ID of the service"
+                    }
+                },
+                "required": [
+                    "deployId",
+                    "serviceId"
+                ]
+            },
             "outputs": {
                 "properties": {
                     "items": {
@@ -3408,7 +3532,22 @@
             }
         },
         "render:services:getJob": {
-            "inputs": {},
+            "inputs": {
+                "properties": {
+                    "jobId": {
+                        "type": "string",
+                        "description": "The ID of the job"
+                    },
+                    "serviceId": {
+                        "type": "string",
+                        "description": "The ID of the service"
+                    }
+                },
+                "required": [
+                    "jobId",
+                    "serviceId"
+                ]
+            },
             "outputs": {
                 "properties": {
                     "items": {
@@ -3421,7 +3560,17 @@
             }
         },
         "render:services:getService": {
-            "inputs": {},
+            "inputs": {
+                "properties": {
+                    "serviceId": {
+                        "type": "string",
+                        "description": "The ID of the service"
+                    }
+                },
+                "required": [
+                    "serviceId"
+                ]
+            },
             "outputs": {
                 "properties": {
                     "items": {
@@ -3434,7 +3583,17 @@
             }
         },
         "render:services:listCustomDomains": {
-            "inputs": {},
+            "inputs": {
+                "properties": {
+                    "serviceId": {
+                        "type": "string",
+                        "description": "The ID of the service"
+                    }
+                },
+                "required": [
+                    "serviceId"
+                ]
+            },
             "outputs": {
                 "properties": {
                     "items": {
@@ -3450,7 +3609,17 @@
             }
         },
         "render:services:listDeploys": {
-            "inputs": {},
+            "inputs": {
+                "properties": {
+                    "serviceId": {
+                        "type": "string",
+                        "description": "The ID of the service"
+                    }
+                },
+                "required": [
+                    "serviceId"
+                ]
+            },
             "outputs": {
                 "properties": {
                     "items": {
@@ -3466,7 +3635,17 @@
             }
         },
         "render:services:listEnvVarsForService": {
-            "inputs": {},
+            "inputs": {
+                "properties": {
+                    "serviceId": {
+                        "type": "string",
+                        "description": "The ID of the service"
+                    }
+                },
+                "required": [
+                    "serviceId"
+                ]
+            },
             "outputs": {
                 "properties": {
                     "items": {
@@ -3482,7 +3661,17 @@
             }
         },
         "render:services:listJob": {
-            "inputs": {},
+            "inputs": {
+                "properties": {
+                    "serviceId": {
+                        "type": "string",
+                        "description": "The ID of the service"
+                    }
+                },
+                "required": [
+                    "serviceId"
+                ]
+            },
             "outputs": {
                 "properties": {
                     "items": {
@@ -3498,7 +3687,17 @@
             }
         },
         "render:services:listRetrieveHeaders": {
-            "inputs": {},
+            "inputs": {
+                "properties": {
+                    "serviceId": {
+                        "type": "string",
+                        "description": "The ID of the service"
+                    }
+                },
+                "required": [
+                    "serviceId"
+                ]
+            },
             "outputs": {
                 "properties": {
                     "items": {
@@ -3514,7 +3713,17 @@
             }
         },
         "render:services:listRetrieveRoutes": {
-            "inputs": {},
+            "inputs": {
+                "properties": {
+                    "serviceId": {
+                        "type": "string",
+                        "description": "The ID of the service"
+                    }
+                },
+                "required": [
+                    "serviceId"
+                ]
+            },
             "outputs": {
                 "properties": {
                     "items": {

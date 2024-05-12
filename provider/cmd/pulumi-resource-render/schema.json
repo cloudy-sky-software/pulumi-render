@@ -3298,7 +3298,17 @@
                         {
                             "$ref": "#/types/render:services:CronJobDetailsCreate"
                         }
-                    ]
+                    ],
+                    "discriminator": {
+                        "propertyName": "type",
+                        "mapping": {
+                            "background_worker": "#/types/render:services:BackgroundWorkerDetailsCreate",
+                            "cron_job": "#/types/render:services:CronJobDetailsCreate",
+                            "private_service": "#/types/render:services:PrivateServiceDetailsCreate",
+                            "static_site": "#/types/render:services:StaticSiteDetailsCreate",
+                            "web_service": "#/types/render:services:WebServiceDetailsCreate"
+                        }
+                    }
                 },
                 "type": {
                     "$ref": "#/types/render:services:Type"
@@ -3375,7 +3385,17 @@
                         {
                             "$ref": "#/types/render:services:CronJobDetailsCreate"
                         }
-                    ]
+                    ],
+                    "discriminator": {
+                        "propertyName": "type",
+                        "mapping": {
+                            "background_worker": "#/types/render:services:BackgroundWorkerDetailsCreate",
+                            "cron_job": "#/types/render:services:CronJobDetailsCreate",
+                            "private_service": "#/types/render:services:PrivateServiceDetailsCreate",
+                            "static_site": "#/types/render:services:StaticSiteDetailsCreate",
+                            "web_service": "#/types/render:services:WebServiceDetailsCreate"
+                        }
+                    }
                 },
                 "type": {
                     "$ref": "#/types/render:services:Type"

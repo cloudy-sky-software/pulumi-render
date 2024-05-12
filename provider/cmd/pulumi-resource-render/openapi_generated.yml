@@ -1703,6 +1703,14 @@ components:
                         - $ref: '#/components/schemas/privateServiceDetailsPATCH'
                         - $ref: '#/components/schemas/backgroundWorkerDetailsPATCH'
                         - $ref: '#/components/schemas/cronJobDetailsPATCH'
+                    discriminator:
+                        propertyName: type
+                        mapping:
+                            background_worker: '#/components/schemas/backgroundWorker'
+                            cron_job: '#/components/schemas/cronJob'
+                            private_service: '#/components/schemas/privateService'
+                            static_site: '#/components/schemas/staticSite'
+                            web_service: '#/components/schemas/webService'
         servicePOST:
             type: object
             required:
@@ -1747,6 +1755,14 @@ components:
                         - $ref: '#/components/schemas/privateServiceDetailsPOST'
                         - $ref: '#/components/schemas/backgroundWorkerDetailsPOST'
                         - $ref: '#/components/schemas/cronJobDetailsPOST'
+                    discriminator:
+                        propertyName: type
+                        mapping:
+                            background_worker: '#/components/schemas/backgroundWorker'
+                            cron_job: '#/components/schemas/cronJob'
+                            private_service: '#/components/schemas/privateService'
+                            static_site: '#/components/schemas/staticSite'
+                            web_service: '#/components/schemas/webService'
                 type:
                     $ref: '#/components/schemas/serviceType'
         serviceType:

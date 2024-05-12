@@ -116,12 +116,46 @@ func ensureOperationId(openAPIDoc *openapi3.T) error {
 	return nil
 }
 
+func addDiscriminators(openAPIDoc *openapi3.T) error {
+	getDiscriminator := func() *openapi3.Discriminator {
+		return &openapi3.Discriminator{
+			PropertyName: "type",
+			Mapping: map[string]string{
+				"static_site":       "#/components/schemas/staticSite",
+				"web_service":       "#/components/schemas/webService",
+				"private_service":   "#/components/schemas/privateService",
+				"background_worker": "#/components/schemas/backgroundWorker",
+				"cron_job":          "#/components/schemas/cronJob",
+			},
+		}
+	}
+
+	createService, ok := openAPIDoc.Components.Schemas["servicePOST"]
+	if !ok {
+		return errors.New("servicePOST schema type not found")
+	}
+
+	createService.Value.Properties["serviceDetails"].Value.Discriminator = getDiscriminator()
+
+	patchService, ok := openAPIDoc.Components.Schemas["servicePATCH"]
+	if !ok {
+		return errors.New("servicePOST schema type not found")
+	}
+
+	patchService.Value.Properties["serviceDetails"].Value.Discriminator = getDiscriminator()
+	return nil
+}
+
 func FixOpenAPIDoc(openAPIDoc *openapi3.T) error {
 	if err := ensureOperationId(openAPIDoc); err != nil {
 		return err
 	}
 
 	if err := patchEnvVarsPutEndpoint(openAPIDoc); err != nil {
+		return err
+	}
+
+	if err := addDiscriminators(openAPIDoc); err != nil {
 		return err
 	}
 

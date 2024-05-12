@@ -289,6 +289,10 @@
                 },
                 "region": {
                     "$ref": "#/types/render:services:BackgroundWorkerDetailsRegion"
+                },
+                "type": {
+                    "type": "string",
+                    "default": "background_worker"
                 }
             },
             "type": "object",
@@ -662,6 +666,10 @@
                 },
                 "schedule": {
                     "type": "string"
+                },
+                "type": {
+                    "type": "string",
+                    "default": "cron_job"
                 }
             },
             "type": "object",
@@ -1535,6 +1543,10 @@
                 "region": {
                     "$ref": "#/types/render:services:PrivateServiceDetailsRegion"
                 },
+                "type": {
+                    "type": "string",
+                    "default": "private_service"
+                },
                 "url": {
                     "type": "string"
                 }
@@ -2028,7 +2040,17 @@
                         {
                             "$ref": "#/types/render:services:CronJobDetails"
                         }
-                    ]
+                    ],
+                    "discriminator": {
+                        "propertyName": "type",
+                        "mapping": {
+                            "background_worker": "#/types/render:services:BackgroundWorkerDetails",
+                            "cron_job": "#/types/render:services:CronJobDetails",
+                            "private_service": "#/types/render:services:PrivateServiceDetails",
+                            "static_site": "#/types/render:services:StaticSiteDetails",
+                            "web_service": "#/types/render:services:WebServiceDetails"
+                        }
+                    }
                 },
                 "slug": {
                     "type": "string"
@@ -2175,6 +2197,10 @@
                 },
                 "pullRequestPreviewsEnabled": {
                     "$ref": "#/types/render:services:StaticSiteDetailsPullRequestPreviewsEnabled"
+                },
+                "type": {
+                    "type": "string",
+                    "default": "static_site"
                 },
                 "url": {
                     "type": "string"
@@ -2410,6 +2436,10 @@
                 },
                 "region": {
                     "$ref": "#/types/render:services:WebServiceDetailsRegion"
+                },
+                "type": {
+                    "type": "string",
+                    "default": "web_service"
                 },
                 "url": {
                     "type": "string"
@@ -3300,14 +3330,7 @@
                         }
                     ],
                     "discriminator": {
-                        "propertyName": "type",
-                        "mapping": {
-                            "background_worker": "#/types/render:services:BackgroundWorkerDetailsCreate",
-                            "cron_job": "#/types/render:services:CronJobDetailsCreate",
-                            "private_service": "#/types/render:services:PrivateServiceDetailsCreate",
-                            "static_site": "#/types/render:services:StaticSiteDetailsCreate",
-                            "web_service": "#/types/render:services:WebServiceDetailsCreate"
-                        }
+                        "propertyName": "type"
                     }
                 },
                 "type": {
@@ -3387,14 +3410,7 @@
                         }
                     ],
                     "discriminator": {
-                        "propertyName": "type",
-                        "mapping": {
-                            "background_worker": "#/types/render:services:BackgroundWorkerDetailsCreate",
-                            "cron_job": "#/types/render:services:CronJobDetailsCreate",
-                            "private_service": "#/types/render:services:PrivateServiceDetailsCreate",
-                            "static_site": "#/types/render:services:StaticSiteDetailsCreate",
-                            "web_service": "#/types/render:services:WebServiceDetailsCreate"
-                        }
+                        "propertyName": "type"
                     }
                 },
                 "type": {

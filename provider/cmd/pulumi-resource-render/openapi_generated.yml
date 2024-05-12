@@ -80,6 +80,10 @@ components:
                     $ref: '#/components/schemas/pullRequestPreviewsEnabled'
                 region:
                     $ref: '#/components/schemas/region'
+                type:
+                    type: string
+                    default: background_worker
+                    readOnly: true
         backgroundWorkerDetailsPATCH:
             type: object
             properties:
@@ -183,6 +187,10 @@ components:
                     $ref: '#/components/schemas/region'
                 schedule:
                     type: string
+                type:
+                    type: string
+                    default: cron_job
+                    readOnly: true
         cronJobDetailsPATCH:
             type: object
             properties:
@@ -1210,6 +1218,10 @@ components:
                     $ref: '#/components/schemas/pullRequestPreviewsEnabled'
                 region:
                     $ref: '#/components/schemas/region'
+                type:
+                    type: string
+                    default: private_service
+                    readOnly: true
                 url:
                     type: string
         privateServiceDetailsPATCH:
@@ -1635,6 +1647,14 @@ components:
                         - $ref: '#/components/schemas/privateServiceDetails'
                         - $ref: '#/components/schemas/backgroundWorkerDetails'
                         - $ref: '#/components/schemas/cronJobDetails'
+                    discriminator:
+                        propertyName: type
+                        mapping:
+                            background_worker: '#/components/schemas/backgroundWorkerDetails'
+                            cron_job: '#/components/schemas/cronJobDetails'
+                            private_service: '#/components/schemas/privateServiceDetails'
+                            static_site: '#/components/schemas/staticSiteDetails'
+                            web_service: '#/components/schemas/webServiceDetails'
                 slug:
                     type: string
                 suspended:
@@ -1706,11 +1726,11 @@ components:
                     discriminator:
                         propertyName: type
                         mapping:
-                            background_worker: '#/components/schemas/backgroundWorker'
-                            cron_job: '#/components/schemas/cronJob'
-                            private_service: '#/components/schemas/privateService'
-                            static_site: '#/components/schemas/staticSite'
-                            web_service: '#/components/schemas/webService'
+                            background_worker: '#/components/schemas/backgroundWorkerDetailsPATCH'
+                            cron_job: '#/components/schemas/cronJobDetailsPATCH'
+                            private_service: '#/components/schemas/privateServiceDetailsPATCH'
+                            static_site: '#/components/schemas/staticSiteDetailsPATCH'
+                            web_service: '#/components/schemas/webServiceDetailsPATCH'
         servicePOST:
             type: object
             required:
@@ -1758,11 +1778,11 @@ components:
                     discriminator:
                         propertyName: type
                         mapping:
-                            background_worker: '#/components/schemas/backgroundWorker'
-                            cron_job: '#/components/schemas/cronJob'
-                            private_service: '#/components/schemas/privateService'
-                            static_site: '#/components/schemas/staticSite'
-                            web_service: '#/components/schemas/webService'
+                            background_worker: '#/components/schemas/backgroundWorkerDetailsPOST'
+                            cron_job: '#/components/schemas/cronJobDetailsPOST'
+                            private_service: '#/components/schemas/privateServiceDetailsPOST'
+                            static_site: '#/components/schemas/staticSiteDetailsPOST'
+                            web_service: '#/components/schemas/webServiceDetailsPOST'
                 type:
                     $ref: '#/components/schemas/serviceType'
         serviceType:
@@ -1800,6 +1820,10 @@ components:
                     type: string
                 pullRequestPreviewsEnabled:
                     $ref: '#/components/schemas/pullRequestPreviewsEnabled'
+                type:
+                    type: string
+                    default: static_site
+                    readOnly: true
                 url:
                     type: string
         staticSiteDetailsPATCH:
@@ -1931,6 +1955,10 @@ components:
                     $ref: '#/components/schemas/pullRequestPreviewsEnabled'
                 region:
                     $ref: '#/components/schemas/region'
+                type:
+                    type: string
+                    default: web_service
+                    readOnly: true
                 url:
                     type: string
         webServiceDetailsPATCH:

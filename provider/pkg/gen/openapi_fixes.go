@@ -3,6 +3,7 @@ package gen
 import (
 	"fmt"
 	"net/url"
+	"slices"
 	"strings"
 
 	"github.com/getkin/kin-openapi/openapi3"
@@ -116,33 +117,58 @@ func ensureOperationId(openAPIDoc *openapi3.T) error {
 	return nil
 }
 
-func addDiscriminators(openAPIDoc *openapi3.T) error {
-	getDiscriminator := func() *openapi3.Discriminator {
+func addServiceDiscriminator(openAPIDoc *openapi3.T) error {
+	getDiscriminator := func(suffix string) *openapi3.Discriminator {
 		return &openapi3.Discriminator{
 			PropertyName: "type",
 			Mapping: map[string]string{
-				"static_site":       "#/components/schemas/staticSite",
-				"web_service":       "#/components/schemas/webService",
-				"private_service":   "#/components/schemas/privateService",
-				"background_worker": "#/components/schemas/backgroundWorker",
-				"cron_job":          "#/components/schemas/cronJob",
+				"static_site":       "#/components/schemas/staticSiteDetails" + suffix,
+				"web_service":       "#/components/schemas/webServiceDetails" + suffix,
+				"private_service":   "#/components/schemas/privateServiceDetails" + suffix,
+				"background_worker": "#/components/schemas/backgroundWorkerDetails" + suffix,
+				"cron_job":          "#/components/schemas/cronJobDetails" + suffix,
 			},
 		}
 	}
 
-	createService, ok := openAPIDoc.Components.Schemas["servicePOST"]
+	for _, suffix := range []string{"", "POST", "PATCH"} {
+		schema, ok := openAPIDoc.Components.Schemas["service"+suffix]
+		if !ok {
+			return errors.New(fmt.Sprintf("service%s schema type not found", suffix))
+		}
+
+		schema.Value.Properties["serviceDetails"].Value.Discriminator = getDiscriminator(suffix)
+
+		indexOfTypeProp := -1
+		for i, prop := range schema.Value.Required {
+			if prop == "type" {
+				indexOfTypeProp = i
+				break
+			}
+		}
+
+		if indexOfTypeProp == -1 {
+			continue
+		}
+
+		schema.Value.Required = slices.Delete(schema.Value.Required, indexOfTypeProp, indexOfTypeProp)
+	}
+	return nil
+}
+
+func addReadOnlyDiscriminatedProperty(openAPIDoc *openapi3.T, schemaName string, typeName string, defaultValue *string) error {
+	typ, ok := openAPIDoc.Components.Schemas[schemaName]
 	if !ok {
-		return errors.New("servicePOST schema type not found")
+		return errors.New(fmt.Sprintf("schema type %s not found", schemaName))
 	}
 
-	createService.Value.Properties["serviceDetails"].Value.Discriminator = getDiscriminator()
-
-	patchService, ok := openAPIDoc.Components.Schemas["servicePATCH"]
-	if !ok {
-		return errors.New("servicePOST schema type not found")
+	strSchema := openapi3.NewSchemaRef("", openapi3.NewSchema())
+	strSchema.Value.ReadOnly = true
+	strSchema.Value.Type = &openapi3.Types{openapi3.TypeString}
+	if defaultValue != nil {
+		strSchema.Value.Default = *defaultValue
 	}
-
-	patchService.Value.Properties["serviceDetails"].Value.Discriminator = getDiscriminator()
+	typ.Value.Properties[typeName] = strSchema
 	return nil
 }
 
@@ -155,8 +181,14 @@ func FixOpenAPIDoc(openAPIDoc *openapi3.T) error {
 		return err
 	}
 
-	if err := addDiscriminators(openAPIDoc); err != nil {
+	if err := addServiceDiscriminator(openAPIDoc); err != nil {
 		return err
+	}
+
+	schemas := map[string]string{"staticSiteDetails": "static_site", "webServiceDetails": "web_service", "privateServiceDetails": "private_service", "backgroundWorkerDetails": "background_worker", "cronJobDetails": "cron_job"}
+	for schema, defaultDiscriminatedValue := range schemas {
+		defaultDiscriminatedValuePtr := defaultDiscriminatedValue
+		addReadOnlyDiscriminatedProperty(openAPIDoc, schema, "type", &defaultDiscriminatedValuePtr)
 	}
 
 	return nil

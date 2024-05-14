@@ -80,10 +80,6 @@ components:
                     $ref: '#/components/schemas/pullRequestPreviewsEnabled'
                 region:
                     $ref: '#/components/schemas/region'
-                type:
-                    type: string
-                    default: background_worker
-                    readOnly: true
         backgroundWorkerDetailsPATCH:
             type: object
             properties:
@@ -98,6 +94,10 @@ components:
                     enum:
                         - "yes"
                         - "no"
+                type:
+                    type: string
+                    default: background_worker
+                    readOnly: true
         backgroundWorkerDetailsPOST:
             type: object
             required:
@@ -137,6 +137,10 @@ components:
                     default: "no"
                 region:
                     $ref: '#/components/schemas/region'
+                type:
+                    type: string
+                    default: background_worker
+                    readOnly: true
         buildFilter:
             type: object
             required:
@@ -187,10 +191,6 @@ components:
                     $ref: '#/components/schemas/region'
                 schedule:
                     type: string
-                type:
-                    type: string
-                    default: cron_job
-                    readOnly: true
         cronJobDetailsPATCH:
             type: object
             properties:
@@ -202,6 +202,10 @@ components:
                     $ref: '#/components/schemas/paidPlan'
                 schedule:
                     type: string
+                type:
+                    type: string
+                    default: cron_job
+                    readOnly: true
         cronJobDetailsPOST:
             type: object
             required:
@@ -218,6 +222,10 @@ components:
                     $ref: '#/components/schemas/region'
                 schedule:
                     type: string
+                type:
+                    type: string
+                    default: cron_job
+                    readOnly: true
         cursor:
             type: string
         customDomain:
@@ -1218,10 +1226,6 @@ components:
                     $ref: '#/components/schemas/pullRequestPreviewsEnabled'
                 region:
                     $ref: '#/components/schemas/region'
-                type:
-                    type: string
-                    default: private_service
-                    readOnly: true
                 url:
                     type: string
         privateServiceDetailsPATCH:
@@ -1238,6 +1242,10 @@ components:
                     enum:
                         - "yes"
                         - "no"
+                type:
+                    type: string
+                    default: private_service
+                    readOnly: true
         privateServiceDetailsPOST:
             type: object
             required:
@@ -1277,6 +1285,10 @@ components:
                     default: "no"
                 region:
                     $ref: '#/components/schemas/region'
+                type:
+                    type: string
+                    default: private_service
+                    readOnly: true
         project:
             type: object
             description: A project is a collection of environments
@@ -1647,14 +1659,6 @@ components:
                         - $ref: '#/components/schemas/privateServiceDetails'
                         - $ref: '#/components/schemas/backgroundWorkerDetails'
                         - $ref: '#/components/schemas/cronJobDetails'
-                    discriminator:
-                        propertyName: type
-                        mapping:
-                            background_worker: '#/components/schemas/backgroundWorkerDetails'
-                            cron_job: '#/components/schemas/cronJobDetails'
-                            private_service: '#/components/schemas/privateServiceDetails'
-                            static_site: '#/components/schemas/staticSiteDetails'
-                            web_service: '#/components/schemas/webServiceDetails'
                 slug:
                     type: string
                 suspended:
@@ -1820,10 +1824,6 @@ components:
                     type: string
                 pullRequestPreviewsEnabled:
                     $ref: '#/components/schemas/pullRequestPreviewsEnabled'
-                type:
-                    type: string
-                    default: static_site
-                    readOnly: true
                 url:
                     type: string
         staticSiteDetailsPATCH:
@@ -1838,6 +1838,10 @@ components:
                     enum:
                         - "yes"
                         - "no"
+                type:
+                    type: string
+                    default: static_site
+                    readOnly: true
         staticSiteDetailsPOST:
             type: object
             properties:
@@ -1861,6 +1865,10 @@ components:
                     type: array
                     items:
                         $ref: '#/components/schemas/route'
+                type:
+                    type: string
+                    default: static_site
+                    readOnly: true
         suspenderType:
             type: string
             enum:
@@ -1955,10 +1963,6 @@ components:
                     $ref: '#/components/schemas/pullRequestPreviewsEnabled'
                 region:
                     $ref: '#/components/schemas/region'
-                type:
-                    type: string
-                    default: web_service
-                    readOnly: true
                 url:
                     type: string
         webServiceDetailsPATCH:
@@ -1977,6 +1981,10 @@ components:
                     enum:
                         - "yes"
                         - "no"
+                type:
+                    type: string
+                    default: web_service
+                    readOnly: true
         webServiceDetailsPOST:
             type: object
             required:
@@ -2017,6 +2025,10 @@ components:
                     default: "no"
                 region:
                     $ref: '#/components/schemas/region'
+                type:
+                    type: string
+                    default: web_service
+                    readOnly: true
     parameters:
         applicationMetricAggregationMethod:
             name: aggregationMethod

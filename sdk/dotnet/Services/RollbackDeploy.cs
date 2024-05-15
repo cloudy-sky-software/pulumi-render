@@ -34,10 +34,10 @@ namespace Pulumi.Render.Services
         public Output<Outputs.ImageProperties?> Image { get; private set; } = null!;
 
         [Output("status")]
-        public Output<Pulumi.Render.Services.Status?> Status { get; private set; } = null!;
+        public Output<Pulumi.Render.Services.RollbackDeployStatus?> Status { get; private set; } = null!;
 
         [Output("trigger")]
-        public Output<Pulumi.Render.Services.Trigger?> Trigger { get; private set; } = null!;
+        public Output<Pulumi.Render.Services.RollbackDeployTrigger?> Trigger { get; private set; } = null!;
 
         [Output("updatedAt")]
         public Output<string?> UpdatedAt { get; private set; } = null!;

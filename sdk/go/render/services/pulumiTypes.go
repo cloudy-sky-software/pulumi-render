@@ -579,15 +579,15 @@ func (o BackgroundWorkerDetailsPtrOutput) Region() BackgroundWorkerDetailsRegion
 type BackgroundWorkerDetailsCreate struct {
 	Disk *BackgroundWorkerDetailsCreateDiskProperties `pulumi:"disk"`
 	// Environment (runtime)
-	Env                BackgroundWorkerDetailsCreateEnv `pulumi:"env"`
-	EnvSpecificDetails interface{}                      `pulumi:"envSpecificDetails"`
+	Env                ServiceBackgroundWorkerDetailsCreateEnv `pulumi:"env"`
+	EnvSpecificDetails interface{}                             `pulumi:"envSpecificDetails"`
 	// Defaults to 1
-	NumInstances *int                               `pulumi:"numInstances"`
-	Plan         *BackgroundWorkerDetailsCreatePlan `pulumi:"plan"`
+	NumInstances *int                                      `pulumi:"numInstances"`
+	Plan         *ServiceBackgroundWorkerDetailsCreatePlan `pulumi:"plan"`
 	// Defaults to "no"
-	PullRequestPreviewsEnabled *BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
-	Region                     *BackgroundWorkerDetailsCreateRegion                     `pulumi:"region"`
-	Type                       *string                                                  `pulumi:"type"`
+	PullRequestPreviewsEnabled *ServiceBackgroundWorkerDetailsCreatePullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
+	Region                     *ServiceBackgroundWorkerDetailsCreateRegion                     `pulumi:"region"`
+	Type                       *string                                                         `pulumi:"type"`
 }
 
 // Defaults sets the appropriate defaults for BackgroundWorkerDetailsCreate
@@ -601,7 +601,7 @@ func (val *BackgroundWorkerDetailsCreate) Defaults() *BackgroundWorkerDetailsCre
 		tmp.NumInstances = &numInstances_
 	}
 	if tmp.PullRequestPreviewsEnabled == nil {
-		pullRequestPreviewsEnabled_ := BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled("no")
+		pullRequestPreviewsEnabled_ := ServiceBackgroundWorkerDetailsCreatePullRequestPreviewsEnabled("no")
 		tmp.PullRequestPreviewsEnabled = &pullRequestPreviewsEnabled_
 	}
 	if tmp.Type == nil {
@@ -625,15 +625,15 @@ type BackgroundWorkerDetailsCreateInput interface {
 type BackgroundWorkerDetailsCreateArgs struct {
 	Disk BackgroundWorkerDetailsCreateDiskPropertiesPtrInput `pulumi:"disk"`
 	// Environment (runtime)
-	Env                BackgroundWorkerDetailsCreateEnvInput `pulumi:"env"`
-	EnvSpecificDetails pulumi.Input                          `pulumi:"envSpecificDetails"`
+	Env                ServiceBackgroundWorkerDetailsCreateEnvInput `pulumi:"env"`
+	EnvSpecificDetails pulumi.Input                                 `pulumi:"envSpecificDetails"`
 	// Defaults to 1
-	NumInstances pulumi.IntPtrInput                        `pulumi:"numInstances"`
-	Plan         BackgroundWorkerDetailsCreatePlanPtrInput `pulumi:"plan"`
+	NumInstances pulumi.IntPtrInput                               `pulumi:"numInstances"`
+	Plan         ServiceBackgroundWorkerDetailsCreatePlanPtrInput `pulumi:"plan"`
 	// Defaults to "no"
-	PullRequestPreviewsEnabled BackgroundWorkerDetailsCreatePullRequestPreviewsEnabledPtrInput `pulumi:"pullRequestPreviewsEnabled"`
-	Region                     BackgroundWorkerDetailsCreateRegionPtrInput                     `pulumi:"region"`
-	Type                       pulumi.StringPtrInput                                           `pulumi:"type"`
+	PullRequestPreviewsEnabled ServiceBackgroundWorkerDetailsCreatePullRequestPreviewsEnabledPtrInput `pulumi:"pullRequestPreviewsEnabled"`
+	Region                     ServiceBackgroundWorkerDetailsCreateRegionPtrInput                     `pulumi:"region"`
+	Type                       pulumi.StringPtrInput                                                  `pulumi:"type"`
 }
 
 // Defaults sets the appropriate defaults for BackgroundWorkerDetailsCreateArgs
@@ -646,7 +646,7 @@ func (val *BackgroundWorkerDetailsCreateArgs) Defaults() *BackgroundWorkerDetail
 		tmp.NumInstances = pulumi.IntPtr(1)
 	}
 	if tmp.PullRequestPreviewsEnabled == nil {
-		tmp.PullRequestPreviewsEnabled = BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled("no")
+		tmp.PullRequestPreviewsEnabled = ServiceBackgroundWorkerDetailsCreatePullRequestPreviewsEnabled("no")
 	}
 	if tmp.Type == nil {
 		tmp.Type = pulumi.StringPtr("background_worker")
@@ -735,8 +735,8 @@ func (o BackgroundWorkerDetailsCreateOutput) Disk() BackgroundWorkerDetailsCreat
 }
 
 // Environment (runtime)
-func (o BackgroundWorkerDetailsCreateOutput) Env() BackgroundWorkerDetailsCreateEnvOutput {
-	return o.ApplyT(func(v BackgroundWorkerDetailsCreate) BackgroundWorkerDetailsCreateEnv { return v.Env }).(BackgroundWorkerDetailsCreateEnvOutput)
+func (o BackgroundWorkerDetailsCreateOutput) Env() ServiceBackgroundWorkerDetailsCreateEnvOutput {
+	return o.ApplyT(func(v BackgroundWorkerDetailsCreate) ServiceBackgroundWorkerDetailsCreateEnv { return v.Env }).(ServiceBackgroundWorkerDetailsCreateEnvOutput)
 }
 
 func (o BackgroundWorkerDetailsCreateOutput) EnvSpecificDetails() pulumi.AnyOutput {
@@ -748,19 +748,19 @@ func (o BackgroundWorkerDetailsCreateOutput) NumInstances() pulumi.IntPtrOutput 
 	return o.ApplyT(func(v BackgroundWorkerDetailsCreate) *int { return v.NumInstances }).(pulumi.IntPtrOutput)
 }
 
-func (o BackgroundWorkerDetailsCreateOutput) Plan() BackgroundWorkerDetailsCreatePlanPtrOutput {
-	return o.ApplyT(func(v BackgroundWorkerDetailsCreate) *BackgroundWorkerDetailsCreatePlan { return v.Plan }).(BackgroundWorkerDetailsCreatePlanPtrOutput)
+func (o BackgroundWorkerDetailsCreateOutput) Plan() ServiceBackgroundWorkerDetailsCreatePlanPtrOutput {
+	return o.ApplyT(func(v BackgroundWorkerDetailsCreate) *ServiceBackgroundWorkerDetailsCreatePlan { return v.Plan }).(ServiceBackgroundWorkerDetailsCreatePlanPtrOutput)
 }
 
 // Defaults to "no"
-func (o BackgroundWorkerDetailsCreateOutput) PullRequestPreviewsEnabled() BackgroundWorkerDetailsCreatePullRequestPreviewsEnabledPtrOutput {
-	return o.ApplyT(func(v BackgroundWorkerDetailsCreate) *BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled {
+func (o BackgroundWorkerDetailsCreateOutput) PullRequestPreviewsEnabled() ServiceBackgroundWorkerDetailsCreatePullRequestPreviewsEnabledPtrOutput {
+	return o.ApplyT(func(v BackgroundWorkerDetailsCreate) *ServiceBackgroundWorkerDetailsCreatePullRequestPreviewsEnabled {
 		return v.PullRequestPreviewsEnabled
-	}).(BackgroundWorkerDetailsCreatePullRequestPreviewsEnabledPtrOutput)
+	}).(ServiceBackgroundWorkerDetailsCreatePullRequestPreviewsEnabledPtrOutput)
 }
 
-func (o BackgroundWorkerDetailsCreateOutput) Region() BackgroundWorkerDetailsCreateRegionPtrOutput {
-	return o.ApplyT(func(v BackgroundWorkerDetailsCreate) *BackgroundWorkerDetailsCreateRegion { return v.Region }).(BackgroundWorkerDetailsCreateRegionPtrOutput)
+func (o BackgroundWorkerDetailsCreateOutput) Region() ServiceBackgroundWorkerDetailsCreateRegionPtrOutput {
+	return o.ApplyT(func(v BackgroundWorkerDetailsCreate) *ServiceBackgroundWorkerDetailsCreateRegion { return v.Region }).(ServiceBackgroundWorkerDetailsCreateRegionPtrOutput)
 }
 
 func (o BackgroundWorkerDetailsCreateOutput) Type() pulumi.StringPtrOutput {
@@ -801,13 +801,13 @@ func (o BackgroundWorkerDetailsCreatePtrOutput) Disk() BackgroundWorkerDetailsCr
 }
 
 // Environment (runtime)
-func (o BackgroundWorkerDetailsCreatePtrOutput) Env() BackgroundWorkerDetailsCreateEnvPtrOutput {
-	return o.ApplyT(func(v *BackgroundWorkerDetailsCreate) *BackgroundWorkerDetailsCreateEnv {
+func (o BackgroundWorkerDetailsCreatePtrOutput) Env() ServiceBackgroundWorkerDetailsCreateEnvPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorkerDetailsCreate) *ServiceBackgroundWorkerDetailsCreateEnv {
 		if v == nil {
 			return nil
 		}
 		return &v.Env
-	}).(BackgroundWorkerDetailsCreateEnvPtrOutput)
+	}).(ServiceBackgroundWorkerDetailsCreateEnvPtrOutput)
 }
 
 func (o BackgroundWorkerDetailsCreatePtrOutput) EnvSpecificDetails() pulumi.AnyOutput {
@@ -829,32 +829,32 @@ func (o BackgroundWorkerDetailsCreatePtrOutput) NumInstances() pulumi.IntPtrOutp
 	}).(pulumi.IntPtrOutput)
 }
 
-func (o BackgroundWorkerDetailsCreatePtrOutput) Plan() BackgroundWorkerDetailsCreatePlanPtrOutput {
-	return o.ApplyT(func(v *BackgroundWorkerDetailsCreate) *BackgroundWorkerDetailsCreatePlan {
+func (o BackgroundWorkerDetailsCreatePtrOutput) Plan() ServiceBackgroundWorkerDetailsCreatePlanPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorkerDetailsCreate) *ServiceBackgroundWorkerDetailsCreatePlan {
 		if v == nil {
 			return nil
 		}
 		return v.Plan
-	}).(BackgroundWorkerDetailsCreatePlanPtrOutput)
+	}).(ServiceBackgroundWorkerDetailsCreatePlanPtrOutput)
 }
 
 // Defaults to "no"
-func (o BackgroundWorkerDetailsCreatePtrOutput) PullRequestPreviewsEnabled() BackgroundWorkerDetailsCreatePullRequestPreviewsEnabledPtrOutput {
-	return o.ApplyT(func(v *BackgroundWorkerDetailsCreate) *BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled {
+func (o BackgroundWorkerDetailsCreatePtrOutput) PullRequestPreviewsEnabled() ServiceBackgroundWorkerDetailsCreatePullRequestPreviewsEnabledPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorkerDetailsCreate) *ServiceBackgroundWorkerDetailsCreatePullRequestPreviewsEnabled {
 		if v == nil {
 			return nil
 		}
 		return v.PullRequestPreviewsEnabled
-	}).(BackgroundWorkerDetailsCreatePullRequestPreviewsEnabledPtrOutput)
+	}).(ServiceBackgroundWorkerDetailsCreatePullRequestPreviewsEnabledPtrOutput)
 }
 
-func (o BackgroundWorkerDetailsCreatePtrOutput) Region() BackgroundWorkerDetailsCreateRegionPtrOutput {
-	return o.ApplyT(func(v *BackgroundWorkerDetailsCreate) *BackgroundWorkerDetailsCreateRegion {
+func (o BackgroundWorkerDetailsCreatePtrOutput) Region() ServiceBackgroundWorkerDetailsCreateRegionPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorkerDetailsCreate) *ServiceBackgroundWorkerDetailsCreateRegion {
 		if v == nil {
 			return nil
 		}
 		return v.Region
-	}).(BackgroundWorkerDetailsCreateRegionPtrOutput)
+	}).(ServiceBackgroundWorkerDetailsCreateRegionPtrOutput)
 }
 
 func (o BackgroundWorkerDetailsCreatePtrOutput) Type() pulumi.StringPtrOutput {
@@ -1411,12 +1411,12 @@ func (o CronJobDetailsPtrOutput) Schedule() pulumi.StringPtrOutput {
 
 type CronJobDetailsCreate struct {
 	// Environment (runtime)
-	Env                CronJobDetailsCreateEnv     `pulumi:"env"`
-	EnvSpecificDetails interface{}                 `pulumi:"envSpecificDetails"`
-	Plan               *CronJobDetailsCreatePlan   `pulumi:"plan"`
-	Region             *CronJobDetailsCreateRegion `pulumi:"region"`
-	Schedule           string                      `pulumi:"schedule"`
-	Type               *string                     `pulumi:"type"`
+	Env                ServiceCronJobDetailsCreateEnv     `pulumi:"env"`
+	EnvSpecificDetails interface{}                        `pulumi:"envSpecificDetails"`
+	Plan               *ServiceCronJobDetailsCreatePlan   `pulumi:"plan"`
+	Region             *ServiceCronJobDetailsCreateRegion `pulumi:"region"`
+	Schedule           string                             `pulumi:"schedule"`
+	Type               *string                            `pulumi:"type"`
 }
 
 // Defaults sets the appropriate defaults for CronJobDetailsCreate
@@ -1445,12 +1445,12 @@ type CronJobDetailsCreateInput interface {
 
 type CronJobDetailsCreateArgs struct {
 	// Environment (runtime)
-	Env                CronJobDetailsCreateEnvInput       `pulumi:"env"`
-	EnvSpecificDetails pulumi.Input                       `pulumi:"envSpecificDetails"`
-	Plan               CronJobDetailsCreatePlanPtrInput   `pulumi:"plan"`
-	Region             CronJobDetailsCreateRegionPtrInput `pulumi:"region"`
-	Schedule           pulumi.StringInput                 `pulumi:"schedule"`
-	Type               pulumi.StringPtrInput              `pulumi:"type"`
+	Env                ServiceCronJobDetailsCreateEnvInput       `pulumi:"env"`
+	EnvSpecificDetails pulumi.Input                              `pulumi:"envSpecificDetails"`
+	Plan               ServiceCronJobDetailsCreatePlanPtrInput   `pulumi:"plan"`
+	Region             ServiceCronJobDetailsCreateRegionPtrInput `pulumi:"region"`
+	Schedule           pulumi.StringInput                        `pulumi:"schedule"`
+	Type               pulumi.StringPtrInput                     `pulumi:"type"`
 }
 
 // Defaults sets the appropriate defaults for CronJobDetailsCreateArgs
@@ -1542,20 +1542,20 @@ func (o CronJobDetailsCreateOutput) ToCronJobDetailsCreatePtrOutputWithContext(c
 }
 
 // Environment (runtime)
-func (o CronJobDetailsCreateOutput) Env() CronJobDetailsCreateEnvOutput {
-	return o.ApplyT(func(v CronJobDetailsCreate) CronJobDetailsCreateEnv { return v.Env }).(CronJobDetailsCreateEnvOutput)
+func (o CronJobDetailsCreateOutput) Env() ServiceCronJobDetailsCreateEnvOutput {
+	return o.ApplyT(func(v CronJobDetailsCreate) ServiceCronJobDetailsCreateEnv { return v.Env }).(ServiceCronJobDetailsCreateEnvOutput)
 }
 
 func (o CronJobDetailsCreateOutput) EnvSpecificDetails() pulumi.AnyOutput {
 	return o.ApplyT(func(v CronJobDetailsCreate) interface{} { return v.EnvSpecificDetails }).(pulumi.AnyOutput)
 }
 
-func (o CronJobDetailsCreateOutput) Plan() CronJobDetailsCreatePlanPtrOutput {
-	return o.ApplyT(func(v CronJobDetailsCreate) *CronJobDetailsCreatePlan { return v.Plan }).(CronJobDetailsCreatePlanPtrOutput)
+func (o CronJobDetailsCreateOutput) Plan() ServiceCronJobDetailsCreatePlanPtrOutput {
+	return o.ApplyT(func(v CronJobDetailsCreate) *ServiceCronJobDetailsCreatePlan { return v.Plan }).(ServiceCronJobDetailsCreatePlanPtrOutput)
 }
 
-func (o CronJobDetailsCreateOutput) Region() CronJobDetailsCreateRegionPtrOutput {
-	return o.ApplyT(func(v CronJobDetailsCreate) *CronJobDetailsCreateRegion { return v.Region }).(CronJobDetailsCreateRegionPtrOutput)
+func (o CronJobDetailsCreateOutput) Region() ServiceCronJobDetailsCreateRegionPtrOutput {
+	return o.ApplyT(func(v CronJobDetailsCreate) *ServiceCronJobDetailsCreateRegion { return v.Region }).(ServiceCronJobDetailsCreateRegionPtrOutput)
 }
 
 func (o CronJobDetailsCreateOutput) Schedule() pulumi.StringOutput {
@@ -1591,13 +1591,13 @@ func (o CronJobDetailsCreatePtrOutput) Elem() CronJobDetailsCreateOutput {
 }
 
 // Environment (runtime)
-func (o CronJobDetailsCreatePtrOutput) Env() CronJobDetailsCreateEnvPtrOutput {
-	return o.ApplyT(func(v *CronJobDetailsCreate) *CronJobDetailsCreateEnv {
+func (o CronJobDetailsCreatePtrOutput) Env() ServiceCronJobDetailsCreateEnvPtrOutput {
+	return o.ApplyT(func(v *CronJobDetailsCreate) *ServiceCronJobDetailsCreateEnv {
 		if v == nil {
 			return nil
 		}
 		return &v.Env
-	}).(CronJobDetailsCreateEnvPtrOutput)
+	}).(ServiceCronJobDetailsCreateEnvPtrOutput)
 }
 
 func (o CronJobDetailsCreatePtrOutput) EnvSpecificDetails() pulumi.AnyOutput {
@@ -1609,22 +1609,22 @@ func (o CronJobDetailsCreatePtrOutput) EnvSpecificDetails() pulumi.AnyOutput {
 	}).(pulumi.AnyOutput)
 }
 
-func (o CronJobDetailsCreatePtrOutput) Plan() CronJobDetailsCreatePlanPtrOutput {
-	return o.ApplyT(func(v *CronJobDetailsCreate) *CronJobDetailsCreatePlan {
+func (o CronJobDetailsCreatePtrOutput) Plan() ServiceCronJobDetailsCreatePlanPtrOutput {
+	return o.ApplyT(func(v *CronJobDetailsCreate) *ServiceCronJobDetailsCreatePlan {
 		if v == nil {
 			return nil
 		}
 		return v.Plan
-	}).(CronJobDetailsCreatePlanPtrOutput)
+	}).(ServiceCronJobDetailsCreatePlanPtrOutput)
 }
 
-func (o CronJobDetailsCreatePtrOutput) Region() CronJobDetailsCreateRegionPtrOutput {
-	return o.ApplyT(func(v *CronJobDetailsCreate) *CronJobDetailsCreateRegion {
+func (o CronJobDetailsCreatePtrOutput) Region() ServiceCronJobDetailsCreateRegionPtrOutput {
+	return o.ApplyT(func(v *CronJobDetailsCreate) *ServiceCronJobDetailsCreateRegion {
 		if v == nil {
 			return nil
 		}
 		return v.Region
-	}).(CronJobDetailsCreateRegionPtrOutput)
+	}).(ServiceCronJobDetailsCreateRegionPtrOutput)
 }
 
 func (o CronJobDetailsCreatePtrOutput) Schedule() pulumi.StringPtrOutput {
@@ -3987,15 +3987,15 @@ func (o PrivateServiceDetailsPtrOutput) Url() pulumi.StringPtrOutput {
 type PrivateServiceDetailsCreate struct {
 	Disk *PrivateServiceDetailsCreateDiskProperties `pulumi:"disk"`
 	// Environment (runtime)
-	Env                PrivateServiceDetailsCreateEnv `pulumi:"env"`
-	EnvSpecificDetails interface{}                    `pulumi:"envSpecificDetails"`
+	Env                ServicePrivateServiceDetailsCreateEnv `pulumi:"env"`
+	EnvSpecificDetails interface{}                           `pulumi:"envSpecificDetails"`
 	// Defaults to 1
-	NumInstances *int                             `pulumi:"numInstances"`
-	Plan         *PrivateServiceDetailsCreatePlan `pulumi:"plan"`
+	NumInstances *int                                    `pulumi:"numInstances"`
+	Plan         *ServicePrivateServiceDetailsCreatePlan `pulumi:"plan"`
 	// Defaults to "no"
-	PullRequestPreviewsEnabled *PrivateServiceDetailsCreatePullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
-	Region                     *PrivateServiceDetailsCreateRegion                     `pulumi:"region"`
-	Type                       *string                                                `pulumi:"type"`
+	PullRequestPreviewsEnabled *ServicePrivateServiceDetailsCreatePullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
+	Region                     *ServicePrivateServiceDetailsCreateRegion                     `pulumi:"region"`
+	Type                       *string                                                       `pulumi:"type"`
 }
 
 // Defaults sets the appropriate defaults for PrivateServiceDetailsCreate
@@ -4009,7 +4009,7 @@ func (val *PrivateServiceDetailsCreate) Defaults() *PrivateServiceDetailsCreate 
 		tmp.NumInstances = &numInstances_
 	}
 	if tmp.PullRequestPreviewsEnabled == nil {
-		pullRequestPreviewsEnabled_ := PrivateServiceDetailsCreatePullRequestPreviewsEnabled("no")
+		pullRequestPreviewsEnabled_ := ServicePrivateServiceDetailsCreatePullRequestPreviewsEnabled("no")
 		tmp.PullRequestPreviewsEnabled = &pullRequestPreviewsEnabled_
 	}
 	if tmp.Type == nil {
@@ -4033,15 +4033,15 @@ type PrivateServiceDetailsCreateInput interface {
 type PrivateServiceDetailsCreateArgs struct {
 	Disk PrivateServiceDetailsCreateDiskPropertiesPtrInput `pulumi:"disk"`
 	// Environment (runtime)
-	Env                PrivateServiceDetailsCreateEnvInput `pulumi:"env"`
-	EnvSpecificDetails pulumi.Input                        `pulumi:"envSpecificDetails"`
+	Env                ServicePrivateServiceDetailsCreateEnvInput `pulumi:"env"`
+	EnvSpecificDetails pulumi.Input                               `pulumi:"envSpecificDetails"`
 	// Defaults to 1
-	NumInstances pulumi.IntPtrInput                      `pulumi:"numInstances"`
-	Plan         PrivateServiceDetailsCreatePlanPtrInput `pulumi:"plan"`
+	NumInstances pulumi.IntPtrInput                             `pulumi:"numInstances"`
+	Plan         ServicePrivateServiceDetailsCreatePlanPtrInput `pulumi:"plan"`
 	// Defaults to "no"
-	PullRequestPreviewsEnabled PrivateServiceDetailsCreatePullRequestPreviewsEnabledPtrInput `pulumi:"pullRequestPreviewsEnabled"`
-	Region                     PrivateServiceDetailsCreateRegionPtrInput                     `pulumi:"region"`
-	Type                       pulumi.StringPtrInput                                         `pulumi:"type"`
+	PullRequestPreviewsEnabled ServicePrivateServiceDetailsCreatePullRequestPreviewsEnabledPtrInput `pulumi:"pullRequestPreviewsEnabled"`
+	Region                     ServicePrivateServiceDetailsCreateRegionPtrInput                     `pulumi:"region"`
+	Type                       pulumi.StringPtrInput                                                `pulumi:"type"`
 }
 
 // Defaults sets the appropriate defaults for PrivateServiceDetailsCreateArgs
@@ -4054,7 +4054,7 @@ func (val *PrivateServiceDetailsCreateArgs) Defaults() *PrivateServiceDetailsCre
 		tmp.NumInstances = pulumi.IntPtr(1)
 	}
 	if tmp.PullRequestPreviewsEnabled == nil {
-		tmp.PullRequestPreviewsEnabled = PrivateServiceDetailsCreatePullRequestPreviewsEnabled("no")
+		tmp.PullRequestPreviewsEnabled = ServicePrivateServiceDetailsCreatePullRequestPreviewsEnabled("no")
 	}
 	if tmp.Type == nil {
 		tmp.Type = pulumi.StringPtr("private_service")
@@ -4143,8 +4143,8 @@ func (o PrivateServiceDetailsCreateOutput) Disk() PrivateServiceDetailsCreateDis
 }
 
 // Environment (runtime)
-func (o PrivateServiceDetailsCreateOutput) Env() PrivateServiceDetailsCreateEnvOutput {
-	return o.ApplyT(func(v PrivateServiceDetailsCreate) PrivateServiceDetailsCreateEnv { return v.Env }).(PrivateServiceDetailsCreateEnvOutput)
+func (o PrivateServiceDetailsCreateOutput) Env() ServicePrivateServiceDetailsCreateEnvOutput {
+	return o.ApplyT(func(v PrivateServiceDetailsCreate) ServicePrivateServiceDetailsCreateEnv { return v.Env }).(ServicePrivateServiceDetailsCreateEnvOutput)
 }
 
 func (o PrivateServiceDetailsCreateOutput) EnvSpecificDetails() pulumi.AnyOutput {
@@ -4156,19 +4156,19 @@ func (o PrivateServiceDetailsCreateOutput) NumInstances() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v PrivateServiceDetailsCreate) *int { return v.NumInstances }).(pulumi.IntPtrOutput)
 }
 
-func (o PrivateServiceDetailsCreateOutput) Plan() PrivateServiceDetailsCreatePlanPtrOutput {
-	return o.ApplyT(func(v PrivateServiceDetailsCreate) *PrivateServiceDetailsCreatePlan { return v.Plan }).(PrivateServiceDetailsCreatePlanPtrOutput)
+func (o PrivateServiceDetailsCreateOutput) Plan() ServicePrivateServiceDetailsCreatePlanPtrOutput {
+	return o.ApplyT(func(v PrivateServiceDetailsCreate) *ServicePrivateServiceDetailsCreatePlan { return v.Plan }).(ServicePrivateServiceDetailsCreatePlanPtrOutput)
 }
 
 // Defaults to "no"
-func (o PrivateServiceDetailsCreateOutput) PullRequestPreviewsEnabled() PrivateServiceDetailsCreatePullRequestPreviewsEnabledPtrOutput {
-	return o.ApplyT(func(v PrivateServiceDetailsCreate) *PrivateServiceDetailsCreatePullRequestPreviewsEnabled {
+func (o PrivateServiceDetailsCreateOutput) PullRequestPreviewsEnabled() ServicePrivateServiceDetailsCreatePullRequestPreviewsEnabledPtrOutput {
+	return o.ApplyT(func(v PrivateServiceDetailsCreate) *ServicePrivateServiceDetailsCreatePullRequestPreviewsEnabled {
 		return v.PullRequestPreviewsEnabled
-	}).(PrivateServiceDetailsCreatePullRequestPreviewsEnabledPtrOutput)
+	}).(ServicePrivateServiceDetailsCreatePullRequestPreviewsEnabledPtrOutput)
 }
 
-func (o PrivateServiceDetailsCreateOutput) Region() PrivateServiceDetailsCreateRegionPtrOutput {
-	return o.ApplyT(func(v PrivateServiceDetailsCreate) *PrivateServiceDetailsCreateRegion { return v.Region }).(PrivateServiceDetailsCreateRegionPtrOutput)
+func (o PrivateServiceDetailsCreateOutput) Region() ServicePrivateServiceDetailsCreateRegionPtrOutput {
+	return o.ApplyT(func(v PrivateServiceDetailsCreate) *ServicePrivateServiceDetailsCreateRegion { return v.Region }).(ServicePrivateServiceDetailsCreateRegionPtrOutput)
 }
 
 func (o PrivateServiceDetailsCreateOutput) Type() pulumi.StringPtrOutput {
@@ -4209,13 +4209,13 @@ func (o PrivateServiceDetailsCreatePtrOutput) Disk() PrivateServiceDetailsCreate
 }
 
 // Environment (runtime)
-func (o PrivateServiceDetailsCreatePtrOutput) Env() PrivateServiceDetailsCreateEnvPtrOutput {
-	return o.ApplyT(func(v *PrivateServiceDetailsCreate) *PrivateServiceDetailsCreateEnv {
+func (o PrivateServiceDetailsCreatePtrOutput) Env() ServicePrivateServiceDetailsCreateEnvPtrOutput {
+	return o.ApplyT(func(v *PrivateServiceDetailsCreate) *ServicePrivateServiceDetailsCreateEnv {
 		if v == nil {
 			return nil
 		}
 		return &v.Env
-	}).(PrivateServiceDetailsCreateEnvPtrOutput)
+	}).(ServicePrivateServiceDetailsCreateEnvPtrOutput)
 }
 
 func (o PrivateServiceDetailsCreatePtrOutput) EnvSpecificDetails() pulumi.AnyOutput {
@@ -4237,32 +4237,32 @@ func (o PrivateServiceDetailsCreatePtrOutput) NumInstances() pulumi.IntPtrOutput
 	}).(pulumi.IntPtrOutput)
 }
 
-func (o PrivateServiceDetailsCreatePtrOutput) Plan() PrivateServiceDetailsCreatePlanPtrOutput {
-	return o.ApplyT(func(v *PrivateServiceDetailsCreate) *PrivateServiceDetailsCreatePlan {
+func (o PrivateServiceDetailsCreatePtrOutput) Plan() ServicePrivateServiceDetailsCreatePlanPtrOutput {
+	return o.ApplyT(func(v *PrivateServiceDetailsCreate) *ServicePrivateServiceDetailsCreatePlan {
 		if v == nil {
 			return nil
 		}
 		return v.Plan
-	}).(PrivateServiceDetailsCreatePlanPtrOutput)
+	}).(ServicePrivateServiceDetailsCreatePlanPtrOutput)
 }
 
 // Defaults to "no"
-func (o PrivateServiceDetailsCreatePtrOutput) PullRequestPreviewsEnabled() PrivateServiceDetailsCreatePullRequestPreviewsEnabledPtrOutput {
-	return o.ApplyT(func(v *PrivateServiceDetailsCreate) *PrivateServiceDetailsCreatePullRequestPreviewsEnabled {
+func (o PrivateServiceDetailsCreatePtrOutput) PullRequestPreviewsEnabled() ServicePrivateServiceDetailsCreatePullRequestPreviewsEnabledPtrOutput {
+	return o.ApplyT(func(v *PrivateServiceDetailsCreate) *ServicePrivateServiceDetailsCreatePullRequestPreviewsEnabled {
 		if v == nil {
 			return nil
 		}
 		return v.PullRequestPreviewsEnabled
-	}).(PrivateServiceDetailsCreatePullRequestPreviewsEnabledPtrOutput)
+	}).(ServicePrivateServiceDetailsCreatePullRequestPreviewsEnabledPtrOutput)
 }
 
-func (o PrivateServiceDetailsCreatePtrOutput) Region() PrivateServiceDetailsCreateRegionPtrOutput {
-	return o.ApplyT(func(v *PrivateServiceDetailsCreate) *PrivateServiceDetailsCreateRegion {
+func (o PrivateServiceDetailsCreatePtrOutput) Region() ServicePrivateServiceDetailsCreateRegionPtrOutput {
+	return o.ApplyT(func(v *PrivateServiceDetailsCreate) *ServicePrivateServiceDetailsCreateRegion {
 		if v == nil {
 			return nil
 		}
 		return v.Region
-	}).(PrivateServiceDetailsCreateRegionPtrOutput)
+	}).(ServicePrivateServiceDetailsCreateRegionPtrOutput)
 }
 
 func (o PrivateServiceDetailsCreatePtrOutput) Type() pulumi.StringPtrOutput {
@@ -4708,9 +4708,9 @@ type Route struct {
 	Destination string `pulumi:"destination"`
 	Id          string `pulumi:"id"`
 	// Redirect and Rewrite Rules are applied in priority order starting at 0
-	Priority int       `pulumi:"priority"`
-	Source   string    `pulumi:"source"`
-	Type     RouteType `pulumi:"type"`
+	Priority int              `pulumi:"priority"`
+	Source   string           `pulumi:"source"`
+	Type     ServiceRouteType `pulumi:"type"`
 }
 
 // RouteInput is an input type that accepts RouteArgs and RouteOutput values.
@@ -4728,9 +4728,9 @@ type RouteArgs struct {
 	Destination pulumi.StringInput `pulumi:"destination"`
 	Id          pulumi.StringInput `pulumi:"id"`
 	// Redirect and Rewrite Rules are applied in priority order starting at 0
-	Priority pulumi.IntInput    `pulumi:"priority"`
-	Source   pulumi.StringInput `pulumi:"source"`
-	Type     RouteTypeInput     `pulumi:"type"`
+	Priority pulumi.IntInput       `pulumi:"priority"`
+	Source   pulumi.StringInput    `pulumi:"source"`
+	Type     ServiceRouteTypeInput `pulumi:"type"`
 }
 
 func (RouteArgs) ElementType() reflect.Type {
@@ -4801,8 +4801,8 @@ func (o RouteOutput) Source() pulumi.StringOutput {
 	return o.ApplyT(func(v Route) string { return v.Source }).(pulumi.StringOutput)
 }
 
-func (o RouteOutput) Type() RouteTypeOutput {
-	return o.ApplyT(func(v Route) RouteType { return v.Type }).(RouteTypeOutput)
+func (o RouteOutput) Type() ServiceRouteTypeOutput {
+	return o.ApplyT(func(v Route) ServiceRouteType { return v.Type }).(ServiceRouteTypeOutput)
 }
 
 type RoutePtrOutput struct{ *pulumi.OutputState }
@@ -4866,13 +4866,13 @@ func (o RoutePtrOutput) Source() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o RoutePtrOutput) Type() RouteTypePtrOutput {
-	return o.ApplyT(func(v *Route) *RouteType {
+func (o RoutePtrOutput) Type() ServiceRouteTypePtrOutput {
+	return o.ApplyT(func(v *Route) *ServiceRouteType {
 		if v == nil {
 			return nil
 		}
 		return &v.Type
-	}).(RouteTypePtrOutput)
+	}).(ServiceRouteTypePtrOutput)
 }
 
 type RouteArrayOutput struct{ *pulumi.OutputState }
@@ -5454,9 +5454,9 @@ type StaticSiteDetailsCreate struct {
 	// Defaults to "public"
 	PublishPath *string `pulumi:"publishPath"`
 	// Defaults to "no"
-	PullRequestPreviewsEnabled *StaticSiteDetailsCreatePullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
-	Routes                     []Route                                            `pulumi:"routes"`
-	Type                       *string                                            `pulumi:"type"`
+	PullRequestPreviewsEnabled *ServiceStaticSiteDetailsCreatePullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
+	Routes                     []Route                                                   `pulumi:"routes"`
+	Type                       *string                                                   `pulumi:"type"`
 }
 
 // Defaults sets the appropriate defaults for StaticSiteDetailsCreate
@@ -5466,7 +5466,7 @@ func (val *StaticSiteDetailsCreate) Defaults() *StaticSiteDetailsCreate {
 	}
 	tmp := *val
 	if tmp.PullRequestPreviewsEnabled == nil {
-		pullRequestPreviewsEnabled_ := StaticSiteDetailsCreatePullRequestPreviewsEnabled("no")
+		pullRequestPreviewsEnabled_ := ServiceStaticSiteDetailsCreatePullRequestPreviewsEnabled("no")
 		tmp.PullRequestPreviewsEnabled = &pullRequestPreviewsEnabled_
 	}
 	if tmp.Type == nil {
@@ -5493,9 +5493,9 @@ type StaticSiteDetailsCreateArgs struct {
 	// Defaults to "public"
 	PublishPath pulumi.StringPtrInput `pulumi:"publishPath"`
 	// Defaults to "no"
-	PullRequestPreviewsEnabled StaticSiteDetailsCreatePullRequestPreviewsEnabledPtrInput `pulumi:"pullRequestPreviewsEnabled"`
-	Routes                     RouteArrayInput                                           `pulumi:"routes"`
-	Type                       pulumi.StringPtrInput                                     `pulumi:"type"`
+	PullRequestPreviewsEnabled ServiceStaticSiteDetailsCreatePullRequestPreviewsEnabledPtrInput `pulumi:"pullRequestPreviewsEnabled"`
+	Routes                     RouteArrayInput                                                  `pulumi:"routes"`
+	Type                       pulumi.StringPtrInput                                            `pulumi:"type"`
 }
 
 // Defaults sets the appropriate defaults for StaticSiteDetailsCreateArgs
@@ -5505,7 +5505,7 @@ func (val *StaticSiteDetailsCreateArgs) Defaults() *StaticSiteDetailsCreateArgs 
 	}
 	tmp := *val
 	if tmp.PullRequestPreviewsEnabled == nil {
-		tmp.PullRequestPreviewsEnabled = StaticSiteDetailsCreatePullRequestPreviewsEnabled("no")
+		tmp.PullRequestPreviewsEnabled = ServiceStaticSiteDetailsCreatePullRequestPreviewsEnabled("no")
 	}
 	if tmp.Type == nil {
 		tmp.Type = pulumi.StringPtr("static_site")
@@ -5603,10 +5603,10 @@ func (o StaticSiteDetailsCreateOutput) PublishPath() pulumi.StringPtrOutput {
 }
 
 // Defaults to "no"
-func (o StaticSiteDetailsCreateOutput) PullRequestPreviewsEnabled() StaticSiteDetailsCreatePullRequestPreviewsEnabledPtrOutput {
-	return o.ApplyT(func(v StaticSiteDetailsCreate) *StaticSiteDetailsCreatePullRequestPreviewsEnabled {
+func (o StaticSiteDetailsCreateOutput) PullRequestPreviewsEnabled() ServiceStaticSiteDetailsCreatePullRequestPreviewsEnabledPtrOutput {
+	return o.ApplyT(func(v StaticSiteDetailsCreate) *ServiceStaticSiteDetailsCreatePullRequestPreviewsEnabled {
 		return v.PullRequestPreviewsEnabled
-	}).(StaticSiteDetailsCreatePullRequestPreviewsEnabledPtrOutput)
+	}).(ServiceStaticSiteDetailsCreatePullRequestPreviewsEnabledPtrOutput)
 }
 
 func (o StaticSiteDetailsCreateOutput) Routes() RouteArrayOutput {
@@ -5670,13 +5670,13 @@ func (o StaticSiteDetailsCreatePtrOutput) PublishPath() pulumi.StringPtrOutput {
 }
 
 // Defaults to "no"
-func (o StaticSiteDetailsCreatePtrOutput) PullRequestPreviewsEnabled() StaticSiteDetailsCreatePullRequestPreviewsEnabledPtrOutput {
-	return o.ApplyT(func(v *StaticSiteDetailsCreate) *StaticSiteDetailsCreatePullRequestPreviewsEnabled {
+func (o StaticSiteDetailsCreatePtrOutput) PullRequestPreviewsEnabled() ServiceStaticSiteDetailsCreatePullRequestPreviewsEnabledPtrOutput {
+	return o.ApplyT(func(v *StaticSiteDetailsCreate) *ServiceStaticSiteDetailsCreatePullRequestPreviewsEnabled {
 		if v == nil {
 			return nil
 		}
 		return v.PullRequestPreviewsEnabled
-	}).(StaticSiteDetailsCreatePullRequestPreviewsEnabledPtrOutput)
+	}).(ServiceStaticSiteDetailsCreatePullRequestPreviewsEnabledPtrOutput)
 }
 
 func (o StaticSiteDetailsCreatePtrOutput) Routes() RouteArrayOutput {
@@ -5945,16 +5945,16 @@ func (o WebServiceDetailsPtrOutput) Url() pulumi.StringPtrOutput {
 type WebServiceDetailsCreate struct {
 	Disk *WebServiceDetailsCreateDiskProperties `pulumi:"disk"`
 	// Environment (runtime)
-	Env                WebServiceDetailsCreateEnv `pulumi:"env"`
-	EnvSpecificDetails interface{}                `pulumi:"envSpecificDetails"`
-	HealthCheckPath    *string                    `pulumi:"healthCheckPath"`
+	Env                ServiceWebServiceDetailsCreateEnv `pulumi:"env"`
+	EnvSpecificDetails interface{}                       `pulumi:"envSpecificDetails"`
+	HealthCheckPath    *string                           `pulumi:"healthCheckPath"`
 	// Defaults to 1
-	NumInstances *int                         `pulumi:"numInstances"`
-	Plan         *WebServiceDetailsCreatePlan `pulumi:"plan"`
+	NumInstances *int                                `pulumi:"numInstances"`
+	Plan         *ServiceWebServiceDetailsCreatePlan `pulumi:"plan"`
 	// Defaults to "no"
-	PullRequestPreviewsEnabled *WebServiceDetailsCreatePullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
-	Region                     *WebServiceDetailsCreateRegion                     `pulumi:"region"`
-	Type                       *string                                            `pulumi:"type"`
+	PullRequestPreviewsEnabled *ServiceWebServiceDetailsCreatePullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
+	Region                     *ServiceWebServiceDetailsCreateRegion                     `pulumi:"region"`
+	Type                       *string                                                   `pulumi:"type"`
 }
 
 // Defaults sets the appropriate defaults for WebServiceDetailsCreate
@@ -5964,7 +5964,7 @@ func (val *WebServiceDetailsCreate) Defaults() *WebServiceDetailsCreate {
 	}
 	tmp := *val
 	if tmp.PullRequestPreviewsEnabled == nil {
-		pullRequestPreviewsEnabled_ := WebServiceDetailsCreatePullRequestPreviewsEnabled("no")
+		pullRequestPreviewsEnabled_ := ServiceWebServiceDetailsCreatePullRequestPreviewsEnabled("no")
 		tmp.PullRequestPreviewsEnabled = &pullRequestPreviewsEnabled_
 	}
 	if tmp.Type == nil {
@@ -5988,16 +5988,16 @@ type WebServiceDetailsCreateInput interface {
 type WebServiceDetailsCreateArgs struct {
 	Disk WebServiceDetailsCreateDiskPropertiesPtrInput `pulumi:"disk"`
 	// Environment (runtime)
-	Env                WebServiceDetailsCreateEnvInput `pulumi:"env"`
-	EnvSpecificDetails pulumi.Input                    `pulumi:"envSpecificDetails"`
-	HealthCheckPath    pulumi.StringPtrInput           `pulumi:"healthCheckPath"`
+	Env                ServiceWebServiceDetailsCreateEnvInput `pulumi:"env"`
+	EnvSpecificDetails pulumi.Input                           `pulumi:"envSpecificDetails"`
+	HealthCheckPath    pulumi.StringPtrInput                  `pulumi:"healthCheckPath"`
 	// Defaults to 1
-	NumInstances pulumi.IntPtrInput                  `pulumi:"numInstances"`
-	Plan         WebServiceDetailsCreatePlanPtrInput `pulumi:"plan"`
+	NumInstances pulumi.IntPtrInput                         `pulumi:"numInstances"`
+	Plan         ServiceWebServiceDetailsCreatePlanPtrInput `pulumi:"plan"`
 	// Defaults to "no"
-	PullRequestPreviewsEnabled WebServiceDetailsCreatePullRequestPreviewsEnabledPtrInput `pulumi:"pullRequestPreviewsEnabled"`
-	Region                     WebServiceDetailsCreateRegionPtrInput                     `pulumi:"region"`
-	Type                       pulumi.StringPtrInput                                     `pulumi:"type"`
+	PullRequestPreviewsEnabled ServiceWebServiceDetailsCreatePullRequestPreviewsEnabledPtrInput `pulumi:"pullRequestPreviewsEnabled"`
+	Region                     ServiceWebServiceDetailsCreateRegionPtrInput                     `pulumi:"region"`
+	Type                       pulumi.StringPtrInput                                            `pulumi:"type"`
 }
 
 // Defaults sets the appropriate defaults for WebServiceDetailsCreateArgs
@@ -6007,7 +6007,7 @@ func (val *WebServiceDetailsCreateArgs) Defaults() *WebServiceDetailsCreateArgs 
 	}
 	tmp := *val
 	if tmp.PullRequestPreviewsEnabled == nil {
-		tmp.PullRequestPreviewsEnabled = WebServiceDetailsCreatePullRequestPreviewsEnabled("no")
+		tmp.PullRequestPreviewsEnabled = ServiceWebServiceDetailsCreatePullRequestPreviewsEnabled("no")
 	}
 	if tmp.Type == nil {
 		tmp.Type = pulumi.StringPtr("web_service")
@@ -6096,8 +6096,8 @@ func (o WebServiceDetailsCreateOutput) Disk() WebServiceDetailsCreateDiskPropert
 }
 
 // Environment (runtime)
-func (o WebServiceDetailsCreateOutput) Env() WebServiceDetailsCreateEnvOutput {
-	return o.ApplyT(func(v WebServiceDetailsCreate) WebServiceDetailsCreateEnv { return v.Env }).(WebServiceDetailsCreateEnvOutput)
+func (o WebServiceDetailsCreateOutput) Env() ServiceWebServiceDetailsCreateEnvOutput {
+	return o.ApplyT(func(v WebServiceDetailsCreate) ServiceWebServiceDetailsCreateEnv { return v.Env }).(ServiceWebServiceDetailsCreateEnvOutput)
 }
 
 func (o WebServiceDetailsCreateOutput) EnvSpecificDetails() pulumi.AnyOutput {
@@ -6113,19 +6113,19 @@ func (o WebServiceDetailsCreateOutput) NumInstances() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WebServiceDetailsCreate) *int { return v.NumInstances }).(pulumi.IntPtrOutput)
 }
 
-func (o WebServiceDetailsCreateOutput) Plan() WebServiceDetailsCreatePlanPtrOutput {
-	return o.ApplyT(func(v WebServiceDetailsCreate) *WebServiceDetailsCreatePlan { return v.Plan }).(WebServiceDetailsCreatePlanPtrOutput)
+func (o WebServiceDetailsCreateOutput) Plan() ServiceWebServiceDetailsCreatePlanPtrOutput {
+	return o.ApplyT(func(v WebServiceDetailsCreate) *ServiceWebServiceDetailsCreatePlan { return v.Plan }).(ServiceWebServiceDetailsCreatePlanPtrOutput)
 }
 
 // Defaults to "no"
-func (o WebServiceDetailsCreateOutput) PullRequestPreviewsEnabled() WebServiceDetailsCreatePullRequestPreviewsEnabledPtrOutput {
-	return o.ApplyT(func(v WebServiceDetailsCreate) *WebServiceDetailsCreatePullRequestPreviewsEnabled {
+func (o WebServiceDetailsCreateOutput) PullRequestPreviewsEnabled() ServiceWebServiceDetailsCreatePullRequestPreviewsEnabledPtrOutput {
+	return o.ApplyT(func(v WebServiceDetailsCreate) *ServiceWebServiceDetailsCreatePullRequestPreviewsEnabled {
 		return v.PullRequestPreviewsEnabled
-	}).(WebServiceDetailsCreatePullRequestPreviewsEnabledPtrOutput)
+	}).(ServiceWebServiceDetailsCreatePullRequestPreviewsEnabledPtrOutput)
 }
 
-func (o WebServiceDetailsCreateOutput) Region() WebServiceDetailsCreateRegionPtrOutput {
-	return o.ApplyT(func(v WebServiceDetailsCreate) *WebServiceDetailsCreateRegion { return v.Region }).(WebServiceDetailsCreateRegionPtrOutput)
+func (o WebServiceDetailsCreateOutput) Region() ServiceWebServiceDetailsCreateRegionPtrOutput {
+	return o.ApplyT(func(v WebServiceDetailsCreate) *ServiceWebServiceDetailsCreateRegion { return v.Region }).(ServiceWebServiceDetailsCreateRegionPtrOutput)
 }
 
 func (o WebServiceDetailsCreateOutput) Type() pulumi.StringPtrOutput {
@@ -6166,13 +6166,13 @@ func (o WebServiceDetailsCreatePtrOutput) Disk() WebServiceDetailsCreateDiskProp
 }
 
 // Environment (runtime)
-func (o WebServiceDetailsCreatePtrOutput) Env() WebServiceDetailsCreateEnvPtrOutput {
-	return o.ApplyT(func(v *WebServiceDetailsCreate) *WebServiceDetailsCreateEnv {
+func (o WebServiceDetailsCreatePtrOutput) Env() ServiceWebServiceDetailsCreateEnvPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailsCreate) *ServiceWebServiceDetailsCreateEnv {
 		if v == nil {
 			return nil
 		}
 		return &v.Env
-	}).(WebServiceDetailsCreateEnvPtrOutput)
+	}).(ServiceWebServiceDetailsCreateEnvPtrOutput)
 }
 
 func (o WebServiceDetailsCreatePtrOutput) EnvSpecificDetails() pulumi.AnyOutput {
@@ -6203,32 +6203,32 @@ func (o WebServiceDetailsCreatePtrOutput) NumInstances() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-func (o WebServiceDetailsCreatePtrOutput) Plan() WebServiceDetailsCreatePlanPtrOutput {
-	return o.ApplyT(func(v *WebServiceDetailsCreate) *WebServiceDetailsCreatePlan {
+func (o WebServiceDetailsCreatePtrOutput) Plan() ServiceWebServiceDetailsCreatePlanPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailsCreate) *ServiceWebServiceDetailsCreatePlan {
 		if v == nil {
 			return nil
 		}
 		return v.Plan
-	}).(WebServiceDetailsCreatePlanPtrOutput)
+	}).(ServiceWebServiceDetailsCreatePlanPtrOutput)
 }
 
 // Defaults to "no"
-func (o WebServiceDetailsCreatePtrOutput) PullRequestPreviewsEnabled() WebServiceDetailsCreatePullRequestPreviewsEnabledPtrOutput {
-	return o.ApplyT(func(v *WebServiceDetailsCreate) *WebServiceDetailsCreatePullRequestPreviewsEnabled {
+func (o WebServiceDetailsCreatePtrOutput) PullRequestPreviewsEnabled() ServiceWebServiceDetailsCreatePullRequestPreviewsEnabledPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailsCreate) *ServiceWebServiceDetailsCreatePullRequestPreviewsEnabled {
 		if v == nil {
 			return nil
 		}
 		return v.PullRequestPreviewsEnabled
-	}).(WebServiceDetailsCreatePullRequestPreviewsEnabledPtrOutput)
+	}).(ServiceWebServiceDetailsCreatePullRequestPreviewsEnabledPtrOutput)
 }
 
-func (o WebServiceDetailsCreatePtrOutput) Region() WebServiceDetailsCreateRegionPtrOutput {
-	return o.ApplyT(func(v *WebServiceDetailsCreate) *WebServiceDetailsCreateRegion {
+func (o WebServiceDetailsCreatePtrOutput) Region() ServiceWebServiceDetailsCreateRegionPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailsCreate) *ServiceWebServiceDetailsCreateRegion {
 		if v == nil {
 			return nil
 		}
 		return v.Region
-	}).(WebServiceDetailsCreateRegionPtrOutput)
+	}).(ServiceWebServiceDetailsCreateRegionPtrOutput)
 }
 
 func (o WebServiceDetailsCreatePtrOutput) Type() pulumi.StringPtrOutput {

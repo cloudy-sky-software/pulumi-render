@@ -15,7 +15,7 @@ type Deploy struct {
 	pulumi.CustomResourceState
 
 	// Defaults to "do_not_clear"
-	ClearCache ClearCachePtrOutput       `pulumi:"clearCache"`
+	ClearCache DeployClearCachePtrOutput `pulumi:"clearCache"`
 	Commit     CommitPropertiesPtrOutput `pulumi:"commit"`
 	// Specific ID of commit to deploy for a web service, defaults to latest commit. Not supported for Cron Job deploys.
 	CommitId   pulumi.StringPtrOutput `pulumi:"commitId"`
@@ -25,8 +25,8 @@ type Deploy struct {
 	Image ImagePropertiesPtrOutput `pulumi:"image"`
 	// URL of the image to deploy for an image-backed service. The host, repository, and image name must match the currently configured image for the service.
 	ImageUrl  pulumi.StringPtrOutput `pulumi:"imageUrl"`
-	Status    StatusPtrOutput        `pulumi:"status"`
-	Trigger   TriggerPtrOutput       `pulumi:"trigger"`
+	Status    DeployStatusPtrOutput  `pulumi:"status"`
+	Trigger   DeployTriggerPtrOutput `pulumi:"trigger"`
 	UpdatedAt pulumi.StringPtrOutput `pulumi:"updatedAt"`
 }
 
@@ -38,7 +38,7 @@ func NewDeploy(ctx *pulumi.Context,
 	}
 
 	if args.ClearCache == nil {
-		args.ClearCache = ClearCache("do_not_clear")
+		args.ClearCache = DeployClearCache("do_not_clear")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Deploy
@@ -74,7 +74,7 @@ func (DeployState) ElementType() reflect.Type {
 
 type deployArgs struct {
 	// Defaults to "do_not_clear"
-	ClearCache *ClearCache `pulumi:"clearCache"`
+	ClearCache *DeployClearCache `pulumi:"clearCache"`
 	// Specific ID of commit to deploy for a web service, defaults to latest commit. Not supported for Cron Job deploys.
 	CommitId *string `pulumi:"commitId"`
 	// URL of the image to deploy for an image-backed service. The host, repository, and image name must match the currently configured image for the service.
@@ -86,7 +86,7 @@ type deployArgs struct {
 // The set of arguments for constructing a Deploy resource.
 type DeployArgs struct {
 	// Defaults to "do_not_clear"
-	ClearCache ClearCachePtrInput
+	ClearCache DeployClearCachePtrInput
 	// Specific ID of commit to deploy for a web service, defaults to latest commit. Not supported for Cron Job deploys.
 	CommitId pulumi.StringPtrInput
 	// URL of the image to deploy for an image-backed service. The host, repository, and image name must match the currently configured image for the service.
@@ -133,8 +133,8 @@ func (o DeployOutput) ToDeployOutputWithContext(ctx context.Context) DeployOutpu
 }
 
 // Defaults to "do_not_clear"
-func (o DeployOutput) ClearCache() ClearCachePtrOutput {
-	return o.ApplyT(func(v *Deploy) ClearCachePtrOutput { return v.ClearCache }).(ClearCachePtrOutput)
+func (o DeployOutput) ClearCache() DeployClearCachePtrOutput {
+	return o.ApplyT(func(v *Deploy) DeployClearCachePtrOutput { return v.ClearCache }).(DeployClearCachePtrOutput)
 }
 
 func (o DeployOutput) Commit() CommitPropertiesPtrOutput {
@@ -164,12 +164,12 @@ func (o DeployOutput) ImageUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Deploy) pulumi.StringPtrOutput { return v.ImageUrl }).(pulumi.StringPtrOutput)
 }
 
-func (o DeployOutput) Status() StatusPtrOutput {
-	return o.ApplyT(func(v *Deploy) StatusPtrOutput { return v.Status }).(StatusPtrOutput)
+func (o DeployOutput) Status() DeployStatusPtrOutput {
+	return o.ApplyT(func(v *Deploy) DeployStatusPtrOutput { return v.Status }).(DeployStatusPtrOutput)
 }
 
-func (o DeployOutput) Trigger() TriggerPtrOutput {
-	return o.ApplyT(func(v *Deploy) TriggerPtrOutput { return v.Trigger }).(TriggerPtrOutput)
+func (o DeployOutput) Trigger() DeployTriggerPtrOutput {
+	return o.ApplyT(func(v *Deploy) DeployTriggerPtrOutput { return v.Trigger }).(DeployTriggerPtrOutput)
 }
 
 func (o DeployOutput) UpdatedAt() pulumi.StringPtrOutput {

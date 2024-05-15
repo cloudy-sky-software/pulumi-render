@@ -16,16 +16,16 @@ namespace Pulumi.Render.Services.Inputs
         /// Environment (runtime)
         /// </summary>
         [Input("env", required: true)]
-        public Input<Pulumi.Render.Services.CronJobDetailsCreateEnv> Env { get; set; } = null!;
+        public Input<Pulumi.Render.Services.ServiceCronJobDetailsCreateEnv> Env { get; set; } = null!;
 
         [Input("envSpecificDetails")]
         public InputUnion<Inputs.DockerDetailsArgs, Inputs.NativeEnvironmentDetailsArgs>? EnvSpecificDetails { get; set; }
 
         [Input("plan")]
-        public Input<Pulumi.Render.Services.CronJobDetailsCreatePlan>? Plan { get; set; }
+        public Input<Pulumi.Render.Services.ServiceCronJobDetailsCreatePlan>? Plan { get; set; }
 
         [Input("region")]
-        public Input<Pulumi.Render.Services.CronJobDetailsCreateRegion>? Region { get; set; }
+        public Input<Pulumi.Render.Services.ServiceCronJobDetailsCreateRegion>? Region { get; set; }
 
         [Input("schedule", required: true)]
         public Input<string> Schedule { get; set; } = null!;

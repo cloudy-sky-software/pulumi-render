@@ -12,23 +12,17 @@ namespace Pulumi.Render.Services
     [RenderResourceType("render:services:Service")]
     public partial class Service : global::Pulumi.CustomResource
     {
-        /// <summary>
-        /// Defaults to "yes"
-        /// </summary>
         [Output("autoDeploy")]
-        public Output<Pulumi.Render.Services.AutoDeploy?> AutoDeploy { get; private set; } = null!;
+        public Output<Pulumi.Render.Services.ServiceAutoDeploy> AutoDeploy { get; private set; } = null!;
 
-        /// <summary>
-        /// If left empty, this will fall back to the default branch of the repository
-        /// </summary>
         [Output("branch")]
         public Output<string?> Branch { get; private set; } = null!;
 
         [Output("buildFilter")]
         public Output<Outputs.BuildFilter?> BuildFilter { get; private set; } = null!;
 
-        [Output("deployId")]
-        public Output<string?> DeployId { get; private set; } = null!;
+        [Output("createdAt")]
+        public Output<string> CreatedAt { get; private set; } = null!;
 
         [Output("envVars")]
         public Output<ImmutableArray<Union<Outputs.EnvVarKeyValue, Outputs.EnvVarKeyGenerateValue>>> EnvVars { get; private set; } = null!;
@@ -36,32 +30,44 @@ namespace Pulumi.Render.Services
         [Output("image")]
         public Output<Outputs.Image?> Image { get; private set; } = null!;
 
+        [Output("imagePath")]
+        public Output<string?> ImagePath { get; private set; } = null!;
+
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        [Output("notifyOnFail")]
+        public Output<Pulumi.Render.Services.ServiceNotifyOnFail> NotifyOnFail { get; private set; } = null!;
 
         [Output("ownerId")]
         public Output<string> OwnerId { get; private set; } = null!;
 
-        /// <summary>
-        /// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-        /// </summary>
         [Output("repo")]
         public Output<string?> Repo { get; private set; } = null!;
 
         [Output("rootDir")]
-        public Output<string?> RootDir { get; private set; } = null!;
+        public Output<string> RootDir { get; private set; } = null!;
 
         [Output("secretFiles")]
         public Output<ImmutableArray<Outputs.SecretFile>> SecretFiles { get; private set; } = null!;
 
-        [Output("service")]
-        public Output<Outputs.Service?> ServiceValue { get; private set; } = null!;
-
         [Output("serviceDetails")]
-        public Output<object?> ServiceDetails { get; private set; } = null!;
+        public Output<object> ServiceDetails { get; private set; } = null!;
+
+        [Output("slug")]
+        public Output<string> Slug { get; private set; } = null!;
+
+        [Output("suspended")]
+        public Output<Pulumi.Render.Services.ServiceSuspended> Suspended { get; private set; } = null!;
+
+        [Output("suspenders")]
+        public Output<ImmutableArray<Pulumi.Render.Services.ServiceSuspendersItem>> Suspenders { get; private set; } = null!;
 
         [Output("type")]
-        public Output<Pulumi.Render.Services.Type> Type { get; private set; } = null!;
+        public Output<Pulumi.Render.Services.ServiceType> Type { get; private set; } = null!;
+
+        [Output("updatedAt")]
+        public Output<string> UpdatedAt { get; private set; } = null!;
 
 
         /// <summary>
@@ -113,7 +119,7 @@ namespace Pulumi.Render.Services
         /// Defaults to "yes"
         /// </summary>
         [Input("autoDeploy")]
-        public Input<Pulumi.Render.Services.AutoDeploy>? AutoDeploy { get; set; }
+        public Input<Pulumi.Render.Services.ServiceAutoDeploy>? AutoDeploy { get; set; }
 
         /// <summary>
         /// If left empty, this will fall back to the default branch of the repository
@@ -162,11 +168,11 @@ namespace Pulumi.Render.Services
         public object? ServiceDetails { get; set; }
 
         [Input("type", required: true)]
-        public Input<Pulumi.Render.Services.Type> Type { get; set; } = null!;
+        public Input<Pulumi.Render.Services.ServiceType> Type { get; set; } = null!;
 
         public ServiceArgs()
         {
-            AutoDeploy = Pulumi.Render.Services.AutoDeploy.Yes;
+            AutoDeploy = Pulumi.Render.Services.ServiceAutoDeploy.Yes;
         }
         public static new ServiceArgs Empty => new ServiceArgs();
     }

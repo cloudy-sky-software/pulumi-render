@@ -52,18 +52,18 @@ export namespace services {
         /**
          * Environment (runtime)
          */
-        env: pulumi.Input<enums.services.BackgroundWorkerDetailsCreateEnv>;
+        env: pulumi.Input<enums.services.ServiceBackgroundWorkerDetailsCreateEnv>;
         envSpecificDetails?: pulumi.Input<inputs.services.DockerDetailsArgs | inputs.services.NativeEnvironmentDetailsArgs>;
         /**
          * Defaults to 1
          */
         numInstances?: pulumi.Input<number>;
-        plan?: pulumi.Input<enums.services.BackgroundWorkerDetailsCreatePlan>;
+        plan?: pulumi.Input<enums.services.ServiceBackgroundWorkerDetailsCreatePlan>;
         /**
          * Defaults to "no"
          */
-        pullRequestPreviewsEnabled?: pulumi.Input<enums.services.BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled>;
-        region?: pulumi.Input<enums.services.BackgroundWorkerDetailsCreateRegion>;
+        pullRequestPreviewsEnabled?: pulumi.Input<enums.services.ServiceBackgroundWorkerDetailsCreatePullRequestPreviewsEnabled>;
+        region?: pulumi.Input<enums.services.ServiceBackgroundWorkerDetailsCreateRegion>;
         type?: pulumi.Input<string>;
     }
     /**
@@ -96,10 +96,10 @@ export namespace services {
         /**
          * Environment (runtime)
          */
-        env: pulumi.Input<enums.services.CronJobDetailsCreateEnv>;
+        env: pulumi.Input<enums.services.ServiceCronJobDetailsCreateEnv>;
         envSpecificDetails?: pulumi.Input<inputs.services.DockerDetailsArgs | inputs.services.NativeEnvironmentDetailsArgs>;
-        plan?: pulumi.Input<enums.services.CronJobDetailsCreatePlan>;
-        region?: pulumi.Input<enums.services.CronJobDetailsCreateRegion>;
+        plan?: pulumi.Input<enums.services.ServiceCronJobDetailsCreatePlan>;
+        region?: pulumi.Input<enums.services.ServiceCronJobDetailsCreateRegion>;
         schedule: pulumi.Input<string>;
         type?: pulumi.Input<string>;
     }
@@ -172,18 +172,18 @@ export namespace services {
         /**
          * Environment (runtime)
          */
-        env: pulumi.Input<enums.services.PrivateServiceDetailsCreateEnv>;
+        env: pulumi.Input<enums.services.ServicePrivateServiceDetailsCreateEnv>;
         envSpecificDetails?: pulumi.Input<inputs.services.DockerDetailsArgs | inputs.services.NativeEnvironmentDetailsArgs>;
         /**
          * Defaults to 1
          */
         numInstances?: pulumi.Input<number>;
-        plan?: pulumi.Input<enums.services.PrivateServiceDetailsCreatePlan>;
+        plan?: pulumi.Input<enums.services.ServicePrivateServiceDetailsCreatePlan>;
         /**
          * Defaults to "no"
          */
-        pullRequestPreviewsEnabled?: pulumi.Input<enums.services.PrivateServiceDetailsCreatePullRequestPreviewsEnabled>;
-        region?: pulumi.Input<enums.services.PrivateServiceDetailsCreateRegion>;
+        pullRequestPreviewsEnabled?: pulumi.Input<enums.services.ServicePrivateServiceDetailsCreatePullRequestPreviewsEnabled>;
+        region?: pulumi.Input<enums.services.ServicePrivateServiceDetailsCreateRegion>;
         type?: pulumi.Input<string>;
     }
     /**
@@ -234,7 +234,7 @@ export namespace services {
          */
         priority: pulumi.Input<number>;
         source: pulumi.Input<string>;
-        type: pulumi.Input<enums.services.RouteType>;
+        type: pulumi.Input<enums.services.ServiceRouteType>;
     }
 
     export interface SecretFileArgs {
@@ -252,7 +252,7 @@ export namespace services {
         /**
          * Defaults to "no"
          */
-        pullRequestPreviewsEnabled?: pulumi.Input<enums.services.StaticSiteDetailsCreatePullRequestPreviewsEnabled>;
+        pullRequestPreviewsEnabled?: pulumi.Input<enums.services.ServiceStaticSiteDetailsCreatePullRequestPreviewsEnabled>;
         routes?: pulumi.Input<pulumi.Input<inputs.services.RouteArgs>[]>;
         type?: pulumi.Input<string>;
     }
@@ -272,19 +272,19 @@ export namespace services {
         /**
          * Environment (runtime)
          */
-        env: pulumi.Input<enums.services.WebServiceDetailsCreateEnv>;
+        env: pulumi.Input<enums.services.ServiceWebServiceDetailsCreateEnv>;
         envSpecificDetails?: pulumi.Input<inputs.services.DockerDetailsArgs | inputs.services.NativeEnvironmentDetailsArgs>;
         healthCheckPath?: pulumi.Input<string>;
         /**
          * Defaults to 1
          */
         numInstances?: pulumi.Input<number>;
-        plan?: pulumi.Input<enums.services.WebServiceDetailsCreatePlan>;
+        plan?: pulumi.Input<enums.services.ServiceWebServiceDetailsCreatePlan>;
         /**
          * Defaults to "no"
          */
-        pullRequestPreviewsEnabled?: pulumi.Input<enums.services.WebServiceDetailsCreatePullRequestPreviewsEnabled>;
-        region?: pulumi.Input<enums.services.WebServiceDetailsCreateRegion>;
+        pullRequestPreviewsEnabled?: pulumi.Input<enums.services.ServiceWebServiceDetailsCreatePullRequestPreviewsEnabled>;
+        region?: pulumi.Input<enums.services.ServiceWebServiceDetailsCreateRegion>;
         type?: pulumi.Input<string>;
     }
     /**

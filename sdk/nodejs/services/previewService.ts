@@ -46,7 +46,7 @@ export class PreviewService extends pulumi.CustomResource {
     /**
      * The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
      */
-    public readonly plan!: pulumi.Output<enums.services.Plan | undefined>;
+    public readonly plan!: pulumi.Output<enums.services.PreviewServicePlan | undefined>;
     public /*out*/ readonly service!: pulumi.Output<outputs.services.Service | undefined>;
 
     /**
@@ -96,7 +96,7 @@ export interface PreviewServiceArgs {
     /**
      * The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
      */
-    plan?: pulumi.Input<enums.services.Plan>;
+    plan?: pulumi.Input<enums.services.PreviewServicePlan>;
     /**
      * The ID of the service
      */

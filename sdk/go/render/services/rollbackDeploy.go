@@ -21,10 +21,10 @@ type RollbackDeploy struct {
 	DeployId   pulumi.StringOutput    `pulumi:"deployId"`
 	FinishedAt pulumi.StringPtrOutput `pulumi:"finishedAt"`
 	// Image information used when creating the deploy. Not present for Git-backed deploys
-	Image     ImagePropertiesPtrOutput `pulumi:"image"`
-	Status    StatusPtrOutput          `pulumi:"status"`
-	Trigger   TriggerPtrOutput         `pulumi:"trigger"`
-	UpdatedAt pulumi.StringPtrOutput   `pulumi:"updatedAt"`
+	Image     ImagePropertiesPtrOutput       `pulumi:"image"`
+	Status    RollbackDeployStatusPtrOutput  `pulumi:"status"`
+	Trigger   RollbackDeployTriggerPtrOutput `pulumi:"trigger"`
+	UpdatedAt pulumi.StringPtrOutput         `pulumi:"updatedAt"`
 }
 
 // NewRollbackDeploy registers a new resource with the given unique name, arguments, and options.
@@ -143,12 +143,12 @@ func (o RollbackDeployOutput) Image() ImagePropertiesPtrOutput {
 	return o.ApplyT(func(v *RollbackDeploy) ImagePropertiesPtrOutput { return v.Image }).(ImagePropertiesPtrOutput)
 }
 
-func (o RollbackDeployOutput) Status() StatusPtrOutput {
-	return o.ApplyT(func(v *RollbackDeploy) StatusPtrOutput { return v.Status }).(StatusPtrOutput)
+func (o RollbackDeployOutput) Status() RollbackDeployStatusPtrOutput {
+	return o.ApplyT(func(v *RollbackDeploy) RollbackDeployStatusPtrOutput { return v.Status }).(RollbackDeployStatusPtrOutput)
 }
 
-func (o RollbackDeployOutput) Trigger() TriggerPtrOutput {
-	return o.ApplyT(func(v *RollbackDeploy) TriggerPtrOutput { return v.Trigger }).(TriggerPtrOutput)
+func (o RollbackDeployOutput) Trigger() RollbackDeployTriggerPtrOutput {
+	return o.ApplyT(func(v *RollbackDeploy) RollbackDeployTriggerPtrOutput { return v.Trigger }).(RollbackDeployTriggerPtrOutput)
 }
 
 func (o RollbackDeployOutput) UpdatedAt() pulumi.StringPtrOutput {

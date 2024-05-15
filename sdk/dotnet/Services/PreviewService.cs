@@ -31,7 +31,7 @@ namespace Pulumi.Render.Services
         /// The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
         /// </summary>
         [Output("plan")]
-        public Output<Pulumi.Render.Services.Plan?> Plan { get; private set; } = null!;
+        public Output<Pulumi.Render.Services.PreviewServicePlan?> Plan { get; private set; } = null!;
 
         [Output("service")]
         public Output<Outputs.Service?> Service { get; private set; } = null!;
@@ -98,7 +98,7 @@ namespace Pulumi.Render.Services
         /// The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
         /// </summary>
         [Input("plan")]
-        public Input<Pulumi.Render.Services.Plan>? Plan { get; set; }
+        public Input<Pulumi.Render.Services.PreviewServicePlan>? Plan { get; set; }
 
         /// <summary>
         /// The ID of the service

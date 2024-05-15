@@ -17,7 +17,7 @@ class RegistryCredentialArgs:
     def __init__(__self__, *,
                  auth_token: pulumi.Input[str],
                  owner_id: pulumi.Input[str],
-                 registry: pulumi.Input['Registry'],
+                 registry: pulumi.Input['RegistryCredentialRegistry'],
                  username: pulumi.Input[str],
                  name: Optional[pulumi.Input[str]] = None):
         """
@@ -50,11 +50,11 @@ class RegistryCredentialArgs:
 
     @property
     @pulumi.getter
-    def registry(self) -> pulumi.Input['Registry']:
+    def registry(self) -> pulumi.Input['RegistryCredentialRegistry']:
         return pulumi.get(self, "registry")
 
     @registry.setter
-    def registry(self, value: pulumi.Input['Registry']):
+    def registry(self, value: pulumi.Input['RegistryCredentialRegistry']):
         pulumi.set(self, "registry", value)
 
     @property
@@ -84,7 +84,7 @@ class RegistryCredential(pulumi.CustomResource):
                  auth_token: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  owner_id: Optional[pulumi.Input[str]] = None,
-                 registry: Optional[pulumi.Input['Registry']] = None,
+                 registry: Optional[pulumi.Input['RegistryCredentialRegistry']] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -118,7 +118,7 @@ class RegistryCredential(pulumi.CustomResource):
                  auth_token: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  owner_id: Optional[pulumi.Input[str]] = None,
-                 registry: Optional[pulumi.Input['Registry']] = None,
+                 registry: Optional[pulumi.Input['RegistryCredentialRegistry']] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -191,7 +191,7 @@ class RegistryCredential(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def registry(self) -> pulumi.Output['Registry']:
+    def registry(self) -> pulumi.Output['RegistryCredentialRegistry']:
         """
         The registry to use this credential with
         """

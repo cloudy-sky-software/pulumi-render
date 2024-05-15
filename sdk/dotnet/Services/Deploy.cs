@@ -16,7 +16,7 @@ namespace Pulumi.Render.Services
         /// Defaults to "do_not_clear"
         /// </summary>
         [Output("clearCache")]
-        public Output<Pulumi.Render.Services.ClearCache?> ClearCache { get; private set; } = null!;
+        public Output<Pulumi.Render.Services.DeployClearCache?> ClearCache { get; private set; } = null!;
 
         [Output("commit")]
         public Output<Outputs.CommitProperties?> Commit { get; private set; } = null!;
@@ -46,10 +46,10 @@ namespace Pulumi.Render.Services
         public Output<string?> ImageUrl { get; private set; } = null!;
 
         [Output("status")]
-        public Output<Pulumi.Render.Services.Status?> Status { get; private set; } = null!;
+        public Output<Pulumi.Render.Services.DeployStatus?> Status { get; private set; } = null!;
 
         [Output("trigger")]
-        public Output<Pulumi.Render.Services.Trigger?> Trigger { get; private set; } = null!;
+        public Output<Pulumi.Render.Services.DeployTrigger?> Trigger { get; private set; } = null!;
 
         [Output("updatedAt")]
         public Output<string?> UpdatedAt { get; private set; } = null!;
@@ -104,7 +104,7 @@ namespace Pulumi.Render.Services
         /// Defaults to "do_not_clear"
         /// </summary>
         [Input("clearCache")]
-        public Input<Pulumi.Render.Services.ClearCache>? ClearCache { get; set; }
+        public Input<Pulumi.Render.Services.DeployClearCache>? ClearCache { get; set; }
 
         /// <summary>
         /// Specific ID of commit to deploy for a web service, defaults to latest commit. Not supported for Cron Job deploys.
@@ -126,7 +126,7 @@ namespace Pulumi.Render.Services
 
         public DeployArgs()
         {
-            ClearCache = Pulumi.Render.Services.ClearCache.DoNotClear;
+            ClearCache = Pulumi.Render.Services.DeployClearCache.DoNotClear;
         }
         public static new DeployArgs Empty => new DeployArgs();
     }

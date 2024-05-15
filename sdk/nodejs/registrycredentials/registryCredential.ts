@@ -43,7 +43,7 @@ export class RegistryCredential extends pulumi.CustomResource {
     /**
      * The registry to use this credential with
      */
-    public readonly registry!: pulumi.Output<enums.registrycredentials.Registry>;
+    public readonly registry!: pulumi.Output<enums.registrycredentials.RegistryCredentialRegistry>;
     /**
      * The username associated with the credential
      */
@@ -96,6 +96,6 @@ export interface RegistryCredentialArgs {
     authToken: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     ownerId: pulumi.Input<string>;
-    registry: pulumi.Input<enums.registrycredentials.Registry>;
+    registry: pulumi.Input<enums.registrycredentials.RegistryCredentialRegistry>;
     username: pulumi.Input<string>;
 }

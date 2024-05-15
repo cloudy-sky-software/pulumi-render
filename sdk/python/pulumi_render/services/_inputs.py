@@ -143,18 +143,18 @@ class BackgroundWorkerDetailsCreateDiskPropertiesArgs:
 @pulumi.input_type
 class BackgroundWorkerDetailsCreateArgs:
     def __init__(__self__, *,
-                 env: pulumi.Input['BackgroundWorkerDetailsCreateEnv'],
+                 env: pulumi.Input['ServiceBackgroundWorkerDetailsCreateEnv'],
                  disk: Optional[pulumi.Input['BackgroundWorkerDetailsCreateDiskPropertiesArgs']] = None,
                  env_specific_details: Optional[pulumi.Input[Union['DockerDetailsArgs', 'NativeEnvironmentDetailsArgs']]] = None,
                  num_instances: Optional[pulumi.Input[int]] = None,
-                 plan: Optional[pulumi.Input['BackgroundWorkerDetailsCreatePlan']] = None,
-                 pull_request_previews_enabled: Optional[pulumi.Input['BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled']] = None,
-                 region: Optional[pulumi.Input['BackgroundWorkerDetailsCreateRegion']] = None,
+                 plan: Optional[pulumi.Input['ServiceBackgroundWorkerDetailsCreatePlan']] = None,
+                 pull_request_previews_enabled: Optional[pulumi.Input['ServiceBackgroundWorkerDetailsCreatePullRequestPreviewsEnabled']] = None,
+                 region: Optional[pulumi.Input['ServiceBackgroundWorkerDetailsCreateRegion']] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input['BackgroundWorkerDetailsCreateEnv'] env: Environment (runtime)
+        :param pulumi.Input['ServiceBackgroundWorkerDetailsCreateEnv'] env: Environment (runtime)
         :param pulumi.Input[int] num_instances: Defaults to 1
-        :param pulumi.Input['BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled'] pull_request_previews_enabled: Defaults to "no"
+        :param pulumi.Input['ServiceBackgroundWorkerDetailsCreatePullRequestPreviewsEnabled'] pull_request_previews_enabled: Defaults to "no"
         """
         pulumi.set(__self__, "env", env)
         if disk is not None:
@@ -180,14 +180,14 @@ class BackgroundWorkerDetailsCreateArgs:
 
     @property
     @pulumi.getter
-    def env(self) -> pulumi.Input['BackgroundWorkerDetailsCreateEnv']:
+    def env(self) -> pulumi.Input['ServiceBackgroundWorkerDetailsCreateEnv']:
         """
         Environment (runtime)
         """
         return pulumi.get(self, "env")
 
     @env.setter
-    def env(self, value: pulumi.Input['BackgroundWorkerDetailsCreateEnv']):
+    def env(self, value: pulumi.Input['ServiceBackgroundWorkerDetailsCreateEnv']):
         pulumi.set(self, "env", value)
 
     @property
@@ -222,32 +222,32 @@ class BackgroundWorkerDetailsCreateArgs:
 
     @property
     @pulumi.getter
-    def plan(self) -> Optional[pulumi.Input['BackgroundWorkerDetailsCreatePlan']]:
+    def plan(self) -> Optional[pulumi.Input['ServiceBackgroundWorkerDetailsCreatePlan']]:
         return pulumi.get(self, "plan")
 
     @plan.setter
-    def plan(self, value: Optional[pulumi.Input['BackgroundWorkerDetailsCreatePlan']]):
+    def plan(self, value: Optional[pulumi.Input['ServiceBackgroundWorkerDetailsCreatePlan']]):
         pulumi.set(self, "plan", value)
 
     @property
     @pulumi.getter(name="pullRequestPreviewsEnabled")
-    def pull_request_previews_enabled(self) -> Optional[pulumi.Input['BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled']]:
+    def pull_request_previews_enabled(self) -> Optional[pulumi.Input['ServiceBackgroundWorkerDetailsCreatePullRequestPreviewsEnabled']]:
         """
         Defaults to "no"
         """
         return pulumi.get(self, "pull_request_previews_enabled")
 
     @pull_request_previews_enabled.setter
-    def pull_request_previews_enabled(self, value: Optional[pulumi.Input['BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled']]):
+    def pull_request_previews_enabled(self, value: Optional[pulumi.Input['ServiceBackgroundWorkerDetailsCreatePullRequestPreviewsEnabled']]):
         pulumi.set(self, "pull_request_previews_enabled", value)
 
     @property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input['BackgroundWorkerDetailsCreateRegion']]:
+    def region(self) -> Optional[pulumi.Input['ServiceBackgroundWorkerDetailsCreateRegion']]:
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input['BackgroundWorkerDetailsCreateRegion']]):
+    def region(self, value: Optional[pulumi.Input['ServiceBackgroundWorkerDetailsCreateRegion']]):
         pulumi.set(self, "region", value)
 
     @property
@@ -290,14 +290,14 @@ class BuildFilterArgs:
 @pulumi.input_type
 class CronJobDetailsCreateArgs:
     def __init__(__self__, *,
-                 env: pulumi.Input['CronJobDetailsCreateEnv'],
+                 env: pulumi.Input['ServiceCronJobDetailsCreateEnv'],
                  schedule: pulumi.Input[str],
                  env_specific_details: Optional[pulumi.Input[Union['DockerDetailsArgs', 'NativeEnvironmentDetailsArgs']]] = None,
-                 plan: Optional[pulumi.Input['CronJobDetailsCreatePlan']] = None,
-                 region: Optional[pulumi.Input['CronJobDetailsCreateRegion']] = None,
+                 plan: Optional[pulumi.Input['ServiceCronJobDetailsCreatePlan']] = None,
+                 region: Optional[pulumi.Input['ServiceCronJobDetailsCreateRegion']] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input['CronJobDetailsCreateEnv'] env: Environment (runtime)
+        :param pulumi.Input['ServiceCronJobDetailsCreateEnv'] env: Environment (runtime)
         """
         pulumi.set(__self__, "env", env)
         pulumi.set(__self__, "schedule", schedule)
@@ -314,14 +314,14 @@ class CronJobDetailsCreateArgs:
 
     @property
     @pulumi.getter
-    def env(self) -> pulumi.Input['CronJobDetailsCreateEnv']:
+    def env(self) -> pulumi.Input['ServiceCronJobDetailsCreateEnv']:
         """
         Environment (runtime)
         """
         return pulumi.get(self, "env")
 
     @env.setter
-    def env(self, value: pulumi.Input['CronJobDetailsCreateEnv']):
+    def env(self, value: pulumi.Input['ServiceCronJobDetailsCreateEnv']):
         pulumi.set(self, "env", value)
 
     @property
@@ -344,20 +344,20 @@ class CronJobDetailsCreateArgs:
 
     @property
     @pulumi.getter
-    def plan(self) -> Optional[pulumi.Input['CronJobDetailsCreatePlan']]:
+    def plan(self) -> Optional[pulumi.Input['ServiceCronJobDetailsCreatePlan']]:
         return pulumi.get(self, "plan")
 
     @plan.setter
-    def plan(self, value: Optional[pulumi.Input['CronJobDetailsCreatePlan']]):
+    def plan(self, value: Optional[pulumi.Input['ServiceCronJobDetailsCreatePlan']]):
         pulumi.set(self, "plan", value)
 
     @property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input['CronJobDetailsCreateRegion']]:
+    def region(self) -> Optional[pulumi.Input['ServiceCronJobDetailsCreateRegion']]:
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input['CronJobDetailsCreateRegion']]):
+    def region(self, value: Optional[pulumi.Input['ServiceCronJobDetailsCreateRegion']]):
         pulumi.set(self, "region", value)
 
     @property
@@ -678,18 +678,18 @@ class PrivateServiceDetailsCreateDiskPropertiesArgs:
 @pulumi.input_type
 class PrivateServiceDetailsCreateArgs:
     def __init__(__self__, *,
-                 env: pulumi.Input['PrivateServiceDetailsCreateEnv'],
+                 env: pulumi.Input['ServicePrivateServiceDetailsCreateEnv'],
                  disk: Optional[pulumi.Input['PrivateServiceDetailsCreateDiskPropertiesArgs']] = None,
                  env_specific_details: Optional[pulumi.Input[Union['DockerDetailsArgs', 'NativeEnvironmentDetailsArgs']]] = None,
                  num_instances: Optional[pulumi.Input[int]] = None,
-                 plan: Optional[pulumi.Input['PrivateServiceDetailsCreatePlan']] = None,
-                 pull_request_previews_enabled: Optional[pulumi.Input['PrivateServiceDetailsCreatePullRequestPreviewsEnabled']] = None,
-                 region: Optional[pulumi.Input['PrivateServiceDetailsCreateRegion']] = None,
+                 plan: Optional[pulumi.Input['ServicePrivateServiceDetailsCreatePlan']] = None,
+                 pull_request_previews_enabled: Optional[pulumi.Input['ServicePrivateServiceDetailsCreatePullRequestPreviewsEnabled']] = None,
+                 region: Optional[pulumi.Input['ServicePrivateServiceDetailsCreateRegion']] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input['PrivateServiceDetailsCreateEnv'] env: Environment (runtime)
+        :param pulumi.Input['ServicePrivateServiceDetailsCreateEnv'] env: Environment (runtime)
         :param pulumi.Input[int] num_instances: Defaults to 1
-        :param pulumi.Input['PrivateServiceDetailsCreatePullRequestPreviewsEnabled'] pull_request_previews_enabled: Defaults to "no"
+        :param pulumi.Input['ServicePrivateServiceDetailsCreatePullRequestPreviewsEnabled'] pull_request_previews_enabled: Defaults to "no"
         """
         pulumi.set(__self__, "env", env)
         if disk is not None:
@@ -715,14 +715,14 @@ class PrivateServiceDetailsCreateArgs:
 
     @property
     @pulumi.getter
-    def env(self) -> pulumi.Input['PrivateServiceDetailsCreateEnv']:
+    def env(self) -> pulumi.Input['ServicePrivateServiceDetailsCreateEnv']:
         """
         Environment (runtime)
         """
         return pulumi.get(self, "env")
 
     @env.setter
-    def env(self, value: pulumi.Input['PrivateServiceDetailsCreateEnv']):
+    def env(self, value: pulumi.Input['ServicePrivateServiceDetailsCreateEnv']):
         pulumi.set(self, "env", value)
 
     @property
@@ -757,32 +757,32 @@ class PrivateServiceDetailsCreateArgs:
 
     @property
     @pulumi.getter
-    def plan(self) -> Optional[pulumi.Input['PrivateServiceDetailsCreatePlan']]:
+    def plan(self) -> Optional[pulumi.Input['ServicePrivateServiceDetailsCreatePlan']]:
         return pulumi.get(self, "plan")
 
     @plan.setter
-    def plan(self, value: Optional[pulumi.Input['PrivateServiceDetailsCreatePlan']]):
+    def plan(self, value: Optional[pulumi.Input['ServicePrivateServiceDetailsCreatePlan']]):
         pulumi.set(self, "plan", value)
 
     @property
     @pulumi.getter(name="pullRequestPreviewsEnabled")
-    def pull_request_previews_enabled(self) -> Optional[pulumi.Input['PrivateServiceDetailsCreatePullRequestPreviewsEnabled']]:
+    def pull_request_previews_enabled(self) -> Optional[pulumi.Input['ServicePrivateServiceDetailsCreatePullRequestPreviewsEnabled']]:
         """
         Defaults to "no"
         """
         return pulumi.get(self, "pull_request_previews_enabled")
 
     @pull_request_previews_enabled.setter
-    def pull_request_previews_enabled(self, value: Optional[pulumi.Input['PrivateServiceDetailsCreatePullRequestPreviewsEnabled']]):
+    def pull_request_previews_enabled(self, value: Optional[pulumi.Input['ServicePrivateServiceDetailsCreatePullRequestPreviewsEnabled']]):
         pulumi.set(self, "pull_request_previews_enabled", value)
 
     @property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input['PrivateServiceDetailsCreateRegion']]:
+    def region(self) -> Optional[pulumi.Input['ServicePrivateServiceDetailsCreateRegion']]:
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input['PrivateServiceDetailsCreateRegion']]):
+    def region(self, value: Optional[pulumi.Input['ServicePrivateServiceDetailsCreateRegion']]):
         pulumi.set(self, "region", value)
 
     @property
@@ -869,7 +869,7 @@ class RouteArgs:
                  id: pulumi.Input[str],
                  priority: pulumi.Input[int],
                  source: pulumi.Input[str],
-                 type: pulumi.Input['RouteType']):
+                 type: pulumi.Input['ServiceRouteType']):
         """
         :param pulumi.Input[int] priority: Redirect and Rewrite Rules are applied in priority order starting at 0
         """
@@ -920,11 +920,11 @@ class RouteArgs:
 
     @property
     @pulumi.getter
-    def type(self) -> pulumi.Input['RouteType']:
+    def type(self) -> pulumi.Input['ServiceRouteType']:
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: pulumi.Input['RouteType']):
+    def type(self, value: pulumi.Input['ServiceRouteType']):
         pulumi.set(self, "type", value)
 
 
@@ -961,12 +961,12 @@ class StaticSiteDetailsCreateArgs:
                  build_command: Optional[pulumi.Input[str]] = None,
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input['HeaderCreateArgs']]]] = None,
                  publish_path: Optional[pulumi.Input[str]] = None,
-                 pull_request_previews_enabled: Optional[pulumi.Input['StaticSiteDetailsCreatePullRequestPreviewsEnabled']] = None,
+                 pull_request_previews_enabled: Optional[pulumi.Input['ServiceStaticSiteDetailsCreatePullRequestPreviewsEnabled']] = None,
                  routes: Optional[pulumi.Input[Sequence[pulumi.Input['RouteArgs']]]] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] publish_path: Defaults to "public"
-        :param pulumi.Input['StaticSiteDetailsCreatePullRequestPreviewsEnabled'] pull_request_previews_enabled: Defaults to "no"
+        :param pulumi.Input['ServiceStaticSiteDetailsCreatePullRequestPreviewsEnabled'] pull_request_previews_enabled: Defaults to "no"
         """
         if build_command is not None:
             pulumi.set(__self__, "build_command", build_command)
@@ -1017,14 +1017,14 @@ class StaticSiteDetailsCreateArgs:
 
     @property
     @pulumi.getter(name="pullRequestPreviewsEnabled")
-    def pull_request_previews_enabled(self) -> Optional[pulumi.Input['StaticSiteDetailsCreatePullRequestPreviewsEnabled']]:
+    def pull_request_previews_enabled(self) -> Optional[pulumi.Input['ServiceStaticSiteDetailsCreatePullRequestPreviewsEnabled']]:
         """
         Defaults to "no"
         """
         return pulumi.get(self, "pull_request_previews_enabled")
 
     @pull_request_previews_enabled.setter
-    def pull_request_previews_enabled(self, value: Optional[pulumi.Input['StaticSiteDetailsCreatePullRequestPreviewsEnabled']]):
+    def pull_request_previews_enabled(self, value: Optional[pulumi.Input['ServiceStaticSiteDetailsCreatePullRequestPreviewsEnabled']]):
         pulumi.set(self, "pull_request_previews_enabled", value)
 
     @property
@@ -1094,19 +1094,19 @@ class WebServiceDetailsCreateDiskPropertiesArgs:
 @pulumi.input_type
 class WebServiceDetailsCreateArgs:
     def __init__(__self__, *,
-                 env: pulumi.Input['WebServiceDetailsCreateEnv'],
+                 env: pulumi.Input['ServiceWebServiceDetailsCreateEnv'],
                  disk: Optional[pulumi.Input['WebServiceDetailsCreateDiskPropertiesArgs']] = None,
                  env_specific_details: Optional[pulumi.Input[Union['DockerDetailsArgs', 'NativeEnvironmentDetailsArgs']]] = None,
                  health_check_path: Optional[pulumi.Input[str]] = None,
                  num_instances: Optional[pulumi.Input[int]] = None,
-                 plan: Optional[pulumi.Input['WebServiceDetailsCreatePlan']] = None,
-                 pull_request_previews_enabled: Optional[pulumi.Input['WebServiceDetailsCreatePullRequestPreviewsEnabled']] = None,
-                 region: Optional[pulumi.Input['WebServiceDetailsCreateRegion']] = None,
+                 plan: Optional[pulumi.Input['ServiceWebServiceDetailsCreatePlan']] = None,
+                 pull_request_previews_enabled: Optional[pulumi.Input['ServiceWebServiceDetailsCreatePullRequestPreviewsEnabled']] = None,
+                 region: Optional[pulumi.Input['ServiceWebServiceDetailsCreateRegion']] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input['WebServiceDetailsCreateEnv'] env: Environment (runtime)
+        :param pulumi.Input['ServiceWebServiceDetailsCreateEnv'] env: Environment (runtime)
         :param pulumi.Input[int] num_instances: Defaults to 1
-        :param pulumi.Input['WebServiceDetailsCreatePullRequestPreviewsEnabled'] pull_request_previews_enabled: Defaults to "no"
+        :param pulumi.Input['ServiceWebServiceDetailsCreatePullRequestPreviewsEnabled'] pull_request_previews_enabled: Defaults to "no"
         """
         pulumi.set(__self__, "env", env)
         if disk is not None:
@@ -1132,14 +1132,14 @@ class WebServiceDetailsCreateArgs:
 
     @property
     @pulumi.getter
-    def env(self) -> pulumi.Input['WebServiceDetailsCreateEnv']:
+    def env(self) -> pulumi.Input['ServiceWebServiceDetailsCreateEnv']:
         """
         Environment (runtime)
         """
         return pulumi.get(self, "env")
 
     @env.setter
-    def env(self, value: pulumi.Input['WebServiceDetailsCreateEnv']):
+    def env(self, value: pulumi.Input['ServiceWebServiceDetailsCreateEnv']):
         pulumi.set(self, "env", value)
 
     @property
@@ -1183,32 +1183,32 @@ class WebServiceDetailsCreateArgs:
 
     @property
     @pulumi.getter
-    def plan(self) -> Optional[pulumi.Input['WebServiceDetailsCreatePlan']]:
+    def plan(self) -> Optional[pulumi.Input['ServiceWebServiceDetailsCreatePlan']]:
         return pulumi.get(self, "plan")
 
     @plan.setter
-    def plan(self, value: Optional[pulumi.Input['WebServiceDetailsCreatePlan']]):
+    def plan(self, value: Optional[pulumi.Input['ServiceWebServiceDetailsCreatePlan']]):
         pulumi.set(self, "plan", value)
 
     @property
     @pulumi.getter(name="pullRequestPreviewsEnabled")
-    def pull_request_previews_enabled(self) -> Optional[pulumi.Input['WebServiceDetailsCreatePullRequestPreviewsEnabled']]:
+    def pull_request_previews_enabled(self) -> Optional[pulumi.Input['ServiceWebServiceDetailsCreatePullRequestPreviewsEnabled']]:
         """
         Defaults to "no"
         """
         return pulumi.get(self, "pull_request_previews_enabled")
 
     @pull_request_previews_enabled.setter
-    def pull_request_previews_enabled(self, value: Optional[pulumi.Input['WebServiceDetailsCreatePullRequestPreviewsEnabled']]):
+    def pull_request_previews_enabled(self, value: Optional[pulumi.Input['ServiceWebServiceDetailsCreatePullRequestPreviewsEnabled']]):
         pulumi.set(self, "pull_request_previews_enabled", value)
 
     @property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input['WebServiceDetailsCreateRegion']]:
+    def region(self) -> Optional[pulumi.Input['ServiceWebServiceDetailsCreateRegion']]:
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input['WebServiceDetailsCreateRegion']]):
+    def region(self, value: Optional[pulumi.Input['ServiceWebServiceDetailsCreateRegion']]):
         pulumi.set(self, "region", value)
 
     @property

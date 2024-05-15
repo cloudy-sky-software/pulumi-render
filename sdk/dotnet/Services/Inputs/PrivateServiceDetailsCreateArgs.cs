@@ -19,7 +19,7 @@ namespace Pulumi.Render.Services.Inputs
         /// Environment (runtime)
         /// </summary>
         [Input("env", required: true)]
-        public Input<Pulumi.Render.Services.PrivateServiceDetailsCreateEnv> Env { get; set; } = null!;
+        public Input<Pulumi.Render.Services.ServicePrivateServiceDetailsCreateEnv> Env { get; set; } = null!;
 
         [Input("envSpecificDetails")]
         public InputUnion<Inputs.DockerDetailsArgs, Inputs.NativeEnvironmentDetailsArgs>? EnvSpecificDetails { get; set; }
@@ -31,16 +31,16 @@ namespace Pulumi.Render.Services.Inputs
         public Input<int>? NumInstances { get; set; }
 
         [Input("plan")]
-        public Input<Pulumi.Render.Services.PrivateServiceDetailsCreatePlan>? Plan { get; set; }
+        public Input<Pulumi.Render.Services.ServicePrivateServiceDetailsCreatePlan>? Plan { get; set; }
 
         /// <summary>
         /// Defaults to "no"
         /// </summary>
         [Input("pullRequestPreviewsEnabled")]
-        public Input<Pulumi.Render.Services.PrivateServiceDetailsCreatePullRequestPreviewsEnabled>? PullRequestPreviewsEnabled { get; set; }
+        public Input<Pulumi.Render.Services.ServicePrivateServiceDetailsCreatePullRequestPreviewsEnabled>? PullRequestPreviewsEnabled { get; set; }
 
         [Input("region")]
-        public Input<Pulumi.Render.Services.PrivateServiceDetailsCreateRegion>? Region { get; set; }
+        public Input<Pulumi.Render.Services.ServicePrivateServiceDetailsCreateRegion>? Region { get; set; }
 
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -48,7 +48,7 @@ namespace Pulumi.Render.Services.Inputs
         public PrivateServiceDetailsCreateArgs()
         {
             NumInstances = 1;
-            PullRequestPreviewsEnabled = Pulumi.Render.Services.PrivateServiceDetailsCreatePullRequestPreviewsEnabled.No;
+            PullRequestPreviewsEnabled = Pulumi.Render.Services.ServicePrivateServiceDetailsCreatePullRequestPreviewsEnabled.No;
             Type = "private_service";
         }
         public static new PrivateServiceDetailsCreateArgs Empty => new PrivateServiceDetailsCreateArgs();

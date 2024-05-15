@@ -19,7 +19,7 @@ namespace Pulumi.Render.Services.Inputs
         /// Environment (runtime)
         /// </summary>
         [Input("env", required: true)]
-        public Input<Pulumi.Render.Services.BackgroundWorkerDetailsCreateEnv> Env { get; set; } = null!;
+        public Input<Pulumi.Render.Services.ServiceBackgroundWorkerDetailsCreateEnv> Env { get; set; } = null!;
 
         [Input("envSpecificDetails")]
         public InputUnion<Inputs.DockerDetailsArgs, Inputs.NativeEnvironmentDetailsArgs>? EnvSpecificDetails { get; set; }
@@ -31,16 +31,16 @@ namespace Pulumi.Render.Services.Inputs
         public Input<int>? NumInstances { get; set; }
 
         [Input("plan")]
-        public Input<Pulumi.Render.Services.BackgroundWorkerDetailsCreatePlan>? Plan { get; set; }
+        public Input<Pulumi.Render.Services.ServiceBackgroundWorkerDetailsCreatePlan>? Plan { get; set; }
 
         /// <summary>
         /// Defaults to "no"
         /// </summary>
         [Input("pullRequestPreviewsEnabled")]
-        public Input<Pulumi.Render.Services.BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled>? PullRequestPreviewsEnabled { get; set; }
+        public Input<Pulumi.Render.Services.ServiceBackgroundWorkerDetailsCreatePullRequestPreviewsEnabled>? PullRequestPreviewsEnabled { get; set; }
 
         [Input("region")]
-        public Input<Pulumi.Render.Services.BackgroundWorkerDetailsCreateRegion>? Region { get; set; }
+        public Input<Pulumi.Render.Services.ServiceBackgroundWorkerDetailsCreateRegion>? Region { get; set; }
 
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -48,7 +48,7 @@ namespace Pulumi.Render.Services.Inputs
         public BackgroundWorkerDetailsCreateArgs()
         {
             NumInstances = 1;
-            PullRequestPreviewsEnabled = Pulumi.Render.Services.BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled.No;
+            PullRequestPreviewsEnabled = Pulumi.Render.Services.ServiceBackgroundWorkerDetailsCreatePullRequestPreviewsEnabled.No;
             Type = "background_worker";
         }
         public static new BackgroundWorkerDetailsCreateArgs Empty => new BackgroundWorkerDetailsCreateArgs();

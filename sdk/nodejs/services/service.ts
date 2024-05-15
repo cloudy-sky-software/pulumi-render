@@ -34,29 +34,25 @@ export class Service extends pulumi.CustomResource {
         return obj['__pulumiType'] === Service.__pulumiType;
     }
 
-    /**
-     * Defaults to "yes"
-     */
-    public readonly autoDeploy!: pulumi.Output<enums.services.AutoDeploy | undefined>;
-    /**
-     * If left empty, this will fall back to the default branch of the repository
-     */
+    public readonly autoDeploy!: pulumi.Output<enums.services.ServiceAutoDeploy>;
     public readonly branch!: pulumi.Output<string | undefined>;
     public readonly buildFilter!: pulumi.Output<outputs.services.BuildFilter | undefined>;
-    public /*out*/ readonly deployId!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly createdAt!: pulumi.Output<string>;
     public readonly envVars!: pulumi.Output<(outputs.services.EnvVarKeyValue | outputs.services.EnvVarKeyGenerateValue)[] | undefined>;
     public readonly image!: pulumi.Output<outputs.services.Image | undefined>;
+    public /*out*/ readonly imagePath!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
+    public /*out*/ readonly notifyOnFail!: pulumi.Output<enums.services.ServiceNotifyOnFail>;
     public readonly ownerId!: pulumi.Output<string>;
-    /**
-     * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-     */
     public readonly repo!: pulumi.Output<string | undefined>;
-    public readonly rootDir!: pulumi.Output<string | undefined>;
+    public readonly rootDir!: pulumi.Output<string>;
     public readonly secretFiles!: pulumi.Output<outputs.services.SecretFile[] | undefined>;
-    public /*out*/ readonly service!: pulumi.Output<outputs.services.Service | undefined>;
-    public readonly serviceDetails!: pulumi.Output<outputs.services.StaticSiteDetailsCreate | outputs.services.WebServiceDetailsCreate | outputs.services.PrivateServiceDetailsCreate | outputs.services.BackgroundWorkerDetailsCreate | outputs.services.CronJobDetailsCreate | undefined>;
-    public readonly type!: pulumi.Output<enums.services.Type>;
+    public readonly serviceDetails!: pulumi.Output<outputs.services.StaticSiteDetails | outputs.services.WebServiceDetails | outputs.services.PrivateServiceDetails | outputs.services.BackgroundWorkerDetails | outputs.services.CronJobDetails>;
+    public /*out*/ readonly slug!: pulumi.Output<string>;
+    public /*out*/ readonly suspended!: pulumi.Output<enums.services.ServiceSuspended>;
+    public /*out*/ readonly suspenders!: pulumi.Output<enums.services.ServiceSuspendersItem[]>;
+    public readonly type!: pulumi.Output<enums.services.ServiceType>;
+    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
 
     /**
      * Create a Service resource with the given unique name, arguments, and options.
@@ -87,23 +83,33 @@ export class Service extends pulumi.CustomResource {
             resourceInputs["secretFiles"] = args ? args.secretFiles : undefined;
             resourceInputs["serviceDetails"] = args ? args.serviceDetails : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
-            resourceInputs["deployId"] = undefined /*out*/;
-            resourceInputs["service"] = undefined /*out*/;
+            resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["imagePath"] = undefined /*out*/;
+            resourceInputs["notifyOnFail"] = undefined /*out*/;
+            resourceInputs["slug"] = undefined /*out*/;
+            resourceInputs["suspended"] = undefined /*out*/;
+            resourceInputs["suspenders"] = undefined /*out*/;
+            resourceInputs["updatedAt"] = undefined /*out*/;
         } else {
             resourceInputs["autoDeploy"] = undefined /*out*/;
             resourceInputs["branch"] = undefined /*out*/;
             resourceInputs["buildFilter"] = undefined /*out*/;
-            resourceInputs["deployId"] = undefined /*out*/;
+            resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["envVars"] = undefined /*out*/;
             resourceInputs["image"] = undefined /*out*/;
+            resourceInputs["imagePath"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;
+            resourceInputs["notifyOnFail"] = undefined /*out*/;
             resourceInputs["ownerId"] = undefined /*out*/;
             resourceInputs["repo"] = undefined /*out*/;
             resourceInputs["rootDir"] = undefined /*out*/;
             resourceInputs["secretFiles"] = undefined /*out*/;
-            resourceInputs["service"] = undefined /*out*/;
             resourceInputs["serviceDetails"] = undefined /*out*/;
+            resourceInputs["slug"] = undefined /*out*/;
+            resourceInputs["suspended"] = undefined /*out*/;
+            resourceInputs["suspenders"] = undefined /*out*/;
             resourceInputs["type"] = undefined /*out*/;
+            resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Service.__pulumiType, name, resourceInputs, opts);
@@ -117,7 +123,7 @@ export interface ServiceArgs {
     /**
      * Defaults to "yes"
      */
-    autoDeploy?: pulumi.Input<enums.services.AutoDeploy>;
+    autoDeploy?: pulumi.Input<enums.services.ServiceAutoDeploy>;
     /**
      * If left empty, this will fall back to the default branch of the repository
      */
@@ -134,5 +140,5 @@ export interface ServiceArgs {
     rootDir?: pulumi.Input<string>;
     secretFiles?: pulumi.Input<pulumi.Input<inputs.services.SecretFileArgs>[]>;
     serviceDetails?: pulumi.Input<inputs.services.StaticSiteDetailsCreateArgs | inputs.services.WebServiceDetailsCreateArgs | inputs.services.PrivateServiceDetailsCreateArgs | inputs.services.BackgroundWorkerDetailsCreateArgs | inputs.services.CronJobDetailsCreateArgs>;
-    type: pulumi.Input<enums.services.Type>;
+    type: pulumi.Input<enums.services.ServiceType>;
 }

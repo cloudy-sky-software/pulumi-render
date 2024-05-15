@@ -18,8 +18,8 @@ __all__ = ['ServiceArgs', 'Service']
 class ServiceArgs:
     def __init__(__self__, *,
                  owner_id: pulumi.Input[str],
-                 type: pulumi.Input['Type'],
-                 auto_deploy: Optional[pulumi.Input['AutoDeploy']] = None,
+                 type: pulumi.Input['ServiceType'],
+                 auto_deploy: Optional[pulumi.Input['ServiceAutoDeploy']] = None,
                  branch: Optional[pulumi.Input[str]] = None,
                  build_filter: Optional[pulumi.Input['BuildFilterArgs']] = None,
                  env_vars: Optional[pulumi.Input[Sequence[pulumi.Input[Union['EnvVarKeyValueArgs', 'EnvVarKeyGenerateValueArgs']]]]] = None,
@@ -31,7 +31,7 @@ class ServiceArgs:
                  service_details: Optional[pulumi.Input[Union['StaticSiteDetailsCreateArgs', 'WebServiceDetailsCreateArgs', 'PrivateServiceDetailsCreateArgs', 'BackgroundWorkerDetailsCreateArgs', 'CronJobDetailsCreateArgs']]] = None):
         """
         The set of arguments for constructing a Service resource.
-        :param pulumi.Input['AutoDeploy'] auto_deploy: Defaults to "yes"
+        :param pulumi.Input['ServiceAutoDeploy'] auto_deploy: Defaults to "yes"
         :param pulumi.Input[str] branch: If left empty, this will fall back to the default branch of the repository
         :param pulumi.Input[str] repo: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
         """
@@ -71,23 +71,23 @@ class ServiceArgs:
 
     @property
     @pulumi.getter
-    def type(self) -> pulumi.Input['Type']:
+    def type(self) -> pulumi.Input['ServiceType']:
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: pulumi.Input['Type']):
+    def type(self, value: pulumi.Input['ServiceType']):
         pulumi.set(self, "type", value)
 
     @property
     @pulumi.getter(name="autoDeploy")
-    def auto_deploy(self) -> Optional[pulumi.Input['AutoDeploy']]:
+    def auto_deploy(self) -> Optional[pulumi.Input['ServiceAutoDeploy']]:
         """
         Defaults to "yes"
         """
         return pulumi.get(self, "auto_deploy")
 
     @auto_deploy.setter
-    def auto_deploy(self, value: Optional[pulumi.Input['AutoDeploy']]):
+    def auto_deploy(self, value: Optional[pulumi.Input['ServiceAutoDeploy']]):
         pulumi.set(self, "auto_deploy", value)
 
     @property
@@ -183,7 +183,7 @@ class Service(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 auto_deploy: Optional[pulumi.Input['AutoDeploy']] = None,
+                 auto_deploy: Optional[pulumi.Input['ServiceAutoDeploy']] = None,
                  branch: Optional[pulumi.Input[str]] = None,
                  build_filter: Optional[pulumi.Input[pulumi.InputType['BuildFilterArgs']]] = None,
                  env_vars: Optional[pulumi.Input[Sequence[pulumi.Input[Union[pulumi.InputType['EnvVarKeyValueArgs'], pulumi.InputType['EnvVarKeyGenerateValueArgs']]]]]] = None,
@@ -194,13 +194,13 @@ class Service(pulumi.CustomResource):
                  root_dir: Optional[pulumi.Input[str]] = None,
                  secret_files: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretFileArgs']]]]] = None,
                  service_details: Optional[pulumi.Input[Union[pulumi.InputType['StaticSiteDetailsCreateArgs'], pulumi.InputType['WebServiceDetailsCreateArgs'], pulumi.InputType['PrivateServiceDetailsCreateArgs'], pulumi.InputType['BackgroundWorkerDetailsCreateArgs'], pulumi.InputType['CronJobDetailsCreateArgs']]]] = None,
-                 type: Optional[pulumi.Input['Type']] = None,
+                 type: Optional[pulumi.Input['ServiceType']] = None,
                  __props__=None):
         """
         Create a Service resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input['AutoDeploy'] auto_deploy: Defaults to "yes"
+        :param pulumi.Input['ServiceAutoDeploy'] auto_deploy: Defaults to "yes"
         :param pulumi.Input[str] branch: If left empty, this will fall back to the default branch of the repository
         :param pulumi.Input[str] repo: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
         """
@@ -227,7 +227,7 @@ class Service(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 auto_deploy: Optional[pulumi.Input['AutoDeploy']] = None,
+                 auto_deploy: Optional[pulumi.Input['ServiceAutoDeploy']] = None,
                  branch: Optional[pulumi.Input[str]] = None,
                  build_filter: Optional[pulumi.Input[pulumi.InputType['BuildFilterArgs']]] = None,
                  env_vars: Optional[pulumi.Input[Sequence[pulumi.Input[Union[pulumi.InputType['EnvVarKeyValueArgs'], pulumi.InputType['EnvVarKeyGenerateValueArgs']]]]]] = None,
@@ -238,7 +238,7 @@ class Service(pulumi.CustomResource):
                  root_dir: Optional[pulumi.Input[str]] = None,
                  secret_files: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretFileArgs']]]]] = None,
                  service_details: Optional[pulumi.Input[Union[pulumi.InputType['StaticSiteDetailsCreateArgs'], pulumi.InputType['WebServiceDetailsCreateArgs'], pulumi.InputType['PrivateServiceDetailsCreateArgs'], pulumi.InputType['BackgroundWorkerDetailsCreateArgs'], pulumi.InputType['CronJobDetailsCreateArgs']]]] = None,
-                 type: Optional[pulumi.Input['Type']] = None,
+                 type: Optional[pulumi.Input['ServiceType']] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -266,8 +266,13 @@ class Service(pulumi.CustomResource):
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
-            __props__.__dict__["deploy_id"] = None
-            __props__.__dict__["service"] = None
+            __props__.__dict__["created_at"] = None
+            __props__.__dict__["image_path"] = None
+            __props__.__dict__["notify_on_fail"] = None
+            __props__.__dict__["slug"] = None
+            __props__.__dict__["suspended"] = None
+            __props__.__dict__["suspenders"] = None
+            __props__.__dict__["updated_at"] = None
         super(Service, __self__).__init__(
             'render:services:Service',
             resource_name,
@@ -293,33 +298,32 @@ class Service(pulumi.CustomResource):
         __props__.__dict__["auto_deploy"] = None
         __props__.__dict__["branch"] = None
         __props__.__dict__["build_filter"] = None
-        __props__.__dict__["deploy_id"] = None
+        __props__.__dict__["created_at"] = None
         __props__.__dict__["env_vars"] = None
         __props__.__dict__["image"] = None
+        __props__.__dict__["image_path"] = None
         __props__.__dict__["name"] = None
+        __props__.__dict__["notify_on_fail"] = None
         __props__.__dict__["owner_id"] = None
         __props__.__dict__["repo"] = None
         __props__.__dict__["root_dir"] = None
         __props__.__dict__["secret_files"] = None
-        __props__.__dict__["service"] = None
         __props__.__dict__["service_details"] = None
+        __props__.__dict__["slug"] = None
+        __props__.__dict__["suspended"] = None
+        __props__.__dict__["suspenders"] = None
         __props__.__dict__["type"] = None
+        __props__.__dict__["updated_at"] = None
         return Service(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="autoDeploy")
-    def auto_deploy(self) -> pulumi.Output[Optional['AutoDeploy']]:
-        """
-        Defaults to "yes"
-        """
+    def auto_deploy(self) -> pulumi.Output['ServiceAutoDeploy']:
         return pulumi.get(self, "auto_deploy")
 
     @property
     @pulumi.getter
     def branch(self) -> pulumi.Output[Optional[str]]:
-        """
-        If left empty, this will fall back to the default branch of the repository
-        """
         return pulumi.get(self, "branch")
 
     @property
@@ -328,9 +332,9 @@ class Service(pulumi.CustomResource):
         return pulumi.get(self, "build_filter")
 
     @property
-    @pulumi.getter(name="deployId")
-    def deploy_id(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "deploy_id")
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="envVars")
@@ -343,9 +347,19 @@ class Service(pulumi.CustomResource):
         return pulumi.get(self, "image")
 
     @property
+    @pulumi.getter(name="imagePath")
+    def image_path(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "image_path")
+
+    @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="notifyOnFail")
+    def notify_on_fail(self) -> pulumi.Output['ServiceNotifyOnFail']:
+        return pulumi.get(self, "notify_on_fail")
 
     @property
     @pulumi.getter(name="ownerId")
@@ -355,14 +369,11 @@ class Service(pulumi.CustomResource):
     @property
     @pulumi.getter
     def repo(self) -> pulumi.Output[Optional[str]]:
-        """
-        Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-        """
         return pulumi.get(self, "repo")
 
     @property
     @pulumi.getter(name="rootDir")
-    def root_dir(self) -> pulumi.Output[Optional[str]]:
+    def root_dir(self) -> pulumi.Output[str]:
         return pulumi.get(self, "root_dir")
 
     @property
@@ -371,17 +382,32 @@ class Service(pulumi.CustomResource):
         return pulumi.get(self, "secret_files")
 
     @property
-    @pulumi.getter
-    def service(self) -> pulumi.Output[Optional['outputs.Service']]:
-        return pulumi.get(self, "service")
-
-    @property
     @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> pulumi.Output[Optional[Any]]:
+    def service_details(self) -> pulumi.Output[Any]:
         return pulumi.get(self, "service_details")
 
     @property
     @pulumi.getter
-    def type(self) -> pulumi.Output['Type']:
+    def slug(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "slug")
+
+    @property
+    @pulumi.getter
+    def suspended(self) -> pulumi.Output['ServiceSuspended']:
+        return pulumi.get(self, "suspended")
+
+    @property
+    @pulumi.getter
+    def suspenders(self) -> pulumi.Output[Sequence['ServiceSuspendersItem']]:
+        return pulumi.get(self, "suspenders")
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Output['ServiceType']:
         return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "updated_at")
 

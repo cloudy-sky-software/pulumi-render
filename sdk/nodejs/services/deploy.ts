@@ -37,7 +37,7 @@ export class Deploy extends pulumi.CustomResource {
     /**
      * Defaults to "do_not_clear"
      */
-    public readonly clearCache!: pulumi.Output<enums.services.ClearCache | undefined>;
+    public readonly clearCache!: pulumi.Output<enums.services.DeployClearCache | undefined>;
     public /*out*/ readonly commit!: pulumi.Output<outputs.services.CommitProperties | undefined>;
     /**
      * Specific ID of commit to deploy for a web service, defaults to latest commit. Not supported for Cron Job deploys.
@@ -53,8 +53,8 @@ export class Deploy extends pulumi.CustomResource {
      * URL of the image to deploy for an image-backed service. The host, repository, and image name must match the currently configured image for the service.
      */
     public readonly imageUrl!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly status!: pulumi.Output<enums.services.Status | undefined>;
-    public /*out*/ readonly trigger!: pulumi.Output<enums.services.Trigger | undefined>;
+    public /*out*/ readonly status!: pulumi.Output<enums.services.DeployStatus | undefined>;
+    public /*out*/ readonly trigger!: pulumi.Output<enums.services.DeployTrigger | undefined>;
     public /*out*/ readonly updatedAt!: pulumi.Output<string | undefined>;
 
     /**
@@ -103,7 +103,7 @@ export interface DeployArgs {
     /**
      * Defaults to "do_not_clear"
      */
-    clearCache?: pulumi.Input<enums.services.ClearCache>;
+    clearCache?: pulumi.Input<enums.services.DeployClearCache>;
     /**
      * Specific ID of commit to deploy for a web service, defaults to latest commit. Not supported for Cron Job deploys.
      */

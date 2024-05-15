@@ -15,23 +15,25 @@ import (
 type Service struct {
 	pulumi.CustomResourceState
 
-	// Defaults to "yes"
-	AutoDeploy AutoDeployPtrOutput `pulumi:"autoDeploy"`
-	// If left empty, this will fall back to the default branch of the repository
-	Branch      pulumi.StringPtrOutput `pulumi:"branch"`
-	BuildFilter BuildFilterPtrOutput   `pulumi:"buildFilter"`
-	DeployId    pulumi.StringPtrOutput `pulumi:"deployId"`
-	EnvVars     pulumi.ArrayOutput     `pulumi:"envVars"`
-	Image       ImagePtrOutput         `pulumi:"image"`
-	Name        pulumi.StringOutput    `pulumi:"name"`
-	OwnerId     pulumi.StringOutput    `pulumi:"ownerId"`
-	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-	Repo           pulumi.StringPtrOutput `pulumi:"repo"`
-	RootDir        pulumi.StringPtrOutput `pulumi:"rootDir"`
-	SecretFiles    SecretFileArrayOutput  `pulumi:"secretFiles"`
-	Service        ServiceTypePtrOutput   `pulumi:"service"`
-	ServiceDetails pulumi.AnyOutput       `pulumi:"serviceDetails"`
-	Type           TypeOutput             `pulumi:"type"`
+	AutoDeploy     ServiceAutoDeployOutput          `pulumi:"autoDeploy"`
+	Branch         pulumi.StringPtrOutput           `pulumi:"branch"`
+	BuildFilter    BuildFilterPtrOutput             `pulumi:"buildFilter"`
+	CreatedAt      pulumi.StringOutput              `pulumi:"createdAt"`
+	EnvVars        pulumi.ArrayOutput               `pulumi:"envVars"`
+	Image          ImagePtrOutput                   `pulumi:"image"`
+	ImagePath      pulumi.StringPtrOutput           `pulumi:"imagePath"`
+	Name           pulumi.StringOutput              `pulumi:"name"`
+	NotifyOnFail   ServiceNotifyOnFailOutput        `pulumi:"notifyOnFail"`
+	OwnerId        pulumi.StringOutput              `pulumi:"ownerId"`
+	Repo           pulumi.StringPtrOutput           `pulumi:"repo"`
+	RootDir        pulumi.StringOutput              `pulumi:"rootDir"`
+	SecretFiles    SecretFileArrayOutput            `pulumi:"secretFiles"`
+	ServiceDetails pulumi.AnyOutput                 `pulumi:"serviceDetails"`
+	Slug           pulumi.StringOutput              `pulumi:"slug"`
+	Suspended      ServiceSuspendedOutput           `pulumi:"suspended"`
+	Suspenders     ServiceSuspendersItemArrayOutput `pulumi:"suspenders"`
+	Type           ServiceTypeEnumOutput            `pulumi:"type"`
+	UpdatedAt      pulumi.StringOutput              `pulumi:"updatedAt"`
 }
 
 // NewService registers a new resource with the given unique name, arguments, and options.
@@ -48,7 +50,7 @@ func NewService(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
 	if args.AutoDeploy == nil {
-		args.AutoDeploy = AutoDeploy("yes")
+		args.AutoDeploy = ServiceAutoDeploy("yes")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Service
@@ -84,7 +86,7 @@ func (ServiceState) ElementType() reflect.Type {
 
 type serviceArgs struct {
 	// Defaults to "yes"
-	AutoDeploy *AutoDeploy `pulumi:"autoDeploy"`
+	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository
 	Branch      *string       `pulumi:"branch"`
 	BuildFilter *BuildFilter  `pulumi:"buildFilter"`
@@ -93,17 +95,17 @@ type serviceArgs struct {
 	Name        *string       `pulumi:"name"`
 	OwnerId     string        `pulumi:"ownerId"`
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-	Repo           *string      `pulumi:"repo"`
-	RootDir        *string      `pulumi:"rootDir"`
-	SecretFiles    []SecretFile `pulumi:"secretFiles"`
-	ServiceDetails interface{}  `pulumi:"serviceDetails"`
-	Type           Type         `pulumi:"type"`
+	Repo           *string         `pulumi:"repo"`
+	RootDir        *string         `pulumi:"rootDir"`
+	SecretFiles    []SecretFile    `pulumi:"secretFiles"`
+	ServiceDetails interface{}     `pulumi:"serviceDetails"`
+	Type           ServiceTypeEnum `pulumi:"type"`
 }
 
 // The set of arguments for constructing a Service resource.
 type ServiceArgs struct {
 	// Defaults to "yes"
-	AutoDeploy AutoDeployPtrInput
+	AutoDeploy ServiceAutoDeployPtrInput
 	// If left empty, this will fall back to the default branch of the repository
 	Branch      pulumi.StringPtrInput
 	BuildFilter BuildFilterPtrInput
@@ -116,7 +118,7 @@ type ServiceArgs struct {
 	RootDir        pulumi.StringPtrInput
 	SecretFiles    SecretFileArrayInput
 	ServiceDetails pulumi.Input
-	Type           TypeInput
+	Type           ServiceTypeEnumInput
 }
 
 func (ServiceArgs) ElementType() reflect.Type {
@@ -156,12 +158,10 @@ func (o ServiceOutput) ToServiceOutputWithContext(ctx context.Context) ServiceOu
 	return o
 }
 
-// Defaults to "yes"
-func (o ServiceOutput) AutoDeploy() AutoDeployPtrOutput {
-	return o.ApplyT(func(v *Service) AutoDeployPtrOutput { return v.AutoDeploy }).(AutoDeployPtrOutput)
+func (o ServiceOutput) AutoDeploy() ServiceAutoDeployOutput {
+	return o.ApplyT(func(v *Service) ServiceAutoDeployOutput { return v.AutoDeploy }).(ServiceAutoDeployOutput)
 }
 
-// If left empty, this will fall back to the default branch of the repository
 func (o ServiceOutput) Branch() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Service) pulumi.StringPtrOutput { return v.Branch }).(pulumi.StringPtrOutput)
 }
@@ -170,8 +170,8 @@ func (o ServiceOutput) BuildFilter() BuildFilterPtrOutput {
 	return o.ApplyT(func(v *Service) BuildFilterPtrOutput { return v.BuildFilter }).(BuildFilterPtrOutput)
 }
 
-func (o ServiceOutput) DeployId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Service) pulumi.StringPtrOutput { return v.DeployId }).(pulumi.StringPtrOutput)
+func (o ServiceOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *Service) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
 func (o ServiceOutput) EnvVars() pulumi.ArrayOutput {
@@ -182,37 +182,56 @@ func (o ServiceOutput) Image() ImagePtrOutput {
 	return o.ApplyT(func(v *Service) ImagePtrOutput { return v.Image }).(ImagePtrOutput)
 }
 
+func (o ServiceOutput) ImagePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Service) pulumi.StringPtrOutput { return v.ImagePath }).(pulumi.StringPtrOutput)
+}
+
 func (o ServiceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Service) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o ServiceOutput) NotifyOnFail() ServiceNotifyOnFailOutput {
+	return o.ApplyT(func(v *Service) ServiceNotifyOnFailOutput { return v.NotifyOnFail }).(ServiceNotifyOnFailOutput)
 }
 
 func (o ServiceOutput) OwnerId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Service) pulumi.StringOutput { return v.OwnerId }).(pulumi.StringOutput)
 }
 
-// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
 func (o ServiceOutput) Repo() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Service) pulumi.StringPtrOutput { return v.Repo }).(pulumi.StringPtrOutput)
 }
 
-func (o ServiceOutput) RootDir() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Service) pulumi.StringPtrOutput { return v.RootDir }).(pulumi.StringPtrOutput)
+func (o ServiceOutput) RootDir() pulumi.StringOutput {
+	return o.ApplyT(func(v *Service) pulumi.StringOutput { return v.RootDir }).(pulumi.StringOutput)
 }
 
 func (o ServiceOutput) SecretFiles() SecretFileArrayOutput {
 	return o.ApplyT(func(v *Service) SecretFileArrayOutput { return v.SecretFiles }).(SecretFileArrayOutput)
 }
 
-func (o ServiceOutput) Service() ServiceTypePtrOutput {
-	return o.ApplyT(func(v *Service) ServiceTypePtrOutput { return v.Service }).(ServiceTypePtrOutput)
-}
-
 func (o ServiceOutput) ServiceDetails() pulumi.AnyOutput {
 	return o.ApplyT(func(v *Service) pulumi.AnyOutput { return v.ServiceDetails }).(pulumi.AnyOutput)
 }
 
-func (o ServiceOutput) Type() TypeOutput {
-	return o.ApplyT(func(v *Service) TypeOutput { return v.Type }).(TypeOutput)
+func (o ServiceOutput) Slug() pulumi.StringOutput {
+	return o.ApplyT(func(v *Service) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
+}
+
+func (o ServiceOutput) Suspended() ServiceSuspendedOutput {
+	return o.ApplyT(func(v *Service) ServiceSuspendedOutput { return v.Suspended }).(ServiceSuspendedOutput)
+}
+
+func (o ServiceOutput) Suspenders() ServiceSuspendersItemArrayOutput {
+	return o.ApplyT(func(v *Service) ServiceSuspendersItemArrayOutput { return v.Suspenders }).(ServiceSuspendersItemArrayOutput)
+}
+
+func (o ServiceOutput) Type() ServiceTypeEnumOutput {
+	return o.ApplyT(func(v *Service) ServiceTypeEnumOutput { return v.Type }).(ServiceTypeEnumOutput)
+}
+
+func (o ServiceOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *Service) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
 func init() {

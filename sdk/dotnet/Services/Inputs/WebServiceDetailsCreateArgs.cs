@@ -19,7 +19,7 @@ namespace Pulumi.Render.Services.Inputs
         /// Environment (runtime)
         /// </summary>
         [Input("env", required: true)]
-        public Input<Pulumi.Render.Services.WebServiceDetailsCreateEnv> Env { get; set; } = null!;
+        public Input<Pulumi.Render.Services.ServiceWebServiceDetailsCreateEnv> Env { get; set; } = null!;
 
         [Input("envSpecificDetails")]
         public InputUnion<Inputs.DockerDetailsArgs, Inputs.NativeEnvironmentDetailsArgs>? EnvSpecificDetails { get; set; }
@@ -34,23 +34,23 @@ namespace Pulumi.Render.Services.Inputs
         public Input<int>? NumInstances { get; set; }
 
         [Input("plan")]
-        public Input<Pulumi.Render.Services.WebServiceDetailsCreatePlan>? Plan { get; set; }
+        public Input<Pulumi.Render.Services.ServiceWebServiceDetailsCreatePlan>? Plan { get; set; }
 
         /// <summary>
         /// Defaults to "no"
         /// </summary>
         [Input("pullRequestPreviewsEnabled")]
-        public Input<Pulumi.Render.Services.WebServiceDetailsCreatePullRequestPreviewsEnabled>? PullRequestPreviewsEnabled { get; set; }
+        public Input<Pulumi.Render.Services.ServiceWebServiceDetailsCreatePullRequestPreviewsEnabled>? PullRequestPreviewsEnabled { get; set; }
 
         [Input("region")]
-        public Input<Pulumi.Render.Services.WebServiceDetailsCreateRegion>? Region { get; set; }
+        public Input<Pulumi.Render.Services.ServiceWebServiceDetailsCreateRegion>? Region { get; set; }
 
         [Input("type")]
         public Input<string>? Type { get; set; }
 
         public WebServiceDetailsCreateArgs()
         {
-            PullRequestPreviewsEnabled = Pulumi.Render.Services.WebServiceDetailsCreatePullRequestPreviewsEnabled.No;
+            PullRequestPreviewsEnabled = Pulumi.Render.Services.ServiceWebServiceDetailsCreatePullRequestPreviewsEnabled.No;
             Type = "web_service";
         }
         public static new WebServiceDetailsCreateArgs Empty => new WebServiceDetailsCreateArgs();

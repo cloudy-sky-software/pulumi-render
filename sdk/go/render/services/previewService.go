@@ -21,8 +21,8 @@ type PreviewService struct {
 	// A name for the service preview instance. If not specified, Render generates the name using the base service's name and the specified tag or SHA.
 	Name pulumi.StringPtrOutput `pulumi:"name"`
 	// The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
-	Plan    PlanPtrOutput        `pulumi:"plan"`
-	Service ServiceTypePtrOutput `pulumi:"service"`
+	Plan    PreviewServicePlanPtrOutput `pulumi:"plan"`
+	Service ServiceTypePtrOutput        `pulumi:"service"`
 }
 
 // NewPreviewService registers a new resource with the given unique name, arguments, and options.
@@ -73,7 +73,7 @@ type previewServiceArgs struct {
 	// A name for the service preview instance. If not specified, Render generates the name using the base service's name and the specified tag or SHA.
 	Name *string `pulumi:"name"`
 	// The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
-	Plan *Plan `pulumi:"plan"`
+	Plan *PreviewServicePlan `pulumi:"plan"`
 	// The ID of the service
 	ServiceId *string `pulumi:"serviceId"`
 }
@@ -85,7 +85,7 @@ type PreviewServiceArgs struct {
 	// A name for the service preview instance. If not specified, Render generates the name using the base service's name and the specified tag or SHA.
 	Name pulumi.StringPtrInput
 	// The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
-	Plan PlanPtrInput
+	Plan PreviewServicePlanPtrInput
 	// The ID of the service
 	ServiceId pulumi.StringPtrInput
 }
@@ -142,8 +142,8 @@ func (o PreviewServiceOutput) Name() pulumi.StringPtrOutput {
 }
 
 // The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
-func (o PreviewServiceOutput) Plan() PlanPtrOutput {
-	return o.ApplyT(func(v *PreviewService) PlanPtrOutput { return v.Plan }).(PlanPtrOutput)
+func (o PreviewServiceOutput) Plan() PreviewServicePlanPtrOutput {
+	return o.ApplyT(func(v *PreviewService) PreviewServicePlanPtrOutput { return v.Plan }).(PreviewServicePlanPtrOutput)
 }
 
 func (o PreviewServiceOutput) Service() ServiceTypePtrOutput {

@@ -5,15 +5,8 @@
 from enum import Enum
 
 __all__ = [
-    'Registry',
     'RegistryCredentialRegistry',
 ]
-
-
-class Registry(str, Enum):
-    GITHUB = "GITHUB"
-    GITLAB = "GITLAB"
-    DOCKER = "DOCKER"
 
 
 class RegistryCredentialRegistry(str, Enum):

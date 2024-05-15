@@ -16,13 +16,13 @@ __all__ = ['DeployArgs', 'Deploy']
 @pulumi.input_type
 class DeployArgs:
     def __init__(__self__, *,
-                 clear_cache: Optional[pulumi.Input['ClearCache']] = None,
+                 clear_cache: Optional[pulumi.Input['DeployClearCache']] = None,
                  commit_id: Optional[pulumi.Input[str]] = None,
                  image_url: Optional[pulumi.Input[str]] = None,
                  service_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Deploy resource.
-        :param pulumi.Input['ClearCache'] clear_cache: Defaults to "do_not_clear"
+        :param pulumi.Input['DeployClearCache'] clear_cache: Defaults to "do_not_clear"
         :param pulumi.Input[str] commit_id: Specific ID of commit to deploy for a web service, defaults to latest commit. Not supported for Cron Job deploys.
         :param pulumi.Input[str] image_url: URL of the image to deploy for an image-backed service. The host, repository, and image name must match the currently configured image for the service.
         :param pulumi.Input[str] service_id: The ID of the service
@@ -40,14 +40,14 @@ class DeployArgs:
 
     @property
     @pulumi.getter(name="clearCache")
-    def clear_cache(self) -> Optional[pulumi.Input['ClearCache']]:
+    def clear_cache(self) -> Optional[pulumi.Input['DeployClearCache']]:
         """
         Defaults to "do_not_clear"
         """
         return pulumi.get(self, "clear_cache")
 
     @clear_cache.setter
-    def clear_cache(self, value: Optional[pulumi.Input['ClearCache']]):
+    def clear_cache(self, value: Optional[pulumi.Input['DeployClearCache']]):
         pulumi.set(self, "clear_cache", value)
 
     @property
@@ -92,7 +92,7 @@ class Deploy(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 clear_cache: Optional[pulumi.Input['ClearCache']] = None,
+                 clear_cache: Optional[pulumi.Input['DeployClearCache']] = None,
                  commit_id: Optional[pulumi.Input[str]] = None,
                  image_url: Optional[pulumi.Input[str]] = None,
                  service_id: Optional[pulumi.Input[str]] = None,
@@ -101,7 +101,7 @@ class Deploy(pulumi.CustomResource):
         Create a Deploy resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input['ClearCache'] clear_cache: Defaults to "do_not_clear"
+        :param pulumi.Input['DeployClearCache'] clear_cache: Defaults to "do_not_clear"
         :param pulumi.Input[str] commit_id: Specific ID of commit to deploy for a web service, defaults to latest commit. Not supported for Cron Job deploys.
         :param pulumi.Input[str] image_url: URL of the image to deploy for an image-backed service. The host, repository, and image name must match the currently configured image for the service.
         :param pulumi.Input[str] service_id: The ID of the service
@@ -129,7 +129,7 @@ class Deploy(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 clear_cache: Optional[pulumi.Input['ClearCache']] = None,
+                 clear_cache: Optional[pulumi.Input['DeployClearCache']] = None,
                  commit_id: Optional[pulumi.Input[str]] = None,
                  image_url: Optional[pulumi.Input[str]] = None,
                  service_id: Optional[pulumi.Input[str]] = None,
@@ -191,7 +191,7 @@ class Deploy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clearCache")
-    def clear_cache(self) -> pulumi.Output[Optional['ClearCache']]:
+    def clear_cache(self) -> pulumi.Output[Optional['DeployClearCache']]:
         """
         Defaults to "do_not_clear"
         """
@@ -238,12 +238,12 @@ class Deploy(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def status(self) -> pulumi.Output[Optional['Status']]:
+    def status(self) -> pulumi.Output[Optional['DeployStatus']]:
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
-    def trigger(self) -> pulumi.Output[Optional['Trigger']]:
+    def trigger(self) -> pulumi.Output[Optional['DeployTrigger']]:
         return pulumi.get(self, "trigger")
 
     @property

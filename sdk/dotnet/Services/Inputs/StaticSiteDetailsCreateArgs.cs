@@ -33,7 +33,7 @@ namespace Pulumi.Render.Services.Inputs
         /// Defaults to "no"
         /// </summary>
         [Input("pullRequestPreviewsEnabled")]
-        public Input<Pulumi.Render.Services.StaticSiteDetailsCreatePullRequestPreviewsEnabled>? PullRequestPreviewsEnabled { get; set; }
+        public Input<Pulumi.Render.Services.ServiceStaticSiteDetailsCreatePullRequestPreviewsEnabled>? PullRequestPreviewsEnabled { get; set; }
 
         [Input("routes")]
         private InputList<Inputs.RouteArgs>? _routes;
@@ -48,7 +48,7 @@ namespace Pulumi.Render.Services.Inputs
 
         public StaticSiteDetailsCreateArgs()
         {
-            PullRequestPreviewsEnabled = Pulumi.Render.Services.StaticSiteDetailsCreatePullRequestPreviewsEnabled.No;
+            PullRequestPreviewsEnabled = Pulumi.Render.Services.ServiceStaticSiteDetailsCreatePullRequestPreviewsEnabled.No;
             Type = "static_site";
         }
         public static new StaticSiteDetailsCreateArgs Empty => new StaticSiteDetailsCreateArgs();

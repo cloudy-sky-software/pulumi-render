@@ -30,6 +30,7 @@ namespace Pulumi.Render.Services.Outputs
         /// </summary>
         public readonly Pulumi.Render.Services.WebServiceDetailsCreatePullRequestPreviewsEnabled? PullRequestPreviewsEnabled;
         public readonly Pulumi.Render.Services.WebServiceDetailsCreateRegion? Region;
+        public readonly string? Type;
 
         [OutputConstructor]
         private WebServiceDetailsCreate(
@@ -47,7 +48,9 @@ namespace Pulumi.Render.Services.Outputs
 
             Pulumi.Render.Services.WebServiceDetailsCreatePullRequestPreviewsEnabled? pullRequestPreviewsEnabled,
 
-            Pulumi.Render.Services.WebServiceDetailsCreateRegion? region)
+            Pulumi.Render.Services.WebServiceDetailsCreateRegion? region,
+
+            string? type)
         {
             Disk = disk;
             Env = env;
@@ -57,6 +60,7 @@ namespace Pulumi.Render.Services.Outputs
             Plan = plan;
             PullRequestPreviewsEnabled = pullRequestPreviewsEnabled;
             Region = region;
+            Type = type;
         }
     }
 }

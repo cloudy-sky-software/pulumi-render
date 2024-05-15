@@ -42,10 +42,14 @@ namespace Pulumi.Render.Services.Inputs
         [Input("region")]
         public Input<Pulumi.Render.Services.PrivateServiceDetailsCreateRegion>? Region { get; set; }
 
+        [Input("type")]
+        public Input<string>? Type { get; set; }
+
         public PrivateServiceDetailsCreateArgs()
         {
             NumInstances = 1;
             PullRequestPreviewsEnabled = Pulumi.Render.Services.PrivateServiceDetailsCreatePullRequestPreviewsEnabled.No;
+            Type = "private_service";
         }
         public static new PrivateServiceDetailsCreateArgs Empty => new PrivateServiceDetailsCreateArgs();
     }

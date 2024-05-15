@@ -21,6 +21,7 @@ namespace Pulumi.Render.Services.Outputs
         public readonly Pulumi.Render.Services.CronJobDetailsCreatePlan? Plan;
         public readonly Pulumi.Render.Services.CronJobDetailsCreateRegion? Region;
         public readonly string Schedule;
+        public readonly string? Type;
 
         [OutputConstructor]
         private CronJobDetailsCreate(
@@ -32,13 +33,16 @@ namespace Pulumi.Render.Services.Outputs
 
             Pulumi.Render.Services.CronJobDetailsCreateRegion? region,
 
-            string schedule)
+            string schedule,
+
+            string? type)
         {
             Env = env;
             EnvSpecificDetails = envSpecificDetails;
             Plan = plan;
             Region = region;
             Schedule = schedule;
+            Type = type;
         }
     }
 }

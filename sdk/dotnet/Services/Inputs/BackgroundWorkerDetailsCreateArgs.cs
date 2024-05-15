@@ -42,10 +42,14 @@ namespace Pulumi.Render.Services.Inputs
         [Input("region")]
         public Input<Pulumi.Render.Services.BackgroundWorkerDetailsCreateRegion>? Region { get; set; }
 
+        [Input("type")]
+        public Input<string>? Type { get; set; }
+
         public BackgroundWorkerDetailsCreateArgs()
         {
             NumInstances = 1;
             PullRequestPreviewsEnabled = Pulumi.Render.Services.BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled.No;
+            Type = "background_worker";
         }
         public static new BackgroundWorkerDetailsCreateArgs Empty => new BackgroundWorkerDetailsCreateArgs();
     }

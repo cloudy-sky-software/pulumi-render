@@ -30,8 +30,12 @@ namespace Pulumi.Render.Services.Inputs
         [Input("schedule", required: true)]
         public Input<string> Schedule { get; set; } = null!;
 
+        [Input("type")]
+        public Input<string>? Type { get; set; }
+
         public CronJobDetailsCreateArgs()
         {
+            Type = "cron_job";
         }
         public static new CronJobDetailsCreateArgs Empty => new CronJobDetailsCreateArgs();
     }

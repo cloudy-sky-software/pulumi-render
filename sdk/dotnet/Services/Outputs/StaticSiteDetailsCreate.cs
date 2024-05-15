@@ -24,6 +24,7 @@ namespace Pulumi.Render.Services.Outputs
         /// </summary>
         public readonly Pulumi.Render.Services.StaticSiteDetailsCreatePullRequestPreviewsEnabled? PullRequestPreviewsEnabled;
         public readonly ImmutableArray<Outputs.Route> Routes;
+        public readonly string? Type;
 
         [OutputConstructor]
         private StaticSiteDetailsCreate(
@@ -35,13 +36,16 @@ namespace Pulumi.Render.Services.Outputs
 
             Pulumi.Render.Services.StaticSiteDetailsCreatePullRequestPreviewsEnabled? pullRequestPreviewsEnabled,
 
-            ImmutableArray<Outputs.Route> routes)
+            ImmutableArray<Outputs.Route> routes,
+
+            string? type)
         {
             BuildCommand = buildCommand;
             Headers = headers;
             PublishPath = publishPath;
             PullRequestPreviewsEnabled = pullRequestPreviewsEnabled;
             Routes = routes;
+            Type = type;
         }
     }
 }

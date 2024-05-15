@@ -29,6 +29,7 @@ namespace Pulumi.Render.Services.Outputs
         /// </summary>
         public readonly Pulumi.Render.Services.PrivateServiceDetailsCreatePullRequestPreviewsEnabled? PullRequestPreviewsEnabled;
         public readonly Pulumi.Render.Services.PrivateServiceDetailsCreateRegion? Region;
+        public readonly string? Type;
 
         [OutputConstructor]
         private PrivateServiceDetailsCreate(
@@ -44,7 +45,9 @@ namespace Pulumi.Render.Services.Outputs
 
             Pulumi.Render.Services.PrivateServiceDetailsCreatePullRequestPreviewsEnabled? pullRequestPreviewsEnabled,
 
-            Pulumi.Render.Services.PrivateServiceDetailsCreateRegion? region)
+            Pulumi.Render.Services.PrivateServiceDetailsCreateRegion? region,
+
+            string? type)
         {
             Disk = disk;
             Env = env;
@@ -53,6 +56,7 @@ namespace Pulumi.Render.Services.Outputs
             Plan = plan;
             PullRequestPreviewsEnabled = pullRequestPreviewsEnabled;
             Region = region;
+            Type = type;
         }
     }
 }

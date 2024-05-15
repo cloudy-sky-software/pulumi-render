@@ -64,6 +64,7 @@ export namespace services {
          */
         pullRequestPreviewsEnabled?: pulumi.Input<enums.services.BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled>;
         region?: pulumi.Input<enums.services.BackgroundWorkerDetailsCreateRegion>;
+        type?: pulumi.Input<string>;
     }
     /**
      * backgroundWorkerDetailsCreateArgsProvideDefaults sets the appropriate defaults for BackgroundWorkerDetailsCreateArgs
@@ -73,6 +74,7 @@ export namespace services {
             ...val,
             numInstances: (val.numInstances) ?? 1,
             pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
+            type: (val.type) ?? "background_worker",
         };
     }
 
@@ -99,6 +101,16 @@ export namespace services {
         plan?: pulumi.Input<enums.services.CronJobDetailsCreatePlan>;
         region?: pulumi.Input<enums.services.CronJobDetailsCreateRegion>;
         schedule: pulumi.Input<string>;
+        type?: pulumi.Input<string>;
+    }
+    /**
+     * cronJobDetailsCreateArgsProvideDefaults sets the appropriate defaults for CronJobDetailsCreateArgs
+     */
+    export function cronJobDetailsCreateArgsProvideDefaults(val: CronJobDetailsCreateArgs): CronJobDetailsCreateArgs {
+        return {
+            ...val,
+            type: (val.type) ?? "cron_job",
+        };
     }
 
     export interface DockerDetailsArgs {
@@ -172,6 +184,7 @@ export namespace services {
          */
         pullRequestPreviewsEnabled?: pulumi.Input<enums.services.PrivateServiceDetailsCreatePullRequestPreviewsEnabled>;
         region?: pulumi.Input<enums.services.PrivateServiceDetailsCreateRegion>;
+        type?: pulumi.Input<string>;
     }
     /**
      * privateServiceDetailsCreateArgsProvideDefaults sets the appropriate defaults for PrivateServiceDetailsCreateArgs
@@ -181,6 +194,7 @@ export namespace services {
             ...val,
             numInstances: (val.numInstances) ?? 1,
             pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
+            type: (val.type) ?? "private_service",
         };
     }
 
@@ -240,6 +254,7 @@ export namespace services {
          */
         pullRequestPreviewsEnabled?: pulumi.Input<enums.services.StaticSiteDetailsCreatePullRequestPreviewsEnabled>;
         routes?: pulumi.Input<pulumi.Input<inputs.services.RouteArgs>[]>;
+        type?: pulumi.Input<string>;
     }
     /**
      * staticSiteDetailsCreateArgsProvideDefaults sets the appropriate defaults for StaticSiteDetailsCreateArgs
@@ -248,6 +263,7 @@ export namespace services {
         return {
             ...val,
             pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
+            type: (val.type) ?? "static_site",
         };
     }
 
@@ -269,6 +285,7 @@ export namespace services {
          */
         pullRequestPreviewsEnabled?: pulumi.Input<enums.services.WebServiceDetailsCreatePullRequestPreviewsEnabled>;
         region?: pulumi.Input<enums.services.WebServiceDetailsCreateRegion>;
+        type?: pulumi.Input<string>;
     }
     /**
      * webServiceDetailsCreateArgsProvideDefaults sets the appropriate defaults for WebServiceDetailsCreateArgs
@@ -277,6 +294,7 @@ export namespace services {
         return {
             ...val,
             pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
+            type: (val.type) ?? "web_service",
         };
     }
 

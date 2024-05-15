@@ -149,6 +149,7 @@ export namespace services {
          */
         pullRequestPreviewsEnabled?: enums.services.BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled;
         region?: enums.services.BackgroundWorkerDetailsCreateRegion;
+        type?: string;
     }
     /**
      * backgroundWorkerDetailsCreateProvideDefaults sets the appropriate defaults for BackgroundWorkerDetailsCreate
@@ -158,6 +159,7 @@ export namespace services {
             ...val,
             numInstances: (val.numInstances) ?? 1,
             pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
+            type: (val.type) ?? "background_worker",
         };
     }
 
@@ -206,6 +208,16 @@ export namespace services {
         plan?: enums.services.CronJobDetailsCreatePlan;
         region?: enums.services.CronJobDetailsCreateRegion;
         schedule: string;
+        type?: string;
+    }
+    /**
+     * cronJobDetailsCreateProvideDefaults sets the appropriate defaults for CronJobDetailsCreate
+     */
+    export function cronJobDetailsCreateProvideDefaults(val: CronJobDetailsCreate): CronJobDetailsCreate {
+        return {
+            ...val,
+            type: (val.type) ?? "cron_job",
+        };
     }
 
     export interface CustomDomain {
@@ -449,6 +461,7 @@ export namespace services {
          */
         pullRequestPreviewsEnabled?: enums.services.PrivateServiceDetailsCreatePullRequestPreviewsEnabled;
         region?: enums.services.PrivateServiceDetailsCreateRegion;
+        type?: string;
     }
     /**
      * privateServiceDetailsCreateProvideDefaults sets the appropriate defaults for PrivateServiceDetailsCreate
@@ -458,6 +471,7 @@ export namespace services {
             ...val,
             numInstances: (val.numInstances) ?? 1,
             pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
+            type: (val.type) ?? "private_service",
         };
     }
 
@@ -556,6 +570,7 @@ export namespace services {
          */
         pullRequestPreviewsEnabled?: enums.services.StaticSiteDetailsCreatePullRequestPreviewsEnabled;
         routes?: outputs.services.Route[];
+        type?: string;
     }
     /**
      * staticSiteDetailsCreateProvideDefaults sets the appropriate defaults for StaticSiteDetailsCreate
@@ -564,6 +579,7 @@ export namespace services {
         return {
             ...val,
             pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
+            type: (val.type) ?? "static_site",
         };
     }
 
@@ -619,6 +635,7 @@ export namespace services {
          */
         pullRequestPreviewsEnabled?: enums.services.WebServiceDetailsCreatePullRequestPreviewsEnabled;
         region?: enums.services.WebServiceDetailsCreateRegion;
+        type?: string;
     }
     /**
      * webServiceDetailsCreateProvideDefaults sets the appropriate defaults for WebServiceDetailsCreate
@@ -627,6 +644,7 @@ export namespace services {
         return {
             ...val,
             pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
+            type: (val.type) ?? "web_service",
         };
     }
 

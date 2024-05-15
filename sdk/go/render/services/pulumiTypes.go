@@ -587,6 +587,7 @@ type BackgroundWorkerDetailsCreate struct {
 	// Defaults to "no"
 	PullRequestPreviewsEnabled *BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
 	Region                     *BackgroundWorkerDetailsCreateRegion                     `pulumi:"region"`
+	Type                       *string                                                  `pulumi:"type"`
 }
 
 // Defaults sets the appropriate defaults for BackgroundWorkerDetailsCreate
@@ -602,6 +603,10 @@ func (val *BackgroundWorkerDetailsCreate) Defaults() *BackgroundWorkerDetailsCre
 	if tmp.PullRequestPreviewsEnabled == nil {
 		pullRequestPreviewsEnabled_ := BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled("no")
 		tmp.PullRequestPreviewsEnabled = &pullRequestPreviewsEnabled_
+	}
+	if tmp.Type == nil {
+		type_ := "background_worker"
+		tmp.Type = &type_
 	}
 	return &tmp
 }
@@ -628,6 +633,7 @@ type BackgroundWorkerDetailsCreateArgs struct {
 	// Defaults to "no"
 	PullRequestPreviewsEnabled BackgroundWorkerDetailsCreatePullRequestPreviewsEnabledPtrInput `pulumi:"pullRequestPreviewsEnabled"`
 	Region                     BackgroundWorkerDetailsCreateRegionPtrInput                     `pulumi:"region"`
+	Type                       pulumi.StringPtrInput                                           `pulumi:"type"`
 }
 
 // Defaults sets the appropriate defaults for BackgroundWorkerDetailsCreateArgs
@@ -641,6 +647,9 @@ func (val *BackgroundWorkerDetailsCreateArgs) Defaults() *BackgroundWorkerDetail
 	}
 	if tmp.PullRequestPreviewsEnabled == nil {
 		tmp.PullRequestPreviewsEnabled = BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled("no")
+	}
+	if tmp.Type == nil {
+		tmp.Type = pulumi.StringPtr("background_worker")
 	}
 	return &tmp
 }
@@ -754,6 +763,10 @@ func (o BackgroundWorkerDetailsCreateOutput) Region() BackgroundWorkerDetailsCre
 	return o.ApplyT(func(v BackgroundWorkerDetailsCreate) *BackgroundWorkerDetailsCreateRegion { return v.Region }).(BackgroundWorkerDetailsCreateRegionPtrOutput)
 }
 
+func (o BackgroundWorkerDetailsCreateOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BackgroundWorkerDetailsCreate) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
 type BackgroundWorkerDetailsCreatePtrOutput struct{ *pulumi.OutputState }
 
 func (BackgroundWorkerDetailsCreatePtrOutput) ElementType() reflect.Type {
@@ -842,6 +855,15 @@ func (o BackgroundWorkerDetailsCreatePtrOutput) Region() BackgroundWorkerDetails
 		}
 		return v.Region
 	}).(BackgroundWorkerDetailsCreateRegionPtrOutput)
+}
+
+func (o BackgroundWorkerDetailsCreatePtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorkerDetailsCreate) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Type
+	}).(pulumi.StringPtrOutput)
 }
 
 type BackgroundWorkerDetailsCreateDiskProperties struct {
@@ -1394,6 +1416,20 @@ type CronJobDetailsCreate struct {
 	Plan               *CronJobDetailsCreatePlan   `pulumi:"plan"`
 	Region             *CronJobDetailsCreateRegion `pulumi:"region"`
 	Schedule           string                      `pulumi:"schedule"`
+	Type               *string                     `pulumi:"type"`
+}
+
+// Defaults sets the appropriate defaults for CronJobDetailsCreate
+func (val *CronJobDetailsCreate) Defaults() *CronJobDetailsCreate {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Type == nil {
+		type_ := "cron_job"
+		tmp.Type = &type_
+	}
+	return &tmp
 }
 
 // CronJobDetailsCreateInput is an input type that accepts CronJobDetailsCreateArgs and CronJobDetailsCreateOutput values.
@@ -1414,8 +1450,20 @@ type CronJobDetailsCreateArgs struct {
 	Plan               CronJobDetailsCreatePlanPtrInput   `pulumi:"plan"`
 	Region             CronJobDetailsCreateRegionPtrInput `pulumi:"region"`
 	Schedule           pulumi.StringInput                 `pulumi:"schedule"`
+	Type               pulumi.StringPtrInput              `pulumi:"type"`
 }
 
+// Defaults sets the appropriate defaults for CronJobDetailsCreateArgs
+func (val *CronJobDetailsCreateArgs) Defaults() *CronJobDetailsCreateArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Type == nil {
+		tmp.Type = pulumi.StringPtr("cron_job")
+	}
+	return &tmp
+}
 func (CronJobDetailsCreateArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*CronJobDetailsCreate)(nil)).Elem()
 }
@@ -1514,6 +1562,10 @@ func (o CronJobDetailsCreateOutput) Schedule() pulumi.StringOutput {
 	return o.ApplyT(func(v CronJobDetailsCreate) string { return v.Schedule }).(pulumi.StringOutput)
 }
 
+func (o CronJobDetailsCreateOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CronJobDetailsCreate) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
 type CronJobDetailsCreatePtrOutput struct{ *pulumi.OutputState }
 
 func (CronJobDetailsCreatePtrOutput) ElementType() reflect.Type {
@@ -1581,6 +1633,15 @@ func (o CronJobDetailsCreatePtrOutput) Schedule() pulumi.StringPtrOutput {
 			return nil
 		}
 		return &v.Schedule
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CronJobDetailsCreatePtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CronJobDetailsCreate) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Type
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -3934,6 +3995,7 @@ type PrivateServiceDetailsCreate struct {
 	// Defaults to "no"
 	PullRequestPreviewsEnabled *PrivateServiceDetailsCreatePullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
 	Region                     *PrivateServiceDetailsCreateRegion                     `pulumi:"region"`
+	Type                       *string                                                `pulumi:"type"`
 }
 
 // Defaults sets the appropriate defaults for PrivateServiceDetailsCreate
@@ -3949,6 +4011,10 @@ func (val *PrivateServiceDetailsCreate) Defaults() *PrivateServiceDetailsCreate 
 	if tmp.PullRequestPreviewsEnabled == nil {
 		pullRequestPreviewsEnabled_ := PrivateServiceDetailsCreatePullRequestPreviewsEnabled("no")
 		tmp.PullRequestPreviewsEnabled = &pullRequestPreviewsEnabled_
+	}
+	if tmp.Type == nil {
+		type_ := "private_service"
+		tmp.Type = &type_
 	}
 	return &tmp
 }
@@ -3975,6 +4041,7 @@ type PrivateServiceDetailsCreateArgs struct {
 	// Defaults to "no"
 	PullRequestPreviewsEnabled PrivateServiceDetailsCreatePullRequestPreviewsEnabledPtrInput `pulumi:"pullRequestPreviewsEnabled"`
 	Region                     PrivateServiceDetailsCreateRegionPtrInput                     `pulumi:"region"`
+	Type                       pulumi.StringPtrInput                                         `pulumi:"type"`
 }
 
 // Defaults sets the appropriate defaults for PrivateServiceDetailsCreateArgs
@@ -3988,6 +4055,9 @@ func (val *PrivateServiceDetailsCreateArgs) Defaults() *PrivateServiceDetailsCre
 	}
 	if tmp.PullRequestPreviewsEnabled == nil {
 		tmp.PullRequestPreviewsEnabled = PrivateServiceDetailsCreatePullRequestPreviewsEnabled("no")
+	}
+	if tmp.Type == nil {
+		tmp.Type = pulumi.StringPtr("private_service")
 	}
 	return &tmp
 }
@@ -4101,6 +4171,10 @@ func (o PrivateServiceDetailsCreateOutput) Region() PrivateServiceDetailsCreateR
 	return o.ApplyT(func(v PrivateServiceDetailsCreate) *PrivateServiceDetailsCreateRegion { return v.Region }).(PrivateServiceDetailsCreateRegionPtrOutput)
 }
 
+func (o PrivateServiceDetailsCreateOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PrivateServiceDetailsCreate) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
 type PrivateServiceDetailsCreatePtrOutput struct{ *pulumi.OutputState }
 
 func (PrivateServiceDetailsCreatePtrOutput) ElementType() reflect.Type {
@@ -4189,6 +4263,15 @@ func (o PrivateServiceDetailsCreatePtrOutput) Region() PrivateServiceDetailsCrea
 		}
 		return v.Region
 	}).(PrivateServiceDetailsCreateRegionPtrOutput)
+}
+
+func (o PrivateServiceDetailsCreatePtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PrivateServiceDetailsCreate) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Type
+	}).(pulumi.StringPtrOutput)
 }
 
 type PrivateServiceDetailsCreateDiskProperties struct {
@@ -5373,6 +5456,7 @@ type StaticSiteDetailsCreate struct {
 	// Defaults to "no"
 	PullRequestPreviewsEnabled *StaticSiteDetailsCreatePullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
 	Routes                     []Route                                            `pulumi:"routes"`
+	Type                       *string                                            `pulumi:"type"`
 }
 
 // Defaults sets the appropriate defaults for StaticSiteDetailsCreate
@@ -5384,6 +5468,10 @@ func (val *StaticSiteDetailsCreate) Defaults() *StaticSiteDetailsCreate {
 	if tmp.PullRequestPreviewsEnabled == nil {
 		pullRequestPreviewsEnabled_ := StaticSiteDetailsCreatePullRequestPreviewsEnabled("no")
 		tmp.PullRequestPreviewsEnabled = &pullRequestPreviewsEnabled_
+	}
+	if tmp.Type == nil {
+		type_ := "static_site"
+		tmp.Type = &type_
 	}
 	return &tmp
 }
@@ -5407,6 +5495,7 @@ type StaticSiteDetailsCreateArgs struct {
 	// Defaults to "no"
 	PullRequestPreviewsEnabled StaticSiteDetailsCreatePullRequestPreviewsEnabledPtrInput `pulumi:"pullRequestPreviewsEnabled"`
 	Routes                     RouteArrayInput                                           `pulumi:"routes"`
+	Type                       pulumi.StringPtrInput                                     `pulumi:"type"`
 }
 
 // Defaults sets the appropriate defaults for StaticSiteDetailsCreateArgs
@@ -5417,6 +5506,9 @@ func (val *StaticSiteDetailsCreateArgs) Defaults() *StaticSiteDetailsCreateArgs 
 	tmp := *val
 	if tmp.PullRequestPreviewsEnabled == nil {
 		tmp.PullRequestPreviewsEnabled = StaticSiteDetailsCreatePullRequestPreviewsEnabled("no")
+	}
+	if tmp.Type == nil {
+		tmp.Type = pulumi.StringPtr("static_site")
 	}
 	return &tmp
 }
@@ -5521,6 +5613,10 @@ func (o StaticSiteDetailsCreateOutput) Routes() RouteArrayOutput {
 	return o.ApplyT(func(v StaticSiteDetailsCreate) []Route { return v.Routes }).(RouteArrayOutput)
 }
 
+func (o StaticSiteDetailsCreateOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StaticSiteDetailsCreate) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
 type StaticSiteDetailsCreatePtrOutput struct{ *pulumi.OutputState }
 
 func (StaticSiteDetailsCreatePtrOutput) ElementType() reflect.Type {
@@ -5590,6 +5686,15 @@ func (o StaticSiteDetailsCreatePtrOutput) Routes() RouteArrayOutput {
 		}
 		return v.Routes
 	}).(RouteArrayOutput)
+}
+
+func (o StaticSiteDetailsCreatePtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StaticSiteDetailsCreate) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Type
+	}).(pulumi.StringPtrOutput)
 }
 
 type WebServiceDetails struct {
@@ -5849,6 +5954,7 @@ type WebServiceDetailsCreate struct {
 	// Defaults to "no"
 	PullRequestPreviewsEnabled *WebServiceDetailsCreatePullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
 	Region                     *WebServiceDetailsCreateRegion                     `pulumi:"region"`
+	Type                       *string                                            `pulumi:"type"`
 }
 
 // Defaults sets the appropriate defaults for WebServiceDetailsCreate
@@ -5860,6 +5966,10 @@ func (val *WebServiceDetailsCreate) Defaults() *WebServiceDetailsCreate {
 	if tmp.PullRequestPreviewsEnabled == nil {
 		pullRequestPreviewsEnabled_ := WebServiceDetailsCreatePullRequestPreviewsEnabled("no")
 		tmp.PullRequestPreviewsEnabled = &pullRequestPreviewsEnabled_
+	}
+	if tmp.Type == nil {
+		type_ := "web_service"
+		tmp.Type = &type_
 	}
 	return &tmp
 }
@@ -5887,6 +5997,7 @@ type WebServiceDetailsCreateArgs struct {
 	// Defaults to "no"
 	PullRequestPreviewsEnabled WebServiceDetailsCreatePullRequestPreviewsEnabledPtrInput `pulumi:"pullRequestPreviewsEnabled"`
 	Region                     WebServiceDetailsCreateRegionPtrInput                     `pulumi:"region"`
+	Type                       pulumi.StringPtrInput                                     `pulumi:"type"`
 }
 
 // Defaults sets the appropriate defaults for WebServiceDetailsCreateArgs
@@ -5897,6 +6008,9 @@ func (val *WebServiceDetailsCreateArgs) Defaults() *WebServiceDetailsCreateArgs 
 	tmp := *val
 	if tmp.PullRequestPreviewsEnabled == nil {
 		tmp.PullRequestPreviewsEnabled = WebServiceDetailsCreatePullRequestPreviewsEnabled("no")
+	}
+	if tmp.Type == nil {
+		tmp.Type = pulumi.StringPtr("web_service")
 	}
 	return &tmp
 }
@@ -6014,6 +6128,10 @@ func (o WebServiceDetailsCreateOutput) Region() WebServiceDetailsCreateRegionPtr
 	return o.ApplyT(func(v WebServiceDetailsCreate) *WebServiceDetailsCreateRegion { return v.Region }).(WebServiceDetailsCreateRegionPtrOutput)
 }
 
+func (o WebServiceDetailsCreateOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WebServiceDetailsCreate) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
 type WebServiceDetailsCreatePtrOutput struct{ *pulumi.OutputState }
 
 func (WebServiceDetailsCreatePtrOutput) ElementType() reflect.Type {
@@ -6111,6 +6229,15 @@ func (o WebServiceDetailsCreatePtrOutput) Region() WebServiceDetailsCreateRegion
 		}
 		return v.Region
 	}).(WebServiceDetailsCreateRegionPtrOutput)
+}
+
+func (o WebServiceDetailsCreatePtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailsCreate) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Type
+	}).(pulumi.StringPtrOutput)
 }
 
 type WebServiceDetailsCreateDiskProperties struct {

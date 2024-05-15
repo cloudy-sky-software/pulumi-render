@@ -299,7 +299,8 @@ class BackgroundWorkerDetailsCreate(dict):
                  num_instances: Optional[int] = None,
                  plan: Optional['BackgroundWorkerDetailsCreatePlan'] = None,
                  pull_request_previews_enabled: Optional['BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled'] = None,
-                 region: Optional['BackgroundWorkerDetailsCreateRegion'] = None):
+                 region: Optional['BackgroundWorkerDetailsCreateRegion'] = None,
+                 type: Optional[str] = None):
         """
         :param 'BackgroundWorkerDetailsCreateEnv' env: Environment (runtime)
         :param int num_instances: Defaults to 1
@@ -322,6 +323,10 @@ class BackgroundWorkerDetailsCreate(dict):
             pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if type is None:
+            type = 'background_worker'
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
@@ -366,6 +371,11 @@ class BackgroundWorkerDetailsCreate(dict):
     @pulumi.getter
     def region(self) -> Optional['BackgroundWorkerDetailsCreateRegion']:
         return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        return pulumi.get(self, "type")
 
 
 @pulumi.output_type
@@ -612,7 +622,8 @@ class CronJobDetailsCreate(dict):
                  schedule: str,
                  env_specific_details: Optional[Any] = None,
                  plan: Optional['CronJobDetailsCreatePlan'] = None,
-                 region: Optional['CronJobDetailsCreateRegion'] = None):
+                 region: Optional['CronJobDetailsCreateRegion'] = None,
+                 type: Optional[str] = None):
         """
         :param 'CronJobDetailsCreateEnv' env: Environment (runtime)
         """
@@ -624,6 +635,10 @@ class CronJobDetailsCreate(dict):
             pulumi.set(__self__, "plan", plan)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if type is None:
+            type = 'cron_job'
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
@@ -652,6 +667,11 @@ class CronJobDetailsCreate(dict):
     @pulumi.getter
     def region(self) -> Optional['CronJobDetailsCreateRegion']:
         return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        return pulumi.get(self, "type")
 
 
 @pulumi.output_type
@@ -1699,7 +1719,8 @@ class PrivateServiceDetailsCreate(dict):
                  num_instances: Optional[int] = None,
                  plan: Optional['PrivateServiceDetailsCreatePlan'] = None,
                  pull_request_previews_enabled: Optional['PrivateServiceDetailsCreatePullRequestPreviewsEnabled'] = None,
-                 region: Optional['PrivateServiceDetailsCreateRegion'] = None):
+                 region: Optional['PrivateServiceDetailsCreateRegion'] = None,
+                 type: Optional[str] = None):
         """
         :param 'PrivateServiceDetailsCreateEnv' env: Environment (runtime)
         :param int num_instances: Defaults to 1
@@ -1722,6 +1743,10 @@ class PrivateServiceDetailsCreate(dict):
             pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if type is None:
+            type = 'private_service'
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
@@ -1766,6 +1791,11 @@ class PrivateServiceDetailsCreate(dict):
     @pulumi.getter
     def region(self) -> Optional['PrivateServiceDetailsCreateRegion']:
         return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        return pulumi.get(self, "type")
 
 
 @pulumi.output_type
@@ -2236,7 +2266,8 @@ class StaticSiteDetailsCreate(dict):
                  headers: Optional[Sequence['outputs.HeaderCreate']] = None,
                  publish_path: Optional[str] = None,
                  pull_request_previews_enabled: Optional['StaticSiteDetailsCreatePullRequestPreviewsEnabled'] = None,
-                 routes: Optional[Sequence['outputs.Route']] = None):
+                 routes: Optional[Sequence['outputs.Route']] = None,
+                 type: Optional[str] = None):
         """
         :param str publish_path: Defaults to "public"
         :param 'StaticSiteDetailsCreatePullRequestPreviewsEnabled' pull_request_previews_enabled: Defaults to "no"
@@ -2253,6 +2284,10 @@ class StaticSiteDetailsCreate(dict):
             pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
         if routes is not None:
             pulumi.set(__self__, "routes", routes)
+        if type is None:
+            type = 'static_site'
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="buildCommand")
@@ -2284,6 +2319,11 @@ class StaticSiteDetailsCreate(dict):
     @pulumi.getter
     def routes(self) -> Optional[Sequence['outputs.Route']]:
         return pulumi.get(self, "routes")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        return pulumi.get(self, "type")
 
 
 @pulumi.output_type
@@ -2461,7 +2501,8 @@ class WebServiceDetailsCreate(dict):
                  num_instances: Optional[int] = None,
                  plan: Optional['WebServiceDetailsCreatePlan'] = None,
                  pull_request_previews_enabled: Optional['WebServiceDetailsCreatePullRequestPreviewsEnabled'] = None,
-                 region: Optional['WebServiceDetailsCreateRegion'] = None):
+                 region: Optional['WebServiceDetailsCreateRegion'] = None,
+                 type: Optional[str] = None):
         """
         :param 'WebServiceDetailsCreateEnv' env: Environment (runtime)
         :param int num_instances: Defaults to 1
@@ -2484,6 +2525,10 @@ class WebServiceDetailsCreate(dict):
             pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if type is None:
+            type = 'web_service'
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
@@ -2533,6 +2578,11 @@ class WebServiceDetailsCreate(dict):
     @pulumi.getter
     def region(self) -> Optional['WebServiceDetailsCreateRegion']:
         return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        return pulumi.get(self, "type")
 
 
 @pulumi.output_type

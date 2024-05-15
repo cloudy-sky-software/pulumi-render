@@ -43,9 +43,13 @@ namespace Pulumi.Render.Services.Inputs
             set => _routes = value;
         }
 
+        [Input("type")]
+        public Input<string>? Type { get; set; }
+
         public StaticSiteDetailsCreateArgs()
         {
             PullRequestPreviewsEnabled = Pulumi.Render.Services.StaticSiteDetailsCreatePullRequestPreviewsEnabled.No;
+            Type = "static_site";
         }
         public static new StaticSiteDetailsCreateArgs Empty => new StaticSiteDetailsCreateArgs();
     }

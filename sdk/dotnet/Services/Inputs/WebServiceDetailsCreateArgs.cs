@@ -45,9 +45,13 @@ namespace Pulumi.Render.Services.Inputs
         [Input("region")]
         public Input<Pulumi.Render.Services.WebServiceDetailsCreateRegion>? Region { get; set; }
 
+        [Input("type")]
+        public Input<string>? Type { get; set; }
+
         public WebServiceDetailsCreateArgs()
         {
             PullRequestPreviewsEnabled = Pulumi.Render.Services.WebServiceDetailsCreatePullRequestPreviewsEnabled.No;
+            Type = "web_service";
         }
         public static new WebServiceDetailsCreateArgs Empty => new WebServiceDetailsCreateArgs();
     }

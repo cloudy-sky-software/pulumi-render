@@ -149,7 +149,8 @@ class BackgroundWorkerDetailsCreateArgs:
                  num_instances: Optional[pulumi.Input[int]] = None,
                  plan: Optional[pulumi.Input['BackgroundWorkerDetailsCreatePlan']] = None,
                  pull_request_previews_enabled: Optional[pulumi.Input['BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled']] = None,
-                 region: Optional[pulumi.Input['BackgroundWorkerDetailsCreateRegion']] = None):
+                 region: Optional[pulumi.Input['BackgroundWorkerDetailsCreateRegion']] = None,
+                 type: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input['BackgroundWorkerDetailsCreateEnv'] env: Environment (runtime)
         :param pulumi.Input[int] num_instances: Defaults to 1
@@ -172,6 +173,10 @@ class BackgroundWorkerDetailsCreateArgs:
             pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if type is None:
+            type = 'background_worker'
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
@@ -245,6 +250,15 @@ class BackgroundWorkerDetailsCreateArgs:
     def region(self, value: Optional[pulumi.Input['BackgroundWorkerDetailsCreateRegion']]):
         pulumi.set(self, "region", value)
 
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
 
 @pulumi.input_type
 class BuildFilterArgs:
@@ -280,7 +294,8 @@ class CronJobDetailsCreateArgs:
                  schedule: pulumi.Input[str],
                  env_specific_details: Optional[pulumi.Input[Union['DockerDetailsArgs', 'NativeEnvironmentDetailsArgs']]] = None,
                  plan: Optional[pulumi.Input['CronJobDetailsCreatePlan']] = None,
-                 region: Optional[pulumi.Input['CronJobDetailsCreateRegion']] = None):
+                 region: Optional[pulumi.Input['CronJobDetailsCreateRegion']] = None,
+                 type: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input['CronJobDetailsCreateEnv'] env: Environment (runtime)
         """
@@ -292,6 +307,10 @@ class CronJobDetailsCreateArgs:
             pulumi.set(__self__, "plan", plan)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if type is None:
+            type = 'cron_job'
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
@@ -340,6 +359,15 @@ class CronJobDetailsCreateArgs:
     @region.setter
     def region(self, value: Optional[pulumi.Input['CronJobDetailsCreateRegion']]):
         pulumi.set(self, "region", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
 
 
 @pulumi.input_type
@@ -656,7 +684,8 @@ class PrivateServiceDetailsCreateArgs:
                  num_instances: Optional[pulumi.Input[int]] = None,
                  plan: Optional[pulumi.Input['PrivateServiceDetailsCreatePlan']] = None,
                  pull_request_previews_enabled: Optional[pulumi.Input['PrivateServiceDetailsCreatePullRequestPreviewsEnabled']] = None,
-                 region: Optional[pulumi.Input['PrivateServiceDetailsCreateRegion']] = None):
+                 region: Optional[pulumi.Input['PrivateServiceDetailsCreateRegion']] = None,
+                 type: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input['PrivateServiceDetailsCreateEnv'] env: Environment (runtime)
         :param pulumi.Input[int] num_instances: Defaults to 1
@@ -679,6 +708,10 @@ class PrivateServiceDetailsCreateArgs:
             pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if type is None:
+            type = 'private_service'
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
@@ -751,6 +784,15 @@ class PrivateServiceDetailsCreateArgs:
     @region.setter
     def region(self, value: Optional[pulumi.Input['PrivateServiceDetailsCreateRegion']]):
         pulumi.set(self, "region", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
 
 
 @pulumi.input_type
@@ -920,7 +962,8 @@ class StaticSiteDetailsCreateArgs:
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input['HeaderCreateArgs']]]] = None,
                  publish_path: Optional[pulumi.Input[str]] = None,
                  pull_request_previews_enabled: Optional[pulumi.Input['StaticSiteDetailsCreatePullRequestPreviewsEnabled']] = None,
-                 routes: Optional[pulumi.Input[Sequence[pulumi.Input['RouteArgs']]]] = None):
+                 routes: Optional[pulumi.Input[Sequence[pulumi.Input['RouteArgs']]]] = None,
+                 type: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] publish_path: Defaults to "public"
         :param pulumi.Input['StaticSiteDetailsCreatePullRequestPreviewsEnabled'] pull_request_previews_enabled: Defaults to "no"
@@ -937,6 +980,10 @@ class StaticSiteDetailsCreateArgs:
             pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
         if routes is not None:
             pulumi.set(__self__, "routes", routes)
+        if type is None:
+            type = 'static_site'
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="buildCommand")
@@ -988,6 +1035,15 @@ class StaticSiteDetailsCreateArgs:
     @routes.setter
     def routes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RouteArgs']]]]):
         pulumi.set(self, "routes", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
 
 
 @pulumi.input_type
@@ -1045,7 +1101,8 @@ class WebServiceDetailsCreateArgs:
                  num_instances: Optional[pulumi.Input[int]] = None,
                  plan: Optional[pulumi.Input['WebServiceDetailsCreatePlan']] = None,
                  pull_request_previews_enabled: Optional[pulumi.Input['WebServiceDetailsCreatePullRequestPreviewsEnabled']] = None,
-                 region: Optional[pulumi.Input['WebServiceDetailsCreateRegion']] = None):
+                 region: Optional[pulumi.Input['WebServiceDetailsCreateRegion']] = None,
+                 type: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input['WebServiceDetailsCreateEnv'] env: Environment (runtime)
         :param pulumi.Input[int] num_instances: Defaults to 1
@@ -1068,6 +1125,10 @@ class WebServiceDetailsCreateArgs:
             pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if type is None:
+            type = 'web_service'
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
@@ -1149,5 +1210,14 @@ class WebServiceDetailsCreateArgs:
     @region.setter
     def region(self, value: Optional[pulumi.Input['WebServiceDetailsCreateRegion']]):
         pulumi.set(self, "region", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
 
 

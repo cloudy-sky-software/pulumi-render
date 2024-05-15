@@ -63,7 +63,7 @@ func patchEnvVarsPutEndpoint(openAPIDoc *openapi3.T) error {
 // Render's API operations do not have an operationId,
 // so we'll need to generate them based on the resource
 // in the operation path.
-func ensureOperationId(openAPIDoc *openapi3.T) error {
+func ensureOperationID(openAPIDoc *openapi3.T) error {
 	for _, path := range openAPIDoc.Paths.InMatchingOrder() {
 		pathItem := openAPIDoc.Paths.Find(path)
 		if pathItem == nil {
@@ -134,7 +134,7 @@ func addServiceDiscriminator(openAPIDoc *openapi3.T) error {
 	for _, suffix := range []string{"POST", "PATCH"} {
 		schema, ok := openAPIDoc.Components.Schemas["service"+suffix]
 		if !ok {
-			return errors.New(fmt.Sprintf("service%s schema type not found", suffix))
+			return fmt.Errorf("service%s schema type not found", suffix)
 		}
 
 		discriminator := getDiscriminator(suffix)
@@ -145,7 +145,10 @@ func addServiceDiscriminator(openAPIDoc *openapi3.T) error {
 		for discriminatedValue, schemaRefPath := range discriminator.Mapping {
 			valuePtr := discriminatedValue
 			schemaName := strings.TrimPrefix(schemaRefPath, "#/components/schemas/")
-			addReadOnlyDiscriminatedProperty(openAPIDoc, schemaName, "type", &valuePtr)
+			err := addReadOnlyDiscriminatedProperty(openAPIDoc, schemaName, "type", &valuePtr)
+			if err != nil {
+				return err
+			}
 		}
 
 		// Remove the `type` property from the service schema, if found.
@@ -169,7 +172,7 @@ func addServiceDiscriminator(openAPIDoc *openapi3.T) error {
 func addReadOnlyDiscriminatedProperty(openAPIDoc *openapi3.T, schemaName string, typeName string, defaultValue *string) error {
 	typ, ok := openAPIDoc.Components.Schemas[schemaName]
 	if !ok {
-		return errors.New(fmt.Sprintf("schema type %s not found", schemaName))
+		return fmt.Errorf("schema type %s not found", schemaName)
 	}
 
 	strSchema := openapi3.NewSchemaRef("", openapi3.NewSchema())
@@ -183,7 +186,7 @@ func addReadOnlyDiscriminatedProperty(openAPIDoc *openapi3.T, schemaName string,
 }
 
 func FixOpenAPIDoc(openAPIDoc *openapi3.T) error {
-	if err := ensureOperationId(openAPIDoc); err != nil {
+	if err := ensureOperationID(openAPIDoc); err != nil {
 		return err
 	}
 

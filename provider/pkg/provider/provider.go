@@ -114,7 +114,7 @@ func (p *renderProvider) OnConfigure(_ context.Context, req *pulumirpc.Configure
 }
 
 // OnDiff checks what impacts a hypothetical update will have on the resource's properties.
-func (p *renderProvider) OnDiff(_ context.Context, _ *pulumirpc.DiffRequest, resourceTypeToken string, diff *resource.ObjectDiff, jsonReq *openapi3.MediaType) (*pulumirpc.DiffResponse, error) {
+func (p *renderProvider) OnDiff(_ context.Context, _ *pulumirpc.DiffRequest, _ string, _ *resource.ObjectDiff, _ *openapi3.MediaType) (*pulumirpc.DiffResponse, error) {
 	return nil, nil
 }
 

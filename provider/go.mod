@@ -198,3 +198,5 @@ require (
 )
 
 replace github.com/cloudy-sky-software/pulumi-provider-framework => ../../pulumi-provider-framework
+
+replace github.com/cloudy-sky-software/pulschema => ../../pulschema

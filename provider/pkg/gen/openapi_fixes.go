@@ -124,7 +124,7 @@ func addReadOnlyDiscriminatedProperty(openAPIDoc *openapi3.T, schemaName string,
 	}
 
 	strSchema := openapi3.NewSchemaRef("", openapi3.NewSchema())
-	strSchema.Value.ReadOnly = true
+	// strSchema.Value.ReadOnly = true
 	strSchema.Value.Type = &openapi3.Types{openapi3.TypeString}
 	if defaultValue != nil {
 		strSchema.Value.Default = *defaultValue
@@ -147,7 +147,7 @@ func addServiceDiscriminator(openAPIDoc *openapi3.T) error {
 		}
 	}
 
-	for _, suffix := range []string{"POST", "PATCH"} {
+	for _, suffix := range []string{"POST"} {
 		schema, ok := openAPIDoc.Components.Schemas["service"+suffix]
 		if !ok {
 			return fmt.Errorf("service%s schema type not found", suffix)
@@ -166,32 +166,12 @@ func addServiceDiscriminator(openAPIDoc *openapi3.T) error {
 				return err
 			}
 		}
-
-		// Remove the `type` property from the service schema, if found.
-		indexOfTypeProp := -1
-		for i, prop := range schema.Value.Required {
-			if prop == "type" {
-				indexOfTypeProp = i
-				break
-			}
-		}
-
-		if indexOfTypeProp == -1 {
-			continue
-		}
-
-		schema.Value.Required = slices.Delete(schema.Value.Required, indexOfTypeProp, indexOfTypeProp)
 	}
 	return nil
 }
 
 // useAnyOfForServicePatchOperation replaces the oneOf definition
 // with an anyOf definition due to the lack of a discriminator.
-// While we can add a discriminator to each of the mappings,
-// validation of the request will fail since the `serviceDetails`
-// object from the state inputs will not contain a `type` due to
-// it being a fake property that we add to fix the oneOf definition
-// for the create (POST) operation.
 func useAnyOfForServicePatchOperation(openAPIDoc *openapi3.T) error {
 	schema, ok := openAPIDoc.Components.Schemas["servicePATCH"]
 	if !ok {
@@ -207,6 +187,15 @@ func useAnyOfForServicePatchOperation(openAPIDoc *openapi3.T) error {
 	return nil
 }
 
+func pluckServiceObjectFromResponseBody(openAPIDoc *openapi3.T) error {
+	pathItem := openAPIDoc.Paths.Find("/services")
+	contract.Assertf(pathItem != nil, "endpoint path /services not found")
+
+	pathItem.Post.Responses.Status(201).Value.Content.Get("application/json").Schema.Value.Properties = nil
+	pathItem.Post.Responses.Status(201).Value.Content.Get("application/json").Schema.Ref = "#/components/schemas/service"
+	return nil
+}
+
 func FixOpenAPIDoc(openAPIDoc *openapi3.T) error {
 	if err := ensureOperationID(openAPIDoc); err != nil {
 		return err
@@ -217,6 +206,10 @@ func FixOpenAPIDoc(openAPIDoc *openapi3.T) error {
 	}
 
 	if err := addServiceDiscriminator(openAPIDoc); err != nil {
+		return err
+	}
+
+	if err := pluckServiceObjectFromResponseBody(openAPIDoc); err != nil {
 		return err
 	}
 

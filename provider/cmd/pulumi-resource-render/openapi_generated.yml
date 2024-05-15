@@ -94,10 +94,6 @@ components:
                     enum:
                         - "yes"
                         - "no"
-                type:
-                    type: string
-                    default: background_worker
-                    readOnly: true
         backgroundWorkerDetailsPOST:
             type: object
             required:
@@ -140,7 +136,6 @@ components:
                 type:
                     type: string
                     default: background_worker
-                    readOnly: true
         buildFilter:
             type: object
             required:
@@ -202,10 +197,6 @@ components:
                     $ref: '#/components/schemas/paidPlan'
                 schedule:
                     type: string
-                type:
-                    type: string
-                    default: cron_job
-                    readOnly: true
         cronJobDetailsPOST:
             type: object
             required:
@@ -225,7 +216,6 @@ components:
                 type:
                     type: string
                     default: cron_job
-                    readOnly: true
         cursor:
             type: string
         customDomain:
@@ -1242,10 +1232,6 @@ components:
                     enum:
                         - "yes"
                         - "no"
-                type:
-                    type: string
-                    default: private_service
-                    readOnly: true
         privateServiceDetailsPOST:
             type: object
             required:
@@ -1288,7 +1274,6 @@ components:
                 type:
                     type: string
                     default: private_service
-                    readOnly: true
         project:
             type: object
             description: A project is a collection of environments
@@ -1727,14 +1712,6 @@ components:
                         - $ref: '#/components/schemas/privateServiceDetailsPATCH'
                         - $ref: '#/components/schemas/backgroundWorkerDetailsPATCH'
                         - $ref: '#/components/schemas/cronJobDetailsPATCH'
-                    discriminator:
-                        propertyName: type
-                        mapping:
-                            background_worker: '#/components/schemas/backgroundWorkerDetailsPATCH'
-                            cron_job: '#/components/schemas/cronJobDetailsPATCH'
-                            private_service: '#/components/schemas/privateServiceDetailsPATCH'
-                            static_site: '#/components/schemas/staticSiteDetailsPATCH'
-                            web_service: '#/components/schemas/webServiceDetailsPATCH'
         servicePOST:
             type: object
             required:
@@ -1838,10 +1815,6 @@ components:
                     enum:
                         - "yes"
                         - "no"
-                type:
-                    type: string
-                    default: static_site
-                    readOnly: true
         staticSiteDetailsPOST:
             type: object
             properties:
@@ -1868,7 +1841,6 @@ components:
                 type:
                     type: string
                     default: static_site
-                    readOnly: true
         suspenderType:
             type: string
             enum:
@@ -1981,10 +1953,6 @@ components:
                     enum:
                         - "yes"
                         - "no"
-                type:
-                    type: string
-                    default: web_service
-                    readOnly: true
         webServiceDetailsPOST:
             type: object
             required:
@@ -2028,7 +1996,6 @@ components:
                 type:
                     type: string
                     default: web_service
-                    readOnly: true
     parameters:
         applicationMetricAggregationMethod:
             name: aggregationMethod
@@ -3090,12 +3057,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                type: object
-                                properties:
-                                    deployId:
-                                        type: string
-                                    service:
-                                        $ref: '#/components/schemas/service'
+                                $ref: '#/components/schemas/service'
                 "400":
                     $ref: '#/components/responses/400BadRequest'
                 "401":

@@ -56,7 +56,7 @@
                 "secret": true
             },
             "clearCacheOnServiceUpdateDeployments": {
-                "$ref": "#/types/render:services:ClearCache",
+                "$ref": "#/types/render:services:DeployClearCache",
                 "description": "When a service is updated, a deployment is automatically triggered. This variable controls whether or not the service cache should be cleared upon deployment.",
                 "language": {
                     "csharp": {
@@ -114,23 +114,6 @@
                 }
             ]
         },
-        "render:registrycredentials:Registry": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Github",
-                    "value": "GITHUB"
-                },
-                {
-                    "name": "Gitlab",
-                    "value": "GITLAB"
-                },
-                {
-                    "name": "Docker",
-                    "value": "DOCKER"
-                }
-            ]
-        },
         "render:registrycredentials:RegistryCredential": {
             "properties": {
                 "id": {
@@ -173,20 +156,6 @@
                 {
                     "name": "Docker",
                     "value": "DOCKER"
-                }
-            ]
-        },
-        "render:services:AutoDeploy": {
-            "description": "Defaults to \"yes\"",
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Yes",
-                    "value": "yes"
-                },
-                {
-                    "name": "No",
-                    "value": "no"
                 }
             ]
         },
@@ -308,7 +277,7 @@
                     "$ref": "#/types/render:services:BackgroundWorkerDetailsCreateDiskProperties"
                 },
                 "env": {
-                    "$ref": "#/types/render:services:BackgroundWorkerDetailsCreateEnv",
+                    "$ref": "#/types/render:services:ServiceBackgroundWorkerDetailsCreateEnv",
                     "description": "Environment (runtime)"
                 },
                 "envSpecificDetails": {
@@ -327,15 +296,15 @@
                     "default": 1
                 },
                 "plan": {
-                    "$ref": "#/types/render:services:BackgroundWorkerDetailsCreatePlan"
+                    "$ref": "#/types/render:services:ServiceBackgroundWorkerDetailsCreatePlan"
                 },
                 "pullRequestPreviewsEnabled": {
-                    "$ref": "#/types/render:services:BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled",
+                    "$ref": "#/types/render:services:ServiceBackgroundWorkerDetailsCreatePullRequestPreviewsEnabled",
                     "description": "Defaults to \"no\"",
                     "default": "no"
                 },
                 "region": {
-                    "$ref": "#/types/render:services:BackgroundWorkerDetailsCreateRegion"
+                    "$ref": "#/types/render:services:ServiceBackgroundWorkerDetailsCreateRegion"
                 },
                 "type": {
                     "type": "string",
@@ -364,108 +333,6 @@
             "required": [
                 "mountPath",
                 "name"
-            ]
-        },
-        "render:services:BackgroundWorkerDetailsCreateEnv": {
-            "description": "Environment (runtime)",
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Docker",
-                    "value": "docker"
-                },
-                {
-                    "name": "Elixir",
-                    "value": "elixir"
-                },
-                {
-                    "name": "Go",
-                    "value": "go"
-                },
-                {
-                    "name": "Node",
-                    "value": "node"
-                },
-                {
-                    "name": "Python",
-                    "value": "python"
-                },
-                {
-                    "name": "Ruby",
-                    "value": "ruby"
-                },
-                {
-                    "name": "Rust",
-                    "value": "rust"
-                },
-                {
-                    "name": "Image",
-                    "value": "image"
-                }
-            ]
-        },
-        "render:services:BackgroundWorkerDetailsCreatePlan": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Starter",
-                    "value": "starter"
-                },
-                {
-                    "name": "Standard",
-                    "value": "standard"
-                },
-                {
-                    "name": "Pro",
-                    "value": "pro"
-                },
-                {
-                    "name": "ProPlus",
-                    "value": "pro_plus"
-                },
-                {
-                    "name": "ProMax",
-                    "value": "pro_max"
-                },
-                {
-                    "name": "ProUltra",
-                    "value": "pro_ultra"
-                }
-            ]
-        },
-        "render:services:BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled": {
-            "description": "Defaults to \"no\"",
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Yes",
-                    "value": "yes"
-                },
-                {
-                    "name": "No",
-                    "value": "no"
-                }
-            ]
-        },
-        "render:services:BackgroundWorkerDetailsCreateRegion": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Frankfurt",
-                    "value": "frankfurt"
-                },
-                {
-                    "name": "Oregon",
-                    "value": "oregon"
-                },
-                {
-                    "name": "Ohio",
-                    "value": "ohio"
-                },
-                {
-                    "name": "Singapore",
-                    "value": "singapore"
-                }
             ]
         },
         "render:services:BackgroundWorkerDetailsEnv": {
@@ -607,17 +474,93 @@
                 "paths"
             ]
         },
-        "render:services:ClearCache": {
-            "description": "Defaults to \"do_not_clear\"",
+        "render:services:CancelDeployStatus": {
             "type": "string",
             "enum": [
                 {
-                    "name": "Clear",
-                    "value": "clear"
+                    "name": "Created",
+                    "value": "created"
                 },
                 {
-                    "name": "DoNotClear",
-                    "value": "do_not_clear"
+                    "name": "BuildInProgress",
+                    "value": "build_in_progress"
+                },
+                {
+                    "name": "UpdateInProgress",
+                    "value": "update_in_progress"
+                },
+                {
+                    "name": "Live",
+                    "value": "live"
+                },
+                {
+                    "name": "Deactivated",
+                    "value": "deactivated"
+                },
+                {
+                    "name": "BuildFailed",
+                    "value": "build_failed"
+                },
+                {
+                    "name": "UpdateFailed",
+                    "value": "update_failed"
+                },
+                {
+                    "name": "Canceled",
+                    "value": "canceled"
+                },
+                {
+                    "name": "PreDeployInProgress",
+                    "value": "pre_deploy_in_progress"
+                },
+                {
+                    "name": "PreDeployFailed",
+                    "value": "pre_deploy_failed"
+                }
+            ]
+        },
+        "render:services:CancelDeployTrigger": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Api",
+                    "value": "api"
+                },
+                {
+                    "name": "BlueprintSync",
+                    "value": "blueprint_sync"
+                },
+                {
+                    "name": "DeployHook",
+                    "value": "deploy_hook"
+                },
+                {
+                    "name": "DeployedByRender",
+                    "value": "deployed_by_render"
+                },
+                {
+                    "name": "Manual",
+                    "value": "manual"
+                },
+                {
+                    "name": "Other",
+                    "value": "other"
+                },
+                {
+                    "name": "NewCommit",
+                    "value": "new_commit"
+                },
+                {
+                    "name": "Rollback",
+                    "value": "rollback"
+                },
+                {
+                    "name": "ServiceResumed",
+                    "value": "service_resumed"
+                },
+                {
+                    "name": "ServiceUpdated",
+                    "value": "service_updated"
                 }
             ]
         },
@@ -681,7 +624,7 @@
         "render:services:CronJobDetailsCreate": {
             "properties": {
                 "env": {
-                    "$ref": "#/types/render:services:CronJobDetailsCreateEnv",
+                    "$ref": "#/types/render:services:ServiceCronJobDetailsCreateEnv",
                     "description": "Environment (runtime)"
                 },
                 "envSpecificDetails": {
@@ -695,10 +638,10 @@
                     ]
                 },
                 "plan": {
-                    "$ref": "#/types/render:services:CronJobDetailsCreatePlan"
+                    "$ref": "#/types/render:services:ServiceCronJobDetailsCreatePlan"
                 },
                 "region": {
-                    "$ref": "#/types/render:services:CronJobDetailsCreateRegion"
+                    "$ref": "#/types/render:services:ServiceCronJobDetailsCreateRegion"
                 },
                 "schedule": {
                     "type": "string"
@@ -712,94 +655,6 @@
             "required": [
                 "env",
                 "schedule"
-            ]
-        },
-        "render:services:CronJobDetailsCreateEnv": {
-            "description": "Environment (runtime)",
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Docker",
-                    "value": "docker"
-                },
-                {
-                    "name": "Elixir",
-                    "value": "elixir"
-                },
-                {
-                    "name": "Go",
-                    "value": "go"
-                },
-                {
-                    "name": "Node",
-                    "value": "node"
-                },
-                {
-                    "name": "Python",
-                    "value": "python"
-                },
-                {
-                    "name": "Ruby",
-                    "value": "ruby"
-                },
-                {
-                    "name": "Rust",
-                    "value": "rust"
-                },
-                {
-                    "name": "Image",
-                    "value": "image"
-                }
-            ]
-        },
-        "render:services:CronJobDetailsCreatePlan": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Starter",
-                    "value": "starter"
-                },
-                {
-                    "name": "Standard",
-                    "value": "standard"
-                },
-                {
-                    "name": "Pro",
-                    "value": "pro"
-                },
-                {
-                    "name": "ProPlus",
-                    "value": "pro_plus"
-                },
-                {
-                    "name": "ProMax",
-                    "value": "pro_max"
-                },
-                {
-                    "name": "ProUltra",
-                    "value": "pro_ultra"
-                }
-            ]
-        },
-        "render:services:CronJobDetailsCreateRegion": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Frankfurt",
-                    "value": "frankfurt"
-                },
-                {
-                    "name": "Oregon",
-                    "value": "oregon"
-                },
-                {
-                    "name": "Ohio",
-                    "value": "ohio"
-                },
-                {
-                    "name": "Singapore",
-                    "value": "singapore"
-                }
             ]
         },
         "render:services:CronJobDetailsEnv": {
@@ -1013,6 +868,20 @@
             "type": "object",
             "required": [
                 "id"
+            ]
+        },
+        "render:services:DeployClearCache": {
+            "description": "Defaults to \"do_not_clear\"",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Clear",
+                    "value": "clear"
+                },
+                {
+                    "name": "DoNotClear",
+                    "value": "do_not_clear"
+                }
             ]
         },
         "render:services:DeployCommitProperties": {
@@ -1449,7 +1318,7 @@
                 "startCommand"
             ]
         },
-        "render:services:Plan": {
+        "render:services:PreviewServicePlan": {
             "description": "The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.",
             "type": "string",
             "enum": [
@@ -1566,7 +1435,7 @@
                     "$ref": "#/types/render:services:PrivateServiceDetailsCreateDiskProperties"
                 },
                 "env": {
-                    "$ref": "#/types/render:services:PrivateServiceDetailsCreateEnv",
+                    "$ref": "#/types/render:services:ServicePrivateServiceDetailsCreateEnv",
                     "description": "Environment (runtime)"
                 },
                 "envSpecificDetails": {
@@ -1585,15 +1454,15 @@
                     "default": 1
                 },
                 "plan": {
-                    "$ref": "#/types/render:services:PrivateServiceDetailsCreatePlan"
+                    "$ref": "#/types/render:services:ServicePrivateServiceDetailsCreatePlan"
                 },
                 "pullRequestPreviewsEnabled": {
-                    "$ref": "#/types/render:services:PrivateServiceDetailsCreatePullRequestPreviewsEnabled",
+                    "$ref": "#/types/render:services:ServicePrivateServiceDetailsCreatePullRequestPreviewsEnabled",
                     "description": "Defaults to \"no\"",
                     "default": "no"
                 },
                 "region": {
-                    "$ref": "#/types/render:services:PrivateServiceDetailsCreateRegion"
+                    "$ref": "#/types/render:services:ServicePrivateServiceDetailsCreateRegion"
                 },
                 "type": {
                     "type": "string",
@@ -1622,108 +1491,6 @@
             "required": [
                 "mountPath",
                 "name"
-            ]
-        },
-        "render:services:PrivateServiceDetailsCreateEnv": {
-            "description": "Environment (runtime)",
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Docker",
-                    "value": "docker"
-                },
-                {
-                    "name": "Elixir",
-                    "value": "elixir"
-                },
-                {
-                    "name": "Go",
-                    "value": "go"
-                },
-                {
-                    "name": "Node",
-                    "value": "node"
-                },
-                {
-                    "name": "Python",
-                    "value": "python"
-                },
-                {
-                    "name": "Ruby",
-                    "value": "ruby"
-                },
-                {
-                    "name": "Rust",
-                    "value": "rust"
-                },
-                {
-                    "name": "Image",
-                    "value": "image"
-                }
-            ]
-        },
-        "render:services:PrivateServiceDetailsCreatePlan": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Starter",
-                    "value": "starter"
-                },
-                {
-                    "name": "Standard",
-                    "value": "standard"
-                },
-                {
-                    "name": "Pro",
-                    "value": "pro"
-                },
-                {
-                    "name": "ProPlus",
-                    "value": "pro_plus"
-                },
-                {
-                    "name": "ProMax",
-                    "value": "pro_max"
-                },
-                {
-                    "name": "ProUltra",
-                    "value": "pro_ultra"
-                }
-            ]
-        },
-        "render:services:PrivateServiceDetailsCreatePullRequestPreviewsEnabled": {
-            "description": "Defaults to \"no\"",
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Yes",
-                    "value": "yes"
-                },
-                {
-                    "name": "No",
-                    "value": "no"
-                }
-            ]
-        },
-        "render:services:PrivateServiceDetailsCreateRegion": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Frankfurt",
-                    "value": "frankfurt"
-                },
-                {
-                    "name": "Oregon",
-                    "value": "oregon"
-                },
-                {
-                    "name": "Ohio",
-                    "value": "ohio"
-                },
-                {
-                    "name": "Singapore",
-                    "value": "singapore"
-                }
             ]
         },
         "render:services:PrivateServiceDetailsEnv": {
@@ -1904,6 +1671,96 @@
                 "name"
             ]
         },
+        "render:services:RollbackDeployStatus": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Created",
+                    "value": "created"
+                },
+                {
+                    "name": "BuildInProgress",
+                    "value": "build_in_progress"
+                },
+                {
+                    "name": "UpdateInProgress",
+                    "value": "update_in_progress"
+                },
+                {
+                    "name": "Live",
+                    "value": "live"
+                },
+                {
+                    "name": "Deactivated",
+                    "value": "deactivated"
+                },
+                {
+                    "name": "BuildFailed",
+                    "value": "build_failed"
+                },
+                {
+                    "name": "UpdateFailed",
+                    "value": "update_failed"
+                },
+                {
+                    "name": "Canceled",
+                    "value": "canceled"
+                },
+                {
+                    "name": "PreDeployInProgress",
+                    "value": "pre_deploy_in_progress"
+                },
+                {
+                    "name": "PreDeployFailed",
+                    "value": "pre_deploy_failed"
+                }
+            ]
+        },
+        "render:services:RollbackDeployTrigger": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Api",
+                    "value": "api"
+                },
+                {
+                    "name": "BlueprintSync",
+                    "value": "blueprint_sync"
+                },
+                {
+                    "name": "DeployHook",
+                    "value": "deploy_hook"
+                },
+                {
+                    "name": "DeployedByRender",
+                    "value": "deployed_by_render"
+                },
+                {
+                    "name": "Manual",
+                    "value": "manual"
+                },
+                {
+                    "name": "Other",
+                    "value": "other"
+                },
+                {
+                    "name": "NewCommit",
+                    "value": "new_commit"
+                },
+                {
+                    "name": "Rollback",
+                    "value": "rollback"
+                },
+                {
+                    "name": "ServiceResumed",
+                    "value": "service_resumed"
+                },
+                {
+                    "name": "ServiceUpdated",
+                    "value": "service_updated"
+                }
+            ]
+        },
         "render:services:Route": {
             "properties": {
                 "destination": {
@@ -1920,7 +1777,7 @@
                     "type": "string"
                 },
                 "type": {
-                    "$ref": "#/types/render:services:RouteType"
+                    "$ref": "#/types/render:services:ServiceRouteType"
                 }
             },
             "type": "object",
@@ -1930,19 +1787,6 @@
                 "priority",
                 "source",
                 "type"
-            ]
-        },
-        "render:services:RouteType": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Redirect",
-                    "value": "redirect"
-                },
-                {
-                    "name": "Rewrite",
-                    "value": "rewrite"
-                }
             ]
         },
         "render:services:SecretFile": {
@@ -2091,6 +1935,196 @@
                 }
             ]
         },
+        "render:services:ServiceBackgroundWorkerDetailsCreateEnv": {
+            "description": "Environment (runtime)",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Docker",
+                    "value": "docker"
+                },
+                {
+                    "name": "Elixir",
+                    "value": "elixir"
+                },
+                {
+                    "name": "Go",
+                    "value": "go"
+                },
+                {
+                    "name": "Node",
+                    "value": "node"
+                },
+                {
+                    "name": "Python",
+                    "value": "python"
+                },
+                {
+                    "name": "Ruby",
+                    "value": "ruby"
+                },
+                {
+                    "name": "Rust",
+                    "value": "rust"
+                },
+                {
+                    "name": "Image",
+                    "value": "image"
+                }
+            ]
+        },
+        "render:services:ServiceBackgroundWorkerDetailsCreatePlan": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Starter",
+                    "value": "starter"
+                },
+                {
+                    "name": "Standard",
+                    "value": "standard"
+                },
+                {
+                    "name": "Pro",
+                    "value": "pro"
+                },
+                {
+                    "name": "ProPlus",
+                    "value": "pro_plus"
+                },
+                {
+                    "name": "ProMax",
+                    "value": "pro_max"
+                },
+                {
+                    "name": "ProUltra",
+                    "value": "pro_ultra"
+                }
+            ]
+        },
+        "render:services:ServiceBackgroundWorkerDetailsCreatePullRequestPreviewsEnabled": {
+            "description": "Defaults to \"no\"",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
+        "render:services:ServiceBackgroundWorkerDetailsCreateRegion": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Frankfurt",
+                    "value": "frankfurt"
+                },
+                {
+                    "name": "Oregon",
+                    "value": "oregon"
+                },
+                {
+                    "name": "Ohio",
+                    "value": "ohio"
+                },
+                {
+                    "name": "Singapore",
+                    "value": "singapore"
+                }
+            ]
+        },
+        "render:services:ServiceCronJobDetailsCreateEnv": {
+            "description": "Environment (runtime)",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Docker",
+                    "value": "docker"
+                },
+                {
+                    "name": "Elixir",
+                    "value": "elixir"
+                },
+                {
+                    "name": "Go",
+                    "value": "go"
+                },
+                {
+                    "name": "Node",
+                    "value": "node"
+                },
+                {
+                    "name": "Python",
+                    "value": "python"
+                },
+                {
+                    "name": "Ruby",
+                    "value": "ruby"
+                },
+                {
+                    "name": "Rust",
+                    "value": "rust"
+                },
+                {
+                    "name": "Image",
+                    "value": "image"
+                }
+            ]
+        },
+        "render:services:ServiceCronJobDetailsCreatePlan": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Starter",
+                    "value": "starter"
+                },
+                {
+                    "name": "Standard",
+                    "value": "standard"
+                },
+                {
+                    "name": "Pro",
+                    "value": "pro"
+                },
+                {
+                    "name": "ProPlus",
+                    "value": "pro_plus"
+                },
+                {
+                    "name": "ProMax",
+                    "value": "pro_max"
+                },
+                {
+                    "name": "ProUltra",
+                    "value": "pro_ultra"
+                }
+            ]
+        },
+        "render:services:ServiceCronJobDetailsCreateRegion": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Frankfurt",
+                    "value": "frankfurt"
+                },
+                {
+                    "name": "Oregon",
+                    "value": "oregon"
+                },
+                {
+                    "name": "Ohio",
+                    "value": "ohio"
+                },
+                {
+                    "name": "Singapore",
+                    "value": "singapore"
+                }
+            ]
+        },
         "render:services:ServiceNotifyOnFail": {
             "type": "string",
             "enum": [
@@ -2105,6 +2139,135 @@
                 {
                     "name": "Ignore",
                     "value": "ignore"
+                }
+            ]
+        },
+        "render:services:ServicePrivateServiceDetailsCreateEnv": {
+            "description": "Environment (runtime)",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Docker",
+                    "value": "docker"
+                },
+                {
+                    "name": "Elixir",
+                    "value": "elixir"
+                },
+                {
+                    "name": "Go",
+                    "value": "go"
+                },
+                {
+                    "name": "Node",
+                    "value": "node"
+                },
+                {
+                    "name": "Python",
+                    "value": "python"
+                },
+                {
+                    "name": "Ruby",
+                    "value": "ruby"
+                },
+                {
+                    "name": "Rust",
+                    "value": "rust"
+                },
+                {
+                    "name": "Image",
+                    "value": "image"
+                }
+            ]
+        },
+        "render:services:ServicePrivateServiceDetailsCreatePlan": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Starter",
+                    "value": "starter"
+                },
+                {
+                    "name": "Standard",
+                    "value": "standard"
+                },
+                {
+                    "name": "Pro",
+                    "value": "pro"
+                },
+                {
+                    "name": "ProPlus",
+                    "value": "pro_plus"
+                },
+                {
+                    "name": "ProMax",
+                    "value": "pro_max"
+                },
+                {
+                    "name": "ProUltra",
+                    "value": "pro_ultra"
+                }
+            ]
+        },
+        "render:services:ServicePrivateServiceDetailsCreatePullRequestPreviewsEnabled": {
+            "description": "Defaults to \"no\"",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
+        "render:services:ServicePrivateServiceDetailsCreateRegion": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Frankfurt",
+                    "value": "frankfurt"
+                },
+                {
+                    "name": "Oregon",
+                    "value": "oregon"
+                },
+                {
+                    "name": "Ohio",
+                    "value": "ohio"
+                },
+                {
+                    "name": "Singapore",
+                    "value": "singapore"
+                }
+            ]
+        },
+        "render:services:ServiceRouteType": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Redirect",
+                    "value": "redirect"
+                },
+                {
+                    "name": "Rewrite",
+                    "value": "rewrite"
+                }
+            ]
+        },
+        "render:services:ServiceStaticSiteDetailsCreatePullRequestPreviewsEnabled": {
+            "description": "Defaults to \"no\"",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
                 }
             ]
         },
@@ -2171,6 +2334,108 @@
                 }
             ]
         },
+        "render:services:ServiceWebServiceDetailsCreateEnv": {
+            "description": "Environment (runtime)",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Docker",
+                    "value": "docker"
+                },
+                {
+                    "name": "Elixir",
+                    "value": "elixir"
+                },
+                {
+                    "name": "Go",
+                    "value": "go"
+                },
+                {
+                    "name": "Node",
+                    "value": "node"
+                },
+                {
+                    "name": "Python",
+                    "value": "python"
+                },
+                {
+                    "name": "Ruby",
+                    "value": "ruby"
+                },
+                {
+                    "name": "Rust",
+                    "value": "rust"
+                },
+                {
+                    "name": "Image",
+                    "value": "image"
+                }
+            ]
+        },
+        "render:services:ServiceWebServiceDetailsCreatePlan": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Starter",
+                    "value": "starter"
+                },
+                {
+                    "name": "Standard",
+                    "value": "standard"
+                },
+                {
+                    "name": "Pro",
+                    "value": "pro"
+                },
+                {
+                    "name": "ProPlus",
+                    "value": "pro_plus"
+                },
+                {
+                    "name": "ProMax",
+                    "value": "pro_max"
+                },
+                {
+                    "name": "ProUltra",
+                    "value": "pro_ultra"
+                }
+            ]
+        },
+        "render:services:ServiceWebServiceDetailsCreatePullRequestPreviewsEnabled": {
+            "description": "Defaults to \"no\"",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
+        "render:services:ServiceWebServiceDetailsCreateRegion": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Frankfurt",
+                    "value": "frankfurt"
+                },
+                {
+                    "name": "Oregon",
+                    "value": "oregon"
+                },
+                {
+                    "name": "Ohio",
+                    "value": "ohio"
+                },
+                {
+                    "name": "Singapore",
+                    "value": "singapore"
+                }
+            ]
+        },
         "render:services:StaticSiteDetails": {
             "properties": {
                 "buildCommand": {
@@ -2217,7 +2482,7 @@
                     "description": "Defaults to \"public\""
                 },
                 "pullRequestPreviewsEnabled": {
-                    "$ref": "#/types/render:services:StaticSiteDetailsCreatePullRequestPreviewsEnabled",
+                    "$ref": "#/types/render:services:ServiceStaticSiteDetailsCreatePullRequestPreviewsEnabled",
                     "description": "Defaults to \"no\"",
                     "default": "no"
                 },
@@ -2234,20 +2499,6 @@
             },
             "type": "object"
         },
-        "render:services:StaticSiteDetailsCreatePullRequestPreviewsEnabled": {
-            "description": "Defaults to \"no\"",
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Yes",
-                    "value": "yes"
-                },
-                {
-                    "name": "No",
-                    "value": "no"
-                }
-            ]
-        },
         "render:services:StaticSiteDetailsPullRequestPreviewsEnabled": {
             "type": "string",
             "enum": [
@@ -2258,121 +2509,6 @@
                 {
                     "name": "No",
                     "value": "no"
-                }
-            ]
-        },
-        "render:services:Status": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Created",
-                    "value": "created"
-                },
-                {
-                    "name": "BuildInProgress",
-                    "value": "build_in_progress"
-                },
-                {
-                    "name": "UpdateInProgress",
-                    "value": "update_in_progress"
-                },
-                {
-                    "name": "Live",
-                    "value": "live"
-                },
-                {
-                    "name": "Deactivated",
-                    "value": "deactivated"
-                },
-                {
-                    "name": "BuildFailed",
-                    "value": "build_failed"
-                },
-                {
-                    "name": "UpdateFailed",
-                    "value": "update_failed"
-                },
-                {
-                    "name": "Canceled",
-                    "value": "canceled"
-                },
-                {
-                    "name": "PreDeployInProgress",
-                    "value": "pre_deploy_in_progress"
-                },
-                {
-                    "name": "PreDeployFailed",
-                    "value": "pre_deploy_failed"
-                }
-            ]
-        },
-        "render:services:Trigger": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Api",
-                    "value": "api"
-                },
-                {
-                    "name": "BlueprintSync",
-                    "value": "blueprint_sync"
-                },
-                {
-                    "name": "DeployHook",
-                    "value": "deploy_hook"
-                },
-                {
-                    "name": "DeployedByRender",
-                    "value": "deployed_by_render"
-                },
-                {
-                    "name": "Manual",
-                    "value": "manual"
-                },
-                {
-                    "name": "Other",
-                    "value": "other"
-                },
-                {
-                    "name": "NewCommit",
-                    "value": "new_commit"
-                },
-                {
-                    "name": "Rollback",
-                    "value": "rollback"
-                },
-                {
-                    "name": "ServiceResumed",
-                    "value": "service_resumed"
-                },
-                {
-                    "name": "ServiceUpdated",
-                    "value": "service_updated"
-                }
-            ]
-        },
-        "render:services:Type": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "StaticSite",
-                    "value": "static_site"
-                },
-                {
-                    "name": "WebService",
-                    "value": "web_service"
-                },
-                {
-                    "name": "PrivateService",
-                    "value": "private_service"
-                },
-                {
-                    "name": "BackgroundWorker",
-                    "value": "background_worker"
-                },
-                {
-                    "name": "CronJob",
-                    "value": "cron_job"
                 }
             ]
         },
@@ -2451,7 +2587,7 @@
                     "$ref": "#/types/render:services:WebServiceDetailsCreateDiskProperties"
                 },
                 "env": {
-                    "$ref": "#/types/render:services:WebServiceDetailsCreateEnv",
+                    "$ref": "#/types/render:services:ServiceWebServiceDetailsCreateEnv",
                     "description": "Environment (runtime)"
                 },
                 "envSpecificDetails": {
@@ -2472,15 +2608,15 @@
                     "description": "Defaults to 1"
                 },
                 "plan": {
-                    "$ref": "#/types/render:services:WebServiceDetailsCreatePlan"
+                    "$ref": "#/types/render:services:ServiceWebServiceDetailsCreatePlan"
                 },
                 "pullRequestPreviewsEnabled": {
-                    "$ref": "#/types/render:services:WebServiceDetailsCreatePullRequestPreviewsEnabled",
+                    "$ref": "#/types/render:services:ServiceWebServiceDetailsCreatePullRequestPreviewsEnabled",
                     "description": "Defaults to \"no\"",
                     "default": "no"
                 },
                 "region": {
-                    "$ref": "#/types/render:services:WebServiceDetailsCreateRegion"
+                    "$ref": "#/types/render:services:ServiceWebServiceDetailsCreateRegion"
                 },
                 "type": {
                     "type": "string",
@@ -2509,108 +2645,6 @@
             "required": [
                 "mountPath",
                 "name"
-            ]
-        },
-        "render:services:WebServiceDetailsCreateEnv": {
-            "description": "Environment (runtime)",
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Docker",
-                    "value": "docker"
-                },
-                {
-                    "name": "Elixir",
-                    "value": "elixir"
-                },
-                {
-                    "name": "Go",
-                    "value": "go"
-                },
-                {
-                    "name": "Node",
-                    "value": "node"
-                },
-                {
-                    "name": "Python",
-                    "value": "python"
-                },
-                {
-                    "name": "Ruby",
-                    "value": "ruby"
-                },
-                {
-                    "name": "Rust",
-                    "value": "rust"
-                },
-                {
-                    "name": "Image",
-                    "value": "image"
-                }
-            ]
-        },
-        "render:services:WebServiceDetailsCreatePlan": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Starter",
-                    "value": "starter"
-                },
-                {
-                    "name": "Standard",
-                    "value": "standard"
-                },
-                {
-                    "name": "Pro",
-                    "value": "pro"
-                },
-                {
-                    "name": "ProPlus",
-                    "value": "pro_plus"
-                },
-                {
-                    "name": "ProMax",
-                    "value": "pro_max"
-                },
-                {
-                    "name": "ProUltra",
-                    "value": "pro_ultra"
-                }
-            ]
-        },
-        "render:services:WebServiceDetailsCreatePullRequestPreviewsEnabled": {
-            "description": "Defaults to \"no\"",
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Yes",
-                    "value": "yes"
-                },
-                {
-                    "name": "No",
-                    "value": "no"
-                }
-            ]
-        },
-        "render:services:WebServiceDetailsCreateRegion": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Frankfurt",
-                    "value": "frankfurt"
-                },
-                {
-                    "name": "Oregon",
-                    "value": "oregon"
-                },
-                {
-                    "name": "Ohio",
-                    "value": "ohio"
-                },
-                {
-                    "name": "Singapore",
-                    "value": "singapore"
-                }
             ]
         },
         "render:services:WebServiceDetailsEnv": {
@@ -2767,7 +2801,7 @@
                     "type": "string"
                 },
                 "registry": {
-                    "$ref": "#/types/render:registrycredentials:Registry",
+                    "$ref": "#/types/render:registrycredentials:RegistryCredentialRegistry",
                     "description": "The registry to use this credential with"
                 },
                 "username": {
@@ -2794,7 +2828,7 @@
                     "type": "string"
                 },
                 "registry": {
-                    "$ref": "#/types/render:registrycredentials:Registry"
+                    "$ref": "#/types/render:registrycredentials:RegistryCredentialRegistry"
                 },
                 "username": {
                     "type": "string"
@@ -2876,10 +2910,10 @@
                     "description": "Image information used when creating the deploy. Not present for Git-backed deploys"
                 },
                 "status": {
-                    "$ref": "#/types/render:services:Status"
+                    "$ref": "#/types/render:services:CancelDeployStatus"
                 },
                 "trigger": {
-                    "$ref": "#/types/render:services:Trigger"
+                    "$ref": "#/types/render:services:CancelDeployTrigger"
                 },
                 "updatedAt": {
                     "type": "string"
@@ -2962,7 +2996,7 @@
         "render:services:Deploy": {
             "properties": {
                 "clearCache": {
-                    "$ref": "#/types/render:services:ClearCache",
+                    "$ref": "#/types/render:services:DeployClearCache",
                     "description": "Defaults to \"do_not_clear\"",
                     "default": "do_not_clear"
                 },
@@ -2988,10 +3022,10 @@
                     "description": "URL of the image to deploy for an image-backed service. The host, repository, and image name must match the currently configured image for the service."
                 },
                 "status": {
-                    "$ref": "#/types/render:services:Status"
+                    "$ref": "#/types/render:services:DeployStatus"
                 },
                 "trigger": {
-                    "$ref": "#/types/render:services:Trigger"
+                    "$ref": "#/types/render:services:DeployTrigger"
                 },
                 "updatedAt": {
                     "type": "string"
@@ -3000,7 +3034,7 @@
             "type": "object",
             "inputProperties": {
                 "clearCache": {
-                    "$ref": "#/types/render:services:ClearCache",
+                    "$ref": "#/types/render:services:DeployClearCache",
                     "description": "Defaults to \"do_not_clear\"",
                     "default": "do_not_clear"
                 },
@@ -3116,7 +3150,7 @@
                     "description": "A name for the service preview instance. If not specified, Render generates the name using the base service's name and the specified tag or SHA."
                 },
                 "plan": {
-                    "$ref": "#/types/render:services:Plan",
+                    "$ref": "#/types/render:services:PreviewServicePlan",
                     "description": "The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type."
                 },
                 "service": {
@@ -3137,7 +3171,7 @@
                     "description": "A name for the service preview instance. If not specified, Render generates the name using the base service's name and the specified tag or SHA."
                 },
                 "plan": {
-                    "$ref": "#/types/render:services:Plan",
+                    "$ref": "#/types/render:services:PreviewServicePlan",
                     "description": "The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type."
                 },
                 "serviceId": {
@@ -3191,10 +3225,10 @@
                     "description": "Image information used when creating the deploy. Not present for Git-backed deploys"
                 },
                 "status": {
-                    "$ref": "#/types/render:services:Status"
+                    "$ref": "#/types/render:services:RollbackDeployStatus"
                 },
                 "trigger": {
-                    "$ref": "#/types/render:services:Trigger"
+                    "$ref": "#/types/render:services:RollbackDeployTrigger"
                 },
                 "updatedAt": {
                     "type": "string"
@@ -3244,18 +3278,15 @@
         "render:services:Service": {
             "properties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:AutoDeploy",
-                    "description": "Defaults to \"yes\"",
-                    "default": "yes"
+                    "$ref": "#/types/render:services:ServiceAutoDeploy"
                 },
                 "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository"
+                    "type": "string"
                 },
                 "buildFilter": {
                     "$ref": "#/types/render:services:BuildFilter"
                 },
-                "deployId": {
+                "createdAt": {
                     "type": "string"
                 },
                 "envVars": {
@@ -3274,15 +3305,20 @@
                 "image": {
                     "$ref": "#/types/render:services:Image"
                 },
+                "imagePath": {
+                    "type": "string"
+                },
                 "name": {
                     "type": "string"
+                },
+                "notifyOnFail": {
+                    "$ref": "#/types/render:services:ServiceNotifyOnFail"
                 },
                 "ownerId": {
                     "type": "string"
                 },
                 "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                    "type": "string"
                 },
                 "rootDir": {
                     "type": "string"
@@ -3293,49 +3329,62 @@
                         "$ref": "#/types/render:services:SecretFile"
                     }
                 },
-                "service": {
-                    "$ref": "#/types/render:services:Service",
-                    "language": {
-                        "csharp": {
-                            "name": "ServiceValue"
-                        }
-                    }
-                },
                 "serviceDetails": {
                     "oneOf": [
                         {
-                            "$ref": "#/types/render:services:StaticSiteDetailsCreate"
+                            "$ref": "#/types/render:services:StaticSiteDetails"
                         },
                         {
-                            "$ref": "#/types/render:services:WebServiceDetailsCreate"
+                            "$ref": "#/types/render:services:WebServiceDetails"
                         },
                         {
-                            "$ref": "#/types/render:services:PrivateServiceDetailsCreate"
+                            "$ref": "#/types/render:services:PrivateServiceDetails"
                         },
                         {
-                            "$ref": "#/types/render:services:BackgroundWorkerDetailsCreate"
+                            "$ref": "#/types/render:services:BackgroundWorkerDetails"
                         },
                         {
-                            "$ref": "#/types/render:services:CronJobDetailsCreate"
+                            "$ref": "#/types/render:services:CronJobDetails"
                         }
-                    ],
-                    "discriminator": {
-                        "propertyName": "type"
+                    ]
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "suspended": {
+                    "$ref": "#/types/render:services:ServiceSuspended"
+                },
+                "suspenders": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:ServiceSuspendersItem"
                     }
                 },
                 "type": {
-                    "$ref": "#/types/render:services:Type"
+                    "$ref": "#/types/render:services:ServiceType"
+                },
+                "updatedAt": {
+                    "type": "string"
                 }
             },
             "type": "object",
             "required": [
+                "autoDeploy",
+                "createdAt",
                 "name",
+                "notifyOnFail",
                 "ownerId",
-                "type"
+                "rootDir",
+                "serviceDetails",
+                "slug",
+                "suspended",
+                "suspenders",
+                "type",
+                "updatedAt"
             ],
             "inputProperties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:AutoDeploy",
+                    "$ref": "#/types/render:services:ServiceAutoDeploy",
                     "description": "Defaults to \"yes\"",
                     "default": "yes"
                 },
@@ -3404,7 +3453,7 @@
                     }
                 },
                 "type": {
-                    "$ref": "#/types/render:services:Type"
+                    "$ref": "#/types/render:services:ServiceType"
                 }
             },
             "requiredInputs": [

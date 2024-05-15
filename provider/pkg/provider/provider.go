@@ -278,6 +278,8 @@ func (p *renderProvider) OnPostUpdate(ctx context.Context, req *pulumirpc.Update
 	var reqBody []byte
 	if p.clearCacheOnServiceUpdateDeployments == "clear" {
 		reqBody, _ = json.Marshal(map[string]string{"clearCache": "clear"})
+	} else {
+		reqBody, _ = json.Marshal(map[string]string{"clearCache": "do_not_clear"})
 	}
 
 	inputs := resource.NewPropertyMapFromMap(map[string]interface{}{
@@ -285,7 +287,7 @@ func (p *renderProvider) OnPostUpdate(ctx context.Context, req *pulumirpc.Update
 	})
 	clearCacheHTTPReq, createReqErr := handler.CreatePostRequest(ctx, "/services/{serviceId}/deploys", reqBody, inputs)
 	if createReqErr != nil {
-		logging.Warningf("Failed to create POST request object to clear the Render Service cache: %v", createReqErr)
+		logging.Warningf("Failed to create POST request object to clear the cache: %v", createReqErr)
 		return outputsMap, nil
 	}
 

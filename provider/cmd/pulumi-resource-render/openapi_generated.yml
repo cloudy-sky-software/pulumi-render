@@ -1721,7 +1721,7 @@ components:
                 rootDir:
                     type: string
                 serviceDetails:
-                    oneOf:
+                    anyOf:
                         - $ref: '#/components/schemas/staticSiteDetailsPATCH'
                         - $ref: '#/components/schemas/webServiceDetailsPATCH'
                         - $ref: '#/components/schemas/privateServiceDetailsPATCH'

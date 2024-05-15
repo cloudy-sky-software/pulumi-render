@@ -117,6 +117,22 @@ func ensureOperationID(openAPIDoc *openapi3.T) error {
 	return nil
 }
 
+func addReadOnlyDiscriminatedProperty(openAPIDoc *openapi3.T, schemaName string, typeName string, defaultValue *string) error {
+	typ, ok := openAPIDoc.Components.Schemas[schemaName]
+	if !ok {
+		return fmt.Errorf("schema type %s not found", schemaName)
+	}
+
+	strSchema := openapi3.NewSchemaRef("", openapi3.NewSchema())
+	strSchema.Value.ReadOnly = true
+	strSchema.Value.Type = &openapi3.Types{openapi3.TypeString}
+	if defaultValue != nil {
+		strSchema.Value.Default = *defaultValue
+	}
+	typ.Value.Properties[typeName] = strSchema
+	return nil
+}
+
 func addServiceDiscriminator(openAPIDoc *openapi3.T) error {
 	getDiscriminator := func(suffix string) *openapi3.Discriminator {
 		return &openapi3.Discriminator{
@@ -169,19 +185,25 @@ func addServiceDiscriminator(openAPIDoc *openapi3.T) error {
 	return nil
 }
 
-func addReadOnlyDiscriminatedProperty(openAPIDoc *openapi3.T, schemaName string, typeName string, defaultValue *string) error {
-	typ, ok := openAPIDoc.Components.Schemas[schemaName]
+// useAnyOfForServicePatchOperation replaces the oneOf definition
+// with an anyOf definition due to the lack of a discriminator.
+// While we can add a discriminator to each of the mappings,
+// validation of the request will fail since the `serviceDetails`
+// object from the state inputs will not contain a `type` due to
+// it being a fake property that we add to fix the oneOf definition
+// for the create (POST) operation.
+func useAnyOfForServicePatchOperation(openAPIDoc *openapi3.T) error {
+	schema, ok := openAPIDoc.Components.Schemas["servicePATCH"]
 	if !ok {
-		return fmt.Errorf("schema type %s not found", schemaName)
+		return fmt.Errorf("servicePATCH schema type not found")
 	}
 
-	strSchema := openapi3.NewSchemaRef("", openapi3.NewSchema())
-	strSchema.Value.ReadOnly = true
-	strSchema.Value.Type = &openapi3.Types{openapi3.TypeString}
-	if defaultValue != nil {
-		strSchema.Value.Default = *defaultValue
-	}
-	typ.Value.Properties[typeName] = strSchema
+	serviceDetails := schema.Value.Properties["serviceDetails"].Value
+
+	schemaRefs := slices.Clone(serviceDetails.OneOf)
+	serviceDetails.AnyOf = schemaRefs
+	serviceDetails.OneOf = nil
+
 	return nil
 }
 
@@ -195,6 +217,10 @@ func FixOpenAPIDoc(openAPIDoc *openapi3.T) error {
 	}
 
 	if err := addServiceDiscriminator(openAPIDoc); err != nil {
+		return err
+	}
+
+	if err := useAnyOfForServicePatchOperation(openAPIDoc); err != nil {
 		return err
 	}
 

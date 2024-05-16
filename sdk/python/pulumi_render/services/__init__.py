@@ -7,8 +7,10 @@ import typing
 # Export this package's modules as members:
 from ._enums import *
 from .autoscale_service import *
+from .background_worker import *
 from .cancel_deploy import *
 from .cancel_job import *
+from .cron_job import *
 from .custom_domain import *
 from .deploy import *
 from .env_vars_for_service import *
@@ -25,11 +27,13 @@ from .list_retrieve_headers import *
 from .list_retrieve_routes import *
 from .list_services import *
 from .preview_service import *
+from .private_service import *
 from .refresh_custom_domain import *
 from .restart_server import *
 from .rollback_deploy import *
 from .scale_service import *
-from .service import *
+from .static_site import *
 from .suspend_service import *
+from .web_service import *
 from ._inputs import *
 from . import outputs

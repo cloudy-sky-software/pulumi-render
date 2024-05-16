@@ -20,7 +20,7 @@ namespace Pulumi.Render.Services.Outputs
         /// </summary>
         public readonly int Priority;
         public readonly string Source;
-        public readonly Pulumi.Render.Services.ServiceRouteType Type;
+        public readonly Pulumi.Render.Services.StaticSiteRouteType Type;
 
         [OutputConstructor]
         private Route(
@@ -32,7 +32,7 @@ namespace Pulumi.Render.Services.Outputs
 
             string source,
 
-            Pulumi.Render.Services.ServiceRouteType type)
+            Pulumi.Render.Services.StaticSiteRouteType type)
         {
             Destination = destination;
             Id = id;

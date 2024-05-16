@@ -31,7 +31,6 @@ __all__ = [
     'EnvVarKeyValue',
     'EnvVarWithCursor',
     'Header',
-    'Image',
     'ImageProperties',
     'Job',
     'ListCustomDomainsItemProperties',
@@ -45,7 +44,6 @@ __all__ = [
     'RegistryCredential',
     'Resource',
     'Route',
-    'SecretFile',
     'ServerPort',
     'Service',
     'StaticSiteDetails',
@@ -907,68 +905,6 @@ class Header(dict):
 
 
 @pulumi.output_type
-class Image(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "imagePath":
-            suggest = "image_path"
-        elif key == "ownerId":
-            suggest = "owner_id"
-        elif key == "registryCredentialId":
-            suggest = "registry_credential_id"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in Image. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        Image.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        Image.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 image_path: str,
-                 owner_id: str,
-                 registry_credential_id: Optional[str] = None):
-        """
-        :param str image_path: Path to the image used for this server (e.g docker.io/library/nginx:latest).
-        :param str owner_id: The ID of the owner for this image. This should match the owner of the service as well as the owner of any specified registry credential.
-        :param str registry_credential_id: Optional reference to the registry credential passed to the image repository to retrieve this image.
-        """
-        pulumi.set(__self__, "image_path", image_path)
-        pulumi.set(__self__, "owner_id", owner_id)
-        if registry_credential_id is not None:
-            pulumi.set(__self__, "registry_credential_id", registry_credential_id)
-
-    @property
-    @pulumi.getter(name="imagePath")
-    def image_path(self) -> str:
-        """
-        Path to the image used for this server (e.g docker.io/library/nginx:latest).
-        """
-        return pulumi.get(self, "image_path")
-
-    @property
-    @pulumi.getter(name="ownerId")
-    def owner_id(self) -> str:
-        """
-        The ID of the owner for this image. This should match the owner of the service as well as the owner of any specified registry credential.
-        """
-        return pulumi.get(self, "owner_id")
-
-    @property
-    @pulumi.getter(name="registryCredentialId")
-    def registry_credential_id(self) -> Optional[str]:
-        """
-        Optional reference to the registry credential passed to the image repository to retrieve this image.
-        """
-        return pulumi.get(self, "registry_credential_id")
-
-
-@pulumi.output_type
 class ImageProperties(dict):
     """
     Image information used when creating the deploy. Not present for Git-backed deploys
@@ -1480,7 +1416,7 @@ class Route(dict):
                  id: str,
                  priority: int,
                  source: str,
-                 type: 'ServiceRouteType'):
+                 type: 'StaticSiteRouteType'):
         """
         :param int priority: Redirect and Rewrite Rules are applied in priority order starting at 0
         """
@@ -1515,27 +1451,8 @@ class Route(dict):
 
     @property
     @pulumi.getter
-    def type(self) -> 'ServiceRouteType':
+    def type(self) -> 'StaticSiteRouteType':
         return pulumi.get(self, "type")
-
-
-@pulumi.output_type
-class SecretFile(dict):
-    def __init__(__self__, *,
-                 id: str,
-                 name: str):
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "name", name)
-
-    @property
-    @pulumi.getter
-    def id(self) -> str:
-        return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        return pulumi.get(self, "name")
 
 
 @pulumi.output_type

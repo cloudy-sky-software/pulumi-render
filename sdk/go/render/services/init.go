@@ -23,10 +23,14 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "render:services:AutoscaleService":
 		r = &AutoscaleService{}
+	case "render:services:BackgroundWorker":
+		r = &BackgroundWorker{}
 	case "render:services:CancelDeploy":
 		r = &CancelDeploy{}
 	case "render:services:CancelJob":
 		r = &CancelJob{}
+	case "render:services:CronJob":
+		r = &CronJob{}
 	case "render:services:CustomDomain":
 		r = &CustomDomain{}
 	case "render:services:Deploy":
@@ -37,6 +41,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Job{}
 	case "render:services:PreviewService":
 		r = &PreviewService{}
+	case "render:services:PrivateService":
+		r = &PrivateService{}
 	case "render:services:RefreshCustomDomain":
 		r = &RefreshCustomDomain{}
 	case "render:services:RestartServer":
@@ -45,10 +51,12 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &RollbackDeploy{}
 	case "render:services:ScaleService":
 		r = &ScaleService{}
-	case "render:services:Service":
-		r = &Service{}
+	case "render:services:StaticSite":
+		r = &StaticSite{}
 	case "render:services:SuspendService":
 		r = &SuspendService{}
+	case "render:services:WebService":
+		r = &WebService{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}

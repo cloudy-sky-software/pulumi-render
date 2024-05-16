@@ -10,6 +10,11 @@ export type AutoscaleService = import("./autoscaleService").AutoscaleService;
 export const AutoscaleService: typeof import("./autoscaleService").AutoscaleService = null as any;
 utilities.lazyLoad(exports, ["AutoscaleService"], () => require("./autoscaleService"));
 
+export { BackgroundWorkerArgs } from "./backgroundWorker";
+export type BackgroundWorker = import("./backgroundWorker").BackgroundWorker;
+export const BackgroundWorker: typeof import("./backgroundWorker").BackgroundWorker = null as any;
+utilities.lazyLoad(exports, ["BackgroundWorker"], () => require("./backgroundWorker"));
+
 export { CancelDeployArgs } from "./cancelDeploy";
 export type CancelDeploy = import("./cancelDeploy").CancelDeploy;
 export const CancelDeploy: typeof import("./cancelDeploy").CancelDeploy = null as any;
@@ -19,6 +24,11 @@ export { CancelJobArgs } from "./cancelJob";
 export type CancelJob = import("./cancelJob").CancelJob;
 export const CancelJob: typeof import("./cancelJob").CancelJob = null as any;
 utilities.lazyLoad(exports, ["CancelJob"], () => require("./cancelJob"));
+
+export { CronJobArgs } from "./cronJob";
+export type CronJob = import("./cronJob").CronJob;
+export const CronJob: typeof import("./cronJob").CronJob = null as any;
+utilities.lazyLoad(exports, ["CronJob"], () => require("./cronJob"));
 
 export { CustomDomainArgs } from "./customDomain";
 export type CustomDomain = import("./customDomain").CustomDomain;
@@ -100,6 +110,11 @@ export type PreviewService = import("./previewService").PreviewService;
 export const PreviewService: typeof import("./previewService").PreviewService = null as any;
 utilities.lazyLoad(exports, ["PreviewService"], () => require("./previewService"));
 
+export { PrivateServiceArgs } from "./privateService";
+export type PrivateService = import("./privateService").PrivateService;
+export const PrivateService: typeof import("./privateService").PrivateService = null as any;
+utilities.lazyLoad(exports, ["PrivateService"], () => require("./privateService"));
+
 export { RefreshCustomDomainArgs } from "./refreshCustomDomain";
 export type RefreshCustomDomain = import("./refreshCustomDomain").RefreshCustomDomain;
 export const RefreshCustomDomain: typeof import("./refreshCustomDomain").RefreshCustomDomain = null as any;
@@ -120,15 +135,20 @@ export type ScaleService = import("./scaleService").ScaleService;
 export const ScaleService: typeof import("./scaleService").ScaleService = null as any;
 utilities.lazyLoad(exports, ["ScaleService"], () => require("./scaleService"));
 
-export { ServiceArgs } from "./service";
-export type Service = import("./service").Service;
-export const Service: typeof import("./service").Service = null as any;
-utilities.lazyLoad(exports, ["Service"], () => require("./service"));
+export { StaticSiteArgs } from "./staticSite";
+export type StaticSite = import("./staticSite").StaticSite;
+export const StaticSite: typeof import("./staticSite").StaticSite = null as any;
+utilities.lazyLoad(exports, ["StaticSite"], () => require("./staticSite"));
 
 export { SuspendServiceArgs } from "./suspendService";
 export type SuspendService = import("./suspendService").SuspendService;
 export const SuspendService: typeof import("./suspendService").SuspendService = null as any;
 utilities.lazyLoad(exports, ["SuspendService"], () => require("./suspendService"));
+
+export { WebServiceArgs } from "./webService";
+export type WebService = import("./webService").WebService;
+export const WebService: typeof import("./webService").WebService = null as any;
+utilities.lazyLoad(exports, ["WebService"], () => require("./webService"));
 
 
 // Export enums:
@@ -140,10 +160,14 @@ const _module = {
         switch (type) {
             case "render:services:AutoscaleService":
                 return new AutoscaleService(name, <any>undefined, { urn })
+            case "render:services:BackgroundWorker":
+                return new BackgroundWorker(name, <any>undefined, { urn })
             case "render:services:CancelDeploy":
                 return new CancelDeploy(name, <any>undefined, { urn })
             case "render:services:CancelJob":
                 return new CancelJob(name, <any>undefined, { urn })
+            case "render:services:CronJob":
+                return new CronJob(name, <any>undefined, { urn })
             case "render:services:CustomDomain":
                 return new CustomDomain(name, <any>undefined, { urn })
             case "render:services:Deploy":
@@ -154,6 +178,8 @@ const _module = {
                 return new Job(name, <any>undefined, { urn })
             case "render:services:PreviewService":
                 return new PreviewService(name, <any>undefined, { urn })
+            case "render:services:PrivateService":
+                return new PrivateService(name, <any>undefined, { urn })
             case "render:services:RefreshCustomDomain":
                 return new RefreshCustomDomain(name, <any>undefined, { urn })
             case "render:services:RestartServer":
@@ -162,10 +188,12 @@ const _module = {
                 return new RollbackDeploy(name, <any>undefined, { urn })
             case "render:services:ScaleService":
                 return new ScaleService(name, <any>undefined, { urn })
-            case "render:services:Service":
-                return new Service(name, <any>undefined, { urn })
+            case "render:services:StaticSite":
+                return new StaticSite(name, <any>undefined, { urn })
             case "render:services:SuspendService":
                 return new SuspendService(name, <any>undefined, { urn })
+            case "render:services:WebService":
+                return new WebService(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }

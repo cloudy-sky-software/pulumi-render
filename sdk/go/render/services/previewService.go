@@ -22,7 +22,7 @@ type PreviewService struct {
 	Name pulumi.StringPtrOutput `pulumi:"name"`
 	// The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
 	Plan    PreviewServicePlanPtrOutput `pulumi:"plan"`
-	Service ServiceTypePtrOutput        `pulumi:"service"`
+	Service ServicePtrOutput            `pulumi:"service"`
 }
 
 // NewPreviewService registers a new resource with the given unique name, arguments, and options.
@@ -146,8 +146,8 @@ func (o PreviewServiceOutput) Plan() PreviewServicePlanPtrOutput {
 	return o.ApplyT(func(v *PreviewService) PreviewServicePlanPtrOutput { return v.Plan }).(PreviewServicePlanPtrOutput)
 }
 
-func (o PreviewServiceOutput) Service() ServiceTypePtrOutput {
-	return o.ApplyT(func(v *PreviewService) ServiceTypePtrOutput { return v.Service }).(ServiceTypePtrOutput)
+func (o PreviewServiceOutput) Service() ServicePtrOutput {
+	return o.ApplyT(func(v *PreviewService) ServicePtrOutput { return v.Service }).(ServicePtrOutput)
 }
 
 func init() {

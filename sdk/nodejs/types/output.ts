@@ -255,21 +255,6 @@ export namespace services {
         value: string;
     }
 
-    export interface Image {
-        /**
-         * Path to the image used for this server (e.g docker.io/library/nginx:latest).
-         */
-        imagePath: string;
-        /**
-         * The ID of the owner for this image. This should match the owner of the service as well as the owner of any specified registry credential.
-         */
-        ownerId: string;
-        /**
-         * Optional reference to the registry credential passed to the image repository to retrieve this image.
-         */
-        registryCredentialId?: string;
-    }
-
     /**
      * Image information used when creating the deploy. Not present for Git-backed deploys
      */
@@ -400,12 +385,7 @@ export namespace services {
          */
         priority: number;
         source: string;
-        type: enums.services.ServiceRouteType;
-    }
-
-    export interface SecretFile {
-        id: string;
-        name: string;
+        type: enums.services.StaticSiteRouteType;
     }
 
     export interface ServerPort {

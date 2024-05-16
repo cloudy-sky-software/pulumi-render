@@ -11,9 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-func LookupService(ctx *pulumi.Context, args *LookupServiceArgs, opts ...pulumi.InvokeOption) (*LookupServiceResult, error) {
+func GetService(ctx *pulumi.Context, args *GetServiceArgs, opts ...pulumi.InvokeOption) (*GetServiceResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupServiceResult
+	var rv GetServiceResult
 	err := ctx.Invoke("render:services:getService", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -21,55 +21,55 @@ func LookupService(ctx *pulumi.Context, args *LookupServiceArgs, opts ...pulumi.
 	return &rv, nil
 }
 
-type LookupServiceArgs struct {
+type GetServiceArgs struct {
 	// The ID of the service
 	ServiceId string `pulumi:"serviceId"`
 }
 
-type LookupServiceResult struct {
-	Items ServiceType `pulumi:"items"`
+type GetServiceResult struct {
+	Items Service `pulumi:"items"`
 }
 
-func LookupServiceOutput(ctx *pulumi.Context, args LookupServiceOutputArgs, opts ...pulumi.InvokeOption) LookupServiceResultOutput {
+func GetServiceOutput(ctx *pulumi.Context, args GetServiceOutputArgs, opts ...pulumi.InvokeOption) GetServiceResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupServiceResult, error) {
-			args := v.(LookupServiceArgs)
-			r, err := LookupService(ctx, &args, opts...)
-			var s LookupServiceResult
+		ApplyT(func(v interface{}) (GetServiceResult, error) {
+			args := v.(GetServiceArgs)
+			r, err := GetService(ctx, &args, opts...)
+			var s GetServiceResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupServiceResultOutput)
+		}).(GetServiceResultOutput)
 }
 
-type LookupServiceOutputArgs struct {
+type GetServiceOutputArgs struct {
 	// The ID of the service
 	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }
 
-func (LookupServiceOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupServiceArgs)(nil)).Elem()
+func (GetServiceOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServiceArgs)(nil)).Elem()
 }
 
-type LookupServiceResultOutput struct{ *pulumi.OutputState }
+type GetServiceResultOutput struct{ *pulumi.OutputState }
 
-func (LookupServiceResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupServiceResult)(nil)).Elem()
+func (GetServiceResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServiceResult)(nil)).Elem()
 }
 
-func (o LookupServiceResultOutput) ToLookupServiceResultOutput() LookupServiceResultOutput {
+func (o GetServiceResultOutput) ToGetServiceResultOutput() GetServiceResultOutput {
 	return o
 }
 
-func (o LookupServiceResultOutput) ToLookupServiceResultOutputWithContext(ctx context.Context) LookupServiceResultOutput {
+func (o GetServiceResultOutput) ToGetServiceResultOutputWithContext(ctx context.Context) GetServiceResultOutput {
 	return o
 }
 
-func (o LookupServiceResultOutput) Items() ServiceTypeOutput {
-	return o.ApplyT(func(v LookupServiceResult) ServiceType { return v.Items }).(ServiceTypeOutput)
+func (o GetServiceResultOutput) Items() ServiceOutput {
+	return o.ApplyT(func(v GetServiceResult) Service { return v.Items }).(ServiceOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupServiceResultOutput{})
+	pulumi.RegisterOutputType(GetServiceResultOutput{})
 }

@@ -1255,14 +1255,6 @@ func (o BackgroundWorkerNotifyOnFailPtrOutput) ToStringPtrOutputWithContext(ctx 
 	}).(pulumi.StringPtrOutput)
 }
 
-// Defaults to "yes"
-type BackgroundWorkerPropertiesAutoDeploy string
-
-const (
-	BackgroundWorkerPropertiesAutoDeployYes = BackgroundWorkerPropertiesAutoDeploy("yes")
-	BackgroundWorkerPropertiesAutoDeployNo  = BackgroundWorkerPropertiesAutoDeploy("no")
-)
-
 type BackgroundWorkerSuspended string
 
 const (
@@ -2660,14 +2652,6 @@ func (o CronJobNotifyOnFailPtrOutput) ToStringPtrOutputWithContext(ctx context.C
 		return &v
 	}).(pulumi.StringPtrOutput)
 }
-
-// Defaults to "yes"
-type CronJobPropertiesAutoDeploy string
-
-const (
-	CronJobPropertiesAutoDeployYes = CronJobPropertiesAutoDeploy("yes")
-	CronJobPropertiesAutoDeployNo  = CronJobPropertiesAutoDeploy("no")
-)
 
 type CronJobSuspended string
 
@@ -4851,14 +4835,6 @@ func (o PrivateServiceNotifyOnFailPtrOutput) ToStringPtrOutputWithContext(ctx co
 	}).(pulumi.StringPtrOutput)
 }
 
-// Defaults to "yes"
-type PrivateServicePropertiesAutoDeploy string
-
-const (
-	PrivateServicePropertiesAutoDeployYes = PrivateServicePropertiesAutoDeploy("yes")
-	PrivateServicePropertiesAutoDeployNo  = PrivateServicePropertiesAutoDeploy("no")
-)
-
 type PrivateServiceSuspended string
 
 const (
@@ -6439,14 +6415,6 @@ func (o StaticSiteNotifyOnFailPtrOutput) ToStringPtrOutputWithContext(ctx contex
 		return &v
 	}).(pulumi.StringPtrOutput)
 }
-
-// Defaults to "yes"
-type StaticSitePropertiesAutoDeploy string
-
-const (
-	StaticSitePropertiesAutoDeployYes = StaticSitePropertiesAutoDeploy("yes")
-	StaticSitePropertiesAutoDeployNo  = StaticSitePropertiesAutoDeploy("no")
-)
 
 type StaticSiteRouteType string
 
@@ -8070,14 +8038,6 @@ func (o WebServiceNotifyOnFailPtrOutput) ToStringPtrOutputWithContext(ctx contex
 		return &v
 	}).(pulumi.StringPtrOutput)
 }
-
-// Defaults to "yes"
-type WebServicePropertiesAutoDeploy string
-
-const (
-	WebServicePropertiesAutoDeployYes = WebServicePropertiesAutoDeploy("yes")
-	WebServicePropertiesAutoDeployNo  = WebServicePropertiesAutoDeploy("no")
-)
 
 type WebServiceSuspended string
 

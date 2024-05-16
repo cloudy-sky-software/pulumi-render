@@ -15,7 +15,6 @@ __all__ = [
     'BackgroundWorkerDetailsPullRequestPreviewsEnabled',
     'BackgroundWorkerDetailsRegion',
     'BackgroundWorkerNotifyOnFail',
-    'BackgroundWorkerPropertiesAutoDeploy',
     'BackgroundWorkerSuspended',
     'BackgroundWorkerSuspendersItem',
     'BackgroundWorkerType',
@@ -29,7 +28,6 @@ __all__ = [
     'CronJobDetailsPlan',
     'CronJobDetailsRegion',
     'CronJobNotifyOnFail',
-    'CronJobPropertiesAutoDeploy',
     'CronJobSuspended',
     'CronJobSuspendersItem',
     'CronJobType',
@@ -49,7 +47,6 @@ __all__ = [
     'PrivateServiceDetailsPullRequestPreviewsEnabled',
     'PrivateServiceDetailsRegion',
     'PrivateServiceNotifyOnFail',
-    'PrivateServicePropertiesAutoDeploy',
     'PrivateServiceSuspended',
     'PrivateServiceSuspendersItem',
     'PrivateServiceType',
@@ -66,7 +63,6 @@ __all__ = [
     'StaticSiteDetailsCreatePullRequestPreviewsEnabled',
     'StaticSiteDetailsPullRequestPreviewsEnabled',
     'StaticSiteNotifyOnFail',
-    'StaticSitePropertiesAutoDeploy',
     'StaticSiteRouteType',
     'StaticSiteSuspended',
     'StaticSiteSuspendersItem',
@@ -81,7 +77,6 @@ __all__ = [
     'WebServiceDetailsPullRequestPreviewsEnabled',
     'WebServiceDetailsRegion',
     'WebServiceNotifyOnFail',
-    'WebServicePropertiesAutoDeploy',
     'WebServiceSuspended',
     'WebServiceSuspendersItem',
     'WebServiceType',
@@ -177,14 +172,6 @@ class BackgroundWorkerNotifyOnFail(str, Enum):
     DEFAULT = "default"
     NOTIFY = "notify"
     IGNORE = "ignore"
-
-
-class BackgroundWorkerPropertiesAutoDeploy(str, Enum):
-    """
-    Defaults to "yes"
-    """
-    YES = "yes"
-    NO = "no"
 
 
 class BackgroundWorkerSuspended(str, Enum):
@@ -310,14 +297,6 @@ class CronJobNotifyOnFail(str, Enum):
     DEFAULT = "default"
     NOTIFY = "notify"
     IGNORE = "ignore"
-
-
-class CronJobPropertiesAutoDeploy(str, Enum):
-    """
-    Defaults to "yes"
-    """
-    YES = "yes"
-    NO = "no"
 
 
 class CronJobSuspended(str, Enum):
@@ -492,14 +471,6 @@ class PrivateServiceNotifyOnFail(str, Enum):
     IGNORE = "ignore"
 
 
-class PrivateServicePropertiesAutoDeploy(str, Enum):
-    """
-    Defaults to "yes"
-    """
-    YES = "yes"
-    NO = "no"
-
-
 class PrivateServiceSuspended(str, Enum):
     SUSPENDED = "suspended"
     NOT_SUSPENDED = "not_suspended"
@@ -617,14 +588,6 @@ class StaticSiteNotifyOnFail(str, Enum):
     IGNORE = "ignore"
 
 
-class StaticSitePropertiesAutoDeploy(str, Enum):
-    """
-    Defaults to "yes"
-    """
-    YES = "yes"
-    NO = "no"
-
-
 class StaticSiteRouteType(str, Enum):
     REDIRECT = "redirect"
     REWRITE = "rewrite"
@@ -740,14 +703,6 @@ class WebServiceNotifyOnFail(str, Enum):
     DEFAULT = "default"
     NOTIFY = "notify"
     IGNORE = "ignore"
-
-
-class WebServicePropertiesAutoDeploy(str, Enum):
-    """
-    Defaults to "yes"
-    """
-    YES = "yes"
-    NO = "no"
 
 
 class WebServiceSuspended(str, Enum):

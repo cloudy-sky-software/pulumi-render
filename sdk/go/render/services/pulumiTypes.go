@@ -2746,15 +2746,6 @@ func (o HeaderCreateArrayOutput) Index(i pulumi.IntInput) HeaderCreateOutput {
 	}).(HeaderCreateOutput)
 }
 
-type Image struct {
-	// Path to the image used for this server (e.g docker.io/library/nginx:latest).
-	ImagePath string `pulumi:"imagePath"`
-	// The ID of the owner for this image. This should match the owner of the service as well as the owner of any specified registry credential.
-	OwnerId string `pulumi:"ownerId"`
-	// Optional reference to the registry credential passed to the image repository to retrieve this image.
-	RegistryCredentialId *string `pulumi:"registryCredentialId"`
-}
-
 // Image information used when creating the deploy. Not present for Git-backed deploys
 type ImageProperties struct {
 	// Image reference used when creating the deploy
@@ -4565,11 +4556,6 @@ func (o RouteArrayOutput) Index(i pulumi.IntInput) RouteOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Route {
 		return vs[0].([]Route)[vs[1].(int)]
 	}).(RouteOutput)
-}
-
-type SecretFile struct {
-	Id   string `pulumi:"id"`
-	Name string `pulumi:"name"`
 }
 
 type ServerPort struct {

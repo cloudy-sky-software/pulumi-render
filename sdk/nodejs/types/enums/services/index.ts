@@ -113,16 +113,6 @@ export const BackgroundWorkerNotifyOnFail = {
 
 export type BackgroundWorkerNotifyOnFail = (typeof BackgroundWorkerNotifyOnFail)[keyof typeof BackgroundWorkerNotifyOnFail];
 
-export const BackgroundWorkerPropertiesAutoDeploy = {
-    Yes: "yes",
-    No: "no",
-} as const;
-
-/**
- * Defaults to "yes"
- */
-export type BackgroundWorkerPropertiesAutoDeploy = (typeof BackgroundWorkerPropertiesAutoDeploy)[keyof typeof BackgroundWorkerPropertiesAutoDeploy];
-
 export const BackgroundWorkerSuspended = {
     Suspended: "suspended",
     NotSuspended: "not_suspended",
@@ -273,16 +263,6 @@ export const CronJobNotifyOnFail = {
 } as const;
 
 export type CronJobNotifyOnFail = (typeof CronJobNotifyOnFail)[keyof typeof CronJobNotifyOnFail];
-
-export const CronJobPropertiesAutoDeploy = {
-    Yes: "yes",
-    No: "no",
-} as const;
-
-/**
- * Defaults to "yes"
- */
-export type CronJobPropertiesAutoDeploy = (typeof CronJobPropertiesAutoDeploy)[keyof typeof CronJobPropertiesAutoDeploy];
 
 export const CronJobSuspended = {
     Suspended: "suspended",
@@ -494,16 +474,6 @@ export const PrivateServiceNotifyOnFail = {
 
 export type PrivateServiceNotifyOnFail = (typeof PrivateServiceNotifyOnFail)[keyof typeof PrivateServiceNotifyOnFail];
 
-export const PrivateServicePropertiesAutoDeploy = {
-    Yes: "yes",
-    No: "no",
-} as const;
-
-/**
- * Defaults to "yes"
- */
-export type PrivateServicePropertiesAutoDeploy = (typeof PrivateServicePropertiesAutoDeploy)[keyof typeof PrivateServicePropertiesAutoDeploy];
-
 export const PrivateServiceSuspended = {
     Suspended: "suspended",
     NotSuspended: "not_suspended",
@@ -653,16 +623,6 @@ export const StaticSiteNotifyOnFail = {
 
 export type StaticSiteNotifyOnFail = (typeof StaticSiteNotifyOnFail)[keyof typeof StaticSiteNotifyOnFail];
 
-export const StaticSitePropertiesAutoDeploy = {
-    Yes: "yes",
-    No: "no",
-} as const;
-
-/**
- * Defaults to "yes"
- */
-export type StaticSitePropertiesAutoDeploy = (typeof StaticSitePropertiesAutoDeploy)[keyof typeof StaticSitePropertiesAutoDeploy];
-
 export const StaticSiteRouteType = {
     Redirect: "redirect",
     Rewrite: "rewrite",
@@ -807,16 +767,6 @@ export const WebServiceNotifyOnFail = {
 } as const;
 
 export type WebServiceNotifyOnFail = (typeof WebServiceNotifyOnFail)[keyof typeof WebServiceNotifyOnFail];
-
-export const WebServicePropertiesAutoDeploy = {
-    Yes: "yes",
-    No: "no",
-} as const;
-
-/**
- * Defaults to "yes"
- */
-export type WebServicePropertiesAutoDeploy = (typeof WebServicePropertiesAutoDeploy)[keyof typeof WebServicePropertiesAutoDeploy];
 
 export const WebServiceSuspended = {
     Suspended: "suspended",

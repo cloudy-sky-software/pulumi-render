@@ -328,37 +328,6 @@ namespace Pulumi.Render.Services
         public override string ToString() => _value;
     }
 
-    /// <summary>
-    /// Defaults to "yes"
-    /// </summary>
-    [EnumType]
-    public readonly struct BackgroundWorkerPropertiesAutoDeploy : IEquatable<BackgroundWorkerPropertiesAutoDeploy>
-    {
-        private readonly string _value;
-
-        private BackgroundWorkerPropertiesAutoDeploy(string value)
-        {
-            _value = value ?? throw new ArgumentNullException(nameof(value));
-        }
-
-        public static BackgroundWorkerPropertiesAutoDeploy Yes { get; } = new BackgroundWorkerPropertiesAutoDeploy("yes");
-        public static BackgroundWorkerPropertiesAutoDeploy No { get; } = new BackgroundWorkerPropertiesAutoDeploy("no");
-
-        public static bool operator ==(BackgroundWorkerPropertiesAutoDeploy left, BackgroundWorkerPropertiesAutoDeploy right) => left.Equals(right);
-        public static bool operator !=(BackgroundWorkerPropertiesAutoDeploy left, BackgroundWorkerPropertiesAutoDeploy right) => !left.Equals(right);
-
-        public static explicit operator string(BackgroundWorkerPropertiesAutoDeploy value) => value._value;
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is BackgroundWorkerPropertiesAutoDeploy other && Equals(other);
-        public bool Equals(BackgroundWorkerPropertiesAutoDeploy other) => string.Equals(_value, other._value, StringComparison.Ordinal);
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
-
-        public override string ToString() => _value;
-    }
-
     [EnumType]
     public readonly struct BackgroundWorkerSuspended : IEquatable<BackgroundWorkerSuspended>
     {
@@ -776,37 +745,6 @@ namespace Pulumi.Render.Services
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool Equals(object? obj) => obj is CronJobNotifyOnFail other && Equals(other);
         public bool Equals(CronJobNotifyOnFail other) => string.Equals(_value, other._value, StringComparison.Ordinal);
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
-
-        public override string ToString() => _value;
-    }
-
-    /// <summary>
-    /// Defaults to "yes"
-    /// </summary>
-    [EnumType]
-    public readonly struct CronJobPropertiesAutoDeploy : IEquatable<CronJobPropertiesAutoDeploy>
-    {
-        private readonly string _value;
-
-        private CronJobPropertiesAutoDeploy(string value)
-        {
-            _value = value ?? throw new ArgumentNullException(nameof(value));
-        }
-
-        public static CronJobPropertiesAutoDeploy Yes { get; } = new CronJobPropertiesAutoDeploy("yes");
-        public static CronJobPropertiesAutoDeploy No { get; } = new CronJobPropertiesAutoDeploy("no");
-
-        public static bool operator ==(CronJobPropertiesAutoDeploy left, CronJobPropertiesAutoDeploy right) => left.Equals(right);
-        public static bool operator !=(CronJobPropertiesAutoDeploy left, CronJobPropertiesAutoDeploy right) => !left.Equals(right);
-
-        public static explicit operator string(CronJobPropertiesAutoDeploy value) => value._value;
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is CronJobPropertiesAutoDeploy other && Equals(other);
-        public bool Equals(CronJobPropertiesAutoDeploy other) => string.Equals(_value, other._value, StringComparison.Ordinal);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => _value?.GetHashCode() ?? 0;
@@ -1423,37 +1361,6 @@ namespace Pulumi.Render.Services
         public override string ToString() => _value;
     }
 
-    /// <summary>
-    /// Defaults to "yes"
-    /// </summary>
-    [EnumType]
-    public readonly struct PrivateServicePropertiesAutoDeploy : IEquatable<PrivateServicePropertiesAutoDeploy>
-    {
-        private readonly string _value;
-
-        private PrivateServicePropertiesAutoDeploy(string value)
-        {
-            _value = value ?? throw new ArgumentNullException(nameof(value));
-        }
-
-        public static PrivateServicePropertiesAutoDeploy Yes { get; } = new PrivateServicePropertiesAutoDeploy("yes");
-        public static PrivateServicePropertiesAutoDeploy No { get; } = new PrivateServicePropertiesAutoDeploy("no");
-
-        public static bool operator ==(PrivateServicePropertiesAutoDeploy left, PrivateServicePropertiesAutoDeploy right) => left.Equals(right);
-        public static bool operator !=(PrivateServicePropertiesAutoDeploy left, PrivateServicePropertiesAutoDeploy right) => !left.Equals(right);
-
-        public static explicit operator string(PrivateServicePropertiesAutoDeploy value) => value._value;
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is PrivateServicePropertiesAutoDeploy other && Equals(other);
-        public bool Equals(PrivateServicePropertiesAutoDeploy other) => string.Equals(_value, other._value, StringComparison.Ordinal);
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
-
-        public override string ToString() => _value;
-    }
-
     [EnumType]
     public readonly struct PrivateServiceSuspended : IEquatable<PrivateServiceSuspended>
     {
@@ -1939,37 +1846,6 @@ namespace Pulumi.Render.Services
         public override string ToString() => _value;
     }
 
-    /// <summary>
-    /// Defaults to "yes"
-    /// </summary>
-    [EnumType]
-    public readonly struct StaticSitePropertiesAutoDeploy : IEquatable<StaticSitePropertiesAutoDeploy>
-    {
-        private readonly string _value;
-
-        private StaticSitePropertiesAutoDeploy(string value)
-        {
-            _value = value ?? throw new ArgumentNullException(nameof(value));
-        }
-
-        public static StaticSitePropertiesAutoDeploy Yes { get; } = new StaticSitePropertiesAutoDeploy("yes");
-        public static StaticSitePropertiesAutoDeploy No { get; } = new StaticSitePropertiesAutoDeploy("no");
-
-        public static bool operator ==(StaticSitePropertiesAutoDeploy left, StaticSitePropertiesAutoDeploy right) => left.Equals(right);
-        public static bool operator !=(StaticSitePropertiesAutoDeploy left, StaticSitePropertiesAutoDeploy right) => !left.Equals(right);
-
-        public static explicit operator string(StaticSitePropertiesAutoDeploy value) => value._value;
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is StaticSitePropertiesAutoDeploy other && Equals(other);
-        public bool Equals(StaticSitePropertiesAutoDeploy other) => string.Equals(_value, other._value, StringComparison.Ordinal);
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
-
-        public override string ToString() => _value;
-    }
-
     [EnumType]
     public readonly struct StaticSiteRouteType : IEquatable<StaticSiteRouteType>
     {
@@ -2402,37 +2278,6 @@ namespace Pulumi.Render.Services
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool Equals(object? obj) => obj is WebServiceNotifyOnFail other && Equals(other);
         public bool Equals(WebServiceNotifyOnFail other) => string.Equals(_value, other._value, StringComparison.Ordinal);
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
-
-        public override string ToString() => _value;
-    }
-
-    /// <summary>
-    /// Defaults to "yes"
-    /// </summary>
-    [EnumType]
-    public readonly struct WebServicePropertiesAutoDeploy : IEquatable<WebServicePropertiesAutoDeploy>
-    {
-        private readonly string _value;
-
-        private WebServicePropertiesAutoDeploy(string value)
-        {
-            _value = value ?? throw new ArgumentNullException(nameof(value));
-        }
-
-        public static WebServicePropertiesAutoDeploy Yes { get; } = new WebServicePropertiesAutoDeploy("yes");
-        public static WebServicePropertiesAutoDeploy No { get; } = new WebServicePropertiesAutoDeploy("no");
-
-        public static bool operator ==(WebServicePropertiesAutoDeploy left, WebServicePropertiesAutoDeploy right) => left.Equals(right);
-        public static bool operator !=(WebServicePropertiesAutoDeploy left, WebServicePropertiesAutoDeploy right) => !left.Equals(right);
-
-        public static explicit operator string(WebServicePropertiesAutoDeploy value) => value._value;
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is WebServicePropertiesAutoDeploy other && Equals(other);
-        public bool Equals(WebServicePropertiesAutoDeploy other) => string.Equals(_value, other._value, StringComparison.Ordinal);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => _value?.GetHashCode() ?? 0;

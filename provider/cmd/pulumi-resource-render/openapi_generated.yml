@@ -48,6 +48,88 @@ components:
                     type: integer
                     description: |
                         Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+        backgroundWorker:
+            allOf:
+                - type: object
+                  required:
+                    - type
+                    - name
+                    - ownerId
+                  properties:
+                    autoDeploy:
+                        type: string
+                        description: Defaults to "yes"
+                        enum:
+                            - "yes"
+                            - "no"
+                        default: "yes"
+                    branch:
+                        type: string
+                        description: If left empty, this will fall back to the default branch of the repository
+                    buildFilter:
+                        $ref: '#/components/schemas/buildFilter'
+                    envVars:
+                        $ref: '#/components/schemas/envVarInputArray'
+                    image:
+                        $ref: '#/components/schemas/image'
+                    name:
+                        type: string
+                    ownerId:
+                        type: string
+                    repo:
+                        type: string
+                        description: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+                        example: https://github.com/render-examples/flask-hello-world
+                    rootDir:
+                        type: string
+                    secretFiles:
+                        type: array
+                        items:
+                            $ref: '#/components/schemas/secretFile'
+                - type: object
+                  required:
+                    - env
+                  properties:
+                    disk:
+                        type: object
+                        required:
+                            - name
+                            - mountPath
+                        properties:
+                            mountPath:
+                                type: string
+                            name:
+                                type: string
+                            sizeGB:
+                                type: integer
+                                description: Defaults to 1
+                                minimum: 1
+                    env:
+                        $ref: '#/components/schemas/serviceEnv'
+                    envSpecificDetails:
+                        $ref: '#/components/schemas/envSpecificDetails'
+                    numInstances:
+                        type: integer
+                        description: Defaults to 1
+                        default: 1
+                        minimum: 1
+                    plan:
+                        $ref: '#/components/schemas/paidPlan'
+                    pullRequestPreviewsEnabled:
+                        type: string
+                        description: Defaults to "no"
+                        enum:
+                            - "yes"
+                            - "no"
+                        default: "no"
+                    region:
+                        $ref: '#/components/schemas/region'
+                - type: object
+                  properties:
+                    type:
+                        type: string
+                        default: background_worker
+            title: BackgroundWorker
         backgroundWorkerDetails:
             type: object
             required:
@@ -133,9 +215,46 @@ components:
                     default: "no"
                 region:
                     $ref: '#/components/schemas/region'
-                type:
-                    type: string
-                    default: background_worker
+        backgroundWorkerPatch:
+            allOf:
+                - type: object
+                  properties:
+                    autoDeploy:
+                        type: string
+                        enum:
+                            - "yes"
+                            - "no"
+                    branch:
+                        type: string
+                    buildFilter:
+                        $ref: '#/components/schemas/buildFilter'
+                    image:
+                        $ref: '#/components/schemas/image'
+                    name:
+                        type: string
+                    repo:
+                        type: string
+                    rootDir:
+                        type: string
+                - type: object
+                  properties:
+                    envSpecificDetails:
+                        oneOf:
+                            - $ref: '#/components/schemas/dockerDetailsPATCH'
+                            - $ref: '#/components/schemas/nativeEnvironmentDetailsPATCH'
+                    plan:
+                        $ref: '#/components/schemas/paidPlan'
+                    pullRequestPreviewsEnabled:
+                        type: string
+                        enum:
+                            - "yes"
+                            - "no"
+                - type: object
+                  properties:
+                    type:
+                        type: string
+                        default: background_worker
+            title: BackgroundWorkerPatch
         buildFilter:
             type: object
             required:
@@ -161,6 +280,65 @@ components:
                 description:
                     type: string
                     description: User-provided description of the CIDR block
+        cronJob:
+            allOf:
+                - type: object
+                  required:
+                    - type
+                    - name
+                    - ownerId
+                  properties:
+                    autoDeploy:
+                        type: string
+                        description: Defaults to "yes"
+                        enum:
+                            - "yes"
+                            - "no"
+                        default: "yes"
+                    branch:
+                        type: string
+                        description: If left empty, this will fall back to the default branch of the repository
+                    buildFilter:
+                        $ref: '#/components/schemas/buildFilter'
+                    envVars:
+                        $ref: '#/components/schemas/envVarInputArray'
+                    image:
+                        $ref: '#/components/schemas/image'
+                    name:
+                        type: string
+                    ownerId:
+                        type: string
+                    repo:
+                        type: string
+                        description: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+                        example: https://github.com/render-examples/flask-hello-world
+                    rootDir:
+                        type: string
+                    secretFiles:
+                        type: array
+                        items:
+                            $ref: '#/components/schemas/secretFile'
+                - type: object
+                  required:
+                    - env
+                    - schedule
+                  properties:
+                    env:
+                        $ref: '#/components/schemas/serviceEnv'
+                    envSpecificDetails:
+                        $ref: '#/components/schemas/envSpecificDetails'
+                    plan:
+                        $ref: '#/components/schemas/paidPlan'
+                    region:
+                        $ref: '#/components/schemas/region'
+                    schedule:
+                        type: string
+                - type: object
+                  properties:
+                    type:
+                        type: string
+                        default: cron_job
+            title: CronJob
         cronJobDetails:
             type: object
             required:
@@ -213,9 +391,43 @@ components:
                     $ref: '#/components/schemas/region'
                 schedule:
                     type: string
-                type:
-                    type: string
-                    default: cron_job
+        cronJobPatch:
+            allOf:
+                - type: object
+                  properties:
+                    autoDeploy:
+                        type: string
+                        enum:
+                            - "yes"
+                            - "no"
+                    branch:
+                        type: string
+                    buildFilter:
+                        $ref: '#/components/schemas/buildFilter'
+                    image:
+                        $ref: '#/components/schemas/image'
+                    name:
+                        type: string
+                    repo:
+                        type: string
+                    rootDir:
+                        type: string
+                - type: object
+                  properties:
+                    envSpecificDetails:
+                        oneOf:
+                            - $ref: '#/components/schemas/dockerDetailsPATCH'
+                            - $ref: '#/components/schemas/nativeEnvironmentDetailsPATCH'
+                    plan:
+                        $ref: '#/components/schemas/paidPlan'
+                    schedule:
+                        type: string
+                - type: object
+                  properties:
+                    type:
+                        type: string
+                        default: cron_job
+            title: CronJobPatch
         cursor:
             type: string
         customDomain:
@@ -1178,6 +1390,88 @@ components:
                     example: preview
                 plan:
                     $ref: '#/components/schemas/plan'
+        privateService:
+            allOf:
+                - type: object
+                  required:
+                    - type
+                    - name
+                    - ownerId
+                  properties:
+                    autoDeploy:
+                        type: string
+                        description: Defaults to "yes"
+                        enum:
+                            - "yes"
+                            - "no"
+                        default: "yes"
+                    branch:
+                        type: string
+                        description: If left empty, this will fall back to the default branch of the repository
+                    buildFilter:
+                        $ref: '#/components/schemas/buildFilter'
+                    envVars:
+                        $ref: '#/components/schemas/envVarInputArray'
+                    image:
+                        $ref: '#/components/schemas/image'
+                    name:
+                        type: string
+                    ownerId:
+                        type: string
+                    repo:
+                        type: string
+                        description: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+                        example: https://github.com/render-examples/flask-hello-world
+                    rootDir:
+                        type: string
+                    secretFiles:
+                        type: array
+                        items:
+                            $ref: '#/components/schemas/secretFile'
+                - type: object
+                  required:
+                    - env
+                  properties:
+                    disk:
+                        type: object
+                        required:
+                            - name
+                            - mountPath
+                        properties:
+                            mountPath:
+                                type: string
+                            name:
+                                type: string
+                            sizeGB:
+                                type: integer
+                                description: Defaults to 1
+                                minimum: 1
+                    env:
+                        $ref: '#/components/schemas/serviceEnv'
+                    envSpecificDetails:
+                        $ref: '#/components/schemas/envSpecificDetails'
+                    numInstances:
+                        type: integer
+                        description: Defaults to 1
+                        default: 1
+                        minimum: 1
+                    plan:
+                        $ref: '#/components/schemas/paidPlan'
+                    pullRequestPreviewsEnabled:
+                        type: string
+                        description: Defaults to "no"
+                        enum:
+                            - "yes"
+                            - "no"
+                        default: "no"
+                    region:
+                        $ref: '#/components/schemas/region'
+                - type: object
+                  properties:
+                    type:
+                        type: string
+                        default: private_service
+            title: PrivateService
         privateServiceDetails:
             type: object
             required:
@@ -1271,9 +1565,46 @@ components:
                     default: "no"
                 region:
                     $ref: '#/components/schemas/region'
-                type:
-                    type: string
-                    default: private_service
+        privateServicePatch:
+            allOf:
+                - type: object
+                  properties:
+                    autoDeploy:
+                        type: string
+                        enum:
+                            - "yes"
+                            - "no"
+                    branch:
+                        type: string
+                    buildFilter:
+                        $ref: '#/components/schemas/buildFilter'
+                    image:
+                        $ref: '#/components/schemas/image'
+                    name:
+                        type: string
+                    repo:
+                        type: string
+                    rootDir:
+                        type: string
+                - type: object
+                  properties:
+                    envSpecificDetails:
+                        oneOf:
+                            - $ref: '#/components/schemas/dockerDetailsPATCH'
+                            - $ref: '#/components/schemas/nativeEnvironmentDetailsPATCH'
+                    plan:
+                        $ref: '#/components/schemas/paidPlan'
+                    pullRequestPreviewsEnabled:
+                        type: string
+                        enum:
+                            - "yes"
+                            - "no"
+                - type: object
+                  properties:
+                    type:
+                        type: string
+                        default: private_service
+            title: PrivateServicePatch
         project:
             type: object
             description: A project is a collection of environments
@@ -1705,13 +2036,6 @@ components:
                     type: string
                 rootDir:
                     type: string
-                serviceDetails:
-                    anyOf:
-                        - $ref: '#/components/schemas/staticSiteDetailsPATCH'
-                        - $ref: '#/components/schemas/webServiceDetailsPATCH'
-                        - $ref: '#/components/schemas/privateServiceDetailsPATCH'
-                        - $ref: '#/components/schemas/backgroundWorkerDetailsPATCH'
-                        - $ref: '#/components/schemas/cronJobDetailsPATCH'
         servicePOST:
             type: object
             required:
@@ -1749,23 +2073,6 @@ components:
                     type: array
                     items:
                         $ref: '#/components/schemas/secretFile'
-                serviceDetails:
-                    oneOf:
-                        - $ref: '#/components/schemas/staticSiteDetailsPOST'
-                        - $ref: '#/components/schemas/webServiceDetailsPOST'
-                        - $ref: '#/components/schemas/privateServiceDetailsPOST'
-                        - $ref: '#/components/schemas/backgroundWorkerDetailsPOST'
-                        - $ref: '#/components/schemas/cronJobDetailsPOST'
-                    discriminator:
-                        propertyName: type
-                        mapping:
-                            background_worker: '#/components/schemas/backgroundWorkerDetailsPOST'
-                            cron_job: '#/components/schemas/cronJobDetailsPOST'
-                            private_service: '#/components/schemas/privateServiceDetailsPOST'
-                            static_site: '#/components/schemas/staticSiteDetailsPOST'
-                            web_service: '#/components/schemas/webServiceDetailsPOST'
-                type:
-                    $ref: '#/components/schemas/serviceType'
         serviceType:
             type: string
             enum:
@@ -1782,6 +2089,72 @@ components:
                 - pserv
                 - worker
                 - cron
+        staticSite:
+            allOf:
+                - type: object
+                  required:
+                    - type
+                    - name
+                    - ownerId
+                  properties:
+                    autoDeploy:
+                        type: string
+                        description: Defaults to "yes"
+                        enum:
+                            - "yes"
+                            - "no"
+                        default: "yes"
+                    branch:
+                        type: string
+                        description: If left empty, this will fall back to the default branch of the repository
+                    buildFilter:
+                        $ref: '#/components/schemas/buildFilter'
+                    envVars:
+                        $ref: '#/components/schemas/envVarInputArray'
+                    image:
+                        $ref: '#/components/schemas/image'
+                    name:
+                        type: string
+                    ownerId:
+                        type: string
+                    repo:
+                        type: string
+                        description: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+                        example: https://github.com/render-examples/flask-hello-world
+                    rootDir:
+                        type: string
+                    secretFiles:
+                        type: array
+                        items:
+                            $ref: '#/components/schemas/secretFile'
+                - type: object
+                  properties:
+                    buildCommand:
+                        type: string
+                    headers:
+                        type: array
+                        items:
+                            $ref: '#/components/schemas/headerPost'
+                    publishPath:
+                        type: string
+                        description: Defaults to "public"
+                    pullRequestPreviewsEnabled:
+                        type: string
+                        description: Defaults to "no"
+                        enum:
+                            - "yes"
+                            - "no"
+                        default: "no"
+                    routes:
+                        type: array
+                        items:
+                            $ref: '#/components/schemas/route'
+                - type: object
+                  properties:
+                    type:
+                        type: string
+                        default: static_site
+            title: StaticSite
         staticSiteDetails:
             type: object
             required:
@@ -1838,9 +2211,44 @@ components:
                     type: array
                     items:
                         $ref: '#/components/schemas/route'
-                type:
-                    type: string
-                    default: static_site
+        staticSitePatch:
+            allOf:
+                - type: object
+                  properties:
+                    autoDeploy:
+                        type: string
+                        enum:
+                            - "yes"
+                            - "no"
+                    branch:
+                        type: string
+                    buildFilter:
+                        $ref: '#/components/schemas/buildFilter'
+                    image:
+                        $ref: '#/components/schemas/image'
+                    name:
+                        type: string
+                    repo:
+                        type: string
+                    rootDir:
+                        type: string
+                - type: object
+                  properties:
+                    buildCommand:
+                        type: string
+                    publishPath:
+                        type: string
+                    pullRequestPreviewsEnabled:
+                        type: string
+                        enum:
+                            - "yes"
+                            - "no"
+                - type: object
+                  properties:
+                    type:
+                        type: string
+                        default: static_site
+            title: StaticSitePatch
         suspenderType:
             type: string
             enum:
@@ -1894,6 +2302,89 @@ components:
         unit:
             type: string
             example: GB
+        webService:
+            allOf:
+                - type: object
+                  required:
+                    - type
+                    - name
+                    - ownerId
+                  properties:
+                    autoDeploy:
+                        type: string
+                        description: Defaults to "yes"
+                        enum:
+                            - "yes"
+                            - "no"
+                        default: "yes"
+                    branch:
+                        type: string
+                        description: If left empty, this will fall back to the default branch of the repository
+                    buildFilter:
+                        $ref: '#/components/schemas/buildFilter'
+                    envVars:
+                        $ref: '#/components/schemas/envVarInputArray'
+                    image:
+                        $ref: '#/components/schemas/image'
+                    name:
+                        type: string
+                    ownerId:
+                        type: string
+                    repo:
+                        type: string
+                        description: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+                        example: https://github.com/render-examples/flask-hello-world
+                    rootDir:
+                        type: string
+                    secretFiles:
+                        type: array
+                        items:
+                            $ref: '#/components/schemas/secretFile'
+                - type: object
+                  required:
+                    - env
+                  properties:
+                    disk:
+                        type: object
+                        required:
+                            - name
+                            - mountPath
+                        properties:
+                            mountPath:
+                                type: string
+                            name:
+                                type: string
+                            sizeGB:
+                                type: integer
+                                description: Defaults to 1
+                                minimum: 1
+                    env:
+                        $ref: '#/components/schemas/serviceEnv'
+                    envSpecificDetails:
+                        $ref: '#/components/schemas/envSpecificDetails'
+                    healthCheckPath:
+                        type: string
+                    numInstances:
+                        type: integer
+                        description: Defaults to 1
+                        minimum: 1
+                    plan:
+                        $ref: '#/components/schemas/paidPlan'
+                    pullRequestPreviewsEnabled:
+                        type: string
+                        description: Defaults to "no"
+                        enum:
+                            - "yes"
+                            - "no"
+                        default: "no"
+                    region:
+                        $ref: '#/components/schemas/region'
+                - type: object
+                  properties:
+                    type:
+                        type: string
+                        default: web_service
+            title: WebService
         webServiceDetails:
             type: object
             required:
@@ -1993,9 +2484,48 @@ components:
                     default: "no"
                 region:
                     $ref: '#/components/schemas/region'
-                type:
-                    type: string
-                    default: web_service
+        webServicePatch:
+            allOf:
+                - type: object
+                  properties:
+                    autoDeploy:
+                        type: string
+                        enum:
+                            - "yes"
+                            - "no"
+                    branch:
+                        type: string
+                    buildFilter:
+                        $ref: '#/components/schemas/buildFilter'
+                    image:
+                        $ref: '#/components/schemas/image'
+                    name:
+                        type: string
+                    repo:
+                        type: string
+                    rootDir:
+                        type: string
+                - type: object
+                  properties:
+                    envSpecificDetails:
+                        oneOf:
+                            - $ref: '#/components/schemas/dockerDetailsPATCH'
+                            - $ref: '#/components/schemas/nativeEnvironmentDetailsPATCH'
+                    healthCheckPath:
+                        type: string
+                    plan:
+                        $ref: '#/components/schemas/paidPlan'
+                    pullRequestPreviewsEnabled:
+                        type: string
+                        enum:
+                            - "yes"
+                            - "no"
+                - type: object
+                  properties:
+                    type:
+                        type: string
+                        default: web_service
+            title: WebServicePatch
     parameters:
         applicationMetricAggregationMethod:
             name: aggregationMethod
@@ -3050,7 +3580,20 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/servicePOST'
+                            oneOf:
+                                - $ref: '#/components/schemas/backgroundWorker'
+                                - $ref: '#/components/schemas/cronJob'
+                                - $ref: '#/components/schemas/staticSite'
+                                - $ref: '#/components/schemas/webService'
+                                - $ref: '#/components/schemas/privateService'
+                            discriminator:
+                                propertyName: type
+                                mapping:
+                                    background_worker: '#/components/schemas/backgroundWorker'
+                                    cron_job: '#/components/schemas/cronJob'
+                                    private_service: '#/components/schemas/privateService'
+                                    static_site: '#/components/schemas/staticSite'
+                                    web_service: '#/components/schemas/webService'
             responses:
                 "201":
                     description: Created
@@ -3137,7 +3680,20 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/servicePATCH'
+                            oneOf:
+                                - $ref: '#/components/schemas/cronJobPatch'
+                                - $ref: '#/components/schemas/staticSitePatch'
+                                - $ref: '#/components/schemas/webServicePatch'
+                                - $ref: '#/components/schemas/privateServicePatch'
+                                - $ref: '#/components/schemas/backgroundWorkerPatch'
+                            discriminator:
+                                propertyName: type
+                                mapping:
+                                    background_worker: '#/components/schemas/backgroundWorkerPatch'
+                                    cron_job: '#/components/schemas/cronJobPatch'
+                                    private_service: '#/components/schemas/privateServicePatch'
+                                    static_site: '#/components/schemas/staticSitePatch'
+                                    web_service: '#/components/schemas/webServicePatch'
             responses:
                 "200":
                     description: OK

@@ -2,8 +2,8 @@ package gen
 
 import (
 	"fmt"
+	"net/http"
 	"net/url"
-	"slices"
 	"strings"
 
 	"github.com/getkin/kin-openapi/openapi3"
@@ -14,6 +14,8 @@ import (
 
 	"github.com/pkg/errors"
 )
+
+const jsonMimeType = "application/json"
 
 func getResourceFromPath(path string) (string, error) {
 	u, err := url.Parse(path)
@@ -38,9 +40,9 @@ func getResourceFromPath(path string) (string, error) {
 	return pulschema_pkg.ToPascalCase(resourceName), nil
 }
 
-func patchEnvVarsPutEndpoint(openAPIDoc *openapi3.T) error {
+func fixEnvVarsPutEndpoint(openAPIDoc *openapi3.T) error {
 	// The actual API for updating/replacing env vars
-	//actually just takes a top-level array of objects.
+	// actually just takes a top-level array of objects.
 	// We've nested it under an envVars property to help
 	// with resource construction via Pulumi and handle
 	// the conversion in the OnPreCreate provider callback.
@@ -51,7 +53,7 @@ func patchEnvVarsPutEndpoint(openAPIDoc *openapi3.T) error {
 
 	contract.Assertf(pathItem.Put != nil, "put operation is nil")
 
-	reqBodySchema := pathItem.Put.RequestBody.Value.Content.Get("application/json")
+	reqBodySchema := pathItem.Put.RequestBody.Value.Content.Get(jsonMimeType)
 	originalSchema := reqBodySchema.Schema.Value
 	reqBodySchema.Schema.Value = openapi3.NewSchema().WithProperties(map[string]*openapi3.Schema{
 		"envVars": originalSchema,
@@ -117,72 +119,99 @@ func ensureOperationID(openAPIDoc *openapi3.T) error {
 	return nil
 }
 
-func addReadOnlyDiscriminatedProperty(openAPIDoc *openapi3.T, schemaName string, typeName string, defaultValue *string) error {
+func addDiscriminatedProperty(openAPIDoc *openapi3.T, schemaName string, typeName string, defaultValue string) error {
 	typ, ok := openAPIDoc.Components.Schemas[schemaName]
 	if !ok {
 		return fmt.Errorf("schema type %s not found", schemaName)
 	}
 
+	propSchema := openapi3.NewSchema()
+	propSchema.Type = &openapi3.Types{openapi3.TypeObject}
+	propSchema.Properties = make(openapi3.Schemas)
+
 	strSchema := openapi3.NewSchemaRef("", openapi3.NewSchema())
-	// strSchema.Value.ReadOnly = true
 	strSchema.Value.Type = &openapi3.Types{openapi3.TypeString}
-	if defaultValue != nil {
-		strSchema.Value.Default = *defaultValue
-	}
-	typ.Value.Properties[typeName] = strSchema
+	strSchema.Value.Default = defaultValue
+
+	propSchema.Properties[typeName] = strSchema
+
+	typ.Value.AllOf = append(typ.Value.AllOf, openapi3.NewSchemaRef("", propSchema))
 	return nil
 }
 
-func addServiceDiscriminator(openAPIDoc *openapi3.T) error {
+func fixServiceEndpoints(openAPIDoc *openapi3.T) error {
 	getDiscriminator := func(suffix string) *openapi3.Discriminator {
 		return &openapi3.Discriminator{
 			PropertyName: "type",
 			Mapping: map[string]string{
-				"static_site":       "#/components/schemas/staticSiteDetails" + suffix,
-				"web_service":       "#/components/schemas/webServiceDetails" + suffix,
-				"private_service":   "#/components/schemas/privateServiceDetails" + suffix,
-				"background_worker": "#/components/schemas/backgroundWorkerDetails" + suffix,
-				"cron_job":          "#/components/schemas/cronJobDetails" + suffix,
+				"static_site":       "#/components/schemas/staticSite" + suffix,
+				"web_service":       "#/components/schemas/webService" + suffix,
+				"private_service":   "#/components/schemas/privateService" + suffix,
+				"background_worker": "#/components/schemas/backgroundWorker" + suffix,
+				"cron_job":          "#/components/schemas/cronJob" + suffix,
 			},
 		}
 	}
 
-	for _, suffix := range []string{"POST"} {
-		schema, ok := openAPIDoc.Components.Schemas["service"+suffix]
-		if !ok {
-			return fmt.Errorf("service%s schema type not found", suffix)
+	services := map[string]string{"static_site": "staticSite", "web_service": "webService", "private_service": "privateService", "background_worker": "backgroundWorker", "cron_job": "cronJob"}
+
+	adjustOperation := func(path, operation string, schemaSuffix string, refs openapi3.SchemaRefs) {
+		pathItem := openAPIDoc.Paths.Find(path)
+		contract.Assertf(pathItem != nil, "path %s not found", path)
+
+		discriminator := getDiscriminator(schemaSuffix)
+
+		switch operation {
+		case http.MethodPost:
+			pathItem.Post.RequestBody.Value.Content.Get(jsonMimeType).Schema = openapi3.NewSchemaRef("", &openapi3.Schema{OneOf: refs})
+			pathItem.Post.RequestBody.Value.Content.Get(jsonMimeType).Schema.Value.Discriminator = discriminator
+		case http.MethodPatch:
+			pathItem.Patch.RequestBody.Value.Content.Get(jsonMimeType).Schema = openapi3.NewSchemaRef("", &openapi3.Schema{OneOf: refs})
+			pathItem.Patch.RequestBody.Value.Content.Get(jsonMimeType).Schema.Value.Discriminator = discriminator
 		}
+	}
 
-		discriminator := getDiscriminator(suffix)
-		schema.Value.Properties["serviceDetails"].Value.Discriminator = discriminator
+	pathsAndOperations := map[string]map[string]string{
+		"/services": {
+			http.MethodPost: "",
+		},
+		"/services/{serviceId}": {
+			http.MethodPatch: "Patch",
+		},
+	}
+	for path, operationAndSuffix := range pathsAndOperations {
 
-		// Add the `type` property to the individual schemas for each discriminator
-		// mapping.
-		for discriminatedValue, schemaRefPath := range discriminator.Mapping {
-			valuePtr := discriminatedValue
-			schemaName := strings.TrimPrefix(schemaRefPath, "#/components/schemas/")
-			err := addReadOnlyDiscriminatedProperty(openAPIDoc, schemaName, "type", &valuePtr)
-			if err != nil {
-				return err
+		for operation, suffix := range operationAndSuffix {
+			baseServiceSchemaName := "service" + strings.ToUpper(operation)
+			baseServiceSchema, ok := openAPIDoc.Components.Schemas[baseServiceSchemaName]
+			contract.Assertf(ok, "%s not found", baseServiceSchemaName)
+			// Delete the `serviceDetails` and `type` properties.
+			delete(baseServiceSchema.Value.Properties, "serviceDetails")
+			delete(baseServiceSchema.Value.Properties, "type")
+
+			operationSchemas := make(openapi3.SchemaRefs, 0, len(services))
+
+			for discriminatorValue, service := range services {
+				serviceDetailsSchemaName := service + "Details" + strings.ToUpper(operation)
+				serviceDetailsSchema := openAPIDoc.Components.Schemas[serviceDetailsSchemaName]
+				contract.Assertf(serviceDetailsSchema != nil, "schema %s not found", serviceDetailsSchemaName)
+
+				serviceSchema := openapi3.NewAllOfSchema(baseServiceSchema.Value, serviceDetailsSchema.Value)
+				serviceSchema.Title = pulschema_pkg.ToPascalCase(service) + suffix
+
+				openAPIDoc.Components.Schemas[service+suffix] = openapi3.NewSchemaRef("", serviceSchema)
+
+				err := addDiscriminatedProperty(openAPIDoc, service+suffix, "type", discriminatorValue)
+				if err != nil {
+					return err
+				}
+
+				operationSchemas = append(operationSchemas, openapi3.NewSchemaRef("#/components/schemas/"+service+suffix, nil))
 			}
+
+			adjustOperation(path, operation, suffix, operationSchemas)
 		}
 	}
-	return nil
-}
-
-// useAnyOfForServicePatchOperation replaces the oneOf definition
-// with an anyOf definition due to the lack of a discriminator.
-func useAnyOfForServicePatchOperation(openAPIDoc *openapi3.T) error {
-	schema, ok := openAPIDoc.Components.Schemas["servicePATCH"]
-	if !ok {
-		return fmt.Errorf("servicePATCH schema type not found")
-	}
-
-	serviceDetails := schema.Value.Properties["serviceDetails"].Value
-
-	schemaRefs := slices.Clone(serviceDetails.OneOf)
-	serviceDetails.AnyOf = schemaRefs
-	serviceDetails.OneOf = nil
 
 	return nil
 }
@@ -191,8 +220,8 @@ func pluckServiceObjectFromResponseBody(openAPIDoc *openapi3.T) error {
 	pathItem := openAPIDoc.Paths.Find("/services")
 	contract.Assertf(pathItem != nil, "endpoint path /services not found")
 
-	pathItem.Post.Responses.Status(201).Value.Content.Get("application/json").Schema.Value.Properties = nil
-	pathItem.Post.Responses.Status(201).Value.Content.Get("application/json").Schema.Ref = "#/components/schemas/service"
+	pathItem.Post.Responses.Status(201).Value.Content.Get(jsonMimeType).Schema.Value.Properties = nil
+	pathItem.Post.Responses.Status(201).Value.Content.Get(jsonMimeType).Schema.Ref = "#/components/schemas/service"
 	return nil
 }
 
@@ -201,19 +230,15 @@ func FixOpenAPIDoc(openAPIDoc *openapi3.T) error {
 		return err
 	}
 
-	if err := patchEnvVarsPutEndpoint(openAPIDoc); err != nil {
+	if err := fixEnvVarsPutEndpoint(openAPIDoc); err != nil {
 		return err
 	}
 
-	if err := addServiceDiscriminator(openAPIDoc); err != nil {
+	if err := fixServiceEndpoints(openAPIDoc); err != nil {
 		return err
 	}
 
 	if err := pluckServiceObjectFromResponseBody(openAPIDoc); err != nil {
-		return err
-	}
-
-	if err := useAnyOfForServicePatchOperation(openAPIDoc); err != nil {
 		return err
 	}
 

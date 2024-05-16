@@ -217,6 +217,19 @@
                 "percentage"
             ]
         },
+        "render:services:BackgroundWorkerAutoDeploy": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
         "render:services:BackgroundWorkerDetails": {
             "properties": {
                 "autoscaling": {
@@ -269,70 +282,6 @@
                 "plan",
                 "pullRequestPreviewsEnabled",
                 "region"
-            ]
-        },
-        "render:services:BackgroundWorkerDetailsCreate": {
-            "properties": {
-                "disk": {
-                    "$ref": "#/types/render:services:BackgroundWorkerDetailsCreateDiskProperties"
-                },
-                "env": {
-                    "$ref": "#/types/render:services:ServiceBackgroundWorkerDetailsCreateEnv",
-                    "description": "Environment (runtime)"
-                },
-                "envSpecificDetails": {
-                    "oneOf": [
-                        {
-                            "$ref": "#/types/render:services:DockerDetails"
-                        },
-                        {
-                            "$ref": "#/types/render:services:NativeEnvironmentDetails"
-                        }
-                    ]
-                },
-                "numInstances": {
-                    "type": "integer",
-                    "description": "Defaults to 1",
-                    "default": 1
-                },
-                "plan": {
-                    "$ref": "#/types/render:services:ServiceBackgroundWorkerDetailsCreatePlan"
-                },
-                "pullRequestPreviewsEnabled": {
-                    "$ref": "#/types/render:services:ServiceBackgroundWorkerDetailsCreatePullRequestPreviewsEnabled",
-                    "description": "Defaults to \"no\"",
-                    "default": "no"
-                },
-                "region": {
-                    "$ref": "#/types/render:services:ServiceBackgroundWorkerDetailsCreateRegion"
-                },
-                "type": {
-                    "type": "string",
-                    "default": "background_worker"
-                }
-            },
-            "type": "object",
-            "required": [
-                "env"
-            ]
-        },
-        "render:services:BackgroundWorkerDetailsCreateDiskProperties": {
-            "properties": {
-                "mountPath": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "sizeGB": {
-                    "type": "integer",
-                    "description": "Defaults to 1"
-                }
-            },
-            "type": "object",
-            "required": [
-                "mountPath",
-                "name"
             ]
         },
         "render:services:BackgroundWorkerDetailsEnv": {
@@ -450,6 +399,221 @@
                 {
                     "name": "Singapore",
                     "value": "singapore"
+                }
+            ]
+        },
+        "render:services:BackgroundWorkerNotifyOnFail": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Default",
+                    "value": "default"
+                },
+                {
+                    "name": "Notify",
+                    "value": "notify"
+                },
+                {
+                    "name": "Ignore",
+                    "value": "ignore"
+                }
+            ]
+        },
+        "render:services:BackgroundWorkerPropertiesAutoDeploy": {
+            "description": "Defaults to \"yes\"",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
+        "render:services:BackgroundWorkerPropertiesDiskProperties": {
+            "properties": {
+                "mountPath": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "sizeGB": {
+                    "type": "integer",
+                    "description": "Defaults to 1"
+                }
+            },
+            "type": "object",
+            "required": [
+                "mountPath",
+                "name"
+            ]
+        },
+        "render:services:BackgroundWorkerPropertiesEnv": {
+            "description": "Environment (runtime)",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Docker",
+                    "value": "docker"
+                },
+                {
+                    "name": "Elixir",
+                    "value": "elixir"
+                },
+                {
+                    "name": "Go",
+                    "value": "go"
+                },
+                {
+                    "name": "Node",
+                    "value": "node"
+                },
+                {
+                    "name": "Python",
+                    "value": "python"
+                },
+                {
+                    "name": "Ruby",
+                    "value": "ruby"
+                },
+                {
+                    "name": "Rust",
+                    "value": "rust"
+                },
+                {
+                    "name": "Image",
+                    "value": "image"
+                }
+            ]
+        },
+        "render:services:BackgroundWorkerPropertiesPlan": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Starter",
+                    "value": "starter"
+                },
+                {
+                    "name": "Standard",
+                    "value": "standard"
+                },
+                {
+                    "name": "Pro",
+                    "value": "pro"
+                },
+                {
+                    "name": "ProPlus",
+                    "value": "pro_plus"
+                },
+                {
+                    "name": "ProMax",
+                    "value": "pro_max"
+                },
+                {
+                    "name": "ProUltra",
+                    "value": "pro_ultra"
+                }
+            ]
+        },
+        "render:services:BackgroundWorkerPropertiesPullRequestPreviewsEnabled": {
+            "description": "Defaults to \"no\"",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
+        "render:services:BackgroundWorkerPropertiesRegion": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Frankfurt",
+                    "value": "frankfurt"
+                },
+                {
+                    "name": "Oregon",
+                    "value": "oregon"
+                },
+                {
+                    "name": "Ohio",
+                    "value": "ohio"
+                },
+                {
+                    "name": "Singapore",
+                    "value": "singapore"
+                }
+            ]
+        },
+        "render:services:BackgroundWorkerSuspended": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Suspended",
+                    "value": "suspended"
+                },
+                {
+                    "name": "NotSuspended",
+                    "value": "not_suspended"
+                }
+            ]
+        },
+        "render:services:BackgroundWorkerSuspendersItem": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Admin",
+                    "value": "admin"
+                },
+                {
+                    "name": "Billing",
+                    "value": "billing"
+                },
+                {
+                    "name": "User",
+                    "value": "user"
+                },
+                {
+                    "name": "ParentService",
+                    "value": "parent_service"
+                },
+                {
+                    "name": "Unknown",
+                    "value": "unknown"
+                }
+            ]
+        },
+        "render:services:BackgroundWorkerType": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "StaticSite",
+                    "value": "static_site"
+                },
+                {
+                    "name": "WebService",
+                    "value": "web_service"
+                },
+                {
+                    "name": "PrivateService",
+                    "value": "private_service"
+                },
+                {
+                    "name": "BackgroundWorker",
+                    "value": "background_worker"
+                },
+                {
+                    "name": "CronJob",
+                    "value": "cron_job"
                 }
             ]
         },
@@ -578,6 +742,19 @@
             },
             "type": "object"
         },
+        "render:services:CronJobAutoDeploy": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
         "render:services:CronJobDetails": {
             "properties": {
                 "buildPlan": {
@@ -618,42 +795,6 @@
                 "envSpecificDetails",
                 "plan",
                 "region",
-                "schedule"
-            ]
-        },
-        "render:services:CronJobDetailsCreate": {
-            "properties": {
-                "env": {
-                    "$ref": "#/types/render:services:ServiceCronJobDetailsCreateEnv",
-                    "description": "Environment (runtime)"
-                },
-                "envSpecificDetails": {
-                    "oneOf": [
-                        {
-                            "$ref": "#/types/render:services:DockerDetails"
-                        },
-                        {
-                            "$ref": "#/types/render:services:NativeEnvironmentDetails"
-                        }
-                    ]
-                },
-                "plan": {
-                    "$ref": "#/types/render:services:ServiceCronJobDetailsCreatePlan"
-                },
-                "region": {
-                    "$ref": "#/types/render:services:ServiceCronJobDetailsCreateRegion"
-                },
-                "schedule": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string",
-                    "default": "cron_job"
-                }
-            },
-            "type": "object",
-            "required": [
-                "env",
                 "schedule"
             ]
         },
@@ -759,6 +900,188 @@
                 {
                     "name": "Singapore",
                     "value": "singapore"
+                }
+            ]
+        },
+        "render:services:CronJobNotifyOnFail": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Default",
+                    "value": "default"
+                },
+                {
+                    "name": "Notify",
+                    "value": "notify"
+                },
+                {
+                    "name": "Ignore",
+                    "value": "ignore"
+                }
+            ]
+        },
+        "render:services:CronJobPropertiesAutoDeploy": {
+            "description": "Defaults to \"yes\"",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
+        "render:services:CronJobPropertiesEnv": {
+            "description": "Environment (runtime)",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Docker",
+                    "value": "docker"
+                },
+                {
+                    "name": "Elixir",
+                    "value": "elixir"
+                },
+                {
+                    "name": "Go",
+                    "value": "go"
+                },
+                {
+                    "name": "Node",
+                    "value": "node"
+                },
+                {
+                    "name": "Python",
+                    "value": "python"
+                },
+                {
+                    "name": "Ruby",
+                    "value": "ruby"
+                },
+                {
+                    "name": "Rust",
+                    "value": "rust"
+                },
+                {
+                    "name": "Image",
+                    "value": "image"
+                }
+            ]
+        },
+        "render:services:CronJobPropertiesPlan": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Starter",
+                    "value": "starter"
+                },
+                {
+                    "name": "Standard",
+                    "value": "standard"
+                },
+                {
+                    "name": "Pro",
+                    "value": "pro"
+                },
+                {
+                    "name": "ProPlus",
+                    "value": "pro_plus"
+                },
+                {
+                    "name": "ProMax",
+                    "value": "pro_max"
+                },
+                {
+                    "name": "ProUltra",
+                    "value": "pro_ultra"
+                }
+            ]
+        },
+        "render:services:CronJobPropertiesRegion": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Frankfurt",
+                    "value": "frankfurt"
+                },
+                {
+                    "name": "Oregon",
+                    "value": "oregon"
+                },
+                {
+                    "name": "Ohio",
+                    "value": "ohio"
+                },
+                {
+                    "name": "Singapore",
+                    "value": "singapore"
+                }
+            ]
+        },
+        "render:services:CronJobSuspended": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Suspended",
+                    "value": "suspended"
+                },
+                {
+                    "name": "NotSuspended",
+                    "value": "not_suspended"
+                }
+            ]
+        },
+        "render:services:CronJobSuspendersItem": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Admin",
+                    "value": "admin"
+                },
+                {
+                    "name": "Billing",
+                    "value": "billing"
+                },
+                {
+                    "name": "User",
+                    "value": "user"
+                },
+                {
+                    "name": "ParentService",
+                    "value": "parent_service"
+                },
+                {
+                    "name": "Unknown",
+                    "value": "unknown"
+                }
+            ]
+        },
+        "render:services:CronJobType": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "StaticSite",
+                    "value": "static_site"
+                },
+                {
+                    "name": "WebService",
+                    "value": "web_service"
+                },
+                {
+                    "name": "PrivateService",
+                    "value": "private_service"
+                },
+                {
+                    "name": "BackgroundWorker",
+                    "value": "background_worker"
+                },
+                {
+                    "name": "CronJob",
+                    "value": "cron_job"
                 }
             ]
         },
@@ -1364,6 +1687,19 @@
                 }
             ]
         },
+        "render:services:PrivateServiceAutoDeploy": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
         "render:services:PrivateServiceDetails": {
             "properties": {
                 "autoscaling": {
@@ -1427,70 +1763,6 @@
                 "pullRequestPreviewsEnabled",
                 "region",
                 "url"
-            ]
-        },
-        "render:services:PrivateServiceDetailsCreate": {
-            "properties": {
-                "disk": {
-                    "$ref": "#/types/render:services:PrivateServiceDetailsCreateDiskProperties"
-                },
-                "env": {
-                    "$ref": "#/types/render:services:ServicePrivateServiceDetailsCreateEnv",
-                    "description": "Environment (runtime)"
-                },
-                "envSpecificDetails": {
-                    "oneOf": [
-                        {
-                            "$ref": "#/types/render:services:DockerDetails"
-                        },
-                        {
-                            "$ref": "#/types/render:services:NativeEnvironmentDetails"
-                        }
-                    ]
-                },
-                "numInstances": {
-                    "type": "integer",
-                    "description": "Defaults to 1",
-                    "default": 1
-                },
-                "plan": {
-                    "$ref": "#/types/render:services:ServicePrivateServiceDetailsCreatePlan"
-                },
-                "pullRequestPreviewsEnabled": {
-                    "$ref": "#/types/render:services:ServicePrivateServiceDetailsCreatePullRequestPreviewsEnabled",
-                    "description": "Defaults to \"no\"",
-                    "default": "no"
-                },
-                "region": {
-                    "$ref": "#/types/render:services:ServicePrivateServiceDetailsCreateRegion"
-                },
-                "type": {
-                    "type": "string",
-                    "default": "private_service"
-                }
-            },
-            "type": "object",
-            "required": [
-                "env"
-            ]
-        },
-        "render:services:PrivateServiceDetailsCreateDiskProperties": {
-            "properties": {
-                "mountPath": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "sizeGB": {
-                    "type": "integer",
-                    "description": "Defaults to 1"
-                }
-            },
-            "type": "object",
-            "required": [
-                "mountPath",
-                "name"
             ]
         },
         "render:services:PrivateServiceDetailsEnv": {
@@ -1608,6 +1880,221 @@
                 {
                     "name": "Singapore",
                     "value": "singapore"
+                }
+            ]
+        },
+        "render:services:PrivateServiceNotifyOnFail": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Default",
+                    "value": "default"
+                },
+                {
+                    "name": "Notify",
+                    "value": "notify"
+                },
+                {
+                    "name": "Ignore",
+                    "value": "ignore"
+                }
+            ]
+        },
+        "render:services:PrivateServicePropertiesAutoDeploy": {
+            "description": "Defaults to \"yes\"",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
+        "render:services:PrivateServicePropertiesDiskProperties": {
+            "properties": {
+                "mountPath": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "sizeGB": {
+                    "type": "integer",
+                    "description": "Defaults to 1"
+                }
+            },
+            "type": "object",
+            "required": [
+                "mountPath",
+                "name"
+            ]
+        },
+        "render:services:PrivateServicePropertiesEnv": {
+            "description": "Environment (runtime)",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Docker",
+                    "value": "docker"
+                },
+                {
+                    "name": "Elixir",
+                    "value": "elixir"
+                },
+                {
+                    "name": "Go",
+                    "value": "go"
+                },
+                {
+                    "name": "Node",
+                    "value": "node"
+                },
+                {
+                    "name": "Python",
+                    "value": "python"
+                },
+                {
+                    "name": "Ruby",
+                    "value": "ruby"
+                },
+                {
+                    "name": "Rust",
+                    "value": "rust"
+                },
+                {
+                    "name": "Image",
+                    "value": "image"
+                }
+            ]
+        },
+        "render:services:PrivateServicePropertiesPlan": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Starter",
+                    "value": "starter"
+                },
+                {
+                    "name": "Standard",
+                    "value": "standard"
+                },
+                {
+                    "name": "Pro",
+                    "value": "pro"
+                },
+                {
+                    "name": "ProPlus",
+                    "value": "pro_plus"
+                },
+                {
+                    "name": "ProMax",
+                    "value": "pro_max"
+                },
+                {
+                    "name": "ProUltra",
+                    "value": "pro_ultra"
+                }
+            ]
+        },
+        "render:services:PrivateServicePropertiesPullRequestPreviewsEnabled": {
+            "description": "Defaults to \"no\"",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
+        "render:services:PrivateServicePropertiesRegion": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Frankfurt",
+                    "value": "frankfurt"
+                },
+                {
+                    "name": "Oregon",
+                    "value": "oregon"
+                },
+                {
+                    "name": "Ohio",
+                    "value": "ohio"
+                },
+                {
+                    "name": "Singapore",
+                    "value": "singapore"
+                }
+            ]
+        },
+        "render:services:PrivateServiceSuspended": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Suspended",
+                    "value": "suspended"
+                },
+                {
+                    "name": "NotSuspended",
+                    "value": "not_suspended"
+                }
+            ]
+        },
+        "render:services:PrivateServiceSuspendersItem": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Admin",
+                    "value": "admin"
+                },
+                {
+                    "name": "Billing",
+                    "value": "billing"
+                },
+                {
+                    "name": "User",
+                    "value": "user"
+                },
+                {
+                    "name": "ParentService",
+                    "value": "parent_service"
+                },
+                {
+                    "name": "Unknown",
+                    "value": "unknown"
+                }
+            ]
+        },
+        "render:services:PrivateServiceType": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "StaticSite",
+                    "value": "static_site"
+                },
+                {
+                    "name": "WebService",
+                    "value": "web_service"
+                },
+                {
+                    "name": "PrivateService",
+                    "value": "private_service"
+                },
+                {
+                    "name": "BackgroundWorker",
+                    "value": "background_worker"
+                },
+                {
+                    "name": "CronJob",
+                    "value": "cron_job"
                 }
             ]
         },
@@ -1777,7 +2264,7 @@
                     "type": "string"
                 },
                 "type": {
-                    "$ref": "#/types/render:services:ServiceRouteType"
+                    "$ref": "#/types/render:services:StaticSiteRouteType"
                 }
             },
             "type": "object",
@@ -1935,196 +2422,6 @@
                 }
             ]
         },
-        "render:services:ServiceBackgroundWorkerDetailsCreateEnv": {
-            "description": "Environment (runtime)",
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Docker",
-                    "value": "docker"
-                },
-                {
-                    "name": "Elixir",
-                    "value": "elixir"
-                },
-                {
-                    "name": "Go",
-                    "value": "go"
-                },
-                {
-                    "name": "Node",
-                    "value": "node"
-                },
-                {
-                    "name": "Python",
-                    "value": "python"
-                },
-                {
-                    "name": "Ruby",
-                    "value": "ruby"
-                },
-                {
-                    "name": "Rust",
-                    "value": "rust"
-                },
-                {
-                    "name": "Image",
-                    "value": "image"
-                }
-            ]
-        },
-        "render:services:ServiceBackgroundWorkerDetailsCreatePlan": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Starter",
-                    "value": "starter"
-                },
-                {
-                    "name": "Standard",
-                    "value": "standard"
-                },
-                {
-                    "name": "Pro",
-                    "value": "pro"
-                },
-                {
-                    "name": "ProPlus",
-                    "value": "pro_plus"
-                },
-                {
-                    "name": "ProMax",
-                    "value": "pro_max"
-                },
-                {
-                    "name": "ProUltra",
-                    "value": "pro_ultra"
-                }
-            ]
-        },
-        "render:services:ServiceBackgroundWorkerDetailsCreatePullRequestPreviewsEnabled": {
-            "description": "Defaults to \"no\"",
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Yes",
-                    "value": "yes"
-                },
-                {
-                    "name": "No",
-                    "value": "no"
-                }
-            ]
-        },
-        "render:services:ServiceBackgroundWorkerDetailsCreateRegion": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Frankfurt",
-                    "value": "frankfurt"
-                },
-                {
-                    "name": "Oregon",
-                    "value": "oregon"
-                },
-                {
-                    "name": "Ohio",
-                    "value": "ohio"
-                },
-                {
-                    "name": "Singapore",
-                    "value": "singapore"
-                }
-            ]
-        },
-        "render:services:ServiceCronJobDetailsCreateEnv": {
-            "description": "Environment (runtime)",
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Docker",
-                    "value": "docker"
-                },
-                {
-                    "name": "Elixir",
-                    "value": "elixir"
-                },
-                {
-                    "name": "Go",
-                    "value": "go"
-                },
-                {
-                    "name": "Node",
-                    "value": "node"
-                },
-                {
-                    "name": "Python",
-                    "value": "python"
-                },
-                {
-                    "name": "Ruby",
-                    "value": "ruby"
-                },
-                {
-                    "name": "Rust",
-                    "value": "rust"
-                },
-                {
-                    "name": "Image",
-                    "value": "image"
-                }
-            ]
-        },
-        "render:services:ServiceCronJobDetailsCreatePlan": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Starter",
-                    "value": "starter"
-                },
-                {
-                    "name": "Standard",
-                    "value": "standard"
-                },
-                {
-                    "name": "Pro",
-                    "value": "pro"
-                },
-                {
-                    "name": "ProPlus",
-                    "value": "pro_plus"
-                },
-                {
-                    "name": "ProMax",
-                    "value": "pro_max"
-                },
-                {
-                    "name": "ProUltra",
-                    "value": "pro_ultra"
-                }
-            ]
-        },
-        "render:services:ServiceCronJobDetailsCreateRegion": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Frankfurt",
-                    "value": "frankfurt"
-                },
-                {
-                    "name": "Oregon",
-                    "value": "oregon"
-                },
-                {
-                    "name": "Ohio",
-                    "value": "ohio"
-                },
-                {
-                    "name": "Singapore",
-                    "value": "singapore"
-                }
-            ]
-        },
         "render:services:ServiceNotifyOnFail": {
             "type": "string",
             "enum": [
@@ -2139,135 +2436,6 @@
                 {
                     "name": "Ignore",
                     "value": "ignore"
-                }
-            ]
-        },
-        "render:services:ServicePrivateServiceDetailsCreateEnv": {
-            "description": "Environment (runtime)",
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Docker",
-                    "value": "docker"
-                },
-                {
-                    "name": "Elixir",
-                    "value": "elixir"
-                },
-                {
-                    "name": "Go",
-                    "value": "go"
-                },
-                {
-                    "name": "Node",
-                    "value": "node"
-                },
-                {
-                    "name": "Python",
-                    "value": "python"
-                },
-                {
-                    "name": "Ruby",
-                    "value": "ruby"
-                },
-                {
-                    "name": "Rust",
-                    "value": "rust"
-                },
-                {
-                    "name": "Image",
-                    "value": "image"
-                }
-            ]
-        },
-        "render:services:ServicePrivateServiceDetailsCreatePlan": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Starter",
-                    "value": "starter"
-                },
-                {
-                    "name": "Standard",
-                    "value": "standard"
-                },
-                {
-                    "name": "Pro",
-                    "value": "pro"
-                },
-                {
-                    "name": "ProPlus",
-                    "value": "pro_plus"
-                },
-                {
-                    "name": "ProMax",
-                    "value": "pro_max"
-                },
-                {
-                    "name": "ProUltra",
-                    "value": "pro_ultra"
-                }
-            ]
-        },
-        "render:services:ServicePrivateServiceDetailsCreatePullRequestPreviewsEnabled": {
-            "description": "Defaults to \"no\"",
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Yes",
-                    "value": "yes"
-                },
-                {
-                    "name": "No",
-                    "value": "no"
-                }
-            ]
-        },
-        "render:services:ServicePrivateServiceDetailsCreateRegion": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Frankfurt",
-                    "value": "frankfurt"
-                },
-                {
-                    "name": "Oregon",
-                    "value": "oregon"
-                },
-                {
-                    "name": "Ohio",
-                    "value": "ohio"
-                },
-                {
-                    "name": "Singapore",
-                    "value": "singapore"
-                }
-            ]
-        },
-        "render:services:ServiceRouteType": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Redirect",
-                    "value": "redirect"
-                },
-                {
-                    "name": "Rewrite",
-                    "value": "rewrite"
-                }
-            ]
-        },
-        "render:services:ServiceStaticSiteDetailsCreatePullRequestPreviewsEnabled": {
-            "description": "Defaults to \"no\"",
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Yes",
-                    "value": "yes"
-                },
-                {
-                    "name": "No",
-                    "value": "no"
                 }
             ]
         },
@@ -2334,75 +2502,7 @@
                 }
             ]
         },
-        "render:services:ServiceWebServiceDetailsCreateEnv": {
-            "description": "Environment (runtime)",
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Docker",
-                    "value": "docker"
-                },
-                {
-                    "name": "Elixir",
-                    "value": "elixir"
-                },
-                {
-                    "name": "Go",
-                    "value": "go"
-                },
-                {
-                    "name": "Node",
-                    "value": "node"
-                },
-                {
-                    "name": "Python",
-                    "value": "python"
-                },
-                {
-                    "name": "Ruby",
-                    "value": "ruby"
-                },
-                {
-                    "name": "Rust",
-                    "value": "rust"
-                },
-                {
-                    "name": "Image",
-                    "value": "image"
-                }
-            ]
-        },
-        "render:services:ServiceWebServiceDetailsCreatePlan": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Starter",
-                    "value": "starter"
-                },
-                {
-                    "name": "Standard",
-                    "value": "standard"
-                },
-                {
-                    "name": "Pro",
-                    "value": "pro"
-                },
-                {
-                    "name": "ProPlus",
-                    "value": "pro_plus"
-                },
-                {
-                    "name": "ProMax",
-                    "value": "pro_max"
-                },
-                {
-                    "name": "ProUltra",
-                    "value": "pro_ultra"
-                }
-            ]
-        },
-        "render:services:ServiceWebServiceDetailsCreatePullRequestPreviewsEnabled": {
-            "description": "Defaults to \"no\"",
+        "render:services:StaticSiteAutoDeploy": {
             "type": "string",
             "enum": [
                 {
@@ -2412,27 +2512,6 @@
                 {
                     "name": "No",
                     "value": "no"
-                }
-            ]
-        },
-        "render:services:ServiceWebServiceDetailsCreateRegion": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Frankfurt",
-                    "value": "frankfurt"
-                },
-                {
-                    "name": "Oregon",
-                    "value": "oregon"
-                },
-                {
-                    "name": "Ohio",
-                    "value": "ohio"
-                },
-                {
-                    "name": "Singapore",
-                    "value": "singapore"
                 }
             ]
         },
@@ -2466,40 +2545,141 @@
                 "url"
             ]
         },
-        "render:services:StaticSiteDetailsCreate": {
-            "properties": {
-                "buildCommand": {
-                    "type": "string"
-                },
-                "headers": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:HeaderCreate"
-                    }
-                },
-                "publishPath": {
-                    "type": "string",
-                    "description": "Defaults to \"public\""
-                },
-                "pullRequestPreviewsEnabled": {
-                    "$ref": "#/types/render:services:ServiceStaticSiteDetailsCreatePullRequestPreviewsEnabled",
-                    "description": "Defaults to \"no\"",
-                    "default": "no"
-                },
-                "routes": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:Route"
-                    }
-                },
-                "type": {
-                    "type": "string",
-                    "default": "static_site"
-                }
-            },
-            "type": "object"
-        },
         "render:services:StaticSiteDetailsPullRequestPreviewsEnabled": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
+        "render:services:StaticSiteNotifyOnFail": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Default",
+                    "value": "default"
+                },
+                {
+                    "name": "Notify",
+                    "value": "notify"
+                },
+                {
+                    "name": "Ignore",
+                    "value": "ignore"
+                }
+            ]
+        },
+        "render:services:StaticSitePropertiesAutoDeploy": {
+            "description": "Defaults to \"yes\"",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
+        "render:services:StaticSitePropertiesPullRequestPreviewsEnabled": {
+            "description": "Defaults to \"no\"",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
+        "render:services:StaticSiteRouteType": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Redirect",
+                    "value": "redirect"
+                },
+                {
+                    "name": "Rewrite",
+                    "value": "rewrite"
+                }
+            ]
+        },
+        "render:services:StaticSiteSuspended": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Suspended",
+                    "value": "suspended"
+                },
+                {
+                    "name": "NotSuspended",
+                    "value": "not_suspended"
+                }
+            ]
+        },
+        "render:services:StaticSiteSuspendersItem": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Admin",
+                    "value": "admin"
+                },
+                {
+                    "name": "Billing",
+                    "value": "billing"
+                },
+                {
+                    "name": "User",
+                    "value": "user"
+                },
+                {
+                    "name": "ParentService",
+                    "value": "parent_service"
+                },
+                {
+                    "name": "Unknown",
+                    "value": "unknown"
+                }
+            ]
+        },
+        "render:services:StaticSiteType": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "StaticSite",
+                    "value": "static_site"
+                },
+                {
+                    "name": "WebService",
+                    "value": "web_service"
+                },
+                {
+                    "name": "PrivateService",
+                    "value": "private_service"
+                },
+                {
+                    "name": "BackgroundWorker",
+                    "value": "background_worker"
+                },
+                {
+                    "name": "CronJob",
+                    "value": "cron_job"
+                }
+            ]
+        },
+        "render:services:WebServiceAutoDeploy": {
             "type": "string",
             "enum": [
                 {
@@ -2579,72 +2759,6 @@
                 "pullRequestPreviewsEnabled",
                 "region",
                 "url"
-            ]
-        },
-        "render:services:WebServiceDetailsCreate": {
-            "properties": {
-                "disk": {
-                    "$ref": "#/types/render:services:WebServiceDetailsCreateDiskProperties"
-                },
-                "env": {
-                    "$ref": "#/types/render:services:ServiceWebServiceDetailsCreateEnv",
-                    "description": "Environment (runtime)"
-                },
-                "envSpecificDetails": {
-                    "oneOf": [
-                        {
-                            "$ref": "#/types/render:services:DockerDetails"
-                        },
-                        {
-                            "$ref": "#/types/render:services:NativeEnvironmentDetails"
-                        }
-                    ]
-                },
-                "healthCheckPath": {
-                    "type": "string"
-                },
-                "numInstances": {
-                    "type": "integer",
-                    "description": "Defaults to 1"
-                },
-                "plan": {
-                    "$ref": "#/types/render:services:ServiceWebServiceDetailsCreatePlan"
-                },
-                "pullRequestPreviewsEnabled": {
-                    "$ref": "#/types/render:services:ServiceWebServiceDetailsCreatePullRequestPreviewsEnabled",
-                    "description": "Defaults to \"no\"",
-                    "default": "no"
-                },
-                "region": {
-                    "$ref": "#/types/render:services:ServiceWebServiceDetailsCreateRegion"
-                },
-                "type": {
-                    "type": "string",
-                    "default": "web_service"
-                }
-            },
-            "type": "object",
-            "required": [
-                "env"
-            ]
-        },
-        "render:services:WebServiceDetailsCreateDiskProperties": {
-            "properties": {
-                "mountPath": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "sizeGB": {
-                    "type": "integer",
-                    "description": "Defaults to 1"
-                }
-            },
-            "type": "object",
-            "required": [
-                "mountPath",
-                "name"
             ]
         },
         "render:services:WebServiceDetailsEnv": {
@@ -2762,6 +2876,221 @@
                 {
                     "name": "Singapore",
                     "value": "singapore"
+                }
+            ]
+        },
+        "render:services:WebServiceNotifyOnFail": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Default",
+                    "value": "default"
+                },
+                {
+                    "name": "Notify",
+                    "value": "notify"
+                },
+                {
+                    "name": "Ignore",
+                    "value": "ignore"
+                }
+            ]
+        },
+        "render:services:WebServicePropertiesAutoDeploy": {
+            "description": "Defaults to \"yes\"",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
+        "render:services:WebServicePropertiesDiskProperties": {
+            "properties": {
+                "mountPath": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "sizeGB": {
+                    "type": "integer",
+                    "description": "Defaults to 1"
+                }
+            },
+            "type": "object",
+            "required": [
+                "mountPath",
+                "name"
+            ]
+        },
+        "render:services:WebServicePropertiesEnv": {
+            "description": "Environment (runtime)",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Docker",
+                    "value": "docker"
+                },
+                {
+                    "name": "Elixir",
+                    "value": "elixir"
+                },
+                {
+                    "name": "Go",
+                    "value": "go"
+                },
+                {
+                    "name": "Node",
+                    "value": "node"
+                },
+                {
+                    "name": "Python",
+                    "value": "python"
+                },
+                {
+                    "name": "Ruby",
+                    "value": "ruby"
+                },
+                {
+                    "name": "Rust",
+                    "value": "rust"
+                },
+                {
+                    "name": "Image",
+                    "value": "image"
+                }
+            ]
+        },
+        "render:services:WebServicePropertiesPlan": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Starter",
+                    "value": "starter"
+                },
+                {
+                    "name": "Standard",
+                    "value": "standard"
+                },
+                {
+                    "name": "Pro",
+                    "value": "pro"
+                },
+                {
+                    "name": "ProPlus",
+                    "value": "pro_plus"
+                },
+                {
+                    "name": "ProMax",
+                    "value": "pro_max"
+                },
+                {
+                    "name": "ProUltra",
+                    "value": "pro_ultra"
+                }
+            ]
+        },
+        "render:services:WebServicePropertiesPullRequestPreviewsEnabled": {
+            "description": "Defaults to \"no\"",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
+        "render:services:WebServicePropertiesRegion": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Frankfurt",
+                    "value": "frankfurt"
+                },
+                {
+                    "name": "Oregon",
+                    "value": "oregon"
+                },
+                {
+                    "name": "Ohio",
+                    "value": "ohio"
+                },
+                {
+                    "name": "Singapore",
+                    "value": "singapore"
+                }
+            ]
+        },
+        "render:services:WebServiceSuspended": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Suspended",
+                    "value": "suspended"
+                },
+                {
+                    "name": "NotSuspended",
+                    "value": "not_suspended"
+                }
+            ]
+        },
+        "render:services:WebServiceSuspendersItem": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Admin",
+                    "value": "admin"
+                },
+                {
+                    "name": "Billing",
+                    "value": "billing"
+                },
+                {
+                    "name": "User",
+                    "value": "user"
+                },
+                {
+                    "name": "ParentService",
+                    "value": "parent_service"
+                },
+                {
+                    "name": "Unknown",
+                    "value": "unknown"
+                }
+            ]
+        },
+        "render:services:WebServiceType": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "StaticSite",
+                    "value": "static_site"
+                },
+                {
+                    "name": "WebService",
+                    "value": "web_service"
+                },
+                {
+                    "name": "PrivateService",
+                    "value": "private_service"
+                },
+                {
+                    "name": "BackgroundWorker",
+                    "value": "background_worker"
+                },
+                {
+                    "name": "CronJob",
+                    "value": "cron_job"
                 }
             ]
         }
@@ -2894,6 +3223,99 @@
                 "min"
             ]
         },
+        "render:services:BackgroundWorker": {
+            "properties": {
+                "autoDeploy": {
+                    "$ref": "#/types/render:services:BackgroundWorkerAutoDeploy"
+                },
+                "branch": {
+                    "type": "string"
+                },
+                "buildFilter": {
+                    "$ref": "#/types/render:services:BuildFilter"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "imagePath": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "notifyOnFail": {
+                    "$ref": "#/types/render:services:BackgroundWorkerNotifyOnFail"
+                },
+                "ownerId": {
+                    "type": "string"
+                },
+                "repo": {
+                    "type": "string"
+                },
+                "rootDir": {
+                    "type": "string"
+                },
+                "serviceDetails": {
+                    "oneOf": [
+                        {
+                            "$ref": "#/types/render:services:StaticSiteDetails"
+                        },
+                        {
+                            "$ref": "#/types/render:services:WebServiceDetails"
+                        },
+                        {
+                            "$ref": "#/types/render:services:PrivateServiceDetails"
+                        },
+                        {
+                            "$ref": "#/types/render:services:BackgroundWorkerDetails"
+                        },
+                        {
+                            "$ref": "#/types/render:services:CronJobDetails"
+                        }
+                    ]
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "suspended": {
+                    "$ref": "#/types/render:services:BackgroundWorkerSuspended"
+                },
+                "suspenders": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:BackgroundWorkerSuspendersItem"
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "default": "background_worker"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "autoDeploy",
+                "createdAt",
+                "name",
+                "notifyOnFail",
+                "ownerId",
+                "rootDir",
+                "serviceDetails",
+                "slug",
+                "suspended",
+                "suspenders",
+                "type",
+                "updatedAt"
+            ],
+            "inputProperties": {
+                "type": {
+                    "type": "string",
+                    "default": "background_worker"
+                }
+            }
+        },
         "render:services:CancelDeploy": {
             "properties": {
                 "commit": {
@@ -2970,6 +3392,99 @@
                 "serviceId": {
                     "type": "string",
                     "description": "The ID of the service"
+                }
+            }
+        },
+        "render:services:CronJob": {
+            "properties": {
+                "autoDeploy": {
+                    "$ref": "#/types/render:services:CronJobAutoDeploy"
+                },
+                "branch": {
+                    "type": "string"
+                },
+                "buildFilter": {
+                    "$ref": "#/types/render:services:BuildFilter"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "imagePath": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "notifyOnFail": {
+                    "$ref": "#/types/render:services:CronJobNotifyOnFail"
+                },
+                "ownerId": {
+                    "type": "string"
+                },
+                "repo": {
+                    "type": "string"
+                },
+                "rootDir": {
+                    "type": "string"
+                },
+                "serviceDetails": {
+                    "oneOf": [
+                        {
+                            "$ref": "#/types/render:services:StaticSiteDetails"
+                        },
+                        {
+                            "$ref": "#/types/render:services:WebServiceDetails"
+                        },
+                        {
+                            "$ref": "#/types/render:services:PrivateServiceDetails"
+                        },
+                        {
+                            "$ref": "#/types/render:services:BackgroundWorkerDetails"
+                        },
+                        {
+                            "$ref": "#/types/render:services:CronJobDetails"
+                        }
+                    ]
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "suspended": {
+                    "$ref": "#/types/render:services:CronJobSuspended"
+                },
+                "suspenders": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:CronJobSuspendersItem"
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "default": "cron_job"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "autoDeploy",
+                "createdAt",
+                "name",
+                "notifyOnFail",
+                "ownerId",
+                "rootDir",
+                "serviceDetails",
+                "slug",
+                "suspended",
+                "suspenders",
+                "type",
+                "updatedAt"
+            ],
+            "inputProperties": {
+                "type": {
+                    "type": "string",
+                    "default": "cron_job"
                 }
             }
         },
@@ -3183,6 +3698,99 @@
                 "imagePath"
             ]
         },
+        "render:services:PrivateService": {
+            "properties": {
+                "autoDeploy": {
+                    "$ref": "#/types/render:services:PrivateServiceAutoDeploy"
+                },
+                "branch": {
+                    "type": "string"
+                },
+                "buildFilter": {
+                    "$ref": "#/types/render:services:BuildFilter"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "imagePath": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "notifyOnFail": {
+                    "$ref": "#/types/render:services:PrivateServiceNotifyOnFail"
+                },
+                "ownerId": {
+                    "type": "string"
+                },
+                "repo": {
+                    "type": "string"
+                },
+                "rootDir": {
+                    "type": "string"
+                },
+                "serviceDetails": {
+                    "oneOf": [
+                        {
+                            "$ref": "#/types/render:services:StaticSiteDetails"
+                        },
+                        {
+                            "$ref": "#/types/render:services:WebServiceDetails"
+                        },
+                        {
+                            "$ref": "#/types/render:services:PrivateServiceDetails"
+                        },
+                        {
+                            "$ref": "#/types/render:services:BackgroundWorkerDetails"
+                        },
+                        {
+                            "$ref": "#/types/render:services:CronJobDetails"
+                        }
+                    ]
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "suspended": {
+                    "$ref": "#/types/render:services:PrivateServiceSuspended"
+                },
+                "suspenders": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:PrivateServiceSuspendersItem"
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "default": "private_service"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "autoDeploy",
+                "createdAt",
+                "name",
+                "notifyOnFail",
+                "ownerId",
+                "rootDir",
+                "serviceDetails",
+                "slug",
+                "suspended",
+                "suspenders",
+                "type",
+                "updatedAt"
+            ],
+            "inputProperties": {
+                "type": {
+                    "type": "string",
+                    "default": "private_service"
+                }
+            }
+        },
         "render:services:RefreshCustomDomain": {
             "type": "object",
             "inputProperties": {
@@ -3275,10 +3883,11 @@
                 "numInstances"
             ]
         },
-        "render:services:Service": {
+        "render:services:StaticSite": {
+            "description": "\n\n{{% examples %}}\n\n## Example Usage\n\n{{% example %}}\n\n### Create a service\n\n```typescript\nimport * as render from \"@cloudyskysoftware/render\";\n\n// TODO: Fill me in!\nconst service = new render.services.StaticSite(\"staticSite\", {});\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
             "properties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy"
+                    "$ref": "#/types/render:services:StaticSiteAutoDeploy"
                 },
                 "branch": {
                     "type": "string"
@@ -3289,22 +3898,6 @@
                 "createdAt": {
                     "type": "string"
                 },
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "oneOf": [
-                            {
-                                "$ref": "#/types/render:services:EnvVarKeyValue"
-                            },
-                            {
-                                "$ref": "#/types/render:services:EnvVarKeyGenerateValue"
-                            }
-                        ]
-                    }
-                },
-                "image": {
-                    "$ref": "#/types/render:services:Image"
-                },
                 "imagePath": {
                     "type": "string"
                 },
@@ -3312,7 +3905,7 @@
                     "type": "string"
                 },
                 "notifyOnFail": {
-                    "$ref": "#/types/render:services:ServiceNotifyOnFail"
+                    "$ref": "#/types/render:services:StaticSiteNotifyOnFail"
                 },
                 "ownerId": {
                     "type": "string"
@@ -3322,12 +3915,6 @@
                 },
                 "rootDir": {
                     "type": "string"
-                },
-                "secretFiles": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:SecretFile"
-                    }
                 },
                 "serviceDetails": {
                     "oneOf": [
@@ -3352,16 +3939,17 @@
                     "type": "string"
                 },
                 "suspended": {
-                    "$ref": "#/types/render:services:ServiceSuspended"
+                    "$ref": "#/types/render:services:StaticSiteSuspended"
                 },
                 "suspenders": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/render:services:ServiceSuspendersItem"
+                        "$ref": "#/types/render:services:StaticSiteSuspendersItem"
                     }
                 },
                 "type": {
-                    "$ref": "#/types/render:services:ServiceType"
+                    "type": "string",
+                    "default": "static_site"
                 },
                 "updatedAt": {
                     "type": "string"
@@ -3383,83 +3971,11 @@
                 "updatedAt"
             ],
             "inputProperties": {
-                "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy",
-                    "description": "Defaults to \"yes\"",
-                    "default": "yes"
-                },
-                "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository"
-                },
-                "buildFilter": {
-                    "$ref": "#/types/render:services:BuildFilter"
-                },
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "oneOf": [
-                            {
-                                "$ref": "#/types/render:services:EnvVarKeyValue"
-                            },
-                            {
-                                "$ref": "#/types/render:services:EnvVarKeyGenerateValue"
-                            }
-                        ]
-                    }
-                },
-                "image": {
-                    "$ref": "#/types/render:services:Image"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "ownerId": {
-                    "type": "string"
-                },
-                "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
-                },
-                "rootDir": {
-                    "type": "string"
-                },
-                "secretFiles": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:SecretFile"
-                    }
-                },
-                "serviceDetails": {
-                    "oneOf": [
-                        {
-                            "$ref": "#/types/render:services:StaticSiteDetailsCreate"
-                        },
-                        {
-                            "$ref": "#/types/render:services:WebServiceDetailsCreate"
-                        },
-                        {
-                            "$ref": "#/types/render:services:PrivateServiceDetailsCreate"
-                        },
-                        {
-                            "$ref": "#/types/render:services:BackgroundWorkerDetailsCreate"
-                        },
-                        {
-                            "$ref": "#/types/render:services:CronJobDetailsCreate"
-                        }
-                    ],
-                    "discriminator": {
-                        "propertyName": "type"
-                    }
-                },
                 "type": {
-                    "$ref": "#/types/render:services:ServiceType"
+                    "type": "string",
+                    "default": "static_site"
                 }
-            },
-            "requiredInputs": [
-                "ownerId",
-                "type"
-            ]
+            }
         },
         "render:services:SuspendService": {
             "type": "object",
@@ -3467,6 +3983,99 @@
                 "serviceId": {
                     "type": "string",
                     "description": "The ID of the service"
+                }
+            }
+        },
+        "render:services:WebService": {
+            "properties": {
+                "autoDeploy": {
+                    "$ref": "#/types/render:services:WebServiceAutoDeploy"
+                },
+                "branch": {
+                    "type": "string"
+                },
+                "buildFilter": {
+                    "$ref": "#/types/render:services:BuildFilter"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "imagePath": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "notifyOnFail": {
+                    "$ref": "#/types/render:services:WebServiceNotifyOnFail"
+                },
+                "ownerId": {
+                    "type": "string"
+                },
+                "repo": {
+                    "type": "string"
+                },
+                "rootDir": {
+                    "type": "string"
+                },
+                "serviceDetails": {
+                    "oneOf": [
+                        {
+                            "$ref": "#/types/render:services:StaticSiteDetails"
+                        },
+                        {
+                            "$ref": "#/types/render:services:WebServiceDetails"
+                        },
+                        {
+                            "$ref": "#/types/render:services:PrivateServiceDetails"
+                        },
+                        {
+                            "$ref": "#/types/render:services:BackgroundWorkerDetails"
+                        },
+                        {
+                            "$ref": "#/types/render:services:CronJobDetails"
+                        }
+                    ]
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "suspended": {
+                    "$ref": "#/types/render:services:WebServiceSuspended"
+                },
+                "suspenders": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:WebServiceSuspendersItem"
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "default": "web_service"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "autoDeploy",
+                "createdAt",
+                "name",
+                "notifyOnFail",
+                "ownerId",
+                "rootDir",
+                "serviceDetails",
+                "slug",
+                "suspended",
+                "suspenders",
+                "type",
+                "updatedAt"
+            ],
+            "inputProperties": {
+                "type": {
+                    "type": "string",
+                    "default": "web_service"
                 }
             }
         }

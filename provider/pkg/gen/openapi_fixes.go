@@ -17,6 +17,11 @@ import (
 
 const jsonMimeType = "application/json"
 
+var services = map[string]string{"static_site": "staticSite", "web_service": "webService", "private_service": "privateService", "background_worker": "backgroundWorker", "cron_job": "cronJob"}
+
+// Ensure determinism in the order in which the services are processed.
+var sortedDiscriminatorValues = []string{"background_worker", "cron_job", "private_service", "static_site", "web_service"}
+
 func getResourceFromPath(path string) (string, error) {
 	u, err := url.Parse(path)
 	if err != nil {
@@ -133,60 +138,113 @@ func addPropertyWithRef(typ *openapi3.SchemaRef, propName, ref string) {
 	typ.Value.Properties[propName] = propSchema
 }
 
+func getServiceDiscriminator(suffix string) *openapi3.Discriminator {
+	return &openapi3.Discriminator{
+		PropertyName: "type",
+		Mapping: map[string]string{
+			"static_site":       "#/components/schemas/staticSite" + suffix,
+			"web_service":       "#/components/schemas/webService" + suffix,
+			"private_service":   "#/components/schemas/privateService" + suffix,
+			"background_worker": "#/components/schemas/backgroundWorker" + suffix,
+			"cron_job":          "#/components/schemas/cronJob" + suffix,
+		},
+	}
+}
+
+func adjustOperation(openAPIDoc *openapi3.T, path, operation string, schemaSuffix string, refs openapi3.SchemaRefs) {
+	pathItem := openAPIDoc.Paths.Find(path)
+	contract.Assertf(pathItem != nil, "path %s not found", path)
+
+	discriminator := getServiceDiscriminator(schemaSuffix)
+
+	switch operation {
+	case http.MethodGet:
+		schemaRef := openapi3.NewSchemaRef("", &openapi3.Schema{OneOf: refs})
+		schemaRef.Value.Discriminator = discriminator
+		pathItem.Get.Responses.Status(200).Value.Content.Get(jsonMimeType).Schema = schemaRef
+	case http.MethodPost:
+		schemaRef := openapi3.NewSchemaRef("", &openapi3.Schema{OneOf: refs})
+		schemaRef.Value.Discriminator = discriminator
+		pathItem.Post.RequestBody.Value.Content.Get(jsonMimeType).Schema = schemaRef
+
+		outputDiscriminator := getServiceDiscriminator("Output")
+		outputSchemaRef := openapi3.NewSchemaRef("", &openapi3.Schema{OneOf: refs})
+		outputSchemaRef.Value.Discriminator = outputDiscriminator
+		// POST /services endpoint returns a 201 Created status code.
+		pathItem.Post.Responses.Status(201).Value.Content.Get(jsonMimeType).Schema = outputSchemaRef
+	case http.MethodPatch:
+		schemaRef := openapi3.NewSchemaRef("", &openapi3.Schema{OneOf: refs})
+		schemaRef.Value.Discriminator = discriminator
+		pathItem.Patch.RequestBody.Value.Content.Get(jsonMimeType).Schema = schemaRef
+
+		outputDiscriminator := getServiceDiscriminator("Output")
+		outputSchemaRef := openapi3.NewSchemaRef("", &openapi3.Schema{OneOf: refs})
+		outputSchemaRef.Value.Discriminator = outputDiscriminator
+		pathItem.Patch.Responses.Status(200).Value.Content.Get(jsonMimeType).Schema = outputSchemaRef
+	}
+}
+
+// func renameServiceResponseSchema(openAPIDoc *openapi3.T) {
+// 	path := "/services/{serviceId}"
+// 	pathItem := openAPIDoc.Paths.Find(path)
+// 	contract.Assertf(pathItem != nil, "path %s not found", path)
+
+// 	suffix := "Output"
+// 	for _, discriminatorValue := range sortedDiscriminatorValues {
+// 		service := services[discriminatorValue]
+// 		serviceSchema := openAPIDoc.Components.Schemas[service]
+// 		openAPIDoc.Components.Schemas[service+suffix] = serviceSchema
+// 		delete(openAPIDoc.Components.Schemas, service)
+// 		operationSchemas = append(operationSchemas, openapi3.NewSchemaRef("#/components/schemas/"+service+suffix, nil))
+// 	}
+
+// 	adjustOperation(openAPIDoc, path, http.MethodGet, suffix, )
+// }
+
+type operationAndSuffx struct {
+	// The HTTP method.
+	operation string
+	// The suffix to use for the new per-service type
+	// schemas that will be created.
+	// This must be in Title-case.
+	suffix string
+	// Flag to indicate if the original schemas in
+	// the OpenAPI doc have the HTTP method suffix.
+	// For example, servicePOST, servicePATCH,
+	// staticSiteDetailsPOST etc.
+	originalSchemasSuffixedWithOperation bool
+}
+
 func fixServiceEndpoints(openAPIDoc *openapi3.T) error {
-	getDiscriminator := func(suffix string) *openapi3.Discriminator {
-		return &openapi3.Discriminator{
-			PropertyName: "type",
-			Mapping: map[string]string{
-				"static_site":       "#/components/schemas/staticSite" + suffix,
-				"web_service":       "#/components/schemas/webService" + suffix,
-				"private_service":   "#/components/schemas/privateService" + suffix,
-				"background_worker": "#/components/schemas/backgroundWorker" + suffix,
-				"cron_job":          "#/components/schemas/cronJob" + suffix,
-			},
-		}
-	}
-
-	services := map[string]string{"static_site": "staticSite", "web_service": "webService", "private_service": "privateService", "background_worker": "backgroundWorker", "cron_job": "cronJob"}
-	// Ensure determinism in the order in which the services are processed.
-	sortedDiscriminatorValues := []string{"background_worker", "cron_job", "private_service", "static_site", "web_service"}
-
-	adjustOperation := func(path, operation string, schemaSuffix string, refs openapi3.SchemaRefs) {
-		pathItem := openAPIDoc.Paths.Find(path)
-		contract.Assertf(pathItem != nil, "path %s not found", path)
-
-		discriminator := getDiscriminator(schemaSuffix)
-
-		switch operation {
-		case http.MethodPost:
-			// TODO: For the POST method, we are going to use schema names that will clash
-			// with the existing GET request method's schemas which will get overwritten.
-			// So we should rename the response schemas for:
-			// GET /services
-			// GET /services/{serviceId}
-			pathItem.Post.RequestBody.Value.Content.Get(jsonMimeType).Schema = openapi3.NewSchemaRef("", &openapi3.Schema{OneOf: refs})
-			pathItem.Post.RequestBody.Value.Content.Get(jsonMimeType).Schema.Value.Discriminator = discriminator
-		case http.MethodPatch:
-			pathItem.Patch.RequestBody.Value.Content.Get(jsonMimeType).Schema = openapi3.NewSchemaRef("", &openapi3.Schema{OneOf: refs})
-			pathItem.Patch.RequestBody.Value.Content.Get(jsonMimeType).Schema.Value.Discriminator = discriminator
-		}
-	}
-
-	pathsAndOperations := map[string]map[string]string{
-		"/services": {
-			http.MethodPost: "",
-		},
+	// TODO: For the POST method, we are going to use schema names that will clash
+	// with the existing GET request method's schemas which will get overwritten.
+	// So we should rename the response schemas for:
+	// GET /services
+	// GET /services/{serviceId}
+	pathsAndOperations := map[string][]operationAndSuffx{
 		"/services/{serviceId}": {
-			http.MethodPatch: "Patch",
+			operationAndSuffx{operation: http.MethodGet, suffix: "Output"},
+			operationAndSuffx{operation: http.MethodPatch, suffix: "Patch", originalSchemasSuffixedWithOperation: true},
+		},
+		"/services": {
+			operationAndSuffx{operation: http.MethodPost, suffix: "", originalSchemasSuffixedWithOperation: true},
 		},
 	}
-	for path, operationAndSuffix := range pathsAndOperations {
+	for path, operationAndSuffixes := range pathsAndOperations {
 
-		for operation, suffix := range operationAndSuffix {
+		for _, operationAndSuffix := range operationAndSuffixes {
+			operation := operationAndSuffix.operation
+			suffix := operationAndSuffix.suffix
+			originalSchemasSuffixedWithOperation := operationAndSuffix.originalSchemasSuffixedWithOperation
+
 			baseServiceSchemaName := "service" + strings.ToUpper(operation)
+			if !originalSchemasSuffixedWithOperation {
+				baseServiceSchemaName = "service"
+			}
 			baseServiceSchema, ok := openAPIDoc.Components.Schemas[baseServiceSchemaName]
 			contract.Assertf(ok, "%s not found", baseServiceSchemaName)
-			// Delete the `serviceDetails` and `type` properties.
+			// Delete the `serviceDetails` and `type` properties from the base
+			// service schema for this operation.
 			delete(baseServiceSchema.Value.Properties, "serviceDetails")
 			delete(baseServiceSchema.Value.Properties, "type")
 
@@ -195,6 +253,9 @@ func fixServiceEndpoints(openAPIDoc *openapi3.T) error {
 			for _, discriminatorValue := range sortedDiscriminatorValues {
 				service := services[discriminatorValue]
 				serviceDetailsSchemaName := service + "Details" + strings.ToUpper(operation)
+				if !originalSchemasSuffixedWithOperation {
+					serviceDetailsSchemaName = service + "Details"
+				}
 				serviceDetailsSchema := openAPIDoc.Components.Schemas[serviceDetailsSchemaName]
 				contract.Assertf(serviceDetailsSchema != nil, "schema %s not found", serviceDetailsSchemaName)
 
@@ -214,7 +275,7 @@ func fixServiceEndpoints(openAPIDoc *openapi3.T) error {
 				operationSchemas = append(operationSchemas, openapi3.NewSchemaRef("#/components/schemas/"+service+suffix, nil))
 			}
 
-			adjustOperation(path, operation, suffix, operationSchemas)
+			adjustOperation(openAPIDoc, path, operation, suffix, operationSchemas)
 		}
 	}
 

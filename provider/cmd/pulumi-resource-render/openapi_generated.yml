@@ -144,6 +144,17 @@ components:
                     default: "no"
                 region:
                     $ref: '#/components/schemas/region'
+        backgroundWorkerOutput:
+            allOf:
+                - $ref: '#/components/schemas/service'
+                - type: object
+                  properties:
+                    serviceDetails:
+                        $ref: '#/components/schemas/backgroundWorkerDetails'
+                    type:
+                        type: string
+                        default: background_worker
+            title: BackgroundWorkerOutput
         backgroundWorkerPatch:
             allOf:
                 - $ref: '#/components/schemas/servicePATCH'
@@ -243,6 +254,17 @@ components:
                     $ref: '#/components/schemas/region'
                 schedule:
                     type: string
+        cronJobOutput:
+            allOf:
+                - $ref: '#/components/schemas/service'
+                - type: object
+                  properties:
+                    serviceDetails:
+                        $ref: '#/components/schemas/cronJobDetails'
+                    type:
+                        type: string
+                        default: cron_job
+            title: CronJobOutput
         cronJobPatch:
             allOf:
                 - $ref: '#/components/schemas/servicePATCH'
@@ -1320,6 +1342,17 @@ components:
                     default: "no"
                 region:
                     $ref: '#/components/schemas/region'
+        privateServiceOutput:
+            allOf:
+                - $ref: '#/components/schemas/service'
+                - type: object
+                  properties:
+                    serviceDetails:
+                        $ref: '#/components/schemas/privateServiceDetails'
+                    type:
+                        type: string
+                        default: private_service
+            title: PrivateServiceOutput
         privateServicePatch:
             allOf:
                 - $ref: '#/components/schemas/servicePATCH'
@@ -1694,13 +1727,6 @@ components:
                     example: https://github.com/render-examples/flask-hello-world
                 rootDir:
                     type: string
-                serviceDetails:
-                    oneOf:
-                        - $ref: '#/components/schemas/staticSiteDetails'
-                        - $ref: '#/components/schemas/webServiceDetails'
-                        - $ref: '#/components/schemas/privateServiceDetails'
-                        - $ref: '#/components/schemas/backgroundWorkerDetails'
-                        - $ref: '#/components/schemas/cronJobDetails'
                 slug:
                     type: string
                 suspended:
@@ -1712,8 +1738,6 @@ components:
                     type: array
                     items:
                         $ref: '#/components/schemas/suspenderType'
-                type:
-                    $ref: '#/components/schemas/serviceType'
                 updatedAt:
                     type: string
                     format: date-time
@@ -1882,6 +1906,17 @@ components:
                     type: array
                     items:
                         $ref: '#/components/schemas/route'
+        staticSiteOutput:
+            allOf:
+                - $ref: '#/components/schemas/service'
+                - type: object
+                  properties:
+                    serviceDetails:
+                        $ref: '#/components/schemas/staticSiteDetails'
+                    type:
+                        type: string
+                        default: static_site
+            title: StaticSiteOutput
         staticSitePatch:
             allOf:
                 - $ref: '#/components/schemas/servicePATCH'
@@ -2056,6 +2091,17 @@ components:
                     default: "no"
                 region:
                     $ref: '#/components/schemas/region'
+        webServiceOutput:
+            allOf:
+                - $ref: '#/components/schemas/service'
+                - type: object
+                  properties:
+                    serviceDetails:
+                        $ref: '#/components/schemas/webServiceDetails'
+                    type:
+                        type: string
+                        default: web_service
+            title: WebServiceOutput
         webServicePatch:
             allOf:
                 - $ref: '#/components/schemas/servicePATCH'
@@ -3194,7 +3240,20 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/service'
+                                oneOf:
+                                    - $ref: '#/components/schemas/backgroundWorkerOutput'
+                                    - $ref: '#/components/schemas/cronJobOutput'
+                                    - $ref: '#/components/schemas/privateServiceOutput'
+                                    - $ref: '#/components/schemas/staticSiteOutput'
+                                    - $ref: '#/components/schemas/webServiceOutput'
+                                discriminator:
+                                    propertyName: type
+                                    mapping:
+                                        background_worker: '#/components/schemas/backgroundWorkerOutput'
+                                        cron_job: '#/components/schemas/cronJobOutput'
+                                        private_service: '#/components/schemas/privateServiceOutput'
+                                        static_site: '#/components/schemas/staticSiteOutput'
+                                        web_service: '#/components/schemas/webServiceOutput'
                 "401":
                     $ref: '#/components/responses/401Unauthorized'
                 "403":
@@ -3241,7 +3300,20 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/service'
+                                oneOf:
+                                    - $ref: '#/components/schemas/backgroundWorkerPatch'
+                                    - $ref: '#/components/schemas/cronJobPatch'
+                                    - $ref: '#/components/schemas/privateServicePatch'
+                                    - $ref: '#/components/schemas/staticSitePatch'
+                                    - $ref: '#/components/schemas/webServicePatch'
+                                discriminator:
+                                    propertyName: type
+                                    mapping:
+                                        background_worker: '#/components/schemas/backgroundWorkerOutput'
+                                        cron_job: '#/components/schemas/cronJobOutput'
+                                        private_service: '#/components/schemas/privateServiceOutput'
+                                        static_site: '#/components/schemas/staticSiteOutput'
+                                        web_service: '#/components/schemas/webServiceOutput'
                 "400":
                     $ref: '#/components/responses/400BadRequest'
                 "401":

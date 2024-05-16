@@ -159,6 +159,11 @@ func fixServiceEndpoints(openAPIDoc *openapi3.T) error {
 
 		switch operation {
 		case http.MethodPost:
+			// TODO: For the POST method, we are going to use schema names that will clash
+			// with the existing GET request method's schemas which will get overwritten.
+			// So we should rename the response schemas for:
+			// GET /services
+			// GET /services/{serviceId}
 			pathItem.Post.RequestBody.Value.Content.Get(jsonMimeType).Schema = openapi3.NewSchemaRef("", &openapi3.Schema{OneOf: refs})
 			pathItem.Post.RequestBody.Value.Content.Get(jsonMimeType).Schema.Value.Discriminator = discriminator
 		case http.MethodPatch:

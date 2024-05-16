@@ -119,24 +119,18 @@ func ensureOperationID(openAPIDoc *openapi3.T) error {
 	return nil
 }
 
-func addDiscriminatedProperty(openAPIDoc *openapi3.T, schemaName string, typeName string, defaultValue string) error {
-	typ, ok := openAPIDoc.Components.Schemas[schemaName]
-	if !ok {
-		return fmt.Errorf("schema type %s not found", schemaName)
-	}
+func addDefaultProperty(typ *openapi3.SchemaRef, propName string, defaultValue string) {
+	strPropSchema := openapi3.NewSchemaRef("", openapi3.NewSchema())
+	strPropSchema.Value.Type = &openapi3.Types{openapi3.TypeString}
+	strPropSchema.Value.Default = defaultValue
 
-	propSchema := openapi3.NewSchema()
-	propSchema.Type = &openapi3.Types{openapi3.TypeObject}
-	propSchema.Properties = make(openapi3.Schemas)
+	typ.Value.Properties[propName] = strPropSchema
+}
 
-	strSchema := openapi3.NewSchemaRef("", openapi3.NewSchema())
-	strSchema.Value.Type = &openapi3.Types{openapi3.TypeString}
-	strSchema.Value.Default = defaultValue
+func addPropertyWithRef(typ *openapi3.SchemaRef, propName, ref string) {
+	propSchema := openapi3.NewSchemaRef("#/components/schemas/"+ref, openapi3.NewSchema())
 
-	propSchema.Properties[typeName] = strSchema
-
-	typ.Value.AllOf = append(typ.Value.AllOf, openapi3.NewSchemaRef("", propSchema))
-	return nil
+	typ.Value.Properties[propName] = propSchema
 }
 
 func fixServiceEndpoints(openAPIDoc *openapi3.T) error {
@@ -196,15 +190,18 @@ func fixServiceEndpoints(openAPIDoc *openapi3.T) error {
 				serviceDetailsSchema := openAPIDoc.Components.Schemas[serviceDetailsSchemaName]
 				contract.Assertf(serviceDetailsSchema != nil, "schema %s not found", serviceDetailsSchemaName)
 
-				serviceSchema := openapi3.NewAllOfSchema(baseServiceSchema.Value, serviceDetailsSchema.Value)
+				serviceSchema := openapi3.NewAllOfSchema(baseServiceSchema.Value)
 				serviceSchema.Title = pulschema_pkg.ToPascalCase(service) + suffix
 
-				openAPIDoc.Components.Schemas[service+suffix] = openapi3.NewSchemaRef("", serviceSchema)
+				inlineSchema := openapi3.NewSchemaRef("", openapi3.NewSchema())
+				inlineSchema.Value.Type = &openapi3.Types{openapi3.TypeObject}
+				inlineSchema.Value.Properties = make(openapi3.Schemas)
+				addPropertyWithRef(inlineSchema, "serviceDetails", serviceDetailsSchemaName)
+				addDefaultProperty(inlineSchema, "type", discriminatorValue)
 
-				err := addDiscriminatedProperty(openAPIDoc, service+suffix, "type", discriminatorValue)
-				if err != nil {
-					return err
-				}
+				serviceSchema.AllOf = append(serviceSchema.AllOf, inlineSchema)
+
+				openAPIDoc.Components.Schemas[service+suffix] = openapi3.NewSchemaRef("", serviceSchema)
 
 				operationSchemas = append(operationSchemas, openapi3.NewSchemaRef("#/components/schemas/"+service+suffix, nil))
 			}

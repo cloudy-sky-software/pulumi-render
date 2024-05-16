@@ -87,45 +87,9 @@ components:
                         items:
                             $ref: '#/components/schemas/secretFile'
                 - type: object
-                  required:
-                    - env
                   properties:
-                    disk:
-                        type: object
-                        required:
-                            - name
-                            - mountPath
-                        properties:
-                            mountPath:
-                                type: string
-                            name:
-                                type: string
-                            sizeGB:
-                                type: integer
-                                description: Defaults to 1
-                                minimum: 1
-                    env:
-                        $ref: '#/components/schemas/serviceEnv'
-                    envSpecificDetails:
-                        $ref: '#/components/schemas/envSpecificDetails'
-                    numInstances:
-                        type: integer
-                        description: Defaults to 1
-                        default: 1
-                        minimum: 1
-                    plan:
-                        $ref: '#/components/schemas/paidPlan'
-                    pullRequestPreviewsEnabled:
-                        type: string
-                        description: Defaults to "no"
-                        enum:
-                            - "yes"
-                            - "no"
-                        default: "no"
-                    region:
-                        $ref: '#/components/schemas/region'
-                - type: object
-                  properties:
+                    serviceDetails:
+                        $ref: '#/components/schemas/backgroundWorkerDetailsPOST'
                     type:
                         type: string
                         default: background_worker
@@ -238,19 +202,8 @@ components:
                         type: string
                 - type: object
                   properties:
-                    envSpecificDetails:
-                        oneOf:
-                            - $ref: '#/components/schemas/dockerDetailsPATCH'
-                            - $ref: '#/components/schemas/nativeEnvironmentDetailsPATCH'
-                    plan:
-                        $ref: '#/components/schemas/paidPlan'
-                    pullRequestPreviewsEnabled:
-                        type: string
-                        enum:
-                            - "yes"
-                            - "no"
-                - type: object
-                  properties:
+                    serviceDetails:
+                        $ref: '#/components/schemas/backgroundWorkerDetailsPATCH'
                     type:
                         type: string
                         default: background_worker
@@ -319,22 +272,9 @@ components:
                         items:
                             $ref: '#/components/schemas/secretFile'
                 - type: object
-                  required:
-                    - env
-                    - schedule
                   properties:
-                    env:
-                        $ref: '#/components/schemas/serviceEnv'
-                    envSpecificDetails:
-                        $ref: '#/components/schemas/envSpecificDetails'
-                    plan:
-                        $ref: '#/components/schemas/paidPlan'
-                    region:
-                        $ref: '#/components/schemas/region'
-                    schedule:
-                        type: string
-                - type: object
-                  properties:
+                    serviceDetails:
+                        $ref: '#/components/schemas/cronJobDetailsPOST'
                     type:
                         type: string
                         default: cron_job
@@ -414,16 +354,8 @@ components:
                         type: string
                 - type: object
                   properties:
-                    envSpecificDetails:
-                        oneOf:
-                            - $ref: '#/components/schemas/dockerDetailsPATCH'
-                            - $ref: '#/components/schemas/nativeEnvironmentDetailsPATCH'
-                    plan:
-                        $ref: '#/components/schemas/paidPlan'
-                    schedule:
-                        type: string
-                - type: object
-                  properties:
+                    serviceDetails:
+                        $ref: '#/components/schemas/cronJobDetailsPATCH'
                     type:
                         type: string
                         default: cron_job
@@ -1429,45 +1361,9 @@ components:
                         items:
                             $ref: '#/components/schemas/secretFile'
                 - type: object
-                  required:
-                    - env
                   properties:
-                    disk:
-                        type: object
-                        required:
-                            - name
-                            - mountPath
-                        properties:
-                            mountPath:
-                                type: string
-                            name:
-                                type: string
-                            sizeGB:
-                                type: integer
-                                description: Defaults to 1
-                                minimum: 1
-                    env:
-                        $ref: '#/components/schemas/serviceEnv'
-                    envSpecificDetails:
-                        $ref: '#/components/schemas/envSpecificDetails'
-                    numInstances:
-                        type: integer
-                        description: Defaults to 1
-                        default: 1
-                        minimum: 1
-                    plan:
-                        $ref: '#/components/schemas/paidPlan'
-                    pullRequestPreviewsEnabled:
-                        type: string
-                        description: Defaults to "no"
-                        enum:
-                            - "yes"
-                            - "no"
-                        default: "no"
-                    region:
-                        $ref: '#/components/schemas/region'
-                - type: object
-                  properties:
+                    serviceDetails:
+                        $ref: '#/components/schemas/privateServiceDetailsPOST'
                     type:
                         type: string
                         default: private_service
@@ -1588,19 +1484,8 @@ components:
                         type: string
                 - type: object
                   properties:
-                    envSpecificDetails:
-                        oneOf:
-                            - $ref: '#/components/schemas/dockerDetailsPATCH'
-                            - $ref: '#/components/schemas/nativeEnvironmentDetailsPATCH'
-                    plan:
-                        $ref: '#/components/schemas/paidPlan'
-                    pullRequestPreviewsEnabled:
-                        type: string
-                        enum:
-                            - "yes"
-                            - "no"
-                - type: object
-                  properties:
+                    serviceDetails:
+                        $ref: '#/components/schemas/privateServiceDetailsPATCH'
                     type:
                         type: string
                         default: private_service
@@ -2129,28 +2014,8 @@ components:
                             $ref: '#/components/schemas/secretFile'
                 - type: object
                   properties:
-                    buildCommand:
-                        type: string
-                    headers:
-                        type: array
-                        items:
-                            $ref: '#/components/schemas/headerPost'
-                    publishPath:
-                        type: string
-                        description: Defaults to "public"
-                    pullRequestPreviewsEnabled:
-                        type: string
-                        description: Defaults to "no"
-                        enum:
-                            - "yes"
-                            - "no"
-                        default: "no"
-                    routes:
-                        type: array
-                        items:
-                            $ref: '#/components/schemas/route'
-                - type: object
-                  properties:
+                    serviceDetails:
+                        $ref: '#/components/schemas/staticSiteDetailsPOST'
                     type:
                         type: string
                         default: static_site
@@ -2234,17 +2099,8 @@ components:
                         type: string
                 - type: object
                   properties:
-                    buildCommand:
-                        type: string
-                    publishPath:
-                        type: string
-                    pullRequestPreviewsEnabled:
-                        type: string
-                        enum:
-                            - "yes"
-                            - "no"
-                - type: object
-                  properties:
+                    serviceDetails:
+                        $ref: '#/components/schemas/staticSiteDetailsPATCH'
                     type:
                         type: string
                         default: static_site
@@ -2341,46 +2197,9 @@ components:
                         items:
                             $ref: '#/components/schemas/secretFile'
                 - type: object
-                  required:
-                    - env
                   properties:
-                    disk:
-                        type: object
-                        required:
-                            - name
-                            - mountPath
-                        properties:
-                            mountPath:
-                                type: string
-                            name:
-                                type: string
-                            sizeGB:
-                                type: integer
-                                description: Defaults to 1
-                                minimum: 1
-                    env:
-                        $ref: '#/components/schemas/serviceEnv'
-                    envSpecificDetails:
-                        $ref: '#/components/schemas/envSpecificDetails'
-                    healthCheckPath:
-                        type: string
-                    numInstances:
-                        type: integer
-                        description: Defaults to 1
-                        minimum: 1
-                    plan:
-                        $ref: '#/components/schemas/paidPlan'
-                    pullRequestPreviewsEnabled:
-                        type: string
-                        description: Defaults to "no"
-                        enum:
-                            - "yes"
-                            - "no"
-                        default: "no"
-                    region:
-                        $ref: '#/components/schemas/region'
-                - type: object
-                  properties:
+                    serviceDetails:
+                        $ref: '#/components/schemas/webServiceDetailsPOST'
                     type:
                         type: string
                         default: web_service
@@ -2507,21 +2326,8 @@ components:
                         type: string
                 - type: object
                   properties:
-                    envSpecificDetails:
-                        oneOf:
-                            - $ref: '#/components/schemas/dockerDetailsPATCH'
-                            - $ref: '#/components/schemas/nativeEnvironmentDetailsPATCH'
-                    healthCheckPath:
-                        type: string
-                    plan:
-                        $ref: '#/components/schemas/paidPlan'
-                    pullRequestPreviewsEnabled:
-                        type: string
-                        enum:
-                            - "yes"
-                            - "no"
-                - type: object
-                  properties:
+                    serviceDetails:
+                        $ref: '#/components/schemas/webServiceDetailsPATCH'
                     type:
                         type: string
                         default: web_service
@@ -3581,11 +3387,11 @@ paths:
                     application/json:
                         schema:
                             oneOf:
+                                - $ref: '#/components/schemas/webService'
+                                - $ref: '#/components/schemas/privateService'
                                 - $ref: '#/components/schemas/backgroundWorker'
                                 - $ref: '#/components/schemas/cronJob'
                                 - $ref: '#/components/schemas/staticSite'
-                                - $ref: '#/components/schemas/webService'
-                                - $ref: '#/components/schemas/privateService'
                             discriminator:
                                 propertyName: type
                                 mapping:
@@ -3681,11 +3487,11 @@ paths:
                     application/json:
                         schema:
                             oneOf:
+                                - $ref: '#/components/schemas/backgroundWorkerPatch'
                                 - $ref: '#/components/schemas/cronJobPatch'
                                 - $ref: '#/components/schemas/staticSitePatch'
                                 - $ref: '#/components/schemas/webServicePatch'
                                 - $ref: '#/components/schemas/privateServicePatch'
-                                - $ref: '#/components/schemas/backgroundWorkerPatch'
                             discriminator:
                                 propertyName: type
                                 mapping:

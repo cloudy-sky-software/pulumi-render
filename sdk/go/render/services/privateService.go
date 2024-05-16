@@ -24,7 +24,7 @@ type PrivateService struct {
 	OwnerId        pulumi.StringOutput                     `pulumi:"ownerId"`
 	Repo           pulumi.StringPtrOutput                  `pulumi:"repo"`
 	RootDir        pulumi.StringOutput                     `pulumi:"rootDir"`
-	ServiceDetails pulumi.AnyOutput                        `pulumi:"serviceDetails"`
+	ServiceDetails PrivateServiceDetailsCreateOutput       `pulumi:"serviceDetails"`
 	Slug           pulumi.StringOutput                     `pulumi:"slug"`
 	Suspended      PrivateServiceSuspendedOutput           `pulumi:"suspended"`
 	Suspenders     PrivateServiceSuspendersItemArrayOutput `pulumi:"suspenders"`
@@ -39,6 +39,9 @@ func NewPrivateService(ctx *pulumi.Context,
 		args = &PrivateServiceArgs{}
 	}
 
+	if args.ServiceDetails != nil {
+		args.ServiceDetails = args.ServiceDetails.ToPrivateServiceDetailsCreatePtrOutput().ApplyT(func(v *PrivateServiceDetailsCreate) *PrivateServiceDetailsCreate { return v.Defaults() }).(PrivateServiceDetailsCreatePtrOutput)
+	}
 	if args.Type == nil {
 		args.Type = pulumi.StringPtr("private_service")
 	}
@@ -75,12 +78,14 @@ func (PrivateServiceState) ElementType() reflect.Type {
 }
 
 type privateServiceArgs struct {
-	Type *string `pulumi:"type"`
+	ServiceDetails *PrivateServiceDetailsCreate `pulumi:"serviceDetails"`
+	Type           *string                      `pulumi:"type"`
 }
 
 // The set of arguments for constructing a PrivateService resource.
 type PrivateServiceArgs struct {
-	Type pulumi.StringPtrInput
+	ServiceDetails PrivateServiceDetailsCreatePtrInput
+	Type           pulumi.StringPtrInput
 }
 
 func (PrivateServiceArgs) ElementType() reflect.Type {
@@ -160,8 +165,8 @@ func (o PrivateServiceOutput) RootDir() pulumi.StringOutput {
 	return o.ApplyT(func(v *PrivateService) pulumi.StringOutput { return v.RootDir }).(pulumi.StringOutput)
 }
 
-func (o PrivateServiceOutput) ServiceDetails() pulumi.AnyOutput {
-	return o.ApplyT(func(v *PrivateService) pulumi.AnyOutput { return v.ServiceDetails }).(pulumi.AnyOutput)
+func (o PrivateServiceOutput) ServiceDetails() PrivateServiceDetailsCreateOutput {
+	return o.ApplyT(func(v *PrivateService) PrivateServiceDetailsCreateOutput { return v.ServiceDetails }).(PrivateServiceDetailsCreateOutput)
 }
 
 func (o PrivateServiceOutput) Slug() pulumi.StringOutput {

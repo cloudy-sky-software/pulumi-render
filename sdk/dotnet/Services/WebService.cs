@@ -43,7 +43,7 @@ namespace Pulumi.Render.Services
         public Output<string> RootDir { get; private set; } = null!;
 
         [Output("serviceDetails")]
-        public Output<object> ServiceDetails { get; private set; } = null!;
+        public Output<Outputs.WebServiceDetailsCreate> ServiceDetails { get; private set; } = null!;
 
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
@@ -106,6 +106,9 @@ namespace Pulumi.Render.Services
 
     public sealed class WebServiceArgs : global::Pulumi.ResourceArgs
     {
+        [Input("serviceDetails")]
+        public Input<Inputs.WebServiceDetailsCreateArgs>? ServiceDetails { get; set; }
+
         [Input("type")]
         public Input<string>? Type { get; set; }
 

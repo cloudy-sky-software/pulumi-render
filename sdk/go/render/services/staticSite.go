@@ -25,7 +25,7 @@ type StaticSite struct {
 	OwnerId        pulumi.StringOutput                 `pulumi:"ownerId"`
 	Repo           pulumi.StringPtrOutput              `pulumi:"repo"`
 	RootDir        pulumi.StringOutput                 `pulumi:"rootDir"`
-	ServiceDetails pulumi.AnyOutput                    `pulumi:"serviceDetails"`
+	ServiceDetails StaticSiteDetailsCreateOutput       `pulumi:"serviceDetails"`
 	Slug           pulumi.StringOutput                 `pulumi:"slug"`
 	Suspended      StaticSiteSuspendedOutput           `pulumi:"suspended"`
 	Suspenders     StaticSiteSuspendersItemArrayOutput `pulumi:"suspenders"`
@@ -40,6 +40,9 @@ func NewStaticSite(ctx *pulumi.Context,
 		args = &StaticSiteArgs{}
 	}
 
+	if args.ServiceDetails != nil {
+		args.ServiceDetails = args.ServiceDetails.ToStaticSiteDetailsCreatePtrOutput().ApplyT(func(v *StaticSiteDetailsCreate) *StaticSiteDetailsCreate { return v.Defaults() }).(StaticSiteDetailsCreatePtrOutput)
+	}
 	if args.Type == nil {
 		args.Type = pulumi.StringPtr("static_site")
 	}
@@ -76,12 +79,14 @@ func (StaticSiteState) ElementType() reflect.Type {
 }
 
 type staticSiteArgs struct {
-	Type *string `pulumi:"type"`
+	ServiceDetails *StaticSiteDetailsCreate `pulumi:"serviceDetails"`
+	Type           *string                  `pulumi:"type"`
 }
 
 // The set of arguments for constructing a StaticSite resource.
 type StaticSiteArgs struct {
-	Type pulumi.StringPtrInput
+	ServiceDetails StaticSiteDetailsCreatePtrInput
+	Type           pulumi.StringPtrInput
 }
 
 func (StaticSiteArgs) ElementType() reflect.Type {
@@ -161,8 +166,8 @@ func (o StaticSiteOutput) RootDir() pulumi.StringOutput {
 	return o.ApplyT(func(v *StaticSite) pulumi.StringOutput { return v.RootDir }).(pulumi.StringOutput)
 }
 
-func (o StaticSiteOutput) ServiceDetails() pulumi.AnyOutput {
-	return o.ApplyT(func(v *StaticSite) pulumi.AnyOutput { return v.ServiceDetails }).(pulumi.AnyOutput)
+func (o StaticSiteOutput) ServiceDetails() StaticSiteDetailsCreateOutput {
+	return o.ApplyT(func(v *StaticSite) StaticSiteDetailsCreateOutput { return v.ServiceDetails }).(StaticSiteDetailsCreateOutput)
 }
 
 func (o StaticSiteOutput) Slug() pulumi.StringOutput {

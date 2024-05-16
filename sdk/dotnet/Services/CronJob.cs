@@ -43,7 +43,7 @@ namespace Pulumi.Render.Services
         public Output<string> RootDir { get; private set; } = null!;
 
         [Output("serviceDetails")]
-        public Output<object> ServiceDetails { get; private set; } = null!;
+        public Output<Outputs.CronJobDetailsCreate> ServiceDetails { get; private set; } = null!;
 
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
@@ -106,6 +106,9 @@ namespace Pulumi.Render.Services
 
     public sealed class CronJobArgs : global::Pulumi.ResourceArgs
     {
+        [Input("serviceDetails")]
+        public Input<Inputs.CronJobDetailsCreateArgs>? ServiceDetails { get; set; }
+
         [Input("type")]
         public Input<string>? Type { get; set; }
 

@@ -16,9 +16,12 @@ __all__ = [
     'AutoscalingCriteria',
     'AutoscalingCriteriaPercentage',
     'BackgroundWorkerDetails',
+    'BackgroundWorkerDetailsCreate',
+    'BackgroundWorkerDetailsCreateDiskProperties',
     'BuildFilter',
     'CommitProperties',
     'CronJobDetails',
+    'CronJobDetailsCreate',
     'CustomDomain',
     'CustomDomainServerProperties',
     'Deploy',
@@ -31,6 +34,7 @@ __all__ = [
     'EnvVarKeyValue',
     'EnvVarWithCursor',
     'Header',
+    'HeaderCreate',
     'ImageProperties',
     'Job',
     'ListCustomDomainsItemProperties',
@@ -41,13 +45,18 @@ __all__ = [
     'ListServicesItemProperties',
     'NativeEnvironmentDetails',
     'PrivateServiceDetails',
+    'PrivateServiceDetailsCreate',
+    'PrivateServiceDetailsCreateDiskProperties',
     'RegistryCredential',
     'Resource',
     'Route',
     'ServerPort',
     'Service',
     'StaticSiteDetails',
+    'StaticSiteDetailsCreate',
     'WebServiceDetails',
+    'WebServiceDetailsCreate',
+    'WebServiceDetailsCreateDiskProperties',
 ]
 
 @pulumi.output_type
@@ -259,6 +268,157 @@ class BackgroundWorkerDetails(dict):
 
 
 @pulumi.output_type
+class BackgroundWorkerDetailsCreate(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "envSpecificDetails":
+            suggest = "env_specific_details"
+        elif key == "numInstances":
+            suggest = "num_instances"
+        elif key == "pullRequestPreviewsEnabled":
+            suggest = "pull_request_previews_enabled"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BackgroundWorkerDetailsCreate. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BackgroundWorkerDetailsCreate.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BackgroundWorkerDetailsCreate.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 env: 'BackgroundWorkerDetailsCreateEnv',
+                 disk: Optional['outputs.BackgroundWorkerDetailsCreateDiskProperties'] = None,
+                 env_specific_details: Optional[Any] = None,
+                 num_instances: Optional[int] = None,
+                 plan: Optional['BackgroundWorkerDetailsCreatePlan'] = None,
+                 pull_request_previews_enabled: Optional['BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled'] = None,
+                 region: Optional['BackgroundWorkerDetailsCreateRegion'] = None):
+        """
+        :param 'BackgroundWorkerDetailsCreateEnv' env: Environment (runtime)
+        :param int num_instances: Defaults to 1
+        :param 'BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled' pull_request_previews_enabled: Defaults to "no"
+        """
+        pulumi.set(__self__, "env", env)
+        if disk is not None:
+            pulumi.set(__self__, "disk", disk)
+        if env_specific_details is not None:
+            pulumi.set(__self__, "env_specific_details", env_specific_details)
+        if num_instances is None:
+            num_instances = 1
+        if num_instances is not None:
+            pulumi.set(__self__, "num_instances", num_instances)
+        if plan is not None:
+            pulumi.set(__self__, "plan", plan)
+        if pull_request_previews_enabled is None:
+            pull_request_previews_enabled = 'no'
+        if pull_request_previews_enabled is not None:
+            pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter
+    def env(self) -> 'BackgroundWorkerDetailsCreateEnv':
+        """
+        Environment (runtime)
+        """
+        return pulumi.get(self, "env")
+
+    @property
+    @pulumi.getter
+    def disk(self) -> Optional['outputs.BackgroundWorkerDetailsCreateDiskProperties']:
+        return pulumi.get(self, "disk")
+
+    @property
+    @pulumi.getter(name="envSpecificDetails")
+    def env_specific_details(self) -> Optional[Any]:
+        return pulumi.get(self, "env_specific_details")
+
+    @property
+    @pulumi.getter(name="numInstances")
+    def num_instances(self) -> Optional[int]:
+        """
+        Defaults to 1
+        """
+        return pulumi.get(self, "num_instances")
+
+    @property
+    @pulumi.getter
+    def plan(self) -> Optional['BackgroundWorkerDetailsCreatePlan']:
+        return pulumi.get(self, "plan")
+
+    @property
+    @pulumi.getter(name="pullRequestPreviewsEnabled")
+    def pull_request_previews_enabled(self) -> Optional['BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled']:
+        """
+        Defaults to "no"
+        """
+        return pulumi.get(self, "pull_request_previews_enabled")
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional['BackgroundWorkerDetailsCreateRegion']:
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
+class BackgroundWorkerDetailsCreateDiskProperties(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "mountPath":
+            suggest = "mount_path"
+        elif key == "sizeGB":
+            suggest = "size_gb"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BackgroundWorkerDetailsCreateDiskProperties. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BackgroundWorkerDetailsCreateDiskProperties.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BackgroundWorkerDetailsCreateDiskProperties.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 mount_path: str,
+                 name: str,
+                 size_gb: Optional[int] = None):
+        """
+        :param int size_gb: Defaults to 1
+        """
+        pulumi.set(__self__, "mount_path", mount_path)
+        pulumi.set(__self__, "name", name)
+        if size_gb is not None:
+            pulumi.set(__self__, "size_gb", size_gb)
+
+    @property
+    @pulumi.getter(name="mountPath")
+    def mount_path(self) -> str:
+        return pulumi.get(self, "mount_path")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="sizeGB")
+    def size_gb(self) -> Optional[int]:
+        """
+        Defaults to 1
+        """
+        return pulumi.get(self, "size_gb")
+
+
+@pulumi.output_type
 class BuildFilter(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -424,6 +584,72 @@ class CronJobDetails(dict):
     @pulumi.getter(name="lastSuccessfulRunAt")
     def last_successful_run_at(self) -> Optional[str]:
         return pulumi.get(self, "last_successful_run_at")
+
+
+@pulumi.output_type
+class CronJobDetailsCreate(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "envSpecificDetails":
+            suggest = "env_specific_details"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CronJobDetailsCreate. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CronJobDetailsCreate.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CronJobDetailsCreate.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 env: 'CronJobDetailsCreateEnv',
+                 schedule: str,
+                 env_specific_details: Optional[Any] = None,
+                 plan: Optional['CronJobDetailsCreatePlan'] = None,
+                 region: Optional['CronJobDetailsCreateRegion'] = None):
+        """
+        :param 'CronJobDetailsCreateEnv' env: Environment (runtime)
+        """
+        pulumi.set(__self__, "env", env)
+        pulumi.set(__self__, "schedule", schedule)
+        if env_specific_details is not None:
+            pulumi.set(__self__, "env_specific_details", env_specific_details)
+        if plan is not None:
+            pulumi.set(__self__, "plan", plan)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter
+    def env(self) -> 'CronJobDetailsCreateEnv':
+        """
+        Environment (runtime)
+        """
+        return pulumi.get(self, "env")
+
+    @property
+    @pulumi.getter
+    def schedule(self) -> str:
+        return pulumi.get(self, "schedule")
+
+    @property
+    @pulumi.getter(name="envSpecificDetails")
+    def env_specific_details(self) -> Optional[Any]:
+        return pulumi.get(self, "env_specific_details")
+
+    @property
+    @pulumi.getter
+    def plan(self) -> Optional['CronJobDetailsCreatePlan']:
+        return pulumi.get(self, "plan")
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional['CronJobDetailsCreateRegion']:
+        return pulumi.get(self, "region")
 
 
 @pulumi.output_type
@@ -905,6 +1131,46 @@ class Header(dict):
 
 
 @pulumi.output_type
+class HeaderCreate(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 path: str,
+                 value: str):
+        """
+        :param str name: Header name
+        :param str path: The request path to add the header to. Wildcards will cause headers to be applied to all matching paths.
+        :param str value: Header value
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "path", path)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Header name
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def path(self) -> str:
+        """
+        The request path to add the header to. Wildcards will cause headers to be applied to all matching paths.
+        """
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        Header value
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class ImageProperties(dict):
     """
     Image information used when creating the deploy. Not present for Git-backed deploys
@@ -1340,6 +1606,157 @@ class PrivateServiceDetails(dict):
 
 
 @pulumi.output_type
+class PrivateServiceDetailsCreate(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "envSpecificDetails":
+            suggest = "env_specific_details"
+        elif key == "numInstances":
+            suggest = "num_instances"
+        elif key == "pullRequestPreviewsEnabled":
+            suggest = "pull_request_previews_enabled"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PrivateServiceDetailsCreate. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PrivateServiceDetailsCreate.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PrivateServiceDetailsCreate.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 env: 'PrivateServiceDetailsCreateEnv',
+                 disk: Optional['outputs.PrivateServiceDetailsCreateDiskProperties'] = None,
+                 env_specific_details: Optional[Any] = None,
+                 num_instances: Optional[int] = None,
+                 plan: Optional['PrivateServiceDetailsCreatePlan'] = None,
+                 pull_request_previews_enabled: Optional['PrivateServiceDetailsCreatePullRequestPreviewsEnabled'] = None,
+                 region: Optional['PrivateServiceDetailsCreateRegion'] = None):
+        """
+        :param 'PrivateServiceDetailsCreateEnv' env: Environment (runtime)
+        :param int num_instances: Defaults to 1
+        :param 'PrivateServiceDetailsCreatePullRequestPreviewsEnabled' pull_request_previews_enabled: Defaults to "no"
+        """
+        pulumi.set(__self__, "env", env)
+        if disk is not None:
+            pulumi.set(__self__, "disk", disk)
+        if env_specific_details is not None:
+            pulumi.set(__self__, "env_specific_details", env_specific_details)
+        if num_instances is None:
+            num_instances = 1
+        if num_instances is not None:
+            pulumi.set(__self__, "num_instances", num_instances)
+        if plan is not None:
+            pulumi.set(__self__, "plan", plan)
+        if pull_request_previews_enabled is None:
+            pull_request_previews_enabled = 'no'
+        if pull_request_previews_enabled is not None:
+            pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter
+    def env(self) -> 'PrivateServiceDetailsCreateEnv':
+        """
+        Environment (runtime)
+        """
+        return pulumi.get(self, "env")
+
+    @property
+    @pulumi.getter
+    def disk(self) -> Optional['outputs.PrivateServiceDetailsCreateDiskProperties']:
+        return pulumi.get(self, "disk")
+
+    @property
+    @pulumi.getter(name="envSpecificDetails")
+    def env_specific_details(self) -> Optional[Any]:
+        return pulumi.get(self, "env_specific_details")
+
+    @property
+    @pulumi.getter(name="numInstances")
+    def num_instances(self) -> Optional[int]:
+        """
+        Defaults to 1
+        """
+        return pulumi.get(self, "num_instances")
+
+    @property
+    @pulumi.getter
+    def plan(self) -> Optional['PrivateServiceDetailsCreatePlan']:
+        return pulumi.get(self, "plan")
+
+    @property
+    @pulumi.getter(name="pullRequestPreviewsEnabled")
+    def pull_request_previews_enabled(self) -> Optional['PrivateServiceDetailsCreatePullRequestPreviewsEnabled']:
+        """
+        Defaults to "no"
+        """
+        return pulumi.get(self, "pull_request_previews_enabled")
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional['PrivateServiceDetailsCreateRegion']:
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
+class PrivateServiceDetailsCreateDiskProperties(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "mountPath":
+            suggest = "mount_path"
+        elif key == "sizeGB":
+            suggest = "size_gb"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PrivateServiceDetailsCreateDiskProperties. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PrivateServiceDetailsCreateDiskProperties.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PrivateServiceDetailsCreateDiskProperties.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 mount_path: str,
+                 name: str,
+                 size_gb: Optional[int] = None):
+        """
+        :param int size_gb: Defaults to 1
+        """
+        pulumi.set(__self__, "mount_path", mount_path)
+        pulumi.set(__self__, "name", name)
+        if size_gb is not None:
+            pulumi.set(__self__, "size_gb", size_gb)
+
+    @property
+    @pulumi.getter(name="mountPath")
+    def mount_path(self) -> str:
+        return pulumi.get(self, "mount_path")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="sizeGB")
+    def size_gb(self) -> Optional[int]:
+        """
+        Defaults to 1
+        """
+        return pulumi.get(self, "size_gb")
+
+
+@pulumi.output_type
 class RegistryCredential(dict):
     def __init__(__self__, *,
                  id: str,
@@ -1709,6 +2126,84 @@ class StaticSiteDetails(dict):
 
 
 @pulumi.output_type
+class StaticSiteDetailsCreate(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "buildCommand":
+            suggest = "build_command"
+        elif key == "publishPath":
+            suggest = "publish_path"
+        elif key == "pullRequestPreviewsEnabled":
+            suggest = "pull_request_previews_enabled"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in StaticSiteDetailsCreate. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        StaticSiteDetailsCreate.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        StaticSiteDetailsCreate.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 build_command: Optional[str] = None,
+                 headers: Optional[Sequence['outputs.HeaderCreate']] = None,
+                 publish_path: Optional[str] = None,
+                 pull_request_previews_enabled: Optional['StaticSiteDetailsCreatePullRequestPreviewsEnabled'] = None,
+                 routes: Optional[Sequence['outputs.Route']] = None):
+        """
+        :param str publish_path: Defaults to "public"
+        :param 'StaticSiteDetailsCreatePullRequestPreviewsEnabled' pull_request_previews_enabled: Defaults to "no"
+        """
+        if build_command is not None:
+            pulumi.set(__self__, "build_command", build_command)
+        if headers is not None:
+            pulumi.set(__self__, "headers", headers)
+        if publish_path is not None:
+            pulumi.set(__self__, "publish_path", publish_path)
+        if pull_request_previews_enabled is None:
+            pull_request_previews_enabled = 'no'
+        if pull_request_previews_enabled is not None:
+            pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
+        if routes is not None:
+            pulumi.set(__self__, "routes", routes)
+
+    @property
+    @pulumi.getter(name="buildCommand")
+    def build_command(self) -> Optional[str]:
+        return pulumi.get(self, "build_command")
+
+    @property
+    @pulumi.getter
+    def headers(self) -> Optional[Sequence['outputs.HeaderCreate']]:
+        return pulumi.get(self, "headers")
+
+    @property
+    @pulumi.getter(name="publishPath")
+    def publish_path(self) -> Optional[str]:
+        """
+        Defaults to "public"
+        """
+        return pulumi.get(self, "publish_path")
+
+    @property
+    @pulumi.getter(name="pullRequestPreviewsEnabled")
+    def pull_request_previews_enabled(self) -> Optional['StaticSiteDetailsCreatePullRequestPreviewsEnabled']:
+        """
+        Defaults to "no"
+        """
+        return pulumi.get(self, "pull_request_previews_enabled")
+
+    @property
+    @pulumi.getter
+    def routes(self) -> Optional[Sequence['outputs.Route']]:
+        return pulumi.get(self, "routes")
+
+
+@pulumi.output_type
 class WebServiceDetails(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -1848,5 +2343,164 @@ class WebServiceDetails(dict):
     @pulumi.getter(name="parentServer")
     def parent_server(self) -> Optional['outputs.Resource']:
         return pulumi.get(self, "parent_server")
+
+
+@pulumi.output_type
+class WebServiceDetailsCreate(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "envSpecificDetails":
+            suggest = "env_specific_details"
+        elif key == "healthCheckPath":
+            suggest = "health_check_path"
+        elif key == "numInstances":
+            suggest = "num_instances"
+        elif key == "pullRequestPreviewsEnabled":
+            suggest = "pull_request_previews_enabled"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in WebServiceDetailsCreate. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        WebServiceDetailsCreate.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        WebServiceDetailsCreate.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 env: 'WebServiceDetailsCreateEnv',
+                 disk: Optional['outputs.WebServiceDetailsCreateDiskProperties'] = None,
+                 env_specific_details: Optional[Any] = None,
+                 health_check_path: Optional[str] = None,
+                 num_instances: Optional[int] = None,
+                 plan: Optional['WebServiceDetailsCreatePlan'] = None,
+                 pull_request_previews_enabled: Optional['WebServiceDetailsCreatePullRequestPreviewsEnabled'] = None,
+                 region: Optional['WebServiceDetailsCreateRegion'] = None):
+        """
+        :param 'WebServiceDetailsCreateEnv' env: Environment (runtime)
+        :param int num_instances: Defaults to 1
+        :param 'WebServiceDetailsCreatePullRequestPreviewsEnabled' pull_request_previews_enabled: Defaults to "no"
+        """
+        pulumi.set(__self__, "env", env)
+        if disk is not None:
+            pulumi.set(__self__, "disk", disk)
+        if env_specific_details is not None:
+            pulumi.set(__self__, "env_specific_details", env_specific_details)
+        if health_check_path is not None:
+            pulumi.set(__self__, "health_check_path", health_check_path)
+        if num_instances is not None:
+            pulumi.set(__self__, "num_instances", num_instances)
+        if plan is not None:
+            pulumi.set(__self__, "plan", plan)
+        if pull_request_previews_enabled is None:
+            pull_request_previews_enabled = 'no'
+        if pull_request_previews_enabled is not None:
+            pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter
+    def env(self) -> 'WebServiceDetailsCreateEnv':
+        """
+        Environment (runtime)
+        """
+        return pulumi.get(self, "env")
+
+    @property
+    @pulumi.getter
+    def disk(self) -> Optional['outputs.WebServiceDetailsCreateDiskProperties']:
+        return pulumi.get(self, "disk")
+
+    @property
+    @pulumi.getter(name="envSpecificDetails")
+    def env_specific_details(self) -> Optional[Any]:
+        return pulumi.get(self, "env_specific_details")
+
+    @property
+    @pulumi.getter(name="healthCheckPath")
+    def health_check_path(self) -> Optional[str]:
+        return pulumi.get(self, "health_check_path")
+
+    @property
+    @pulumi.getter(name="numInstances")
+    def num_instances(self) -> Optional[int]:
+        """
+        Defaults to 1
+        """
+        return pulumi.get(self, "num_instances")
+
+    @property
+    @pulumi.getter
+    def plan(self) -> Optional['WebServiceDetailsCreatePlan']:
+        return pulumi.get(self, "plan")
+
+    @property
+    @pulumi.getter(name="pullRequestPreviewsEnabled")
+    def pull_request_previews_enabled(self) -> Optional['WebServiceDetailsCreatePullRequestPreviewsEnabled']:
+        """
+        Defaults to "no"
+        """
+        return pulumi.get(self, "pull_request_previews_enabled")
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional['WebServiceDetailsCreateRegion']:
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
+class WebServiceDetailsCreateDiskProperties(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "mountPath":
+            suggest = "mount_path"
+        elif key == "sizeGB":
+            suggest = "size_gb"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in WebServiceDetailsCreateDiskProperties. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        WebServiceDetailsCreateDiskProperties.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        WebServiceDetailsCreateDiskProperties.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 mount_path: str,
+                 name: str,
+                 size_gb: Optional[int] = None):
+        """
+        :param int size_gb: Defaults to 1
+        """
+        pulumi.set(__self__, "mount_path", mount_path)
+        pulumi.set(__self__, "name", name)
+        if size_gb is not None:
+            pulumi.set(__self__, "size_gb", size_gb)
+
+    @property
+    @pulumi.getter(name="mountPath")
+    def mount_path(self) -> str:
+        return pulumi.get(self, "mount_path")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="sizeGB")
+    def size_gb(self) -> Optional[int]:
+        """
+        Defaults to 1
+        """
+        return pulumi.get(self, "size_gb")
 
 

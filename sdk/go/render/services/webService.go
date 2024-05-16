@@ -24,7 +24,7 @@ type WebService struct {
 	OwnerId        pulumi.StringOutput                 `pulumi:"ownerId"`
 	Repo           pulumi.StringPtrOutput              `pulumi:"repo"`
 	RootDir        pulumi.StringOutput                 `pulumi:"rootDir"`
-	ServiceDetails pulumi.AnyOutput                    `pulumi:"serviceDetails"`
+	ServiceDetails WebServiceDetailsCreateOutput       `pulumi:"serviceDetails"`
 	Slug           pulumi.StringOutput                 `pulumi:"slug"`
 	Suspended      WebServiceSuspendedOutput           `pulumi:"suspended"`
 	Suspenders     WebServiceSuspendersItemArrayOutput `pulumi:"suspenders"`
@@ -39,6 +39,9 @@ func NewWebService(ctx *pulumi.Context,
 		args = &WebServiceArgs{}
 	}
 
+	if args.ServiceDetails != nil {
+		args.ServiceDetails = args.ServiceDetails.ToWebServiceDetailsCreatePtrOutput().ApplyT(func(v *WebServiceDetailsCreate) *WebServiceDetailsCreate { return v.Defaults() }).(WebServiceDetailsCreatePtrOutput)
+	}
 	if args.Type == nil {
 		args.Type = pulumi.StringPtr("web_service")
 	}
@@ -75,12 +78,14 @@ func (WebServiceState) ElementType() reflect.Type {
 }
 
 type webServiceArgs struct {
-	Type *string `pulumi:"type"`
+	ServiceDetails *WebServiceDetailsCreate `pulumi:"serviceDetails"`
+	Type           *string                  `pulumi:"type"`
 }
 
 // The set of arguments for constructing a WebService resource.
 type WebServiceArgs struct {
-	Type pulumi.StringPtrInput
+	ServiceDetails WebServiceDetailsCreatePtrInput
+	Type           pulumi.StringPtrInput
 }
 
 func (WebServiceArgs) ElementType() reflect.Type {
@@ -160,8 +165,8 @@ func (o WebServiceOutput) RootDir() pulumi.StringOutput {
 	return o.ApplyT(func(v *WebService) pulumi.StringOutput { return v.RootDir }).(pulumi.StringOutput)
 }
 
-func (o WebServiceOutput) ServiceDetails() pulumi.AnyOutput {
-	return o.ApplyT(func(v *WebService) pulumi.AnyOutput { return v.ServiceDetails }).(pulumi.AnyOutput)
+func (o WebServiceOutput) ServiceDetails() WebServiceDetailsCreateOutput {
+	return o.ApplyT(func(v *WebService) WebServiceDetailsCreateOutput { return v.ServiceDetails }).(WebServiceDetailsCreateOutput)
 }
 
 func (o WebServiceOutput) Slug() pulumi.StringOutput {

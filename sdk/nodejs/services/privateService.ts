@@ -44,7 +44,7 @@ export class PrivateService extends pulumi.CustomResource {
     public /*out*/ readonly ownerId!: pulumi.Output<string>;
     public /*out*/ readonly repo!: pulumi.Output<string | undefined>;
     public /*out*/ readonly rootDir!: pulumi.Output<string>;
-    public /*out*/ readonly serviceDetails!: pulumi.Output<outputs.services.StaticSiteDetails | outputs.services.WebServiceDetails | outputs.services.PrivateServiceDetails | outputs.services.BackgroundWorkerDetails | outputs.services.CronJobDetails>;
+    public readonly serviceDetails!: pulumi.Output<outputs.services.PrivateServiceDetailsCreate>;
     public /*out*/ readonly slug!: pulumi.Output<string>;
     public /*out*/ readonly suspended!: pulumi.Output<enums.services.PrivateServiceSuspended>;
     public /*out*/ readonly suspenders!: pulumi.Output<enums.services.PrivateServiceSuspendersItem[]>;
@@ -62,6 +62,7 @@ export class PrivateService extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
+            resourceInputs["serviceDetails"] = args ? (args.serviceDetails ? pulumi.output(args.serviceDetails).apply(inputs.services.privateServiceDetailsCreateArgsProvideDefaults) : undefined) : undefined;
             resourceInputs["type"] = (args ? args.type : undefined) ?? "private_service";
             resourceInputs["autoDeploy"] = undefined /*out*/;
             resourceInputs["branch"] = undefined /*out*/;
@@ -73,7 +74,6 @@ export class PrivateService extends pulumi.CustomResource {
             resourceInputs["ownerId"] = undefined /*out*/;
             resourceInputs["repo"] = undefined /*out*/;
             resourceInputs["rootDir"] = undefined /*out*/;
-            resourceInputs["serviceDetails"] = undefined /*out*/;
             resourceInputs["slug"] = undefined /*out*/;
             resourceInputs["suspended"] = undefined /*out*/;
             resourceInputs["suspenders"] = undefined /*out*/;
@@ -105,5 +105,6 @@ export class PrivateService extends pulumi.CustomResource {
  * The set of arguments for constructing a PrivateService resource.
  */
 export interface PrivateServiceArgs {
+    serviceDetails?: pulumi.Input<inputs.services.PrivateServiceDetailsCreateArgs>;
     type?: pulumi.Input<string>;
 }

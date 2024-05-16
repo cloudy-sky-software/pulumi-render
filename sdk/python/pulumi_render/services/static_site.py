@@ -10,20 +10,33 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
 from ._enums import *
+from ._inputs import *
 
 __all__ = ['StaticSiteArgs', 'StaticSite']
 
 @pulumi.input_type
 class StaticSiteArgs:
     def __init__(__self__, *,
+                 service_details: Optional[pulumi.Input['StaticSiteDetailsCreateArgs']] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a StaticSite resource.
         """
+        if service_details is not None:
+            pulumi.set(__self__, "service_details", service_details)
         if type is None:
             type = 'static_site'
         if type is not None:
             pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="serviceDetails")
+    def service_details(self) -> Optional[pulumi.Input['StaticSiteDetailsCreateArgs']]:
+        return pulumi.get(self, "service_details")
+
+    @service_details.setter
+    def service_details(self, value: Optional[pulumi.Input['StaticSiteDetailsCreateArgs']]):
+        pulumi.set(self, "service_details", value)
 
     @property
     @pulumi.getter
@@ -40,6 +53,7 @@ class StaticSite(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 service_details: Optional[pulumi.Input[pulumi.InputType['StaticSiteDetailsCreateArgs']]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -72,6 +86,7 @@ class StaticSite(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 service_details: Optional[pulumi.Input[pulumi.InputType['StaticSiteDetailsCreateArgs']]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -82,6 +97,7 @@ class StaticSite(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = StaticSiteArgs.__new__(StaticSiteArgs)
 
+            __props__.__dict__["service_details"] = service_details
             if type is None:
                 type = 'static_site'
             __props__.__dict__["type"] = type
@@ -95,7 +111,6 @@ class StaticSite(pulumi.CustomResource):
             __props__.__dict__["owner_id"] = None
             __props__.__dict__["repo"] = None
             __props__.__dict__["root_dir"] = None
-            __props__.__dict__["service_details"] = None
             __props__.__dict__["slug"] = None
             __props__.__dict__["suspended"] = None
             __props__.__dict__["suspenders"] = None
@@ -192,7 +207,7 @@ class StaticSite(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> pulumi.Output[Any]:
+    def service_details(self) -> pulumi.Output['outputs.StaticSiteDetailsCreate']:
         return pulumi.get(self, "service_details")
 
     @property

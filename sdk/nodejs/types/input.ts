@@ -47,6 +47,63 @@ export namespace services {
         };
     }
 
+    export interface BackgroundWorkerDetailsCreateArgs {
+        disk?: pulumi.Input<inputs.services.BackgroundWorkerDetailsCreateDiskPropertiesArgs>;
+        /**
+         * Environment (runtime)
+         */
+        env: pulumi.Input<enums.services.BackgroundWorkerDetailsCreateEnv>;
+        envSpecificDetails?: pulumi.Input<inputs.services.DockerDetailsArgs | inputs.services.NativeEnvironmentDetailsArgs>;
+        /**
+         * Defaults to 1
+         */
+        numInstances?: pulumi.Input<number>;
+        plan?: pulumi.Input<enums.services.BackgroundWorkerDetailsCreatePlan>;
+        /**
+         * Defaults to "no"
+         */
+        pullRequestPreviewsEnabled?: pulumi.Input<enums.services.BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled>;
+        region?: pulumi.Input<enums.services.BackgroundWorkerDetailsCreateRegion>;
+    }
+    /**
+     * backgroundWorkerDetailsCreateArgsProvideDefaults sets the appropriate defaults for BackgroundWorkerDetailsCreateArgs
+     */
+    export function backgroundWorkerDetailsCreateArgsProvideDefaults(val: BackgroundWorkerDetailsCreateArgs): BackgroundWorkerDetailsCreateArgs {
+        return {
+            ...val,
+            numInstances: (val.numInstances) ?? 1,
+            pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
+        };
+    }
+
+    export interface BackgroundWorkerDetailsCreateDiskPropertiesArgs {
+        mountPath: pulumi.Input<string>;
+        name: pulumi.Input<string>;
+        /**
+         * Defaults to 1
+         */
+        sizeGB?: pulumi.Input<number>;
+    }
+
+    export interface CronJobDetailsCreateArgs {
+        /**
+         * Environment (runtime)
+         */
+        env: pulumi.Input<enums.services.CronJobDetailsCreateEnv>;
+        envSpecificDetails?: pulumi.Input<inputs.services.DockerDetailsArgs | inputs.services.NativeEnvironmentDetailsArgs>;
+        plan?: pulumi.Input<enums.services.CronJobDetailsCreatePlan>;
+        region?: pulumi.Input<enums.services.CronJobDetailsCreateRegion>;
+        schedule: pulumi.Input<string>;
+    }
+
+    export interface DockerDetailsArgs {
+        dockerCommand: pulumi.Input<string>;
+        dockerContext: pulumi.Input<string>;
+        dockerfilePath: pulumi.Input<string>;
+        preDeployCommand?: pulumi.Input<string>;
+        registryCredential?: pulumi.Input<inputs.services.RegistryCredentialArgs>;
+    }
+
     export interface EnvVarKeyGenerateValueArgs {
         generateValue: pulumi.Input<boolean>;
         key: pulumi.Input<string>;
@@ -57,4 +114,153 @@ export namespace services {
         value: pulumi.Input<string>;
     }
 
+    export interface HeaderCreateArgs {
+        /**
+         * Header name
+         */
+        name: pulumi.Input<string>;
+        /**
+         * The request path to add the header to. Wildcards will cause headers to be applied to all matching paths.
+         */
+        path: pulumi.Input<string>;
+        /**
+         * Header value
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface NativeEnvironmentDetailsArgs {
+        buildCommand: pulumi.Input<string>;
+        preDeployCommand?: pulumi.Input<string>;
+        startCommand: pulumi.Input<string>;
+    }
+
+    export interface PrivateServiceDetailsCreateArgs {
+        disk?: pulumi.Input<inputs.services.PrivateServiceDetailsCreateDiskPropertiesArgs>;
+        /**
+         * Environment (runtime)
+         */
+        env: pulumi.Input<enums.services.PrivateServiceDetailsCreateEnv>;
+        envSpecificDetails?: pulumi.Input<inputs.services.DockerDetailsArgs | inputs.services.NativeEnvironmentDetailsArgs>;
+        /**
+         * Defaults to 1
+         */
+        numInstances?: pulumi.Input<number>;
+        plan?: pulumi.Input<enums.services.PrivateServiceDetailsCreatePlan>;
+        /**
+         * Defaults to "no"
+         */
+        pullRequestPreviewsEnabled?: pulumi.Input<enums.services.PrivateServiceDetailsCreatePullRequestPreviewsEnabled>;
+        region?: pulumi.Input<enums.services.PrivateServiceDetailsCreateRegion>;
+    }
+    /**
+     * privateServiceDetailsCreateArgsProvideDefaults sets the appropriate defaults for PrivateServiceDetailsCreateArgs
+     */
+    export function privateServiceDetailsCreateArgsProvideDefaults(val: PrivateServiceDetailsCreateArgs): PrivateServiceDetailsCreateArgs {
+        return {
+            ...val,
+            numInstances: (val.numInstances) ?? 1,
+            pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
+        };
+    }
+
+    export interface PrivateServiceDetailsCreateDiskPropertiesArgs {
+        mountPath: pulumi.Input<string>;
+        name: pulumi.Input<string>;
+        /**
+         * Defaults to 1
+         */
+        sizeGB?: pulumi.Input<number>;
+    }
+
+    export interface RegistryCredentialArgs {
+        /**
+         * Unique identifier for this credential
+         */
+        id: pulumi.Input<string>;
+        /**
+         * Descriptive name for this credential
+         */
+        name: pulumi.Input<string>;
+        /**
+         * The registry to use this credential with
+         */
+        registry: pulumi.Input<enums.services.RegistryCredentialRegistry>;
+        /**
+         * The username associated with the credential
+         */
+        username: pulumi.Input<string>;
+    }
+
+    export interface RouteArgs {
+        destination: pulumi.Input<string>;
+        id: pulumi.Input<string>;
+        /**
+         * Redirect and Rewrite Rules are applied in priority order starting at 0
+         */
+        priority: pulumi.Input<number>;
+        source: pulumi.Input<string>;
+        type: pulumi.Input<enums.services.StaticSiteRouteType>;
+    }
+
+    export interface StaticSiteDetailsCreateArgs {
+        buildCommand?: pulumi.Input<string>;
+        headers?: pulumi.Input<pulumi.Input<inputs.services.HeaderCreateArgs>[]>;
+        /**
+         * Defaults to "public"
+         */
+        publishPath?: pulumi.Input<string>;
+        /**
+         * Defaults to "no"
+         */
+        pullRequestPreviewsEnabled?: pulumi.Input<enums.services.StaticSiteDetailsCreatePullRequestPreviewsEnabled>;
+        routes?: pulumi.Input<pulumi.Input<inputs.services.RouteArgs>[]>;
+    }
+    /**
+     * staticSiteDetailsCreateArgsProvideDefaults sets the appropriate defaults for StaticSiteDetailsCreateArgs
+     */
+    export function staticSiteDetailsCreateArgsProvideDefaults(val: StaticSiteDetailsCreateArgs): StaticSiteDetailsCreateArgs {
+        return {
+            ...val,
+            pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
+        };
+    }
+
+    export interface WebServiceDetailsCreateArgs {
+        disk?: pulumi.Input<inputs.services.WebServiceDetailsCreateDiskPropertiesArgs>;
+        /**
+         * Environment (runtime)
+         */
+        env: pulumi.Input<enums.services.WebServiceDetailsCreateEnv>;
+        envSpecificDetails?: pulumi.Input<inputs.services.DockerDetailsArgs | inputs.services.NativeEnvironmentDetailsArgs>;
+        healthCheckPath?: pulumi.Input<string>;
+        /**
+         * Defaults to 1
+         */
+        numInstances?: pulumi.Input<number>;
+        plan?: pulumi.Input<enums.services.WebServiceDetailsCreatePlan>;
+        /**
+         * Defaults to "no"
+         */
+        pullRequestPreviewsEnabled?: pulumi.Input<enums.services.WebServiceDetailsCreatePullRequestPreviewsEnabled>;
+        region?: pulumi.Input<enums.services.WebServiceDetailsCreateRegion>;
+    }
+    /**
+     * webServiceDetailsCreateArgsProvideDefaults sets the appropriate defaults for WebServiceDetailsCreateArgs
+     */
+    export function webServiceDetailsCreateArgsProvideDefaults(val: WebServiceDetailsCreateArgs): WebServiceDetailsCreateArgs {
+        return {
+            ...val,
+            pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
+        };
+    }
+
+    export interface WebServiceDetailsCreateDiskPropertiesArgs {
+        mountPath: pulumi.Input<string>;
+        name: pulumi.Input<string>;
+        /**
+         * Defaults to 1
+         */
+        sizeGB?: pulumi.Input<number>;
+    }
 }

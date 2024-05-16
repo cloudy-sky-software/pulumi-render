@@ -56,7 +56,7 @@ export class StaticSite extends pulumi.CustomResource {
     public /*out*/ readonly ownerId!: pulumi.Output<string>;
     public /*out*/ readonly repo!: pulumi.Output<string | undefined>;
     public /*out*/ readonly rootDir!: pulumi.Output<string>;
-    public /*out*/ readonly serviceDetails!: pulumi.Output<outputs.services.StaticSiteDetails | outputs.services.WebServiceDetails | outputs.services.PrivateServiceDetails | outputs.services.BackgroundWorkerDetails | outputs.services.CronJobDetails>;
+    public readonly serviceDetails!: pulumi.Output<outputs.services.StaticSiteDetailsCreate>;
     public /*out*/ readonly slug!: pulumi.Output<string>;
     public /*out*/ readonly suspended!: pulumi.Output<enums.services.StaticSiteSuspended>;
     public /*out*/ readonly suspenders!: pulumi.Output<enums.services.StaticSiteSuspendersItem[]>;
@@ -74,6 +74,7 @@ export class StaticSite extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
+            resourceInputs["serviceDetails"] = args ? (args.serviceDetails ? pulumi.output(args.serviceDetails).apply(inputs.services.staticSiteDetailsCreateArgsProvideDefaults) : undefined) : undefined;
             resourceInputs["type"] = (args ? args.type : undefined) ?? "static_site";
             resourceInputs["autoDeploy"] = undefined /*out*/;
             resourceInputs["branch"] = undefined /*out*/;
@@ -85,7 +86,6 @@ export class StaticSite extends pulumi.CustomResource {
             resourceInputs["ownerId"] = undefined /*out*/;
             resourceInputs["repo"] = undefined /*out*/;
             resourceInputs["rootDir"] = undefined /*out*/;
-            resourceInputs["serviceDetails"] = undefined /*out*/;
             resourceInputs["slug"] = undefined /*out*/;
             resourceInputs["suspended"] = undefined /*out*/;
             resourceInputs["suspenders"] = undefined /*out*/;
@@ -117,5 +117,6 @@ export class StaticSite extends pulumi.CustomResource {
  * The set of arguments for constructing a StaticSite resource.
  */
 export interface StaticSiteArgs {
+    serviceDetails?: pulumi.Input<inputs.services.StaticSiteDetailsCreateArgs>;
     type?: pulumi.Input<string>;
 }

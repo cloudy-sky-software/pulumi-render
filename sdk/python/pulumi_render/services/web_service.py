@@ -10,20 +10,33 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
 from ._enums import *
+from ._inputs import *
 
 __all__ = ['WebServiceArgs', 'WebService']
 
 @pulumi.input_type
 class WebServiceArgs:
     def __init__(__self__, *,
+                 service_details: Optional[pulumi.Input['WebServiceDetailsCreateArgs']] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a WebService resource.
         """
+        if service_details is not None:
+            pulumi.set(__self__, "service_details", service_details)
         if type is None:
             type = 'web_service'
         if type is not None:
             pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="serviceDetails")
+    def service_details(self) -> Optional[pulumi.Input['WebServiceDetailsCreateArgs']]:
+        return pulumi.get(self, "service_details")
+
+    @service_details.setter
+    def service_details(self, value: Optional[pulumi.Input['WebServiceDetailsCreateArgs']]):
+        pulumi.set(self, "service_details", value)
 
     @property
     @pulumi.getter
@@ -40,6 +53,7 @@ class WebService(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 service_details: Optional[pulumi.Input[pulumi.InputType['WebServiceDetailsCreateArgs']]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -70,6 +84,7 @@ class WebService(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 service_details: Optional[pulumi.Input[pulumi.InputType['WebServiceDetailsCreateArgs']]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -80,6 +95,7 @@ class WebService(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = WebServiceArgs.__new__(WebServiceArgs)
 
+            __props__.__dict__["service_details"] = service_details
             if type is None:
                 type = 'web_service'
             __props__.__dict__["type"] = type
@@ -93,7 +109,6 @@ class WebService(pulumi.CustomResource):
             __props__.__dict__["owner_id"] = None
             __props__.__dict__["repo"] = None
             __props__.__dict__["root_dir"] = None
-            __props__.__dict__["service_details"] = None
             __props__.__dict__["slug"] = None
             __props__.__dict__["suspended"] = None
             __props__.__dict__["suspenders"] = None
@@ -190,7 +205,7 @@ class WebService(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> pulumi.Output[Any]:
+    def service_details(self) -> pulumi.Output['outputs.WebServiceDetailsCreate']:
         return pulumi.get(self, "service_details")
 
     @property

@@ -44,7 +44,7 @@ export class CronJob extends pulumi.CustomResource {
     public /*out*/ readonly ownerId!: pulumi.Output<string>;
     public /*out*/ readonly repo!: pulumi.Output<string | undefined>;
     public /*out*/ readonly rootDir!: pulumi.Output<string>;
-    public /*out*/ readonly serviceDetails!: pulumi.Output<outputs.services.StaticSiteDetails | outputs.services.WebServiceDetails | outputs.services.PrivateServiceDetails | outputs.services.BackgroundWorkerDetails | outputs.services.CronJobDetails>;
+    public readonly serviceDetails!: pulumi.Output<outputs.services.CronJobDetailsCreate>;
     public /*out*/ readonly slug!: pulumi.Output<string>;
     public /*out*/ readonly suspended!: pulumi.Output<enums.services.CronJobSuspended>;
     public /*out*/ readonly suspenders!: pulumi.Output<enums.services.CronJobSuspendersItem[]>;
@@ -62,6 +62,7 @@ export class CronJob extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
+            resourceInputs["serviceDetails"] = args ? args.serviceDetails : undefined;
             resourceInputs["type"] = (args ? args.type : undefined) ?? "cron_job";
             resourceInputs["autoDeploy"] = undefined /*out*/;
             resourceInputs["branch"] = undefined /*out*/;
@@ -73,7 +74,6 @@ export class CronJob extends pulumi.CustomResource {
             resourceInputs["ownerId"] = undefined /*out*/;
             resourceInputs["repo"] = undefined /*out*/;
             resourceInputs["rootDir"] = undefined /*out*/;
-            resourceInputs["serviceDetails"] = undefined /*out*/;
             resourceInputs["slug"] = undefined /*out*/;
             resourceInputs["suspended"] = undefined /*out*/;
             resourceInputs["suspenders"] = undefined /*out*/;
@@ -105,5 +105,6 @@ export class CronJob extends pulumi.CustomResource {
  * The set of arguments for constructing a CronJob resource.
  */
 export interface CronJobArgs {
+    serviceDetails?: pulumi.Input<inputs.services.CronJobDetailsCreateArgs>;
     type?: pulumi.Input<string>;
 }

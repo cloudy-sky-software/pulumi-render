@@ -43,7 +43,7 @@ namespace Pulumi.Render.Services
         public Output<string> RootDir { get; private set; } = null!;
 
         [Output("serviceDetails")]
-        public Output<object> ServiceDetails { get; private set; } = null!;
+        public Output<Outputs.BackgroundWorkerDetailsCreate> ServiceDetails { get; private set; } = null!;
 
         [Output("slug")]
         public Output<string> Slug { get; private set; } = null!;
@@ -106,6 +106,9 @@ namespace Pulumi.Render.Services
 
     public sealed class BackgroundWorkerArgs : global::Pulumi.ResourceArgs
     {
+        [Input("serviceDetails")]
+        public Input<Inputs.BackgroundWorkerDetailsCreateArgs>? ServiceDetails { get; set; }
+
         [Input("type")]
         public Input<string>? Type { get; set; }
 

@@ -24,7 +24,7 @@ type CronJob struct {
 	OwnerId        pulumi.StringOutput              `pulumi:"ownerId"`
 	Repo           pulumi.StringPtrOutput           `pulumi:"repo"`
 	RootDir        pulumi.StringOutput              `pulumi:"rootDir"`
-	ServiceDetails pulumi.AnyOutput                 `pulumi:"serviceDetails"`
+	ServiceDetails CronJobDetailsCreateOutput       `pulumi:"serviceDetails"`
 	Slug           pulumi.StringOutput              `pulumi:"slug"`
 	Suspended      CronJobSuspendedOutput           `pulumi:"suspended"`
 	Suspenders     CronJobSuspendersItemArrayOutput `pulumi:"suspenders"`
@@ -75,12 +75,14 @@ func (CronJobState) ElementType() reflect.Type {
 }
 
 type cronJobArgs struct {
-	Type *string `pulumi:"type"`
+	ServiceDetails *CronJobDetailsCreate `pulumi:"serviceDetails"`
+	Type           *string               `pulumi:"type"`
 }
 
 // The set of arguments for constructing a CronJob resource.
 type CronJobArgs struct {
-	Type pulumi.StringPtrInput
+	ServiceDetails CronJobDetailsCreatePtrInput
+	Type           pulumi.StringPtrInput
 }
 
 func (CronJobArgs) ElementType() reflect.Type {
@@ -160,8 +162,8 @@ func (o CronJobOutput) RootDir() pulumi.StringOutput {
 	return o.ApplyT(func(v *CronJob) pulumi.StringOutput { return v.RootDir }).(pulumi.StringOutput)
 }
 
-func (o CronJobOutput) ServiceDetails() pulumi.AnyOutput {
-	return o.ApplyT(func(v *CronJob) pulumi.AnyOutput { return v.ServiceDetails }).(pulumi.AnyOutput)
+func (o CronJobOutput) ServiceDetails() CronJobDetailsCreateOutput {
+	return o.ApplyT(func(v *CronJob) CronJobDetailsCreateOutput { return v.ServiceDetails }).(CronJobDetailsCreateOutput)
 }
 
 func (o CronJobOutput) Slug() pulumi.StringOutput {

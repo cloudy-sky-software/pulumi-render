@@ -24,7 +24,7 @@ type BackgroundWorker struct {
 	OwnerId        pulumi.StringOutput                       `pulumi:"ownerId"`
 	Repo           pulumi.StringPtrOutput                    `pulumi:"repo"`
 	RootDir        pulumi.StringOutput                       `pulumi:"rootDir"`
-	ServiceDetails pulumi.AnyOutput                          `pulumi:"serviceDetails"`
+	ServiceDetails BackgroundWorkerDetailsCreateOutput       `pulumi:"serviceDetails"`
 	Slug           pulumi.StringOutput                       `pulumi:"slug"`
 	Suspended      BackgroundWorkerSuspendedOutput           `pulumi:"suspended"`
 	Suspenders     BackgroundWorkerSuspendersItemArrayOutput `pulumi:"suspenders"`
@@ -39,6 +39,9 @@ func NewBackgroundWorker(ctx *pulumi.Context,
 		args = &BackgroundWorkerArgs{}
 	}
 
+	if args.ServiceDetails != nil {
+		args.ServiceDetails = args.ServiceDetails.ToBackgroundWorkerDetailsCreatePtrOutput().ApplyT(func(v *BackgroundWorkerDetailsCreate) *BackgroundWorkerDetailsCreate { return v.Defaults() }).(BackgroundWorkerDetailsCreatePtrOutput)
+	}
 	if args.Type == nil {
 		args.Type = pulumi.StringPtr("background_worker")
 	}
@@ -75,12 +78,14 @@ func (BackgroundWorkerState) ElementType() reflect.Type {
 }
 
 type backgroundWorkerArgs struct {
-	Type *string `pulumi:"type"`
+	ServiceDetails *BackgroundWorkerDetailsCreate `pulumi:"serviceDetails"`
+	Type           *string                        `pulumi:"type"`
 }
 
 // The set of arguments for constructing a BackgroundWorker resource.
 type BackgroundWorkerArgs struct {
-	Type pulumi.StringPtrInput
+	ServiceDetails BackgroundWorkerDetailsCreatePtrInput
+	Type           pulumi.StringPtrInput
 }
 
 func (BackgroundWorkerArgs) ElementType() reflect.Type {
@@ -160,8 +165,8 @@ func (o BackgroundWorkerOutput) RootDir() pulumi.StringOutput {
 	return o.ApplyT(func(v *BackgroundWorker) pulumi.StringOutput { return v.RootDir }).(pulumi.StringOutput)
 }
 
-func (o BackgroundWorkerOutput) ServiceDetails() pulumi.AnyOutput {
-	return o.ApplyT(func(v *BackgroundWorker) pulumi.AnyOutput { return v.ServiceDetails }).(pulumi.AnyOutput)
+func (o BackgroundWorkerOutput) ServiceDetails() BackgroundWorkerDetailsCreateOutput {
+	return o.ApplyT(func(v *BackgroundWorker) BackgroundWorkerDetailsCreateOutput { return v.ServiceDetails }).(BackgroundWorkerDetailsCreateOutput)
 }
 
 func (o BackgroundWorkerOutput) Slug() pulumi.StringOutput {

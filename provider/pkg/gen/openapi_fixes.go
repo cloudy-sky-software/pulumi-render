@@ -148,6 +148,8 @@ func fixServiceEndpoints(openAPIDoc *openapi3.T) error {
 	}
 
 	services := map[string]string{"static_site": "staticSite", "web_service": "webService", "private_service": "privateService", "background_worker": "backgroundWorker", "cron_job": "cronJob"}
+	// Ensure determinism in the order in which the services are processed.
+	sortedDiscriminatorValues := []string{"background_worker", "cron_job", "private_service", "static_site", "web_service"}
 
 	adjustOperation := func(path, operation string, schemaSuffix string, refs openapi3.SchemaRefs) {
 		pathItem := openAPIDoc.Paths.Find(path)
@@ -185,12 +187,13 @@ func fixServiceEndpoints(openAPIDoc *openapi3.T) error {
 
 			operationSchemas := make(openapi3.SchemaRefs, 0, len(services))
 
-			for discriminatorValue, service := range services {
+			for _, discriminatorValue := range sortedDiscriminatorValues {
+				service := services[discriminatorValue]
 				serviceDetailsSchemaName := service + "Details" + strings.ToUpper(operation)
 				serviceDetailsSchema := openAPIDoc.Components.Schemas[serviceDetailsSchemaName]
 				contract.Assertf(serviceDetailsSchema != nil, "schema %s not found", serviceDetailsSchemaName)
 
-				serviceSchema := openapi3.NewAllOfSchema(baseServiceSchema.Value)
+				serviceSchema := openapi3.NewAllOfSchema()
 				serviceSchema.Title = pulschema_pkg.ToPascalCase(service) + suffix
 
 				inlineSchema := openapi3.NewSchemaRef("", openapi3.NewSchema())
@@ -199,7 +202,7 @@ func fixServiceEndpoints(openAPIDoc *openapi3.T) error {
 				addPropertyWithRef(inlineSchema, "serviceDetails", serviceDetailsSchemaName)
 				addDefaultProperty(inlineSchema, "type", discriminatorValue)
 
-				serviceSchema.AllOf = append(serviceSchema.AllOf, inlineSchema)
+				serviceSchema.AllOf = append(serviceSchema.AllOf, openapi3.NewSchemaRef("#/components/schemas/"+baseServiceSchemaName, openapi3.NewSchema()), inlineSchema)
 
 				openAPIDoc.Components.Schemas[service+suffix] = openapi3.NewSchemaRef("", serviceSchema)
 

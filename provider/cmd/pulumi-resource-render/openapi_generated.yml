@@ -50,42 +50,7 @@ components:
                         Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
         backgroundWorker:
             allOf:
-                - type: object
-                  required:
-                    - type
-                    - name
-                    - ownerId
-                  properties:
-                    autoDeploy:
-                        type: string
-                        description: Defaults to "yes"
-                        enum:
-                            - "yes"
-                            - "no"
-                        default: "yes"
-                    branch:
-                        type: string
-                        description: If left empty, this will fall back to the default branch of the repository
-                    buildFilter:
-                        $ref: '#/components/schemas/buildFilter'
-                    envVars:
-                        $ref: '#/components/schemas/envVarInputArray'
-                    image:
-                        $ref: '#/components/schemas/image'
-                    name:
-                        type: string
-                    ownerId:
-                        type: string
-                    repo:
-                        type: string
-                        description: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-                        example: https://github.com/render-examples/flask-hello-world
-                    rootDir:
-                        type: string
-                    secretFiles:
-                        type: array
-                        items:
-                            $ref: '#/components/schemas/secretFile'
+                - $ref: '#/components/schemas/servicePOST'
                 - type: object
                   properties:
                     serviceDetails:
@@ -181,25 +146,7 @@ components:
                     $ref: '#/components/schemas/region'
         backgroundWorkerPatch:
             allOf:
-                - type: object
-                  properties:
-                    autoDeploy:
-                        type: string
-                        enum:
-                            - "yes"
-                            - "no"
-                    branch:
-                        type: string
-                    buildFilter:
-                        $ref: '#/components/schemas/buildFilter'
-                    image:
-                        $ref: '#/components/schemas/image'
-                    name:
-                        type: string
-                    repo:
-                        type: string
-                    rootDir:
-                        type: string
+                - $ref: '#/components/schemas/servicePATCH'
                 - type: object
                   properties:
                     serviceDetails:
@@ -235,42 +182,7 @@ components:
                     description: User-provided description of the CIDR block
         cronJob:
             allOf:
-                - type: object
-                  required:
-                    - type
-                    - name
-                    - ownerId
-                  properties:
-                    autoDeploy:
-                        type: string
-                        description: Defaults to "yes"
-                        enum:
-                            - "yes"
-                            - "no"
-                        default: "yes"
-                    branch:
-                        type: string
-                        description: If left empty, this will fall back to the default branch of the repository
-                    buildFilter:
-                        $ref: '#/components/schemas/buildFilter'
-                    envVars:
-                        $ref: '#/components/schemas/envVarInputArray'
-                    image:
-                        $ref: '#/components/schemas/image'
-                    name:
-                        type: string
-                    ownerId:
-                        type: string
-                    repo:
-                        type: string
-                        description: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-                        example: https://github.com/render-examples/flask-hello-world
-                    rootDir:
-                        type: string
-                    secretFiles:
-                        type: array
-                        items:
-                            $ref: '#/components/schemas/secretFile'
+                - $ref: '#/components/schemas/servicePOST'
                 - type: object
                   properties:
                     serviceDetails:
@@ -333,25 +245,7 @@ components:
                     type: string
         cronJobPatch:
             allOf:
-                - type: object
-                  properties:
-                    autoDeploy:
-                        type: string
-                        enum:
-                            - "yes"
-                            - "no"
-                    branch:
-                        type: string
-                    buildFilter:
-                        $ref: '#/components/schemas/buildFilter'
-                    image:
-                        $ref: '#/components/schemas/image'
-                    name:
-                        type: string
-                    repo:
-                        type: string
-                    rootDir:
-                        type: string
+                - $ref: '#/components/schemas/servicePATCH'
                 - type: object
                   properties:
                     serviceDetails:
@@ -1324,42 +1218,7 @@ components:
                     $ref: '#/components/schemas/plan'
         privateService:
             allOf:
-                - type: object
-                  required:
-                    - type
-                    - name
-                    - ownerId
-                  properties:
-                    autoDeploy:
-                        type: string
-                        description: Defaults to "yes"
-                        enum:
-                            - "yes"
-                            - "no"
-                        default: "yes"
-                    branch:
-                        type: string
-                        description: If left empty, this will fall back to the default branch of the repository
-                    buildFilter:
-                        $ref: '#/components/schemas/buildFilter'
-                    envVars:
-                        $ref: '#/components/schemas/envVarInputArray'
-                    image:
-                        $ref: '#/components/schemas/image'
-                    name:
-                        type: string
-                    ownerId:
-                        type: string
-                    repo:
-                        type: string
-                        description: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-                        example: https://github.com/render-examples/flask-hello-world
-                    rootDir:
-                        type: string
-                    secretFiles:
-                        type: array
-                        items:
-                            $ref: '#/components/schemas/secretFile'
+                - $ref: '#/components/schemas/servicePOST'
                 - type: object
                   properties:
                     serviceDetails:
@@ -1463,25 +1322,7 @@ components:
                     $ref: '#/components/schemas/region'
         privateServicePatch:
             allOf:
-                - type: object
-                  properties:
-                    autoDeploy:
-                        type: string
-                        enum:
-                            - "yes"
-                            - "no"
-                    branch:
-                        type: string
-                    buildFilter:
-                        $ref: '#/components/schemas/buildFilter'
-                    image:
-                        $ref: '#/components/schemas/image'
-                    name:
-                        type: string
-                    repo:
-                        type: string
-                    rootDir:
-                        type: string
+                - $ref: '#/components/schemas/servicePATCH'
                 - type: object
                   properties:
                     serviceDetails:
@@ -1976,42 +1817,7 @@ components:
                 - cron
         staticSite:
             allOf:
-                - type: object
-                  required:
-                    - type
-                    - name
-                    - ownerId
-                  properties:
-                    autoDeploy:
-                        type: string
-                        description: Defaults to "yes"
-                        enum:
-                            - "yes"
-                            - "no"
-                        default: "yes"
-                    branch:
-                        type: string
-                        description: If left empty, this will fall back to the default branch of the repository
-                    buildFilter:
-                        $ref: '#/components/schemas/buildFilter'
-                    envVars:
-                        $ref: '#/components/schemas/envVarInputArray'
-                    image:
-                        $ref: '#/components/schemas/image'
-                    name:
-                        type: string
-                    ownerId:
-                        type: string
-                    repo:
-                        type: string
-                        description: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-                        example: https://github.com/render-examples/flask-hello-world
-                    rootDir:
-                        type: string
-                    secretFiles:
-                        type: array
-                        items:
-                            $ref: '#/components/schemas/secretFile'
+                - $ref: '#/components/schemas/servicePOST'
                 - type: object
                   properties:
                     serviceDetails:
@@ -2078,25 +1884,7 @@ components:
                         $ref: '#/components/schemas/route'
         staticSitePatch:
             allOf:
-                - type: object
-                  properties:
-                    autoDeploy:
-                        type: string
-                        enum:
-                            - "yes"
-                            - "no"
-                    branch:
-                        type: string
-                    buildFilter:
-                        $ref: '#/components/schemas/buildFilter'
-                    image:
-                        $ref: '#/components/schemas/image'
-                    name:
-                        type: string
-                    repo:
-                        type: string
-                    rootDir:
-                        type: string
+                - $ref: '#/components/schemas/servicePATCH'
                 - type: object
                   properties:
                     serviceDetails:
@@ -2160,42 +1948,7 @@ components:
             example: GB
         webService:
             allOf:
-                - type: object
-                  required:
-                    - type
-                    - name
-                    - ownerId
-                  properties:
-                    autoDeploy:
-                        type: string
-                        description: Defaults to "yes"
-                        enum:
-                            - "yes"
-                            - "no"
-                        default: "yes"
-                    branch:
-                        type: string
-                        description: If left empty, this will fall back to the default branch of the repository
-                    buildFilter:
-                        $ref: '#/components/schemas/buildFilter'
-                    envVars:
-                        $ref: '#/components/schemas/envVarInputArray'
-                    image:
-                        $ref: '#/components/schemas/image'
-                    name:
-                        type: string
-                    ownerId:
-                        type: string
-                    repo:
-                        type: string
-                        description: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-                        example: https://github.com/render-examples/flask-hello-world
-                    rootDir:
-                        type: string
-                    secretFiles:
-                        type: array
-                        items:
-                            $ref: '#/components/schemas/secretFile'
+                - $ref: '#/components/schemas/servicePOST'
                 - type: object
                   properties:
                     serviceDetails:
@@ -2305,25 +2058,7 @@ components:
                     $ref: '#/components/schemas/region'
         webServicePatch:
             allOf:
-                - type: object
-                  properties:
-                    autoDeploy:
-                        type: string
-                        enum:
-                            - "yes"
-                            - "no"
-                    branch:
-                        type: string
-                    buildFilter:
-                        $ref: '#/components/schemas/buildFilter'
-                    image:
-                        $ref: '#/components/schemas/image'
-                    name:
-                        type: string
-                    repo:
-                        type: string
-                    rootDir:
-                        type: string
+                - $ref: '#/components/schemas/servicePATCH'
                 - type: object
                   properties:
                     serviceDetails:
@@ -3387,11 +3122,11 @@ paths:
                     application/json:
                         schema:
                             oneOf:
-                                - $ref: '#/components/schemas/webService'
-                                - $ref: '#/components/schemas/privateService'
                                 - $ref: '#/components/schemas/backgroundWorker'
                                 - $ref: '#/components/schemas/cronJob'
+                                - $ref: '#/components/schemas/privateService'
                                 - $ref: '#/components/schemas/staticSite'
+                                - $ref: '#/components/schemas/webService'
                             discriminator:
                                 propertyName: type
                                 mapping:
@@ -3489,9 +3224,9 @@ paths:
                             oneOf:
                                 - $ref: '#/components/schemas/backgroundWorkerPatch'
                                 - $ref: '#/components/schemas/cronJobPatch'
+                                - $ref: '#/components/schemas/privateServicePatch'
                                 - $ref: '#/components/schemas/staticSitePatch'
                                 - $ref: '#/components/schemas/webServicePatch'
-                                - $ref: '#/components/schemas/privateServicePatch'
                             discriminator:
                                 propertyName: type
                                 mapping:

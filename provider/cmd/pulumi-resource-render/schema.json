@@ -581,20 +581,6 @@
                 }
             ]
         },
-        "render:services:BackgroundWorkerPropertiesAutoDeploy": {
-            "description": "Defaults to \"yes\"",
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Yes",
-                    "value": "yes"
-                },
-                {
-                    "name": "No",
-                    "value": "no"
-                }
-            ]
-        },
         "render:services:BackgroundWorkerSuspended": {
             "type": "string",
             "enum": [
@@ -1081,20 +1067,6 @@
                 }
             ]
         },
-        "render:services:CronJobPropertiesAutoDeploy": {
-            "description": "Defaults to \"yes\"",
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Yes",
-                    "value": "yes"
-                },
-                {
-                    "name": "No",
-                    "value": "no"
-                }
-            ]
-        },
         "render:services:CronJobSuspended": {
             "type": "string",
             "enum": [
@@ -1553,27 +1525,6 @@
                 "name",
                 "path",
                 "value"
-            ]
-        },
-        "render:services:Image": {
-            "properties": {
-                "imagePath": {
-                    "type": "string",
-                    "description": "Path to the image used for this server (e.g docker.io/library/nginx:latest)."
-                },
-                "ownerId": {
-                    "type": "string",
-                    "description": "The ID of the owner for this image. This should match the owner of the service as well as the owner of any specified registry credential."
-                },
-                "registryCredentialId": {
-                    "type": "string",
-                    "description": "Optional reference to the registry credential passed to the image repository to retrieve this image."
-                }
-            },
-            "type": "object",
-            "required": [
-                "imagePath",
-                "ownerId"
             ]
         },
         "render:services:ImageProperties": {
@@ -2135,20 +2086,6 @@
                 }
             ]
         },
-        "render:services:PrivateServicePropertiesAutoDeploy": {
-            "description": "Defaults to \"yes\"",
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Yes",
-                    "value": "yes"
-                },
-                {
-                    "name": "No",
-                    "value": "no"
-                }
-            ]
-        },
         "render:services:PrivateServiceSuspended": {
             "type": "string",
             "enum": [
@@ -2388,21 +2325,6 @@
                 "priority",
                 "source",
                 "type"
-            ]
-        },
-        "render:services:SecretFile": {
-            "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                }
-            },
-            "type": "object",
-            "required": [
-                "id",
-                "name"
             ]
         },
         "render:services:ServerPort": {
@@ -2729,20 +2651,6 @@
                 {
                     "name": "Ignore",
                     "value": "ignore"
-                }
-            ]
-        },
-        "render:services:StaticSitePropertiesAutoDeploy": {
-            "description": "Defaults to \"yes\"",
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Yes",
-                    "value": "yes"
-                },
-                {
-                    "name": "No",
-                    "value": "no"
                 }
             ]
         },
@@ -3200,20 +3108,6 @@
                 {
                     "name": "Ignore",
                     "value": "ignore"
-                }
-            ]
-        },
-        "render:services:WebServicePropertiesAutoDeploy": {
-            "description": "Defaults to \"yes\"",
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Yes",
-                    "value": "yes"
-                },
-                {
-                    "name": "No",
-                    "value": "no"
                 }
             ]
         },

@@ -195,17 +195,48 @@ type operationAndSuffx struct {
 func copyReadOnlyServiceProperties(openAPIDoc *openapi3.T) {
 	// TODO: Add the properties from the `/services/{serviceId}` response
 	// schema that aren't already in the respective POST schema as read-only properties.
+	// service -> servicePOST
+	// *Details -> *DetailsPOST
+	service := openAPIDoc.Components.Schemas["service"]
+	servicePost := openAPIDoc.Components.Schemas["servicePOST"]
+
+	for propName, schema := range service.Value.Properties {
+		if propName == "type" || propName == "serviceDetails" {
+			continue
+		}
+		if _, ok := servicePost.Value.Properties[propName]; ok {
+			continue
+		}
+
+		schema.Value.ReadOnly = true
+		servicePost.Value.Properties[propName] = schema
+	}
+
+	for _, discriminatorValue := range sortedDiscriminatorValues {
+		s := services[discriminatorValue]
+		sourceSchema := openAPIDoc.Components.Schemas[s+"Details"]
+		destSchema := openAPIDoc.Components.Schemas[s+"Details"+"POST"]
+
+		for propName, schema := range sourceSchema.Value.Properties {
+			if _, ok := destSchema.Value.Properties[propName]; ok {
+				continue
+			}
+
+			schema.Value.ReadOnly = true
+			destSchema.Value.Properties[propName] = schema
+		}
+	}
 }
 
 func fixServiceEndpoints(openAPIDoc *openapi3.T) error {
 	pathsAndOperations := map[string][]operationAndSuffx{
-		"/services/{serviceId}": {
-			operationAndSuffx{operation: http.MethodGet, suffix: ""},
-			operationAndSuffx{operation: http.MethodPatch, suffix: "Patch", originalSchemasSuffixedWithOperation: true},
-		},
 		"/services": {
 			operationAndSuffx{operation: http.MethodPost, suffix: "", originalSchemasSuffixedWithOperation: true},
 			// We'll fix the GET /services endpoint separately.
+		},
+		"/services/{serviceId}": {
+			// operationAndSuffx{operation: http.MethodGet, suffix: ""},
+			operationAndSuffx{operation: http.MethodPatch, suffix: "Patch", originalSchemasSuffixedWithOperation: true},
 		},
 	}
 	for path, operationAndSuffixes := range pathsAndOperations {

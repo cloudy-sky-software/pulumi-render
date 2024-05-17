@@ -67,7 +67,7 @@ jobs:
           go-version: 1.21.x
 
       - name: Install pulumictl
-        uses: jaxxstorm/action-install-gh-release@v1.11.0
+        uses: jaxxstorm/action-install-gh-release@v1.12.0
         with:
           repo: pulumi/pulumictl
           tag: "latest"
@@ -115,7 +115,7 @@ jobs:
           go-version: ${{ matrix.goversion }}
 
       - name: Install pulumictl
-        uses: jaxxstorm/action-install-gh-release@v1.11.0
+        uses: jaxxstorm/action-install-gh-release@v1.12.0
         with:
           repo: pulumi/pulumictl
           tag: "latest"

@@ -160,10 +160,6 @@ func adjustOperation(openAPIDoc *openapi3.T, path, operation string, schemaSuffi
 	discriminator, _ := getServiceDiscriminator(schemaSuffix)
 
 	switch operation {
-	case http.MethodGet:
-		schemaRef := openapi3.NewSchemaRef("", &openapi3.Schema{OneOf: refs})
-		schemaRef.Value.Discriminator = discriminator
-		pathItem.Get.Responses.Status(200).Value.Content.Get(jsonMimeType).Schema = schemaRef
 	case http.MethodPost:
 		schemaRef := openapi3.NewSchemaRef("", &openapi3.Schema{OneOf: refs})
 		schemaRef.Value.Discriminator = discriminator
@@ -180,16 +176,17 @@ func adjustOperation(openAPIDoc *openapi3.T, path, operation string, schemaSuffi
 
 type operationAndSuffx struct {
 	// The HTTP method.
-	operation string
-	// The suffix to use for the new per-service type
+	operation             string
+	baseServiceSchemaName string
+	// The newServiceSchemaSuffix to use for the new per-service type
 	// schemas that will be created.
 	// This must be in Title-case.
-	suffix string
+	newServiceSchemaSuffix string
 	// Flag to indicate if the original schemas in
 	// the OpenAPI doc have the HTTP method suffix.
 	// For example, servicePOST, servicePATCH,
 	// staticSiteDetailsPOST etc.
-	originalSchemasSuffixedWithOperation bool
+	serviceDetailsSchemaSuffixedWithOperation bool
 }
 
 func copyReadOnlyServiceProperties(openAPIDoc *openapi3.T) {
@@ -201,7 +198,7 @@ func copyReadOnlyServiceProperties(openAPIDoc *openapi3.T) {
 	servicePost := openAPIDoc.Components.Schemas["servicePOST"]
 
 	for propName, schema := range service.Value.Properties {
-		if propName == "type" || propName == "serviceDetails" {
+		if propName == "type" || propName == "serviceDetails" || propName == "id" {
 			continue
 		}
 		if _, ok := servicePost.Value.Properties[propName]; ok {
@@ -225,31 +222,34 @@ func copyReadOnlyServiceProperties(openAPIDoc *openapi3.T) {
 			schema.Value.ReadOnly = true
 			destSchema.Value.Properties[propName] = schema
 		}
+
+		openAPIDoc.Components.Schemas[s+"Details"] = destSchema
+		delete(openAPIDoc.Components.Schemas, s+"Details"+"POST")
 	}
+
+	openAPIDoc.Components.Schemas["service"] = servicePost
+	delete(openAPIDoc.Components.Schemas, "servicePOST")
 }
 
 func fixServiceEndpoints(openAPIDoc *openapi3.T) error {
+	// We'll fix the GET endpoints separately.
 	pathsAndOperations := map[string][]operationAndSuffx{
 		"/services": {
-			operationAndSuffx{operation: http.MethodPost, suffix: "", originalSchemasSuffixedWithOperation: true},
-			// We'll fix the GET /services endpoint separately.
+			operationAndSuffx{operation: http.MethodPost, newServiceSchemaSuffix: "", serviceDetailsSchemaSuffixedWithOperation: false, baseServiceSchemaName: "service"},
 		},
 		"/services/{serviceId}": {
-			// operationAndSuffx{operation: http.MethodGet, suffix: ""},
-			operationAndSuffx{operation: http.MethodPatch, suffix: "Patch", originalSchemasSuffixedWithOperation: true},
+			operationAndSuffx{operation: http.MethodPatch, newServiceSchemaSuffix: "Patch", serviceDetailsSchemaSuffixedWithOperation: true, baseServiceSchemaName: "servicePATCH"},
 		},
 	}
+
 	for path, operationAndSuffixes := range pathsAndOperations {
 
 		for _, operationAndSuffix := range operationAndSuffixes {
 			operation := operationAndSuffix.operation
-			suffix := operationAndSuffix.suffix
-			originalSchemasSuffixedWithOperation := operationAndSuffix.originalSchemasSuffixedWithOperation
+			newServiceSchemaSuffix := operationAndSuffix.newServiceSchemaSuffix
+			originalSchemasSuffixedWithOperation := operationAndSuffix.serviceDetailsSchemaSuffixedWithOperation
+			baseServiceSchemaName := operationAndSuffix.baseServiceSchemaName
 
-			baseServiceSchemaName := "service" + strings.ToUpper(operation)
-			if !originalSchemasSuffixedWithOperation {
-				baseServiceSchemaName = "service"
-			}
 			baseServiceSchema, ok := openAPIDoc.Components.Schemas[baseServiceSchemaName]
 			contract.Assertf(ok, "%s not found", baseServiceSchemaName)
 			// Delete the `serviceDetails` and `type` properties from the base
@@ -277,18 +277,28 @@ func fixServiceEndpoints(openAPIDoc *openapi3.T) error {
 				addPropertyWithRef(inlineSchema, "serviceDetails", serviceDetailsSchemaName)
 				addDefaultProperty(inlineSchema, "type", discriminatorValue)
 
-				serviceSchema.AllOf = append(serviceSchema.AllOf, openapi3.NewSchemaRef("#/components/schemas/"+baseServiceSchemaName, openapi3.NewSchema()), inlineSchema)
+				serviceSchema.AllOf = append(serviceSchema.AllOf, openapi3.NewSchemaRef("#/components/schemas/"+baseServiceSchemaName, baseServiceSchema.Value), inlineSchema)
 
-				openAPIDoc.Components.Schemas[service+suffix] = openapi3.NewSchemaRef("", serviceSchema)
+				openAPIDoc.Components.Schemas[service+newServiceSchemaSuffix] = openapi3.NewSchemaRef("", serviceSchema)
 
-				operationSchemas = append(operationSchemas, openapi3.NewSchemaRef("#/components/schemas/"+service+suffix, nil))
+				operationSchemas = append(operationSchemas, openapi3.NewSchemaRef("#/components/schemas/"+service+newServiceSchemaSuffix, nil))
 			}
 
-			adjustOperation(openAPIDoc, path, operation, suffix, operationSchemas)
+			adjustOperation(openAPIDoc, path, operation, newServiceSchemaSuffix, operationSchemas)
 		}
 	}
 
 	return nil
+}
+
+func fixGetServiceEndpoint(openAPIDoc *openapi3.T) {
+	pathItem := openAPIDoc.Paths.Find("/services/{serviceId}")
+	contract.Assertf(pathItem != nil, "path /services/{serviceId} not found")
+
+	discriminator, outputRefs := getServiceDiscriminator("")
+	discriminatedServicesSchemaRef := openapi3.NewSchemaRef("", &openapi3.Schema{OneOf: outputRefs})
+	discriminatedServicesSchemaRef.Value.Discriminator = discriminator
+	pathItem.Get.Responses.Status(200).Value.Content.Get(jsonMimeType).Schema = discriminatedServicesSchemaRef
 }
 
 // Extracts the inline schemas to schema types references
@@ -327,6 +337,8 @@ func FixOpenAPIDoc(openAPIDoc *openapi3.T) error {
 	if err := fixServiceEndpoints(openAPIDoc); err != nil {
 		return err
 	}
+
+	fixGetServiceEndpoint(openAPIDoc)
 
 	fixListServicesEndpoint(openAPIDoc)
 

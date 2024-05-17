@@ -168,21 +168,13 @@ func adjustOperation(openAPIDoc *openapi3.T, path, operation string, schemaSuffi
 		schemaRef := openapi3.NewSchemaRef("", &openapi3.Schema{OneOf: refs})
 		schemaRef.Value.Discriminator = discriminator
 		pathItem.Post.RequestBody.Value.Content.Get(jsonMimeType).Schema = schemaRef
-
-		outputDiscriminator, outputRefs := getServiceDiscriminator("Output")
-		outputSchemaRef := openapi3.NewSchemaRef("", &openapi3.Schema{OneOf: outputRefs})
-		outputSchemaRef.Value.Discriminator = outputDiscriminator
 		// POST /services endpoint returns a 201 Created status code.
-		pathItem.Post.Responses.Status(201).Value.Content.Get(jsonMimeType).Schema = outputSchemaRef
+		pathItem.Post.Responses.Status(201).Value.Content.Get(jsonMimeType).Schema = schemaRef
 	case http.MethodPatch:
 		schemaRef := openapi3.NewSchemaRef("", &openapi3.Schema{OneOf: refs})
 		schemaRef.Value.Discriminator = discriminator
 		pathItem.Patch.RequestBody.Value.Content.Get(jsonMimeType).Schema = schemaRef
-
-		outputDiscriminator, outputRefs := getServiceDiscriminator("Output")
-		outputSchemaRef := openapi3.NewSchemaRef("", &openapi3.Schema{OneOf: outputRefs})
-		outputSchemaRef.Value.Discriminator = outputDiscriminator
-		pathItem.Patch.Responses.Status(200).Value.Content.Get(jsonMimeType).Schema = outputSchemaRef
+		pathItem.Patch.Responses.Status(200).Value.Content.Get(jsonMimeType).Schema = schemaRef
 	}
 }
 
@@ -200,15 +192,15 @@ type operationAndSuffx struct {
 	originalSchemasSuffixedWithOperation bool
 }
 
+func copyReadOnlyServiceProperties(openAPIDoc *openapi3.T) {
+	// TODO: Add the properties from the `/services/{serviceId}` response
+	// schema that aren't already in the respective POST schema as read-only properties.
+}
+
 func fixServiceEndpoints(openAPIDoc *openapi3.T) error {
 	pathsAndOperations := map[string][]operationAndSuffx{
 		"/services/{serviceId}": {
-			// For the POST method, we are going to use schema names that will clash
-			// with the existing GET request method's schemas which will get overwritten.
-			// So we should rename the response schemas for:
-			// GET /services
-			// GET /services/{serviceId}
-			operationAndSuffx{operation: http.MethodGet, suffix: "Output"},
+			operationAndSuffx{operation: http.MethodGet, suffix: ""},
 			operationAndSuffx{operation: http.MethodPatch, suffix: "Patch", originalSchemasSuffixedWithOperation: true},
 		},
 		"/services": {
@@ -246,7 +238,7 @@ func fixServiceEndpoints(openAPIDoc *openapi3.T) error {
 				contract.Assertf(serviceDetailsSchema != nil, "schema %s not found", serviceDetailsSchemaName)
 
 				serviceSchema := openapi3.NewAllOfSchema()
-				serviceSchema.Title = pulschema_pkg.ToPascalCase(service) + suffix
+				serviceSchema.Title = pulschema_pkg.ToPascalCase(service)
 
 				inlineSchema := openapi3.NewSchemaRef("", openapi3.NewSchema())
 				inlineSchema.Value.Type = &openapi3.Types{openapi3.TypeObject}
@@ -276,7 +268,7 @@ func fixListServicesEndpoint(openAPIDoc *openapi3.T) {
 	pathItem := openAPIDoc.Paths.Find("/services")
 	contract.Assertf(pathItem != nil, "path /services not found")
 
-	discriminator, outputRefs := getServiceDiscriminator("Output")
+	discriminator, outputRefs := getServiceDiscriminator("")
 	discriminatedServicesSchemaRef := openapi3.NewSchemaRef("", &openapi3.Schema{OneOf: outputRefs})
 	discriminatedServicesSchemaRef.Value.Discriminator = discriminator
 
@@ -298,6 +290,8 @@ func FixOpenAPIDoc(openAPIDoc *openapi3.T) error {
 	if err := fixEnvVarsPutEndpoint(openAPIDoc); err != nil {
 		return err
 	}
+
+	copyReadOnlyServiceProperties(openAPIDoc)
 
 	if err := fixServiceEndpoints(openAPIDoc); err != nil {
 		return err

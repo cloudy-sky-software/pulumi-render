@@ -217,106 +217,13 @@
                 "percentage"
             ]
         },
-        "render:services:BackgroundWorker": {
+        "render:services:BackgroundWorkerDetailsCreate": {
             "properties": {
-                "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy",
-                    "description": "Defaults to \"yes\"",
-                    "default": "yes"
-                },
-                "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository"
-                },
-                "buildFilter": {
-                    "$ref": "#/types/render:services:BuildFilter"
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "oneOf": [
-                            {
-                                "$ref": "#/types/render:services:EnvVarKeyValue"
-                            },
-                            {
-                                "$ref": "#/types/render:services:EnvVarKeyGenerateValue"
-                            }
-                        ]
-                    }
-                },
-                "image": {
-                    "$ref": "#/types/render:services:Image"
-                },
-                "imagePath": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "notifyOnFail": {
-                    "$ref": "#/types/render:services:ServiceNotifyOnFail"
-                },
-                "ownerId": {
-                    "type": "string"
-                },
-                "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
-                },
-                "rootDir": {
-                    "type": "string"
-                },
-                "secretFiles": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:SecretFile"
-                    }
-                },
-                "serviceDetails": {
-                    "$ref": "#/types/render:services:BackgroundWorkerDetails"
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:services:ServiceSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:ServiceSuspendersItem"
-                    }
-                },
-                "type": {
-                    "type": "string",
-                    "default": "background_worker"
-                },
-                "updatedAt": {
-                    "type": "string"
-                }
-            },
-            "type": "object",
-            "required": [
-                "name",
-                "ownerId"
-            ]
-        },
-        "render:services:BackgroundWorkerDetails": {
-            "properties": {
-                "autoscaling": {
-                    "$ref": "#/types/render:services:AutoscalingConfig"
-                },
-                "buildPlan": {
-                    "type": "string"
-                },
                 "disk": {
-                    "$ref": "#/types/render:services:BackgroundWorkerDetailsDiskProperties"
+                    "$ref": "#/types/render:services:BackgroundWorkerDetailsCreateDiskProperties"
                 },
                 "env": {
-                    "$ref": "#/types/render:services:BackgroundWorkerDetailsEnv",
+                    "$ref": "#/types/render:services:BackgroundWorkerDetailsCreateEnv",
                     "description": "Environment (runtime)"
                 },
                 "envSpecificDetails": {
@@ -334,19 +241,16 @@
                     "description": "Defaults to 1",
                     "default": 1
                 },
-                "parentServer": {
-                    "$ref": "#/types/render:services:Resource"
-                },
                 "plan": {
-                    "$ref": "#/types/render:services:BackgroundWorkerDetailsPlan"
+                    "$ref": "#/types/render:services:BackgroundWorkerDetailsCreatePlan"
                 },
                 "pullRequestPreviewsEnabled": {
-                    "$ref": "#/types/render:services:BackgroundWorkerDetailsPullRequestPreviewsEnabled",
+                    "$ref": "#/types/render:services:BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled",
                     "description": "Defaults to \"no\"",
                     "default": "no"
                 },
                 "region": {
-                    "$ref": "#/types/render:services:BackgroundWorkerDetailsRegion"
+                    "$ref": "#/types/render:services:BackgroundWorkerDetailsCreateRegion"
                 }
             },
             "type": "object",
@@ -354,7 +258,7 @@
                 "env"
             ]
         },
-        "render:services:BackgroundWorkerDetailsDiskProperties": {
+        "render:services:BackgroundWorkerDetailsCreateDiskProperties": {
             "properties": {
                 "mountPath": {
                     "type": "string"
@@ -373,7 +277,7 @@
                 "name"
             ]
         },
-        "render:services:BackgroundWorkerDetailsEnv": {
+        "render:services:BackgroundWorkerDetailsCreateEnv": {
             "description": "Environment (runtime)",
             "type": "string",
             "enum": [
@@ -411,7 +315,7 @@
                 }
             ]
         },
-        "render:services:BackgroundWorkerDetailsPlan": {
+        "render:services:BackgroundWorkerDetailsCreatePlan": {
             "type": "string",
             "enum": [
                 {
@@ -440,7 +344,7 @@
                 }
             ]
         },
-        "render:services:BackgroundWorkerDetailsPullRequestPreviewsEnabled": {
+        "render:services:BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled": {
             "description": "Defaults to \"no\"",
             "type": "string",
             "enum": [
@@ -454,7 +358,7 @@
                 }
             ]
         },
-        "render:services:BackgroundWorkerDetailsRegion": {
+        "render:services:BackgroundWorkerDetailsCreateRegion": {
             "type": "string",
             "enum": [
                 {
@@ -475,7 +379,265 @@
                 }
             ]
         },
+        "render:services:BackgroundWorkerDetailsOutput": {
+            "properties": {
+                "autoscaling": {
+                    "$ref": "#/types/render:services:AutoscalingConfig"
+                },
+                "buildPlan": {
+                    "type": "string"
+                },
+                "disk": {
+                    "$ref": "#/types/render:services:Disk"
+                },
+                "env": {
+                    "$ref": "#/types/render:services:BackgroundWorkerDetailsOutputEnv",
+                    "description": "Environment (runtime)"
+                },
+                "envSpecificDetails": {
+                    "oneOf": [
+                        {
+                            "$ref": "#/types/render:services:DockerDetails"
+                        },
+                        {
+                            "$ref": "#/types/render:services:NativeEnvironmentDetails"
+                        }
+                    ]
+                },
+                "numInstances": {
+                    "type": "integer",
+                    "description": "For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service."
+                },
+                "parentServer": {
+                    "$ref": "#/types/render:services:Resource"
+                },
+                "plan": {
+                    "$ref": "#/types/render:services:BackgroundWorkerDetailsOutputPlan",
+                    "description": "The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type."
+                },
+                "pullRequestPreviewsEnabled": {
+                    "$ref": "#/types/render:services:BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled"
+                },
+                "region": {
+                    "$ref": "#/types/render:services:BackgroundWorkerDetailsOutputRegion"
+                }
+            },
+            "type": "object",
+            "required": [
+                "buildPlan",
+                "env",
+                "envSpecificDetails",
+                "numInstances",
+                "plan",
+                "pullRequestPreviewsEnabled",
+                "region"
+            ]
+        },
+        "render:services:BackgroundWorkerDetailsOutputEnv": {
+            "description": "Environment (runtime)",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Docker",
+                    "value": "docker"
+                },
+                {
+                    "name": "Elixir",
+                    "value": "elixir"
+                },
+                {
+                    "name": "Go",
+                    "value": "go"
+                },
+                {
+                    "name": "Node",
+                    "value": "node"
+                },
+                {
+                    "name": "Python",
+                    "value": "python"
+                },
+                {
+                    "name": "Ruby",
+                    "value": "ruby"
+                },
+                {
+                    "name": "Rust",
+                    "value": "rust"
+                },
+                {
+                    "name": "Image",
+                    "value": "image"
+                }
+            ]
+        },
+        "render:services:BackgroundWorkerDetailsOutputPlan": {
+            "description": "The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Starter",
+                    "value": "starter"
+                },
+                {
+                    "name": "StarterPlus",
+                    "value": "starter_plus"
+                },
+                {
+                    "name": "Standard",
+                    "value": "standard"
+                },
+                {
+                    "name": "StandardPlus",
+                    "value": "standard_plus"
+                },
+                {
+                    "name": "Pro",
+                    "value": "pro"
+                },
+                {
+                    "name": "ProPlus",
+                    "value": "pro_plus"
+                },
+                {
+                    "name": "ProMax",
+                    "value": "pro_max"
+                },
+                {
+                    "name": "ProUltra",
+                    "value": "pro_ultra"
+                },
+                {
+                    "name": "Free",
+                    "value": "free"
+                },
+                {
+                    "name": "Custom",
+                    "value": "custom"
+                }
+            ]
+        },
+        "render:services:BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
+        "render:services:BackgroundWorkerDetailsOutputRegion": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Frankfurt",
+                    "value": "frankfurt"
+                },
+                {
+                    "name": "Oregon",
+                    "value": "oregon"
+                },
+                {
+                    "name": "Ohio",
+                    "value": "ohio"
+                },
+                {
+                    "name": "Singapore",
+                    "value": "singapore"
+                }
+            ]
+        },
+        "render:services:BackgroundWorkerOutput": {
+            "properties": {
+                "autoDeploy": {
+                    "$ref": "#/types/render:services:ServiceAutoDeploy"
+                },
+                "branch": {
+                    "type": "string"
+                },
+                "buildFilter": {
+                    "$ref": "#/types/render:services:BuildFilter"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "imagePath": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "notifyOnFail": {
+                    "$ref": "#/types/render:services:ServiceNotifyOnFail"
+                },
+                "ownerId": {
+                    "type": "string"
+                },
+                "repo": {
+                    "type": "string"
+                },
+                "rootDir": {
+                    "type": "string"
+                },
+                "serviceDetails": {
+                    "$ref": "#/types/render:services:BackgroundWorkerDetailsOutput"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "suspended": {
+                    "$ref": "#/types/render:services:ServiceSuspended"
+                },
+                "suspenders": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:ServiceSuspendersItem"
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "default": "background_worker"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "autoDeploy",
+                "createdAt",
+                "id",
+                "name",
+                "notifyOnFail",
+                "ownerId",
+                "rootDir",
+                "slug",
+                "suspended",
+                "suspenders",
+                "updatedAt"
+            ]
+        },
         "render:services:BackgroundWorkerServiceAutoDeploy": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
+        "render:services:BackgroundWorkerServiceCreateAutoDeploy": {
             "description": "Defaults to \"yes\"",
             "type": "string",
             "enum": [
@@ -669,100 +831,10 @@
             },
             "type": "object"
         },
-        "render:services:CronJob": {
+        "render:services:CronJobDetailsCreate": {
             "properties": {
-                "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy",
-                    "description": "Defaults to \"yes\"",
-                    "default": "yes"
-                },
-                "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository"
-                },
-                "buildFilter": {
-                    "$ref": "#/types/render:services:BuildFilter"
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "oneOf": [
-                            {
-                                "$ref": "#/types/render:services:EnvVarKeyValue"
-                            },
-                            {
-                                "$ref": "#/types/render:services:EnvVarKeyGenerateValue"
-                            }
-                        ]
-                    }
-                },
-                "image": {
-                    "$ref": "#/types/render:services:Image"
-                },
-                "imagePath": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "notifyOnFail": {
-                    "$ref": "#/types/render:services:ServiceNotifyOnFail"
-                },
-                "ownerId": {
-                    "type": "string"
-                },
-                "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
-                },
-                "rootDir": {
-                    "type": "string"
-                },
-                "secretFiles": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:SecretFile"
-                    }
-                },
-                "serviceDetails": {
-                    "$ref": "#/types/render:services:CronJobDetails"
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:services:ServiceSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:ServiceSuspendersItem"
-                    }
-                },
-                "type": {
-                    "type": "string",
-                    "default": "cron_job"
-                },
-                "updatedAt": {
-                    "type": "string"
-                }
-            },
-            "type": "object",
-            "required": [
-                "name",
-                "ownerId"
-            ]
-        },
-        "render:services:CronJobDetails": {
-            "properties": {
-                "buildPlan": {
-                    "type": "string"
-                },
                 "env": {
-                    "$ref": "#/types/render:services:CronJobDetailsEnv",
+                    "$ref": "#/types/render:services:CronJobDetailsCreateEnv",
                     "description": "Environment (runtime)"
                 },
                 "envSpecificDetails": {
@@ -775,14 +847,11 @@
                         }
                     ]
                 },
-                "lastSuccessfulRunAt": {
-                    "type": "string"
-                },
                 "plan": {
-                    "$ref": "#/types/render:services:CronJobDetailsPlan"
+                    "$ref": "#/types/render:services:CronJobDetailsCreatePlan"
                 },
                 "region": {
-                    "$ref": "#/types/render:services:CronJobDetailsRegion"
+                    "$ref": "#/types/render:services:CronJobDetailsCreateRegion"
                 },
                 "schedule": {
                     "type": "string"
@@ -794,7 +863,7 @@
                 "schedule"
             ]
         },
-        "render:services:CronJobDetailsEnv": {
+        "render:services:CronJobDetailsCreateEnv": {
             "description": "Environment (runtime)",
             "type": "string",
             "enum": [
@@ -832,7 +901,7 @@
                 }
             ]
         },
-        "render:services:CronJobDetailsPlan": {
+        "render:services:CronJobDetailsCreatePlan": {
             "type": "string",
             "enum": [
                 {
@@ -861,7 +930,7 @@
                 }
             ]
         },
-        "render:services:CronJobDetailsRegion": {
+        "render:services:CronJobDetailsCreateRegion": {
             "type": "string",
             "enum": [
                 {
@@ -882,7 +951,241 @@
                 }
             ]
         },
+        "render:services:CronJobDetailsOutput": {
+            "properties": {
+                "buildPlan": {
+                    "type": "string"
+                },
+                "env": {
+                    "$ref": "#/types/render:services:CronJobDetailsOutputEnv",
+                    "description": "Environment (runtime)"
+                },
+                "envSpecificDetails": {
+                    "oneOf": [
+                        {
+                            "$ref": "#/types/render:services:DockerDetails"
+                        },
+                        {
+                            "$ref": "#/types/render:services:NativeEnvironmentDetails"
+                        }
+                    ]
+                },
+                "lastSuccessfulRunAt": {
+                    "type": "string"
+                },
+                "plan": {
+                    "$ref": "#/types/render:services:CronJobDetailsOutputPlan",
+                    "description": "The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type."
+                },
+                "region": {
+                    "$ref": "#/types/render:services:CronJobDetailsOutputRegion"
+                },
+                "schedule": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "buildPlan",
+                "env",
+                "envSpecificDetails",
+                "plan",
+                "region",
+                "schedule"
+            ]
+        },
+        "render:services:CronJobDetailsOutputEnv": {
+            "description": "Environment (runtime)",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Docker",
+                    "value": "docker"
+                },
+                {
+                    "name": "Elixir",
+                    "value": "elixir"
+                },
+                {
+                    "name": "Go",
+                    "value": "go"
+                },
+                {
+                    "name": "Node",
+                    "value": "node"
+                },
+                {
+                    "name": "Python",
+                    "value": "python"
+                },
+                {
+                    "name": "Ruby",
+                    "value": "ruby"
+                },
+                {
+                    "name": "Rust",
+                    "value": "rust"
+                },
+                {
+                    "name": "Image",
+                    "value": "image"
+                }
+            ]
+        },
+        "render:services:CronJobDetailsOutputPlan": {
+            "description": "The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Starter",
+                    "value": "starter"
+                },
+                {
+                    "name": "StarterPlus",
+                    "value": "starter_plus"
+                },
+                {
+                    "name": "Standard",
+                    "value": "standard"
+                },
+                {
+                    "name": "StandardPlus",
+                    "value": "standard_plus"
+                },
+                {
+                    "name": "Pro",
+                    "value": "pro"
+                },
+                {
+                    "name": "ProPlus",
+                    "value": "pro_plus"
+                },
+                {
+                    "name": "ProMax",
+                    "value": "pro_max"
+                },
+                {
+                    "name": "ProUltra",
+                    "value": "pro_ultra"
+                },
+                {
+                    "name": "Free",
+                    "value": "free"
+                },
+                {
+                    "name": "Custom",
+                    "value": "custom"
+                }
+            ]
+        },
+        "render:services:CronJobDetailsOutputRegion": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Frankfurt",
+                    "value": "frankfurt"
+                },
+                {
+                    "name": "Oregon",
+                    "value": "oregon"
+                },
+                {
+                    "name": "Ohio",
+                    "value": "ohio"
+                },
+                {
+                    "name": "Singapore",
+                    "value": "singapore"
+                }
+            ]
+        },
+        "render:services:CronJobOutput": {
+            "properties": {
+                "autoDeploy": {
+                    "$ref": "#/types/render:services:ServiceAutoDeploy"
+                },
+                "branch": {
+                    "type": "string"
+                },
+                "buildFilter": {
+                    "$ref": "#/types/render:services:BuildFilter"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "imagePath": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "notifyOnFail": {
+                    "$ref": "#/types/render:services:ServiceNotifyOnFail"
+                },
+                "ownerId": {
+                    "type": "string"
+                },
+                "repo": {
+                    "type": "string"
+                },
+                "rootDir": {
+                    "type": "string"
+                },
+                "serviceDetails": {
+                    "$ref": "#/types/render:services:CronJobDetailsOutput"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "suspended": {
+                    "$ref": "#/types/render:services:ServiceSuspended"
+                },
+                "suspenders": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:ServiceSuspendersItem"
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "default": "cron_job"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "autoDeploy",
+                "createdAt",
+                "id",
+                "name",
+                "notifyOnFail",
+                "ownerId",
+                "rootDir",
+                "slug",
+                "suspended",
+                "suspenders",
+                "updatedAt"
+            ]
+        },
         "render:services:CronJobServiceAutoDeploy": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
+        "render:services:CronJobServiceCreateAutoDeploy": {
             "description": "Defaults to \"yes\"",
             "type": "string",
             "enum": [
@@ -1195,6 +1498,29 @@
                 }
             ]
         },
+        "render:services:Disk": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "mountPath": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "sizeGB": {
+                    "type": "integer"
+                }
+            },
+            "type": "object",
+            "required": [
+                "id",
+                "mountPath",
+                "name",
+                "sizeGB"
+            ]
+        },
         "render:services:DockerDetails": {
             "properties": {
                 "dockerCommand": {
@@ -1283,13 +1609,10 @@
         "render:services:GetBackgroundWorker": {
             "properties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:PreviewServiceServiceAutoDeploy",
-                    "description": "Defaults to \"yes\"",
-                    "default": "yes"
+                    "$ref": "#/types/render:services:PreviewServiceServiceAutoDeploy"
                 },
                 "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository"
+                    "type": "string"
                 },
                 "buildFilter": {
                     "$ref": "#/types/render:services:BuildFilter"
@@ -1297,21 +1620,8 @@
                 "createdAt": {
                     "type": "string"
                 },
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "oneOf": [
-                            {
-                                "$ref": "#/types/render:services:EnvVarKeyValue"
-                            },
-                            {
-                                "$ref": "#/types/render:services:EnvVarKeyGenerateValue"
-                            }
-                        ]
-                    }
-                },
-                "image": {
-                    "$ref": "#/types/render:services:Image"
+                "id": {
+                    "type": "string"
                 },
                 "imagePath": {
                     "type": "string"
@@ -1326,20 +1636,13 @@
                     "type": "string"
                 },
                 "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                    "type": "string"
                 },
                 "rootDir": {
                     "type": "string"
                 },
-                "secretFiles": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:SecretFile"
-                    }
-                },
                 "serviceDetails": {
-                    "$ref": "#/types/render:services:BackgroundWorkerDetails"
+                    "$ref": "#/types/render:services:BackgroundWorkerDetailsOutput"
                 },
                 "slug": {
                     "type": "string"
@@ -1363,20 +1666,26 @@
             },
             "type": "object",
             "required": [
+                "autoDeploy",
+                "createdAt",
+                "id",
                 "name",
-                "ownerId"
+                "notifyOnFail",
+                "ownerId",
+                "rootDir",
+                "slug",
+                "suspended",
+                "suspenders",
+                "updatedAt"
             ]
         },
         "render:services:GetCronJob": {
             "properties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:PreviewServiceServiceAutoDeploy",
-                    "description": "Defaults to \"yes\"",
-                    "default": "yes"
+                    "$ref": "#/types/render:services:PreviewServiceServiceAutoDeploy"
                 },
                 "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository"
+                    "type": "string"
                 },
                 "buildFilter": {
                     "$ref": "#/types/render:services:BuildFilter"
@@ -1384,21 +1693,8 @@
                 "createdAt": {
                     "type": "string"
                 },
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "oneOf": [
-                            {
-                                "$ref": "#/types/render:services:EnvVarKeyValue"
-                            },
-                            {
-                                "$ref": "#/types/render:services:EnvVarKeyGenerateValue"
-                            }
-                        ]
-                    }
-                },
-                "image": {
-                    "$ref": "#/types/render:services:Image"
+                "id": {
+                    "type": "string"
                 },
                 "imagePath": {
                     "type": "string"
@@ -1413,20 +1709,13 @@
                     "type": "string"
                 },
                 "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                    "type": "string"
                 },
                 "rootDir": {
                     "type": "string"
                 },
-                "secretFiles": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:SecretFile"
-                    }
-                },
                 "serviceDetails": {
-                    "$ref": "#/types/render:services:CronJobDetails"
+                    "$ref": "#/types/render:services:CronJobDetailsOutput"
                 },
                 "slug": {
                     "type": "string"
@@ -1450,20 +1739,26 @@
             },
             "type": "object",
             "required": [
+                "autoDeploy",
+                "createdAt",
+                "id",
                 "name",
-                "ownerId"
+                "notifyOnFail",
+                "ownerId",
+                "rootDir",
+                "slug",
+                "suspended",
+                "suspenders",
+                "updatedAt"
             ]
         },
         "render:services:GetPrivateService": {
             "properties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:PreviewServiceServiceAutoDeploy",
-                    "description": "Defaults to \"yes\"",
-                    "default": "yes"
+                    "$ref": "#/types/render:services:PreviewServiceServiceAutoDeploy"
                 },
                 "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository"
+                    "type": "string"
                 },
                 "buildFilter": {
                     "$ref": "#/types/render:services:BuildFilter"
@@ -1471,21 +1766,8 @@
                 "createdAt": {
                     "type": "string"
                 },
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "oneOf": [
-                            {
-                                "$ref": "#/types/render:services:EnvVarKeyValue"
-                            },
-                            {
-                                "$ref": "#/types/render:services:EnvVarKeyGenerateValue"
-                            }
-                        ]
-                    }
-                },
-                "image": {
-                    "$ref": "#/types/render:services:Image"
+                "id": {
+                    "type": "string"
                 },
                 "imagePath": {
                     "type": "string"
@@ -1500,20 +1782,13 @@
                     "type": "string"
                 },
                 "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                    "type": "string"
                 },
                 "rootDir": {
                     "type": "string"
                 },
-                "secretFiles": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:SecretFile"
-                    }
-                },
                 "serviceDetails": {
-                    "$ref": "#/types/render:services:PrivateServiceDetails"
+                    "$ref": "#/types/render:services:PrivateServiceDetailsOutput"
                 },
                 "slug": {
                     "type": "string"
@@ -1537,20 +1812,26 @@
             },
             "type": "object",
             "required": [
+                "autoDeploy",
+                "createdAt",
+                "id",
                 "name",
-                "ownerId"
+                "notifyOnFail",
+                "ownerId",
+                "rootDir",
+                "slug",
+                "suspended",
+                "suspenders",
+                "updatedAt"
             ]
         },
         "render:services:GetStaticSite": {
             "properties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:PreviewServiceServiceAutoDeploy",
-                    "description": "Defaults to \"yes\"",
-                    "default": "yes"
+                    "$ref": "#/types/render:services:PreviewServiceServiceAutoDeploy"
                 },
                 "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository"
+                    "type": "string"
                 },
                 "buildFilter": {
                     "$ref": "#/types/render:services:BuildFilter"
@@ -1558,21 +1839,8 @@
                 "createdAt": {
                     "type": "string"
                 },
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "oneOf": [
-                            {
-                                "$ref": "#/types/render:services:EnvVarKeyValue"
-                            },
-                            {
-                                "$ref": "#/types/render:services:EnvVarKeyGenerateValue"
-                            }
-                        ]
-                    }
-                },
-                "image": {
-                    "$ref": "#/types/render:services:Image"
+                "id": {
+                    "type": "string"
                 },
                 "imagePath": {
                     "type": "string"
@@ -1587,20 +1855,13 @@
                     "type": "string"
                 },
                 "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                    "type": "string"
                 },
                 "rootDir": {
                     "type": "string"
                 },
-                "secretFiles": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:SecretFile"
-                    }
-                },
                 "serviceDetails": {
-                    "$ref": "#/types/render:services:StaticSiteDetails"
+                    "$ref": "#/types/render:services:StaticSiteDetailsOutput"
                 },
                 "slug": {
                     "type": "string"
@@ -1624,20 +1885,26 @@
             },
             "type": "object",
             "required": [
+                "autoDeploy",
+                "createdAt",
+                "id",
                 "name",
-                "ownerId"
+                "notifyOnFail",
+                "ownerId",
+                "rootDir",
+                "slug",
+                "suspended",
+                "suspenders",
+                "updatedAt"
             ]
         },
         "render:services:GetWebService": {
             "properties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:PreviewServiceServiceAutoDeploy",
-                    "description": "Defaults to \"yes\"",
-                    "default": "yes"
+                    "$ref": "#/types/render:services:PreviewServiceServiceAutoDeploy"
                 },
                 "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository"
+                    "type": "string"
                 },
                 "buildFilter": {
                     "$ref": "#/types/render:services:BuildFilter"
@@ -1645,21 +1912,8 @@
                 "createdAt": {
                     "type": "string"
                 },
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "oneOf": [
-                            {
-                                "$ref": "#/types/render:services:EnvVarKeyValue"
-                            },
-                            {
-                                "$ref": "#/types/render:services:EnvVarKeyGenerateValue"
-                            }
-                        ]
-                    }
-                },
-                "image": {
-                    "$ref": "#/types/render:services:Image"
+                "id": {
+                    "type": "string"
                 },
                 "imagePath": {
                     "type": "string"
@@ -1674,20 +1928,13 @@
                     "type": "string"
                 },
                 "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                    "type": "string"
                 },
                 "rootDir": {
                     "type": "string"
                 },
-                "secretFiles": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:SecretFile"
-                    }
-                },
                 "serviceDetails": {
-                    "$ref": "#/types/render:services:WebServiceDetails"
+                    "$ref": "#/types/render:services:WebServiceDetailsOutput"
                 },
                 "slug": {
                     "type": "string"
@@ -1711,8 +1958,17 @@
             },
             "type": "object",
             "required": [
+                "autoDeploy",
+                "createdAt",
+                "id",
                 "name",
-                "ownerId"
+                "notifyOnFail",
+                "ownerId",
+                "rootDir",
+                "slug",
+                "suspended",
+                "suspenders",
+                "updatedAt"
             ]
         },
         "render:services:Header": {
@@ -1898,29 +2154,29 @@
                 "service": {
                     "oneOf": [
                         {
-                            "$ref": "#/types/render:services:BackgroundWorker"
+                            "$ref": "#/types/render:services:BackgroundWorkerOutput"
                         },
                         {
-                            "$ref": "#/types/render:services:CronJob"
+                            "$ref": "#/types/render:services:CronJobOutput"
                         },
                         {
-                            "$ref": "#/types/render:services:PrivateService"
+                            "$ref": "#/types/render:services:PrivateServiceOutput"
                         },
                         {
-                            "$ref": "#/types/render:services:StaticSite"
+                            "$ref": "#/types/render:services:StaticSiteOutput"
                         },
                         {
-                            "$ref": "#/types/render:services:WebService"
+                            "$ref": "#/types/render:services:WebServiceOutput"
                         }
                     ],
                     "discriminator": {
                         "propertyName": "type",
                         "mapping": {
-                            "background_worker": "#/types/render:services:BackgroundWorker",
-                            "cron_job": "#/types/render:services:CronJob",
-                            "private_service": "#/types/render:services:PrivateService",
-                            "static_site": "#/types/render:services:StaticSite",
-                            "web_service": "#/types/render:services:WebService"
+                            "background_worker": "#/types/render:services:BackgroundWorkerOutput",
+                            "cron_job": "#/types/render:services:CronJobOutput",
+                            "private_service": "#/types/render:services:PrivateServiceOutput",
+                            "static_site": "#/types/render:services:StaticSiteOutput",
+                            "web_service": "#/types/render:services:WebServiceOutput"
                         }
                     }
                 }
@@ -1992,7 +2248,6 @@
             ]
         },
         "render:services:PreviewServiceServiceAutoDeploy": {
-            "description": "Defaults to \"yes\"",
             "type": "string",
             "enum": [
                 {
@@ -2060,106 +2315,13 @@
                 }
             ]
         },
-        "render:services:PrivateService": {
+        "render:services:PrivateServiceDetailsCreate": {
             "properties": {
-                "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy",
-                    "description": "Defaults to \"yes\"",
-                    "default": "yes"
-                },
-                "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository"
-                },
-                "buildFilter": {
-                    "$ref": "#/types/render:services:BuildFilter"
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "oneOf": [
-                            {
-                                "$ref": "#/types/render:services:EnvVarKeyValue"
-                            },
-                            {
-                                "$ref": "#/types/render:services:EnvVarKeyGenerateValue"
-                            }
-                        ]
-                    }
-                },
-                "image": {
-                    "$ref": "#/types/render:services:Image"
-                },
-                "imagePath": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "notifyOnFail": {
-                    "$ref": "#/types/render:services:ServiceNotifyOnFail"
-                },
-                "ownerId": {
-                    "type": "string"
-                },
-                "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
-                },
-                "rootDir": {
-                    "type": "string"
-                },
-                "secretFiles": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:SecretFile"
-                    }
-                },
-                "serviceDetails": {
-                    "$ref": "#/types/render:services:PrivateServiceDetails"
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:services:ServiceSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:ServiceSuspendersItem"
-                    }
-                },
-                "type": {
-                    "type": "string",
-                    "default": "private_service"
-                },
-                "updatedAt": {
-                    "type": "string"
-                }
-            },
-            "type": "object",
-            "required": [
-                "name",
-                "ownerId"
-            ]
-        },
-        "render:services:PrivateServiceDetails": {
-            "properties": {
-                "autoscaling": {
-                    "$ref": "#/types/render:services:AutoscalingConfig"
-                },
-                "buildPlan": {
-                    "type": "string"
-                },
                 "disk": {
-                    "$ref": "#/types/render:services:PrivateServiceDetailsDiskProperties"
+                    "$ref": "#/types/render:services:PrivateServiceDetailsCreateDiskProperties"
                 },
                 "env": {
-                    "$ref": "#/types/render:services:PrivateServiceDetailsEnv",
+                    "$ref": "#/types/render:services:PrivateServiceDetailsCreateEnv",
                     "description": "Environment (runtime)"
                 },
                 "envSpecificDetails": {
@@ -2177,28 +2339,16 @@
                     "description": "Defaults to 1",
                     "default": 1
                 },
-                "openPorts": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:ServerPort"
-                    }
-                },
-                "parentServer": {
-                    "$ref": "#/types/render:services:Resource"
-                },
                 "plan": {
-                    "$ref": "#/types/render:services:PrivateServiceDetailsPlan"
+                    "$ref": "#/types/render:services:PrivateServiceDetailsCreatePlan"
                 },
                 "pullRequestPreviewsEnabled": {
-                    "$ref": "#/types/render:services:PrivateServiceDetailsPullRequestPreviewsEnabled",
+                    "$ref": "#/types/render:services:PrivateServiceDetailsCreatePullRequestPreviewsEnabled",
                     "description": "Defaults to \"no\"",
                     "default": "no"
                 },
                 "region": {
-                    "$ref": "#/types/render:services:PrivateServiceDetailsRegion"
-                },
-                "url": {
-                    "type": "string"
+                    "$ref": "#/types/render:services:PrivateServiceDetailsCreateRegion"
                 }
             },
             "type": "object",
@@ -2206,7 +2356,7 @@
                 "env"
             ]
         },
-        "render:services:PrivateServiceDetailsDiskProperties": {
+        "render:services:PrivateServiceDetailsCreateDiskProperties": {
             "properties": {
                 "mountPath": {
                     "type": "string"
@@ -2225,7 +2375,7 @@
                 "name"
             ]
         },
-        "render:services:PrivateServiceDetailsEnv": {
+        "render:services:PrivateServiceDetailsCreateEnv": {
             "description": "Environment (runtime)",
             "type": "string",
             "enum": [
@@ -2263,7 +2413,7 @@
                 }
             ]
         },
-        "render:services:PrivateServiceDetailsPlan": {
+        "render:services:PrivateServiceDetailsCreatePlan": {
             "type": "string",
             "enum": [
                 {
@@ -2292,7 +2442,7 @@
                 }
             ]
         },
-        "render:services:PrivateServiceDetailsPullRequestPreviewsEnabled": {
+        "render:services:PrivateServiceDetailsCreatePullRequestPreviewsEnabled": {
             "description": "Defaults to \"no\"",
             "type": "string",
             "enum": [
@@ -2306,7 +2456,7 @@
                 }
             ]
         },
-        "render:services:PrivateServiceDetailsRegion": {
+        "render:services:PrivateServiceDetailsCreateRegion": {
             "type": "string",
             "enum": [
                 {
@@ -2327,7 +2477,276 @@
                 }
             ]
         },
+        "render:services:PrivateServiceDetailsOutput": {
+            "properties": {
+                "autoscaling": {
+                    "$ref": "#/types/render:services:AutoscalingConfig"
+                },
+                "buildPlan": {
+                    "type": "string"
+                },
+                "disk": {
+                    "$ref": "#/types/render:services:Disk"
+                },
+                "env": {
+                    "$ref": "#/types/render:services:PrivateServiceDetailsOutputEnv",
+                    "description": "Environment (runtime)"
+                },
+                "envSpecificDetails": {
+                    "oneOf": [
+                        {
+                            "$ref": "#/types/render:services:DockerDetails"
+                        },
+                        {
+                            "$ref": "#/types/render:services:NativeEnvironmentDetails"
+                        }
+                    ]
+                },
+                "numInstances": {
+                    "type": "integer",
+                    "description": "For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service."
+                },
+                "openPorts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:ServerPort"
+                    }
+                },
+                "parentServer": {
+                    "$ref": "#/types/render:services:Resource"
+                },
+                "plan": {
+                    "$ref": "#/types/render:services:PrivateServiceDetailsOutputPlan",
+                    "description": "The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type."
+                },
+                "pullRequestPreviewsEnabled": {
+                    "$ref": "#/types/render:services:PrivateServiceDetailsOutputPullRequestPreviewsEnabled"
+                },
+                "region": {
+                    "$ref": "#/types/render:services:PrivateServiceDetailsOutputRegion"
+                },
+                "url": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "buildPlan",
+                "env",
+                "envSpecificDetails",
+                "numInstances",
+                "openPorts",
+                "plan",
+                "pullRequestPreviewsEnabled",
+                "region",
+                "url"
+            ]
+        },
+        "render:services:PrivateServiceDetailsOutputEnv": {
+            "description": "Environment (runtime)",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Docker",
+                    "value": "docker"
+                },
+                {
+                    "name": "Elixir",
+                    "value": "elixir"
+                },
+                {
+                    "name": "Go",
+                    "value": "go"
+                },
+                {
+                    "name": "Node",
+                    "value": "node"
+                },
+                {
+                    "name": "Python",
+                    "value": "python"
+                },
+                {
+                    "name": "Ruby",
+                    "value": "ruby"
+                },
+                {
+                    "name": "Rust",
+                    "value": "rust"
+                },
+                {
+                    "name": "Image",
+                    "value": "image"
+                }
+            ]
+        },
+        "render:services:PrivateServiceDetailsOutputPlan": {
+            "description": "The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Starter",
+                    "value": "starter"
+                },
+                {
+                    "name": "StarterPlus",
+                    "value": "starter_plus"
+                },
+                {
+                    "name": "Standard",
+                    "value": "standard"
+                },
+                {
+                    "name": "StandardPlus",
+                    "value": "standard_plus"
+                },
+                {
+                    "name": "Pro",
+                    "value": "pro"
+                },
+                {
+                    "name": "ProPlus",
+                    "value": "pro_plus"
+                },
+                {
+                    "name": "ProMax",
+                    "value": "pro_max"
+                },
+                {
+                    "name": "ProUltra",
+                    "value": "pro_ultra"
+                },
+                {
+                    "name": "Free",
+                    "value": "free"
+                },
+                {
+                    "name": "Custom",
+                    "value": "custom"
+                }
+            ]
+        },
+        "render:services:PrivateServiceDetailsOutputPullRequestPreviewsEnabled": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
+        "render:services:PrivateServiceDetailsOutputRegion": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Frankfurt",
+                    "value": "frankfurt"
+                },
+                {
+                    "name": "Oregon",
+                    "value": "oregon"
+                },
+                {
+                    "name": "Ohio",
+                    "value": "ohio"
+                },
+                {
+                    "name": "Singapore",
+                    "value": "singapore"
+                }
+            ]
+        },
+        "render:services:PrivateServiceOutput": {
+            "properties": {
+                "autoDeploy": {
+                    "$ref": "#/types/render:services:ServiceAutoDeploy"
+                },
+                "branch": {
+                    "type": "string"
+                },
+                "buildFilter": {
+                    "$ref": "#/types/render:services:BuildFilter"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "imagePath": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "notifyOnFail": {
+                    "$ref": "#/types/render:services:ServiceNotifyOnFail"
+                },
+                "ownerId": {
+                    "type": "string"
+                },
+                "repo": {
+                    "type": "string"
+                },
+                "rootDir": {
+                    "type": "string"
+                },
+                "serviceDetails": {
+                    "$ref": "#/types/render:services:PrivateServiceDetailsOutput"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "suspended": {
+                    "$ref": "#/types/render:services:ServiceSuspended"
+                },
+                "suspenders": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:ServiceSuspendersItem"
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "default": "private_service"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "autoDeploy",
+                "createdAt",
+                "id",
+                "name",
+                "notifyOnFail",
+                "ownerId",
+                "rootDir",
+                "slug",
+                "suspended",
+                "suspenders",
+                "updatedAt"
+            ]
+        },
         "render:services:PrivateServiceServiceAutoDeploy": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
+        "render:services:PrivateServiceServiceCreateAutoDeploy": {
             "description": "Defaults to \"yes\"",
             "type": "string",
             "enum": [
@@ -2562,7 +2981,7 @@
                     "type": "string"
                 },
                 "type": {
-                    "$ref": "#/types/render:services:RouteType"
+                    "$ref": "#/types/render:services:StaticSiteRouteType"
                 }
             },
             "type": "object",
@@ -2572,19 +2991,6 @@
                 "priority",
                 "source",
                 "type"
-            ]
-        },
-        "render:services:RouteType": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Redirect",
-                    "value": "redirect"
-                },
-                {
-                    "name": "Rewrite",
-                    "value": "rewrite"
-                }
             ]
         },
         "render:services:SecretFile": {
@@ -2633,13 +3039,10 @@
         "render:services:Service": {
             "properties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:PreviewServiceServiceAutoDeploy",
-                    "description": "Defaults to \"yes\"",
-                    "default": "yes"
+                    "$ref": "#/types/render:services:PreviewServiceServiceAutoDeploy"
                 },
                 "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository"
+                    "type": "string"
                 },
                 "buildFilter": {
                     "$ref": "#/types/render:services:BuildFilter"
@@ -2647,21 +3050,8 @@
                 "createdAt": {
                     "type": "string"
                 },
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "oneOf": [
-                            {
-                                "$ref": "#/types/render:services:EnvVarKeyValue"
-                            },
-                            {
-                                "$ref": "#/types/render:services:EnvVarKeyGenerateValue"
-                            }
-                        ]
-                    }
-                },
-                "image": {
-                    "$ref": "#/types/render:services:Image"
+                "id": {
+                    "type": "string"
                 },
                 "imagePath": {
                     "type": "string"
@@ -2676,17 +3066,10 @@
                     "type": "string"
                 },
                 "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                    "type": "string"
                 },
                 "rootDir": {
                     "type": "string"
-                },
-                "secretFiles": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:SecretFile"
-                    }
                 },
                 "slug": {
                     "type": "string"
@@ -2706,12 +3089,20 @@
             },
             "type": "object",
             "required": [
+                "autoDeploy",
+                "createdAt",
+                "id",
                 "name",
-                "ownerId"
+                "notifyOnFail",
+                "ownerId",
+                "rootDir",
+                "slug",
+                "suspended",
+                "suspenders",
+                "updatedAt"
             ]
         },
         "render:services:ServiceAutoDeploy": {
-            "description": "Defaults to \"yes\"",
             "type": "string",
             "enum": [
                 {
@@ -2779,16 +3170,99 @@
                 }
             ]
         },
-        "render:services:StaticSite": {
+        "render:services:StaticSiteDetailsCreate": {
+            "properties": {
+                "buildCommand": {
+                    "type": "string"
+                },
+                "headers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:HeaderCreate"
+                    }
+                },
+                "publishPath": {
+                    "type": "string",
+                    "description": "Defaults to \"public\""
+                },
+                "pullRequestPreviewsEnabled": {
+                    "$ref": "#/types/render:services:StaticSiteDetailsCreatePullRequestPreviewsEnabled",
+                    "description": "Defaults to \"no\"",
+                    "default": "no"
+                },
+                "routes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:Route"
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "render:services:StaticSiteDetailsCreatePullRequestPreviewsEnabled": {
+            "description": "Defaults to \"no\"",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
+        "render:services:StaticSiteDetailsOutput": {
+            "properties": {
+                "buildCommand": {
+                    "type": "string"
+                },
+                "buildPlan": {
+                    "type": "string"
+                },
+                "parentServer": {
+                    "$ref": "#/types/render:services:Resource"
+                },
+                "publishPath": {
+                    "type": "string"
+                },
+                "pullRequestPreviewsEnabled": {
+                    "$ref": "#/types/render:services:StaticSiteDetailsOutputPullRequestPreviewsEnabled"
+                },
+                "url": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "buildCommand",
+                "buildPlan",
+                "publishPath",
+                "pullRequestPreviewsEnabled",
+                "url"
+            ]
+        },
+        "render:services:StaticSiteDetailsOutputPullRequestPreviewsEnabled": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
+        "render:services:StaticSiteOutput": {
             "properties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy",
-                    "description": "Defaults to \"yes\"",
-                    "default": "yes"
+                    "$ref": "#/types/render:services:ServiceAutoDeploy"
                 },
                 "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository"
+                    "type": "string"
                 },
                 "buildFilter": {
                     "$ref": "#/types/render:services:BuildFilter"
@@ -2796,21 +3270,8 @@
                 "createdAt": {
                     "type": "string"
                 },
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "oneOf": [
-                            {
-                                "$ref": "#/types/render:services:EnvVarKeyValue"
-                            },
-                            {
-                                "$ref": "#/types/render:services:EnvVarKeyGenerateValue"
-                            }
-                        ]
-                    }
-                },
-                "image": {
-                    "$ref": "#/types/render:services:Image"
+                "id": {
+                    "type": "string"
                 },
                 "imagePath": {
                     "type": "string"
@@ -2825,20 +3286,13 @@
                     "type": "string"
                 },
                 "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                    "type": "string"
                 },
                 "rootDir": {
                     "type": "string"
                 },
-                "secretFiles": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:SecretFile"
-                    }
-                },
                 "serviceDetails": {
-                    "$ref": "#/types/render:services:StaticSiteDetails"
+                    "$ref": "#/types/render:services:StaticSiteDetailsOutput"
                 },
                 "slug": {
                     "type": "string"
@@ -2862,50 +3316,33 @@
             },
             "type": "object",
             "required": [
+                "autoDeploy",
+                "createdAt",
+                "id",
                 "name",
-                "ownerId"
+                "notifyOnFail",
+                "ownerId",
+                "rootDir",
+                "slug",
+                "suspended",
+                "suspenders",
+                "updatedAt"
             ]
         },
-        "render:services:StaticSiteDetails": {
-            "properties": {
-                "buildCommand": {
-                    "type": "string"
+        "render:services:StaticSiteRouteType": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Redirect",
+                    "value": "redirect"
                 },
-                "buildPlan": {
-                    "type": "string"
-                },
-                "headers": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:HeaderCreate"
-                    }
-                },
-                "parentServer": {
-                    "$ref": "#/types/render:services:Resource"
-                },
-                "publishPath": {
-                    "type": "string",
-                    "description": "Defaults to \"public\""
-                },
-                "pullRequestPreviewsEnabled": {
-                    "$ref": "#/types/render:services:StaticSiteDetailsPullRequestPreviewsEnabled",
-                    "description": "Defaults to \"no\"",
-                    "default": "no"
-                },
-                "routes": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:Route"
-                    }
-                },
-                "url": {
-                    "type": "string"
+                {
+                    "name": "Rewrite",
+                    "value": "rewrite"
                 }
-            },
-            "type": "object"
+            ]
         },
-        "render:services:StaticSiteDetailsPullRequestPreviewsEnabled": {
-            "description": "Defaults to \"no\"",
+        "render:services:StaticSiteServiceAutoDeploy": {
             "type": "string",
             "enum": [
                 {
@@ -2918,7 +3355,7 @@
                 }
             ]
         },
-        "render:services:StaticSiteServiceAutoDeploy": {
+        "render:services:StaticSiteServiceCreateAutoDeploy": {
             "description": "Defaults to \"yes\"",
             "type": "string",
             "enum": [
@@ -2987,106 +3424,13 @@
                 }
             ]
         },
-        "render:services:WebService": {
+        "render:services:WebServiceDetailsCreate": {
             "properties": {
-                "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy",
-                    "description": "Defaults to \"yes\"",
-                    "default": "yes"
-                },
-                "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository"
-                },
-                "buildFilter": {
-                    "$ref": "#/types/render:services:BuildFilter"
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "envVars": {
-                    "type": "array",
-                    "items": {
-                        "oneOf": [
-                            {
-                                "$ref": "#/types/render:services:EnvVarKeyValue"
-                            },
-                            {
-                                "$ref": "#/types/render:services:EnvVarKeyGenerateValue"
-                            }
-                        ]
-                    }
-                },
-                "image": {
-                    "$ref": "#/types/render:services:Image"
-                },
-                "imagePath": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "notifyOnFail": {
-                    "$ref": "#/types/render:services:ServiceNotifyOnFail"
-                },
-                "ownerId": {
-                    "type": "string"
-                },
-                "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
-                },
-                "rootDir": {
-                    "type": "string"
-                },
-                "secretFiles": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:SecretFile"
-                    }
-                },
-                "serviceDetails": {
-                    "$ref": "#/types/render:services:WebServiceDetails"
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:services:ServiceSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:ServiceSuspendersItem"
-                    }
-                },
-                "type": {
-                    "type": "string",
-                    "default": "web_service"
-                },
-                "updatedAt": {
-                    "type": "string"
-                }
-            },
-            "type": "object",
-            "required": [
-                "name",
-                "ownerId"
-            ]
-        },
-        "render:services:WebServiceDetails": {
-            "properties": {
-                "autoscaling": {
-                    "$ref": "#/types/render:services:AutoscalingConfig"
-                },
-                "buildPlan": {
-                    "type": "string"
-                },
                 "disk": {
-                    "$ref": "#/types/render:services:WebServiceDetailsDiskProperties"
+                    "$ref": "#/types/render:services:WebServiceDetailsCreateDiskProperties"
                 },
                 "env": {
-                    "$ref": "#/types/render:services:WebServiceDetailsEnv",
+                    "$ref": "#/types/render:services:WebServiceDetailsCreateEnv",
                     "description": "Environment (runtime)"
                 },
                 "envSpecificDetails": {
@@ -3106,28 +3450,16 @@
                     "type": "integer",
                     "description": "Defaults to 1"
                 },
-                "openPorts": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:ServerPort"
-                    }
-                },
-                "parentServer": {
-                    "$ref": "#/types/render:services:Resource"
-                },
                 "plan": {
-                    "$ref": "#/types/render:services:WebServiceDetailsPlan"
+                    "$ref": "#/types/render:services:WebServiceDetailsCreatePlan"
                 },
                 "pullRequestPreviewsEnabled": {
-                    "$ref": "#/types/render:services:WebServiceDetailsPullRequestPreviewsEnabled",
+                    "$ref": "#/types/render:services:WebServiceDetailsCreatePullRequestPreviewsEnabled",
                     "description": "Defaults to \"no\"",
                     "default": "no"
                 },
                 "region": {
-                    "$ref": "#/types/render:services:WebServiceDetailsRegion"
-                },
-                "url": {
-                    "type": "string"
+                    "$ref": "#/types/render:services:WebServiceDetailsCreateRegion"
                 }
             },
             "type": "object",
@@ -3135,7 +3467,7 @@
                 "env"
             ]
         },
-        "render:services:WebServiceDetailsDiskProperties": {
+        "render:services:WebServiceDetailsCreateDiskProperties": {
             "properties": {
                 "mountPath": {
                     "type": "string"
@@ -3154,7 +3486,7 @@
                 "name"
             ]
         },
-        "render:services:WebServiceDetailsEnv": {
+        "render:services:WebServiceDetailsCreateEnv": {
             "description": "Environment (runtime)",
             "type": "string",
             "enum": [
@@ -3192,7 +3524,7 @@
                 }
             ]
         },
-        "render:services:WebServiceDetailsPlan": {
+        "render:services:WebServiceDetailsCreatePlan": {
             "type": "string",
             "enum": [
                 {
@@ -3221,7 +3553,7 @@
                 }
             ]
         },
-        "render:services:WebServiceDetailsPullRequestPreviewsEnabled": {
+        "render:services:WebServiceDetailsCreatePullRequestPreviewsEnabled": {
             "description": "Defaults to \"no\"",
             "type": "string",
             "enum": [
@@ -3235,7 +3567,7 @@
                 }
             ]
         },
-        "render:services:WebServiceDetailsRegion": {
+        "render:services:WebServiceDetailsCreateRegion": {
             "type": "string",
             "enum": [
                 {
@@ -3256,7 +3588,280 @@
                 }
             ]
         },
+        "render:services:WebServiceDetailsOutput": {
+            "properties": {
+                "autoscaling": {
+                    "$ref": "#/types/render:services:AutoscalingConfig"
+                },
+                "buildPlan": {
+                    "type": "string"
+                },
+                "disk": {
+                    "$ref": "#/types/render:services:Disk"
+                },
+                "env": {
+                    "$ref": "#/types/render:services:WebServiceDetailsOutputEnv",
+                    "description": "Environment (runtime)"
+                },
+                "envSpecificDetails": {
+                    "oneOf": [
+                        {
+                            "$ref": "#/types/render:services:DockerDetails"
+                        },
+                        {
+                            "$ref": "#/types/render:services:NativeEnvironmentDetails"
+                        }
+                    ]
+                },
+                "healthCheckPath": {
+                    "type": "string"
+                },
+                "numInstances": {
+                    "type": "integer",
+                    "description": "For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service."
+                },
+                "openPorts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:ServerPort"
+                    }
+                },
+                "parentServer": {
+                    "$ref": "#/types/render:services:Resource"
+                },
+                "plan": {
+                    "$ref": "#/types/render:services:WebServiceDetailsOutputPlan",
+                    "description": "The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type."
+                },
+                "pullRequestPreviewsEnabled": {
+                    "$ref": "#/types/render:services:WebServiceDetailsOutputPullRequestPreviewsEnabled"
+                },
+                "region": {
+                    "$ref": "#/types/render:services:WebServiceDetailsOutputRegion"
+                },
+                "url": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "buildPlan",
+                "env",
+                "envSpecificDetails",
+                "healthCheckPath",
+                "numInstances",
+                "openPorts",
+                "plan",
+                "pullRequestPreviewsEnabled",
+                "region",
+                "url"
+            ]
+        },
+        "render:services:WebServiceDetailsOutputEnv": {
+            "description": "Environment (runtime)",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Docker",
+                    "value": "docker"
+                },
+                {
+                    "name": "Elixir",
+                    "value": "elixir"
+                },
+                {
+                    "name": "Go",
+                    "value": "go"
+                },
+                {
+                    "name": "Node",
+                    "value": "node"
+                },
+                {
+                    "name": "Python",
+                    "value": "python"
+                },
+                {
+                    "name": "Ruby",
+                    "value": "ruby"
+                },
+                {
+                    "name": "Rust",
+                    "value": "rust"
+                },
+                {
+                    "name": "Image",
+                    "value": "image"
+                }
+            ]
+        },
+        "render:services:WebServiceDetailsOutputPlan": {
+            "description": "The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Starter",
+                    "value": "starter"
+                },
+                {
+                    "name": "StarterPlus",
+                    "value": "starter_plus"
+                },
+                {
+                    "name": "Standard",
+                    "value": "standard"
+                },
+                {
+                    "name": "StandardPlus",
+                    "value": "standard_plus"
+                },
+                {
+                    "name": "Pro",
+                    "value": "pro"
+                },
+                {
+                    "name": "ProPlus",
+                    "value": "pro_plus"
+                },
+                {
+                    "name": "ProMax",
+                    "value": "pro_max"
+                },
+                {
+                    "name": "ProUltra",
+                    "value": "pro_ultra"
+                },
+                {
+                    "name": "Free",
+                    "value": "free"
+                },
+                {
+                    "name": "Custom",
+                    "value": "custom"
+                }
+            ]
+        },
+        "render:services:WebServiceDetailsOutputPullRequestPreviewsEnabled": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
+        "render:services:WebServiceDetailsOutputRegion": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Frankfurt",
+                    "value": "frankfurt"
+                },
+                {
+                    "name": "Oregon",
+                    "value": "oregon"
+                },
+                {
+                    "name": "Ohio",
+                    "value": "ohio"
+                },
+                {
+                    "name": "Singapore",
+                    "value": "singapore"
+                }
+            ]
+        },
+        "render:services:WebServiceOutput": {
+            "properties": {
+                "autoDeploy": {
+                    "$ref": "#/types/render:services:ServiceAutoDeploy"
+                },
+                "branch": {
+                    "type": "string"
+                },
+                "buildFilter": {
+                    "$ref": "#/types/render:services:BuildFilter"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "imagePath": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "notifyOnFail": {
+                    "$ref": "#/types/render:services:ServiceNotifyOnFail"
+                },
+                "ownerId": {
+                    "type": "string"
+                },
+                "repo": {
+                    "type": "string"
+                },
+                "rootDir": {
+                    "type": "string"
+                },
+                "serviceDetails": {
+                    "$ref": "#/types/render:services:WebServiceDetailsOutput"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "suspended": {
+                    "$ref": "#/types/render:services:ServiceSuspended"
+                },
+                "suspenders": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:ServiceSuspendersItem"
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "default": "web_service"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "autoDeploy",
+                "createdAt",
+                "id",
+                "name",
+                "notifyOnFail",
+                "ownerId",
+                "rootDir",
+                "slug",
+                "suspended",
+                "suspenders",
+                "updatedAt"
+            ]
+        },
         "render:services:WebServiceServiceAutoDeploy": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
+        "render:services:WebServiceServiceCreateAutoDeploy": {
             "description": "Defaults to \"yes\"",
             "type": "string",
             "enum": [
@@ -3457,13 +4062,10 @@
         "render:services:BackgroundWorker": {
             "properties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:BackgroundWorkerServiceAutoDeploy",
-                    "description": "Defaults to \"yes\"",
-                    "default": "yes"
+                    "$ref": "#/types/render:services:BackgroundWorkerServiceAutoDeploy"
                 },
                 "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository"
+                    "type": "string"
                 },
                 "buildFilter": {
                     "$ref": "#/types/render:services:BuildFilter"
@@ -3500,8 +4102,7 @@
                     "type": "string"
                 },
                 "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                    "type": "string"
                 },
                 "rootDir": {
                     "type": "string"
@@ -3513,7 +4114,7 @@
                     }
                 },
                 "serviceDetails": {
-                    "$ref": "#/types/render:services:BackgroundWorkerDetails"
+                    "$ref": "#/types/render:services:BackgroundWorkerDetailsOutput"
                 },
                 "slug": {
                     "type": "string"
@@ -3538,7 +4139,7 @@
             "type": "object",
             "inputProperties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:BackgroundWorkerServiceAutoDeploy",
+                    "$ref": "#/types/render:services:BackgroundWorkerServiceCreateAutoDeploy",
                     "description": "Defaults to \"yes\"",
                     "default": "yes"
                 },
@@ -3548,9 +4149,6 @@
                 },
                 "buildFilter": {
                     "$ref": "#/types/render:services:BuildFilter"
-                },
-                "createdAt": {
-                    "type": "string"
                 },
                 "envVars": {
                     "type": "array",
@@ -3568,14 +4166,8 @@
                 "image": {
                     "$ref": "#/types/render:services:Image"
                 },
-                "imagePath": {
-                    "type": "string"
-                },
                 "name": {
                     "type": "string"
-                },
-                "notifyOnFail": {
-                    "$ref": "#/types/render:services:BackgroundWorkerServiceNotifyOnFail"
                 },
                 "ownerId": {
                     "type": "string"
@@ -3594,26 +4186,11 @@
                     }
                 },
                 "serviceDetails": {
-                    "$ref": "#/types/render:services:BackgroundWorkerDetails"
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:services:BackgroundWorkerServiceSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:BackgroundWorkerServiceSuspendersItem"
-                    }
+                    "$ref": "#/types/render:services:BackgroundWorkerDetailsCreate"
                 },
                 "type": {
                     "type": "string",
                     "default": "background_worker"
-                },
-                "updatedAt": {
-                    "type": "string"
                 }
             },
             "requiredInputs": [
@@ -3703,13 +4280,10 @@
         "render:services:CronJob": {
             "properties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:CronJobServiceAutoDeploy",
-                    "description": "Defaults to \"yes\"",
-                    "default": "yes"
+                    "$ref": "#/types/render:services:CronJobServiceAutoDeploy"
                 },
                 "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository"
+                    "type": "string"
                 },
                 "buildFilter": {
                     "$ref": "#/types/render:services:BuildFilter"
@@ -3746,8 +4320,7 @@
                     "type": "string"
                 },
                 "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                    "type": "string"
                 },
                 "rootDir": {
                     "type": "string"
@@ -3759,7 +4332,7 @@
                     }
                 },
                 "serviceDetails": {
-                    "$ref": "#/types/render:services:CronJobDetails"
+                    "$ref": "#/types/render:services:CronJobDetailsOutput"
                 },
                 "slug": {
                     "type": "string"
@@ -3784,7 +4357,7 @@
             "type": "object",
             "inputProperties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:CronJobServiceAutoDeploy",
+                    "$ref": "#/types/render:services:CronJobServiceCreateAutoDeploy",
                     "description": "Defaults to \"yes\"",
                     "default": "yes"
                 },
@@ -3794,9 +4367,6 @@
                 },
                 "buildFilter": {
                     "$ref": "#/types/render:services:BuildFilter"
-                },
-                "createdAt": {
-                    "type": "string"
                 },
                 "envVars": {
                     "type": "array",
@@ -3814,14 +4384,8 @@
                 "image": {
                     "$ref": "#/types/render:services:Image"
                 },
-                "imagePath": {
-                    "type": "string"
-                },
                 "name": {
                     "type": "string"
-                },
-                "notifyOnFail": {
-                    "$ref": "#/types/render:services:CronJobServiceNotifyOnFail"
                 },
                 "ownerId": {
                     "type": "string"
@@ -3840,26 +4404,11 @@
                     }
                 },
                 "serviceDetails": {
-                    "$ref": "#/types/render:services:CronJobDetails"
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:services:CronJobServiceSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:CronJobServiceSuspendersItem"
-                    }
+                    "$ref": "#/types/render:services:CronJobDetailsCreate"
                 },
                 "type": {
                     "type": "string",
                     "default": "cron_job"
-                },
-                "updatedAt": {
-                    "type": "string"
                 }
             },
             "requiredInputs": [
@@ -4080,13 +4629,10 @@
         "render:services:PrivateService": {
             "properties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:PrivateServiceServiceAutoDeploy",
-                    "description": "Defaults to \"yes\"",
-                    "default": "yes"
+                    "$ref": "#/types/render:services:PrivateServiceServiceAutoDeploy"
                 },
                 "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository"
+                    "type": "string"
                 },
                 "buildFilter": {
                     "$ref": "#/types/render:services:BuildFilter"
@@ -4123,8 +4669,7 @@
                     "type": "string"
                 },
                 "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                    "type": "string"
                 },
                 "rootDir": {
                     "type": "string"
@@ -4136,7 +4681,7 @@
                     }
                 },
                 "serviceDetails": {
-                    "$ref": "#/types/render:services:PrivateServiceDetails"
+                    "$ref": "#/types/render:services:PrivateServiceDetailsOutput"
                 },
                 "slug": {
                     "type": "string"
@@ -4161,7 +4706,7 @@
             "type": "object",
             "inputProperties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:PrivateServiceServiceAutoDeploy",
+                    "$ref": "#/types/render:services:PrivateServiceServiceCreateAutoDeploy",
                     "description": "Defaults to \"yes\"",
                     "default": "yes"
                 },
@@ -4171,9 +4716,6 @@
                 },
                 "buildFilter": {
                     "$ref": "#/types/render:services:BuildFilter"
-                },
-                "createdAt": {
-                    "type": "string"
                 },
                 "envVars": {
                     "type": "array",
@@ -4191,14 +4733,8 @@
                 "image": {
                     "$ref": "#/types/render:services:Image"
                 },
-                "imagePath": {
-                    "type": "string"
-                },
                 "name": {
                     "type": "string"
-                },
-                "notifyOnFail": {
-                    "$ref": "#/types/render:services:PrivateServiceServiceNotifyOnFail"
                 },
                 "ownerId": {
                     "type": "string"
@@ -4217,26 +4753,11 @@
                     }
                 },
                 "serviceDetails": {
-                    "$ref": "#/types/render:services:PrivateServiceDetails"
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:services:PrivateServiceServiceSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:PrivateServiceServiceSuspendersItem"
-                    }
+                    "$ref": "#/types/render:services:PrivateServiceDetailsCreate"
                 },
                 "type": {
                     "type": "string",
                     "default": "private_service"
-                },
-                "updatedAt": {
-                    "type": "string"
                 }
             },
             "requiredInputs": [
@@ -4340,13 +4861,10 @@
             "description": "\n\n{{% examples %}}\n\n## Example Usage\n\n{{% example %}}\n\n### Create a service\n\n```typescript\nimport * as render from \"@cloudyskysoftware/render\";\n\n// TODO: Fill me in!\nconst service = new render.services.StaticSite(\"staticSite\", {});\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
             "properties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:StaticSiteServiceAutoDeploy",
-                    "description": "Defaults to \"yes\"",
-                    "default": "yes"
+                    "$ref": "#/types/render:services:StaticSiteServiceAutoDeploy"
                 },
                 "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository"
+                    "type": "string"
                 },
                 "buildFilter": {
                     "$ref": "#/types/render:services:BuildFilter"
@@ -4383,8 +4901,7 @@
                     "type": "string"
                 },
                 "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                    "type": "string"
                 },
                 "rootDir": {
                     "type": "string"
@@ -4396,7 +4913,7 @@
                     }
                 },
                 "serviceDetails": {
-                    "$ref": "#/types/render:services:StaticSiteDetails"
+                    "$ref": "#/types/render:services:StaticSiteDetailsOutput"
                 },
                 "slug": {
                     "type": "string"
@@ -4421,7 +4938,7 @@
             "type": "object",
             "inputProperties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:StaticSiteServiceAutoDeploy",
+                    "$ref": "#/types/render:services:StaticSiteServiceCreateAutoDeploy",
                     "description": "Defaults to \"yes\"",
                     "default": "yes"
                 },
@@ -4431,9 +4948,6 @@
                 },
                 "buildFilter": {
                     "$ref": "#/types/render:services:BuildFilter"
-                },
-                "createdAt": {
-                    "type": "string"
                 },
                 "envVars": {
                     "type": "array",
@@ -4451,14 +4965,8 @@
                 "image": {
                     "$ref": "#/types/render:services:Image"
                 },
-                "imagePath": {
-                    "type": "string"
-                },
                 "name": {
                     "type": "string"
-                },
-                "notifyOnFail": {
-                    "$ref": "#/types/render:services:StaticSiteServiceNotifyOnFail"
                 },
                 "ownerId": {
                     "type": "string"
@@ -4477,26 +4985,11 @@
                     }
                 },
                 "serviceDetails": {
-                    "$ref": "#/types/render:services:StaticSiteDetails"
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:services:StaticSiteServiceSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:StaticSiteServiceSuspendersItem"
-                    }
+                    "$ref": "#/types/render:services:StaticSiteDetailsCreate"
                 },
                 "type": {
                     "type": "string",
                     "default": "static_site"
-                },
-                "updatedAt": {
-                    "type": "string"
                 }
             },
             "requiredInputs": [
@@ -4516,13 +5009,10 @@
         "render:services:WebService": {
             "properties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:WebServiceServiceAutoDeploy",
-                    "description": "Defaults to \"yes\"",
-                    "default": "yes"
+                    "$ref": "#/types/render:services:WebServiceServiceAutoDeploy"
                 },
                 "branch": {
-                    "type": "string",
-                    "description": "If left empty, this will fall back to the default branch of the repository"
+                    "type": "string"
                 },
                 "buildFilter": {
                     "$ref": "#/types/render:services:BuildFilter"
@@ -4559,8 +5049,7 @@
                     "type": "string"
                 },
                 "repo": {
-                    "type": "string",
-                    "description": "Do not include the branch in the repo string. You can instead supply a 'branch' parameter."
+                    "type": "string"
                 },
                 "rootDir": {
                     "type": "string"
@@ -4572,7 +5061,7 @@
                     }
                 },
                 "serviceDetails": {
-                    "$ref": "#/types/render:services:WebServiceDetails"
+                    "$ref": "#/types/render:services:WebServiceDetailsOutput"
                 },
                 "slug": {
                     "type": "string"
@@ -4597,7 +5086,7 @@
             "type": "object",
             "inputProperties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:WebServiceServiceAutoDeploy",
+                    "$ref": "#/types/render:services:WebServiceServiceCreateAutoDeploy",
                     "description": "Defaults to \"yes\"",
                     "default": "yes"
                 },
@@ -4607,9 +5096,6 @@
                 },
                 "buildFilter": {
                     "$ref": "#/types/render:services:BuildFilter"
-                },
-                "createdAt": {
-                    "type": "string"
                 },
                 "envVars": {
                     "type": "array",
@@ -4627,14 +5113,8 @@
                 "image": {
                     "$ref": "#/types/render:services:Image"
                 },
-                "imagePath": {
-                    "type": "string"
-                },
                 "name": {
                     "type": "string"
-                },
-                "notifyOnFail": {
-                    "$ref": "#/types/render:services:WebServiceServiceNotifyOnFail"
                 },
                 "ownerId": {
                     "type": "string"
@@ -4653,26 +5133,11 @@
                     }
                 },
                 "serviceDetails": {
-                    "$ref": "#/types/render:services:WebServiceDetails"
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:services:WebServiceServiceSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:services:WebServiceServiceSuspendersItem"
-                    }
+                    "$ref": "#/types/render:services:WebServiceDetailsCreate"
                 },
                 "type": {
                     "type": "string",
                     "default": "web_service"
-                },
-                "updatedAt": {
-                    "type": "string"
                 }
             },
             "requiredInputs": [

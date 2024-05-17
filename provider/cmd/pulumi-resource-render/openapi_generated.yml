@@ -8,7 +8,6 @@ components:
             type: object
         autoscalingConfig:
             type: object
-            readOnly: true
             required:
                 - enabled
                 - min
@@ -51,11 +50,11 @@ components:
                         Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
         backgroundWorker:
             allOf:
-                - $ref: '#/components/schemas/service'
+                - $ref: '#/components/schemas/servicePOST'
                 - type: object
                   properties:
                     serviceDetails:
-                        $ref: '#/components/schemas/backgroundWorkerDetails'
+                        $ref: '#/components/schemas/backgroundWorkerDetailsPOST'
                     type:
                         type: string
                         default: background_worker
@@ -64,12 +63,85 @@ components:
             type: object
             required:
                 - env
+                - envSpecificDetails
+                - plan
+                - region
+                - pullRequestPreviewsEnabled
+                - numInstances
+                - buildPlan
             properties:
                 autoscaling:
                     $ref: '#/components/schemas/autoscalingConfig'
                 buildPlan:
                     type: string
-                    readOnly: true
+                disk:
+                    $ref: '#/components/schemas/disk'
+                env:
+                    $ref: '#/components/schemas/serviceEnv'
+                envSpecificDetails:
+                    $ref: '#/components/schemas/envSpecificDetails'
+                numInstances:
+                    type: integer
+                    description: For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
+                parentServer:
+                    $ref: '#/components/schemas/resource'
+                plan:
+                    $ref: '#/components/schemas/plan'
+                pullRequestPreviewsEnabled:
+                    $ref: '#/components/schemas/pullRequestPreviewsEnabled'
+                region:
+                    $ref: '#/components/schemas/region'
+        backgroundWorkerDetailsOutput:
+            type: object
+            required:
+                - env
+                - envSpecificDetails
+                - plan
+                - region
+                - pullRequestPreviewsEnabled
+                - numInstances
+                - buildPlan
+            properties:
+                autoscaling:
+                    $ref: '#/components/schemas/autoscalingConfig'
+                buildPlan:
+                    type: string
+                disk:
+                    $ref: '#/components/schemas/disk'
+                env:
+                    $ref: '#/components/schemas/serviceEnv'
+                envSpecificDetails:
+                    $ref: '#/components/schemas/envSpecificDetails'
+                numInstances:
+                    type: integer
+                    description: For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
+                parentServer:
+                    $ref: '#/components/schemas/resource'
+                plan:
+                    $ref: '#/components/schemas/plan'
+                pullRequestPreviewsEnabled:
+                    $ref: '#/components/schemas/pullRequestPreviewsEnabled'
+                region:
+                    $ref: '#/components/schemas/region'
+        backgroundWorkerDetailsPATCH:
+            type: object
+            properties:
+                envSpecificDetails:
+                    oneOf:
+                        - $ref: '#/components/schemas/dockerDetailsPATCH'
+                        - $ref: '#/components/schemas/nativeEnvironmentDetailsPATCH'
+                plan:
+                    $ref: '#/components/schemas/paidPlan'
+                pullRequestPreviewsEnabled:
+                    type: string
+                    enum:
+                        - "yes"
+                        - "no"
+        backgroundWorkerDetailsPOST:
+            type: object
+            required:
+                - env
+            properties:
                 disk:
                     type: object
                     required:
@@ -93,8 +165,6 @@ components:
                     description: Defaults to 1
                     default: 1
                     minimum: 1
-                parentServer:
-                    $ref: '#/components/schemas/resource'
                 plan:
                     $ref: '#/components/schemas/paidPlan'
                 pullRequestPreviewsEnabled:
@@ -106,20 +176,17 @@ components:
                     default: "no"
                 region:
                     $ref: '#/components/schemas/region'
-        backgroundWorkerDetailsPATCH:
-            type: object
-            properties:
-                envSpecificDetails:
-                    oneOf:
-                        - $ref: '#/components/schemas/dockerDetailsPATCH'
-                        - $ref: '#/components/schemas/nativeEnvironmentDetailsPATCH'
-                plan:
-                    $ref: '#/components/schemas/paidPlan'
-                pullRequestPreviewsEnabled:
-                    type: string
-                    enum:
-                        - "yes"
-                        - "no"
+        backgroundWorkerOutput:
+            allOf:
+                - $ref: '#/components/schemas/service'
+                - type: object
+                  properties:
+                    serviceDetails:
+                        $ref: '#/components/schemas/backgroundWorkerDetailsOutput'
+                    type:
+                        type: string
+                        default: background_worker
+            title: BackgroundWorker
         backgroundWorkerPatch:
             allOf:
                 - $ref: '#/components/schemas/servicePATCH'
@@ -158,11 +225,11 @@ components:
                     description: User-provided description of the CIDR block
         cronJob:
             allOf:
-                - $ref: '#/components/schemas/service'
+                - $ref: '#/components/schemas/servicePOST'
                 - type: object
                   properties:
                     serviceDetails:
-                        $ref: '#/components/schemas/cronJobDetails'
+                        $ref: '#/components/schemas/cronJobDetailsPOST'
                     type:
                         type: string
                         default: cron_job
@@ -171,11 +238,14 @@ components:
             type: object
             required:
                 - env
+                - envSpecificDetails
+                - plan
+                - region
                 - schedule
+                - buildPlan
             properties:
                 buildPlan:
                     type: string
-                    readOnly: true
                 env:
                     $ref: '#/components/schemas/serviceEnv'
                 envSpecificDetails:
@@ -183,9 +253,33 @@ components:
                 lastSuccessfulRunAt:
                     type: string
                     format: date-time
-                    readOnly: true
                 plan:
-                    $ref: '#/components/schemas/paidPlan'
+                    $ref: '#/components/schemas/plan'
+                region:
+                    $ref: '#/components/schemas/region'
+                schedule:
+                    type: string
+        cronJobDetailsOutput:
+            type: object
+            required:
+                - env
+                - envSpecificDetails
+                - plan
+                - region
+                - schedule
+                - buildPlan
+            properties:
+                buildPlan:
+                    type: string
+                env:
+                    $ref: '#/components/schemas/serviceEnv'
+                envSpecificDetails:
+                    $ref: '#/components/schemas/envSpecificDetails'
+                lastSuccessfulRunAt:
+                    type: string
+                    format: date-time
+                plan:
+                    $ref: '#/components/schemas/plan'
                 region:
                     $ref: '#/components/schemas/region'
                 schedule:
@@ -201,6 +295,33 @@ components:
                     $ref: '#/components/schemas/paidPlan'
                 schedule:
                     type: string
+        cronJobDetailsPOST:
+            type: object
+            required:
+                - env
+                - schedule
+            properties:
+                env:
+                    $ref: '#/components/schemas/serviceEnv'
+                envSpecificDetails:
+                    $ref: '#/components/schemas/envSpecificDetails'
+                plan:
+                    $ref: '#/components/schemas/paidPlan'
+                region:
+                    $ref: '#/components/schemas/region'
+                schedule:
+                    type: string
+        cronJobOutput:
+            allOf:
+                - $ref: '#/components/schemas/service'
+                - type: object
+                  properties:
+                    serviceDetails:
+                        $ref: '#/components/schemas/cronJobDetailsOutput'
+                    type:
+                        type: string
+                        default: cron_job
+            title: CronJob
         cronJobPatch:
             allOf:
                 - $ref: '#/components/schemas/servicePATCH'
@@ -816,19 +937,19 @@ components:
                     $ref: '#/components/schemas/cursor'
                 service:
                     oneOf:
-                        - $ref: '#/components/schemas/backgroundWorker'
-                        - $ref: '#/components/schemas/cronJob'
-                        - $ref: '#/components/schemas/privateService'
-                        - $ref: '#/components/schemas/staticSite'
-                        - $ref: '#/components/schemas/webService'
+                        - $ref: '#/components/schemas/backgroundWorkerOutput'
+                        - $ref: '#/components/schemas/cronJobOutput'
+                        - $ref: '#/components/schemas/privateServiceOutput'
+                        - $ref: '#/components/schemas/staticSiteOutput'
+                        - $ref: '#/components/schemas/webServiceOutput'
                     discriminator:
                         propertyName: type
                         mapping:
-                            background_worker: '#/components/schemas/backgroundWorker'
-                            cron_job: '#/components/schemas/cronJob'
-                            private_service: '#/components/schemas/privateService'
-                            static_site: '#/components/schemas/staticSite'
-                            web_service: '#/components/schemas/webService'
+                            background_worker: '#/components/schemas/backgroundWorkerOutput'
+                            cron_job: '#/components/schemas/cronJobOutput'
+                            private_service: '#/components/schemas/privateServiceOutput'
+                            static_site: '#/components/schemas/staticSiteOutput'
+                            web_service: '#/components/schemas/webServiceOutput'
         maintenanceInfo:
             type: object
             required:
@@ -998,7 +1119,6 @@ components:
                 - default
                 - notify
                 - ignore
-            readOnly: true
         notifySettingV2:
             type: string
             enum:
@@ -1201,11 +1321,11 @@ components:
                     $ref: '#/components/schemas/plan'
         privateService:
             allOf:
-                - $ref: '#/components/schemas/service'
+                - $ref: '#/components/schemas/servicePOST'
                 - type: object
                   properties:
                     serviceDetails:
-                        $ref: '#/components/schemas/privateServiceDetails'
+                        $ref: '#/components/schemas/privateServiceDetailsPOST'
                     type:
                         type: string
                         default: private_service
@@ -1214,12 +1334,101 @@ components:
             type: object
             required:
                 - env
+                - envSpecificDetails
+                - plan
+                - region
+                - pullRequestPreviewsEnabled
+                - numInstances
+                - buildPlan
+                - openPorts
+                - url
             properties:
                 autoscaling:
                     $ref: '#/components/schemas/autoscalingConfig'
                 buildPlan:
                     type: string
-                    readOnly: true
+                disk:
+                    $ref: '#/components/schemas/disk'
+                env:
+                    $ref: '#/components/schemas/serviceEnv'
+                envSpecificDetails:
+                    $ref: '#/components/schemas/envSpecificDetails'
+                numInstances:
+                    type: integer
+                    description: For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
+                openPorts:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/serverPort'
+                parentServer:
+                    $ref: '#/components/schemas/resource'
+                plan:
+                    $ref: '#/components/schemas/plan'
+                pullRequestPreviewsEnabled:
+                    $ref: '#/components/schemas/pullRequestPreviewsEnabled'
+                region:
+                    $ref: '#/components/schemas/region'
+                url:
+                    type: string
+        privateServiceDetailsOutput:
+            type: object
+            required:
+                - env
+                - envSpecificDetails
+                - plan
+                - region
+                - pullRequestPreviewsEnabled
+                - numInstances
+                - buildPlan
+                - openPorts
+                - url
+            properties:
+                autoscaling:
+                    $ref: '#/components/schemas/autoscalingConfig'
+                buildPlan:
+                    type: string
+                disk:
+                    $ref: '#/components/schemas/disk'
+                env:
+                    $ref: '#/components/schemas/serviceEnv'
+                envSpecificDetails:
+                    $ref: '#/components/schemas/envSpecificDetails'
+                numInstances:
+                    type: integer
+                    description: For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
+                openPorts:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/serverPort'
+                parentServer:
+                    $ref: '#/components/schemas/resource'
+                plan:
+                    $ref: '#/components/schemas/plan'
+                pullRequestPreviewsEnabled:
+                    $ref: '#/components/schemas/pullRequestPreviewsEnabled'
+                region:
+                    $ref: '#/components/schemas/region'
+                url:
+                    type: string
+        privateServiceDetailsPATCH:
+            type: object
+            properties:
+                envSpecificDetails:
+                    oneOf:
+                        - $ref: '#/components/schemas/dockerDetailsPATCH'
+                        - $ref: '#/components/schemas/nativeEnvironmentDetailsPATCH'
+                plan:
+                    $ref: '#/components/schemas/paidPlan'
+                pullRequestPreviewsEnabled:
+                    type: string
+                    enum:
+                        - "yes"
+                        - "no"
+        privateServiceDetailsPOST:
+            type: object
+            required:
+                - env
+            properties:
                 disk:
                     type: object
                     required:
@@ -1243,13 +1452,6 @@ components:
                     description: Defaults to 1
                     default: 1
                     minimum: 1
-                openPorts:
-                    type: array
-                    readOnly: true
-                    items:
-                        $ref: '#/components/schemas/serverPort'
-                parentServer:
-                    $ref: '#/components/schemas/resource'
                 plan:
                     $ref: '#/components/schemas/paidPlan'
                 pullRequestPreviewsEnabled:
@@ -1261,23 +1463,17 @@ components:
                     default: "no"
                 region:
                     $ref: '#/components/schemas/region'
-                url:
-                    type: string
-                    readOnly: true
-        privateServiceDetailsPATCH:
-            type: object
-            properties:
-                envSpecificDetails:
-                    oneOf:
-                        - $ref: '#/components/schemas/dockerDetailsPATCH'
-                        - $ref: '#/components/schemas/nativeEnvironmentDetailsPATCH'
-                plan:
-                    $ref: '#/components/schemas/paidPlan'
-                pullRequestPreviewsEnabled:
-                    type: string
-                    enum:
-                        - "yes"
-                        - "no"
+        privateServiceOutput:
+            allOf:
+                - $ref: '#/components/schemas/service'
+                - type: object
+                  properties:
+                    serviceDetails:
+                        $ref: '#/components/schemas/privateServiceDetailsOutput'
+                    type:
+                        type: string
+                        default: private_service
+            title: PrivateService
         privateServicePatch:
             allOf:
                 - $ref: '#/components/schemas/servicePATCH'
@@ -1514,7 +1710,6 @@ components:
                     description: The username associated with the credential
         resource:
             type: object
-            readOnly: true
             required:
                 - id
                 - name
@@ -1612,33 +1807,36 @@ components:
         service:
             type: object
             required:
-                - type
+                - id
                 - name
                 - ownerId
+                - type
+                - createdAt
+                - updatedAt
+                - suspended
+                - suspenders
+                - autoDeploy
+                - notifyOnFail
+                - slug
+                - serviceDetails
+                - rootDir
             properties:
                 autoDeploy:
                     type: string
-                    description: Defaults to "yes"
                     enum:
                         - "yes"
                         - "no"
-                    default: "yes"
                 branch:
                     type: string
-                    description: If left empty, this will fall back to the default branch of the repository
                 buildFilter:
                     $ref: '#/components/schemas/buildFilter'
                 createdAt:
                     type: string
                     format: date-time
-                    readOnly: true
-                envVars:
-                    $ref: '#/components/schemas/envVarInputArray'
-                image:
-                    $ref: '#/components/schemas/image'
+                id:
+                    type: string
                 imagePath:
                     type: string
-                    readOnly: true
                 name:
                     type: string
                 notifyOnFail:
@@ -1647,32 +1845,23 @@ components:
                     type: string
                 repo:
                     type: string
-                    description: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
                     example: https://github.com/render-examples/flask-hello-world
                 rootDir:
                     type: string
-                secretFiles:
-                    type: array
-                    items:
-                        $ref: '#/components/schemas/secretFile'
                 slug:
                     type: string
-                    readOnly: true
                 suspended:
                     type: string
                     enum:
                         - suspended
                         - not_suspended
-                    readOnly: true
                 suspenders:
                     type: array
-                    readOnly: true
                     items:
                         $ref: '#/components/schemas/suspenderType'
                 updatedAt:
                     type: string
                     format: date-time
-                    readOnly: true
         serviceEnv:
             type: string
             description: Environment (runtime)
@@ -1718,6 +1907,43 @@ components:
                     type: string
                 rootDir:
                     type: string
+        servicePOST:
+            type: object
+            required:
+                - type
+                - name
+                - ownerId
+            properties:
+                autoDeploy:
+                    type: string
+                    description: Defaults to "yes"
+                    enum:
+                        - "yes"
+                        - "no"
+                    default: "yes"
+                branch:
+                    type: string
+                    description: If left empty, this will fall back to the default branch of the repository
+                buildFilter:
+                    $ref: '#/components/schemas/buildFilter'
+                envVars:
+                    $ref: '#/components/schemas/envVarInputArray'
+                image:
+                    $ref: '#/components/schemas/image'
+                name:
+                    type: string
+                ownerId:
+                    type: string
+                repo:
+                    type: string
+                    description: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+                    example: https://github.com/render-examples/flask-hello-world
+                rootDir:
+                    type: string
+                secretFiles:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/secretFile'
         serviceType:
             type: string
             enum:
@@ -1736,29 +1962,78 @@ components:
                 - cron
         staticSite:
             allOf:
-                - $ref: '#/components/schemas/service'
+                - $ref: '#/components/schemas/servicePOST'
                 - type: object
                   properties:
                     serviceDetails:
-                        $ref: '#/components/schemas/staticSiteDetails'
+                        $ref: '#/components/schemas/staticSiteDetailsPOST'
                     type:
                         type: string
                         default: static_site
             title: StaticSite
         staticSiteDetails:
             type: object
+            required:
+                - buildCommand
+                - publishPath
+                - pullRequestPreviewsEnabled
+                - url
+                - buildPlan
             properties:
                 buildCommand:
                     type: string
                 buildPlan:
                     type: string
-                    readOnly: true
+                parentServer:
+                    $ref: '#/components/schemas/resource'
+                publishPath:
+                    type: string
+                pullRequestPreviewsEnabled:
+                    $ref: '#/components/schemas/pullRequestPreviewsEnabled'
+                url:
+                    type: string
+        staticSiteDetailsOutput:
+            type: object
+            required:
+                - buildCommand
+                - publishPath
+                - pullRequestPreviewsEnabled
+                - url
+                - buildPlan
+            properties:
+                buildCommand:
+                    type: string
+                buildPlan:
+                    type: string
+                parentServer:
+                    $ref: '#/components/schemas/resource'
+                publishPath:
+                    type: string
+                pullRequestPreviewsEnabled:
+                    $ref: '#/components/schemas/pullRequestPreviewsEnabled'
+                url:
+                    type: string
+        staticSiteDetailsPATCH:
+            type: object
+            properties:
+                buildCommand:
+                    type: string
+                publishPath:
+                    type: string
+                pullRequestPreviewsEnabled:
+                    type: string
+                    enum:
+                        - "yes"
+                        - "no"
+        staticSiteDetailsPOST:
+            type: object
+            properties:
+                buildCommand:
+                    type: string
                 headers:
                     type: array
                     items:
                         $ref: '#/components/schemas/headerPost'
-                parentServer:
-                    $ref: '#/components/schemas/resource'
                 publishPath:
                     type: string
                     description: Defaults to "public"
@@ -1773,21 +2048,17 @@ components:
                     type: array
                     items:
                         $ref: '#/components/schemas/route'
-                url:
-                    type: string
-                    readOnly: true
-        staticSiteDetailsPATCH:
-            type: object
-            properties:
-                buildCommand:
-                    type: string
-                publishPath:
-                    type: string
-                pullRequestPreviewsEnabled:
-                    type: string
-                    enum:
-                        - "yes"
-                        - "no"
+        staticSiteOutput:
+            allOf:
+                - $ref: '#/components/schemas/service'
+                - type: object
+                  properties:
+                    serviceDetails:
+                        $ref: '#/components/schemas/staticSiteDetailsOutput'
+                    type:
+                        type: string
+                        default: static_site
+            title: StaticSite
         staticSitePatch:
             allOf:
                 - $ref: '#/components/schemas/servicePATCH'
@@ -1854,11 +2125,11 @@ components:
             example: GB
         webService:
             allOf:
-                - $ref: '#/components/schemas/service'
+                - $ref: '#/components/schemas/servicePOST'
                 - type: object
                   properties:
                     serviceDetails:
-                        $ref: '#/components/schemas/webServiceDetails'
+                        $ref: '#/components/schemas/webServiceDetailsPOST'
                     type:
                         type: string
                         default: web_service
@@ -1867,12 +2138,109 @@ components:
             type: object
             required:
                 - env
+                - envSpecificDetails
+                - plan
+                - region
+                - pullRequestPreviewsEnabled
+                - numInstances
+                - buildPlan
+                - healthCheckPath
+                - openPorts
+                - url
             properties:
                 autoscaling:
                     $ref: '#/components/schemas/autoscalingConfig'
                 buildPlan:
                     type: string
-                    readOnly: true
+                disk:
+                    $ref: '#/components/schemas/disk'
+                env:
+                    $ref: '#/components/schemas/serviceEnv'
+                envSpecificDetails:
+                    $ref: '#/components/schemas/envSpecificDetails'
+                healthCheckPath:
+                    type: string
+                numInstances:
+                    type: integer
+                    description: For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
+                openPorts:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/serverPort'
+                parentServer:
+                    $ref: '#/components/schemas/resource'
+                plan:
+                    $ref: '#/components/schemas/plan'
+                pullRequestPreviewsEnabled:
+                    $ref: '#/components/schemas/pullRequestPreviewsEnabled'
+                region:
+                    $ref: '#/components/schemas/region'
+                url:
+                    type: string
+        webServiceDetailsOutput:
+            type: object
+            required:
+                - env
+                - envSpecificDetails
+                - plan
+                - region
+                - pullRequestPreviewsEnabled
+                - numInstances
+                - buildPlan
+                - healthCheckPath
+                - openPorts
+                - url
+            properties:
+                autoscaling:
+                    $ref: '#/components/schemas/autoscalingConfig'
+                buildPlan:
+                    type: string
+                disk:
+                    $ref: '#/components/schemas/disk'
+                env:
+                    $ref: '#/components/schemas/serviceEnv'
+                envSpecificDetails:
+                    $ref: '#/components/schemas/envSpecificDetails'
+                healthCheckPath:
+                    type: string
+                numInstances:
+                    type: integer
+                    description: For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
+                openPorts:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/serverPort'
+                parentServer:
+                    $ref: '#/components/schemas/resource'
+                plan:
+                    $ref: '#/components/schemas/plan'
+                pullRequestPreviewsEnabled:
+                    $ref: '#/components/schemas/pullRequestPreviewsEnabled'
+                region:
+                    $ref: '#/components/schemas/region'
+                url:
+                    type: string
+        webServiceDetailsPATCH:
+            type: object
+            properties:
+                envSpecificDetails:
+                    oneOf:
+                        - $ref: '#/components/schemas/dockerDetailsPATCH'
+                        - $ref: '#/components/schemas/nativeEnvironmentDetailsPATCH'
+                healthCheckPath:
+                    type: string
+                plan:
+                    $ref: '#/components/schemas/paidPlan'
+                pullRequestPreviewsEnabled:
+                    type: string
+                    enum:
+                        - "yes"
+                        - "no"
+        webServiceDetailsPOST:
+            type: object
+            required:
+                - env
+            properties:
                 disk:
                     type: object
                     required:
@@ -1897,13 +2265,6 @@ components:
                     type: integer
                     description: Defaults to 1
                     minimum: 1
-                openPorts:
-                    type: array
-                    readOnly: true
-                    items:
-                        $ref: '#/components/schemas/serverPort'
-                parentServer:
-                    $ref: '#/components/schemas/resource'
                 plan:
                     $ref: '#/components/schemas/paidPlan'
                 pullRequestPreviewsEnabled:
@@ -1915,25 +2276,17 @@ components:
                     default: "no"
                 region:
                     $ref: '#/components/schemas/region'
-                url:
-                    type: string
-                    readOnly: true
-        webServiceDetailsPATCH:
-            type: object
-            properties:
-                envSpecificDetails:
-                    oneOf:
-                        - $ref: '#/components/schemas/dockerDetailsPATCH'
-                        - $ref: '#/components/schemas/nativeEnvironmentDetailsPATCH'
-                healthCheckPath:
-                    type: string
-                plan:
-                    $ref: '#/components/schemas/paidPlan'
-                pullRequestPreviewsEnabled:
-                    type: string
-                    enum:
-                        - "yes"
-                        - "no"
+        webServiceOutput:
+            allOf:
+                - $ref: '#/components/schemas/service'
+                - type: object
+                  properties:
+                    serviceDetails:
+                        $ref: '#/components/schemas/webServiceDetailsOutput'
+                    type:
+                        type: string
+                        default: web_service
+            title: WebService
         webServicePatch:
             allOf:
                 - $ref: '#/components/schemas/servicePATCH'
@@ -3013,19 +3366,19 @@ paths:
                         application/json:
                             schema:
                                 oneOf:
-                                    - $ref: '#/components/schemas/backgroundWorker'
-                                    - $ref: '#/components/schemas/cronJob'
-                                    - $ref: '#/components/schemas/privateService'
-                                    - $ref: '#/components/schemas/staticSite'
-                                    - $ref: '#/components/schemas/webService'
+                                    - $ref: '#/components/schemas/backgroundWorkerOutput'
+                                    - $ref: '#/components/schemas/cronJobOutput'
+                                    - $ref: '#/components/schemas/privateServiceOutput'
+                                    - $ref: '#/components/schemas/staticSiteOutput'
+                                    - $ref: '#/components/schemas/webServiceOutput'
                                 discriminator:
                                     propertyName: type
                                     mapping:
-                                        background_worker: '#/components/schemas/backgroundWorker'
-                                        cron_job: '#/components/schemas/cronJob'
-                                        private_service: '#/components/schemas/privateService'
-                                        static_site: '#/components/schemas/staticSite'
-                                        web_service: '#/components/schemas/webService'
+                                        background_worker: '#/components/schemas/backgroundWorkerOutput'
+                                        cron_job: '#/components/schemas/cronJobOutput'
+                                        private_service: '#/components/schemas/privateServiceOutput'
+                                        static_site: '#/components/schemas/staticSiteOutput'
+                                        web_service: '#/components/schemas/webServiceOutput'
                 "400":
                     $ref: '#/components/responses/400BadRequest'
                 "401":
@@ -3079,19 +3432,19 @@ paths:
                         application/json:
                             schema:
                                 oneOf:
-                                    - $ref: '#/components/schemas/backgroundWorker'
-                                    - $ref: '#/components/schemas/cronJob'
-                                    - $ref: '#/components/schemas/privateService'
-                                    - $ref: '#/components/schemas/staticSite'
-                                    - $ref: '#/components/schemas/webService'
+                                    - $ref: '#/components/schemas/backgroundWorkerOutput'
+                                    - $ref: '#/components/schemas/cronJobOutput'
+                                    - $ref: '#/components/schemas/privateServiceOutput'
+                                    - $ref: '#/components/schemas/staticSiteOutput'
+                                    - $ref: '#/components/schemas/webServiceOutput'
                                 discriminator:
                                     propertyName: type
                                     mapping:
-                                        background_worker: '#/components/schemas/backgroundWorker'
-                                        cron_job: '#/components/schemas/cronJob'
-                                        private_service: '#/components/schemas/privateService'
-                                        static_site: '#/components/schemas/staticSite'
-                                        web_service: '#/components/schemas/webService'
+                                        background_worker: '#/components/schemas/backgroundWorkerOutput'
+                                        cron_job: '#/components/schemas/cronJobOutput'
+                                        private_service: '#/components/schemas/privateServiceOutput'
+                                        static_site: '#/components/schemas/staticSiteOutput'
+                                        web_service: '#/components/schemas/webServiceOutput'
                 "401":
                     $ref: '#/components/responses/401Unauthorized'
                 "403":
@@ -3139,19 +3492,19 @@ paths:
                         application/json:
                             schema:
                                 oneOf:
-                                    - $ref: '#/components/schemas/backgroundWorkerPatch'
-                                    - $ref: '#/components/schemas/cronJobPatch'
-                                    - $ref: '#/components/schemas/privateServicePatch'
-                                    - $ref: '#/components/schemas/staticSitePatch'
-                                    - $ref: '#/components/schemas/webServicePatch'
+                                    - $ref: '#/components/schemas/backgroundWorkerOutput'
+                                    - $ref: '#/components/schemas/cronJobOutput'
+                                    - $ref: '#/components/schemas/privateServiceOutput'
+                                    - $ref: '#/components/schemas/staticSiteOutput'
+                                    - $ref: '#/components/schemas/webServiceOutput'
                                 discriminator:
                                     propertyName: type
                                     mapping:
-                                        background_worker: '#/components/schemas/backgroundWorkerPatch'
-                                        cron_job: '#/components/schemas/cronJobPatch'
-                                        private_service: '#/components/schemas/privateServicePatch'
-                                        static_site: '#/components/schemas/staticSitePatch'
-                                        web_service: '#/components/schemas/webServicePatch'
+                                        background_worker: '#/components/schemas/backgroundWorkerOutput'
+                                        cron_job: '#/components/schemas/cronJobOutput'
+                                        private_service: '#/components/schemas/privateServiceOutput'
+                                        static_site: '#/components/schemas/staticSiteOutput'
+                                        web_service: '#/components/schemas/webServiceOutput'
                 "400":
                     $ref: '#/components/responses/400BadRequest'
                 "401":

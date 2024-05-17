@@ -9,11 +9,12 @@ __all__ = [
     'BackgroundWorkerDetailsCreatePlan',
     'BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled',
     'BackgroundWorkerDetailsCreateRegion',
-    'BackgroundWorkerDetailsEnv',
-    'BackgroundWorkerDetailsPlan',
-    'BackgroundWorkerDetailsPullRequestPreviewsEnabled',
-    'BackgroundWorkerDetailsRegion',
+    'BackgroundWorkerDetailsOutputEnv',
+    'BackgroundWorkerDetailsOutputPlan',
+    'BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled',
+    'BackgroundWorkerDetailsOutputRegion',
     'BackgroundWorkerServiceAutoDeploy',
+    'BackgroundWorkerServiceCreateAutoDeploy',
     'BackgroundWorkerServiceNotifyOnFail',
     'BackgroundWorkerServiceSuspended',
     'BackgroundWorkerServiceSuspendersItem',
@@ -22,10 +23,11 @@ __all__ = [
     'CronJobDetailsCreateEnv',
     'CronJobDetailsCreatePlan',
     'CronJobDetailsCreateRegion',
-    'CronJobDetailsEnv',
-    'CronJobDetailsPlan',
-    'CronJobDetailsRegion',
+    'CronJobDetailsOutputEnv',
+    'CronJobDetailsOutputPlan',
+    'CronJobDetailsOutputRegion',
     'CronJobServiceAutoDeploy',
+    'CronJobServiceCreateAutoDeploy',
     'CronJobServiceNotifyOnFail',
     'CronJobServiceSuspended',
     'CronJobServiceSuspendersItem',
@@ -43,11 +45,12 @@ __all__ = [
     'PrivateServiceDetailsCreatePlan',
     'PrivateServiceDetailsCreatePullRequestPreviewsEnabled',
     'PrivateServiceDetailsCreateRegion',
-    'PrivateServiceDetailsEnv',
-    'PrivateServiceDetailsPlan',
-    'PrivateServiceDetailsPullRequestPreviewsEnabled',
-    'PrivateServiceDetailsRegion',
+    'PrivateServiceDetailsOutputEnv',
+    'PrivateServiceDetailsOutputPlan',
+    'PrivateServiceDetailsOutputPullRequestPreviewsEnabled',
+    'PrivateServiceDetailsOutputRegion',
     'PrivateServiceServiceAutoDeploy',
+    'PrivateServiceServiceCreateAutoDeploy',
     'PrivateServiceServiceNotifyOnFail',
     'PrivateServiceServiceSuspended',
     'PrivateServiceServiceSuspendersItem',
@@ -60,9 +63,10 @@ __all__ = [
     'ServiceSuspended',
     'ServiceSuspendersItem',
     'StaticSiteDetailsCreatePullRequestPreviewsEnabled',
-    'StaticSiteDetailsPullRequestPreviewsEnabled',
+    'StaticSiteDetailsOutputPullRequestPreviewsEnabled',
     'StaticSiteRouteType',
     'StaticSiteServiceAutoDeploy',
+    'StaticSiteServiceCreateAutoDeploy',
     'StaticSiteServiceNotifyOnFail',
     'StaticSiteServiceSuspended',
     'StaticSiteServiceSuspendersItem',
@@ -70,11 +74,12 @@ __all__ = [
     'WebServiceDetailsCreatePlan',
     'WebServiceDetailsCreatePullRequestPreviewsEnabled',
     'WebServiceDetailsCreateRegion',
-    'WebServiceDetailsEnv',
-    'WebServiceDetailsPlan',
-    'WebServiceDetailsPullRequestPreviewsEnabled',
-    'WebServiceDetailsRegion',
+    'WebServiceDetailsOutputEnv',
+    'WebServiceDetailsOutputPlan',
+    'WebServiceDetailsOutputPullRequestPreviewsEnabled',
+    'WebServiceDetailsOutputRegion',
     'WebServiceServiceAutoDeploy',
+    'WebServiceServiceCreateAutoDeploy',
     'WebServiceServiceNotifyOnFail',
     'WebServiceServiceSuspended',
     'WebServiceServiceSuspendersItem',
@@ -119,7 +124,7 @@ class BackgroundWorkerDetailsCreateRegion(str, Enum):
     SINGAPORE = "singapore"
 
 
-class BackgroundWorkerDetailsEnv(str, Enum):
+class BackgroundWorkerDetailsOutputEnv(str, Enum):
     """
     Environment (runtime)
     """
@@ -133,7 +138,7 @@ class BackgroundWorkerDetailsEnv(str, Enum):
     IMAGE = "image"
 
 
-class BackgroundWorkerDetailsPlan(str, Enum):
+class BackgroundWorkerDetailsOutputPlan(str, Enum):
     """
     The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
     """
@@ -149,12 +154,12 @@ class BackgroundWorkerDetailsPlan(str, Enum):
     CUSTOM = "custom"
 
 
-class BackgroundWorkerDetailsPullRequestPreviewsEnabled(str, Enum):
+class BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled(str, Enum):
     YES = "yes"
     NO = "no"
 
 
-class BackgroundWorkerDetailsRegion(str, Enum):
+class BackgroundWorkerDetailsOutputRegion(str, Enum):
     FRANKFURT = "frankfurt"
     OREGON = "oregon"
     OHIO = "ohio"
@@ -162,6 +167,14 @@ class BackgroundWorkerDetailsRegion(str, Enum):
 
 
 class BackgroundWorkerServiceAutoDeploy(str, Enum):
+    YES = "yes"
+    NO = "no"
+
+
+class BackgroundWorkerServiceCreateAutoDeploy(str, Enum):
+    """
+    Defaults to "yes"
+    """
     YES = "yes"
     NO = "no"
 
@@ -241,7 +254,7 @@ class CronJobDetailsCreateRegion(str, Enum):
     SINGAPORE = "singapore"
 
 
-class CronJobDetailsEnv(str, Enum):
+class CronJobDetailsOutputEnv(str, Enum):
     """
     Environment (runtime)
     """
@@ -255,7 +268,7 @@ class CronJobDetailsEnv(str, Enum):
     IMAGE = "image"
 
 
-class CronJobDetailsPlan(str, Enum):
+class CronJobDetailsOutputPlan(str, Enum):
     """
     The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
     """
@@ -271,7 +284,7 @@ class CronJobDetailsPlan(str, Enum):
     CUSTOM = "custom"
 
 
-class CronJobDetailsRegion(str, Enum):
+class CronJobDetailsOutputRegion(str, Enum):
     FRANKFURT = "frankfurt"
     OREGON = "oregon"
     OHIO = "ohio"
@@ -279,6 +292,14 @@ class CronJobDetailsRegion(str, Enum):
 
 
 class CronJobServiceAutoDeploy(str, Enum):
+    YES = "yes"
+    NO = "no"
+
+
+class CronJobServiceCreateAutoDeploy(str, Enum):
+    """
+    Defaults to "yes"
+    """
     YES = "yes"
     NO = "no"
 
@@ -424,7 +445,7 @@ class PrivateServiceDetailsCreateRegion(str, Enum):
     SINGAPORE = "singapore"
 
 
-class PrivateServiceDetailsEnv(str, Enum):
+class PrivateServiceDetailsOutputEnv(str, Enum):
     """
     Environment (runtime)
     """
@@ -438,7 +459,7 @@ class PrivateServiceDetailsEnv(str, Enum):
     IMAGE = "image"
 
 
-class PrivateServiceDetailsPlan(str, Enum):
+class PrivateServiceDetailsOutputPlan(str, Enum):
     """
     The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
     """
@@ -454,12 +475,12 @@ class PrivateServiceDetailsPlan(str, Enum):
     CUSTOM = "custom"
 
 
-class PrivateServiceDetailsPullRequestPreviewsEnabled(str, Enum):
+class PrivateServiceDetailsOutputPullRequestPreviewsEnabled(str, Enum):
     YES = "yes"
     NO = "no"
 
 
-class PrivateServiceDetailsRegion(str, Enum):
+class PrivateServiceDetailsOutputRegion(str, Enum):
     FRANKFURT = "frankfurt"
     OREGON = "oregon"
     OHIO = "ohio"
@@ -467,6 +488,14 @@ class PrivateServiceDetailsRegion(str, Enum):
 
 
 class PrivateServiceServiceAutoDeploy(str, Enum):
+    YES = "yes"
+    NO = "no"
+
+
+class PrivateServiceServiceCreateAutoDeploy(str, Enum):
+    """
+    Defaults to "yes"
+    """
     YES = "yes"
     NO = "no"
 
@@ -562,7 +591,7 @@ class StaticSiteDetailsCreatePullRequestPreviewsEnabled(str, Enum):
     NO = "no"
 
 
-class StaticSiteDetailsPullRequestPreviewsEnabled(str, Enum):
+class StaticSiteDetailsOutputPullRequestPreviewsEnabled(str, Enum):
     YES = "yes"
     NO = "no"
 
@@ -573,6 +602,14 @@ class StaticSiteRouteType(str, Enum):
 
 
 class StaticSiteServiceAutoDeploy(str, Enum):
+    YES = "yes"
+    NO = "no"
+
+
+class StaticSiteServiceCreateAutoDeploy(str, Enum):
+    """
+    Defaults to "yes"
+    """
     YES = "yes"
     NO = "no"
 
@@ -634,7 +671,7 @@ class WebServiceDetailsCreateRegion(str, Enum):
     SINGAPORE = "singapore"
 
 
-class WebServiceDetailsEnv(str, Enum):
+class WebServiceDetailsOutputEnv(str, Enum):
     """
     Environment (runtime)
     """
@@ -648,7 +685,7 @@ class WebServiceDetailsEnv(str, Enum):
     IMAGE = "image"
 
 
-class WebServiceDetailsPlan(str, Enum):
+class WebServiceDetailsOutputPlan(str, Enum):
     """
     The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
     """
@@ -664,12 +701,12 @@ class WebServiceDetailsPlan(str, Enum):
     CUSTOM = "custom"
 
 
-class WebServiceDetailsPullRequestPreviewsEnabled(str, Enum):
+class WebServiceDetailsOutputPullRequestPreviewsEnabled(str, Enum):
     YES = "yes"
     NO = "no"
 
 
-class WebServiceDetailsRegion(str, Enum):
+class WebServiceDetailsOutputRegion(str, Enum):
     FRANKFURT = "frankfurt"
     OREGON = "oregon"
     OHIO = "ohio"
@@ -677,6 +714,14 @@ class WebServiceDetailsRegion(str, Enum):
 
 
 class WebServiceServiceAutoDeploy(str, Enum):
+    YES = "yes"
+    NO = "no"
+
+
+class WebServiceServiceCreateAutoDeploy(str, Enum):
+    """
+    Defaults to "yes"
+    """
     YES = "yes"
     NO = "no"
 

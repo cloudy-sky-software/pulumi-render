@@ -15,14 +15,11 @@ __all__ = [
     'AutoscalingConfig',
     'AutoscalingCriteria',
     'AutoscalingCriteriaPercentage',
-    'BackgroundWorkerDetails',
-    'BackgroundWorkerDetailsCreate',
-    'BackgroundWorkerDetailsCreateDiskProperties',
+    'BackgroundWorkerDetailsOutput',
     'BackgroundWorkerOutput',
     'BuildFilter',
     'CommitProperties',
-    'CronJobDetails',
-    'CronJobDetailsCreate',
+    'CronJobDetailsOutput',
     'CronJobOutput',
     'CustomDomain',
     'CustomDomainServerProperties',
@@ -35,13 +32,13 @@ __all__ = [
     'EnvVarKeyGenerateValue',
     'EnvVarKeyValue',
     'EnvVarWithCursor',
-    'GetBackgroundWorkerOutput',
-    'GetCronJobOutput',
-    'GetPrivateServiceOutput',
-    'GetStaticSiteOutput',
-    'GetWebServiceOutput',
+    'GetBackgroundWorker',
+    'GetCronJob',
+    'GetPrivateService',
+    'GetStaticSite',
+    'GetWebService',
     'Header',
-    'HeaderCreate',
+    'Image',
     'ImageProperties',
     'Job',
     'ListCustomDomainsItemProperties',
@@ -51,21 +48,17 @@ __all__ = [
     'ListRetrieveRoutesItemProperties',
     'ListServicesResponse',
     'NativeEnvironmentDetails',
-    'PrivateServiceDetails',
-    'PrivateServiceDetailsCreate',
-    'PrivateServiceDetailsCreateDiskProperties',
+    'PrivateServiceDetailsOutput',
     'PrivateServiceOutput',
     'RegistryCredential',
     'Resource',
     'Route',
+    'SecretFile',
     'ServerPort',
     'Service',
-    'StaticSiteDetails',
-    'StaticSiteDetailsCreate',
+    'StaticSiteDetailsOutput',
     'StaticSiteOutput',
-    'WebServiceDetails',
-    'WebServiceDetailsCreate',
-    'WebServiceDetailsCreateDiskProperties',
+    'WebServiceDetailsOutput',
     'WebServiceOutput',
 ]
 
@@ -161,22 +154,47 @@ class AutoscalingCriteriaPercentage(dict):
 
 
 @pulumi.output_type
-class BackgroundWorkerDetails(dict):
+class BackgroundWorkerDetailsOutput(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "buildPlan":
+            suggest = "build_plan"
+        elif key == "envSpecificDetails":
+            suggest = "env_specific_details"
+        elif key == "numInstances":
+            suggest = "num_instances"
+        elif key == "pullRequestPreviewsEnabled":
+            suggest = "pull_request_previews_enabled"
+        elif key == "parentServer":
+            suggest = "parent_server"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BackgroundWorkerDetailsOutput. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BackgroundWorkerDetailsOutput.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BackgroundWorkerDetailsOutput.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  build_plan: str,
-                 env: 'BackgroundWorkerDetailsEnv',
+                 env: 'BackgroundWorkerDetailsOutputEnv',
                  env_specific_details: Any,
                  num_instances: int,
-                 plan: 'BackgroundWorkerDetailsPlan',
-                 pull_request_previews_enabled: 'BackgroundWorkerDetailsPullRequestPreviewsEnabled',
-                 region: 'BackgroundWorkerDetailsRegion',
+                 plan: 'BackgroundWorkerDetailsOutputPlan',
+                 pull_request_previews_enabled: 'BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled',
+                 region: 'BackgroundWorkerDetailsOutputRegion',
                  autoscaling: Optional['outputs.AutoscalingConfig'] = None,
                  disk: Optional['outputs.Disk'] = None,
                  parent_server: Optional['outputs.Resource'] = None):
         """
-        :param 'BackgroundWorkerDetailsEnv' env: Environment (runtime)
+        :param 'BackgroundWorkerDetailsOutputEnv' env: Environment (runtime)
         :param int num_instances: For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
-        :param 'BackgroundWorkerDetailsPlan' plan: The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+        :param 'BackgroundWorkerDetailsOutputPlan' plan: The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
         """
         pulumi.set(__self__, "build_plan", build_plan)
         pulumi.set(__self__, "env", env)
@@ -199,7 +217,7 @@ class BackgroundWorkerDetails(dict):
 
     @property
     @pulumi.getter
-    def env(self) -> 'BackgroundWorkerDetailsEnv':
+    def env(self) -> 'BackgroundWorkerDetailsOutputEnv':
         """
         Environment (runtime)
         """
@@ -220,7 +238,7 @@ class BackgroundWorkerDetails(dict):
 
     @property
     @pulumi.getter
-    def plan(self) -> 'BackgroundWorkerDetailsPlan':
+    def plan(self) -> 'BackgroundWorkerDetailsOutputPlan':
         """
         The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
         """
@@ -228,12 +246,12 @@ class BackgroundWorkerDetails(dict):
 
     @property
     @pulumi.getter(name="pullRequestPreviewsEnabled")
-    def pull_request_previews_enabled(self) -> 'BackgroundWorkerDetailsPullRequestPreviewsEnabled':
+    def pull_request_previews_enabled(self) -> 'BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled':
         return pulumi.get(self, "pull_request_previews_enabled")
 
     @property
     @pulumi.getter
-    def region(self) -> 'BackgroundWorkerDetailsRegion':
+    def region(self) -> 'BackgroundWorkerDetailsOutputRegion':
         return pulumi.get(self, "region")
 
     @property
@@ -250,157 +268,6 @@ class BackgroundWorkerDetails(dict):
     @pulumi.getter(name="parentServer")
     def parent_server(self) -> Optional['outputs.Resource']:
         return pulumi.get(self, "parent_server")
-
-
-@pulumi.output_type
-class BackgroundWorkerDetailsCreate(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "envSpecificDetails":
-            suggest = "env_specific_details"
-        elif key == "numInstances":
-            suggest = "num_instances"
-        elif key == "pullRequestPreviewsEnabled":
-            suggest = "pull_request_previews_enabled"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in BackgroundWorkerDetailsCreate. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        BackgroundWorkerDetailsCreate.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        BackgroundWorkerDetailsCreate.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 env: 'BackgroundWorkerDetailsCreateEnv',
-                 disk: Optional['outputs.BackgroundWorkerDetailsCreateDiskProperties'] = None,
-                 env_specific_details: Optional[Any] = None,
-                 num_instances: Optional[int] = None,
-                 plan: Optional['BackgroundWorkerDetailsCreatePlan'] = None,
-                 pull_request_previews_enabled: Optional['BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled'] = None,
-                 region: Optional['BackgroundWorkerDetailsCreateRegion'] = None):
-        """
-        :param 'BackgroundWorkerDetailsCreateEnv' env: Environment (runtime)
-        :param int num_instances: Defaults to 1
-        :param 'BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled' pull_request_previews_enabled: Defaults to "no"
-        """
-        pulumi.set(__self__, "env", env)
-        if disk is not None:
-            pulumi.set(__self__, "disk", disk)
-        if env_specific_details is not None:
-            pulumi.set(__self__, "env_specific_details", env_specific_details)
-        if num_instances is None:
-            num_instances = 1
-        if num_instances is not None:
-            pulumi.set(__self__, "num_instances", num_instances)
-        if plan is not None:
-            pulumi.set(__self__, "plan", plan)
-        if pull_request_previews_enabled is None:
-            pull_request_previews_enabled = 'no'
-        if pull_request_previews_enabled is not None:
-            pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
-        if region is not None:
-            pulumi.set(__self__, "region", region)
-
-    @property
-    @pulumi.getter
-    def env(self) -> 'BackgroundWorkerDetailsCreateEnv':
-        """
-        Environment (runtime)
-        """
-        return pulumi.get(self, "env")
-
-    @property
-    @pulumi.getter
-    def disk(self) -> Optional['outputs.BackgroundWorkerDetailsCreateDiskProperties']:
-        return pulumi.get(self, "disk")
-
-    @property
-    @pulumi.getter(name="envSpecificDetails")
-    def env_specific_details(self) -> Optional[Any]:
-        return pulumi.get(self, "env_specific_details")
-
-    @property
-    @pulumi.getter(name="numInstances")
-    def num_instances(self) -> Optional[int]:
-        """
-        Defaults to 1
-        """
-        return pulumi.get(self, "num_instances")
-
-    @property
-    @pulumi.getter
-    def plan(self) -> Optional['BackgroundWorkerDetailsCreatePlan']:
-        return pulumi.get(self, "plan")
-
-    @property
-    @pulumi.getter(name="pullRequestPreviewsEnabled")
-    def pull_request_previews_enabled(self) -> Optional['BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled']:
-        """
-        Defaults to "no"
-        """
-        return pulumi.get(self, "pull_request_previews_enabled")
-
-    @property
-    @pulumi.getter
-    def region(self) -> Optional['BackgroundWorkerDetailsCreateRegion']:
-        return pulumi.get(self, "region")
-
-
-@pulumi.output_type
-class BackgroundWorkerDetailsCreateDiskProperties(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "mountPath":
-            suggest = "mount_path"
-        elif key == "sizeGB":
-            suggest = "size_gb"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in BackgroundWorkerDetailsCreateDiskProperties. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        BackgroundWorkerDetailsCreateDiskProperties.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        BackgroundWorkerDetailsCreateDiskProperties.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 mount_path: str,
-                 name: str,
-                 size_gb: Optional[int] = None):
-        """
-        :param int size_gb: Defaults to 1
-        """
-        pulumi.set(__self__, "mount_path", mount_path)
-        pulumi.set(__self__, "name", name)
-        if size_gb is not None:
-            pulumi.set(__self__, "size_gb", size_gb)
-
-    @property
-    @pulumi.getter(name="mountPath")
-    def mount_path(self) -> str:
-        return pulumi.get(self, "mount_path")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter(name="sizeGB")
-    def size_gb(self) -> Optional[int]:
-        """
-        Defaults to 1
-        """
-        return pulumi.get(self, "size_gb")
 
 
 @pulumi.output_type
@@ -421,7 +288,7 @@ class BackgroundWorkerOutput(dict):
                  build_filter: Optional['outputs.BuildFilter'] = None,
                  image_path: Optional[str] = None,
                  repo: Optional[str] = None,
-                 service_details: Optional['outputs.BackgroundWorkerDetails'] = None,
+                 service_details: Optional['outputs.BackgroundWorkerDetailsOutput'] = None,
                  type: Optional[str] = None):
         pulumi.set(__self__, "auto_deploy", auto_deploy)
         pulumi.set(__self__, "created_at", created_at)
@@ -526,7 +393,7 @@ class BackgroundWorkerOutput(dict):
 
     @property
     @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> Optional['outputs.BackgroundWorkerDetails']:
+    def service_details(self) -> Optional['outputs.BackgroundWorkerDetailsOutput']:
         return pulumi.get(self, "service_details")
 
     @property
@@ -618,18 +485,39 @@ class CommitProperties(dict):
 
 
 @pulumi.output_type
-class CronJobDetails(dict):
+class CronJobDetailsOutput(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "buildPlan":
+            suggest = "build_plan"
+        elif key == "envSpecificDetails":
+            suggest = "env_specific_details"
+        elif key == "lastSuccessfulRunAt":
+            suggest = "last_successful_run_at"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CronJobDetailsOutput. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CronJobDetailsOutput.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CronJobDetailsOutput.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  build_plan: str,
-                 env: 'CronJobDetailsEnv',
+                 env: 'CronJobDetailsOutputEnv',
                  env_specific_details: Any,
-                 plan: 'CronJobDetailsPlan',
-                 region: 'CronJobDetailsRegion',
+                 plan: 'CronJobDetailsOutputPlan',
+                 region: 'CronJobDetailsOutputRegion',
                  schedule: str,
                  last_successful_run_at: Optional[str] = None):
         """
-        :param 'CronJobDetailsEnv' env: Environment (runtime)
-        :param 'CronJobDetailsPlan' plan: The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+        :param 'CronJobDetailsOutputEnv' env: Environment (runtime)
+        :param 'CronJobDetailsOutputPlan' plan: The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
         """
         pulumi.set(__self__, "build_plan", build_plan)
         pulumi.set(__self__, "env", env)
@@ -647,7 +535,7 @@ class CronJobDetails(dict):
 
     @property
     @pulumi.getter
-    def env(self) -> 'CronJobDetailsEnv':
+    def env(self) -> 'CronJobDetailsOutputEnv':
         """
         Environment (runtime)
         """
@@ -660,7 +548,7 @@ class CronJobDetails(dict):
 
     @property
     @pulumi.getter
-    def plan(self) -> 'CronJobDetailsPlan':
+    def plan(self) -> 'CronJobDetailsOutputPlan':
         """
         The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
         """
@@ -668,7 +556,7 @@ class CronJobDetails(dict):
 
     @property
     @pulumi.getter
-    def region(self) -> 'CronJobDetailsRegion':
+    def region(self) -> 'CronJobDetailsOutputRegion':
         return pulumi.get(self, "region")
 
     @property
@@ -680,72 +568,6 @@ class CronJobDetails(dict):
     @pulumi.getter(name="lastSuccessfulRunAt")
     def last_successful_run_at(self) -> Optional[str]:
         return pulumi.get(self, "last_successful_run_at")
-
-
-@pulumi.output_type
-class CronJobDetailsCreate(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "envSpecificDetails":
-            suggest = "env_specific_details"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in CronJobDetailsCreate. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        CronJobDetailsCreate.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        CronJobDetailsCreate.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 env: 'CronJobDetailsCreateEnv',
-                 schedule: str,
-                 env_specific_details: Optional[Any] = None,
-                 plan: Optional['CronJobDetailsCreatePlan'] = None,
-                 region: Optional['CronJobDetailsCreateRegion'] = None):
-        """
-        :param 'CronJobDetailsCreateEnv' env: Environment (runtime)
-        """
-        pulumi.set(__self__, "env", env)
-        pulumi.set(__self__, "schedule", schedule)
-        if env_specific_details is not None:
-            pulumi.set(__self__, "env_specific_details", env_specific_details)
-        if plan is not None:
-            pulumi.set(__self__, "plan", plan)
-        if region is not None:
-            pulumi.set(__self__, "region", region)
-
-    @property
-    @pulumi.getter
-    def env(self) -> 'CronJobDetailsCreateEnv':
-        """
-        Environment (runtime)
-        """
-        return pulumi.get(self, "env")
-
-    @property
-    @pulumi.getter
-    def schedule(self) -> str:
-        return pulumi.get(self, "schedule")
-
-    @property
-    @pulumi.getter(name="envSpecificDetails")
-    def env_specific_details(self) -> Optional[Any]:
-        return pulumi.get(self, "env_specific_details")
-
-    @property
-    @pulumi.getter
-    def plan(self) -> Optional['CronJobDetailsCreatePlan']:
-        return pulumi.get(self, "plan")
-
-    @property
-    @pulumi.getter
-    def region(self) -> Optional['CronJobDetailsCreateRegion']:
-        return pulumi.get(self, "region")
 
 
 @pulumi.output_type
@@ -766,7 +588,7 @@ class CronJobOutput(dict):
                  build_filter: Optional['outputs.BuildFilter'] = None,
                  image_path: Optional[str] = None,
                  repo: Optional[str] = None,
-                 service_details: Optional['outputs.CronJobDetails'] = None,
+                 service_details: Optional['outputs.CronJobDetailsOutput'] = None,
                  type: Optional[str] = None):
         pulumi.set(__self__, "auto_deploy", auto_deploy)
         pulumi.set(__self__, "created_at", created_at)
@@ -871,7 +693,7 @@ class CronJobOutput(dict):
 
     @property
     @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> Optional['outputs.CronJobDetails']:
+    def service_details(self) -> Optional['outputs.CronJobDetailsOutput']:
         return pulumi.get(self, "service_details")
 
     @property
@@ -1115,6 +937,25 @@ class DeployImageProperties(dict):
 
 @pulumi.output_type
 class Disk(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "mountPath":
+            suggest = "mount_path"
+        elif key == "sizeGB":
+            suggest = "size_gb"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Disk. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Disk.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Disk.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  id: str,
                  mount_path: str,
@@ -1307,7 +1148,7 @@ class EnvVarWithCursor(dict):
 
 
 @pulumi.output_type
-class GetBackgroundWorkerOutput(dict):
+class GetBackgroundWorker(dict):
     def __init__(__self__, *,
                  auto_deploy: 'PreviewServiceServiceAutoDeploy',
                  created_at: str,
@@ -1324,7 +1165,7 @@ class GetBackgroundWorkerOutput(dict):
                  build_filter: Optional['outputs.BuildFilter'] = None,
                  image_path: Optional[str] = None,
                  repo: Optional[str] = None,
-                 service_details: Optional['outputs.BackgroundWorkerDetails'] = None,
+                 service_details: Optional['outputs.BackgroundWorkerDetailsOutput'] = None,
                  type: Optional[str] = None):
         pulumi.set(__self__, "auto_deploy", auto_deploy)
         pulumi.set(__self__, "created_at", created_at)
@@ -1429,7 +1270,7 @@ class GetBackgroundWorkerOutput(dict):
 
     @property
     @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> Optional['outputs.BackgroundWorkerDetails']:
+    def service_details(self) -> Optional['outputs.BackgroundWorkerDetailsOutput']:
         return pulumi.get(self, "service_details")
 
     @property
@@ -1439,7 +1280,7 @@ class GetBackgroundWorkerOutput(dict):
 
 
 @pulumi.output_type
-class GetCronJobOutput(dict):
+class GetCronJob(dict):
     def __init__(__self__, *,
                  auto_deploy: 'PreviewServiceServiceAutoDeploy',
                  created_at: str,
@@ -1456,7 +1297,7 @@ class GetCronJobOutput(dict):
                  build_filter: Optional['outputs.BuildFilter'] = None,
                  image_path: Optional[str] = None,
                  repo: Optional[str] = None,
-                 service_details: Optional['outputs.CronJobDetails'] = None,
+                 service_details: Optional['outputs.CronJobDetailsOutput'] = None,
                  type: Optional[str] = None):
         pulumi.set(__self__, "auto_deploy", auto_deploy)
         pulumi.set(__self__, "created_at", created_at)
@@ -1561,7 +1402,7 @@ class GetCronJobOutput(dict):
 
     @property
     @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> Optional['outputs.CronJobDetails']:
+    def service_details(self) -> Optional['outputs.CronJobDetailsOutput']:
         return pulumi.get(self, "service_details")
 
     @property
@@ -1571,7 +1412,7 @@ class GetCronJobOutput(dict):
 
 
 @pulumi.output_type
-class GetPrivateServiceOutput(dict):
+class GetPrivateService(dict):
     def __init__(__self__, *,
                  auto_deploy: 'PreviewServiceServiceAutoDeploy',
                  created_at: str,
@@ -1588,7 +1429,7 @@ class GetPrivateServiceOutput(dict):
                  build_filter: Optional['outputs.BuildFilter'] = None,
                  image_path: Optional[str] = None,
                  repo: Optional[str] = None,
-                 service_details: Optional['outputs.PrivateServiceDetails'] = None,
+                 service_details: Optional['outputs.PrivateServiceDetailsOutput'] = None,
                  type: Optional[str] = None):
         pulumi.set(__self__, "auto_deploy", auto_deploy)
         pulumi.set(__self__, "created_at", created_at)
@@ -1693,7 +1534,7 @@ class GetPrivateServiceOutput(dict):
 
     @property
     @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> Optional['outputs.PrivateServiceDetails']:
+    def service_details(self) -> Optional['outputs.PrivateServiceDetailsOutput']:
         return pulumi.get(self, "service_details")
 
     @property
@@ -1703,7 +1544,7 @@ class GetPrivateServiceOutput(dict):
 
 
 @pulumi.output_type
-class GetStaticSiteOutput(dict):
+class GetStaticSite(dict):
     def __init__(__self__, *,
                  auto_deploy: 'PreviewServiceServiceAutoDeploy',
                  created_at: str,
@@ -1720,7 +1561,7 @@ class GetStaticSiteOutput(dict):
                  build_filter: Optional['outputs.BuildFilter'] = None,
                  image_path: Optional[str] = None,
                  repo: Optional[str] = None,
-                 service_details: Optional['outputs.StaticSiteDetails'] = None,
+                 service_details: Optional['outputs.StaticSiteDetailsOutput'] = None,
                  type: Optional[str] = None):
         pulumi.set(__self__, "auto_deploy", auto_deploy)
         pulumi.set(__self__, "created_at", created_at)
@@ -1825,7 +1666,7 @@ class GetStaticSiteOutput(dict):
 
     @property
     @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> Optional['outputs.StaticSiteDetails']:
+    def service_details(self) -> Optional['outputs.StaticSiteDetailsOutput']:
         return pulumi.get(self, "service_details")
 
     @property
@@ -1835,7 +1676,7 @@ class GetStaticSiteOutput(dict):
 
 
 @pulumi.output_type
-class GetWebServiceOutput(dict):
+class GetWebService(dict):
     def __init__(__self__, *,
                  auto_deploy: 'PreviewServiceServiceAutoDeploy',
                  created_at: str,
@@ -1852,7 +1693,7 @@ class GetWebServiceOutput(dict):
                  build_filter: Optional['outputs.BuildFilter'] = None,
                  image_path: Optional[str] = None,
                  repo: Optional[str] = None,
-                 service_details: Optional['outputs.WebServiceDetails'] = None,
+                 service_details: Optional['outputs.WebServiceDetailsOutput'] = None,
                  type: Optional[str] = None):
         pulumi.set(__self__, "auto_deploy", auto_deploy)
         pulumi.set(__self__, "created_at", created_at)
@@ -1957,7 +1798,7 @@ class GetWebServiceOutput(dict):
 
     @property
     @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> Optional['outputs.WebServiceDetails']:
+    def service_details(self) -> Optional['outputs.WebServiceDetailsOutput']:
         return pulumi.get(self, "service_details")
 
     @property
@@ -2000,43 +1841,65 @@ class Header(dict):
 
 
 @pulumi.output_type
-class HeaderCreate(dict):
+class Image(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "imagePath":
+            suggest = "image_path"
+        elif key == "ownerId":
+            suggest = "owner_id"
+        elif key == "registryCredentialId":
+            suggest = "registry_credential_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Image. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Image.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Image.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
-                 name: str,
-                 path: str,
-                 value: str):
+                 image_path: str,
+                 owner_id: str,
+                 registry_credential_id: Optional[str] = None):
         """
-        :param str name: Header name
-        :param str path: The request path to add the header to. Wildcards will cause headers to be applied to all matching paths.
-        :param str value: Header value
+        :param str image_path: Path to the image used for this server (e.g docker.io/library/nginx:latest).
+        :param str owner_id: The ID of the owner for this image. This should match the owner of the service as well as the owner of any specified registry credential.
+        :param str registry_credential_id: Optional reference to the registry credential passed to the image repository to retrieve this image.
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "path", path)
-        pulumi.set(__self__, "value", value)
+        pulumi.set(__self__, "image_path", image_path)
+        pulumi.set(__self__, "owner_id", owner_id)
+        if registry_credential_id is not None:
+            pulumi.set(__self__, "registry_credential_id", registry_credential_id)
 
     @property
-    @pulumi.getter
-    def name(self) -> str:
+    @pulumi.getter(name="imagePath")
+    def image_path(self) -> str:
         """
-        Header name
+        Path to the image used for this server (e.g docker.io/library/nginx:latest).
         """
-        return pulumi.get(self, "name")
+        return pulumi.get(self, "image_path")
 
     @property
-    @pulumi.getter
-    def path(self) -> str:
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> str:
         """
-        The request path to add the header to. Wildcards will cause headers to be applied to all matching paths.
+        The ID of the owner for this image. This should match the owner of the service as well as the owner of any specified registry credential.
         """
-        return pulumi.get(self, "path")
+        return pulumi.get(self, "owner_id")
 
     @property
-    @pulumi.getter
-    def value(self) -> str:
+    @pulumi.getter(name="registryCredentialId")
+    def registry_credential_id(self) -> Optional[str]:
         """
-        Header value
+        Optional reference to the registry credential passed to the image repository to retrieve this image.
         """
-        return pulumi.get(self, "value")
+        return pulumi.get(self, "registry_credential_id")
 
 
 @pulumi.output_type
@@ -2342,24 +2205,51 @@ class NativeEnvironmentDetails(dict):
 
 
 @pulumi.output_type
-class PrivateServiceDetails(dict):
+class PrivateServiceDetailsOutput(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "buildPlan":
+            suggest = "build_plan"
+        elif key == "envSpecificDetails":
+            suggest = "env_specific_details"
+        elif key == "numInstances":
+            suggest = "num_instances"
+        elif key == "openPorts":
+            suggest = "open_ports"
+        elif key == "pullRequestPreviewsEnabled":
+            suggest = "pull_request_previews_enabled"
+        elif key == "parentServer":
+            suggest = "parent_server"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PrivateServiceDetailsOutput. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PrivateServiceDetailsOutput.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PrivateServiceDetailsOutput.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  build_plan: str,
-                 env: 'PrivateServiceDetailsEnv',
+                 env: 'PrivateServiceDetailsOutputEnv',
                  env_specific_details: Any,
                  num_instances: int,
                  open_ports: Sequence['outputs.ServerPort'],
-                 plan: 'PrivateServiceDetailsPlan',
-                 pull_request_previews_enabled: 'PrivateServiceDetailsPullRequestPreviewsEnabled',
-                 region: 'PrivateServiceDetailsRegion',
+                 plan: 'PrivateServiceDetailsOutputPlan',
+                 pull_request_previews_enabled: 'PrivateServiceDetailsOutputPullRequestPreviewsEnabled',
+                 region: 'PrivateServiceDetailsOutputRegion',
                  url: str,
                  autoscaling: Optional['outputs.AutoscalingConfig'] = None,
                  disk: Optional['outputs.Disk'] = None,
                  parent_server: Optional['outputs.Resource'] = None):
         """
-        :param 'PrivateServiceDetailsEnv' env: Environment (runtime)
+        :param 'PrivateServiceDetailsOutputEnv' env: Environment (runtime)
         :param int num_instances: For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
-        :param 'PrivateServiceDetailsPlan' plan: The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+        :param 'PrivateServiceDetailsOutputPlan' plan: The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
         """
         pulumi.set(__self__, "build_plan", build_plan)
         pulumi.set(__self__, "env", env)
@@ -2384,7 +2274,7 @@ class PrivateServiceDetails(dict):
 
     @property
     @pulumi.getter
-    def env(self) -> 'PrivateServiceDetailsEnv':
+    def env(self) -> 'PrivateServiceDetailsOutputEnv':
         """
         Environment (runtime)
         """
@@ -2410,7 +2300,7 @@ class PrivateServiceDetails(dict):
 
     @property
     @pulumi.getter
-    def plan(self) -> 'PrivateServiceDetailsPlan':
+    def plan(self) -> 'PrivateServiceDetailsOutputPlan':
         """
         The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
         """
@@ -2418,12 +2308,12 @@ class PrivateServiceDetails(dict):
 
     @property
     @pulumi.getter(name="pullRequestPreviewsEnabled")
-    def pull_request_previews_enabled(self) -> 'PrivateServiceDetailsPullRequestPreviewsEnabled':
+    def pull_request_previews_enabled(self) -> 'PrivateServiceDetailsOutputPullRequestPreviewsEnabled':
         return pulumi.get(self, "pull_request_previews_enabled")
 
     @property
     @pulumi.getter
-    def region(self) -> 'PrivateServiceDetailsRegion':
+    def region(self) -> 'PrivateServiceDetailsOutputRegion':
         return pulumi.get(self, "region")
 
     @property
@@ -2448,157 +2338,6 @@ class PrivateServiceDetails(dict):
 
 
 @pulumi.output_type
-class PrivateServiceDetailsCreate(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "envSpecificDetails":
-            suggest = "env_specific_details"
-        elif key == "numInstances":
-            suggest = "num_instances"
-        elif key == "pullRequestPreviewsEnabled":
-            suggest = "pull_request_previews_enabled"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in PrivateServiceDetailsCreate. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        PrivateServiceDetailsCreate.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        PrivateServiceDetailsCreate.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 env: 'PrivateServiceDetailsCreateEnv',
-                 disk: Optional['outputs.PrivateServiceDetailsCreateDiskProperties'] = None,
-                 env_specific_details: Optional[Any] = None,
-                 num_instances: Optional[int] = None,
-                 plan: Optional['PrivateServiceDetailsCreatePlan'] = None,
-                 pull_request_previews_enabled: Optional['PrivateServiceDetailsCreatePullRequestPreviewsEnabled'] = None,
-                 region: Optional['PrivateServiceDetailsCreateRegion'] = None):
-        """
-        :param 'PrivateServiceDetailsCreateEnv' env: Environment (runtime)
-        :param int num_instances: Defaults to 1
-        :param 'PrivateServiceDetailsCreatePullRequestPreviewsEnabled' pull_request_previews_enabled: Defaults to "no"
-        """
-        pulumi.set(__self__, "env", env)
-        if disk is not None:
-            pulumi.set(__self__, "disk", disk)
-        if env_specific_details is not None:
-            pulumi.set(__self__, "env_specific_details", env_specific_details)
-        if num_instances is None:
-            num_instances = 1
-        if num_instances is not None:
-            pulumi.set(__self__, "num_instances", num_instances)
-        if plan is not None:
-            pulumi.set(__self__, "plan", plan)
-        if pull_request_previews_enabled is None:
-            pull_request_previews_enabled = 'no'
-        if pull_request_previews_enabled is not None:
-            pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
-        if region is not None:
-            pulumi.set(__self__, "region", region)
-
-    @property
-    @pulumi.getter
-    def env(self) -> 'PrivateServiceDetailsCreateEnv':
-        """
-        Environment (runtime)
-        """
-        return pulumi.get(self, "env")
-
-    @property
-    @pulumi.getter
-    def disk(self) -> Optional['outputs.PrivateServiceDetailsCreateDiskProperties']:
-        return pulumi.get(self, "disk")
-
-    @property
-    @pulumi.getter(name="envSpecificDetails")
-    def env_specific_details(self) -> Optional[Any]:
-        return pulumi.get(self, "env_specific_details")
-
-    @property
-    @pulumi.getter(name="numInstances")
-    def num_instances(self) -> Optional[int]:
-        """
-        Defaults to 1
-        """
-        return pulumi.get(self, "num_instances")
-
-    @property
-    @pulumi.getter
-    def plan(self) -> Optional['PrivateServiceDetailsCreatePlan']:
-        return pulumi.get(self, "plan")
-
-    @property
-    @pulumi.getter(name="pullRequestPreviewsEnabled")
-    def pull_request_previews_enabled(self) -> Optional['PrivateServiceDetailsCreatePullRequestPreviewsEnabled']:
-        """
-        Defaults to "no"
-        """
-        return pulumi.get(self, "pull_request_previews_enabled")
-
-    @property
-    @pulumi.getter
-    def region(self) -> Optional['PrivateServiceDetailsCreateRegion']:
-        return pulumi.get(self, "region")
-
-
-@pulumi.output_type
-class PrivateServiceDetailsCreateDiskProperties(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "mountPath":
-            suggest = "mount_path"
-        elif key == "sizeGB":
-            suggest = "size_gb"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in PrivateServiceDetailsCreateDiskProperties. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        PrivateServiceDetailsCreateDiskProperties.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        PrivateServiceDetailsCreateDiskProperties.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 mount_path: str,
-                 name: str,
-                 size_gb: Optional[int] = None):
-        """
-        :param int size_gb: Defaults to 1
-        """
-        pulumi.set(__self__, "mount_path", mount_path)
-        pulumi.set(__self__, "name", name)
-        if size_gb is not None:
-            pulumi.set(__self__, "size_gb", size_gb)
-
-    @property
-    @pulumi.getter(name="mountPath")
-    def mount_path(self) -> str:
-        return pulumi.get(self, "mount_path")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter(name="sizeGB")
-    def size_gb(self) -> Optional[int]:
-        """
-        Defaults to 1
-        """
-        return pulumi.get(self, "size_gb")
-
-
-@pulumi.output_type
 class PrivateServiceOutput(dict):
     def __init__(__self__, *,
                  auto_deploy: 'ServiceAutoDeploy',
@@ -2616,7 +2355,7 @@ class PrivateServiceOutput(dict):
                  build_filter: Optional['outputs.BuildFilter'] = None,
                  image_path: Optional[str] = None,
                  repo: Optional[str] = None,
-                 service_details: Optional['outputs.PrivateServiceDetails'] = None,
+                 service_details: Optional['outputs.PrivateServiceDetailsOutput'] = None,
                  type: Optional[str] = None):
         pulumi.set(__self__, "auto_deploy", auto_deploy)
         pulumi.set(__self__, "created_at", created_at)
@@ -2721,7 +2460,7 @@ class PrivateServiceOutput(dict):
 
     @property
     @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> Optional['outputs.PrivateServiceDetails']:
+    def service_details(self) -> Optional['outputs.PrivateServiceDetailsOutput']:
         return pulumi.get(self, "service_details")
 
     @property
@@ -2844,6 +2583,25 @@ class Route(dict):
     @pulumi.getter
     def type(self) -> 'StaticSiteRouteType':
         return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class SecretFile(dict):
+    def __init__(__self__, *,
+                 id: str,
+                 name: str):
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
 
 
 @pulumi.output_type
@@ -3011,12 +2769,37 @@ class Service(dict):
 
 
 @pulumi.output_type
-class StaticSiteDetails(dict):
+class StaticSiteDetailsOutput(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "buildCommand":
+            suggest = "build_command"
+        elif key == "buildPlan":
+            suggest = "build_plan"
+        elif key == "publishPath":
+            suggest = "publish_path"
+        elif key == "pullRequestPreviewsEnabled":
+            suggest = "pull_request_previews_enabled"
+        elif key == "parentServer":
+            suggest = "parent_server"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in StaticSiteDetailsOutput. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        StaticSiteDetailsOutput.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        StaticSiteDetailsOutput.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  build_command: str,
                  build_plan: str,
                  publish_path: str,
-                 pull_request_previews_enabled: 'StaticSiteDetailsPullRequestPreviewsEnabled',
+                 pull_request_previews_enabled: 'StaticSiteDetailsOutputPullRequestPreviewsEnabled',
                  url: str,
                  parent_server: Optional['outputs.Resource'] = None):
         pulumi.set(__self__, "build_command", build_command)
@@ -3044,7 +2827,7 @@ class StaticSiteDetails(dict):
 
     @property
     @pulumi.getter(name="pullRequestPreviewsEnabled")
-    def pull_request_previews_enabled(self) -> 'StaticSiteDetailsPullRequestPreviewsEnabled':
+    def pull_request_previews_enabled(self) -> 'StaticSiteDetailsOutputPullRequestPreviewsEnabled':
         return pulumi.get(self, "pull_request_previews_enabled")
 
     @property
@@ -3056,84 +2839,6 @@ class StaticSiteDetails(dict):
     @pulumi.getter(name="parentServer")
     def parent_server(self) -> Optional['outputs.Resource']:
         return pulumi.get(self, "parent_server")
-
-
-@pulumi.output_type
-class StaticSiteDetailsCreate(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "buildCommand":
-            suggest = "build_command"
-        elif key == "publishPath":
-            suggest = "publish_path"
-        elif key == "pullRequestPreviewsEnabled":
-            suggest = "pull_request_previews_enabled"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in StaticSiteDetailsCreate. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        StaticSiteDetailsCreate.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        StaticSiteDetailsCreate.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 build_command: Optional[str] = None,
-                 headers: Optional[Sequence['outputs.HeaderCreate']] = None,
-                 publish_path: Optional[str] = None,
-                 pull_request_previews_enabled: Optional['StaticSiteDetailsCreatePullRequestPreviewsEnabled'] = None,
-                 routes: Optional[Sequence['outputs.Route']] = None):
-        """
-        :param str publish_path: Defaults to "public"
-        :param 'StaticSiteDetailsCreatePullRequestPreviewsEnabled' pull_request_previews_enabled: Defaults to "no"
-        """
-        if build_command is not None:
-            pulumi.set(__self__, "build_command", build_command)
-        if headers is not None:
-            pulumi.set(__self__, "headers", headers)
-        if publish_path is not None:
-            pulumi.set(__self__, "publish_path", publish_path)
-        if pull_request_previews_enabled is None:
-            pull_request_previews_enabled = 'no'
-        if pull_request_previews_enabled is not None:
-            pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
-        if routes is not None:
-            pulumi.set(__self__, "routes", routes)
-
-    @property
-    @pulumi.getter(name="buildCommand")
-    def build_command(self) -> Optional[str]:
-        return pulumi.get(self, "build_command")
-
-    @property
-    @pulumi.getter
-    def headers(self) -> Optional[Sequence['outputs.HeaderCreate']]:
-        return pulumi.get(self, "headers")
-
-    @property
-    @pulumi.getter(name="publishPath")
-    def publish_path(self) -> Optional[str]:
-        """
-        Defaults to "public"
-        """
-        return pulumi.get(self, "publish_path")
-
-    @property
-    @pulumi.getter(name="pullRequestPreviewsEnabled")
-    def pull_request_previews_enabled(self) -> Optional['StaticSiteDetailsCreatePullRequestPreviewsEnabled']:
-        """
-        Defaults to "no"
-        """
-        return pulumi.get(self, "pull_request_previews_enabled")
-
-    @property
-    @pulumi.getter
-    def routes(self) -> Optional[Sequence['outputs.Route']]:
-        return pulumi.get(self, "routes")
 
 
 @pulumi.output_type
@@ -3154,7 +2859,7 @@ class StaticSiteOutput(dict):
                  build_filter: Optional['outputs.BuildFilter'] = None,
                  image_path: Optional[str] = None,
                  repo: Optional[str] = None,
-                 service_details: Optional['outputs.StaticSiteDetails'] = None,
+                 service_details: Optional['outputs.StaticSiteDetailsOutput'] = None,
                  type: Optional[str] = None):
         pulumi.set(__self__, "auto_deploy", auto_deploy)
         pulumi.set(__self__, "created_at", created_at)
@@ -3259,7 +2964,7 @@ class StaticSiteOutput(dict):
 
     @property
     @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> Optional['outputs.StaticSiteDetails']:
+    def service_details(self) -> Optional['outputs.StaticSiteDetailsOutput']:
         return pulumi.get(self, "service_details")
 
     @property
@@ -3269,25 +2974,54 @@ class StaticSiteOutput(dict):
 
 
 @pulumi.output_type
-class WebServiceDetails(dict):
+class WebServiceDetailsOutput(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "buildPlan":
+            suggest = "build_plan"
+        elif key == "envSpecificDetails":
+            suggest = "env_specific_details"
+        elif key == "healthCheckPath":
+            suggest = "health_check_path"
+        elif key == "numInstances":
+            suggest = "num_instances"
+        elif key == "openPorts":
+            suggest = "open_ports"
+        elif key == "pullRequestPreviewsEnabled":
+            suggest = "pull_request_previews_enabled"
+        elif key == "parentServer":
+            suggest = "parent_server"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in WebServiceDetailsOutput. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        WebServiceDetailsOutput.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        WebServiceDetailsOutput.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  build_plan: str,
-                 env: 'WebServiceDetailsEnv',
+                 env: 'WebServiceDetailsOutputEnv',
                  env_specific_details: Any,
                  health_check_path: str,
                  num_instances: int,
                  open_ports: Sequence['outputs.ServerPort'],
-                 plan: 'WebServiceDetailsPlan',
-                 pull_request_previews_enabled: 'WebServiceDetailsPullRequestPreviewsEnabled',
-                 region: 'WebServiceDetailsRegion',
+                 plan: 'WebServiceDetailsOutputPlan',
+                 pull_request_previews_enabled: 'WebServiceDetailsOutputPullRequestPreviewsEnabled',
+                 region: 'WebServiceDetailsOutputRegion',
                  url: str,
                  autoscaling: Optional['outputs.AutoscalingConfig'] = None,
                  disk: Optional['outputs.Disk'] = None,
                  parent_server: Optional['outputs.Resource'] = None):
         """
-        :param 'WebServiceDetailsEnv' env: Environment (runtime)
+        :param 'WebServiceDetailsOutputEnv' env: Environment (runtime)
         :param int num_instances: For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
-        :param 'WebServiceDetailsPlan' plan: The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+        :param 'WebServiceDetailsOutputPlan' plan: The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
         """
         pulumi.set(__self__, "build_plan", build_plan)
         pulumi.set(__self__, "env", env)
@@ -3313,7 +3047,7 @@ class WebServiceDetails(dict):
 
     @property
     @pulumi.getter
-    def env(self) -> 'WebServiceDetailsEnv':
+    def env(self) -> 'WebServiceDetailsOutputEnv':
         """
         Environment (runtime)
         """
@@ -3344,7 +3078,7 @@ class WebServiceDetails(dict):
 
     @property
     @pulumi.getter
-    def plan(self) -> 'WebServiceDetailsPlan':
+    def plan(self) -> 'WebServiceDetailsOutputPlan':
         """
         The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
         """
@@ -3352,12 +3086,12 @@ class WebServiceDetails(dict):
 
     @property
     @pulumi.getter(name="pullRequestPreviewsEnabled")
-    def pull_request_previews_enabled(self) -> 'WebServiceDetailsPullRequestPreviewsEnabled':
+    def pull_request_previews_enabled(self) -> 'WebServiceDetailsOutputPullRequestPreviewsEnabled':
         return pulumi.get(self, "pull_request_previews_enabled")
 
     @property
     @pulumi.getter
-    def region(self) -> 'WebServiceDetailsRegion':
+    def region(self) -> 'WebServiceDetailsOutputRegion':
         return pulumi.get(self, "region")
 
     @property
@@ -3382,165 +3116,6 @@ class WebServiceDetails(dict):
 
 
 @pulumi.output_type
-class WebServiceDetailsCreate(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "envSpecificDetails":
-            suggest = "env_specific_details"
-        elif key == "healthCheckPath":
-            suggest = "health_check_path"
-        elif key == "numInstances":
-            suggest = "num_instances"
-        elif key == "pullRequestPreviewsEnabled":
-            suggest = "pull_request_previews_enabled"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in WebServiceDetailsCreate. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        WebServiceDetailsCreate.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        WebServiceDetailsCreate.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 env: 'WebServiceDetailsCreateEnv',
-                 disk: Optional['outputs.WebServiceDetailsCreateDiskProperties'] = None,
-                 env_specific_details: Optional[Any] = None,
-                 health_check_path: Optional[str] = None,
-                 num_instances: Optional[int] = None,
-                 plan: Optional['WebServiceDetailsCreatePlan'] = None,
-                 pull_request_previews_enabled: Optional['WebServiceDetailsCreatePullRequestPreviewsEnabled'] = None,
-                 region: Optional['WebServiceDetailsCreateRegion'] = None):
-        """
-        :param 'WebServiceDetailsCreateEnv' env: Environment (runtime)
-        :param int num_instances: Defaults to 1
-        :param 'WebServiceDetailsCreatePullRequestPreviewsEnabled' pull_request_previews_enabled: Defaults to "no"
-        """
-        pulumi.set(__self__, "env", env)
-        if disk is not None:
-            pulumi.set(__self__, "disk", disk)
-        if env_specific_details is not None:
-            pulumi.set(__self__, "env_specific_details", env_specific_details)
-        if health_check_path is not None:
-            pulumi.set(__self__, "health_check_path", health_check_path)
-        if num_instances is not None:
-            pulumi.set(__self__, "num_instances", num_instances)
-        if plan is not None:
-            pulumi.set(__self__, "plan", plan)
-        if pull_request_previews_enabled is None:
-            pull_request_previews_enabled = 'no'
-        if pull_request_previews_enabled is not None:
-            pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
-        if region is not None:
-            pulumi.set(__self__, "region", region)
-
-    @property
-    @pulumi.getter
-    def env(self) -> 'WebServiceDetailsCreateEnv':
-        """
-        Environment (runtime)
-        """
-        return pulumi.get(self, "env")
-
-    @property
-    @pulumi.getter
-    def disk(self) -> Optional['outputs.WebServiceDetailsCreateDiskProperties']:
-        return pulumi.get(self, "disk")
-
-    @property
-    @pulumi.getter(name="envSpecificDetails")
-    def env_specific_details(self) -> Optional[Any]:
-        return pulumi.get(self, "env_specific_details")
-
-    @property
-    @pulumi.getter(name="healthCheckPath")
-    def health_check_path(self) -> Optional[str]:
-        return pulumi.get(self, "health_check_path")
-
-    @property
-    @pulumi.getter(name="numInstances")
-    def num_instances(self) -> Optional[int]:
-        """
-        Defaults to 1
-        """
-        return pulumi.get(self, "num_instances")
-
-    @property
-    @pulumi.getter
-    def plan(self) -> Optional['WebServiceDetailsCreatePlan']:
-        return pulumi.get(self, "plan")
-
-    @property
-    @pulumi.getter(name="pullRequestPreviewsEnabled")
-    def pull_request_previews_enabled(self) -> Optional['WebServiceDetailsCreatePullRequestPreviewsEnabled']:
-        """
-        Defaults to "no"
-        """
-        return pulumi.get(self, "pull_request_previews_enabled")
-
-    @property
-    @pulumi.getter
-    def region(self) -> Optional['WebServiceDetailsCreateRegion']:
-        return pulumi.get(self, "region")
-
-
-@pulumi.output_type
-class WebServiceDetailsCreateDiskProperties(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "mountPath":
-            suggest = "mount_path"
-        elif key == "sizeGB":
-            suggest = "size_gb"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in WebServiceDetailsCreateDiskProperties. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        WebServiceDetailsCreateDiskProperties.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        WebServiceDetailsCreateDiskProperties.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 mount_path: str,
-                 name: str,
-                 size_gb: Optional[int] = None):
-        """
-        :param int size_gb: Defaults to 1
-        """
-        pulumi.set(__self__, "mount_path", mount_path)
-        pulumi.set(__self__, "name", name)
-        if size_gb is not None:
-            pulumi.set(__self__, "size_gb", size_gb)
-
-    @property
-    @pulumi.getter(name="mountPath")
-    def mount_path(self) -> str:
-        return pulumi.get(self, "mount_path")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter(name="sizeGB")
-    def size_gb(self) -> Optional[int]:
-        """
-        Defaults to 1
-        """
-        return pulumi.get(self, "size_gb")
-
-
-@pulumi.output_type
 class WebServiceOutput(dict):
     def __init__(__self__, *,
                  auto_deploy: 'ServiceAutoDeploy',
@@ -3558,7 +3133,7 @@ class WebServiceOutput(dict):
                  build_filter: Optional['outputs.BuildFilter'] = None,
                  image_path: Optional[str] = None,
                  repo: Optional[str] = None,
-                 service_details: Optional['outputs.WebServiceDetails'] = None,
+                 service_details: Optional['outputs.WebServiceDetailsOutput'] = None,
                  type: Optional[str] = None):
         pulumi.set(__self__, "auto_deploy", auto_deploy)
         pulumi.set(__self__, "created_at", created_at)
@@ -3663,7 +3238,7 @@ class WebServiceOutput(dict):
 
     @property
     @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> Optional['outputs.WebServiceDetails']:
+    def service_details(self) -> Optional['outputs.WebServiceDetailsOutput']:
         return pulumi.get(self, "service_details")
 
     @property

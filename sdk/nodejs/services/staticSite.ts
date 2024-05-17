@@ -46,17 +46,20 @@ export class StaticSite extends pulumi.CustomResource {
         return obj['__pulumiType'] === StaticSite.__pulumiType;
     }
 
-    public /*out*/ readonly autoDeploy!: pulumi.Output<enums.services.StaticSiteServiceAutoDeploy | undefined>;
-    public /*out*/ readonly branch!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly buildFilter!: pulumi.Output<outputs.services.BuildFilter | undefined>;
+    public readonly autoDeploy!: pulumi.Output<enums.services.StaticSiteServiceAutoDeploy | undefined>;
+    public readonly branch!: pulumi.Output<string | undefined>;
+    public readonly buildFilter!: pulumi.Output<outputs.services.BuildFilter | undefined>;
     public /*out*/ readonly createdAt!: pulumi.Output<string | undefined>;
+    public readonly envVars!: pulumi.Output<(outputs.services.EnvVarKeyValue | outputs.services.EnvVarKeyGenerateValue)[] | undefined>;
+    public readonly image!: pulumi.Output<outputs.services.Image | undefined>;
     public /*out*/ readonly imagePath!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly name!: pulumi.Output<string | undefined>;
+    public readonly name!: pulumi.Output<string | undefined>;
     public /*out*/ readonly notifyOnFail!: pulumi.Output<enums.services.StaticSiteServiceNotifyOnFail | undefined>;
-    public /*out*/ readonly ownerId!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly repo!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly rootDir!: pulumi.Output<string | undefined>;
-    public readonly serviceDetails!: pulumi.Output<outputs.services.StaticSiteDetailsCreate | undefined>;
+    public readonly ownerId!: pulumi.Output<string | undefined>;
+    public readonly repo!: pulumi.Output<string | undefined>;
+    public readonly rootDir!: pulumi.Output<string | undefined>;
+    public readonly secretFiles!: pulumi.Output<outputs.services.SecretFile[] | undefined>;
+    public readonly serviceDetails!: pulumi.Output<outputs.services.StaticSiteDetailsOutput | undefined>;
     public /*out*/ readonly slug!: pulumi.Output<string | undefined>;
     public /*out*/ readonly suspended!: pulumi.Output<enums.services.StaticSiteServiceSuspended | undefined>;
     public /*out*/ readonly suspenders!: pulumi.Output<enums.services.StaticSiteServiceSuspendersItem[] | undefined>;
@@ -70,22 +73,31 @@ export class StaticSite extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: StaticSiteArgs, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: StaticSiteArgs, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
+            if ((!args || args.name === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'name'");
+            }
+            if ((!args || args.ownerId === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'ownerId'");
+            }
+            resourceInputs["autoDeploy"] = (args ? args.autoDeploy : undefined) ?? "yes";
+            resourceInputs["branch"] = args ? args.branch : undefined;
+            resourceInputs["buildFilter"] = args ? args.buildFilter : undefined;
+            resourceInputs["envVars"] = args ? args.envVars : undefined;
+            resourceInputs["image"] = args ? args.image : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["ownerId"] = args ? args.ownerId : undefined;
+            resourceInputs["repo"] = args ? args.repo : undefined;
+            resourceInputs["rootDir"] = args ? args.rootDir : undefined;
+            resourceInputs["secretFiles"] = args ? args.secretFiles : undefined;
             resourceInputs["serviceDetails"] = args ? (args.serviceDetails ? pulumi.output(args.serviceDetails).apply(inputs.services.staticSiteDetailsCreateArgsProvideDefaults) : undefined) : undefined;
             resourceInputs["type"] = (args ? args.type : undefined) ?? "static_site";
-            resourceInputs["autoDeploy"] = undefined /*out*/;
-            resourceInputs["branch"] = undefined /*out*/;
-            resourceInputs["buildFilter"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["imagePath"] = undefined /*out*/;
-            resourceInputs["name"] = undefined /*out*/;
             resourceInputs["notifyOnFail"] = undefined /*out*/;
-            resourceInputs["ownerId"] = undefined /*out*/;
-            resourceInputs["repo"] = undefined /*out*/;
-            resourceInputs["rootDir"] = undefined /*out*/;
             resourceInputs["slug"] = undefined /*out*/;
             resourceInputs["suspended"] = undefined /*out*/;
             resourceInputs["suspenders"] = undefined /*out*/;
@@ -95,12 +107,15 @@ export class StaticSite extends pulumi.CustomResource {
             resourceInputs["branch"] = undefined /*out*/;
             resourceInputs["buildFilter"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["envVars"] = undefined /*out*/;
+            resourceInputs["image"] = undefined /*out*/;
             resourceInputs["imagePath"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;
             resourceInputs["notifyOnFail"] = undefined /*out*/;
             resourceInputs["ownerId"] = undefined /*out*/;
             resourceInputs["repo"] = undefined /*out*/;
             resourceInputs["rootDir"] = undefined /*out*/;
+            resourceInputs["secretFiles"] = undefined /*out*/;
             resourceInputs["serviceDetails"] = undefined /*out*/;
             resourceInputs["slug"] = undefined /*out*/;
             resourceInputs["suspended"] = undefined /*out*/;
@@ -117,6 +132,25 @@ export class StaticSite extends pulumi.CustomResource {
  * The set of arguments for constructing a StaticSite resource.
  */
 export interface StaticSiteArgs {
+    /**
+     * Defaults to "yes"
+     */
+    autoDeploy?: pulumi.Input<enums.services.StaticSiteServiceCreateAutoDeploy>;
+    /**
+     * If left empty, this will fall back to the default branch of the repository
+     */
+    branch?: pulumi.Input<string>;
+    buildFilter?: pulumi.Input<inputs.services.BuildFilterArgs>;
+    envVars?: pulumi.Input<pulumi.Input<inputs.services.EnvVarKeyValueArgs | inputs.services.EnvVarKeyGenerateValueArgs>[]>;
+    image?: pulumi.Input<inputs.services.ImageArgs>;
+    name: pulumi.Input<string>;
+    ownerId: pulumi.Input<string>;
+    /**
+     * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+     */
+    repo?: pulumi.Input<string>;
+    rootDir?: pulumi.Input<string>;
+    secretFiles?: pulumi.Input<pulumi.Input<inputs.services.SecretFileArgs>[]>;
     serviceDetails?: pulumi.Input<inputs.services.StaticSiteDetailsCreateArgs>;
     type?: pulumi.Input<string>;
 }

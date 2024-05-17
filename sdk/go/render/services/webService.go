@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"errors"
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -18,13 +19,16 @@ type WebService struct {
 	Branch         pulumi.StringPtrOutput                     `pulumi:"branch"`
 	BuildFilter    BuildFilterPtrOutput                       `pulumi:"buildFilter"`
 	CreatedAt      pulumi.StringPtrOutput                     `pulumi:"createdAt"`
+	EnvVars        pulumi.ArrayOutput                         `pulumi:"envVars"`
+	Image          ImagePtrOutput                             `pulumi:"image"`
 	ImagePath      pulumi.StringPtrOutput                     `pulumi:"imagePath"`
 	Name           pulumi.StringPtrOutput                     `pulumi:"name"`
 	NotifyOnFail   WebServiceServiceNotifyOnFailPtrOutput     `pulumi:"notifyOnFail"`
 	OwnerId        pulumi.StringPtrOutput                     `pulumi:"ownerId"`
 	Repo           pulumi.StringPtrOutput                     `pulumi:"repo"`
 	RootDir        pulumi.StringPtrOutput                     `pulumi:"rootDir"`
-	ServiceDetails WebServiceDetailsCreatePtrOutput           `pulumi:"serviceDetails"`
+	SecretFiles    SecretFileArrayOutput                      `pulumi:"secretFiles"`
+	ServiceDetails WebServiceDetailsOutputPtrOutput           `pulumi:"serviceDetails"`
 	Slug           pulumi.StringPtrOutput                     `pulumi:"slug"`
 	Suspended      WebServiceServiceSuspendedPtrOutput        `pulumi:"suspended"`
 	Suspenders     WebServiceServiceSuspendersItemArrayOutput `pulumi:"suspenders"`
@@ -36,9 +40,18 @@ type WebService struct {
 func NewWebService(ctx *pulumi.Context,
 	name string, args *WebServiceArgs, opts ...pulumi.ResourceOption) (*WebService, error) {
 	if args == nil {
-		args = &WebServiceArgs{}
+		return nil, errors.New("missing one or more required arguments")
 	}
 
+	if args.Name == nil {
+		return nil, errors.New("invalid value for required argument 'Name'")
+	}
+	if args.OwnerId == nil {
+		return nil, errors.New("invalid value for required argument 'OwnerId'")
+	}
+	if args.AutoDeploy == nil {
+		args.AutoDeploy = WebServiceServiceCreateAutoDeploy("yes")
+	}
 	if args.ServiceDetails != nil {
 		args.ServiceDetails = args.ServiceDetails.ToWebServiceDetailsCreatePtrOutput().ApplyT(func(v *WebServiceDetailsCreate) *WebServiceDetailsCreate { return v.Defaults() }).(WebServiceDetailsCreatePtrOutput)
 	}
@@ -78,12 +91,38 @@ func (WebServiceState) ElementType() reflect.Type {
 }
 
 type webServiceArgs struct {
+	// Defaults to "yes"
+	AutoDeploy *WebServiceServiceCreateAutoDeploy `pulumi:"autoDeploy"`
+	// If left empty, this will fall back to the default branch of the repository
+	Branch      *string       `pulumi:"branch"`
+	BuildFilter *BuildFilter  `pulumi:"buildFilter"`
+	EnvVars     []interface{} `pulumi:"envVars"`
+	Image       *Image        `pulumi:"image"`
+	Name        string        `pulumi:"name"`
+	OwnerId     string        `pulumi:"ownerId"`
+	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+	Repo           *string                  `pulumi:"repo"`
+	RootDir        *string                  `pulumi:"rootDir"`
+	SecretFiles    []SecretFile             `pulumi:"secretFiles"`
 	ServiceDetails *WebServiceDetailsCreate `pulumi:"serviceDetails"`
 	Type           *string                  `pulumi:"type"`
 }
 
 // The set of arguments for constructing a WebService resource.
 type WebServiceArgs struct {
+	// Defaults to "yes"
+	AutoDeploy WebServiceServiceCreateAutoDeployPtrInput
+	// If left empty, this will fall back to the default branch of the repository
+	Branch      pulumi.StringPtrInput
+	BuildFilter BuildFilterPtrInput
+	EnvVars     pulumi.ArrayInput
+	Image       ImagePtrInput
+	Name        pulumi.StringInput
+	OwnerId     pulumi.StringInput
+	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+	Repo           pulumi.StringPtrInput
+	RootDir        pulumi.StringPtrInput
+	SecretFiles    SecretFileArrayInput
 	ServiceDetails WebServiceDetailsCreatePtrInput
 	Type           pulumi.StringPtrInput
 }
@@ -141,6 +180,14 @@ func (o WebServiceOutput) CreatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WebService) pulumi.StringPtrOutput { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
 
+func (o WebServiceOutput) EnvVars() pulumi.ArrayOutput {
+	return o.ApplyT(func(v *WebService) pulumi.ArrayOutput { return v.EnvVars }).(pulumi.ArrayOutput)
+}
+
+func (o WebServiceOutput) Image() ImagePtrOutput {
+	return o.ApplyT(func(v *WebService) ImagePtrOutput { return v.Image }).(ImagePtrOutput)
+}
+
 func (o WebServiceOutput) ImagePath() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WebService) pulumi.StringPtrOutput { return v.ImagePath }).(pulumi.StringPtrOutput)
 }
@@ -165,8 +212,12 @@ func (o WebServiceOutput) RootDir() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WebService) pulumi.StringPtrOutput { return v.RootDir }).(pulumi.StringPtrOutput)
 }
 
-func (o WebServiceOutput) ServiceDetails() WebServiceDetailsCreatePtrOutput {
-	return o.ApplyT(func(v *WebService) WebServiceDetailsCreatePtrOutput { return v.ServiceDetails }).(WebServiceDetailsCreatePtrOutput)
+func (o WebServiceOutput) SecretFiles() SecretFileArrayOutput {
+	return o.ApplyT(func(v *WebService) SecretFileArrayOutput { return v.SecretFiles }).(SecretFileArrayOutput)
+}
+
+func (o WebServiceOutput) ServiceDetails() WebServiceDetailsOutputPtrOutput {
+	return o.ApplyT(func(v *WebService) WebServiceDetailsOutputPtrOutput { return v.ServiceDetails }).(WebServiceDetailsOutputPtrOutput)
 }
 
 func (o WebServiceOutput) Slug() pulumi.StringPtrOutput {

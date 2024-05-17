@@ -17,17 +17,149 @@ __all__ = ['PrivateServiceArgs', 'PrivateService']
 @pulumi.input_type
 class PrivateServiceArgs:
     def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 owner_id: pulumi.Input[str],
+                 auto_deploy: Optional[pulumi.Input['PrivateServiceServiceCreateAutoDeploy']] = None,
+                 branch: Optional[pulumi.Input[str]] = None,
+                 build_filter: Optional[pulumi.Input['BuildFilterArgs']] = None,
+                 env_vars: Optional[pulumi.Input[Sequence[pulumi.Input[Union['EnvVarKeyValueArgs', 'EnvVarKeyGenerateValueArgs']]]]] = None,
+                 image: Optional[pulumi.Input['ImageArgs']] = None,
+                 repo: Optional[pulumi.Input[str]] = None,
+                 root_dir: Optional[pulumi.Input[str]] = None,
+                 secret_files: Optional[pulumi.Input[Sequence[pulumi.Input['SecretFileArgs']]]] = None,
                  service_details: Optional[pulumi.Input['PrivateServiceDetailsCreateArgs']] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a PrivateService resource.
+        :param pulumi.Input['PrivateServiceServiceCreateAutoDeploy'] auto_deploy: Defaults to "yes"
+        :param pulumi.Input[str] branch: If left empty, this will fall back to the default branch of the repository
+        :param pulumi.Input[str] repo: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
         """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "owner_id", owner_id)
+        if auto_deploy is None:
+            auto_deploy = 'yes'
+        if auto_deploy is not None:
+            pulumi.set(__self__, "auto_deploy", auto_deploy)
+        if branch is not None:
+            pulumi.set(__self__, "branch", branch)
+        if build_filter is not None:
+            pulumi.set(__self__, "build_filter", build_filter)
+        if env_vars is not None:
+            pulumi.set(__self__, "env_vars", env_vars)
+        if image is not None:
+            pulumi.set(__self__, "image", image)
+        if repo is not None:
+            pulumi.set(__self__, "repo", repo)
+        if root_dir is not None:
+            pulumi.set(__self__, "root_dir", root_dir)
+        if secret_files is not None:
+            pulumi.set(__self__, "secret_files", secret_files)
         if service_details is not None:
             pulumi.set(__self__, "service_details", service_details)
         if type is None:
             type = 'private_service'
         if type is not None:
             pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "owner_id")
+
+    @owner_id.setter
+    def owner_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "owner_id", value)
+
+    @property
+    @pulumi.getter(name="autoDeploy")
+    def auto_deploy(self) -> Optional[pulumi.Input['PrivateServiceServiceCreateAutoDeploy']]:
+        """
+        Defaults to "yes"
+        """
+        return pulumi.get(self, "auto_deploy")
+
+    @auto_deploy.setter
+    def auto_deploy(self, value: Optional[pulumi.Input['PrivateServiceServiceCreateAutoDeploy']]):
+        pulumi.set(self, "auto_deploy", value)
+
+    @property
+    @pulumi.getter
+    def branch(self) -> Optional[pulumi.Input[str]]:
+        """
+        If left empty, this will fall back to the default branch of the repository
+        """
+        return pulumi.get(self, "branch")
+
+    @branch.setter
+    def branch(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "branch", value)
+
+    @property
+    @pulumi.getter(name="buildFilter")
+    def build_filter(self) -> Optional[pulumi.Input['BuildFilterArgs']]:
+        return pulumi.get(self, "build_filter")
+
+    @build_filter.setter
+    def build_filter(self, value: Optional[pulumi.Input['BuildFilterArgs']]):
+        pulumi.set(self, "build_filter", value)
+
+    @property
+    @pulumi.getter(name="envVars")
+    def env_vars(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[Union['EnvVarKeyValueArgs', 'EnvVarKeyGenerateValueArgs']]]]]:
+        return pulumi.get(self, "env_vars")
+
+    @env_vars.setter
+    def env_vars(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[Union['EnvVarKeyValueArgs', 'EnvVarKeyGenerateValueArgs']]]]]):
+        pulumi.set(self, "env_vars", value)
+
+    @property
+    @pulumi.getter
+    def image(self) -> Optional[pulumi.Input['ImageArgs']]:
+        return pulumi.get(self, "image")
+
+    @image.setter
+    def image(self, value: Optional[pulumi.Input['ImageArgs']]):
+        pulumi.set(self, "image", value)
+
+    @property
+    @pulumi.getter
+    def repo(self) -> Optional[pulumi.Input[str]]:
+        """
+        Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+        """
+        return pulumi.get(self, "repo")
+
+    @repo.setter
+    def repo(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "repo", value)
+
+    @property
+    @pulumi.getter(name="rootDir")
+    def root_dir(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "root_dir")
+
+    @root_dir.setter
+    def root_dir(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "root_dir", value)
+
+    @property
+    @pulumi.getter(name="secretFiles")
+    def secret_files(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretFileArgs']]]]:
+        return pulumi.get(self, "secret_files")
+
+    @secret_files.setter
+    def secret_files(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecretFileArgs']]]]):
+        pulumi.set(self, "secret_files", value)
 
     @property
     @pulumi.getter(name="serviceDetails")
@@ -53,6 +185,16 @@ class PrivateService(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 auto_deploy: Optional[pulumi.Input['PrivateServiceServiceCreateAutoDeploy']] = None,
+                 branch: Optional[pulumi.Input[str]] = None,
+                 build_filter: Optional[pulumi.Input[pulumi.InputType['BuildFilterArgs']]] = None,
+                 env_vars: Optional[pulumi.Input[Sequence[pulumi.Input[Union[pulumi.InputType['EnvVarKeyValueArgs'], pulumi.InputType['EnvVarKeyGenerateValueArgs']]]]]] = None,
+                 image: Optional[pulumi.Input[pulumi.InputType['ImageArgs']]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 owner_id: Optional[pulumi.Input[str]] = None,
+                 repo: Optional[pulumi.Input[str]] = None,
+                 root_dir: Optional[pulumi.Input[str]] = None,
+                 secret_files: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretFileArgs']]]]] = None,
                  service_details: Optional[pulumi.Input[pulumi.InputType['PrivateServiceDetailsCreateArgs']]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -60,12 +202,15 @@ class PrivateService(pulumi.CustomResource):
         Create a PrivateService resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input['PrivateServiceServiceCreateAutoDeploy'] auto_deploy: Defaults to "yes"
+        :param pulumi.Input[str] branch: If left empty, this will fall back to the default branch of the repository
+        :param pulumi.Input[str] repo: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
         """
         ...
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: Optional[PrivateServiceArgs] = None,
+                 args: PrivateServiceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a PrivateService resource with the given unique name, props, and options.
@@ -84,6 +229,16 @@ class PrivateService(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 auto_deploy: Optional[pulumi.Input['PrivateServiceServiceCreateAutoDeploy']] = None,
+                 branch: Optional[pulumi.Input[str]] = None,
+                 build_filter: Optional[pulumi.Input[pulumi.InputType['BuildFilterArgs']]] = None,
+                 env_vars: Optional[pulumi.Input[Sequence[pulumi.Input[Union[pulumi.InputType['EnvVarKeyValueArgs'], pulumi.InputType['EnvVarKeyGenerateValueArgs']]]]]] = None,
+                 image: Optional[pulumi.Input[pulumi.InputType['ImageArgs']]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 owner_id: Optional[pulumi.Input[str]] = None,
+                 repo: Optional[pulumi.Input[str]] = None,
+                 root_dir: Optional[pulumi.Input[str]] = None,
+                 secret_files: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretFileArgs']]]]] = None,
                  service_details: Optional[pulumi.Input[pulumi.InputType['PrivateServiceDetailsCreateArgs']]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -95,20 +250,29 @@ class PrivateService(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = PrivateServiceArgs.__new__(PrivateServiceArgs)
 
+            if auto_deploy is None:
+                auto_deploy = 'yes'
+            __props__.__dict__["auto_deploy"] = auto_deploy
+            __props__.__dict__["branch"] = branch
+            __props__.__dict__["build_filter"] = build_filter
+            __props__.__dict__["env_vars"] = env_vars
+            __props__.__dict__["image"] = image
+            if name is None and not opts.urn:
+                raise TypeError("Missing required property 'name'")
+            __props__.__dict__["name"] = name
+            if owner_id is None and not opts.urn:
+                raise TypeError("Missing required property 'owner_id'")
+            __props__.__dict__["owner_id"] = owner_id
+            __props__.__dict__["repo"] = repo
+            __props__.__dict__["root_dir"] = root_dir
+            __props__.__dict__["secret_files"] = secret_files
             __props__.__dict__["service_details"] = service_details
             if type is None:
                 type = 'private_service'
             __props__.__dict__["type"] = type
-            __props__.__dict__["auto_deploy"] = None
-            __props__.__dict__["branch"] = None
-            __props__.__dict__["build_filter"] = None
             __props__.__dict__["created_at"] = None
             __props__.__dict__["image_path"] = None
-            __props__.__dict__["name"] = None
             __props__.__dict__["notify_on_fail"] = None
-            __props__.__dict__["owner_id"] = None
-            __props__.__dict__["repo"] = None
-            __props__.__dict__["root_dir"] = None
             __props__.__dict__["slug"] = None
             __props__.__dict__["suspended"] = None
             __props__.__dict__["suspenders"] = None
@@ -139,12 +303,15 @@ class PrivateService(pulumi.CustomResource):
         __props__.__dict__["branch"] = None
         __props__.__dict__["build_filter"] = None
         __props__.__dict__["created_at"] = None
+        __props__.__dict__["env_vars"] = None
+        __props__.__dict__["image"] = None
         __props__.__dict__["image_path"] = None
         __props__.__dict__["name"] = None
         __props__.__dict__["notify_on_fail"] = None
         __props__.__dict__["owner_id"] = None
         __props__.__dict__["repo"] = None
         __props__.__dict__["root_dir"] = None
+        __props__.__dict__["secret_files"] = None
         __props__.__dict__["service_details"] = None
         __props__.__dict__["slug"] = None
         __props__.__dict__["suspended"] = None
@@ -172,6 +339,16 @@ class PrivateService(pulumi.CustomResource):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="envVars")
+    def env_vars(self) -> pulumi.Output[Optional[Sequence[Any]]]:
+        return pulumi.get(self, "env_vars")
+
+    @property
+    @pulumi.getter
+    def image(self) -> pulumi.Output[Optional['outputs.Image']]:
+        return pulumi.get(self, "image")
 
     @property
     @pulumi.getter(name="imagePath")
@@ -204,8 +381,13 @@ class PrivateService(pulumi.CustomResource):
         return pulumi.get(self, "root_dir")
 
     @property
+    @pulumi.getter(name="secretFiles")
+    def secret_files(self) -> pulumi.Output[Optional[Sequence['outputs.SecretFile']]]:
+        return pulumi.get(self, "secret_files")
+
+    @property
     @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> pulumi.Output[Optional['outputs.PrivateServiceDetailsCreate']]:
+    def service_details(self) -> pulumi.Output[Optional['outputs.PrivateServiceDetailsOutput']]:
         return pulumi.get(self, "service_details")
 
     @property

@@ -101,14 +101,14 @@ export namespace services {
         };
     }
 
-    export interface BackgroundWorkerDetails {
+    export interface BackgroundWorkerDetailsOutput {
         autoscaling?: outputs.services.AutoscalingConfig;
         buildPlan: string;
         disk?: outputs.services.Disk;
         /**
          * Environment (runtime)
          */
-        env: enums.services.BackgroundWorkerDetailsEnv;
+        env: enums.services.BackgroundWorkerDetailsOutputEnv;
         envSpecificDetails: outputs.services.DockerDetails | outputs.services.NativeEnvironmentDetails;
         /**
          * For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
@@ -118,56 +118,18 @@ export namespace services {
         /**
          * The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
          */
-        plan: enums.services.BackgroundWorkerDetailsPlan;
-        pullRequestPreviewsEnabled: enums.services.BackgroundWorkerDetailsPullRequestPreviewsEnabled;
-        region: enums.services.BackgroundWorkerDetailsRegion;
+        plan: enums.services.BackgroundWorkerDetailsOutputPlan;
+        pullRequestPreviewsEnabled: enums.services.BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled;
+        region: enums.services.BackgroundWorkerDetailsOutputRegion;
     }
     /**
-     * backgroundWorkerDetailsProvideDefaults sets the appropriate defaults for BackgroundWorkerDetails
+     * backgroundWorkerDetailsOutputProvideDefaults sets the appropriate defaults for BackgroundWorkerDetailsOutput
      */
-    export function backgroundWorkerDetailsProvideDefaults(val: BackgroundWorkerDetails): BackgroundWorkerDetails {
+    export function backgroundWorkerDetailsOutputProvideDefaults(val: BackgroundWorkerDetailsOutput): BackgroundWorkerDetailsOutput {
         return {
             ...val,
             autoscaling: (val.autoscaling ? outputs.services.autoscalingConfigProvideDefaults(val.autoscaling) : undefined),
         };
-    }
-
-    export interface BackgroundWorkerDetailsCreate {
-        disk?: outputs.services.BackgroundWorkerDetailsCreateDiskProperties;
-        /**
-         * Environment (runtime)
-         */
-        env: enums.services.BackgroundWorkerDetailsCreateEnv;
-        envSpecificDetails?: outputs.services.DockerDetails | outputs.services.NativeEnvironmentDetails;
-        /**
-         * Defaults to 1
-         */
-        numInstances?: number;
-        plan?: enums.services.BackgroundWorkerDetailsCreatePlan;
-        /**
-         * Defaults to "no"
-         */
-        pullRequestPreviewsEnabled?: enums.services.BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled;
-        region?: enums.services.BackgroundWorkerDetailsCreateRegion;
-    }
-    /**
-     * backgroundWorkerDetailsCreateProvideDefaults sets the appropriate defaults for BackgroundWorkerDetailsCreate
-     */
-    export function backgroundWorkerDetailsCreateProvideDefaults(val: BackgroundWorkerDetailsCreate): BackgroundWorkerDetailsCreate {
-        return {
-            ...val,
-            numInstances: (val.numInstances) ?? 1,
-            pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
-        };
-    }
-
-    export interface BackgroundWorkerDetailsCreateDiskProperties {
-        mountPath: string;
-        name: string;
-        /**
-         * Defaults to 1
-         */
-        sizeGB?: number;
     }
 
     export interface BackgroundWorkerOutput {
@@ -182,7 +144,7 @@ export namespace services {
         ownerId: string;
         repo?: string;
         rootDir: string;
-        serviceDetails?: outputs.services.BackgroundWorkerDetails;
+        serviceDetails?: outputs.services.BackgroundWorkerDetailsOutput;
         slug: string;
         suspended: enums.services.ServiceSuspended;
         suspenders: enums.services.ServiceSuspendersItem[];
@@ -195,7 +157,7 @@ export namespace services {
     export function backgroundWorkerOutputProvideDefaults(val: BackgroundWorkerOutput): BackgroundWorkerOutput {
         return {
             ...val,
-            serviceDetails: (val.serviceDetails ? outputs.services.backgroundWorkerDetailsProvideDefaults(val.serviceDetails) : undefined),
+            serviceDetails: (val.serviceDetails ? outputs.services.backgroundWorkerDetailsOutputProvideDefaults(val.serviceDetails) : undefined),
             type: (val.type) ?? "background_worker",
         };
     }
@@ -211,30 +173,19 @@ export namespace services {
         message?: string;
     }
 
-    export interface CronJobDetails {
+    export interface CronJobDetailsOutput {
         buildPlan: string;
         /**
          * Environment (runtime)
          */
-        env: enums.services.CronJobDetailsEnv;
+        env: enums.services.CronJobDetailsOutputEnv;
         envSpecificDetails: outputs.services.DockerDetails | outputs.services.NativeEnvironmentDetails;
         lastSuccessfulRunAt?: string;
         /**
          * The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
          */
-        plan: enums.services.CronJobDetailsPlan;
-        region: enums.services.CronJobDetailsRegion;
-        schedule: string;
-    }
-
-    export interface CronJobDetailsCreate {
-        /**
-         * Environment (runtime)
-         */
-        env: enums.services.CronJobDetailsCreateEnv;
-        envSpecificDetails?: outputs.services.DockerDetails | outputs.services.NativeEnvironmentDetails;
-        plan?: enums.services.CronJobDetailsCreatePlan;
-        region?: enums.services.CronJobDetailsCreateRegion;
+        plan: enums.services.CronJobDetailsOutputPlan;
+        region: enums.services.CronJobDetailsOutputRegion;
         schedule: string;
     }
 
@@ -250,7 +201,7 @@ export namespace services {
         ownerId: string;
         repo?: string;
         rootDir: string;
-        serviceDetails?: outputs.services.CronJobDetails;
+        serviceDetails?: outputs.services.CronJobDetailsOutput;
         slug: string;
         suspended: enums.services.ServiceSuspended;
         suspenders: enums.services.ServiceSuspendersItem[];
@@ -356,7 +307,7 @@ export namespace services {
         envVar: outputs.services.EnvVar;
     }
 
-    export interface GetBackgroundWorkerOutput {
+    export interface GetBackgroundWorker {
         autoDeploy: enums.services.PreviewServiceServiceAutoDeploy;
         branch?: string;
         buildFilter?: outputs.services.BuildFilter;
@@ -368,7 +319,7 @@ export namespace services {
         ownerId: string;
         repo?: string;
         rootDir: string;
-        serviceDetails?: outputs.services.BackgroundWorkerDetails;
+        serviceDetails?: outputs.services.BackgroundWorkerDetailsOutput;
         slug: string;
         suspended: enums.services.PreviewServiceServiceSuspended;
         suspenders: enums.services.PreviewServiceServiceSuspendersItem[];
@@ -376,17 +327,17 @@ export namespace services {
         updatedAt: string;
     }
     /**
-     * getBackgroundWorkerOutputProvideDefaults sets the appropriate defaults for GetBackgroundWorkerOutput
+     * getBackgroundWorkerProvideDefaults sets the appropriate defaults for GetBackgroundWorker
      */
-    export function getBackgroundWorkerOutputProvideDefaults(val: GetBackgroundWorkerOutput): GetBackgroundWorkerOutput {
+    export function getBackgroundWorkerProvideDefaults(val: GetBackgroundWorker): GetBackgroundWorker {
         return {
             ...val,
-            serviceDetails: (val.serviceDetails ? outputs.services.backgroundWorkerDetailsProvideDefaults(val.serviceDetails) : undefined),
+            serviceDetails: (val.serviceDetails ? outputs.services.backgroundWorkerDetailsOutputProvideDefaults(val.serviceDetails) : undefined),
             type: (val.type) ?? "background_worker",
         };
     }
 
-    export interface GetCronJobOutput {
+    export interface GetCronJob {
         autoDeploy: enums.services.PreviewServiceServiceAutoDeploy;
         branch?: string;
         buildFilter?: outputs.services.BuildFilter;
@@ -398,7 +349,7 @@ export namespace services {
         ownerId: string;
         repo?: string;
         rootDir: string;
-        serviceDetails?: outputs.services.CronJobDetails;
+        serviceDetails?: outputs.services.CronJobDetailsOutput;
         slug: string;
         suspended: enums.services.PreviewServiceServiceSuspended;
         suspenders: enums.services.PreviewServiceServiceSuspendersItem[];
@@ -406,16 +357,16 @@ export namespace services {
         updatedAt: string;
     }
     /**
-     * getCronJobOutputProvideDefaults sets the appropriate defaults for GetCronJobOutput
+     * getCronJobProvideDefaults sets the appropriate defaults for GetCronJob
      */
-    export function getCronJobOutputProvideDefaults(val: GetCronJobOutput): GetCronJobOutput {
+    export function getCronJobProvideDefaults(val: GetCronJob): GetCronJob {
         return {
             ...val,
             type: (val.type) ?? "cron_job",
         };
     }
 
-    export interface GetPrivateServiceOutput {
+    export interface GetPrivateService {
         autoDeploy: enums.services.PreviewServiceServiceAutoDeploy;
         branch?: string;
         buildFilter?: outputs.services.BuildFilter;
@@ -427,7 +378,7 @@ export namespace services {
         ownerId: string;
         repo?: string;
         rootDir: string;
-        serviceDetails?: outputs.services.PrivateServiceDetails;
+        serviceDetails?: outputs.services.PrivateServiceDetailsOutput;
         slug: string;
         suspended: enums.services.PreviewServiceServiceSuspended;
         suspenders: enums.services.PreviewServiceServiceSuspendersItem[];
@@ -435,17 +386,17 @@ export namespace services {
         updatedAt: string;
     }
     /**
-     * getPrivateServiceOutputProvideDefaults sets the appropriate defaults for GetPrivateServiceOutput
+     * getPrivateServiceProvideDefaults sets the appropriate defaults for GetPrivateService
      */
-    export function getPrivateServiceOutputProvideDefaults(val: GetPrivateServiceOutput): GetPrivateServiceOutput {
+    export function getPrivateServiceProvideDefaults(val: GetPrivateService): GetPrivateService {
         return {
             ...val,
-            serviceDetails: (val.serviceDetails ? outputs.services.privateServiceDetailsProvideDefaults(val.serviceDetails) : undefined),
+            serviceDetails: (val.serviceDetails ? outputs.services.privateServiceDetailsOutputProvideDefaults(val.serviceDetails) : undefined),
             type: (val.type) ?? "private_service",
         };
     }
 
-    export interface GetStaticSiteOutput {
+    export interface GetStaticSite {
         autoDeploy: enums.services.PreviewServiceServiceAutoDeploy;
         branch?: string;
         buildFilter?: outputs.services.BuildFilter;
@@ -457,7 +408,7 @@ export namespace services {
         ownerId: string;
         repo?: string;
         rootDir: string;
-        serviceDetails?: outputs.services.StaticSiteDetails;
+        serviceDetails?: outputs.services.StaticSiteDetailsOutput;
         slug: string;
         suspended: enums.services.PreviewServiceServiceSuspended;
         suspenders: enums.services.PreviewServiceServiceSuspendersItem[];
@@ -465,16 +416,16 @@ export namespace services {
         updatedAt: string;
     }
     /**
-     * getStaticSiteOutputProvideDefaults sets the appropriate defaults for GetStaticSiteOutput
+     * getStaticSiteProvideDefaults sets the appropriate defaults for GetStaticSite
      */
-    export function getStaticSiteOutputProvideDefaults(val: GetStaticSiteOutput): GetStaticSiteOutput {
+    export function getStaticSiteProvideDefaults(val: GetStaticSite): GetStaticSite {
         return {
             ...val,
             type: (val.type) ?? "static_site",
         };
     }
 
-    export interface GetWebServiceOutput {
+    export interface GetWebService {
         autoDeploy: enums.services.PreviewServiceServiceAutoDeploy;
         branch?: string;
         buildFilter?: outputs.services.BuildFilter;
@@ -486,7 +437,7 @@ export namespace services {
         ownerId: string;
         repo?: string;
         rootDir: string;
-        serviceDetails?: outputs.services.WebServiceDetails;
+        serviceDetails?: outputs.services.WebServiceDetailsOutput;
         slug: string;
         suspended: enums.services.PreviewServiceServiceSuspended;
         suspenders: enums.services.PreviewServiceServiceSuspendersItem[];
@@ -494,12 +445,12 @@ export namespace services {
         updatedAt: string;
     }
     /**
-     * getWebServiceOutputProvideDefaults sets the appropriate defaults for GetWebServiceOutput
+     * getWebServiceProvideDefaults sets the appropriate defaults for GetWebService
      */
-    export function getWebServiceOutputProvideDefaults(val: GetWebServiceOutput): GetWebServiceOutput {
+    export function getWebServiceProvideDefaults(val: GetWebService): GetWebService {
         return {
             ...val,
-            serviceDetails: (val.serviceDetails ? outputs.services.webServiceDetailsProvideDefaults(val.serviceDetails) : undefined),
+            serviceDetails: (val.serviceDetails ? outputs.services.webServiceDetailsOutputProvideDefaults(val.serviceDetails) : undefined),
             type: (val.type) ?? "web_service",
         };
     }
@@ -511,19 +462,19 @@ export namespace services {
         value: string;
     }
 
-    export interface HeaderCreate {
+    export interface Image {
         /**
-         * Header name
+         * Path to the image used for this server (e.g docker.io/library/nginx:latest).
          */
-        name: string;
+        imagePath: string;
         /**
-         * The request path to add the header to. Wildcards will cause headers to be applied to all matching paths.
+         * The ID of the owner for this image. This should match the owner of the service as well as the owner of any specified registry credential.
          */
-        path: string;
+        ownerId: string;
         /**
-         * Header value
+         * Optional reference to the registry credential passed to the image repository to retrieve this image.
          */
-        value: string;
+        registryCredentialId?: string;
     }
 
     /**
@@ -591,14 +542,14 @@ export namespace services {
         startCommand: string;
     }
 
-    export interface PrivateServiceDetails {
+    export interface PrivateServiceDetailsOutput {
         autoscaling?: outputs.services.AutoscalingConfig;
         buildPlan: string;
         disk?: outputs.services.Disk;
         /**
          * Environment (runtime)
          */
-        env: enums.services.PrivateServiceDetailsEnv;
+        env: enums.services.PrivateServiceDetailsOutputEnv;
         envSpecificDetails: outputs.services.DockerDetails | outputs.services.NativeEnvironmentDetails;
         /**
          * For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
@@ -609,57 +560,19 @@ export namespace services {
         /**
          * The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
          */
-        plan: enums.services.PrivateServiceDetailsPlan;
-        pullRequestPreviewsEnabled: enums.services.PrivateServiceDetailsPullRequestPreviewsEnabled;
-        region: enums.services.PrivateServiceDetailsRegion;
+        plan: enums.services.PrivateServiceDetailsOutputPlan;
+        pullRequestPreviewsEnabled: enums.services.PrivateServiceDetailsOutputPullRequestPreviewsEnabled;
+        region: enums.services.PrivateServiceDetailsOutputRegion;
         url: string;
     }
     /**
-     * privateServiceDetailsProvideDefaults sets the appropriate defaults for PrivateServiceDetails
+     * privateServiceDetailsOutputProvideDefaults sets the appropriate defaults for PrivateServiceDetailsOutput
      */
-    export function privateServiceDetailsProvideDefaults(val: PrivateServiceDetails): PrivateServiceDetails {
+    export function privateServiceDetailsOutputProvideDefaults(val: PrivateServiceDetailsOutput): PrivateServiceDetailsOutput {
         return {
             ...val,
             autoscaling: (val.autoscaling ? outputs.services.autoscalingConfigProvideDefaults(val.autoscaling) : undefined),
         };
-    }
-
-    export interface PrivateServiceDetailsCreate {
-        disk?: outputs.services.PrivateServiceDetailsCreateDiskProperties;
-        /**
-         * Environment (runtime)
-         */
-        env: enums.services.PrivateServiceDetailsCreateEnv;
-        envSpecificDetails?: outputs.services.DockerDetails | outputs.services.NativeEnvironmentDetails;
-        /**
-         * Defaults to 1
-         */
-        numInstances?: number;
-        plan?: enums.services.PrivateServiceDetailsCreatePlan;
-        /**
-         * Defaults to "no"
-         */
-        pullRequestPreviewsEnabled?: enums.services.PrivateServiceDetailsCreatePullRequestPreviewsEnabled;
-        region?: enums.services.PrivateServiceDetailsCreateRegion;
-    }
-    /**
-     * privateServiceDetailsCreateProvideDefaults sets the appropriate defaults for PrivateServiceDetailsCreate
-     */
-    export function privateServiceDetailsCreateProvideDefaults(val: PrivateServiceDetailsCreate): PrivateServiceDetailsCreate {
-        return {
-            ...val,
-            numInstances: (val.numInstances) ?? 1,
-            pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
-        };
-    }
-
-    export interface PrivateServiceDetailsCreateDiskProperties {
-        mountPath: string;
-        name: string;
-        /**
-         * Defaults to 1
-         */
-        sizeGB?: number;
     }
 
     export interface PrivateServiceOutput {
@@ -674,7 +587,7 @@ export namespace services {
         ownerId: string;
         repo?: string;
         rootDir: string;
-        serviceDetails?: outputs.services.PrivateServiceDetails;
+        serviceDetails?: outputs.services.PrivateServiceDetailsOutput;
         slug: string;
         suspended: enums.services.ServiceSuspended;
         suspenders: enums.services.ServiceSuspendersItem[];
@@ -687,7 +600,7 @@ export namespace services {
     export function privateServiceOutputProvideDefaults(val: PrivateServiceOutput): PrivateServiceOutput {
         return {
             ...val,
-            serviceDetails: (val.serviceDetails ? outputs.services.privateServiceDetailsProvideDefaults(val.serviceDetails) : undefined),
+            serviceDetails: (val.serviceDetails ? outputs.services.privateServiceDetailsOutputProvideDefaults(val.serviceDetails) : undefined),
             type: (val.type) ?? "private_service",
         };
     }
@@ -727,6 +640,11 @@ export namespace services {
         type: enums.services.StaticSiteRouteType;
     }
 
+    export interface SecretFile {
+        id: string;
+        name: string;
+    }
+
     export interface ServerPort {
         port: number;
         protocol: enums.services.ServerPortProtocol;
@@ -750,36 +668,13 @@ export namespace services {
         updatedAt: string;
     }
 
-    export interface StaticSiteDetails {
+    export interface StaticSiteDetailsOutput {
         buildCommand: string;
         buildPlan: string;
         parentServer?: outputs.services.Resource;
         publishPath: string;
-        pullRequestPreviewsEnabled: enums.services.StaticSiteDetailsPullRequestPreviewsEnabled;
+        pullRequestPreviewsEnabled: enums.services.StaticSiteDetailsOutputPullRequestPreviewsEnabled;
         url: string;
-    }
-
-    export interface StaticSiteDetailsCreate {
-        buildCommand?: string;
-        headers?: outputs.services.HeaderCreate[];
-        /**
-         * Defaults to "public"
-         */
-        publishPath?: string;
-        /**
-         * Defaults to "no"
-         */
-        pullRequestPreviewsEnabled?: enums.services.StaticSiteDetailsCreatePullRequestPreviewsEnabled;
-        routes?: outputs.services.Route[];
-    }
-    /**
-     * staticSiteDetailsCreateProvideDefaults sets the appropriate defaults for StaticSiteDetailsCreate
-     */
-    export function staticSiteDetailsCreateProvideDefaults(val: StaticSiteDetailsCreate): StaticSiteDetailsCreate {
-        return {
-            ...val,
-            pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
-        };
     }
 
     export interface StaticSiteOutput {
@@ -794,7 +689,7 @@ export namespace services {
         ownerId: string;
         repo?: string;
         rootDir: string;
-        serviceDetails?: outputs.services.StaticSiteDetails;
+        serviceDetails?: outputs.services.StaticSiteDetailsOutput;
         slug: string;
         suspended: enums.services.ServiceSuspended;
         suspenders: enums.services.ServiceSuspendersItem[];
@@ -811,14 +706,14 @@ export namespace services {
         };
     }
 
-    export interface WebServiceDetails {
+    export interface WebServiceDetailsOutput {
         autoscaling?: outputs.services.AutoscalingConfig;
         buildPlan: string;
         disk?: outputs.services.Disk;
         /**
          * Environment (runtime)
          */
-        env: enums.services.WebServiceDetailsEnv;
+        env: enums.services.WebServiceDetailsOutputEnv;
         envSpecificDetails: outputs.services.DockerDetails | outputs.services.NativeEnvironmentDetails;
         healthCheckPath: string;
         /**
@@ -830,57 +725,19 @@ export namespace services {
         /**
          * The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
          */
-        plan: enums.services.WebServiceDetailsPlan;
-        pullRequestPreviewsEnabled: enums.services.WebServiceDetailsPullRequestPreviewsEnabled;
-        region: enums.services.WebServiceDetailsRegion;
+        plan: enums.services.WebServiceDetailsOutputPlan;
+        pullRequestPreviewsEnabled: enums.services.WebServiceDetailsOutputPullRequestPreviewsEnabled;
+        region: enums.services.WebServiceDetailsOutputRegion;
         url: string;
     }
     /**
-     * webServiceDetailsProvideDefaults sets the appropriate defaults for WebServiceDetails
+     * webServiceDetailsOutputProvideDefaults sets the appropriate defaults for WebServiceDetailsOutput
      */
-    export function webServiceDetailsProvideDefaults(val: WebServiceDetails): WebServiceDetails {
+    export function webServiceDetailsOutputProvideDefaults(val: WebServiceDetailsOutput): WebServiceDetailsOutput {
         return {
             ...val,
             autoscaling: (val.autoscaling ? outputs.services.autoscalingConfigProvideDefaults(val.autoscaling) : undefined),
         };
-    }
-
-    export interface WebServiceDetailsCreate {
-        disk?: outputs.services.WebServiceDetailsCreateDiskProperties;
-        /**
-         * Environment (runtime)
-         */
-        env: enums.services.WebServiceDetailsCreateEnv;
-        envSpecificDetails?: outputs.services.DockerDetails | outputs.services.NativeEnvironmentDetails;
-        healthCheckPath?: string;
-        /**
-         * Defaults to 1
-         */
-        numInstances?: number;
-        plan?: enums.services.WebServiceDetailsCreatePlan;
-        /**
-         * Defaults to "no"
-         */
-        pullRequestPreviewsEnabled?: enums.services.WebServiceDetailsCreatePullRequestPreviewsEnabled;
-        region?: enums.services.WebServiceDetailsCreateRegion;
-    }
-    /**
-     * webServiceDetailsCreateProvideDefaults sets the appropriate defaults for WebServiceDetailsCreate
-     */
-    export function webServiceDetailsCreateProvideDefaults(val: WebServiceDetailsCreate): WebServiceDetailsCreate {
-        return {
-            ...val,
-            pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
-        };
-    }
-
-    export interface WebServiceDetailsCreateDiskProperties {
-        mountPath: string;
-        name: string;
-        /**
-         * Defaults to 1
-         */
-        sizeGB?: number;
     }
 
     export interface WebServiceOutput {
@@ -895,7 +752,7 @@ export namespace services {
         ownerId: string;
         repo?: string;
         rootDir: string;
-        serviceDetails?: outputs.services.WebServiceDetails;
+        serviceDetails?: outputs.services.WebServiceDetailsOutput;
         slug: string;
         suspended: enums.services.ServiceSuspended;
         suspenders: enums.services.ServiceSuspendersItem[];
@@ -908,7 +765,7 @@ export namespace services {
     export function webServiceOutputProvideDefaults(val: WebServiceOutput): WebServiceOutput {
         return {
             ...val,
-            serviceDetails: (val.serviceDetails ? outputs.services.webServiceDetailsProvideDefaults(val.serviceDetails) : undefined),
+            serviceDetails: (val.serviceDetails ? outputs.services.webServiceDetailsOutputProvideDefaults(val.serviceDetails) : undefined),
             type: (val.type) ?? "web_service",
         };
     }

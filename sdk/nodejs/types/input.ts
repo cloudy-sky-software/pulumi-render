@@ -85,6 +85,11 @@ export namespace services {
         sizeGB?: pulumi.Input<number>;
     }
 
+    export interface BuildFilterArgs {
+        ignoredPaths: pulumi.Input<pulumi.Input<string>[]>;
+        paths: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
     export interface CronJobDetailsCreateArgs {
         /**
          * Environment (runtime)
@@ -127,6 +132,21 @@ export namespace services {
          * Header value
          */
         value: pulumi.Input<string>;
+    }
+
+    export interface ImageArgs {
+        /**
+         * Path to the image used for this server (e.g docker.io/library/nginx:latest).
+         */
+        imagePath: pulumi.Input<string>;
+        /**
+         * The ID of the owner for this image. This should match the owner of the service as well as the owner of any specified registry credential.
+         */
+        ownerId: pulumi.Input<string>;
+        /**
+         * Optional reference to the registry credential passed to the image repository to retrieve this image.
+         */
+        registryCredentialId?: pulumi.Input<string>;
     }
 
     export interface NativeEnvironmentDetailsArgs {
@@ -201,6 +221,11 @@ export namespace services {
         priority: pulumi.Input<number>;
         source: pulumi.Input<string>;
         type: pulumi.Input<enums.services.StaticSiteRouteType>;
+    }
+
+    export interface SecretFileArgs {
+        id: pulumi.Input<string>;
+        name: pulumi.Input<string>;
     }
 
     export interface StaticSiteDetailsCreateArgs {

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"errors"
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -19,13 +20,16 @@ type StaticSite struct {
 	Branch         pulumi.StringPtrOutput                     `pulumi:"branch"`
 	BuildFilter    BuildFilterPtrOutput                       `pulumi:"buildFilter"`
 	CreatedAt      pulumi.StringPtrOutput                     `pulumi:"createdAt"`
+	EnvVars        pulumi.ArrayOutput                         `pulumi:"envVars"`
+	Image          ImagePtrOutput                             `pulumi:"image"`
 	ImagePath      pulumi.StringPtrOutput                     `pulumi:"imagePath"`
 	Name           pulumi.StringPtrOutput                     `pulumi:"name"`
 	NotifyOnFail   StaticSiteServiceNotifyOnFailPtrOutput     `pulumi:"notifyOnFail"`
 	OwnerId        pulumi.StringPtrOutput                     `pulumi:"ownerId"`
 	Repo           pulumi.StringPtrOutput                     `pulumi:"repo"`
 	RootDir        pulumi.StringPtrOutput                     `pulumi:"rootDir"`
-	ServiceDetails StaticSiteDetailsCreatePtrOutput           `pulumi:"serviceDetails"`
+	SecretFiles    SecretFileArrayOutput                      `pulumi:"secretFiles"`
+	ServiceDetails StaticSiteDetailsOutputPtrOutput           `pulumi:"serviceDetails"`
 	Slug           pulumi.StringPtrOutput                     `pulumi:"slug"`
 	Suspended      StaticSiteServiceSuspendedPtrOutput        `pulumi:"suspended"`
 	Suspenders     StaticSiteServiceSuspendersItemArrayOutput `pulumi:"suspenders"`
@@ -37,9 +41,18 @@ type StaticSite struct {
 func NewStaticSite(ctx *pulumi.Context,
 	name string, args *StaticSiteArgs, opts ...pulumi.ResourceOption) (*StaticSite, error) {
 	if args == nil {
-		args = &StaticSiteArgs{}
+		return nil, errors.New("missing one or more required arguments")
 	}
 
+	if args.Name == nil {
+		return nil, errors.New("invalid value for required argument 'Name'")
+	}
+	if args.OwnerId == nil {
+		return nil, errors.New("invalid value for required argument 'OwnerId'")
+	}
+	if args.AutoDeploy == nil {
+		args.AutoDeploy = StaticSiteServiceCreateAutoDeploy("yes")
+	}
 	if args.ServiceDetails != nil {
 		args.ServiceDetails = args.ServiceDetails.ToStaticSiteDetailsCreatePtrOutput().ApplyT(func(v *StaticSiteDetailsCreate) *StaticSiteDetailsCreate { return v.Defaults() }).(StaticSiteDetailsCreatePtrOutput)
 	}
@@ -79,12 +92,38 @@ func (StaticSiteState) ElementType() reflect.Type {
 }
 
 type staticSiteArgs struct {
+	// Defaults to "yes"
+	AutoDeploy *StaticSiteServiceCreateAutoDeploy `pulumi:"autoDeploy"`
+	// If left empty, this will fall back to the default branch of the repository
+	Branch      *string       `pulumi:"branch"`
+	BuildFilter *BuildFilter  `pulumi:"buildFilter"`
+	EnvVars     []interface{} `pulumi:"envVars"`
+	Image       *Image        `pulumi:"image"`
+	Name        string        `pulumi:"name"`
+	OwnerId     string        `pulumi:"ownerId"`
+	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+	Repo           *string                  `pulumi:"repo"`
+	RootDir        *string                  `pulumi:"rootDir"`
+	SecretFiles    []SecretFile             `pulumi:"secretFiles"`
 	ServiceDetails *StaticSiteDetailsCreate `pulumi:"serviceDetails"`
 	Type           *string                  `pulumi:"type"`
 }
 
 // The set of arguments for constructing a StaticSite resource.
 type StaticSiteArgs struct {
+	// Defaults to "yes"
+	AutoDeploy StaticSiteServiceCreateAutoDeployPtrInput
+	// If left empty, this will fall back to the default branch of the repository
+	Branch      pulumi.StringPtrInput
+	BuildFilter BuildFilterPtrInput
+	EnvVars     pulumi.ArrayInput
+	Image       ImagePtrInput
+	Name        pulumi.StringInput
+	OwnerId     pulumi.StringInput
+	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+	Repo           pulumi.StringPtrInput
+	RootDir        pulumi.StringPtrInput
+	SecretFiles    SecretFileArrayInput
 	ServiceDetails StaticSiteDetailsCreatePtrInput
 	Type           pulumi.StringPtrInput
 }
@@ -142,6 +181,14 @@ func (o StaticSiteOutput) CreatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StaticSite) pulumi.StringPtrOutput { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
 
+func (o StaticSiteOutput) EnvVars() pulumi.ArrayOutput {
+	return o.ApplyT(func(v *StaticSite) pulumi.ArrayOutput { return v.EnvVars }).(pulumi.ArrayOutput)
+}
+
+func (o StaticSiteOutput) Image() ImagePtrOutput {
+	return o.ApplyT(func(v *StaticSite) ImagePtrOutput { return v.Image }).(ImagePtrOutput)
+}
+
 func (o StaticSiteOutput) ImagePath() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StaticSite) pulumi.StringPtrOutput { return v.ImagePath }).(pulumi.StringPtrOutput)
 }
@@ -166,8 +213,12 @@ func (o StaticSiteOutput) RootDir() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StaticSite) pulumi.StringPtrOutput { return v.RootDir }).(pulumi.StringPtrOutput)
 }
 
-func (o StaticSiteOutput) ServiceDetails() StaticSiteDetailsCreatePtrOutput {
-	return o.ApplyT(func(v *StaticSite) StaticSiteDetailsCreatePtrOutput { return v.ServiceDetails }).(StaticSiteDetailsCreatePtrOutput)
+func (o StaticSiteOutput) SecretFiles() SecretFileArrayOutput {
+	return o.ApplyT(func(v *StaticSite) SecretFileArrayOutput { return v.SecretFiles }).(SecretFileArrayOutput)
+}
+
+func (o StaticSiteOutput) ServiceDetails() StaticSiteDetailsOutputPtrOutput {
+	return o.ApplyT(func(v *StaticSite) StaticSiteDetailsOutputPtrOutput { return v.ServiceDetails }).(StaticSiteDetailsOutputPtrOutput)
 }
 
 func (o StaticSiteOutput) Slug() pulumi.StringPtrOutput {

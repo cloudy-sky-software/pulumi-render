@@ -27,6 +27,12 @@ namespace Pulumi.Render.Services
         [Output("createdAt")]
         public Output<string?> CreatedAt { get; private set; } = null!;
 
+        [Output("envVars")]
+        public Output<ImmutableArray<Union<Outputs.EnvVarKeyValue, Outputs.EnvVarKeyGenerateValue>>> EnvVars { get; private set; } = null!;
+
+        [Output("image")]
+        public Output<Outputs.Image?> Image { get; private set; } = null!;
+
         [Output("imagePath")]
         public Output<string?> ImagePath { get; private set; } = null!;
 
@@ -45,8 +51,11 @@ namespace Pulumi.Render.Services
         [Output("rootDir")]
         public Output<string?> RootDir { get; private set; } = null!;
 
+        [Output("secretFiles")]
+        public Output<ImmutableArray<Outputs.SecretFile>> SecretFiles { get; private set; } = null!;
+
         [Output("serviceDetails")]
-        public Output<Outputs.StaticSiteDetailsCreate?> ServiceDetails { get; private set; } = null!;
+        public Output<Outputs.StaticSiteDetailsOutput?> ServiceDetails { get; private set; } = null!;
 
         [Output("slug")]
         public Output<string?> Slug { get; private set; } = null!;
@@ -71,7 +80,7 @@ namespace Pulumi.Render.Services
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public StaticSite(string name, StaticSiteArgs? args = null, CustomResourceOptions? options = null)
+        public StaticSite(string name, StaticSiteArgs args, CustomResourceOptions? options = null)
             : base("render:services:StaticSite", name, args ?? new StaticSiteArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -109,6 +118,55 @@ namespace Pulumi.Render.Services
 
     public sealed class StaticSiteArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Defaults to "yes"
+        /// </summary>
+        [Input("autoDeploy")]
+        public Input<Pulumi.Render.Services.StaticSiteServiceCreateAutoDeploy>? AutoDeploy { get; set; }
+
+        /// <summary>
+        /// If left empty, this will fall back to the default branch of the repository
+        /// </summary>
+        [Input("branch")]
+        public Input<string>? Branch { get; set; }
+
+        [Input("buildFilter")]
+        public Input<Inputs.BuildFilterArgs>? BuildFilter { get; set; }
+
+        [Input("envVars")]
+        private InputList<Union<Inputs.EnvVarKeyValueArgs, Inputs.EnvVarKeyGenerateValueArgs>>? _envVars;
+        public InputList<Union<Inputs.EnvVarKeyValueArgs, Inputs.EnvVarKeyGenerateValueArgs>> EnvVars
+        {
+            get => _envVars ?? (_envVars = new InputList<Union<Inputs.EnvVarKeyValueArgs, Inputs.EnvVarKeyGenerateValueArgs>>());
+            set => _envVars = value;
+        }
+
+        [Input("image")]
+        public Input<Inputs.ImageArgs>? Image { get; set; }
+
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
+
+        [Input("ownerId", required: true)]
+        public Input<string> OwnerId { get; set; } = null!;
+
+        /// <summary>
+        /// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+        /// </summary>
+        [Input("repo")]
+        public Input<string>? Repo { get; set; }
+
+        [Input("rootDir")]
+        public Input<string>? RootDir { get; set; }
+
+        [Input("secretFiles")]
+        private InputList<Inputs.SecretFileArgs>? _secretFiles;
+        public InputList<Inputs.SecretFileArgs> SecretFiles
+        {
+            get => _secretFiles ?? (_secretFiles = new InputList<Inputs.SecretFileArgs>());
+            set => _secretFiles = value;
+        }
+
         [Input("serviceDetails")]
         public Input<Inputs.StaticSiteDetailsCreateArgs>? ServiceDetails { get; set; }
 
@@ -117,6 +175,7 @@ namespace Pulumi.Render.Services
 
         public StaticSiteArgs()
         {
+            AutoDeploy = Pulumi.Render.Services.StaticSiteServiceCreateAutoDeploy.Yes;
             Type = "static_site";
         }
         public static new StaticSiteArgs Empty => new StaticSiteArgs();

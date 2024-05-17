@@ -697,94 +697,94 @@ func (in *backgroundWorkerDetailsCreateRegionPtr) ToBackgroundWorkerDetailsCreat
 }
 
 // Environment (runtime)
-type BackgroundWorkerDetailsEnv string
+type BackgroundWorkerDetailsOutputEnv string
 
 const (
-	BackgroundWorkerDetailsEnvDocker = BackgroundWorkerDetailsEnv("docker")
-	BackgroundWorkerDetailsEnvElixir = BackgroundWorkerDetailsEnv("elixir")
-	BackgroundWorkerDetailsEnvGo     = BackgroundWorkerDetailsEnv("go")
-	BackgroundWorkerDetailsEnvNode   = BackgroundWorkerDetailsEnv("node")
-	BackgroundWorkerDetailsEnvPython = BackgroundWorkerDetailsEnv("python")
-	BackgroundWorkerDetailsEnvRuby   = BackgroundWorkerDetailsEnv("ruby")
-	BackgroundWorkerDetailsEnvRust   = BackgroundWorkerDetailsEnv("rust")
-	BackgroundWorkerDetailsEnvImage  = BackgroundWorkerDetailsEnv("image")
+	BackgroundWorkerDetailsOutputEnvDocker = BackgroundWorkerDetailsOutputEnv("docker")
+	BackgroundWorkerDetailsOutputEnvElixir = BackgroundWorkerDetailsOutputEnv("elixir")
+	BackgroundWorkerDetailsOutputEnvGo     = BackgroundWorkerDetailsOutputEnv("go")
+	BackgroundWorkerDetailsOutputEnvNode   = BackgroundWorkerDetailsOutputEnv("node")
+	BackgroundWorkerDetailsOutputEnvPython = BackgroundWorkerDetailsOutputEnv("python")
+	BackgroundWorkerDetailsOutputEnvRuby   = BackgroundWorkerDetailsOutputEnv("ruby")
+	BackgroundWorkerDetailsOutputEnvRust   = BackgroundWorkerDetailsOutputEnv("rust")
+	BackgroundWorkerDetailsOutputEnvImage  = BackgroundWorkerDetailsOutputEnv("image")
 )
 
-type BackgroundWorkerDetailsEnvOutput struct{ *pulumi.OutputState }
+type BackgroundWorkerDetailsOutputEnvOutput struct{ *pulumi.OutputState }
 
-func (BackgroundWorkerDetailsEnvOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*BackgroundWorkerDetailsEnv)(nil)).Elem()
+func (BackgroundWorkerDetailsOutputEnvOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackgroundWorkerDetailsOutputEnv)(nil)).Elem()
 }
 
-func (o BackgroundWorkerDetailsEnvOutput) ToBackgroundWorkerDetailsEnvOutput() BackgroundWorkerDetailsEnvOutput {
+func (o BackgroundWorkerDetailsOutputEnvOutput) ToBackgroundWorkerDetailsOutputEnvOutput() BackgroundWorkerDetailsOutputEnvOutput {
 	return o
 }
 
-func (o BackgroundWorkerDetailsEnvOutput) ToBackgroundWorkerDetailsEnvOutputWithContext(ctx context.Context) BackgroundWorkerDetailsEnvOutput {
+func (o BackgroundWorkerDetailsOutputEnvOutput) ToBackgroundWorkerDetailsOutputEnvOutputWithContext(ctx context.Context) BackgroundWorkerDetailsOutputEnvOutput {
 	return o
 }
 
-func (o BackgroundWorkerDetailsEnvOutput) ToBackgroundWorkerDetailsEnvPtrOutput() BackgroundWorkerDetailsEnvPtrOutput {
-	return o.ToBackgroundWorkerDetailsEnvPtrOutputWithContext(context.Background())
+func (o BackgroundWorkerDetailsOutputEnvOutput) ToBackgroundWorkerDetailsOutputEnvPtrOutput() BackgroundWorkerDetailsOutputEnvPtrOutput {
+	return o.ToBackgroundWorkerDetailsOutputEnvPtrOutputWithContext(context.Background())
 }
 
-func (o BackgroundWorkerDetailsEnvOutput) ToBackgroundWorkerDetailsEnvPtrOutputWithContext(ctx context.Context) BackgroundWorkerDetailsEnvPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v BackgroundWorkerDetailsEnv) *BackgroundWorkerDetailsEnv {
+func (o BackgroundWorkerDetailsOutputEnvOutput) ToBackgroundWorkerDetailsOutputEnvPtrOutputWithContext(ctx context.Context) BackgroundWorkerDetailsOutputEnvPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BackgroundWorkerDetailsOutputEnv) *BackgroundWorkerDetailsOutputEnv {
 		return &v
-	}).(BackgroundWorkerDetailsEnvPtrOutput)
+	}).(BackgroundWorkerDetailsOutputEnvPtrOutput)
 }
 
-func (o BackgroundWorkerDetailsEnvOutput) ToStringOutput() pulumi.StringOutput {
+func (o BackgroundWorkerDetailsOutputEnvOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
 
-func (o BackgroundWorkerDetailsEnvOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e BackgroundWorkerDetailsEnv) string {
+func (o BackgroundWorkerDetailsOutputEnvOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e BackgroundWorkerDetailsOutputEnv) string {
 		return string(e)
 	}).(pulumi.StringOutput)
 }
 
-func (o BackgroundWorkerDetailsEnvOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o BackgroundWorkerDetailsOutputEnvOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o BackgroundWorkerDetailsEnvOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e BackgroundWorkerDetailsEnv) *string {
+func (o BackgroundWorkerDetailsOutputEnvOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e BackgroundWorkerDetailsOutputEnv) *string {
 		v := string(e)
 		return &v
 	}).(pulumi.StringPtrOutput)
 }
 
-type BackgroundWorkerDetailsEnvPtrOutput struct{ *pulumi.OutputState }
+type BackgroundWorkerDetailsOutputEnvPtrOutput struct{ *pulumi.OutputState }
 
-func (BackgroundWorkerDetailsEnvPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**BackgroundWorkerDetailsEnv)(nil)).Elem()
+func (BackgroundWorkerDetailsOutputEnvPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackgroundWorkerDetailsOutputEnv)(nil)).Elem()
 }
 
-func (o BackgroundWorkerDetailsEnvPtrOutput) ToBackgroundWorkerDetailsEnvPtrOutput() BackgroundWorkerDetailsEnvPtrOutput {
+func (o BackgroundWorkerDetailsOutputEnvPtrOutput) ToBackgroundWorkerDetailsOutputEnvPtrOutput() BackgroundWorkerDetailsOutputEnvPtrOutput {
 	return o
 }
 
-func (o BackgroundWorkerDetailsEnvPtrOutput) ToBackgroundWorkerDetailsEnvPtrOutputWithContext(ctx context.Context) BackgroundWorkerDetailsEnvPtrOutput {
+func (o BackgroundWorkerDetailsOutputEnvPtrOutput) ToBackgroundWorkerDetailsOutputEnvPtrOutputWithContext(ctx context.Context) BackgroundWorkerDetailsOutputEnvPtrOutput {
 	return o
 }
 
-func (o BackgroundWorkerDetailsEnvPtrOutput) Elem() BackgroundWorkerDetailsEnvOutput {
-	return o.ApplyT(func(v *BackgroundWorkerDetailsEnv) BackgroundWorkerDetailsEnv {
+func (o BackgroundWorkerDetailsOutputEnvPtrOutput) Elem() BackgroundWorkerDetailsOutputEnvOutput {
+	return o.ApplyT(func(v *BackgroundWorkerDetailsOutputEnv) BackgroundWorkerDetailsOutputEnv {
 		if v != nil {
 			return *v
 		}
-		var ret BackgroundWorkerDetailsEnv
+		var ret BackgroundWorkerDetailsOutputEnv
 		return ret
-	}).(BackgroundWorkerDetailsEnvOutput)
+	}).(BackgroundWorkerDetailsOutputEnvOutput)
 }
 
-func (o BackgroundWorkerDetailsEnvPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o BackgroundWorkerDetailsOutputEnvPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o BackgroundWorkerDetailsEnvPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e *BackgroundWorkerDetailsEnv) *string {
+func (o BackgroundWorkerDetailsOutputEnvPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *BackgroundWorkerDetailsOutputEnv) *string {
 		if e == nil {
 			return nil
 		}
@@ -794,96 +794,96 @@ func (o BackgroundWorkerDetailsEnvPtrOutput) ToStringPtrOutputWithContext(ctx co
 }
 
 // The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
-type BackgroundWorkerDetailsPlan string
+type BackgroundWorkerDetailsOutputPlan string
 
 const (
-	BackgroundWorkerDetailsPlanStarter      = BackgroundWorkerDetailsPlan("starter")
-	BackgroundWorkerDetailsPlanStarterPlus  = BackgroundWorkerDetailsPlan("starter_plus")
-	BackgroundWorkerDetailsPlanStandard     = BackgroundWorkerDetailsPlan("standard")
-	BackgroundWorkerDetailsPlanStandardPlus = BackgroundWorkerDetailsPlan("standard_plus")
-	BackgroundWorkerDetailsPlanPro          = BackgroundWorkerDetailsPlan("pro")
-	BackgroundWorkerDetailsPlanProPlus      = BackgroundWorkerDetailsPlan("pro_plus")
-	BackgroundWorkerDetailsPlanProMax       = BackgroundWorkerDetailsPlan("pro_max")
-	BackgroundWorkerDetailsPlanProUltra     = BackgroundWorkerDetailsPlan("pro_ultra")
-	BackgroundWorkerDetailsPlanFree         = BackgroundWorkerDetailsPlan("free")
-	BackgroundWorkerDetailsPlanCustom       = BackgroundWorkerDetailsPlan("custom")
+	BackgroundWorkerDetailsOutputPlanStarter      = BackgroundWorkerDetailsOutputPlan("starter")
+	BackgroundWorkerDetailsOutputPlanStarterPlus  = BackgroundWorkerDetailsOutputPlan("starter_plus")
+	BackgroundWorkerDetailsOutputPlanStandard     = BackgroundWorkerDetailsOutputPlan("standard")
+	BackgroundWorkerDetailsOutputPlanStandardPlus = BackgroundWorkerDetailsOutputPlan("standard_plus")
+	BackgroundWorkerDetailsOutputPlanPro          = BackgroundWorkerDetailsOutputPlan("pro")
+	BackgroundWorkerDetailsOutputPlanProPlus      = BackgroundWorkerDetailsOutputPlan("pro_plus")
+	BackgroundWorkerDetailsOutputPlanProMax       = BackgroundWorkerDetailsOutputPlan("pro_max")
+	BackgroundWorkerDetailsOutputPlanProUltra     = BackgroundWorkerDetailsOutputPlan("pro_ultra")
+	BackgroundWorkerDetailsOutputPlanFree         = BackgroundWorkerDetailsOutputPlan("free")
+	BackgroundWorkerDetailsOutputPlanCustom       = BackgroundWorkerDetailsOutputPlan("custom")
 )
 
-type BackgroundWorkerDetailsPlanOutput struct{ *pulumi.OutputState }
+type BackgroundWorkerDetailsOutputPlanOutput struct{ *pulumi.OutputState }
 
-func (BackgroundWorkerDetailsPlanOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*BackgroundWorkerDetailsPlan)(nil)).Elem()
+func (BackgroundWorkerDetailsOutputPlanOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackgroundWorkerDetailsOutputPlan)(nil)).Elem()
 }
 
-func (o BackgroundWorkerDetailsPlanOutput) ToBackgroundWorkerDetailsPlanOutput() BackgroundWorkerDetailsPlanOutput {
+func (o BackgroundWorkerDetailsOutputPlanOutput) ToBackgroundWorkerDetailsOutputPlanOutput() BackgroundWorkerDetailsOutputPlanOutput {
 	return o
 }
 
-func (o BackgroundWorkerDetailsPlanOutput) ToBackgroundWorkerDetailsPlanOutputWithContext(ctx context.Context) BackgroundWorkerDetailsPlanOutput {
+func (o BackgroundWorkerDetailsOutputPlanOutput) ToBackgroundWorkerDetailsOutputPlanOutputWithContext(ctx context.Context) BackgroundWorkerDetailsOutputPlanOutput {
 	return o
 }
 
-func (o BackgroundWorkerDetailsPlanOutput) ToBackgroundWorkerDetailsPlanPtrOutput() BackgroundWorkerDetailsPlanPtrOutput {
-	return o.ToBackgroundWorkerDetailsPlanPtrOutputWithContext(context.Background())
+func (o BackgroundWorkerDetailsOutputPlanOutput) ToBackgroundWorkerDetailsOutputPlanPtrOutput() BackgroundWorkerDetailsOutputPlanPtrOutput {
+	return o.ToBackgroundWorkerDetailsOutputPlanPtrOutputWithContext(context.Background())
 }
 
-func (o BackgroundWorkerDetailsPlanOutput) ToBackgroundWorkerDetailsPlanPtrOutputWithContext(ctx context.Context) BackgroundWorkerDetailsPlanPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v BackgroundWorkerDetailsPlan) *BackgroundWorkerDetailsPlan {
+func (o BackgroundWorkerDetailsOutputPlanOutput) ToBackgroundWorkerDetailsOutputPlanPtrOutputWithContext(ctx context.Context) BackgroundWorkerDetailsOutputPlanPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BackgroundWorkerDetailsOutputPlan) *BackgroundWorkerDetailsOutputPlan {
 		return &v
-	}).(BackgroundWorkerDetailsPlanPtrOutput)
+	}).(BackgroundWorkerDetailsOutputPlanPtrOutput)
 }
 
-func (o BackgroundWorkerDetailsPlanOutput) ToStringOutput() pulumi.StringOutput {
+func (o BackgroundWorkerDetailsOutputPlanOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
 
-func (o BackgroundWorkerDetailsPlanOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e BackgroundWorkerDetailsPlan) string {
+func (o BackgroundWorkerDetailsOutputPlanOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e BackgroundWorkerDetailsOutputPlan) string {
 		return string(e)
 	}).(pulumi.StringOutput)
 }
 
-func (o BackgroundWorkerDetailsPlanOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o BackgroundWorkerDetailsOutputPlanOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o BackgroundWorkerDetailsPlanOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e BackgroundWorkerDetailsPlan) *string {
+func (o BackgroundWorkerDetailsOutputPlanOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e BackgroundWorkerDetailsOutputPlan) *string {
 		v := string(e)
 		return &v
 	}).(pulumi.StringPtrOutput)
 }
 
-type BackgroundWorkerDetailsPlanPtrOutput struct{ *pulumi.OutputState }
+type BackgroundWorkerDetailsOutputPlanPtrOutput struct{ *pulumi.OutputState }
 
-func (BackgroundWorkerDetailsPlanPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**BackgroundWorkerDetailsPlan)(nil)).Elem()
+func (BackgroundWorkerDetailsOutputPlanPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackgroundWorkerDetailsOutputPlan)(nil)).Elem()
 }
 
-func (o BackgroundWorkerDetailsPlanPtrOutput) ToBackgroundWorkerDetailsPlanPtrOutput() BackgroundWorkerDetailsPlanPtrOutput {
+func (o BackgroundWorkerDetailsOutputPlanPtrOutput) ToBackgroundWorkerDetailsOutputPlanPtrOutput() BackgroundWorkerDetailsOutputPlanPtrOutput {
 	return o
 }
 
-func (o BackgroundWorkerDetailsPlanPtrOutput) ToBackgroundWorkerDetailsPlanPtrOutputWithContext(ctx context.Context) BackgroundWorkerDetailsPlanPtrOutput {
+func (o BackgroundWorkerDetailsOutputPlanPtrOutput) ToBackgroundWorkerDetailsOutputPlanPtrOutputWithContext(ctx context.Context) BackgroundWorkerDetailsOutputPlanPtrOutput {
 	return o
 }
 
-func (o BackgroundWorkerDetailsPlanPtrOutput) Elem() BackgroundWorkerDetailsPlanOutput {
-	return o.ApplyT(func(v *BackgroundWorkerDetailsPlan) BackgroundWorkerDetailsPlan {
+func (o BackgroundWorkerDetailsOutputPlanPtrOutput) Elem() BackgroundWorkerDetailsOutputPlanOutput {
+	return o.ApplyT(func(v *BackgroundWorkerDetailsOutputPlan) BackgroundWorkerDetailsOutputPlan {
 		if v != nil {
 			return *v
 		}
-		var ret BackgroundWorkerDetailsPlan
+		var ret BackgroundWorkerDetailsOutputPlan
 		return ret
-	}).(BackgroundWorkerDetailsPlanOutput)
+	}).(BackgroundWorkerDetailsOutputPlanOutput)
 }
 
-func (o BackgroundWorkerDetailsPlanPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o BackgroundWorkerDetailsOutputPlanPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o BackgroundWorkerDetailsPlanPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e *BackgroundWorkerDetailsPlan) *string {
+func (o BackgroundWorkerDetailsOutputPlanPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *BackgroundWorkerDetailsOutputPlan) *string {
 		if e == nil {
 			return nil
 		}
@@ -892,88 +892,88 @@ func (o BackgroundWorkerDetailsPlanPtrOutput) ToStringPtrOutputWithContext(ctx c
 	}).(pulumi.StringPtrOutput)
 }
 
-type BackgroundWorkerDetailsPullRequestPreviewsEnabled string
+type BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled string
 
 const (
-	BackgroundWorkerDetailsPullRequestPreviewsEnabledYes = BackgroundWorkerDetailsPullRequestPreviewsEnabled("yes")
-	BackgroundWorkerDetailsPullRequestPreviewsEnabledNo  = BackgroundWorkerDetailsPullRequestPreviewsEnabled("no")
+	BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledYes = BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled("yes")
+	BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledNo  = BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled("no")
 )
 
-type BackgroundWorkerDetailsPullRequestPreviewsEnabledOutput struct{ *pulumi.OutputState }
+type BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledOutput struct{ *pulumi.OutputState }
 
-func (BackgroundWorkerDetailsPullRequestPreviewsEnabledOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*BackgroundWorkerDetailsPullRequestPreviewsEnabled)(nil)).Elem()
+func (BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled)(nil)).Elem()
 }
 
-func (o BackgroundWorkerDetailsPullRequestPreviewsEnabledOutput) ToBackgroundWorkerDetailsPullRequestPreviewsEnabledOutput() BackgroundWorkerDetailsPullRequestPreviewsEnabledOutput {
+func (o BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledOutput) ToBackgroundWorkerDetailsOutputPullRequestPreviewsEnabledOutput() BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledOutput {
 	return o
 }
 
-func (o BackgroundWorkerDetailsPullRequestPreviewsEnabledOutput) ToBackgroundWorkerDetailsPullRequestPreviewsEnabledOutputWithContext(ctx context.Context) BackgroundWorkerDetailsPullRequestPreviewsEnabledOutput {
+func (o BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledOutput) ToBackgroundWorkerDetailsOutputPullRequestPreviewsEnabledOutputWithContext(ctx context.Context) BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledOutput {
 	return o
 }
 
-func (o BackgroundWorkerDetailsPullRequestPreviewsEnabledOutput) ToBackgroundWorkerDetailsPullRequestPreviewsEnabledPtrOutput() BackgroundWorkerDetailsPullRequestPreviewsEnabledPtrOutput {
-	return o.ToBackgroundWorkerDetailsPullRequestPreviewsEnabledPtrOutputWithContext(context.Background())
+func (o BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledOutput) ToBackgroundWorkerDetailsOutputPullRequestPreviewsEnabledPtrOutput() BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledPtrOutput {
+	return o.ToBackgroundWorkerDetailsOutputPullRequestPreviewsEnabledPtrOutputWithContext(context.Background())
 }
 
-func (o BackgroundWorkerDetailsPullRequestPreviewsEnabledOutput) ToBackgroundWorkerDetailsPullRequestPreviewsEnabledPtrOutputWithContext(ctx context.Context) BackgroundWorkerDetailsPullRequestPreviewsEnabledPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v BackgroundWorkerDetailsPullRequestPreviewsEnabled) *BackgroundWorkerDetailsPullRequestPreviewsEnabled {
+func (o BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledOutput) ToBackgroundWorkerDetailsOutputPullRequestPreviewsEnabledPtrOutputWithContext(ctx context.Context) BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled) *BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled {
 		return &v
-	}).(BackgroundWorkerDetailsPullRequestPreviewsEnabledPtrOutput)
+	}).(BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledPtrOutput)
 }
 
-func (o BackgroundWorkerDetailsPullRequestPreviewsEnabledOutput) ToStringOutput() pulumi.StringOutput {
+func (o BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
 
-func (o BackgroundWorkerDetailsPullRequestPreviewsEnabledOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e BackgroundWorkerDetailsPullRequestPreviewsEnabled) string {
+func (o BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled) string {
 		return string(e)
 	}).(pulumi.StringOutput)
 }
 
-func (o BackgroundWorkerDetailsPullRequestPreviewsEnabledOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o BackgroundWorkerDetailsPullRequestPreviewsEnabledOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e BackgroundWorkerDetailsPullRequestPreviewsEnabled) *string {
+func (o BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled) *string {
 		v := string(e)
 		return &v
 	}).(pulumi.StringPtrOutput)
 }
 
-type BackgroundWorkerDetailsPullRequestPreviewsEnabledPtrOutput struct{ *pulumi.OutputState }
+type BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledPtrOutput struct{ *pulumi.OutputState }
 
-func (BackgroundWorkerDetailsPullRequestPreviewsEnabledPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**BackgroundWorkerDetailsPullRequestPreviewsEnabled)(nil)).Elem()
+func (BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled)(nil)).Elem()
 }
 
-func (o BackgroundWorkerDetailsPullRequestPreviewsEnabledPtrOutput) ToBackgroundWorkerDetailsPullRequestPreviewsEnabledPtrOutput() BackgroundWorkerDetailsPullRequestPreviewsEnabledPtrOutput {
+func (o BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledPtrOutput) ToBackgroundWorkerDetailsOutputPullRequestPreviewsEnabledPtrOutput() BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledPtrOutput {
 	return o
 }
 
-func (o BackgroundWorkerDetailsPullRequestPreviewsEnabledPtrOutput) ToBackgroundWorkerDetailsPullRequestPreviewsEnabledPtrOutputWithContext(ctx context.Context) BackgroundWorkerDetailsPullRequestPreviewsEnabledPtrOutput {
+func (o BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledPtrOutput) ToBackgroundWorkerDetailsOutputPullRequestPreviewsEnabledPtrOutputWithContext(ctx context.Context) BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledPtrOutput {
 	return o
 }
 
-func (o BackgroundWorkerDetailsPullRequestPreviewsEnabledPtrOutput) Elem() BackgroundWorkerDetailsPullRequestPreviewsEnabledOutput {
-	return o.ApplyT(func(v *BackgroundWorkerDetailsPullRequestPreviewsEnabled) BackgroundWorkerDetailsPullRequestPreviewsEnabled {
+func (o BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledPtrOutput) Elem() BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledOutput {
+	return o.ApplyT(func(v *BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled) BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled {
 		if v != nil {
 			return *v
 		}
-		var ret BackgroundWorkerDetailsPullRequestPreviewsEnabled
+		var ret BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled
 		return ret
-	}).(BackgroundWorkerDetailsPullRequestPreviewsEnabledOutput)
+	}).(BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledOutput)
 }
 
-func (o BackgroundWorkerDetailsPullRequestPreviewsEnabledPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o BackgroundWorkerDetailsPullRequestPreviewsEnabledPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e *BackgroundWorkerDetailsPullRequestPreviewsEnabled) *string {
+func (o BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled) *string {
 		if e == nil {
 			return nil
 		}
@@ -982,90 +982,90 @@ func (o BackgroundWorkerDetailsPullRequestPreviewsEnabledPtrOutput) ToStringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
-type BackgroundWorkerDetailsRegion string
+type BackgroundWorkerDetailsOutputRegion string
 
 const (
-	BackgroundWorkerDetailsRegionFrankfurt = BackgroundWorkerDetailsRegion("frankfurt")
-	BackgroundWorkerDetailsRegionOregon    = BackgroundWorkerDetailsRegion("oregon")
-	BackgroundWorkerDetailsRegionOhio      = BackgroundWorkerDetailsRegion("ohio")
-	BackgroundWorkerDetailsRegionSingapore = BackgroundWorkerDetailsRegion("singapore")
+	BackgroundWorkerDetailsOutputRegionFrankfurt = BackgroundWorkerDetailsOutputRegion("frankfurt")
+	BackgroundWorkerDetailsOutputRegionOregon    = BackgroundWorkerDetailsOutputRegion("oregon")
+	BackgroundWorkerDetailsOutputRegionOhio      = BackgroundWorkerDetailsOutputRegion("ohio")
+	BackgroundWorkerDetailsOutputRegionSingapore = BackgroundWorkerDetailsOutputRegion("singapore")
 )
 
-type BackgroundWorkerDetailsRegionOutput struct{ *pulumi.OutputState }
+type BackgroundWorkerDetailsOutputRegionOutput struct{ *pulumi.OutputState }
 
-func (BackgroundWorkerDetailsRegionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*BackgroundWorkerDetailsRegion)(nil)).Elem()
+func (BackgroundWorkerDetailsOutputRegionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackgroundWorkerDetailsOutputRegion)(nil)).Elem()
 }
 
-func (o BackgroundWorkerDetailsRegionOutput) ToBackgroundWorkerDetailsRegionOutput() BackgroundWorkerDetailsRegionOutput {
+func (o BackgroundWorkerDetailsOutputRegionOutput) ToBackgroundWorkerDetailsOutputRegionOutput() BackgroundWorkerDetailsOutputRegionOutput {
 	return o
 }
 
-func (o BackgroundWorkerDetailsRegionOutput) ToBackgroundWorkerDetailsRegionOutputWithContext(ctx context.Context) BackgroundWorkerDetailsRegionOutput {
+func (o BackgroundWorkerDetailsOutputRegionOutput) ToBackgroundWorkerDetailsOutputRegionOutputWithContext(ctx context.Context) BackgroundWorkerDetailsOutputRegionOutput {
 	return o
 }
 
-func (o BackgroundWorkerDetailsRegionOutput) ToBackgroundWorkerDetailsRegionPtrOutput() BackgroundWorkerDetailsRegionPtrOutput {
-	return o.ToBackgroundWorkerDetailsRegionPtrOutputWithContext(context.Background())
+func (o BackgroundWorkerDetailsOutputRegionOutput) ToBackgroundWorkerDetailsOutputRegionPtrOutput() BackgroundWorkerDetailsOutputRegionPtrOutput {
+	return o.ToBackgroundWorkerDetailsOutputRegionPtrOutputWithContext(context.Background())
 }
 
-func (o BackgroundWorkerDetailsRegionOutput) ToBackgroundWorkerDetailsRegionPtrOutputWithContext(ctx context.Context) BackgroundWorkerDetailsRegionPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v BackgroundWorkerDetailsRegion) *BackgroundWorkerDetailsRegion {
+func (o BackgroundWorkerDetailsOutputRegionOutput) ToBackgroundWorkerDetailsOutputRegionPtrOutputWithContext(ctx context.Context) BackgroundWorkerDetailsOutputRegionPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BackgroundWorkerDetailsOutputRegion) *BackgroundWorkerDetailsOutputRegion {
 		return &v
-	}).(BackgroundWorkerDetailsRegionPtrOutput)
+	}).(BackgroundWorkerDetailsOutputRegionPtrOutput)
 }
 
-func (o BackgroundWorkerDetailsRegionOutput) ToStringOutput() pulumi.StringOutput {
+func (o BackgroundWorkerDetailsOutputRegionOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
 
-func (o BackgroundWorkerDetailsRegionOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e BackgroundWorkerDetailsRegion) string {
+func (o BackgroundWorkerDetailsOutputRegionOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e BackgroundWorkerDetailsOutputRegion) string {
 		return string(e)
 	}).(pulumi.StringOutput)
 }
 
-func (o BackgroundWorkerDetailsRegionOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o BackgroundWorkerDetailsOutputRegionOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o BackgroundWorkerDetailsRegionOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e BackgroundWorkerDetailsRegion) *string {
+func (o BackgroundWorkerDetailsOutputRegionOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e BackgroundWorkerDetailsOutputRegion) *string {
 		v := string(e)
 		return &v
 	}).(pulumi.StringPtrOutput)
 }
 
-type BackgroundWorkerDetailsRegionPtrOutput struct{ *pulumi.OutputState }
+type BackgroundWorkerDetailsOutputRegionPtrOutput struct{ *pulumi.OutputState }
 
-func (BackgroundWorkerDetailsRegionPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**BackgroundWorkerDetailsRegion)(nil)).Elem()
+func (BackgroundWorkerDetailsOutputRegionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackgroundWorkerDetailsOutputRegion)(nil)).Elem()
 }
 
-func (o BackgroundWorkerDetailsRegionPtrOutput) ToBackgroundWorkerDetailsRegionPtrOutput() BackgroundWorkerDetailsRegionPtrOutput {
+func (o BackgroundWorkerDetailsOutputRegionPtrOutput) ToBackgroundWorkerDetailsOutputRegionPtrOutput() BackgroundWorkerDetailsOutputRegionPtrOutput {
 	return o
 }
 
-func (o BackgroundWorkerDetailsRegionPtrOutput) ToBackgroundWorkerDetailsRegionPtrOutputWithContext(ctx context.Context) BackgroundWorkerDetailsRegionPtrOutput {
+func (o BackgroundWorkerDetailsOutputRegionPtrOutput) ToBackgroundWorkerDetailsOutputRegionPtrOutputWithContext(ctx context.Context) BackgroundWorkerDetailsOutputRegionPtrOutput {
 	return o
 }
 
-func (o BackgroundWorkerDetailsRegionPtrOutput) Elem() BackgroundWorkerDetailsRegionOutput {
-	return o.ApplyT(func(v *BackgroundWorkerDetailsRegion) BackgroundWorkerDetailsRegion {
+func (o BackgroundWorkerDetailsOutputRegionPtrOutput) Elem() BackgroundWorkerDetailsOutputRegionOutput {
+	return o.ApplyT(func(v *BackgroundWorkerDetailsOutputRegion) BackgroundWorkerDetailsOutputRegion {
 		if v != nil {
 			return *v
 		}
-		var ret BackgroundWorkerDetailsRegion
+		var ret BackgroundWorkerDetailsOutputRegion
 		return ret
-	}).(BackgroundWorkerDetailsRegionOutput)
+	}).(BackgroundWorkerDetailsOutputRegionOutput)
 }
 
-func (o BackgroundWorkerDetailsRegionPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o BackgroundWorkerDetailsOutputRegionPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o BackgroundWorkerDetailsRegionPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e *BackgroundWorkerDetailsRegion) *string {
+func (o BackgroundWorkerDetailsOutputRegionPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *BackgroundWorkerDetailsOutputRegion) *string {
 		if e == nil {
 			return nil
 		}
@@ -1162,6 +1162,172 @@ func (o BackgroundWorkerServiceAutoDeployPtrOutput) ToStringPtrOutputWithContext
 		v := string(*e)
 		return &v
 	}).(pulumi.StringPtrOutput)
+}
+
+// Defaults to "yes"
+type BackgroundWorkerServiceCreateAutoDeploy string
+
+const (
+	BackgroundWorkerServiceCreateAutoDeployYes = BackgroundWorkerServiceCreateAutoDeploy("yes")
+	BackgroundWorkerServiceCreateAutoDeployNo  = BackgroundWorkerServiceCreateAutoDeploy("no")
+)
+
+func (BackgroundWorkerServiceCreateAutoDeploy) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackgroundWorkerServiceCreateAutoDeploy)(nil)).Elem()
+}
+
+func (e BackgroundWorkerServiceCreateAutoDeploy) ToBackgroundWorkerServiceCreateAutoDeployOutput() BackgroundWorkerServiceCreateAutoDeployOutput {
+	return pulumi.ToOutput(e).(BackgroundWorkerServiceCreateAutoDeployOutput)
+}
+
+func (e BackgroundWorkerServiceCreateAutoDeploy) ToBackgroundWorkerServiceCreateAutoDeployOutputWithContext(ctx context.Context) BackgroundWorkerServiceCreateAutoDeployOutput {
+	return pulumi.ToOutputWithContext(ctx, e).(BackgroundWorkerServiceCreateAutoDeployOutput)
+}
+
+func (e BackgroundWorkerServiceCreateAutoDeploy) ToBackgroundWorkerServiceCreateAutoDeployPtrOutput() BackgroundWorkerServiceCreateAutoDeployPtrOutput {
+	return e.ToBackgroundWorkerServiceCreateAutoDeployPtrOutputWithContext(context.Background())
+}
+
+func (e BackgroundWorkerServiceCreateAutoDeploy) ToBackgroundWorkerServiceCreateAutoDeployPtrOutputWithContext(ctx context.Context) BackgroundWorkerServiceCreateAutoDeployPtrOutput {
+	return BackgroundWorkerServiceCreateAutoDeploy(e).ToBackgroundWorkerServiceCreateAutoDeployOutputWithContext(ctx).ToBackgroundWorkerServiceCreateAutoDeployPtrOutputWithContext(ctx)
+}
+
+func (e BackgroundWorkerServiceCreateAutoDeploy) ToStringOutput() pulumi.StringOutput {
+	return pulumi.ToOutput(pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e BackgroundWorkerServiceCreateAutoDeploy) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return pulumi.ToOutputWithContext(ctx, pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e BackgroundWorkerServiceCreateAutoDeploy) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringPtrOutputWithContext(context.Background())
+}
+
+func (e BackgroundWorkerServiceCreateAutoDeploy) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
+}
+
+type BackgroundWorkerServiceCreateAutoDeployOutput struct{ *pulumi.OutputState }
+
+func (BackgroundWorkerServiceCreateAutoDeployOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackgroundWorkerServiceCreateAutoDeploy)(nil)).Elem()
+}
+
+func (o BackgroundWorkerServiceCreateAutoDeployOutput) ToBackgroundWorkerServiceCreateAutoDeployOutput() BackgroundWorkerServiceCreateAutoDeployOutput {
+	return o
+}
+
+func (o BackgroundWorkerServiceCreateAutoDeployOutput) ToBackgroundWorkerServiceCreateAutoDeployOutputWithContext(ctx context.Context) BackgroundWorkerServiceCreateAutoDeployOutput {
+	return o
+}
+
+func (o BackgroundWorkerServiceCreateAutoDeployOutput) ToBackgroundWorkerServiceCreateAutoDeployPtrOutput() BackgroundWorkerServiceCreateAutoDeployPtrOutput {
+	return o.ToBackgroundWorkerServiceCreateAutoDeployPtrOutputWithContext(context.Background())
+}
+
+func (o BackgroundWorkerServiceCreateAutoDeployOutput) ToBackgroundWorkerServiceCreateAutoDeployPtrOutputWithContext(ctx context.Context) BackgroundWorkerServiceCreateAutoDeployPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BackgroundWorkerServiceCreateAutoDeploy) *BackgroundWorkerServiceCreateAutoDeploy {
+		return &v
+	}).(BackgroundWorkerServiceCreateAutoDeployPtrOutput)
+}
+
+func (o BackgroundWorkerServiceCreateAutoDeployOutput) ToStringOutput() pulumi.StringOutput {
+	return o.ToStringOutputWithContext(context.Background())
+}
+
+func (o BackgroundWorkerServiceCreateAutoDeployOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e BackgroundWorkerServiceCreateAutoDeploy) string {
+		return string(e)
+	}).(pulumi.StringOutput)
+}
+
+func (o BackgroundWorkerServiceCreateAutoDeployOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o BackgroundWorkerServiceCreateAutoDeployOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e BackgroundWorkerServiceCreateAutoDeploy) *string {
+		v := string(e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+type BackgroundWorkerServiceCreateAutoDeployPtrOutput struct{ *pulumi.OutputState }
+
+func (BackgroundWorkerServiceCreateAutoDeployPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackgroundWorkerServiceCreateAutoDeploy)(nil)).Elem()
+}
+
+func (o BackgroundWorkerServiceCreateAutoDeployPtrOutput) ToBackgroundWorkerServiceCreateAutoDeployPtrOutput() BackgroundWorkerServiceCreateAutoDeployPtrOutput {
+	return o
+}
+
+func (o BackgroundWorkerServiceCreateAutoDeployPtrOutput) ToBackgroundWorkerServiceCreateAutoDeployPtrOutputWithContext(ctx context.Context) BackgroundWorkerServiceCreateAutoDeployPtrOutput {
+	return o
+}
+
+func (o BackgroundWorkerServiceCreateAutoDeployPtrOutput) Elem() BackgroundWorkerServiceCreateAutoDeployOutput {
+	return o.ApplyT(func(v *BackgroundWorkerServiceCreateAutoDeploy) BackgroundWorkerServiceCreateAutoDeploy {
+		if v != nil {
+			return *v
+		}
+		var ret BackgroundWorkerServiceCreateAutoDeploy
+		return ret
+	}).(BackgroundWorkerServiceCreateAutoDeployOutput)
+}
+
+func (o BackgroundWorkerServiceCreateAutoDeployPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o BackgroundWorkerServiceCreateAutoDeployPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *BackgroundWorkerServiceCreateAutoDeploy) *string {
+		if e == nil {
+			return nil
+		}
+		v := string(*e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+// BackgroundWorkerServiceCreateAutoDeployInput is an input type that accepts values of the BackgroundWorkerServiceCreateAutoDeploy enum
+// A concrete instance of `BackgroundWorkerServiceCreateAutoDeployInput` can be one of the following:
+//
+//	BackgroundWorkerServiceCreateAutoDeployYes
+//	BackgroundWorkerServiceCreateAutoDeployNo
+type BackgroundWorkerServiceCreateAutoDeployInput interface {
+	pulumi.Input
+
+	ToBackgroundWorkerServiceCreateAutoDeployOutput() BackgroundWorkerServiceCreateAutoDeployOutput
+	ToBackgroundWorkerServiceCreateAutoDeployOutputWithContext(context.Context) BackgroundWorkerServiceCreateAutoDeployOutput
+}
+
+var backgroundWorkerServiceCreateAutoDeployPtrType = reflect.TypeOf((**BackgroundWorkerServiceCreateAutoDeploy)(nil)).Elem()
+
+type BackgroundWorkerServiceCreateAutoDeployPtrInput interface {
+	pulumi.Input
+
+	ToBackgroundWorkerServiceCreateAutoDeployPtrOutput() BackgroundWorkerServiceCreateAutoDeployPtrOutput
+	ToBackgroundWorkerServiceCreateAutoDeployPtrOutputWithContext(context.Context) BackgroundWorkerServiceCreateAutoDeployPtrOutput
+}
+
+type backgroundWorkerServiceCreateAutoDeployPtr string
+
+func BackgroundWorkerServiceCreateAutoDeployPtr(v string) BackgroundWorkerServiceCreateAutoDeployPtrInput {
+	return (*backgroundWorkerServiceCreateAutoDeployPtr)(&v)
+}
+
+func (*backgroundWorkerServiceCreateAutoDeployPtr) ElementType() reflect.Type {
+	return backgroundWorkerServiceCreateAutoDeployPtrType
+}
+
+func (in *backgroundWorkerServiceCreateAutoDeployPtr) ToBackgroundWorkerServiceCreateAutoDeployPtrOutput() BackgroundWorkerServiceCreateAutoDeployPtrOutput {
+	return pulumi.ToOutput(in).(BackgroundWorkerServiceCreateAutoDeployPtrOutput)
+}
+
+func (in *backgroundWorkerServiceCreateAutoDeployPtr) ToBackgroundWorkerServiceCreateAutoDeployPtrOutputWithContext(ctx context.Context) BackgroundWorkerServiceCreateAutoDeployPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, in).(BackgroundWorkerServiceCreateAutoDeployPtrOutput)
 }
 
 type BackgroundWorkerServiceNotifyOnFail string
@@ -2175,94 +2341,94 @@ func (in *cronJobDetailsCreateRegionPtr) ToCronJobDetailsCreateRegionPtrOutputWi
 }
 
 // Environment (runtime)
-type CronJobDetailsEnv string
+type CronJobDetailsOutputEnv string
 
 const (
-	CronJobDetailsEnvDocker = CronJobDetailsEnv("docker")
-	CronJobDetailsEnvElixir = CronJobDetailsEnv("elixir")
-	CronJobDetailsEnvGo     = CronJobDetailsEnv("go")
-	CronJobDetailsEnvNode   = CronJobDetailsEnv("node")
-	CronJobDetailsEnvPython = CronJobDetailsEnv("python")
-	CronJobDetailsEnvRuby   = CronJobDetailsEnv("ruby")
-	CronJobDetailsEnvRust   = CronJobDetailsEnv("rust")
-	CronJobDetailsEnvImage  = CronJobDetailsEnv("image")
+	CronJobDetailsOutputEnvDocker = CronJobDetailsOutputEnv("docker")
+	CronJobDetailsOutputEnvElixir = CronJobDetailsOutputEnv("elixir")
+	CronJobDetailsOutputEnvGo     = CronJobDetailsOutputEnv("go")
+	CronJobDetailsOutputEnvNode   = CronJobDetailsOutputEnv("node")
+	CronJobDetailsOutputEnvPython = CronJobDetailsOutputEnv("python")
+	CronJobDetailsOutputEnvRuby   = CronJobDetailsOutputEnv("ruby")
+	CronJobDetailsOutputEnvRust   = CronJobDetailsOutputEnv("rust")
+	CronJobDetailsOutputEnvImage  = CronJobDetailsOutputEnv("image")
 )
 
-type CronJobDetailsEnvOutput struct{ *pulumi.OutputState }
+type CronJobDetailsOutputEnvOutput struct{ *pulumi.OutputState }
 
-func (CronJobDetailsEnvOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CronJobDetailsEnv)(nil)).Elem()
+func (CronJobDetailsOutputEnvOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CronJobDetailsOutputEnv)(nil)).Elem()
 }
 
-func (o CronJobDetailsEnvOutput) ToCronJobDetailsEnvOutput() CronJobDetailsEnvOutput {
+func (o CronJobDetailsOutputEnvOutput) ToCronJobDetailsOutputEnvOutput() CronJobDetailsOutputEnvOutput {
 	return o
 }
 
-func (o CronJobDetailsEnvOutput) ToCronJobDetailsEnvOutputWithContext(ctx context.Context) CronJobDetailsEnvOutput {
+func (o CronJobDetailsOutputEnvOutput) ToCronJobDetailsOutputEnvOutputWithContext(ctx context.Context) CronJobDetailsOutputEnvOutput {
 	return o
 }
 
-func (o CronJobDetailsEnvOutput) ToCronJobDetailsEnvPtrOutput() CronJobDetailsEnvPtrOutput {
-	return o.ToCronJobDetailsEnvPtrOutputWithContext(context.Background())
+func (o CronJobDetailsOutputEnvOutput) ToCronJobDetailsOutputEnvPtrOutput() CronJobDetailsOutputEnvPtrOutput {
+	return o.ToCronJobDetailsOutputEnvPtrOutputWithContext(context.Background())
 }
 
-func (o CronJobDetailsEnvOutput) ToCronJobDetailsEnvPtrOutputWithContext(ctx context.Context) CronJobDetailsEnvPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v CronJobDetailsEnv) *CronJobDetailsEnv {
+func (o CronJobDetailsOutputEnvOutput) ToCronJobDetailsOutputEnvPtrOutputWithContext(ctx context.Context) CronJobDetailsOutputEnvPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CronJobDetailsOutputEnv) *CronJobDetailsOutputEnv {
 		return &v
-	}).(CronJobDetailsEnvPtrOutput)
+	}).(CronJobDetailsOutputEnvPtrOutput)
 }
 
-func (o CronJobDetailsEnvOutput) ToStringOutput() pulumi.StringOutput {
+func (o CronJobDetailsOutputEnvOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
 
-func (o CronJobDetailsEnvOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e CronJobDetailsEnv) string {
+func (o CronJobDetailsOutputEnvOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e CronJobDetailsOutputEnv) string {
 		return string(e)
 	}).(pulumi.StringOutput)
 }
 
-func (o CronJobDetailsEnvOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o CronJobDetailsOutputEnvOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o CronJobDetailsEnvOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e CronJobDetailsEnv) *string {
+func (o CronJobDetailsOutputEnvOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e CronJobDetailsOutputEnv) *string {
 		v := string(e)
 		return &v
 	}).(pulumi.StringPtrOutput)
 }
 
-type CronJobDetailsEnvPtrOutput struct{ *pulumi.OutputState }
+type CronJobDetailsOutputEnvPtrOutput struct{ *pulumi.OutputState }
 
-func (CronJobDetailsEnvPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**CronJobDetailsEnv)(nil)).Elem()
+func (CronJobDetailsOutputEnvPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CronJobDetailsOutputEnv)(nil)).Elem()
 }
 
-func (o CronJobDetailsEnvPtrOutput) ToCronJobDetailsEnvPtrOutput() CronJobDetailsEnvPtrOutput {
+func (o CronJobDetailsOutputEnvPtrOutput) ToCronJobDetailsOutputEnvPtrOutput() CronJobDetailsOutputEnvPtrOutput {
 	return o
 }
 
-func (o CronJobDetailsEnvPtrOutput) ToCronJobDetailsEnvPtrOutputWithContext(ctx context.Context) CronJobDetailsEnvPtrOutput {
+func (o CronJobDetailsOutputEnvPtrOutput) ToCronJobDetailsOutputEnvPtrOutputWithContext(ctx context.Context) CronJobDetailsOutputEnvPtrOutput {
 	return o
 }
 
-func (o CronJobDetailsEnvPtrOutput) Elem() CronJobDetailsEnvOutput {
-	return o.ApplyT(func(v *CronJobDetailsEnv) CronJobDetailsEnv {
+func (o CronJobDetailsOutputEnvPtrOutput) Elem() CronJobDetailsOutputEnvOutput {
+	return o.ApplyT(func(v *CronJobDetailsOutputEnv) CronJobDetailsOutputEnv {
 		if v != nil {
 			return *v
 		}
-		var ret CronJobDetailsEnv
+		var ret CronJobDetailsOutputEnv
 		return ret
-	}).(CronJobDetailsEnvOutput)
+	}).(CronJobDetailsOutputEnvOutput)
 }
 
-func (o CronJobDetailsEnvPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o CronJobDetailsOutputEnvPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o CronJobDetailsEnvPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e *CronJobDetailsEnv) *string {
+func (o CronJobDetailsOutputEnvPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *CronJobDetailsOutputEnv) *string {
 		if e == nil {
 			return nil
 		}
@@ -2272,96 +2438,96 @@ func (o CronJobDetailsEnvPtrOutput) ToStringPtrOutputWithContext(ctx context.Con
 }
 
 // The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
-type CronJobDetailsPlan string
+type CronJobDetailsOutputPlan string
 
 const (
-	CronJobDetailsPlanStarter      = CronJobDetailsPlan("starter")
-	CronJobDetailsPlanStarterPlus  = CronJobDetailsPlan("starter_plus")
-	CronJobDetailsPlanStandard     = CronJobDetailsPlan("standard")
-	CronJobDetailsPlanStandardPlus = CronJobDetailsPlan("standard_plus")
-	CronJobDetailsPlanPro          = CronJobDetailsPlan("pro")
-	CronJobDetailsPlanProPlus      = CronJobDetailsPlan("pro_plus")
-	CronJobDetailsPlanProMax       = CronJobDetailsPlan("pro_max")
-	CronJobDetailsPlanProUltra     = CronJobDetailsPlan("pro_ultra")
-	CronJobDetailsPlanFree         = CronJobDetailsPlan("free")
-	CronJobDetailsPlanCustom       = CronJobDetailsPlan("custom")
+	CronJobDetailsOutputPlanStarter      = CronJobDetailsOutputPlan("starter")
+	CronJobDetailsOutputPlanStarterPlus  = CronJobDetailsOutputPlan("starter_plus")
+	CronJobDetailsOutputPlanStandard     = CronJobDetailsOutputPlan("standard")
+	CronJobDetailsOutputPlanStandardPlus = CronJobDetailsOutputPlan("standard_plus")
+	CronJobDetailsOutputPlanPro          = CronJobDetailsOutputPlan("pro")
+	CronJobDetailsOutputPlanProPlus      = CronJobDetailsOutputPlan("pro_plus")
+	CronJobDetailsOutputPlanProMax       = CronJobDetailsOutputPlan("pro_max")
+	CronJobDetailsOutputPlanProUltra     = CronJobDetailsOutputPlan("pro_ultra")
+	CronJobDetailsOutputPlanFree         = CronJobDetailsOutputPlan("free")
+	CronJobDetailsOutputPlanCustom       = CronJobDetailsOutputPlan("custom")
 )
 
-type CronJobDetailsPlanOutput struct{ *pulumi.OutputState }
+type CronJobDetailsOutputPlanOutput struct{ *pulumi.OutputState }
 
-func (CronJobDetailsPlanOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CronJobDetailsPlan)(nil)).Elem()
+func (CronJobDetailsOutputPlanOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CronJobDetailsOutputPlan)(nil)).Elem()
 }
 
-func (o CronJobDetailsPlanOutput) ToCronJobDetailsPlanOutput() CronJobDetailsPlanOutput {
+func (o CronJobDetailsOutputPlanOutput) ToCronJobDetailsOutputPlanOutput() CronJobDetailsOutputPlanOutput {
 	return o
 }
 
-func (o CronJobDetailsPlanOutput) ToCronJobDetailsPlanOutputWithContext(ctx context.Context) CronJobDetailsPlanOutput {
+func (o CronJobDetailsOutputPlanOutput) ToCronJobDetailsOutputPlanOutputWithContext(ctx context.Context) CronJobDetailsOutputPlanOutput {
 	return o
 }
 
-func (o CronJobDetailsPlanOutput) ToCronJobDetailsPlanPtrOutput() CronJobDetailsPlanPtrOutput {
-	return o.ToCronJobDetailsPlanPtrOutputWithContext(context.Background())
+func (o CronJobDetailsOutputPlanOutput) ToCronJobDetailsOutputPlanPtrOutput() CronJobDetailsOutputPlanPtrOutput {
+	return o.ToCronJobDetailsOutputPlanPtrOutputWithContext(context.Background())
 }
 
-func (o CronJobDetailsPlanOutput) ToCronJobDetailsPlanPtrOutputWithContext(ctx context.Context) CronJobDetailsPlanPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v CronJobDetailsPlan) *CronJobDetailsPlan {
+func (o CronJobDetailsOutputPlanOutput) ToCronJobDetailsOutputPlanPtrOutputWithContext(ctx context.Context) CronJobDetailsOutputPlanPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CronJobDetailsOutputPlan) *CronJobDetailsOutputPlan {
 		return &v
-	}).(CronJobDetailsPlanPtrOutput)
+	}).(CronJobDetailsOutputPlanPtrOutput)
 }
 
-func (o CronJobDetailsPlanOutput) ToStringOutput() pulumi.StringOutput {
+func (o CronJobDetailsOutputPlanOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
 
-func (o CronJobDetailsPlanOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e CronJobDetailsPlan) string {
+func (o CronJobDetailsOutputPlanOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e CronJobDetailsOutputPlan) string {
 		return string(e)
 	}).(pulumi.StringOutput)
 }
 
-func (o CronJobDetailsPlanOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o CronJobDetailsOutputPlanOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o CronJobDetailsPlanOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e CronJobDetailsPlan) *string {
+func (o CronJobDetailsOutputPlanOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e CronJobDetailsOutputPlan) *string {
 		v := string(e)
 		return &v
 	}).(pulumi.StringPtrOutput)
 }
 
-type CronJobDetailsPlanPtrOutput struct{ *pulumi.OutputState }
+type CronJobDetailsOutputPlanPtrOutput struct{ *pulumi.OutputState }
 
-func (CronJobDetailsPlanPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**CronJobDetailsPlan)(nil)).Elem()
+func (CronJobDetailsOutputPlanPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CronJobDetailsOutputPlan)(nil)).Elem()
 }
 
-func (o CronJobDetailsPlanPtrOutput) ToCronJobDetailsPlanPtrOutput() CronJobDetailsPlanPtrOutput {
+func (o CronJobDetailsOutputPlanPtrOutput) ToCronJobDetailsOutputPlanPtrOutput() CronJobDetailsOutputPlanPtrOutput {
 	return o
 }
 
-func (o CronJobDetailsPlanPtrOutput) ToCronJobDetailsPlanPtrOutputWithContext(ctx context.Context) CronJobDetailsPlanPtrOutput {
+func (o CronJobDetailsOutputPlanPtrOutput) ToCronJobDetailsOutputPlanPtrOutputWithContext(ctx context.Context) CronJobDetailsOutputPlanPtrOutput {
 	return o
 }
 
-func (o CronJobDetailsPlanPtrOutput) Elem() CronJobDetailsPlanOutput {
-	return o.ApplyT(func(v *CronJobDetailsPlan) CronJobDetailsPlan {
+func (o CronJobDetailsOutputPlanPtrOutput) Elem() CronJobDetailsOutputPlanOutput {
+	return o.ApplyT(func(v *CronJobDetailsOutputPlan) CronJobDetailsOutputPlan {
 		if v != nil {
 			return *v
 		}
-		var ret CronJobDetailsPlan
+		var ret CronJobDetailsOutputPlan
 		return ret
-	}).(CronJobDetailsPlanOutput)
+	}).(CronJobDetailsOutputPlanOutput)
 }
 
-func (o CronJobDetailsPlanPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o CronJobDetailsOutputPlanPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o CronJobDetailsPlanPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e *CronJobDetailsPlan) *string {
+func (o CronJobDetailsOutputPlanPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *CronJobDetailsOutputPlan) *string {
 		if e == nil {
 			return nil
 		}
@@ -2370,90 +2536,90 @@ func (o CronJobDetailsPlanPtrOutput) ToStringPtrOutputWithContext(ctx context.Co
 	}).(pulumi.StringPtrOutput)
 }
 
-type CronJobDetailsRegion string
+type CronJobDetailsOutputRegion string
 
 const (
-	CronJobDetailsRegionFrankfurt = CronJobDetailsRegion("frankfurt")
-	CronJobDetailsRegionOregon    = CronJobDetailsRegion("oregon")
-	CronJobDetailsRegionOhio      = CronJobDetailsRegion("ohio")
-	CronJobDetailsRegionSingapore = CronJobDetailsRegion("singapore")
+	CronJobDetailsOutputRegionFrankfurt = CronJobDetailsOutputRegion("frankfurt")
+	CronJobDetailsOutputRegionOregon    = CronJobDetailsOutputRegion("oregon")
+	CronJobDetailsOutputRegionOhio      = CronJobDetailsOutputRegion("ohio")
+	CronJobDetailsOutputRegionSingapore = CronJobDetailsOutputRegion("singapore")
 )
 
-type CronJobDetailsRegionOutput struct{ *pulumi.OutputState }
+type CronJobDetailsOutputRegionOutput struct{ *pulumi.OutputState }
 
-func (CronJobDetailsRegionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CronJobDetailsRegion)(nil)).Elem()
+func (CronJobDetailsOutputRegionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CronJobDetailsOutputRegion)(nil)).Elem()
 }
 
-func (o CronJobDetailsRegionOutput) ToCronJobDetailsRegionOutput() CronJobDetailsRegionOutput {
+func (o CronJobDetailsOutputRegionOutput) ToCronJobDetailsOutputRegionOutput() CronJobDetailsOutputRegionOutput {
 	return o
 }
 
-func (o CronJobDetailsRegionOutput) ToCronJobDetailsRegionOutputWithContext(ctx context.Context) CronJobDetailsRegionOutput {
+func (o CronJobDetailsOutputRegionOutput) ToCronJobDetailsOutputRegionOutputWithContext(ctx context.Context) CronJobDetailsOutputRegionOutput {
 	return o
 }
 
-func (o CronJobDetailsRegionOutput) ToCronJobDetailsRegionPtrOutput() CronJobDetailsRegionPtrOutput {
-	return o.ToCronJobDetailsRegionPtrOutputWithContext(context.Background())
+func (o CronJobDetailsOutputRegionOutput) ToCronJobDetailsOutputRegionPtrOutput() CronJobDetailsOutputRegionPtrOutput {
+	return o.ToCronJobDetailsOutputRegionPtrOutputWithContext(context.Background())
 }
 
-func (o CronJobDetailsRegionOutput) ToCronJobDetailsRegionPtrOutputWithContext(ctx context.Context) CronJobDetailsRegionPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v CronJobDetailsRegion) *CronJobDetailsRegion {
+func (o CronJobDetailsOutputRegionOutput) ToCronJobDetailsOutputRegionPtrOutputWithContext(ctx context.Context) CronJobDetailsOutputRegionPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CronJobDetailsOutputRegion) *CronJobDetailsOutputRegion {
 		return &v
-	}).(CronJobDetailsRegionPtrOutput)
+	}).(CronJobDetailsOutputRegionPtrOutput)
 }
 
-func (o CronJobDetailsRegionOutput) ToStringOutput() pulumi.StringOutput {
+func (o CronJobDetailsOutputRegionOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
 
-func (o CronJobDetailsRegionOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e CronJobDetailsRegion) string {
+func (o CronJobDetailsOutputRegionOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e CronJobDetailsOutputRegion) string {
 		return string(e)
 	}).(pulumi.StringOutput)
 }
 
-func (o CronJobDetailsRegionOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o CronJobDetailsOutputRegionOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o CronJobDetailsRegionOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e CronJobDetailsRegion) *string {
+func (o CronJobDetailsOutputRegionOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e CronJobDetailsOutputRegion) *string {
 		v := string(e)
 		return &v
 	}).(pulumi.StringPtrOutput)
 }
 
-type CronJobDetailsRegionPtrOutput struct{ *pulumi.OutputState }
+type CronJobDetailsOutputRegionPtrOutput struct{ *pulumi.OutputState }
 
-func (CronJobDetailsRegionPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**CronJobDetailsRegion)(nil)).Elem()
+func (CronJobDetailsOutputRegionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CronJobDetailsOutputRegion)(nil)).Elem()
 }
 
-func (o CronJobDetailsRegionPtrOutput) ToCronJobDetailsRegionPtrOutput() CronJobDetailsRegionPtrOutput {
+func (o CronJobDetailsOutputRegionPtrOutput) ToCronJobDetailsOutputRegionPtrOutput() CronJobDetailsOutputRegionPtrOutput {
 	return o
 }
 
-func (o CronJobDetailsRegionPtrOutput) ToCronJobDetailsRegionPtrOutputWithContext(ctx context.Context) CronJobDetailsRegionPtrOutput {
+func (o CronJobDetailsOutputRegionPtrOutput) ToCronJobDetailsOutputRegionPtrOutputWithContext(ctx context.Context) CronJobDetailsOutputRegionPtrOutput {
 	return o
 }
 
-func (o CronJobDetailsRegionPtrOutput) Elem() CronJobDetailsRegionOutput {
-	return o.ApplyT(func(v *CronJobDetailsRegion) CronJobDetailsRegion {
+func (o CronJobDetailsOutputRegionPtrOutput) Elem() CronJobDetailsOutputRegionOutput {
+	return o.ApplyT(func(v *CronJobDetailsOutputRegion) CronJobDetailsOutputRegion {
 		if v != nil {
 			return *v
 		}
-		var ret CronJobDetailsRegion
+		var ret CronJobDetailsOutputRegion
 		return ret
-	}).(CronJobDetailsRegionOutput)
+	}).(CronJobDetailsOutputRegionOutput)
 }
 
-func (o CronJobDetailsRegionPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o CronJobDetailsOutputRegionPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o CronJobDetailsRegionPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e *CronJobDetailsRegion) *string {
+func (o CronJobDetailsOutputRegionPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *CronJobDetailsOutputRegion) *string {
 		if e == nil {
 			return nil
 		}
@@ -2550,6 +2716,172 @@ func (o CronJobServiceAutoDeployPtrOutput) ToStringPtrOutputWithContext(ctx cont
 		v := string(*e)
 		return &v
 	}).(pulumi.StringPtrOutput)
+}
+
+// Defaults to "yes"
+type CronJobServiceCreateAutoDeploy string
+
+const (
+	CronJobServiceCreateAutoDeployYes = CronJobServiceCreateAutoDeploy("yes")
+	CronJobServiceCreateAutoDeployNo  = CronJobServiceCreateAutoDeploy("no")
+)
+
+func (CronJobServiceCreateAutoDeploy) ElementType() reflect.Type {
+	return reflect.TypeOf((*CronJobServiceCreateAutoDeploy)(nil)).Elem()
+}
+
+func (e CronJobServiceCreateAutoDeploy) ToCronJobServiceCreateAutoDeployOutput() CronJobServiceCreateAutoDeployOutput {
+	return pulumi.ToOutput(e).(CronJobServiceCreateAutoDeployOutput)
+}
+
+func (e CronJobServiceCreateAutoDeploy) ToCronJobServiceCreateAutoDeployOutputWithContext(ctx context.Context) CronJobServiceCreateAutoDeployOutput {
+	return pulumi.ToOutputWithContext(ctx, e).(CronJobServiceCreateAutoDeployOutput)
+}
+
+func (e CronJobServiceCreateAutoDeploy) ToCronJobServiceCreateAutoDeployPtrOutput() CronJobServiceCreateAutoDeployPtrOutput {
+	return e.ToCronJobServiceCreateAutoDeployPtrOutputWithContext(context.Background())
+}
+
+func (e CronJobServiceCreateAutoDeploy) ToCronJobServiceCreateAutoDeployPtrOutputWithContext(ctx context.Context) CronJobServiceCreateAutoDeployPtrOutput {
+	return CronJobServiceCreateAutoDeploy(e).ToCronJobServiceCreateAutoDeployOutputWithContext(ctx).ToCronJobServiceCreateAutoDeployPtrOutputWithContext(ctx)
+}
+
+func (e CronJobServiceCreateAutoDeploy) ToStringOutput() pulumi.StringOutput {
+	return pulumi.ToOutput(pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e CronJobServiceCreateAutoDeploy) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return pulumi.ToOutputWithContext(ctx, pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e CronJobServiceCreateAutoDeploy) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringPtrOutputWithContext(context.Background())
+}
+
+func (e CronJobServiceCreateAutoDeploy) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
+}
+
+type CronJobServiceCreateAutoDeployOutput struct{ *pulumi.OutputState }
+
+func (CronJobServiceCreateAutoDeployOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CronJobServiceCreateAutoDeploy)(nil)).Elem()
+}
+
+func (o CronJobServiceCreateAutoDeployOutput) ToCronJobServiceCreateAutoDeployOutput() CronJobServiceCreateAutoDeployOutput {
+	return o
+}
+
+func (o CronJobServiceCreateAutoDeployOutput) ToCronJobServiceCreateAutoDeployOutputWithContext(ctx context.Context) CronJobServiceCreateAutoDeployOutput {
+	return o
+}
+
+func (o CronJobServiceCreateAutoDeployOutput) ToCronJobServiceCreateAutoDeployPtrOutput() CronJobServiceCreateAutoDeployPtrOutput {
+	return o.ToCronJobServiceCreateAutoDeployPtrOutputWithContext(context.Background())
+}
+
+func (o CronJobServiceCreateAutoDeployOutput) ToCronJobServiceCreateAutoDeployPtrOutputWithContext(ctx context.Context) CronJobServiceCreateAutoDeployPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CronJobServiceCreateAutoDeploy) *CronJobServiceCreateAutoDeploy {
+		return &v
+	}).(CronJobServiceCreateAutoDeployPtrOutput)
+}
+
+func (o CronJobServiceCreateAutoDeployOutput) ToStringOutput() pulumi.StringOutput {
+	return o.ToStringOutputWithContext(context.Background())
+}
+
+func (o CronJobServiceCreateAutoDeployOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e CronJobServiceCreateAutoDeploy) string {
+		return string(e)
+	}).(pulumi.StringOutput)
+}
+
+func (o CronJobServiceCreateAutoDeployOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o CronJobServiceCreateAutoDeployOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e CronJobServiceCreateAutoDeploy) *string {
+		v := string(e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+type CronJobServiceCreateAutoDeployPtrOutput struct{ *pulumi.OutputState }
+
+func (CronJobServiceCreateAutoDeployPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CronJobServiceCreateAutoDeploy)(nil)).Elem()
+}
+
+func (o CronJobServiceCreateAutoDeployPtrOutput) ToCronJobServiceCreateAutoDeployPtrOutput() CronJobServiceCreateAutoDeployPtrOutput {
+	return o
+}
+
+func (o CronJobServiceCreateAutoDeployPtrOutput) ToCronJobServiceCreateAutoDeployPtrOutputWithContext(ctx context.Context) CronJobServiceCreateAutoDeployPtrOutput {
+	return o
+}
+
+func (o CronJobServiceCreateAutoDeployPtrOutput) Elem() CronJobServiceCreateAutoDeployOutput {
+	return o.ApplyT(func(v *CronJobServiceCreateAutoDeploy) CronJobServiceCreateAutoDeploy {
+		if v != nil {
+			return *v
+		}
+		var ret CronJobServiceCreateAutoDeploy
+		return ret
+	}).(CronJobServiceCreateAutoDeployOutput)
+}
+
+func (o CronJobServiceCreateAutoDeployPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o CronJobServiceCreateAutoDeployPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *CronJobServiceCreateAutoDeploy) *string {
+		if e == nil {
+			return nil
+		}
+		v := string(*e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+// CronJobServiceCreateAutoDeployInput is an input type that accepts values of the CronJobServiceCreateAutoDeploy enum
+// A concrete instance of `CronJobServiceCreateAutoDeployInput` can be one of the following:
+//
+//	CronJobServiceCreateAutoDeployYes
+//	CronJobServiceCreateAutoDeployNo
+type CronJobServiceCreateAutoDeployInput interface {
+	pulumi.Input
+
+	ToCronJobServiceCreateAutoDeployOutput() CronJobServiceCreateAutoDeployOutput
+	ToCronJobServiceCreateAutoDeployOutputWithContext(context.Context) CronJobServiceCreateAutoDeployOutput
+}
+
+var cronJobServiceCreateAutoDeployPtrType = reflect.TypeOf((**CronJobServiceCreateAutoDeploy)(nil)).Elem()
+
+type CronJobServiceCreateAutoDeployPtrInput interface {
+	pulumi.Input
+
+	ToCronJobServiceCreateAutoDeployPtrOutput() CronJobServiceCreateAutoDeployPtrOutput
+	ToCronJobServiceCreateAutoDeployPtrOutputWithContext(context.Context) CronJobServiceCreateAutoDeployPtrOutput
+}
+
+type cronJobServiceCreateAutoDeployPtr string
+
+func CronJobServiceCreateAutoDeployPtr(v string) CronJobServiceCreateAutoDeployPtrInput {
+	return (*cronJobServiceCreateAutoDeployPtr)(&v)
+}
+
+func (*cronJobServiceCreateAutoDeployPtr) ElementType() reflect.Type {
+	return cronJobServiceCreateAutoDeployPtrType
+}
+
+func (in *cronJobServiceCreateAutoDeployPtr) ToCronJobServiceCreateAutoDeployPtrOutput() CronJobServiceCreateAutoDeployPtrOutput {
+	return pulumi.ToOutput(in).(CronJobServiceCreateAutoDeployPtrOutput)
+}
+
+func (in *cronJobServiceCreateAutoDeployPtr) ToCronJobServiceCreateAutoDeployPtrOutputWithContext(ctx context.Context) CronJobServiceCreateAutoDeployPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, in).(CronJobServiceCreateAutoDeployPtrOutput)
 }
 
 type CronJobServiceNotifyOnFail string
@@ -4641,94 +4973,94 @@ func (in *privateServiceDetailsCreateRegionPtr) ToPrivateServiceDetailsCreateReg
 }
 
 // Environment (runtime)
-type PrivateServiceDetailsEnv string
+type PrivateServiceDetailsOutputEnv string
 
 const (
-	PrivateServiceDetailsEnvDocker = PrivateServiceDetailsEnv("docker")
-	PrivateServiceDetailsEnvElixir = PrivateServiceDetailsEnv("elixir")
-	PrivateServiceDetailsEnvGo     = PrivateServiceDetailsEnv("go")
-	PrivateServiceDetailsEnvNode   = PrivateServiceDetailsEnv("node")
-	PrivateServiceDetailsEnvPython = PrivateServiceDetailsEnv("python")
-	PrivateServiceDetailsEnvRuby   = PrivateServiceDetailsEnv("ruby")
-	PrivateServiceDetailsEnvRust   = PrivateServiceDetailsEnv("rust")
-	PrivateServiceDetailsEnvImage  = PrivateServiceDetailsEnv("image")
+	PrivateServiceDetailsOutputEnvDocker = PrivateServiceDetailsOutputEnv("docker")
+	PrivateServiceDetailsOutputEnvElixir = PrivateServiceDetailsOutputEnv("elixir")
+	PrivateServiceDetailsOutputEnvGo     = PrivateServiceDetailsOutputEnv("go")
+	PrivateServiceDetailsOutputEnvNode   = PrivateServiceDetailsOutputEnv("node")
+	PrivateServiceDetailsOutputEnvPython = PrivateServiceDetailsOutputEnv("python")
+	PrivateServiceDetailsOutputEnvRuby   = PrivateServiceDetailsOutputEnv("ruby")
+	PrivateServiceDetailsOutputEnvRust   = PrivateServiceDetailsOutputEnv("rust")
+	PrivateServiceDetailsOutputEnvImage  = PrivateServiceDetailsOutputEnv("image")
 )
 
-type PrivateServiceDetailsEnvOutput struct{ *pulumi.OutputState }
+type PrivateServiceDetailsOutputEnvOutput struct{ *pulumi.OutputState }
 
-func (PrivateServiceDetailsEnvOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*PrivateServiceDetailsEnv)(nil)).Elem()
+func (PrivateServiceDetailsOutputEnvOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivateServiceDetailsOutputEnv)(nil)).Elem()
 }
 
-func (o PrivateServiceDetailsEnvOutput) ToPrivateServiceDetailsEnvOutput() PrivateServiceDetailsEnvOutput {
+func (o PrivateServiceDetailsOutputEnvOutput) ToPrivateServiceDetailsOutputEnvOutput() PrivateServiceDetailsOutputEnvOutput {
 	return o
 }
 
-func (o PrivateServiceDetailsEnvOutput) ToPrivateServiceDetailsEnvOutputWithContext(ctx context.Context) PrivateServiceDetailsEnvOutput {
+func (o PrivateServiceDetailsOutputEnvOutput) ToPrivateServiceDetailsOutputEnvOutputWithContext(ctx context.Context) PrivateServiceDetailsOutputEnvOutput {
 	return o
 }
 
-func (o PrivateServiceDetailsEnvOutput) ToPrivateServiceDetailsEnvPtrOutput() PrivateServiceDetailsEnvPtrOutput {
-	return o.ToPrivateServiceDetailsEnvPtrOutputWithContext(context.Background())
+func (o PrivateServiceDetailsOutputEnvOutput) ToPrivateServiceDetailsOutputEnvPtrOutput() PrivateServiceDetailsOutputEnvPtrOutput {
+	return o.ToPrivateServiceDetailsOutputEnvPtrOutputWithContext(context.Background())
 }
 
-func (o PrivateServiceDetailsEnvOutput) ToPrivateServiceDetailsEnvPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsEnvPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v PrivateServiceDetailsEnv) *PrivateServiceDetailsEnv {
+func (o PrivateServiceDetailsOutputEnvOutput) ToPrivateServiceDetailsOutputEnvPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsOutputEnvPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PrivateServiceDetailsOutputEnv) *PrivateServiceDetailsOutputEnv {
 		return &v
-	}).(PrivateServiceDetailsEnvPtrOutput)
+	}).(PrivateServiceDetailsOutputEnvPtrOutput)
 }
 
-func (o PrivateServiceDetailsEnvOutput) ToStringOutput() pulumi.StringOutput {
+func (o PrivateServiceDetailsOutputEnvOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
 
-func (o PrivateServiceDetailsEnvOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e PrivateServiceDetailsEnv) string {
+func (o PrivateServiceDetailsOutputEnvOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e PrivateServiceDetailsOutputEnv) string {
 		return string(e)
 	}).(pulumi.StringOutput)
 }
 
-func (o PrivateServiceDetailsEnvOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o PrivateServiceDetailsOutputEnvOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o PrivateServiceDetailsEnvOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e PrivateServiceDetailsEnv) *string {
+func (o PrivateServiceDetailsOutputEnvOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e PrivateServiceDetailsOutputEnv) *string {
 		v := string(e)
 		return &v
 	}).(pulumi.StringPtrOutput)
 }
 
-type PrivateServiceDetailsEnvPtrOutput struct{ *pulumi.OutputState }
+type PrivateServiceDetailsOutputEnvPtrOutput struct{ *pulumi.OutputState }
 
-func (PrivateServiceDetailsEnvPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**PrivateServiceDetailsEnv)(nil)).Elem()
+func (PrivateServiceDetailsOutputEnvPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PrivateServiceDetailsOutputEnv)(nil)).Elem()
 }
 
-func (o PrivateServiceDetailsEnvPtrOutput) ToPrivateServiceDetailsEnvPtrOutput() PrivateServiceDetailsEnvPtrOutput {
+func (o PrivateServiceDetailsOutputEnvPtrOutput) ToPrivateServiceDetailsOutputEnvPtrOutput() PrivateServiceDetailsOutputEnvPtrOutput {
 	return o
 }
 
-func (o PrivateServiceDetailsEnvPtrOutput) ToPrivateServiceDetailsEnvPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsEnvPtrOutput {
+func (o PrivateServiceDetailsOutputEnvPtrOutput) ToPrivateServiceDetailsOutputEnvPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsOutputEnvPtrOutput {
 	return o
 }
 
-func (o PrivateServiceDetailsEnvPtrOutput) Elem() PrivateServiceDetailsEnvOutput {
-	return o.ApplyT(func(v *PrivateServiceDetailsEnv) PrivateServiceDetailsEnv {
+func (o PrivateServiceDetailsOutputEnvPtrOutput) Elem() PrivateServiceDetailsOutputEnvOutput {
+	return o.ApplyT(func(v *PrivateServiceDetailsOutputEnv) PrivateServiceDetailsOutputEnv {
 		if v != nil {
 			return *v
 		}
-		var ret PrivateServiceDetailsEnv
+		var ret PrivateServiceDetailsOutputEnv
 		return ret
-	}).(PrivateServiceDetailsEnvOutput)
+	}).(PrivateServiceDetailsOutputEnvOutput)
 }
 
-func (o PrivateServiceDetailsEnvPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o PrivateServiceDetailsOutputEnvPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o PrivateServiceDetailsEnvPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e *PrivateServiceDetailsEnv) *string {
+func (o PrivateServiceDetailsOutputEnvPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *PrivateServiceDetailsOutputEnv) *string {
 		if e == nil {
 			return nil
 		}
@@ -4738,96 +5070,96 @@ func (o PrivateServiceDetailsEnvPtrOutput) ToStringPtrOutputWithContext(ctx cont
 }
 
 // The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
-type PrivateServiceDetailsPlan string
+type PrivateServiceDetailsOutputPlan string
 
 const (
-	PrivateServiceDetailsPlanStarter      = PrivateServiceDetailsPlan("starter")
-	PrivateServiceDetailsPlanStarterPlus  = PrivateServiceDetailsPlan("starter_plus")
-	PrivateServiceDetailsPlanStandard     = PrivateServiceDetailsPlan("standard")
-	PrivateServiceDetailsPlanStandardPlus = PrivateServiceDetailsPlan("standard_plus")
-	PrivateServiceDetailsPlanPro          = PrivateServiceDetailsPlan("pro")
-	PrivateServiceDetailsPlanProPlus      = PrivateServiceDetailsPlan("pro_plus")
-	PrivateServiceDetailsPlanProMax       = PrivateServiceDetailsPlan("pro_max")
-	PrivateServiceDetailsPlanProUltra     = PrivateServiceDetailsPlan("pro_ultra")
-	PrivateServiceDetailsPlanFree         = PrivateServiceDetailsPlan("free")
-	PrivateServiceDetailsPlanCustom       = PrivateServiceDetailsPlan("custom")
+	PrivateServiceDetailsOutputPlanStarter      = PrivateServiceDetailsOutputPlan("starter")
+	PrivateServiceDetailsOutputPlanStarterPlus  = PrivateServiceDetailsOutputPlan("starter_plus")
+	PrivateServiceDetailsOutputPlanStandard     = PrivateServiceDetailsOutputPlan("standard")
+	PrivateServiceDetailsOutputPlanStandardPlus = PrivateServiceDetailsOutputPlan("standard_plus")
+	PrivateServiceDetailsOutputPlanPro          = PrivateServiceDetailsOutputPlan("pro")
+	PrivateServiceDetailsOutputPlanProPlus      = PrivateServiceDetailsOutputPlan("pro_plus")
+	PrivateServiceDetailsOutputPlanProMax       = PrivateServiceDetailsOutputPlan("pro_max")
+	PrivateServiceDetailsOutputPlanProUltra     = PrivateServiceDetailsOutputPlan("pro_ultra")
+	PrivateServiceDetailsOutputPlanFree         = PrivateServiceDetailsOutputPlan("free")
+	PrivateServiceDetailsOutputPlanCustom       = PrivateServiceDetailsOutputPlan("custom")
 )
 
-type PrivateServiceDetailsPlanOutput struct{ *pulumi.OutputState }
+type PrivateServiceDetailsOutputPlanOutput struct{ *pulumi.OutputState }
 
-func (PrivateServiceDetailsPlanOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*PrivateServiceDetailsPlan)(nil)).Elem()
+func (PrivateServiceDetailsOutputPlanOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivateServiceDetailsOutputPlan)(nil)).Elem()
 }
 
-func (o PrivateServiceDetailsPlanOutput) ToPrivateServiceDetailsPlanOutput() PrivateServiceDetailsPlanOutput {
+func (o PrivateServiceDetailsOutputPlanOutput) ToPrivateServiceDetailsOutputPlanOutput() PrivateServiceDetailsOutputPlanOutput {
 	return o
 }
 
-func (o PrivateServiceDetailsPlanOutput) ToPrivateServiceDetailsPlanOutputWithContext(ctx context.Context) PrivateServiceDetailsPlanOutput {
+func (o PrivateServiceDetailsOutputPlanOutput) ToPrivateServiceDetailsOutputPlanOutputWithContext(ctx context.Context) PrivateServiceDetailsOutputPlanOutput {
 	return o
 }
 
-func (o PrivateServiceDetailsPlanOutput) ToPrivateServiceDetailsPlanPtrOutput() PrivateServiceDetailsPlanPtrOutput {
-	return o.ToPrivateServiceDetailsPlanPtrOutputWithContext(context.Background())
+func (o PrivateServiceDetailsOutputPlanOutput) ToPrivateServiceDetailsOutputPlanPtrOutput() PrivateServiceDetailsOutputPlanPtrOutput {
+	return o.ToPrivateServiceDetailsOutputPlanPtrOutputWithContext(context.Background())
 }
 
-func (o PrivateServiceDetailsPlanOutput) ToPrivateServiceDetailsPlanPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsPlanPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v PrivateServiceDetailsPlan) *PrivateServiceDetailsPlan {
+func (o PrivateServiceDetailsOutputPlanOutput) ToPrivateServiceDetailsOutputPlanPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsOutputPlanPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PrivateServiceDetailsOutputPlan) *PrivateServiceDetailsOutputPlan {
 		return &v
-	}).(PrivateServiceDetailsPlanPtrOutput)
+	}).(PrivateServiceDetailsOutputPlanPtrOutput)
 }
 
-func (o PrivateServiceDetailsPlanOutput) ToStringOutput() pulumi.StringOutput {
+func (o PrivateServiceDetailsOutputPlanOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
 
-func (o PrivateServiceDetailsPlanOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e PrivateServiceDetailsPlan) string {
+func (o PrivateServiceDetailsOutputPlanOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e PrivateServiceDetailsOutputPlan) string {
 		return string(e)
 	}).(pulumi.StringOutput)
 }
 
-func (o PrivateServiceDetailsPlanOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o PrivateServiceDetailsOutputPlanOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o PrivateServiceDetailsPlanOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e PrivateServiceDetailsPlan) *string {
+func (o PrivateServiceDetailsOutputPlanOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e PrivateServiceDetailsOutputPlan) *string {
 		v := string(e)
 		return &v
 	}).(pulumi.StringPtrOutput)
 }
 
-type PrivateServiceDetailsPlanPtrOutput struct{ *pulumi.OutputState }
+type PrivateServiceDetailsOutputPlanPtrOutput struct{ *pulumi.OutputState }
 
-func (PrivateServiceDetailsPlanPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**PrivateServiceDetailsPlan)(nil)).Elem()
+func (PrivateServiceDetailsOutputPlanPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PrivateServiceDetailsOutputPlan)(nil)).Elem()
 }
 
-func (o PrivateServiceDetailsPlanPtrOutput) ToPrivateServiceDetailsPlanPtrOutput() PrivateServiceDetailsPlanPtrOutput {
+func (o PrivateServiceDetailsOutputPlanPtrOutput) ToPrivateServiceDetailsOutputPlanPtrOutput() PrivateServiceDetailsOutputPlanPtrOutput {
 	return o
 }
 
-func (o PrivateServiceDetailsPlanPtrOutput) ToPrivateServiceDetailsPlanPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsPlanPtrOutput {
+func (o PrivateServiceDetailsOutputPlanPtrOutput) ToPrivateServiceDetailsOutputPlanPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsOutputPlanPtrOutput {
 	return o
 }
 
-func (o PrivateServiceDetailsPlanPtrOutput) Elem() PrivateServiceDetailsPlanOutput {
-	return o.ApplyT(func(v *PrivateServiceDetailsPlan) PrivateServiceDetailsPlan {
+func (o PrivateServiceDetailsOutputPlanPtrOutput) Elem() PrivateServiceDetailsOutputPlanOutput {
+	return o.ApplyT(func(v *PrivateServiceDetailsOutputPlan) PrivateServiceDetailsOutputPlan {
 		if v != nil {
 			return *v
 		}
-		var ret PrivateServiceDetailsPlan
+		var ret PrivateServiceDetailsOutputPlan
 		return ret
-	}).(PrivateServiceDetailsPlanOutput)
+	}).(PrivateServiceDetailsOutputPlanOutput)
 }
 
-func (o PrivateServiceDetailsPlanPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o PrivateServiceDetailsOutputPlanPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o PrivateServiceDetailsPlanPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e *PrivateServiceDetailsPlan) *string {
+func (o PrivateServiceDetailsOutputPlanPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *PrivateServiceDetailsOutputPlan) *string {
 		if e == nil {
 			return nil
 		}
@@ -4836,88 +5168,88 @@ func (o PrivateServiceDetailsPlanPtrOutput) ToStringPtrOutputWithContext(ctx con
 	}).(pulumi.StringPtrOutput)
 }
 
-type PrivateServiceDetailsPullRequestPreviewsEnabled string
+type PrivateServiceDetailsOutputPullRequestPreviewsEnabled string
 
 const (
-	PrivateServiceDetailsPullRequestPreviewsEnabledYes = PrivateServiceDetailsPullRequestPreviewsEnabled("yes")
-	PrivateServiceDetailsPullRequestPreviewsEnabledNo  = PrivateServiceDetailsPullRequestPreviewsEnabled("no")
+	PrivateServiceDetailsOutputPullRequestPreviewsEnabledYes = PrivateServiceDetailsOutputPullRequestPreviewsEnabled("yes")
+	PrivateServiceDetailsOutputPullRequestPreviewsEnabledNo  = PrivateServiceDetailsOutputPullRequestPreviewsEnabled("no")
 )
 
-type PrivateServiceDetailsPullRequestPreviewsEnabledOutput struct{ *pulumi.OutputState }
+type PrivateServiceDetailsOutputPullRequestPreviewsEnabledOutput struct{ *pulumi.OutputState }
 
-func (PrivateServiceDetailsPullRequestPreviewsEnabledOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*PrivateServiceDetailsPullRequestPreviewsEnabled)(nil)).Elem()
+func (PrivateServiceDetailsOutputPullRequestPreviewsEnabledOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivateServiceDetailsOutputPullRequestPreviewsEnabled)(nil)).Elem()
 }
 
-func (o PrivateServiceDetailsPullRequestPreviewsEnabledOutput) ToPrivateServiceDetailsPullRequestPreviewsEnabledOutput() PrivateServiceDetailsPullRequestPreviewsEnabledOutput {
+func (o PrivateServiceDetailsOutputPullRequestPreviewsEnabledOutput) ToPrivateServiceDetailsOutputPullRequestPreviewsEnabledOutput() PrivateServiceDetailsOutputPullRequestPreviewsEnabledOutput {
 	return o
 }
 
-func (o PrivateServiceDetailsPullRequestPreviewsEnabledOutput) ToPrivateServiceDetailsPullRequestPreviewsEnabledOutputWithContext(ctx context.Context) PrivateServiceDetailsPullRequestPreviewsEnabledOutput {
+func (o PrivateServiceDetailsOutputPullRequestPreviewsEnabledOutput) ToPrivateServiceDetailsOutputPullRequestPreviewsEnabledOutputWithContext(ctx context.Context) PrivateServiceDetailsOutputPullRequestPreviewsEnabledOutput {
 	return o
 }
 
-func (o PrivateServiceDetailsPullRequestPreviewsEnabledOutput) ToPrivateServiceDetailsPullRequestPreviewsEnabledPtrOutput() PrivateServiceDetailsPullRequestPreviewsEnabledPtrOutput {
-	return o.ToPrivateServiceDetailsPullRequestPreviewsEnabledPtrOutputWithContext(context.Background())
+func (o PrivateServiceDetailsOutputPullRequestPreviewsEnabledOutput) ToPrivateServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput() PrivateServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput {
+	return o.ToPrivateServiceDetailsOutputPullRequestPreviewsEnabledPtrOutputWithContext(context.Background())
 }
 
-func (o PrivateServiceDetailsPullRequestPreviewsEnabledOutput) ToPrivateServiceDetailsPullRequestPreviewsEnabledPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsPullRequestPreviewsEnabledPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v PrivateServiceDetailsPullRequestPreviewsEnabled) *PrivateServiceDetailsPullRequestPreviewsEnabled {
+func (o PrivateServiceDetailsOutputPullRequestPreviewsEnabledOutput) ToPrivateServiceDetailsOutputPullRequestPreviewsEnabledPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PrivateServiceDetailsOutputPullRequestPreviewsEnabled) *PrivateServiceDetailsOutputPullRequestPreviewsEnabled {
 		return &v
-	}).(PrivateServiceDetailsPullRequestPreviewsEnabledPtrOutput)
+	}).(PrivateServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput)
 }
 
-func (o PrivateServiceDetailsPullRequestPreviewsEnabledOutput) ToStringOutput() pulumi.StringOutput {
+func (o PrivateServiceDetailsOutputPullRequestPreviewsEnabledOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
 
-func (o PrivateServiceDetailsPullRequestPreviewsEnabledOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e PrivateServiceDetailsPullRequestPreviewsEnabled) string {
+func (o PrivateServiceDetailsOutputPullRequestPreviewsEnabledOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e PrivateServiceDetailsOutputPullRequestPreviewsEnabled) string {
 		return string(e)
 	}).(pulumi.StringOutput)
 }
 
-func (o PrivateServiceDetailsPullRequestPreviewsEnabledOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o PrivateServiceDetailsOutputPullRequestPreviewsEnabledOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o PrivateServiceDetailsPullRequestPreviewsEnabledOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e PrivateServiceDetailsPullRequestPreviewsEnabled) *string {
+func (o PrivateServiceDetailsOutputPullRequestPreviewsEnabledOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e PrivateServiceDetailsOutputPullRequestPreviewsEnabled) *string {
 		v := string(e)
 		return &v
 	}).(pulumi.StringPtrOutput)
 }
 
-type PrivateServiceDetailsPullRequestPreviewsEnabledPtrOutput struct{ *pulumi.OutputState }
+type PrivateServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput struct{ *pulumi.OutputState }
 
-func (PrivateServiceDetailsPullRequestPreviewsEnabledPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**PrivateServiceDetailsPullRequestPreviewsEnabled)(nil)).Elem()
+func (PrivateServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PrivateServiceDetailsOutputPullRequestPreviewsEnabled)(nil)).Elem()
 }
 
-func (o PrivateServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToPrivateServiceDetailsPullRequestPreviewsEnabledPtrOutput() PrivateServiceDetailsPullRequestPreviewsEnabledPtrOutput {
+func (o PrivateServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput) ToPrivateServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput() PrivateServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput {
 	return o
 }
 
-func (o PrivateServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToPrivateServiceDetailsPullRequestPreviewsEnabledPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsPullRequestPreviewsEnabledPtrOutput {
+func (o PrivateServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput) ToPrivateServiceDetailsOutputPullRequestPreviewsEnabledPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput {
 	return o
 }
 
-func (o PrivateServiceDetailsPullRequestPreviewsEnabledPtrOutput) Elem() PrivateServiceDetailsPullRequestPreviewsEnabledOutput {
-	return o.ApplyT(func(v *PrivateServiceDetailsPullRequestPreviewsEnabled) PrivateServiceDetailsPullRequestPreviewsEnabled {
+func (o PrivateServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput) Elem() PrivateServiceDetailsOutputPullRequestPreviewsEnabledOutput {
+	return o.ApplyT(func(v *PrivateServiceDetailsOutputPullRequestPreviewsEnabled) PrivateServiceDetailsOutputPullRequestPreviewsEnabled {
 		if v != nil {
 			return *v
 		}
-		var ret PrivateServiceDetailsPullRequestPreviewsEnabled
+		var ret PrivateServiceDetailsOutputPullRequestPreviewsEnabled
 		return ret
-	}).(PrivateServiceDetailsPullRequestPreviewsEnabledOutput)
+	}).(PrivateServiceDetailsOutputPullRequestPreviewsEnabledOutput)
 }
 
-func (o PrivateServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o PrivateServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o PrivateServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e *PrivateServiceDetailsPullRequestPreviewsEnabled) *string {
+func (o PrivateServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *PrivateServiceDetailsOutputPullRequestPreviewsEnabled) *string {
 		if e == nil {
 			return nil
 		}
@@ -4926,90 +5258,90 @@ func (o PrivateServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToStringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
-type PrivateServiceDetailsRegion string
+type PrivateServiceDetailsOutputRegion string
 
 const (
-	PrivateServiceDetailsRegionFrankfurt = PrivateServiceDetailsRegion("frankfurt")
-	PrivateServiceDetailsRegionOregon    = PrivateServiceDetailsRegion("oregon")
-	PrivateServiceDetailsRegionOhio      = PrivateServiceDetailsRegion("ohio")
-	PrivateServiceDetailsRegionSingapore = PrivateServiceDetailsRegion("singapore")
+	PrivateServiceDetailsOutputRegionFrankfurt = PrivateServiceDetailsOutputRegion("frankfurt")
+	PrivateServiceDetailsOutputRegionOregon    = PrivateServiceDetailsOutputRegion("oregon")
+	PrivateServiceDetailsOutputRegionOhio      = PrivateServiceDetailsOutputRegion("ohio")
+	PrivateServiceDetailsOutputRegionSingapore = PrivateServiceDetailsOutputRegion("singapore")
 )
 
-type PrivateServiceDetailsRegionOutput struct{ *pulumi.OutputState }
+type PrivateServiceDetailsOutputRegionOutput struct{ *pulumi.OutputState }
 
-func (PrivateServiceDetailsRegionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*PrivateServiceDetailsRegion)(nil)).Elem()
+func (PrivateServiceDetailsOutputRegionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivateServiceDetailsOutputRegion)(nil)).Elem()
 }
 
-func (o PrivateServiceDetailsRegionOutput) ToPrivateServiceDetailsRegionOutput() PrivateServiceDetailsRegionOutput {
+func (o PrivateServiceDetailsOutputRegionOutput) ToPrivateServiceDetailsOutputRegionOutput() PrivateServiceDetailsOutputRegionOutput {
 	return o
 }
 
-func (o PrivateServiceDetailsRegionOutput) ToPrivateServiceDetailsRegionOutputWithContext(ctx context.Context) PrivateServiceDetailsRegionOutput {
+func (o PrivateServiceDetailsOutputRegionOutput) ToPrivateServiceDetailsOutputRegionOutputWithContext(ctx context.Context) PrivateServiceDetailsOutputRegionOutput {
 	return o
 }
 
-func (o PrivateServiceDetailsRegionOutput) ToPrivateServiceDetailsRegionPtrOutput() PrivateServiceDetailsRegionPtrOutput {
-	return o.ToPrivateServiceDetailsRegionPtrOutputWithContext(context.Background())
+func (o PrivateServiceDetailsOutputRegionOutput) ToPrivateServiceDetailsOutputRegionPtrOutput() PrivateServiceDetailsOutputRegionPtrOutput {
+	return o.ToPrivateServiceDetailsOutputRegionPtrOutputWithContext(context.Background())
 }
 
-func (o PrivateServiceDetailsRegionOutput) ToPrivateServiceDetailsRegionPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsRegionPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v PrivateServiceDetailsRegion) *PrivateServiceDetailsRegion {
+func (o PrivateServiceDetailsOutputRegionOutput) ToPrivateServiceDetailsOutputRegionPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsOutputRegionPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PrivateServiceDetailsOutputRegion) *PrivateServiceDetailsOutputRegion {
 		return &v
-	}).(PrivateServiceDetailsRegionPtrOutput)
+	}).(PrivateServiceDetailsOutputRegionPtrOutput)
 }
 
-func (o PrivateServiceDetailsRegionOutput) ToStringOutput() pulumi.StringOutput {
+func (o PrivateServiceDetailsOutputRegionOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
 
-func (o PrivateServiceDetailsRegionOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e PrivateServiceDetailsRegion) string {
+func (o PrivateServiceDetailsOutputRegionOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e PrivateServiceDetailsOutputRegion) string {
 		return string(e)
 	}).(pulumi.StringOutput)
 }
 
-func (o PrivateServiceDetailsRegionOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o PrivateServiceDetailsOutputRegionOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o PrivateServiceDetailsRegionOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e PrivateServiceDetailsRegion) *string {
+func (o PrivateServiceDetailsOutputRegionOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e PrivateServiceDetailsOutputRegion) *string {
 		v := string(e)
 		return &v
 	}).(pulumi.StringPtrOutput)
 }
 
-type PrivateServiceDetailsRegionPtrOutput struct{ *pulumi.OutputState }
+type PrivateServiceDetailsOutputRegionPtrOutput struct{ *pulumi.OutputState }
 
-func (PrivateServiceDetailsRegionPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**PrivateServiceDetailsRegion)(nil)).Elem()
+func (PrivateServiceDetailsOutputRegionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PrivateServiceDetailsOutputRegion)(nil)).Elem()
 }
 
-func (o PrivateServiceDetailsRegionPtrOutput) ToPrivateServiceDetailsRegionPtrOutput() PrivateServiceDetailsRegionPtrOutput {
+func (o PrivateServiceDetailsOutputRegionPtrOutput) ToPrivateServiceDetailsOutputRegionPtrOutput() PrivateServiceDetailsOutputRegionPtrOutput {
 	return o
 }
 
-func (o PrivateServiceDetailsRegionPtrOutput) ToPrivateServiceDetailsRegionPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsRegionPtrOutput {
+func (o PrivateServiceDetailsOutputRegionPtrOutput) ToPrivateServiceDetailsOutputRegionPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsOutputRegionPtrOutput {
 	return o
 }
 
-func (o PrivateServiceDetailsRegionPtrOutput) Elem() PrivateServiceDetailsRegionOutput {
-	return o.ApplyT(func(v *PrivateServiceDetailsRegion) PrivateServiceDetailsRegion {
+func (o PrivateServiceDetailsOutputRegionPtrOutput) Elem() PrivateServiceDetailsOutputRegionOutput {
+	return o.ApplyT(func(v *PrivateServiceDetailsOutputRegion) PrivateServiceDetailsOutputRegion {
 		if v != nil {
 			return *v
 		}
-		var ret PrivateServiceDetailsRegion
+		var ret PrivateServiceDetailsOutputRegion
 		return ret
-	}).(PrivateServiceDetailsRegionOutput)
+	}).(PrivateServiceDetailsOutputRegionOutput)
 }
 
-func (o PrivateServiceDetailsRegionPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o PrivateServiceDetailsOutputRegionPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o PrivateServiceDetailsRegionPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e *PrivateServiceDetailsRegion) *string {
+func (o PrivateServiceDetailsOutputRegionPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *PrivateServiceDetailsOutputRegion) *string {
 		if e == nil {
 			return nil
 		}
@@ -5106,6 +5438,172 @@ func (o PrivateServiceServiceAutoDeployPtrOutput) ToStringPtrOutputWithContext(c
 		v := string(*e)
 		return &v
 	}).(pulumi.StringPtrOutput)
+}
+
+// Defaults to "yes"
+type PrivateServiceServiceCreateAutoDeploy string
+
+const (
+	PrivateServiceServiceCreateAutoDeployYes = PrivateServiceServiceCreateAutoDeploy("yes")
+	PrivateServiceServiceCreateAutoDeployNo  = PrivateServiceServiceCreateAutoDeploy("no")
+)
+
+func (PrivateServiceServiceCreateAutoDeploy) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivateServiceServiceCreateAutoDeploy)(nil)).Elem()
+}
+
+func (e PrivateServiceServiceCreateAutoDeploy) ToPrivateServiceServiceCreateAutoDeployOutput() PrivateServiceServiceCreateAutoDeployOutput {
+	return pulumi.ToOutput(e).(PrivateServiceServiceCreateAutoDeployOutput)
+}
+
+func (e PrivateServiceServiceCreateAutoDeploy) ToPrivateServiceServiceCreateAutoDeployOutputWithContext(ctx context.Context) PrivateServiceServiceCreateAutoDeployOutput {
+	return pulumi.ToOutputWithContext(ctx, e).(PrivateServiceServiceCreateAutoDeployOutput)
+}
+
+func (e PrivateServiceServiceCreateAutoDeploy) ToPrivateServiceServiceCreateAutoDeployPtrOutput() PrivateServiceServiceCreateAutoDeployPtrOutput {
+	return e.ToPrivateServiceServiceCreateAutoDeployPtrOutputWithContext(context.Background())
+}
+
+func (e PrivateServiceServiceCreateAutoDeploy) ToPrivateServiceServiceCreateAutoDeployPtrOutputWithContext(ctx context.Context) PrivateServiceServiceCreateAutoDeployPtrOutput {
+	return PrivateServiceServiceCreateAutoDeploy(e).ToPrivateServiceServiceCreateAutoDeployOutputWithContext(ctx).ToPrivateServiceServiceCreateAutoDeployPtrOutputWithContext(ctx)
+}
+
+func (e PrivateServiceServiceCreateAutoDeploy) ToStringOutput() pulumi.StringOutput {
+	return pulumi.ToOutput(pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e PrivateServiceServiceCreateAutoDeploy) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return pulumi.ToOutputWithContext(ctx, pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e PrivateServiceServiceCreateAutoDeploy) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringPtrOutputWithContext(context.Background())
+}
+
+func (e PrivateServiceServiceCreateAutoDeploy) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
+}
+
+type PrivateServiceServiceCreateAutoDeployOutput struct{ *pulumi.OutputState }
+
+func (PrivateServiceServiceCreateAutoDeployOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivateServiceServiceCreateAutoDeploy)(nil)).Elem()
+}
+
+func (o PrivateServiceServiceCreateAutoDeployOutput) ToPrivateServiceServiceCreateAutoDeployOutput() PrivateServiceServiceCreateAutoDeployOutput {
+	return o
+}
+
+func (o PrivateServiceServiceCreateAutoDeployOutput) ToPrivateServiceServiceCreateAutoDeployOutputWithContext(ctx context.Context) PrivateServiceServiceCreateAutoDeployOutput {
+	return o
+}
+
+func (o PrivateServiceServiceCreateAutoDeployOutput) ToPrivateServiceServiceCreateAutoDeployPtrOutput() PrivateServiceServiceCreateAutoDeployPtrOutput {
+	return o.ToPrivateServiceServiceCreateAutoDeployPtrOutputWithContext(context.Background())
+}
+
+func (o PrivateServiceServiceCreateAutoDeployOutput) ToPrivateServiceServiceCreateAutoDeployPtrOutputWithContext(ctx context.Context) PrivateServiceServiceCreateAutoDeployPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PrivateServiceServiceCreateAutoDeploy) *PrivateServiceServiceCreateAutoDeploy {
+		return &v
+	}).(PrivateServiceServiceCreateAutoDeployPtrOutput)
+}
+
+func (o PrivateServiceServiceCreateAutoDeployOutput) ToStringOutput() pulumi.StringOutput {
+	return o.ToStringOutputWithContext(context.Background())
+}
+
+func (o PrivateServiceServiceCreateAutoDeployOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e PrivateServiceServiceCreateAutoDeploy) string {
+		return string(e)
+	}).(pulumi.StringOutput)
+}
+
+func (o PrivateServiceServiceCreateAutoDeployOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o PrivateServiceServiceCreateAutoDeployOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e PrivateServiceServiceCreateAutoDeploy) *string {
+		v := string(e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+type PrivateServiceServiceCreateAutoDeployPtrOutput struct{ *pulumi.OutputState }
+
+func (PrivateServiceServiceCreateAutoDeployPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PrivateServiceServiceCreateAutoDeploy)(nil)).Elem()
+}
+
+func (o PrivateServiceServiceCreateAutoDeployPtrOutput) ToPrivateServiceServiceCreateAutoDeployPtrOutput() PrivateServiceServiceCreateAutoDeployPtrOutput {
+	return o
+}
+
+func (o PrivateServiceServiceCreateAutoDeployPtrOutput) ToPrivateServiceServiceCreateAutoDeployPtrOutputWithContext(ctx context.Context) PrivateServiceServiceCreateAutoDeployPtrOutput {
+	return o
+}
+
+func (o PrivateServiceServiceCreateAutoDeployPtrOutput) Elem() PrivateServiceServiceCreateAutoDeployOutput {
+	return o.ApplyT(func(v *PrivateServiceServiceCreateAutoDeploy) PrivateServiceServiceCreateAutoDeploy {
+		if v != nil {
+			return *v
+		}
+		var ret PrivateServiceServiceCreateAutoDeploy
+		return ret
+	}).(PrivateServiceServiceCreateAutoDeployOutput)
+}
+
+func (o PrivateServiceServiceCreateAutoDeployPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o PrivateServiceServiceCreateAutoDeployPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *PrivateServiceServiceCreateAutoDeploy) *string {
+		if e == nil {
+			return nil
+		}
+		v := string(*e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+// PrivateServiceServiceCreateAutoDeployInput is an input type that accepts values of the PrivateServiceServiceCreateAutoDeploy enum
+// A concrete instance of `PrivateServiceServiceCreateAutoDeployInput` can be one of the following:
+//
+//	PrivateServiceServiceCreateAutoDeployYes
+//	PrivateServiceServiceCreateAutoDeployNo
+type PrivateServiceServiceCreateAutoDeployInput interface {
+	pulumi.Input
+
+	ToPrivateServiceServiceCreateAutoDeployOutput() PrivateServiceServiceCreateAutoDeployOutput
+	ToPrivateServiceServiceCreateAutoDeployOutputWithContext(context.Context) PrivateServiceServiceCreateAutoDeployOutput
+}
+
+var privateServiceServiceCreateAutoDeployPtrType = reflect.TypeOf((**PrivateServiceServiceCreateAutoDeploy)(nil)).Elem()
+
+type PrivateServiceServiceCreateAutoDeployPtrInput interface {
+	pulumi.Input
+
+	ToPrivateServiceServiceCreateAutoDeployPtrOutput() PrivateServiceServiceCreateAutoDeployPtrOutput
+	ToPrivateServiceServiceCreateAutoDeployPtrOutputWithContext(context.Context) PrivateServiceServiceCreateAutoDeployPtrOutput
+}
+
+type privateServiceServiceCreateAutoDeployPtr string
+
+func PrivateServiceServiceCreateAutoDeployPtr(v string) PrivateServiceServiceCreateAutoDeployPtrInput {
+	return (*privateServiceServiceCreateAutoDeployPtr)(&v)
+}
+
+func (*privateServiceServiceCreateAutoDeployPtr) ElementType() reflect.Type {
+	return privateServiceServiceCreateAutoDeployPtrType
+}
+
+func (in *privateServiceServiceCreateAutoDeployPtr) ToPrivateServiceServiceCreateAutoDeployPtrOutput() PrivateServiceServiceCreateAutoDeployPtrOutput {
+	return pulumi.ToOutput(in).(PrivateServiceServiceCreateAutoDeployPtrOutput)
+}
+
+func (in *privateServiceServiceCreateAutoDeployPtr) ToPrivateServiceServiceCreateAutoDeployPtrOutputWithContext(ctx context.Context) PrivateServiceServiceCreateAutoDeployPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, in).(PrivateServiceServiceCreateAutoDeployPtrOutput)
 }
 
 type PrivateServiceServiceNotifyOnFail string
@@ -6406,88 +6904,88 @@ func (in *staticSiteDetailsCreatePullRequestPreviewsEnabledPtr) ToStaticSiteDeta
 	return pulumi.ToOutputWithContext(ctx, in).(StaticSiteDetailsCreatePullRequestPreviewsEnabledPtrOutput)
 }
 
-type StaticSiteDetailsPullRequestPreviewsEnabled string
+type StaticSiteDetailsOutputPullRequestPreviewsEnabled string
 
 const (
-	StaticSiteDetailsPullRequestPreviewsEnabledYes = StaticSiteDetailsPullRequestPreviewsEnabled("yes")
-	StaticSiteDetailsPullRequestPreviewsEnabledNo  = StaticSiteDetailsPullRequestPreviewsEnabled("no")
+	StaticSiteDetailsOutputPullRequestPreviewsEnabledYes = StaticSiteDetailsOutputPullRequestPreviewsEnabled("yes")
+	StaticSiteDetailsOutputPullRequestPreviewsEnabledNo  = StaticSiteDetailsOutputPullRequestPreviewsEnabled("no")
 )
 
-type StaticSiteDetailsPullRequestPreviewsEnabledOutput struct{ *pulumi.OutputState }
+type StaticSiteDetailsOutputPullRequestPreviewsEnabledOutput struct{ *pulumi.OutputState }
 
-func (StaticSiteDetailsPullRequestPreviewsEnabledOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*StaticSiteDetailsPullRequestPreviewsEnabled)(nil)).Elem()
+func (StaticSiteDetailsOutputPullRequestPreviewsEnabledOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StaticSiteDetailsOutputPullRequestPreviewsEnabled)(nil)).Elem()
 }
 
-func (o StaticSiteDetailsPullRequestPreviewsEnabledOutput) ToStaticSiteDetailsPullRequestPreviewsEnabledOutput() StaticSiteDetailsPullRequestPreviewsEnabledOutput {
+func (o StaticSiteDetailsOutputPullRequestPreviewsEnabledOutput) ToStaticSiteDetailsOutputPullRequestPreviewsEnabledOutput() StaticSiteDetailsOutputPullRequestPreviewsEnabledOutput {
 	return o
 }
 
-func (o StaticSiteDetailsPullRequestPreviewsEnabledOutput) ToStaticSiteDetailsPullRequestPreviewsEnabledOutputWithContext(ctx context.Context) StaticSiteDetailsPullRequestPreviewsEnabledOutput {
+func (o StaticSiteDetailsOutputPullRequestPreviewsEnabledOutput) ToStaticSiteDetailsOutputPullRequestPreviewsEnabledOutputWithContext(ctx context.Context) StaticSiteDetailsOutputPullRequestPreviewsEnabledOutput {
 	return o
 }
 
-func (o StaticSiteDetailsPullRequestPreviewsEnabledOutput) ToStaticSiteDetailsPullRequestPreviewsEnabledPtrOutput() StaticSiteDetailsPullRequestPreviewsEnabledPtrOutput {
-	return o.ToStaticSiteDetailsPullRequestPreviewsEnabledPtrOutputWithContext(context.Background())
+func (o StaticSiteDetailsOutputPullRequestPreviewsEnabledOutput) ToStaticSiteDetailsOutputPullRequestPreviewsEnabledPtrOutput() StaticSiteDetailsOutputPullRequestPreviewsEnabledPtrOutput {
+	return o.ToStaticSiteDetailsOutputPullRequestPreviewsEnabledPtrOutputWithContext(context.Background())
 }
 
-func (o StaticSiteDetailsPullRequestPreviewsEnabledOutput) ToStaticSiteDetailsPullRequestPreviewsEnabledPtrOutputWithContext(ctx context.Context) StaticSiteDetailsPullRequestPreviewsEnabledPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v StaticSiteDetailsPullRequestPreviewsEnabled) *StaticSiteDetailsPullRequestPreviewsEnabled {
+func (o StaticSiteDetailsOutputPullRequestPreviewsEnabledOutput) ToStaticSiteDetailsOutputPullRequestPreviewsEnabledPtrOutputWithContext(ctx context.Context) StaticSiteDetailsOutputPullRequestPreviewsEnabledPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StaticSiteDetailsOutputPullRequestPreviewsEnabled) *StaticSiteDetailsOutputPullRequestPreviewsEnabled {
 		return &v
-	}).(StaticSiteDetailsPullRequestPreviewsEnabledPtrOutput)
+	}).(StaticSiteDetailsOutputPullRequestPreviewsEnabledPtrOutput)
 }
 
-func (o StaticSiteDetailsPullRequestPreviewsEnabledOutput) ToStringOutput() pulumi.StringOutput {
+func (o StaticSiteDetailsOutputPullRequestPreviewsEnabledOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
 
-func (o StaticSiteDetailsPullRequestPreviewsEnabledOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e StaticSiteDetailsPullRequestPreviewsEnabled) string {
+func (o StaticSiteDetailsOutputPullRequestPreviewsEnabledOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e StaticSiteDetailsOutputPullRequestPreviewsEnabled) string {
 		return string(e)
 	}).(pulumi.StringOutput)
 }
 
-func (o StaticSiteDetailsPullRequestPreviewsEnabledOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o StaticSiteDetailsOutputPullRequestPreviewsEnabledOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o StaticSiteDetailsPullRequestPreviewsEnabledOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e StaticSiteDetailsPullRequestPreviewsEnabled) *string {
+func (o StaticSiteDetailsOutputPullRequestPreviewsEnabledOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e StaticSiteDetailsOutputPullRequestPreviewsEnabled) *string {
 		v := string(e)
 		return &v
 	}).(pulumi.StringPtrOutput)
 }
 
-type StaticSiteDetailsPullRequestPreviewsEnabledPtrOutput struct{ *pulumi.OutputState }
+type StaticSiteDetailsOutputPullRequestPreviewsEnabledPtrOutput struct{ *pulumi.OutputState }
 
-func (StaticSiteDetailsPullRequestPreviewsEnabledPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**StaticSiteDetailsPullRequestPreviewsEnabled)(nil)).Elem()
+func (StaticSiteDetailsOutputPullRequestPreviewsEnabledPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StaticSiteDetailsOutputPullRequestPreviewsEnabled)(nil)).Elem()
 }
 
-func (o StaticSiteDetailsPullRequestPreviewsEnabledPtrOutput) ToStaticSiteDetailsPullRequestPreviewsEnabledPtrOutput() StaticSiteDetailsPullRequestPreviewsEnabledPtrOutput {
+func (o StaticSiteDetailsOutputPullRequestPreviewsEnabledPtrOutput) ToStaticSiteDetailsOutputPullRequestPreviewsEnabledPtrOutput() StaticSiteDetailsOutputPullRequestPreviewsEnabledPtrOutput {
 	return o
 }
 
-func (o StaticSiteDetailsPullRequestPreviewsEnabledPtrOutput) ToStaticSiteDetailsPullRequestPreviewsEnabledPtrOutputWithContext(ctx context.Context) StaticSiteDetailsPullRequestPreviewsEnabledPtrOutput {
+func (o StaticSiteDetailsOutputPullRequestPreviewsEnabledPtrOutput) ToStaticSiteDetailsOutputPullRequestPreviewsEnabledPtrOutputWithContext(ctx context.Context) StaticSiteDetailsOutputPullRequestPreviewsEnabledPtrOutput {
 	return o
 }
 
-func (o StaticSiteDetailsPullRequestPreviewsEnabledPtrOutput) Elem() StaticSiteDetailsPullRequestPreviewsEnabledOutput {
-	return o.ApplyT(func(v *StaticSiteDetailsPullRequestPreviewsEnabled) StaticSiteDetailsPullRequestPreviewsEnabled {
+func (o StaticSiteDetailsOutputPullRequestPreviewsEnabledPtrOutput) Elem() StaticSiteDetailsOutputPullRequestPreviewsEnabledOutput {
+	return o.ApplyT(func(v *StaticSiteDetailsOutputPullRequestPreviewsEnabled) StaticSiteDetailsOutputPullRequestPreviewsEnabled {
 		if v != nil {
 			return *v
 		}
-		var ret StaticSiteDetailsPullRequestPreviewsEnabled
+		var ret StaticSiteDetailsOutputPullRequestPreviewsEnabled
 		return ret
-	}).(StaticSiteDetailsPullRequestPreviewsEnabledOutput)
+	}).(StaticSiteDetailsOutputPullRequestPreviewsEnabledOutput)
 }
 
-func (o StaticSiteDetailsPullRequestPreviewsEnabledPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o StaticSiteDetailsOutputPullRequestPreviewsEnabledPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o StaticSiteDetailsPullRequestPreviewsEnabledPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e *StaticSiteDetailsPullRequestPreviewsEnabled) *string {
+func (o StaticSiteDetailsOutputPullRequestPreviewsEnabledPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *StaticSiteDetailsOutputPullRequestPreviewsEnabled) *string {
 		if e == nil {
 			return nil
 		}
@@ -6749,6 +7247,172 @@ func (o StaticSiteServiceAutoDeployPtrOutput) ToStringPtrOutputWithContext(ctx c
 		v := string(*e)
 		return &v
 	}).(pulumi.StringPtrOutput)
+}
+
+// Defaults to "yes"
+type StaticSiteServiceCreateAutoDeploy string
+
+const (
+	StaticSiteServiceCreateAutoDeployYes = StaticSiteServiceCreateAutoDeploy("yes")
+	StaticSiteServiceCreateAutoDeployNo  = StaticSiteServiceCreateAutoDeploy("no")
+)
+
+func (StaticSiteServiceCreateAutoDeploy) ElementType() reflect.Type {
+	return reflect.TypeOf((*StaticSiteServiceCreateAutoDeploy)(nil)).Elem()
+}
+
+func (e StaticSiteServiceCreateAutoDeploy) ToStaticSiteServiceCreateAutoDeployOutput() StaticSiteServiceCreateAutoDeployOutput {
+	return pulumi.ToOutput(e).(StaticSiteServiceCreateAutoDeployOutput)
+}
+
+func (e StaticSiteServiceCreateAutoDeploy) ToStaticSiteServiceCreateAutoDeployOutputWithContext(ctx context.Context) StaticSiteServiceCreateAutoDeployOutput {
+	return pulumi.ToOutputWithContext(ctx, e).(StaticSiteServiceCreateAutoDeployOutput)
+}
+
+func (e StaticSiteServiceCreateAutoDeploy) ToStaticSiteServiceCreateAutoDeployPtrOutput() StaticSiteServiceCreateAutoDeployPtrOutput {
+	return e.ToStaticSiteServiceCreateAutoDeployPtrOutputWithContext(context.Background())
+}
+
+func (e StaticSiteServiceCreateAutoDeploy) ToStaticSiteServiceCreateAutoDeployPtrOutputWithContext(ctx context.Context) StaticSiteServiceCreateAutoDeployPtrOutput {
+	return StaticSiteServiceCreateAutoDeploy(e).ToStaticSiteServiceCreateAutoDeployOutputWithContext(ctx).ToStaticSiteServiceCreateAutoDeployPtrOutputWithContext(ctx)
+}
+
+func (e StaticSiteServiceCreateAutoDeploy) ToStringOutput() pulumi.StringOutput {
+	return pulumi.ToOutput(pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e StaticSiteServiceCreateAutoDeploy) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return pulumi.ToOutputWithContext(ctx, pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e StaticSiteServiceCreateAutoDeploy) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringPtrOutputWithContext(context.Background())
+}
+
+func (e StaticSiteServiceCreateAutoDeploy) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
+}
+
+type StaticSiteServiceCreateAutoDeployOutput struct{ *pulumi.OutputState }
+
+func (StaticSiteServiceCreateAutoDeployOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StaticSiteServiceCreateAutoDeploy)(nil)).Elem()
+}
+
+func (o StaticSiteServiceCreateAutoDeployOutput) ToStaticSiteServiceCreateAutoDeployOutput() StaticSiteServiceCreateAutoDeployOutput {
+	return o
+}
+
+func (o StaticSiteServiceCreateAutoDeployOutput) ToStaticSiteServiceCreateAutoDeployOutputWithContext(ctx context.Context) StaticSiteServiceCreateAutoDeployOutput {
+	return o
+}
+
+func (o StaticSiteServiceCreateAutoDeployOutput) ToStaticSiteServiceCreateAutoDeployPtrOutput() StaticSiteServiceCreateAutoDeployPtrOutput {
+	return o.ToStaticSiteServiceCreateAutoDeployPtrOutputWithContext(context.Background())
+}
+
+func (o StaticSiteServiceCreateAutoDeployOutput) ToStaticSiteServiceCreateAutoDeployPtrOutputWithContext(ctx context.Context) StaticSiteServiceCreateAutoDeployPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StaticSiteServiceCreateAutoDeploy) *StaticSiteServiceCreateAutoDeploy {
+		return &v
+	}).(StaticSiteServiceCreateAutoDeployPtrOutput)
+}
+
+func (o StaticSiteServiceCreateAutoDeployOutput) ToStringOutput() pulumi.StringOutput {
+	return o.ToStringOutputWithContext(context.Background())
+}
+
+func (o StaticSiteServiceCreateAutoDeployOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e StaticSiteServiceCreateAutoDeploy) string {
+		return string(e)
+	}).(pulumi.StringOutput)
+}
+
+func (o StaticSiteServiceCreateAutoDeployOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o StaticSiteServiceCreateAutoDeployOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e StaticSiteServiceCreateAutoDeploy) *string {
+		v := string(e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+type StaticSiteServiceCreateAutoDeployPtrOutput struct{ *pulumi.OutputState }
+
+func (StaticSiteServiceCreateAutoDeployPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StaticSiteServiceCreateAutoDeploy)(nil)).Elem()
+}
+
+func (o StaticSiteServiceCreateAutoDeployPtrOutput) ToStaticSiteServiceCreateAutoDeployPtrOutput() StaticSiteServiceCreateAutoDeployPtrOutput {
+	return o
+}
+
+func (o StaticSiteServiceCreateAutoDeployPtrOutput) ToStaticSiteServiceCreateAutoDeployPtrOutputWithContext(ctx context.Context) StaticSiteServiceCreateAutoDeployPtrOutput {
+	return o
+}
+
+func (o StaticSiteServiceCreateAutoDeployPtrOutput) Elem() StaticSiteServiceCreateAutoDeployOutput {
+	return o.ApplyT(func(v *StaticSiteServiceCreateAutoDeploy) StaticSiteServiceCreateAutoDeploy {
+		if v != nil {
+			return *v
+		}
+		var ret StaticSiteServiceCreateAutoDeploy
+		return ret
+	}).(StaticSiteServiceCreateAutoDeployOutput)
+}
+
+func (o StaticSiteServiceCreateAutoDeployPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o StaticSiteServiceCreateAutoDeployPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *StaticSiteServiceCreateAutoDeploy) *string {
+		if e == nil {
+			return nil
+		}
+		v := string(*e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+// StaticSiteServiceCreateAutoDeployInput is an input type that accepts values of the StaticSiteServiceCreateAutoDeploy enum
+// A concrete instance of `StaticSiteServiceCreateAutoDeployInput` can be one of the following:
+//
+//	StaticSiteServiceCreateAutoDeployYes
+//	StaticSiteServiceCreateAutoDeployNo
+type StaticSiteServiceCreateAutoDeployInput interface {
+	pulumi.Input
+
+	ToStaticSiteServiceCreateAutoDeployOutput() StaticSiteServiceCreateAutoDeployOutput
+	ToStaticSiteServiceCreateAutoDeployOutputWithContext(context.Context) StaticSiteServiceCreateAutoDeployOutput
+}
+
+var staticSiteServiceCreateAutoDeployPtrType = reflect.TypeOf((**StaticSiteServiceCreateAutoDeploy)(nil)).Elem()
+
+type StaticSiteServiceCreateAutoDeployPtrInput interface {
+	pulumi.Input
+
+	ToStaticSiteServiceCreateAutoDeployPtrOutput() StaticSiteServiceCreateAutoDeployPtrOutput
+	ToStaticSiteServiceCreateAutoDeployPtrOutputWithContext(context.Context) StaticSiteServiceCreateAutoDeployPtrOutput
+}
+
+type staticSiteServiceCreateAutoDeployPtr string
+
+func StaticSiteServiceCreateAutoDeployPtr(v string) StaticSiteServiceCreateAutoDeployPtrInput {
+	return (*staticSiteServiceCreateAutoDeployPtr)(&v)
+}
+
+func (*staticSiteServiceCreateAutoDeployPtr) ElementType() reflect.Type {
+	return staticSiteServiceCreateAutoDeployPtrType
+}
+
+func (in *staticSiteServiceCreateAutoDeployPtr) ToStaticSiteServiceCreateAutoDeployPtrOutput() StaticSiteServiceCreateAutoDeployPtrOutput {
+	return pulumi.ToOutput(in).(StaticSiteServiceCreateAutoDeployPtrOutput)
+}
+
+func (in *staticSiteServiceCreateAutoDeployPtr) ToStaticSiteServiceCreateAutoDeployPtrOutputWithContext(ctx context.Context) StaticSiteServiceCreateAutoDeployPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, in).(StaticSiteServiceCreateAutoDeployPtrOutput)
 }
 
 type StaticSiteServiceNotifyOnFail string
@@ -7732,94 +8396,94 @@ func (in *webServiceDetailsCreateRegionPtr) ToWebServiceDetailsCreateRegionPtrOu
 }
 
 // Environment (runtime)
-type WebServiceDetailsEnv string
+type WebServiceDetailsOutputEnv string
 
 const (
-	WebServiceDetailsEnvDocker = WebServiceDetailsEnv("docker")
-	WebServiceDetailsEnvElixir = WebServiceDetailsEnv("elixir")
-	WebServiceDetailsEnvGo     = WebServiceDetailsEnv("go")
-	WebServiceDetailsEnvNode   = WebServiceDetailsEnv("node")
-	WebServiceDetailsEnvPython = WebServiceDetailsEnv("python")
-	WebServiceDetailsEnvRuby   = WebServiceDetailsEnv("ruby")
-	WebServiceDetailsEnvRust   = WebServiceDetailsEnv("rust")
-	WebServiceDetailsEnvImage  = WebServiceDetailsEnv("image")
+	WebServiceDetailsOutputEnvDocker = WebServiceDetailsOutputEnv("docker")
+	WebServiceDetailsOutputEnvElixir = WebServiceDetailsOutputEnv("elixir")
+	WebServiceDetailsOutputEnvGo     = WebServiceDetailsOutputEnv("go")
+	WebServiceDetailsOutputEnvNode   = WebServiceDetailsOutputEnv("node")
+	WebServiceDetailsOutputEnvPython = WebServiceDetailsOutputEnv("python")
+	WebServiceDetailsOutputEnvRuby   = WebServiceDetailsOutputEnv("ruby")
+	WebServiceDetailsOutputEnvRust   = WebServiceDetailsOutputEnv("rust")
+	WebServiceDetailsOutputEnvImage  = WebServiceDetailsOutputEnv("image")
 )
 
-type WebServiceDetailsEnvOutput struct{ *pulumi.OutputState }
+type WebServiceDetailsOutputEnvOutput struct{ *pulumi.OutputState }
 
-func (WebServiceDetailsEnvOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebServiceDetailsEnv)(nil)).Elem()
+func (WebServiceDetailsOutputEnvOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceDetailsOutputEnv)(nil)).Elem()
 }
 
-func (o WebServiceDetailsEnvOutput) ToWebServiceDetailsEnvOutput() WebServiceDetailsEnvOutput {
+func (o WebServiceDetailsOutputEnvOutput) ToWebServiceDetailsOutputEnvOutput() WebServiceDetailsOutputEnvOutput {
 	return o
 }
 
-func (o WebServiceDetailsEnvOutput) ToWebServiceDetailsEnvOutputWithContext(ctx context.Context) WebServiceDetailsEnvOutput {
+func (o WebServiceDetailsOutputEnvOutput) ToWebServiceDetailsOutputEnvOutputWithContext(ctx context.Context) WebServiceDetailsOutputEnvOutput {
 	return o
 }
 
-func (o WebServiceDetailsEnvOutput) ToWebServiceDetailsEnvPtrOutput() WebServiceDetailsEnvPtrOutput {
-	return o.ToWebServiceDetailsEnvPtrOutputWithContext(context.Background())
+func (o WebServiceDetailsOutputEnvOutput) ToWebServiceDetailsOutputEnvPtrOutput() WebServiceDetailsOutputEnvPtrOutput {
+	return o.ToWebServiceDetailsOutputEnvPtrOutputWithContext(context.Background())
 }
 
-func (o WebServiceDetailsEnvOutput) ToWebServiceDetailsEnvPtrOutputWithContext(ctx context.Context) WebServiceDetailsEnvPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebServiceDetailsEnv) *WebServiceDetailsEnv {
+func (o WebServiceDetailsOutputEnvOutput) ToWebServiceDetailsOutputEnvPtrOutputWithContext(ctx context.Context) WebServiceDetailsOutputEnvPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebServiceDetailsOutputEnv) *WebServiceDetailsOutputEnv {
 		return &v
-	}).(WebServiceDetailsEnvPtrOutput)
+	}).(WebServiceDetailsOutputEnvPtrOutput)
 }
 
-func (o WebServiceDetailsEnvOutput) ToStringOutput() pulumi.StringOutput {
+func (o WebServiceDetailsOutputEnvOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
 
-func (o WebServiceDetailsEnvOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e WebServiceDetailsEnv) string {
+func (o WebServiceDetailsOutputEnvOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e WebServiceDetailsOutputEnv) string {
 		return string(e)
 	}).(pulumi.StringOutput)
 }
 
-func (o WebServiceDetailsEnvOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o WebServiceDetailsOutputEnvOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o WebServiceDetailsEnvOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e WebServiceDetailsEnv) *string {
+func (o WebServiceDetailsOutputEnvOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e WebServiceDetailsOutputEnv) *string {
 		v := string(e)
 		return &v
 	}).(pulumi.StringPtrOutput)
 }
 
-type WebServiceDetailsEnvPtrOutput struct{ *pulumi.OutputState }
+type WebServiceDetailsOutputEnvPtrOutput struct{ *pulumi.OutputState }
 
-func (WebServiceDetailsEnvPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebServiceDetailsEnv)(nil)).Elem()
+func (WebServiceDetailsOutputEnvPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebServiceDetailsOutputEnv)(nil)).Elem()
 }
 
-func (o WebServiceDetailsEnvPtrOutput) ToWebServiceDetailsEnvPtrOutput() WebServiceDetailsEnvPtrOutput {
+func (o WebServiceDetailsOutputEnvPtrOutput) ToWebServiceDetailsOutputEnvPtrOutput() WebServiceDetailsOutputEnvPtrOutput {
 	return o
 }
 
-func (o WebServiceDetailsEnvPtrOutput) ToWebServiceDetailsEnvPtrOutputWithContext(ctx context.Context) WebServiceDetailsEnvPtrOutput {
+func (o WebServiceDetailsOutputEnvPtrOutput) ToWebServiceDetailsOutputEnvPtrOutputWithContext(ctx context.Context) WebServiceDetailsOutputEnvPtrOutput {
 	return o
 }
 
-func (o WebServiceDetailsEnvPtrOutput) Elem() WebServiceDetailsEnvOutput {
-	return o.ApplyT(func(v *WebServiceDetailsEnv) WebServiceDetailsEnv {
+func (o WebServiceDetailsOutputEnvPtrOutput) Elem() WebServiceDetailsOutputEnvOutput {
+	return o.ApplyT(func(v *WebServiceDetailsOutputEnv) WebServiceDetailsOutputEnv {
 		if v != nil {
 			return *v
 		}
-		var ret WebServiceDetailsEnv
+		var ret WebServiceDetailsOutputEnv
 		return ret
-	}).(WebServiceDetailsEnvOutput)
+	}).(WebServiceDetailsOutputEnvOutput)
 }
 
-func (o WebServiceDetailsEnvPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o WebServiceDetailsOutputEnvPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o WebServiceDetailsEnvPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e *WebServiceDetailsEnv) *string {
+func (o WebServiceDetailsOutputEnvPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *WebServiceDetailsOutputEnv) *string {
 		if e == nil {
 			return nil
 		}
@@ -7829,96 +8493,96 @@ func (o WebServiceDetailsEnvPtrOutput) ToStringPtrOutputWithContext(ctx context.
 }
 
 // The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
-type WebServiceDetailsPlan string
+type WebServiceDetailsOutputPlan string
 
 const (
-	WebServiceDetailsPlanStarter      = WebServiceDetailsPlan("starter")
-	WebServiceDetailsPlanStarterPlus  = WebServiceDetailsPlan("starter_plus")
-	WebServiceDetailsPlanStandard     = WebServiceDetailsPlan("standard")
-	WebServiceDetailsPlanStandardPlus = WebServiceDetailsPlan("standard_plus")
-	WebServiceDetailsPlanPro          = WebServiceDetailsPlan("pro")
-	WebServiceDetailsPlanProPlus      = WebServiceDetailsPlan("pro_plus")
-	WebServiceDetailsPlanProMax       = WebServiceDetailsPlan("pro_max")
-	WebServiceDetailsPlanProUltra     = WebServiceDetailsPlan("pro_ultra")
-	WebServiceDetailsPlanFree         = WebServiceDetailsPlan("free")
-	WebServiceDetailsPlanCustom       = WebServiceDetailsPlan("custom")
+	WebServiceDetailsOutputPlanStarter      = WebServiceDetailsOutputPlan("starter")
+	WebServiceDetailsOutputPlanStarterPlus  = WebServiceDetailsOutputPlan("starter_plus")
+	WebServiceDetailsOutputPlanStandard     = WebServiceDetailsOutputPlan("standard")
+	WebServiceDetailsOutputPlanStandardPlus = WebServiceDetailsOutputPlan("standard_plus")
+	WebServiceDetailsOutputPlanPro          = WebServiceDetailsOutputPlan("pro")
+	WebServiceDetailsOutputPlanProPlus      = WebServiceDetailsOutputPlan("pro_plus")
+	WebServiceDetailsOutputPlanProMax       = WebServiceDetailsOutputPlan("pro_max")
+	WebServiceDetailsOutputPlanProUltra     = WebServiceDetailsOutputPlan("pro_ultra")
+	WebServiceDetailsOutputPlanFree         = WebServiceDetailsOutputPlan("free")
+	WebServiceDetailsOutputPlanCustom       = WebServiceDetailsOutputPlan("custom")
 )
 
-type WebServiceDetailsPlanOutput struct{ *pulumi.OutputState }
+type WebServiceDetailsOutputPlanOutput struct{ *pulumi.OutputState }
 
-func (WebServiceDetailsPlanOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebServiceDetailsPlan)(nil)).Elem()
+func (WebServiceDetailsOutputPlanOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceDetailsOutputPlan)(nil)).Elem()
 }
 
-func (o WebServiceDetailsPlanOutput) ToWebServiceDetailsPlanOutput() WebServiceDetailsPlanOutput {
+func (o WebServiceDetailsOutputPlanOutput) ToWebServiceDetailsOutputPlanOutput() WebServiceDetailsOutputPlanOutput {
 	return o
 }
 
-func (o WebServiceDetailsPlanOutput) ToWebServiceDetailsPlanOutputWithContext(ctx context.Context) WebServiceDetailsPlanOutput {
+func (o WebServiceDetailsOutputPlanOutput) ToWebServiceDetailsOutputPlanOutputWithContext(ctx context.Context) WebServiceDetailsOutputPlanOutput {
 	return o
 }
 
-func (o WebServiceDetailsPlanOutput) ToWebServiceDetailsPlanPtrOutput() WebServiceDetailsPlanPtrOutput {
-	return o.ToWebServiceDetailsPlanPtrOutputWithContext(context.Background())
+func (o WebServiceDetailsOutputPlanOutput) ToWebServiceDetailsOutputPlanPtrOutput() WebServiceDetailsOutputPlanPtrOutput {
+	return o.ToWebServiceDetailsOutputPlanPtrOutputWithContext(context.Background())
 }
 
-func (o WebServiceDetailsPlanOutput) ToWebServiceDetailsPlanPtrOutputWithContext(ctx context.Context) WebServiceDetailsPlanPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebServiceDetailsPlan) *WebServiceDetailsPlan {
+func (o WebServiceDetailsOutputPlanOutput) ToWebServiceDetailsOutputPlanPtrOutputWithContext(ctx context.Context) WebServiceDetailsOutputPlanPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebServiceDetailsOutputPlan) *WebServiceDetailsOutputPlan {
 		return &v
-	}).(WebServiceDetailsPlanPtrOutput)
+	}).(WebServiceDetailsOutputPlanPtrOutput)
 }
 
-func (o WebServiceDetailsPlanOutput) ToStringOutput() pulumi.StringOutput {
+func (o WebServiceDetailsOutputPlanOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
 
-func (o WebServiceDetailsPlanOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e WebServiceDetailsPlan) string {
+func (o WebServiceDetailsOutputPlanOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e WebServiceDetailsOutputPlan) string {
 		return string(e)
 	}).(pulumi.StringOutput)
 }
 
-func (o WebServiceDetailsPlanOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o WebServiceDetailsOutputPlanOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o WebServiceDetailsPlanOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e WebServiceDetailsPlan) *string {
+func (o WebServiceDetailsOutputPlanOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e WebServiceDetailsOutputPlan) *string {
 		v := string(e)
 		return &v
 	}).(pulumi.StringPtrOutput)
 }
 
-type WebServiceDetailsPlanPtrOutput struct{ *pulumi.OutputState }
+type WebServiceDetailsOutputPlanPtrOutput struct{ *pulumi.OutputState }
 
-func (WebServiceDetailsPlanPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebServiceDetailsPlan)(nil)).Elem()
+func (WebServiceDetailsOutputPlanPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebServiceDetailsOutputPlan)(nil)).Elem()
 }
 
-func (o WebServiceDetailsPlanPtrOutput) ToWebServiceDetailsPlanPtrOutput() WebServiceDetailsPlanPtrOutput {
+func (o WebServiceDetailsOutputPlanPtrOutput) ToWebServiceDetailsOutputPlanPtrOutput() WebServiceDetailsOutputPlanPtrOutput {
 	return o
 }
 
-func (o WebServiceDetailsPlanPtrOutput) ToWebServiceDetailsPlanPtrOutputWithContext(ctx context.Context) WebServiceDetailsPlanPtrOutput {
+func (o WebServiceDetailsOutputPlanPtrOutput) ToWebServiceDetailsOutputPlanPtrOutputWithContext(ctx context.Context) WebServiceDetailsOutputPlanPtrOutput {
 	return o
 }
 
-func (o WebServiceDetailsPlanPtrOutput) Elem() WebServiceDetailsPlanOutput {
-	return o.ApplyT(func(v *WebServiceDetailsPlan) WebServiceDetailsPlan {
+func (o WebServiceDetailsOutputPlanPtrOutput) Elem() WebServiceDetailsOutputPlanOutput {
+	return o.ApplyT(func(v *WebServiceDetailsOutputPlan) WebServiceDetailsOutputPlan {
 		if v != nil {
 			return *v
 		}
-		var ret WebServiceDetailsPlan
+		var ret WebServiceDetailsOutputPlan
 		return ret
-	}).(WebServiceDetailsPlanOutput)
+	}).(WebServiceDetailsOutputPlanOutput)
 }
 
-func (o WebServiceDetailsPlanPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o WebServiceDetailsOutputPlanPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o WebServiceDetailsPlanPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e *WebServiceDetailsPlan) *string {
+func (o WebServiceDetailsOutputPlanPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *WebServiceDetailsOutputPlan) *string {
 		if e == nil {
 			return nil
 		}
@@ -7927,88 +8591,88 @@ func (o WebServiceDetailsPlanPtrOutput) ToStringPtrOutputWithContext(ctx context
 	}).(pulumi.StringPtrOutput)
 }
 
-type WebServiceDetailsPullRequestPreviewsEnabled string
+type WebServiceDetailsOutputPullRequestPreviewsEnabled string
 
 const (
-	WebServiceDetailsPullRequestPreviewsEnabledYes = WebServiceDetailsPullRequestPreviewsEnabled("yes")
-	WebServiceDetailsPullRequestPreviewsEnabledNo  = WebServiceDetailsPullRequestPreviewsEnabled("no")
+	WebServiceDetailsOutputPullRequestPreviewsEnabledYes = WebServiceDetailsOutputPullRequestPreviewsEnabled("yes")
+	WebServiceDetailsOutputPullRequestPreviewsEnabledNo  = WebServiceDetailsOutputPullRequestPreviewsEnabled("no")
 )
 
-type WebServiceDetailsPullRequestPreviewsEnabledOutput struct{ *pulumi.OutputState }
+type WebServiceDetailsOutputPullRequestPreviewsEnabledOutput struct{ *pulumi.OutputState }
 
-func (WebServiceDetailsPullRequestPreviewsEnabledOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebServiceDetailsPullRequestPreviewsEnabled)(nil)).Elem()
+func (WebServiceDetailsOutputPullRequestPreviewsEnabledOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceDetailsOutputPullRequestPreviewsEnabled)(nil)).Elem()
 }
 
-func (o WebServiceDetailsPullRequestPreviewsEnabledOutput) ToWebServiceDetailsPullRequestPreviewsEnabledOutput() WebServiceDetailsPullRequestPreviewsEnabledOutput {
+func (o WebServiceDetailsOutputPullRequestPreviewsEnabledOutput) ToWebServiceDetailsOutputPullRequestPreviewsEnabledOutput() WebServiceDetailsOutputPullRequestPreviewsEnabledOutput {
 	return o
 }
 
-func (o WebServiceDetailsPullRequestPreviewsEnabledOutput) ToWebServiceDetailsPullRequestPreviewsEnabledOutputWithContext(ctx context.Context) WebServiceDetailsPullRequestPreviewsEnabledOutput {
+func (o WebServiceDetailsOutputPullRequestPreviewsEnabledOutput) ToWebServiceDetailsOutputPullRequestPreviewsEnabledOutputWithContext(ctx context.Context) WebServiceDetailsOutputPullRequestPreviewsEnabledOutput {
 	return o
 }
 
-func (o WebServiceDetailsPullRequestPreviewsEnabledOutput) ToWebServiceDetailsPullRequestPreviewsEnabledPtrOutput() WebServiceDetailsPullRequestPreviewsEnabledPtrOutput {
-	return o.ToWebServiceDetailsPullRequestPreviewsEnabledPtrOutputWithContext(context.Background())
+func (o WebServiceDetailsOutputPullRequestPreviewsEnabledOutput) ToWebServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput() WebServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput {
+	return o.ToWebServiceDetailsOutputPullRequestPreviewsEnabledPtrOutputWithContext(context.Background())
 }
 
-func (o WebServiceDetailsPullRequestPreviewsEnabledOutput) ToWebServiceDetailsPullRequestPreviewsEnabledPtrOutputWithContext(ctx context.Context) WebServiceDetailsPullRequestPreviewsEnabledPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebServiceDetailsPullRequestPreviewsEnabled) *WebServiceDetailsPullRequestPreviewsEnabled {
+func (o WebServiceDetailsOutputPullRequestPreviewsEnabledOutput) ToWebServiceDetailsOutputPullRequestPreviewsEnabledPtrOutputWithContext(ctx context.Context) WebServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebServiceDetailsOutputPullRequestPreviewsEnabled) *WebServiceDetailsOutputPullRequestPreviewsEnabled {
 		return &v
-	}).(WebServiceDetailsPullRequestPreviewsEnabledPtrOutput)
+	}).(WebServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput)
 }
 
-func (o WebServiceDetailsPullRequestPreviewsEnabledOutput) ToStringOutput() pulumi.StringOutput {
+func (o WebServiceDetailsOutputPullRequestPreviewsEnabledOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
 
-func (o WebServiceDetailsPullRequestPreviewsEnabledOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e WebServiceDetailsPullRequestPreviewsEnabled) string {
+func (o WebServiceDetailsOutputPullRequestPreviewsEnabledOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e WebServiceDetailsOutputPullRequestPreviewsEnabled) string {
 		return string(e)
 	}).(pulumi.StringOutput)
 }
 
-func (o WebServiceDetailsPullRequestPreviewsEnabledOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o WebServiceDetailsOutputPullRequestPreviewsEnabledOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o WebServiceDetailsPullRequestPreviewsEnabledOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e WebServiceDetailsPullRequestPreviewsEnabled) *string {
+func (o WebServiceDetailsOutputPullRequestPreviewsEnabledOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e WebServiceDetailsOutputPullRequestPreviewsEnabled) *string {
 		v := string(e)
 		return &v
 	}).(pulumi.StringPtrOutput)
 }
 
-type WebServiceDetailsPullRequestPreviewsEnabledPtrOutput struct{ *pulumi.OutputState }
+type WebServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput struct{ *pulumi.OutputState }
 
-func (WebServiceDetailsPullRequestPreviewsEnabledPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebServiceDetailsPullRequestPreviewsEnabled)(nil)).Elem()
+func (WebServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebServiceDetailsOutputPullRequestPreviewsEnabled)(nil)).Elem()
 }
 
-func (o WebServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToWebServiceDetailsPullRequestPreviewsEnabledPtrOutput() WebServiceDetailsPullRequestPreviewsEnabledPtrOutput {
+func (o WebServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput) ToWebServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput() WebServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput {
 	return o
 }
 
-func (o WebServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToWebServiceDetailsPullRequestPreviewsEnabledPtrOutputWithContext(ctx context.Context) WebServiceDetailsPullRequestPreviewsEnabledPtrOutput {
+func (o WebServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput) ToWebServiceDetailsOutputPullRequestPreviewsEnabledPtrOutputWithContext(ctx context.Context) WebServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput {
 	return o
 }
 
-func (o WebServiceDetailsPullRequestPreviewsEnabledPtrOutput) Elem() WebServiceDetailsPullRequestPreviewsEnabledOutput {
-	return o.ApplyT(func(v *WebServiceDetailsPullRequestPreviewsEnabled) WebServiceDetailsPullRequestPreviewsEnabled {
+func (o WebServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput) Elem() WebServiceDetailsOutputPullRequestPreviewsEnabledOutput {
+	return o.ApplyT(func(v *WebServiceDetailsOutputPullRequestPreviewsEnabled) WebServiceDetailsOutputPullRequestPreviewsEnabled {
 		if v != nil {
 			return *v
 		}
-		var ret WebServiceDetailsPullRequestPreviewsEnabled
+		var ret WebServiceDetailsOutputPullRequestPreviewsEnabled
 		return ret
-	}).(WebServiceDetailsPullRequestPreviewsEnabledOutput)
+	}).(WebServiceDetailsOutputPullRequestPreviewsEnabledOutput)
 }
 
-func (o WebServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o WebServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o WebServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e *WebServiceDetailsPullRequestPreviewsEnabled) *string {
+func (o WebServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *WebServiceDetailsOutputPullRequestPreviewsEnabled) *string {
 		if e == nil {
 			return nil
 		}
@@ -8017,90 +8681,90 @@ func (o WebServiceDetailsPullRequestPreviewsEnabledPtrOutput) ToStringPtrOutputW
 	}).(pulumi.StringPtrOutput)
 }
 
-type WebServiceDetailsRegion string
+type WebServiceDetailsOutputRegion string
 
 const (
-	WebServiceDetailsRegionFrankfurt = WebServiceDetailsRegion("frankfurt")
-	WebServiceDetailsRegionOregon    = WebServiceDetailsRegion("oregon")
-	WebServiceDetailsRegionOhio      = WebServiceDetailsRegion("ohio")
-	WebServiceDetailsRegionSingapore = WebServiceDetailsRegion("singapore")
+	WebServiceDetailsOutputRegionFrankfurt = WebServiceDetailsOutputRegion("frankfurt")
+	WebServiceDetailsOutputRegionOregon    = WebServiceDetailsOutputRegion("oregon")
+	WebServiceDetailsOutputRegionOhio      = WebServiceDetailsOutputRegion("ohio")
+	WebServiceDetailsOutputRegionSingapore = WebServiceDetailsOutputRegion("singapore")
 )
 
-type WebServiceDetailsRegionOutput struct{ *pulumi.OutputState }
+type WebServiceDetailsOutputRegionOutput struct{ *pulumi.OutputState }
 
-func (WebServiceDetailsRegionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebServiceDetailsRegion)(nil)).Elem()
+func (WebServiceDetailsOutputRegionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceDetailsOutputRegion)(nil)).Elem()
 }
 
-func (o WebServiceDetailsRegionOutput) ToWebServiceDetailsRegionOutput() WebServiceDetailsRegionOutput {
+func (o WebServiceDetailsOutputRegionOutput) ToWebServiceDetailsOutputRegionOutput() WebServiceDetailsOutputRegionOutput {
 	return o
 }
 
-func (o WebServiceDetailsRegionOutput) ToWebServiceDetailsRegionOutputWithContext(ctx context.Context) WebServiceDetailsRegionOutput {
+func (o WebServiceDetailsOutputRegionOutput) ToWebServiceDetailsOutputRegionOutputWithContext(ctx context.Context) WebServiceDetailsOutputRegionOutput {
 	return o
 }
 
-func (o WebServiceDetailsRegionOutput) ToWebServiceDetailsRegionPtrOutput() WebServiceDetailsRegionPtrOutput {
-	return o.ToWebServiceDetailsRegionPtrOutputWithContext(context.Background())
+func (o WebServiceDetailsOutputRegionOutput) ToWebServiceDetailsOutputRegionPtrOutput() WebServiceDetailsOutputRegionPtrOutput {
+	return o.ToWebServiceDetailsOutputRegionPtrOutputWithContext(context.Background())
 }
 
-func (o WebServiceDetailsRegionOutput) ToWebServiceDetailsRegionPtrOutputWithContext(ctx context.Context) WebServiceDetailsRegionPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebServiceDetailsRegion) *WebServiceDetailsRegion {
+func (o WebServiceDetailsOutputRegionOutput) ToWebServiceDetailsOutputRegionPtrOutputWithContext(ctx context.Context) WebServiceDetailsOutputRegionPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebServiceDetailsOutputRegion) *WebServiceDetailsOutputRegion {
 		return &v
-	}).(WebServiceDetailsRegionPtrOutput)
+	}).(WebServiceDetailsOutputRegionPtrOutput)
 }
 
-func (o WebServiceDetailsRegionOutput) ToStringOutput() pulumi.StringOutput {
+func (o WebServiceDetailsOutputRegionOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
 
-func (o WebServiceDetailsRegionOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e WebServiceDetailsRegion) string {
+func (o WebServiceDetailsOutputRegionOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e WebServiceDetailsOutputRegion) string {
 		return string(e)
 	}).(pulumi.StringOutput)
 }
 
-func (o WebServiceDetailsRegionOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o WebServiceDetailsOutputRegionOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o WebServiceDetailsRegionOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e WebServiceDetailsRegion) *string {
+func (o WebServiceDetailsOutputRegionOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e WebServiceDetailsOutputRegion) *string {
 		v := string(e)
 		return &v
 	}).(pulumi.StringPtrOutput)
 }
 
-type WebServiceDetailsRegionPtrOutput struct{ *pulumi.OutputState }
+type WebServiceDetailsOutputRegionPtrOutput struct{ *pulumi.OutputState }
 
-func (WebServiceDetailsRegionPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebServiceDetailsRegion)(nil)).Elem()
+func (WebServiceDetailsOutputRegionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebServiceDetailsOutputRegion)(nil)).Elem()
 }
 
-func (o WebServiceDetailsRegionPtrOutput) ToWebServiceDetailsRegionPtrOutput() WebServiceDetailsRegionPtrOutput {
+func (o WebServiceDetailsOutputRegionPtrOutput) ToWebServiceDetailsOutputRegionPtrOutput() WebServiceDetailsOutputRegionPtrOutput {
 	return o
 }
 
-func (o WebServiceDetailsRegionPtrOutput) ToWebServiceDetailsRegionPtrOutputWithContext(ctx context.Context) WebServiceDetailsRegionPtrOutput {
+func (o WebServiceDetailsOutputRegionPtrOutput) ToWebServiceDetailsOutputRegionPtrOutputWithContext(ctx context.Context) WebServiceDetailsOutputRegionPtrOutput {
 	return o
 }
 
-func (o WebServiceDetailsRegionPtrOutput) Elem() WebServiceDetailsRegionOutput {
-	return o.ApplyT(func(v *WebServiceDetailsRegion) WebServiceDetailsRegion {
+func (o WebServiceDetailsOutputRegionPtrOutput) Elem() WebServiceDetailsOutputRegionOutput {
+	return o.ApplyT(func(v *WebServiceDetailsOutputRegion) WebServiceDetailsOutputRegion {
 		if v != nil {
 			return *v
 		}
-		var ret WebServiceDetailsRegion
+		var ret WebServiceDetailsOutputRegion
 		return ret
-	}).(WebServiceDetailsRegionOutput)
+	}).(WebServiceDetailsOutputRegionOutput)
 }
 
-func (o WebServiceDetailsRegionPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o WebServiceDetailsOutputRegionPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o WebServiceDetailsRegionPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e *WebServiceDetailsRegion) *string {
+func (o WebServiceDetailsOutputRegionPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *WebServiceDetailsOutputRegion) *string {
 		if e == nil {
 			return nil
 		}
@@ -8197,6 +8861,172 @@ func (o WebServiceServiceAutoDeployPtrOutput) ToStringPtrOutputWithContext(ctx c
 		v := string(*e)
 		return &v
 	}).(pulumi.StringPtrOutput)
+}
+
+// Defaults to "yes"
+type WebServiceServiceCreateAutoDeploy string
+
+const (
+	WebServiceServiceCreateAutoDeployYes = WebServiceServiceCreateAutoDeploy("yes")
+	WebServiceServiceCreateAutoDeployNo  = WebServiceServiceCreateAutoDeploy("no")
+)
+
+func (WebServiceServiceCreateAutoDeploy) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceServiceCreateAutoDeploy)(nil)).Elem()
+}
+
+func (e WebServiceServiceCreateAutoDeploy) ToWebServiceServiceCreateAutoDeployOutput() WebServiceServiceCreateAutoDeployOutput {
+	return pulumi.ToOutput(e).(WebServiceServiceCreateAutoDeployOutput)
+}
+
+func (e WebServiceServiceCreateAutoDeploy) ToWebServiceServiceCreateAutoDeployOutputWithContext(ctx context.Context) WebServiceServiceCreateAutoDeployOutput {
+	return pulumi.ToOutputWithContext(ctx, e).(WebServiceServiceCreateAutoDeployOutput)
+}
+
+func (e WebServiceServiceCreateAutoDeploy) ToWebServiceServiceCreateAutoDeployPtrOutput() WebServiceServiceCreateAutoDeployPtrOutput {
+	return e.ToWebServiceServiceCreateAutoDeployPtrOutputWithContext(context.Background())
+}
+
+func (e WebServiceServiceCreateAutoDeploy) ToWebServiceServiceCreateAutoDeployPtrOutputWithContext(ctx context.Context) WebServiceServiceCreateAutoDeployPtrOutput {
+	return WebServiceServiceCreateAutoDeploy(e).ToWebServiceServiceCreateAutoDeployOutputWithContext(ctx).ToWebServiceServiceCreateAutoDeployPtrOutputWithContext(ctx)
+}
+
+func (e WebServiceServiceCreateAutoDeploy) ToStringOutput() pulumi.StringOutput {
+	return pulumi.ToOutput(pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e WebServiceServiceCreateAutoDeploy) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return pulumi.ToOutputWithContext(ctx, pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e WebServiceServiceCreateAutoDeploy) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringPtrOutputWithContext(context.Background())
+}
+
+func (e WebServiceServiceCreateAutoDeploy) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
+}
+
+type WebServiceServiceCreateAutoDeployOutput struct{ *pulumi.OutputState }
+
+func (WebServiceServiceCreateAutoDeployOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceServiceCreateAutoDeploy)(nil)).Elem()
+}
+
+func (o WebServiceServiceCreateAutoDeployOutput) ToWebServiceServiceCreateAutoDeployOutput() WebServiceServiceCreateAutoDeployOutput {
+	return o
+}
+
+func (o WebServiceServiceCreateAutoDeployOutput) ToWebServiceServiceCreateAutoDeployOutputWithContext(ctx context.Context) WebServiceServiceCreateAutoDeployOutput {
+	return o
+}
+
+func (o WebServiceServiceCreateAutoDeployOutput) ToWebServiceServiceCreateAutoDeployPtrOutput() WebServiceServiceCreateAutoDeployPtrOutput {
+	return o.ToWebServiceServiceCreateAutoDeployPtrOutputWithContext(context.Background())
+}
+
+func (o WebServiceServiceCreateAutoDeployOutput) ToWebServiceServiceCreateAutoDeployPtrOutputWithContext(ctx context.Context) WebServiceServiceCreateAutoDeployPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebServiceServiceCreateAutoDeploy) *WebServiceServiceCreateAutoDeploy {
+		return &v
+	}).(WebServiceServiceCreateAutoDeployPtrOutput)
+}
+
+func (o WebServiceServiceCreateAutoDeployOutput) ToStringOutput() pulumi.StringOutput {
+	return o.ToStringOutputWithContext(context.Background())
+}
+
+func (o WebServiceServiceCreateAutoDeployOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e WebServiceServiceCreateAutoDeploy) string {
+		return string(e)
+	}).(pulumi.StringOutput)
+}
+
+func (o WebServiceServiceCreateAutoDeployOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o WebServiceServiceCreateAutoDeployOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e WebServiceServiceCreateAutoDeploy) *string {
+		v := string(e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+type WebServiceServiceCreateAutoDeployPtrOutput struct{ *pulumi.OutputState }
+
+func (WebServiceServiceCreateAutoDeployPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebServiceServiceCreateAutoDeploy)(nil)).Elem()
+}
+
+func (o WebServiceServiceCreateAutoDeployPtrOutput) ToWebServiceServiceCreateAutoDeployPtrOutput() WebServiceServiceCreateAutoDeployPtrOutput {
+	return o
+}
+
+func (o WebServiceServiceCreateAutoDeployPtrOutput) ToWebServiceServiceCreateAutoDeployPtrOutputWithContext(ctx context.Context) WebServiceServiceCreateAutoDeployPtrOutput {
+	return o
+}
+
+func (o WebServiceServiceCreateAutoDeployPtrOutput) Elem() WebServiceServiceCreateAutoDeployOutput {
+	return o.ApplyT(func(v *WebServiceServiceCreateAutoDeploy) WebServiceServiceCreateAutoDeploy {
+		if v != nil {
+			return *v
+		}
+		var ret WebServiceServiceCreateAutoDeploy
+		return ret
+	}).(WebServiceServiceCreateAutoDeployOutput)
+}
+
+func (o WebServiceServiceCreateAutoDeployPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o WebServiceServiceCreateAutoDeployPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *WebServiceServiceCreateAutoDeploy) *string {
+		if e == nil {
+			return nil
+		}
+		v := string(*e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+// WebServiceServiceCreateAutoDeployInput is an input type that accepts values of the WebServiceServiceCreateAutoDeploy enum
+// A concrete instance of `WebServiceServiceCreateAutoDeployInput` can be one of the following:
+//
+//	WebServiceServiceCreateAutoDeployYes
+//	WebServiceServiceCreateAutoDeployNo
+type WebServiceServiceCreateAutoDeployInput interface {
+	pulumi.Input
+
+	ToWebServiceServiceCreateAutoDeployOutput() WebServiceServiceCreateAutoDeployOutput
+	ToWebServiceServiceCreateAutoDeployOutputWithContext(context.Context) WebServiceServiceCreateAutoDeployOutput
+}
+
+var webServiceServiceCreateAutoDeployPtrType = reflect.TypeOf((**WebServiceServiceCreateAutoDeploy)(nil)).Elem()
+
+type WebServiceServiceCreateAutoDeployPtrInput interface {
+	pulumi.Input
+
+	ToWebServiceServiceCreateAutoDeployPtrOutput() WebServiceServiceCreateAutoDeployPtrOutput
+	ToWebServiceServiceCreateAutoDeployPtrOutputWithContext(context.Context) WebServiceServiceCreateAutoDeployPtrOutput
+}
+
+type webServiceServiceCreateAutoDeployPtr string
+
+func WebServiceServiceCreateAutoDeployPtr(v string) WebServiceServiceCreateAutoDeployPtrInput {
+	return (*webServiceServiceCreateAutoDeployPtr)(&v)
+}
+
+func (*webServiceServiceCreateAutoDeployPtr) ElementType() reflect.Type {
+	return webServiceServiceCreateAutoDeployPtrType
+}
+
+func (in *webServiceServiceCreateAutoDeployPtr) ToWebServiceServiceCreateAutoDeployPtrOutput() WebServiceServiceCreateAutoDeployPtrOutput {
+	return pulumi.ToOutput(in).(WebServiceServiceCreateAutoDeployPtrOutput)
+}
+
+func (in *webServiceServiceCreateAutoDeployPtr) ToWebServiceServiceCreateAutoDeployPtrOutputWithContext(ctx context.Context) WebServiceServiceCreateAutoDeployPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, in).(WebServiceServiceCreateAutoDeployPtrOutput)
 }
 
 type WebServiceServiceNotifyOnFail string
@@ -8502,12 +9332,16 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BackgroundWorkerDetailsCreatePullRequestPreviewsEnabledPtrInput)(nil)).Elem(), BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled("yes"))
 	pulumi.RegisterInputType(reflect.TypeOf((*BackgroundWorkerDetailsCreateRegionInput)(nil)).Elem(), BackgroundWorkerDetailsCreateRegion("frankfurt"))
 	pulumi.RegisterInputType(reflect.TypeOf((*BackgroundWorkerDetailsCreateRegionPtrInput)(nil)).Elem(), BackgroundWorkerDetailsCreateRegion("frankfurt"))
+	pulumi.RegisterInputType(reflect.TypeOf((*BackgroundWorkerServiceCreateAutoDeployInput)(nil)).Elem(), BackgroundWorkerServiceCreateAutoDeploy("yes"))
+	pulumi.RegisterInputType(reflect.TypeOf((*BackgroundWorkerServiceCreateAutoDeployPtrInput)(nil)).Elem(), BackgroundWorkerServiceCreateAutoDeploy("yes"))
 	pulumi.RegisterInputType(reflect.TypeOf((*CronJobDetailsCreateEnvInput)(nil)).Elem(), CronJobDetailsCreateEnv("docker"))
 	pulumi.RegisterInputType(reflect.TypeOf((*CronJobDetailsCreateEnvPtrInput)(nil)).Elem(), CronJobDetailsCreateEnv("docker"))
 	pulumi.RegisterInputType(reflect.TypeOf((*CronJobDetailsCreatePlanInput)(nil)).Elem(), CronJobDetailsCreatePlan("starter"))
 	pulumi.RegisterInputType(reflect.TypeOf((*CronJobDetailsCreatePlanPtrInput)(nil)).Elem(), CronJobDetailsCreatePlan("starter"))
 	pulumi.RegisterInputType(reflect.TypeOf((*CronJobDetailsCreateRegionInput)(nil)).Elem(), CronJobDetailsCreateRegion("frankfurt"))
 	pulumi.RegisterInputType(reflect.TypeOf((*CronJobDetailsCreateRegionPtrInput)(nil)).Elem(), CronJobDetailsCreateRegion("frankfurt"))
+	pulumi.RegisterInputType(reflect.TypeOf((*CronJobServiceCreateAutoDeployInput)(nil)).Elem(), CronJobServiceCreateAutoDeploy("yes"))
+	pulumi.RegisterInputType(reflect.TypeOf((*CronJobServiceCreateAutoDeployPtrInput)(nil)).Elem(), CronJobServiceCreateAutoDeploy("yes"))
 	pulumi.RegisterInputType(reflect.TypeOf((*DeployClearCacheInput)(nil)).Elem(), DeployClearCache("clear"))
 	pulumi.RegisterInputType(reflect.TypeOf((*DeployClearCachePtrInput)(nil)).Elem(), DeployClearCache("clear"))
 	pulumi.RegisterInputType(reflect.TypeOf((*PreviewServicePlanInput)(nil)).Elem(), PreviewServicePlan("starter"))
@@ -8520,12 +9354,16 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceDetailsCreatePullRequestPreviewsEnabledPtrInput)(nil)).Elem(), PrivateServiceDetailsCreatePullRequestPreviewsEnabled("yes"))
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceDetailsCreateRegionInput)(nil)).Elem(), PrivateServiceDetailsCreateRegion("frankfurt"))
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceDetailsCreateRegionPtrInput)(nil)).Elem(), PrivateServiceDetailsCreateRegion("frankfurt"))
+	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceServiceCreateAutoDeployInput)(nil)).Elem(), PrivateServiceServiceCreateAutoDeploy("yes"))
+	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceServiceCreateAutoDeployPtrInput)(nil)).Elem(), PrivateServiceServiceCreateAutoDeploy("yes"))
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistryCredentialRegistryInput)(nil)).Elem(), RegistryCredentialRegistry("GITHUB"))
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistryCredentialRegistryPtrInput)(nil)).Elem(), RegistryCredentialRegistry("GITHUB"))
 	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteDetailsCreatePullRequestPreviewsEnabledInput)(nil)).Elem(), StaticSiteDetailsCreatePullRequestPreviewsEnabled("yes"))
 	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteDetailsCreatePullRequestPreviewsEnabledPtrInput)(nil)).Elem(), StaticSiteDetailsCreatePullRequestPreviewsEnabled("yes"))
 	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteRouteTypeInput)(nil)).Elem(), StaticSiteRouteType("redirect"))
 	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteRouteTypePtrInput)(nil)).Elem(), StaticSiteRouteType("redirect"))
+	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteServiceCreateAutoDeployInput)(nil)).Elem(), StaticSiteServiceCreateAutoDeploy("yes"))
+	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteServiceCreateAutoDeployPtrInput)(nil)).Elem(), StaticSiteServiceCreateAutoDeploy("yes"))
 	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceDetailsCreateEnvInput)(nil)).Elem(), WebServiceDetailsCreateEnv("docker"))
 	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceDetailsCreateEnvPtrInput)(nil)).Elem(), WebServiceDetailsCreateEnv("docker"))
 	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceDetailsCreatePlanInput)(nil)).Elem(), WebServiceDetailsCreatePlan("starter"))
@@ -8534,6 +9372,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceDetailsCreatePullRequestPreviewsEnabledPtrInput)(nil)).Elem(), WebServiceDetailsCreatePullRequestPreviewsEnabled("yes"))
 	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceDetailsCreateRegionInput)(nil)).Elem(), WebServiceDetailsCreateRegion("frankfurt"))
 	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceDetailsCreateRegionPtrInput)(nil)).Elem(), WebServiceDetailsCreateRegion("frankfurt"))
+	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceServiceCreateAutoDeployInput)(nil)).Elem(), WebServiceServiceCreateAutoDeploy("yes"))
+	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceServiceCreateAutoDeployPtrInput)(nil)).Elem(), WebServiceServiceCreateAutoDeploy("yes"))
 	pulumi.RegisterOutputType(BackgroundWorkerDetailsCreateEnvOutput{})
 	pulumi.RegisterOutputType(BackgroundWorkerDetailsCreateEnvPtrOutput{})
 	pulumi.RegisterOutputType(BackgroundWorkerDetailsCreatePlanOutput{})
@@ -8542,16 +9382,18 @@ func init() {
 	pulumi.RegisterOutputType(BackgroundWorkerDetailsCreatePullRequestPreviewsEnabledPtrOutput{})
 	pulumi.RegisterOutputType(BackgroundWorkerDetailsCreateRegionOutput{})
 	pulumi.RegisterOutputType(BackgroundWorkerDetailsCreateRegionPtrOutput{})
-	pulumi.RegisterOutputType(BackgroundWorkerDetailsEnvOutput{})
-	pulumi.RegisterOutputType(BackgroundWorkerDetailsEnvPtrOutput{})
-	pulumi.RegisterOutputType(BackgroundWorkerDetailsPlanOutput{})
-	pulumi.RegisterOutputType(BackgroundWorkerDetailsPlanPtrOutput{})
-	pulumi.RegisterOutputType(BackgroundWorkerDetailsPullRequestPreviewsEnabledOutput{})
-	pulumi.RegisterOutputType(BackgroundWorkerDetailsPullRequestPreviewsEnabledPtrOutput{})
-	pulumi.RegisterOutputType(BackgroundWorkerDetailsRegionOutput{})
-	pulumi.RegisterOutputType(BackgroundWorkerDetailsRegionPtrOutput{})
+	pulumi.RegisterOutputType(BackgroundWorkerDetailsOutputEnvOutput{})
+	pulumi.RegisterOutputType(BackgroundWorkerDetailsOutputEnvPtrOutput{})
+	pulumi.RegisterOutputType(BackgroundWorkerDetailsOutputPlanOutput{})
+	pulumi.RegisterOutputType(BackgroundWorkerDetailsOutputPlanPtrOutput{})
+	pulumi.RegisterOutputType(BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledOutput{})
+	pulumi.RegisterOutputType(BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledPtrOutput{})
+	pulumi.RegisterOutputType(BackgroundWorkerDetailsOutputRegionOutput{})
+	pulumi.RegisterOutputType(BackgroundWorkerDetailsOutputRegionPtrOutput{})
 	pulumi.RegisterOutputType(BackgroundWorkerServiceAutoDeployOutput{})
 	pulumi.RegisterOutputType(BackgroundWorkerServiceAutoDeployPtrOutput{})
+	pulumi.RegisterOutputType(BackgroundWorkerServiceCreateAutoDeployOutput{})
+	pulumi.RegisterOutputType(BackgroundWorkerServiceCreateAutoDeployPtrOutput{})
 	pulumi.RegisterOutputType(BackgroundWorkerServiceNotifyOnFailOutput{})
 	pulumi.RegisterOutputType(BackgroundWorkerServiceNotifyOnFailPtrOutput{})
 	pulumi.RegisterOutputType(BackgroundWorkerServiceSuspendedOutput{})
@@ -8569,14 +9411,16 @@ func init() {
 	pulumi.RegisterOutputType(CronJobDetailsCreatePlanPtrOutput{})
 	pulumi.RegisterOutputType(CronJobDetailsCreateRegionOutput{})
 	pulumi.RegisterOutputType(CronJobDetailsCreateRegionPtrOutput{})
-	pulumi.RegisterOutputType(CronJobDetailsEnvOutput{})
-	pulumi.RegisterOutputType(CronJobDetailsEnvPtrOutput{})
-	pulumi.RegisterOutputType(CronJobDetailsPlanOutput{})
-	pulumi.RegisterOutputType(CronJobDetailsPlanPtrOutput{})
-	pulumi.RegisterOutputType(CronJobDetailsRegionOutput{})
-	pulumi.RegisterOutputType(CronJobDetailsRegionPtrOutput{})
+	pulumi.RegisterOutputType(CronJobDetailsOutputEnvOutput{})
+	pulumi.RegisterOutputType(CronJobDetailsOutputEnvPtrOutput{})
+	pulumi.RegisterOutputType(CronJobDetailsOutputPlanOutput{})
+	pulumi.RegisterOutputType(CronJobDetailsOutputPlanPtrOutput{})
+	pulumi.RegisterOutputType(CronJobDetailsOutputRegionOutput{})
+	pulumi.RegisterOutputType(CronJobDetailsOutputRegionPtrOutput{})
 	pulumi.RegisterOutputType(CronJobServiceAutoDeployOutput{})
 	pulumi.RegisterOutputType(CronJobServiceAutoDeployPtrOutput{})
+	pulumi.RegisterOutputType(CronJobServiceCreateAutoDeployOutput{})
+	pulumi.RegisterOutputType(CronJobServiceCreateAutoDeployPtrOutput{})
 	pulumi.RegisterOutputType(CronJobServiceNotifyOnFailOutput{})
 	pulumi.RegisterOutputType(CronJobServiceNotifyOnFailPtrOutput{})
 	pulumi.RegisterOutputType(CronJobServiceSuspendedOutput{})
@@ -8613,16 +9457,18 @@ func init() {
 	pulumi.RegisterOutputType(PrivateServiceDetailsCreatePullRequestPreviewsEnabledPtrOutput{})
 	pulumi.RegisterOutputType(PrivateServiceDetailsCreateRegionOutput{})
 	pulumi.RegisterOutputType(PrivateServiceDetailsCreateRegionPtrOutput{})
-	pulumi.RegisterOutputType(PrivateServiceDetailsEnvOutput{})
-	pulumi.RegisterOutputType(PrivateServiceDetailsEnvPtrOutput{})
-	pulumi.RegisterOutputType(PrivateServiceDetailsPlanOutput{})
-	pulumi.RegisterOutputType(PrivateServiceDetailsPlanPtrOutput{})
-	pulumi.RegisterOutputType(PrivateServiceDetailsPullRequestPreviewsEnabledOutput{})
-	pulumi.RegisterOutputType(PrivateServiceDetailsPullRequestPreviewsEnabledPtrOutput{})
-	pulumi.RegisterOutputType(PrivateServiceDetailsRegionOutput{})
-	pulumi.RegisterOutputType(PrivateServiceDetailsRegionPtrOutput{})
+	pulumi.RegisterOutputType(PrivateServiceDetailsOutputEnvOutput{})
+	pulumi.RegisterOutputType(PrivateServiceDetailsOutputEnvPtrOutput{})
+	pulumi.RegisterOutputType(PrivateServiceDetailsOutputPlanOutput{})
+	pulumi.RegisterOutputType(PrivateServiceDetailsOutputPlanPtrOutput{})
+	pulumi.RegisterOutputType(PrivateServiceDetailsOutputPullRequestPreviewsEnabledOutput{})
+	pulumi.RegisterOutputType(PrivateServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput{})
+	pulumi.RegisterOutputType(PrivateServiceDetailsOutputRegionOutput{})
+	pulumi.RegisterOutputType(PrivateServiceDetailsOutputRegionPtrOutput{})
 	pulumi.RegisterOutputType(PrivateServiceServiceAutoDeployOutput{})
 	pulumi.RegisterOutputType(PrivateServiceServiceAutoDeployPtrOutput{})
+	pulumi.RegisterOutputType(PrivateServiceServiceCreateAutoDeployOutput{})
+	pulumi.RegisterOutputType(PrivateServiceServiceCreateAutoDeployPtrOutput{})
 	pulumi.RegisterOutputType(PrivateServiceServiceNotifyOnFailOutput{})
 	pulumi.RegisterOutputType(PrivateServiceServiceNotifyOnFailPtrOutput{})
 	pulumi.RegisterOutputType(PrivateServiceServiceSuspendedOutput{})
@@ -8649,12 +9495,14 @@ func init() {
 	pulumi.RegisterOutputType(ServiceSuspendersItemArrayOutput{})
 	pulumi.RegisterOutputType(StaticSiteDetailsCreatePullRequestPreviewsEnabledOutput{})
 	pulumi.RegisterOutputType(StaticSiteDetailsCreatePullRequestPreviewsEnabledPtrOutput{})
-	pulumi.RegisterOutputType(StaticSiteDetailsPullRequestPreviewsEnabledOutput{})
-	pulumi.RegisterOutputType(StaticSiteDetailsPullRequestPreviewsEnabledPtrOutput{})
+	pulumi.RegisterOutputType(StaticSiteDetailsOutputPullRequestPreviewsEnabledOutput{})
+	pulumi.RegisterOutputType(StaticSiteDetailsOutputPullRequestPreviewsEnabledPtrOutput{})
 	pulumi.RegisterOutputType(StaticSiteRouteTypeOutput{})
 	pulumi.RegisterOutputType(StaticSiteRouteTypePtrOutput{})
 	pulumi.RegisterOutputType(StaticSiteServiceAutoDeployOutput{})
 	pulumi.RegisterOutputType(StaticSiteServiceAutoDeployPtrOutput{})
+	pulumi.RegisterOutputType(StaticSiteServiceCreateAutoDeployOutput{})
+	pulumi.RegisterOutputType(StaticSiteServiceCreateAutoDeployPtrOutput{})
 	pulumi.RegisterOutputType(StaticSiteServiceNotifyOnFailOutput{})
 	pulumi.RegisterOutputType(StaticSiteServiceNotifyOnFailPtrOutput{})
 	pulumi.RegisterOutputType(StaticSiteServiceSuspendedOutput{})
@@ -8670,16 +9518,18 @@ func init() {
 	pulumi.RegisterOutputType(WebServiceDetailsCreatePullRequestPreviewsEnabledPtrOutput{})
 	pulumi.RegisterOutputType(WebServiceDetailsCreateRegionOutput{})
 	pulumi.RegisterOutputType(WebServiceDetailsCreateRegionPtrOutput{})
-	pulumi.RegisterOutputType(WebServiceDetailsEnvOutput{})
-	pulumi.RegisterOutputType(WebServiceDetailsEnvPtrOutput{})
-	pulumi.RegisterOutputType(WebServiceDetailsPlanOutput{})
-	pulumi.RegisterOutputType(WebServiceDetailsPlanPtrOutput{})
-	pulumi.RegisterOutputType(WebServiceDetailsPullRequestPreviewsEnabledOutput{})
-	pulumi.RegisterOutputType(WebServiceDetailsPullRequestPreviewsEnabledPtrOutput{})
-	pulumi.RegisterOutputType(WebServiceDetailsRegionOutput{})
-	pulumi.RegisterOutputType(WebServiceDetailsRegionPtrOutput{})
+	pulumi.RegisterOutputType(WebServiceDetailsOutputEnvOutput{})
+	pulumi.RegisterOutputType(WebServiceDetailsOutputEnvPtrOutput{})
+	pulumi.RegisterOutputType(WebServiceDetailsOutputPlanOutput{})
+	pulumi.RegisterOutputType(WebServiceDetailsOutputPlanPtrOutput{})
+	pulumi.RegisterOutputType(WebServiceDetailsOutputPullRequestPreviewsEnabledOutput{})
+	pulumi.RegisterOutputType(WebServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput{})
+	pulumi.RegisterOutputType(WebServiceDetailsOutputRegionOutput{})
+	pulumi.RegisterOutputType(WebServiceDetailsOutputRegionPtrOutput{})
 	pulumi.RegisterOutputType(WebServiceServiceAutoDeployOutput{})
 	pulumi.RegisterOutputType(WebServiceServiceAutoDeployPtrOutput{})
+	pulumi.RegisterOutputType(WebServiceServiceCreateAutoDeployOutput{})
+	pulumi.RegisterOutputType(WebServiceServiceCreateAutoDeployPtrOutput{})
 	pulumi.RegisterOutputType(WebServiceServiceNotifyOnFailOutput{})
 	pulumi.RegisterOutputType(WebServiceServiceNotifyOnFailPtrOutput{})
 	pulumi.RegisterOutputType(WebServiceServiceSuspendedOutput{})

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"errors"
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -18,13 +19,16 @@ type CronJob struct {
 	Branch         pulumi.StringPtrOutput                  `pulumi:"branch"`
 	BuildFilter    BuildFilterPtrOutput                    `pulumi:"buildFilter"`
 	CreatedAt      pulumi.StringPtrOutput                  `pulumi:"createdAt"`
+	EnvVars        pulumi.ArrayOutput                      `pulumi:"envVars"`
+	Image          ImagePtrOutput                          `pulumi:"image"`
 	ImagePath      pulumi.StringPtrOutput                  `pulumi:"imagePath"`
 	Name           pulumi.StringPtrOutput                  `pulumi:"name"`
 	NotifyOnFail   CronJobServiceNotifyOnFailPtrOutput     `pulumi:"notifyOnFail"`
 	OwnerId        pulumi.StringPtrOutput                  `pulumi:"ownerId"`
 	Repo           pulumi.StringPtrOutput                  `pulumi:"repo"`
 	RootDir        pulumi.StringPtrOutput                  `pulumi:"rootDir"`
-	ServiceDetails CronJobDetailsCreatePtrOutput           `pulumi:"serviceDetails"`
+	SecretFiles    SecretFileArrayOutput                   `pulumi:"secretFiles"`
+	ServiceDetails CronJobDetailsOutputPtrOutput           `pulumi:"serviceDetails"`
 	Slug           pulumi.StringPtrOutput                  `pulumi:"slug"`
 	Suspended      CronJobServiceSuspendedPtrOutput        `pulumi:"suspended"`
 	Suspenders     CronJobServiceSuspendersItemArrayOutput `pulumi:"suspenders"`
@@ -36,9 +40,18 @@ type CronJob struct {
 func NewCronJob(ctx *pulumi.Context,
 	name string, args *CronJobArgs, opts ...pulumi.ResourceOption) (*CronJob, error) {
 	if args == nil {
-		args = &CronJobArgs{}
+		return nil, errors.New("missing one or more required arguments")
 	}
 
+	if args.Name == nil {
+		return nil, errors.New("invalid value for required argument 'Name'")
+	}
+	if args.OwnerId == nil {
+		return nil, errors.New("invalid value for required argument 'OwnerId'")
+	}
+	if args.AutoDeploy == nil {
+		args.AutoDeploy = CronJobServiceCreateAutoDeploy("yes")
+	}
 	if args.Type == nil {
 		args.Type = pulumi.StringPtr("cron_job")
 	}
@@ -75,12 +88,38 @@ func (CronJobState) ElementType() reflect.Type {
 }
 
 type cronJobArgs struct {
+	// Defaults to "yes"
+	AutoDeploy *CronJobServiceCreateAutoDeploy `pulumi:"autoDeploy"`
+	// If left empty, this will fall back to the default branch of the repository
+	Branch      *string       `pulumi:"branch"`
+	BuildFilter *BuildFilter  `pulumi:"buildFilter"`
+	EnvVars     []interface{} `pulumi:"envVars"`
+	Image       *Image        `pulumi:"image"`
+	Name        string        `pulumi:"name"`
+	OwnerId     string        `pulumi:"ownerId"`
+	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+	Repo           *string               `pulumi:"repo"`
+	RootDir        *string               `pulumi:"rootDir"`
+	SecretFiles    []SecretFile          `pulumi:"secretFiles"`
 	ServiceDetails *CronJobDetailsCreate `pulumi:"serviceDetails"`
 	Type           *string               `pulumi:"type"`
 }
 
 // The set of arguments for constructing a CronJob resource.
 type CronJobArgs struct {
+	// Defaults to "yes"
+	AutoDeploy CronJobServiceCreateAutoDeployPtrInput
+	// If left empty, this will fall back to the default branch of the repository
+	Branch      pulumi.StringPtrInput
+	BuildFilter BuildFilterPtrInput
+	EnvVars     pulumi.ArrayInput
+	Image       ImagePtrInput
+	Name        pulumi.StringInput
+	OwnerId     pulumi.StringInput
+	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+	Repo           pulumi.StringPtrInput
+	RootDir        pulumi.StringPtrInput
+	SecretFiles    SecretFileArrayInput
 	ServiceDetails CronJobDetailsCreatePtrInput
 	Type           pulumi.StringPtrInput
 }
@@ -138,6 +177,14 @@ func (o CronJobOutput) CreatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CronJob) pulumi.StringPtrOutput { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
 
+func (o CronJobOutput) EnvVars() pulumi.ArrayOutput {
+	return o.ApplyT(func(v *CronJob) pulumi.ArrayOutput { return v.EnvVars }).(pulumi.ArrayOutput)
+}
+
+func (o CronJobOutput) Image() ImagePtrOutput {
+	return o.ApplyT(func(v *CronJob) ImagePtrOutput { return v.Image }).(ImagePtrOutput)
+}
+
 func (o CronJobOutput) ImagePath() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CronJob) pulumi.StringPtrOutput { return v.ImagePath }).(pulumi.StringPtrOutput)
 }
@@ -162,8 +209,12 @@ func (o CronJobOutput) RootDir() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CronJob) pulumi.StringPtrOutput { return v.RootDir }).(pulumi.StringPtrOutput)
 }
 
-func (o CronJobOutput) ServiceDetails() CronJobDetailsCreatePtrOutput {
-	return o.ApplyT(func(v *CronJob) CronJobDetailsCreatePtrOutput { return v.ServiceDetails }).(CronJobDetailsCreatePtrOutput)
+func (o CronJobOutput) SecretFiles() SecretFileArrayOutput {
+	return o.ApplyT(func(v *CronJob) SecretFileArrayOutput { return v.SecretFiles }).(SecretFileArrayOutput)
+}
+
+func (o CronJobOutput) ServiceDetails() CronJobDetailsOutputPtrOutput {
+	return o.ApplyT(func(v *CronJob) CronJobDetailsOutputPtrOutput { return v.ServiceDetails }).(CronJobDetailsOutputPtrOutput)
 }
 
 func (o CronJobOutput) Slug() pulumi.StringPtrOutput {

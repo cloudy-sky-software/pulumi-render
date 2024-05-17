@@ -24,7 +24,7 @@ namespace Pulumi.Render.Services.Outputs
         public readonly string OwnerId;
         public readonly string? Repo;
         public readonly string RootDir;
-        public readonly Outputs.StaticSiteDetails? ServiceDetails;
+        public readonly Outputs.StaticSiteDetailsOutput? ServiceDetails;
         public readonly string Slug;
         public readonly Pulumi.Render.Services.ServiceSuspended Suspended;
         public readonly ImmutableArray<Pulumi.Render.Services.ServiceSuspendersItem> Suspenders;
@@ -55,7 +55,7 @@ namespace Pulumi.Render.Services.Outputs
 
             string rootDir,
 
-            Outputs.StaticSiteDetails? serviceDetails,
+            Outputs.StaticSiteDetailsOutput? serviceDetails,
 
             string slug,
 

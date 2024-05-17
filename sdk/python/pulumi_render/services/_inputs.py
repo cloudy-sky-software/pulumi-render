@@ -15,16 +15,19 @@ __all__ = [
     'AutoscalingCriteriaArgs',
     'BackgroundWorkerDetailsCreateDiskPropertiesArgs',
     'BackgroundWorkerDetailsCreateArgs',
+    'BuildFilterArgs',
     'CronJobDetailsCreateArgs',
     'DockerDetailsArgs',
     'EnvVarKeyGenerateValueArgs',
     'EnvVarKeyValueArgs',
     'HeaderCreateArgs',
+    'ImageArgs',
     'NativeEnvironmentDetailsArgs',
     'PrivateServiceDetailsCreateDiskPropertiesArgs',
     'PrivateServiceDetailsCreateArgs',
     'RegistryCredentialArgs',
     'RouteArgs',
+    'SecretFileArgs',
     'StaticSiteDetailsCreateArgs',
     'WebServiceDetailsCreateDiskPropertiesArgs',
     'WebServiceDetailsCreateArgs',
@@ -241,6 +244,33 @@ class BackgroundWorkerDetailsCreateArgs:
     @region.setter
     def region(self, value: Optional[pulumi.Input['BackgroundWorkerDetailsCreateRegion']]):
         pulumi.set(self, "region", value)
+
+
+@pulumi.input_type
+class BuildFilterArgs:
+    def __init__(__self__, *,
+                 ignored_paths: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 paths: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(__self__, "ignored_paths", ignored_paths)
+        pulumi.set(__self__, "paths", paths)
+
+    @property
+    @pulumi.getter(name="ignoredPaths")
+    def ignored_paths(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        return pulumi.get(self, "ignored_paths")
+
+    @ignored_paths.setter
+    def ignored_paths(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "ignored_paths", value)
+
+    @property
+    @pulumi.getter
+    def paths(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        return pulumi.get(self, "paths")
+
+    @paths.setter
+    def paths(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "paths", value)
 
 
 @pulumi.input_type
@@ -478,6 +508,59 @@ class HeaderCreateArgs:
     @value.setter
     def value(self, value: pulumi.Input[str]):
         pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ImageArgs:
+    def __init__(__self__, *,
+                 image_path: pulumi.Input[str],
+                 owner_id: pulumi.Input[str],
+                 registry_credential_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] image_path: Path to the image used for this server (e.g docker.io/library/nginx:latest).
+        :param pulumi.Input[str] owner_id: The ID of the owner for this image. This should match the owner of the service as well as the owner of any specified registry credential.
+        :param pulumi.Input[str] registry_credential_id: Optional reference to the registry credential passed to the image repository to retrieve this image.
+        """
+        pulumi.set(__self__, "image_path", image_path)
+        pulumi.set(__self__, "owner_id", owner_id)
+        if registry_credential_id is not None:
+            pulumi.set(__self__, "registry_credential_id", registry_credential_id)
+
+    @property
+    @pulumi.getter(name="imagePath")
+    def image_path(self) -> pulumi.Input[str]:
+        """
+        Path to the image used for this server (e.g docker.io/library/nginx:latest).
+        """
+        return pulumi.get(self, "image_path")
+
+    @image_path.setter
+    def image_path(self, value: pulumi.Input[str]):
+        pulumi.set(self, "image_path", value)
+
+    @property
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> pulumi.Input[str]:
+        """
+        The ID of the owner for this image. This should match the owner of the service as well as the owner of any specified registry credential.
+        """
+        return pulumi.get(self, "owner_id")
+
+    @owner_id.setter
+    def owner_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "owner_id", value)
+
+    @property
+    @pulumi.getter(name="registryCredentialId")
+    def registry_credential_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optional reference to the registry credential passed to the image repository to retrieve this image.
+        """
+        return pulumi.get(self, "registry_credential_id")
+
+    @registry_credential_id.setter
+    def registry_credential_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "registry_credential_id", value)
 
 
 @pulumi.input_type
@@ -801,6 +884,33 @@ class RouteArgs:
     @type.setter
     def type(self, value: pulumi.Input['StaticSiteRouteType']):
         pulumi.set(self, "type", value)
+
+
+@pulumi.input_type
+class SecretFileArgs:
+    def __init__(__self__, *,
+                 id: pulumi.Input[str],
+                 name: pulumi.Input[str]):
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
 
 
 @pulumi.input_type

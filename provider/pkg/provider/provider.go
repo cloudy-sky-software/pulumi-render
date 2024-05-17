@@ -123,19 +123,29 @@ func (p *renderProvider) OnDiff(_ context.Context, _ *pulumirpc.DiffRequest, res
 	var replaces []string
 	var diffs []string
 
+	var allOfSchemaRefs openapi3.SchemaRefs
 	// Taking a shortcut to handle service type-specific updates.
 	switch resourceTypeToken {
 	case "render:services:BackgroundWorker":
-		replaces, diffs = p.determineDiffsAndReplacements(diff, handler.GetOpenAPIDoc().Components.Schemas["backgroundWorkerPatch"].Value.Properties)
+		allOfSchemaRefs = handler.GetOpenAPIDoc().Components.Schemas["backgroundWorkerPatch"].Value.AllOf
 	case "render:services:CronJob":
-		replaces, diffs = p.determineDiffsAndReplacements(diff, handler.GetOpenAPIDoc().Components.Schemas["cronJobPatch"].Value.Properties)
+		allOfSchemaRefs = handler.GetOpenAPIDoc().Components.Schemas["cronJobPatch"].Value.AllOf
 	case "render:services:PrivateService":
-		replaces, diffs = p.determineDiffsAndReplacements(diff, handler.GetOpenAPIDoc().Components.Schemas["privateServicePatch"].Value.Properties)
+		allOfSchemaRefs = handler.GetOpenAPIDoc().Components.Schemas["privateServicePatch"].Value.AllOf
 	case "render:services:StaticSite":
-		replaces, diffs = p.determineDiffsAndReplacements(diff, handler.GetOpenAPIDoc().Components.Schemas["staticSitePatch"].Value.Properties)
+		allOfSchemaRefs = handler.GetOpenAPIDoc().Components.Schemas["staticSitePatch"].Value.AllOf
 	case "render:services:WebService":
-		replaces, diffs = p.determineDiffsAndReplacements(diff, handler.GetOpenAPIDoc().Components.Schemas["webServicePatch"].Value.Properties)
+		allOfSchemaRefs = handler.GetOpenAPIDoc().Components.Schemas["webServicePatch"].Value.AllOf
 	}
+
+	allProps := make(openapi3.Schemas, 0)
+	for _, schemaRef := range allOfSchemaRefs {
+		for k, v := range schemaRef.Value.Properties {
+			allProps[k] = v
+		}
+	}
+
+	replaces, diffs = p.determineDiffsAndReplacements(diff, allProps)
 
 	logging.V(3).Infof("Diff response: replaces: %v; diffs: %v", replaces, diffs)
 

@@ -869,6 +869,30 @@ components:
                 value:
                     type: string
                     example: srv-xxxxx
+        listServices:
+            type: array
+            items:
+                $ref: '#/components/schemas/listServicesResponse'
+        listServicesResponse:
+            type: object
+            properties:
+                cursor:
+                    $ref: '#/components/schemas/cursor'
+                service:
+                    oneOf:
+                        - $ref: '#/components/schemas/backgroundWorkerOutput'
+                        - $ref: '#/components/schemas/cronJobOutput'
+                        - $ref: '#/components/schemas/privateServiceOutput'
+                        - $ref: '#/components/schemas/staticSiteOutput'
+                        - $ref: '#/components/schemas/webServiceOutput'
+                    discriminator:
+                        propertyName: type
+                        mapping:
+                            background_worker: '#/components/schemas/backgroundWorkerOutput'
+                            cron_job: '#/components/schemas/cronJobOutput'
+                            private_service: '#/components/schemas/privateServiceOutput'
+                            static_site: '#/components/schemas/staticSiteOutput'
+                            web_service: '#/components/schemas/webServiceOutput'
         maintenanceInfo:
             type: object
             required:
@@ -3139,14 +3163,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                type: array
-                                items:
-                                    type: object
-                                    properties:
-                                        cursor:
-                                            $ref: '#/components/schemas/cursor'
-                                        service:
-                                            $ref: '#/components/schemas/service'
+                                $ref: '#/components/schemas/listServices'
                 "401":
                     $ref: '#/components/responses/401Unauthorized'
                 "406":
@@ -3187,7 +3204,20 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/service'
+                                oneOf:
+                                    - $ref: '#/components/schemas/backgroundWorkerOutput'
+                                    - $ref: '#/components/schemas/cronJobOutput'
+                                    - $ref: '#/components/schemas/privateServiceOutput'
+                                    - $ref: '#/components/schemas/staticSiteOutput'
+                                    - $ref: '#/components/schemas/webServiceOutput'
+                                discriminator:
+                                    propertyName: type
+                                    mapping:
+                                        background_worker: '#/components/schemas/backgroundWorkerOutput'
+                                        cron_job: '#/components/schemas/cronJobOutput'
+                                        private_service: '#/components/schemas/privateServiceOutput'
+                                        static_site: '#/components/schemas/staticSiteOutput'
+                                        web_service: '#/components/schemas/webServiceOutput'
                 "400":
                     $ref: '#/components/responses/400BadRequest'
                 "401":
@@ -3301,11 +3331,11 @@ paths:
                         application/json:
                             schema:
                                 oneOf:
-                                    - $ref: '#/components/schemas/backgroundWorkerPatch'
-                                    - $ref: '#/components/schemas/cronJobPatch'
-                                    - $ref: '#/components/schemas/privateServicePatch'
-                                    - $ref: '#/components/schemas/staticSitePatch'
-                                    - $ref: '#/components/schemas/webServicePatch'
+                                    - $ref: '#/components/schemas/backgroundWorkerOutput'
+                                    - $ref: '#/components/schemas/cronJobOutput'
+                                    - $ref: '#/components/schemas/privateServiceOutput'
+                                    - $ref: '#/components/schemas/staticSiteOutput'
+                                    - $ref: '#/components/schemas/webServiceOutput'
                                 discriminator:
                                     propertyName: type
                                     mapping:

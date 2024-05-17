@@ -217,19 +217,6 @@
                 "percentage"
             ]
         },
-        "render:services:BackgroundWorkerAutoDeploy": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Yes",
-                    "value": "yes"
-                },
-                {
-                    "name": "No",
-                    "value": "no"
-                }
-            ]
-        },
         "render:services:BackgroundWorkerDetails": {
             "properties": {
                 "autoscaling": {
@@ -564,7 +551,93 @@
                 }
             ]
         },
-        "render:services:BackgroundWorkerNotifyOnFail": {
+        "render:services:BackgroundWorkerOutput": {
+            "properties": {
+                "autoDeploy": {
+                    "$ref": "#/types/render:services:ServiceAutoDeploy"
+                },
+                "branch": {
+                    "type": "string"
+                },
+                "buildFilter": {
+                    "$ref": "#/types/render:services:BuildFilter"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "imagePath": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "notifyOnFail": {
+                    "$ref": "#/types/render:services:ServiceNotifyOnFail"
+                },
+                "ownerId": {
+                    "type": "string"
+                },
+                "repo": {
+                    "type": "string"
+                },
+                "rootDir": {
+                    "type": "string"
+                },
+                "serviceDetails": {
+                    "$ref": "#/types/render:services:BackgroundWorkerDetails"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "suspended": {
+                    "$ref": "#/types/render:services:ServiceSuspended"
+                },
+                "suspenders": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:ServiceSuspendersItem"
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "default": "background_worker"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "autoDeploy",
+                "createdAt",
+                "id",
+                "name",
+                "notifyOnFail",
+                "ownerId",
+                "rootDir",
+                "slug",
+                "suspended",
+                "suspenders",
+                "updatedAt"
+            ]
+        },
+        "render:services:BackgroundWorkerServiceAutoDeploy": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
+        "render:services:BackgroundWorkerServiceNotifyOnFail": {
             "type": "string",
             "enum": [
                 {
@@ -581,7 +654,7 @@
                 }
             ]
         },
-        "render:services:BackgroundWorkerSuspended": {
+        "render:services:BackgroundWorkerServiceSuspended": {
             "type": "string",
             "enum": [
                 {
@@ -594,7 +667,7 @@
                 }
             ]
         },
-        "render:services:BackgroundWorkerSuspendersItem": {
+        "render:services:BackgroundWorkerServiceSuspendersItem": {
             "type": "string",
             "enum": [
                 {
@@ -743,19 +816,6 @@
                 }
             },
             "type": "object"
-        },
-        "render:services:CronJobAutoDeploy": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Yes",
-                    "value": "yes"
-                },
-                {
-                    "name": "No",
-                    "value": "no"
-                }
-            ]
         },
         "render:services:CronJobDetails": {
             "properties": {
@@ -1025,7 +1085,93 @@
                 }
             ]
         },
-        "render:services:CronJobNotifyOnFail": {
+        "render:services:CronJobOutput": {
+            "properties": {
+                "autoDeploy": {
+                    "$ref": "#/types/render:services:ServiceAutoDeploy"
+                },
+                "branch": {
+                    "type": "string"
+                },
+                "buildFilter": {
+                    "$ref": "#/types/render:services:BuildFilter"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "imagePath": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "notifyOnFail": {
+                    "$ref": "#/types/render:services:ServiceNotifyOnFail"
+                },
+                "ownerId": {
+                    "type": "string"
+                },
+                "repo": {
+                    "type": "string"
+                },
+                "rootDir": {
+                    "type": "string"
+                },
+                "serviceDetails": {
+                    "$ref": "#/types/render:services:CronJobDetails"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "suspended": {
+                    "$ref": "#/types/render:services:ServiceSuspended"
+                },
+                "suspenders": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:ServiceSuspendersItem"
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "default": "cron_job"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "autoDeploy",
+                "createdAt",
+                "id",
+                "name",
+                "notifyOnFail",
+                "ownerId",
+                "rootDir",
+                "slug",
+                "suspended",
+                "suspenders",
+                "updatedAt"
+            ]
+        },
+        "render:services:CronJobServiceAutoDeploy": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
+        "render:services:CronJobServiceNotifyOnFail": {
             "type": "string",
             "enum": [
                 {
@@ -1042,7 +1188,7 @@
                 }
             ]
         },
-        "render:services:CronJobSuspended": {
+        "render:services:CronJobServiceSuspended": {
             "type": "string",
             "enum": [
                 {
@@ -1055,7 +1201,7 @@
                 }
             ]
         },
-        "render:services:CronJobSuspendersItem": {
+        "render:services:CronJobServiceSuspendersItem": {
             "type": "string",
             "enum": [
                 {
@@ -1435,7 +1581,7 @@
         "render:services:GetBackgroundWorkerOutput": {
             "properties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy"
+                    "$ref": "#/types/render:services:PreviewServiceServiceAutoDeploy"
                 },
                 "branch": {
                     "type": "string"
@@ -1456,7 +1602,7 @@
                     "type": "string"
                 },
                 "notifyOnFail": {
-                    "$ref": "#/types/render:services:ServiceNotifyOnFail"
+                    "$ref": "#/types/render:services:PreviewServiceServiceNotifyOnFail"
                 },
                 "ownerId": {
                     "type": "string"
@@ -1474,12 +1620,12 @@
                     "type": "string"
                 },
                 "suspended": {
-                    "$ref": "#/types/render:services:ServiceSuspended"
+                    "$ref": "#/types/render:services:PreviewServiceServiceSuspended"
                 },
                 "suspenders": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/render:services:ServiceSuspendersItem"
+                        "$ref": "#/types/render:services:PreviewServiceServiceSuspendersItem"
                     }
                 },
                 "type": {
@@ -1508,7 +1654,7 @@
         "render:services:GetCronJobOutput": {
             "properties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy"
+                    "$ref": "#/types/render:services:PreviewServiceServiceAutoDeploy"
                 },
                 "branch": {
                     "type": "string"
@@ -1529,7 +1675,7 @@
                     "type": "string"
                 },
                 "notifyOnFail": {
-                    "$ref": "#/types/render:services:ServiceNotifyOnFail"
+                    "$ref": "#/types/render:services:PreviewServiceServiceNotifyOnFail"
                 },
                 "ownerId": {
                     "type": "string"
@@ -1547,12 +1693,12 @@
                     "type": "string"
                 },
                 "suspended": {
-                    "$ref": "#/types/render:services:ServiceSuspended"
+                    "$ref": "#/types/render:services:PreviewServiceServiceSuspended"
                 },
                 "suspenders": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/render:services:ServiceSuspendersItem"
+                        "$ref": "#/types/render:services:PreviewServiceServiceSuspendersItem"
                     }
                 },
                 "type": {
@@ -1581,7 +1727,7 @@
         "render:services:GetPrivateServiceOutput": {
             "properties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy"
+                    "$ref": "#/types/render:services:PreviewServiceServiceAutoDeploy"
                 },
                 "branch": {
                     "type": "string"
@@ -1602,7 +1748,7 @@
                     "type": "string"
                 },
                 "notifyOnFail": {
-                    "$ref": "#/types/render:services:ServiceNotifyOnFail"
+                    "$ref": "#/types/render:services:PreviewServiceServiceNotifyOnFail"
                 },
                 "ownerId": {
                     "type": "string"
@@ -1620,12 +1766,12 @@
                     "type": "string"
                 },
                 "suspended": {
-                    "$ref": "#/types/render:services:ServiceSuspended"
+                    "$ref": "#/types/render:services:PreviewServiceServiceSuspended"
                 },
                 "suspenders": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/render:services:ServiceSuspendersItem"
+                        "$ref": "#/types/render:services:PreviewServiceServiceSuspendersItem"
                     }
                 },
                 "type": {
@@ -1654,7 +1800,7 @@
         "render:services:GetStaticSiteOutput": {
             "properties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy"
+                    "$ref": "#/types/render:services:PreviewServiceServiceAutoDeploy"
                 },
                 "branch": {
                     "type": "string"
@@ -1675,7 +1821,7 @@
                     "type": "string"
                 },
                 "notifyOnFail": {
-                    "$ref": "#/types/render:services:ServiceNotifyOnFail"
+                    "$ref": "#/types/render:services:PreviewServiceServiceNotifyOnFail"
                 },
                 "ownerId": {
                     "type": "string"
@@ -1693,12 +1839,12 @@
                     "type": "string"
                 },
                 "suspended": {
-                    "$ref": "#/types/render:services:ServiceSuspended"
+                    "$ref": "#/types/render:services:PreviewServiceServiceSuspended"
                 },
                 "suspenders": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/render:services:ServiceSuspendersItem"
+                        "$ref": "#/types/render:services:PreviewServiceServiceSuspendersItem"
                     }
                 },
                 "type": {
@@ -1727,7 +1873,7 @@
         "render:services:GetWebServiceOutput": {
             "properties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy"
+                    "$ref": "#/types/render:services:PreviewServiceServiceAutoDeploy"
                 },
                 "branch": {
                     "type": "string"
@@ -1748,7 +1894,7 @@
                     "type": "string"
                 },
                 "notifyOnFail": {
-                    "$ref": "#/types/render:services:ServiceNotifyOnFail"
+                    "$ref": "#/types/render:services:PreviewServiceServiceNotifyOnFail"
                 },
                 "ownerId": {
                     "type": "string"
@@ -1766,12 +1912,12 @@
                     "type": "string"
                 },
                 "suspended": {
-                    "$ref": "#/types/render:services:ServiceSuspended"
+                    "$ref": "#/types/render:services:PreviewServiceServiceSuspended"
                 },
                 "suspenders": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/render:services:ServiceSuspendersItem"
+                        "$ref": "#/types/render:services:PreviewServiceServiceSuspendersItem"
                     }
                 },
                 "type": {
@@ -1951,13 +2097,39 @@
             },
             "type": "object"
         },
-        "render:services:ListServicesItemProperties": {
+        "render:services:ListServicesResponse": {
             "properties": {
                 "cursor": {
                     "type": "string"
                 },
                 "service": {
-                    "$ref": "#/types/render:services:Service"
+                    "oneOf": [
+                        {
+                            "$ref": "#/types/render:services:BackgroundWorkerOutput"
+                        },
+                        {
+                            "$ref": "#/types/render:services:CronJobOutput"
+                        },
+                        {
+                            "$ref": "#/types/render:services:PrivateServiceOutput"
+                        },
+                        {
+                            "$ref": "#/types/render:services:StaticSiteOutput"
+                        },
+                        {
+                            "$ref": "#/types/render:services:WebServiceOutput"
+                        }
+                    ],
+                    "discriminator": {
+                        "propertyName": "type",
+                        "mapping": {
+                            "background_worker": "#/types/render:services:BackgroundWorkerOutput",
+                            "cron_job": "#/types/render:services:CronJobOutput",
+                            "private_service": "#/types/render:services:PrivateServiceOutput",
+                            "static_site": "#/types/render:services:StaticSiteOutput",
+                            "web_service": "#/types/render:services:WebServiceOutput"
+                        }
+                    }
                 }
             },
             "type": "object"
@@ -2026,7 +2198,7 @@
                 }
             ]
         },
-        "render:services:PrivateServiceAutoDeploy": {
+        "render:services:PreviewServiceServiceAutoDeploy": {
             "type": "string",
             "enum": [
                 {
@@ -2036,6 +2208,61 @@
                 {
                     "name": "No",
                     "value": "no"
+                }
+            ]
+        },
+        "render:services:PreviewServiceServiceNotifyOnFail": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Default",
+                    "value": "default"
+                },
+                {
+                    "name": "Notify",
+                    "value": "notify"
+                },
+                {
+                    "name": "Ignore",
+                    "value": "ignore"
+                }
+            ]
+        },
+        "render:services:PreviewServiceServiceSuspended": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Suspended",
+                    "value": "suspended"
+                },
+                {
+                    "name": "NotSuspended",
+                    "value": "not_suspended"
+                }
+            ]
+        },
+        "render:services:PreviewServiceServiceSuspendersItem": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Admin",
+                    "value": "admin"
+                },
+                {
+                    "name": "Billing",
+                    "value": "billing"
+                },
+                {
+                    "name": "User",
+                    "value": "user"
+                },
+                {
+                    "name": "ParentService",
+                    "value": "parent_service"
+                },
+                {
+                    "name": "Unknown",
+                    "value": "unknown"
                 }
             ]
         },
@@ -2384,7 +2611,93 @@
                 }
             ]
         },
-        "render:services:PrivateServiceNotifyOnFail": {
+        "render:services:PrivateServiceOutput": {
+            "properties": {
+                "autoDeploy": {
+                    "$ref": "#/types/render:services:ServiceAutoDeploy"
+                },
+                "branch": {
+                    "type": "string"
+                },
+                "buildFilter": {
+                    "$ref": "#/types/render:services:BuildFilter"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "imagePath": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "notifyOnFail": {
+                    "$ref": "#/types/render:services:ServiceNotifyOnFail"
+                },
+                "ownerId": {
+                    "type": "string"
+                },
+                "repo": {
+                    "type": "string"
+                },
+                "rootDir": {
+                    "type": "string"
+                },
+                "serviceDetails": {
+                    "$ref": "#/types/render:services:PrivateServiceDetails"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "suspended": {
+                    "$ref": "#/types/render:services:ServiceSuspended"
+                },
+                "suspenders": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:ServiceSuspendersItem"
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "default": "private_service"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "autoDeploy",
+                "createdAt",
+                "id",
+                "name",
+                "notifyOnFail",
+                "ownerId",
+                "rootDir",
+                "slug",
+                "suspended",
+                "suspenders",
+                "updatedAt"
+            ]
+        },
+        "render:services:PrivateServiceServiceAutoDeploy": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
+        "render:services:PrivateServiceServiceNotifyOnFail": {
             "type": "string",
             "enum": [
                 {
@@ -2401,7 +2714,7 @@
                 }
             ]
         },
-        "render:services:PrivateServiceSuspended": {
+        "render:services:PrivateServiceServiceSuspended": {
             "type": "string",
             "enum": [
                 {
@@ -2414,7 +2727,7 @@
                 }
             ]
         },
-        "render:services:PrivateServiceSuspendersItem": {
+        "render:services:PrivateServiceServiceSuspendersItem": {
             "type": "string",
             "enum": [
                 {
@@ -2450,7 +2763,7 @@
                     "description": "Descriptive name for this credential"
                 },
                 "registry": {
-                    "$ref": "#/types/render:services:WebServiceRegistryCredentialRegistry",
+                    "$ref": "#/types/render:services:RegistryCredentialRegistry",
                     "description": "The registry to use this credential with"
                 },
                 "username": {
@@ -2464,6 +2777,24 @@
                 "name",
                 "registry",
                 "username"
+            ]
+        },
+        "render:services:RegistryCredentialRegistry": {
+            "description": "The registry to use this credential with",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Github",
+                    "value": "GITHUB"
+                },
+                {
+                    "name": "Gitlab",
+                    "value": "GITLAB"
+                },
+                {
+                    "name": "Docker",
+                    "value": "DOCKER"
+                }
             ]
         },
         "render:services:Resource": {
@@ -2630,7 +2961,7 @@
         "render:services:Service": {
             "properties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:ServiceAutoDeploy"
+                    "$ref": "#/types/render:services:PreviewServiceServiceAutoDeploy"
                 },
                 "branch": {
                     "type": "string"
@@ -2651,7 +2982,7 @@
                     "type": "string"
                 },
                 "notifyOnFail": {
-                    "$ref": "#/types/render:services:ServiceNotifyOnFail"
+                    "$ref": "#/types/render:services:PreviewServiceServiceNotifyOnFail"
                 },
                 "ownerId": {
                     "type": "string"
@@ -2666,12 +2997,12 @@
                     "type": "string"
                 },
                 "suspended": {
-                    "$ref": "#/types/render:services:ServiceSuspended"
+                    "$ref": "#/types/render:services:PreviewServiceServiceSuspended"
                 },
                 "suspenders": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/render:services:ServiceSuspendersItem"
+                        "$ref": "#/types/render:services:PreviewServiceServiceSuspendersItem"
                     }
                 },
                 "updatedAt": {
@@ -2761,19 +3092,6 @@
                 }
             ]
         },
-        "render:services:StaticSiteAutoDeploy": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Yes",
-                    "value": "yes"
-                },
-                {
-                    "name": "No",
-                    "value": "no"
-                }
-            ]
-        },
         "render:services:StaticSiteDetails": {
             "properties": {
                 "buildCommand": {
@@ -2860,7 +3178,106 @@
                 }
             ]
         },
-        "render:services:StaticSiteNotifyOnFail": {
+        "render:services:StaticSiteOutput": {
+            "properties": {
+                "autoDeploy": {
+                    "$ref": "#/types/render:services:ServiceAutoDeploy"
+                },
+                "branch": {
+                    "type": "string"
+                },
+                "buildFilter": {
+                    "$ref": "#/types/render:services:BuildFilter"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "imagePath": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "notifyOnFail": {
+                    "$ref": "#/types/render:services:ServiceNotifyOnFail"
+                },
+                "ownerId": {
+                    "type": "string"
+                },
+                "repo": {
+                    "type": "string"
+                },
+                "rootDir": {
+                    "type": "string"
+                },
+                "serviceDetails": {
+                    "$ref": "#/types/render:services:StaticSiteDetails"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "suspended": {
+                    "$ref": "#/types/render:services:ServiceSuspended"
+                },
+                "suspenders": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:ServiceSuspendersItem"
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "default": "static_site"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "autoDeploy",
+                "createdAt",
+                "id",
+                "name",
+                "notifyOnFail",
+                "ownerId",
+                "rootDir",
+                "slug",
+                "suspended",
+                "suspenders",
+                "updatedAt"
+            ]
+        },
+        "render:services:StaticSiteRouteType": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Redirect",
+                    "value": "redirect"
+                },
+                {
+                    "name": "Rewrite",
+                    "value": "rewrite"
+                }
+            ]
+        },
+        "render:services:StaticSiteServiceAutoDeploy": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
+        "render:services:StaticSiteServiceNotifyOnFail": {
             "type": "string",
             "enum": [
                 {
@@ -2877,20 +3294,7 @@
                 }
             ]
         },
-        "render:services:StaticSiteRouteType": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Redirect",
-                    "value": "redirect"
-                },
-                {
-                    "name": "Rewrite",
-                    "value": "rewrite"
-                }
-            ]
-        },
-        "render:services:StaticSiteSuspended": {
+        "render:services:StaticSiteServiceSuspended": {
             "type": "string",
             "enum": [
                 {
@@ -2903,7 +3307,7 @@
                 }
             ]
         },
-        "render:services:StaticSiteSuspendersItem": {
+        "render:services:StaticSiteServiceSuspendersItem": {
             "type": "string",
             "enum": [
                 {
@@ -2925,19 +3329,6 @@
                 {
                     "name": "Unknown",
                     "value": "unknown"
-                }
-            ]
-        },
-        "render:services:WebServiceAutoDeploy": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Yes",
-                    "value": "yes"
-                },
-                {
-                    "name": "No",
-                    "value": "no"
                 }
             ]
         },
@@ -3292,7 +3683,93 @@
                 }
             ]
         },
-        "render:services:WebServiceNotifyOnFail": {
+        "render:services:WebServiceOutput": {
+            "properties": {
+                "autoDeploy": {
+                    "$ref": "#/types/render:services:ServiceAutoDeploy"
+                },
+                "branch": {
+                    "type": "string"
+                },
+                "buildFilter": {
+                    "$ref": "#/types/render:services:BuildFilter"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "imagePath": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "notifyOnFail": {
+                    "$ref": "#/types/render:services:ServiceNotifyOnFail"
+                },
+                "ownerId": {
+                    "type": "string"
+                },
+                "repo": {
+                    "type": "string"
+                },
+                "rootDir": {
+                    "type": "string"
+                },
+                "serviceDetails": {
+                    "$ref": "#/types/render:services:WebServiceDetails"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "suspended": {
+                    "$ref": "#/types/render:services:ServiceSuspended"
+                },
+                "suspenders": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:ServiceSuspendersItem"
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "default": "web_service"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "autoDeploy",
+                "createdAt",
+                "id",
+                "name",
+                "notifyOnFail",
+                "ownerId",
+                "rootDir",
+                "slug",
+                "suspended",
+                "suspenders",
+                "updatedAt"
+            ]
+        },
+        "render:services:WebServiceServiceAutoDeploy": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "name": "No",
+                    "value": "no"
+                }
+            ]
+        },
+        "render:services:WebServiceServiceNotifyOnFail": {
             "type": "string",
             "enum": [
                 {
@@ -3309,25 +3786,7 @@
                 }
             ]
         },
-        "render:services:WebServiceRegistryCredentialRegistry": {
-            "description": "The registry to use this credential with",
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Github",
-                    "value": "GITHUB"
-                },
-                {
-                    "name": "Gitlab",
-                    "value": "GITLAB"
-                },
-                {
-                    "name": "Docker",
-                    "value": "DOCKER"
-                }
-            ]
-        },
-        "render:services:WebServiceSuspended": {
+        "render:services:WebServiceServiceSuspended": {
             "type": "string",
             "enum": [
                 {
@@ -3340,7 +3799,7 @@
                 }
             ]
         },
-        "render:services:WebServiceSuspendersItem": {
+        "render:services:WebServiceServiceSuspendersItem": {
             "type": "string",
             "enum": [
                 {
@@ -3497,7 +3956,7 @@
         "render:services:BackgroundWorker": {
             "properties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:BackgroundWorkerAutoDeploy"
+                    "$ref": "#/types/render:services:BackgroundWorkerServiceAutoDeploy"
                 },
                 "branch": {
                     "type": "string"
@@ -3515,7 +3974,7 @@
                     "type": "string"
                 },
                 "notifyOnFail": {
-                    "$ref": "#/types/render:services:BackgroundWorkerNotifyOnFail"
+                    "$ref": "#/types/render:services:BackgroundWorkerServiceNotifyOnFail"
                 },
                 "ownerId": {
                     "type": "string"
@@ -3533,12 +3992,12 @@
                     "type": "string"
                 },
                 "suspended": {
-                    "$ref": "#/types/render:services:BackgroundWorkerSuspended"
+                    "$ref": "#/types/render:services:BackgroundWorkerServiceSuspended"
                 },
                 "suspenders": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/render:services:BackgroundWorkerSuspendersItem"
+                        "$ref": "#/types/render:services:BackgroundWorkerServiceSuspendersItem"
                     }
                 },
                 "type": {
@@ -3550,20 +4009,6 @@
                 }
             },
             "type": "object",
-            "required": [
-                "autoDeploy",
-                "createdAt",
-                "name",
-                "notifyOnFail",
-                "ownerId",
-                "rootDir",
-                "serviceDetails",
-                "slug",
-                "suspended",
-                "suspenders",
-                "type",
-                "updatedAt"
-            ],
             "inputProperties": {
                 "serviceDetails": {
                     "$ref": "#/types/render:services:BackgroundWorkerDetailsCreate"
@@ -3656,7 +4101,7 @@
         "render:services:CronJob": {
             "properties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:CronJobAutoDeploy"
+                    "$ref": "#/types/render:services:CronJobServiceAutoDeploy"
                 },
                 "branch": {
                     "type": "string"
@@ -3674,7 +4119,7 @@
                     "type": "string"
                 },
                 "notifyOnFail": {
-                    "$ref": "#/types/render:services:CronJobNotifyOnFail"
+                    "$ref": "#/types/render:services:CronJobServiceNotifyOnFail"
                 },
                 "ownerId": {
                     "type": "string"
@@ -3692,12 +4137,12 @@
                     "type": "string"
                 },
                 "suspended": {
-                    "$ref": "#/types/render:services:CronJobSuspended"
+                    "$ref": "#/types/render:services:CronJobServiceSuspended"
                 },
                 "suspenders": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/render:services:CronJobSuspendersItem"
+                        "$ref": "#/types/render:services:CronJobServiceSuspendersItem"
                     }
                 },
                 "type": {
@@ -3709,20 +4154,6 @@
                 }
             },
             "type": "object",
-            "required": [
-                "autoDeploy",
-                "createdAt",
-                "name",
-                "notifyOnFail",
-                "ownerId",
-                "rootDir",
-                "serviceDetails",
-                "slug",
-                "suspended",
-                "suspenders",
-                "type",
-                "updatedAt"
-            ],
             "inputProperties": {
                 "serviceDetails": {
                     "$ref": "#/types/render:services:CronJobDetailsCreate"
@@ -3946,7 +4377,7 @@
         "render:services:PrivateService": {
             "properties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:PrivateServiceAutoDeploy"
+                    "$ref": "#/types/render:services:PrivateServiceServiceAutoDeploy"
                 },
                 "branch": {
                     "type": "string"
@@ -3964,7 +4395,7 @@
                     "type": "string"
                 },
                 "notifyOnFail": {
-                    "$ref": "#/types/render:services:PrivateServiceNotifyOnFail"
+                    "$ref": "#/types/render:services:PrivateServiceServiceNotifyOnFail"
                 },
                 "ownerId": {
                     "type": "string"
@@ -3982,12 +4413,12 @@
                     "type": "string"
                 },
                 "suspended": {
-                    "$ref": "#/types/render:services:PrivateServiceSuspended"
+                    "$ref": "#/types/render:services:PrivateServiceServiceSuspended"
                 },
                 "suspenders": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/render:services:PrivateServiceSuspendersItem"
+                        "$ref": "#/types/render:services:PrivateServiceServiceSuspendersItem"
                     }
                 },
                 "type": {
@@ -3999,20 +4430,6 @@
                 }
             },
             "type": "object",
-            "required": [
-                "autoDeploy",
-                "createdAt",
-                "name",
-                "notifyOnFail",
-                "ownerId",
-                "rootDir",
-                "serviceDetails",
-                "slug",
-                "suspended",
-                "suspenders",
-                "type",
-                "updatedAt"
-            ],
             "inputProperties": {
                 "serviceDetails": {
                     "$ref": "#/types/render:services:PrivateServiceDetailsCreate"
@@ -4119,7 +4536,7 @@
             "description": "\n\n{{% examples %}}\n\n## Example Usage\n\n{{% example %}}\n\n### Create a service\n\n```typescript\nimport * as render from \"@cloudyskysoftware/render\";\n\n// TODO: Fill me in!\nconst service = new render.services.StaticSite(\"staticSite\", {});\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
             "properties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:StaticSiteAutoDeploy"
+                    "$ref": "#/types/render:services:StaticSiteServiceAutoDeploy"
                 },
                 "branch": {
                     "type": "string"
@@ -4137,7 +4554,7 @@
                     "type": "string"
                 },
                 "notifyOnFail": {
-                    "$ref": "#/types/render:services:StaticSiteNotifyOnFail"
+                    "$ref": "#/types/render:services:StaticSiteServiceNotifyOnFail"
                 },
                 "ownerId": {
                     "type": "string"
@@ -4155,12 +4572,12 @@
                     "type": "string"
                 },
                 "suspended": {
-                    "$ref": "#/types/render:services:StaticSiteSuspended"
+                    "$ref": "#/types/render:services:StaticSiteServiceSuspended"
                 },
                 "suspenders": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/render:services:StaticSiteSuspendersItem"
+                        "$ref": "#/types/render:services:StaticSiteServiceSuspendersItem"
                     }
                 },
                 "type": {
@@ -4172,20 +4589,6 @@
                 }
             },
             "type": "object",
-            "required": [
-                "autoDeploy",
-                "createdAt",
-                "name",
-                "notifyOnFail",
-                "ownerId",
-                "rootDir",
-                "serviceDetails",
-                "slug",
-                "suspended",
-                "suspenders",
-                "type",
-                "updatedAt"
-            ],
             "inputProperties": {
                 "serviceDetails": {
                     "$ref": "#/types/render:services:StaticSiteDetailsCreate"
@@ -4208,7 +4611,7 @@
         "render:services:WebService": {
             "properties": {
                 "autoDeploy": {
-                    "$ref": "#/types/render:services:WebServiceAutoDeploy"
+                    "$ref": "#/types/render:services:WebServiceServiceAutoDeploy"
                 },
                 "branch": {
                     "type": "string"
@@ -4226,7 +4629,7 @@
                     "type": "string"
                 },
                 "notifyOnFail": {
-                    "$ref": "#/types/render:services:WebServiceNotifyOnFail"
+                    "$ref": "#/types/render:services:WebServiceServiceNotifyOnFail"
                 },
                 "ownerId": {
                     "type": "string"
@@ -4244,12 +4647,12 @@
                     "type": "string"
                 },
                 "suspended": {
-                    "$ref": "#/types/render:services:WebServiceSuspended"
+                    "$ref": "#/types/render:services:WebServiceServiceSuspended"
                 },
                 "suspenders": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/render:services:WebServiceSuspendersItem"
+                        "$ref": "#/types/render:services:WebServiceServiceSuspendersItem"
                     }
                 },
                 "type": {
@@ -4261,20 +4664,6 @@
                 }
             },
             "type": "object",
-            "required": [
-                "autoDeploy",
-                "createdAt",
-                "name",
-                "notifyOnFail",
-                "ownerId",
-                "rootDir",
-                "serviceDetails",
-                "slug",
-                "suspended",
-                "suspenders",
-                "type",
-                "updatedAt"
-            ],
             "inputProperties": {
                 "serviceDetails": {
                     "$ref": "#/types/render:services:WebServiceDetailsCreate"
@@ -4727,7 +5116,7 @@
                     "items": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/render:services:ListServicesItemProperties"
+                            "$ref": "#/types/render:services:ListServicesResponse"
                         }
                     }
                 },

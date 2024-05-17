@@ -46,22 +46,22 @@ export class StaticSite extends pulumi.CustomResource {
         return obj['__pulumiType'] === StaticSite.__pulumiType;
     }
 
-    public /*out*/ readonly autoDeploy!: pulumi.Output<enums.services.StaticSiteAutoDeploy>;
+    public /*out*/ readonly autoDeploy!: pulumi.Output<enums.services.StaticSiteServiceAutoDeploy | undefined>;
     public /*out*/ readonly branch!: pulumi.Output<string | undefined>;
     public /*out*/ readonly buildFilter!: pulumi.Output<outputs.services.BuildFilter | undefined>;
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    public /*out*/ readonly createdAt!: pulumi.Output<string | undefined>;
     public /*out*/ readonly imagePath!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly name!: pulumi.Output<string>;
-    public /*out*/ readonly notifyOnFail!: pulumi.Output<enums.services.StaticSiteNotifyOnFail>;
-    public /*out*/ readonly ownerId!: pulumi.Output<string>;
+    public /*out*/ readonly name!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly notifyOnFail!: pulumi.Output<enums.services.StaticSiteServiceNotifyOnFail | undefined>;
+    public /*out*/ readonly ownerId!: pulumi.Output<string | undefined>;
     public /*out*/ readonly repo!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly rootDir!: pulumi.Output<string>;
-    public readonly serviceDetails!: pulumi.Output<outputs.services.StaticSiteDetailsCreate>;
-    public /*out*/ readonly slug!: pulumi.Output<string>;
-    public /*out*/ readonly suspended!: pulumi.Output<enums.services.StaticSiteSuspended>;
-    public /*out*/ readonly suspenders!: pulumi.Output<enums.services.StaticSiteSuspendersItem[]>;
-    public readonly type!: pulumi.Output<string>;
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    public /*out*/ readonly rootDir!: pulumi.Output<string | undefined>;
+    public readonly serviceDetails!: pulumi.Output<outputs.services.StaticSiteDetailsCreate | undefined>;
+    public /*out*/ readonly slug!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly suspended!: pulumi.Output<enums.services.StaticSiteServiceSuspended | undefined>;
+    public /*out*/ readonly suspenders!: pulumi.Output<enums.services.StaticSiteServiceSuspendersItem[] | undefined>;
+    public readonly type!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly updatedAt!: pulumi.Output<string | undefined>;
 
     /**
      * Create a StaticSite resource with the given unique name, arguments, and options.

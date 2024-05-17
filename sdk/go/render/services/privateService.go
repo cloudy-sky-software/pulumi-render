@@ -14,22 +14,22 @@ import (
 type PrivateService struct {
 	pulumi.CustomResourceState
 
-	AutoDeploy     PrivateServiceAutoDeployOutput          `pulumi:"autoDeploy"`
-	Branch         pulumi.StringPtrOutput                  `pulumi:"branch"`
-	BuildFilter    BuildFilterPtrOutput                    `pulumi:"buildFilter"`
-	CreatedAt      pulumi.StringOutput                     `pulumi:"createdAt"`
-	ImagePath      pulumi.StringPtrOutput                  `pulumi:"imagePath"`
-	Name           pulumi.StringOutput                     `pulumi:"name"`
-	NotifyOnFail   PrivateServiceNotifyOnFailOutput        `pulumi:"notifyOnFail"`
-	OwnerId        pulumi.StringOutput                     `pulumi:"ownerId"`
-	Repo           pulumi.StringPtrOutput                  `pulumi:"repo"`
-	RootDir        pulumi.StringOutput                     `pulumi:"rootDir"`
-	ServiceDetails PrivateServiceDetailsCreateOutput       `pulumi:"serviceDetails"`
-	Slug           pulumi.StringOutput                     `pulumi:"slug"`
-	Suspended      PrivateServiceSuspendedOutput           `pulumi:"suspended"`
-	Suspenders     PrivateServiceSuspendersItemArrayOutput `pulumi:"suspenders"`
-	Type           pulumi.StringOutput                     `pulumi:"type"`
-	UpdatedAt      pulumi.StringOutput                     `pulumi:"updatedAt"`
+	AutoDeploy     PrivateServiceServiceAutoDeployPtrOutput       `pulumi:"autoDeploy"`
+	Branch         pulumi.StringPtrOutput                         `pulumi:"branch"`
+	BuildFilter    BuildFilterPtrOutput                           `pulumi:"buildFilter"`
+	CreatedAt      pulumi.StringPtrOutput                         `pulumi:"createdAt"`
+	ImagePath      pulumi.StringPtrOutput                         `pulumi:"imagePath"`
+	Name           pulumi.StringPtrOutput                         `pulumi:"name"`
+	NotifyOnFail   PrivateServiceServiceNotifyOnFailPtrOutput     `pulumi:"notifyOnFail"`
+	OwnerId        pulumi.StringPtrOutput                         `pulumi:"ownerId"`
+	Repo           pulumi.StringPtrOutput                         `pulumi:"repo"`
+	RootDir        pulumi.StringPtrOutput                         `pulumi:"rootDir"`
+	ServiceDetails PrivateServiceDetailsCreatePtrOutput           `pulumi:"serviceDetails"`
+	Slug           pulumi.StringPtrOutput                         `pulumi:"slug"`
+	Suspended      PrivateServiceServiceSuspendedPtrOutput        `pulumi:"suspended"`
+	Suspenders     PrivateServiceServiceSuspendersItemArrayOutput `pulumi:"suspenders"`
+	Type           pulumi.StringPtrOutput                         `pulumi:"type"`
+	UpdatedAt      pulumi.StringPtrOutput                         `pulumi:"updatedAt"`
 }
 
 // NewPrivateService registers a new resource with the given unique name, arguments, and options.
@@ -125,8 +125,8 @@ func (o PrivateServiceOutput) ToPrivateServiceOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o PrivateServiceOutput) AutoDeploy() PrivateServiceAutoDeployOutput {
-	return o.ApplyT(func(v *PrivateService) PrivateServiceAutoDeployOutput { return v.AutoDeploy }).(PrivateServiceAutoDeployOutput)
+func (o PrivateServiceOutput) AutoDeploy() PrivateServiceServiceAutoDeployPtrOutput {
+	return o.ApplyT(func(v *PrivateService) PrivateServiceServiceAutoDeployPtrOutput { return v.AutoDeploy }).(PrivateServiceServiceAutoDeployPtrOutput)
 }
 
 func (o PrivateServiceOutput) Branch() pulumi.StringPtrOutput {
@@ -137,56 +137,56 @@ func (o PrivateServiceOutput) BuildFilter() BuildFilterPtrOutput {
 	return o.ApplyT(func(v *PrivateService) BuildFilterPtrOutput { return v.BuildFilter }).(BuildFilterPtrOutput)
 }
 
-func (o PrivateServiceOutput) CreatedAt() pulumi.StringOutput {
-	return o.ApplyT(func(v *PrivateService) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
+func (o PrivateServiceOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PrivateService) pulumi.StringPtrOutput { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
 
 func (o PrivateServiceOutput) ImagePath() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PrivateService) pulumi.StringPtrOutput { return v.ImagePath }).(pulumi.StringPtrOutput)
 }
 
-func (o PrivateServiceOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v *PrivateService) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+func (o PrivateServiceOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PrivateService) pulumi.StringPtrOutput { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-func (o PrivateServiceOutput) NotifyOnFail() PrivateServiceNotifyOnFailOutput {
-	return o.ApplyT(func(v *PrivateService) PrivateServiceNotifyOnFailOutput { return v.NotifyOnFail }).(PrivateServiceNotifyOnFailOutput)
+func (o PrivateServiceOutput) NotifyOnFail() PrivateServiceServiceNotifyOnFailPtrOutput {
+	return o.ApplyT(func(v *PrivateService) PrivateServiceServiceNotifyOnFailPtrOutput { return v.NotifyOnFail }).(PrivateServiceServiceNotifyOnFailPtrOutput)
 }
 
-func (o PrivateServiceOutput) OwnerId() pulumi.StringOutput {
-	return o.ApplyT(func(v *PrivateService) pulumi.StringOutput { return v.OwnerId }).(pulumi.StringOutput)
+func (o PrivateServiceOutput) OwnerId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PrivateService) pulumi.StringPtrOutput { return v.OwnerId }).(pulumi.StringPtrOutput)
 }
 
 func (o PrivateServiceOutput) Repo() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PrivateService) pulumi.StringPtrOutput { return v.Repo }).(pulumi.StringPtrOutput)
 }
 
-func (o PrivateServiceOutput) RootDir() pulumi.StringOutput {
-	return o.ApplyT(func(v *PrivateService) pulumi.StringOutput { return v.RootDir }).(pulumi.StringOutput)
+func (o PrivateServiceOutput) RootDir() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PrivateService) pulumi.StringPtrOutput { return v.RootDir }).(pulumi.StringPtrOutput)
 }
 
-func (o PrivateServiceOutput) ServiceDetails() PrivateServiceDetailsCreateOutput {
-	return o.ApplyT(func(v *PrivateService) PrivateServiceDetailsCreateOutput { return v.ServiceDetails }).(PrivateServiceDetailsCreateOutput)
+func (o PrivateServiceOutput) ServiceDetails() PrivateServiceDetailsCreatePtrOutput {
+	return o.ApplyT(func(v *PrivateService) PrivateServiceDetailsCreatePtrOutput { return v.ServiceDetails }).(PrivateServiceDetailsCreatePtrOutput)
 }
 
-func (o PrivateServiceOutput) Slug() pulumi.StringOutput {
-	return o.ApplyT(func(v *PrivateService) pulumi.StringOutput { return v.Slug }).(pulumi.StringOutput)
+func (o PrivateServiceOutput) Slug() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PrivateService) pulumi.StringPtrOutput { return v.Slug }).(pulumi.StringPtrOutput)
 }
 
-func (o PrivateServiceOutput) Suspended() PrivateServiceSuspendedOutput {
-	return o.ApplyT(func(v *PrivateService) PrivateServiceSuspendedOutput { return v.Suspended }).(PrivateServiceSuspendedOutput)
+func (o PrivateServiceOutput) Suspended() PrivateServiceServiceSuspendedPtrOutput {
+	return o.ApplyT(func(v *PrivateService) PrivateServiceServiceSuspendedPtrOutput { return v.Suspended }).(PrivateServiceServiceSuspendedPtrOutput)
 }
 
-func (o PrivateServiceOutput) Suspenders() PrivateServiceSuspendersItemArrayOutput {
-	return o.ApplyT(func(v *PrivateService) PrivateServiceSuspendersItemArrayOutput { return v.Suspenders }).(PrivateServiceSuspendersItemArrayOutput)
+func (o PrivateServiceOutput) Suspenders() PrivateServiceServiceSuspendersItemArrayOutput {
+	return o.ApplyT(func(v *PrivateService) PrivateServiceServiceSuspendersItemArrayOutput { return v.Suspenders }).(PrivateServiceServiceSuspendersItemArrayOutput)
 }
 
-func (o PrivateServiceOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v *PrivateService) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+func (o PrivateServiceOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PrivateService) pulumi.StringPtrOutput { return v.Type }).(pulumi.StringPtrOutput)
 }
 
-func (o PrivateServiceOutput) UpdatedAt() pulumi.StringOutput {
-	return o.ApplyT(func(v *PrivateService) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
+func (o PrivateServiceOutput) UpdatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PrivateService) pulumi.StringPtrOutput { return v.UpdatedAt }).(pulumi.StringPtrOutput)
 }
 
 func init() {

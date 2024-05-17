@@ -155,7 +155,7 @@ class BackgroundWorker(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="autoDeploy")
-    def auto_deploy(self) -> pulumi.Output['BackgroundWorkerAutoDeploy']:
+    def auto_deploy(self) -> pulumi.Output[Optional['BackgroundWorkerServiceAutoDeploy']]:
         return pulumi.get(self, "auto_deploy")
 
     @property
@@ -170,7 +170,7 @@ class BackgroundWorker(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> pulumi.Output[str]:
+    def created_at(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "created_at")
 
     @property
@@ -180,17 +180,17 @@ class BackgroundWorker(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> pulumi.Output[str]:
+    def name(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="notifyOnFail")
-    def notify_on_fail(self) -> pulumi.Output['BackgroundWorkerNotifyOnFail']:
+    def notify_on_fail(self) -> pulumi.Output[Optional['BackgroundWorkerServiceNotifyOnFail']]:
         return pulumi.get(self, "notify_on_fail")
 
     @property
     @pulumi.getter(name="ownerId")
-    def owner_id(self) -> pulumi.Output[str]:
+    def owner_id(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "owner_id")
 
     @property
@@ -200,36 +200,36 @@ class BackgroundWorker(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="rootDir")
-    def root_dir(self) -> pulumi.Output[str]:
+    def root_dir(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "root_dir")
 
     @property
     @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> pulumi.Output['outputs.BackgroundWorkerDetailsCreate']:
+    def service_details(self) -> pulumi.Output[Optional['outputs.BackgroundWorkerDetailsCreate']]:
         return pulumi.get(self, "service_details")
 
     @property
     @pulumi.getter
-    def slug(self) -> pulumi.Output[str]:
+    def slug(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "slug")
 
     @property
     @pulumi.getter
-    def suspended(self) -> pulumi.Output['BackgroundWorkerSuspended']:
+    def suspended(self) -> pulumi.Output[Optional['BackgroundWorkerServiceSuspended']]:
         return pulumi.get(self, "suspended")
 
     @property
     @pulumi.getter
-    def suspenders(self) -> pulumi.Output[Sequence['BackgroundWorkerSuspendersItem']]:
+    def suspenders(self) -> pulumi.Output[Optional[Sequence['BackgroundWorkerServiceSuspendersItem']]]:
         return pulumi.get(self, "suspenders")
 
     @property
     @pulumi.getter
-    def type(self) -> pulumi.Output[str]:
+    def type(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> pulumi.Output[str]:
+    def updated_at(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "updated_at")
 

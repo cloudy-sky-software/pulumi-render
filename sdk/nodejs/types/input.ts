@@ -263,4 +263,5 @@ export namespace services {
          */
         sizeGB?: pulumi.Input<number>;
     }
+
 }

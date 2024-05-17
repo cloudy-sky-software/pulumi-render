@@ -5,7 +5,6 @@
 from enum import Enum
 
 __all__ = [
-    'BackgroundWorkerAutoDeploy',
     'BackgroundWorkerDetailsCreateEnv',
     'BackgroundWorkerDetailsCreatePlan',
     'BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled',
@@ -14,30 +13,32 @@ __all__ = [
     'BackgroundWorkerDetailsPlan',
     'BackgroundWorkerDetailsPullRequestPreviewsEnabled',
     'BackgroundWorkerDetailsRegion',
-    'BackgroundWorkerNotifyOnFail',
-    'BackgroundWorkerSuspended',
-    'BackgroundWorkerSuspendersItem',
-    'BackgroundWorkerType',
+    'BackgroundWorkerServiceAutoDeploy',
+    'BackgroundWorkerServiceNotifyOnFail',
+    'BackgroundWorkerServiceSuspended',
+    'BackgroundWorkerServiceSuspendersItem',
     'CancelDeployStatus',
     'CancelDeployTrigger',
-    'CronJobAutoDeploy',
     'CronJobDetailsCreateEnv',
     'CronJobDetailsCreatePlan',
     'CronJobDetailsCreateRegion',
     'CronJobDetailsEnv',
     'CronJobDetailsPlan',
     'CronJobDetailsRegion',
-    'CronJobNotifyOnFail',
-    'CronJobSuspended',
-    'CronJobSuspendersItem',
-    'CronJobType',
+    'CronJobServiceAutoDeploy',
+    'CronJobServiceNotifyOnFail',
+    'CronJobServiceSuspended',
+    'CronJobServiceSuspendersItem',
     'CustomDomainDomainType',
     'CustomDomainVerificationStatus',
     'DeployClearCache',
     'DeployStatus',
     'DeployTrigger',
     'PreviewServicePlan',
-    'PrivateServiceAutoDeploy',
+    'PreviewServiceServiceAutoDeploy',
+    'PreviewServiceServiceNotifyOnFail',
+    'PreviewServiceServiceSuspended',
+    'PreviewServiceServiceSuspendersItem',
     'PrivateServiceDetailsCreateEnv',
     'PrivateServiceDetailsCreatePlan',
     'PrivateServiceDetailsCreatePullRequestPreviewsEnabled',
@@ -46,10 +47,10 @@ __all__ = [
     'PrivateServiceDetailsPlan',
     'PrivateServiceDetailsPullRequestPreviewsEnabled',
     'PrivateServiceDetailsRegion',
-    'PrivateServiceNotifyOnFail',
-    'PrivateServiceSuspended',
-    'PrivateServiceSuspendersItem',
-    'PrivateServiceType',
+    'PrivateServiceServiceAutoDeploy',
+    'PrivateServiceServiceNotifyOnFail',
+    'PrivateServiceServiceSuspended',
+    'PrivateServiceServiceSuspendersItem',
     'RegistryCredentialRegistry',
     'RollbackDeployStatus',
     'RollbackDeployTrigger',
@@ -58,16 +59,13 @@ __all__ = [
     'ServiceNotifyOnFail',
     'ServiceSuspended',
     'ServiceSuspendersItem',
-    'ServiceType',
-    'StaticSiteAutoDeploy',
     'StaticSiteDetailsCreatePullRequestPreviewsEnabled',
     'StaticSiteDetailsPullRequestPreviewsEnabled',
-    'StaticSiteNotifyOnFail',
     'StaticSiteRouteType',
-    'StaticSiteSuspended',
-    'StaticSiteSuspendersItem',
-    'StaticSiteType',
-    'WebServiceAutoDeploy',
+    'StaticSiteServiceAutoDeploy',
+    'StaticSiteServiceNotifyOnFail',
+    'StaticSiteServiceSuspended',
+    'StaticSiteServiceSuspendersItem',
     'WebServiceDetailsCreateEnv',
     'WebServiceDetailsCreatePlan',
     'WebServiceDetailsCreatePullRequestPreviewsEnabled',
@@ -76,16 +74,11 @@ __all__ = [
     'WebServiceDetailsPlan',
     'WebServiceDetailsPullRequestPreviewsEnabled',
     'WebServiceDetailsRegion',
-    'WebServiceNotifyOnFail',
-    'WebServiceSuspended',
-    'WebServiceSuspendersItem',
-    'WebServiceType',
+    'WebServiceServiceAutoDeploy',
+    'WebServiceServiceNotifyOnFail',
+    'WebServiceServiceSuspended',
+    'WebServiceServiceSuspendersItem',
 ]
-
-
-class BackgroundWorkerAutoDeploy(str, Enum):
-    YES = "yes"
-    NO = "no"
 
 
 class BackgroundWorkerDetailsCreateEnv(str, Enum):
@@ -168,31 +161,28 @@ class BackgroundWorkerDetailsRegion(str, Enum):
     SINGAPORE = "singapore"
 
 
-class BackgroundWorkerNotifyOnFail(str, Enum):
+class BackgroundWorkerServiceAutoDeploy(str, Enum):
+    YES = "yes"
+    NO = "no"
+
+
+class BackgroundWorkerServiceNotifyOnFail(str, Enum):
     DEFAULT = "default"
     NOTIFY = "notify"
     IGNORE = "ignore"
 
 
-class BackgroundWorkerSuspended(str, Enum):
+class BackgroundWorkerServiceSuspended(str, Enum):
     SUSPENDED = "suspended"
     NOT_SUSPENDED = "not_suspended"
 
 
-class BackgroundWorkerSuspendersItem(str, Enum):
+class BackgroundWorkerServiceSuspendersItem(str, Enum):
     ADMIN = "admin"
     BILLING = "billing"
     USER = "user"
     PARENT_SERVICE = "parent_service"
     UNKNOWN = "unknown"
-
-
-class BackgroundWorkerType(str, Enum):
-    STATIC_SITE = "static_site"
-    WEB_SERVICE = "web_service"
-    PRIVATE_SERVICE = "private_service"
-    BACKGROUND_WORKER = "background_worker"
-    CRON_JOB = "cron_job"
 
 
 class CancelDeployStatus(str, Enum):
@@ -219,11 +209,6 @@ class CancelDeployTrigger(str, Enum):
     ROLLBACK = "rollback"
     SERVICE_RESUMED = "service_resumed"
     SERVICE_UPDATED = "service_updated"
-
-
-class CronJobAutoDeploy(str, Enum):
-    YES = "yes"
-    NO = "no"
 
 
 class CronJobDetailsCreateEnv(str, Enum):
@@ -293,31 +278,28 @@ class CronJobDetailsRegion(str, Enum):
     SINGAPORE = "singapore"
 
 
-class CronJobNotifyOnFail(str, Enum):
+class CronJobServiceAutoDeploy(str, Enum):
+    YES = "yes"
+    NO = "no"
+
+
+class CronJobServiceNotifyOnFail(str, Enum):
     DEFAULT = "default"
     NOTIFY = "notify"
     IGNORE = "ignore"
 
 
-class CronJobSuspended(str, Enum):
+class CronJobServiceSuspended(str, Enum):
     SUSPENDED = "suspended"
     NOT_SUSPENDED = "not_suspended"
 
 
-class CronJobSuspendersItem(str, Enum):
+class CronJobServiceSuspendersItem(str, Enum):
     ADMIN = "admin"
     BILLING = "billing"
     USER = "user"
     PARENT_SERVICE = "parent_service"
     UNKNOWN = "unknown"
-
-
-class CronJobType(str, Enum):
-    STATIC_SITE = "static_site"
-    WEB_SERVICE = "web_service"
-    PRIVATE_SERVICE = "private_service"
-    BACKGROUND_WORKER = "background_worker"
-    CRON_JOB = "cron_job"
 
 
 class CustomDomainDomainType(str, Enum):
@@ -380,9 +362,28 @@ class PreviewServicePlan(str, Enum):
     CUSTOM = "custom"
 
 
-class PrivateServiceAutoDeploy(str, Enum):
+class PreviewServiceServiceAutoDeploy(str, Enum):
     YES = "yes"
     NO = "no"
+
+
+class PreviewServiceServiceNotifyOnFail(str, Enum):
+    DEFAULT = "default"
+    NOTIFY = "notify"
+    IGNORE = "ignore"
+
+
+class PreviewServiceServiceSuspended(str, Enum):
+    SUSPENDED = "suspended"
+    NOT_SUSPENDED = "not_suspended"
+
+
+class PreviewServiceServiceSuspendersItem(str, Enum):
+    ADMIN = "admin"
+    BILLING = "billing"
+    USER = "user"
+    PARENT_SERVICE = "parent_service"
+    UNKNOWN = "unknown"
 
 
 class PrivateServiceDetailsCreateEnv(str, Enum):
@@ -465,31 +466,28 @@ class PrivateServiceDetailsRegion(str, Enum):
     SINGAPORE = "singapore"
 
 
-class PrivateServiceNotifyOnFail(str, Enum):
+class PrivateServiceServiceAutoDeploy(str, Enum):
+    YES = "yes"
+    NO = "no"
+
+
+class PrivateServiceServiceNotifyOnFail(str, Enum):
     DEFAULT = "default"
     NOTIFY = "notify"
     IGNORE = "ignore"
 
 
-class PrivateServiceSuspended(str, Enum):
+class PrivateServiceServiceSuspended(str, Enum):
     SUSPENDED = "suspended"
     NOT_SUSPENDED = "not_suspended"
 
 
-class PrivateServiceSuspendersItem(str, Enum):
+class PrivateServiceServiceSuspendersItem(str, Enum):
     ADMIN = "admin"
     BILLING = "billing"
     USER = "user"
     PARENT_SERVICE = "parent_service"
     UNKNOWN = "unknown"
-
-
-class PrivateServiceType(str, Enum):
-    STATIC_SITE = "static_site"
-    WEB_SERVICE = "web_service"
-    PRIVATE_SERVICE = "private_service"
-    BACKGROUND_WORKER = "background_worker"
-    CRON_JOB = "cron_job"
 
 
 class RegistryCredentialRegistry(str, Enum):
@@ -556,19 +554,6 @@ class ServiceSuspendersItem(str, Enum):
     UNKNOWN = "unknown"
 
 
-class ServiceType(str, Enum):
-    STATIC_SITE = "static_site"
-    WEB_SERVICE = "web_service"
-    PRIVATE_SERVICE = "private_service"
-    BACKGROUND_WORKER = "background_worker"
-    CRON_JOB = "cron_job"
-
-
-class StaticSiteAutoDeploy(str, Enum):
-    YES = "yes"
-    NO = "no"
-
-
 class StaticSiteDetailsCreatePullRequestPreviewsEnabled(str, Enum):
     """
     Defaults to "no"
@@ -582,41 +567,33 @@ class StaticSiteDetailsPullRequestPreviewsEnabled(str, Enum):
     NO = "no"
 
 
-class StaticSiteNotifyOnFail(str, Enum):
-    DEFAULT = "default"
-    NOTIFY = "notify"
-    IGNORE = "ignore"
-
-
 class StaticSiteRouteType(str, Enum):
     REDIRECT = "redirect"
     REWRITE = "rewrite"
 
 
-class StaticSiteSuspended(str, Enum):
+class StaticSiteServiceAutoDeploy(str, Enum):
+    YES = "yes"
+    NO = "no"
+
+
+class StaticSiteServiceNotifyOnFail(str, Enum):
+    DEFAULT = "default"
+    NOTIFY = "notify"
+    IGNORE = "ignore"
+
+
+class StaticSiteServiceSuspended(str, Enum):
     SUSPENDED = "suspended"
     NOT_SUSPENDED = "not_suspended"
 
 
-class StaticSiteSuspendersItem(str, Enum):
+class StaticSiteServiceSuspendersItem(str, Enum):
     ADMIN = "admin"
     BILLING = "billing"
     USER = "user"
     PARENT_SERVICE = "parent_service"
     UNKNOWN = "unknown"
-
-
-class StaticSiteType(str, Enum):
-    STATIC_SITE = "static_site"
-    WEB_SERVICE = "web_service"
-    PRIVATE_SERVICE = "private_service"
-    BACKGROUND_WORKER = "background_worker"
-    CRON_JOB = "cron_job"
-
-
-class WebServiceAutoDeploy(str, Enum):
-    YES = "yes"
-    NO = "no"
 
 
 class WebServiceDetailsCreateEnv(str, Enum):
@@ -699,28 +676,25 @@ class WebServiceDetailsRegion(str, Enum):
     SINGAPORE = "singapore"
 
 
-class WebServiceNotifyOnFail(str, Enum):
+class WebServiceServiceAutoDeploy(str, Enum):
+    YES = "yes"
+    NO = "no"
+
+
+class WebServiceServiceNotifyOnFail(str, Enum):
     DEFAULT = "default"
     NOTIFY = "notify"
     IGNORE = "ignore"
 
 
-class WebServiceSuspended(str, Enum):
+class WebServiceServiceSuspended(str, Enum):
     SUSPENDED = "suspended"
     NOT_SUSPENDED = "not_suspended"
 
 
-class WebServiceSuspendersItem(str, Enum):
+class WebServiceServiceSuspendersItem(str, Enum):
     ADMIN = "admin"
     BILLING = "billing"
     USER = "user"
     PARENT_SERVICE = "parent_service"
     UNKNOWN = "unknown"
-
-
-class WebServiceType(str, Enum):
-    STATIC_SITE = "static_site"
-    WEB_SERVICE = "web_service"
-    PRIVATE_SERVICE = "private_service"
-    BACKGROUND_WORKER = "background_worker"
-    CRON_JOB = "cron_job"

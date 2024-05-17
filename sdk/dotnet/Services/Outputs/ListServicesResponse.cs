@@ -11,16 +11,16 @@ namespace Pulumi.Render.Services.Outputs
 {
 
     [OutputType]
-    public sealed class ListServicesItemProperties
+    public sealed class ListServicesResponse
     {
         public readonly string? Cursor;
-        public readonly Outputs.Service? Service;
+        public readonly object? Service;
 
         [OutputConstructor]
-        private ListServicesItemProperties(
+        private ListServicesResponse(
             string? cursor,
 
-            Outputs.Service? service)
+            object? service)
         {
             Cursor = cursor;
             Service = service;

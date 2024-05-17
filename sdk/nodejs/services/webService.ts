@@ -34,22 +34,22 @@ export class WebService extends pulumi.CustomResource {
         return obj['__pulumiType'] === WebService.__pulumiType;
     }
 
-    public /*out*/ readonly autoDeploy!: pulumi.Output<enums.services.WebServiceAutoDeploy>;
+    public /*out*/ readonly autoDeploy!: pulumi.Output<enums.services.WebServiceServiceAutoDeploy | undefined>;
     public /*out*/ readonly branch!: pulumi.Output<string | undefined>;
     public /*out*/ readonly buildFilter!: pulumi.Output<outputs.services.BuildFilter | undefined>;
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    public /*out*/ readonly createdAt!: pulumi.Output<string | undefined>;
     public /*out*/ readonly imagePath!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly name!: pulumi.Output<string>;
-    public /*out*/ readonly notifyOnFail!: pulumi.Output<enums.services.WebServiceNotifyOnFail>;
-    public /*out*/ readonly ownerId!: pulumi.Output<string>;
+    public /*out*/ readonly name!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly notifyOnFail!: pulumi.Output<enums.services.WebServiceServiceNotifyOnFail | undefined>;
+    public /*out*/ readonly ownerId!: pulumi.Output<string | undefined>;
     public /*out*/ readonly repo!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly rootDir!: pulumi.Output<string>;
-    public readonly serviceDetails!: pulumi.Output<outputs.services.WebServiceDetailsCreate>;
-    public /*out*/ readonly slug!: pulumi.Output<string>;
-    public /*out*/ readonly suspended!: pulumi.Output<enums.services.WebServiceSuspended>;
-    public /*out*/ readonly suspenders!: pulumi.Output<enums.services.WebServiceSuspendersItem[]>;
-    public readonly type!: pulumi.Output<string>;
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    public /*out*/ readonly rootDir!: pulumi.Output<string | undefined>;
+    public readonly serviceDetails!: pulumi.Output<outputs.services.WebServiceDetailsCreate | undefined>;
+    public /*out*/ readonly slug!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly suspended!: pulumi.Output<enums.services.WebServiceServiceSuspended | undefined>;
+    public /*out*/ readonly suspenders!: pulumi.Output<enums.services.WebServiceServiceSuspendersItem[] | undefined>;
+    public readonly type!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly updatedAt!: pulumi.Output<string | undefined>;
 
     /**
      * Create a WebService resource with the given unique name, arguments, and options.

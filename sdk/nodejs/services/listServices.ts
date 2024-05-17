@@ -19,7 +19,7 @@ export interface ListServicesArgs {
 }
 
 export interface ListServicesResult {
-    readonly items: outputs.services.ListServicesItemProperties[];
+    readonly items: outputs.services.ListServicesResponse[];
 }
 export function listServicesOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListServicesResult> {
     return pulumi.output(listServices(opts))

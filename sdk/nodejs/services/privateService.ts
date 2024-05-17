@@ -34,22 +34,22 @@ export class PrivateService extends pulumi.CustomResource {
         return obj['__pulumiType'] === PrivateService.__pulumiType;
     }
 
-    public /*out*/ readonly autoDeploy!: pulumi.Output<enums.services.PrivateServiceAutoDeploy>;
+    public /*out*/ readonly autoDeploy!: pulumi.Output<enums.services.PrivateServiceServiceAutoDeploy | undefined>;
     public /*out*/ readonly branch!: pulumi.Output<string | undefined>;
     public /*out*/ readonly buildFilter!: pulumi.Output<outputs.services.BuildFilter | undefined>;
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    public /*out*/ readonly createdAt!: pulumi.Output<string | undefined>;
     public /*out*/ readonly imagePath!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly name!: pulumi.Output<string>;
-    public /*out*/ readonly notifyOnFail!: pulumi.Output<enums.services.PrivateServiceNotifyOnFail>;
-    public /*out*/ readonly ownerId!: pulumi.Output<string>;
+    public /*out*/ readonly name!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly notifyOnFail!: pulumi.Output<enums.services.PrivateServiceServiceNotifyOnFail | undefined>;
+    public /*out*/ readonly ownerId!: pulumi.Output<string | undefined>;
     public /*out*/ readonly repo!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly rootDir!: pulumi.Output<string>;
-    public readonly serviceDetails!: pulumi.Output<outputs.services.PrivateServiceDetailsCreate>;
-    public /*out*/ readonly slug!: pulumi.Output<string>;
-    public /*out*/ readonly suspended!: pulumi.Output<enums.services.PrivateServiceSuspended>;
-    public /*out*/ readonly suspenders!: pulumi.Output<enums.services.PrivateServiceSuspendersItem[]>;
-    public readonly type!: pulumi.Output<string>;
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    public /*out*/ readonly rootDir!: pulumi.Output<string | undefined>;
+    public readonly serviceDetails!: pulumi.Output<outputs.services.PrivateServiceDetailsCreate | undefined>;
+    public /*out*/ readonly slug!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly suspended!: pulumi.Output<enums.services.PrivateServiceServiceSuspended | undefined>;
+    public /*out*/ readonly suspenders!: pulumi.Output<enums.services.PrivateServiceServiceSuspendersItem[] | undefined>;
+    public readonly type!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly updatedAt!: pulumi.Output<string | undefined>;
 
     /**
      * Create a PrivateService resource with the given unique name, arguments, and options.

@@ -2,13 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 
-export const BackgroundWorkerAutoDeploy = {
-    Yes: "yes",
-    No: "no",
-} as const;
-
-export type BackgroundWorkerAutoDeploy = (typeof BackgroundWorkerAutoDeploy)[keyof typeof BackgroundWorkerAutoDeploy];
-
 export const BackgroundWorkerDetailsCreateEnv = {
     Docker: "docker",
     Elixir: "elixir",
@@ -105,22 +98,29 @@ export const BackgroundWorkerDetailsRegion = {
 
 export type BackgroundWorkerDetailsRegion = (typeof BackgroundWorkerDetailsRegion)[keyof typeof BackgroundWorkerDetailsRegion];
 
-export const BackgroundWorkerNotifyOnFail = {
+export const BackgroundWorkerServiceAutoDeploy = {
+    Yes: "yes",
+    No: "no",
+} as const;
+
+export type BackgroundWorkerServiceAutoDeploy = (typeof BackgroundWorkerServiceAutoDeploy)[keyof typeof BackgroundWorkerServiceAutoDeploy];
+
+export const BackgroundWorkerServiceNotifyOnFail = {
     Default: "default",
     Notify: "notify",
     Ignore: "ignore",
 } as const;
 
-export type BackgroundWorkerNotifyOnFail = (typeof BackgroundWorkerNotifyOnFail)[keyof typeof BackgroundWorkerNotifyOnFail];
+export type BackgroundWorkerServiceNotifyOnFail = (typeof BackgroundWorkerServiceNotifyOnFail)[keyof typeof BackgroundWorkerServiceNotifyOnFail];
 
-export const BackgroundWorkerSuspended = {
+export const BackgroundWorkerServiceSuspended = {
     Suspended: "suspended",
     NotSuspended: "not_suspended",
 } as const;
 
-export type BackgroundWorkerSuspended = (typeof BackgroundWorkerSuspended)[keyof typeof BackgroundWorkerSuspended];
+export type BackgroundWorkerServiceSuspended = (typeof BackgroundWorkerServiceSuspended)[keyof typeof BackgroundWorkerServiceSuspended];
 
-export const BackgroundWorkerSuspendersItem = {
+export const BackgroundWorkerServiceSuspendersItem = {
     Admin: "admin",
     Billing: "billing",
     User: "user",
@@ -128,17 +128,7 @@ export const BackgroundWorkerSuspendersItem = {
     Unknown: "unknown",
 } as const;
 
-export type BackgroundWorkerSuspendersItem = (typeof BackgroundWorkerSuspendersItem)[keyof typeof BackgroundWorkerSuspendersItem];
-
-export const BackgroundWorkerType = {
-    StaticSite: "static_site",
-    WebService: "web_service",
-    PrivateService: "private_service",
-    BackgroundWorker: "background_worker",
-    CronJob: "cron_job",
-} as const;
-
-export type BackgroundWorkerType = (typeof BackgroundWorkerType)[keyof typeof BackgroundWorkerType];
+export type BackgroundWorkerServiceSuspendersItem = (typeof BackgroundWorkerServiceSuspendersItem)[keyof typeof BackgroundWorkerServiceSuspendersItem];
 
 export const CancelDeployStatus = {
     Created: "created",
@@ -169,13 +159,6 @@ export const CancelDeployTrigger = {
 } as const;
 
 export type CancelDeployTrigger = (typeof CancelDeployTrigger)[keyof typeof CancelDeployTrigger];
-
-export const CronJobAutoDeploy = {
-    Yes: "yes",
-    No: "no",
-} as const;
-
-export type CronJobAutoDeploy = (typeof CronJobAutoDeploy)[keyof typeof CronJobAutoDeploy];
 
 export const CronJobDetailsCreateEnv = {
     Docker: "docker",
@@ -256,22 +239,29 @@ export const CronJobDetailsRegion = {
 
 export type CronJobDetailsRegion = (typeof CronJobDetailsRegion)[keyof typeof CronJobDetailsRegion];
 
-export const CronJobNotifyOnFail = {
+export const CronJobServiceAutoDeploy = {
+    Yes: "yes",
+    No: "no",
+} as const;
+
+export type CronJobServiceAutoDeploy = (typeof CronJobServiceAutoDeploy)[keyof typeof CronJobServiceAutoDeploy];
+
+export const CronJobServiceNotifyOnFail = {
     Default: "default",
     Notify: "notify",
     Ignore: "ignore",
 } as const;
 
-export type CronJobNotifyOnFail = (typeof CronJobNotifyOnFail)[keyof typeof CronJobNotifyOnFail];
+export type CronJobServiceNotifyOnFail = (typeof CronJobServiceNotifyOnFail)[keyof typeof CronJobServiceNotifyOnFail];
 
-export const CronJobSuspended = {
+export const CronJobServiceSuspended = {
     Suspended: "suspended",
     NotSuspended: "not_suspended",
 } as const;
 
-export type CronJobSuspended = (typeof CronJobSuspended)[keyof typeof CronJobSuspended];
+export type CronJobServiceSuspended = (typeof CronJobServiceSuspended)[keyof typeof CronJobServiceSuspended];
 
-export const CronJobSuspendersItem = {
+export const CronJobServiceSuspendersItem = {
     Admin: "admin",
     Billing: "billing",
     User: "user",
@@ -279,17 +269,7 @@ export const CronJobSuspendersItem = {
     Unknown: "unknown",
 } as const;
 
-export type CronJobSuspendersItem = (typeof CronJobSuspendersItem)[keyof typeof CronJobSuspendersItem];
-
-export const CronJobType = {
-    StaticSite: "static_site",
-    WebService: "web_service",
-    PrivateService: "private_service",
-    BackgroundWorker: "background_worker",
-    CronJob: "cron_job",
-} as const;
-
-export type CronJobType = (typeof CronJobType)[keyof typeof CronJobType];
+export type CronJobServiceSuspendersItem = (typeof CronJobServiceSuspendersItem)[keyof typeof CronJobServiceSuspendersItem];
 
 export const CustomDomainDomainType = {
     Apex: "apex",
@@ -363,12 +343,37 @@ export const PreviewServicePlan = {
  */
 export type PreviewServicePlan = (typeof PreviewServicePlan)[keyof typeof PreviewServicePlan];
 
-export const PrivateServiceAutoDeploy = {
+export const PreviewServiceServiceAutoDeploy = {
     Yes: "yes",
     No: "no",
 } as const;
 
-export type PrivateServiceAutoDeploy = (typeof PrivateServiceAutoDeploy)[keyof typeof PrivateServiceAutoDeploy];
+export type PreviewServiceServiceAutoDeploy = (typeof PreviewServiceServiceAutoDeploy)[keyof typeof PreviewServiceServiceAutoDeploy];
+
+export const PreviewServiceServiceNotifyOnFail = {
+    Default: "default",
+    Notify: "notify",
+    Ignore: "ignore",
+} as const;
+
+export type PreviewServiceServiceNotifyOnFail = (typeof PreviewServiceServiceNotifyOnFail)[keyof typeof PreviewServiceServiceNotifyOnFail];
+
+export const PreviewServiceServiceSuspended = {
+    Suspended: "suspended",
+    NotSuspended: "not_suspended",
+} as const;
+
+export type PreviewServiceServiceSuspended = (typeof PreviewServiceServiceSuspended)[keyof typeof PreviewServiceServiceSuspended];
+
+export const PreviewServiceServiceSuspendersItem = {
+    Admin: "admin",
+    Billing: "billing",
+    User: "user",
+    ParentService: "parent_service",
+    Unknown: "unknown",
+} as const;
+
+export type PreviewServiceServiceSuspendersItem = (typeof PreviewServiceServiceSuspendersItem)[keyof typeof PreviewServiceServiceSuspendersItem];
 
 export const PrivateServiceDetailsCreateEnv = {
     Docker: "docker",
@@ -466,22 +471,29 @@ export const PrivateServiceDetailsRegion = {
 
 export type PrivateServiceDetailsRegion = (typeof PrivateServiceDetailsRegion)[keyof typeof PrivateServiceDetailsRegion];
 
-export const PrivateServiceNotifyOnFail = {
+export const PrivateServiceServiceAutoDeploy = {
+    Yes: "yes",
+    No: "no",
+} as const;
+
+export type PrivateServiceServiceAutoDeploy = (typeof PrivateServiceServiceAutoDeploy)[keyof typeof PrivateServiceServiceAutoDeploy];
+
+export const PrivateServiceServiceNotifyOnFail = {
     Default: "default",
     Notify: "notify",
     Ignore: "ignore",
 } as const;
 
-export type PrivateServiceNotifyOnFail = (typeof PrivateServiceNotifyOnFail)[keyof typeof PrivateServiceNotifyOnFail];
+export type PrivateServiceServiceNotifyOnFail = (typeof PrivateServiceServiceNotifyOnFail)[keyof typeof PrivateServiceServiceNotifyOnFail];
 
-export const PrivateServiceSuspended = {
+export const PrivateServiceServiceSuspended = {
     Suspended: "suspended",
     NotSuspended: "not_suspended",
 } as const;
 
-export type PrivateServiceSuspended = (typeof PrivateServiceSuspended)[keyof typeof PrivateServiceSuspended];
+export type PrivateServiceServiceSuspended = (typeof PrivateServiceServiceSuspended)[keyof typeof PrivateServiceServiceSuspended];
 
-export const PrivateServiceSuspendersItem = {
+export const PrivateServiceServiceSuspendersItem = {
     Admin: "admin",
     Billing: "billing",
     User: "user",
@@ -489,17 +501,7 @@ export const PrivateServiceSuspendersItem = {
     Unknown: "unknown",
 } as const;
 
-export type PrivateServiceSuspendersItem = (typeof PrivateServiceSuspendersItem)[keyof typeof PrivateServiceSuspendersItem];
-
-export const PrivateServiceType = {
-    StaticSite: "static_site",
-    WebService: "web_service",
-    PrivateService: "private_service",
-    BackgroundWorker: "background_worker",
-    CronJob: "cron_job",
-} as const;
-
-export type PrivateServiceType = (typeof PrivateServiceType)[keyof typeof PrivateServiceType];
+export type PrivateServiceServiceSuspendersItem = (typeof PrivateServiceServiceSuspendersItem)[keyof typeof PrivateServiceServiceSuspendersItem];
 
 export const RegistryCredentialRegistry = {
     Github: "GITHUB",
@@ -581,23 +583,6 @@ export const ServiceSuspendersItem = {
 
 export type ServiceSuspendersItem = (typeof ServiceSuspendersItem)[keyof typeof ServiceSuspendersItem];
 
-export const ServiceType = {
-    StaticSite: "static_site",
-    WebService: "web_service",
-    PrivateService: "private_service",
-    BackgroundWorker: "background_worker",
-    CronJob: "cron_job",
-} as const;
-
-export type ServiceType = (typeof ServiceType)[keyof typeof ServiceType];
-
-export const StaticSiteAutoDeploy = {
-    Yes: "yes",
-    No: "no",
-} as const;
-
-export type StaticSiteAutoDeploy = (typeof StaticSiteAutoDeploy)[keyof typeof StaticSiteAutoDeploy];
-
 export const StaticSiteDetailsCreatePullRequestPreviewsEnabled = {
     Yes: "yes",
     No: "no",
@@ -615,14 +600,6 @@ export const StaticSiteDetailsPullRequestPreviewsEnabled = {
 
 export type StaticSiteDetailsPullRequestPreviewsEnabled = (typeof StaticSiteDetailsPullRequestPreviewsEnabled)[keyof typeof StaticSiteDetailsPullRequestPreviewsEnabled];
 
-export const StaticSiteNotifyOnFail = {
-    Default: "default",
-    Notify: "notify",
-    Ignore: "ignore",
-} as const;
-
-export type StaticSiteNotifyOnFail = (typeof StaticSiteNotifyOnFail)[keyof typeof StaticSiteNotifyOnFail];
-
 export const StaticSiteRouteType = {
     Redirect: "redirect",
     Rewrite: "rewrite",
@@ -630,14 +607,29 @@ export const StaticSiteRouteType = {
 
 export type StaticSiteRouteType = (typeof StaticSiteRouteType)[keyof typeof StaticSiteRouteType];
 
-export const StaticSiteSuspended = {
+export const StaticSiteServiceAutoDeploy = {
+    Yes: "yes",
+    No: "no",
+} as const;
+
+export type StaticSiteServiceAutoDeploy = (typeof StaticSiteServiceAutoDeploy)[keyof typeof StaticSiteServiceAutoDeploy];
+
+export const StaticSiteServiceNotifyOnFail = {
+    Default: "default",
+    Notify: "notify",
+    Ignore: "ignore",
+} as const;
+
+export type StaticSiteServiceNotifyOnFail = (typeof StaticSiteServiceNotifyOnFail)[keyof typeof StaticSiteServiceNotifyOnFail];
+
+export const StaticSiteServiceSuspended = {
     Suspended: "suspended",
     NotSuspended: "not_suspended",
 } as const;
 
-export type StaticSiteSuspended = (typeof StaticSiteSuspended)[keyof typeof StaticSiteSuspended];
+export type StaticSiteServiceSuspended = (typeof StaticSiteServiceSuspended)[keyof typeof StaticSiteServiceSuspended];
 
-export const StaticSiteSuspendersItem = {
+export const StaticSiteServiceSuspendersItem = {
     Admin: "admin",
     Billing: "billing",
     User: "user",
@@ -645,24 +637,7 @@ export const StaticSiteSuspendersItem = {
     Unknown: "unknown",
 } as const;
 
-export type StaticSiteSuspendersItem = (typeof StaticSiteSuspendersItem)[keyof typeof StaticSiteSuspendersItem];
-
-export const StaticSiteType = {
-    StaticSite: "static_site",
-    WebService: "web_service",
-    PrivateService: "private_service",
-    BackgroundWorker: "background_worker",
-    CronJob: "cron_job",
-} as const;
-
-export type StaticSiteType = (typeof StaticSiteType)[keyof typeof StaticSiteType];
-
-export const WebServiceAutoDeploy = {
-    Yes: "yes",
-    No: "no",
-} as const;
-
-export type WebServiceAutoDeploy = (typeof WebServiceAutoDeploy)[keyof typeof WebServiceAutoDeploy];
+export type StaticSiteServiceSuspendersItem = (typeof StaticSiteServiceSuspendersItem)[keyof typeof StaticSiteServiceSuspendersItem];
 
 export const WebServiceDetailsCreateEnv = {
     Docker: "docker",
@@ -760,22 +735,29 @@ export const WebServiceDetailsRegion = {
 
 export type WebServiceDetailsRegion = (typeof WebServiceDetailsRegion)[keyof typeof WebServiceDetailsRegion];
 
-export const WebServiceNotifyOnFail = {
+export const WebServiceServiceAutoDeploy = {
+    Yes: "yes",
+    No: "no",
+} as const;
+
+export type WebServiceServiceAutoDeploy = (typeof WebServiceServiceAutoDeploy)[keyof typeof WebServiceServiceAutoDeploy];
+
+export const WebServiceServiceNotifyOnFail = {
     Default: "default",
     Notify: "notify",
     Ignore: "ignore",
 } as const;
 
-export type WebServiceNotifyOnFail = (typeof WebServiceNotifyOnFail)[keyof typeof WebServiceNotifyOnFail];
+export type WebServiceServiceNotifyOnFail = (typeof WebServiceServiceNotifyOnFail)[keyof typeof WebServiceServiceNotifyOnFail];
 
-export const WebServiceSuspended = {
+export const WebServiceServiceSuspended = {
     Suspended: "suspended",
     NotSuspended: "not_suspended",
 } as const;
 
-export type WebServiceSuspended = (typeof WebServiceSuspended)[keyof typeof WebServiceSuspended];
+export type WebServiceServiceSuspended = (typeof WebServiceServiceSuspended)[keyof typeof WebServiceServiceSuspended];
 
-export const WebServiceSuspendersItem = {
+export const WebServiceServiceSuspendersItem = {
     Admin: "admin",
     Billing: "billing",
     User: "user",
@@ -783,14 +765,4 @@ export const WebServiceSuspendersItem = {
     Unknown: "unknown",
 } as const;
 
-export type WebServiceSuspendersItem = (typeof WebServiceSuspendersItem)[keyof typeof WebServiceSuspendersItem];
-
-export const WebServiceType = {
-    StaticSite: "static_site",
-    WebService: "web_service",
-    PrivateService: "private_service",
-    BackgroundWorker: "background_worker",
-    CronJob: "cron_job",
-} as const;
-
-export type WebServiceType = (typeof WebServiceType)[keyof typeof WebServiceType];
+export type WebServiceServiceSuspendersItem = (typeof WebServiceServiceSuspendersItem)[keyof typeof WebServiceServiceSuspendersItem];

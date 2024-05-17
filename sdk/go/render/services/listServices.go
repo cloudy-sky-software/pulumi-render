@@ -25,7 +25,7 @@ type ListServicesArgs struct {
 }
 
 type ListServicesResult struct {
-	Items []ListServicesItemProperties `pulumi:"items"`
+	Items []ListServicesResponse `pulumi:"items"`
 }
 
 func ListServicesOutput(ctx *pulumi.Context, args ListServicesOutputArgs, opts ...pulumi.InvokeOption) ListServicesResultOutput {
@@ -62,8 +62,8 @@ func (o ListServicesResultOutput) ToListServicesResultOutputWithContext(ctx cont
 	return o
 }
 
-func (o ListServicesResultOutput) Items() ListServicesItemPropertiesArrayOutput {
-	return o.ApplyT(func(v ListServicesResult) []ListServicesItemProperties { return v.Items }).(ListServicesItemPropertiesArrayOutput)
+func (o ListServicesResultOutput) Items() ListServicesResponseArrayOutput {
+	return o.ApplyT(func(v ListServicesResult) []ListServicesResponse { return v.Items }).(ListServicesResponseArrayOutput)
 }
 
 func init() {

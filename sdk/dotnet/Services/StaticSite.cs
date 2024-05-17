@@ -16,7 +16,7 @@ namespace Pulumi.Render.Services
     public partial class StaticSite : global::Pulumi.CustomResource
     {
         [Output("autoDeploy")]
-        public Output<Pulumi.Render.Services.StaticSiteAutoDeploy> AutoDeploy { get; private set; } = null!;
+        public Output<Pulumi.Render.Services.StaticSiteServiceAutoDeploy?> AutoDeploy { get; private set; } = null!;
 
         [Output("branch")]
         public Output<string?> Branch { get; private set; } = null!;
@@ -25,43 +25,43 @@ namespace Pulumi.Render.Services
         public Output<Outputs.BuildFilter?> BuildFilter { get; private set; } = null!;
 
         [Output("createdAt")]
-        public Output<string> CreatedAt { get; private set; } = null!;
+        public Output<string?> CreatedAt { get; private set; } = null!;
 
         [Output("imagePath")]
         public Output<string?> ImagePath { get; private set; } = null!;
 
         [Output("name")]
-        public Output<string> Name { get; private set; } = null!;
+        public Output<string?> Name { get; private set; } = null!;
 
         [Output("notifyOnFail")]
-        public Output<Pulumi.Render.Services.StaticSiteNotifyOnFail> NotifyOnFail { get; private set; } = null!;
+        public Output<Pulumi.Render.Services.StaticSiteServiceNotifyOnFail?> NotifyOnFail { get; private set; } = null!;
 
         [Output("ownerId")]
-        public Output<string> OwnerId { get; private set; } = null!;
+        public Output<string?> OwnerId { get; private set; } = null!;
 
         [Output("repo")]
         public Output<string?> Repo { get; private set; } = null!;
 
         [Output("rootDir")]
-        public Output<string> RootDir { get; private set; } = null!;
+        public Output<string?> RootDir { get; private set; } = null!;
 
         [Output("serviceDetails")]
-        public Output<Outputs.StaticSiteDetailsCreate> ServiceDetails { get; private set; } = null!;
+        public Output<Outputs.StaticSiteDetailsCreate?> ServiceDetails { get; private set; } = null!;
 
         [Output("slug")]
-        public Output<string> Slug { get; private set; } = null!;
+        public Output<string?> Slug { get; private set; } = null!;
 
         [Output("suspended")]
-        public Output<Pulumi.Render.Services.StaticSiteSuspended> Suspended { get; private set; } = null!;
+        public Output<Pulumi.Render.Services.StaticSiteServiceSuspended?> Suspended { get; private set; } = null!;
 
         [Output("suspenders")]
-        public Output<ImmutableArray<Pulumi.Render.Services.StaticSiteSuspendersItem>> Suspenders { get; private set; } = null!;
+        public Output<ImmutableArray<Pulumi.Render.Services.StaticSiteServiceSuspendersItem>> Suspenders { get; private set; } = null!;
 
         [Output("type")]
-        public Output<string> Type { get; private set; } = null!;
+        public Output<string?> Type { get; private set; } = null!;
 
         [Output("updatedAt")]
-        public Output<string> UpdatedAt { get; private set; } = null!;
+        public Output<string?> UpdatedAt { get; private set; } = null!;
 
 
         /// <summary>

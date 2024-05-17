@@ -170,6 +170,36 @@ export namespace services {
         sizeGB?: number;
     }
 
+    export interface BackgroundWorkerOutput {
+        autoDeploy: enums.services.ServiceAutoDeploy;
+        branch?: string;
+        buildFilter?: outputs.services.BuildFilter;
+        createdAt: string;
+        id: string;
+        imagePath?: string;
+        name: string;
+        notifyOnFail: enums.services.ServiceNotifyOnFail;
+        ownerId: string;
+        repo?: string;
+        rootDir: string;
+        serviceDetails?: outputs.services.BackgroundWorkerDetails;
+        slug: string;
+        suspended: enums.services.ServiceSuspended;
+        suspenders: enums.services.ServiceSuspendersItem[];
+        type?: string;
+        updatedAt: string;
+    }
+    /**
+     * backgroundWorkerOutputProvideDefaults sets the appropriate defaults for BackgroundWorkerOutput
+     */
+    export function backgroundWorkerOutputProvideDefaults(val: BackgroundWorkerOutput): BackgroundWorkerOutput {
+        return {
+            ...val,
+            serviceDetails: (val.serviceDetails ? outputs.services.backgroundWorkerDetailsProvideDefaults(val.serviceDetails) : undefined),
+            type: (val.type) ?? "background_worker",
+        };
+    }
+
     export interface BuildFilter {
         ignoredPaths: string[];
         paths: string[];
@@ -206,6 +236,35 @@ export namespace services {
         plan?: enums.services.CronJobDetailsCreatePlan;
         region?: enums.services.CronJobDetailsCreateRegion;
         schedule: string;
+    }
+
+    export interface CronJobOutput {
+        autoDeploy: enums.services.ServiceAutoDeploy;
+        branch?: string;
+        buildFilter?: outputs.services.BuildFilter;
+        createdAt: string;
+        id: string;
+        imagePath?: string;
+        name: string;
+        notifyOnFail: enums.services.ServiceNotifyOnFail;
+        ownerId: string;
+        repo?: string;
+        rootDir: string;
+        serviceDetails?: outputs.services.CronJobDetails;
+        slug: string;
+        suspended: enums.services.ServiceSuspended;
+        suspenders: enums.services.ServiceSuspendersItem[];
+        type?: string;
+        updatedAt: string;
+    }
+    /**
+     * cronJobOutputProvideDefaults sets the appropriate defaults for CronJobOutput
+     */
+    export function cronJobOutputProvideDefaults(val: CronJobOutput): CronJobOutput {
+        return {
+            ...val,
+            type: (val.type) ?? "cron_job",
+        };
     }
 
     export interface CustomDomain {
@@ -297,6 +356,154 @@ export namespace services {
         envVar: outputs.services.EnvVar;
     }
 
+    export interface GetBackgroundWorkerOutput {
+        autoDeploy: enums.services.PreviewServiceServiceAutoDeploy;
+        branch?: string;
+        buildFilter?: outputs.services.BuildFilter;
+        createdAt: string;
+        id: string;
+        imagePath?: string;
+        name: string;
+        notifyOnFail: enums.services.PreviewServiceServiceNotifyOnFail;
+        ownerId: string;
+        repo?: string;
+        rootDir: string;
+        serviceDetails?: outputs.services.BackgroundWorkerDetails;
+        slug: string;
+        suspended: enums.services.PreviewServiceServiceSuspended;
+        suspenders: enums.services.PreviewServiceServiceSuspendersItem[];
+        type?: string;
+        updatedAt: string;
+    }
+    /**
+     * getBackgroundWorkerOutputProvideDefaults sets the appropriate defaults for GetBackgroundWorkerOutput
+     */
+    export function getBackgroundWorkerOutputProvideDefaults(val: GetBackgroundWorkerOutput): GetBackgroundWorkerOutput {
+        return {
+            ...val,
+            serviceDetails: (val.serviceDetails ? outputs.services.backgroundWorkerDetailsProvideDefaults(val.serviceDetails) : undefined),
+            type: (val.type) ?? "background_worker",
+        };
+    }
+
+    export interface GetCronJobOutput {
+        autoDeploy: enums.services.PreviewServiceServiceAutoDeploy;
+        branch?: string;
+        buildFilter?: outputs.services.BuildFilter;
+        createdAt: string;
+        id: string;
+        imagePath?: string;
+        name: string;
+        notifyOnFail: enums.services.PreviewServiceServiceNotifyOnFail;
+        ownerId: string;
+        repo?: string;
+        rootDir: string;
+        serviceDetails?: outputs.services.CronJobDetails;
+        slug: string;
+        suspended: enums.services.PreviewServiceServiceSuspended;
+        suspenders: enums.services.PreviewServiceServiceSuspendersItem[];
+        type?: string;
+        updatedAt: string;
+    }
+    /**
+     * getCronJobOutputProvideDefaults sets the appropriate defaults for GetCronJobOutput
+     */
+    export function getCronJobOutputProvideDefaults(val: GetCronJobOutput): GetCronJobOutput {
+        return {
+            ...val,
+            type: (val.type) ?? "cron_job",
+        };
+    }
+
+    export interface GetPrivateServiceOutput {
+        autoDeploy: enums.services.PreviewServiceServiceAutoDeploy;
+        branch?: string;
+        buildFilter?: outputs.services.BuildFilter;
+        createdAt: string;
+        id: string;
+        imagePath?: string;
+        name: string;
+        notifyOnFail: enums.services.PreviewServiceServiceNotifyOnFail;
+        ownerId: string;
+        repo?: string;
+        rootDir: string;
+        serviceDetails?: outputs.services.PrivateServiceDetails;
+        slug: string;
+        suspended: enums.services.PreviewServiceServiceSuspended;
+        suspenders: enums.services.PreviewServiceServiceSuspendersItem[];
+        type?: string;
+        updatedAt: string;
+    }
+    /**
+     * getPrivateServiceOutputProvideDefaults sets the appropriate defaults for GetPrivateServiceOutput
+     */
+    export function getPrivateServiceOutputProvideDefaults(val: GetPrivateServiceOutput): GetPrivateServiceOutput {
+        return {
+            ...val,
+            serviceDetails: (val.serviceDetails ? outputs.services.privateServiceDetailsProvideDefaults(val.serviceDetails) : undefined),
+            type: (val.type) ?? "private_service",
+        };
+    }
+
+    export interface GetStaticSiteOutput {
+        autoDeploy: enums.services.PreviewServiceServiceAutoDeploy;
+        branch?: string;
+        buildFilter?: outputs.services.BuildFilter;
+        createdAt: string;
+        id: string;
+        imagePath?: string;
+        name: string;
+        notifyOnFail: enums.services.PreviewServiceServiceNotifyOnFail;
+        ownerId: string;
+        repo?: string;
+        rootDir: string;
+        serviceDetails?: outputs.services.StaticSiteDetails;
+        slug: string;
+        suspended: enums.services.PreviewServiceServiceSuspended;
+        suspenders: enums.services.PreviewServiceServiceSuspendersItem[];
+        type?: string;
+        updatedAt: string;
+    }
+    /**
+     * getStaticSiteOutputProvideDefaults sets the appropriate defaults for GetStaticSiteOutput
+     */
+    export function getStaticSiteOutputProvideDefaults(val: GetStaticSiteOutput): GetStaticSiteOutput {
+        return {
+            ...val,
+            type: (val.type) ?? "static_site",
+        };
+    }
+
+    export interface GetWebServiceOutput {
+        autoDeploy: enums.services.PreviewServiceServiceAutoDeploy;
+        branch?: string;
+        buildFilter?: outputs.services.BuildFilter;
+        createdAt: string;
+        id: string;
+        imagePath?: string;
+        name: string;
+        notifyOnFail: enums.services.PreviewServiceServiceNotifyOnFail;
+        ownerId: string;
+        repo?: string;
+        rootDir: string;
+        serviceDetails?: outputs.services.WebServiceDetails;
+        slug: string;
+        suspended: enums.services.PreviewServiceServiceSuspended;
+        suspenders: enums.services.PreviewServiceServiceSuspendersItem[];
+        type?: string;
+        updatedAt: string;
+    }
+    /**
+     * getWebServiceOutputProvideDefaults sets the appropriate defaults for GetWebServiceOutput
+     */
+    export function getWebServiceOutputProvideDefaults(val: GetWebServiceOutput): GetWebServiceOutput {
+        return {
+            ...val,
+            serviceDetails: (val.serviceDetails ? outputs.services.webServiceDetailsProvideDefaults(val.serviceDetails) : undefined),
+            type: (val.type) ?? "web_service",
+        };
+    }
+
     export interface Header {
         id: string;
         name: string;
@@ -373,9 +580,9 @@ export namespace services {
         routes?: outputs.services.Route;
     }
 
-    export interface ListServicesItemProperties {
+    export interface ListServicesResponse {
         cursor?: string;
-        service?: outputs.services.Service;
+        service?: outputs.services.BackgroundWorkerOutput | outputs.services.CronJobOutput | outputs.services.PrivateServiceOutput | outputs.services.StaticSiteOutput | outputs.services.WebServiceOutput;
     }
 
     export interface NativeEnvironmentDetails {
@@ -455,6 +662,36 @@ export namespace services {
         sizeGB?: number;
     }
 
+    export interface PrivateServiceOutput {
+        autoDeploy: enums.services.ServiceAutoDeploy;
+        branch?: string;
+        buildFilter?: outputs.services.BuildFilter;
+        createdAt: string;
+        id: string;
+        imagePath?: string;
+        name: string;
+        notifyOnFail: enums.services.ServiceNotifyOnFail;
+        ownerId: string;
+        repo?: string;
+        rootDir: string;
+        serviceDetails?: outputs.services.PrivateServiceDetails;
+        slug: string;
+        suspended: enums.services.ServiceSuspended;
+        suspenders: enums.services.ServiceSuspendersItem[];
+        type?: string;
+        updatedAt: string;
+    }
+    /**
+     * privateServiceOutputProvideDefaults sets the appropriate defaults for PrivateServiceOutput
+     */
+    export function privateServiceOutputProvideDefaults(val: PrivateServiceOutput): PrivateServiceOutput {
+        return {
+            ...val,
+            serviceDetails: (val.serviceDetails ? outputs.services.privateServiceDetailsProvideDefaults(val.serviceDetails) : undefined),
+            type: (val.type) ?? "private_service",
+        };
+    }
+
     export interface RegistryCredential {
         /**
          * Unique identifier for this credential
@@ -496,22 +733,20 @@ export namespace services {
     }
 
     export interface Service {
-        autoDeploy: enums.services.ServiceAutoDeploy;
+        autoDeploy: enums.services.PreviewServiceServiceAutoDeploy;
         branch?: string;
         buildFilter?: outputs.services.BuildFilter;
         createdAt: string;
         id: string;
         imagePath?: string;
         name: string;
-        notifyOnFail: enums.services.ServiceNotifyOnFail;
+        notifyOnFail: enums.services.PreviewServiceServiceNotifyOnFail;
         ownerId: string;
         repo?: string;
         rootDir: string;
-        serviceDetails: outputs.services.StaticSiteDetails | outputs.services.WebServiceDetails | outputs.services.PrivateServiceDetails | outputs.services.BackgroundWorkerDetails | outputs.services.CronJobDetails;
         slug: string;
-        suspended: enums.services.ServiceSuspended;
-        suspenders: enums.services.ServiceSuspendersItem[];
-        type: enums.services.ServiceType;
+        suspended: enums.services.PreviewServiceServiceSuspended;
+        suspenders: enums.services.PreviewServiceServiceSuspendersItem[];
         updatedAt: string;
     }
 
@@ -544,6 +779,35 @@ export namespace services {
         return {
             ...val,
             pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
+        };
+    }
+
+    export interface StaticSiteOutput {
+        autoDeploy: enums.services.ServiceAutoDeploy;
+        branch?: string;
+        buildFilter?: outputs.services.BuildFilter;
+        createdAt: string;
+        id: string;
+        imagePath?: string;
+        name: string;
+        notifyOnFail: enums.services.ServiceNotifyOnFail;
+        ownerId: string;
+        repo?: string;
+        rootDir: string;
+        serviceDetails?: outputs.services.StaticSiteDetails;
+        slug: string;
+        suspended: enums.services.ServiceSuspended;
+        suspenders: enums.services.ServiceSuspendersItem[];
+        type?: string;
+        updatedAt: string;
+    }
+    /**
+     * staticSiteOutputProvideDefaults sets the appropriate defaults for StaticSiteOutput
+     */
+    export function staticSiteOutputProvideDefaults(val: StaticSiteOutput): StaticSiteOutput {
+        return {
+            ...val,
+            type: (val.type) ?? "static_site",
         };
     }
 
@@ -617,6 +881,36 @@ export namespace services {
          * Defaults to 1
          */
         sizeGB?: number;
+    }
+
+    export interface WebServiceOutput {
+        autoDeploy: enums.services.ServiceAutoDeploy;
+        branch?: string;
+        buildFilter?: outputs.services.BuildFilter;
+        createdAt: string;
+        id: string;
+        imagePath?: string;
+        name: string;
+        notifyOnFail: enums.services.ServiceNotifyOnFail;
+        ownerId: string;
+        repo?: string;
+        rootDir: string;
+        serviceDetails?: outputs.services.WebServiceDetails;
+        slug: string;
+        suspended: enums.services.ServiceSuspended;
+        suspenders: enums.services.ServiceSuspendersItem[];
+        type?: string;
+        updatedAt: string;
+    }
+    /**
+     * webServiceOutputProvideDefaults sets the appropriate defaults for WebServiceOutput
+     */
+    export function webServiceOutputProvideDefaults(val: WebServiceOutput): WebServiceOutput {
+        return {
+            ...val,
+            serviceDetails: (val.serviceDetails ? outputs.services.webServiceDetailsProvideDefaults(val.serviceDetails) : undefined),
+            type: (val.type) ?? "web_service",
+        };
     }
 
 }

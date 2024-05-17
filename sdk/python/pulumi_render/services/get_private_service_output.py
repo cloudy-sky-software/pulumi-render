@@ -12,14 +12,14 @@ from . import outputs
 from ._enums import *
 
 __all__ = [
-    'GetServiceResult',
-    'AwaitableGetServiceResult',
-    'get_service',
-    'get_service_output',
+    'GetPrivateServiceOutputResult',
+    'AwaitableGetPrivateServiceOutputResult',
+    'get_private_service_output',
+    'get_private_service_output_output',
 ]
 
 @pulumi.output_type
-class GetServiceResult:
+class GetPrivateServiceOutputResult:
     def __init__(__self__, items=None):
         if items and not isinstance(items, dict):
             raise TypeError("Expected argument 'items' to be a dict")
@@ -27,21 +27,21 @@ class GetServiceResult:
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.Service':
+    def items(self) -> 'outputs.GetPrivateServiceOutput':
         return pulumi.get(self, "items")
 
 
-class AwaitableGetServiceResult(GetServiceResult):
+class AwaitableGetPrivateServiceOutputResult(GetPrivateServiceOutputResult):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetServiceResult(
+        return GetPrivateServiceOutputResult(
             items=self.items)
 
 
-def get_service(service_id: Optional[str] = None,
-                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServiceResult:
+def get_private_service_output(service_id: Optional[str] = None,
+                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPrivateServiceOutputResult:
     """
     Use this data source to access information about an existing resource.
 
@@ -50,15 +50,15 @@ def get_service(service_id: Optional[str] = None,
     __args__ = dict()
     __args__['serviceId'] = service_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('render:services:getService', __args__, opts=opts, typ=GetServiceResult).value
+    __ret__ = pulumi.runtime.invoke('render:services:getPrivateServiceOutput', __args__, opts=opts, typ=GetPrivateServiceOutputResult).value
 
-    return AwaitableGetServiceResult(
+    return AwaitableGetPrivateServiceOutputResult(
         items=pulumi.get(__ret__, 'items'))
 
 
-@_utilities.lift_output_func(get_service)
-def get_service_output(service_id: Optional[pulumi.Input[str]] = None,
-                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetServiceResult]:
+@_utilities.lift_output_func(get_private_service_output)
+def get_private_service_output_output(service_id: Optional[pulumi.Input[str]] = None,
+                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPrivateServiceOutputResult]:
     """
     Use this data source to access information about an existing resource.
 

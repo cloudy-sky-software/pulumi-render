@@ -45,6 +45,16 @@ export type EnvVarsForService = import("./envVarsForService").EnvVarsForService;
 export const EnvVarsForService: typeof import("./envVarsForService").EnvVarsForService = null as any;
 utilities.lazyLoad(exports, ["EnvVarsForService"], () => require("./envVarsForService"));
 
+export { GetBackgroundWorkerOutputArgs, GetBackgroundWorkerOutputResult, GetBackgroundWorkerOutputOutputArgs } from "./getBackgroundWorkerOutput";
+export const getBackgroundWorkerOutput: typeof import("./getBackgroundWorkerOutput").getBackgroundWorkerOutput = null as any;
+export const getBackgroundWorkerOutputOutput: typeof import("./getBackgroundWorkerOutput").getBackgroundWorkerOutputOutput = null as any;
+utilities.lazyLoad(exports, ["getBackgroundWorkerOutput","getBackgroundWorkerOutputOutput"], () => require("./getBackgroundWorkerOutput"));
+
+export { GetCronJobOutputArgs, GetCronJobOutputResult, GetCronJobOutputOutputArgs } from "./getCronJobOutput";
+export const getCronJobOutput: typeof import("./getCronJobOutput").getCronJobOutput = null as any;
+export const getCronJobOutputOutput: typeof import("./getCronJobOutput").getCronJobOutputOutput = null as any;
+utilities.lazyLoad(exports, ["getCronJobOutput","getCronJobOutputOutput"], () => require("./getCronJobOutput"));
+
 export { GetCustomDomainArgs, GetCustomDomainResult, GetCustomDomainOutputArgs } from "./getCustomDomain";
 export const getCustomDomain: typeof import("./getCustomDomain").getCustomDomain = null as any;
 export const getCustomDomainOutput: typeof import("./getCustomDomain").getCustomDomainOutput = null as any;
@@ -60,10 +70,20 @@ export const getJob: typeof import("./getJob").getJob = null as any;
 export const getJobOutput: typeof import("./getJob").getJobOutput = null as any;
 utilities.lazyLoad(exports, ["getJob","getJobOutput"], () => require("./getJob"));
 
-export { GetServiceArgs, GetServiceResult, GetServiceOutputArgs } from "./getService";
-export const getService: typeof import("./getService").getService = null as any;
-export const getServiceOutput: typeof import("./getService").getServiceOutput = null as any;
-utilities.lazyLoad(exports, ["getService","getServiceOutput"], () => require("./getService"));
+export { GetPrivateServiceOutputArgs, GetPrivateServiceOutputResult, GetPrivateServiceOutputOutputArgs } from "./getPrivateServiceOutput";
+export const getPrivateServiceOutput: typeof import("./getPrivateServiceOutput").getPrivateServiceOutput = null as any;
+export const getPrivateServiceOutputOutput: typeof import("./getPrivateServiceOutput").getPrivateServiceOutputOutput = null as any;
+utilities.lazyLoad(exports, ["getPrivateServiceOutput","getPrivateServiceOutputOutput"], () => require("./getPrivateServiceOutput"));
+
+export { GetStaticSiteOutputArgs, GetStaticSiteOutputResult, GetStaticSiteOutputOutputArgs } from "./getStaticSiteOutput";
+export const getStaticSiteOutput: typeof import("./getStaticSiteOutput").getStaticSiteOutput = null as any;
+export const getStaticSiteOutputOutput: typeof import("./getStaticSiteOutput").getStaticSiteOutputOutput = null as any;
+utilities.lazyLoad(exports, ["getStaticSiteOutput","getStaticSiteOutputOutput"], () => require("./getStaticSiteOutput"));
+
+export { GetWebServiceOutputArgs, GetWebServiceOutputResult, GetWebServiceOutputOutputArgs } from "./getWebServiceOutput";
+export const getWebServiceOutput: typeof import("./getWebServiceOutput").getWebServiceOutput = null as any;
+export const getWebServiceOutputOutput: typeof import("./getWebServiceOutput").getWebServiceOutputOutput = null as any;
+utilities.lazyLoad(exports, ["getWebServiceOutput","getWebServiceOutputOutput"], () => require("./getWebServiceOutput"));
 
 export { JobArgs } from "./job";
 export type Job = import("./job").Job;

@@ -22,12 +22,12 @@ func ListDeploys(ctx *pulumi.Context, args *ListDeploysArgs, opts ...pulumi.Invo
 }
 
 type ListDeploysArgs struct {
-	// (Required) The ID of the service
+	// The ID of the service
 	ServiceId string `pulumi:"serviceId"`
 }
 
 type ListDeploysResult struct {
-	Items []ListDeploysResponse `pulumi:"items"`
+	Items []ListDeploysItemProperties `pulumi:"items"`
 }
 
 func ListDeploysOutput(ctx *pulumi.Context, args ListDeploysOutputArgs, opts ...pulumi.InvokeOption) ListDeploysResultOutput {
@@ -44,7 +44,7 @@ func ListDeploysOutput(ctx *pulumi.Context, args ListDeploysOutputArgs, opts ...
 }
 
 type ListDeploysOutputArgs struct {
-	// (Required) The ID of the service
+	// The ID of the service
 	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }
 
@@ -66,8 +66,8 @@ func (o ListDeploysResultOutput) ToListDeploysResultOutputWithContext(ctx contex
 	return o
 }
 
-func (o ListDeploysResultOutput) Items() ListDeploysResponseArrayOutput {
-	return o.ApplyT(func(v ListDeploysResult) []ListDeploysResponse { return v.Items }).(ListDeploysResponseArrayOutput)
+func (o ListDeploysResultOutput) Items() ListDeploysItemPropertiesArrayOutput {
+	return o.ApplyT(func(v ListDeploysResult) []ListDeploysItemProperties { return v.Items }).(ListDeploysItemPropertiesArrayOutput)
 }
 
 func init() {

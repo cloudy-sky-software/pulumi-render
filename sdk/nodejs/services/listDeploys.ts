@@ -17,13 +17,13 @@ export function listDeploys(args: ListDeploysArgs, opts?: pulumi.InvokeOptions):
 
 export interface ListDeploysArgs {
     /**
-     * (Required) The ID of the service
+     * The ID of the service
      */
     serviceId: string;
 }
 
 export interface ListDeploysResult {
-    readonly items: outputs.services.ListDeploysResponse[];
+    readonly items: outputs.services.ListDeploysItemProperties[];
 }
 export function listDeploysOutput(args: ListDeploysOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListDeploysResult> {
     return pulumi.output(args).apply((a: any) => listDeploys(a, opts))
@@ -31,7 +31,7 @@ export function listDeploysOutput(args: ListDeploysOutputArgs, opts?: pulumi.Inv
 
 export interface ListDeploysOutputArgs {
     /**
-     * (Required) The ID of the service
+     * The ID of the service
      */
     serviceId: pulumi.Input<string>;
 }

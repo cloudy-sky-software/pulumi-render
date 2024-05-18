@@ -22,10 +22,10 @@ namespace Pulumi.Render.Owners
     public sealed class GetOwnerArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// (Required) The ID of the user or team
+        /// The ID of the user or team
         /// </summary>
-        [Input("id", required: true)]
-        public string Id { get; set; } = null!;
+        [Input("ownerId", required: true)]
+        public string OwnerId { get; set; } = null!;
 
         public GetOwnerArgs()
         {
@@ -36,10 +36,10 @@ namespace Pulumi.Render.Owners
     public sealed class GetOwnerInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// (Required) The ID of the user or team
+        /// The ID of the user or team
         /// </summary>
-        [Input("id", required: true)]
-        public Input<string> Id { get; set; } = null!;
+        [Input("ownerId", required: true)]
+        public Input<string> OwnerId { get; set; } = null!;
 
         public GetOwnerInvokeArgs()
         {

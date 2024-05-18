@@ -10,84 +10,74 @@ using Pulumi.Serialization;
 namespace Pulumi.Render.Services.Outputs
 {
 
-    /// <summary>
-    /// A private service
-    /// </summary>
     [OutputType]
     public sealed class GetPrivateService
     {
-        /// <summary>
-        /// Whether to auto deploy the service or not upon git push.
-        /// </summary>
-        public readonly Pulumi.Render.Services.ServiceAutoDeploy? AutoDeploy;
-        /// <summary>
-        /// If left empty, this will fall back to the default branch of the repository.
-        /// </summary>
+        public readonly Pulumi.Render.Services.PreviewServiceServiceAutoDeploy AutoDeploy;
         public readonly string? Branch;
-        public readonly string? CreatedAt;
-        public readonly ImmutableArray<Outputs.EnvVarKeyValue> EnvVars;
+        public readonly Outputs.BuildFilter? BuildFilter;
+        public readonly string CreatedAt;
+        public readonly string Id;
+        public readonly string? ImagePath;
         public readonly string Name;
-        /// <summary>
-        /// The notification setting for this service upon deployment failure.
-        /// </summary>
-        public readonly Pulumi.Render.Services.ServiceNotifyOnFail? NotifyOnFail;
-        /// <summary>
-        /// The id of the owner (user/team).
-        /// </summary>
+        public readonly Pulumi.Render.Services.PreviewServiceServiceNotifyOnFail NotifyOnFail;
         public readonly string OwnerId;
-        /// <summary>
-        /// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-        /// </summary>
-        public readonly string Repo;
-        public readonly ImmutableArray<Outputs.SecretFile> SecretFiles;
-        public readonly Outputs.PrivateServiceDetails? ServiceDetails;
-        public readonly string? Slug;
-        public readonly Pulumi.Render.Services.ServiceSuspended? Suspended;
-        public readonly ImmutableArray<string> Suspenders;
+        public readonly string? Repo;
+        public readonly string RootDir;
+        public readonly Outputs.PrivateServiceDetailsOutput? ServiceDetails;
+        public readonly string Slug;
+        public readonly Pulumi.Render.Services.PreviewServiceServiceSuspended Suspended;
+        public readonly ImmutableArray<Pulumi.Render.Services.PreviewServiceServiceSuspendersItem> Suspenders;
         public readonly string? Type;
-        public readonly string? UpdatedAt;
+        public readonly string UpdatedAt;
 
         [OutputConstructor]
         private GetPrivateService(
-            Pulumi.Render.Services.ServiceAutoDeploy? autoDeploy,
+            Pulumi.Render.Services.PreviewServiceServiceAutoDeploy autoDeploy,
 
             string? branch,
 
-            string? createdAt,
+            Outputs.BuildFilter? buildFilter,
 
-            ImmutableArray<Outputs.EnvVarKeyValue> envVars,
+            string createdAt,
+
+            string id,
+
+            string? imagePath,
 
             string name,
 
-            Pulumi.Render.Services.ServiceNotifyOnFail? notifyOnFail,
+            Pulumi.Render.Services.PreviewServiceServiceNotifyOnFail notifyOnFail,
 
             string ownerId,
 
-            string repo,
+            string? repo,
 
-            ImmutableArray<Outputs.SecretFile> secretFiles,
+            string rootDir,
 
-            Outputs.PrivateServiceDetails? serviceDetails,
+            Outputs.PrivateServiceDetailsOutput? serviceDetails,
 
-            string? slug,
+            string slug,
 
-            Pulumi.Render.Services.ServiceSuspended? suspended,
+            Pulumi.Render.Services.PreviewServiceServiceSuspended suspended,
 
-            ImmutableArray<string> suspenders,
+            ImmutableArray<Pulumi.Render.Services.PreviewServiceServiceSuspendersItem> suspenders,
 
             string? type,
 
-            string? updatedAt)
+            string updatedAt)
         {
             AutoDeploy = autoDeploy;
             Branch = branch;
+            BuildFilter = buildFilter;
             CreatedAt = createdAt;
-            EnvVars = envVars;
+            Id = id;
+            ImagePath = imagePath;
             Name = name;
             NotifyOnFail = notifyOnFail;
             OwnerId = ownerId;
             Repo = repo;
-            SecretFiles = secretFiles;
+            RootDir = rootDir;
             ServiceDetails = serviceDetails;
             Slug = slug;
             Suspended = suspended;

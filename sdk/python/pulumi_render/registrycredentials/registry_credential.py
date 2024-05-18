@@ -8,39 +8,63 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from ._enums import *
 
 __all__ = ['RegistryCredentialArgs', 'RegistryCredential']
 
 @pulumi.input_type
 class RegistryCredentialArgs:
     def __init__(__self__, *,
-                 auth_token: Optional[pulumi.Input[str]] = None,
-                 name: Optional[pulumi.Input[str]] = None,
-                 owner_id: Optional[pulumi.Input[str]] = None,
-                 registry: Optional[pulumi.Input[str]] = None,
-                 username: Optional[pulumi.Input[str]] = None):
+                 auth_token: pulumi.Input[str],
+                 owner_id: pulumi.Input[str],
+                 registry: pulumi.Input['RegistryCredentialRegistry'],
+                 username: pulumi.Input[str],
+                 name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a RegistryCredential resource.
         """
-        if auth_token is not None:
-            pulumi.set(__self__, "auth_token", auth_token)
+        pulumi.set(__self__, "auth_token", auth_token)
+        pulumi.set(__self__, "owner_id", owner_id)
+        pulumi.set(__self__, "registry", registry)
+        pulumi.set(__self__, "username", username)
         if name is not None:
             pulumi.set(__self__, "name", name)
-        if owner_id is not None:
-            pulumi.set(__self__, "owner_id", owner_id)
-        if registry is not None:
-            pulumi.set(__self__, "registry", registry)
-        if username is not None:
-            pulumi.set(__self__, "username", username)
 
     @property
     @pulumi.getter(name="authToken")
-    def auth_token(self) -> Optional[pulumi.Input[str]]:
+    def auth_token(self) -> pulumi.Input[str]:
         return pulumi.get(self, "auth_token")
 
     @auth_token.setter
-    def auth_token(self, value: Optional[pulumi.Input[str]]):
+    def auth_token(self, value: pulumi.Input[str]):
         pulumi.set(self, "auth_token", value)
+
+    @property
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "owner_id")
+
+    @owner_id.setter
+    def owner_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "owner_id", value)
+
+    @property
+    @pulumi.getter
+    def registry(self) -> pulumi.Input['RegistryCredentialRegistry']:
+        return pulumi.get(self, "registry")
+
+    @registry.setter
+    def registry(self, value: pulumi.Input['RegistryCredentialRegistry']):
+        pulumi.set(self, "registry", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: pulumi.Input[str]):
+        pulumi.set(self, "username", value)
 
     @property
     @pulumi.getter
@@ -51,33 +75,6 @@ class RegistryCredentialArgs:
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
 
-    @property
-    @pulumi.getter(name="ownerId")
-    def owner_id(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "owner_id")
-
-    @owner_id.setter
-    def owner_id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "owner_id", value)
-
-    @property
-    @pulumi.getter
-    def registry(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "registry")
-
-    @registry.setter
-    def registry(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "registry", value)
-
-    @property
-    @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "username")
-
-    @username.setter
-    def username(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "username", value)
-
 
 class RegistryCredential(pulumi.CustomResource):
     @overload
@@ -87,7 +84,7 @@ class RegistryCredential(pulumi.CustomResource):
                  auth_token: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  owner_id: Optional[pulumi.Input[str]] = None,
-                 registry: Optional[pulumi.Input[str]] = None,
+                 registry: Optional[pulumi.Input['RegistryCredentialRegistry']] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -99,7 +96,7 @@ class RegistryCredential(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: Optional[RegistryCredentialArgs] = None,
+                 args: RegistryCredentialArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a RegistryCredential resource with the given unique name, props, and options.
@@ -121,7 +118,7 @@ class RegistryCredential(pulumi.CustomResource):
                  auth_token: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  owner_id: Optional[pulumi.Input[str]] = None,
-                 registry: Optional[pulumi.Input[str]] = None,
+                 registry: Optional[pulumi.Input['RegistryCredentialRegistry']] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -132,10 +129,18 @@ class RegistryCredential(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = RegistryCredentialArgs.__new__(RegistryCredentialArgs)
 
+            if auth_token is None and not opts.urn:
+                raise TypeError("Missing required property 'auth_token'")
             __props__.__dict__["auth_token"] = auth_token
             __props__.__dict__["name"] = name
+            if owner_id is None and not opts.urn:
+                raise TypeError("Missing required property 'owner_id'")
             __props__.__dict__["owner_id"] = owner_id
+            if registry is None and not opts.urn:
+                raise TypeError("Missing required property 'registry'")
             __props__.__dict__["registry"] = registry
+            if username is None and not opts.urn:
+                raise TypeError("Missing required property 'username'")
             __props__.__dict__["username"] = username
         super(RegistryCredential, __self__).__init__(
             'render:registrycredentials:RegistryCredential',
@@ -168,26 +173,35 @@ class RegistryCredential(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="authToken")
-    def auth_token(self) -> pulumi.Output[Optional[str]]:
+    def auth_token(self) -> pulumi.Output[str]:
         return pulumi.get(self, "auth_token")
 
     @property
     @pulumi.getter
-    def name(self) -> pulumi.Output[Optional[str]]:
+    def name(self) -> pulumi.Output[str]:
+        """
+        Descriptive name for this credential
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="ownerId")
-    def owner_id(self) -> pulumi.Output[Optional[str]]:
+    def owner_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "owner_id")
 
     @property
     @pulumi.getter
-    def registry(self) -> pulumi.Output[Optional[str]]:
+    def registry(self) -> pulumi.Output['RegistryCredentialRegistry']:
+        """
+        The registry to use this credential with
+        """
         return pulumi.get(self, "registry")
 
     @property
     @pulumi.getter
-    def username(self) -> pulumi.Output[Optional[str]]:
+    def username(self) -> pulumi.Output[str]:
+        """
+        The username associated with the credential
+        """
         return pulumi.get(self, "username")
 

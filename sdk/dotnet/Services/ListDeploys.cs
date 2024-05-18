@@ -22,7 +22,7 @@ namespace Pulumi.Render.Services
     public sealed class ListDeploysArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// (Required) The ID of the service
+        /// The ID of the service
         /// </summary>
         [Input("serviceId", required: true)]
         public string ServiceId { get; set; } = null!;
@@ -36,7 +36,7 @@ namespace Pulumi.Render.Services
     public sealed class ListDeploysInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// (Required) The ID of the service
+        /// The ID of the service
         /// </summary>
         [Input("serviceId", required: true)]
         public Input<string> ServiceId { get; set; } = null!;
@@ -51,10 +51,10 @@ namespace Pulumi.Render.Services
     [OutputType]
     public sealed class ListDeploysResult
     {
-        public readonly ImmutableArray<Outputs.ListDeploysResponse> Items;
+        public readonly ImmutableArray<Outputs.ListDeploysItemProperties> Items;
 
         [OutputConstructor]
-        private ListDeploysResult(ImmutableArray<Outputs.ListDeploysResponse> items)
+        private ListDeploysResult(ImmutableArray<Outputs.ListDeploysItemProperties> items)
         {
             Items = items;
         }

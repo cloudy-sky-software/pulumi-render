@@ -12,30 +12,28 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// A background worker service
 type BackgroundWorker struct {
 	pulumi.CustomResourceState
 
-	// Whether to auto deploy the service or not upon git push.
-	AutoDeploy ServiceAutoDeployPtrOutput `pulumi:"autoDeploy"`
-	// If left empty, this will fall back to the default branch of the repository.
-	Branch    pulumi.StringPtrOutput    `pulumi:"branch"`
-	CreatedAt pulumi.StringPtrOutput    `pulumi:"createdAt"`
-	EnvVars   EnvVarKeyValueArrayOutput `pulumi:"envVars"`
-	Name      pulumi.StringPtrOutput    `pulumi:"name"`
-	// The notification setting for this service upon deployment failure.
-	NotifyOnFail ServiceNotifyOnFailPtrOutput `pulumi:"notifyOnFail"`
-	// The id of the owner (user/team).
-	OwnerId pulumi.StringPtrOutput `pulumi:"ownerId"`
-	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-	Repo           pulumi.StringPtrOutput                  `pulumi:"repo"`
-	SecretFiles    SecretFileArrayOutput                   `pulumi:"secretFiles"`
-	ServiceDetails BackgroundWorkerServiceDetailsPtrOutput `pulumi:"serviceDetails"`
-	Slug           pulumi.StringPtrOutput                  `pulumi:"slug"`
-	Suspended      ServiceSuspendedPtrOutput               `pulumi:"suspended"`
-	Suspenders     pulumi.StringArrayOutput                `pulumi:"suspenders"`
-	Type           pulumi.StringPtrOutput                  `pulumi:"type"`
-	UpdatedAt      pulumi.StringPtrOutput                  `pulumi:"updatedAt"`
+	AutoDeploy     BackgroundWorkerServiceAutoDeployPtrOutput       `pulumi:"autoDeploy"`
+	Branch         pulumi.StringPtrOutput                           `pulumi:"branch"`
+	BuildFilter    BuildFilterPtrOutput                             `pulumi:"buildFilter"`
+	CreatedAt      pulumi.StringPtrOutput                           `pulumi:"createdAt"`
+	EnvVars        pulumi.ArrayOutput                               `pulumi:"envVars"`
+	Image          ImagePtrOutput                                   `pulumi:"image"`
+	ImagePath      pulumi.StringPtrOutput                           `pulumi:"imagePath"`
+	Name           pulumi.StringPtrOutput                           `pulumi:"name"`
+	NotifyOnFail   BackgroundWorkerServiceNotifyOnFailPtrOutput     `pulumi:"notifyOnFail"`
+	OwnerId        pulumi.StringPtrOutput                           `pulumi:"ownerId"`
+	Repo           pulumi.StringPtrOutput                           `pulumi:"repo"`
+	RootDir        pulumi.StringPtrOutput                           `pulumi:"rootDir"`
+	SecretFiles    SecretFileArrayOutput                            `pulumi:"secretFiles"`
+	ServiceDetails BackgroundWorkerDetailsOutputPtrOutput           `pulumi:"serviceDetails"`
+	Slug           pulumi.StringPtrOutput                           `pulumi:"slug"`
+	Suspended      BackgroundWorkerServiceSuspendedPtrOutput        `pulumi:"suspended"`
+	Suspenders     BackgroundWorkerServiceSuspendersItemArrayOutput `pulumi:"suspenders"`
+	Type           pulumi.StringPtrOutput                           `pulumi:"type"`
+	UpdatedAt      pulumi.StringPtrOutput                           `pulumi:"updatedAt"`
 }
 
 // NewBackgroundWorker registers a new resource with the given unique name, arguments, and options.
@@ -51,14 +49,11 @@ func NewBackgroundWorker(ctx *pulumi.Context,
 	if args.OwnerId == nil {
 		return nil, errors.New("invalid value for required argument 'OwnerId'")
 	}
-	if args.Repo == nil {
-		return nil, errors.New("invalid value for required argument 'Repo'")
-	}
 	if args.AutoDeploy == nil {
-		args.AutoDeploy = ServiceAutoDeploy("no")
+		args.AutoDeploy = BackgroundWorkerServiceCreateAutoDeploy("yes")
 	}
 	if args.ServiceDetails != nil {
-		args.ServiceDetails = args.ServiceDetails.ToBackgroundWorkerServiceDetailsPtrOutput().ApplyT(func(v *BackgroundWorkerServiceDetails) *BackgroundWorkerServiceDetails { return v.Defaults() }).(BackgroundWorkerServiceDetailsPtrOutput)
+		args.ServiceDetails = args.ServiceDetails.ToBackgroundWorkerDetailsCreatePtrOutput().ApplyT(func(v *BackgroundWorkerDetailsCreate) *BackgroundWorkerDetailsCreate { return v.Defaults() }).(BackgroundWorkerDetailsCreatePtrOutput)
 	}
 	if args.Type == nil {
 		args.Type = pulumi.StringPtr("background_worker")
@@ -96,50 +91,40 @@ func (BackgroundWorkerState) ElementType() reflect.Type {
 }
 
 type backgroundWorkerArgs struct {
-	// Whether to auto deploy the service or not upon git push.
-	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
-	// If left empty, this will fall back to the default branch of the repository.
-	Branch    *string          `pulumi:"branch"`
-	CreatedAt *string          `pulumi:"createdAt"`
-	EnvVars   []EnvVarKeyValue `pulumi:"envVars"`
-	Name      string           `pulumi:"name"`
-	// The notification setting for this service upon deployment failure.
-	NotifyOnFail *ServiceNotifyOnFail `pulumi:"notifyOnFail"`
-	// The id of the owner (user/team).
-	OwnerId string `pulumi:"ownerId"`
+	// Defaults to "yes"
+	AutoDeploy *BackgroundWorkerServiceCreateAutoDeploy `pulumi:"autoDeploy"`
+	// If left empty, this will fall back to the default branch of the repository
+	Branch      *string       `pulumi:"branch"`
+	BuildFilter *BuildFilter  `pulumi:"buildFilter"`
+	EnvVars     []interface{} `pulumi:"envVars"`
+	Image       *Image        `pulumi:"image"`
+	Name        string        `pulumi:"name"`
+	OwnerId     string        `pulumi:"ownerId"`
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-	Repo           string                          `pulumi:"repo"`
-	SecretFiles    []SecretFile                    `pulumi:"secretFiles"`
-	ServiceDetails *BackgroundWorkerServiceDetails `pulumi:"serviceDetails"`
-	Slug           *string                         `pulumi:"slug"`
-	Suspended      *ServiceSuspended               `pulumi:"suspended"`
-	Suspenders     []string                        `pulumi:"suspenders"`
-	Type           *string                         `pulumi:"type"`
-	UpdatedAt      *string                         `pulumi:"updatedAt"`
+	Repo           *string                        `pulumi:"repo"`
+	RootDir        *string                        `pulumi:"rootDir"`
+	SecretFiles    []SecretFile                   `pulumi:"secretFiles"`
+	ServiceDetails *BackgroundWorkerDetailsCreate `pulumi:"serviceDetails"`
+	Type           *string                        `pulumi:"type"`
 }
 
 // The set of arguments for constructing a BackgroundWorker resource.
 type BackgroundWorkerArgs struct {
-	// Whether to auto deploy the service or not upon git push.
-	AutoDeploy ServiceAutoDeployPtrInput
-	// If left empty, this will fall back to the default branch of the repository.
-	Branch    pulumi.StringPtrInput
-	CreatedAt pulumi.StringPtrInput
-	EnvVars   EnvVarKeyValueArrayInput
-	Name      pulumi.StringInput
-	// The notification setting for this service upon deployment failure.
-	NotifyOnFail ServiceNotifyOnFailPtrInput
-	// The id of the owner (user/team).
-	OwnerId pulumi.StringInput
+	// Defaults to "yes"
+	AutoDeploy BackgroundWorkerServiceCreateAutoDeployPtrInput
+	// If left empty, this will fall back to the default branch of the repository
+	Branch      pulumi.StringPtrInput
+	BuildFilter BuildFilterPtrInput
+	EnvVars     pulumi.ArrayInput
+	Image       ImagePtrInput
+	Name        pulumi.StringInput
+	OwnerId     pulumi.StringInput
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-	Repo           pulumi.StringInput
+	Repo           pulumi.StringPtrInput
+	RootDir        pulumi.StringPtrInput
 	SecretFiles    SecretFileArrayInput
-	ServiceDetails BackgroundWorkerServiceDetailsPtrInput
-	Slug           pulumi.StringPtrInput
-	Suspended      ServiceSuspendedPtrInput
-	Suspenders     pulumi.StringArrayInput
+	ServiceDetails BackgroundWorkerDetailsCreatePtrInput
 	Type           pulumi.StringPtrInput
-	UpdatedAt      pulumi.StringPtrInput
 }
 
 func (BackgroundWorkerArgs) ElementType() reflect.Type {
@@ -179,61 +164,72 @@ func (o BackgroundWorkerOutput) ToBackgroundWorkerOutputWithContext(ctx context.
 	return o
 }
 
-// Whether to auto deploy the service or not upon git push.
-func (o BackgroundWorkerOutput) AutoDeploy() ServiceAutoDeployPtrOutput {
-	return o.ApplyT(func(v *BackgroundWorker) ServiceAutoDeployPtrOutput { return v.AutoDeploy }).(ServiceAutoDeployPtrOutput)
+func (o BackgroundWorkerOutput) AutoDeploy() BackgroundWorkerServiceAutoDeployPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorker) BackgroundWorkerServiceAutoDeployPtrOutput { return v.AutoDeploy }).(BackgroundWorkerServiceAutoDeployPtrOutput)
 }
 
-// If left empty, this will fall back to the default branch of the repository.
 func (o BackgroundWorkerOutput) Branch() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BackgroundWorker) pulumi.StringPtrOutput { return v.Branch }).(pulumi.StringPtrOutput)
+}
+
+func (o BackgroundWorkerOutput) BuildFilter() BuildFilterPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorker) BuildFilterPtrOutput { return v.BuildFilter }).(BuildFilterPtrOutput)
 }
 
 func (o BackgroundWorkerOutput) CreatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BackgroundWorker) pulumi.StringPtrOutput { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
 
-func (o BackgroundWorkerOutput) EnvVars() EnvVarKeyValueArrayOutput {
-	return o.ApplyT(func(v *BackgroundWorker) EnvVarKeyValueArrayOutput { return v.EnvVars }).(EnvVarKeyValueArrayOutput)
+func (o BackgroundWorkerOutput) EnvVars() pulumi.ArrayOutput {
+	return o.ApplyT(func(v *BackgroundWorker) pulumi.ArrayOutput { return v.EnvVars }).(pulumi.ArrayOutput)
+}
+
+func (o BackgroundWorkerOutput) Image() ImagePtrOutput {
+	return o.ApplyT(func(v *BackgroundWorker) ImagePtrOutput { return v.Image }).(ImagePtrOutput)
+}
+
+func (o BackgroundWorkerOutput) ImagePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorker) pulumi.StringPtrOutput { return v.ImagePath }).(pulumi.StringPtrOutput)
 }
 
 func (o BackgroundWorkerOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BackgroundWorker) pulumi.StringPtrOutput { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// The notification setting for this service upon deployment failure.
-func (o BackgroundWorkerOutput) NotifyOnFail() ServiceNotifyOnFailPtrOutput {
-	return o.ApplyT(func(v *BackgroundWorker) ServiceNotifyOnFailPtrOutput { return v.NotifyOnFail }).(ServiceNotifyOnFailPtrOutput)
+func (o BackgroundWorkerOutput) NotifyOnFail() BackgroundWorkerServiceNotifyOnFailPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorker) BackgroundWorkerServiceNotifyOnFailPtrOutput { return v.NotifyOnFail }).(BackgroundWorkerServiceNotifyOnFailPtrOutput)
 }
 
-// The id of the owner (user/team).
 func (o BackgroundWorkerOutput) OwnerId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BackgroundWorker) pulumi.StringPtrOutput { return v.OwnerId }).(pulumi.StringPtrOutput)
 }
 
-// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
 func (o BackgroundWorkerOutput) Repo() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BackgroundWorker) pulumi.StringPtrOutput { return v.Repo }).(pulumi.StringPtrOutput)
+}
+
+func (o BackgroundWorkerOutput) RootDir() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorker) pulumi.StringPtrOutput { return v.RootDir }).(pulumi.StringPtrOutput)
 }
 
 func (o BackgroundWorkerOutput) SecretFiles() SecretFileArrayOutput {
 	return o.ApplyT(func(v *BackgroundWorker) SecretFileArrayOutput { return v.SecretFiles }).(SecretFileArrayOutput)
 }
 
-func (o BackgroundWorkerOutput) ServiceDetails() BackgroundWorkerServiceDetailsPtrOutput {
-	return o.ApplyT(func(v *BackgroundWorker) BackgroundWorkerServiceDetailsPtrOutput { return v.ServiceDetails }).(BackgroundWorkerServiceDetailsPtrOutput)
+func (o BackgroundWorkerOutput) ServiceDetails() BackgroundWorkerDetailsOutputPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorker) BackgroundWorkerDetailsOutputPtrOutput { return v.ServiceDetails }).(BackgroundWorkerDetailsOutputPtrOutput)
 }
 
 func (o BackgroundWorkerOutput) Slug() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BackgroundWorker) pulumi.StringPtrOutput { return v.Slug }).(pulumi.StringPtrOutput)
 }
 
-func (o BackgroundWorkerOutput) Suspended() ServiceSuspendedPtrOutput {
-	return o.ApplyT(func(v *BackgroundWorker) ServiceSuspendedPtrOutput { return v.Suspended }).(ServiceSuspendedPtrOutput)
+func (o BackgroundWorkerOutput) Suspended() BackgroundWorkerServiceSuspendedPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorker) BackgroundWorkerServiceSuspendedPtrOutput { return v.Suspended }).(BackgroundWorkerServiceSuspendedPtrOutput)
 }
 
-func (o BackgroundWorkerOutput) Suspenders() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v *BackgroundWorker) pulumi.StringArrayOutput { return v.Suspenders }).(pulumi.StringArrayOutput)
+func (o BackgroundWorkerOutput) Suspenders() BackgroundWorkerServiceSuspendersItemArrayOutput {
+	return o.ApplyT(func(v *BackgroundWorker) BackgroundWorkerServiceSuspendersItemArrayOutput { return v.Suspenders }).(BackgroundWorkerServiceSuspendersItemArrayOutput)
 }
 
 func (o BackgroundWorkerOutput) Type() pulumi.StringPtrOutput {

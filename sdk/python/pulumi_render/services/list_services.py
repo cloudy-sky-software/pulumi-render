@@ -27,7 +27,7 @@ class ListServicesResult:
 
     @property
     @pulumi.getter
-    def items(self) -> Sequence['outputs.ListServiceResponse']:
+    def items(self) -> Sequence['outputs.ListServicesResponse']:
         return pulumi.get(self, "items")
 
 

@@ -11,80 +11,69 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-func GetDeploy(ctx *pulumi.Context, args *GetDeployArgs, opts ...pulumi.InvokeOption) (*GetDeployResult, error) {
+func LookupDeploy(ctx *pulumi.Context, args *LookupDeployArgs, opts ...pulumi.InvokeOption) (*LookupDeployResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv GetDeployResult
+	var rv LookupDeployResult
 	err := ctx.Invoke("render:services:getDeploy", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rv.Defaults(), nil
+	return &rv, nil
 }
 
-type GetDeployArgs struct {
-	// (Required) The ID of the deploy
-	Id string `pulumi:"id"`
-	// (Required) The ID of the service
+type LookupDeployArgs struct {
+	// The ID of the deploy
+	DeployId string `pulumi:"deployId"`
+	// The ID of the service
 	ServiceId string `pulumi:"serviceId"`
 }
 
-type GetDeployResult struct {
-	Items Deploy `pulumi:"items"`
+type LookupDeployResult struct {
+	Items DeployType `pulumi:"items"`
 }
 
-// Defaults sets the appropriate defaults for GetDeployResult
-func (val *GetDeployResult) Defaults() *GetDeployResult {
-	if val == nil {
-		return nil
-	}
-	tmp := *val
-	tmp.Items = *tmp.Items.Defaults()
-
-	return &tmp
-}
-
-func GetDeployOutput(ctx *pulumi.Context, args GetDeployOutputArgs, opts ...pulumi.InvokeOption) GetDeployResultOutput {
+func LookupDeployOutput(ctx *pulumi.Context, args LookupDeployOutputArgs, opts ...pulumi.InvokeOption) LookupDeployResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetDeployResult, error) {
-			args := v.(GetDeployArgs)
-			r, err := GetDeploy(ctx, &args, opts...)
-			var s GetDeployResult
+		ApplyT(func(v interface{}) (LookupDeployResult, error) {
+			args := v.(LookupDeployArgs)
+			r, err := LookupDeploy(ctx, &args, opts...)
+			var s LookupDeployResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(GetDeployResultOutput)
+		}).(LookupDeployResultOutput)
 }
 
-type GetDeployOutputArgs struct {
-	// (Required) The ID of the deploy
-	Id pulumi.StringInput `pulumi:"id"`
-	// (Required) The ID of the service
+type LookupDeployOutputArgs struct {
+	// The ID of the deploy
+	DeployId pulumi.StringInput `pulumi:"deployId"`
+	// The ID of the service
 	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }
 
-func (GetDeployOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetDeployArgs)(nil)).Elem()
+func (LookupDeployOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupDeployArgs)(nil)).Elem()
 }
 
-type GetDeployResultOutput struct{ *pulumi.OutputState }
+type LookupDeployResultOutput struct{ *pulumi.OutputState }
 
-func (GetDeployResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetDeployResult)(nil)).Elem()
+func (LookupDeployResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupDeployResult)(nil)).Elem()
 }
 
-func (o GetDeployResultOutput) ToGetDeployResultOutput() GetDeployResultOutput {
+func (o LookupDeployResultOutput) ToLookupDeployResultOutput() LookupDeployResultOutput {
 	return o
 }
 
-func (o GetDeployResultOutput) ToGetDeployResultOutputWithContext(ctx context.Context) GetDeployResultOutput {
+func (o LookupDeployResultOutput) ToLookupDeployResultOutputWithContext(ctx context.Context) LookupDeployResultOutput {
 	return o
 }
 
-func (o GetDeployResultOutput) Items() DeployOutput {
-	return o.ApplyT(func(v GetDeployResult) Deploy { return v.Items }).(DeployOutput)
+func (o LookupDeployResultOutput) Items() DeployTypeOutput {
+	return o.ApplyT(func(v LookupDeployResult) DeployType { return v.Items }).(DeployTypeOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(GetDeployResultOutput{})
+	pulumi.RegisterOutputType(LookupDeployResultOutput{})
 }

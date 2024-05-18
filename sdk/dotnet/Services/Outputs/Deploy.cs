@@ -13,17 +13,44 @@ namespace Pulumi.Render.Services.Outputs
     [OutputType]
     public sealed class Deploy
     {
-        public readonly Pulumi.Render.Services.DeployClearCache? ClearCache;
-        public readonly Outputs.Commit? Commit;
+        public readonly Outputs.DeployCommitProperties? Commit;
+        public readonly string? CreatedAt;
+        public readonly string? FinishedAt;
+        public readonly string Id;
+        /// <summary>
+        /// Image information used when creating the deploy. Not present for Git-backed deploys
+        /// </summary>
+        public readonly Outputs.DeployImageProperties? Image;
+        public readonly Pulumi.Render.Services.DeployStatus? Status;
+        public readonly Pulumi.Render.Services.DeployTrigger? Trigger;
+        public readonly string? UpdatedAt;
 
         [OutputConstructor]
         private Deploy(
-            Pulumi.Render.Services.DeployClearCache? clearCache,
+            Outputs.DeployCommitProperties? commit,
 
-            Outputs.Commit? commit)
+            string? createdAt,
+
+            string? finishedAt,
+
+            string id,
+
+            Outputs.DeployImageProperties? image,
+
+            Pulumi.Render.Services.DeployStatus? status,
+
+            Pulumi.Render.Services.DeployTrigger? trigger,
+
+            string? updatedAt)
         {
-            ClearCache = clearCache;
             Commit = commit;
+            CreatedAt = createdAt;
+            FinishedAt = finishedAt;
+            Id = id;
+            Image = image;
+            Status = status;
+            Trigger = trigger;
+            UpdatedAt = updatedAt;
         }
     }
 }

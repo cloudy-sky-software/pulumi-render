@@ -22,13 +22,13 @@ namespace Pulumi.Render.Services
     public sealed class GetCustomDomainArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// (Required) The ID or name of the custom domain
+        /// The ID or name of the custom domain
         /// </summary>
-        [Input("id", required: true)]
-        public string Id { get; set; } = null!;
+        [Input("customDomainIdOrName", required: true)]
+        public string CustomDomainIdOrName { get; set; } = null!;
 
         /// <summary>
-        /// (Required) The ID of the service
+        /// The ID of the service
         /// </summary>
         [Input("serviceId", required: true)]
         public string ServiceId { get; set; } = null!;
@@ -42,13 +42,13 @@ namespace Pulumi.Render.Services
     public sealed class GetCustomDomainInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// (Required) The ID or name of the custom domain
+        /// The ID or name of the custom domain
         /// </summary>
-        [Input("id", required: true)]
-        public Input<string> Id { get; set; } = null!;
+        [Input("customDomainIdOrName", required: true)]
+        public Input<string> CustomDomainIdOrName { get; set; } = null!;
 
         /// <summary>
-        /// (Required) The ID of the service
+        /// The ID of the service
         /// </summary>
         [Input("serviceId", required: true)]
         public Input<string> ServiceId { get; set; } = null!;

@@ -11,15 +11,15 @@ export function getCronJob(args: GetCronJobArgs, opts?: pulumi.InvokeOptions): P
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:getCronJob", {
-        "id": args.id,
+        "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface GetCronJobArgs {
     /**
-     * (Required) The ID of the service
+     * The ID of the service
      */
-    id: string;
+    serviceId: string;
 }
 
 export interface GetCronJobResult {
@@ -31,7 +31,7 @@ export function getCronJobOutput(args: GetCronJobOutputArgs, opts?: pulumi.Invok
 
 export interface GetCronJobOutputArgs {
     /**
-     * (Required) The ID of the service
+     * The ID of the service
      */
-    id: pulumi.Input<string>;
+    serviceId: pulumi.Input<string>;
 }

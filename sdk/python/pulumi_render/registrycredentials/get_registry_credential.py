@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._enums import *
 
 __all__ = [
     'GetRegistryCredentialResult',
@@ -26,7 +27,7 @@ class GetRegistryCredentialResult:
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.GetRegistryCredentialProperties':
+    def items(self) -> 'outputs.RegistryCredential':
         return pulumi.get(self, "items")
 
 
@@ -39,11 +40,15 @@ class AwaitableGetRegistryCredentialResult(GetRegistryCredentialResult):
             items=self.items)
 
 
-def get_registry_credential(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRegistryCredentialResult:
+def get_registry_credential(registry_credential_id: Optional[str] = None,
+                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRegistryCredentialResult:
     """
     Use this data source to access information about an existing resource.
+
+    :param str registry_credential_id: The ID of the registry credential
     """
     __args__ = dict()
+    __args__['registryCredentialId'] = registry_credential_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:registrycredentials:getRegistryCredential', __args__, opts=opts, typ=GetRegistryCredentialResult).value
 
@@ -52,8 +57,11 @@ def get_registry_credential(opts: Optional[pulumi.InvokeOptions] = None) -> Awai
 
 
 @_utilities.lift_output_func(get_registry_credential)
-def get_registry_credential_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRegistryCredentialResult]:
+def get_registry_credential_output(registry_credential_id: Optional[pulumi.Input[str]] = None,
+                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRegistryCredentialResult]:
     """
     Use this data source to access information about an existing resource.
+
+    :param str registry_credential_id: The ID of the registry credential
     """
     ...

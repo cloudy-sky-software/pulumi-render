@@ -12,30 +12,28 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// A cron job
 type CronJob struct {
 	pulumi.CustomResourceState
 
-	// Whether to auto deploy the service or not upon git push.
-	AutoDeploy ServiceAutoDeployPtrOutput `pulumi:"autoDeploy"`
-	// If left empty, this will fall back to the default branch of the repository.
-	Branch    pulumi.StringPtrOutput    `pulumi:"branch"`
-	CreatedAt pulumi.StringPtrOutput    `pulumi:"createdAt"`
-	EnvVars   EnvVarKeyValueArrayOutput `pulumi:"envVars"`
-	Name      pulumi.StringPtrOutput    `pulumi:"name"`
-	// The notification setting for this service upon deployment failure.
-	NotifyOnFail ServiceNotifyOnFailPtrOutput `pulumi:"notifyOnFail"`
-	// The id of the owner (user/team).
-	OwnerId pulumi.StringPtrOutput `pulumi:"ownerId"`
-	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-	Repo           pulumi.StringPtrOutput         `pulumi:"repo"`
-	SecretFiles    SecretFileArrayOutput          `pulumi:"secretFiles"`
-	ServiceDetails CronJobServiceDetailsPtrOutput `pulumi:"serviceDetails"`
-	Slug           pulumi.StringPtrOutput         `pulumi:"slug"`
-	Suspended      ServiceSuspendedPtrOutput      `pulumi:"suspended"`
-	Suspenders     pulumi.StringArrayOutput       `pulumi:"suspenders"`
-	Type           pulumi.StringPtrOutput         `pulumi:"type"`
-	UpdatedAt      pulumi.StringPtrOutput         `pulumi:"updatedAt"`
+	AutoDeploy     CronJobServiceAutoDeployPtrOutput       `pulumi:"autoDeploy"`
+	Branch         pulumi.StringPtrOutput                  `pulumi:"branch"`
+	BuildFilter    BuildFilterPtrOutput                    `pulumi:"buildFilter"`
+	CreatedAt      pulumi.StringPtrOutput                  `pulumi:"createdAt"`
+	EnvVars        pulumi.ArrayOutput                      `pulumi:"envVars"`
+	Image          ImagePtrOutput                          `pulumi:"image"`
+	ImagePath      pulumi.StringPtrOutput                  `pulumi:"imagePath"`
+	Name           pulumi.StringPtrOutput                  `pulumi:"name"`
+	NotifyOnFail   CronJobServiceNotifyOnFailPtrOutput     `pulumi:"notifyOnFail"`
+	OwnerId        pulumi.StringPtrOutput                  `pulumi:"ownerId"`
+	Repo           pulumi.StringPtrOutput                  `pulumi:"repo"`
+	RootDir        pulumi.StringPtrOutput                  `pulumi:"rootDir"`
+	SecretFiles    SecretFileArrayOutput                   `pulumi:"secretFiles"`
+	ServiceDetails CronJobDetailsOutputPtrOutput           `pulumi:"serviceDetails"`
+	Slug           pulumi.StringPtrOutput                  `pulumi:"slug"`
+	Suspended      CronJobServiceSuspendedPtrOutput        `pulumi:"suspended"`
+	Suspenders     CronJobServiceSuspendersItemArrayOutput `pulumi:"suspenders"`
+	Type           pulumi.StringPtrOutput                  `pulumi:"type"`
+	UpdatedAt      pulumi.StringPtrOutput                  `pulumi:"updatedAt"`
 }
 
 // NewCronJob registers a new resource with the given unique name, arguments, and options.
@@ -51,14 +49,8 @@ func NewCronJob(ctx *pulumi.Context,
 	if args.OwnerId == nil {
 		return nil, errors.New("invalid value for required argument 'OwnerId'")
 	}
-	if args.Repo == nil {
-		return nil, errors.New("invalid value for required argument 'Repo'")
-	}
 	if args.AutoDeploy == nil {
-		args.AutoDeploy = ServiceAutoDeploy("no")
-	}
-	if args.ServiceDetails != nil {
-		args.ServiceDetails = args.ServiceDetails.ToCronJobServiceDetailsPtrOutput().ApplyT(func(v *CronJobServiceDetails) *CronJobServiceDetails { return v.Defaults() }).(CronJobServiceDetailsPtrOutput)
+		args.AutoDeploy = CronJobServiceCreateAutoDeploy("yes")
 	}
 	if args.Type == nil {
 		args.Type = pulumi.StringPtr("cron_job")
@@ -96,50 +88,40 @@ func (CronJobState) ElementType() reflect.Type {
 }
 
 type cronJobArgs struct {
-	// Whether to auto deploy the service or not upon git push.
-	AutoDeploy *ServiceAutoDeploy `pulumi:"autoDeploy"`
-	// If left empty, this will fall back to the default branch of the repository.
-	Branch    *string          `pulumi:"branch"`
-	CreatedAt *string          `pulumi:"createdAt"`
-	EnvVars   []EnvVarKeyValue `pulumi:"envVars"`
-	Name      string           `pulumi:"name"`
-	// The notification setting for this service upon deployment failure.
-	NotifyOnFail *ServiceNotifyOnFail `pulumi:"notifyOnFail"`
-	// The id of the owner (user/team).
-	OwnerId string `pulumi:"ownerId"`
+	// Defaults to "yes"
+	AutoDeploy *CronJobServiceCreateAutoDeploy `pulumi:"autoDeploy"`
+	// If left empty, this will fall back to the default branch of the repository
+	Branch      *string       `pulumi:"branch"`
+	BuildFilter *BuildFilter  `pulumi:"buildFilter"`
+	EnvVars     []interface{} `pulumi:"envVars"`
+	Image       *Image        `pulumi:"image"`
+	Name        string        `pulumi:"name"`
+	OwnerId     string        `pulumi:"ownerId"`
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-	Repo           string                 `pulumi:"repo"`
-	SecretFiles    []SecretFile           `pulumi:"secretFiles"`
-	ServiceDetails *CronJobServiceDetails `pulumi:"serviceDetails"`
-	Slug           *string                `pulumi:"slug"`
-	Suspended      *ServiceSuspended      `pulumi:"suspended"`
-	Suspenders     []string               `pulumi:"suspenders"`
-	Type           *string                `pulumi:"type"`
-	UpdatedAt      *string                `pulumi:"updatedAt"`
+	Repo           *string               `pulumi:"repo"`
+	RootDir        *string               `pulumi:"rootDir"`
+	SecretFiles    []SecretFile          `pulumi:"secretFiles"`
+	ServiceDetails *CronJobDetailsCreate `pulumi:"serviceDetails"`
+	Type           *string               `pulumi:"type"`
 }
 
 // The set of arguments for constructing a CronJob resource.
 type CronJobArgs struct {
-	// Whether to auto deploy the service or not upon git push.
-	AutoDeploy ServiceAutoDeployPtrInput
-	// If left empty, this will fall back to the default branch of the repository.
-	Branch    pulumi.StringPtrInput
-	CreatedAt pulumi.StringPtrInput
-	EnvVars   EnvVarKeyValueArrayInput
-	Name      pulumi.StringInput
-	// The notification setting for this service upon deployment failure.
-	NotifyOnFail ServiceNotifyOnFailPtrInput
-	// The id of the owner (user/team).
-	OwnerId pulumi.StringInput
+	// Defaults to "yes"
+	AutoDeploy CronJobServiceCreateAutoDeployPtrInput
+	// If left empty, this will fall back to the default branch of the repository
+	Branch      pulumi.StringPtrInput
+	BuildFilter BuildFilterPtrInput
+	EnvVars     pulumi.ArrayInput
+	Image       ImagePtrInput
+	Name        pulumi.StringInput
+	OwnerId     pulumi.StringInput
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-	Repo           pulumi.StringInput
+	Repo           pulumi.StringPtrInput
+	RootDir        pulumi.StringPtrInput
 	SecretFiles    SecretFileArrayInput
-	ServiceDetails CronJobServiceDetailsPtrInput
-	Slug           pulumi.StringPtrInput
-	Suspended      ServiceSuspendedPtrInput
-	Suspenders     pulumi.StringArrayInput
+	ServiceDetails CronJobDetailsCreatePtrInput
 	Type           pulumi.StringPtrInput
-	UpdatedAt      pulumi.StringPtrInput
 }
 
 func (CronJobArgs) ElementType() reflect.Type {
@@ -179,61 +161,72 @@ func (o CronJobOutput) ToCronJobOutputWithContext(ctx context.Context) CronJobOu
 	return o
 }
 
-// Whether to auto deploy the service or not upon git push.
-func (o CronJobOutput) AutoDeploy() ServiceAutoDeployPtrOutput {
-	return o.ApplyT(func(v *CronJob) ServiceAutoDeployPtrOutput { return v.AutoDeploy }).(ServiceAutoDeployPtrOutput)
+func (o CronJobOutput) AutoDeploy() CronJobServiceAutoDeployPtrOutput {
+	return o.ApplyT(func(v *CronJob) CronJobServiceAutoDeployPtrOutput { return v.AutoDeploy }).(CronJobServiceAutoDeployPtrOutput)
 }
 
-// If left empty, this will fall back to the default branch of the repository.
 func (o CronJobOutput) Branch() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CronJob) pulumi.StringPtrOutput { return v.Branch }).(pulumi.StringPtrOutput)
+}
+
+func (o CronJobOutput) BuildFilter() BuildFilterPtrOutput {
+	return o.ApplyT(func(v *CronJob) BuildFilterPtrOutput { return v.BuildFilter }).(BuildFilterPtrOutput)
 }
 
 func (o CronJobOutput) CreatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CronJob) pulumi.StringPtrOutput { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
 
-func (o CronJobOutput) EnvVars() EnvVarKeyValueArrayOutput {
-	return o.ApplyT(func(v *CronJob) EnvVarKeyValueArrayOutput { return v.EnvVars }).(EnvVarKeyValueArrayOutput)
+func (o CronJobOutput) EnvVars() pulumi.ArrayOutput {
+	return o.ApplyT(func(v *CronJob) pulumi.ArrayOutput { return v.EnvVars }).(pulumi.ArrayOutput)
+}
+
+func (o CronJobOutput) Image() ImagePtrOutput {
+	return o.ApplyT(func(v *CronJob) ImagePtrOutput { return v.Image }).(ImagePtrOutput)
+}
+
+func (o CronJobOutput) ImagePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CronJob) pulumi.StringPtrOutput { return v.ImagePath }).(pulumi.StringPtrOutput)
 }
 
 func (o CronJobOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CronJob) pulumi.StringPtrOutput { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// The notification setting for this service upon deployment failure.
-func (o CronJobOutput) NotifyOnFail() ServiceNotifyOnFailPtrOutput {
-	return o.ApplyT(func(v *CronJob) ServiceNotifyOnFailPtrOutput { return v.NotifyOnFail }).(ServiceNotifyOnFailPtrOutput)
+func (o CronJobOutput) NotifyOnFail() CronJobServiceNotifyOnFailPtrOutput {
+	return o.ApplyT(func(v *CronJob) CronJobServiceNotifyOnFailPtrOutput { return v.NotifyOnFail }).(CronJobServiceNotifyOnFailPtrOutput)
 }
 
-// The id of the owner (user/team).
 func (o CronJobOutput) OwnerId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CronJob) pulumi.StringPtrOutput { return v.OwnerId }).(pulumi.StringPtrOutput)
 }
 
-// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
 func (o CronJobOutput) Repo() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CronJob) pulumi.StringPtrOutput { return v.Repo }).(pulumi.StringPtrOutput)
+}
+
+func (o CronJobOutput) RootDir() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CronJob) pulumi.StringPtrOutput { return v.RootDir }).(pulumi.StringPtrOutput)
 }
 
 func (o CronJobOutput) SecretFiles() SecretFileArrayOutput {
 	return o.ApplyT(func(v *CronJob) SecretFileArrayOutput { return v.SecretFiles }).(SecretFileArrayOutput)
 }
 
-func (o CronJobOutput) ServiceDetails() CronJobServiceDetailsPtrOutput {
-	return o.ApplyT(func(v *CronJob) CronJobServiceDetailsPtrOutput { return v.ServiceDetails }).(CronJobServiceDetailsPtrOutput)
+func (o CronJobOutput) ServiceDetails() CronJobDetailsOutputPtrOutput {
+	return o.ApplyT(func(v *CronJob) CronJobDetailsOutputPtrOutput { return v.ServiceDetails }).(CronJobDetailsOutputPtrOutput)
 }
 
 func (o CronJobOutput) Slug() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CronJob) pulumi.StringPtrOutput { return v.Slug }).(pulumi.StringPtrOutput)
 }
 
-func (o CronJobOutput) Suspended() ServiceSuspendedPtrOutput {
-	return o.ApplyT(func(v *CronJob) ServiceSuspendedPtrOutput { return v.Suspended }).(ServiceSuspendedPtrOutput)
+func (o CronJobOutput) Suspended() CronJobServiceSuspendedPtrOutput {
+	return o.ApplyT(func(v *CronJob) CronJobServiceSuspendedPtrOutput { return v.Suspended }).(CronJobServiceSuspendedPtrOutput)
 }
 
-func (o CronJobOutput) Suspenders() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v *CronJob) pulumi.StringArrayOutput { return v.Suspenders }).(pulumi.StringArrayOutput)
+func (o CronJobOutput) Suspenders() CronJobServiceSuspendersItemArrayOutput {
+	return o.ApplyT(func(v *CronJob) CronJobServiceSuspendersItemArrayOutput { return v.Suspenders }).(CronJobServiceSuspendersItemArrayOutput)
 }
 
 func (o CronJobOutput) Type() pulumi.StringPtrOutput {

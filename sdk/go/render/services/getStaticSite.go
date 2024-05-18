@@ -22,8 +22,8 @@ func LookupStaticSite(ctx *pulumi.Context, args *LookupStaticSiteArgs, opts ...p
 }
 
 type LookupStaticSiteArgs struct {
-	// (Required) The ID of the service
-	Id string `pulumi:"id"`
+	// The ID of the service
+	ServiceId string `pulumi:"serviceId"`
 }
 
 type LookupStaticSiteResult struct {
@@ -55,8 +55,8 @@ func LookupStaticSiteOutput(ctx *pulumi.Context, args LookupStaticSiteOutputArgs
 }
 
 type LookupStaticSiteOutputArgs struct {
-	// (Required) The ID of the service
-	Id pulumi.StringInput `pulumi:"id"`
+	// The ID of the service
+	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }
 
 func (LookupStaticSiteOutputArgs) ElementType() reflect.Type {

@@ -13,32 +13,36 @@ namespace Pulumi.Render.Services.Outputs
     [OutputType]
     public sealed class CustomDomain
     {
-        public readonly string? CreatedAt;
+        public readonly string CreatedAt;
         public readonly Pulumi.Render.Services.CustomDomainDomainType DomainType;
+        public readonly string Id;
         public readonly string Name;
-        public readonly string? PublicSuffix;
+        public readonly string PublicSuffix;
         public readonly string RedirectForName;
-        public readonly Outputs.CustomDomainServerProperties Server;
+        public readonly Outputs.CustomDomainServerProperties? Server;
         public readonly Pulumi.Render.Services.CustomDomainVerificationStatus VerificationStatus;
 
         [OutputConstructor]
         private CustomDomain(
-            string? createdAt,
+            string createdAt,
 
             Pulumi.Render.Services.CustomDomainDomainType domainType,
 
+            string id,
+
             string name,
 
-            string? publicSuffix,
+            string publicSuffix,
 
             string redirectForName,
 
-            Outputs.CustomDomainServerProperties server,
+            Outputs.CustomDomainServerProperties? server,
 
             Pulumi.Render.Services.CustomDomainVerificationStatus verificationStatus)
         {
             CreatedAt = createdAt;
             DomainType = domainType;
+            Id = id;
             Name = name;
             PublicSuffix = publicSuffix;
             RedirectForName = redirectForName;

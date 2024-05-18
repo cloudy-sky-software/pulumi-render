@@ -10,8 +10,5 @@ __all__ = [
 
 
 class OwnerType(str, Enum):
-    """
-    The type of the authorized user.
-    """
     USER = "user"
     TEAM = "team"

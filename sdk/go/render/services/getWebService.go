@@ -22,8 +22,8 @@ func LookupWebService(ctx *pulumi.Context, args *LookupWebServiceArgs, opts ...p
 }
 
 type LookupWebServiceArgs struct {
-	// (Required) The ID of the service
-	Id string `pulumi:"id"`
+	// The ID of the service
+	ServiceId string `pulumi:"serviceId"`
 }
 
 type LookupWebServiceResult struct {
@@ -55,8 +55,8 @@ func LookupWebServiceOutput(ctx *pulumi.Context, args LookupWebServiceOutputArgs
 }
 
 type LookupWebServiceOutputArgs struct {
-	// (Required) The ID of the service
-	Id pulumi.StringInput `pulumi:"id"`
+	// The ID of the service
+	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }
 
 func (LookupWebServiceOutputArgs) ElementType() reflect.Type {

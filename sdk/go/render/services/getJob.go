@@ -11,9 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-func GetJob(ctx *pulumi.Context, args *GetJobArgs, opts ...pulumi.InvokeOption) (*GetJobResult, error) {
+func LookupJob(ctx *pulumi.Context, args *LookupJobArgs, opts ...pulumi.InvokeOption) (*LookupJobResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv GetJobResult
+	var rv LookupJobResult
 	err := ctx.Invoke("render:services:getJob", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -21,59 +21,59 @@ func GetJob(ctx *pulumi.Context, args *GetJobArgs, opts ...pulumi.InvokeOption) 
 	return &rv, nil
 }
 
-type GetJobArgs struct {
-	// (Required) The ID of the job
-	Id string `pulumi:"id"`
-	// (Required) The ID of the service
+type LookupJobArgs struct {
+	// The ID of the job
+	JobId string `pulumi:"jobId"`
+	// The ID of the service
 	ServiceId string `pulumi:"serviceId"`
 }
 
-type GetJobResult struct {
-	Items Job `pulumi:"items"`
+type LookupJobResult struct {
+	Items JobType `pulumi:"items"`
 }
 
-func GetJobOutput(ctx *pulumi.Context, args GetJobOutputArgs, opts ...pulumi.InvokeOption) GetJobResultOutput {
+func LookupJobOutput(ctx *pulumi.Context, args LookupJobOutputArgs, opts ...pulumi.InvokeOption) LookupJobResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetJobResult, error) {
-			args := v.(GetJobArgs)
-			r, err := GetJob(ctx, &args, opts...)
-			var s GetJobResult
+		ApplyT(func(v interface{}) (LookupJobResult, error) {
+			args := v.(LookupJobArgs)
+			r, err := LookupJob(ctx, &args, opts...)
+			var s LookupJobResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(GetJobResultOutput)
+		}).(LookupJobResultOutput)
 }
 
-type GetJobOutputArgs struct {
-	// (Required) The ID of the job
-	Id pulumi.StringInput `pulumi:"id"`
-	// (Required) The ID of the service
+type LookupJobOutputArgs struct {
+	// The ID of the job
+	JobId pulumi.StringInput `pulumi:"jobId"`
+	// The ID of the service
 	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }
 
-func (GetJobOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetJobArgs)(nil)).Elem()
+func (LookupJobOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupJobArgs)(nil)).Elem()
 }
 
-type GetJobResultOutput struct{ *pulumi.OutputState }
+type LookupJobResultOutput struct{ *pulumi.OutputState }
 
-func (GetJobResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetJobResult)(nil)).Elem()
+func (LookupJobResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupJobResult)(nil)).Elem()
 }
 
-func (o GetJobResultOutput) ToGetJobResultOutput() GetJobResultOutput {
+func (o LookupJobResultOutput) ToLookupJobResultOutput() LookupJobResultOutput {
 	return o
 }
 
-func (o GetJobResultOutput) ToGetJobResultOutputWithContext(ctx context.Context) GetJobResultOutput {
+func (o LookupJobResultOutput) ToLookupJobResultOutputWithContext(ctx context.Context) LookupJobResultOutput {
 	return o
 }
 
-func (o GetJobResultOutput) Items() JobOutput {
-	return o.ApplyT(func(v GetJobResult) Job { return v.Items }).(JobOutput)
+func (o LookupJobResultOutput) Items() JobTypeOutput {
+	return o.ApplyT(func(v LookupJobResult) JobType { return v.Items }).(JobTypeOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(GetJobResultOutput{})
+	pulumi.RegisterOutputType(LookupJobResultOutput{})
 }

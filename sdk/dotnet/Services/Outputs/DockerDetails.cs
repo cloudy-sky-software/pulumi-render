@@ -15,7 +15,9 @@ namespace Pulumi.Render.Services.Outputs
     {
         public readonly string DockerCommand;
         public readonly string DockerContext;
-        public readonly string? DockerfilePath;
+        public readonly string DockerfilePath;
+        public readonly string? PreDeployCommand;
+        public readonly Outputs.RegistryCredential? RegistryCredential;
 
         [OutputConstructor]
         private DockerDetails(
@@ -23,11 +25,17 @@ namespace Pulumi.Render.Services.Outputs
 
             string dockerContext,
 
-            string? dockerfilePath)
+            string dockerfilePath,
+
+            string? preDeployCommand,
+
+            Outputs.RegistryCredential? registryCredential)
         {
             DockerCommand = dockerCommand;
             DockerContext = dockerContext;
             DockerfilePath = dockerfilePath;
+            PreDeployCommand = preDeployCommand;
+            RegistryCredential = registryCredential;
         }
     }
 }

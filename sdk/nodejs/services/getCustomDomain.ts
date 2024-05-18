@@ -11,18 +11,18 @@ export function getCustomDomain(args: GetCustomDomainArgs, opts?: pulumi.InvokeO
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:getCustomDomain", {
-        "id": args.id,
+        "customDomainIdOrName": args.customDomainIdOrName,
         "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface GetCustomDomainArgs {
     /**
-     * (Required) The ID or name of the custom domain
+     * The ID or name of the custom domain
      */
-    id: string;
+    customDomainIdOrName: string;
     /**
-     * (Required) The ID of the service
+     * The ID of the service
      */
     serviceId: string;
 }
@@ -36,11 +36,11 @@ export function getCustomDomainOutput(args: GetCustomDomainOutputArgs, opts?: pu
 
 export interface GetCustomDomainOutputArgs {
     /**
-     * (Required) The ID or name of the custom domain
+     * The ID or name of the custom domain
      */
-    id: pulumi.Input<string>;
+    customDomainIdOrName: pulumi.Input<string>;
     /**
-     * (Required) The ID of the service
+     * The ID of the service
      */
     serviceId: pulumi.Input<string>;
 }

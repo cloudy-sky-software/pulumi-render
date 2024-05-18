@@ -22,13 +22,13 @@ namespace Pulumi.Render.Services
     public sealed class GetDeployArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// (Required) The ID of the deploy
+        /// The ID of the deploy
         /// </summary>
-        [Input("id", required: true)]
-        public string Id { get; set; } = null!;
+        [Input("deployId", required: true)]
+        public string DeployId { get; set; } = null!;
 
         /// <summary>
-        /// (Required) The ID of the service
+        /// The ID of the service
         /// </summary>
         [Input("serviceId", required: true)]
         public string ServiceId { get; set; } = null!;
@@ -42,13 +42,13 @@ namespace Pulumi.Render.Services
     public sealed class GetDeployInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// (Required) The ID of the deploy
+        /// The ID of the deploy
         /// </summary>
-        [Input("id", required: true)]
-        public Input<string> Id { get; set; } = null!;
+        [Input("deployId", required: true)]
+        public Input<string> DeployId { get; set; } = null!;
 
         /// <summary>
-        /// (Required) The ID of the service
+        /// The ID of the service
         /// </summary>
         [Input("serviceId", required: true)]
         public Input<string> ServiceId { get; set; } = null!;

@@ -22,12 +22,12 @@ func ListCustomDomains(ctx *pulumi.Context, args *ListCustomDomainsArgs, opts ..
 }
 
 type ListCustomDomainsArgs struct {
-	// (Required) The ID of the service
+	// The ID of the service
 	ServiceId string `pulumi:"serviceId"`
 }
 
 type ListCustomDomainsResult struct {
-	Items []ListCustomDomainsResponse `pulumi:"items"`
+	Items []ListCustomDomainsItemProperties `pulumi:"items"`
 }
 
 func ListCustomDomainsOutput(ctx *pulumi.Context, args ListCustomDomainsOutputArgs, opts ...pulumi.InvokeOption) ListCustomDomainsResultOutput {
@@ -44,7 +44,7 @@ func ListCustomDomainsOutput(ctx *pulumi.Context, args ListCustomDomainsOutputAr
 }
 
 type ListCustomDomainsOutputArgs struct {
-	// (Required) The ID of the service
+	// The ID of the service
 	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }
 
@@ -66,8 +66,8 @@ func (o ListCustomDomainsResultOutput) ToListCustomDomainsResultOutputWithContex
 	return o
 }
 
-func (o ListCustomDomainsResultOutput) Items() ListCustomDomainsResponseArrayOutput {
-	return o.ApplyT(func(v ListCustomDomainsResult) []ListCustomDomainsResponse { return v.Items }).(ListCustomDomainsResponseArrayOutput)
+func (o ListCustomDomainsResultOutput) Items() ListCustomDomainsItemPropertiesArrayOutput {
+	return o.ApplyT(func(v ListCustomDomainsResult) []ListCustomDomainsItemProperties { return v.Items }).(ListCustomDomainsItemPropertiesArrayOutput)
 }
 
 func init() {

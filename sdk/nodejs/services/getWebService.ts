@@ -11,15 +11,15 @@ export function getWebService(args: GetWebServiceArgs, opts?: pulumi.InvokeOptio
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:getWebService", {
-        "id": args.id,
+        "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface GetWebServiceArgs {
     /**
-     * (Required) The ID of the service
+     * The ID of the service
      */
-    id: string;
+    serviceId: string;
 }
 
 export interface GetWebServiceResult {
@@ -31,7 +31,7 @@ export function getWebServiceOutput(args: GetWebServiceOutputArgs, opts?: pulumi
 
 export interface GetWebServiceOutputArgs {
     /**
-     * (Required) The ID of the service
+     * The ID of the service
      */
-    id: pulumi.Input<string>;
+    serviceId: pulumi.Input<string>;
 }

@@ -22,8 +22,8 @@ func LookupPrivateService(ctx *pulumi.Context, args *LookupPrivateServiceArgs, o
 }
 
 type LookupPrivateServiceArgs struct {
-	// (Required) The ID of the service
-	Id string `pulumi:"id"`
+	// The ID of the service
+	ServiceId string `pulumi:"serviceId"`
 }
 
 type LookupPrivateServiceResult struct {
@@ -55,8 +55,8 @@ func LookupPrivateServiceOutput(ctx *pulumi.Context, args LookupPrivateServiceOu
 }
 
 type LookupPrivateServiceOutputArgs struct {
-	// (Required) The ID of the service
-	Id pulumi.StringInput `pulumi:"id"`
+	// The ID of the service
+	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }
 
 func (LookupPrivateServiceOutputArgs) ElementType() reflect.Type {

@@ -93,7 +93,7 @@ func TestDiff(t *testing.T) {
 	news["name"] = "Test2"
 	newsStruct, _ := plugin.MarshalProperties(resource.NewPropertyMapFromMap(news), state.DefaultMarshalOpts)
 
-	resp, err := p.Diff(ctx, &pulumirpc.DiffRequest{Id: "", Urn: "urn:pulumi:some-stack::some-project::render:services:StaticSite::someResourceName", Olds: oldsStruct, News: newsStruct})
+	resp, err := p.Diff(ctx, &pulumirpc.DiffRequest{Id: "", Urn: "urn:pulumi:some-stack::some-project::render:services:StaticSite::someStaticSiteService", Olds: oldsStruct, News: newsStruct})
 	assert.Nil(t, err)
 	assert.Equal(t, pulumirpc.DiffResponse_DIFF_SOME, resp.Changes)
 	assert.NotEmpty(t, resp.Diffs)

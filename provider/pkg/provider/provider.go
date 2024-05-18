@@ -42,7 +42,7 @@ var (
 )
 
 const (
-	envVarResourceTypeToken       = "render:services:EnvVar"
+	envVarResourceTypeToken       = "render:services:EnvVarsForService"
 	customDomainResourceTypeToken = "render:services:CustomDomain"
 )
 
@@ -115,7 +115,7 @@ func (p *renderProvider) OnConfigure(_ context.Context, req *pulumirpc.Configure
 
 // OnDiff checks what impacts a hypothetical update will have on the resource's properties.
 func (p *renderProvider) OnDiff(_ context.Context, _ *pulumirpc.DiffRequest, resourceTypeToken string, diff *resource.ObjectDiff, jsonReq *openapi3.MediaType) (*pulumirpc.DiffResponse, error) {
-	if len(jsonReq.Schema.Value.AnyOf) == 0 {
+	if len(jsonReq.Schema.Value.OneOf) == 0 {
 		return nil, nil
 	}
 
@@ -123,19 +123,29 @@ func (p *renderProvider) OnDiff(_ context.Context, _ *pulumirpc.DiffRequest, res
 	var replaces []string
 	var diffs []string
 
+	var allOfSchemaRefs openapi3.SchemaRefs
 	// Taking a shortcut to handle service type-specific updates.
 	switch resourceTypeToken {
 	case "render:services:BackgroundWorker":
-		replaces, diffs = p.determineDiffsAndReplacements(diff, handler.GetOpenAPIDoc().Components.Schemas["patchBackgroundWorker"].Value.Properties)
+		allOfSchemaRefs = handler.GetOpenAPIDoc().Components.Schemas["backgroundWorkerPatch"].Value.AllOf
 	case "render:services:CronJob":
-		replaces, diffs = p.determineDiffsAndReplacements(diff, handler.GetOpenAPIDoc().Components.Schemas["patchCronJob"].Value.Properties)
+		allOfSchemaRefs = handler.GetOpenAPIDoc().Components.Schemas["cronJobPatch"].Value.AllOf
 	case "render:services:PrivateService":
-		replaces, diffs = p.determineDiffsAndReplacements(diff, handler.GetOpenAPIDoc().Components.Schemas["patchPrivateService"].Value.Properties)
+		allOfSchemaRefs = handler.GetOpenAPIDoc().Components.Schemas["privateServicePatch"].Value.AllOf
 	case "render:services:StaticSite":
-		replaces, diffs = p.determineDiffsAndReplacements(diff, handler.GetOpenAPIDoc().Components.Schemas["patchStaticSite"].Value.Properties)
+		allOfSchemaRefs = handler.GetOpenAPIDoc().Components.Schemas["staticSitePatch"].Value.AllOf
 	case "render:services:WebService":
-		replaces, diffs = p.determineDiffsAndReplacements(diff, handler.GetOpenAPIDoc().Components.Schemas["patchWebService"].Value.Properties)
+		allOfSchemaRefs = handler.GetOpenAPIDoc().Components.Schemas["webServicePatch"].Value.AllOf
 	}
+
+	allProps := make(openapi3.Schemas, 0)
+	for _, schemaRef := range allOfSchemaRefs {
+		for k, v := range schemaRef.Value.Properties {
+			allProps[k] = v
+		}
+	}
+
+	replaces, diffs = p.determineDiffsAndReplacements(diff, allProps)
 
 	logging.V(3).Infof("Diff response: replaces: %v; diffs: %v", replaces, diffs)
 
@@ -151,6 +161,8 @@ func (p *renderProvider) OnPreCreate(_ context.Context, req *pulumirpc.CreateReq
 	if resourceTypeToken != envVarResourceTypeToken {
 		return nil
 	}
+
+	logging.V(3).Infof("handling pre-create callback for %s", envVarResourceTypeToken)
 
 	body, err := io.ReadAll(httpReq.Body)
 	if err != nil {
@@ -280,11 +292,7 @@ func (p *renderProvider) OnPostUpdate(ctx context.Context, req *pulumirpc.Update
 		outputsMap = outputs.(map[string]interface{})
 	}
 
-	if resourceTypeToken != "render:services:StaticSite" &&
-		resourceTypeToken != "render:services:WebService" &&
-		resourceTypeToken != "render:services:PrivateService" &&
-		resourceTypeToken != "render:services:BackgroundWorker" &&
-		resourceTypeToken != "render:services:CronJob" &&
+	if resourceTypeToken != "render:services:Service" &&
 		resourceTypeToken != envVarResourceTypeToken {
 		return outputsMap, nil
 	}
@@ -308,6 +316,8 @@ func (p *renderProvider) OnPostUpdate(ctx context.Context, req *pulumirpc.Update
 	var reqBody []byte
 	if p.clearCacheOnServiceUpdateDeployments == "clear" {
 		reqBody, _ = json.Marshal(map[string]string{"clearCache": "clear"})
+	} else {
+		reqBody, _ = json.Marshal(map[string]string{"clearCache": "do_not_clear"})
 	}
 
 	inputs := resource.NewPropertyMapFromMap(map[string]interface{}{
@@ -315,7 +325,7 @@ func (p *renderProvider) OnPostUpdate(ctx context.Context, req *pulumirpc.Update
 	})
 	clearCacheHTTPReq, createReqErr := handler.CreatePostRequest(ctx, "/services/{serviceId}/deploys", reqBody, inputs)
 	if createReqErr != nil {
-		logging.Warningf("Failed to create POST request object to clear the Render Service cache: %v", createReqErr)
+		logging.Warningf("Failed to create POST request object to clear the cache: %v", createReqErr)
 		return outputsMap, nil
 	}
 

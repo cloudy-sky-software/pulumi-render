@@ -11,15 +11,15 @@ export function getBackgroundWorker(args: GetBackgroundWorkerArgs, opts?: pulumi
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:getBackgroundWorker", {
-        "id": args.id,
+        "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface GetBackgroundWorkerArgs {
     /**
-     * (Required) The ID of the service
+     * The ID of the service
      */
-    id: string;
+    serviceId: string;
 }
 
 export interface GetBackgroundWorkerResult {
@@ -31,7 +31,7 @@ export function getBackgroundWorkerOutput(args: GetBackgroundWorkerOutputArgs, o
 
 export interface GetBackgroundWorkerOutputArgs {
     /**
-     * (Required) The ID of the service
+     * The ID of the service
      */
-    id: pulumi.Input<string>;
+    serviceId: pulumi.Input<string>;
 }

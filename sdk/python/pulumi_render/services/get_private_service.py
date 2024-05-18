@@ -40,15 +40,15 @@ class AwaitableGetPrivateServiceResult(GetPrivateServiceResult):
             items=self.items)
 
 
-def get_private_service(id: Optional[str] = None,
+def get_private_service(service_id: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPrivateServiceResult:
     """
     Use this data source to access information about an existing resource.
 
-    :param str id: (Required) The ID of the service
+    :param str service_id: The ID of the service
     """
     __args__ = dict()
-    __args__['id'] = id
+    __args__['serviceId'] = service_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:services:getPrivateService', __args__, opts=opts, typ=GetPrivateServiceResult).value
 
@@ -57,11 +57,11 @@ def get_private_service(id: Optional[str] = None,
 
 
 @_utilities.lift_output_func(get_private_service)
-def get_private_service_output(id: Optional[pulumi.Input[str]] = None,
+def get_private_service_output(service_id: Optional[pulumi.Input[str]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPrivateServiceResult]:
     """
     Use this data source to access information about an existing resource.
 
-    :param str id: (Required) The ID of the service
+    :param str service_id: The ID of the service
     """
     ...

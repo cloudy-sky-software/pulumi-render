@@ -5,38 +5,91 @@
 from enum import Enum
 
 __all__ = [
-    'BackgroundWorkerServiceDetailsEnv',
-    'BackgroundWorkerServiceDetailsPlan',
-    'BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled',
-    'BackgroundWorkerServiceDetailsRegion',
-    'ClearCache',
-    'CronJobServiceDetailsEnv',
-    'CronJobServiceDetailsPlan',
-    'CronJobServiceDetailsRegion',
+    'BackgroundWorkerDetailsCreateEnv',
+    'BackgroundWorkerDetailsCreatePlan',
+    'BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled',
+    'BackgroundWorkerDetailsCreateRegion',
+    'BackgroundWorkerDetailsOutputEnv',
+    'BackgroundWorkerDetailsOutputPlan',
+    'BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled',
+    'BackgroundWorkerDetailsOutputRegion',
+    'BackgroundWorkerServiceAutoDeploy',
+    'BackgroundWorkerServiceCreateAutoDeploy',
+    'BackgroundWorkerServiceNotifyOnFail',
+    'BackgroundWorkerServiceSuspended',
+    'BackgroundWorkerServiceSuspendersItem',
+    'CancelDeployStatus',
+    'CancelDeployTrigger',
+    'CronJobDetailsCreateEnv',
+    'CronJobDetailsCreatePlan',
+    'CronJobDetailsCreateRegion',
+    'CronJobDetailsOutputEnv',
+    'CronJobDetailsOutputPlan',
+    'CronJobDetailsOutputRegion',
+    'CronJobServiceAutoDeploy',
+    'CronJobServiceCreateAutoDeploy',
+    'CronJobServiceNotifyOnFail',
+    'CronJobServiceSuspended',
+    'CronJobServiceSuspendersItem',
     'CustomDomainDomainType',
     'CustomDomainVerificationStatus',
     'DeployClearCache',
-    'DomainType',
-    'EnvVarKeyValueGenerateValue',
-    'OpenPortsProtocol',
-    'PrivateServiceDetailsEnv',
-    'PrivateServiceDetailsPlan',
-    'PrivateServiceDetailsPullRequestPreviewsEnabled',
-    'PrivateServiceDetailsRegion',
+    'DeployStatus',
+    'DeployTrigger',
+    'PreviewServicePlan',
+    'PreviewServiceServiceAutoDeploy',
+    'PreviewServiceServiceNotifyOnFail',
+    'PreviewServiceServiceSuspended',
+    'PreviewServiceServiceSuspendersItem',
+    'PrivateServiceDetailsCreateEnv',
+    'PrivateServiceDetailsCreatePlan',
+    'PrivateServiceDetailsCreatePullRequestPreviewsEnabled',
+    'PrivateServiceDetailsCreateRegion',
+    'PrivateServiceDetailsOutputEnv',
+    'PrivateServiceDetailsOutputPlan',
+    'PrivateServiceDetailsOutputPullRequestPreviewsEnabled',
+    'PrivateServiceDetailsOutputRegion',
+    'PrivateServiceServiceAutoDeploy',
+    'PrivateServiceServiceCreateAutoDeploy',
+    'PrivateServiceServiceNotifyOnFail',
+    'PrivateServiceServiceSuspended',
+    'PrivateServiceServiceSuspendersItem',
+    'RegistryCredentialRegistry',
+    'RollbackDeployStatus',
+    'RollbackDeployTrigger',
+    'ServerPortProtocol',
     'ServiceAutoDeploy',
     'ServiceNotifyOnFail',
     'ServiceSuspended',
+    'ServiceSuspendersItem',
+    'StaticSiteDetailsCreatePullRequestPreviewsEnabled',
+    'StaticSiteDetailsOutputPullRequestPreviewsEnabled',
     'StaticSiteRouteType',
-    'StaticSiteServiceDetailsPullRequestPreviewsEnabled',
-    'VerificationStatus',
-    'WebServiceServiceDetailsEnv',
-    'WebServiceServiceDetailsPlan',
-    'WebServiceServiceDetailsPullRequestPreviewsEnabled',
-    'WebServiceServiceDetailsRegion',
+    'StaticSiteServiceAutoDeploy',
+    'StaticSiteServiceCreateAutoDeploy',
+    'StaticSiteServiceNotifyOnFail',
+    'StaticSiteServiceSuspended',
+    'StaticSiteServiceSuspendersItem',
+    'WebServiceDetailsCreateEnv',
+    'WebServiceDetailsCreatePlan',
+    'WebServiceDetailsCreatePullRequestPreviewsEnabled',
+    'WebServiceDetailsCreateRegion',
+    'WebServiceDetailsOutputEnv',
+    'WebServiceDetailsOutputPlan',
+    'WebServiceDetailsOutputPullRequestPreviewsEnabled',
+    'WebServiceDetailsOutputRegion',
+    'WebServiceServiceAutoDeploy',
+    'WebServiceServiceCreateAutoDeploy',
+    'WebServiceServiceNotifyOnFail',
+    'WebServiceServiceSuspended',
+    'WebServiceServiceSuspendersItem',
 ]
 
 
-class BackgroundWorkerServiceDetailsEnv(str, Enum):
+class BackgroundWorkerDetailsCreateEnv(str, Enum):
+    """
+    Environment (runtime)
+    """
     DOCKER = "docker"
     ELIXIR = "elixir"
     GO = "go"
@@ -44,35 +97,37 @@ class BackgroundWorkerServiceDetailsEnv(str, Enum):
     PYTHON = "python"
     RUBY = "ruby"
     RUST = "rust"
+    IMAGE = "image"
 
 
-class BackgroundWorkerServiceDetailsPlan(str, Enum):
+class BackgroundWorkerDetailsCreatePlan(str, Enum):
     STARTER = "starter"
-    STARTER_PLUS = "starter_plus"
     STANDARD = "standard"
-    STANDARD_PLUS = "standard_plus"
     PRO = "pro"
     PRO_PLUS = "pro_plus"
     PRO_MAX = "pro_max"
     PRO_ULTRA = "pro_ultra"
 
 
-class BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled(str, Enum):
+class BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled(str, Enum):
+    """
+    Defaults to "no"
+    """
     YES = "yes"
     NO = "no"
 
 
-class BackgroundWorkerServiceDetailsRegion(str, Enum):
-    OREGON = "oregon"
+class BackgroundWorkerDetailsCreateRegion(str, Enum):
     FRANKFURT = "frankfurt"
+    OREGON = "oregon"
+    OHIO = "ohio"
+    SINGAPORE = "singapore"
 
 
-class ClearCache(str, Enum):
-    DO_NOT_CLEAR = "do_not_clear"
-    CLEAR = "clear"
-
-
-class CronJobServiceDetailsEnv(str, Enum):
+class BackgroundWorkerDetailsOutputEnv(str, Enum):
+    """
+    Environment (runtime)
+    """
     DOCKER = "docker"
     ELIXIR = "elixir"
     GO = "go"
@@ -80,9 +135,13 @@ class CronJobServiceDetailsEnv(str, Enum):
     PYTHON = "python"
     RUBY = "ruby"
     RUST = "rust"
+    IMAGE = "image"
 
 
-class CronJobServiceDetailsPlan(str, Enum):
+class BackgroundWorkerDetailsOutputPlan(str, Enum):
+    """
+    The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+    """
     STARTER = "starter"
     STARTER_PLUS = "starter_plus"
     STANDARD = "standard"
@@ -91,11 +150,177 @@ class CronJobServiceDetailsPlan(str, Enum):
     PRO_PLUS = "pro_plus"
     PRO_MAX = "pro_max"
     PRO_ULTRA = "pro_ultra"
+    FREE = "free"
+    CUSTOM = "custom"
 
 
-class CronJobServiceDetailsRegion(str, Enum):
-    OREGON = "oregon"
+class BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled(str, Enum):
+    YES = "yes"
+    NO = "no"
+
+
+class BackgroundWorkerDetailsOutputRegion(str, Enum):
     FRANKFURT = "frankfurt"
+    OREGON = "oregon"
+    OHIO = "ohio"
+    SINGAPORE = "singapore"
+
+
+class BackgroundWorkerServiceAutoDeploy(str, Enum):
+    YES = "yes"
+    NO = "no"
+
+
+class BackgroundWorkerServiceCreateAutoDeploy(str, Enum):
+    """
+    Defaults to "yes"
+    """
+    YES = "yes"
+    NO = "no"
+
+
+class BackgroundWorkerServiceNotifyOnFail(str, Enum):
+    DEFAULT = "default"
+    NOTIFY = "notify"
+    IGNORE = "ignore"
+
+
+class BackgroundWorkerServiceSuspended(str, Enum):
+    SUSPENDED = "suspended"
+    NOT_SUSPENDED = "not_suspended"
+
+
+class BackgroundWorkerServiceSuspendersItem(str, Enum):
+    ADMIN = "admin"
+    BILLING = "billing"
+    USER = "user"
+    PARENT_SERVICE = "parent_service"
+    UNKNOWN = "unknown"
+
+
+class CancelDeployStatus(str, Enum):
+    CREATED = "created"
+    BUILD_IN_PROGRESS = "build_in_progress"
+    UPDATE_IN_PROGRESS = "update_in_progress"
+    LIVE = "live"
+    DEACTIVATED = "deactivated"
+    BUILD_FAILED = "build_failed"
+    UPDATE_FAILED = "update_failed"
+    CANCELED = "canceled"
+    PRE_DEPLOY_IN_PROGRESS = "pre_deploy_in_progress"
+    PRE_DEPLOY_FAILED = "pre_deploy_failed"
+
+
+class CancelDeployTrigger(str, Enum):
+    API = "api"
+    BLUEPRINT_SYNC = "blueprint_sync"
+    DEPLOY_HOOK = "deploy_hook"
+    DEPLOYED_BY_RENDER = "deployed_by_render"
+    MANUAL = "manual"
+    OTHER = "other"
+    NEW_COMMIT = "new_commit"
+    ROLLBACK = "rollback"
+    SERVICE_RESUMED = "service_resumed"
+    SERVICE_UPDATED = "service_updated"
+
+
+class CronJobDetailsCreateEnv(str, Enum):
+    """
+    Environment (runtime)
+    """
+    DOCKER = "docker"
+    ELIXIR = "elixir"
+    GO = "go"
+    NODE = "node"
+    PYTHON = "python"
+    RUBY = "ruby"
+    RUST = "rust"
+    IMAGE = "image"
+
+
+class CronJobDetailsCreatePlan(str, Enum):
+    STARTER = "starter"
+    STANDARD = "standard"
+    PRO = "pro"
+    PRO_PLUS = "pro_plus"
+    PRO_MAX = "pro_max"
+    PRO_ULTRA = "pro_ultra"
+
+
+class CronJobDetailsCreateRegion(str, Enum):
+    FRANKFURT = "frankfurt"
+    OREGON = "oregon"
+    OHIO = "ohio"
+    SINGAPORE = "singapore"
+
+
+class CronJobDetailsOutputEnv(str, Enum):
+    """
+    Environment (runtime)
+    """
+    DOCKER = "docker"
+    ELIXIR = "elixir"
+    GO = "go"
+    NODE = "node"
+    PYTHON = "python"
+    RUBY = "ruby"
+    RUST = "rust"
+    IMAGE = "image"
+
+
+class CronJobDetailsOutputPlan(str, Enum):
+    """
+    The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+    """
+    STARTER = "starter"
+    STARTER_PLUS = "starter_plus"
+    STANDARD = "standard"
+    STANDARD_PLUS = "standard_plus"
+    PRO = "pro"
+    PRO_PLUS = "pro_plus"
+    PRO_MAX = "pro_max"
+    PRO_ULTRA = "pro_ultra"
+    FREE = "free"
+    CUSTOM = "custom"
+
+
+class CronJobDetailsOutputRegion(str, Enum):
+    FRANKFURT = "frankfurt"
+    OREGON = "oregon"
+    OHIO = "ohio"
+    SINGAPORE = "singapore"
+
+
+class CronJobServiceAutoDeploy(str, Enum):
+    YES = "yes"
+    NO = "no"
+
+
+class CronJobServiceCreateAutoDeploy(str, Enum):
+    """
+    Defaults to "yes"
+    """
+    YES = "yes"
+    NO = "no"
+
+
+class CronJobServiceNotifyOnFail(str, Enum):
+    DEFAULT = "default"
+    NOTIFY = "notify"
+    IGNORE = "ignore"
+
+
+class CronJobServiceSuspended(str, Enum):
+    SUSPENDED = "suspended"
+    NOT_SUSPENDED = "not_suspended"
+
+
+class CronJobServiceSuspendersItem(str, Enum):
+    ADMIN = "admin"
+    BILLING = "billing"
+    USER = "user"
+    PARENT_SERVICE = "parent_service"
+    UNKNOWN = "unknown"
 
 
 class CustomDomainDomainType(str, Enum):
@@ -109,36 +334,43 @@ class CustomDomainVerificationStatus(str, Enum):
 
 
 class DeployClearCache(str, Enum):
-    DO_NOT_CLEAR = "do_not_clear"
+    """
+    Defaults to "do_not_clear"
+    """
     CLEAR = "clear"
+    DO_NOT_CLEAR = "do_not_clear"
 
 
-class DomainType(str, Enum):
-    APEX = "apex"
-    SUBDOMAIN = "subdomain"
+class DeployStatus(str, Enum):
+    CREATED = "created"
+    BUILD_IN_PROGRESS = "build_in_progress"
+    UPDATE_IN_PROGRESS = "update_in_progress"
+    LIVE = "live"
+    DEACTIVATED = "deactivated"
+    BUILD_FAILED = "build_failed"
+    UPDATE_FAILED = "update_failed"
+    CANCELED = "canceled"
+    PRE_DEPLOY_IN_PROGRESS = "pre_deploy_in_progress"
+    PRE_DEPLOY_FAILED = "pre_deploy_failed"
 
 
-class EnvVarKeyValueGenerateValue(str, Enum):
-    YES = "yes"
-    NO = "no"
+class DeployTrigger(str, Enum):
+    API = "api"
+    BLUEPRINT_SYNC = "blueprint_sync"
+    DEPLOY_HOOK = "deploy_hook"
+    DEPLOYED_BY_RENDER = "deployed_by_render"
+    MANUAL = "manual"
+    OTHER = "other"
+    NEW_COMMIT = "new_commit"
+    ROLLBACK = "rollback"
+    SERVICE_RESUMED = "service_resumed"
+    SERVICE_UPDATED = "service_updated"
 
 
-class OpenPortsProtocol(str, Enum):
-    TCP = "TCP"
-    UDP = "UDP"
-
-
-class PrivateServiceDetailsEnv(str, Enum):
-    DOCKER = "docker"
-    ELIXIR = "elixir"
-    GO = "go"
-    NODE = "node"
-    PYTHON = "python"
-    RUBY = "ruby"
-    RUST = "rust"
-
-
-class PrivateServiceDetailsPlan(str, Enum):
+class PreviewServicePlan(str, Enum):
+    """
+    The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+    """
     STARTER = "starter"
     STARTER_PLUS = "starter_plus"
     STANDARD = "standard"
@@ -147,30 +379,192 @@ class PrivateServiceDetailsPlan(str, Enum):
     PRO_PLUS = "pro_plus"
     PRO_MAX = "pro_max"
     PRO_ULTRA = "pro_ultra"
+    FREE = "free"
+    CUSTOM = "custom"
 
 
-class PrivateServiceDetailsPullRequestPreviewsEnabled(str, Enum):
+class PreviewServiceServiceAutoDeploy(str, Enum):
     YES = "yes"
     NO = "no"
 
 
-class PrivateServiceDetailsRegion(str, Enum):
-    OREGON = "oregon"
+class PreviewServiceServiceNotifyOnFail(str, Enum):
+    DEFAULT = "default"
+    NOTIFY = "notify"
+    IGNORE = "ignore"
+
+
+class PreviewServiceServiceSuspended(str, Enum):
+    SUSPENDED = "suspended"
+    NOT_SUSPENDED = "not_suspended"
+
+
+class PreviewServiceServiceSuspendersItem(str, Enum):
+    ADMIN = "admin"
+    BILLING = "billing"
+    USER = "user"
+    PARENT_SERVICE = "parent_service"
+    UNKNOWN = "unknown"
+
+
+class PrivateServiceDetailsCreateEnv(str, Enum):
+    """
+    Environment (runtime)
+    """
+    DOCKER = "docker"
+    ELIXIR = "elixir"
+    GO = "go"
+    NODE = "node"
+    PYTHON = "python"
+    RUBY = "ruby"
+    RUST = "rust"
+    IMAGE = "image"
+
+
+class PrivateServiceDetailsCreatePlan(str, Enum):
+    STARTER = "starter"
+    STANDARD = "standard"
+    PRO = "pro"
+    PRO_PLUS = "pro_plus"
+    PRO_MAX = "pro_max"
+    PRO_ULTRA = "pro_ultra"
+
+
+class PrivateServiceDetailsCreatePullRequestPreviewsEnabled(str, Enum):
+    """
+    Defaults to "no"
+    """
+    YES = "yes"
+    NO = "no"
+
+
+class PrivateServiceDetailsCreateRegion(str, Enum):
     FRANKFURT = "frankfurt"
+    OREGON = "oregon"
+    OHIO = "ohio"
+    SINGAPORE = "singapore"
+
+
+class PrivateServiceDetailsOutputEnv(str, Enum):
+    """
+    Environment (runtime)
+    """
+    DOCKER = "docker"
+    ELIXIR = "elixir"
+    GO = "go"
+    NODE = "node"
+    PYTHON = "python"
+    RUBY = "ruby"
+    RUST = "rust"
+    IMAGE = "image"
+
+
+class PrivateServiceDetailsOutputPlan(str, Enum):
+    """
+    The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+    """
+    STARTER = "starter"
+    STARTER_PLUS = "starter_plus"
+    STANDARD = "standard"
+    STANDARD_PLUS = "standard_plus"
+    PRO = "pro"
+    PRO_PLUS = "pro_plus"
+    PRO_MAX = "pro_max"
+    PRO_ULTRA = "pro_ultra"
+    FREE = "free"
+    CUSTOM = "custom"
+
+
+class PrivateServiceDetailsOutputPullRequestPreviewsEnabled(str, Enum):
+    YES = "yes"
+    NO = "no"
+
+
+class PrivateServiceDetailsOutputRegion(str, Enum):
+    FRANKFURT = "frankfurt"
+    OREGON = "oregon"
+    OHIO = "ohio"
+    SINGAPORE = "singapore"
+
+
+class PrivateServiceServiceAutoDeploy(str, Enum):
+    YES = "yes"
+    NO = "no"
+
+
+class PrivateServiceServiceCreateAutoDeploy(str, Enum):
+    """
+    Defaults to "yes"
+    """
+    YES = "yes"
+    NO = "no"
+
+
+class PrivateServiceServiceNotifyOnFail(str, Enum):
+    DEFAULT = "default"
+    NOTIFY = "notify"
+    IGNORE = "ignore"
+
+
+class PrivateServiceServiceSuspended(str, Enum):
+    SUSPENDED = "suspended"
+    NOT_SUSPENDED = "not_suspended"
+
+
+class PrivateServiceServiceSuspendersItem(str, Enum):
+    ADMIN = "admin"
+    BILLING = "billing"
+    USER = "user"
+    PARENT_SERVICE = "parent_service"
+    UNKNOWN = "unknown"
+
+
+class RegistryCredentialRegistry(str, Enum):
+    """
+    The registry to use this credential with
+    """
+    GITHUB = "GITHUB"
+    GITLAB = "GITLAB"
+    DOCKER = "DOCKER"
+
+
+class RollbackDeployStatus(str, Enum):
+    CREATED = "created"
+    BUILD_IN_PROGRESS = "build_in_progress"
+    UPDATE_IN_PROGRESS = "update_in_progress"
+    LIVE = "live"
+    DEACTIVATED = "deactivated"
+    BUILD_FAILED = "build_failed"
+    UPDATE_FAILED = "update_failed"
+    CANCELED = "canceled"
+    PRE_DEPLOY_IN_PROGRESS = "pre_deploy_in_progress"
+    PRE_DEPLOY_FAILED = "pre_deploy_failed"
+
+
+class RollbackDeployTrigger(str, Enum):
+    API = "api"
+    BLUEPRINT_SYNC = "blueprint_sync"
+    DEPLOY_HOOK = "deploy_hook"
+    DEPLOYED_BY_RENDER = "deployed_by_render"
+    MANUAL = "manual"
+    OTHER = "other"
+    NEW_COMMIT = "new_commit"
+    ROLLBACK = "rollback"
+    SERVICE_RESUMED = "service_resumed"
+    SERVICE_UPDATED = "service_updated"
+
+
+class ServerPortProtocol(str, Enum):
+    TCP = "TCP"
+    UDP = "UDP"
 
 
 class ServiceAutoDeploy(str, Enum):
-    """
-    Whether to auto deploy the service or not upon git push.
-    """
     YES = "yes"
     NO = "no"
 
 
 class ServiceNotifyOnFail(str, Enum):
-    """
-    The notification setting for this service upon deployment failure.
-    """
     DEFAULT = "default"
     NOTIFY = "notify"
     IGNORE = "ignore"
@@ -181,22 +575,68 @@ class ServiceSuspended(str, Enum):
     NOT_SUSPENDED = "not_suspended"
 
 
+class ServiceSuspendersItem(str, Enum):
+    ADMIN = "admin"
+    BILLING = "billing"
+    USER = "user"
+    PARENT_SERVICE = "parent_service"
+    UNKNOWN = "unknown"
+
+
+class StaticSiteDetailsCreatePullRequestPreviewsEnabled(str, Enum):
+    """
+    Defaults to "no"
+    """
+    YES = "yes"
+    NO = "no"
+
+
+class StaticSiteDetailsOutputPullRequestPreviewsEnabled(str, Enum):
+    YES = "yes"
+    NO = "no"
+
+
 class StaticSiteRouteType(str, Enum):
     REDIRECT = "redirect"
     REWRITE = "rewrite"
 
 
-class StaticSiteServiceDetailsPullRequestPreviewsEnabled(str, Enum):
+class StaticSiteServiceAutoDeploy(str, Enum):
     YES = "yes"
     NO = "no"
 
 
-class VerificationStatus(str, Enum):
-    VERIFIED = "verified"
-    UNVERIFIED = "unverified"
+class StaticSiteServiceCreateAutoDeploy(str, Enum):
+    """
+    Defaults to "yes"
+    """
+    YES = "yes"
+    NO = "no"
 
 
-class WebServiceServiceDetailsEnv(str, Enum):
+class StaticSiteServiceNotifyOnFail(str, Enum):
+    DEFAULT = "default"
+    NOTIFY = "notify"
+    IGNORE = "ignore"
+
+
+class StaticSiteServiceSuspended(str, Enum):
+    SUSPENDED = "suspended"
+    NOT_SUSPENDED = "not_suspended"
+
+
+class StaticSiteServiceSuspendersItem(str, Enum):
+    ADMIN = "admin"
+    BILLING = "billing"
+    USER = "user"
+    PARENT_SERVICE = "parent_service"
+    UNKNOWN = "unknown"
+
+
+class WebServiceDetailsCreateEnv(str, Enum):
+    """
+    Environment (runtime)
+    """
     DOCKER = "docker"
     ELIXIR = "elixir"
     GO = "go"
@@ -204,9 +644,51 @@ class WebServiceServiceDetailsEnv(str, Enum):
     PYTHON = "python"
     RUBY = "ruby"
     RUST = "rust"
+    IMAGE = "image"
 
 
-class WebServiceServiceDetailsPlan(str, Enum):
+class WebServiceDetailsCreatePlan(str, Enum):
+    STARTER = "starter"
+    STANDARD = "standard"
+    PRO = "pro"
+    PRO_PLUS = "pro_plus"
+    PRO_MAX = "pro_max"
+    PRO_ULTRA = "pro_ultra"
+
+
+class WebServiceDetailsCreatePullRequestPreviewsEnabled(str, Enum):
+    """
+    Defaults to "no"
+    """
+    YES = "yes"
+    NO = "no"
+
+
+class WebServiceDetailsCreateRegion(str, Enum):
+    FRANKFURT = "frankfurt"
+    OREGON = "oregon"
+    OHIO = "ohio"
+    SINGAPORE = "singapore"
+
+
+class WebServiceDetailsOutputEnv(str, Enum):
+    """
+    Environment (runtime)
+    """
+    DOCKER = "docker"
+    ELIXIR = "elixir"
+    GO = "go"
+    NODE = "node"
+    PYTHON = "python"
+    RUBY = "ruby"
+    RUST = "rust"
+    IMAGE = "image"
+
+
+class WebServiceDetailsOutputPlan(str, Enum):
+    """
+    The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+    """
     STARTER = "starter"
     STARTER_PLUS = "starter_plus"
     STANDARD = "standard"
@@ -215,13 +697,49 @@ class WebServiceServiceDetailsPlan(str, Enum):
     PRO_PLUS = "pro_plus"
     PRO_MAX = "pro_max"
     PRO_ULTRA = "pro_ultra"
+    FREE = "free"
+    CUSTOM = "custom"
 
 
-class WebServiceServiceDetailsPullRequestPreviewsEnabled(str, Enum):
+class WebServiceDetailsOutputPullRequestPreviewsEnabled(str, Enum):
     YES = "yes"
     NO = "no"
 
 
-class WebServiceServiceDetailsRegion(str, Enum):
-    OREGON = "oregon"
+class WebServiceDetailsOutputRegion(str, Enum):
     FRANKFURT = "frankfurt"
+    OREGON = "oregon"
+    OHIO = "ohio"
+    SINGAPORE = "singapore"
+
+
+class WebServiceServiceAutoDeploy(str, Enum):
+    YES = "yes"
+    NO = "no"
+
+
+class WebServiceServiceCreateAutoDeploy(str, Enum):
+    """
+    Defaults to "yes"
+    """
+    YES = "yes"
+    NO = "no"
+
+
+class WebServiceServiceNotifyOnFail(str, Enum):
+    DEFAULT = "default"
+    NOTIFY = "notify"
+    IGNORE = "ignore"
+
+
+class WebServiceServiceSuspended(str, Enum):
+    SUSPENDED = "suspended"
+    NOT_SUSPENDED = "not_suspended"
+
+
+class WebServiceServiceSuspendersItem(str, Enum):
+    ADMIN = "admin"
+    BILLING = "billing"
+    USER = "user"
+    PARENT_SERVICE = "parent_service"
+    UNKNOWN = "unknown"

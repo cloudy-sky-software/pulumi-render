@@ -13,19 +13,28 @@ namespace Pulumi.Render.RegistryCredentials
     public partial class RegistryCredential : global::Pulumi.CustomResource
     {
         [Output("authToken")]
-        public Output<string?> AuthToken { get; private set; } = null!;
+        public Output<string> AuthToken { get; private set; } = null!;
 
+        /// <summary>
+        /// Descriptive name for this credential
+        /// </summary>
         [Output("name")]
-        public Output<string?> Name { get; private set; } = null!;
+        public Output<string> Name { get; private set; } = null!;
 
         [Output("ownerId")]
-        public Output<string?> OwnerId { get; private set; } = null!;
+        public Output<string> OwnerId { get; private set; } = null!;
 
+        /// <summary>
+        /// The registry to use this credential with
+        /// </summary>
         [Output("registry")]
-        public Output<string?> Registry { get; private set; } = null!;
+        public Output<Pulumi.Render.RegistryCredentials.RegistryCredentialRegistry> Registry { get; private set; } = null!;
 
+        /// <summary>
+        /// The username associated with the credential
+        /// </summary>
         [Output("username")]
-        public Output<string?> Username { get; private set; } = null!;
+        public Output<string> Username { get; private set; } = null!;
 
 
         /// <summary>
@@ -35,7 +44,7 @@ namespace Pulumi.Render.RegistryCredentials
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public RegistryCredential(string name, RegistryCredentialArgs? args = null, CustomResourceOptions? options = null)
+        public RegistryCredential(string name, RegistryCredentialArgs args, CustomResourceOptions? options = null)
             : base("render:registrycredentials:RegistryCredential", name, args ?? new RegistryCredentialArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -73,20 +82,20 @@ namespace Pulumi.Render.RegistryCredentials
 
     public sealed class RegistryCredentialArgs : global::Pulumi.ResourceArgs
     {
-        [Input("authToken")]
-        public Input<string>? AuthToken { get; set; }
+        [Input("authToken", required: true)]
+        public Input<string> AuthToken { get; set; } = null!;
 
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        [Input("ownerId")]
-        public Input<string>? OwnerId { get; set; }
+        [Input("ownerId", required: true)]
+        public Input<string> OwnerId { get; set; } = null!;
 
-        [Input("registry")]
-        public Input<string>? Registry { get; set; }
+        [Input("registry", required: true)]
+        public Input<Pulumi.Render.RegistryCredentials.RegistryCredentialRegistry> Registry { get; set; } = null!;
 
-        [Input("username")]
-        public Input<string>? Username { get; set; }
+        [Input("username", required: true)]
+        public Input<string> Username { get; set; } = null!;
 
         public RegistryCredentialArgs()
         {

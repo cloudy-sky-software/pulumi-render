@@ -22,7 +22,7 @@ namespace Pulumi.Render.Services
     public sealed class ListCustomDomainsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// (Required) The ID of the service
+        /// The ID of the service
         /// </summary>
         [Input("serviceId", required: true)]
         public string ServiceId { get; set; } = null!;
@@ -36,7 +36,7 @@ namespace Pulumi.Render.Services
     public sealed class ListCustomDomainsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// (Required) The ID of the service
+        /// The ID of the service
         /// </summary>
         [Input("serviceId", required: true)]
         public Input<string> ServiceId { get; set; } = null!;
@@ -51,10 +51,10 @@ namespace Pulumi.Render.Services
     [OutputType]
     public sealed class ListCustomDomainsResult
     {
-        public readonly ImmutableArray<Outputs.ListCustomDomainsResponse> Items;
+        public readonly ImmutableArray<Outputs.ListCustomDomainsItemProperties> Items;
 
         [OutputConstructor]
-        private ListCustomDomainsResult(ImmutableArray<Outputs.ListCustomDomainsResponse> items)
+        private ListCustomDomainsResult(ImmutableArray<Outputs.ListCustomDomainsItemProperties> items)
         {
             Items = items;
         }

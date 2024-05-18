@@ -40,15 +40,15 @@ class AwaitableGetOwnerResult(GetOwnerResult):
             items=self.items)
 
 
-def get_owner(id: Optional[str] = None,
+def get_owner(owner_id: Optional[str] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOwnerResult:
     """
     Use this data source to access information about an existing resource.
 
-    :param str id: (Required) The ID of the user or team
+    :param str owner_id: The ID of the user or team
     """
     __args__ = dict()
-    __args__['id'] = id
+    __args__['ownerId'] = owner_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:owners:getOwner', __args__, opts=opts, typ=GetOwnerResult).value
 
@@ -57,11 +57,11 @@ def get_owner(id: Optional[str] = None,
 
 
 @_utilities.lift_output_func(get_owner)
-def get_owner_output(id: Optional[pulumi.Input[str]] = None,
+def get_owner_output(owner_id: Optional[pulumi.Input[str]] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOwnerResult]:
     """
     Use this data source to access information about an existing resource.
 
-    :param str id: (Required) The ID of the user or team
+    :param str owner_id: The ID of the user or team
     """
     ...

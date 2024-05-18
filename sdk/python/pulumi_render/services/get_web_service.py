@@ -40,15 +40,15 @@ class AwaitableGetWebServiceResult(GetWebServiceResult):
             items=self.items)
 
 
-def get_web_service(id: Optional[str] = None,
+def get_web_service(service_id: Optional[str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetWebServiceResult:
     """
     Use this data source to access information about an existing resource.
 
-    :param str id: (Required) The ID of the service
+    :param str service_id: The ID of the service
     """
     __args__ = dict()
-    __args__['id'] = id
+    __args__['serviceId'] = service_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:services:getWebService', __args__, opts=opts, typ=GetWebServiceResult).value
 
@@ -57,11 +57,11 @@ def get_web_service(id: Optional[str] = None,
 
 
 @_utilities.lift_output_func(get_web_service)
-def get_web_service_output(id: Optional[pulumi.Input[str]] = None,
+def get_web_service_output(service_id: Optional[pulumi.Input[str]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetWebServiceResult]:
     """
     Use this data source to access information about an existing resource.
 
-    :param str id: (Required) The ID of the service
+    :param str service_id: The ID of the service
     """
     ...

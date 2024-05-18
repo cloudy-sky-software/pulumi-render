@@ -12,18 +12,15 @@ from . import outputs
 from ._enums import *
 
 __all__ = [
-    'ListOwnersResponse',
+    'ListOwnersItemProperties',
     'Owner',
 ]
 
 @pulumi.output_type
-class ListOwnersResponse(dict):
+class ListOwnersItemProperties(dict):
     def __init__(__self__, *,
                  cursor: Optional[str] = None,
                  owner: Optional['outputs.Owner'] = None):
-        """
-        :param 'Owner' owner: The owner object represents an authorized user or team. The `type` property indicates if the owner is a user or team.
-        """
         if cursor is not None:
             pulumi.set(__self__, "cursor", cursor)
         if owner is not None:
@@ -37,68 +34,39 @@ class ListOwnersResponse(dict):
     @property
     @pulumi.getter
     def owner(self) -> Optional['outputs.Owner']:
-        """
-        The owner object represents an authorized user or team. The `type` property indicates if the owner is a user or team.
-        """
         return pulumi.get(self, "owner")
 
 
 @pulumi.output_type
 class Owner(dict):
-    """
-    The owner object represents an authorized user or team. The `type` property indicates if the owner is a user or team.
-    """
     def __init__(__self__, *,
-                 email: Optional[str] = None,
-                 id: Optional[str] = None,
-                 name: Optional[str] = None,
-                 type: Optional['OwnerType'] = None):
-        """
-        The owner object represents an authorized user or team. The `type` property indicates if the owner is a user or team.
-        :param str email: The email of the owner.
-        :param str id: The owner ID.
-        :param str name: The name of the owner.
-        :param 'OwnerType' type: The type of the authorized user.
-        """
-        if email is not None:
-            pulumi.set(__self__, "email", email)
-        if id is not None:
-            pulumi.set(__self__, "id", id)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if type is not None:
-            pulumi.set(__self__, "type", type)
+                 email: str,
+                 id: str,
+                 name: str,
+                 type: 'OwnerType'):
+        pulumi.set(__self__, "email", email)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
-    def email(self) -> Optional[str]:
-        """
-        The email of the owner.
-        """
+    def email(self) -> str:
         return pulumi.get(self, "email")
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
-        """
-        The owner ID.
-        """
+    def id(self) -> str:
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
-    def name(self) -> Optional[str]:
-        """
-        The name of the owner.
-        """
+    def name(self) -> str:
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
-    def type(self) -> Optional['OwnerType']:
-        """
-        The type of the authorized user.
-        """
+    def type(self) -> 'OwnerType':
         return pulumi.get(self, "type")
 
 

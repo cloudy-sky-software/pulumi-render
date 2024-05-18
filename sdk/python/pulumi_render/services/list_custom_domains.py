@@ -27,7 +27,7 @@ class ListCustomDomainsResult:
 
     @property
     @pulumi.getter
-    def items(self) -> Sequence['outputs.ListCustomDomainsResponse']:
+    def items(self) -> Sequence['outputs.ListCustomDomainsItemProperties']:
         return pulumi.get(self, "items")
 
 
@@ -45,7 +45,7 @@ def list_custom_domains(service_id: Optional[str] = None,
     """
     Use this data source to access information about an existing resource.
 
-    :param str service_id: (Required) The ID of the service
+    :param str service_id: The ID of the service
     """
     __args__ = dict()
     __args__['serviceId'] = service_id
@@ -62,6 +62,6 @@ def list_custom_domains_output(service_id: Optional[pulumi.Input[str]] = None,
     """
     Use this data source to access information about an existing resource.
 
-    :param str service_id: (Required) The ID of the service
+    :param str service_id: The ID of the service
     """
     ...

@@ -7,9 +7,6 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-/**
- * A web service
- */
 export class WebService extends pulumi.CustomResource {
     /**
      * Get an existing WebService resource's state with the given name, ID, and optional extra
@@ -37,36 +34,25 @@ export class WebService extends pulumi.CustomResource {
         return obj['__pulumiType'] === WebService.__pulumiType;
     }
 
-    /**
-     * Whether to auto deploy the service or not upon git push.
-     */
-    public readonly autoDeploy!: pulumi.Output<enums.services.ServiceAutoDeploy | undefined>;
-    /**
-     * If left empty, this will fall back to the default branch of the repository.
-     */
+    public readonly autoDeploy!: pulumi.Output<enums.services.WebServiceServiceAutoDeploy | undefined>;
     public readonly branch!: pulumi.Output<string | undefined>;
-    public readonly createdAt!: pulumi.Output<string | undefined>;
-    public readonly envVars!: pulumi.Output<outputs.services.EnvVarKeyValue[] | undefined>;
+    public readonly buildFilter!: pulumi.Output<outputs.services.BuildFilter | undefined>;
+    public /*out*/ readonly createdAt!: pulumi.Output<string | undefined>;
+    public readonly envVars!: pulumi.Output<(outputs.services.EnvVarKeyValue | outputs.services.EnvVarKeyGenerateValue)[] | undefined>;
+    public readonly image!: pulumi.Output<outputs.services.Image | undefined>;
+    public /*out*/ readonly imagePath!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string | undefined>;
-    /**
-     * The notification setting for this service upon deployment failure.
-     */
-    public readonly notifyOnFail!: pulumi.Output<enums.services.ServiceNotifyOnFail | undefined>;
-    /**
-     * The id of the owner (user/team).
-     */
+    public /*out*/ readonly notifyOnFail!: pulumi.Output<enums.services.WebServiceServiceNotifyOnFail | undefined>;
     public readonly ownerId!: pulumi.Output<string | undefined>;
-    /**
-     * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-     */
     public readonly repo!: pulumi.Output<string | undefined>;
+    public readonly rootDir!: pulumi.Output<string | undefined>;
     public readonly secretFiles!: pulumi.Output<outputs.services.SecretFile[] | undefined>;
-    public readonly serviceDetails!: pulumi.Output<outputs.services.WebServiceServiceDetails | undefined>;
-    public readonly slug!: pulumi.Output<string | undefined>;
-    public readonly suspended!: pulumi.Output<enums.services.ServiceSuspended | undefined>;
-    public readonly suspenders!: pulumi.Output<string[] | undefined>;
+    public readonly serviceDetails!: pulumi.Output<outputs.services.WebServiceDetailsOutput | undefined>;
+    public /*out*/ readonly slug!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly suspended!: pulumi.Output<enums.services.WebServiceServiceSuspended | undefined>;
+    public /*out*/ readonly suspenders!: pulumi.Output<enums.services.WebServiceServiceSuspendersItem[] | undefined>;
     public readonly type!: pulumi.Output<string | undefined>;
-    public readonly updatedAt!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly updatedAt!: pulumi.Output<string | undefined>;
 
     /**
      * Create a WebService resource with the given unique name, arguments, and options.
@@ -85,33 +71,38 @@ export class WebService extends pulumi.CustomResource {
             if ((!args || args.ownerId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'ownerId'");
             }
-            if ((!args || args.repo === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'repo'");
-            }
-            resourceInputs["autoDeploy"] = (args ? args.autoDeploy : undefined) ?? "no";
+            resourceInputs["autoDeploy"] = (args ? args.autoDeploy : undefined) ?? "yes";
             resourceInputs["branch"] = args ? args.branch : undefined;
-            resourceInputs["createdAt"] = args ? args.createdAt : undefined;
+            resourceInputs["buildFilter"] = args ? args.buildFilter : undefined;
             resourceInputs["envVars"] = args ? args.envVars : undefined;
+            resourceInputs["image"] = args ? args.image : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["notifyOnFail"] = args ? args.notifyOnFail : undefined;
             resourceInputs["ownerId"] = args ? args.ownerId : undefined;
             resourceInputs["repo"] = args ? args.repo : undefined;
+            resourceInputs["rootDir"] = args ? args.rootDir : undefined;
             resourceInputs["secretFiles"] = args ? args.secretFiles : undefined;
-            resourceInputs["serviceDetails"] = args ? (args.serviceDetails ? pulumi.output(args.serviceDetails).apply(inputs.services.webServiceServiceDetailsArgsProvideDefaults) : undefined) : undefined;
-            resourceInputs["slug"] = args ? args.slug : undefined;
-            resourceInputs["suspended"] = args ? args.suspended : undefined;
-            resourceInputs["suspenders"] = args ? args.suspenders : undefined;
+            resourceInputs["serviceDetails"] = args ? (args.serviceDetails ? pulumi.output(args.serviceDetails).apply(inputs.services.webServiceDetailsCreateArgsProvideDefaults) : undefined) : undefined;
             resourceInputs["type"] = (args ? args.type : undefined) ?? "web_service";
-            resourceInputs["updatedAt"] = args ? args.updatedAt : undefined;
+            resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["imagePath"] = undefined /*out*/;
+            resourceInputs["notifyOnFail"] = undefined /*out*/;
+            resourceInputs["slug"] = undefined /*out*/;
+            resourceInputs["suspended"] = undefined /*out*/;
+            resourceInputs["suspenders"] = undefined /*out*/;
+            resourceInputs["updatedAt"] = undefined /*out*/;
         } else {
             resourceInputs["autoDeploy"] = undefined /*out*/;
             resourceInputs["branch"] = undefined /*out*/;
+            resourceInputs["buildFilter"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["envVars"] = undefined /*out*/;
+            resourceInputs["image"] = undefined /*out*/;
+            resourceInputs["imagePath"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;
             resourceInputs["notifyOnFail"] = undefined /*out*/;
             resourceInputs["ownerId"] = undefined /*out*/;
             resourceInputs["repo"] = undefined /*out*/;
+            resourceInputs["rootDir"] = undefined /*out*/;
             resourceInputs["secretFiles"] = undefined /*out*/;
             resourceInputs["serviceDetails"] = undefined /*out*/;
             resourceInputs["slug"] = undefined /*out*/;
@@ -130,33 +121,24 @@ export class WebService extends pulumi.CustomResource {
  */
 export interface WebServiceArgs {
     /**
-     * Whether to auto deploy the service or not upon git push.
+     * Defaults to "yes"
      */
-    autoDeploy?: pulumi.Input<enums.services.ServiceAutoDeploy>;
+    autoDeploy?: pulumi.Input<enums.services.WebServiceServiceCreateAutoDeploy>;
     /**
-     * If left empty, this will fall back to the default branch of the repository.
+     * If left empty, this will fall back to the default branch of the repository
      */
     branch?: pulumi.Input<string>;
-    createdAt?: pulumi.Input<string>;
-    envVars?: pulumi.Input<pulumi.Input<inputs.services.EnvVarKeyValueArgs>[]>;
+    buildFilter?: pulumi.Input<inputs.services.BuildFilterArgs>;
+    envVars?: pulumi.Input<pulumi.Input<inputs.services.EnvVarKeyValueArgs | inputs.services.EnvVarKeyGenerateValueArgs>[]>;
+    image?: pulumi.Input<inputs.services.ImageArgs>;
     name: pulumi.Input<string>;
-    /**
-     * The notification setting for this service upon deployment failure.
-     */
-    notifyOnFail?: pulumi.Input<enums.services.ServiceNotifyOnFail>;
-    /**
-     * The id of the owner (user/team).
-     */
     ownerId: pulumi.Input<string>;
     /**
      * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
      */
-    repo: pulumi.Input<string>;
+    repo?: pulumi.Input<string>;
+    rootDir?: pulumi.Input<string>;
     secretFiles?: pulumi.Input<pulumi.Input<inputs.services.SecretFileArgs>[]>;
-    serviceDetails?: pulumi.Input<inputs.services.WebServiceServiceDetailsArgs>;
-    slug?: pulumi.Input<string>;
-    suspended?: pulumi.Input<enums.services.ServiceSuspended>;
-    suspenders?: pulumi.Input<pulumi.Input<string>[]>;
+    serviceDetails?: pulumi.Input<inputs.services.WebServiceDetailsCreateArgs>;
     type?: pulumi.Input<string>;
-    updatedAt?: pulumi.Input<string>;
 }

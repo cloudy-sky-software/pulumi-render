@@ -18,8 +18,14 @@ namespace Pulumi.Render.Services.Inputs
         [Input("dockerContext", required: true)]
         public Input<string> DockerContext { get; set; } = null!;
 
-        [Input("dockerfilePath")]
-        public Input<string>? DockerfilePath { get; set; }
+        [Input("dockerfilePath", required: true)]
+        public Input<string> DockerfilePath { get; set; } = null!;
+
+        [Input("preDeployCommand")]
+        public Input<string>? PreDeployCommand { get; set; }
+
+        [Input("registryCredential")]
+        public Input<Inputs.RegistryCredentialArgs>? RegistryCredential { get; set; }
 
         public DockerDetailsArgs()
         {

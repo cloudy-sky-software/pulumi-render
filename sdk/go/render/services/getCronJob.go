@@ -22,8 +22,8 @@ func LookupCronJob(ctx *pulumi.Context, args *LookupCronJobArgs, opts ...pulumi.
 }
 
 type LookupCronJobArgs struct {
-	// (Required) The ID of the service
-	Id string `pulumi:"id"`
+	// The ID of the service
+	ServiceId string `pulumi:"serviceId"`
 }
 
 type LookupCronJobResult struct {
@@ -55,8 +55,8 @@ func LookupCronJobOutput(ctx *pulumi.Context, args LookupCronJobOutputArgs, opts
 }
 
 type LookupCronJobOutputArgs struct {
-	// (Required) The ID of the service
-	Id pulumi.StringInput `pulumi:"id"`
+	// The ID of the service
+	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }
 
 func (LookupCronJobOutputArgs) ElementType() reflect.Type {

@@ -17,13 +17,13 @@ export function listCustomDomains(args: ListCustomDomainsArgs, opts?: pulumi.Inv
 
 export interface ListCustomDomainsArgs {
     /**
-     * (Required) The ID of the service
+     * The ID of the service
      */
     serviceId: string;
 }
 
 export interface ListCustomDomainsResult {
-    readonly items: outputs.services.ListCustomDomainsResponse[];
+    readonly items: outputs.services.ListCustomDomainsItemProperties[];
 }
 export function listCustomDomainsOutput(args: ListCustomDomainsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListCustomDomainsResult> {
     return pulumi.output(args).apply((a: any) => listCustomDomains(a, opts))
@@ -31,7 +31,7 @@ export function listCustomDomainsOutput(args: ListCustomDomainsOutputArgs, opts?
 
 export interface ListCustomDomainsOutputArgs {
     /**
-     * (Required) The ID of the service
+     * The ID of the service
      */
     serviceId: pulumi.Input<string>;
 }

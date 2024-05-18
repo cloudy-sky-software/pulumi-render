@@ -11,15 +11,15 @@ export function getPrivateService(args: GetPrivateServiceArgs, opts?: pulumi.Inv
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:getPrivateService", {
-        "id": args.id,
+        "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface GetPrivateServiceArgs {
     /**
-     * (Required) The ID of the service
+     * The ID of the service
      */
-    id: string;
+    serviceId: string;
 }
 
 export interface GetPrivateServiceResult {
@@ -31,7 +31,7 @@ export function getPrivateServiceOutput(args: GetPrivateServiceOutputArgs, opts?
 
 export interface GetPrivateServiceOutputArgs {
     /**
-     * (Required) The ID of the service
+     * The ID of the service
      */
-    id: pulumi.Input<string>;
+    serviceId: pulumi.Input<string>;
 }

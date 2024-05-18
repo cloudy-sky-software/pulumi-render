@@ -13,20 +13,26 @@ namespace Pulumi.Render.Services.Outputs
     [OutputType]
     public sealed class Job
     {
-        public readonly string? CreatedAt;
+        public readonly string CreatedAt;
         public readonly string? FinishedAt;
+        public readonly string Id;
         public readonly string PlanId;
+        public readonly string ServiceId;
         public readonly string StartCommand;
         public readonly string? StartedAt;
         public readonly string? Status;
 
         [OutputConstructor]
         private Job(
-            string? createdAt,
+            string createdAt,
 
             string? finishedAt,
 
+            string id,
+
             string planId,
+
+            string serviceId,
 
             string startCommand,
 
@@ -36,7 +42,9 @@ namespace Pulumi.Render.Services.Outputs
         {
             CreatedAt = createdAt;
             FinishedAt = finishedAt;
+            Id = id;
             PlanId = planId;
+            ServiceId = serviceId;
             StartCommand = startCommand;
             StartedAt = startedAt;
             Status = status;

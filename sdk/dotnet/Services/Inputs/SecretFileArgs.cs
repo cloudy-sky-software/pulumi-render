@@ -12,8 +12,8 @@ namespace Pulumi.Render.Services.Inputs
 
     public sealed class SecretFileArgs : global::Pulumi.ResourceArgs
     {
-        [Input("contents", required: true)]
-        public Input<string> Contents { get; set; } = null!;
+        [Input("id", required: true)]
+        public Input<string> Id { get; set; } = null!;
 
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;

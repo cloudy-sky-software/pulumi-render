@@ -22,10 +22,12 @@ func LookupRegistryCredential(ctx *pulumi.Context, args *LookupRegistryCredentia
 }
 
 type LookupRegistryCredentialArgs struct {
+	// The ID of the registry credential
+	RegistryCredentialId string `pulumi:"registryCredentialId"`
 }
 
 type LookupRegistryCredentialResult struct {
-	Items GetRegistryCredentialProperties `pulumi:"items"`
+	Items RegistryCredentialType `pulumi:"items"`
 }
 
 func LookupRegistryCredentialOutput(ctx *pulumi.Context, args LookupRegistryCredentialOutputArgs, opts ...pulumi.InvokeOption) LookupRegistryCredentialResultOutput {
@@ -42,6 +44,8 @@ func LookupRegistryCredentialOutput(ctx *pulumi.Context, args LookupRegistryCred
 }
 
 type LookupRegistryCredentialOutputArgs struct {
+	// The ID of the registry credential
+	RegistryCredentialId pulumi.StringInput `pulumi:"registryCredentialId"`
 }
 
 func (LookupRegistryCredentialOutputArgs) ElementType() reflect.Type {
@@ -62,8 +66,8 @@ func (o LookupRegistryCredentialResultOutput) ToLookupRegistryCredentialResultOu
 	return o
 }
 
-func (o LookupRegistryCredentialResultOutput) Items() GetRegistryCredentialPropertiesOutput {
-	return o.ApplyT(func(v LookupRegistryCredentialResult) GetRegistryCredentialProperties { return v.Items }).(GetRegistryCredentialPropertiesOutput)
+func (o LookupRegistryCredentialResultOutput) Items() RegistryCredentialTypeOutput {
+	return o.ApplyT(func(v LookupRegistryCredentialResult) RegistryCredentialType { return v.Items }).(RegistryCredentialTypeOutput)
 }
 
 func init() {

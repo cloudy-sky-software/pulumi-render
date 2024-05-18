@@ -7,20 +7,31 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function getRegistryCredential(args?: GetRegistryCredentialArgs, opts?: pulumi.InvokeOptions): Promise<GetRegistryCredentialResult> {
-    args = args || {};
+export function getRegistryCredential(args: GetRegistryCredentialArgs, opts?: pulumi.InvokeOptions): Promise<GetRegistryCredentialResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:registrycredentials:getRegistryCredential", {
+        "registryCredentialId": args.registryCredentialId,
     }, opts);
 }
 
 export interface GetRegistryCredentialArgs {
+    /**
+     * The ID of the registry credential
+     */
+    registryCredentialId: string;
 }
 
 export interface GetRegistryCredentialResult {
-    readonly items: outputs.registrycredentials.GetRegistryCredentialProperties;
+    readonly items: outputs.registrycredentials.RegistryCredential;
 }
-export function getRegistryCredentialOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetRegistryCredentialResult> {
-    return pulumi.output(getRegistryCredential(opts))
+export function getRegistryCredentialOutput(args: GetRegistryCredentialOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRegistryCredentialResult> {
+    return pulumi.output(args).apply((a: any) => getRegistryCredential(a, opts))
+}
+
+export interface GetRegistryCredentialOutputArgs {
+    /**
+     * The ID of the registry credential
+     */
+    registryCredentialId: pulumi.Input<string>;
 }

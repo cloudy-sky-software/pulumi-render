@@ -19,7 +19,7 @@ export interface ListOwnersArgs {
 }
 
 export interface ListOwnersResult {
-    readonly items: outputs.owners.ListOwnersResponse[];
+    readonly items: outputs.owners.ListOwnersItemProperties[];
 }
 export function listOwnersOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListOwnersResult> {
     return pulumi.output(listOwners(opts))

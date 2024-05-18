@@ -11,18 +11,18 @@ export function getJob(args: GetJobArgs, opts?: pulumi.InvokeOptions): Promise<G
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:getJob", {
-        "id": args.id,
+        "jobId": args.jobId,
         "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface GetJobArgs {
     /**
-     * (Required) The ID of the job
+     * The ID of the job
      */
-    id: string;
+    jobId: string;
     /**
-     * (Required) The ID of the service
+     * The ID of the service
      */
     serviceId: string;
 }
@@ -36,11 +36,11 @@ export function getJobOutput(args: GetJobOutputArgs, opts?: pulumi.InvokeOptions
 
 export interface GetJobOutputArgs {
     /**
-     * (Required) The ID of the job
+     * The ID of the job
      */
-    id: pulumi.Input<string>;
+    jobId: pulumi.Input<string>;
     /**
-     * (Required) The ID of the service
+     * The ID of the service
      */
     serviceId: pulumi.Input<string>;
 }

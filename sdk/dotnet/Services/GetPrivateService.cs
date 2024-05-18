@@ -22,10 +22,10 @@ namespace Pulumi.Render.Services
     public sealed class GetPrivateServiceArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// (Required) The ID of the service
+        /// The ID of the service
         /// </summary>
-        [Input("id", required: true)]
-        public string Id { get; set; } = null!;
+        [Input("serviceId", required: true)]
+        public string ServiceId { get; set; } = null!;
 
         public GetPrivateServiceArgs()
         {
@@ -36,10 +36,10 @@ namespace Pulumi.Render.Services
     public sealed class GetPrivateServiceInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// (Required) The ID of the service
+        /// The ID of the service
         /// </summary>
-        [Input("id", required: true)]
-        public Input<string> Id { get; set; } = null!;
+        [Input("serviceId", required: true)]
+        public Input<string> ServiceId { get; set; } = null!;
 
         public GetPrivateServiceInvokeArgs()
         {

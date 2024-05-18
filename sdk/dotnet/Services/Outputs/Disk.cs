@@ -13,18 +13,22 @@ namespace Pulumi.Render.Services.Outputs
     [OutputType]
     public sealed class Disk
     {
+        public readonly string Id;
         public readonly string MountPath;
         public readonly string Name;
-        public readonly double? SizeGB;
+        public readonly int SizeGB;
 
         [OutputConstructor]
         private Disk(
+            string id,
+
             string mountPath,
 
             string name,
 
-            double? sizeGB)
+            int sizeGB)
         {
+            Id = id;
             MountPath = mountPath;
             Name = name;
             SizeGB = sizeGB;

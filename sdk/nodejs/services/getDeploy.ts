@@ -11,18 +11,18 @@ export function getDeploy(args: GetDeployArgs, opts?: pulumi.InvokeOptions): Pro
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:getDeploy", {
-        "id": args.id,
+        "deployId": args.deployId,
         "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface GetDeployArgs {
     /**
-     * (Required) The ID of the deploy
+     * The ID of the deploy
      */
-    id: string;
+    deployId: string;
     /**
-     * (Required) The ID of the service
+     * The ID of the service
      */
     serviceId: string;
 }
@@ -36,11 +36,11 @@ export function getDeployOutput(args: GetDeployOutputArgs, opts?: pulumi.InvokeO
 
 export interface GetDeployOutputArgs {
     /**
-     * (Required) The ID of the deploy
+     * The ID of the deploy
      */
-    id: pulumi.Input<string>;
+    deployId: pulumi.Input<string>;
     /**
-     * (Required) The ID of the service
+     * The ID of the service
      */
     serviceId: pulumi.Input<string>;
 }

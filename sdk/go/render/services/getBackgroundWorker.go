@@ -22,8 +22,8 @@ func LookupBackgroundWorker(ctx *pulumi.Context, args *LookupBackgroundWorkerArg
 }
 
 type LookupBackgroundWorkerArgs struct {
-	// (Required) The ID of the service
-	Id string `pulumi:"id"`
+	// The ID of the service
+	ServiceId string `pulumi:"serviceId"`
 }
 
 type LookupBackgroundWorkerResult struct {
@@ -55,8 +55,8 @@ func LookupBackgroundWorkerOutput(ctx *pulumi.Context, args LookupBackgroundWork
 }
 
 type LookupBackgroundWorkerOutputArgs struct {
-	// (Required) The ID of the service
-	Id pulumi.StringInput `pulumi:"id"`
+	// The ID of the service
+	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }
 
 func (LookupBackgroundWorkerOutputArgs) ElementType() reflect.Type {

@@ -10,66 +10,61 @@ using Pulumi.Serialization;
 namespace Pulumi.Render.Services
 {
     /// <summary>
-    /// A static website service
-    /// 
     /// ## Example Usage
     /// </summary>
     [RenderResourceType("render:services:StaticSite")]
     public partial class StaticSite : global::Pulumi.CustomResource
     {
-        /// <summary>
-        /// Whether to auto deploy the service or not upon git push.
-        /// </summary>
         [Output("autoDeploy")]
-        public Output<Pulumi.Render.Services.ServiceAutoDeploy?> AutoDeploy { get; private set; } = null!;
+        public Output<Pulumi.Render.Services.StaticSiteServiceAutoDeploy?> AutoDeploy { get; private set; } = null!;
 
-        /// <summary>
-        /// If left empty, this will fall back to the default branch of the repository.
-        /// </summary>
         [Output("branch")]
         public Output<string?> Branch { get; private set; } = null!;
+
+        [Output("buildFilter")]
+        public Output<Outputs.BuildFilter?> BuildFilter { get; private set; } = null!;
 
         [Output("createdAt")]
         public Output<string?> CreatedAt { get; private set; } = null!;
 
         [Output("envVars")]
-        public Output<ImmutableArray<Outputs.EnvVarKeyValue>> EnvVars { get; private set; } = null!;
+        public Output<ImmutableArray<Union<Outputs.EnvVarKeyValue, Outputs.EnvVarKeyGenerateValue>>> EnvVars { get; private set; } = null!;
+
+        [Output("image")]
+        public Output<Outputs.Image?> Image { get; private set; } = null!;
+
+        [Output("imagePath")]
+        public Output<string?> ImagePath { get; private set; } = null!;
 
         [Output("name")]
         public Output<string?> Name { get; private set; } = null!;
 
-        /// <summary>
-        /// The notification setting for this service upon deployment failure.
-        /// </summary>
         [Output("notifyOnFail")]
-        public Output<Pulumi.Render.Services.ServiceNotifyOnFail?> NotifyOnFail { get; private set; } = null!;
+        public Output<Pulumi.Render.Services.StaticSiteServiceNotifyOnFail?> NotifyOnFail { get; private set; } = null!;
 
-        /// <summary>
-        /// The id of the owner (user/team).
-        /// </summary>
         [Output("ownerId")]
         public Output<string?> OwnerId { get; private set; } = null!;
 
-        /// <summary>
-        /// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-        /// </summary>
         [Output("repo")]
         public Output<string?> Repo { get; private set; } = null!;
+
+        [Output("rootDir")]
+        public Output<string?> RootDir { get; private set; } = null!;
 
         [Output("secretFiles")]
         public Output<ImmutableArray<Outputs.SecretFile>> SecretFiles { get; private set; } = null!;
 
         [Output("serviceDetails")]
-        public Output<Outputs.StaticSiteServiceDetails?> ServiceDetails { get; private set; } = null!;
+        public Output<Outputs.StaticSiteDetailsOutput?> ServiceDetails { get; private set; } = null!;
 
         [Output("slug")]
         public Output<string?> Slug { get; private set; } = null!;
 
         [Output("suspended")]
-        public Output<Pulumi.Render.Services.ServiceSuspended?> Suspended { get; private set; } = null!;
+        public Output<Pulumi.Render.Services.StaticSiteServiceSuspended?> Suspended { get; private set; } = null!;
 
         [Output("suspenders")]
-        public Output<ImmutableArray<string>> Suspenders { get; private set; } = null!;
+        public Output<ImmutableArray<Pulumi.Render.Services.StaticSiteServiceSuspendersItem>> Suspenders { get; private set; } = null!;
 
         [Output("type")]
         public Output<string?> Type { get; private set; } = null!;
@@ -124,48 +119,45 @@ namespace Pulumi.Render.Services
     public sealed class StaticSiteArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Whether to auto deploy the service or not upon git push.
+        /// Defaults to "yes"
         /// </summary>
         [Input("autoDeploy")]
-        public Input<Pulumi.Render.Services.ServiceAutoDeploy>? AutoDeploy { get; set; }
+        public Input<Pulumi.Render.Services.StaticSiteServiceCreateAutoDeploy>? AutoDeploy { get; set; }
 
         /// <summary>
-        /// If left empty, this will fall back to the default branch of the repository.
+        /// If left empty, this will fall back to the default branch of the repository
         /// </summary>
         [Input("branch")]
         public Input<string>? Branch { get; set; }
 
-        [Input("createdAt")]
-        public Input<string>? CreatedAt { get; set; }
+        [Input("buildFilter")]
+        public Input<Inputs.BuildFilterArgs>? BuildFilter { get; set; }
 
         [Input("envVars")]
-        private InputList<Inputs.EnvVarKeyValueArgs>? _envVars;
-        public InputList<Inputs.EnvVarKeyValueArgs> EnvVars
+        private InputList<Union<Inputs.EnvVarKeyValueArgs, Inputs.EnvVarKeyGenerateValueArgs>>? _envVars;
+        public InputList<Union<Inputs.EnvVarKeyValueArgs, Inputs.EnvVarKeyGenerateValueArgs>> EnvVars
         {
-            get => _envVars ?? (_envVars = new InputList<Inputs.EnvVarKeyValueArgs>());
+            get => _envVars ?? (_envVars = new InputList<Union<Inputs.EnvVarKeyValueArgs, Inputs.EnvVarKeyGenerateValueArgs>>());
             set => _envVars = value;
         }
+
+        [Input("image")]
+        public Input<Inputs.ImageArgs>? Image { get; set; }
 
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
-        /// <summary>
-        /// The notification setting for this service upon deployment failure.
-        /// </summary>
-        [Input("notifyOnFail")]
-        public Input<Pulumi.Render.Services.ServiceNotifyOnFail>? NotifyOnFail { get; set; }
-
-        /// <summary>
-        /// The id of the owner (user/team).
-        /// </summary>
         [Input("ownerId", required: true)]
         public Input<string> OwnerId { get; set; } = null!;
 
         /// <summary>
         /// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
         /// </summary>
-        [Input("repo", required: true)]
-        public Input<string> Repo { get; set; } = null!;
+        [Input("repo")]
+        public Input<string>? Repo { get; set; }
+
+        [Input("rootDir")]
+        public Input<string>? RootDir { get; set; }
 
         [Input("secretFiles")]
         private InputList<Inputs.SecretFileArgs>? _secretFiles;
@@ -176,31 +168,14 @@ namespace Pulumi.Render.Services
         }
 
         [Input("serviceDetails")]
-        public Input<Inputs.StaticSiteServiceDetailsArgs>? ServiceDetails { get; set; }
-
-        [Input("slug")]
-        public Input<string>? Slug { get; set; }
-
-        [Input("suspended")]
-        public Input<Pulumi.Render.Services.ServiceSuspended>? Suspended { get; set; }
-
-        [Input("suspenders")]
-        private InputList<string>? _suspenders;
-        public InputList<string> Suspenders
-        {
-            get => _suspenders ?? (_suspenders = new InputList<string>());
-            set => _suspenders = value;
-        }
+        public Input<Inputs.StaticSiteDetailsCreateArgs>? ServiceDetails { get; set; }
 
         [Input("type")]
         public Input<string>? Type { get; set; }
 
-        [Input("updatedAt")]
-        public Input<string>? UpdatedAt { get; set; }
-
         public StaticSiteArgs()
         {
-            AutoDeploy = Pulumi.Render.Services.ServiceAutoDeploy.No;
+            AutoDeploy = Pulumi.Render.Services.StaticSiteServiceCreateAutoDeploy.Yes;
             Type = "static_site";
         }
         public static new StaticSiteArgs Empty => new StaticSiteArgs();

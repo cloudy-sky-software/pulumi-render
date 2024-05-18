@@ -11,15 +11,15 @@ export function getOwner(args: GetOwnerArgs, opts?: pulumi.InvokeOptions): Promi
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:owners:getOwner", {
-        "id": args.id,
+        "ownerId": args.ownerId,
     }, opts);
 }
 
 export interface GetOwnerArgs {
     /**
-     * (Required) The ID of the user or team
+     * The ID of the user or team
      */
-    id: string;
+    ownerId: string;
 }
 
 export interface GetOwnerResult {
@@ -31,7 +31,7 @@ export function getOwnerOutput(args: GetOwnerOutputArgs, opts?: pulumi.InvokeOpt
 
 export interface GetOwnerOutputArgs {
     /**
-     * (Required) The ID of the user or team
+     * The ID of the user or team
      */
-    id: pulumi.Input<string>;
+    ownerId: pulumi.Input<string>;
 }

@@ -11,15 +11,15 @@ export function getStaticSite(args: GetStaticSiteArgs, opts?: pulumi.InvokeOptio
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:getStaticSite", {
-        "id": args.id,
+        "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface GetStaticSiteArgs {
     /**
-     * (Required) The ID of the service
+     * The ID of the service
      */
-    id: string;
+    serviceId: string;
 }
 
 export interface GetStaticSiteResult {
@@ -31,7 +31,7 @@ export function getStaticSiteOutput(args: GetStaticSiteOutputArgs, opts?: pulumi
 
 export interface GetStaticSiteOutputArgs {
     /**
-     * (Required) The ID of the service
+     * The ID of the service
      */
-    id: pulumi.Input<string>;
+    serviceId: pulumi.Input<string>;
 }

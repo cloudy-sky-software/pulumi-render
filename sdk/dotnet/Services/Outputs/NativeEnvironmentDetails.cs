@@ -14,15 +14,19 @@ namespace Pulumi.Render.Services.Outputs
     public sealed class NativeEnvironmentDetails
     {
         public readonly string BuildCommand;
+        public readonly string? PreDeployCommand;
         public readonly string StartCommand;
 
         [OutputConstructor]
         private NativeEnvironmentDetails(
             string buildCommand,
 
+            string? preDeployCommand,
+
             string startCommand)
         {
             BuildCommand = buildCommand;
+            PreDeployCommand = preDeployCommand;
             StartCommand = startCommand;
         }
     }

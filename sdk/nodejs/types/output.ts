@@ -9,225 +9,223 @@ import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export namespace owners {
-    export interface ListOwnersResponse {
+    export interface ListOwnersItemProperties {
         cursor?: string;
-        /**
-         * The owner object represents an authorized user or team. The `type` property indicates if the owner is a user or team.
-         */
         owner?: outputs.owners.Owner;
     }
 
-    /**
-     * The owner object represents an authorized user or team. The `type` property indicates if the owner is a user or team.
-     */
     export interface Owner {
-        /**
-         * The email of the owner.
-         */
-        email?: string;
-        /**
-         * The owner ID.
-         */
-        id?: string;
-        /**
-         * The name of the owner.
-         */
-        name?: string;
-        /**
-         * The type of the authorized user.
-         */
-        type?: enums.owners.OwnerType;
+        email: string;
+        id: string;
+        name: string;
+        type: enums.owners.OwnerType;
     }
 
 }
 
 export namespace registrycredentials {
-    export interface GetRegistryCredentialProperties {
-        id?: string;
-        name?: string;
-        registry?: string;
-        username?: string;
-    }
-
-    export interface ListRegistryCredentialsItemProperties {
-        id?: string;
-        name?: string;
-        registry?: string;
-        username?: string;
+    export interface RegistryCredential {
+        /**
+         * Unique identifier for this credential
+         */
+        id: string;
+        /**
+         * Descriptive name for this credential
+         */
+        name: string;
+        /**
+         * The registry to use this credential with
+         */
+        registry: enums.registrycredentials.RegistryCredentialRegistry;
+        /**
+         * The username associated with the credential
+         */
+        username: string;
     }
 
 }
 
 export namespace services {
-    export interface AutoScalingCriteria {
-        cpu?: outputs.services.AutoScalingCriteriaSpec;
-        memory?: outputs.services.AutoScalingCriteriaSpec;
+    export interface AutoscalingConfig {
+        criteria: outputs.services.AutoscalingCriteria;
+        enabled: boolean;
+        /**
+         * The maximum number of instances for the service
+         */
+        max: number;
+        /**
+         * The minimum number of instances for the service
+         */
+        min: number;
+    }
+    /**
+     * autoscalingConfigProvideDefaults sets the appropriate defaults for AutoscalingConfig
+     */
+    export function autoscalingConfigProvideDefaults(val: AutoscalingConfig): AutoscalingConfig {
+        return {
+            ...val,
+            criteria: outputs.services.autoscalingCriteriaProvideDefaults(val.criteria),
+            enabled: (val.enabled) ?? false,
+        };
     }
 
-    export interface AutoScalingCriteriaSpec {
-        enabled?: boolean;
+    export interface AutoscalingCriteria {
+        cpu: outputs.services.AutoscalingCriteriaPercentage;
+        memory: outputs.services.AutoscalingCriteriaPercentage;
+    }
+    /**
+     * autoscalingCriteriaProvideDefaults sets the appropriate defaults for AutoscalingCriteria
+     */
+    export function autoscalingCriteriaProvideDefaults(val: AutoscalingCriteria): AutoscalingCriteria {
+        return {
+            ...val,
+            cpu: outputs.services.autoscalingCriteriaPercentageProvideDefaults(val.cpu),
+            memory: outputs.services.autoscalingCriteriaPercentageProvideDefaults(val.memory),
+        };
+    }
+
+    export interface AutoscalingCriteriaPercentage {
+        enabled: boolean;
         /**
          * Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
          */
-        percentage?: number;
-    }
-
-    /**
-     * A background worker service
-     */
-    export interface BackgroundWorker {
-        /**
-         * Whether to auto deploy the service or not upon git push.
-         */
-        autoDeploy?: enums.services.ServiceAutoDeploy;
-        /**
-         * If left empty, this will fall back to the default branch of the repository.
-         */
-        branch?: string;
-        createdAt?: string;
-        envVars?: outputs.services.EnvVarKeyValue[];
-        name: string;
-        /**
-         * The notification setting for this service upon deployment failure.
-         */
-        notifyOnFail?: enums.services.ServiceNotifyOnFail;
-        /**
-         * The id of the owner (user/team).
-         */
-        ownerId: string;
-        /**
-         * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-         */
-        repo: string;
-        secretFiles?: outputs.services.SecretFile[];
-        serviceDetails?: outputs.services.BackgroundWorkerServiceDetails;
-        slug?: string;
-        suspended?: enums.services.ServiceSuspended;
-        suspenders?: string[];
-        type?: string;
-        updatedAt?: string;
+        percentage: number;
     }
     /**
-     * backgroundWorkerProvideDefaults sets the appropriate defaults for BackgroundWorker
+     * autoscalingCriteriaPercentageProvideDefaults sets the appropriate defaults for AutoscalingCriteriaPercentage
      */
-    export function backgroundWorkerProvideDefaults(val: BackgroundWorker): BackgroundWorker {
+    export function autoscalingCriteriaPercentageProvideDefaults(val: AutoscalingCriteriaPercentage): AutoscalingCriteriaPercentage {
         return {
             ...val,
-            autoDeploy: (val.autoDeploy) ?? "no",
-            serviceDetails: (val.serviceDetails ? outputs.services.backgroundWorkerServiceDetailsProvideDefaults(val.serviceDetails) : undefined),
+            enabled: (val.enabled) ?? false,
+        };
+    }
+
+    export interface BackgroundWorkerDetailsOutput {
+        autoscaling?: outputs.services.AutoscalingConfig;
+        buildPlan: string;
+        disk?: outputs.services.Disk;
+        /**
+         * Environment (runtime)
+         */
+        env: enums.services.BackgroundWorkerDetailsOutputEnv;
+        envSpecificDetails: outputs.services.DockerDetails | outputs.services.NativeEnvironmentDetails;
+        /**
+         * For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
+         */
+        numInstances: number;
+        parentServer?: outputs.services.Resource;
+        /**
+         * The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+         */
+        plan: enums.services.BackgroundWorkerDetailsOutputPlan;
+        pullRequestPreviewsEnabled: enums.services.BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled;
+        region: enums.services.BackgroundWorkerDetailsOutputRegion;
+    }
+    /**
+     * backgroundWorkerDetailsOutputProvideDefaults sets the appropriate defaults for BackgroundWorkerDetailsOutput
+     */
+    export function backgroundWorkerDetailsOutputProvideDefaults(val: BackgroundWorkerDetailsOutput): BackgroundWorkerDetailsOutput {
+        return {
+            ...val,
+            autoscaling: (val.autoscaling ? outputs.services.autoscalingConfigProvideDefaults(val.autoscaling) : undefined),
+        };
+    }
+
+    export interface BackgroundWorkerOutput {
+        autoDeploy: enums.services.ServiceAutoDeploy;
+        branch?: string;
+        buildFilter?: outputs.services.BuildFilter;
+        createdAt: string;
+        id: string;
+        imagePath?: string;
+        name: string;
+        notifyOnFail: enums.services.ServiceNotifyOnFail;
+        ownerId: string;
+        repo?: string;
+        rootDir: string;
+        serviceDetails?: outputs.services.BackgroundWorkerDetailsOutput;
+        slug: string;
+        suspended: enums.services.ServiceSuspended;
+        suspenders: enums.services.ServiceSuspendersItem[];
+        type?: string;
+        updatedAt: string;
+    }
+    /**
+     * backgroundWorkerOutputProvideDefaults sets the appropriate defaults for BackgroundWorkerOutput
+     */
+    export function backgroundWorkerOutputProvideDefaults(val: BackgroundWorkerOutput): BackgroundWorkerOutput {
+        return {
+            ...val,
+            serviceDetails: (val.serviceDetails ? outputs.services.backgroundWorkerDetailsOutputProvideDefaults(val.serviceDetails) : undefined),
             type: (val.type) ?? "background_worker",
         };
     }
 
-    export interface BackgroundWorkerServiceDetails {
-        disk?: outputs.services.Disk;
-        env: enums.services.BackgroundWorkerServiceDetailsEnv;
-        envSpecificDetails?: outputs.services.DockerDetails | outputs.services.NativeEnvironmentDetails;
-        numInstances?: number;
-        parentServer?: outputs.services.BackgroundWorkerServiceDetailsParentServerProperties;
-        plan?: enums.services.BackgroundWorkerServiceDetailsPlan;
-        pullRequestPreviewsEnabled?: enums.services.BackgroundWorkerServiceDetailsPullRequestPreviewsEnabled;
-        region?: enums.services.BackgroundWorkerServiceDetailsRegion;
-        url?: string;
-    }
-    /**
-     * backgroundWorkerServiceDetailsProvideDefaults sets the appropriate defaults for BackgroundWorkerServiceDetails
-     */
-    export function backgroundWorkerServiceDetailsProvideDefaults(val: BackgroundWorkerServiceDetails): BackgroundWorkerServiceDetails {
-        return {
-            ...val,
-            disk: (val.disk ? outputs.services.diskProvideDefaults(val.disk) : undefined),
-            numInstances: (val.numInstances) ?? 1,
-            plan: (val.plan) ?? "starter",
-            pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
-            region: (val.region) ?? "oregon",
-        };
+    export interface BuildFilter {
+        ignoredPaths: string[];
+        paths: string[];
     }
 
-    export interface BackgroundWorkerServiceDetailsParentServerProperties {
-        id?: string;
-        name?: string;
-    }
-
-    export interface Commit {
+    export interface CommitProperties {
         createdAt?: string;
         id?: string;
         message?: string;
     }
 
-    /**
-     * A cron job
-     */
-    export interface CronJob {
+    export interface CronJobDetailsOutput {
+        buildPlan: string;
         /**
-         * Whether to auto deploy the service or not upon git push.
+         * Environment (runtime)
          */
-        autoDeploy?: enums.services.ServiceAutoDeploy;
+        env: enums.services.CronJobDetailsOutputEnv;
+        envSpecificDetails: outputs.services.DockerDetails | outputs.services.NativeEnvironmentDetails;
+        lastSuccessfulRunAt?: string;
         /**
-         * If left empty, this will fall back to the default branch of the repository.
+         * The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
          */
+        plan: enums.services.CronJobDetailsOutputPlan;
+        region: enums.services.CronJobDetailsOutputRegion;
+        schedule: string;
+    }
+
+    export interface CronJobOutput {
+        autoDeploy: enums.services.ServiceAutoDeploy;
         branch?: string;
-        createdAt?: string;
-        envVars?: outputs.services.EnvVarKeyValue[];
+        buildFilter?: outputs.services.BuildFilter;
+        createdAt: string;
+        id: string;
+        imagePath?: string;
         name: string;
-        /**
-         * The notification setting for this service upon deployment failure.
-         */
-        notifyOnFail?: enums.services.ServiceNotifyOnFail;
-        /**
-         * The id of the owner (user/team).
-         */
+        notifyOnFail: enums.services.ServiceNotifyOnFail;
         ownerId: string;
-        /**
-         * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-         */
-        repo: string;
-        secretFiles?: outputs.services.SecretFile[];
-        serviceDetails?: outputs.services.CronJobServiceDetails;
-        slug?: string;
-        suspended?: enums.services.ServiceSuspended;
-        suspenders?: string[];
+        repo?: string;
+        rootDir: string;
+        serviceDetails?: outputs.services.CronJobDetailsOutput;
+        slug: string;
+        suspended: enums.services.ServiceSuspended;
+        suspenders: enums.services.ServiceSuspendersItem[];
         type?: string;
-        updatedAt?: string;
+        updatedAt: string;
     }
     /**
-     * cronJobProvideDefaults sets the appropriate defaults for CronJob
+     * cronJobOutputProvideDefaults sets the appropriate defaults for CronJobOutput
      */
-    export function cronJobProvideDefaults(val: CronJob): CronJob {
+    export function cronJobOutputProvideDefaults(val: CronJobOutput): CronJobOutput {
         return {
             ...val,
-            autoDeploy: (val.autoDeploy) ?? "no",
-            serviceDetails: (val.serviceDetails ? outputs.services.cronJobServiceDetailsProvideDefaults(val.serviceDetails) : undefined),
             type: (val.type) ?? "cron_job",
         };
     }
 
-    export interface CronJobServiceDetails {
-        env: enums.services.CronJobServiceDetailsEnv;
-        envSpecificDetails?: outputs.services.DockerDetails | outputs.services.NativeEnvironmentDetails;
-        lastSuccessfulRunAt?: string;
-        plan?: enums.services.CronJobServiceDetailsPlan;
-        region?: enums.services.CronJobServiceDetailsRegion;
-        schedule: string;
-    }
-    /**
-     * cronJobServiceDetailsProvideDefaults sets the appropriate defaults for CronJobServiceDetails
-     */
-    export function cronJobServiceDetailsProvideDefaults(val: CronJobServiceDetails): CronJobServiceDetails {
-        return {
-            ...val,
-            plan: (val.plan) ?? "starter",
-            region: (val.region) ?? "oregon",
-        };
-    }
-
     export interface CustomDomain {
-        createdAt?: string;
+        createdAt: string;
         domainType: enums.services.CustomDomainDomainType;
+        id: string;
         name: string;
-        publicSuffix?: string;
+        publicSuffix: string;
         redirectForName: string;
-        server: outputs.services.CustomDomainServerProperties;
+        server?: outputs.services.CustomDomainServerProperties;
         verificationStatus: enums.services.CustomDomainVerificationStatus;
     }
 
@@ -237,80 +235,96 @@ export namespace services {
     }
 
     export interface Deploy {
-        clearCache?: enums.services.DeployClearCache;
-        commit?: outputs.services.Commit;
+        commit?: outputs.services.DeployCommitProperties;
+        createdAt?: string;
+        finishedAt?: string;
+        id: string;
+        /**
+         * Image information used when creating the deploy. Not present for Git-backed deploys
+         */
+        image?: outputs.services.DeployImageProperties;
+        status?: enums.services.DeployStatus;
+        trigger?: enums.services.DeployTrigger;
+        updatedAt?: string;
     }
+
+    export interface DeployCommitProperties {
+        createdAt?: string;
+        id?: string;
+        message?: string;
+    }
+
     /**
-     * deployProvideDefaults sets the appropriate defaults for Deploy
+     * Image information used when creating the deploy. Not present for Git-backed deploys
      */
-    export function deployProvideDefaults(val: Deploy): Deploy {
-        return {
-            ...val,
-            clearCache: (val.clearCache) ?? "do_not_clear",
-        };
+    export interface DeployImageProperties {
+        /**
+         * Image reference used when creating the deploy
+         */
+        ref?: string;
+        /**
+         * Name of credential used to pull the image, if provided
+         */
+        registryCredential?: string;
+        /**
+         * SHA that the image reference was resolved to when creating the deploy
+         */
+        sha?: string;
     }
 
     export interface Disk {
+        id: string;
         mountPath: string;
         name: string;
-        sizeGB?: number;
-    }
-    /**
-     * diskProvideDefaults sets the appropriate defaults for Disk
-     */
-    export function diskProvideDefaults(val: Disk): Disk {
-        return {
-            ...val,
-            sizeGB: (val.sizeGB) ?? 1,
-        };
+        sizeGB: number;
     }
 
     export interface DockerDetails {
         dockerCommand: string;
         dockerContext: string;
-        dockerfilePath?: string;
+        dockerfilePath: string;
+        preDeployCommand?: string;
+        registryCredential?: outputs.services.RegistryCredential;
+    }
+
+    export interface EnvVar {
+        key: string;
+        value: string;
+    }
+
+    export interface EnvVarKeyGenerateValue {
+        generateValue: boolean;
+        key: string;
     }
 
     export interface EnvVarKeyValue {
-        generateValue?: enums.services.EnvVarKeyValueGenerateValue;
         key: string;
-        value?: string;
+        value: string;
     }
 
-    /**
-     * A background worker service
-     */
+    export interface EnvVarWithCursor {
+        cursor: string;
+        envVar: outputs.services.EnvVar;
+    }
+
     export interface GetBackgroundWorker {
-        /**
-         * Whether to auto deploy the service or not upon git push.
-         */
-        autoDeploy?: enums.services.ServiceAutoDeploy;
-        /**
-         * If left empty, this will fall back to the default branch of the repository.
-         */
+        autoDeploy: enums.services.PreviewServiceServiceAutoDeploy;
         branch?: string;
-        createdAt?: string;
-        envVars?: outputs.services.EnvVarKeyValue[];
+        buildFilter?: outputs.services.BuildFilter;
+        createdAt: string;
+        id: string;
+        imagePath?: string;
         name: string;
-        /**
-         * The notification setting for this service upon deployment failure.
-         */
-        notifyOnFail?: enums.services.ServiceNotifyOnFail;
-        /**
-         * The id of the owner (user/team).
-         */
+        notifyOnFail: enums.services.PreviewServiceServiceNotifyOnFail;
         ownerId: string;
-        /**
-         * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-         */
-        repo: string;
-        secretFiles?: outputs.services.SecretFile[];
-        serviceDetails?: outputs.services.BackgroundWorkerServiceDetails;
-        slug?: string;
-        suspended?: enums.services.ServiceSuspended;
-        suspenders?: string[];
+        repo?: string;
+        rootDir: string;
+        serviceDetails?: outputs.services.BackgroundWorkerDetailsOutput;
+        slug: string;
+        suspended: enums.services.PreviewServiceServiceSuspended;
+        suspenders: enums.services.PreviewServiceServiceSuspendersItem[];
         type?: string;
-        updatedAt?: string;
+        updatedAt: string;
     }
     /**
      * getBackgroundWorkerProvideDefaults sets the appropriate defaults for GetBackgroundWorker
@@ -318,46 +332,29 @@ export namespace services {
     export function getBackgroundWorkerProvideDefaults(val: GetBackgroundWorker): GetBackgroundWorker {
         return {
             ...val,
-            autoDeploy: (val.autoDeploy) ?? "no",
-            serviceDetails: (val.serviceDetails ? outputs.services.backgroundWorkerServiceDetailsProvideDefaults(val.serviceDetails) : undefined),
+            serviceDetails: (val.serviceDetails ? outputs.services.backgroundWorkerDetailsOutputProvideDefaults(val.serviceDetails) : undefined),
             type: (val.type) ?? "background_worker",
         };
     }
 
-    /**
-     * A cron job
-     */
     export interface GetCronJob {
-        /**
-         * Whether to auto deploy the service or not upon git push.
-         */
-        autoDeploy?: enums.services.ServiceAutoDeploy;
-        /**
-         * If left empty, this will fall back to the default branch of the repository.
-         */
+        autoDeploy: enums.services.PreviewServiceServiceAutoDeploy;
         branch?: string;
-        createdAt?: string;
-        envVars?: outputs.services.EnvVarKeyValue[];
+        buildFilter?: outputs.services.BuildFilter;
+        createdAt: string;
+        id: string;
+        imagePath?: string;
         name: string;
-        /**
-         * The notification setting for this service upon deployment failure.
-         */
-        notifyOnFail?: enums.services.ServiceNotifyOnFail;
-        /**
-         * The id of the owner (user/team).
-         */
+        notifyOnFail: enums.services.PreviewServiceServiceNotifyOnFail;
         ownerId: string;
-        /**
-         * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-         */
-        repo: string;
-        secretFiles?: outputs.services.SecretFile[];
-        serviceDetails?: outputs.services.CronJobServiceDetails;
-        slug?: string;
-        suspended?: enums.services.ServiceSuspended;
-        suspenders?: string[];
+        repo?: string;
+        rootDir: string;
+        serviceDetails?: outputs.services.CronJobDetailsOutput;
+        slug: string;
+        suspended: enums.services.PreviewServiceServiceSuspended;
+        suspenders: enums.services.PreviewServiceServiceSuspendersItem[];
         type?: string;
-        updatedAt?: string;
+        updatedAt: string;
     }
     /**
      * getCronJobProvideDefaults sets the appropriate defaults for GetCronJob
@@ -365,46 +362,28 @@ export namespace services {
     export function getCronJobProvideDefaults(val: GetCronJob): GetCronJob {
         return {
             ...val,
-            autoDeploy: (val.autoDeploy) ?? "no",
-            serviceDetails: (val.serviceDetails ? outputs.services.cronJobServiceDetailsProvideDefaults(val.serviceDetails) : undefined),
             type: (val.type) ?? "cron_job",
         };
     }
 
-    /**
-     * A private service
-     */
     export interface GetPrivateService {
-        /**
-         * Whether to auto deploy the service or not upon git push.
-         */
-        autoDeploy?: enums.services.ServiceAutoDeploy;
-        /**
-         * If left empty, this will fall back to the default branch of the repository.
-         */
+        autoDeploy: enums.services.PreviewServiceServiceAutoDeploy;
         branch?: string;
-        createdAt?: string;
-        envVars?: outputs.services.EnvVarKeyValue[];
+        buildFilter?: outputs.services.BuildFilter;
+        createdAt: string;
+        id: string;
+        imagePath?: string;
         name: string;
-        /**
-         * The notification setting for this service upon deployment failure.
-         */
-        notifyOnFail?: enums.services.ServiceNotifyOnFail;
-        /**
-         * The id of the owner (user/team).
-         */
+        notifyOnFail: enums.services.PreviewServiceServiceNotifyOnFail;
         ownerId: string;
-        /**
-         * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-         */
-        repo: string;
-        secretFiles?: outputs.services.SecretFile[];
-        serviceDetails?: outputs.services.PrivateServiceDetails;
-        slug?: string;
-        suspended?: enums.services.ServiceSuspended;
-        suspenders?: string[];
+        repo?: string;
+        rootDir: string;
+        serviceDetails?: outputs.services.PrivateServiceDetailsOutput;
+        slug: string;
+        suspended: enums.services.PreviewServiceServiceSuspended;
+        suspenders: enums.services.PreviewServiceServiceSuspendersItem[];
         type?: string;
-        updatedAt?: string;
+        updatedAt: string;
     }
     /**
      * getPrivateServiceProvideDefaults sets the appropriate defaults for GetPrivateService
@@ -412,46 +391,29 @@ export namespace services {
     export function getPrivateServiceProvideDefaults(val: GetPrivateService): GetPrivateService {
         return {
             ...val,
-            autoDeploy: (val.autoDeploy) ?? "no",
-            serviceDetails: (val.serviceDetails ? outputs.services.privateServiceDetailsProvideDefaults(val.serviceDetails) : undefined),
+            serviceDetails: (val.serviceDetails ? outputs.services.privateServiceDetailsOutputProvideDefaults(val.serviceDetails) : undefined),
             type: (val.type) ?? "private_service",
         };
     }
 
-    /**
-     * A static website service
-     */
     export interface GetStaticSite {
-        /**
-         * Whether to auto deploy the service or not upon git push.
-         */
-        autoDeploy?: enums.services.ServiceAutoDeploy;
-        /**
-         * If left empty, this will fall back to the default branch of the repository.
-         */
+        autoDeploy: enums.services.PreviewServiceServiceAutoDeploy;
         branch?: string;
-        createdAt?: string;
-        envVars?: outputs.services.EnvVarKeyValue[];
+        buildFilter?: outputs.services.BuildFilter;
+        createdAt: string;
+        id: string;
+        imagePath?: string;
         name: string;
-        /**
-         * The notification setting for this service upon deployment failure.
-         */
-        notifyOnFail?: enums.services.ServiceNotifyOnFail;
-        /**
-         * The id of the owner (user/team).
-         */
+        notifyOnFail: enums.services.PreviewServiceServiceNotifyOnFail;
         ownerId: string;
-        /**
-         * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-         */
-        repo: string;
-        secretFiles?: outputs.services.SecretFile[];
-        serviceDetails?: outputs.services.StaticSiteServiceDetails;
-        slug?: string;
-        suspended?: enums.services.ServiceSuspended;
-        suspenders?: string[];
+        repo?: string;
+        rootDir: string;
+        serviceDetails?: outputs.services.StaticSiteDetailsOutput;
+        slug: string;
+        suspended: enums.services.PreviewServiceServiceSuspended;
+        suspenders: enums.services.PreviewServiceServiceSuspendersItem[];
         type?: string;
-        updatedAt?: string;
+        updatedAt: string;
     }
     /**
      * getStaticSiteProvideDefaults sets the appropriate defaults for GetStaticSite
@@ -459,46 +421,28 @@ export namespace services {
     export function getStaticSiteProvideDefaults(val: GetStaticSite): GetStaticSite {
         return {
             ...val,
-            autoDeploy: (val.autoDeploy) ?? "no",
-            serviceDetails: (val.serviceDetails ? outputs.services.staticSiteServiceDetailsProvideDefaults(val.serviceDetails) : undefined),
             type: (val.type) ?? "static_site",
         };
     }
 
-    /**
-     * A web service
-     */
     export interface GetWebService {
-        /**
-         * Whether to auto deploy the service or not upon git push.
-         */
-        autoDeploy?: enums.services.ServiceAutoDeploy;
-        /**
-         * If left empty, this will fall back to the default branch of the repository.
-         */
+        autoDeploy: enums.services.PreviewServiceServiceAutoDeploy;
         branch?: string;
-        createdAt?: string;
-        envVars?: outputs.services.EnvVarKeyValue[];
+        buildFilter?: outputs.services.BuildFilter;
+        createdAt: string;
+        id: string;
+        imagePath?: string;
         name: string;
-        /**
-         * The notification setting for this service upon deployment failure.
-         */
-        notifyOnFail?: enums.services.ServiceNotifyOnFail;
-        /**
-         * The id of the owner (user/team).
-         */
+        notifyOnFail: enums.services.PreviewServiceServiceNotifyOnFail;
         ownerId: string;
-        /**
-         * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-         */
-        repo: string;
-        secretFiles?: outputs.services.SecretFile[];
-        serviceDetails?: outputs.services.WebServiceServiceDetails;
-        slug?: string;
-        suspended?: enums.services.ServiceSuspended;
-        suspenders?: string[];
+        repo?: string;
+        rootDir: string;
+        serviceDetails?: outputs.services.WebServiceDetailsOutput;
+        slug: string;
+        suspended: enums.services.PreviewServiceServiceSuspended;
+        suspenders: enums.services.PreviewServiceServiceSuspendersItem[];
         type?: string;
-        updatedAt?: string;
+        updatedAt: string;
     }
     /**
      * getWebServiceProvideDefaults sets the appropriate defaults for GetWebService
@@ -506,339 +450,324 @@ export namespace services {
     export function getWebServiceProvideDefaults(val: GetWebService): GetWebService {
         return {
             ...val,
-            autoDeploy: (val.autoDeploy) ?? "no",
-            serviceDetails: (val.serviceDetails ? outputs.services.webServiceServiceDetailsProvideDefaults(val.serviceDetails) : undefined),
+            serviceDetails: (val.serviceDetails ? outputs.services.webServiceDetailsOutputProvideDefaults(val.serviceDetails) : undefined),
             type: (val.type) ?? "web_service",
         };
     }
 
-    export interface Job {
-        createdAt?: string;
-        finishedAt?: string;
-        planId: string;
-        startCommand: string;
-        startedAt?: string;
-        status?: string;
-    }
-
-    export interface ListCustomDomainsResponse {
-        cursor?: string;
-        customDomain?: outputs.services.CustomDomain;
-    }
-
-    export interface ListDeploysResponse {
-        cursor?: string;
-        customDomain?: outputs.services.Deploy;
-    }
-    /**
-     * listDeploysResponseProvideDefaults sets the appropriate defaults for ListDeploysResponse
-     */
-    export function listDeploysResponseProvideDefaults(val: ListDeploysResponse): ListDeploysResponse {
-        return {
-            ...val,
-            customDomain: (val.customDomain ? outputs.services.deployProvideDefaults(val.customDomain) : undefined),
-        };
-    }
-
-    export interface ListEnvVarsResponse {
-        cursor?: string;
-        envVar?: outputs.services.EnvVarKeyValue;
-    }
-
-    export interface ListJobsResponse {
-        cursor?: string;
-        job?: outputs.services.Job;
-    }
-
-    export interface ListServiceHeadersResponse {
-        cursor?: string;
-        /**
-         * A service header object
-         */
-        header?: outputs.services.ServiceHeader;
-    }
-
-    export interface ListServiceResponse {
-        cursor?: string;
-        service?: outputs.services.StaticSite | outputs.services.WebService | outputs.services.PrivateService | outputs.services.BackgroundWorker | outputs.services.CronJob;
-    }
-
-    export interface ListStaticSiteRoutesResponse {
-        cursor?: string;
-        /**
-         * A route object for a static site
-         */
-        route?: outputs.services.StaticSiteRoute;
-    }
-
-    export interface NativeEnvironmentDetails {
-        buildCommand: string;
-        startCommand: string;
-    }
-
-    export interface OpenPorts {
-        port?: number;
-        protocol?: enums.services.OpenPortsProtocol;
-    }
-
-    /**
-     * A private service
-     */
-    export interface PrivateService {
-        /**
-         * Whether to auto deploy the service or not upon git push.
-         */
-        autoDeploy?: enums.services.ServiceAutoDeploy;
-        /**
-         * If left empty, this will fall back to the default branch of the repository.
-         */
-        branch?: string;
-        createdAt?: string;
-        envVars?: outputs.services.EnvVarKeyValue[];
-        name: string;
-        /**
-         * The notification setting for this service upon deployment failure.
-         */
-        notifyOnFail?: enums.services.ServiceNotifyOnFail;
-        /**
-         * The id of the owner (user/team).
-         */
-        ownerId: string;
-        /**
-         * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-         */
-        repo: string;
-        secretFiles?: outputs.services.SecretFile[];
-        serviceDetails?: outputs.services.PrivateServiceDetails;
-        slug?: string;
-        suspended?: enums.services.ServiceSuspended;
-        suspenders?: string[];
-        type?: string;
-        updatedAt?: string;
-    }
-    /**
-     * privateServiceProvideDefaults sets the appropriate defaults for PrivateService
-     */
-    export function privateServiceProvideDefaults(val: PrivateService): PrivateService {
-        return {
-            ...val,
-            autoDeploy: (val.autoDeploy) ?? "no",
-            serviceDetails: (val.serviceDetails ? outputs.services.privateServiceDetailsProvideDefaults(val.serviceDetails) : undefined),
-            type: (val.type) ?? "private_service",
-        };
-    }
-
-    export interface PrivateServiceDetails {
-        disk?: outputs.services.Disk;
-        env: enums.services.PrivateServiceDetailsEnv;
-        envSpecificDetails?: outputs.services.DockerDetails | outputs.services.NativeEnvironmentDetails;
-        numInstances?: number;
-        openPorts?: outputs.services.OpenPorts[];
-        parentServer?: outputs.services.PrivateServiceDetailsParentServerProperties;
-        plan?: enums.services.PrivateServiceDetailsPlan;
-        pullRequestPreviewsEnabled?: enums.services.PrivateServiceDetailsPullRequestPreviewsEnabled;
-        region?: enums.services.PrivateServiceDetailsRegion;
-        url?: string;
-    }
-    /**
-     * privateServiceDetailsProvideDefaults sets the appropriate defaults for PrivateServiceDetails
-     */
-    export function privateServiceDetailsProvideDefaults(val: PrivateServiceDetails): PrivateServiceDetails {
-        return {
-            ...val,
-            disk: (val.disk ? outputs.services.diskProvideDefaults(val.disk) : undefined),
-            numInstances: (val.numInstances) ?? 1,
-            plan: (val.plan) ?? "starter",
-            pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
-            region: (val.region) ?? "oregon",
-        };
-    }
-
-    export interface PrivateServiceDetailsParentServerProperties {
-        id?: string;
-        name?: string;
-    }
-
-    export interface SecretFile {
-        contents: string;
-        name: string;
-    }
-
-    export interface ServerProperties {
-        id?: string;
-        name?: string;
-    }
-
-    /**
-     * A service header object
-     */
-    export interface ServiceHeader {
+    export interface Header {
+        id: string;
         name: string;
         path: string;
         value: string;
     }
 
-    /**
-     * A static website service
-     */
-    export interface StaticSite {
+    export interface Image {
         /**
-         * Whether to auto deploy the service or not upon git push.
+         * Path to the image used for this server (e.g docker.io/library/nginx:latest).
          */
-        autoDeploy?: enums.services.ServiceAutoDeploy;
+        imagePath: string;
         /**
-         * If left empty, this will fall back to the default branch of the repository.
-         */
-        branch?: string;
-        createdAt?: string;
-        envVars?: outputs.services.EnvVarKeyValue[];
-        name: string;
-        /**
-         * The notification setting for this service upon deployment failure.
-         */
-        notifyOnFail?: enums.services.ServiceNotifyOnFail;
-        /**
-         * The id of the owner (user/team).
+         * The ID of the owner for this image. This should match the owner of the service as well as the owner of any specified registry credential.
          */
         ownerId: string;
         /**
-         * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
+         * Optional reference to the registry credential passed to the image repository to retrieve this image.
          */
-        repo: string;
-        secretFiles?: outputs.services.SecretFile[];
-        serviceDetails?: outputs.services.StaticSiteServiceDetails;
-        slug?: string;
-        suspended?: enums.services.ServiceSuspended;
-        suspenders?: string[];
-        type?: string;
-        updatedAt?: string;
-    }
-    /**
-     * staticSiteProvideDefaults sets the appropriate defaults for StaticSite
-     */
-    export function staticSiteProvideDefaults(val: StaticSite): StaticSite {
-        return {
-            ...val,
-            autoDeploy: (val.autoDeploy) ?? "no",
-            serviceDetails: (val.serviceDetails ? outputs.services.staticSiteServiceDetailsProvideDefaults(val.serviceDetails) : undefined),
-            type: (val.type) ?? "static_site",
-        };
+        registryCredentialId?: string;
     }
 
     /**
-     * A route object for a static site
+     * Image information used when creating the deploy. Not present for Git-backed deploys
      */
-    export interface StaticSiteRoute {
+    export interface ImageProperties {
+        /**
+         * Image reference used when creating the deploy
+         */
+        ref?: string;
+        /**
+         * Name of credential used to pull the image, if provided
+         */
+        registryCredential?: string;
+        /**
+         * SHA that the image reference was resolved to when creating the deploy
+         */
+        sha?: string;
+    }
+
+    export interface Job {
+        createdAt: string;
+        finishedAt?: string;
+        id: string;
+        planId: string;
+        serviceId: string;
+        startCommand: string;
+        startedAt?: string;
+        status?: string;
+    }
+
+    export interface ListCustomDomainsItemProperties {
+        cursor?: string;
+        customDomain?: outputs.services.CustomDomain;
+    }
+
+    export interface ListDeploysItemProperties {
+        cursor?: string;
+        deploy?: outputs.services.Deploy;
+    }
+
+    export interface ListJobItemProperties {
+        cursor?: string;
+        job?: outputs.services.Job;
+    }
+
+    export interface ListRetrieveHeadersItemProperties {
+        cursor?: string;
+        headers?: outputs.services.Header;
+    }
+
+    export interface ListRetrieveRoutesItemProperties {
+        cursor?: string;
+        routes?: outputs.services.Route;
+    }
+
+    export interface ListServicesResponse {
+        cursor?: string;
+        service?: outputs.services.BackgroundWorkerOutput | outputs.services.CronJobOutput | outputs.services.PrivateServiceOutput | outputs.services.StaticSiteOutput | outputs.services.WebServiceOutput;
+    }
+
+    export interface NativeEnvironmentDetails {
+        buildCommand: string;
+        preDeployCommand?: string;
+        startCommand: string;
+    }
+
+    export interface PrivateServiceDetailsOutput {
+        autoscaling?: outputs.services.AutoscalingConfig;
+        buildPlan: string;
+        disk?: outputs.services.Disk;
+        /**
+         * Environment (runtime)
+         */
+        env: enums.services.PrivateServiceDetailsOutputEnv;
+        envSpecificDetails: outputs.services.DockerDetails | outputs.services.NativeEnvironmentDetails;
+        /**
+         * For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
+         */
+        numInstances: number;
+        openPorts: outputs.services.ServerPort[];
+        parentServer?: outputs.services.Resource;
+        /**
+         * The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+         */
+        plan: enums.services.PrivateServiceDetailsOutputPlan;
+        pullRequestPreviewsEnabled: enums.services.PrivateServiceDetailsOutputPullRequestPreviewsEnabled;
+        region: enums.services.PrivateServiceDetailsOutputRegion;
+        url: string;
+    }
+    /**
+     * privateServiceDetailsOutputProvideDefaults sets the appropriate defaults for PrivateServiceDetailsOutput
+     */
+    export function privateServiceDetailsOutputProvideDefaults(val: PrivateServiceDetailsOutput): PrivateServiceDetailsOutput {
+        return {
+            ...val,
+            autoscaling: (val.autoscaling ? outputs.services.autoscalingConfigProvideDefaults(val.autoscaling) : undefined),
+        };
+    }
+
+    export interface PrivateServiceOutput {
+        autoDeploy: enums.services.ServiceAutoDeploy;
+        branch?: string;
+        buildFilter?: outputs.services.BuildFilter;
+        createdAt: string;
+        id: string;
+        imagePath?: string;
+        name: string;
+        notifyOnFail: enums.services.ServiceNotifyOnFail;
+        ownerId: string;
+        repo?: string;
+        rootDir: string;
+        serviceDetails?: outputs.services.PrivateServiceDetailsOutput;
+        slug: string;
+        suspended: enums.services.ServiceSuspended;
+        suspenders: enums.services.ServiceSuspendersItem[];
+        type?: string;
+        updatedAt: string;
+    }
+    /**
+     * privateServiceOutputProvideDefaults sets the appropriate defaults for PrivateServiceOutput
+     */
+    export function privateServiceOutputProvideDefaults(val: PrivateServiceOutput): PrivateServiceOutput {
+        return {
+            ...val,
+            serviceDetails: (val.serviceDetails ? outputs.services.privateServiceDetailsOutputProvideDefaults(val.serviceDetails) : undefined),
+            type: (val.type) ?? "private_service",
+        };
+    }
+
+    export interface RegistryCredential {
+        /**
+         * Unique identifier for this credential
+         */
+        id: string;
+        /**
+         * Descriptive name for this credential
+         */
+        name: string;
+        /**
+         * The registry to use this credential with
+         */
+        registry: enums.services.RegistryCredentialRegistry;
+        /**
+         * The username associated with the credential
+         */
+        username: string;
+    }
+
+    export interface Resource {
+        id: string;
+        name: string;
+    }
+
+    export interface Route {
         destination: string;
+        id: string;
+        /**
+         * Redirect and Rewrite Rules are applied in priority order starting at 0
+         */
+        priority: number;
         source: string;
         type: enums.services.StaticSiteRouteType;
     }
 
-    export interface StaticSiteServiceDetails {
-        buildCommand?: string;
-        headers?: outputs.services.ServiceHeader[];
-        parentServer?: outputs.services.StaticSiteServiceDetailsParentServerProperties;
-        publishPath?: string;
-        pullRequestPreviewsEnabled?: enums.services.StaticSiteServiceDetailsPullRequestPreviewsEnabled;
-        routes?: outputs.services.StaticSiteRoute[];
-        /**
-         * The HTTPS service URL. A subdomain of onrender.com, by default.
-         */
-        url?: string;
+    export interface SecretFile {
+        id: string;
+        name: string;
+    }
+
+    export interface ServerPort {
+        port: number;
+        protocol: enums.services.ServerPortProtocol;
+    }
+
+    export interface Service {
+        autoDeploy: enums.services.PreviewServiceServiceAutoDeploy;
+        branch?: string;
+        buildFilter?: outputs.services.BuildFilter;
+        createdAt: string;
+        id: string;
+        imagePath?: string;
+        name: string;
+        notifyOnFail: enums.services.PreviewServiceServiceNotifyOnFail;
+        ownerId: string;
+        repo?: string;
+        rootDir: string;
+        slug: string;
+        suspended: enums.services.PreviewServiceServiceSuspended;
+        suspenders: enums.services.PreviewServiceServiceSuspendersItem[];
+        updatedAt: string;
+    }
+
+    export interface StaticSiteDetailsOutput {
+        buildCommand: string;
+        buildPlan: string;
+        parentServer?: outputs.services.Resource;
+        publishPath: string;
+        pullRequestPreviewsEnabled: enums.services.StaticSiteDetailsOutputPullRequestPreviewsEnabled;
+        url: string;
+    }
+
+    export interface StaticSiteOutput {
+        autoDeploy: enums.services.ServiceAutoDeploy;
+        branch?: string;
+        buildFilter?: outputs.services.BuildFilter;
+        createdAt: string;
+        id: string;
+        imagePath?: string;
+        name: string;
+        notifyOnFail: enums.services.ServiceNotifyOnFail;
+        ownerId: string;
+        repo?: string;
+        rootDir: string;
+        serviceDetails?: outputs.services.StaticSiteDetailsOutput;
+        slug: string;
+        suspended: enums.services.ServiceSuspended;
+        suspenders: enums.services.ServiceSuspendersItem[];
+        type?: string;
+        updatedAt: string;
     }
     /**
-     * staticSiteServiceDetailsProvideDefaults sets the appropriate defaults for StaticSiteServiceDetails
+     * staticSiteOutputProvideDefaults sets the appropriate defaults for StaticSiteOutput
      */
-    export function staticSiteServiceDetailsProvideDefaults(val: StaticSiteServiceDetails): StaticSiteServiceDetails {
+    export function staticSiteOutputProvideDefaults(val: StaticSiteOutput): StaticSiteOutput {
         return {
             ...val,
-            publishPath: (val.publishPath) ?? "public",
-            pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
+            type: (val.type) ?? "static_site",
         };
     }
 
-    export interface StaticSiteServiceDetailsParentServerProperties {
-        id?: string;
-        name?: string;
-    }
-
-    /**
-     * A web service
-     */
-    export interface WebService {
+    export interface WebServiceDetailsOutput {
+        autoscaling?: outputs.services.AutoscalingConfig;
+        buildPlan: string;
+        disk?: outputs.services.Disk;
         /**
-         * Whether to auto deploy the service or not upon git push.
+         * Environment (runtime)
          */
-        autoDeploy?: enums.services.ServiceAutoDeploy;
+        env: enums.services.WebServiceDetailsOutputEnv;
+        envSpecificDetails: outputs.services.DockerDetails | outputs.services.NativeEnvironmentDetails;
+        healthCheckPath: string;
         /**
-         * If left empty, this will fall back to the default branch of the repository.
+         * For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
          */
-        branch?: string;
-        createdAt?: string;
-        envVars?: outputs.services.EnvVarKeyValue[];
-        name: string;
+        numInstances: number;
+        openPorts: outputs.services.ServerPort[];
+        parentServer?: outputs.services.Resource;
         /**
-         * The notification setting for this service upon deployment failure.
+         * The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
          */
-        notifyOnFail?: enums.services.ServiceNotifyOnFail;
-        /**
-         * The id of the owner (user/team).
-         */
-        ownerId: string;
-        /**
-         * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
-         */
-        repo: string;
-        secretFiles?: outputs.services.SecretFile[];
-        serviceDetails?: outputs.services.WebServiceServiceDetails;
-        slug?: string;
-        suspended?: enums.services.ServiceSuspended;
-        suspenders?: string[];
-        type?: string;
-        updatedAt?: string;
+        plan: enums.services.WebServiceDetailsOutputPlan;
+        pullRequestPreviewsEnabled: enums.services.WebServiceDetailsOutputPullRequestPreviewsEnabled;
+        region: enums.services.WebServiceDetailsOutputRegion;
+        url: string;
     }
     /**
-     * webServiceProvideDefaults sets the appropriate defaults for WebService
+     * webServiceDetailsOutputProvideDefaults sets the appropriate defaults for WebServiceDetailsOutput
      */
-    export function webServiceProvideDefaults(val: WebService): WebService {
+    export function webServiceDetailsOutputProvideDefaults(val: WebServiceDetailsOutput): WebServiceDetailsOutput {
         return {
             ...val,
-            autoDeploy: (val.autoDeploy) ?? "no",
-            serviceDetails: (val.serviceDetails ? outputs.services.webServiceServiceDetailsProvideDefaults(val.serviceDetails) : undefined),
+            autoscaling: (val.autoscaling ? outputs.services.autoscalingConfigProvideDefaults(val.autoscaling) : undefined),
+        };
+    }
+
+    export interface WebServiceOutput {
+        autoDeploy: enums.services.ServiceAutoDeploy;
+        branch?: string;
+        buildFilter?: outputs.services.BuildFilter;
+        createdAt: string;
+        id: string;
+        imagePath?: string;
+        name: string;
+        notifyOnFail: enums.services.ServiceNotifyOnFail;
+        ownerId: string;
+        repo?: string;
+        rootDir: string;
+        serviceDetails?: outputs.services.WebServiceDetailsOutput;
+        slug: string;
+        suspended: enums.services.ServiceSuspended;
+        suspenders: enums.services.ServiceSuspendersItem[];
+        type?: string;
+        updatedAt: string;
+    }
+    /**
+     * webServiceOutputProvideDefaults sets the appropriate defaults for WebServiceOutput
+     */
+    export function webServiceOutputProvideDefaults(val: WebServiceOutput): WebServiceOutput {
+        return {
+            ...val,
+            serviceDetails: (val.serviceDetails ? outputs.services.webServiceDetailsOutputProvideDefaults(val.serviceDetails) : undefined),
             type: (val.type) ?? "web_service",
         };
-    }
-
-    export interface WebServiceServiceDetails {
-        disk?: outputs.services.Disk;
-        env: enums.services.WebServiceServiceDetailsEnv;
-        envSpecificDetails?: outputs.services.DockerDetails | outputs.services.NativeEnvironmentDetails;
-        healthCheckPath?: string;
-        numInstances?: number;
-        openPorts?: outputs.services.OpenPorts[];
-        parentServer?: outputs.services.WebServiceServiceDetailsParentServerProperties;
-        plan?: enums.services.WebServiceServiceDetailsPlan;
-        pullRequestPreviewsEnabled?: enums.services.WebServiceServiceDetailsPullRequestPreviewsEnabled;
-        region?: enums.services.WebServiceServiceDetailsRegion;
-        url?: string;
-    }
-    /**
-     * webServiceServiceDetailsProvideDefaults sets the appropriate defaults for WebServiceServiceDetails
-     */
-    export function webServiceServiceDetailsProvideDefaults(val: WebServiceServiceDetails): WebServiceServiceDetails {
-        return {
-            ...val,
-            disk: (val.disk ? outputs.services.diskProvideDefaults(val.disk) : undefined),
-            numInstances: (val.numInstances) ?? 1,
-            plan: (val.plan) ?? "starter",
-            pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
-            region: (val.region) ?? "oregon",
-        };
-    }
-
-    export interface WebServiceServiceDetailsParentServerProperties {
-        id?: string;
-        name?: string;
     }
 
 }

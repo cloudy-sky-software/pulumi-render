@@ -15,13 +15,16 @@ import (
 	"github.com/pkg/errors"
 )
 
-const jsonMimeType = "application/json"
-const schemasRefPrefix = "#/components/schemas/"
+const (
+	jsonMimeType     = "application/json"
+	schemasRefPrefix = "#/components/schemas/"
+)
 
-var services = map[string]string{"static_site": "staticSite", "web_service": "webService", "private_service": "privateService", "background_worker": "backgroundWorker", "cron_job": "cronJob"}
-
-// Ensure determinism in the order in which the services are processed.
-var sortedDiscriminatorValues = []string{"background_worker", "cron_job", "private_service", "static_site", "web_service"}
+var (
+	services = map[string]string{"static_site": "staticSite", "web_service": "webService", "private_service": "privateService", "background_worker": "backgroundWorker", "cron_job": "cronJob"}
+	// Ensure determinism in the order in which the services are processed.
+	sortedDiscriminatorValues = []string{"background_worker", "cron_job", "private_service", "static_site", "web_service"}
+)
 
 func getResourceFromPath(path string) (string, error) {
 	u, err := url.Parse(path)

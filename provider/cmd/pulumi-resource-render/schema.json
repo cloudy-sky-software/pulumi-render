@@ -5186,7 +5186,7 @@
                 ]
             }
         },
-        "render:registrycredentials:getRegistrycredential": {
+        "render:registrycredentials:getRegistryCredential": {
             "inputs": {
                 "properties": {
                     "registryCredentialId": {

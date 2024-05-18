@@ -3209,7 +3209,7 @@ paths:
                 - Registry Credentials
             summary: Retrieve registry credentials
             description: Retrieve registry credentials
-            operationId: getRegistrycredentials
+            operationId: getRegistryCredentials
             responses:
                 "200":
                     description: OK

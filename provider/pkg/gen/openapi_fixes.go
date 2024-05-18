@@ -23,7 +23,8 @@ const (
 var (
 	services = map[string]string{"static_site": "staticSite", "web_service": "webService", "private_service": "privateService", "background_worker": "backgroundWorker", "cron_job": "cronJob"}
 	// Ensure determinism in the order in which the services are processed.
-	sortedDiscriminatorValues = []string{"background_worker", "cron_job", "private_service", "static_site", "web_service"}
+	sortedDiscriminatorValues    = []string{"background_worker", "cron_job", "private_service", "static_site", "web_service"}
+	closedCompoundWordsOverrides = map[string]string{"registrycredentials": "RegistryCredentials"}
 )
 
 func getResourceFromPath(path string) (string, error) {
@@ -46,6 +47,9 @@ func getResourceFromPath(path string) (string, error) {
 	}
 
 	resourceName = pathParts[segmentIndex]
+	if override, ok := closedCompoundWordsOverrides[resourceName]; ok {
+		return override, nil
+	}
 	return pulschema_pkg.ToPascalCase(resourceName), nil
 }
 

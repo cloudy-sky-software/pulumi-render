@@ -309,13 +309,9 @@ func FixOpenAPIDoc(openAPIDoc *openapi3.T) error {
 		return err
 	}
 
-	// copyReadOnlyServiceProperties(openAPIDoc)
-
 	if err := fixServiceSchemas(openAPIDoc); err != nil {
 		return err
 	}
-
-	// fixGetServiceEndpoint(openAPIDoc)
 
 	fixListServicesEndpoint(openAPIDoc)
 

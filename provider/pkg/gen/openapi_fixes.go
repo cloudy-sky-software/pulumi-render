@@ -16,6 +16,7 @@ import (
 )
 
 const jsonMimeType = "application/json"
+const schemasRefPrefix = "#/components/schemas/"
 
 var services = map[string]string{"static_site": "staticSite", "web_service": "webService", "private_service": "privateService", "background_worker": "backgroundWorker", "cron_job": "cronJob"}
 
@@ -133,7 +134,7 @@ func addDefaultProperty(typ *openapi3.SchemaRef, propName string, defaultValue s
 }
 
 func addPropertyWithRef(typ *openapi3.SchemaRef, propName, ref string) {
-	propSchema := openapi3.NewSchemaRef("#/components/schemas/"+ref, openapi3.NewSchema())
+	propSchema := openapi3.NewSchemaRef(schemasRefPrefix+ref, openapi3.NewSchema())
 
 	typ.Value.Properties[propName] = propSchema
 }
@@ -142,7 +143,7 @@ func getServiceDiscriminator(suffix string) (*openapi3.Discriminator, openapi3.S
 	refs := make(openapi3.SchemaRefs, 0, len(sortedDiscriminatorValues))
 	mapping := make(map[string]string)
 	for _, discriminatorValue := range sortedDiscriminatorValues {
-		ref := "#/components/schemas/" + services[discriminatorValue] + suffix
+		ref := schemasRefPrefix + services[discriminatorValue] + suffix
 		mapping[discriminatorValue] = ref
 		refs = append(refs, openapi3.NewSchemaRef(ref, openapi3.NewSchema()))
 	}
@@ -264,11 +265,11 @@ func fixServiceSchemas(openAPIDoc *openapi3.T) error {
 				}
 				addDefaultProperty(inlineSchema, "type", discriminatorValue)
 
-				serviceSchema.AllOf = append(serviceSchema.AllOf, openapi3.NewSchemaRef("#/components/schemas/"+baseServiceSchemaName, baseServiceSchema.Value), inlineSchema)
+				serviceSchema.AllOf = append(serviceSchema.AllOf, openapi3.NewSchemaRef(schemasRefPrefix+baseServiceSchemaName, baseServiceSchema.Value), inlineSchema)
 
 				openAPIDoc.Components.Schemas[service+newServiceSchemaSuffix] = openapi3.NewSchemaRef("", serviceSchema)
 
-				operationSchemas = append(operationSchemas, openapi3.NewSchemaRef("#/components/schemas/"+service+newServiceSchemaSuffix, nil))
+				operationSchemas = append(operationSchemas, openapi3.NewSchemaRef(schemasRefPrefix+service+newServiceSchemaSuffix, nil))
 			}
 
 			changeOperationSchemas(openAPIDoc, path, operation, newServiceSchemaSuffix, operationSchemas)
@@ -296,8 +297,8 @@ func fixListServicesEndpoint(openAPIDoc *openapi3.T) {
 
 	openAPIDoc.Components.Schemas["listServices"] = listServicesSchemaRef
 	openAPIDoc.Components.Schemas["listServicesResponse"] = itemsSchema
-	openAPIDoc.Components.Schemas["listServices"].Value.Items = openapi3.NewSchemaRef("#/components/schemas/listServicesResponse", itemsSchema.Value)
-	pathItem.Get.Responses.Status(200).Value.WithJSONSchemaRef(openapi3.NewSchemaRef("#/components/schemas/listServices", listServicesSchemaRef.Value))
+	openAPIDoc.Components.Schemas["listServices"].Value.Items = openapi3.NewSchemaRef(schemasRefPrefix+"listServicesResponse", itemsSchema.Value)
+	pathItem.Get.Responses.Status(200).Value.WithJSONSchemaRef(openapi3.NewSchemaRef(schemasRefPrefix+"listServices", listServicesSchemaRef.Value))
 }
 
 func FixOpenAPIDoc(openAPIDoc *openapi3.T) error {

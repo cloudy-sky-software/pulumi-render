@@ -5,10 +5,10 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export { GetRegistrycredentialArgs, GetRegistrycredentialResult, GetRegistrycredentialOutputArgs } from "./getRegistrycredential";
-export const getRegistrycredential: typeof import("./getRegistrycredential").getRegistrycredential = null as any;
-export const getRegistrycredentialOutput: typeof import("./getRegistrycredential").getRegistrycredentialOutput = null as any;
-utilities.lazyLoad(exports, ["getRegistrycredential","getRegistrycredentialOutput"], () => require("./getRegistrycredential"));
+export { GetRegistryCredentialArgs, GetRegistryCredentialResult, GetRegistryCredentialOutputArgs } from "./getRegistryCredential";
+export const getRegistryCredential: typeof import("./getRegistryCredential").getRegistryCredential = null as any;
+export const getRegistryCredentialOutput: typeof import("./getRegistryCredential").getRegistryCredentialOutput = null as any;
+utilities.lazyLoad(exports, ["getRegistryCredential","getRegistryCredentialOutput"], () => require("./getRegistryCredential"));
 
 export { ListRegistryCredentialsArgs, ListRegistryCredentialsResult } from "./listRegistryCredentials";
 export const listRegistryCredentials: typeof import("./listRegistryCredentials").listRegistryCredentials = null as any;

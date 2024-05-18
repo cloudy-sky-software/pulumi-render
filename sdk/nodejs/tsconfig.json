@@ -20,7 +20,7 @@
         "owners/index.ts",
         "owners/listOwners.ts",
         "provider.ts",
-        "registrycredentials/getRegistrycredential.ts",
+        "registrycredentials/getRegistryCredential.ts",
         "registrycredentials/index.ts",
         "registrycredentials/listRegistryCredentials.ts",
         "registrycredentials/registryCredential.ts",

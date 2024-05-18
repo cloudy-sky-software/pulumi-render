@@ -9,17 +9,17 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Render.RegistryCredentials
 {
-    public static class GetRegistrycredential
+    public static class GetRegistryCredential
     {
-        public static Task<GetRegistrycredentialResult> InvokeAsync(GetRegistrycredentialArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetRegistrycredentialResult>("render:registrycredentials:getRegistrycredential", args ?? new GetRegistrycredentialArgs(), options.WithDefaults());
+        public static Task<GetRegistryCredentialResult> InvokeAsync(GetRegistryCredentialArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetRegistryCredentialResult>("render:registrycredentials:getRegistryCredential", args ?? new GetRegistryCredentialArgs(), options.WithDefaults());
 
-        public static Output<GetRegistrycredentialResult> Invoke(GetRegistrycredentialInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetRegistrycredentialResult>("render:registrycredentials:getRegistrycredential", args ?? new GetRegistrycredentialInvokeArgs(), options.WithDefaults());
+        public static Output<GetRegistryCredentialResult> Invoke(GetRegistryCredentialInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetRegistryCredentialResult>("render:registrycredentials:getRegistryCredential", args ?? new GetRegistryCredentialInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetRegistrycredentialArgs : global::Pulumi.InvokeArgs
+    public sealed class GetRegistryCredentialArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The ID of the registry credential
@@ -27,13 +27,13 @@ namespace Pulumi.Render.RegistryCredentials
         [Input("registryCredentialId", required: true)]
         public string RegistryCredentialId { get; set; } = null!;
 
-        public GetRegistrycredentialArgs()
+        public GetRegistryCredentialArgs()
         {
         }
-        public static new GetRegistrycredentialArgs Empty => new GetRegistrycredentialArgs();
+        public static new GetRegistryCredentialArgs Empty => new GetRegistryCredentialArgs();
     }
 
-    public sealed class GetRegistrycredentialInvokeArgs : global::Pulumi.InvokeArgs
+    public sealed class GetRegistryCredentialInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The ID of the registry credential
@@ -41,20 +41,20 @@ namespace Pulumi.Render.RegistryCredentials
         [Input("registryCredentialId", required: true)]
         public Input<string> RegistryCredentialId { get; set; } = null!;
 
-        public GetRegistrycredentialInvokeArgs()
+        public GetRegistryCredentialInvokeArgs()
         {
         }
-        public static new GetRegistrycredentialInvokeArgs Empty => new GetRegistrycredentialInvokeArgs();
+        public static new GetRegistryCredentialInvokeArgs Empty => new GetRegistryCredentialInvokeArgs();
     }
 
 
     [OutputType]
-    public sealed class GetRegistrycredentialResult
+    public sealed class GetRegistryCredentialResult
     {
         public readonly Outputs.RegistryCredential Items;
 
         [OutputConstructor]
-        private GetRegistrycredentialResult(Outputs.RegistryCredential items)
+        private GetRegistryCredentialResult(Outputs.RegistryCredential items)
         {
             Items = items;
         }

@@ -301,6 +301,25 @@ func fixListServicesEndpoint(openAPIDoc *openapi3.T) {
 	pathItem.Get.Responses.Status(200).Value.WithJSONSchemaRef(openapi3.NewSchemaRef(schemasRefPrefix+"listServices", listServicesSchemaRef.Value))
 }
 
+// DELETE operations actually don't have a request body, well, at least not very often
+// and certainly not for deleting a service in Render.
+// It's included here to help the provider make the link
+// between this operation and the resources that should
+// use this.
+// TODO: Maybe there's a better way?
+func fixDeleteServiceEndpoint(openAPIDoc *openapi3.T) {
+	pathItem := openAPIDoc.Paths.Find("/services/{serviceId}")
+	contract.Assertf(pathItem != nil, "path /services/{serviceId} not found")
+
+	discriminator, refs := getServiceDiscriminator("")
+	discriminatedServicesSchemaRef := openapi3.NewSchemaRef("", &openapi3.Schema{OneOf: refs})
+	discriminatedServicesSchemaRef.Value.Discriminator = discriminator
+
+	pathItem.Delete.RequestBody = &openapi3.RequestBodyRef{
+		Value: openapi3.NewRequestBody().WithJSONSchemaRef(discriminatedServicesSchemaRef),
+	}
+}
+
 func FixOpenAPIDoc(openAPIDoc *openapi3.T) error {
 	if err := ensureOperationID(openAPIDoc); err != nil {
 		return err
@@ -315,6 +334,7 @@ func FixOpenAPIDoc(openAPIDoc *openapi3.T) error {
 	}
 
 	fixListServicesEndpoint(openAPIDoc)
+	fixDeleteServiceEndpoint(openAPIDoc)
 
 	return nil
 }

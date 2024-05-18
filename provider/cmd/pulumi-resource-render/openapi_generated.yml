@@ -3401,6 +3401,24 @@ paths:
                 - Services
             summary: Delete service
             operationId: delete-service
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            oneOf:
+                                - $ref: '#/components/schemas/backgroundWorker'
+                                - $ref: '#/components/schemas/cronJob'
+                                - $ref: '#/components/schemas/privateService'
+                                - $ref: '#/components/schemas/staticSite'
+                                - $ref: '#/components/schemas/webService'
+                            discriminator:
+                                propertyName: type
+                                mapping:
+                                    background_worker: '#/components/schemas/backgroundWorker'
+                                    cron_job: '#/components/schemas/cronJob'
+                                    private_service: '#/components/schemas/privateService'
+                                    static_site: '#/components/schemas/staticSite'
+                                    web_service: '#/components/schemas/webService'
             responses:
                 "204":
                     description: Service deleted

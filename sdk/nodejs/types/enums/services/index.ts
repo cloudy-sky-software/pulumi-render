@@ -98,77 +98,15 @@ export const BackgroundWorkerDetailsOutputRegion = {
 
 export type BackgroundWorkerDetailsOutputRegion = (typeof BackgroundWorkerDetailsOutputRegion)[keyof typeof BackgroundWorkerDetailsOutputRegion];
 
-export const BackgroundWorkerServiceAutoDeploy = {
-    Yes: "yes",
-    No: "no",
-} as const;
-
-export type BackgroundWorkerServiceAutoDeploy = (typeof BackgroundWorkerServiceAutoDeploy)[keyof typeof BackgroundWorkerServiceAutoDeploy];
-
-export const BackgroundWorkerServiceCreateAutoDeploy = {
-    Yes: "yes",
-    No: "no",
+export const ClearCache = {
+    Clear: "clear",
+    DoNotClear: "do_not_clear",
 } as const;
 
 /**
- * Defaults to "yes"
+ * Defaults to "do_not_clear"
  */
-export type BackgroundWorkerServiceCreateAutoDeploy = (typeof BackgroundWorkerServiceCreateAutoDeploy)[keyof typeof BackgroundWorkerServiceCreateAutoDeploy];
-
-export const BackgroundWorkerServiceNotifyOnFail = {
-    Default: "default",
-    Notify: "notify",
-    Ignore: "ignore",
-} as const;
-
-export type BackgroundWorkerServiceNotifyOnFail = (typeof BackgroundWorkerServiceNotifyOnFail)[keyof typeof BackgroundWorkerServiceNotifyOnFail];
-
-export const BackgroundWorkerServiceSuspended = {
-    Suspended: "suspended",
-    NotSuspended: "not_suspended",
-} as const;
-
-export type BackgroundWorkerServiceSuspended = (typeof BackgroundWorkerServiceSuspended)[keyof typeof BackgroundWorkerServiceSuspended];
-
-export const BackgroundWorkerServiceSuspendersItem = {
-    Admin: "admin",
-    Billing: "billing",
-    User: "user",
-    ParentService: "parent_service",
-    Unknown: "unknown",
-} as const;
-
-export type BackgroundWorkerServiceSuspendersItem = (typeof BackgroundWorkerServiceSuspendersItem)[keyof typeof BackgroundWorkerServiceSuspendersItem];
-
-export const CancelDeployStatus = {
-    Created: "created",
-    BuildInProgress: "build_in_progress",
-    UpdateInProgress: "update_in_progress",
-    Live: "live",
-    Deactivated: "deactivated",
-    BuildFailed: "build_failed",
-    UpdateFailed: "update_failed",
-    Canceled: "canceled",
-    PreDeployInProgress: "pre_deploy_in_progress",
-    PreDeployFailed: "pre_deploy_failed",
-} as const;
-
-export type CancelDeployStatus = (typeof CancelDeployStatus)[keyof typeof CancelDeployStatus];
-
-export const CancelDeployTrigger = {
-    Api: "api",
-    BlueprintSync: "blueprint_sync",
-    DeployHook: "deploy_hook",
-    DeployedByRender: "deployed_by_render",
-    Manual: "manual",
-    Other: "other",
-    NewCommit: "new_commit",
-    Rollback: "rollback",
-    ServiceResumed: "service_resumed",
-    ServiceUpdated: "service_updated",
-} as const;
-
-export type CancelDeployTrigger = (typeof CancelDeployTrigger)[keyof typeof CancelDeployTrigger];
+export type ClearCache = (typeof ClearCache)[keyof typeof ClearCache];
 
 export const CronJobDetailsCreateEnv = {
     Docker: "docker",
@@ -249,48 +187,6 @@ export const CronJobDetailsOutputRegion = {
 
 export type CronJobDetailsOutputRegion = (typeof CronJobDetailsOutputRegion)[keyof typeof CronJobDetailsOutputRegion];
 
-export const CronJobServiceAutoDeploy = {
-    Yes: "yes",
-    No: "no",
-} as const;
-
-export type CronJobServiceAutoDeploy = (typeof CronJobServiceAutoDeploy)[keyof typeof CronJobServiceAutoDeploy];
-
-export const CronJobServiceCreateAutoDeploy = {
-    Yes: "yes",
-    No: "no",
-} as const;
-
-/**
- * Defaults to "yes"
- */
-export type CronJobServiceCreateAutoDeploy = (typeof CronJobServiceCreateAutoDeploy)[keyof typeof CronJobServiceCreateAutoDeploy];
-
-export const CronJobServiceNotifyOnFail = {
-    Default: "default",
-    Notify: "notify",
-    Ignore: "ignore",
-} as const;
-
-export type CronJobServiceNotifyOnFail = (typeof CronJobServiceNotifyOnFail)[keyof typeof CronJobServiceNotifyOnFail];
-
-export const CronJobServiceSuspended = {
-    Suspended: "suspended",
-    NotSuspended: "not_suspended",
-} as const;
-
-export type CronJobServiceSuspended = (typeof CronJobServiceSuspended)[keyof typeof CronJobServiceSuspended];
-
-export const CronJobServiceSuspendersItem = {
-    Admin: "admin",
-    Billing: "billing",
-    User: "user",
-    ParentService: "parent_service",
-    Unknown: "unknown",
-} as const;
-
-export type CronJobServiceSuspendersItem = (typeof CronJobServiceSuspendersItem)[keyof typeof CronJobServiceSuspendersItem];
-
 export const CustomDomainDomainType = {
     Apex: "apex",
     Subdomain: "subdomain",
@@ -304,16 +200,6 @@ export const CustomDomainVerificationStatus = {
 } as const;
 
 export type CustomDomainVerificationStatus = (typeof CustomDomainVerificationStatus)[keyof typeof CustomDomainVerificationStatus];
-
-export const DeployClearCache = {
-    Clear: "clear",
-    DoNotClear: "do_not_clear",
-} as const;
-
-/**
- * Defaults to "do_not_clear"
- */
-export type DeployClearCache = (typeof DeployClearCache)[keyof typeof DeployClearCache];
 
 export const DeployStatus = {
     Created: "created",
@@ -345,7 +231,7 @@ export const DeployTrigger = {
 
 export type DeployTrigger = (typeof DeployTrigger)[keyof typeof DeployTrigger];
 
-export const PreviewServicePlan = {
+export const Plan = {
     Starter: "starter",
     StarterPlus: "starter_plus",
     Standard: "standard",
@@ -361,39 +247,7 @@ export const PreviewServicePlan = {
 /**
  * The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
  */
-export type PreviewServicePlan = (typeof PreviewServicePlan)[keyof typeof PreviewServicePlan];
-
-export const PreviewServiceServiceAutoDeploy = {
-    Yes: "yes",
-    No: "no",
-} as const;
-
-export type PreviewServiceServiceAutoDeploy = (typeof PreviewServiceServiceAutoDeploy)[keyof typeof PreviewServiceServiceAutoDeploy];
-
-export const PreviewServiceServiceNotifyOnFail = {
-    Default: "default",
-    Notify: "notify",
-    Ignore: "ignore",
-} as const;
-
-export type PreviewServiceServiceNotifyOnFail = (typeof PreviewServiceServiceNotifyOnFail)[keyof typeof PreviewServiceServiceNotifyOnFail];
-
-export const PreviewServiceServiceSuspended = {
-    Suspended: "suspended",
-    NotSuspended: "not_suspended",
-} as const;
-
-export type PreviewServiceServiceSuspended = (typeof PreviewServiceServiceSuspended)[keyof typeof PreviewServiceServiceSuspended];
-
-export const PreviewServiceServiceSuspendersItem = {
-    Admin: "admin",
-    Billing: "billing",
-    User: "user",
-    ParentService: "parent_service",
-    Unknown: "unknown",
-} as const;
-
-export type PreviewServiceServiceSuspendersItem = (typeof PreviewServiceServiceSuspendersItem)[keyof typeof PreviewServiceServiceSuspendersItem];
+export type Plan = (typeof Plan)[keyof typeof Plan];
 
 export const PrivateServiceDetailsCreateEnv = {
     Docker: "docker",
@@ -491,48 +345,6 @@ export const PrivateServiceDetailsOutputRegion = {
 
 export type PrivateServiceDetailsOutputRegion = (typeof PrivateServiceDetailsOutputRegion)[keyof typeof PrivateServiceDetailsOutputRegion];
 
-export const PrivateServiceServiceAutoDeploy = {
-    Yes: "yes",
-    No: "no",
-} as const;
-
-export type PrivateServiceServiceAutoDeploy = (typeof PrivateServiceServiceAutoDeploy)[keyof typeof PrivateServiceServiceAutoDeploy];
-
-export const PrivateServiceServiceCreateAutoDeploy = {
-    Yes: "yes",
-    No: "no",
-} as const;
-
-/**
- * Defaults to "yes"
- */
-export type PrivateServiceServiceCreateAutoDeploy = (typeof PrivateServiceServiceCreateAutoDeploy)[keyof typeof PrivateServiceServiceCreateAutoDeploy];
-
-export const PrivateServiceServiceNotifyOnFail = {
-    Default: "default",
-    Notify: "notify",
-    Ignore: "ignore",
-} as const;
-
-export type PrivateServiceServiceNotifyOnFail = (typeof PrivateServiceServiceNotifyOnFail)[keyof typeof PrivateServiceServiceNotifyOnFail];
-
-export const PrivateServiceServiceSuspended = {
-    Suspended: "suspended",
-    NotSuspended: "not_suspended",
-} as const;
-
-export type PrivateServiceServiceSuspended = (typeof PrivateServiceServiceSuspended)[keyof typeof PrivateServiceServiceSuspended];
-
-export const PrivateServiceServiceSuspendersItem = {
-    Admin: "admin",
-    Billing: "billing",
-    User: "user",
-    ParentService: "parent_service",
-    Unknown: "unknown",
-} as const;
-
-export type PrivateServiceServiceSuspendersItem = (typeof PrivateServiceServiceSuspendersItem)[keyof typeof PrivateServiceServiceSuspendersItem];
-
 export const RegistryCredentialRegistry = {
     Github: "GITHUB",
     Gitlab: "GITLAB",
@@ -544,35 +356,12 @@ export const RegistryCredentialRegistry = {
  */
 export type RegistryCredentialRegistry = (typeof RegistryCredentialRegistry)[keyof typeof RegistryCredentialRegistry];
 
-export const RollbackDeployStatus = {
-    Created: "created",
-    BuildInProgress: "build_in_progress",
-    UpdateInProgress: "update_in_progress",
-    Live: "live",
-    Deactivated: "deactivated",
-    BuildFailed: "build_failed",
-    UpdateFailed: "update_failed",
-    Canceled: "canceled",
-    PreDeployInProgress: "pre_deploy_in_progress",
-    PreDeployFailed: "pre_deploy_failed",
+export const RouteType = {
+    Redirect: "redirect",
+    Rewrite: "rewrite",
 } as const;
 
-export type RollbackDeployStatus = (typeof RollbackDeployStatus)[keyof typeof RollbackDeployStatus];
-
-export const RollbackDeployTrigger = {
-    Api: "api",
-    BlueprintSync: "blueprint_sync",
-    DeployHook: "deploy_hook",
-    DeployedByRender: "deployed_by_render",
-    Manual: "manual",
-    Other: "other",
-    NewCommit: "new_commit",
-    Rollback: "rollback",
-    ServiceResumed: "service_resumed",
-    ServiceUpdated: "service_updated",
-} as const;
-
-export type RollbackDeployTrigger = (typeof RollbackDeployTrigger)[keyof typeof RollbackDeployTrigger];
+export type RouteType = (typeof RouteType)[keyof typeof RouteType];
 
 export const ServerPortProtocol = {
     Tcp: "TCP",
@@ -587,6 +376,16 @@ export const ServiceAutoDeploy = {
 } as const;
 
 export type ServiceAutoDeploy = (typeof ServiceAutoDeploy)[keyof typeof ServiceAutoDeploy];
+
+export const ServiceCreateAutoDeploy = {
+    Yes: "yes",
+    No: "no",
+} as const;
+
+/**
+ * Defaults to "yes"
+ */
+export type ServiceCreateAutoDeploy = (typeof ServiceCreateAutoDeploy)[keyof typeof ServiceCreateAutoDeploy];
 
 export const ServiceNotifyOnFail = {
     Default: "default",
@@ -630,54 +429,35 @@ export const StaticSiteDetailsOutputPullRequestPreviewsEnabled = {
 
 export type StaticSiteDetailsOutputPullRequestPreviewsEnabled = (typeof StaticSiteDetailsOutputPullRequestPreviewsEnabled)[keyof typeof StaticSiteDetailsOutputPullRequestPreviewsEnabled];
 
-export const StaticSiteRouteType = {
-    Redirect: "redirect",
-    Rewrite: "rewrite",
+export const Status = {
+    Created: "created",
+    BuildInProgress: "build_in_progress",
+    UpdateInProgress: "update_in_progress",
+    Live: "live",
+    Deactivated: "deactivated",
+    BuildFailed: "build_failed",
+    UpdateFailed: "update_failed",
+    Canceled: "canceled",
+    PreDeployInProgress: "pre_deploy_in_progress",
+    PreDeployFailed: "pre_deploy_failed",
 } as const;
 
-export type StaticSiteRouteType = (typeof StaticSiteRouteType)[keyof typeof StaticSiteRouteType];
+export type Status = (typeof Status)[keyof typeof Status];
 
-export const StaticSiteServiceAutoDeploy = {
-    Yes: "yes",
-    No: "no",
+export const Trigger = {
+    Api: "api",
+    BlueprintSync: "blueprint_sync",
+    DeployHook: "deploy_hook",
+    DeployedByRender: "deployed_by_render",
+    Manual: "manual",
+    Other: "other",
+    NewCommit: "new_commit",
+    Rollback: "rollback",
+    ServiceResumed: "service_resumed",
+    ServiceUpdated: "service_updated",
 } as const;
 
-export type StaticSiteServiceAutoDeploy = (typeof StaticSiteServiceAutoDeploy)[keyof typeof StaticSiteServiceAutoDeploy];
-
-export const StaticSiteServiceCreateAutoDeploy = {
-    Yes: "yes",
-    No: "no",
-} as const;
-
-/**
- * Defaults to "yes"
- */
-export type StaticSiteServiceCreateAutoDeploy = (typeof StaticSiteServiceCreateAutoDeploy)[keyof typeof StaticSiteServiceCreateAutoDeploy];
-
-export const StaticSiteServiceNotifyOnFail = {
-    Default: "default",
-    Notify: "notify",
-    Ignore: "ignore",
-} as const;
-
-export type StaticSiteServiceNotifyOnFail = (typeof StaticSiteServiceNotifyOnFail)[keyof typeof StaticSiteServiceNotifyOnFail];
-
-export const StaticSiteServiceSuspended = {
-    Suspended: "suspended",
-    NotSuspended: "not_suspended",
-} as const;
-
-export type StaticSiteServiceSuspended = (typeof StaticSiteServiceSuspended)[keyof typeof StaticSiteServiceSuspended];
-
-export const StaticSiteServiceSuspendersItem = {
-    Admin: "admin",
-    Billing: "billing",
-    User: "user",
-    ParentService: "parent_service",
-    Unknown: "unknown",
-} as const;
-
-export type StaticSiteServiceSuspendersItem = (typeof StaticSiteServiceSuspendersItem)[keyof typeof StaticSiteServiceSuspendersItem];
+export type Trigger = (typeof Trigger)[keyof typeof Trigger];
 
 export const WebServiceDetailsCreateEnv = {
     Docker: "docker",
@@ -774,45 +554,3 @@ export const WebServiceDetailsOutputRegion = {
 } as const;
 
 export type WebServiceDetailsOutputRegion = (typeof WebServiceDetailsOutputRegion)[keyof typeof WebServiceDetailsOutputRegion];
-
-export const WebServiceServiceAutoDeploy = {
-    Yes: "yes",
-    No: "no",
-} as const;
-
-export type WebServiceServiceAutoDeploy = (typeof WebServiceServiceAutoDeploy)[keyof typeof WebServiceServiceAutoDeploy];
-
-export const WebServiceServiceCreateAutoDeploy = {
-    Yes: "yes",
-    No: "no",
-} as const;
-
-/**
- * Defaults to "yes"
- */
-export type WebServiceServiceCreateAutoDeploy = (typeof WebServiceServiceCreateAutoDeploy)[keyof typeof WebServiceServiceCreateAutoDeploy];
-
-export const WebServiceServiceNotifyOnFail = {
-    Default: "default",
-    Notify: "notify",
-    Ignore: "ignore",
-} as const;
-
-export type WebServiceServiceNotifyOnFail = (typeof WebServiceServiceNotifyOnFail)[keyof typeof WebServiceServiceNotifyOnFail];
-
-export const WebServiceServiceSuspended = {
-    Suspended: "suspended",
-    NotSuspended: "not_suspended",
-} as const;
-
-export type WebServiceServiceSuspended = (typeof WebServiceServiceSuspended)[keyof typeof WebServiceServiceSuspended];
-
-export const WebServiceServiceSuspendersItem = {
-    Admin: "admin",
-    Billing: "billing",
-    User: "user",
-    ParentService: "parent_service",
-    Unknown: "unknown",
-} as const;
-
-export type WebServiceServiceSuspendersItem = (typeof WebServiceServiceSuspendersItem)[keyof typeof WebServiceServiceSuspendersItem];

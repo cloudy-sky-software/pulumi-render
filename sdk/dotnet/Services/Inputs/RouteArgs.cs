@@ -28,7 +28,7 @@ namespace Pulumi.Render.Services.Inputs
         public Input<string> Source { get; set; } = null!;
 
         [Input("type", required: true)]
-        public Input<Pulumi.Render.Services.StaticSiteRouteType> Type { get; set; } = null!;
+        public Input<Pulumi.Render.Services.RouteType> Type { get; set; } = null!;
 
         public RouteArgs()
         {

@@ -24,10 +24,10 @@ Object.defineProperty(exports, "apiKey", {
 /**
  * When a service is updated, a deployment is automatically triggered. This variable controls whether or not the service cache should be cleared upon deployment.
  */
-export declare const clearCacheOnServiceUpdateDeployments: enums.services.DeployClearCache | undefined;
+export declare const clearCacheOnServiceUpdateDeployments: enums.services.ClearCache | undefined;
 Object.defineProperty(exports, "clearCacheOnServiceUpdateDeployments", {
     get() {
-        return __config.getObject<enums.services.DeployClearCache>("clearCacheOnServiceUpdateDeployments");
+        return __config.getObject<enums.services.ClearCache>("clearCacheOnServiceUpdateDeployments");
     },
     enumerable: true,
 });

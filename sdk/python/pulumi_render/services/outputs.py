@@ -1150,16 +1150,16 @@ class EnvVarWithCursor(dict):
 @pulumi.output_type
 class GetBackgroundWorker(dict):
     def __init__(__self__, *,
-                 auto_deploy: 'PreviewServiceServiceAutoDeploy',
+                 auto_deploy: 'ServiceAutoDeploy',
                  created_at: str,
                  id: str,
                  name: str,
-                 notify_on_fail: 'PreviewServiceServiceNotifyOnFail',
+                 notify_on_fail: 'ServiceNotifyOnFail',
                  owner_id: str,
                  root_dir: str,
                  slug: str,
-                 suspended: 'PreviewServiceServiceSuspended',
-                 suspenders: Sequence['PreviewServiceServiceSuspendersItem'],
+                 suspended: 'ServiceSuspended',
+                 suspenders: Sequence['ServiceSuspendersItem'],
                  updated_at: str,
                  branch: Optional[str] = None,
                  build_filter: Optional['outputs.BuildFilter'] = None,
@@ -1195,7 +1195,7 @@ class GetBackgroundWorker(dict):
 
     @property
     @pulumi.getter(name="autoDeploy")
-    def auto_deploy(self) -> 'PreviewServiceServiceAutoDeploy':
+    def auto_deploy(self) -> 'ServiceAutoDeploy':
         return pulumi.get(self, "auto_deploy")
 
     @property
@@ -1215,7 +1215,7 @@ class GetBackgroundWorker(dict):
 
     @property
     @pulumi.getter(name="notifyOnFail")
-    def notify_on_fail(self) -> 'PreviewServiceServiceNotifyOnFail':
+    def notify_on_fail(self) -> 'ServiceNotifyOnFail':
         return pulumi.get(self, "notify_on_fail")
 
     @property
@@ -1235,12 +1235,12 @@ class GetBackgroundWorker(dict):
 
     @property
     @pulumi.getter
-    def suspended(self) -> 'PreviewServiceServiceSuspended':
+    def suspended(self) -> 'ServiceSuspended':
         return pulumi.get(self, "suspended")
 
     @property
     @pulumi.getter
-    def suspenders(self) -> Sequence['PreviewServiceServiceSuspendersItem']:
+    def suspenders(self) -> Sequence['ServiceSuspendersItem']:
         return pulumi.get(self, "suspenders")
 
     @property
@@ -1282,16 +1282,16 @@ class GetBackgroundWorker(dict):
 @pulumi.output_type
 class GetCronJob(dict):
     def __init__(__self__, *,
-                 auto_deploy: 'PreviewServiceServiceAutoDeploy',
+                 auto_deploy: 'ServiceAutoDeploy',
                  created_at: str,
                  id: str,
                  name: str,
-                 notify_on_fail: 'PreviewServiceServiceNotifyOnFail',
+                 notify_on_fail: 'ServiceNotifyOnFail',
                  owner_id: str,
                  root_dir: str,
                  slug: str,
-                 suspended: 'PreviewServiceServiceSuspended',
-                 suspenders: Sequence['PreviewServiceServiceSuspendersItem'],
+                 suspended: 'ServiceSuspended',
+                 suspenders: Sequence['ServiceSuspendersItem'],
                  updated_at: str,
                  branch: Optional[str] = None,
                  build_filter: Optional['outputs.BuildFilter'] = None,
@@ -1327,7 +1327,7 @@ class GetCronJob(dict):
 
     @property
     @pulumi.getter(name="autoDeploy")
-    def auto_deploy(self) -> 'PreviewServiceServiceAutoDeploy':
+    def auto_deploy(self) -> 'ServiceAutoDeploy':
         return pulumi.get(self, "auto_deploy")
 
     @property
@@ -1347,7 +1347,7 @@ class GetCronJob(dict):
 
     @property
     @pulumi.getter(name="notifyOnFail")
-    def notify_on_fail(self) -> 'PreviewServiceServiceNotifyOnFail':
+    def notify_on_fail(self) -> 'ServiceNotifyOnFail':
         return pulumi.get(self, "notify_on_fail")
 
     @property
@@ -1367,12 +1367,12 @@ class GetCronJob(dict):
 
     @property
     @pulumi.getter
-    def suspended(self) -> 'PreviewServiceServiceSuspended':
+    def suspended(self) -> 'ServiceSuspended':
         return pulumi.get(self, "suspended")
 
     @property
     @pulumi.getter
-    def suspenders(self) -> Sequence['PreviewServiceServiceSuspendersItem']:
+    def suspenders(self) -> Sequence['ServiceSuspendersItem']:
         return pulumi.get(self, "suspenders")
 
     @property
@@ -1414,16 +1414,16 @@ class GetCronJob(dict):
 @pulumi.output_type
 class GetPrivateService(dict):
     def __init__(__self__, *,
-                 auto_deploy: 'PreviewServiceServiceAutoDeploy',
+                 auto_deploy: 'ServiceAutoDeploy',
                  created_at: str,
                  id: str,
                  name: str,
-                 notify_on_fail: 'PreviewServiceServiceNotifyOnFail',
+                 notify_on_fail: 'ServiceNotifyOnFail',
                  owner_id: str,
                  root_dir: str,
                  slug: str,
-                 suspended: 'PreviewServiceServiceSuspended',
-                 suspenders: Sequence['PreviewServiceServiceSuspendersItem'],
+                 suspended: 'ServiceSuspended',
+                 suspenders: Sequence['ServiceSuspendersItem'],
                  updated_at: str,
                  branch: Optional[str] = None,
                  build_filter: Optional['outputs.BuildFilter'] = None,
@@ -1459,7 +1459,7 @@ class GetPrivateService(dict):
 
     @property
     @pulumi.getter(name="autoDeploy")
-    def auto_deploy(self) -> 'PreviewServiceServiceAutoDeploy':
+    def auto_deploy(self) -> 'ServiceAutoDeploy':
         return pulumi.get(self, "auto_deploy")
 
     @property
@@ -1479,7 +1479,7 @@ class GetPrivateService(dict):
 
     @property
     @pulumi.getter(name="notifyOnFail")
-    def notify_on_fail(self) -> 'PreviewServiceServiceNotifyOnFail':
+    def notify_on_fail(self) -> 'ServiceNotifyOnFail':
         return pulumi.get(self, "notify_on_fail")
 
     @property
@@ -1499,12 +1499,12 @@ class GetPrivateService(dict):
 
     @property
     @pulumi.getter
-    def suspended(self) -> 'PreviewServiceServiceSuspended':
+    def suspended(self) -> 'ServiceSuspended':
         return pulumi.get(self, "suspended")
 
     @property
     @pulumi.getter
-    def suspenders(self) -> Sequence['PreviewServiceServiceSuspendersItem']:
+    def suspenders(self) -> Sequence['ServiceSuspendersItem']:
         return pulumi.get(self, "suspenders")
 
     @property
@@ -1546,16 +1546,16 @@ class GetPrivateService(dict):
 @pulumi.output_type
 class GetStaticSite(dict):
     def __init__(__self__, *,
-                 auto_deploy: 'PreviewServiceServiceAutoDeploy',
+                 auto_deploy: 'ServiceAutoDeploy',
                  created_at: str,
                  id: str,
                  name: str,
-                 notify_on_fail: 'PreviewServiceServiceNotifyOnFail',
+                 notify_on_fail: 'ServiceNotifyOnFail',
                  owner_id: str,
                  root_dir: str,
                  slug: str,
-                 suspended: 'PreviewServiceServiceSuspended',
-                 suspenders: Sequence['PreviewServiceServiceSuspendersItem'],
+                 suspended: 'ServiceSuspended',
+                 suspenders: Sequence['ServiceSuspendersItem'],
                  updated_at: str,
                  branch: Optional[str] = None,
                  build_filter: Optional['outputs.BuildFilter'] = None,
@@ -1591,7 +1591,7 @@ class GetStaticSite(dict):
 
     @property
     @pulumi.getter(name="autoDeploy")
-    def auto_deploy(self) -> 'PreviewServiceServiceAutoDeploy':
+    def auto_deploy(self) -> 'ServiceAutoDeploy':
         return pulumi.get(self, "auto_deploy")
 
     @property
@@ -1611,7 +1611,7 @@ class GetStaticSite(dict):
 
     @property
     @pulumi.getter(name="notifyOnFail")
-    def notify_on_fail(self) -> 'PreviewServiceServiceNotifyOnFail':
+    def notify_on_fail(self) -> 'ServiceNotifyOnFail':
         return pulumi.get(self, "notify_on_fail")
 
     @property
@@ -1631,12 +1631,12 @@ class GetStaticSite(dict):
 
     @property
     @pulumi.getter
-    def suspended(self) -> 'PreviewServiceServiceSuspended':
+    def suspended(self) -> 'ServiceSuspended':
         return pulumi.get(self, "suspended")
 
     @property
     @pulumi.getter
-    def suspenders(self) -> Sequence['PreviewServiceServiceSuspendersItem']:
+    def suspenders(self) -> Sequence['ServiceSuspendersItem']:
         return pulumi.get(self, "suspenders")
 
     @property
@@ -1678,16 +1678,16 @@ class GetStaticSite(dict):
 @pulumi.output_type
 class GetWebService(dict):
     def __init__(__self__, *,
-                 auto_deploy: 'PreviewServiceServiceAutoDeploy',
+                 auto_deploy: 'ServiceAutoDeploy',
                  created_at: str,
                  id: str,
                  name: str,
-                 notify_on_fail: 'PreviewServiceServiceNotifyOnFail',
+                 notify_on_fail: 'ServiceNotifyOnFail',
                  owner_id: str,
                  root_dir: str,
                  slug: str,
-                 suspended: 'PreviewServiceServiceSuspended',
-                 suspenders: Sequence['PreviewServiceServiceSuspendersItem'],
+                 suspended: 'ServiceSuspended',
+                 suspenders: Sequence['ServiceSuspendersItem'],
                  updated_at: str,
                  branch: Optional[str] = None,
                  build_filter: Optional['outputs.BuildFilter'] = None,
@@ -1723,7 +1723,7 @@ class GetWebService(dict):
 
     @property
     @pulumi.getter(name="autoDeploy")
-    def auto_deploy(self) -> 'PreviewServiceServiceAutoDeploy':
+    def auto_deploy(self) -> 'ServiceAutoDeploy':
         return pulumi.get(self, "auto_deploy")
 
     @property
@@ -1743,7 +1743,7 @@ class GetWebService(dict):
 
     @property
     @pulumi.getter(name="notifyOnFail")
-    def notify_on_fail(self) -> 'PreviewServiceServiceNotifyOnFail':
+    def notify_on_fail(self) -> 'ServiceNotifyOnFail':
         return pulumi.get(self, "notify_on_fail")
 
     @property
@@ -1763,12 +1763,12 @@ class GetWebService(dict):
 
     @property
     @pulumi.getter
-    def suspended(self) -> 'PreviewServiceServiceSuspended':
+    def suspended(self) -> 'ServiceSuspended':
         return pulumi.get(self, "suspended")
 
     @property
     @pulumi.getter
-    def suspenders(self) -> Sequence['PreviewServiceServiceSuspendersItem']:
+    def suspenders(self) -> Sequence['ServiceSuspendersItem']:
         return pulumi.get(self, "suspenders")
 
     @property
@@ -2546,7 +2546,7 @@ class Route(dict):
                  id: str,
                  priority: int,
                  source: str,
-                 type: 'StaticSiteRouteType'):
+                 type: 'RouteType'):
         """
         :param int priority: Redirect and Rewrite Rules are applied in priority order starting at 0
         """
@@ -2581,7 +2581,7 @@ class Route(dict):
 
     @property
     @pulumi.getter
-    def type(self) -> 'StaticSiteRouteType':
+    def type(self) -> 'RouteType':
         return pulumi.get(self, "type")
 
 
@@ -2657,16 +2657,16 @@ class Service(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 auto_deploy: 'PreviewServiceServiceAutoDeploy',
+                 auto_deploy: 'ServiceAutoDeploy',
                  created_at: str,
                  id: str,
                  name: str,
-                 notify_on_fail: 'PreviewServiceServiceNotifyOnFail',
+                 notify_on_fail: 'ServiceNotifyOnFail',
                  owner_id: str,
                  root_dir: str,
                  slug: str,
-                 suspended: 'PreviewServiceServiceSuspended',
-                 suspenders: Sequence['PreviewServiceServiceSuspendersItem'],
+                 suspended: 'ServiceSuspended',
+                 suspenders: Sequence['ServiceSuspendersItem'],
                  updated_at: str,
                  branch: Optional[str] = None,
                  build_filter: Optional['outputs.BuildFilter'] = None,
@@ -2694,7 +2694,7 @@ class Service(dict):
 
     @property
     @pulumi.getter(name="autoDeploy")
-    def auto_deploy(self) -> 'PreviewServiceServiceAutoDeploy':
+    def auto_deploy(self) -> 'ServiceAutoDeploy':
         return pulumi.get(self, "auto_deploy")
 
     @property
@@ -2714,7 +2714,7 @@ class Service(dict):
 
     @property
     @pulumi.getter(name="notifyOnFail")
-    def notify_on_fail(self) -> 'PreviewServiceServiceNotifyOnFail':
+    def notify_on_fail(self) -> 'ServiceNotifyOnFail':
         return pulumi.get(self, "notify_on_fail")
 
     @property
@@ -2734,12 +2734,12 @@ class Service(dict):
 
     @property
     @pulumi.getter
-    def suspended(self) -> 'PreviewServiceServiceSuspended':
+    def suspended(self) -> 'ServiceSuspended':
         return pulumi.get(self, "suspended")
 
     @property
     @pulumi.getter
-    def suspenders(self) -> Sequence['PreviewServiceServiceSuspendersItem']:
+    def suspenders(self) -> Sequence['ServiceSuspendersItem']:
         return pulumi.get(self, "suspenders")
 
     @property

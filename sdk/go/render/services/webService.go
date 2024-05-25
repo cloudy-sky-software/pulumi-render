@@ -15,25 +15,25 @@ import (
 type WebService struct {
 	pulumi.CustomResourceState
 
-	AutoDeploy     WebServiceServiceAutoDeployPtrOutput       `pulumi:"autoDeploy"`
-	Branch         pulumi.StringPtrOutput                     `pulumi:"branch"`
-	BuildFilter    BuildFilterPtrOutput                       `pulumi:"buildFilter"`
-	CreatedAt      pulumi.StringPtrOutput                     `pulumi:"createdAt"`
-	EnvVars        pulumi.ArrayOutput                         `pulumi:"envVars"`
-	Image          ImagePtrOutput                             `pulumi:"image"`
-	ImagePath      pulumi.StringPtrOutput                     `pulumi:"imagePath"`
-	Name           pulumi.StringPtrOutput                     `pulumi:"name"`
-	NotifyOnFail   WebServiceServiceNotifyOnFailPtrOutput     `pulumi:"notifyOnFail"`
-	OwnerId        pulumi.StringPtrOutput                     `pulumi:"ownerId"`
-	Repo           pulumi.StringPtrOutput                     `pulumi:"repo"`
-	RootDir        pulumi.StringPtrOutput                     `pulumi:"rootDir"`
-	SecretFiles    SecretFileArrayOutput                      `pulumi:"secretFiles"`
-	ServiceDetails WebServiceDetailsOutputPtrOutput           `pulumi:"serviceDetails"`
-	Slug           pulumi.StringPtrOutput                     `pulumi:"slug"`
-	Suspended      WebServiceServiceSuspendedPtrOutput        `pulumi:"suspended"`
-	Suspenders     WebServiceServiceSuspendersItemArrayOutput `pulumi:"suspenders"`
-	Type           pulumi.StringPtrOutput                     `pulumi:"type"`
-	UpdatedAt      pulumi.StringPtrOutput                     `pulumi:"updatedAt"`
+	AutoDeploy     ServiceAutoDeployPtrOutput       `pulumi:"autoDeploy"`
+	Branch         pulumi.StringPtrOutput           `pulumi:"branch"`
+	BuildFilter    BuildFilterPtrOutput             `pulumi:"buildFilter"`
+	CreatedAt      pulumi.StringPtrOutput           `pulumi:"createdAt"`
+	EnvVars        pulumi.ArrayOutput               `pulumi:"envVars"`
+	Image          ImagePtrOutput                   `pulumi:"image"`
+	ImagePath      pulumi.StringPtrOutput           `pulumi:"imagePath"`
+	Name           pulumi.StringPtrOutput           `pulumi:"name"`
+	NotifyOnFail   ServiceNotifyOnFailPtrOutput     `pulumi:"notifyOnFail"`
+	OwnerId        pulumi.StringPtrOutput           `pulumi:"ownerId"`
+	Repo           pulumi.StringPtrOutput           `pulumi:"repo"`
+	RootDir        pulumi.StringPtrOutput           `pulumi:"rootDir"`
+	SecretFiles    SecretFileArrayOutput            `pulumi:"secretFiles"`
+	ServiceDetails WebServiceDetailsOutputPtrOutput `pulumi:"serviceDetails"`
+	Slug           pulumi.StringPtrOutput           `pulumi:"slug"`
+	Suspended      ServiceSuspendedPtrOutput        `pulumi:"suspended"`
+	Suspenders     ServiceSuspendersItemArrayOutput `pulumi:"suspenders"`
+	Type           pulumi.StringPtrOutput           `pulumi:"type"`
+	UpdatedAt      pulumi.StringPtrOutput           `pulumi:"updatedAt"`
 }
 
 // NewWebService registers a new resource with the given unique name, arguments, and options.
@@ -50,7 +50,7 @@ func NewWebService(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'OwnerId'")
 	}
 	if args.AutoDeploy == nil {
-		args.AutoDeploy = WebServiceServiceCreateAutoDeploy("yes")
+		args.AutoDeploy = ServiceCreateAutoDeploy("yes")
 	}
 	if args.ServiceDetails != nil {
 		args.ServiceDetails = args.ServiceDetails.ToWebServiceDetailsCreatePtrOutput().ApplyT(func(v *WebServiceDetailsCreate) *WebServiceDetailsCreate { return v.Defaults() }).(WebServiceDetailsCreatePtrOutput)
@@ -92,7 +92,7 @@ func (WebServiceState) ElementType() reflect.Type {
 
 type webServiceArgs struct {
 	// Defaults to "yes"
-	AutoDeploy *WebServiceServiceCreateAutoDeploy `pulumi:"autoDeploy"`
+	AutoDeploy *ServiceCreateAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository
 	Branch      *string       `pulumi:"branch"`
 	BuildFilter *BuildFilter  `pulumi:"buildFilter"`
@@ -111,7 +111,7 @@ type webServiceArgs struct {
 // The set of arguments for constructing a WebService resource.
 type WebServiceArgs struct {
 	// Defaults to "yes"
-	AutoDeploy WebServiceServiceCreateAutoDeployPtrInput
+	AutoDeploy ServiceCreateAutoDeployPtrInput
 	// If left empty, this will fall back to the default branch of the repository
 	Branch      pulumi.StringPtrInput
 	BuildFilter BuildFilterPtrInput
@@ -164,8 +164,8 @@ func (o WebServiceOutput) ToWebServiceOutputWithContext(ctx context.Context) Web
 	return o
 }
 
-func (o WebServiceOutput) AutoDeploy() WebServiceServiceAutoDeployPtrOutput {
-	return o.ApplyT(func(v *WebService) WebServiceServiceAutoDeployPtrOutput { return v.AutoDeploy }).(WebServiceServiceAutoDeployPtrOutput)
+func (o WebServiceOutput) AutoDeploy() ServiceAutoDeployPtrOutput {
+	return o.ApplyT(func(v *WebService) ServiceAutoDeployPtrOutput { return v.AutoDeploy }).(ServiceAutoDeployPtrOutput)
 }
 
 func (o WebServiceOutput) Branch() pulumi.StringPtrOutput {
@@ -196,8 +196,8 @@ func (o WebServiceOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WebService) pulumi.StringPtrOutput { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-func (o WebServiceOutput) NotifyOnFail() WebServiceServiceNotifyOnFailPtrOutput {
-	return o.ApplyT(func(v *WebService) WebServiceServiceNotifyOnFailPtrOutput { return v.NotifyOnFail }).(WebServiceServiceNotifyOnFailPtrOutput)
+func (o WebServiceOutput) NotifyOnFail() ServiceNotifyOnFailPtrOutput {
+	return o.ApplyT(func(v *WebService) ServiceNotifyOnFailPtrOutput { return v.NotifyOnFail }).(ServiceNotifyOnFailPtrOutput)
 }
 
 func (o WebServiceOutput) OwnerId() pulumi.StringPtrOutput {
@@ -224,12 +224,12 @@ func (o WebServiceOutput) Slug() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WebService) pulumi.StringPtrOutput { return v.Slug }).(pulumi.StringPtrOutput)
 }
 
-func (o WebServiceOutput) Suspended() WebServiceServiceSuspendedPtrOutput {
-	return o.ApplyT(func(v *WebService) WebServiceServiceSuspendedPtrOutput { return v.Suspended }).(WebServiceServiceSuspendedPtrOutput)
+func (o WebServiceOutput) Suspended() ServiceSuspendedPtrOutput {
+	return o.ApplyT(func(v *WebService) ServiceSuspendedPtrOutput { return v.Suspended }).(ServiceSuspendedPtrOutput)
 }
 
-func (o WebServiceOutput) Suspenders() WebServiceServiceSuspendersItemArrayOutput {
-	return o.ApplyT(func(v *WebService) WebServiceServiceSuspendersItemArrayOutput { return v.Suspenders }).(WebServiceServiceSuspendersItemArrayOutput)
+func (o WebServiceOutput) Suspenders() ServiceSuspendersItemArrayOutput {
+	return o.ApplyT(func(v *WebService) ServiceSuspendersItemArrayOutput { return v.Suspenders }).(ServiceSuspendersItemArrayOutput)
 }
 
 func (o WebServiceOutput) Type() pulumi.StringPtrOutput {

@@ -220,7 +220,7 @@ export namespace services {
          */
         priority: pulumi.Input<number>;
         source: pulumi.Input<string>;
-        type: pulumi.Input<enums.services.StaticSiteRouteType>;
+        type: pulumi.Input<enums.services.RouteType>;
     }
 
     export interface SecretFileArgs {

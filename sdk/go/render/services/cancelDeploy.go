@@ -18,10 +18,10 @@ type CancelDeploy struct {
 	CreatedAt  pulumi.StringPtrOutput    `pulumi:"createdAt"`
 	FinishedAt pulumi.StringPtrOutput    `pulumi:"finishedAt"`
 	// Image information used when creating the deploy. Not present for Git-backed deploys
-	Image     ImagePropertiesPtrOutput     `pulumi:"image"`
-	Status    CancelDeployStatusPtrOutput  `pulumi:"status"`
-	Trigger   CancelDeployTriggerPtrOutput `pulumi:"trigger"`
-	UpdatedAt pulumi.StringPtrOutput       `pulumi:"updatedAt"`
+	Image     ImagePropertiesPtrOutput `pulumi:"image"`
+	Status    StatusPtrOutput          `pulumi:"status"`
+	Trigger   TriggerPtrOutput         `pulumi:"trigger"`
+	UpdatedAt pulumi.StringPtrOutput   `pulumi:"updatedAt"`
 }
 
 // NewCancelDeploy registers a new resource with the given unique name, arguments, and options.
@@ -132,12 +132,12 @@ func (o CancelDeployOutput) Image() ImagePropertiesPtrOutput {
 	return o.ApplyT(func(v *CancelDeploy) ImagePropertiesPtrOutput { return v.Image }).(ImagePropertiesPtrOutput)
 }
 
-func (o CancelDeployOutput) Status() CancelDeployStatusPtrOutput {
-	return o.ApplyT(func(v *CancelDeploy) CancelDeployStatusPtrOutput { return v.Status }).(CancelDeployStatusPtrOutput)
+func (o CancelDeployOutput) Status() StatusPtrOutput {
+	return o.ApplyT(func(v *CancelDeploy) StatusPtrOutput { return v.Status }).(StatusPtrOutput)
 }
 
-func (o CancelDeployOutput) Trigger() CancelDeployTriggerPtrOutput {
-	return o.ApplyT(func(v *CancelDeploy) CancelDeployTriggerPtrOutput { return v.Trigger }).(CancelDeployTriggerPtrOutput)
+func (o CancelDeployOutput) Trigger() TriggerPtrOutput {
+	return o.ApplyT(func(v *CancelDeploy) TriggerPtrOutput { return v.Trigger }).(TriggerPtrOutput)
 }
 
 func (o CancelDeployOutput) UpdatedAt() pulumi.StringPtrOutput {

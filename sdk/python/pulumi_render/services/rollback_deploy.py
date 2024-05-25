@@ -177,12 +177,12 @@ class RollbackDeploy(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def status(self) -> pulumi.Output[Optional['RollbackDeployStatus']]:
+    def status(self) -> pulumi.Output[Optional['Status']]:
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
-    def trigger(self) -> pulumi.Output[Optional['RollbackDeployTrigger']]:
+    def trigger(self) -> pulumi.Output[Optional['Trigger']]:
         return pulumi.get(self, "trigger")
 
     @property

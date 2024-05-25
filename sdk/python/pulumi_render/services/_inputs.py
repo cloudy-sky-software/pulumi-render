@@ -827,7 +827,7 @@ class RouteArgs:
                  id: pulumi.Input[str],
                  priority: pulumi.Input[int],
                  source: pulumi.Input[str],
-                 type: pulumi.Input['StaticSiteRouteType']):
+                 type: pulumi.Input['RouteType']):
         """
         :param pulumi.Input[int] priority: Redirect and Rewrite Rules are applied in priority order starting at 0
         """
@@ -878,11 +878,11 @@ class RouteArgs:
 
     @property
     @pulumi.getter
-    def type(self) -> pulumi.Input['StaticSiteRouteType']:
+    def type(self) -> pulumi.Input['RouteType']:
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: pulumi.Input['StaticSiteRouteType']):
+    def type(self, value: pulumi.Input['RouteType']):
         pulumi.set(self, "type", value)
 
 

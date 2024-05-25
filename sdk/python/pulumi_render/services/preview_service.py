@@ -18,13 +18,13 @@ class PreviewServiceArgs:
     def __init__(__self__, *,
                  image_path: pulumi.Input[str],
                  name: Optional[pulumi.Input[str]] = None,
-                 plan: Optional[pulumi.Input['PreviewServicePlan']] = None,
+                 plan: Optional[pulumi.Input['Plan']] = None,
                  service_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a PreviewService resource.
         :param pulumi.Input[str] image_path: Must be either a full URL or the relative path to an image. If a relative path, Render uses the base service's image URL as its root. For example, if the base service's image URL is `docker.io/library/nginx:latest`, then valid values are: `docker.io/library/nginx:<any tag or SHA>`, `library/nginx:<any tag or SHA>`, or `nginx:<any tag or SHA>`. Note that the path must match (only the tag or SHA can vary).
         :param pulumi.Input[str] name: A name for the service preview instance. If not specified, Render generates the name using the base service's name and the specified tag or SHA.
-        :param pulumi.Input['PreviewServicePlan'] plan: The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+        :param pulumi.Input['Plan'] plan: The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
         :param pulumi.Input[str] service_id: The ID of the service
         """
         pulumi.set(__self__, "image_path", image_path)
@@ -61,14 +61,14 @@ class PreviewServiceArgs:
 
     @property
     @pulumi.getter
-    def plan(self) -> Optional[pulumi.Input['PreviewServicePlan']]:
+    def plan(self) -> Optional[pulumi.Input['Plan']]:
         """
         The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
         """
         return pulumi.get(self, "plan")
 
     @plan.setter
-    def plan(self, value: Optional[pulumi.Input['PreviewServicePlan']]):
+    def plan(self, value: Optional[pulumi.Input['Plan']]):
         pulumi.set(self, "plan", value)
 
     @property
@@ -91,7 +91,7 @@ class PreviewService(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  image_path: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 plan: Optional[pulumi.Input['PreviewServicePlan']] = None,
+                 plan: Optional[pulumi.Input['Plan']] = None,
                  service_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -100,7 +100,7 @@ class PreviewService(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] image_path: Must be either a full URL or the relative path to an image. If a relative path, Render uses the base service's image URL as its root. For example, if the base service's image URL is `docker.io/library/nginx:latest`, then valid values are: `docker.io/library/nginx:<any tag or SHA>`, `library/nginx:<any tag or SHA>`, or `nginx:<any tag or SHA>`. Note that the path must match (only the tag or SHA can vary).
         :param pulumi.Input[str] name: A name for the service preview instance. If not specified, Render generates the name using the base service's name and the specified tag or SHA.
-        :param pulumi.Input['PreviewServicePlan'] plan: The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+        :param pulumi.Input['Plan'] plan: The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
         :param pulumi.Input[str] service_id: The ID of the service
         """
         ...
@@ -128,7 +128,7 @@ class PreviewService(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  image_path: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 plan: Optional[pulumi.Input['PreviewServicePlan']] = None,
+                 plan: Optional[pulumi.Input['Plan']] = None,
                  service_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -199,7 +199,7 @@ class PreviewService(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def plan(self) -> pulumi.Output[Optional['PreviewServicePlan']]:
+    def plan(self) -> pulumi.Output[Optional['Plan']]:
         """
         The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
         """

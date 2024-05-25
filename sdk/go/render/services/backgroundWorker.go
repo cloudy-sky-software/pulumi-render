@@ -15,25 +15,25 @@ import (
 type BackgroundWorker struct {
 	pulumi.CustomResourceState
 
-	AutoDeploy     BackgroundWorkerServiceAutoDeployPtrOutput       `pulumi:"autoDeploy"`
-	Branch         pulumi.StringPtrOutput                           `pulumi:"branch"`
-	BuildFilter    BuildFilterPtrOutput                             `pulumi:"buildFilter"`
-	CreatedAt      pulumi.StringPtrOutput                           `pulumi:"createdAt"`
-	EnvVars        pulumi.ArrayOutput                               `pulumi:"envVars"`
-	Image          ImagePtrOutput                                   `pulumi:"image"`
-	ImagePath      pulumi.StringPtrOutput                           `pulumi:"imagePath"`
-	Name           pulumi.StringPtrOutput                           `pulumi:"name"`
-	NotifyOnFail   BackgroundWorkerServiceNotifyOnFailPtrOutput     `pulumi:"notifyOnFail"`
-	OwnerId        pulumi.StringPtrOutput                           `pulumi:"ownerId"`
-	Repo           pulumi.StringPtrOutput                           `pulumi:"repo"`
-	RootDir        pulumi.StringPtrOutput                           `pulumi:"rootDir"`
-	SecretFiles    SecretFileArrayOutput                            `pulumi:"secretFiles"`
-	ServiceDetails BackgroundWorkerDetailsOutputPtrOutput           `pulumi:"serviceDetails"`
-	Slug           pulumi.StringPtrOutput                           `pulumi:"slug"`
-	Suspended      BackgroundWorkerServiceSuspendedPtrOutput        `pulumi:"suspended"`
-	Suspenders     BackgroundWorkerServiceSuspendersItemArrayOutput `pulumi:"suspenders"`
-	Type           pulumi.StringPtrOutput                           `pulumi:"type"`
-	UpdatedAt      pulumi.StringPtrOutput                           `pulumi:"updatedAt"`
+	AutoDeploy     ServiceAutoDeployPtrOutput             `pulumi:"autoDeploy"`
+	Branch         pulumi.StringPtrOutput                 `pulumi:"branch"`
+	BuildFilter    BuildFilterPtrOutput                   `pulumi:"buildFilter"`
+	CreatedAt      pulumi.StringPtrOutput                 `pulumi:"createdAt"`
+	EnvVars        pulumi.ArrayOutput                     `pulumi:"envVars"`
+	Image          ImagePtrOutput                         `pulumi:"image"`
+	ImagePath      pulumi.StringPtrOutput                 `pulumi:"imagePath"`
+	Name           pulumi.StringPtrOutput                 `pulumi:"name"`
+	NotifyOnFail   ServiceNotifyOnFailPtrOutput           `pulumi:"notifyOnFail"`
+	OwnerId        pulumi.StringPtrOutput                 `pulumi:"ownerId"`
+	Repo           pulumi.StringPtrOutput                 `pulumi:"repo"`
+	RootDir        pulumi.StringPtrOutput                 `pulumi:"rootDir"`
+	SecretFiles    SecretFileArrayOutput                  `pulumi:"secretFiles"`
+	ServiceDetails BackgroundWorkerDetailsOutputPtrOutput `pulumi:"serviceDetails"`
+	Slug           pulumi.StringPtrOutput                 `pulumi:"slug"`
+	Suspended      ServiceSuspendedPtrOutput              `pulumi:"suspended"`
+	Suspenders     ServiceSuspendersItemArrayOutput       `pulumi:"suspenders"`
+	Type           pulumi.StringPtrOutput                 `pulumi:"type"`
+	UpdatedAt      pulumi.StringPtrOutput                 `pulumi:"updatedAt"`
 }
 
 // NewBackgroundWorker registers a new resource with the given unique name, arguments, and options.
@@ -50,7 +50,7 @@ func NewBackgroundWorker(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'OwnerId'")
 	}
 	if args.AutoDeploy == nil {
-		args.AutoDeploy = BackgroundWorkerServiceCreateAutoDeploy("yes")
+		args.AutoDeploy = ServiceCreateAutoDeploy("yes")
 	}
 	if args.ServiceDetails != nil {
 		args.ServiceDetails = args.ServiceDetails.ToBackgroundWorkerDetailsCreatePtrOutput().ApplyT(func(v *BackgroundWorkerDetailsCreate) *BackgroundWorkerDetailsCreate { return v.Defaults() }).(BackgroundWorkerDetailsCreatePtrOutput)
@@ -92,7 +92,7 @@ func (BackgroundWorkerState) ElementType() reflect.Type {
 
 type backgroundWorkerArgs struct {
 	// Defaults to "yes"
-	AutoDeploy *BackgroundWorkerServiceCreateAutoDeploy `pulumi:"autoDeploy"`
+	AutoDeploy *ServiceCreateAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository
 	Branch      *string       `pulumi:"branch"`
 	BuildFilter *BuildFilter  `pulumi:"buildFilter"`
@@ -111,7 +111,7 @@ type backgroundWorkerArgs struct {
 // The set of arguments for constructing a BackgroundWorker resource.
 type BackgroundWorkerArgs struct {
 	// Defaults to "yes"
-	AutoDeploy BackgroundWorkerServiceCreateAutoDeployPtrInput
+	AutoDeploy ServiceCreateAutoDeployPtrInput
 	// If left empty, this will fall back to the default branch of the repository
 	Branch      pulumi.StringPtrInput
 	BuildFilter BuildFilterPtrInput
@@ -164,8 +164,8 @@ func (o BackgroundWorkerOutput) ToBackgroundWorkerOutputWithContext(ctx context.
 	return o
 }
 
-func (o BackgroundWorkerOutput) AutoDeploy() BackgroundWorkerServiceAutoDeployPtrOutput {
-	return o.ApplyT(func(v *BackgroundWorker) BackgroundWorkerServiceAutoDeployPtrOutput { return v.AutoDeploy }).(BackgroundWorkerServiceAutoDeployPtrOutput)
+func (o BackgroundWorkerOutput) AutoDeploy() ServiceAutoDeployPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorker) ServiceAutoDeployPtrOutput { return v.AutoDeploy }).(ServiceAutoDeployPtrOutput)
 }
 
 func (o BackgroundWorkerOutput) Branch() pulumi.StringPtrOutput {
@@ -196,8 +196,8 @@ func (o BackgroundWorkerOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BackgroundWorker) pulumi.StringPtrOutput { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-func (o BackgroundWorkerOutput) NotifyOnFail() BackgroundWorkerServiceNotifyOnFailPtrOutput {
-	return o.ApplyT(func(v *BackgroundWorker) BackgroundWorkerServiceNotifyOnFailPtrOutput { return v.NotifyOnFail }).(BackgroundWorkerServiceNotifyOnFailPtrOutput)
+func (o BackgroundWorkerOutput) NotifyOnFail() ServiceNotifyOnFailPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorker) ServiceNotifyOnFailPtrOutput { return v.NotifyOnFail }).(ServiceNotifyOnFailPtrOutput)
 }
 
 func (o BackgroundWorkerOutput) OwnerId() pulumi.StringPtrOutput {
@@ -224,12 +224,12 @@ func (o BackgroundWorkerOutput) Slug() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BackgroundWorker) pulumi.StringPtrOutput { return v.Slug }).(pulumi.StringPtrOutput)
 }
 
-func (o BackgroundWorkerOutput) Suspended() BackgroundWorkerServiceSuspendedPtrOutput {
-	return o.ApplyT(func(v *BackgroundWorker) BackgroundWorkerServiceSuspendedPtrOutput { return v.Suspended }).(BackgroundWorkerServiceSuspendedPtrOutput)
+func (o BackgroundWorkerOutput) Suspended() ServiceSuspendedPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorker) ServiceSuspendedPtrOutput { return v.Suspended }).(ServiceSuspendedPtrOutput)
 }
 
-func (o BackgroundWorkerOutput) Suspenders() BackgroundWorkerServiceSuspendersItemArrayOutput {
-	return o.ApplyT(func(v *BackgroundWorker) BackgroundWorkerServiceSuspendersItemArrayOutput { return v.Suspenders }).(BackgroundWorkerServiceSuspendersItemArrayOutput)
+func (o BackgroundWorkerOutput) Suspenders() ServiceSuspendersItemArrayOutput {
+	return o.ApplyT(func(v *BackgroundWorker) ServiceSuspendersItemArrayOutput { return v.Suspenders }).(ServiceSuspendersItemArrayOutput)
 }
 
 func (o BackgroundWorkerOutput) Type() pulumi.StringPtrOutput {

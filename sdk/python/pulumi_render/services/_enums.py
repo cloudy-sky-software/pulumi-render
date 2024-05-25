@@ -13,34 +13,18 @@ __all__ = [
     'BackgroundWorkerDetailsOutputPlan',
     'BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled',
     'BackgroundWorkerDetailsOutputRegion',
-    'BackgroundWorkerServiceAutoDeploy',
-    'BackgroundWorkerServiceCreateAutoDeploy',
-    'BackgroundWorkerServiceNotifyOnFail',
-    'BackgroundWorkerServiceSuspended',
-    'BackgroundWorkerServiceSuspendersItem',
-    'CancelDeployStatus',
-    'CancelDeployTrigger',
+    'ClearCache',
     'CronJobDetailsCreateEnv',
     'CronJobDetailsCreatePlan',
     'CronJobDetailsCreateRegion',
     'CronJobDetailsOutputEnv',
     'CronJobDetailsOutputPlan',
     'CronJobDetailsOutputRegion',
-    'CronJobServiceAutoDeploy',
-    'CronJobServiceCreateAutoDeploy',
-    'CronJobServiceNotifyOnFail',
-    'CronJobServiceSuspended',
-    'CronJobServiceSuspendersItem',
     'CustomDomainDomainType',
     'CustomDomainVerificationStatus',
-    'DeployClearCache',
     'DeployStatus',
     'DeployTrigger',
-    'PreviewServicePlan',
-    'PreviewServiceServiceAutoDeploy',
-    'PreviewServiceServiceNotifyOnFail',
-    'PreviewServiceServiceSuspended',
-    'PreviewServiceServiceSuspendersItem',
+    'Plan',
     'PrivateServiceDetailsCreateEnv',
     'PrivateServiceDetailsCreatePlan',
     'PrivateServiceDetailsCreatePullRequestPreviewsEnabled',
@@ -49,27 +33,18 @@ __all__ = [
     'PrivateServiceDetailsOutputPlan',
     'PrivateServiceDetailsOutputPullRequestPreviewsEnabled',
     'PrivateServiceDetailsOutputRegion',
-    'PrivateServiceServiceAutoDeploy',
-    'PrivateServiceServiceCreateAutoDeploy',
-    'PrivateServiceServiceNotifyOnFail',
-    'PrivateServiceServiceSuspended',
-    'PrivateServiceServiceSuspendersItem',
     'RegistryCredentialRegistry',
-    'RollbackDeployStatus',
-    'RollbackDeployTrigger',
+    'RouteType',
     'ServerPortProtocol',
     'ServiceAutoDeploy',
+    'ServiceCreateAutoDeploy',
     'ServiceNotifyOnFail',
     'ServiceSuspended',
     'ServiceSuspendersItem',
     'StaticSiteDetailsCreatePullRequestPreviewsEnabled',
     'StaticSiteDetailsOutputPullRequestPreviewsEnabled',
-    'StaticSiteRouteType',
-    'StaticSiteServiceAutoDeploy',
-    'StaticSiteServiceCreateAutoDeploy',
-    'StaticSiteServiceNotifyOnFail',
-    'StaticSiteServiceSuspended',
-    'StaticSiteServiceSuspendersItem',
+    'Status',
+    'Trigger',
     'WebServiceDetailsCreateEnv',
     'WebServiceDetailsCreatePlan',
     'WebServiceDetailsCreatePullRequestPreviewsEnabled',
@@ -78,11 +53,6 @@ __all__ = [
     'WebServiceDetailsOutputPlan',
     'WebServiceDetailsOutputPullRequestPreviewsEnabled',
     'WebServiceDetailsOutputRegion',
-    'WebServiceServiceAutoDeploy',
-    'WebServiceServiceCreateAutoDeploy',
-    'WebServiceServiceNotifyOnFail',
-    'WebServiceServiceSuspended',
-    'WebServiceServiceSuspendersItem',
 ]
 
 
@@ -166,62 +136,12 @@ class BackgroundWorkerDetailsOutputRegion(str, Enum):
     SINGAPORE = "singapore"
 
 
-class BackgroundWorkerServiceAutoDeploy(str, Enum):
-    YES = "yes"
-    NO = "no"
-
-
-class BackgroundWorkerServiceCreateAutoDeploy(str, Enum):
+class ClearCache(str, Enum):
     """
-    Defaults to "yes"
+    Defaults to "do_not_clear"
     """
-    YES = "yes"
-    NO = "no"
-
-
-class BackgroundWorkerServiceNotifyOnFail(str, Enum):
-    DEFAULT = "default"
-    NOTIFY = "notify"
-    IGNORE = "ignore"
-
-
-class BackgroundWorkerServiceSuspended(str, Enum):
-    SUSPENDED = "suspended"
-    NOT_SUSPENDED = "not_suspended"
-
-
-class BackgroundWorkerServiceSuspendersItem(str, Enum):
-    ADMIN = "admin"
-    BILLING = "billing"
-    USER = "user"
-    PARENT_SERVICE = "parent_service"
-    UNKNOWN = "unknown"
-
-
-class CancelDeployStatus(str, Enum):
-    CREATED = "created"
-    BUILD_IN_PROGRESS = "build_in_progress"
-    UPDATE_IN_PROGRESS = "update_in_progress"
-    LIVE = "live"
-    DEACTIVATED = "deactivated"
-    BUILD_FAILED = "build_failed"
-    UPDATE_FAILED = "update_failed"
-    CANCELED = "canceled"
-    PRE_DEPLOY_IN_PROGRESS = "pre_deploy_in_progress"
-    PRE_DEPLOY_FAILED = "pre_deploy_failed"
-
-
-class CancelDeployTrigger(str, Enum):
-    API = "api"
-    BLUEPRINT_SYNC = "blueprint_sync"
-    DEPLOY_HOOK = "deploy_hook"
-    DEPLOYED_BY_RENDER = "deployed_by_render"
-    MANUAL = "manual"
-    OTHER = "other"
-    NEW_COMMIT = "new_commit"
-    ROLLBACK = "rollback"
-    SERVICE_RESUMED = "service_resumed"
-    SERVICE_UPDATED = "service_updated"
+    CLEAR = "clear"
+    DO_NOT_CLEAR = "do_not_clear"
 
 
 class CronJobDetailsCreateEnv(str, Enum):
@@ -291,38 +211,6 @@ class CronJobDetailsOutputRegion(str, Enum):
     SINGAPORE = "singapore"
 
 
-class CronJobServiceAutoDeploy(str, Enum):
-    YES = "yes"
-    NO = "no"
-
-
-class CronJobServiceCreateAutoDeploy(str, Enum):
-    """
-    Defaults to "yes"
-    """
-    YES = "yes"
-    NO = "no"
-
-
-class CronJobServiceNotifyOnFail(str, Enum):
-    DEFAULT = "default"
-    NOTIFY = "notify"
-    IGNORE = "ignore"
-
-
-class CronJobServiceSuspended(str, Enum):
-    SUSPENDED = "suspended"
-    NOT_SUSPENDED = "not_suspended"
-
-
-class CronJobServiceSuspendersItem(str, Enum):
-    ADMIN = "admin"
-    BILLING = "billing"
-    USER = "user"
-    PARENT_SERVICE = "parent_service"
-    UNKNOWN = "unknown"
-
-
 class CustomDomainDomainType(str, Enum):
     APEX = "apex"
     SUBDOMAIN = "subdomain"
@@ -331,14 +219,6 @@ class CustomDomainDomainType(str, Enum):
 class CustomDomainVerificationStatus(str, Enum):
     VERIFIED = "verified"
     UNVERIFIED = "unverified"
-
-
-class DeployClearCache(str, Enum):
-    """
-    Defaults to "do_not_clear"
-    """
-    CLEAR = "clear"
-    DO_NOT_CLEAR = "do_not_clear"
 
 
 class DeployStatus(str, Enum):
@@ -367,7 +247,7 @@ class DeployTrigger(str, Enum):
     SERVICE_UPDATED = "service_updated"
 
 
-class PreviewServicePlan(str, Enum):
+class Plan(str, Enum):
     """
     The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
     """
@@ -381,30 +261,6 @@ class PreviewServicePlan(str, Enum):
     PRO_ULTRA = "pro_ultra"
     FREE = "free"
     CUSTOM = "custom"
-
-
-class PreviewServiceServiceAutoDeploy(str, Enum):
-    YES = "yes"
-    NO = "no"
-
-
-class PreviewServiceServiceNotifyOnFail(str, Enum):
-    DEFAULT = "default"
-    NOTIFY = "notify"
-    IGNORE = "ignore"
-
-
-class PreviewServiceServiceSuspended(str, Enum):
-    SUSPENDED = "suspended"
-    NOT_SUSPENDED = "not_suspended"
-
-
-class PreviewServiceServiceSuspendersItem(str, Enum):
-    ADMIN = "admin"
-    BILLING = "billing"
-    USER = "user"
-    PARENT_SERVICE = "parent_service"
-    UNKNOWN = "unknown"
 
 
 class PrivateServiceDetailsCreateEnv(str, Enum):
@@ -487,38 +343,6 @@ class PrivateServiceDetailsOutputRegion(str, Enum):
     SINGAPORE = "singapore"
 
 
-class PrivateServiceServiceAutoDeploy(str, Enum):
-    YES = "yes"
-    NO = "no"
-
-
-class PrivateServiceServiceCreateAutoDeploy(str, Enum):
-    """
-    Defaults to "yes"
-    """
-    YES = "yes"
-    NO = "no"
-
-
-class PrivateServiceServiceNotifyOnFail(str, Enum):
-    DEFAULT = "default"
-    NOTIFY = "notify"
-    IGNORE = "ignore"
-
-
-class PrivateServiceServiceSuspended(str, Enum):
-    SUSPENDED = "suspended"
-    NOT_SUSPENDED = "not_suspended"
-
-
-class PrivateServiceServiceSuspendersItem(str, Enum):
-    ADMIN = "admin"
-    BILLING = "billing"
-    USER = "user"
-    PARENT_SERVICE = "parent_service"
-    UNKNOWN = "unknown"
-
-
 class RegistryCredentialRegistry(str, Enum):
     """
     The registry to use this credential with
@@ -528,30 +352,9 @@ class RegistryCredentialRegistry(str, Enum):
     DOCKER = "DOCKER"
 
 
-class RollbackDeployStatus(str, Enum):
-    CREATED = "created"
-    BUILD_IN_PROGRESS = "build_in_progress"
-    UPDATE_IN_PROGRESS = "update_in_progress"
-    LIVE = "live"
-    DEACTIVATED = "deactivated"
-    BUILD_FAILED = "build_failed"
-    UPDATE_FAILED = "update_failed"
-    CANCELED = "canceled"
-    PRE_DEPLOY_IN_PROGRESS = "pre_deploy_in_progress"
-    PRE_DEPLOY_FAILED = "pre_deploy_failed"
-
-
-class RollbackDeployTrigger(str, Enum):
-    API = "api"
-    BLUEPRINT_SYNC = "blueprint_sync"
-    DEPLOY_HOOK = "deploy_hook"
-    DEPLOYED_BY_RENDER = "deployed_by_render"
-    MANUAL = "manual"
-    OTHER = "other"
-    NEW_COMMIT = "new_commit"
-    ROLLBACK = "rollback"
-    SERVICE_RESUMED = "service_resumed"
-    SERVICE_UPDATED = "service_updated"
+class RouteType(str, Enum):
+    REDIRECT = "redirect"
+    REWRITE = "rewrite"
 
 
 class ServerPortProtocol(str, Enum):
@@ -560,6 +363,14 @@ class ServerPortProtocol(str, Enum):
 
 
 class ServiceAutoDeploy(str, Enum):
+    YES = "yes"
+    NO = "no"
+
+
+class ServiceCreateAutoDeploy(str, Enum):
+    """
+    Defaults to "yes"
+    """
     YES = "yes"
     NO = "no"
 
@@ -596,41 +407,30 @@ class StaticSiteDetailsOutputPullRequestPreviewsEnabled(str, Enum):
     NO = "no"
 
 
-class StaticSiteRouteType(str, Enum):
-    REDIRECT = "redirect"
-    REWRITE = "rewrite"
+class Status(str, Enum):
+    CREATED = "created"
+    BUILD_IN_PROGRESS = "build_in_progress"
+    UPDATE_IN_PROGRESS = "update_in_progress"
+    LIVE = "live"
+    DEACTIVATED = "deactivated"
+    BUILD_FAILED = "build_failed"
+    UPDATE_FAILED = "update_failed"
+    CANCELED = "canceled"
+    PRE_DEPLOY_IN_PROGRESS = "pre_deploy_in_progress"
+    PRE_DEPLOY_FAILED = "pre_deploy_failed"
 
 
-class StaticSiteServiceAutoDeploy(str, Enum):
-    YES = "yes"
-    NO = "no"
-
-
-class StaticSiteServiceCreateAutoDeploy(str, Enum):
-    """
-    Defaults to "yes"
-    """
-    YES = "yes"
-    NO = "no"
-
-
-class StaticSiteServiceNotifyOnFail(str, Enum):
-    DEFAULT = "default"
-    NOTIFY = "notify"
-    IGNORE = "ignore"
-
-
-class StaticSiteServiceSuspended(str, Enum):
-    SUSPENDED = "suspended"
-    NOT_SUSPENDED = "not_suspended"
-
-
-class StaticSiteServiceSuspendersItem(str, Enum):
-    ADMIN = "admin"
-    BILLING = "billing"
-    USER = "user"
-    PARENT_SERVICE = "parent_service"
-    UNKNOWN = "unknown"
+class Trigger(str, Enum):
+    API = "api"
+    BLUEPRINT_SYNC = "blueprint_sync"
+    DEPLOY_HOOK = "deploy_hook"
+    DEPLOYED_BY_RENDER = "deployed_by_render"
+    MANUAL = "manual"
+    OTHER = "other"
+    NEW_COMMIT = "new_commit"
+    ROLLBACK = "rollback"
+    SERVICE_RESUMED = "service_resumed"
+    SERVICE_UPDATED = "service_updated"
 
 
 class WebServiceDetailsCreateEnv(str, Enum):
@@ -711,35 +511,3 @@ class WebServiceDetailsOutputRegion(str, Enum):
     OREGON = "oregon"
     OHIO = "ohio"
     SINGAPORE = "singapore"
-
-
-class WebServiceServiceAutoDeploy(str, Enum):
-    YES = "yes"
-    NO = "no"
-
-
-class WebServiceServiceCreateAutoDeploy(str, Enum):
-    """
-    Defaults to "yes"
-    """
-    YES = "yes"
-    NO = "no"
-
-
-class WebServiceServiceNotifyOnFail(str, Enum):
-    DEFAULT = "default"
-    NOTIFY = "notify"
-    IGNORE = "ignore"
-
-
-class WebServiceServiceSuspended(str, Enum):
-    SUSPENDED = "suspended"
-    NOT_SUSPENDED = "not_suspended"
-
-
-class WebServiceServiceSuspendersItem(str, Enum):
-    ADMIN = "admin"
-    BILLING = "billing"
-    USER = "user"
-    PARENT_SERVICE = "parent_service"
-    UNKNOWN = "unknown"

@@ -20,7 +20,7 @@ type RegistryCredential struct {
 	Name    pulumi.StringOutput `pulumi:"name"`
 	OwnerId pulumi.StringOutput `pulumi:"ownerId"`
 	// The registry to use this credential with
-	Registry RegistryCredentialRegistryOutput `pulumi:"registry"`
+	Registry RegistryOutput `pulumi:"registry"`
 	// The username associated with the credential
 	Username pulumi.StringOutput `pulumi:"username"`
 }
@@ -77,11 +77,11 @@ func (RegistryCredentialState) ElementType() reflect.Type {
 }
 
 type registryCredentialArgs struct {
-	AuthToken string                     `pulumi:"authToken"`
-	Name      *string                    `pulumi:"name"`
-	OwnerId   string                     `pulumi:"ownerId"`
-	Registry  RegistryCredentialRegistry `pulumi:"registry"`
-	Username  string                     `pulumi:"username"`
+	AuthToken string   `pulumi:"authToken"`
+	Name      *string  `pulumi:"name"`
+	OwnerId   string   `pulumi:"ownerId"`
+	Registry  Registry `pulumi:"registry"`
+	Username  string   `pulumi:"username"`
 }
 
 // The set of arguments for constructing a RegistryCredential resource.
@@ -89,7 +89,7 @@ type RegistryCredentialArgs struct {
 	AuthToken pulumi.StringInput
 	Name      pulumi.StringPtrInput
 	OwnerId   pulumi.StringInput
-	Registry  RegistryCredentialRegistryInput
+	Registry  RegistryInput
 	Username  pulumi.StringInput
 }
 
@@ -144,8 +144,8 @@ func (o RegistryCredentialOutput) OwnerId() pulumi.StringOutput {
 }
 
 // The registry to use this credential with
-func (o RegistryCredentialOutput) Registry() RegistryCredentialRegistryOutput {
-	return o.ApplyT(func(v *RegistryCredential) RegistryCredentialRegistryOutput { return v.Registry }).(RegistryCredentialRegistryOutput)
+func (o RegistryCredentialOutput) Registry() RegistryOutput {
+	return o.ApplyT(func(v *RegistryCredential) RegistryOutput { return v.Registry }).(RegistryOutput)
 }
 
 // The username associated with the credential

@@ -19,7 +19,7 @@ class WebServiceArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
                  owner_id: pulumi.Input[str],
-                 auto_deploy: Optional[pulumi.Input['WebServiceServiceCreateAutoDeploy']] = None,
+                 auto_deploy: Optional[pulumi.Input['ServiceCreateAutoDeploy']] = None,
                  branch: Optional[pulumi.Input[str]] = None,
                  build_filter: Optional[pulumi.Input['BuildFilterArgs']] = None,
                  env_vars: Optional[pulumi.Input[Sequence[pulumi.Input[Union['EnvVarKeyValueArgs', 'EnvVarKeyGenerateValueArgs']]]]] = None,
@@ -31,7 +31,7 @@ class WebServiceArgs:
                  type: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a WebService resource.
-        :param pulumi.Input['WebServiceServiceCreateAutoDeploy'] auto_deploy: Defaults to "yes"
+        :param pulumi.Input['ServiceCreateAutoDeploy'] auto_deploy: Defaults to "yes"
         :param pulumi.Input[str] branch: If left empty, this will fall back to the default branch of the repository
         :param pulumi.Input[str] repo: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
         """
@@ -82,14 +82,14 @@ class WebServiceArgs:
 
     @property
     @pulumi.getter(name="autoDeploy")
-    def auto_deploy(self) -> Optional[pulumi.Input['WebServiceServiceCreateAutoDeploy']]:
+    def auto_deploy(self) -> Optional[pulumi.Input['ServiceCreateAutoDeploy']]:
         """
         Defaults to "yes"
         """
         return pulumi.get(self, "auto_deploy")
 
     @auto_deploy.setter
-    def auto_deploy(self, value: Optional[pulumi.Input['WebServiceServiceCreateAutoDeploy']]):
+    def auto_deploy(self, value: Optional[pulumi.Input['ServiceCreateAutoDeploy']]):
         pulumi.set(self, "auto_deploy", value)
 
     @property
@@ -185,7 +185,7 @@ class WebService(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 auto_deploy: Optional[pulumi.Input['WebServiceServiceCreateAutoDeploy']] = None,
+                 auto_deploy: Optional[pulumi.Input['ServiceCreateAutoDeploy']] = None,
                  branch: Optional[pulumi.Input[str]] = None,
                  build_filter: Optional[pulumi.Input[pulumi.InputType['BuildFilterArgs']]] = None,
                  env_vars: Optional[pulumi.Input[Sequence[pulumi.Input[Union[pulumi.InputType['EnvVarKeyValueArgs'], pulumi.InputType['EnvVarKeyGenerateValueArgs']]]]]] = None,
@@ -202,7 +202,7 @@ class WebService(pulumi.CustomResource):
         Create a WebService resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input['WebServiceServiceCreateAutoDeploy'] auto_deploy: Defaults to "yes"
+        :param pulumi.Input['ServiceCreateAutoDeploy'] auto_deploy: Defaults to "yes"
         :param pulumi.Input[str] branch: If left empty, this will fall back to the default branch of the repository
         :param pulumi.Input[str] repo: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
         """
@@ -229,7 +229,7 @@ class WebService(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 auto_deploy: Optional[pulumi.Input['WebServiceServiceCreateAutoDeploy']] = None,
+                 auto_deploy: Optional[pulumi.Input['ServiceCreateAutoDeploy']] = None,
                  branch: Optional[pulumi.Input[str]] = None,
                  build_filter: Optional[pulumi.Input[pulumi.InputType['BuildFilterArgs']]] = None,
                  env_vars: Optional[pulumi.Input[Sequence[pulumi.Input[Union[pulumi.InputType['EnvVarKeyValueArgs'], pulumi.InputType['EnvVarKeyGenerateValueArgs']]]]]] = None,
@@ -322,7 +322,7 @@ class WebService(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="autoDeploy")
-    def auto_deploy(self) -> pulumi.Output[Optional['WebServiceServiceAutoDeploy']]:
+    def auto_deploy(self) -> pulumi.Output[Optional['ServiceAutoDeploy']]:
         return pulumi.get(self, "auto_deploy")
 
     @property
@@ -362,7 +362,7 @@ class WebService(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="notifyOnFail")
-    def notify_on_fail(self) -> pulumi.Output[Optional['WebServiceServiceNotifyOnFail']]:
+    def notify_on_fail(self) -> pulumi.Output[Optional['ServiceNotifyOnFail']]:
         return pulumi.get(self, "notify_on_fail")
 
     @property
@@ -397,12 +397,12 @@ class WebService(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def suspended(self) -> pulumi.Output[Optional['WebServiceServiceSuspended']]:
+    def suspended(self) -> pulumi.Output[Optional['ServiceSuspended']]:
         return pulumi.get(self, "suspended")
 
     @property
     @pulumi.getter
-    def suspenders(self) -> pulumi.Output[Optional[Sequence['WebServiceServiceSuspendersItem']]]:
+    def suspenders(self) -> pulumi.Output[Optional[Sequence['ServiceSuspendersItem']]]:
         return pulumi.get(self, "suspenders")
 
     @property

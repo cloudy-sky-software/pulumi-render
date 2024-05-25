@@ -2,6 +2,14 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 
+export const Registry = {
+    Github: "GITHUB",
+    Gitlab: "GITLAB",
+    Docker: "DOCKER",
+} as const;
+
+export type Registry = (typeof Registry)[keyof typeof Registry];
+
 export const RegistryCredentialRegistry = {
     Github: "GITHUB",
     Gitlab: "GITLAB",

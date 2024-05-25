@@ -308,21 +308,21 @@ export namespace services {
     }
 
     export interface GetBackgroundWorker {
-        autoDeploy: enums.services.PreviewServiceServiceAutoDeploy;
+        autoDeploy: enums.services.ServiceAutoDeploy;
         branch?: string;
         buildFilter?: outputs.services.BuildFilter;
         createdAt: string;
         id: string;
         imagePath?: string;
         name: string;
-        notifyOnFail: enums.services.PreviewServiceServiceNotifyOnFail;
+        notifyOnFail: enums.services.ServiceNotifyOnFail;
         ownerId: string;
         repo?: string;
         rootDir: string;
         serviceDetails?: outputs.services.BackgroundWorkerDetailsOutput;
         slug: string;
-        suspended: enums.services.PreviewServiceServiceSuspended;
-        suspenders: enums.services.PreviewServiceServiceSuspendersItem[];
+        suspended: enums.services.ServiceSuspended;
+        suspenders: enums.services.ServiceSuspendersItem[];
         type?: string;
         updatedAt: string;
     }
@@ -338,21 +338,21 @@ export namespace services {
     }
 
     export interface GetCronJob {
-        autoDeploy: enums.services.PreviewServiceServiceAutoDeploy;
+        autoDeploy: enums.services.ServiceAutoDeploy;
         branch?: string;
         buildFilter?: outputs.services.BuildFilter;
         createdAt: string;
         id: string;
         imagePath?: string;
         name: string;
-        notifyOnFail: enums.services.PreviewServiceServiceNotifyOnFail;
+        notifyOnFail: enums.services.ServiceNotifyOnFail;
         ownerId: string;
         repo?: string;
         rootDir: string;
         serviceDetails?: outputs.services.CronJobDetailsOutput;
         slug: string;
-        suspended: enums.services.PreviewServiceServiceSuspended;
-        suspenders: enums.services.PreviewServiceServiceSuspendersItem[];
+        suspended: enums.services.ServiceSuspended;
+        suspenders: enums.services.ServiceSuspendersItem[];
         type?: string;
         updatedAt: string;
     }
@@ -367,21 +367,21 @@ export namespace services {
     }
 
     export interface GetPrivateService {
-        autoDeploy: enums.services.PreviewServiceServiceAutoDeploy;
+        autoDeploy: enums.services.ServiceAutoDeploy;
         branch?: string;
         buildFilter?: outputs.services.BuildFilter;
         createdAt: string;
         id: string;
         imagePath?: string;
         name: string;
-        notifyOnFail: enums.services.PreviewServiceServiceNotifyOnFail;
+        notifyOnFail: enums.services.ServiceNotifyOnFail;
         ownerId: string;
         repo?: string;
         rootDir: string;
         serviceDetails?: outputs.services.PrivateServiceDetailsOutput;
         slug: string;
-        suspended: enums.services.PreviewServiceServiceSuspended;
-        suspenders: enums.services.PreviewServiceServiceSuspendersItem[];
+        suspended: enums.services.ServiceSuspended;
+        suspenders: enums.services.ServiceSuspendersItem[];
         type?: string;
         updatedAt: string;
     }
@@ -397,21 +397,21 @@ export namespace services {
     }
 
     export interface GetStaticSite {
-        autoDeploy: enums.services.PreviewServiceServiceAutoDeploy;
+        autoDeploy: enums.services.ServiceAutoDeploy;
         branch?: string;
         buildFilter?: outputs.services.BuildFilter;
         createdAt: string;
         id: string;
         imagePath?: string;
         name: string;
-        notifyOnFail: enums.services.PreviewServiceServiceNotifyOnFail;
+        notifyOnFail: enums.services.ServiceNotifyOnFail;
         ownerId: string;
         repo?: string;
         rootDir: string;
         serviceDetails?: outputs.services.StaticSiteDetailsOutput;
         slug: string;
-        suspended: enums.services.PreviewServiceServiceSuspended;
-        suspenders: enums.services.PreviewServiceServiceSuspendersItem[];
+        suspended: enums.services.ServiceSuspended;
+        suspenders: enums.services.ServiceSuspendersItem[];
         type?: string;
         updatedAt: string;
     }
@@ -426,21 +426,21 @@ export namespace services {
     }
 
     export interface GetWebService {
-        autoDeploy: enums.services.PreviewServiceServiceAutoDeploy;
+        autoDeploy: enums.services.ServiceAutoDeploy;
         branch?: string;
         buildFilter?: outputs.services.BuildFilter;
         createdAt: string;
         id: string;
         imagePath?: string;
         name: string;
-        notifyOnFail: enums.services.PreviewServiceServiceNotifyOnFail;
+        notifyOnFail: enums.services.ServiceNotifyOnFail;
         ownerId: string;
         repo?: string;
         rootDir: string;
         serviceDetails?: outputs.services.WebServiceDetailsOutput;
         slug: string;
-        suspended: enums.services.PreviewServiceServiceSuspended;
-        suspenders: enums.services.PreviewServiceServiceSuspendersItem[];
+        suspended: enums.services.ServiceSuspended;
+        suspenders: enums.services.ServiceSuspendersItem[];
         type?: string;
         updatedAt: string;
     }
@@ -637,7 +637,7 @@ export namespace services {
          */
         priority: number;
         source: string;
-        type: enums.services.StaticSiteRouteType;
+        type: enums.services.RouteType;
     }
 
     export interface SecretFile {
@@ -651,20 +651,20 @@ export namespace services {
     }
 
     export interface Service {
-        autoDeploy: enums.services.PreviewServiceServiceAutoDeploy;
+        autoDeploy: enums.services.ServiceAutoDeploy;
         branch?: string;
         buildFilter?: outputs.services.BuildFilter;
         createdAt: string;
         id: string;
         imagePath?: string;
         name: string;
-        notifyOnFail: enums.services.PreviewServiceServiceNotifyOnFail;
+        notifyOnFail: enums.services.ServiceNotifyOnFail;
         ownerId: string;
         repo?: string;
         rootDir: string;
         slug: string;
-        suspended: enums.services.PreviewServiceServiceSuspended;
-        suspenders: enums.services.PreviewServiceServiceSuspendersItem[];
+        suspended: enums.services.ServiceSuspended;
+        suspenders: enums.services.ServiceSuspendersItem[];
         updatedAt: string;
     }
 

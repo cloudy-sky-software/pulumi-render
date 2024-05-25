@@ -34,7 +34,7 @@ export class CronJob extends pulumi.CustomResource {
         return obj['__pulumiType'] === CronJob.__pulumiType;
     }
 
-    public readonly autoDeploy!: pulumi.Output<enums.services.CronJobServiceAutoDeploy | undefined>;
+    public readonly autoDeploy!: pulumi.Output<enums.services.ServiceAutoDeploy | undefined>;
     public readonly branch!: pulumi.Output<string | undefined>;
     public readonly buildFilter!: pulumi.Output<outputs.services.BuildFilter | undefined>;
     public /*out*/ readonly createdAt!: pulumi.Output<string | undefined>;
@@ -42,15 +42,15 @@ export class CronJob extends pulumi.CustomResource {
     public readonly image!: pulumi.Output<outputs.services.Image | undefined>;
     public /*out*/ readonly imagePath!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly notifyOnFail!: pulumi.Output<enums.services.CronJobServiceNotifyOnFail | undefined>;
+    public /*out*/ readonly notifyOnFail!: pulumi.Output<enums.services.ServiceNotifyOnFail | undefined>;
     public readonly ownerId!: pulumi.Output<string | undefined>;
     public readonly repo!: pulumi.Output<string | undefined>;
     public readonly rootDir!: pulumi.Output<string | undefined>;
     public readonly secretFiles!: pulumi.Output<outputs.services.SecretFile[] | undefined>;
     public readonly serviceDetails!: pulumi.Output<outputs.services.CronJobDetailsOutput | undefined>;
     public /*out*/ readonly slug!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly suspended!: pulumi.Output<enums.services.CronJobServiceSuspended | undefined>;
-    public /*out*/ readonly suspenders!: pulumi.Output<enums.services.CronJobServiceSuspendersItem[] | undefined>;
+    public /*out*/ readonly suspended!: pulumi.Output<enums.services.ServiceSuspended | undefined>;
+    public /*out*/ readonly suspenders!: pulumi.Output<enums.services.ServiceSuspendersItem[] | undefined>;
     public readonly type!: pulumi.Output<string | undefined>;
     public /*out*/ readonly updatedAt!: pulumi.Output<string | undefined>;
 
@@ -123,7 +123,7 @@ export interface CronJobArgs {
     /**
      * Defaults to "yes"
      */
-    autoDeploy?: pulumi.Input<enums.services.CronJobServiceCreateAutoDeploy>;
+    autoDeploy?: pulumi.Input<enums.services.ServiceCreateAutoDeploy>;
     /**
      * If left empty, this will fall back to the default branch of the repository
      */

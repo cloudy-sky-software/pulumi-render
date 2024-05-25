@@ -13,27 +13,27 @@ namespace Pulumi.Render.Services.Outputs
     [OutputType]
     public sealed class GetBackgroundWorker
     {
-        public readonly Pulumi.Render.Services.PreviewServiceServiceAutoDeploy AutoDeploy;
+        public readonly Pulumi.Render.Services.ServiceAutoDeploy AutoDeploy;
         public readonly string? Branch;
         public readonly Outputs.BuildFilter? BuildFilter;
         public readonly string CreatedAt;
         public readonly string Id;
         public readonly string? ImagePath;
         public readonly string Name;
-        public readonly Pulumi.Render.Services.PreviewServiceServiceNotifyOnFail NotifyOnFail;
+        public readonly Pulumi.Render.Services.ServiceNotifyOnFail NotifyOnFail;
         public readonly string OwnerId;
         public readonly string? Repo;
         public readonly string RootDir;
         public readonly Outputs.BackgroundWorkerDetailsOutput? ServiceDetails;
         public readonly string Slug;
-        public readonly Pulumi.Render.Services.PreviewServiceServiceSuspended Suspended;
-        public readonly ImmutableArray<Pulumi.Render.Services.PreviewServiceServiceSuspendersItem> Suspenders;
+        public readonly Pulumi.Render.Services.ServiceSuspended Suspended;
+        public readonly ImmutableArray<Pulumi.Render.Services.ServiceSuspendersItem> Suspenders;
         public readonly string? Type;
         public readonly string UpdatedAt;
 
         [OutputConstructor]
         private GetBackgroundWorker(
-            Pulumi.Render.Services.PreviewServiceServiceAutoDeploy autoDeploy,
+            Pulumi.Render.Services.ServiceAutoDeploy autoDeploy,
 
             string? branch,
 
@@ -47,7 +47,7 @@ namespace Pulumi.Render.Services.Outputs
 
             string name,
 
-            Pulumi.Render.Services.PreviewServiceServiceNotifyOnFail notifyOnFail,
+            Pulumi.Render.Services.ServiceNotifyOnFail notifyOnFail,
 
             string ownerId,
 
@@ -59,9 +59,9 @@ namespace Pulumi.Render.Services.Outputs
 
             string slug,
 
-            Pulumi.Render.Services.PreviewServiceServiceSuspended suspended,
+            Pulumi.Render.Services.ServiceSuspended suspended,
 
-            ImmutableArray<Pulumi.Render.Services.PreviewServiceServiceSuspendersItem> suspenders,
+            ImmutableArray<Pulumi.Render.Services.ServiceSuspendersItem> suspenders,
 
             string? type,
 

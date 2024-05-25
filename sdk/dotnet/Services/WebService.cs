@@ -13,7 +13,7 @@ namespace Pulumi.Render.Services
     public partial class WebService : global::Pulumi.CustomResource
     {
         [Output("autoDeploy")]
-        public Output<Pulumi.Render.Services.WebServiceServiceAutoDeploy?> AutoDeploy { get; private set; } = null!;
+        public Output<Pulumi.Render.Services.ServiceAutoDeploy?> AutoDeploy { get; private set; } = null!;
 
         [Output("branch")]
         public Output<string?> Branch { get; private set; } = null!;
@@ -37,7 +37,7 @@ namespace Pulumi.Render.Services
         public Output<string?> Name { get; private set; } = null!;
 
         [Output("notifyOnFail")]
-        public Output<Pulumi.Render.Services.WebServiceServiceNotifyOnFail?> NotifyOnFail { get; private set; } = null!;
+        public Output<Pulumi.Render.Services.ServiceNotifyOnFail?> NotifyOnFail { get; private set; } = null!;
 
         [Output("ownerId")]
         public Output<string?> OwnerId { get; private set; } = null!;
@@ -58,10 +58,10 @@ namespace Pulumi.Render.Services
         public Output<string?> Slug { get; private set; } = null!;
 
         [Output("suspended")]
-        public Output<Pulumi.Render.Services.WebServiceServiceSuspended?> Suspended { get; private set; } = null!;
+        public Output<Pulumi.Render.Services.ServiceSuspended?> Suspended { get; private set; } = null!;
 
         [Output("suspenders")]
-        public Output<ImmutableArray<Pulumi.Render.Services.WebServiceServiceSuspendersItem>> Suspenders { get; private set; } = null!;
+        public Output<ImmutableArray<Pulumi.Render.Services.ServiceSuspendersItem>> Suspenders { get; private set; } = null!;
 
         [Output("type")]
         public Output<string?> Type { get; private set; } = null!;
@@ -119,7 +119,7 @@ namespace Pulumi.Render.Services
         /// Defaults to "yes"
         /// </summary>
         [Input("autoDeploy")]
-        public Input<Pulumi.Render.Services.WebServiceServiceCreateAutoDeploy>? AutoDeploy { get; set; }
+        public Input<Pulumi.Render.Services.ServiceCreateAutoDeploy>? AutoDeploy { get; set; }
 
         /// <summary>
         /// If left empty, this will fall back to the default branch of the repository
@@ -172,7 +172,7 @@ namespace Pulumi.Render.Services
 
         public WebServiceArgs()
         {
-            AutoDeploy = Pulumi.Render.Services.WebServiceServiceCreateAutoDeploy.Yes;
+            AutoDeploy = Pulumi.Render.Services.ServiceCreateAutoDeploy.Yes;
             Type = "web_service";
         }
         public static new WebServiceArgs Empty => new WebServiceArgs();

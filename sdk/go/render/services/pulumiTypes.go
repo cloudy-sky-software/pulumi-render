@@ -3200,23 +3200,23 @@ func (o EnvVarWithCursorArrayOutput) Index(i pulumi.IntInput) EnvVarWithCursorOu
 }
 
 type GetBackgroundWorkerType struct {
-	AutoDeploy     PreviewServiceServiceAutoDeploy       `pulumi:"autoDeploy"`
-	Branch         *string                               `pulumi:"branch"`
-	BuildFilter    *BuildFilter                          `pulumi:"buildFilter"`
-	CreatedAt      string                                `pulumi:"createdAt"`
-	Id             string                                `pulumi:"id"`
-	ImagePath      *string                               `pulumi:"imagePath"`
-	Name           string                                `pulumi:"name"`
-	NotifyOnFail   PreviewServiceServiceNotifyOnFail     `pulumi:"notifyOnFail"`
-	OwnerId        string                                `pulumi:"ownerId"`
-	Repo           *string                               `pulumi:"repo"`
-	RootDir        string                                `pulumi:"rootDir"`
-	ServiceDetails *BackgroundWorkerDetailsOutput        `pulumi:"serviceDetails"`
-	Slug           string                                `pulumi:"slug"`
-	Suspended      PreviewServiceServiceSuspended        `pulumi:"suspended"`
-	Suspenders     []PreviewServiceServiceSuspendersItem `pulumi:"suspenders"`
-	Type           *string                               `pulumi:"type"`
-	UpdatedAt      string                                `pulumi:"updatedAt"`
+	AutoDeploy     ServiceAutoDeploy              `pulumi:"autoDeploy"`
+	Branch         *string                        `pulumi:"branch"`
+	BuildFilter    *BuildFilter                   `pulumi:"buildFilter"`
+	CreatedAt      string                         `pulumi:"createdAt"`
+	Id             string                         `pulumi:"id"`
+	ImagePath      *string                        `pulumi:"imagePath"`
+	Name           string                         `pulumi:"name"`
+	NotifyOnFail   ServiceNotifyOnFail            `pulumi:"notifyOnFail"`
+	OwnerId        string                         `pulumi:"ownerId"`
+	Repo           *string                        `pulumi:"repo"`
+	RootDir        string                         `pulumi:"rootDir"`
+	ServiceDetails *BackgroundWorkerDetailsOutput `pulumi:"serviceDetails"`
+	Slug           string                         `pulumi:"slug"`
+	Suspended      ServiceSuspended               `pulumi:"suspended"`
+	Suspenders     []ServiceSuspendersItem        `pulumi:"suspenders"`
+	Type           *string                        `pulumi:"type"`
+	UpdatedAt      string                         `pulumi:"updatedAt"`
 }
 
 // Defaults sets the appropriate defaults for GetBackgroundWorkerType
@@ -3248,8 +3248,8 @@ func (o GetBackgroundWorkerTypeOutput) ToGetBackgroundWorkerTypeOutputWithContex
 	return o
 }
 
-func (o GetBackgroundWorkerTypeOutput) AutoDeploy() PreviewServiceServiceAutoDeployOutput {
-	return o.ApplyT(func(v GetBackgroundWorkerType) PreviewServiceServiceAutoDeploy { return v.AutoDeploy }).(PreviewServiceServiceAutoDeployOutput)
+func (o GetBackgroundWorkerTypeOutput) AutoDeploy() ServiceAutoDeployOutput {
+	return o.ApplyT(func(v GetBackgroundWorkerType) ServiceAutoDeploy { return v.AutoDeploy }).(ServiceAutoDeployOutput)
 }
 
 func (o GetBackgroundWorkerTypeOutput) Branch() pulumi.StringPtrOutput {
@@ -3276,8 +3276,8 @@ func (o GetBackgroundWorkerTypeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBackgroundWorkerType) string { return v.Name }).(pulumi.StringOutput)
 }
 
-func (o GetBackgroundWorkerTypeOutput) NotifyOnFail() PreviewServiceServiceNotifyOnFailOutput {
-	return o.ApplyT(func(v GetBackgroundWorkerType) PreviewServiceServiceNotifyOnFail { return v.NotifyOnFail }).(PreviewServiceServiceNotifyOnFailOutput)
+func (o GetBackgroundWorkerTypeOutput) NotifyOnFail() ServiceNotifyOnFailOutput {
+	return o.ApplyT(func(v GetBackgroundWorkerType) ServiceNotifyOnFail { return v.NotifyOnFail }).(ServiceNotifyOnFailOutput)
 }
 
 func (o GetBackgroundWorkerTypeOutput) OwnerId() pulumi.StringOutput {
@@ -3300,12 +3300,12 @@ func (o GetBackgroundWorkerTypeOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBackgroundWorkerType) string { return v.Slug }).(pulumi.StringOutput)
 }
 
-func (o GetBackgroundWorkerTypeOutput) Suspended() PreviewServiceServiceSuspendedOutput {
-	return o.ApplyT(func(v GetBackgroundWorkerType) PreviewServiceServiceSuspended { return v.Suspended }).(PreviewServiceServiceSuspendedOutput)
+func (o GetBackgroundWorkerTypeOutput) Suspended() ServiceSuspendedOutput {
+	return o.ApplyT(func(v GetBackgroundWorkerType) ServiceSuspended { return v.Suspended }).(ServiceSuspendedOutput)
 }
 
-func (o GetBackgroundWorkerTypeOutput) Suspenders() PreviewServiceServiceSuspendersItemArrayOutput {
-	return o.ApplyT(func(v GetBackgroundWorkerType) []PreviewServiceServiceSuspendersItem { return v.Suspenders }).(PreviewServiceServiceSuspendersItemArrayOutput)
+func (o GetBackgroundWorkerTypeOutput) Suspenders() ServiceSuspendersItemArrayOutput {
+	return o.ApplyT(func(v GetBackgroundWorkerType) []ServiceSuspendersItem { return v.Suspenders }).(ServiceSuspendersItemArrayOutput)
 }
 
 func (o GetBackgroundWorkerTypeOutput) Type() pulumi.StringPtrOutput {
@@ -3317,23 +3317,23 @@ func (o GetBackgroundWorkerTypeOutput) UpdatedAt() pulumi.StringOutput {
 }
 
 type GetCronJobType struct {
-	AutoDeploy     PreviewServiceServiceAutoDeploy       `pulumi:"autoDeploy"`
-	Branch         *string                               `pulumi:"branch"`
-	BuildFilter    *BuildFilter                          `pulumi:"buildFilter"`
-	CreatedAt      string                                `pulumi:"createdAt"`
-	Id             string                                `pulumi:"id"`
-	ImagePath      *string                               `pulumi:"imagePath"`
-	Name           string                                `pulumi:"name"`
-	NotifyOnFail   PreviewServiceServiceNotifyOnFail     `pulumi:"notifyOnFail"`
-	OwnerId        string                                `pulumi:"ownerId"`
-	Repo           *string                               `pulumi:"repo"`
-	RootDir        string                                `pulumi:"rootDir"`
-	ServiceDetails *CronJobDetailsOutput                 `pulumi:"serviceDetails"`
-	Slug           string                                `pulumi:"slug"`
-	Suspended      PreviewServiceServiceSuspended        `pulumi:"suspended"`
-	Suspenders     []PreviewServiceServiceSuspendersItem `pulumi:"suspenders"`
-	Type           *string                               `pulumi:"type"`
-	UpdatedAt      string                                `pulumi:"updatedAt"`
+	AutoDeploy     ServiceAutoDeploy       `pulumi:"autoDeploy"`
+	Branch         *string                 `pulumi:"branch"`
+	BuildFilter    *BuildFilter            `pulumi:"buildFilter"`
+	CreatedAt      string                  `pulumi:"createdAt"`
+	Id             string                  `pulumi:"id"`
+	ImagePath      *string                 `pulumi:"imagePath"`
+	Name           string                  `pulumi:"name"`
+	NotifyOnFail   ServiceNotifyOnFail     `pulumi:"notifyOnFail"`
+	OwnerId        string                  `pulumi:"ownerId"`
+	Repo           *string                 `pulumi:"repo"`
+	RootDir        string                  `pulumi:"rootDir"`
+	ServiceDetails *CronJobDetailsOutput   `pulumi:"serviceDetails"`
+	Slug           string                  `pulumi:"slug"`
+	Suspended      ServiceSuspended        `pulumi:"suspended"`
+	Suspenders     []ServiceSuspendersItem `pulumi:"suspenders"`
+	Type           *string                 `pulumi:"type"`
+	UpdatedAt      string                  `pulumi:"updatedAt"`
 }
 
 // Defaults sets the appropriate defaults for GetCronJobType
@@ -3363,8 +3363,8 @@ func (o GetCronJobTypeOutput) ToGetCronJobTypeOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o GetCronJobTypeOutput) AutoDeploy() PreviewServiceServiceAutoDeployOutput {
-	return o.ApplyT(func(v GetCronJobType) PreviewServiceServiceAutoDeploy { return v.AutoDeploy }).(PreviewServiceServiceAutoDeployOutput)
+func (o GetCronJobTypeOutput) AutoDeploy() ServiceAutoDeployOutput {
+	return o.ApplyT(func(v GetCronJobType) ServiceAutoDeploy { return v.AutoDeploy }).(ServiceAutoDeployOutput)
 }
 
 func (o GetCronJobTypeOutput) Branch() pulumi.StringPtrOutput {
@@ -3391,8 +3391,8 @@ func (o GetCronJobTypeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCronJobType) string { return v.Name }).(pulumi.StringOutput)
 }
 
-func (o GetCronJobTypeOutput) NotifyOnFail() PreviewServiceServiceNotifyOnFailOutput {
-	return o.ApplyT(func(v GetCronJobType) PreviewServiceServiceNotifyOnFail { return v.NotifyOnFail }).(PreviewServiceServiceNotifyOnFailOutput)
+func (o GetCronJobTypeOutput) NotifyOnFail() ServiceNotifyOnFailOutput {
+	return o.ApplyT(func(v GetCronJobType) ServiceNotifyOnFail { return v.NotifyOnFail }).(ServiceNotifyOnFailOutput)
 }
 
 func (o GetCronJobTypeOutput) OwnerId() pulumi.StringOutput {
@@ -3415,12 +3415,12 @@ func (o GetCronJobTypeOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCronJobType) string { return v.Slug }).(pulumi.StringOutput)
 }
 
-func (o GetCronJobTypeOutput) Suspended() PreviewServiceServiceSuspendedOutput {
-	return o.ApplyT(func(v GetCronJobType) PreviewServiceServiceSuspended { return v.Suspended }).(PreviewServiceServiceSuspendedOutput)
+func (o GetCronJobTypeOutput) Suspended() ServiceSuspendedOutput {
+	return o.ApplyT(func(v GetCronJobType) ServiceSuspended { return v.Suspended }).(ServiceSuspendedOutput)
 }
 
-func (o GetCronJobTypeOutput) Suspenders() PreviewServiceServiceSuspendersItemArrayOutput {
-	return o.ApplyT(func(v GetCronJobType) []PreviewServiceServiceSuspendersItem { return v.Suspenders }).(PreviewServiceServiceSuspendersItemArrayOutput)
+func (o GetCronJobTypeOutput) Suspenders() ServiceSuspendersItemArrayOutput {
+	return o.ApplyT(func(v GetCronJobType) []ServiceSuspendersItem { return v.Suspenders }).(ServiceSuspendersItemArrayOutput)
 }
 
 func (o GetCronJobTypeOutput) Type() pulumi.StringPtrOutput {
@@ -3432,23 +3432,23 @@ func (o GetCronJobTypeOutput) UpdatedAt() pulumi.StringOutput {
 }
 
 type GetPrivateServiceType struct {
-	AutoDeploy     PreviewServiceServiceAutoDeploy       `pulumi:"autoDeploy"`
-	Branch         *string                               `pulumi:"branch"`
-	BuildFilter    *BuildFilter                          `pulumi:"buildFilter"`
-	CreatedAt      string                                `pulumi:"createdAt"`
-	Id             string                                `pulumi:"id"`
-	ImagePath      *string                               `pulumi:"imagePath"`
-	Name           string                                `pulumi:"name"`
-	NotifyOnFail   PreviewServiceServiceNotifyOnFail     `pulumi:"notifyOnFail"`
-	OwnerId        string                                `pulumi:"ownerId"`
-	Repo           *string                               `pulumi:"repo"`
-	RootDir        string                                `pulumi:"rootDir"`
-	ServiceDetails *PrivateServiceDetailsOutput          `pulumi:"serviceDetails"`
-	Slug           string                                `pulumi:"slug"`
-	Suspended      PreviewServiceServiceSuspended        `pulumi:"suspended"`
-	Suspenders     []PreviewServiceServiceSuspendersItem `pulumi:"suspenders"`
-	Type           *string                               `pulumi:"type"`
-	UpdatedAt      string                                `pulumi:"updatedAt"`
+	AutoDeploy     ServiceAutoDeploy            `pulumi:"autoDeploy"`
+	Branch         *string                      `pulumi:"branch"`
+	BuildFilter    *BuildFilter                 `pulumi:"buildFilter"`
+	CreatedAt      string                       `pulumi:"createdAt"`
+	Id             string                       `pulumi:"id"`
+	ImagePath      *string                      `pulumi:"imagePath"`
+	Name           string                       `pulumi:"name"`
+	NotifyOnFail   ServiceNotifyOnFail          `pulumi:"notifyOnFail"`
+	OwnerId        string                       `pulumi:"ownerId"`
+	Repo           *string                      `pulumi:"repo"`
+	RootDir        string                       `pulumi:"rootDir"`
+	ServiceDetails *PrivateServiceDetailsOutput `pulumi:"serviceDetails"`
+	Slug           string                       `pulumi:"slug"`
+	Suspended      ServiceSuspended             `pulumi:"suspended"`
+	Suspenders     []ServiceSuspendersItem      `pulumi:"suspenders"`
+	Type           *string                      `pulumi:"type"`
+	UpdatedAt      string                       `pulumi:"updatedAt"`
 }
 
 // Defaults sets the appropriate defaults for GetPrivateServiceType
@@ -3480,8 +3480,8 @@ func (o GetPrivateServiceTypeOutput) ToGetPrivateServiceTypeOutputWithContext(ct
 	return o
 }
 
-func (o GetPrivateServiceTypeOutput) AutoDeploy() PreviewServiceServiceAutoDeployOutput {
-	return o.ApplyT(func(v GetPrivateServiceType) PreviewServiceServiceAutoDeploy { return v.AutoDeploy }).(PreviewServiceServiceAutoDeployOutput)
+func (o GetPrivateServiceTypeOutput) AutoDeploy() ServiceAutoDeployOutput {
+	return o.ApplyT(func(v GetPrivateServiceType) ServiceAutoDeploy { return v.AutoDeploy }).(ServiceAutoDeployOutput)
 }
 
 func (o GetPrivateServiceTypeOutput) Branch() pulumi.StringPtrOutput {
@@ -3508,8 +3508,8 @@ func (o GetPrivateServiceTypeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPrivateServiceType) string { return v.Name }).(pulumi.StringOutput)
 }
 
-func (o GetPrivateServiceTypeOutput) NotifyOnFail() PreviewServiceServiceNotifyOnFailOutput {
-	return o.ApplyT(func(v GetPrivateServiceType) PreviewServiceServiceNotifyOnFail { return v.NotifyOnFail }).(PreviewServiceServiceNotifyOnFailOutput)
+func (o GetPrivateServiceTypeOutput) NotifyOnFail() ServiceNotifyOnFailOutput {
+	return o.ApplyT(func(v GetPrivateServiceType) ServiceNotifyOnFail { return v.NotifyOnFail }).(ServiceNotifyOnFailOutput)
 }
 
 func (o GetPrivateServiceTypeOutput) OwnerId() pulumi.StringOutput {
@@ -3532,12 +3532,12 @@ func (o GetPrivateServiceTypeOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPrivateServiceType) string { return v.Slug }).(pulumi.StringOutput)
 }
 
-func (o GetPrivateServiceTypeOutput) Suspended() PreviewServiceServiceSuspendedOutput {
-	return o.ApplyT(func(v GetPrivateServiceType) PreviewServiceServiceSuspended { return v.Suspended }).(PreviewServiceServiceSuspendedOutput)
+func (o GetPrivateServiceTypeOutput) Suspended() ServiceSuspendedOutput {
+	return o.ApplyT(func(v GetPrivateServiceType) ServiceSuspended { return v.Suspended }).(ServiceSuspendedOutput)
 }
 
-func (o GetPrivateServiceTypeOutput) Suspenders() PreviewServiceServiceSuspendersItemArrayOutput {
-	return o.ApplyT(func(v GetPrivateServiceType) []PreviewServiceServiceSuspendersItem { return v.Suspenders }).(PreviewServiceServiceSuspendersItemArrayOutput)
+func (o GetPrivateServiceTypeOutput) Suspenders() ServiceSuspendersItemArrayOutput {
+	return o.ApplyT(func(v GetPrivateServiceType) []ServiceSuspendersItem { return v.Suspenders }).(ServiceSuspendersItemArrayOutput)
 }
 
 func (o GetPrivateServiceTypeOutput) Type() pulumi.StringPtrOutput {
@@ -3549,23 +3549,23 @@ func (o GetPrivateServiceTypeOutput) UpdatedAt() pulumi.StringOutput {
 }
 
 type GetStaticSiteType struct {
-	AutoDeploy     PreviewServiceServiceAutoDeploy       `pulumi:"autoDeploy"`
-	Branch         *string                               `pulumi:"branch"`
-	BuildFilter    *BuildFilter                          `pulumi:"buildFilter"`
-	CreatedAt      string                                `pulumi:"createdAt"`
-	Id             string                                `pulumi:"id"`
-	ImagePath      *string                               `pulumi:"imagePath"`
-	Name           string                                `pulumi:"name"`
-	NotifyOnFail   PreviewServiceServiceNotifyOnFail     `pulumi:"notifyOnFail"`
-	OwnerId        string                                `pulumi:"ownerId"`
-	Repo           *string                               `pulumi:"repo"`
-	RootDir        string                                `pulumi:"rootDir"`
-	ServiceDetails *StaticSiteDetailsOutput              `pulumi:"serviceDetails"`
-	Slug           string                                `pulumi:"slug"`
-	Suspended      PreviewServiceServiceSuspended        `pulumi:"suspended"`
-	Suspenders     []PreviewServiceServiceSuspendersItem `pulumi:"suspenders"`
-	Type           *string                               `pulumi:"type"`
-	UpdatedAt      string                                `pulumi:"updatedAt"`
+	AutoDeploy     ServiceAutoDeploy        `pulumi:"autoDeploy"`
+	Branch         *string                  `pulumi:"branch"`
+	BuildFilter    *BuildFilter             `pulumi:"buildFilter"`
+	CreatedAt      string                   `pulumi:"createdAt"`
+	Id             string                   `pulumi:"id"`
+	ImagePath      *string                  `pulumi:"imagePath"`
+	Name           string                   `pulumi:"name"`
+	NotifyOnFail   ServiceNotifyOnFail      `pulumi:"notifyOnFail"`
+	OwnerId        string                   `pulumi:"ownerId"`
+	Repo           *string                  `pulumi:"repo"`
+	RootDir        string                   `pulumi:"rootDir"`
+	ServiceDetails *StaticSiteDetailsOutput `pulumi:"serviceDetails"`
+	Slug           string                   `pulumi:"slug"`
+	Suspended      ServiceSuspended         `pulumi:"suspended"`
+	Suspenders     []ServiceSuspendersItem  `pulumi:"suspenders"`
+	Type           *string                  `pulumi:"type"`
+	UpdatedAt      string                   `pulumi:"updatedAt"`
 }
 
 // Defaults sets the appropriate defaults for GetStaticSiteType
@@ -3595,8 +3595,8 @@ func (o GetStaticSiteTypeOutput) ToGetStaticSiteTypeOutputWithContext(ctx contex
 	return o
 }
 
-func (o GetStaticSiteTypeOutput) AutoDeploy() PreviewServiceServiceAutoDeployOutput {
-	return o.ApplyT(func(v GetStaticSiteType) PreviewServiceServiceAutoDeploy { return v.AutoDeploy }).(PreviewServiceServiceAutoDeployOutput)
+func (o GetStaticSiteTypeOutput) AutoDeploy() ServiceAutoDeployOutput {
+	return o.ApplyT(func(v GetStaticSiteType) ServiceAutoDeploy { return v.AutoDeploy }).(ServiceAutoDeployOutput)
 }
 
 func (o GetStaticSiteTypeOutput) Branch() pulumi.StringPtrOutput {
@@ -3623,8 +3623,8 @@ func (o GetStaticSiteTypeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStaticSiteType) string { return v.Name }).(pulumi.StringOutput)
 }
 
-func (o GetStaticSiteTypeOutput) NotifyOnFail() PreviewServiceServiceNotifyOnFailOutput {
-	return o.ApplyT(func(v GetStaticSiteType) PreviewServiceServiceNotifyOnFail { return v.NotifyOnFail }).(PreviewServiceServiceNotifyOnFailOutput)
+func (o GetStaticSiteTypeOutput) NotifyOnFail() ServiceNotifyOnFailOutput {
+	return o.ApplyT(func(v GetStaticSiteType) ServiceNotifyOnFail { return v.NotifyOnFail }).(ServiceNotifyOnFailOutput)
 }
 
 func (o GetStaticSiteTypeOutput) OwnerId() pulumi.StringOutput {
@@ -3647,12 +3647,12 @@ func (o GetStaticSiteTypeOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStaticSiteType) string { return v.Slug }).(pulumi.StringOutput)
 }
 
-func (o GetStaticSiteTypeOutput) Suspended() PreviewServiceServiceSuspendedOutput {
-	return o.ApplyT(func(v GetStaticSiteType) PreviewServiceServiceSuspended { return v.Suspended }).(PreviewServiceServiceSuspendedOutput)
+func (o GetStaticSiteTypeOutput) Suspended() ServiceSuspendedOutput {
+	return o.ApplyT(func(v GetStaticSiteType) ServiceSuspended { return v.Suspended }).(ServiceSuspendedOutput)
 }
 
-func (o GetStaticSiteTypeOutput) Suspenders() PreviewServiceServiceSuspendersItemArrayOutput {
-	return o.ApplyT(func(v GetStaticSiteType) []PreviewServiceServiceSuspendersItem { return v.Suspenders }).(PreviewServiceServiceSuspendersItemArrayOutput)
+func (o GetStaticSiteTypeOutput) Suspenders() ServiceSuspendersItemArrayOutput {
+	return o.ApplyT(func(v GetStaticSiteType) []ServiceSuspendersItem { return v.Suspenders }).(ServiceSuspendersItemArrayOutput)
 }
 
 func (o GetStaticSiteTypeOutput) Type() pulumi.StringPtrOutput {
@@ -3664,23 +3664,23 @@ func (o GetStaticSiteTypeOutput) UpdatedAt() pulumi.StringOutput {
 }
 
 type GetWebServiceType struct {
-	AutoDeploy     PreviewServiceServiceAutoDeploy       `pulumi:"autoDeploy"`
-	Branch         *string                               `pulumi:"branch"`
-	BuildFilter    *BuildFilter                          `pulumi:"buildFilter"`
-	CreatedAt      string                                `pulumi:"createdAt"`
-	Id             string                                `pulumi:"id"`
-	ImagePath      *string                               `pulumi:"imagePath"`
-	Name           string                                `pulumi:"name"`
-	NotifyOnFail   PreviewServiceServiceNotifyOnFail     `pulumi:"notifyOnFail"`
-	OwnerId        string                                `pulumi:"ownerId"`
-	Repo           *string                               `pulumi:"repo"`
-	RootDir        string                                `pulumi:"rootDir"`
-	ServiceDetails *WebServiceDetailsOutput              `pulumi:"serviceDetails"`
-	Slug           string                                `pulumi:"slug"`
-	Suspended      PreviewServiceServiceSuspended        `pulumi:"suspended"`
-	Suspenders     []PreviewServiceServiceSuspendersItem `pulumi:"suspenders"`
-	Type           *string                               `pulumi:"type"`
-	UpdatedAt      string                                `pulumi:"updatedAt"`
+	AutoDeploy     ServiceAutoDeploy        `pulumi:"autoDeploy"`
+	Branch         *string                  `pulumi:"branch"`
+	BuildFilter    *BuildFilter             `pulumi:"buildFilter"`
+	CreatedAt      string                   `pulumi:"createdAt"`
+	Id             string                   `pulumi:"id"`
+	ImagePath      *string                  `pulumi:"imagePath"`
+	Name           string                   `pulumi:"name"`
+	NotifyOnFail   ServiceNotifyOnFail      `pulumi:"notifyOnFail"`
+	OwnerId        string                   `pulumi:"ownerId"`
+	Repo           *string                  `pulumi:"repo"`
+	RootDir        string                   `pulumi:"rootDir"`
+	ServiceDetails *WebServiceDetailsOutput `pulumi:"serviceDetails"`
+	Slug           string                   `pulumi:"slug"`
+	Suspended      ServiceSuspended         `pulumi:"suspended"`
+	Suspenders     []ServiceSuspendersItem  `pulumi:"suspenders"`
+	Type           *string                  `pulumi:"type"`
+	UpdatedAt      string                   `pulumi:"updatedAt"`
 }
 
 // Defaults sets the appropriate defaults for GetWebServiceType
@@ -3712,8 +3712,8 @@ func (o GetWebServiceTypeOutput) ToGetWebServiceTypeOutputWithContext(ctx contex
 	return o
 }
 
-func (o GetWebServiceTypeOutput) AutoDeploy() PreviewServiceServiceAutoDeployOutput {
-	return o.ApplyT(func(v GetWebServiceType) PreviewServiceServiceAutoDeploy { return v.AutoDeploy }).(PreviewServiceServiceAutoDeployOutput)
+func (o GetWebServiceTypeOutput) AutoDeploy() ServiceAutoDeployOutput {
+	return o.ApplyT(func(v GetWebServiceType) ServiceAutoDeploy { return v.AutoDeploy }).(ServiceAutoDeployOutput)
 }
 
 func (o GetWebServiceTypeOutput) Branch() pulumi.StringPtrOutput {
@@ -3740,8 +3740,8 @@ func (o GetWebServiceTypeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetWebServiceType) string { return v.Name }).(pulumi.StringOutput)
 }
 
-func (o GetWebServiceTypeOutput) NotifyOnFail() PreviewServiceServiceNotifyOnFailOutput {
-	return o.ApplyT(func(v GetWebServiceType) PreviewServiceServiceNotifyOnFail { return v.NotifyOnFail }).(PreviewServiceServiceNotifyOnFailOutput)
+func (o GetWebServiceTypeOutput) NotifyOnFail() ServiceNotifyOnFailOutput {
+	return o.ApplyT(func(v GetWebServiceType) ServiceNotifyOnFail { return v.NotifyOnFail }).(ServiceNotifyOnFailOutput)
 }
 
 func (o GetWebServiceTypeOutput) OwnerId() pulumi.StringOutput {
@@ -3764,12 +3764,12 @@ func (o GetWebServiceTypeOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v GetWebServiceType) string { return v.Slug }).(pulumi.StringOutput)
 }
 
-func (o GetWebServiceTypeOutput) Suspended() PreviewServiceServiceSuspendedOutput {
-	return o.ApplyT(func(v GetWebServiceType) PreviewServiceServiceSuspended { return v.Suspended }).(PreviewServiceServiceSuspendedOutput)
+func (o GetWebServiceTypeOutput) Suspended() ServiceSuspendedOutput {
+	return o.ApplyT(func(v GetWebServiceType) ServiceSuspended { return v.Suspended }).(ServiceSuspendedOutput)
 }
 
-func (o GetWebServiceTypeOutput) Suspenders() PreviewServiceServiceSuspendersItemArrayOutput {
-	return o.ApplyT(func(v GetWebServiceType) []PreviewServiceServiceSuspendersItem { return v.Suspenders }).(PreviewServiceServiceSuspendersItemArrayOutput)
+func (o GetWebServiceTypeOutput) Suspenders() ServiceSuspendersItemArrayOutput {
+	return o.ApplyT(func(v GetWebServiceType) []ServiceSuspendersItem { return v.Suspenders }).(ServiceSuspendersItemArrayOutput)
 }
 
 func (o GetWebServiceTypeOutput) Type() pulumi.StringPtrOutput {
@@ -6086,9 +6086,9 @@ type Route struct {
 	Destination string `pulumi:"destination"`
 	Id          string `pulumi:"id"`
 	// Redirect and Rewrite Rules are applied in priority order starting at 0
-	Priority int                 `pulumi:"priority"`
-	Source   string              `pulumi:"source"`
-	Type     StaticSiteRouteType `pulumi:"type"`
+	Priority int       `pulumi:"priority"`
+	Source   string    `pulumi:"source"`
+	Type     RouteType `pulumi:"type"`
 }
 
 // RouteInput is an input type that accepts RouteArgs and RouteOutput values.
@@ -6106,9 +6106,9 @@ type RouteArgs struct {
 	Destination pulumi.StringInput `pulumi:"destination"`
 	Id          pulumi.StringInput `pulumi:"id"`
 	// Redirect and Rewrite Rules are applied in priority order starting at 0
-	Priority pulumi.IntInput          `pulumi:"priority"`
-	Source   pulumi.StringInput       `pulumi:"source"`
-	Type     StaticSiteRouteTypeInput `pulumi:"type"`
+	Priority pulumi.IntInput    `pulumi:"priority"`
+	Source   pulumi.StringInput `pulumi:"source"`
+	Type     RouteTypeInput     `pulumi:"type"`
 }
 
 func (RouteArgs) ElementType() reflect.Type {
@@ -6179,8 +6179,8 @@ func (o RouteOutput) Source() pulumi.StringOutput {
 	return o.ApplyT(func(v Route) string { return v.Source }).(pulumi.StringOutput)
 }
 
-func (o RouteOutput) Type() StaticSiteRouteTypeOutput {
-	return o.ApplyT(func(v Route) StaticSiteRouteType { return v.Type }).(StaticSiteRouteTypeOutput)
+func (o RouteOutput) Type() RouteTypeOutput {
+	return o.ApplyT(func(v Route) RouteType { return v.Type }).(RouteTypeOutput)
 }
 
 type RoutePtrOutput struct{ *pulumi.OutputState }
@@ -6244,13 +6244,13 @@ func (o RoutePtrOutput) Source() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o RoutePtrOutput) Type() StaticSiteRouteTypePtrOutput {
-	return o.ApplyT(func(v *Route) *StaticSiteRouteType {
+func (o RoutePtrOutput) Type() RouteTypePtrOutput {
+	return o.ApplyT(func(v *Route) *RouteType {
 		if v == nil {
 			return nil
 		}
 		return &v.Type
-	}).(StaticSiteRouteTypePtrOutput)
+	}).(RouteTypePtrOutput)
 }
 
 type RouteArrayOutput struct{ *pulumi.OutputState }
@@ -6421,21 +6421,21 @@ func (o ServerPortArrayOutput) Index(i pulumi.IntInput) ServerPortOutput {
 }
 
 type Service struct {
-	AutoDeploy   PreviewServiceServiceAutoDeploy       `pulumi:"autoDeploy"`
-	Branch       *string                               `pulumi:"branch"`
-	BuildFilter  *BuildFilter                          `pulumi:"buildFilter"`
-	CreatedAt    string                                `pulumi:"createdAt"`
-	Id           string                                `pulumi:"id"`
-	ImagePath    *string                               `pulumi:"imagePath"`
-	Name         string                                `pulumi:"name"`
-	NotifyOnFail PreviewServiceServiceNotifyOnFail     `pulumi:"notifyOnFail"`
-	OwnerId      string                                `pulumi:"ownerId"`
-	Repo         *string                               `pulumi:"repo"`
-	RootDir      string                                `pulumi:"rootDir"`
-	Slug         string                                `pulumi:"slug"`
-	Suspended    PreviewServiceServiceSuspended        `pulumi:"suspended"`
-	Suspenders   []PreviewServiceServiceSuspendersItem `pulumi:"suspenders"`
-	UpdatedAt    string                                `pulumi:"updatedAt"`
+	AutoDeploy   ServiceAutoDeploy       `pulumi:"autoDeploy"`
+	Branch       *string                 `pulumi:"branch"`
+	BuildFilter  *BuildFilter            `pulumi:"buildFilter"`
+	CreatedAt    string                  `pulumi:"createdAt"`
+	Id           string                  `pulumi:"id"`
+	ImagePath    *string                 `pulumi:"imagePath"`
+	Name         string                  `pulumi:"name"`
+	NotifyOnFail ServiceNotifyOnFail     `pulumi:"notifyOnFail"`
+	OwnerId      string                  `pulumi:"ownerId"`
+	Repo         *string                 `pulumi:"repo"`
+	RootDir      string                  `pulumi:"rootDir"`
+	Slug         string                  `pulumi:"slug"`
+	Suspended    ServiceSuspended        `pulumi:"suspended"`
+	Suspenders   []ServiceSuspendersItem `pulumi:"suspenders"`
+	UpdatedAt    string                  `pulumi:"updatedAt"`
 }
 
 type ServiceOutput struct{ *pulumi.OutputState }
@@ -6452,8 +6452,8 @@ func (o ServiceOutput) ToServiceOutputWithContext(ctx context.Context) ServiceOu
 	return o
 }
 
-func (o ServiceOutput) AutoDeploy() PreviewServiceServiceAutoDeployOutput {
-	return o.ApplyT(func(v Service) PreviewServiceServiceAutoDeploy { return v.AutoDeploy }).(PreviewServiceServiceAutoDeployOutput)
+func (o ServiceOutput) AutoDeploy() ServiceAutoDeployOutput {
+	return o.ApplyT(func(v Service) ServiceAutoDeploy { return v.AutoDeploy }).(ServiceAutoDeployOutput)
 }
 
 func (o ServiceOutput) Branch() pulumi.StringPtrOutput {
@@ -6480,8 +6480,8 @@ func (o ServiceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Service) string { return v.Name }).(pulumi.StringOutput)
 }
 
-func (o ServiceOutput) NotifyOnFail() PreviewServiceServiceNotifyOnFailOutput {
-	return o.ApplyT(func(v Service) PreviewServiceServiceNotifyOnFail { return v.NotifyOnFail }).(PreviewServiceServiceNotifyOnFailOutput)
+func (o ServiceOutput) NotifyOnFail() ServiceNotifyOnFailOutput {
+	return o.ApplyT(func(v Service) ServiceNotifyOnFail { return v.NotifyOnFail }).(ServiceNotifyOnFailOutput)
 }
 
 func (o ServiceOutput) OwnerId() pulumi.StringOutput {
@@ -6500,12 +6500,12 @@ func (o ServiceOutput) Slug() pulumi.StringOutput {
 	return o.ApplyT(func(v Service) string { return v.Slug }).(pulumi.StringOutput)
 }
 
-func (o ServiceOutput) Suspended() PreviewServiceServiceSuspendedOutput {
-	return o.ApplyT(func(v Service) PreviewServiceServiceSuspended { return v.Suspended }).(PreviewServiceServiceSuspendedOutput)
+func (o ServiceOutput) Suspended() ServiceSuspendedOutput {
+	return o.ApplyT(func(v Service) ServiceSuspended { return v.Suspended }).(ServiceSuspendedOutput)
 }
 
-func (o ServiceOutput) Suspenders() PreviewServiceServiceSuspendersItemArrayOutput {
-	return o.ApplyT(func(v Service) []PreviewServiceServiceSuspendersItem { return v.Suspenders }).(PreviewServiceServiceSuspendersItemArrayOutput)
+func (o ServiceOutput) Suspenders() ServiceSuspendersItemArrayOutput {
+	return o.ApplyT(func(v Service) []ServiceSuspendersItem { return v.Suspenders }).(ServiceSuspendersItemArrayOutput)
 }
 
 func (o ServiceOutput) UpdatedAt() pulumi.StringOutput {
@@ -6536,13 +6536,13 @@ func (o ServicePtrOutput) Elem() ServiceOutput {
 	}).(ServiceOutput)
 }
 
-func (o ServicePtrOutput) AutoDeploy() PreviewServiceServiceAutoDeployPtrOutput {
-	return o.ApplyT(func(v *Service) *PreviewServiceServiceAutoDeploy {
+func (o ServicePtrOutput) AutoDeploy() ServiceAutoDeployPtrOutput {
+	return o.ApplyT(func(v *Service) *ServiceAutoDeploy {
 		if v == nil {
 			return nil
 		}
 		return &v.AutoDeploy
-	}).(PreviewServiceServiceAutoDeployPtrOutput)
+	}).(ServiceAutoDeployPtrOutput)
 }
 
 func (o ServicePtrOutput) Branch() pulumi.StringPtrOutput {
@@ -6599,13 +6599,13 @@ func (o ServicePtrOutput) Name() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o ServicePtrOutput) NotifyOnFail() PreviewServiceServiceNotifyOnFailPtrOutput {
-	return o.ApplyT(func(v *Service) *PreviewServiceServiceNotifyOnFail {
+func (o ServicePtrOutput) NotifyOnFail() ServiceNotifyOnFailPtrOutput {
+	return o.ApplyT(func(v *Service) *ServiceNotifyOnFail {
 		if v == nil {
 			return nil
 		}
 		return &v.NotifyOnFail
-	}).(PreviewServiceServiceNotifyOnFailPtrOutput)
+	}).(ServiceNotifyOnFailPtrOutput)
 }
 
 func (o ServicePtrOutput) OwnerId() pulumi.StringPtrOutput {
@@ -6644,22 +6644,22 @@ func (o ServicePtrOutput) Slug() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o ServicePtrOutput) Suspended() PreviewServiceServiceSuspendedPtrOutput {
-	return o.ApplyT(func(v *Service) *PreviewServiceServiceSuspended {
+func (o ServicePtrOutput) Suspended() ServiceSuspendedPtrOutput {
+	return o.ApplyT(func(v *Service) *ServiceSuspended {
 		if v == nil {
 			return nil
 		}
 		return &v.Suspended
-	}).(PreviewServiceServiceSuspendedPtrOutput)
+	}).(ServiceSuspendedPtrOutput)
 }
 
-func (o ServicePtrOutput) Suspenders() PreviewServiceServiceSuspendersItemArrayOutput {
-	return o.ApplyT(func(v *Service) []PreviewServiceServiceSuspendersItem {
+func (o ServicePtrOutput) Suspenders() ServiceSuspendersItemArrayOutput {
+	return o.ApplyT(func(v *Service) []ServiceSuspendersItem {
 		if v == nil {
 			return nil
 		}
 		return v.Suspenders
-	}).(PreviewServiceServiceSuspendersItemArrayOutput)
+	}).(ServiceSuspendersItemArrayOutput)
 }
 
 func (o ServicePtrOutput) UpdatedAt() pulumi.StringPtrOutput {

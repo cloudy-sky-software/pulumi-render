@@ -45,8 +45,8 @@ export class RollbackDeploy extends pulumi.CustomResource {
      * Image information used when creating the deploy. Not present for Git-backed deploys
      */
     public /*out*/ readonly image!: pulumi.Output<outputs.services.ImageProperties | undefined>;
-    public /*out*/ readonly status!: pulumi.Output<enums.services.RollbackDeployStatus | undefined>;
-    public /*out*/ readonly trigger!: pulumi.Output<enums.services.RollbackDeployTrigger | undefined>;
+    public /*out*/ readonly status!: pulumi.Output<enums.services.Status | undefined>;
+    public /*out*/ readonly trigger!: pulumi.Output<enums.services.Trigger | undefined>;
     public /*out*/ readonly updatedAt!: pulumi.Output<string | undefined>;
 
     /**

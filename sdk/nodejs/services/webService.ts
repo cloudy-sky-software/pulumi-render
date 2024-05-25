@@ -34,7 +34,7 @@ export class WebService extends pulumi.CustomResource {
         return obj['__pulumiType'] === WebService.__pulumiType;
     }
 
-    public readonly autoDeploy!: pulumi.Output<enums.services.WebServiceServiceAutoDeploy | undefined>;
+    public readonly autoDeploy!: pulumi.Output<enums.services.ServiceAutoDeploy | undefined>;
     public readonly branch!: pulumi.Output<string | undefined>;
     public readonly buildFilter!: pulumi.Output<outputs.services.BuildFilter | undefined>;
     public /*out*/ readonly createdAt!: pulumi.Output<string | undefined>;
@@ -42,15 +42,15 @@ export class WebService extends pulumi.CustomResource {
     public readonly image!: pulumi.Output<outputs.services.Image | undefined>;
     public /*out*/ readonly imagePath!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly notifyOnFail!: pulumi.Output<enums.services.WebServiceServiceNotifyOnFail | undefined>;
+    public /*out*/ readonly notifyOnFail!: pulumi.Output<enums.services.ServiceNotifyOnFail | undefined>;
     public readonly ownerId!: pulumi.Output<string | undefined>;
     public readonly repo!: pulumi.Output<string | undefined>;
     public readonly rootDir!: pulumi.Output<string | undefined>;
     public readonly secretFiles!: pulumi.Output<outputs.services.SecretFile[] | undefined>;
     public readonly serviceDetails!: pulumi.Output<outputs.services.WebServiceDetailsOutput | undefined>;
     public /*out*/ readonly slug!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly suspended!: pulumi.Output<enums.services.WebServiceServiceSuspended | undefined>;
-    public /*out*/ readonly suspenders!: pulumi.Output<enums.services.WebServiceServiceSuspendersItem[] | undefined>;
+    public /*out*/ readonly suspended!: pulumi.Output<enums.services.ServiceSuspended | undefined>;
+    public /*out*/ readonly suspenders!: pulumi.Output<enums.services.ServiceSuspendersItem[] | undefined>;
     public readonly type!: pulumi.Output<string | undefined>;
     public /*out*/ readonly updatedAt!: pulumi.Output<string | undefined>;
 
@@ -123,7 +123,7 @@ export interface WebServiceArgs {
     /**
      * Defaults to "yes"
      */
-    autoDeploy?: pulumi.Input<enums.services.WebServiceServiceCreateAutoDeploy>;
+    autoDeploy?: pulumi.Input<enums.services.ServiceCreateAutoDeploy>;
     /**
      * If left empty, this will fall back to the default branch of the repository
      */

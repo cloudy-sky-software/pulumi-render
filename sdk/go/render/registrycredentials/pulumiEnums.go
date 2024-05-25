@@ -10,6 +10,173 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+type Registry string
+
+const (
+	RegistryGithub = Registry("GITHUB")
+	RegistryGitlab = Registry("GITLAB")
+	RegistryDocker = Registry("DOCKER")
+)
+
+func (Registry) ElementType() reflect.Type {
+	return reflect.TypeOf((*Registry)(nil)).Elem()
+}
+
+func (e Registry) ToRegistryOutput() RegistryOutput {
+	return pulumi.ToOutput(e).(RegistryOutput)
+}
+
+func (e Registry) ToRegistryOutputWithContext(ctx context.Context) RegistryOutput {
+	return pulumi.ToOutputWithContext(ctx, e).(RegistryOutput)
+}
+
+func (e Registry) ToRegistryPtrOutput() RegistryPtrOutput {
+	return e.ToRegistryPtrOutputWithContext(context.Background())
+}
+
+func (e Registry) ToRegistryPtrOutputWithContext(ctx context.Context) RegistryPtrOutput {
+	return Registry(e).ToRegistryOutputWithContext(ctx).ToRegistryPtrOutputWithContext(ctx)
+}
+
+func (e Registry) ToStringOutput() pulumi.StringOutput {
+	return pulumi.ToOutput(pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e Registry) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return pulumi.ToOutputWithContext(ctx, pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e Registry) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringPtrOutputWithContext(context.Background())
+}
+
+func (e Registry) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
+}
+
+type RegistryOutput struct{ *pulumi.OutputState }
+
+func (RegistryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Registry)(nil)).Elem()
+}
+
+func (o RegistryOutput) ToRegistryOutput() RegistryOutput {
+	return o
+}
+
+func (o RegistryOutput) ToRegistryOutputWithContext(ctx context.Context) RegistryOutput {
+	return o
+}
+
+func (o RegistryOutput) ToRegistryPtrOutput() RegistryPtrOutput {
+	return o.ToRegistryPtrOutputWithContext(context.Background())
+}
+
+func (o RegistryOutput) ToRegistryPtrOutputWithContext(ctx context.Context) RegistryPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v Registry) *Registry {
+		return &v
+	}).(RegistryPtrOutput)
+}
+
+func (o RegistryOutput) ToStringOutput() pulumi.StringOutput {
+	return o.ToStringOutputWithContext(context.Background())
+}
+
+func (o RegistryOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e Registry) string {
+		return string(e)
+	}).(pulumi.StringOutput)
+}
+
+func (o RegistryOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o RegistryOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e Registry) *string {
+		v := string(e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+type RegistryPtrOutput struct{ *pulumi.OutputState }
+
+func (RegistryPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Registry)(nil)).Elem()
+}
+
+func (o RegistryPtrOutput) ToRegistryPtrOutput() RegistryPtrOutput {
+	return o
+}
+
+func (o RegistryPtrOutput) ToRegistryPtrOutputWithContext(ctx context.Context) RegistryPtrOutput {
+	return o
+}
+
+func (o RegistryPtrOutput) Elem() RegistryOutput {
+	return o.ApplyT(func(v *Registry) Registry {
+		if v != nil {
+			return *v
+		}
+		var ret Registry
+		return ret
+	}).(RegistryOutput)
+}
+
+func (o RegistryPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o RegistryPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *Registry) *string {
+		if e == nil {
+			return nil
+		}
+		v := string(*e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+// RegistryInput is an input type that accepts values of the Registry enum
+// A concrete instance of `RegistryInput` can be one of the following:
+//
+//	RegistryGithub
+//	RegistryGitlab
+//	RegistryDocker
+type RegistryInput interface {
+	pulumi.Input
+
+	ToRegistryOutput() RegistryOutput
+	ToRegistryOutputWithContext(context.Context) RegistryOutput
+}
+
+var registryPtrType = reflect.TypeOf((**Registry)(nil)).Elem()
+
+type RegistryPtrInput interface {
+	pulumi.Input
+
+	ToRegistryPtrOutput() RegistryPtrOutput
+	ToRegistryPtrOutputWithContext(context.Context) RegistryPtrOutput
+}
+
+type registryPtr string
+
+func RegistryPtr(v string) RegistryPtrInput {
+	return (*registryPtr)(&v)
+}
+
+func (*registryPtr) ElementType() reflect.Type {
+	return registryPtrType
+}
+
+func (in *registryPtr) ToRegistryPtrOutput() RegistryPtrOutput {
+	return pulumi.ToOutput(in).(RegistryPtrOutput)
+}
+
+func (in *registryPtr) ToRegistryPtrOutputWithContext(ctx context.Context) RegistryPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, in).(RegistryPtrOutput)
+}
+
 // The registry to use this credential with
 type RegistryCredentialRegistry string
 
@@ -18,42 +185,6 @@ const (
 	RegistryCredentialRegistryGitlab = RegistryCredentialRegistry("GITLAB")
 	RegistryCredentialRegistryDocker = RegistryCredentialRegistry("DOCKER")
 )
-
-func (RegistryCredentialRegistry) ElementType() reflect.Type {
-	return reflect.TypeOf((*RegistryCredentialRegistry)(nil)).Elem()
-}
-
-func (e RegistryCredentialRegistry) ToRegistryCredentialRegistryOutput() RegistryCredentialRegistryOutput {
-	return pulumi.ToOutput(e).(RegistryCredentialRegistryOutput)
-}
-
-func (e RegistryCredentialRegistry) ToRegistryCredentialRegistryOutputWithContext(ctx context.Context) RegistryCredentialRegistryOutput {
-	return pulumi.ToOutputWithContext(ctx, e).(RegistryCredentialRegistryOutput)
-}
-
-func (e RegistryCredentialRegistry) ToRegistryCredentialRegistryPtrOutput() RegistryCredentialRegistryPtrOutput {
-	return e.ToRegistryCredentialRegistryPtrOutputWithContext(context.Background())
-}
-
-func (e RegistryCredentialRegistry) ToRegistryCredentialRegistryPtrOutputWithContext(ctx context.Context) RegistryCredentialRegistryPtrOutput {
-	return RegistryCredentialRegistry(e).ToRegistryCredentialRegistryOutputWithContext(ctx).ToRegistryCredentialRegistryPtrOutputWithContext(ctx)
-}
-
-func (e RegistryCredentialRegistry) ToStringOutput() pulumi.StringOutput {
-	return pulumi.ToOutput(pulumi.String(e)).(pulumi.StringOutput)
-}
-
-func (e RegistryCredentialRegistry) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
-	return pulumi.ToOutputWithContext(ctx, pulumi.String(e)).(pulumi.StringOutput)
-}
-
-func (e RegistryCredentialRegistry) ToStringPtrOutput() pulumi.StringPtrOutput {
-	return pulumi.String(e).ToStringPtrOutputWithContext(context.Background())
-}
-
-func (e RegistryCredentialRegistry) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
-}
 
 type RegistryCredentialRegistryOutput struct{ *pulumi.OutputState }
 
@@ -138,49 +269,11 @@ func (o RegistryCredentialRegistryPtrOutput) ToStringPtrOutputWithContext(ctx co
 	}).(pulumi.StringPtrOutput)
 }
 
-// RegistryCredentialRegistryInput is an input type that accepts values of the RegistryCredentialRegistry enum
-// A concrete instance of `RegistryCredentialRegistryInput` can be one of the following:
-//
-//	RegistryCredentialRegistryGithub
-//	RegistryCredentialRegistryGitlab
-//	RegistryCredentialRegistryDocker
-type RegistryCredentialRegistryInput interface {
-	pulumi.Input
-
-	ToRegistryCredentialRegistryOutput() RegistryCredentialRegistryOutput
-	ToRegistryCredentialRegistryOutputWithContext(context.Context) RegistryCredentialRegistryOutput
-}
-
-var registryCredentialRegistryPtrType = reflect.TypeOf((**RegistryCredentialRegistry)(nil)).Elem()
-
-type RegistryCredentialRegistryPtrInput interface {
-	pulumi.Input
-
-	ToRegistryCredentialRegistryPtrOutput() RegistryCredentialRegistryPtrOutput
-	ToRegistryCredentialRegistryPtrOutputWithContext(context.Context) RegistryCredentialRegistryPtrOutput
-}
-
-type registryCredentialRegistryPtr string
-
-func RegistryCredentialRegistryPtr(v string) RegistryCredentialRegistryPtrInput {
-	return (*registryCredentialRegistryPtr)(&v)
-}
-
-func (*registryCredentialRegistryPtr) ElementType() reflect.Type {
-	return registryCredentialRegistryPtrType
-}
-
-func (in *registryCredentialRegistryPtr) ToRegistryCredentialRegistryPtrOutput() RegistryCredentialRegistryPtrOutput {
-	return pulumi.ToOutput(in).(RegistryCredentialRegistryPtrOutput)
-}
-
-func (in *registryCredentialRegistryPtr) ToRegistryCredentialRegistryPtrOutputWithContext(ctx context.Context) RegistryCredentialRegistryPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, in).(RegistryCredentialRegistryPtrOutput)
-}
-
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*RegistryCredentialRegistryInput)(nil)).Elem(), RegistryCredentialRegistry("GITHUB"))
-	pulumi.RegisterInputType(reflect.TypeOf((*RegistryCredentialRegistryPtrInput)(nil)).Elem(), RegistryCredentialRegistry("GITHUB"))
+	pulumi.RegisterInputType(reflect.TypeOf((*RegistryInput)(nil)).Elem(), Registry("GITHUB"))
+	pulumi.RegisterInputType(reflect.TypeOf((*RegistryPtrInput)(nil)).Elem(), Registry("GITHUB"))
+	pulumi.RegisterOutputType(RegistryOutput{})
+	pulumi.RegisterOutputType(RegistryPtrOutput{})
 	pulumi.RegisterOutputType(RegistryCredentialRegistryOutput{})
 	pulumi.RegisterOutputType(RegistryCredentialRegistryPtrOutput{})
 }

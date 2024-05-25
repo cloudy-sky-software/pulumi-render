@@ -16,7 +16,7 @@ namespace Pulumi.Render.Services
     public partial class StaticSite : global::Pulumi.CustomResource
     {
         [Output("autoDeploy")]
-        public Output<Pulumi.Render.Services.StaticSiteServiceAutoDeploy?> AutoDeploy { get; private set; } = null!;
+        public Output<Pulumi.Render.Services.ServiceAutoDeploy?> AutoDeploy { get; private set; } = null!;
 
         [Output("branch")]
         public Output<string?> Branch { get; private set; } = null!;
@@ -40,7 +40,7 @@ namespace Pulumi.Render.Services
         public Output<string?> Name { get; private set; } = null!;
 
         [Output("notifyOnFail")]
-        public Output<Pulumi.Render.Services.StaticSiteServiceNotifyOnFail?> NotifyOnFail { get; private set; } = null!;
+        public Output<Pulumi.Render.Services.ServiceNotifyOnFail?> NotifyOnFail { get; private set; } = null!;
 
         [Output("ownerId")]
         public Output<string?> OwnerId { get; private set; } = null!;
@@ -61,10 +61,10 @@ namespace Pulumi.Render.Services
         public Output<string?> Slug { get; private set; } = null!;
 
         [Output("suspended")]
-        public Output<Pulumi.Render.Services.StaticSiteServiceSuspended?> Suspended { get; private set; } = null!;
+        public Output<Pulumi.Render.Services.ServiceSuspended?> Suspended { get; private set; } = null!;
 
         [Output("suspenders")]
-        public Output<ImmutableArray<Pulumi.Render.Services.StaticSiteServiceSuspendersItem>> Suspenders { get; private set; } = null!;
+        public Output<ImmutableArray<Pulumi.Render.Services.ServiceSuspendersItem>> Suspenders { get; private set; } = null!;
 
         [Output("type")]
         public Output<string?> Type { get; private set; } = null!;
@@ -122,7 +122,7 @@ namespace Pulumi.Render.Services
         /// Defaults to "yes"
         /// </summary>
         [Input("autoDeploy")]
-        public Input<Pulumi.Render.Services.StaticSiteServiceCreateAutoDeploy>? AutoDeploy { get; set; }
+        public Input<Pulumi.Render.Services.ServiceCreateAutoDeploy>? AutoDeploy { get; set; }
 
         /// <summary>
         /// If left empty, this will fall back to the default branch of the repository
@@ -175,7 +175,7 @@ namespace Pulumi.Render.Services
 
         public StaticSiteArgs()
         {
-            AutoDeploy = Pulumi.Render.Services.StaticSiteServiceCreateAutoDeploy.Yes;
+            AutoDeploy = Pulumi.Render.Services.ServiceCreateAutoDeploy.Yes;
             Type = "static_site";
         }
         public static new StaticSiteArgs Empty => new StaticSiteArgs();

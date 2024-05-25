@@ -28,7 +28,7 @@ namespace Pulumi.Render.RegistryCredentials
         /// The registry to use this credential with
         /// </summary>
         [Output("registry")]
-        public Output<Pulumi.Render.RegistryCredentials.RegistryCredentialRegistry> Registry { get; private set; } = null!;
+        public Output<Pulumi.Render.RegistryCredentials.Registry> Registry { get; private set; } = null!;
 
         /// <summary>
         /// The username associated with the credential
@@ -92,7 +92,7 @@ namespace Pulumi.Render.RegistryCredentials
         public Input<string> OwnerId { get; set; } = null!;
 
         [Input("registry", required: true)]
-        public Input<Pulumi.Render.RegistryCredentials.RegistryCredentialRegistry> Registry { get; set; } = null!;
+        public Input<Pulumi.Render.RegistryCredentials.Registry> Registry { get; set; } = null!;
 
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;

@@ -188,6 +188,9 @@ func (p *renderProvider) OnPostCreate(_ context.Context, req *pulumirpc.CreateRe
 	resourceTypeToken := fwRest.GetResourceTypeToken(req.GetUrn())
 	var outputsMap map[string]interface{}
 
+	// Env-vars resource does not have an "id".
+	// We'll fake one for the sake of serializing
+	// the resource into the state.
 	if resourceTypeToken == envVarResourceTypeToken {
 		envVarResp := outputs.([]interface{})
 		id := sha256.New()
@@ -243,8 +246,20 @@ func (p *renderProvider) OnPreRead(_ context.Context, _ *pulumirpc.ReadRequest, 
 	return nil
 }
 
-func (p *renderProvider) OnPostRead(_ context.Context, _ *pulumirpc.ReadRequest, outputs map[string]interface{}) (map[string]interface{}, error) {
-	return outputs, nil
+func (p *renderProvider) OnPostRead(_ context.Context, req *pulumirpc.ReadRequest, outputs interface{}) (map[string]interface{}, error) {
+	resourceTypeToken := fwRest.GetResourceTypeToken(req.GetUrn())
+	if resourceTypeToken == envVarResourceTypeToken {
+		var outputsMap map[string]interface{}
+		envVarResp := outputs.([]interface{})
+
+		outputsMap = map[string]interface{}{
+			"id":      req.Id,
+			"envVars": envVarResp,
+		}
+		return outputsMap, nil
+	}
+
+	return outputs.(map[string]interface{}), nil
 }
 
 func (p *renderProvider) OnPreUpdate(_ context.Context, req *pulumirpc.UpdateRequest, httpReq *http.Request) error {

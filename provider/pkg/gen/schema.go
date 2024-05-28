@@ -163,6 +163,14 @@ func PulumiSchema(openAPIDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 		},
 	})
 
+	// The EnvVars resource's GET operation looks like a list method,
+	// but it is also the endpoint to read the current set of env vars
+	// for a Render service. So we'll manually set the read endpoint
+	// for that type token here.
+	// TODO: Can pulschema handle this instead?
+	envVarsReadEndpoint := "/services/{serviceId}/env-vars"
+	providerMetadata.ResourceCRUDMap["render:services:EnvVarsForService"].R = &envVarsReadEndpoint
+
 	metadata := openapigen.ProviderMetadata{
 		ResourceCRUDMap:  providerMetadata.ResourceCRUDMap,
 		AutoNameMap:      providerMetadata.AutoNameMap,

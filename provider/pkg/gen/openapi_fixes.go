@@ -68,9 +68,10 @@ func fixEnvVarsPutEndpoint(openAPIDoc *openapi3.T) error {
 
 	reqBodySchema := pathItem.Put.RequestBody.Value.Content.Get(jsonMimeType)
 	originalSchema := reqBodySchema.Schema.Value
-	reqBodySchema.Schema.Value = openapi3.NewSchema().WithProperties(map[string]*openapi3.Schema{
+	schema := openapi3.NewSchema().WithProperties(map[string]*openapi3.Schema{
 		"envVars": originalSchema,
 	})
+	reqBodySchema.Schema = openapi3.NewSchemaRef("", schema)
 
 	return nil
 }

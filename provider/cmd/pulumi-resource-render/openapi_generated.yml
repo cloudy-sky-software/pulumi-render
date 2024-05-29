@@ -4046,7 +4046,11 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/envVarInputArray'
+                            properties:
+                                envVars:
+                                    type: array
+                                    items:
+                                        $ref: '#/components/schemas/envVarInput'
             responses:
                 "200":
                     description: OK

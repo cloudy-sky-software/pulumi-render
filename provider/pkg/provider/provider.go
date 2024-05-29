@@ -268,6 +268,8 @@ func (p *renderProvider) OnPreUpdate(_ context.Context, req *pulumirpc.UpdateReq
 		return nil
 	}
 
+	logging.V(3).Infof("OnePreUpdate: Modifying request body for %s", envVarResourceTypeToken)
+
 	body, err := io.ReadAll(httpReq.Body)
 	if err != nil {
 		return errors.Wrapf(err, "reading body in OnPreUpdate while handling %s", resourceTypeToken)

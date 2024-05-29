@@ -1,3 +1,11 @@
+## 0.2.0
+
+Switch to Render's official OpenAPI spec. See the [migration guide](./MIGRATION.md) for more details.
+For the most part some resources require an alias to avoid a replacement.
+
+Upgrade `pulumi-provider-framework` to the latest which now allows
+importing resources that are children of other resources.
+
 ## 0.1.0, 0.1.1
 
 This release contains some breaking changes related to the names of functions but does not change any resource names.

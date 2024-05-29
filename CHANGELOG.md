@@ -1,3 +1,8 @@
+## 0.2.1
+
+* Fix request validation error when updating `EnvVarsForService` resource.
+* Check for all service types in OnPostUpdate to trigger a service deployment.
+
 ## 0.2.0
 
 Switch to Render's official OpenAPI spec. See the [migration guide](./MIGRATION.md) for more details.

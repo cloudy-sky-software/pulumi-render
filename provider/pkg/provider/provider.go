@@ -307,7 +307,11 @@ func (p *renderProvider) OnPostUpdate(ctx context.Context, req *pulumirpc.Update
 		outputsMap = outputs.(map[string]interface{})
 	}
 
-	if resourceTypeToken != "render:services:Service" &&
+	if resourceTypeToken != "render:services:StaticSite" &&
+		resourceTypeToken != "render:services:WebService" &&
+		resourceTypeToken != "render:services:PrivateService" &&
+		resourceTypeToken != "render:services:BackgroundWorker" &&
+		resourceTypeToken != "render:services:CronJob" &&
 		resourceTypeToken != envVarResourceTypeToken {
 		return outputsMap, nil
 	}

@@ -23,7 +23,7 @@ builds:
 checksum:
   name_template: "{{ .ProjectName }}_linux_windows_checksums.txt"
 changelog:
-  skip: true
+  disable: true
 release:
   disable: false
   prerelease: auto

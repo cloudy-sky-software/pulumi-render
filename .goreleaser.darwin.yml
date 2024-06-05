@@ -22,7 +22,7 @@ builds:
 checksum:
   name_template: "{{ .ProjectName }}_darwin_checksums.txt"
 changelog:
-  skip: true
+  disable: true
 release:
   disable: false
   prerelease: auto

@@ -141,19 +141,25 @@ func addDefaultProperty(typ *openapi3.SchemaRef, propName string, defaultValue s
 	typ.Value.Properties[propName] = strPropSchema
 }
 
-func addPropertyWithRef(typ *openapi3.SchemaRef, propName, ref string) {
-	propSchema := openapi3.NewSchemaRef(schemasRefPrefix+ref, openapi3.NewSchema())
+func addPropertyWithRef(typ *openapi3.SchemaRef, propName, ref string, schema *openapi3.Schema) {
+	propSchema := openapi3.NewSchemaRef(schemasRefPrefix+ref, schema)
 
 	typ.Value.Properties[propName] = propSchema
 }
 
-func getServiceDiscriminator(suffix string) (*openapi3.Discriminator, openapi3.SchemaRefs) {
+func getServiceDiscriminator(openAPIDoc *openapi3.T, suffix string) (*openapi3.Discriminator, openapi3.SchemaRefs) {
 	refs := make(openapi3.SchemaRefs, 0, len(sortedDiscriminatorValues))
 	mapping := make(map[string]string)
 	for _, discriminatorValue := range sortedDiscriminatorValues {
-		ref := schemasRefPrefix + services[discriminatorValue] + suffix
+		serviceSchemaName := services[discriminatorValue] + suffix
+		serviceSchema, ok := openAPIDoc.Components.Schemas[serviceSchemaName]
+		if !ok {
+			panic(fmt.Sprintf("Schema not found in OpenAPI doc: %s", serviceSchemaName))
+		}
+
+		ref := schemasRefPrefix + serviceSchemaName
 		mapping[discriminatorValue] = ref
-		refs = append(refs, openapi3.NewSchemaRef(ref, openapi3.NewSchema()))
+		refs = append(refs, openapi3.NewSchemaRef(ref, serviceSchema.Value))
 	}
 
 	return &openapi3.Discriminator{
@@ -162,33 +168,33 @@ func getServiceDiscriminator(suffix string) (*openapi3.Discriminator, openapi3.S
 	}, refs
 }
 
-func changeOperationSchemas(openAPIDoc *openapi3.T, path, operation string, schemaSuffix string, refs openapi3.SchemaRefs) {
+func changeOperationSchemas(openAPIDoc *openapi3.T, path, operation string, schemaSuffix string, schemaRefs openapi3.SchemaRefs) {
 	pathItem := openAPIDoc.Paths.Find(path)
 	contract.Assertf(pathItem != nil, "path %s not found", path)
 
-	discriminator, _ := getServiceDiscriminator(schemaSuffix)
+	discriminator, _ := getServiceDiscriminator(openAPIDoc, schemaSuffix)
 
 	switch operation {
 	case http.MethodGet:
-		schemaRef := openapi3.NewSchemaRef("", &openapi3.Schema{OneOf: refs})
+		schemaRef := openapi3.NewSchemaRef("", &openapi3.Schema{OneOf: schemaRefs})
 		schemaRef.Value.Discriminator = discriminator
 		pathItem.Get.Responses.Status(200).Value.Content.Get(jsonMimeType).Schema = schemaRef
 	case http.MethodPost:
-		schemaRef := openapi3.NewSchemaRef("", &openapi3.Schema{OneOf: refs})
+		schemaRef := openapi3.NewSchemaRef("", &openapi3.Schema{OneOf: schemaRefs})
 		schemaRef.Value.Discriminator = discriminator
 		pathItem.Post.RequestBody.Value.Content.Get(jsonMimeType).Schema = schemaRef
 
-		outputDiscriminator, outputRefs := getServiceDiscriminator("Output")
+		outputDiscriminator, outputRefs := getServiceDiscriminator(openAPIDoc, "Output")
 		outputSchemaRef := openapi3.NewSchemaRef("", &openapi3.Schema{OneOf: outputRefs})
 		outputSchemaRef.Value.Discriminator = outputDiscriminator
 		// POST /services endpoint returns a 201 Created status code.
 		pathItem.Post.Responses.Status(201).Value.Content.Get(jsonMimeType).Schema = outputSchemaRef
 	case http.MethodPatch:
-		schemaRef := openapi3.NewSchemaRef("", &openapi3.Schema{OneOf: refs})
+		schemaRef := openapi3.NewSchemaRef("", &openapi3.Schema{OneOf: schemaRefs})
 		schemaRef.Value.Discriminator = discriminator
 		pathItem.Patch.RequestBody.Value.Content.Get(jsonMimeType).Schema = schemaRef
 
-		outputDiscriminator, outputRefs := getServiceDiscriminator("Output")
+		outputDiscriminator, outputRefs := getServiceDiscriminator(openAPIDoc, "Output")
 		outputSchemaRef := openapi3.NewSchemaRef("", &openapi3.Schema{OneOf: outputRefs})
 		outputSchemaRef.Value.Discriminator = outputDiscriminator
 		pathItem.Patch.Responses.Status(200).Value.Content.Get(jsonMimeType).Schema = outputSchemaRef
@@ -267,9 +273,9 @@ func fixServiceSchemas(openAPIDoc *openapi3.T) error {
 				// as the parent service schema object, if it's not empty.
 				if newServiceSchemaSuffix != "" && !schemasSuffixedWithOperation {
 					openAPIDoc.Components.Schemas[serviceDetailsSchemaName+newServiceSchemaSuffix] = serviceDetailsSchema
-					addPropertyWithRef(inlineSchema, "serviceDetails", serviceDetailsSchemaName+newServiceSchemaSuffix)
+					addPropertyWithRef(inlineSchema, "serviceDetails", serviceDetailsSchemaName+newServiceSchemaSuffix, serviceDetailsSchema.Value)
 				} else {
-					addPropertyWithRef(inlineSchema, "serviceDetails", serviceDetailsSchemaName)
+					addPropertyWithRef(inlineSchema, "serviceDetails", serviceDetailsSchemaName, serviceDetailsSchema.Value)
 				}
 				addDefaultProperty(inlineSchema, "type", discriminatorValue)
 
@@ -277,7 +283,7 @@ func fixServiceSchemas(openAPIDoc *openapi3.T) error {
 
 				openAPIDoc.Components.Schemas[service+newServiceSchemaSuffix] = openapi3.NewSchemaRef("", serviceSchema)
 
-				operationSchemas = append(operationSchemas, openapi3.NewSchemaRef(schemasRefPrefix+service+newServiceSchemaSuffix, nil))
+				operationSchemas = append(operationSchemas, openapi3.NewSchemaRef(schemasRefPrefix+service+newServiceSchemaSuffix, serviceSchema))
 			}
 
 			changeOperationSchemas(openAPIDoc, path, operation, newServiceSchemaSuffix, operationSchemas)
@@ -295,7 +301,7 @@ func fixListServicesEndpoint(openAPIDoc *openapi3.T) {
 	pathItem := openAPIDoc.Paths.Find("/services")
 	contract.Assertf(pathItem != nil, "path /services not found")
 
-	discriminator, outputRefs := getServiceDiscriminator("Output")
+	discriminator, outputRefs := getServiceDiscriminator(openAPIDoc, "Output")
 	discriminatedServicesSchemaRef := openapi3.NewSchemaRef("", &openapi3.Schema{OneOf: outputRefs})
 	discriminatedServicesSchemaRef.Value.Discriminator = discriminator
 
@@ -319,7 +325,7 @@ func fixDeleteServiceEndpoint(openAPIDoc *openapi3.T) {
 	pathItem := openAPIDoc.Paths.Find("/services/{serviceId}")
 	contract.Assertf(pathItem != nil, "path /services/{serviceId} not found")
 
-	discriminator, refs := getServiceDiscriminator("")
+	discriminator, refs := getServiceDiscriminator(openAPIDoc, "")
 	discriminatedServicesSchemaRef := openapi3.NewSchemaRef("", &openapi3.Schema{OneOf: refs})
 	discriminatedServicesSchemaRef.Value.Discriminator = discriminator
 
@@ -343,6 +349,10 @@ func FixOpenAPIDoc(openAPIDoc *openapi3.T) error {
 
 	fixListServicesEndpoint(openAPIDoc)
 	fixDeleteServiceEndpoint(openAPIDoc)
+
+	// TODO: fix `GET /services/{serviceId}/jobs/{jobId}` response body schema
+	// so that it refers to a separate schema type rather than pointing to
+	// the response body schema for `POST /services/{serviceId}/jobs`
 
 	return nil
 }

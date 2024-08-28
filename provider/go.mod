@@ -4,7 +4,7 @@ go 1.21
 
 require (
 	github.com/cloudy-sky-software/pulschema v0.0.0-20240823234128-b7f1c5ee495a
-	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20240824033325-b662408e15e2
+	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20240828145632-7b3a3c567ff1
 	github.com/getkin/kin-openapi v0.127.0
 	github.com/pulumi/pulumi/pkg/v3 v3.130.0
 	github.com/pulumi/pulumi/sdk/v3 v3.130.0
@@ -177,7 +177,7 @@ require (
 	golang.org/x/exp v0.0.0-20240604190554-fc45aab8b7f8 // indirect
 	golang.org/x/mod v0.18.0 // indirect
 	golang.org/x/net v0.27.0 // indirect
-	golang.org/x/oauth2 v0.20.0 // indirect
+	golang.org/x/oauth2 v0.21.0 // indirect
 	golang.org/x/sync v0.8.0 // indirect
 	golang.org/x/sys v0.22.0 // indirect
 	golang.org/x/term v0.22.0 // indirect
@@ -187,9 +187,9 @@ require (
 	golang.org/x/xerrors v0.0.0-20231012003039-104605ab7028 // indirect
 	google.golang.org/api v0.169.0 // indirect
 	google.golang.org/genproto v0.0.0-20240311173647-c811ad7063a7 // indirect
-	google.golang.org/genproto/googleapis/api v0.0.0-20240528184218-531527333157 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20240528184218-531527333157 // indirect
-	google.golang.org/grpc v1.65.0 // indirect
+	google.golang.org/genproto/googleapis/api v0.0.0-20240604185151-ef581f913117 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20240604185151-ef581f913117 // indirect
+	google.golang.org/grpc v1.66.0 // indirect
 	google.golang.org/protobuf v1.34.1 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 	lukechampine.com/frand v1.4.2 // indirect

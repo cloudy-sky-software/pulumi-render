@@ -104,11 +104,16 @@ func PulumiSchema(openAPIDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 			"/services/{serviceId}/resume",
 			"/services/{serviceId}/custom-domains/{id}/verify",
 			"/services/{serviceId}/events",
+			"/logs",
 			"/logs/subscribe",
+			"/logs/values",
 			// The GET endpoint response for /disks/{diskId}/snapshots
 			// has an invalid "201 Created" response code despite
 			// the endpoint being a list endpoint to list all snapshots.
 			"/disks/{diskId}/snapshots",
+			"/maintenance",
+			"/maintenance/{maintenanceRunParam}",
+			"/maintenance/{maintenanceRunParam}/trigger",
 			"/metrics/cpu",
 			"/metrics/cpu-limit",
 			"/metrics/cpu-target",

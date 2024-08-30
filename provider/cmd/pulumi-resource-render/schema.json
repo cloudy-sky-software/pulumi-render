@@ -22,8 +22,6 @@
                 "disks": "Disks",
                 "env-groups": "EnvGroups",
                 "environments": "Environments",
-                "logs": "Logs",
-                "maintenance": "Maintenance",
                 "metrics": "Metrics",
                 "notification-settings": "NotificationSettings",
                 "owners": "Owners",
@@ -739,248 +737,6 @@
                 }
             ]
         },
-        "render:logs:ListLogsProperties": {
-            "description": "A run of a cron job",
-            "properties": {
-                "hasMore": {
-                    "type": "boolean",
-                    "description": "Ture if there are more logs to fetch"
-                },
-                "logs": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:logs:paths1logs1subscribegetresponses101contentapplication1jsonschema"
-                    }
-                },
-                "nextEndTime": {
-                    "type": "string",
-                    "description": "The end time to use in the next query to fetch the next set of logs"
-                },
-                "nextStartTime": {
-                    "type": "string",
-                    "description": "The start time to use in the next query to fetch the next set of logs"
-                }
-            },
-            "type": "object",
-            "required": [
-                "hasMore",
-                "logs",
-                "nextEndTime",
-                "nextStartTime"
-            ]
-        },
-        "render:logs:Paths1logs1subscribegetresponses101contentapplication1jsonschemaLabelsItemPropertiesName": {
-            "description": "The name of the log label",
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Resource",
-                    "value": "resource"
-                },
-                {
-                    "name": "Instance",
-                    "value": "instance"
-                },
-                {
-                    "name": "Host",
-                    "value": "host"
-                },
-                {
-                    "name": "StatusCode",
-                    "value": "statusCode"
-                },
-                {
-                    "name": "Method",
-                    "value": "method"
-                },
-                {
-                    "name": "Level",
-                    "value": "level"
-                },
-                {
-                    "name": "Type",
-                    "value": "type"
-                },
-                {
-                    "name": "Text",
-                    "value": "text"
-                },
-                {
-                    "name": "Path",
-                    "value": "path"
-                }
-            ]
-        },
-        "render:logs:paths1logs1subscribegetresponses101contentapplication1jsonschema": {
-            "description": "A log entry with metadata",
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "A unique ID of the log entry"
-                },
-                "labels": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:logs:paths1logs1subscribegetresponses101contentapplication1jsonschemaLabelsItemProperties"
-                    }
-                },
-                "message": {
-                    "type": "string",
-                    "description": "The message of the log entry"
-                },
-                "timestamp": {
-                    "type": "string",
-                    "description": "The timestamp of the log entry"
-                }
-            },
-            "type": "object",
-            "required": [
-                "id",
-                "labels",
-                "message",
-                "timestamp"
-            ]
-        },
-        "render:logs:paths1logs1subscribegetresponses101contentapplication1jsonschemaLabelsItemProperties": {
-            "description": "A log label",
-            "properties": {
-                "name": {
-                    "$ref": "#/types/render:logs:Paths1logs1subscribegetresponses101contentapplication1jsonschemaLabelsItemPropertiesName",
-                    "description": "The name of the log label"
-                },
-                "value": {
-                    "type": "string",
-                    "description": "The value of the log label"
-                }
-            },
-            "type": "object",
-            "required": [
-                "name",
-                "value"
-            ]
-        },
-        "render:maintenance:GetMaintenanceProperties": {
-            "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "pendingMaintenanceBy": {
-                    "type": "string",
-                    "description": "If present, the maintenance run cannot be scheduled for later than this date-time."
-                },
-                "resourceId": {
-                    "type": "string",
-                    "description": "The Id of a resource that can undergo maintenance (Id of a service, a Postgres instance, or a Redis instance)"
-                },
-                "scheduledAt": {
-                    "type": "string"
-                },
-                "state": {
-                    "$ref": "#/types/render:maintenance:GetMaintenancePropertiesState"
-                },
-                "type": {
-                    "type": "string"
-                }
-            },
-            "type": "object",
-            "required": [
-                "id",
-                "resourceId",
-                "scheduledAt",
-                "state",
-                "type"
-            ]
-        },
-        "render:maintenance:GetMaintenancePropertiesState": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Scheduled",
-                    "value": "scheduled"
-                },
-                {
-                    "name": "InProgress",
-                    "value": "in_progress"
-                },
-                {
-                    "name": "UserFixRequired",
-                    "value": "user_fix_required"
-                },
-                {
-                    "name": "Cancelled",
-                    "value": "cancelled"
-                },
-                {
-                    "name": "Succeeded",
-                    "value": "succeeded"
-                },
-                {
-                    "name": "Failed",
-                    "value": "failed"
-                }
-            ]
-        },
-        "render:maintenance:Paths1maintenance17BmaintenanceRunParam7Dgetresponses200contentapplication1jsonschemaState": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Scheduled",
-                    "value": "scheduled"
-                },
-                {
-                    "name": "InProgress",
-                    "value": "in_progress"
-                },
-                {
-                    "name": "UserFixRequired",
-                    "value": "user_fix_required"
-                },
-                {
-                    "name": "Cancelled",
-                    "value": "cancelled"
-                },
-                {
-                    "name": "Succeeded",
-                    "value": "succeeded"
-                },
-                {
-                    "name": "Failed",
-                    "value": "failed"
-                }
-            ]
-        },
-        "render:maintenance:paths1maintenance17BmaintenanceRunParam7Dgetresponses200contentapplication1jsonschema": {
-            "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "pendingMaintenanceBy": {
-                    "type": "string",
-                    "description": "If present, the maintenance run cannot be scheduled for later than this date-time."
-                },
-                "resourceId": {
-                    "type": "string",
-                    "description": "The Id of a resource that can undergo maintenance (Id of a service, a Postgres instance, or a Redis instance)"
-                },
-                "scheduledAt": {
-                    "type": "string"
-                },
-                "state": {
-                    "$ref": "#/types/render:maintenance:Paths1maintenance17BmaintenanceRunParam7Dgetresponses200contentapplication1jsonschemaState"
-                },
-                "type": {
-                    "type": "string"
-                }
-            },
-            "type": "object",
-            "required": [
-                "id",
-                "resourceId",
-                "scheduledAt",
-                "state",
-                "type"
-            ]
-        },
         "render:metrics:ListActiveConnectionsItemProperties": {
             "description": "A time series data point",
             "properties": {
@@ -1341,788 +1097,6 @@
                 "description"
             ]
         },
-        "render:postgres:Creategres": {
-            "properties": {
-                "createdAt": {
-                    "type": "string"
-                },
-                "dashboardUrl": {
-                    "type": "string",
-                    "description": "The URL to view the PostgreSQL instance in the Render Dashboard"
-                },
-                "databaseName": {
-                    "type": "string"
-                },
-                "databaseUser": {
-                    "type": "string"
-                },
-                "diskSizeGB": {
-                    "type": "integer"
-                },
-                "environmentId": {
-                    "type": "string"
-                },
-                "expiresAt": {
-                    "type": "string",
-                    "description": "The time at which the database will be expire. Applies to free tier databases only."
-                },
-                "highAvailabilityEnabled": {
-                    "type": "boolean"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "ipAllowList": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:postgres:CidrBlockAndDescription"
-                    }
-                },
-                "name": {
-                    "type": "string"
-                },
-                "owner": {
-                    "$ref": "#/types/render:postgres:Owner"
-                },
-                "plan": {
-                    "$ref": "#/types/render:postgres:CreategresPlan"
-                },
-                "primaryPostgresID": {
-                    "type": "string"
-                },
-                "readReplicas": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:postgres:ReadReplica"
-                    }
-                },
-                "region": {
-                    "$ref": "#/types/render:postgres:CreategresRegion",
-                    "description": "Defaults to \"oregon\"",
-                    "default": "oregon"
-                },
-                "role": {
-                    "$ref": "#/types/render:postgres:CreategresRole"
-                },
-                "status": {
-                    "$ref": "#/types/render:postgres:CreategresStatus"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:postgres:CreategresSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:postgres:CreategresSuspendersItem"
-                    }
-                },
-                "updatedAt": {
-                    "type": "string"
-                },
-                "version": {
-                    "$ref": "#/types/render:postgres:CreategresVersion",
-                    "description": "The PostgreSQL version"
-                }
-            },
-            "type": "object",
-            "required": [
-                "createdAt",
-                "dashboardUrl",
-                "databaseName",
-                "databaseUser",
-                "highAvailabilityEnabled",
-                "id",
-                "ipAllowList",
-                "name",
-                "owner",
-                "plan",
-                "readReplicas",
-                "region",
-                "role",
-                "status",
-                "suspended",
-                "suspenders",
-                "updatedAt",
-                "version"
-            ]
-        },
-        "render:postgres:CreategresConnectionInfo": {
-            "properties": {
-                "externalConnectionString": {
-                    "type": "string"
-                },
-                "internalConnectionString": {
-                    "type": "string"
-                },
-                "password": {
-                    "type": "string"
-                },
-                "psqlCommand": {
-                    "type": "string"
-                }
-            },
-            "type": "object",
-            "required": [
-                "externalConnectionString",
-                "internalConnectionString",
-                "password",
-                "psqlCommand"
-            ]
-        },
-        "render:postgres:CreategresDetail": {
-            "properties": {
-                "createdAt": {
-                    "type": "string"
-                },
-                "dashboardUrl": {
-                    "type": "string",
-                    "description": "The URL to view the PostgreSQL instance in the Render Dashboard"
-                },
-                "databaseName": {
-                    "type": "string"
-                },
-                "databaseUser": {
-                    "type": "string"
-                },
-                "diskSizeGB": {
-                    "type": "integer"
-                },
-                "environmentId": {
-                    "type": "string"
-                },
-                "expiresAt": {
-                    "type": "string",
-                    "description": "The time at which the database will be expire. Applies to free tier databases only."
-                },
-                "highAvailabilityEnabled": {
-                    "type": "boolean"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "ipAllowList": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:postgres:CidrBlockAndDescription"
-                    }
-                },
-                "maintenance": {
-                    "$ref": "#/types/render:postgres:RedisDetailpropertiesmaintenance"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "owner": {
-                    "$ref": "#/types/render:postgres:Owner"
-                },
-                "plan": {
-                    "$ref": "#/types/render:postgres:CreategresDetailPlan"
-                },
-                "primaryPostgresID": {
-                    "type": "string"
-                },
-                "readReplicas": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:postgres:ReadReplica"
-                    }
-                },
-                "region": {
-                    "$ref": "#/types/render:postgres:CreategresDetailRegion",
-                    "description": "Defaults to \"oregon\"",
-                    "default": "oregon"
-                },
-                "role": {
-                    "$ref": "#/types/render:postgres:CreategresDetailRole"
-                },
-                "status": {
-                    "$ref": "#/types/render:postgres:CreategresDetailStatus"
-                },
-                "suspended": {
-                    "$ref": "#/types/render:postgres:CreategresDetailSuspended"
-                },
-                "suspenders": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/render:postgres:CreategresDetailSuspendersItem"
-                    }
-                },
-                "updatedAt": {
-                    "type": "string"
-                },
-                "version": {
-                    "$ref": "#/types/render:postgres:CreategresDetailVersion",
-                    "description": "The PostgreSQL version"
-                }
-            },
-            "type": "object",
-            "required": [
-                "createdAt",
-                "dashboardUrl",
-                "databaseName",
-                "databaseUser",
-                "highAvailabilityEnabled",
-                "id",
-                "ipAllowList",
-                "name",
-                "owner",
-                "plan",
-                "readReplicas",
-                "region",
-                "role",
-                "status",
-                "suspended",
-                "suspenders",
-                "updatedAt",
-                "version"
-            ]
-        },
-        "render:postgres:CreategresDetailPlan": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Free",
-                    "value": "free"
-                },
-                {
-                    "name": "Starter",
-                    "value": "starter"
-                },
-                {
-                    "name": "Standard",
-                    "value": "standard"
-                },
-                {
-                    "name": "Pro",
-                    "value": "pro"
-                },
-                {
-                    "name": "ProPlus",
-                    "value": "pro_plus"
-                },
-                {
-                    "name": "Custom",
-                    "value": "custom"
-                },
-                {
-                    "name": "Basic256mb",
-                    "value": "basic_256mb"
-                },
-                {
-                    "name": "Basic1gb",
-                    "value": "basic_1gb"
-                },
-                {
-                    "name": "Basic4gb",
-                    "value": "basic_4gb"
-                },
-                {
-                    "name": "Pro4gb",
-                    "value": "pro_4gb"
-                },
-                {
-                    "name": "Pro8gb",
-                    "value": "pro_8gb"
-                },
-                {
-                    "name": "Pro16gb",
-                    "value": "pro_16gb"
-                },
-                {
-                    "name": "Pro32gb",
-                    "value": "pro_32gb"
-                },
-                {
-                    "name": "Pro64gb",
-                    "value": "pro_64gb"
-                },
-                {
-                    "name": "Pro128gb",
-                    "value": "pro_128gb"
-                },
-                {
-                    "name": "Pro192gb",
-                    "value": "pro_192gb"
-                },
-                {
-                    "name": "Pro256gb",
-                    "value": "pro_256gb"
-                },
-                {
-                    "name": "Pro384gb",
-                    "value": "pro_384gb"
-                },
-                {
-                    "name": "Pro512gb",
-                    "value": "pro_512gb"
-                },
-                {
-                    "name": "Accelerated16gb",
-                    "value": "accelerated_16gb"
-                },
-                {
-                    "name": "Accelerated32gb",
-                    "value": "accelerated_32gb"
-                },
-                {
-                    "name": "Accelerated64gb",
-                    "value": "accelerated_64gb"
-                },
-                {
-                    "name": "Accelerated128gb",
-                    "value": "accelerated_128gb"
-                },
-                {
-                    "name": "Accelerated256gb",
-                    "value": "accelerated_256gb"
-                },
-                {
-                    "name": "Accelerated384gb",
-                    "value": "accelerated_384gb"
-                },
-                {
-                    "name": "Accelerated512gb",
-                    "value": "accelerated_512gb"
-                },
-                {
-                    "name": "Accelerated768gb",
-                    "value": "accelerated_768gb"
-                },
-                {
-                    "name": "Accelerated1024gb",
-                    "value": "accelerated_1024gb"
-                }
-            ]
-        },
-        "render:postgres:CreategresDetailRegion": {
-            "description": "Defaults to \"oregon\"",
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Frankfurt",
-                    "value": "frankfurt"
-                },
-                {
-                    "name": "Oregon",
-                    "value": "oregon"
-                },
-                {
-                    "name": "Ohio",
-                    "value": "ohio"
-                },
-                {
-                    "name": "Singapore",
-                    "value": "singapore"
-                },
-                {
-                    "name": "Virginia",
-                    "value": "virginia"
-                }
-            ]
-        },
-        "render:postgres:CreategresDetailRole": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Primary",
-                    "value": "primary"
-                },
-                {
-                    "name": "Replica",
-                    "value": "replica"
-                }
-            ]
-        },
-        "render:postgres:CreategresDetailStatus": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Creating",
-                    "value": "creating"
-                },
-                {
-                    "name": "Available",
-                    "value": "available"
-                },
-                {
-                    "name": "Unavailable",
-                    "value": "unavailable"
-                },
-                {
-                    "name": "ConfigRestart",
-                    "value": "config_restart"
-                },
-                {
-                    "name": "Suspended",
-                    "value": "suspended"
-                },
-                {
-                    "name": "MaintenanceScheduled",
-                    "value": "maintenance_scheduled"
-                },
-                {
-                    "name": "MaintenanceInProgress",
-                    "value": "maintenance_in_progress"
-                },
-                {
-                    "name": "RecoveryFailed",
-                    "value": "recovery_failed"
-                },
-                {
-                    "name": "RecoveryInProgress",
-                    "value": "recovery_in_progress"
-                },
-                {
-                    "name": "Unknown",
-                    "value": "unknown"
-                },
-                {
-                    "name": "UpdatingInstance",
-                    "value": "updating_instance"
-                }
-            ]
-        },
-        "render:postgres:CreategresDetailSuspended": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Suspended",
-                    "value": "suspended"
-                },
-                {
-                    "name": "NotSuspended",
-                    "value": "not_suspended"
-                }
-            ]
-        },
-        "render:postgres:CreategresDetailSuspendersItem": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Admin",
-                    "value": "admin"
-                },
-                {
-                    "name": "Billing",
-                    "value": "billing"
-                },
-                {
-                    "name": "User",
-                    "value": "user"
-                },
-                {
-                    "name": "ParentService",
-                    "value": "parent_service"
-                },
-                {
-                    "name": "Unknown",
-                    "value": "unknown"
-                }
-            ]
-        },
-        "render:postgres:CreategresDetailVersion": {
-            "description": "The PostgreSQL version",
-            "type": "string",
-            "enum": [
-                {
-                    "name": "11",
-                    "value": "11"
-                },
-                {
-                    "name": "12",
-                    "value": "12"
-                },
-                {
-                    "name": "13",
-                    "value": "13"
-                },
-                {
-                    "name": "14",
-                    "value": "14"
-                },
-                {
-                    "name": "15",
-                    "value": "15"
-                },
-                {
-                    "name": "16",
-                    "value": "16"
-                }
-            ]
-        },
-        "render:postgres:CreategresPlan": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Free",
-                    "value": "free"
-                },
-                {
-                    "name": "Starter",
-                    "value": "starter"
-                },
-                {
-                    "name": "Standard",
-                    "value": "standard"
-                },
-                {
-                    "name": "Pro",
-                    "value": "pro"
-                },
-                {
-                    "name": "ProPlus",
-                    "value": "pro_plus"
-                },
-                {
-                    "name": "Custom",
-                    "value": "custom"
-                },
-                {
-                    "name": "Basic256mb",
-                    "value": "basic_256mb"
-                },
-                {
-                    "name": "Basic1gb",
-                    "value": "basic_1gb"
-                },
-                {
-                    "name": "Basic4gb",
-                    "value": "basic_4gb"
-                },
-                {
-                    "name": "Pro4gb",
-                    "value": "pro_4gb"
-                },
-                {
-                    "name": "Pro8gb",
-                    "value": "pro_8gb"
-                },
-                {
-                    "name": "Pro16gb",
-                    "value": "pro_16gb"
-                },
-                {
-                    "name": "Pro32gb",
-                    "value": "pro_32gb"
-                },
-                {
-                    "name": "Pro64gb",
-                    "value": "pro_64gb"
-                },
-                {
-                    "name": "Pro128gb",
-                    "value": "pro_128gb"
-                },
-                {
-                    "name": "Pro192gb",
-                    "value": "pro_192gb"
-                },
-                {
-                    "name": "Pro256gb",
-                    "value": "pro_256gb"
-                },
-                {
-                    "name": "Pro384gb",
-                    "value": "pro_384gb"
-                },
-                {
-                    "name": "Pro512gb",
-                    "value": "pro_512gb"
-                },
-                {
-                    "name": "Accelerated16gb",
-                    "value": "accelerated_16gb"
-                },
-                {
-                    "name": "Accelerated32gb",
-                    "value": "accelerated_32gb"
-                },
-                {
-                    "name": "Accelerated64gb",
-                    "value": "accelerated_64gb"
-                },
-                {
-                    "name": "Accelerated128gb",
-                    "value": "accelerated_128gb"
-                },
-                {
-                    "name": "Accelerated256gb",
-                    "value": "accelerated_256gb"
-                },
-                {
-                    "name": "Accelerated384gb",
-                    "value": "accelerated_384gb"
-                },
-                {
-                    "name": "Accelerated512gb",
-                    "value": "accelerated_512gb"
-                },
-                {
-                    "name": "Accelerated768gb",
-                    "value": "accelerated_768gb"
-                },
-                {
-                    "name": "Accelerated1024gb",
-                    "value": "accelerated_1024gb"
-                }
-            ]
-        },
-        "render:postgres:CreategresRegion": {
-            "description": "Defaults to \"oregon\"",
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Frankfurt",
-                    "value": "frankfurt"
-                },
-                {
-                    "name": "Oregon",
-                    "value": "oregon"
-                },
-                {
-                    "name": "Ohio",
-                    "value": "ohio"
-                },
-                {
-                    "name": "Singapore",
-                    "value": "singapore"
-                },
-                {
-                    "name": "Virginia",
-                    "value": "virginia"
-                }
-            ]
-        },
-        "render:postgres:CreategresRole": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Primary",
-                    "value": "primary"
-                },
-                {
-                    "name": "Replica",
-                    "value": "replica"
-                }
-            ]
-        },
-        "render:postgres:CreategresStatus": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Creating",
-                    "value": "creating"
-                },
-                {
-                    "name": "Available",
-                    "value": "available"
-                },
-                {
-                    "name": "Unavailable",
-                    "value": "unavailable"
-                },
-                {
-                    "name": "ConfigRestart",
-                    "value": "config_restart"
-                },
-                {
-                    "name": "Suspended",
-                    "value": "suspended"
-                },
-                {
-                    "name": "MaintenanceScheduled",
-                    "value": "maintenance_scheduled"
-                },
-                {
-                    "name": "MaintenanceInProgress",
-                    "value": "maintenance_in_progress"
-                },
-                {
-                    "name": "RecoveryFailed",
-                    "value": "recovery_failed"
-                },
-                {
-                    "name": "RecoveryInProgress",
-                    "value": "recovery_in_progress"
-                },
-                {
-                    "name": "Unknown",
-                    "value": "unknown"
-                },
-                {
-                    "name": "UpdatingInstance",
-                    "value": "updating_instance"
-                }
-            ]
-        },
-        "render:postgres:CreategresSuspended": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Suspended",
-                    "value": "suspended"
-                },
-                {
-                    "name": "NotSuspended",
-                    "value": "not_suspended"
-                }
-            ]
-        },
-        "render:postgres:CreategresSuspendersItem": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Admin",
-                    "value": "admin"
-                },
-                {
-                    "name": "Billing",
-                    "value": "billing"
-                },
-                {
-                    "name": "User",
-                    "value": "user"
-                },
-                {
-                    "name": "ParentService",
-                    "value": "parent_service"
-                },
-                {
-                    "name": "Unknown",
-                    "value": "unknown"
-                }
-            ]
-        },
-        "render:postgres:CreategresVersion": {
-            "description": "The PostgreSQL version",
-            "type": "string",
-            "enum": [
-                {
-                    "name": "11",
-                    "value": "11"
-                },
-                {
-                    "name": "12",
-                    "value": "12"
-                },
-                {
-                    "name": "13",
-                    "value": "13"
-                },
-                {
-                    "name": "14",
-                    "value": "14"
-                },
-                {
-                    "name": "15",
-                    "value": "15"
-                },
-                {
-                    "name": "16",
-                    "value": "16"
-                }
-            ]
-        },
         "render:postgres:GetPostgresRecoveryInfoProperties": {
             "properties": {
                 "recoveryStatus": {
@@ -2181,7 +1155,7 @@
                     "type": "string"
                 },
                 "postgres": {
-                    "$ref": "#/types/render:postgres:Creategres"
+                    "$ref": "#/types/render:postgres:Postgres"
                 }
             },
             "type": "object"
@@ -2340,6 +1314,788 @@
                 {
                     "name": "Accelerated1024gb",
                     "value": "accelerated_1024gb"
+                }
+            ]
+        },
+        "render:postgres:Postgres": {
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "dashboardUrl": {
+                    "type": "string",
+                    "description": "The URL to view the PostgreSQL instance in the Render Dashboard"
+                },
+                "databaseName": {
+                    "type": "string"
+                },
+                "databaseUser": {
+                    "type": "string"
+                },
+                "diskSizeGB": {
+                    "type": "integer"
+                },
+                "environmentId": {
+                    "type": "string"
+                },
+                "expiresAt": {
+                    "type": "string",
+                    "description": "The time at which the database will be expire. Applies to free tier databases only."
+                },
+                "highAvailabilityEnabled": {
+                    "type": "boolean"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "ipAllowList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:postgres:CidrBlockAndDescription"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "owner": {
+                    "$ref": "#/types/render:postgres:Owner"
+                },
+                "plan": {
+                    "$ref": "#/types/render:postgres:PostgresPlan"
+                },
+                "primaryPostgresID": {
+                    "type": "string"
+                },
+                "readReplicas": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:postgres:ReadReplica"
+                    }
+                },
+                "region": {
+                    "$ref": "#/types/render:postgres:PostgresRegion",
+                    "description": "Defaults to \"oregon\"",
+                    "default": "oregon"
+                },
+                "role": {
+                    "$ref": "#/types/render:postgres:PostgresRole"
+                },
+                "status": {
+                    "$ref": "#/types/render:postgres:PostgresStatus"
+                },
+                "suspended": {
+                    "$ref": "#/types/render:postgres:PostgresSuspended"
+                },
+                "suspenders": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:postgres:PostgresSuspendersItem"
+                    }
+                },
+                "updatedAt": {
+                    "type": "string"
+                },
+                "version": {
+                    "$ref": "#/types/render:postgres:PostgresVersion",
+                    "description": "The PostgreSQL version"
+                }
+            },
+            "type": "object",
+            "required": [
+                "createdAt",
+                "dashboardUrl",
+                "databaseName",
+                "databaseUser",
+                "highAvailabilityEnabled",
+                "id",
+                "ipAllowList",
+                "name",
+                "owner",
+                "plan",
+                "readReplicas",
+                "region",
+                "role",
+                "status",
+                "suspended",
+                "suspenders",
+                "updatedAt",
+                "version"
+            ]
+        },
+        "render:postgres:PostgresConnectionInfo": {
+            "properties": {
+                "externalConnectionString": {
+                    "type": "string"
+                },
+                "internalConnectionString": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "psqlCommand": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "externalConnectionString",
+                "internalConnectionString",
+                "password",
+                "psqlCommand"
+            ]
+        },
+        "render:postgres:PostgresDetail": {
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "dashboardUrl": {
+                    "type": "string",
+                    "description": "The URL to view the PostgreSQL instance in the Render Dashboard"
+                },
+                "databaseName": {
+                    "type": "string"
+                },
+                "databaseUser": {
+                    "type": "string"
+                },
+                "diskSizeGB": {
+                    "type": "integer"
+                },
+                "environmentId": {
+                    "type": "string"
+                },
+                "expiresAt": {
+                    "type": "string",
+                    "description": "The time at which the database will be expire. Applies to free tier databases only."
+                },
+                "highAvailabilityEnabled": {
+                    "type": "boolean"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "ipAllowList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:postgres:CidrBlockAndDescription"
+                    }
+                },
+                "maintenance": {
+                    "$ref": "#/types/render:postgres:RedisDetailpropertiesmaintenance"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "owner": {
+                    "$ref": "#/types/render:postgres:Owner"
+                },
+                "plan": {
+                    "$ref": "#/types/render:postgres:PostgresDetailPlan"
+                },
+                "primaryPostgresID": {
+                    "type": "string"
+                },
+                "readReplicas": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:postgres:ReadReplica"
+                    }
+                },
+                "region": {
+                    "$ref": "#/types/render:postgres:PostgresDetailRegion",
+                    "description": "Defaults to \"oregon\"",
+                    "default": "oregon"
+                },
+                "role": {
+                    "$ref": "#/types/render:postgres:PostgresDetailRole"
+                },
+                "status": {
+                    "$ref": "#/types/render:postgres:PostgresDetailStatus"
+                },
+                "suspended": {
+                    "$ref": "#/types/render:postgres:PostgresDetailSuspended"
+                },
+                "suspenders": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:postgres:PostgresDetailSuspendersItem"
+                    }
+                },
+                "updatedAt": {
+                    "type": "string"
+                },
+                "version": {
+                    "$ref": "#/types/render:postgres:PostgresDetailVersion",
+                    "description": "The PostgreSQL version"
+                }
+            },
+            "type": "object",
+            "required": [
+                "createdAt",
+                "dashboardUrl",
+                "databaseName",
+                "databaseUser",
+                "highAvailabilityEnabled",
+                "id",
+                "ipAllowList",
+                "name",
+                "owner",
+                "plan",
+                "readReplicas",
+                "region",
+                "role",
+                "status",
+                "suspended",
+                "suspenders",
+                "updatedAt",
+                "version"
+            ]
+        },
+        "render:postgres:PostgresDetailPlan": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Free",
+                    "value": "free"
+                },
+                {
+                    "name": "Starter",
+                    "value": "starter"
+                },
+                {
+                    "name": "Standard",
+                    "value": "standard"
+                },
+                {
+                    "name": "Pro",
+                    "value": "pro"
+                },
+                {
+                    "name": "ProPlus",
+                    "value": "pro_plus"
+                },
+                {
+                    "name": "Custom",
+                    "value": "custom"
+                },
+                {
+                    "name": "Basic256mb",
+                    "value": "basic_256mb"
+                },
+                {
+                    "name": "Basic1gb",
+                    "value": "basic_1gb"
+                },
+                {
+                    "name": "Basic4gb",
+                    "value": "basic_4gb"
+                },
+                {
+                    "name": "Pro4gb",
+                    "value": "pro_4gb"
+                },
+                {
+                    "name": "Pro8gb",
+                    "value": "pro_8gb"
+                },
+                {
+                    "name": "Pro16gb",
+                    "value": "pro_16gb"
+                },
+                {
+                    "name": "Pro32gb",
+                    "value": "pro_32gb"
+                },
+                {
+                    "name": "Pro64gb",
+                    "value": "pro_64gb"
+                },
+                {
+                    "name": "Pro128gb",
+                    "value": "pro_128gb"
+                },
+                {
+                    "name": "Pro192gb",
+                    "value": "pro_192gb"
+                },
+                {
+                    "name": "Pro256gb",
+                    "value": "pro_256gb"
+                },
+                {
+                    "name": "Pro384gb",
+                    "value": "pro_384gb"
+                },
+                {
+                    "name": "Pro512gb",
+                    "value": "pro_512gb"
+                },
+                {
+                    "name": "Accelerated16gb",
+                    "value": "accelerated_16gb"
+                },
+                {
+                    "name": "Accelerated32gb",
+                    "value": "accelerated_32gb"
+                },
+                {
+                    "name": "Accelerated64gb",
+                    "value": "accelerated_64gb"
+                },
+                {
+                    "name": "Accelerated128gb",
+                    "value": "accelerated_128gb"
+                },
+                {
+                    "name": "Accelerated256gb",
+                    "value": "accelerated_256gb"
+                },
+                {
+                    "name": "Accelerated384gb",
+                    "value": "accelerated_384gb"
+                },
+                {
+                    "name": "Accelerated512gb",
+                    "value": "accelerated_512gb"
+                },
+                {
+                    "name": "Accelerated768gb",
+                    "value": "accelerated_768gb"
+                },
+                {
+                    "name": "Accelerated1024gb",
+                    "value": "accelerated_1024gb"
+                }
+            ]
+        },
+        "render:postgres:PostgresDetailRegion": {
+            "description": "Defaults to \"oregon\"",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Frankfurt",
+                    "value": "frankfurt"
+                },
+                {
+                    "name": "Oregon",
+                    "value": "oregon"
+                },
+                {
+                    "name": "Ohio",
+                    "value": "ohio"
+                },
+                {
+                    "name": "Singapore",
+                    "value": "singapore"
+                },
+                {
+                    "name": "Virginia",
+                    "value": "virginia"
+                }
+            ]
+        },
+        "render:postgres:PostgresDetailRole": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Primary",
+                    "value": "primary"
+                },
+                {
+                    "name": "Replica",
+                    "value": "replica"
+                }
+            ]
+        },
+        "render:postgres:PostgresDetailStatus": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Creating",
+                    "value": "creating"
+                },
+                {
+                    "name": "Available",
+                    "value": "available"
+                },
+                {
+                    "name": "Unavailable",
+                    "value": "unavailable"
+                },
+                {
+                    "name": "ConfigRestart",
+                    "value": "config_restart"
+                },
+                {
+                    "name": "Suspended",
+                    "value": "suspended"
+                },
+                {
+                    "name": "MaintenanceScheduled",
+                    "value": "maintenance_scheduled"
+                },
+                {
+                    "name": "MaintenanceInProgress",
+                    "value": "maintenance_in_progress"
+                },
+                {
+                    "name": "RecoveryFailed",
+                    "value": "recovery_failed"
+                },
+                {
+                    "name": "RecoveryInProgress",
+                    "value": "recovery_in_progress"
+                },
+                {
+                    "name": "Unknown",
+                    "value": "unknown"
+                },
+                {
+                    "name": "UpdatingInstance",
+                    "value": "updating_instance"
+                }
+            ]
+        },
+        "render:postgres:PostgresDetailSuspended": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Suspended",
+                    "value": "suspended"
+                },
+                {
+                    "name": "NotSuspended",
+                    "value": "not_suspended"
+                }
+            ]
+        },
+        "render:postgres:PostgresDetailSuspendersItem": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Admin",
+                    "value": "admin"
+                },
+                {
+                    "name": "Billing",
+                    "value": "billing"
+                },
+                {
+                    "name": "User",
+                    "value": "user"
+                },
+                {
+                    "name": "ParentService",
+                    "value": "parent_service"
+                },
+                {
+                    "name": "Unknown",
+                    "value": "unknown"
+                }
+            ]
+        },
+        "render:postgres:PostgresDetailVersion": {
+            "description": "The PostgreSQL version",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "11",
+                    "value": "11"
+                },
+                {
+                    "name": "12",
+                    "value": "12"
+                },
+                {
+                    "name": "13",
+                    "value": "13"
+                },
+                {
+                    "name": "14",
+                    "value": "14"
+                },
+                {
+                    "name": "15",
+                    "value": "15"
+                },
+                {
+                    "name": "16",
+                    "value": "16"
+                }
+            ]
+        },
+        "render:postgres:PostgresPlan": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Free",
+                    "value": "free"
+                },
+                {
+                    "name": "Starter",
+                    "value": "starter"
+                },
+                {
+                    "name": "Standard",
+                    "value": "standard"
+                },
+                {
+                    "name": "Pro",
+                    "value": "pro"
+                },
+                {
+                    "name": "ProPlus",
+                    "value": "pro_plus"
+                },
+                {
+                    "name": "Custom",
+                    "value": "custom"
+                },
+                {
+                    "name": "Basic256mb",
+                    "value": "basic_256mb"
+                },
+                {
+                    "name": "Basic1gb",
+                    "value": "basic_1gb"
+                },
+                {
+                    "name": "Basic4gb",
+                    "value": "basic_4gb"
+                },
+                {
+                    "name": "Pro4gb",
+                    "value": "pro_4gb"
+                },
+                {
+                    "name": "Pro8gb",
+                    "value": "pro_8gb"
+                },
+                {
+                    "name": "Pro16gb",
+                    "value": "pro_16gb"
+                },
+                {
+                    "name": "Pro32gb",
+                    "value": "pro_32gb"
+                },
+                {
+                    "name": "Pro64gb",
+                    "value": "pro_64gb"
+                },
+                {
+                    "name": "Pro128gb",
+                    "value": "pro_128gb"
+                },
+                {
+                    "name": "Pro192gb",
+                    "value": "pro_192gb"
+                },
+                {
+                    "name": "Pro256gb",
+                    "value": "pro_256gb"
+                },
+                {
+                    "name": "Pro384gb",
+                    "value": "pro_384gb"
+                },
+                {
+                    "name": "Pro512gb",
+                    "value": "pro_512gb"
+                },
+                {
+                    "name": "Accelerated16gb",
+                    "value": "accelerated_16gb"
+                },
+                {
+                    "name": "Accelerated32gb",
+                    "value": "accelerated_32gb"
+                },
+                {
+                    "name": "Accelerated64gb",
+                    "value": "accelerated_64gb"
+                },
+                {
+                    "name": "Accelerated128gb",
+                    "value": "accelerated_128gb"
+                },
+                {
+                    "name": "Accelerated256gb",
+                    "value": "accelerated_256gb"
+                },
+                {
+                    "name": "Accelerated384gb",
+                    "value": "accelerated_384gb"
+                },
+                {
+                    "name": "Accelerated512gb",
+                    "value": "accelerated_512gb"
+                },
+                {
+                    "name": "Accelerated768gb",
+                    "value": "accelerated_768gb"
+                },
+                {
+                    "name": "Accelerated1024gb",
+                    "value": "accelerated_1024gb"
+                }
+            ]
+        },
+        "render:postgres:PostgresRegion": {
+            "description": "Defaults to \"oregon\"",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Frankfurt",
+                    "value": "frankfurt"
+                },
+                {
+                    "name": "Oregon",
+                    "value": "oregon"
+                },
+                {
+                    "name": "Ohio",
+                    "value": "ohio"
+                },
+                {
+                    "name": "Singapore",
+                    "value": "singapore"
+                },
+                {
+                    "name": "Virginia",
+                    "value": "virginia"
+                }
+            ]
+        },
+        "render:postgres:PostgresRole": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Primary",
+                    "value": "primary"
+                },
+                {
+                    "name": "Replica",
+                    "value": "replica"
+                }
+            ]
+        },
+        "render:postgres:PostgresStatus": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Creating",
+                    "value": "creating"
+                },
+                {
+                    "name": "Available",
+                    "value": "available"
+                },
+                {
+                    "name": "Unavailable",
+                    "value": "unavailable"
+                },
+                {
+                    "name": "ConfigRestart",
+                    "value": "config_restart"
+                },
+                {
+                    "name": "Suspended",
+                    "value": "suspended"
+                },
+                {
+                    "name": "MaintenanceScheduled",
+                    "value": "maintenance_scheduled"
+                },
+                {
+                    "name": "MaintenanceInProgress",
+                    "value": "maintenance_in_progress"
+                },
+                {
+                    "name": "RecoveryFailed",
+                    "value": "recovery_failed"
+                },
+                {
+                    "name": "RecoveryInProgress",
+                    "value": "recovery_in_progress"
+                },
+                {
+                    "name": "Unknown",
+                    "value": "unknown"
+                },
+                {
+                    "name": "UpdatingInstance",
+                    "value": "updating_instance"
+                }
+            ]
+        },
+        "render:postgres:PostgresSuspended": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Suspended",
+                    "value": "suspended"
+                },
+                {
+                    "name": "NotSuspended",
+                    "value": "not_suspended"
+                }
+            ]
+        },
+        "render:postgres:PostgresSuspendersItem": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Admin",
+                    "value": "admin"
+                },
+                {
+                    "name": "Billing",
+                    "value": "billing"
+                },
+                {
+                    "name": "User",
+                    "value": "user"
+                },
+                {
+                    "name": "ParentService",
+                    "value": "parent_service"
+                },
+                {
+                    "name": "Unknown",
+                    "value": "unknown"
+                }
+            ]
+        },
+        "render:postgres:PostgresVersion": {
+            "description": "The PostgreSQL version",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "11",
+                    "value": "11"
+                },
+                {
+                    "name": "12",
+                    "value": "12"
+                },
+                {
+                    "name": "13",
+                    "value": "13"
+                },
+                {
+                    "name": "14",
+                    "value": "14"
+                },
+                {
+                    "name": "15",
+                    "value": "15"
+                },
+                {
+                    "name": "16",
+                    "value": "16"
                 }
             ]
         },
@@ -4923,6 +4679,59 @@
                 "suspended",
                 "suspenders",
                 "updatedAt"
+            ]
+        },
+        "render:services:GetJobProperties": {
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "finishedAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "planId": {
+                    "type": "string"
+                },
+                "serviceId": {
+                    "type": "string"
+                },
+                "startCommand": {
+                    "type": "string"
+                },
+                "startedAt": {
+                    "type": "string"
+                },
+                "status": {
+                    "$ref": "#/types/render:services:GetJobPropertiesStatus"
+                }
+            },
+            "type": "object",
+            "required": [
+                "createdAt",
+                "id",
+                "planId",
+                "serviceId",
+                "startCommand"
+            ]
+        },
+        "render:services:GetJobPropertiesStatus": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Succeeded",
+                    "value": "succeeded"
+                },
+                {
+                    "name": "Failed",
+                    "value": "failed"
+                },
+                {
+                    "name": "Canceled",
+                    "value": "canceled"
+                }
             ]
         },
         "render:services:GetPrivateService": {
@@ -7700,14 +7509,6 @@
                 "resourceIds"
             ]
         },
-        "render:maintenance:TriggerMaintenance": {
-            "type": "object",
-            "inputProperties": {
-                "maintenanceRunParam": {
-                    "type": "string"
-                }
-            }
-        },
         "render:postgres:FailoverGre": {
             "type": "object",
             "inputProperties": {
@@ -9748,73 +9549,6 @@
                 ]
             }
         },
-        "render:logs:listLogs": {
-            "inputs": {},
-            "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/render:logs:ListLogsProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
-            }
-        },
-        "render:logs:listLogsValues": {
-            "inputs": {},
-            "outputs": {
-                "properties": {
-                    "items": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        }
-                    }
-                },
-                "required": [
-                    "items"
-                ]
-            }
-        },
-        "render:maintenance:getMaintenance": {
-            "inputs": {
-                "properties": {
-                    "maintenanceRunParam": {
-                        "type": "string"
-                    }
-                },
-                "required": [
-                    "maintenanceRunParam"
-                ]
-            },
-            "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/render:maintenance:GetMaintenanceProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
-            }
-        },
-        "render:maintenance:listMaintenance": {
-            "inputs": {},
-            "outputs": {
-                "properties": {
-                    "items": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/render:maintenance:paths1maintenance17BmaintenanceRunParam7Dgetresponses200contentapplication1jsonschema"
-                        }
-                    }
-                },
-                "required": [
-                    "items"
-                ]
-            }
-        },
         "render:metrics:listActiveConnections": {
             "inputs": {},
             "outputs": {
@@ -9962,7 +9696,7 @@
             "outputs": {
                 "properties": {
                     "items": {
-                        "$ref": "#/types/render:postgres:CreategresDetail"
+                        "$ref": "#/types/render:postgres:PostgresDetail"
                     }
                 },
                 "required": [
@@ -9984,7 +9718,7 @@
             "outputs": {
                 "properties": {
                     "items": {
-                        "$ref": "#/types/render:postgres:CreategresConnectionInfo"
+                        "$ref": "#/types/render:postgres:PostgresConnectionInfo"
                     }
                 },
                 "required": [
@@ -10342,7 +10076,7 @@
             "outputs": {
                 "properties": {
                     "items": {
-                        "$ref": "#/types/render:services:paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema"
+                        "$ref": "#/types/render:services:GetJobProperties"
                     }
                 },
                 "required": [

@@ -427,6 +427,44 @@ components:
                         type: array
             description: Resource log stream override
     schemas:
+        Job:
+            properties:
+                createdAt:
+                    example: "2021-07-15T07:20:05.777035-07:00"
+                    format: date-time
+                    type: string
+                finishedAt:
+                    example: "2021-07-15T07:20:05.777035-07:00"
+                    format: date-time
+                    type: string
+                id:
+                    $ref: '#/paths/~1services~1%7BserviceId%7D~1jobs~1%7BjobId%7D/parameters/1/schema'
+                planId:
+                    example: plan-srv-004
+                    type: string
+                serviceId:
+                    example: srv-xxxxx
+                    type: string
+                startCommand:
+                    example: echo 'hello world'
+                    type: string
+                startedAt:
+                    example: "2021-07-15T07:20:05.777035-07:00"
+                    format: date-time
+                    type: string
+                status:
+                    enum:
+                        - succeeded
+                        - failed
+                        - canceled
+                    type: string
+            required:
+                - id
+                - serviceId
+                - startCommand
+                - planId
+                - createdAt
+            type: object
         addUpdateEnvVarInput:
             oneOf:
                 - $ref: '#/components/schemas/envVarValue'
@@ -8449,6 +8487,33 @@ paths:
                     content:
                         application/json:
                             schema:
+                                $ref: '#/components/schema/Job'
+                    description: OK
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+                "429":
+                    $ref: '#/components/responses/429RateLimit'
+                "500":
+                    $ref: '#/components/responses/500InternalServerError'
+                "503":
+                    $ref: '#/components/responses/503ServiceUnavailable'
+            summary: Create job
+            tags:
+                - One-Off Jobs
+    /services/{serviceId}/jobs/{jobId}:
+        get:
+            description: |
+                Retrieve the details of a particular one-off job for a particular service.
+            operationId: retrieve-job
+            responses:
+                "200":
+                    content:
+                        application/json:
+                            schema:
                                 properties:
                                     createdAt:
                                         example: "2021-07-15T07:20:05.777035-07:00"
@@ -8486,33 +8551,6 @@ paths:
                                     - planId
                                     - createdAt
                                 type: object
-                    description: OK
-                "400":
-                    $ref: '#/components/responses/400BadRequest'
-                "401":
-                    $ref: '#/components/responses/401Unauthorized'
-                "404":
-                    $ref: '#/components/responses/404NotFound'
-                "429":
-                    $ref: '#/components/responses/429RateLimit'
-                "500":
-                    $ref: '#/components/responses/500InternalServerError'
-                "503":
-                    $ref: '#/components/responses/503ServiceUnavailable'
-            summary: Create job
-            tags:
-                - One-Off Jobs
-    /services/{serviceId}/jobs/{jobId}:
-        get:
-            description: |
-                Retrieve the details of a particular one-off job for a particular service.
-            operationId: retrieve-job
-            responses:
-                "200":
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/paths/~1services~1%7BserviceId%7D~1jobs/post/responses/200/content/application~1json/schema'
                     description: OK
                 "400":
                     $ref: '#/components/responses/400BadRequest'

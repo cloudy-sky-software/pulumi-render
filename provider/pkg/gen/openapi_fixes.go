@@ -334,6 +334,22 @@ func fixDeleteServiceEndpoint(openAPIDoc *openapi3.T) {
 	}
 }
 
+// Fix `GET /services/{serviceId}/jobs/{jobId}` response body schema
+// so that it refers to a separate schema type rather than pointing to
+// the response body schema for `POST /services/{serviceId}/jobs`
+func fixListJobsEndpoint(openAPIDoc *openapi3.T) {
+	pathItem := openAPIDoc.Paths.Find("/services/{serviceId}/jobs")
+	contract.Assertf(pathItem != nil, "path /services/{serviceId}/jobs not found")
+
+	jobSchema := pathItem.Post.Responses.Status(200).Value.Content.Get(jsonMimeType).Schema
+	openAPIDoc.Components.Schemas["Job"] = jobSchema
+	pathItem.Post.Responses.Status(200).Value.Content.Get(jsonMimeType).Schema = openapi3.NewSchemaRef("#/components/schema/Job", jobSchema.Value)
+
+	pathItem = openAPIDoc.Paths.Find("/services/{serviceId}/jobs/{jobId}")
+	contract.Assertf(pathItem != nil, "path /services/{serviceId}/jobs/{jobId} not found")
+	pathItem.Get.Responses.Status(200).Value.Content.Get(jsonMimeType).Schema = jobSchema
+}
+
 func FixOpenAPIDoc(openAPIDoc *openapi3.T) error {
 	if err := ensureOperationID(openAPIDoc); err != nil {
 		return err
@@ -349,10 +365,7 @@ func FixOpenAPIDoc(openAPIDoc *openapi3.T) error {
 
 	fixListServicesEndpoint(openAPIDoc)
 	fixDeleteServiceEndpoint(openAPIDoc)
-
-	// TODO: fix `GET /services/{serviceId}/jobs/{jobId}` response body schema
-	// so that it refers to a separate schema type rather than pointing to
-	// the response body schema for `POST /services/{serviceId}/jobs`
+	fixListJobsEndpoint((openAPIDoc))
 
 	return nil
 }

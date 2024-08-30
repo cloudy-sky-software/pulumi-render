@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"strings"
 
 	"github.com/getkin/kin-openapi/openapi3"
@@ -350,6 +351,15 @@ func fixListJobsEndpoint(openAPIDoc *openapi3.T) {
 	pathItem.Get.Responses.Status(200).Value.Content.Get(jsonMimeType).Schema = jobSchema
 }
 
+func fixPostgresResponseInvalidRequiredProp(openAPIDoc *openapi3.T) {
+	postgresDetail, ok := openAPIDoc.Components.Schemas["postgresDetail"]
+	contract.Assertf(ok, "type postgresDetail not found")
+
+	postgresDetail.Value.Required = slices.DeleteFunc(postgresDetail.Value.Required, func(s string) bool {
+		return s == "project"
+	})
+}
+
 func FixOpenAPIDoc(openAPIDoc *openapi3.T) error {
 	if err := ensureOperationID(openAPIDoc); err != nil {
 		return err
@@ -366,6 +376,7 @@ func FixOpenAPIDoc(openAPIDoc *openapi3.T) error {
 	fixListServicesEndpoint(openAPIDoc)
 	fixDeleteServiceEndpoint(openAPIDoc)
 	fixListJobsEndpoint((openAPIDoc))
+	fixPostgresResponseInvalidRequiredProp(openAPIDoc)
 
 	return nil
 }

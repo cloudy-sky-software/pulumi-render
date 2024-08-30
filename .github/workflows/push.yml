@@ -13,7 +13,6 @@ on:
 
 env:
   GOLANG_CI_LINT_VERSION: v1.55.2
-  GOPRIVATE: "github.com/cloudy-sky-software/*"
   PROVIDER: "render"
 
 jobs:
@@ -31,11 +30,6 @@ jobs:
         with:
           go-version: 1.21.x
 
-      - run: |
-          git config --global url."https://praneetloke:${GH_REPO_PAT}@github.com/".insteadOf "https://github.com/"
-        env:
-          GH_REPO_PAT: ${{ secrets.GH_REPO_PAT }}
-
       - name: Lint
         run: |
           curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin $GOLANG_CI_LINT_VERSION
@@ -50,11 +44,6 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
-
-      - run: |
-          git config --global url."https://praneetloke:${GH_REPO_PAT}@github.com/".insteadOf "https://github.com/"
-        env:
-          GH_REPO_PAT: ${{ secrets.GH_REPO_PAT }}
 
       - name: Unshallow clone for tags
         run: git fetch --prune --unshallow --tags

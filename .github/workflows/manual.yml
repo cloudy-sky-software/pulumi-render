@@ -2,7 +2,6 @@ on:
   workflow_dispatch:
 
 env:
-  GOPRIVATE: "github.com/cloudy-sky-software/*"
   PROVIDER: "render"
 
 jobs:
@@ -12,11 +11,6 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
-
-      - run: |
-          git config --local url."https://praneetloke:${GH_REPO_PAT}@github.com/".insteadOf "https://github.com/"
-        env:
-          GH_REPO_PAT: ${{ secrets.GH_REPO_PAT }}
 
       - name: Unshallow clone for tags
         run: git fetch --prune --unshallow --tags

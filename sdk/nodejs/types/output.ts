@@ -8,6 +8,266 @@ import * as enums from "../types/enums";
 
 import * as utilities from "../utilities";
 
+export namespace blueprints {
+    /**
+     * A blueprint with a cursor
+     */
+    export interface BlueprintWithCursor {
+        blueprint: outputs.blueprints.BlueprintWithCursorBlueprintProperties;
+        cursor: string;
+    }
+
+    export interface BlueprintWithCursorBlueprintProperties {
+        /**
+         * Automatically sync changes to render.yaml
+         */
+        autoSync: boolean;
+        branch: string;
+        id: string;
+        lastSync?: string;
+        name: string;
+        repo: string;
+        status: enums.blueprints.BlueprintWithCursorBlueprintPropertiesStatus;
+    }
+
+    export interface GetBlueprintProperties {
+        /**
+         * Automatically sync changes to render.yaml
+         */
+        autoSync: boolean;
+        branch: string;
+        id: string;
+        lastSync?: string;
+        name: string;
+        repo: string;
+        resources: outputs.blueprints.GetBlueprintPropertiesResourcesItemProperties[];
+        status: enums.blueprints.GetBlueprintPropertiesStatus;
+    }
+
+    export interface GetBlueprintPropertiesResourcesItemProperties {
+        id: string;
+        name: string;
+        /**
+         * type of the resource (ex. web_service or postgres)
+         */
+        type: enums.blueprints.GetBlueprintPropertiesResourcesItemPropertiesType;
+    }
+
+    /**
+     * A blueprint sync with a cursor
+     */
+    export interface SyncWithCursor {
+        cursor: string;
+        sync: outputs.blueprints.SyncWithCursorSyncProperties;
+    }
+
+    export interface SyncWithCursorSyncProperties {
+        commit: outputs.blueprints.SyncWithCursorSyncPropertiesCommitProperties;
+        completedAt?: string;
+        id: string;
+        startedAt?: string;
+        state: enums.blueprints.SyncWithCursorSyncPropertiesState;
+    }
+
+    export interface SyncWithCursorSyncPropertiesCommitProperties {
+        id: string;
+    }
+
+}
+
+export namespace disks {
+    export interface DiskWithCursor {
+        cursor: string;
+        disk: outputs.disks.DiskWithCursorDiskProperties;
+    }
+
+    export interface DiskWithCursorDiskProperties {
+        createdAt: string;
+        id: string;
+        mountPath: string;
+        name: string;
+        serviceId?: string;
+        sizeGB: number;
+        updatedAt: string;
+    }
+
+    export interface DiskWithCursorpropertiesdisk {
+        createdAt: string;
+        id: string;
+        mountPath: string;
+        name: string;
+        serviceId?: string;
+        sizeGB: number;
+        updatedAt: string;
+    }
+
+}
+
+export namespace envgroups {
+    export interface EnvGroup {
+        createdAt: string;
+        envVars: outputs.envgroups.EnvVar[];
+        environmentId?: string;
+        id: string;
+        name: string;
+        ownerId: string;
+        secretFiles: outputs.envgroups.SecretFile[];
+        /**
+         * List of serviceIds linked to the envGroup
+         */
+        serviceLinks: outputs.envgroups.ServiceLink[];
+        updatedAt: string;
+    }
+
+    export interface EnvGroupMeta {
+        createdAt: string;
+        environmentId?: string;
+        id: string;
+        name: string;
+        ownerId: string;
+        /**
+         * List of serviceIds linked to the envGroup
+         */
+        serviceLinks: outputs.envgroups.ServiceLink[];
+        updatedAt: string;
+    }
+
+    export interface EnvVar {
+        key: string;
+        value: string;
+    }
+
+    export interface SecretFile {
+        content: string;
+        name: string;
+    }
+
+    export interface ServiceLink {
+        id: string;
+        name: string;
+        type: enums.envgroups.ServiceLinkType;
+    }
+
+}
+
+export namespace environments {
+    export interface Environment {
+        databasesIds: string[];
+        envGroupIds: string[];
+        id: string;
+        name: string;
+        projectId: string;
+        /**
+         * Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
+         */
+        protectedStatus: enums.environments.EnvironmentProtectedStatus;
+        redisIds: string[];
+        serviceIds: string[];
+    }
+
+    /**
+     * An environment with a cursor
+     */
+    export interface EnvironmentWithCursor {
+        cursor: string;
+        environment: outputs.environments.Environment;
+    }
+
+}
+
+export namespace metrics {
+    /**
+     * A time series data point
+     */
+    export interface ListActiveConnectionsItemProperties {
+        /**
+         * List of labels describing the time series
+         */
+        labels: outputs.metrics.ListActiveConnectionsItemPropertiesLabelsItemProperties[];
+        unit: string;
+        /**
+         * The values of the time series
+         */
+        values: outputs.metrics.ListActiveConnectionsItemPropertiesValuesItemProperties[];
+    }
+
+    /**
+     * A time series datapoint label
+     */
+    export interface ListActiveConnectionsItemPropertiesLabelsItemProperties {
+        field: string;
+        value: string;
+    }
+
+    /**
+     * A time series datapoint value
+     */
+    export interface ListActiveConnectionsItemPropertiesValuesItemProperties {
+        timestamp: string;
+        value: number;
+    }
+
+    /**
+     * A time series data point
+     */
+    export interface ListReplicationLagItemProperties {
+        /**
+         * List of labels describing the time series
+         */
+        labels: outputs.metrics.ListReplicationLagItemPropertiesLabelsItemProperties[];
+        unit: string;
+        /**
+         * The values of the time series
+         */
+        values: outputs.metrics.ListReplicationLagItemPropertiesValuesItemProperties[];
+    }
+
+    /**
+     * A time series datapoint label
+     */
+    export interface ListReplicationLagItemPropertiesLabelsItemProperties {
+        field: string;
+        value: string;
+    }
+
+    /**
+     * A time series datapoint value
+     */
+    export interface ListReplicationLagItemPropertiesValuesItemProperties {
+        timestamp: string;
+        value: number;
+    }
+
+}
+
+export namespace notificationsettings {
+    export interface GetOwnerNotificationSettingProperties {
+        emailEnabled: boolean;
+        notificationsToSend: enums.notificationsettings.GetOwnerNotificationSettingPropertiesNotificationsToSend;
+        ownerId: string;
+        previewNotificationsEnabled: boolean;
+        slackEnabled: boolean;
+    }
+
+    export interface GetServiceNotificationOverrideProperties {
+        notificationsToSend: enums.notificationsettings.GetServiceNotificationOverridePropertiesNotificationsToSend;
+        previewNotificationsEnabled: enums.notificationsettings.GetServiceNotificationOverridePropertiesPreviewNotificationsEnabled;
+        serviceId: string;
+    }
+
+    export interface NotificationOverrideWithCursor {
+        cursor: string;
+        override: outputs.notificationsettings.NotificationOverrideWithCursorOverrideProperties;
+    }
+
+    export interface NotificationOverrideWithCursorOverrideProperties {
+        notificationsToSend: enums.notificationsettings.NotificationOverrideWithCursorOverridePropertiesNotificationsToSend;
+        previewNotificationsEnabled: enums.notificationsettings.NotificationOverrideWithCursorOverridePropertiesPreviewNotificationsEnabled;
+        serviceId: string;
+    }
+
+}
+
 export namespace owners {
     export interface ListOwnersItemProperties {
         cursor?: string;
@@ -18,7 +278,436 @@ export namespace owners {
         email: string;
         id: string;
         name: string;
+        /**
+         * Whether two-factor authentication is enabled for the owner. Only present for user owners.
+         */
+        twoFactorAuthEnabled?: boolean;
         type: enums.owners.OwnerType;
+    }
+
+}
+
+export namespace postgres {
+    export interface CidrBlockAndDescription {
+        cidrBlock: string;
+        /**
+         * User-provided description of the CIDR block
+         */
+        description: string;
+    }
+
+    export interface GetPostgresRecoveryInfoProperties {
+        /**
+         * Availability of point-in-time recovery.
+         */
+        recoveryStatus: enums.postgres.GetPostgresRecoveryInfoPropertiesRecoveryStatus;
+        startsAt?: string;
+    }
+
+    export interface ListPostgresBackupItemProperties {
+        createdAt: string;
+        id: string;
+        /**
+         * URL to download the Postgres backup
+         */
+        url?: string;
+    }
+
+    export interface ListPostgresItemProperties {
+        cursor?: string;
+        postgres?: outputs.postgres.Postgres;
+    }
+    /**
+     * listPostgresItemPropertiesProvideDefaults sets the appropriate defaults for ListPostgresItemProperties
+     */
+    export function listPostgresItemPropertiesProvideDefaults(val: ListPostgresItemProperties): ListPostgresItemProperties {
+        return {
+            ...val,
+            postgres: (val.postgres ? outputs.postgres.postgresProvideDefaults(val.postgres) : undefined),
+        };
+    }
+
+    export interface Owner {
+        email: string;
+        id: string;
+        name: string;
+        /**
+         * Whether two-factor authentication is enabled for the owner. Only present for user owners.
+         */
+        twoFactorAuthEnabled?: boolean;
+        type: enums.postgres.OwnerType;
+    }
+
+    export interface Postgres {
+        createdAt: string;
+        /**
+         * The URL to view the PostgreSQL instance in the Render Dashboard
+         */
+        dashboardUrl: string;
+        databaseName: string;
+        databaseUser: string;
+        diskSizeGB?: number;
+        environmentId?: string;
+        /**
+         * The time at which the database will be expire. Applies to free tier databases only.
+         */
+        expiresAt?: string;
+        highAvailabilityEnabled: boolean;
+        id: string;
+        ipAllowList: outputs.postgres.CidrBlockAndDescription[];
+        name: string;
+        owner: outputs.postgres.Owner;
+        plan: enums.postgres.PostgresPlan;
+        primaryPostgresID?: string;
+        readReplicas: outputs.postgres.ReadReplica[];
+        /**
+         * Defaults to "oregon"
+         */
+        region: enums.postgres.PostgresRegion;
+        role: enums.postgres.PostgresRole;
+        status: enums.postgres.PostgresStatus;
+        suspended: enums.postgres.PostgresSuspended;
+        suspenders: enums.postgres.PostgresSuspendersItem[];
+        updatedAt: string;
+        /**
+         * The PostgreSQL version
+         */
+        version: enums.postgres.PostgresVersion;
+    }
+    /**
+     * postgresProvideDefaults sets the appropriate defaults for Postgres
+     */
+    export function postgresProvideDefaults(val: Postgres): Postgres {
+        return {
+            ...val,
+            region: (val.region) ?? "oregon",
+        };
+    }
+
+    export interface PostgresConnectionInfo {
+        externalConnectionString: string;
+        internalConnectionString: string;
+        password: string;
+        psqlCommand: string;
+    }
+
+    export interface PostgresDetail {
+        createdAt: string;
+        /**
+         * The URL to view the PostgreSQL instance in the Render Dashboard
+         */
+        dashboardUrl: string;
+        databaseName: string;
+        databaseUser: string;
+        diskSizeGB?: number;
+        environmentId?: string;
+        /**
+         * The time at which the database will be expire. Applies to free tier databases only.
+         */
+        expiresAt?: string;
+        highAvailabilityEnabled: boolean;
+        id: string;
+        ipAllowList: outputs.postgres.CidrBlockAndDescription[];
+        maintenance?: outputs.postgres.RedisDetailpropertiesmaintenance;
+        name: string;
+        owner: outputs.postgres.Owner;
+        plan: enums.postgres.PostgresDetailPlan;
+        primaryPostgresID?: string;
+        readReplicas: outputs.postgres.ReadReplica[];
+        /**
+         * Defaults to "oregon"
+         */
+        region: enums.postgres.PostgresDetailRegion;
+        role: enums.postgres.PostgresDetailRole;
+        status: enums.postgres.PostgresDetailStatus;
+        suspended: enums.postgres.PostgresDetailSuspended;
+        suspenders: enums.postgres.PostgresDetailSuspendersItem[];
+        updatedAt: string;
+        /**
+         * The PostgreSQL version
+         */
+        version: enums.postgres.PostgresDetailVersion;
+    }
+    /**
+     * postgresDetailProvideDefaults sets the appropriate defaults for PostgresDetail
+     */
+    export function postgresDetailProvideDefaults(val: PostgresDetail): PostgresDetail {
+        return {
+            ...val,
+            region: (val.region) ?? "oregon",
+        };
+    }
+
+    export interface ReadReplica {
+        /**
+         * The replica instance identifier.
+         */
+        id: string;
+        /**
+         * The display name of the replica instance.
+         */
+        name: string;
+    }
+
+    export interface RedisDetailpropertiesmaintenance {
+        id: string;
+        /**
+         * If present, the maintenance run cannot be scheduled for later than this date-time.
+         */
+        pendingMaintenanceBy?: string;
+        scheduledAt: string;
+        state: enums.postgres.RedisDetailpropertiesmaintenanceState;
+        type: string;
+    }
+
+}
+
+export namespace projects {
+    export interface Owner {
+        email: string;
+        id: string;
+        name: string;
+        /**
+         * Whether two-factor authentication is enabled for the owner. Only present for user owners.
+         */
+        twoFactorAuthEnabled?: boolean;
+        type: enums.projects.OwnerType;
+    }
+
+    /**
+     * A project is a collection of environments
+     */
+    export interface Project {
+        createdAt: string;
+        /**
+         * The environments associated with the project
+         */
+        environmentIds: string[];
+        /**
+         * The ID of the project
+         */
+        id: string;
+        /**
+         * The name of the project
+         */
+        name: string;
+        owner: outputs.projects.Owner;
+        updatedAt: string;
+    }
+
+    export interface ProjectCreateEnvironmentInput {
+        name: string;
+        /**
+         * Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
+         */
+        protectedStatus?: enums.projects.ProjectCreateEnvironmentInputProtectedStatus;
+    }
+
+    export interface ProjectWithCursor {
+        cursor: string;
+        /**
+         * A project is a collection of environments
+         */
+        project: outputs.projects.Project;
+    }
+
+}
+
+export namespace redis {
+    export interface CidrBlockAndDescription {
+        cidrBlock: string;
+        /**
+         * User-provided description of the CIDR block
+         */
+        description: string;
+    }
+
+    export interface ListRedisItemProperties {
+        cursor?: string;
+        /**
+         * A Redis instance
+         */
+        redis?: outputs.redis.Redis;
+    }
+    /**
+     * listRedisItemPropertiesProvideDefaults sets the appropriate defaults for ListRedisItemProperties
+     */
+    export function listRedisItemPropertiesProvideDefaults(val: ListRedisItemProperties): ListRedisItemProperties {
+        return {
+            ...val,
+            redis: (val.redis ? outputs.redis.redisProvideDefaults(val.redis) : undefined),
+        };
+    }
+
+    export interface MaintenanceProperties {
+        id: string;
+        /**
+         * If present, the maintenance run cannot be scheduled for later than this date-time.
+         */
+        pendingMaintenanceBy?: string;
+        scheduledAt: string;
+        state: enums.redis.MaintenancePropertiesState;
+        type: string;
+    }
+
+    export interface Owner {
+        email: string;
+        id: string;
+        name: string;
+        /**
+         * Whether two-factor authentication is enabled for the owner. Only present for user owners.
+         */
+        twoFactorAuthEnabled?: boolean;
+        type: enums.redis.OwnerType;
+    }
+
+    /**
+     * A Redis instance
+     */
+    export interface Redis {
+        /**
+         * The creation time of the Redis instance
+         */
+        createdAt: string;
+        /**
+         * The URL to view the Redis instance in the Render Dashboard
+         */
+        dashboardUrl: string;
+        /**
+         * The ID of the environment the Redis instance is associated with
+         */
+        environmentId?: string;
+        /**
+         * The ID of the Redis instance
+         */
+        id: string;
+        /**
+         * The IP allow list for the Redis instance
+         */
+        ipAllowList: outputs.redis.CidrBlockAndDescription[];
+        /**
+         * The name of the Redis instance
+         */
+        name: string;
+        /**
+         * Options for a Redis instance
+         */
+        options: outputs.redis.RedisOptions;
+        owner: outputs.redis.Owner;
+        plan: enums.redis.RedisPlan;
+        /**
+         * Defaults to "oregon"
+         */
+        region: enums.redis.RedisRegion;
+        status: enums.redis.RedisStatus;
+        /**
+         * The last updated time of the Redis instance
+         */
+        updatedAt: string;
+        /**
+         * The version of Redis
+         */
+        version: string;
+    }
+    /**
+     * redisProvideDefaults sets the appropriate defaults for Redis
+     */
+    export function redisProvideDefaults(val: Redis): Redis {
+        return {
+            ...val,
+            region: (val.region) ?? "oregon",
+        };
+    }
+
+    /**
+     * A Redis instance
+     */
+    export interface RedisConnectionInfo {
+        /**
+         * The connection string to use from outside Render
+         */
+        externalConnectionString: string;
+        /**
+         * The connection string to use from within Render
+         */
+        internalConnectionString: string;
+        /**
+         * The Redis CLI command to connect to the Redis instance
+         */
+        redisCLICommand: string;
+    }
+
+    /**
+     * A Redis instance
+     */
+    export interface RedisDetail {
+        /**
+         * The creation time of the Redis instance
+         */
+        createdAt: string;
+        /**
+         * The ID of the environment the Redis instance is associated with
+         */
+        environmentId?: string;
+        /**
+         * The ID of the Redis instance
+         */
+        id: string;
+        /**
+         * The IP allow list for the Redis instance
+         */
+        ipAllowList: outputs.redis.CidrBlockAndDescription[];
+        maintenance?: outputs.redis.RedisDetailMaintenanceProperties;
+        /**
+         * The name of the Redis instance
+         */
+        name: string;
+        /**
+         * Options for a Redis instance
+         */
+        options: outputs.redis.RedisOptions;
+        owner: outputs.redis.Owner;
+        plan: enums.redis.RedisDetailPlan;
+        /**
+         * Defaults to "oregon"
+         */
+        region: enums.redis.RedisDetailRegion;
+        status: enums.redis.RedisDetailStatus;
+        /**
+         * The last updated time of the Redis instance
+         */
+        updatedAt: string;
+        /**
+         * The version of Redis
+         */
+        version: string;
+    }
+    /**
+     * redisDetailProvideDefaults sets the appropriate defaults for RedisDetail
+     */
+    export function redisDetailProvideDefaults(val: RedisDetail): RedisDetail {
+        return {
+            ...val,
+            region: (val.region) ?? "oregon",
+        };
+    }
+
+    export interface RedisDetailMaintenanceProperties {
+        id: string;
+        /**
+         * If present, the maintenance run cannot be scheduled for later than this date-time.
+         */
+        pendingMaintenanceBy?: string;
+        scheduledAt: string;
+        state: enums.redis.RedisDetailMaintenancePropertiesState;
+        type: string;
+    }
+
+    /**
+     * Options for a Redis instance
+     */
+    export interface RedisOptions {
+        maxmemoryPolicy?: string;
     }
 
 }
@@ -46,70 +735,19 @@ export namespace registrycredentials {
 }
 
 export namespace services {
-    export interface AutoscalingConfig {
-        criteria: outputs.services.AutoscalingCriteria;
-        enabled: boolean;
-        /**
-         * The maximum number of instances for the service
-         */
-        max: number;
-        /**
-         * The minimum number of instances for the service
-         */
-        min: number;
-    }
-    /**
-     * autoscalingConfigProvideDefaults sets the appropriate defaults for AutoscalingConfig
-     */
-    export function autoscalingConfigProvideDefaults(val: AutoscalingConfig): AutoscalingConfig {
-        return {
-            ...val,
-            criteria: outputs.services.autoscalingCriteriaProvideDefaults(val.criteria),
-            enabled: (val.enabled) ?? false,
-        };
-    }
-
-    export interface AutoscalingCriteria {
-        cpu: outputs.services.AutoscalingCriteriaPercentage;
-        memory: outputs.services.AutoscalingCriteriaPercentage;
-    }
-    /**
-     * autoscalingCriteriaProvideDefaults sets the appropriate defaults for AutoscalingCriteria
-     */
-    export function autoscalingCriteriaProvideDefaults(val: AutoscalingCriteria): AutoscalingCriteria {
-        return {
-            ...val,
-            cpu: outputs.services.autoscalingCriteriaPercentageProvideDefaults(val.cpu),
-            memory: outputs.services.autoscalingCriteriaPercentageProvideDefaults(val.memory),
-        };
-    }
-
-    export interface AutoscalingCriteriaPercentage {
-        enabled: boolean;
-        /**
-         * Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
-         */
-        percentage: number;
-    }
-    /**
-     * autoscalingCriteriaPercentageProvideDefaults sets the appropriate defaults for AutoscalingCriteriaPercentage
-     */
-    export function autoscalingCriteriaPercentageProvideDefaults(val: AutoscalingCriteriaPercentage): AutoscalingCriteriaPercentage {
-        return {
-            ...val,
-            enabled: (val.enabled) ?? false,
-        };
-    }
-
     export interface BackgroundWorkerDetailsOutput {
-        autoscaling?: outputs.services.AutoscalingConfig;
-        buildPlan: string;
-        disk?: outputs.services.Disk;
+        autoscaling?: outputs.services.WebServiceDetailspropertiesautoscaling;
+        buildPlan: enums.services.BackgroundWorkerDetailsOutputBuildPlan;
+        disk?: outputs.services.WebServiceDetailspropertiesdisk;
         /**
-         * Environment (runtime)
+         * Runtime
          */
         env: enums.services.BackgroundWorkerDetailsOutputEnv;
-        envSpecificDetails: outputs.services.DockerDetails | outputs.services.NativeEnvironmentDetails;
+        envSpecificDetails: outputs.services.EnvSpecificDetails;
+        /**
+         * The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
+         */
+        maxShutdownDelaySeconds?: number;
         /**
          * For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
          */
@@ -119,7 +757,13 @@ export namespace services {
          * The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
          */
         plan: enums.services.BackgroundWorkerDetailsOutputPlan;
-        pullRequestPreviewsEnabled: enums.services.BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled;
+        /**
+         * Defaults to "no"
+         */
+        pullRequestPreviewsEnabled?: enums.services.BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled;
+        /**
+         * Defaults to "oregon"
+         */
         region: enums.services.BackgroundWorkerDetailsOutputRegion;
     }
     /**
@@ -128,7 +772,11 @@ export namespace services {
     export function backgroundWorkerDetailsOutputProvideDefaults(val: BackgroundWorkerDetailsOutput): BackgroundWorkerDetailsOutput {
         return {
             ...val,
-            autoscaling: (val.autoscaling ? outputs.services.autoscalingConfigProvideDefaults(val.autoscaling) : undefined),
+            autoscaling: (val.autoscaling ? outputs.services.webServiceDetailspropertiesautoscalingProvideDefaults(val.autoscaling) : undefined),
+            buildPlan: (val.buildPlan) ?? "starter",
+            maxShutdownDelaySeconds: (val.maxShutdownDelaySeconds) ?? 30,
+            pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
+            region: (val.region) ?? "oregon",
         };
     }
 
@@ -137,11 +785,17 @@ export namespace services {
         branch?: string;
         buildFilter?: outputs.services.BuildFilter;
         createdAt: string;
+        /**
+         * The URL to view the service in the Render Dashboard
+         */
+        dashboardUrl: string;
+        environmentId?: string;
         id: string;
         imagePath?: string;
         name: string;
         notifyOnFail: enums.services.ServiceNotifyOnFail;
         ownerId: string;
+        registryCredential?: outputs.services.RegistryCredentialSummary;
         repo?: string;
         rootDir: string;
         serviceDetails?: outputs.services.BackgroundWorkerDetailsOutput;
@@ -157,6 +811,7 @@ export namespace services {
     export function backgroundWorkerOutputProvideDefaults(val: BackgroundWorkerOutput): BackgroundWorkerOutput {
         return {
             ...val,
+            autoDeploy: (val.autoDeploy) ?? "yes",
             serviceDetails: (val.serviceDetails ? outputs.services.backgroundWorkerDetailsOutputProvideDefaults(val.serviceDetails) : undefined),
             type: (val.type) ?? "background_worker",
         };
@@ -173,20 +828,65 @@ export namespace services {
         message?: string;
     }
 
-    export interface CronJobDetailsOutput {
-        buildPlan: string;
+    export interface CriteriaProperties {
+        cpu: outputs.services.CriteriaPropertiesCpuProperties;
+        memory: outputs.services.WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpu;
+    }
+    /**
+     * criteriaPropertiesProvideDefaults sets the appropriate defaults for CriteriaProperties
+     */
+    export function criteriaPropertiesProvideDefaults(val: CriteriaProperties): CriteriaProperties {
+        return {
+            ...val,
+            cpu: outputs.services.criteriaPropertiesCpuPropertiesProvideDefaults(val.cpu),
+            memory: outputs.services.webServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuProvideDefaults(val.memory),
+        };
+    }
+
+    export interface CriteriaPropertiesCpuProperties {
+        enabled: boolean;
         /**
-         * Environment (runtime)
+         * Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+         */
+        percentage: number;
+    }
+    /**
+     * criteriaPropertiesCpuPropertiesProvideDefaults sets the appropriate defaults for CriteriaPropertiesCpuProperties
+     */
+    export function criteriaPropertiesCpuPropertiesProvideDefaults(val: CriteriaPropertiesCpuProperties): CriteriaPropertiesCpuProperties {
+        return {
+            ...val,
+            enabled: (val.enabled) ?? false,
+        };
+    }
+
+    export interface CronJobDetailsOutput {
+        buildPlan: enums.services.CronJobDetailsOutputBuildPlan;
+        /**
+         * Runtime
          */
         env: enums.services.CronJobDetailsOutputEnv;
-        envSpecificDetails: outputs.services.DockerDetails | outputs.services.NativeEnvironmentDetails;
+        envSpecificDetails: outputs.services.EnvSpecificDetails;
         lastSuccessfulRunAt?: string;
         /**
          * The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
          */
         plan: enums.services.CronJobDetailsOutputPlan;
+        /**
+         * Defaults to "oregon"
+         */
         region: enums.services.CronJobDetailsOutputRegion;
         schedule: string;
+    }
+    /**
+     * cronJobDetailsOutputProvideDefaults sets the appropriate defaults for CronJobDetailsOutput
+     */
+    export function cronJobDetailsOutputProvideDefaults(val: CronJobDetailsOutput): CronJobDetailsOutput {
+        return {
+            ...val,
+            buildPlan: (val.buildPlan) ?? "starter",
+            region: (val.region) ?? "oregon",
+        };
     }
 
     export interface CronJobOutput {
@@ -194,11 +894,17 @@ export namespace services {
         branch?: string;
         buildFilter?: outputs.services.BuildFilter;
         createdAt: string;
+        /**
+         * The URL to view the service in the Render Dashboard
+         */
+        dashboardUrl: string;
+        environmentId?: string;
         id: string;
         imagePath?: string;
         name: string;
         notifyOnFail: enums.services.ServiceNotifyOnFail;
         ownerId: string;
+        registryCredential?: outputs.services.RegistryCredentialSummary;
         repo?: string;
         rootDir: string;
         serviceDetails?: outputs.services.CronJobDetailsOutput;
@@ -214,6 +920,8 @@ export namespace services {
     export function cronJobOutputProvideDefaults(val: CronJobOutput): CronJobOutput {
         return {
             ...val,
+            autoDeploy: (val.autoDeploy) ?? "yes",
+            serviceDetails: (val.serviceDetails ? outputs.services.cronJobDetailsOutputProvideDefaults(val.serviceDetails) : undefined),
             type: (val.type) ?? "cron_job",
         };
     }
@@ -232,6 +940,11 @@ export namespace services {
     export interface CustomDomainServerProperties {
         id?: string;
         name?: string;
+    }
+
+    export interface CustomDomainWithCursor {
+        cursor: string;
+        customDomain: outputs.services.CustomDomain;
     }
 
     export interface Deploy {
@@ -272,19 +985,14 @@ export namespace services {
         sha?: string;
     }
 
-    export interface Disk {
-        id: string;
-        mountPath: string;
-        name: string;
-        sizeGB: number;
-    }
-
-    export interface DockerDetails {
-        dockerCommand: string;
-        dockerContext: string;
-        dockerfilePath: string;
+    export interface EnvSpecificDetails {
+        buildCommand?: string;
+        dockerCommand?: string;
+        dockerContext?: string;
+        dockerfilePath?: string;
         preDeployCommand?: string;
         registryCredential?: outputs.services.RegistryCredential;
+        startCommand?: string;
     }
 
     export interface EnvVar {
@@ -292,14 +1000,7 @@ export namespace services {
         value: string;
     }
 
-    export interface EnvVarKeyGenerateValue {
-        generateValue: boolean;
-        key: string;
-    }
-
-    export interface EnvVarKeyValue {
-        key: string;
-        value: string;
+    export interface EnvVarInput {
     }
 
     export interface EnvVarWithCursor {
@@ -312,11 +1013,17 @@ export namespace services {
         branch?: string;
         buildFilter?: outputs.services.BuildFilter;
         createdAt: string;
+        /**
+         * The URL to view the service in the Render Dashboard
+         */
+        dashboardUrl: string;
+        environmentId?: string;
         id: string;
         imagePath?: string;
         name: string;
         notifyOnFail: enums.services.ServiceNotifyOnFail;
         ownerId: string;
+        registryCredential?: outputs.services.RegistryCredentialSummary;
         repo?: string;
         rootDir: string;
         serviceDetails?: outputs.services.BackgroundWorkerDetailsOutput;
@@ -332,6 +1039,7 @@ export namespace services {
     export function getBackgroundWorkerProvideDefaults(val: GetBackgroundWorker): GetBackgroundWorker {
         return {
             ...val,
+            autoDeploy: (val.autoDeploy) ?? "yes",
             serviceDetails: (val.serviceDetails ? outputs.services.backgroundWorkerDetailsOutputProvideDefaults(val.serviceDetails) : undefined),
             type: (val.type) ?? "background_worker",
         };
@@ -342,11 +1050,17 @@ export namespace services {
         branch?: string;
         buildFilter?: outputs.services.BuildFilter;
         createdAt: string;
+        /**
+         * The URL to view the service in the Render Dashboard
+         */
+        dashboardUrl: string;
+        environmentId?: string;
         id: string;
         imagePath?: string;
         name: string;
         notifyOnFail: enums.services.ServiceNotifyOnFail;
         ownerId: string;
+        registryCredential?: outputs.services.RegistryCredentialSummary;
         repo?: string;
         rootDir: string;
         serviceDetails?: outputs.services.CronJobDetailsOutput;
@@ -362,6 +1076,8 @@ export namespace services {
     export function getCronJobProvideDefaults(val: GetCronJob): GetCronJob {
         return {
             ...val,
+            autoDeploy: (val.autoDeploy) ?? "yes",
+            serviceDetails: (val.serviceDetails ? outputs.services.cronJobDetailsOutputProvideDefaults(val.serviceDetails) : undefined),
             type: (val.type) ?? "cron_job",
         };
     }
@@ -371,11 +1087,17 @@ export namespace services {
         branch?: string;
         buildFilter?: outputs.services.BuildFilter;
         createdAt: string;
+        /**
+         * The URL to view the service in the Render Dashboard
+         */
+        dashboardUrl: string;
+        environmentId?: string;
         id: string;
         imagePath?: string;
         name: string;
         notifyOnFail: enums.services.ServiceNotifyOnFail;
         ownerId: string;
+        registryCredential?: outputs.services.RegistryCredentialSummary;
         repo?: string;
         rootDir: string;
         serviceDetails?: outputs.services.PrivateServiceDetailsOutput;
@@ -391,6 +1113,7 @@ export namespace services {
     export function getPrivateServiceProvideDefaults(val: GetPrivateService): GetPrivateService {
         return {
             ...val,
+            autoDeploy: (val.autoDeploy) ?? "yes",
             serviceDetails: (val.serviceDetails ? outputs.services.privateServiceDetailsOutputProvideDefaults(val.serviceDetails) : undefined),
             type: (val.type) ?? "private_service",
         };
@@ -401,11 +1124,17 @@ export namespace services {
         branch?: string;
         buildFilter?: outputs.services.BuildFilter;
         createdAt: string;
+        /**
+         * The URL to view the service in the Render Dashboard
+         */
+        dashboardUrl: string;
+        environmentId?: string;
         id: string;
         imagePath?: string;
         name: string;
         notifyOnFail: enums.services.ServiceNotifyOnFail;
         ownerId: string;
+        registryCredential?: outputs.services.RegistryCredentialSummary;
         repo?: string;
         rootDir: string;
         serviceDetails?: outputs.services.StaticSiteDetailsOutput;
@@ -421,6 +1150,8 @@ export namespace services {
     export function getStaticSiteProvideDefaults(val: GetStaticSite): GetStaticSite {
         return {
             ...val,
+            autoDeploy: (val.autoDeploy) ?? "yes",
+            serviceDetails: (val.serviceDetails ? outputs.services.staticSiteDetailsOutputProvideDefaults(val.serviceDetails) : undefined),
             type: (val.type) ?? "static_site",
         };
     }
@@ -430,11 +1161,17 @@ export namespace services {
         branch?: string;
         buildFilter?: outputs.services.BuildFilter;
         createdAt: string;
+        /**
+         * The URL to view the service in the Render Dashboard
+         */
+        dashboardUrl: string;
+        environmentId?: string;
         id: string;
         imagePath?: string;
         name: string;
         notifyOnFail: enums.services.ServiceNotifyOnFail;
         ownerId: string;
+        registryCredential?: outputs.services.RegistryCredentialSummary;
         repo?: string;
         rootDir: string;
         serviceDetails?: outputs.services.WebServiceDetailsOutput;
@@ -450,6 +1187,7 @@ export namespace services {
     export function getWebServiceProvideDefaults(val: GetWebService): GetWebService {
         return {
             ...val,
+            autoDeploy: (val.autoDeploy) ?? "yes",
             serviceDetails: (val.serviceDetails ? outputs.services.webServiceDetailsOutputProvideDefaults(val.serviceDetails) : undefined),
             type: (val.type) ?? "web_service",
         };
@@ -460,6 +1198,11 @@ export namespace services {
         name: string;
         path: string;
         value: string;
+    }
+
+    export interface HeaderWithCursor {
+        cursor: string;
+        header: outputs.services.Header;
     }
 
     export interface Image {
@@ -503,12 +1246,7 @@ export namespace services {
         serviceId: string;
         startCommand: string;
         startedAt?: string;
-        status?: string;
-    }
-
-    export interface ListCustomDomainsItemProperties {
-        cursor?: string;
-        customDomain?: outputs.services.CustomDomain;
+        status?: enums.services.JobStatus;
     }
 
     export interface ListDeploysItemProperties {
@@ -518,17 +1256,7 @@ export namespace services {
 
     export interface ListJobItemProperties {
         cursor?: string;
-        job?: outputs.services.Job;
-    }
-
-    export interface ListRetrieveHeadersItemProperties {
-        cursor?: string;
-        headers?: outputs.services.Header;
-    }
-
-    export interface ListRetrieveRoutesItemProperties {
-        cursor?: string;
-        routes?: outputs.services.Route;
+        job?: outputs.services.Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema;
     }
 
     export interface ListServicesResponse {
@@ -536,21 +1264,30 @@ export namespace services {
         service?: outputs.services.BackgroundWorkerOutput | outputs.services.CronJobOutput | outputs.services.PrivateServiceOutput | outputs.services.StaticSiteOutput | outputs.services.WebServiceOutput;
     }
 
-    export interface NativeEnvironmentDetails {
-        buildCommand: string;
-        preDeployCommand?: string;
+    export interface Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema {
+        createdAt: string;
+        finishedAt?: string;
+        id: string;
+        planId: string;
+        serviceId: string;
         startCommand: string;
+        startedAt?: string;
+        status?: enums.services.Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus;
     }
 
     export interface PrivateServiceDetailsOutput {
-        autoscaling?: outputs.services.AutoscalingConfig;
-        buildPlan: string;
-        disk?: outputs.services.Disk;
+        autoscaling?: outputs.services.WebServiceDetailspropertiesautoscaling;
+        buildPlan: enums.services.PrivateServiceDetailsOutputBuildPlan;
+        disk?: outputs.services.WebServiceDetailspropertiesdisk;
         /**
-         * Environment (runtime)
+         * Runtime
          */
         env: enums.services.PrivateServiceDetailsOutputEnv;
-        envSpecificDetails: outputs.services.DockerDetails | outputs.services.NativeEnvironmentDetails;
+        envSpecificDetails: outputs.services.EnvSpecificDetails;
+        /**
+         * The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
+         */
+        maxShutdownDelaySeconds?: number;
         /**
          * For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
          */
@@ -561,7 +1298,13 @@ export namespace services {
          * The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
          */
         plan: enums.services.PrivateServiceDetailsOutputPlan;
-        pullRequestPreviewsEnabled: enums.services.PrivateServiceDetailsOutputPullRequestPreviewsEnabled;
+        /**
+         * Defaults to "no"
+         */
+        pullRequestPreviewsEnabled?: enums.services.PrivateServiceDetailsOutputPullRequestPreviewsEnabled;
+        /**
+         * Defaults to "oregon"
+         */
         region: enums.services.PrivateServiceDetailsOutputRegion;
         url: string;
     }
@@ -571,7 +1314,11 @@ export namespace services {
     export function privateServiceDetailsOutputProvideDefaults(val: PrivateServiceDetailsOutput): PrivateServiceDetailsOutput {
         return {
             ...val,
-            autoscaling: (val.autoscaling ? outputs.services.autoscalingConfigProvideDefaults(val.autoscaling) : undefined),
+            autoscaling: (val.autoscaling ? outputs.services.webServiceDetailspropertiesautoscalingProvideDefaults(val.autoscaling) : undefined),
+            buildPlan: (val.buildPlan) ?? "starter",
+            maxShutdownDelaySeconds: (val.maxShutdownDelaySeconds) ?? 30,
+            pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
+            region: (val.region) ?? "oregon",
         };
     }
 
@@ -580,11 +1327,17 @@ export namespace services {
         branch?: string;
         buildFilter?: outputs.services.BuildFilter;
         createdAt: string;
+        /**
+         * The URL to view the service in the Render Dashboard
+         */
+        dashboardUrl: string;
+        environmentId?: string;
         id: string;
         imagePath?: string;
         name: string;
         notifyOnFail: enums.services.ServiceNotifyOnFail;
         ownerId: string;
+        registryCredential?: outputs.services.RegistryCredentialSummary;
         repo?: string;
         rootDir: string;
         serviceDetails?: outputs.services.PrivateServiceDetailsOutput;
@@ -600,6 +1353,7 @@ export namespace services {
     export function privateServiceOutputProvideDefaults(val: PrivateServiceOutput): PrivateServiceOutput {
         return {
             ...val,
+            autoDeploy: (val.autoDeploy) ?? "yes",
             serviceDetails: (val.serviceDetails ? outputs.services.privateServiceDetailsOutputProvideDefaults(val.serviceDetails) : undefined),
             type: (val.type) ?? "private_service",
         };
@@ -624,6 +1378,11 @@ export namespace services {
         username: string;
     }
 
+    export interface RegistryCredentialSummary {
+        id: string;
+        name: string;
+    }
+
     export interface Resource {
         id: string;
         name: string;
@@ -640,9 +1399,24 @@ export namespace services {
         type: enums.services.RouteType;
     }
 
+    export interface RouteWithCursor {
+        cursor: string;
+        route: outputs.services.Route;
+    }
+
     export interface SecretFile {
-        id: string;
+        content: string;
         name: string;
+    }
+
+    export interface SecretFileInput {
+        content: string;
+        name: string;
+    }
+
+    export interface SecretFileWithCursor {
+        cursor: string;
+        secretFile: outputs.services.SecretFile;
     }
 
     export interface ServerPort {
@@ -655,11 +1429,17 @@ export namespace services {
         branch?: string;
         buildFilter?: outputs.services.BuildFilter;
         createdAt: string;
+        /**
+         * The URL to view the service in the Render Dashboard
+         */
+        dashboardUrl: string;
+        environmentId?: string;
         id: string;
         imagePath?: string;
         name: string;
         notifyOnFail: enums.services.ServiceNotifyOnFail;
         ownerId: string;
+        registryCredential?: outputs.services.RegistryCredentialSummary;
         repo?: string;
         rootDir: string;
         slug: string;
@@ -667,14 +1447,36 @@ export namespace services {
         suspenders: enums.services.ServiceSuspendersItem[];
         updatedAt: string;
     }
+    /**
+     * serviceProvideDefaults sets the appropriate defaults for Service
+     */
+    export function serviceProvideDefaults(val: Service): Service {
+        return {
+            ...val,
+            autoDeploy: (val.autoDeploy) ?? "yes",
+        };
+    }
 
     export interface StaticSiteDetailsOutput {
         buildCommand: string;
-        buildPlan: string;
+        buildPlan: enums.services.StaticSiteDetailsOutputBuildPlan;
         parentServer?: outputs.services.Resource;
         publishPath: string;
-        pullRequestPreviewsEnabled: enums.services.StaticSiteDetailsOutputPullRequestPreviewsEnabled;
+        /**
+         * Defaults to "no"
+         */
+        pullRequestPreviewsEnabled?: enums.services.StaticSiteDetailsOutputPullRequestPreviewsEnabled;
         url: string;
+    }
+    /**
+     * staticSiteDetailsOutputProvideDefaults sets the appropriate defaults for StaticSiteDetailsOutput
+     */
+    export function staticSiteDetailsOutputProvideDefaults(val: StaticSiteDetailsOutput): StaticSiteDetailsOutput {
+        return {
+            ...val,
+            buildPlan: (val.buildPlan) ?? "starter",
+            pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
+        };
     }
 
     export interface StaticSiteOutput {
@@ -682,11 +1484,17 @@ export namespace services {
         branch?: string;
         buildFilter?: outputs.services.BuildFilter;
         createdAt: string;
+        /**
+         * The URL to view the service in the Render Dashboard
+         */
+        dashboardUrl: string;
+        environmentId?: string;
         id: string;
         imagePath?: string;
         name: string;
         notifyOnFail: enums.services.ServiceNotifyOnFail;
         ownerId: string;
+        registryCredential?: outputs.services.RegistryCredentialSummary;
         repo?: string;
         rootDir: string;
         serviceDetails?: outputs.services.StaticSiteDetailsOutput;
@@ -702,20 +1510,26 @@ export namespace services {
     export function staticSiteOutputProvideDefaults(val: StaticSiteOutput): StaticSiteOutput {
         return {
             ...val,
+            autoDeploy: (val.autoDeploy) ?? "yes",
+            serviceDetails: (val.serviceDetails ? outputs.services.staticSiteDetailsOutputProvideDefaults(val.serviceDetails) : undefined),
             type: (val.type) ?? "static_site",
         };
     }
 
     export interface WebServiceDetailsOutput {
-        autoscaling?: outputs.services.AutoscalingConfig;
-        buildPlan: string;
-        disk?: outputs.services.Disk;
+        autoscaling?: outputs.services.WebServiceDetailsOutputAutoscalingProperties;
+        buildPlan: enums.services.WebServiceDetailsOutputBuildPlan;
+        disk?: outputs.services.WebServiceDetailsOutputDiskProperties;
         /**
-         * Environment (runtime)
+         * Runtime
          */
         env: enums.services.WebServiceDetailsOutputEnv;
-        envSpecificDetails: outputs.services.DockerDetails | outputs.services.NativeEnvironmentDetails;
+        envSpecificDetails: outputs.services.EnvSpecificDetails;
         healthCheckPath: string;
+        /**
+         * The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
+         */
+        maxShutdownDelaySeconds?: number;
         /**
          * For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
          */
@@ -726,7 +1540,13 @@ export namespace services {
          * The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
          */
         plan: enums.services.WebServiceDetailsOutputPlan;
-        pullRequestPreviewsEnabled: enums.services.WebServiceDetailsOutputPullRequestPreviewsEnabled;
+        /**
+         * Defaults to "no"
+         */
+        pullRequestPreviewsEnabled?: enums.services.WebServiceDetailsOutputPullRequestPreviewsEnabled;
+        /**
+         * Defaults to "oregon"
+         */
         region: enums.services.WebServiceDetailsOutputRegion;
         url: string;
     }
@@ -736,8 +1556,153 @@ export namespace services {
     export function webServiceDetailsOutputProvideDefaults(val: WebServiceDetailsOutput): WebServiceDetailsOutput {
         return {
             ...val,
-            autoscaling: (val.autoscaling ? outputs.services.autoscalingConfigProvideDefaults(val.autoscaling) : undefined),
+            autoscaling: (val.autoscaling ? outputs.services.webServiceDetailsOutputAutoscalingPropertiesProvideDefaults(val.autoscaling) : undefined),
+            buildPlan: (val.buildPlan) ?? "starter",
+            maxShutdownDelaySeconds: (val.maxShutdownDelaySeconds) ?? 30,
+            pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
+            region: (val.region) ?? "oregon",
         };
+    }
+
+    export interface WebServiceDetailsOutputAutoscalingProperties {
+        criteria: outputs.services.WebServiceDetailsOutputAutoscalingPropertiesCriteriaProperties;
+        enabled: boolean;
+        /**
+         * The maximum number of instances for the service
+         */
+        max: number;
+        /**
+         * The minimum number of instances for the service
+         */
+        min: number;
+    }
+    /**
+     * webServiceDetailsOutputAutoscalingPropertiesProvideDefaults sets the appropriate defaults for WebServiceDetailsOutputAutoscalingProperties
+     */
+    export function webServiceDetailsOutputAutoscalingPropertiesProvideDefaults(val: WebServiceDetailsOutputAutoscalingProperties): WebServiceDetailsOutputAutoscalingProperties {
+        return {
+            ...val,
+            criteria: outputs.services.webServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesProvideDefaults(val.criteria),
+            enabled: (val.enabled) ?? false,
+        };
+    }
+
+    export interface WebServiceDetailsOutputAutoscalingPropertiesCriteriaProperties {
+        cpu: outputs.services.WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuProperties;
+        memory: outputs.services.WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpu;
+    }
+    /**
+     * webServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesProvideDefaults sets the appropriate defaults for WebServiceDetailsOutputAutoscalingPropertiesCriteriaProperties
+     */
+    export function webServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesProvideDefaults(val: WebServiceDetailsOutputAutoscalingPropertiesCriteriaProperties): WebServiceDetailsOutputAutoscalingPropertiesCriteriaProperties {
+        return {
+            ...val,
+            cpu: outputs.services.webServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuPropertiesProvideDefaults(val.cpu),
+            memory: outputs.services.webServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuProvideDefaults(val.memory),
+        };
+    }
+
+    export interface WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuProperties {
+        enabled: boolean;
+        /**
+         * Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+         */
+        percentage: number;
+    }
+    /**
+     * webServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuPropertiesProvideDefaults sets the appropriate defaults for WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuProperties
+     */
+    export function webServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuPropertiesProvideDefaults(val: WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuProperties): WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuProperties {
+        return {
+            ...val,
+            enabled: (val.enabled) ?? false,
+        };
+    }
+
+    export interface WebServiceDetailsOutputDiskProperties {
+        id: string;
+        mountPath: string;
+        name: string;
+        sizeGB: number;
+    }
+
+    export interface WebServiceDetailspropertiesautoscaling {
+        criteria: outputs.services.WebServiceDetailspropertiesautoscalingCriteriaProperties;
+        enabled: boolean;
+        /**
+         * The maximum number of instances for the service
+         */
+        max: number;
+        /**
+         * The minimum number of instances for the service
+         */
+        min: number;
+    }
+    /**
+     * webServiceDetailspropertiesautoscalingProvideDefaults sets the appropriate defaults for WebServiceDetailspropertiesautoscaling
+     */
+    export function webServiceDetailspropertiesautoscalingProvideDefaults(val: WebServiceDetailspropertiesautoscaling): WebServiceDetailspropertiesautoscaling {
+        return {
+            ...val,
+            criteria: outputs.services.webServiceDetailspropertiesautoscalingCriteriaPropertiesProvideDefaults(val.criteria),
+            enabled: (val.enabled) ?? false,
+        };
+    }
+
+    export interface WebServiceDetailspropertiesautoscalingCriteriaProperties {
+        cpu: outputs.services.WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuProperties;
+        memory: outputs.services.WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpu;
+    }
+    /**
+     * webServiceDetailspropertiesautoscalingCriteriaPropertiesProvideDefaults sets the appropriate defaults for WebServiceDetailspropertiesautoscalingCriteriaProperties
+     */
+    export function webServiceDetailspropertiesautoscalingCriteriaPropertiesProvideDefaults(val: WebServiceDetailspropertiesautoscalingCriteriaProperties): WebServiceDetailspropertiesautoscalingCriteriaProperties {
+        return {
+            ...val,
+            cpu: outputs.services.webServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesProvideDefaults(val.cpu),
+            memory: outputs.services.webServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuProvideDefaults(val.memory),
+        };
+    }
+
+    export interface WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuProperties {
+        enabled: boolean;
+        /**
+         * Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+         */
+        percentage: number;
+    }
+    /**
+     * webServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesProvideDefaults sets the appropriate defaults for WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuProperties
+     */
+    export function webServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesProvideDefaults(val: WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuProperties): WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuProperties {
+        return {
+            ...val,
+            enabled: (val.enabled) ?? false,
+        };
+    }
+
+    export interface WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpu {
+        enabled: boolean;
+        /**
+         * Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+         */
+        percentage: number;
+    }
+    /**
+     * webServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuProvideDefaults sets the appropriate defaults for WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpu
+     */
+    export function webServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuProvideDefaults(val: WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpu): WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpu {
+        return {
+            ...val,
+            enabled: (val.enabled) ?? false,
+        };
+    }
+
+    export interface WebServiceDetailspropertiesdisk {
+        id: string;
+        mountPath: string;
+        name: string;
+        sizeGB: number;
     }
 
     export interface WebServiceOutput {
@@ -745,11 +1710,17 @@ export namespace services {
         branch?: string;
         buildFilter?: outputs.services.BuildFilter;
         createdAt: string;
+        /**
+         * The URL to view the service in the Render Dashboard
+         */
+        dashboardUrl: string;
+        environmentId?: string;
         id: string;
         imagePath?: string;
         name: string;
         notifyOnFail: enums.services.ServiceNotifyOnFail;
         ownerId: string;
+        registryCredential?: outputs.services.RegistryCredentialSummary;
         repo?: string;
         rootDir: string;
         serviceDetails?: outputs.services.WebServiceDetailsOutput;
@@ -765,6 +1736,7 @@ export namespace services {
     export function webServiceOutputProvideDefaults(val: WebServiceOutput): WebServiceOutput {
         return {
             ...val,
+            autoDeploy: (val.autoDeploy) ?? "yes",
             serviceDetails: (val.serviceDetails ? outputs.services.webServiceDetailsOutputProvideDefaults(val.serviceDetails) : undefined),
             type: (val.type) ?? "web_service",
         };

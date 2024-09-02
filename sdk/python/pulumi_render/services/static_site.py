@@ -22,16 +22,15 @@ class StaticSiteArgs:
                  auto_deploy: Optional[pulumi.Input['ServiceCreateAutoDeploy']] = None,
                  branch: Optional[pulumi.Input[str]] = None,
                  build_filter: Optional[pulumi.Input['BuildFilterArgs']] = None,
-                 env_vars: Optional[pulumi.Input[Sequence[pulumi.Input[Union['EnvVarKeyValueArgs', 'EnvVarKeyGenerateValueArgs']]]]] = None,
+                 env_vars: Optional[pulumi.Input[Sequence[pulumi.Input['EnvVarInputArgs']]]] = None,
                  image: Optional[pulumi.Input['ImageArgs']] = None,
                  repo: Optional[pulumi.Input[str]] = None,
                  root_dir: Optional[pulumi.Input[str]] = None,
-                 secret_files: Optional[pulumi.Input[Sequence[pulumi.Input['SecretFileArgs']]]] = None,
+                 secret_files: Optional[pulumi.Input[Sequence[pulumi.Input['SecretFileInputArgs']]]] = None,
                  service_details: Optional[pulumi.Input['StaticSiteDetailsCreateArgs']] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a StaticSite resource.
-        :param pulumi.Input['ServiceCreateAutoDeploy'] auto_deploy: Defaults to "yes"
         :param pulumi.Input[str] branch: If left empty, this will fall back to the default branch of the repository
         :param pulumi.Input[str] repo: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
         """
@@ -83,9 +82,6 @@ class StaticSiteArgs:
     @property
     @pulumi.getter(name="autoDeploy")
     def auto_deploy(self) -> Optional[pulumi.Input['ServiceCreateAutoDeploy']]:
-        """
-        Defaults to "yes"
-        """
         return pulumi.get(self, "auto_deploy")
 
     @auto_deploy.setter
@@ -115,11 +111,11 @@ class StaticSiteArgs:
 
     @property
     @pulumi.getter(name="envVars")
-    def env_vars(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[Union['EnvVarKeyValueArgs', 'EnvVarKeyGenerateValueArgs']]]]]:
+    def env_vars(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['EnvVarInputArgs']]]]:
         return pulumi.get(self, "env_vars")
 
     @env_vars.setter
-    def env_vars(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[Union['EnvVarKeyValueArgs', 'EnvVarKeyGenerateValueArgs']]]]]):
+    def env_vars(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['EnvVarInputArgs']]]]):
         pulumi.set(self, "env_vars", value)
 
     @property
@@ -154,11 +150,11 @@ class StaticSiteArgs:
 
     @property
     @pulumi.getter(name="secretFiles")
-    def secret_files(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretFileArgs']]]]:
+    def secret_files(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretFileInputArgs']]]]:
         return pulumi.get(self, "secret_files")
 
     @secret_files.setter
-    def secret_files(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecretFileArgs']]]]):
+    def secret_files(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecretFileInputArgs']]]]):
         pulumi.set(self, "secret_files", value)
 
     @property
@@ -188,13 +184,13 @@ class StaticSite(pulumi.CustomResource):
                  auto_deploy: Optional[pulumi.Input['ServiceCreateAutoDeploy']] = None,
                  branch: Optional[pulumi.Input[str]] = None,
                  build_filter: Optional[pulumi.Input[Union['BuildFilterArgs', 'BuildFilterArgsDict']]] = None,
-                 env_vars: Optional[pulumi.Input[Sequence[pulumi.Input[Union[Union['EnvVarKeyValueArgs', 'EnvVarKeyValueArgsDict'], Union['EnvVarKeyGenerateValueArgs', 'EnvVarKeyGenerateValueArgsDict']]]]]] = None,
+                 env_vars: Optional[pulumi.Input[Sequence[pulumi.Input[Union['EnvVarInputArgs', 'EnvVarInputArgsDict']]]]] = None,
                  image: Optional[pulumi.Input[Union['ImageArgs', 'ImageArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  owner_id: Optional[pulumi.Input[str]] = None,
                  repo: Optional[pulumi.Input[str]] = None,
                  root_dir: Optional[pulumi.Input[str]] = None,
-                 secret_files: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretFileArgs', 'SecretFileArgsDict']]]]] = None,
+                 secret_files: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretFileInputArgs', 'SecretFileInputArgsDict']]]]] = None,
                  service_details: Optional[pulumi.Input[Union['StaticSiteDetailsCreateArgs', 'StaticSiteDetailsCreateArgsDict']]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -203,7 +199,6 @@ class StaticSite(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input['ServiceCreateAutoDeploy'] auto_deploy: Defaults to "yes"
         :param pulumi.Input[str] branch: If left empty, this will fall back to the default branch of the repository
         :param pulumi.Input[str] repo: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
         """
@@ -234,13 +229,13 @@ class StaticSite(pulumi.CustomResource):
                  auto_deploy: Optional[pulumi.Input['ServiceCreateAutoDeploy']] = None,
                  branch: Optional[pulumi.Input[str]] = None,
                  build_filter: Optional[pulumi.Input[Union['BuildFilterArgs', 'BuildFilterArgsDict']]] = None,
-                 env_vars: Optional[pulumi.Input[Sequence[pulumi.Input[Union[Union['EnvVarKeyValueArgs', 'EnvVarKeyValueArgsDict'], Union['EnvVarKeyGenerateValueArgs', 'EnvVarKeyGenerateValueArgsDict']]]]]] = None,
+                 env_vars: Optional[pulumi.Input[Sequence[pulumi.Input[Union['EnvVarInputArgs', 'EnvVarInputArgsDict']]]]] = None,
                  image: Optional[pulumi.Input[Union['ImageArgs', 'ImageArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  owner_id: Optional[pulumi.Input[str]] = None,
                  repo: Optional[pulumi.Input[str]] = None,
                  root_dir: Optional[pulumi.Input[str]] = None,
-                 secret_files: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretFileArgs', 'SecretFileArgsDict']]]]] = None,
+                 secret_files: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretFileInputArgs', 'SecretFileInputArgsDict']]]]] = None,
                  service_details: Optional[pulumi.Input[Union['StaticSiteDetailsCreateArgs', 'StaticSiteDetailsCreateArgsDict']]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -273,8 +268,11 @@ class StaticSite(pulumi.CustomResource):
                 type = 'static_site'
             __props__.__dict__["type"] = type
             __props__.__dict__["created_at"] = None
+            __props__.__dict__["dashboard_url"] = None
+            __props__.__dict__["environment_id"] = None
             __props__.__dict__["image_path"] = None
             __props__.__dict__["notify_on_fail"] = None
+            __props__.__dict__["registry_credential"] = None
             __props__.__dict__["slug"] = None
             __props__.__dict__["suspended"] = None
             __props__.__dict__["suspenders"] = None
@@ -305,12 +303,15 @@ class StaticSite(pulumi.CustomResource):
         __props__.__dict__["branch"] = None
         __props__.__dict__["build_filter"] = None
         __props__.__dict__["created_at"] = None
+        __props__.__dict__["dashboard_url"] = None
         __props__.__dict__["env_vars"] = None
+        __props__.__dict__["environment_id"] = None
         __props__.__dict__["image"] = None
         __props__.__dict__["image_path"] = None
         __props__.__dict__["name"] = None
         __props__.__dict__["notify_on_fail"] = None
         __props__.__dict__["owner_id"] = None
+        __props__.__dict__["registry_credential"] = None
         __props__.__dict__["repo"] = None
         __props__.__dict__["root_dir"] = None
         __props__.__dict__["secret_files"] = None
@@ -343,9 +344,22 @@ class StaticSite(pulumi.CustomResource):
         return pulumi.get(self, "created_at")
 
     @property
+    @pulumi.getter(name="dashboardUrl")
+    def dashboard_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        The URL to view the service in the Render Dashboard
+        """
+        return pulumi.get(self, "dashboard_url")
+
+    @property
     @pulumi.getter(name="envVars")
-    def env_vars(self) -> pulumi.Output[Optional[Sequence[Any]]]:
+    def env_vars(self) -> pulumi.Output[Optional[Sequence['outputs.EnvVarInput']]]:
         return pulumi.get(self, "env_vars")
+
+    @property
+    @pulumi.getter(name="environmentId")
+    def environment_id(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "environment_id")
 
     @property
     @pulumi.getter
@@ -373,6 +387,11 @@ class StaticSite(pulumi.CustomResource):
         return pulumi.get(self, "owner_id")
 
     @property
+    @pulumi.getter(name="registryCredential")
+    def registry_credential(self) -> pulumi.Output[Optional['outputs.RegistryCredentialSummary']]:
+        return pulumi.get(self, "registry_credential")
+
+    @property
     @pulumi.getter
     def repo(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "repo")
@@ -384,7 +403,7 @@ class StaticSite(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="secretFiles")
-    def secret_files(self) -> pulumi.Output[Optional[Sequence['outputs.SecretFile']]]:
+    def secret_files(self) -> pulumi.Output[Optional[Sequence['outputs.SecretFileInput']]]:
         return pulumi.get(self, "secret_files")
 
     @property

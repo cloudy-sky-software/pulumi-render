@@ -65,6 +65,11 @@ export const getDeploy: typeof import("./getDeploy").getDeploy = null as any;
 export const getDeployOutput: typeof import("./getDeploy").getDeployOutput = null as any;
 utilities.lazyLoad(exports, ["getDeploy","getDeployOutput"], () => require("./getDeploy"));
 
+export { GetEnvVarArgs, GetEnvVarResult, GetEnvVarOutputArgs } from "./getEnvVar";
+export const getEnvVar: typeof import("./getEnvVar").getEnvVar = null as any;
+export const getEnvVarOutput: typeof import("./getEnvVar").getEnvVarOutput = null as any;
+utilities.lazyLoad(exports, ["getEnvVar","getEnvVarOutput"], () => require("./getEnvVar"));
+
 export { GetJobArgs, GetJobResult, GetJobOutputArgs } from "./getJob";
 export const getJob: typeof import("./getJob").getJob = null as any;
 export const getJobOutput: typeof import("./getJob").getJobOutput = null as any;
@@ -75,6 +80,11 @@ export const getPrivateService: typeof import("./getPrivateService").getPrivateS
 export const getPrivateServiceOutput: typeof import("./getPrivateService").getPrivateServiceOutput = null as any;
 utilities.lazyLoad(exports, ["getPrivateService","getPrivateServiceOutput"], () => require("./getPrivateService"));
 
+export { GetSecretFileArgs, GetSecretFileResult, GetSecretFileOutputArgs } from "./getSecretFile";
+export const getSecretFile: typeof import("./getSecretFile").getSecretFile = null as any;
+export const getSecretFileOutput: typeof import("./getSecretFile").getSecretFileOutput = null as any;
+utilities.lazyLoad(exports, ["getSecretFile","getSecretFileOutput"], () => require("./getSecretFile"));
+
 export { GetStaticSiteArgs, GetStaticSiteResult, GetStaticSiteOutputArgs } from "./getStaticSite";
 export const getStaticSite: typeof import("./getStaticSite").getStaticSite = null as any;
 export const getStaticSiteOutput: typeof import("./getStaticSite").getStaticSiteOutput = null as any;
@@ -84,6 +94,11 @@ export { GetWebServiceArgs, GetWebServiceResult, GetWebServiceOutputArgs } from 
 export const getWebService: typeof import("./getWebService").getWebService = null as any;
 export const getWebServiceOutput: typeof import("./getWebService").getWebServiceOutput = null as any;
 utilities.lazyLoad(exports, ["getWebService","getWebServiceOutput"], () => require("./getWebService"));
+
+export { HeaderArgs } from "./header";
+export type Header = import("./header").Header;
+export const Header: typeof import("./header").Header = null as any;
+utilities.lazyLoad(exports, ["Header"], () => require("./header"));
 
 export { JobArgs } from "./job";
 export type Job = import("./job").Job;
@@ -105,20 +120,25 @@ export const listEnvVarsForService: typeof import("./listEnvVarsForService").lis
 export const listEnvVarsForServiceOutput: typeof import("./listEnvVarsForService").listEnvVarsForServiceOutput = null as any;
 utilities.lazyLoad(exports, ["listEnvVarsForService","listEnvVarsForServiceOutput"], () => require("./listEnvVarsForService"));
 
+export { ListHeadersArgs, ListHeadersResult, ListHeadersOutputArgs } from "./listHeaders";
+export const listHeaders: typeof import("./listHeaders").listHeaders = null as any;
+export const listHeadersOutput: typeof import("./listHeaders").listHeadersOutput = null as any;
+utilities.lazyLoad(exports, ["listHeaders","listHeadersOutput"], () => require("./listHeaders"));
+
 export { ListJobArgs, ListJobResult, ListJobOutputArgs } from "./listJob";
 export const listJob: typeof import("./listJob").listJob = null as any;
 export const listJobOutput: typeof import("./listJob").listJobOutput = null as any;
 utilities.lazyLoad(exports, ["listJob","listJobOutput"], () => require("./listJob"));
 
-export { ListRetrieveHeadersArgs, ListRetrieveHeadersResult, ListRetrieveHeadersOutputArgs } from "./listRetrieveHeaders";
-export const listRetrieveHeaders: typeof import("./listRetrieveHeaders").listRetrieveHeaders = null as any;
-export const listRetrieveHeadersOutput: typeof import("./listRetrieveHeaders").listRetrieveHeadersOutput = null as any;
-utilities.lazyLoad(exports, ["listRetrieveHeaders","listRetrieveHeadersOutput"], () => require("./listRetrieveHeaders"));
+export { ListRoutesArgs, ListRoutesResult, ListRoutesOutputArgs } from "./listRoutes";
+export const listRoutes: typeof import("./listRoutes").listRoutes = null as any;
+export const listRoutesOutput: typeof import("./listRoutes").listRoutesOutput = null as any;
+utilities.lazyLoad(exports, ["listRoutes","listRoutesOutput"], () => require("./listRoutes"));
 
-export { ListRetrieveRoutesArgs, ListRetrieveRoutesResult, ListRetrieveRoutesOutputArgs } from "./listRetrieveRoutes";
-export const listRetrieveRoutes: typeof import("./listRetrieveRoutes").listRetrieveRoutes = null as any;
-export const listRetrieveRoutesOutput: typeof import("./listRetrieveRoutes").listRetrieveRoutesOutput = null as any;
-utilities.lazyLoad(exports, ["listRetrieveRoutes","listRetrieveRoutesOutput"], () => require("./listRetrieveRoutes"));
+export { ListSecretFilesForServiceArgs, ListSecretFilesForServiceResult, ListSecretFilesForServiceOutputArgs } from "./listSecretFilesForService";
+export const listSecretFilesForService: typeof import("./listSecretFilesForService").listSecretFilesForService = null as any;
+export const listSecretFilesForServiceOutput: typeof import("./listSecretFilesForService").listSecretFilesForServiceOutput = null as any;
+utilities.lazyLoad(exports, ["listSecretFilesForService","listSecretFilesForServiceOutput"], () => require("./listSecretFilesForService"));
 
 export { ListServicesArgs, ListServicesResult } from "./listServices";
 export const listServices: typeof import("./listServices").listServices = null as any;
@@ -140,20 +160,30 @@ export type RefreshCustomDomain = import("./refreshCustomDomain").RefreshCustomD
 export const RefreshCustomDomain: typeof import("./refreshCustomDomain").RefreshCustomDomain = null as any;
 utilities.lazyLoad(exports, ["RefreshCustomDomain"], () => require("./refreshCustomDomain"));
 
-export { RestartServerArgs } from "./restartServer";
-export type RestartServer = import("./restartServer").RestartServer;
-export const RestartServer: typeof import("./restartServer").RestartServer = null as any;
-utilities.lazyLoad(exports, ["RestartServer"], () => require("./restartServer"));
+export { RestartServiceArgs } from "./restartService";
+export type RestartService = import("./restartService").RestartService;
+export const RestartService: typeof import("./restartService").RestartService = null as any;
+utilities.lazyLoad(exports, ["RestartService"], () => require("./restartService"));
 
 export { RollbackDeployArgs } from "./rollbackDeploy";
 export type RollbackDeploy = import("./rollbackDeploy").RollbackDeploy;
 export const RollbackDeploy: typeof import("./rollbackDeploy").RollbackDeploy = null as any;
 utilities.lazyLoad(exports, ["RollbackDeploy"], () => require("./rollbackDeploy"));
 
+export { RouteArgs } from "./route";
+export type Route = import("./route").Route;
+export const Route: typeof import("./route").Route = null as any;
+utilities.lazyLoad(exports, ["Route"], () => require("./route"));
+
 export { ScaleServiceArgs } from "./scaleService";
 export type ScaleService = import("./scaleService").ScaleService;
 export const ScaleService: typeof import("./scaleService").ScaleService = null as any;
 utilities.lazyLoad(exports, ["ScaleService"], () => require("./scaleService"));
+
+export { SecretFilesForServiceArgs } from "./secretFilesForService";
+export type SecretFilesForService = import("./secretFilesForService").SecretFilesForService;
+export const SecretFilesForService: typeof import("./secretFilesForService").SecretFilesForService = null as any;
+utilities.lazyLoad(exports, ["SecretFilesForService"], () => require("./secretFilesForService"));
 
 export { StaticSiteArgs } from "./staticSite";
 export type StaticSite = import("./staticSite").StaticSite;
@@ -194,6 +224,8 @@ const _module = {
                 return new Deploy(name, <any>undefined, { urn })
             case "render:services:EnvVarsForService":
                 return new EnvVarsForService(name, <any>undefined, { urn })
+            case "render:services:Header":
+                return new Header(name, <any>undefined, { urn })
             case "render:services:Job":
                 return new Job(name, <any>undefined, { urn })
             case "render:services:PreviewService":
@@ -202,12 +234,16 @@ const _module = {
                 return new PrivateService(name, <any>undefined, { urn })
             case "render:services:RefreshCustomDomain":
                 return new RefreshCustomDomain(name, <any>undefined, { urn })
-            case "render:services:RestartServer":
-                return new RestartServer(name, <any>undefined, { urn })
+            case "render:services:RestartService":
+                return new RestartService(name, <any>undefined, { urn })
             case "render:services:RollbackDeploy":
                 return new RollbackDeploy(name, <any>undefined, { urn })
+            case "render:services:Route":
+                return new Route(name, <any>undefined, { urn })
             case "render:services:ScaleService":
                 return new ScaleService(name, <any>undefined, { urn })
+            case "render:services:SecretFilesForService":
+                return new SecretFilesForService(name, <any>undefined, { urn })
             case "render:services:StaticSite":
                 return new StaticSite(name, <any>undefined, { urn })
             case "render:services:SuspendService":

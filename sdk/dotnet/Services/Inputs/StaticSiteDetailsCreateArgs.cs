@@ -16,10 +16,10 @@ namespace Pulumi.Render.Services.Inputs
         public Input<string>? BuildCommand { get; set; }
 
         [Input("headers")]
-        private InputList<Inputs.HeaderCreateArgs>? _headers;
-        public InputList<Inputs.HeaderCreateArgs> Headers
+        private InputList<Inputs.HeaderInputArgs>? _headers;
+        public InputList<Inputs.HeaderInputArgs> Headers
         {
-            get => _headers ?? (_headers = new InputList<Inputs.HeaderCreateArgs>());
+            get => _headers ?? (_headers = new InputList<Inputs.HeaderInputArgs>());
             set => _headers = value;
         }
 
@@ -36,10 +36,10 @@ namespace Pulumi.Render.Services.Inputs
         public Input<Pulumi.Render.Services.StaticSiteDetailsCreatePullRequestPreviewsEnabled>? PullRequestPreviewsEnabled { get; set; }
 
         [Input("routes")]
-        private InputList<Inputs.RouteArgs>? _routes;
-        public InputList<Inputs.RouteArgs> Routes
+        private InputList<Inputs.RouteCreateArgs>? _routes;
+        public InputList<Inputs.RouteCreateArgs> Routes
         {
-            get => _routes ?? (_routes = new InputList<Inputs.RouteArgs>());
+            get => _routes ?? (_routes = new InputList<Inputs.RouteCreateArgs>());
             set => _routes = value;
         }
 

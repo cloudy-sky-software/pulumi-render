@@ -13,16 +13,16 @@ namespace Pulumi.Render.Services.Outputs
     [OutputType]
     public sealed class SecretFile
     {
-        public readonly string Id;
+        public readonly string Content;
         public readonly string Name;
 
         [OutputConstructor]
         private SecretFile(
-            string id,
+            string content,
 
             string name)
         {
-            Id = id;
+            Content = content;
             Name = name;
         }
     }

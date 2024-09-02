@@ -14,16 +14,24 @@ import (
 type Deploy struct {
 	pulumi.CustomResourceState
 
-	// Defaults to "do_not_clear"
+	// If `clear`, Render clears the service's build cache before deploying. This can be useful if you're experiencing issues with your build.
 	ClearCache ClearCachePtrOutput       `pulumi:"clearCache"`
 	Commit     CommitPropertiesPtrOutput `pulumi:"commit"`
-	// Specific ID of commit to deploy for a web service, defaults to latest commit. Not supported for Cron Job deploys.
+	// The SHA of a specific Git commit to deploy for a service. Defaults to the latest commit on the service's connected branch.
+	//
+	// Note that deploying a specific commit with this endpoint does not disable autodeploys for the service.
+	//
+	// You can toggle autodeploys for your service with the [Update service](https://api-docs.render.com/reference/update-service) endpoint or in the Render Dashboard.
+	//
+	// Not supported for cron jobs.
 	CommitId   pulumi.StringPtrOutput `pulumi:"commitId"`
 	CreatedAt  pulumi.StringPtrOutput `pulumi:"createdAt"`
 	FinishedAt pulumi.StringPtrOutput `pulumi:"finishedAt"`
 	// Image information used when creating the deploy. Not present for Git-backed deploys
 	Image ImagePropertiesPtrOutput `pulumi:"image"`
-	// URL of the image to deploy for an image-backed service. The host, repository, and image name must match the currently configured image for the service.
+	// The URL of the image to deploy for an image-backed service.
+	//
+	// The host, repository, and image name all must match the currently configured image for the service.
 	ImageUrl  pulumi.StringPtrOutput `pulumi:"imageUrl"`
 	Status    StatusPtrOutput        `pulumi:"status"`
 	Trigger   TriggerPtrOutput       `pulumi:"trigger"`
@@ -73,11 +81,19 @@ func (DeployState) ElementType() reflect.Type {
 }
 
 type deployArgs struct {
-	// Defaults to "do_not_clear"
+	// If `clear`, Render clears the service's build cache before deploying. This can be useful if you're experiencing issues with your build.
 	ClearCache *ClearCache `pulumi:"clearCache"`
-	// Specific ID of commit to deploy for a web service, defaults to latest commit. Not supported for Cron Job deploys.
+	// The SHA of a specific Git commit to deploy for a service. Defaults to the latest commit on the service's connected branch.
+	//
+	// Note that deploying a specific commit with this endpoint does not disable autodeploys for the service.
+	//
+	// You can toggle autodeploys for your service with the [Update service](https://api-docs.render.com/reference/update-service) endpoint or in the Render Dashboard.
+	//
+	// Not supported for cron jobs.
 	CommitId *string `pulumi:"commitId"`
-	// URL of the image to deploy for an image-backed service. The host, repository, and image name must match the currently configured image for the service.
+	// The URL of the image to deploy for an image-backed service.
+	//
+	// The host, repository, and image name all must match the currently configured image for the service.
 	ImageUrl *string `pulumi:"imageUrl"`
 	// The ID of the service
 	ServiceId *string `pulumi:"serviceId"`
@@ -85,11 +101,19 @@ type deployArgs struct {
 
 // The set of arguments for constructing a Deploy resource.
 type DeployArgs struct {
-	// Defaults to "do_not_clear"
+	// If `clear`, Render clears the service's build cache before deploying. This can be useful if you're experiencing issues with your build.
 	ClearCache ClearCachePtrInput
-	// Specific ID of commit to deploy for a web service, defaults to latest commit. Not supported for Cron Job deploys.
+	// The SHA of a specific Git commit to deploy for a service. Defaults to the latest commit on the service's connected branch.
+	//
+	// Note that deploying a specific commit with this endpoint does not disable autodeploys for the service.
+	//
+	// You can toggle autodeploys for your service with the [Update service](https://api-docs.render.com/reference/update-service) endpoint or in the Render Dashboard.
+	//
+	// Not supported for cron jobs.
 	CommitId pulumi.StringPtrInput
-	// URL of the image to deploy for an image-backed service. The host, repository, and image name must match the currently configured image for the service.
+	// The URL of the image to deploy for an image-backed service.
+	//
+	// The host, repository, and image name all must match the currently configured image for the service.
 	ImageUrl pulumi.StringPtrInput
 	// The ID of the service
 	ServiceId pulumi.StringPtrInput
@@ -132,7 +156,7 @@ func (o DeployOutput) ToDeployOutputWithContext(ctx context.Context) DeployOutpu
 	return o
 }
 
-// Defaults to "do_not_clear"
+// If `clear`, Render clears the service's build cache before deploying. This can be useful if you're experiencing issues with your build.
 func (o DeployOutput) ClearCache() ClearCachePtrOutput {
 	return o.ApplyT(func(v *Deploy) ClearCachePtrOutput { return v.ClearCache }).(ClearCachePtrOutput)
 }
@@ -141,7 +165,13 @@ func (o DeployOutput) Commit() CommitPropertiesPtrOutput {
 	return o.ApplyT(func(v *Deploy) CommitPropertiesPtrOutput { return v.Commit }).(CommitPropertiesPtrOutput)
 }
 
-// Specific ID of commit to deploy for a web service, defaults to latest commit. Not supported for Cron Job deploys.
+// The SHA of a specific Git commit to deploy for a service. Defaults to the latest commit on the service's connected branch.
+//
+// Note that deploying a specific commit with this endpoint does not disable autodeploys for the service.
+//
+// You can toggle autodeploys for your service with the [Update service](https://api-docs.render.com/reference/update-service) endpoint or in the Render Dashboard.
+//
+// Not supported for cron jobs.
 func (o DeployOutput) CommitId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Deploy) pulumi.StringPtrOutput { return v.CommitId }).(pulumi.StringPtrOutput)
 }
@@ -159,7 +189,9 @@ func (o DeployOutput) Image() ImagePropertiesPtrOutput {
 	return o.ApplyT(func(v *Deploy) ImagePropertiesPtrOutput { return v.Image }).(ImagePropertiesPtrOutput)
 }
 
-// URL of the image to deploy for an image-backed service. The host, repository, and image name must match the currently configured image for the service.
+// The URL of the image to deploy for an image-backed service.
+//
+// The host, repository, and image name all must match the currently configured image for the service.
 func (o DeployOutput) ImageUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Deploy) pulumi.StringPtrOutput { return v.ImageUrl }).(pulumi.StringPtrOutput)
 }

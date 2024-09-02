@@ -34,7 +34,7 @@ export class AutoscaleService extends pulumi.CustomResource {
         return obj['__pulumiType'] === AutoscaleService.__pulumiType;
     }
 
-    public readonly criteria!: pulumi.Output<outputs.services.AutoscalingCriteria>;
+    public readonly criteria!: pulumi.Output<outputs.services.CriteriaProperties>;
     public readonly enabled!: pulumi.Output<boolean>;
     /**
      * The maximum number of instances for the service
@@ -68,7 +68,7 @@ export class AutoscaleService extends pulumi.CustomResource {
             if ((!args || args.min === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'min'");
             }
-            resourceInputs["criteria"] = args ? (args.criteria ? pulumi.output(args.criteria).apply(inputs.services.autoscalingCriteriaArgsProvideDefaults) : undefined) : undefined;
+            resourceInputs["criteria"] = args ? (args.criteria ? pulumi.output(args.criteria).apply(inputs.services.criteriaPropertiesArgsProvideDefaults) : undefined) : undefined;
             resourceInputs["enabled"] = (args ? args.enabled : undefined) ?? false;
             resourceInputs["max"] = args ? args.max : undefined;
             resourceInputs["min"] = args ? args.min : undefined;
@@ -88,7 +88,7 @@ export class AutoscaleService extends pulumi.CustomResource {
  * The set of arguments for constructing a AutoscaleService resource.
  */
 export interface AutoscaleServiceArgs {
-    criteria: pulumi.Input<inputs.services.AutoscalingCriteriaArgs>;
+    criteria: pulumi.Input<inputs.services.CriteriaPropertiesArgs>;
     enabled: pulumi.Input<boolean>;
     /**
      * The maximum number of instances for the service

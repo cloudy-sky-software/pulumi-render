@@ -22,9 +22,17 @@ class DeployArgs:
                  service_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Deploy resource.
-        :param pulumi.Input['ClearCache'] clear_cache: Defaults to "do_not_clear"
-        :param pulumi.Input[str] commit_id: Specific ID of commit to deploy for a web service, defaults to latest commit. Not supported for Cron Job deploys.
-        :param pulumi.Input[str] image_url: URL of the image to deploy for an image-backed service. The host, repository, and image name must match the currently configured image for the service.
+        :param pulumi.Input['ClearCache'] clear_cache: If `clear`, Render clears the service's build cache before deploying. This can be useful if you're experiencing issues with your build.
+        :param pulumi.Input[str] commit_id: The SHA of a specific Git commit to deploy for a service. Defaults to the latest commit on the service's connected branch.
+               
+               Note that deploying a specific commit with this endpoint does not disable autodeploys for the service.
+               
+               You can toggle autodeploys for your service with the [Update service](https://api-docs.render.com/reference/update-service) endpoint or in the Render Dashboard.
+               
+               Not supported for cron jobs.
+        :param pulumi.Input[str] image_url: The URL of the image to deploy for an image-backed service.
+               
+               The host, repository, and image name all must match the currently configured image for the service.
         :param pulumi.Input[str] service_id: The ID of the service
         """
         if clear_cache is None:
@@ -42,7 +50,7 @@ class DeployArgs:
     @pulumi.getter(name="clearCache")
     def clear_cache(self) -> Optional[pulumi.Input['ClearCache']]:
         """
-        Defaults to "do_not_clear"
+        If `clear`, Render clears the service's build cache before deploying. This can be useful if you're experiencing issues with your build.
         """
         return pulumi.get(self, "clear_cache")
 
@@ -54,7 +62,13 @@ class DeployArgs:
     @pulumi.getter(name="commitId")
     def commit_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Specific ID of commit to deploy for a web service, defaults to latest commit. Not supported for Cron Job deploys.
+        The SHA of a specific Git commit to deploy for a service. Defaults to the latest commit on the service's connected branch.
+
+        Note that deploying a specific commit with this endpoint does not disable autodeploys for the service.
+
+        You can toggle autodeploys for your service with the [Update service](https://api-docs.render.com/reference/update-service) endpoint or in the Render Dashboard.
+
+        Not supported for cron jobs.
         """
         return pulumi.get(self, "commit_id")
 
@@ -66,7 +80,9 @@ class DeployArgs:
     @pulumi.getter(name="imageUrl")
     def image_url(self) -> Optional[pulumi.Input[str]]:
         """
-        URL of the image to deploy for an image-backed service. The host, repository, and image name must match the currently configured image for the service.
+        The URL of the image to deploy for an image-backed service.
+
+        The host, repository, and image name all must match the currently configured image for the service.
         """
         return pulumi.get(self, "image_url")
 
@@ -101,9 +117,17 @@ class Deploy(pulumi.CustomResource):
         Create a Deploy resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input['ClearCache'] clear_cache: Defaults to "do_not_clear"
-        :param pulumi.Input[str] commit_id: Specific ID of commit to deploy for a web service, defaults to latest commit. Not supported for Cron Job deploys.
-        :param pulumi.Input[str] image_url: URL of the image to deploy for an image-backed service. The host, repository, and image name must match the currently configured image for the service.
+        :param pulumi.Input['ClearCache'] clear_cache: If `clear`, Render clears the service's build cache before deploying. This can be useful if you're experiencing issues with your build.
+        :param pulumi.Input[str] commit_id: The SHA of a specific Git commit to deploy for a service. Defaults to the latest commit on the service's connected branch.
+               
+               Note that deploying a specific commit with this endpoint does not disable autodeploys for the service.
+               
+               You can toggle autodeploys for your service with the [Update service](https://api-docs.render.com/reference/update-service) endpoint or in the Render Dashboard.
+               
+               Not supported for cron jobs.
+        :param pulumi.Input[str] image_url: The URL of the image to deploy for an image-backed service.
+               
+               The host, repository, and image name all must match the currently configured image for the service.
         :param pulumi.Input[str] service_id: The ID of the service
         """
         ...
@@ -193,7 +217,7 @@ class Deploy(pulumi.CustomResource):
     @pulumi.getter(name="clearCache")
     def clear_cache(self) -> pulumi.Output[Optional['ClearCache']]:
         """
-        Defaults to "do_not_clear"
+        If `clear`, Render clears the service's build cache before deploying. This can be useful if you're experiencing issues with your build.
         """
         return pulumi.get(self, "clear_cache")
 
@@ -206,7 +230,13 @@ class Deploy(pulumi.CustomResource):
     @pulumi.getter(name="commitId")
     def commit_id(self) -> pulumi.Output[Optional[str]]:
         """
-        Specific ID of commit to deploy for a web service, defaults to latest commit. Not supported for Cron Job deploys.
+        The SHA of a specific Git commit to deploy for a service. Defaults to the latest commit on the service's connected branch.
+
+        Note that deploying a specific commit with this endpoint does not disable autodeploys for the service.
+
+        You can toggle autodeploys for your service with the [Update service](https://api-docs.render.com/reference/update-service) endpoint or in the Render Dashboard.
+
+        Not supported for cron jobs.
         """
         return pulumi.get(self, "commit_id")
 
@@ -232,7 +262,9 @@ class Deploy(pulumi.CustomResource):
     @pulumi.getter(name="imageUrl")
     def image_url(self) -> pulumi.Output[Optional[str]]:
         """
-        URL of the image to deploy for an image-backed service. The host, repository, and image name must match the currently configured image for the service.
+        The URL of the image to deploy for an image-backed service.
+
+        The host, repository, and image name all must match the currently configured image for the service.
         """
         return pulumi.get(self, "image_url")
 

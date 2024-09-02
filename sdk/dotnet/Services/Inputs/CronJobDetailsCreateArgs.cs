@@ -13,25 +13,39 @@ namespace Pulumi.Render.Services.Inputs
     public sealed class CronJobDetailsCreateArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Environment (runtime)
+        /// This field has been deprecated, runtime should be used in its place.
         /// </summary>
-        [Input("env", required: true)]
-        public Input<Pulumi.Render.Services.CronJobDetailsCreateEnv> Env { get; set; } = null!;
+        [Input("env")]
+        public Input<Pulumi.Render.Services.CronJobDetailsCreateEnv>? Env { get; set; }
 
         [Input("envSpecificDetails")]
-        public InputUnion<Inputs.DockerDetailsArgs, Inputs.NativeEnvironmentDetailsArgs>? EnvSpecificDetails { get; set; }
+        public Input<Inputs.EnvSpecificDetailsArgs>? EnvSpecificDetails { get; set; }
 
+        /// <summary>
+        /// Defaults to "starter"
+        /// </summary>
         [Input("plan")]
         public Input<Pulumi.Render.Services.CronJobDetailsCreatePlan>? Plan { get; set; }
 
+        /// <summary>
+        /// Defaults to "oregon"
+        /// </summary>
         [Input("region")]
         public Input<Pulumi.Render.Services.CronJobDetailsCreateRegion>? Region { get; set; }
+
+        /// <summary>
+        /// Runtime
+        /// </summary>
+        [Input("runtime", required: true)]
+        public Input<Pulumi.Render.Services.CronJobDetailsCreateRuntime> Runtime { get; set; } = null!;
 
         [Input("schedule", required: true)]
         public Input<string> Schedule { get; set; } = null!;
 
         public CronJobDetailsCreateArgs()
         {
+            Plan = Pulumi.Render.Services.CronJobDetailsCreatePlan.Starter;
+            Region = Pulumi.Render.Services.CronJobDetailsCreateRegion.Oregon;
         }
         public static new CronJobDetailsCreateArgs Empty => new CronJobDetailsCreateArgs();
     }

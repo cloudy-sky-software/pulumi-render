@@ -77,11 +77,12 @@ func (RegistryCredentialState) ElementType() reflect.Type {
 }
 
 type registryCredentialArgs struct {
-	AuthToken string   `pulumi:"authToken"`
-	Name      *string  `pulumi:"name"`
-	OwnerId   string   `pulumi:"ownerId"`
-	Registry  Registry `pulumi:"registry"`
-	Username  string   `pulumi:"username"`
+	AuthToken string  `pulumi:"authToken"`
+	Name      *string `pulumi:"name"`
+	OwnerId   string  `pulumi:"ownerId"`
+	// The registry to use this credential with
+	Registry Registry `pulumi:"registry"`
+	Username string   `pulumi:"username"`
 }
 
 // The set of arguments for constructing a RegistryCredential resource.
@@ -89,8 +90,9 @@ type RegistryCredentialArgs struct {
 	AuthToken pulumi.StringInput
 	Name      pulumi.StringPtrInput
 	OwnerId   pulumi.StringInput
-	Registry  RegistryInput
-	Username  pulumi.StringInput
+	// The registry to use this credential with
+	Registry RegistryInput
+	Username pulumi.StringInput
 }
 
 func (RegistryCredentialArgs) ElementType() reflect.Type {

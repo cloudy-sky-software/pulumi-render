@@ -9,14 +9,19 @@ __all__ = [
     'BackgroundWorkerDetailsCreatePlan',
     'BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled',
     'BackgroundWorkerDetailsCreateRegion',
+    'BackgroundWorkerDetailsCreateRuntime',
+    'BackgroundWorkerDetailsOutputBuildPlan',
     'BackgroundWorkerDetailsOutputEnv',
     'BackgroundWorkerDetailsOutputPlan',
     'BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled',
     'BackgroundWorkerDetailsOutputRegion',
+    'CancelJobStatus',
     'ClearCache',
     'CronJobDetailsCreateEnv',
     'CronJobDetailsCreatePlan',
     'CronJobDetailsCreateRegion',
+    'CronJobDetailsCreateRuntime',
+    'CronJobDetailsOutputBuildPlan',
     'CronJobDetailsOutputEnv',
     'CronJobDetailsOutputPlan',
     'CronJobDetailsOutputRegion',
@@ -24,16 +29,21 @@ __all__ = [
     'CustomDomainVerificationStatus',
     'DeployStatus',
     'DeployTrigger',
+    'JobStatus',
+    'Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus',
     'Plan',
     'PrivateServiceDetailsCreateEnv',
     'PrivateServiceDetailsCreatePlan',
     'PrivateServiceDetailsCreatePullRequestPreviewsEnabled',
     'PrivateServiceDetailsCreateRegion',
+    'PrivateServiceDetailsCreateRuntime',
+    'PrivateServiceDetailsOutputBuildPlan',
     'PrivateServiceDetailsOutputEnv',
     'PrivateServiceDetailsOutputPlan',
     'PrivateServiceDetailsOutputPullRequestPreviewsEnabled',
     'PrivateServiceDetailsOutputRegion',
     'RegistryCredentialRegistry',
+    'RouteCreateType',
     'RouteType',
     'ServerPortProtocol',
     'ServiceAutoDeploy',
@@ -42,13 +52,17 @@ __all__ = [
     'ServiceSuspended',
     'ServiceSuspendersItem',
     'StaticSiteDetailsCreatePullRequestPreviewsEnabled',
+    'StaticSiteDetailsOutputBuildPlan',
     'StaticSiteDetailsOutputPullRequestPreviewsEnabled',
     'Status',
     'Trigger',
+    'Type',
     'WebServiceDetailsCreateEnv',
     'WebServiceDetailsCreatePlan',
     'WebServiceDetailsCreatePullRequestPreviewsEnabled',
     'WebServiceDetailsCreateRegion',
+    'WebServiceDetailsCreateRuntime',
+    'WebServiceDetailsOutputBuildPlan',
     'WebServiceDetailsOutputEnv',
     'WebServiceDetailsOutputPlan',
     'WebServiceDetailsOutputPullRequestPreviewsEnabled',
@@ -58,7 +72,7 @@ __all__ = [
 
 class BackgroundWorkerDetailsCreateEnv(str, Enum):
     """
-    Environment (runtime)
+    This field has been deprecated, runtime should be used in its place.
     """
     DOCKER = "docker"
     ELIXIR = "elixir"
@@ -71,6 +85,9 @@ class BackgroundWorkerDetailsCreateEnv(str, Enum):
 
 
 class BackgroundWorkerDetailsCreatePlan(str, Enum):
+    """
+    Defaults to "starter"
+    """
     STARTER = "starter"
     STANDARD = "standard"
     PRO = "pro"
@@ -88,15 +105,38 @@ class BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled(str, Enum):
 
 
 class BackgroundWorkerDetailsCreateRegion(str, Enum):
+    """
+    Defaults to "oregon"
+    """
     FRANKFURT = "frankfurt"
     OREGON = "oregon"
     OHIO = "ohio"
     SINGAPORE = "singapore"
+    VIRGINIA = "virginia"
+
+
+class BackgroundWorkerDetailsCreateRuntime(str, Enum):
+    """
+    Runtime
+    """
+    DOCKER = "docker"
+    ELIXIR = "elixir"
+    GO = "go"
+    NODE = "node"
+    PYTHON = "python"
+    RUBY = "ruby"
+    RUST = "rust"
+    IMAGE = "image"
+
+
+class BackgroundWorkerDetailsOutputBuildPlan(str, Enum):
+    STARTER = "starter"
+    PERFORMANCE = "performance"
 
 
 class BackgroundWorkerDetailsOutputEnv(str, Enum):
     """
-    Environment (runtime)
+    Runtime
     """
     DOCKER = "docker"
     ELIXIR = "elixir"
@@ -125,20 +165,33 @@ class BackgroundWorkerDetailsOutputPlan(str, Enum):
 
 
 class BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled(str, Enum):
+    """
+    Defaults to "no"
+    """
     YES = "yes"
     NO = "no"
 
 
 class BackgroundWorkerDetailsOutputRegion(str, Enum):
+    """
+    Defaults to "oregon"
+    """
     FRANKFURT = "frankfurt"
     OREGON = "oregon"
     OHIO = "ohio"
     SINGAPORE = "singapore"
+    VIRGINIA = "virginia"
+
+
+class CancelJobStatus(str, Enum):
+    SUCCEEDED = "succeeded"
+    FAILED = "failed"
+    CANCELED = "canceled"
 
 
 class ClearCache(str, Enum):
     """
-    Defaults to "do_not_clear"
+    If `clear`, Render clears the service's build cache before deploying. This can be useful if you're experiencing issues with your build.
     """
     CLEAR = "clear"
     DO_NOT_CLEAR = "do_not_clear"
@@ -146,7 +199,7 @@ class ClearCache(str, Enum):
 
 class CronJobDetailsCreateEnv(str, Enum):
     """
-    Environment (runtime)
+    This field has been deprecated, runtime should be used in its place.
     """
     DOCKER = "docker"
     ELIXIR = "elixir"
@@ -159,6 +212,9 @@ class CronJobDetailsCreateEnv(str, Enum):
 
 
 class CronJobDetailsCreatePlan(str, Enum):
+    """
+    Defaults to "starter"
+    """
     STARTER = "starter"
     STANDARD = "standard"
     PRO = "pro"
@@ -168,15 +224,38 @@ class CronJobDetailsCreatePlan(str, Enum):
 
 
 class CronJobDetailsCreateRegion(str, Enum):
+    """
+    Defaults to "oregon"
+    """
     FRANKFURT = "frankfurt"
     OREGON = "oregon"
     OHIO = "ohio"
     SINGAPORE = "singapore"
+    VIRGINIA = "virginia"
+
+
+class CronJobDetailsCreateRuntime(str, Enum):
+    """
+    Runtime
+    """
+    DOCKER = "docker"
+    ELIXIR = "elixir"
+    GO = "go"
+    NODE = "node"
+    PYTHON = "python"
+    RUBY = "ruby"
+    RUST = "rust"
+    IMAGE = "image"
+
+
+class CronJobDetailsOutputBuildPlan(str, Enum):
+    STARTER = "starter"
+    PERFORMANCE = "performance"
 
 
 class CronJobDetailsOutputEnv(str, Enum):
     """
-    Environment (runtime)
+    Runtime
     """
     DOCKER = "docker"
     ELIXIR = "elixir"
@@ -205,10 +284,14 @@ class CronJobDetailsOutputPlan(str, Enum):
 
 
 class CronJobDetailsOutputRegion(str, Enum):
+    """
+    Defaults to "oregon"
+    """
     FRANKFURT = "frankfurt"
     OREGON = "oregon"
     OHIO = "ohio"
     SINGAPORE = "singapore"
+    VIRGINIA = "virginia"
 
 
 class CustomDomainDomainType(str, Enum):
@@ -247,6 +330,18 @@ class DeployTrigger(str, Enum):
     SERVICE_UPDATED = "service_updated"
 
 
+class JobStatus(str, Enum):
+    SUCCEEDED = "succeeded"
+    FAILED = "failed"
+    CANCELED = "canceled"
+
+
+class Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus(str, Enum):
+    SUCCEEDED = "succeeded"
+    FAILED = "failed"
+    CANCELED = "canceled"
+
+
 class Plan(str, Enum):
     """
     The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
@@ -265,7 +360,7 @@ class Plan(str, Enum):
 
 class PrivateServiceDetailsCreateEnv(str, Enum):
     """
-    Environment (runtime)
+    This field has been deprecated, runtime should be used in its place.
     """
     DOCKER = "docker"
     ELIXIR = "elixir"
@@ -278,6 +373,9 @@ class PrivateServiceDetailsCreateEnv(str, Enum):
 
 
 class PrivateServiceDetailsCreatePlan(str, Enum):
+    """
+    Defaults to "starter"
+    """
     STARTER = "starter"
     STANDARD = "standard"
     PRO = "pro"
@@ -295,15 +393,38 @@ class PrivateServiceDetailsCreatePullRequestPreviewsEnabled(str, Enum):
 
 
 class PrivateServiceDetailsCreateRegion(str, Enum):
+    """
+    Defaults to "oregon"
+    """
     FRANKFURT = "frankfurt"
     OREGON = "oregon"
     OHIO = "ohio"
     SINGAPORE = "singapore"
+    VIRGINIA = "virginia"
+
+
+class PrivateServiceDetailsCreateRuntime(str, Enum):
+    """
+    Runtime
+    """
+    DOCKER = "docker"
+    ELIXIR = "elixir"
+    GO = "go"
+    NODE = "node"
+    PYTHON = "python"
+    RUBY = "ruby"
+    RUST = "rust"
+    IMAGE = "image"
+
+
+class PrivateServiceDetailsOutputBuildPlan(str, Enum):
+    STARTER = "starter"
+    PERFORMANCE = "performance"
 
 
 class PrivateServiceDetailsOutputEnv(str, Enum):
     """
-    Environment (runtime)
+    Runtime
     """
     DOCKER = "docker"
     ELIXIR = "elixir"
@@ -332,15 +453,22 @@ class PrivateServiceDetailsOutputPlan(str, Enum):
 
 
 class PrivateServiceDetailsOutputPullRequestPreviewsEnabled(str, Enum):
+    """
+    Defaults to "no"
+    """
     YES = "yes"
     NO = "no"
 
 
 class PrivateServiceDetailsOutputRegion(str, Enum):
+    """
+    Defaults to "oregon"
+    """
     FRANKFURT = "frankfurt"
     OREGON = "oregon"
     OHIO = "ohio"
     SINGAPORE = "singapore"
+    VIRGINIA = "virginia"
 
 
 class RegistryCredentialRegistry(str, Enum):
@@ -350,6 +478,12 @@ class RegistryCredentialRegistry(str, Enum):
     GITHUB = "GITHUB"
     GITLAB = "GITLAB"
     DOCKER = "DOCKER"
+    GOOGLE_ARTIFACT = "GOOGLE_ARTIFACT"
+
+
+class RouteCreateType(str, Enum):
+    REDIRECT = "redirect"
+    REWRITE = "rewrite"
 
 
 class RouteType(str, Enum):
@@ -368,9 +502,6 @@ class ServiceAutoDeploy(str, Enum):
 
 
 class ServiceCreateAutoDeploy(str, Enum):
-    """
-    Defaults to "yes"
-    """
     YES = "yes"
     NO = "no"
 
@@ -402,7 +533,15 @@ class StaticSiteDetailsCreatePullRequestPreviewsEnabled(str, Enum):
     NO = "no"
 
 
+class StaticSiteDetailsOutputBuildPlan(str, Enum):
+    STARTER = "starter"
+    PERFORMANCE = "performance"
+
+
 class StaticSiteDetailsOutputPullRequestPreviewsEnabled(str, Enum):
+    """
+    Defaults to "no"
+    """
     YES = "yes"
     NO = "no"
 
@@ -433,9 +572,14 @@ class Trigger(str, Enum):
     SERVICE_UPDATED = "service_updated"
 
 
+class Type(str, Enum):
+    REDIRECT = "redirect"
+    REWRITE = "rewrite"
+
+
 class WebServiceDetailsCreateEnv(str, Enum):
     """
-    Environment (runtime)
+    This field has been deprecated, runtime should be used in its place.
     """
     DOCKER = "docker"
     ELIXIR = "elixir"
@@ -448,6 +592,9 @@ class WebServiceDetailsCreateEnv(str, Enum):
 
 
 class WebServiceDetailsCreatePlan(str, Enum):
+    """
+    Defaults to "starter"
+    """
     STARTER = "starter"
     STANDARD = "standard"
     PRO = "pro"
@@ -465,15 +612,38 @@ class WebServiceDetailsCreatePullRequestPreviewsEnabled(str, Enum):
 
 
 class WebServiceDetailsCreateRegion(str, Enum):
+    """
+    Defaults to "oregon"
+    """
     FRANKFURT = "frankfurt"
     OREGON = "oregon"
     OHIO = "ohio"
     SINGAPORE = "singapore"
+    VIRGINIA = "virginia"
+
+
+class WebServiceDetailsCreateRuntime(str, Enum):
+    """
+    Runtime
+    """
+    DOCKER = "docker"
+    ELIXIR = "elixir"
+    GO = "go"
+    NODE = "node"
+    PYTHON = "python"
+    RUBY = "ruby"
+    RUST = "rust"
+    IMAGE = "image"
+
+
+class WebServiceDetailsOutputBuildPlan(str, Enum):
+    STARTER = "starter"
+    PERFORMANCE = "performance"
 
 
 class WebServiceDetailsOutputEnv(str, Enum):
     """
-    Environment (runtime)
+    Runtime
     """
     DOCKER = "docker"
     ELIXIR = "elixir"
@@ -502,12 +672,19 @@ class WebServiceDetailsOutputPlan(str, Enum):
 
 
 class WebServiceDetailsOutputPullRequestPreviewsEnabled(str, Enum):
+    """
+    Defaults to "no"
+    """
     YES = "yes"
     NO = "no"
 
 
 class WebServiceDetailsOutputRegion(str, Enum):
+    """
+    Defaults to "oregon"
+    """
     FRANKFURT = "frankfurt"
     OREGON = "oregon"
     OHIO = "ohio"
     SINGAPORE = "singapore"
+    VIRGINIA = "virginia"

@@ -14,7 +14,7 @@ export const BackgroundWorkerDetailsCreateEnv = {
 } as const;
 
 /**
- * Environment (runtime)
+ * This field has been deprecated, runtime should be used in its place.
  */
 export type BackgroundWorkerDetailsCreateEnv = (typeof BackgroundWorkerDetailsCreateEnv)[keyof typeof BackgroundWorkerDetailsCreateEnv];
 
@@ -27,6 +27,9 @@ export const BackgroundWorkerDetailsCreatePlan = {
     ProUltra: "pro_ultra",
 } as const;
 
+/**
+ * Defaults to "starter"
+ */
 export type BackgroundWorkerDetailsCreatePlan = (typeof BackgroundWorkerDetailsCreatePlan)[keyof typeof BackgroundWorkerDetailsCreatePlan];
 
 export const BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled = {
@@ -44,9 +47,36 @@ export const BackgroundWorkerDetailsCreateRegion = {
     Oregon: "oregon",
     Ohio: "ohio",
     Singapore: "singapore",
+    Virginia: "virginia",
 } as const;
 
+/**
+ * Defaults to "oregon"
+ */
 export type BackgroundWorkerDetailsCreateRegion = (typeof BackgroundWorkerDetailsCreateRegion)[keyof typeof BackgroundWorkerDetailsCreateRegion];
+
+export const BackgroundWorkerDetailsCreateRuntime = {
+    Docker: "docker",
+    Elixir: "elixir",
+    Go: "go",
+    Node: "node",
+    Python: "python",
+    Ruby: "ruby",
+    Rust: "rust",
+    Image: "image",
+} as const;
+
+/**
+ * Runtime
+ */
+export type BackgroundWorkerDetailsCreateRuntime = (typeof BackgroundWorkerDetailsCreateRuntime)[keyof typeof BackgroundWorkerDetailsCreateRuntime];
+
+export const BackgroundWorkerDetailsOutputBuildPlan = {
+    Starter: "starter",
+    Performance: "performance",
+} as const;
+
+export type BackgroundWorkerDetailsOutputBuildPlan = (typeof BackgroundWorkerDetailsOutputBuildPlan)[keyof typeof BackgroundWorkerDetailsOutputBuildPlan];
 
 export const BackgroundWorkerDetailsOutputEnv = {
     Docker: "docker",
@@ -60,7 +90,7 @@ export const BackgroundWorkerDetailsOutputEnv = {
 } as const;
 
 /**
- * Environment (runtime)
+ * Runtime
  */
 export type BackgroundWorkerDetailsOutputEnv = (typeof BackgroundWorkerDetailsOutputEnv)[keyof typeof BackgroundWorkerDetailsOutputEnv];
 
@@ -87,6 +117,9 @@ export const BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled = {
     No: "no",
 } as const;
 
+/**
+ * Defaults to "no"
+ */
 export type BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled = (typeof BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled)[keyof typeof BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled];
 
 export const BackgroundWorkerDetailsOutputRegion = {
@@ -94,9 +127,21 @@ export const BackgroundWorkerDetailsOutputRegion = {
     Oregon: "oregon",
     Ohio: "ohio",
     Singapore: "singapore",
+    Virginia: "virginia",
 } as const;
 
+/**
+ * Defaults to "oregon"
+ */
 export type BackgroundWorkerDetailsOutputRegion = (typeof BackgroundWorkerDetailsOutputRegion)[keyof typeof BackgroundWorkerDetailsOutputRegion];
+
+export const CancelJobStatus = {
+    Succeeded: "succeeded",
+    Failed: "failed",
+    Canceled: "canceled",
+} as const;
+
+export type CancelJobStatus = (typeof CancelJobStatus)[keyof typeof CancelJobStatus];
 
 export const ClearCache = {
     Clear: "clear",
@@ -104,7 +149,7 @@ export const ClearCache = {
 } as const;
 
 /**
- * Defaults to "do_not_clear"
+ * If `clear`, Render clears the service's build cache before deploying. This can be useful if you're experiencing issues with your build.
  */
 export type ClearCache = (typeof ClearCache)[keyof typeof ClearCache];
 
@@ -120,7 +165,7 @@ export const CronJobDetailsCreateEnv = {
 } as const;
 
 /**
- * Environment (runtime)
+ * This field has been deprecated, runtime should be used in its place.
  */
 export type CronJobDetailsCreateEnv = (typeof CronJobDetailsCreateEnv)[keyof typeof CronJobDetailsCreateEnv];
 
@@ -133,6 +178,9 @@ export const CronJobDetailsCreatePlan = {
     ProUltra: "pro_ultra",
 } as const;
 
+/**
+ * Defaults to "starter"
+ */
 export type CronJobDetailsCreatePlan = (typeof CronJobDetailsCreatePlan)[keyof typeof CronJobDetailsCreatePlan];
 
 export const CronJobDetailsCreateRegion = {
@@ -140,9 +188,36 @@ export const CronJobDetailsCreateRegion = {
     Oregon: "oregon",
     Ohio: "ohio",
     Singapore: "singapore",
+    Virginia: "virginia",
 } as const;
 
+/**
+ * Defaults to "oregon"
+ */
 export type CronJobDetailsCreateRegion = (typeof CronJobDetailsCreateRegion)[keyof typeof CronJobDetailsCreateRegion];
+
+export const CronJobDetailsCreateRuntime = {
+    Docker: "docker",
+    Elixir: "elixir",
+    Go: "go",
+    Node: "node",
+    Python: "python",
+    Ruby: "ruby",
+    Rust: "rust",
+    Image: "image",
+} as const;
+
+/**
+ * Runtime
+ */
+export type CronJobDetailsCreateRuntime = (typeof CronJobDetailsCreateRuntime)[keyof typeof CronJobDetailsCreateRuntime];
+
+export const CronJobDetailsOutputBuildPlan = {
+    Starter: "starter",
+    Performance: "performance",
+} as const;
+
+export type CronJobDetailsOutputBuildPlan = (typeof CronJobDetailsOutputBuildPlan)[keyof typeof CronJobDetailsOutputBuildPlan];
 
 export const CronJobDetailsOutputEnv = {
     Docker: "docker",
@@ -156,7 +231,7 @@ export const CronJobDetailsOutputEnv = {
 } as const;
 
 /**
- * Environment (runtime)
+ * Runtime
  */
 export type CronJobDetailsOutputEnv = (typeof CronJobDetailsOutputEnv)[keyof typeof CronJobDetailsOutputEnv];
 
@@ -183,8 +258,12 @@ export const CronJobDetailsOutputRegion = {
     Oregon: "oregon",
     Ohio: "ohio",
     Singapore: "singapore",
+    Virginia: "virginia",
 } as const;
 
+/**
+ * Defaults to "oregon"
+ */
 export type CronJobDetailsOutputRegion = (typeof CronJobDetailsOutputRegion)[keyof typeof CronJobDetailsOutputRegion];
 
 export const CustomDomainDomainType = {
@@ -231,6 +310,22 @@ export const DeployTrigger = {
 
 export type DeployTrigger = (typeof DeployTrigger)[keyof typeof DeployTrigger];
 
+export const JobStatus = {
+    Succeeded: "succeeded",
+    Failed: "failed",
+    Canceled: "canceled",
+} as const;
+
+export type JobStatus = (typeof JobStatus)[keyof typeof JobStatus];
+
+export const Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus = {
+    Succeeded: "succeeded",
+    Failed: "failed",
+    Canceled: "canceled",
+} as const;
+
+export type Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus = (typeof Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus)[keyof typeof Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus];
+
 export const Plan = {
     Starter: "starter",
     StarterPlus: "starter_plus",
@@ -261,7 +356,7 @@ export const PrivateServiceDetailsCreateEnv = {
 } as const;
 
 /**
- * Environment (runtime)
+ * This field has been deprecated, runtime should be used in its place.
  */
 export type PrivateServiceDetailsCreateEnv = (typeof PrivateServiceDetailsCreateEnv)[keyof typeof PrivateServiceDetailsCreateEnv];
 
@@ -274,6 +369,9 @@ export const PrivateServiceDetailsCreatePlan = {
     ProUltra: "pro_ultra",
 } as const;
 
+/**
+ * Defaults to "starter"
+ */
 export type PrivateServiceDetailsCreatePlan = (typeof PrivateServiceDetailsCreatePlan)[keyof typeof PrivateServiceDetailsCreatePlan];
 
 export const PrivateServiceDetailsCreatePullRequestPreviewsEnabled = {
@@ -291,9 +389,36 @@ export const PrivateServiceDetailsCreateRegion = {
     Oregon: "oregon",
     Ohio: "ohio",
     Singapore: "singapore",
+    Virginia: "virginia",
 } as const;
 
+/**
+ * Defaults to "oregon"
+ */
 export type PrivateServiceDetailsCreateRegion = (typeof PrivateServiceDetailsCreateRegion)[keyof typeof PrivateServiceDetailsCreateRegion];
+
+export const PrivateServiceDetailsCreateRuntime = {
+    Docker: "docker",
+    Elixir: "elixir",
+    Go: "go",
+    Node: "node",
+    Python: "python",
+    Ruby: "ruby",
+    Rust: "rust",
+    Image: "image",
+} as const;
+
+/**
+ * Runtime
+ */
+export type PrivateServiceDetailsCreateRuntime = (typeof PrivateServiceDetailsCreateRuntime)[keyof typeof PrivateServiceDetailsCreateRuntime];
+
+export const PrivateServiceDetailsOutputBuildPlan = {
+    Starter: "starter",
+    Performance: "performance",
+} as const;
+
+export type PrivateServiceDetailsOutputBuildPlan = (typeof PrivateServiceDetailsOutputBuildPlan)[keyof typeof PrivateServiceDetailsOutputBuildPlan];
 
 export const PrivateServiceDetailsOutputEnv = {
     Docker: "docker",
@@ -307,7 +432,7 @@ export const PrivateServiceDetailsOutputEnv = {
 } as const;
 
 /**
- * Environment (runtime)
+ * Runtime
  */
 export type PrivateServiceDetailsOutputEnv = (typeof PrivateServiceDetailsOutputEnv)[keyof typeof PrivateServiceDetailsOutputEnv];
 
@@ -334,6 +459,9 @@ export const PrivateServiceDetailsOutputPullRequestPreviewsEnabled = {
     No: "no",
 } as const;
 
+/**
+ * Defaults to "no"
+ */
 export type PrivateServiceDetailsOutputPullRequestPreviewsEnabled = (typeof PrivateServiceDetailsOutputPullRequestPreviewsEnabled)[keyof typeof PrivateServiceDetailsOutputPullRequestPreviewsEnabled];
 
 export const PrivateServiceDetailsOutputRegion = {
@@ -341,20 +469,32 @@ export const PrivateServiceDetailsOutputRegion = {
     Oregon: "oregon",
     Ohio: "ohio",
     Singapore: "singapore",
+    Virginia: "virginia",
 } as const;
 
+/**
+ * Defaults to "oregon"
+ */
 export type PrivateServiceDetailsOutputRegion = (typeof PrivateServiceDetailsOutputRegion)[keyof typeof PrivateServiceDetailsOutputRegion];
 
 export const RegistryCredentialRegistry = {
     Github: "GITHUB",
     Gitlab: "GITLAB",
     Docker: "DOCKER",
+    GoogleArtifact: "GOOGLE_ARTIFACT",
 } as const;
 
 /**
  * The registry to use this credential with
  */
 export type RegistryCredentialRegistry = (typeof RegistryCredentialRegistry)[keyof typeof RegistryCredentialRegistry];
+
+export const RouteCreateType = {
+    Redirect: "redirect",
+    Rewrite: "rewrite",
+} as const;
+
+export type RouteCreateType = (typeof RouteCreateType)[keyof typeof RouteCreateType];
 
 export const RouteType = {
     Redirect: "redirect",
@@ -382,9 +522,6 @@ export const ServiceCreateAutoDeploy = {
     No: "no",
 } as const;
 
-/**
- * Defaults to "yes"
- */
 export type ServiceCreateAutoDeploy = (typeof ServiceCreateAutoDeploy)[keyof typeof ServiceCreateAutoDeploy];
 
 export const ServiceNotifyOnFail = {
@@ -422,11 +559,21 @@ export const StaticSiteDetailsCreatePullRequestPreviewsEnabled = {
  */
 export type StaticSiteDetailsCreatePullRequestPreviewsEnabled = (typeof StaticSiteDetailsCreatePullRequestPreviewsEnabled)[keyof typeof StaticSiteDetailsCreatePullRequestPreviewsEnabled];
 
+export const StaticSiteDetailsOutputBuildPlan = {
+    Starter: "starter",
+    Performance: "performance",
+} as const;
+
+export type StaticSiteDetailsOutputBuildPlan = (typeof StaticSiteDetailsOutputBuildPlan)[keyof typeof StaticSiteDetailsOutputBuildPlan];
+
 export const StaticSiteDetailsOutputPullRequestPreviewsEnabled = {
     Yes: "yes",
     No: "no",
 } as const;
 
+/**
+ * Defaults to "no"
+ */
 export type StaticSiteDetailsOutputPullRequestPreviewsEnabled = (typeof StaticSiteDetailsOutputPullRequestPreviewsEnabled)[keyof typeof StaticSiteDetailsOutputPullRequestPreviewsEnabled];
 
 export const Status = {
@@ -459,6 +606,13 @@ export const Trigger = {
 
 export type Trigger = (typeof Trigger)[keyof typeof Trigger];
 
+export const Type = {
+    Redirect: "redirect",
+    Rewrite: "rewrite",
+} as const;
+
+export type Type = (typeof Type)[keyof typeof Type];
+
 export const WebServiceDetailsCreateEnv = {
     Docker: "docker",
     Elixir: "elixir",
@@ -471,7 +625,7 @@ export const WebServiceDetailsCreateEnv = {
 } as const;
 
 /**
- * Environment (runtime)
+ * This field has been deprecated, runtime should be used in its place.
  */
 export type WebServiceDetailsCreateEnv = (typeof WebServiceDetailsCreateEnv)[keyof typeof WebServiceDetailsCreateEnv];
 
@@ -484,6 +638,9 @@ export const WebServiceDetailsCreatePlan = {
     ProUltra: "pro_ultra",
 } as const;
 
+/**
+ * Defaults to "starter"
+ */
 export type WebServiceDetailsCreatePlan = (typeof WebServiceDetailsCreatePlan)[keyof typeof WebServiceDetailsCreatePlan];
 
 export const WebServiceDetailsCreatePullRequestPreviewsEnabled = {
@@ -501,9 +658,36 @@ export const WebServiceDetailsCreateRegion = {
     Oregon: "oregon",
     Ohio: "ohio",
     Singapore: "singapore",
+    Virginia: "virginia",
 } as const;
 
+/**
+ * Defaults to "oregon"
+ */
 export type WebServiceDetailsCreateRegion = (typeof WebServiceDetailsCreateRegion)[keyof typeof WebServiceDetailsCreateRegion];
+
+export const WebServiceDetailsCreateRuntime = {
+    Docker: "docker",
+    Elixir: "elixir",
+    Go: "go",
+    Node: "node",
+    Python: "python",
+    Ruby: "ruby",
+    Rust: "rust",
+    Image: "image",
+} as const;
+
+/**
+ * Runtime
+ */
+export type WebServiceDetailsCreateRuntime = (typeof WebServiceDetailsCreateRuntime)[keyof typeof WebServiceDetailsCreateRuntime];
+
+export const WebServiceDetailsOutputBuildPlan = {
+    Starter: "starter",
+    Performance: "performance",
+} as const;
+
+export type WebServiceDetailsOutputBuildPlan = (typeof WebServiceDetailsOutputBuildPlan)[keyof typeof WebServiceDetailsOutputBuildPlan];
 
 export const WebServiceDetailsOutputEnv = {
     Docker: "docker",
@@ -517,7 +701,7 @@ export const WebServiceDetailsOutputEnv = {
 } as const;
 
 /**
- * Environment (runtime)
+ * Runtime
  */
 export type WebServiceDetailsOutputEnv = (typeof WebServiceDetailsOutputEnv)[keyof typeof WebServiceDetailsOutputEnv];
 
@@ -544,6 +728,9 @@ export const WebServiceDetailsOutputPullRequestPreviewsEnabled = {
     No: "no",
 } as const;
 
+/**
+ * Defaults to "no"
+ */
 export type WebServiceDetailsOutputPullRequestPreviewsEnabled = (typeof WebServiceDetailsOutputPullRequestPreviewsEnabled)[keyof typeof WebServiceDetailsOutputPullRequestPreviewsEnabled];
 
 export const WebServiceDetailsOutputRegion = {
@@ -551,6 +738,10 @@ export const WebServiceDetailsOutputRegion = {
     Oregon: "oregon",
     Ohio: "ohio",
     Singapore: "singapore",
+    Virginia: "virginia",
 } as const;
 
+/**
+ * Defaults to "oregon"
+ */
 export type WebServiceDetailsOutputRegion = (typeof WebServiceDetailsOutputRegion)[keyof typeof WebServiceDetailsOutputRegion];

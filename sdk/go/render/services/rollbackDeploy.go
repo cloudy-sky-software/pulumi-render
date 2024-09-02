@@ -17,7 +17,7 @@ type RollbackDeploy struct {
 
 	Commit    CommitPropertiesPtrOutput `pulumi:"commit"`
 	CreatedAt pulumi.StringPtrOutput    `pulumi:"createdAt"`
-	// The ID of the deploy to rollback to
+	// The ID of the deploy to roll back to
 	DeployId   pulumi.StringOutput    `pulumi:"deployId"`
 	FinishedAt pulumi.StringPtrOutput `pulumi:"finishedAt"`
 	// Image information used when creating the deploy. Not present for Git-backed deploys
@@ -70,7 +70,7 @@ func (RollbackDeployState) ElementType() reflect.Type {
 }
 
 type rollbackDeployArgs struct {
-	// The ID of the deploy to rollback to
+	// The ID of the deploy to roll back to
 	DeployId string `pulumi:"deployId"`
 	// The ID of the service
 	ServiceId *string `pulumi:"serviceId"`
@@ -78,7 +78,7 @@ type rollbackDeployArgs struct {
 
 // The set of arguments for constructing a RollbackDeploy resource.
 type RollbackDeployArgs struct {
-	// The ID of the deploy to rollback to
+	// The ID of the deploy to roll back to
 	DeployId pulumi.StringInput
 	// The ID of the service
 	ServiceId pulumi.StringPtrInput
@@ -129,7 +129,7 @@ func (o RollbackDeployOutput) CreatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RollbackDeploy) pulumi.StringPtrOutput { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
 
-// The ID of the deploy to rollback to
+// The ID of the deploy to roll back to
 func (o RollbackDeployOutput) DeployId() pulumi.StringOutput {
 	return o.ApplyT(func(v *RollbackDeploy) pulumi.StringOutput { return v.DeployId }).(pulumi.StringOutput)
 }

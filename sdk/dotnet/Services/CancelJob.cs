@@ -31,7 +31,7 @@ namespace Pulumi.Render.Services
         public Output<string?> StartedAt { get; private set; } = null!;
 
         [Output("status")]
-        public Output<string?> Status { get; private set; } = null!;
+        public Output<Pulumi.Render.Services.CancelJobStatus?> Status { get; private set; } = null!;
 
 
         /// <summary>

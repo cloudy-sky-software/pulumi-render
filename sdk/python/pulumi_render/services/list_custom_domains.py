@@ -27,7 +27,7 @@ class ListCustomDomainsResult:
 
     @property
     @pulumi.getter
-    def items(self) -> Sequence['outputs.ListCustomDomainsItemProperties']:
+    def items(self) -> Sequence['outputs.CustomDomainWithCursor']:
         return pulumi.get(self, "items")
 
 

@@ -6,14 +6,19 @@ export const Registry = {
     Github: "GITHUB",
     Gitlab: "GITLAB",
     Docker: "DOCKER",
+    GoogleArtifact: "GOOGLE_ARTIFACT",
 } as const;
 
+/**
+ * The registry to use this credential with
+ */
 export type Registry = (typeof Registry)[keyof typeof Registry];
 
 export const RegistryCredentialRegistry = {
     Github: "GITHUB",
     Gitlab: "GITLAB",
     Docker: "DOCKER",
+    GoogleArtifact: "GOOGLE_ARTIFACT",
 } as const;
 
 /**

@@ -2,6 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export class Job extends pulumi.CustomResource {
@@ -37,7 +40,7 @@ export class Job extends pulumi.CustomResource {
     public readonly serviceId!: pulumi.Output<string>;
     public readonly startCommand!: pulumi.Output<string>;
     public /*out*/ readonly startedAt!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly status!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly status!: pulumi.Output<enums.services.JobStatus | undefined>;
 
     /**
      * Create a Job resource with the given unique name, arguments, and options.

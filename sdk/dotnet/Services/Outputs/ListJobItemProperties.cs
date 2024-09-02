@@ -14,13 +14,13 @@ namespace Pulumi.Render.Services.Outputs
     public sealed class ListJobItemProperties
     {
         public readonly string? Cursor;
-        public readonly Outputs.Job? Job;
+        public readonly Outputs.Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema? Job;
 
         [OutputConstructor]
         private ListJobItemProperties(
             string? cursor,
 
-            Outputs.Job? job)
+            Outputs.Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema? job)
         {
             Cursor = cursor;
             Job = job;

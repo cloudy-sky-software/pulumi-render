@@ -11,9 +11,13 @@ __all__ = [
 
 
 class Registry(str, Enum):
+    """
+    The registry to use this credential with
+    """
     GITHUB = "GITHUB"
     GITLAB = "GITLAB"
     DOCKER = "DOCKER"
+    GOOGLE_ARTIFACT = "GOOGLE_ARTIFACT"
 
 
 class RegistryCredentialRegistry(str, Enum):
@@ -23,3 +27,4 @@ class RegistryCredentialRegistry(str, Enum):
     GITHUB = "GITHUB"
     GITLAB = "GITLAB"
     DOCKER = "DOCKER"
+    GOOGLE_ARTIFACT = "GOOGLE_ARTIFACT"

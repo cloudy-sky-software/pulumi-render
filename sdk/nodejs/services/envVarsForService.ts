@@ -34,7 +34,7 @@ export class EnvVarsForService extends pulumi.CustomResource {
         return obj['__pulumiType'] === EnvVarsForService.__pulumiType;
     }
 
-    public readonly envVars!: pulumi.Output<(outputs.services.EnvVarKeyValue | outputs.services.EnvVarKeyGenerateValue)[] | undefined>;
+    public readonly envVars!: pulumi.Output<outputs.services.EnvVarInput[] | undefined>;
 
     /**
      * Create a EnvVarsForService resource with the given unique name, arguments, and options.
@@ -61,7 +61,7 @@ export class EnvVarsForService extends pulumi.CustomResource {
  * The set of arguments for constructing a EnvVarsForService resource.
  */
 export interface EnvVarsForServiceArgs {
-    envVars?: pulumi.Input<pulumi.Input<inputs.services.EnvVarKeyValueArgs | inputs.services.EnvVarKeyGenerateValueArgs>[]>;
+    envVars?: pulumi.Input<pulumi.Input<inputs.services.EnvVarInputArgs>[]>;
     /**
      * The ID of the service
      */

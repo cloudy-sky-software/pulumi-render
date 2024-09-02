@@ -8,7 +8,7 @@ using Pulumi;
 namespace Pulumi.Render.Services
 {
     /// <summary>
-    /// Environment (runtime)
+    /// This field has been deprecated, runtime should be used in its place.
     /// </summary>
     [EnumType]
     public readonly struct BackgroundWorkerDetailsCreateEnv : IEquatable<BackgroundWorkerDetailsCreateEnv>
@@ -44,6 +44,9 @@ namespace Pulumi.Render.Services
         public override string ToString() => _value;
     }
 
+    /// <summary>
+    /// Defaults to "starter"
+    /// </summary>
     [EnumType]
     public readonly struct BackgroundWorkerDetailsCreatePlan : IEquatable<BackgroundWorkerDetailsCreatePlan>
     {
@@ -107,6 +110,9 @@ namespace Pulumi.Render.Services
         public override string ToString() => _value;
     }
 
+    /// <summary>
+    /// Defaults to "oregon"
+    /// </summary>
     [EnumType]
     public readonly struct BackgroundWorkerDetailsCreateRegion : IEquatable<BackgroundWorkerDetailsCreateRegion>
     {
@@ -121,6 +127,7 @@ namespace Pulumi.Render.Services
         public static BackgroundWorkerDetailsCreateRegion Oregon { get; } = new BackgroundWorkerDetailsCreateRegion("oregon");
         public static BackgroundWorkerDetailsCreateRegion Ohio { get; } = new BackgroundWorkerDetailsCreateRegion("ohio");
         public static BackgroundWorkerDetailsCreateRegion Singapore { get; } = new BackgroundWorkerDetailsCreateRegion("singapore");
+        public static BackgroundWorkerDetailsCreateRegion Virginia { get; } = new BackgroundWorkerDetailsCreateRegion("virginia");
 
         public static bool operator ==(BackgroundWorkerDetailsCreateRegion left, BackgroundWorkerDetailsCreateRegion right) => left.Equals(right);
         public static bool operator !=(BackgroundWorkerDetailsCreateRegion left, BackgroundWorkerDetailsCreateRegion right) => !left.Equals(right);
@@ -138,7 +145,72 @@ namespace Pulumi.Render.Services
     }
 
     /// <summary>
-    /// Environment (runtime)
+    /// Runtime
+    /// </summary>
+    [EnumType]
+    public readonly struct BackgroundWorkerDetailsCreateRuntime : IEquatable<BackgroundWorkerDetailsCreateRuntime>
+    {
+        private readonly string _value;
+
+        private BackgroundWorkerDetailsCreateRuntime(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static BackgroundWorkerDetailsCreateRuntime Docker { get; } = new BackgroundWorkerDetailsCreateRuntime("docker");
+        public static BackgroundWorkerDetailsCreateRuntime Elixir { get; } = new BackgroundWorkerDetailsCreateRuntime("elixir");
+        public static BackgroundWorkerDetailsCreateRuntime Go { get; } = new BackgroundWorkerDetailsCreateRuntime("go");
+        public static BackgroundWorkerDetailsCreateRuntime Node { get; } = new BackgroundWorkerDetailsCreateRuntime("node");
+        public static BackgroundWorkerDetailsCreateRuntime Python { get; } = new BackgroundWorkerDetailsCreateRuntime("python");
+        public static BackgroundWorkerDetailsCreateRuntime Ruby { get; } = new BackgroundWorkerDetailsCreateRuntime("ruby");
+        public static BackgroundWorkerDetailsCreateRuntime Rust { get; } = new BackgroundWorkerDetailsCreateRuntime("rust");
+        public static BackgroundWorkerDetailsCreateRuntime Image { get; } = new BackgroundWorkerDetailsCreateRuntime("image");
+
+        public static bool operator ==(BackgroundWorkerDetailsCreateRuntime left, BackgroundWorkerDetailsCreateRuntime right) => left.Equals(right);
+        public static bool operator !=(BackgroundWorkerDetailsCreateRuntime left, BackgroundWorkerDetailsCreateRuntime right) => !left.Equals(right);
+
+        public static explicit operator string(BackgroundWorkerDetailsCreateRuntime value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is BackgroundWorkerDetailsCreateRuntime other && Equals(other);
+        public bool Equals(BackgroundWorkerDetailsCreateRuntime other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    [EnumType]
+    public readonly struct BackgroundWorkerDetailsOutputBuildPlan : IEquatable<BackgroundWorkerDetailsOutputBuildPlan>
+    {
+        private readonly string _value;
+
+        private BackgroundWorkerDetailsOutputBuildPlan(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static BackgroundWorkerDetailsOutputBuildPlan Starter { get; } = new BackgroundWorkerDetailsOutputBuildPlan("starter");
+        public static BackgroundWorkerDetailsOutputBuildPlan Performance { get; } = new BackgroundWorkerDetailsOutputBuildPlan("performance");
+
+        public static bool operator ==(BackgroundWorkerDetailsOutputBuildPlan left, BackgroundWorkerDetailsOutputBuildPlan right) => left.Equals(right);
+        public static bool operator !=(BackgroundWorkerDetailsOutputBuildPlan left, BackgroundWorkerDetailsOutputBuildPlan right) => !left.Equals(right);
+
+        public static explicit operator string(BackgroundWorkerDetailsOutputBuildPlan value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is BackgroundWorkerDetailsOutputBuildPlan other && Equals(other);
+        public bool Equals(BackgroundWorkerDetailsOutputBuildPlan other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    /// <summary>
+    /// Runtime
     /// </summary>
     [EnumType]
     public readonly struct BackgroundWorkerDetailsOutputEnv : IEquatable<BackgroundWorkerDetailsOutputEnv>
@@ -213,6 +285,9 @@ namespace Pulumi.Render.Services
         public override string ToString() => _value;
     }
 
+    /// <summary>
+    /// Defaults to "no"
+    /// </summary>
     [EnumType]
     public readonly struct BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled : IEquatable<BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled>
     {
@@ -241,6 +316,9 @@ namespace Pulumi.Render.Services
         public override string ToString() => _value;
     }
 
+    /// <summary>
+    /// Defaults to "oregon"
+    /// </summary>
     [EnumType]
     public readonly struct BackgroundWorkerDetailsOutputRegion : IEquatable<BackgroundWorkerDetailsOutputRegion>
     {
@@ -255,6 +333,7 @@ namespace Pulumi.Render.Services
         public static BackgroundWorkerDetailsOutputRegion Oregon { get; } = new BackgroundWorkerDetailsOutputRegion("oregon");
         public static BackgroundWorkerDetailsOutputRegion Ohio { get; } = new BackgroundWorkerDetailsOutputRegion("ohio");
         public static BackgroundWorkerDetailsOutputRegion Singapore { get; } = new BackgroundWorkerDetailsOutputRegion("singapore");
+        public static BackgroundWorkerDetailsOutputRegion Virginia { get; } = new BackgroundWorkerDetailsOutputRegion("virginia");
 
         public static bool operator ==(BackgroundWorkerDetailsOutputRegion left, BackgroundWorkerDetailsOutputRegion right) => left.Equals(right);
         public static bool operator !=(BackgroundWorkerDetailsOutputRegion left, BackgroundWorkerDetailsOutputRegion right) => !left.Equals(right);
@@ -271,8 +350,37 @@ namespace Pulumi.Render.Services
         public override string ToString() => _value;
     }
 
+    [EnumType]
+    public readonly struct CancelJobStatus : IEquatable<CancelJobStatus>
+    {
+        private readonly string _value;
+
+        private CancelJobStatus(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static CancelJobStatus Succeeded { get; } = new CancelJobStatus("succeeded");
+        public static CancelJobStatus Failed { get; } = new CancelJobStatus("failed");
+        public static CancelJobStatus Canceled { get; } = new CancelJobStatus("canceled");
+
+        public static bool operator ==(CancelJobStatus left, CancelJobStatus right) => left.Equals(right);
+        public static bool operator !=(CancelJobStatus left, CancelJobStatus right) => !left.Equals(right);
+
+        public static explicit operator string(CancelJobStatus value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is CancelJobStatus other && Equals(other);
+        public bool Equals(CancelJobStatus other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
     /// <summary>
-    /// Defaults to "do_not_clear"
+    /// If `clear`, Render clears the service's build cache before deploying. This can be useful if you're experiencing issues with your build.
     /// </summary>
     [EnumType]
     public readonly struct ClearCache : IEquatable<ClearCache>
@@ -303,7 +411,7 @@ namespace Pulumi.Render.Services
     }
 
     /// <summary>
-    /// Environment (runtime)
+    /// This field has been deprecated, runtime should be used in its place.
     /// </summary>
     [EnumType]
     public readonly struct CronJobDetailsCreateEnv : IEquatable<CronJobDetailsCreateEnv>
@@ -339,6 +447,9 @@ namespace Pulumi.Render.Services
         public override string ToString() => _value;
     }
 
+    /// <summary>
+    /// Defaults to "starter"
+    /// </summary>
     [EnumType]
     public readonly struct CronJobDetailsCreatePlan : IEquatable<CronJobDetailsCreatePlan>
     {
@@ -371,6 +482,9 @@ namespace Pulumi.Render.Services
         public override string ToString() => _value;
     }
 
+    /// <summary>
+    /// Defaults to "oregon"
+    /// </summary>
     [EnumType]
     public readonly struct CronJobDetailsCreateRegion : IEquatable<CronJobDetailsCreateRegion>
     {
@@ -385,6 +499,7 @@ namespace Pulumi.Render.Services
         public static CronJobDetailsCreateRegion Oregon { get; } = new CronJobDetailsCreateRegion("oregon");
         public static CronJobDetailsCreateRegion Ohio { get; } = new CronJobDetailsCreateRegion("ohio");
         public static CronJobDetailsCreateRegion Singapore { get; } = new CronJobDetailsCreateRegion("singapore");
+        public static CronJobDetailsCreateRegion Virginia { get; } = new CronJobDetailsCreateRegion("virginia");
 
         public static bool operator ==(CronJobDetailsCreateRegion left, CronJobDetailsCreateRegion right) => left.Equals(right);
         public static bool operator !=(CronJobDetailsCreateRegion left, CronJobDetailsCreateRegion right) => !left.Equals(right);
@@ -402,7 +517,72 @@ namespace Pulumi.Render.Services
     }
 
     /// <summary>
-    /// Environment (runtime)
+    /// Runtime
+    /// </summary>
+    [EnumType]
+    public readonly struct CronJobDetailsCreateRuntime : IEquatable<CronJobDetailsCreateRuntime>
+    {
+        private readonly string _value;
+
+        private CronJobDetailsCreateRuntime(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static CronJobDetailsCreateRuntime Docker { get; } = new CronJobDetailsCreateRuntime("docker");
+        public static CronJobDetailsCreateRuntime Elixir { get; } = new CronJobDetailsCreateRuntime("elixir");
+        public static CronJobDetailsCreateRuntime Go { get; } = new CronJobDetailsCreateRuntime("go");
+        public static CronJobDetailsCreateRuntime Node { get; } = new CronJobDetailsCreateRuntime("node");
+        public static CronJobDetailsCreateRuntime Python { get; } = new CronJobDetailsCreateRuntime("python");
+        public static CronJobDetailsCreateRuntime Ruby { get; } = new CronJobDetailsCreateRuntime("ruby");
+        public static CronJobDetailsCreateRuntime Rust { get; } = new CronJobDetailsCreateRuntime("rust");
+        public static CronJobDetailsCreateRuntime Image { get; } = new CronJobDetailsCreateRuntime("image");
+
+        public static bool operator ==(CronJobDetailsCreateRuntime left, CronJobDetailsCreateRuntime right) => left.Equals(right);
+        public static bool operator !=(CronJobDetailsCreateRuntime left, CronJobDetailsCreateRuntime right) => !left.Equals(right);
+
+        public static explicit operator string(CronJobDetailsCreateRuntime value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is CronJobDetailsCreateRuntime other && Equals(other);
+        public bool Equals(CronJobDetailsCreateRuntime other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    [EnumType]
+    public readonly struct CronJobDetailsOutputBuildPlan : IEquatable<CronJobDetailsOutputBuildPlan>
+    {
+        private readonly string _value;
+
+        private CronJobDetailsOutputBuildPlan(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static CronJobDetailsOutputBuildPlan Starter { get; } = new CronJobDetailsOutputBuildPlan("starter");
+        public static CronJobDetailsOutputBuildPlan Performance { get; } = new CronJobDetailsOutputBuildPlan("performance");
+
+        public static bool operator ==(CronJobDetailsOutputBuildPlan left, CronJobDetailsOutputBuildPlan right) => left.Equals(right);
+        public static bool operator !=(CronJobDetailsOutputBuildPlan left, CronJobDetailsOutputBuildPlan right) => !left.Equals(right);
+
+        public static explicit operator string(CronJobDetailsOutputBuildPlan value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is CronJobDetailsOutputBuildPlan other && Equals(other);
+        public bool Equals(CronJobDetailsOutputBuildPlan other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    /// <summary>
+    /// Runtime
     /// </summary>
     [EnumType]
     public readonly struct CronJobDetailsOutputEnv : IEquatable<CronJobDetailsOutputEnv>
@@ -477,6 +657,9 @@ namespace Pulumi.Render.Services
         public override string ToString() => _value;
     }
 
+    /// <summary>
+    /// Defaults to "oregon"
+    /// </summary>
     [EnumType]
     public readonly struct CronJobDetailsOutputRegion : IEquatable<CronJobDetailsOutputRegion>
     {
@@ -491,6 +674,7 @@ namespace Pulumi.Render.Services
         public static CronJobDetailsOutputRegion Oregon { get; } = new CronJobDetailsOutputRegion("oregon");
         public static CronJobDetailsOutputRegion Ohio { get; } = new CronJobDetailsOutputRegion("ohio");
         public static CronJobDetailsOutputRegion Singapore { get; } = new CronJobDetailsOutputRegion("singapore");
+        public static CronJobDetailsOutputRegion Virginia { get; } = new CronJobDetailsOutputRegion("virginia");
 
         public static bool operator ==(CronJobDetailsOutputRegion left, CronJobDetailsOutputRegion right) => left.Equals(right);
         public static bool operator !=(CronJobDetailsOutputRegion left, CronJobDetailsOutputRegion right) => !left.Equals(right);
@@ -635,6 +819,64 @@ namespace Pulumi.Render.Services
         public override string ToString() => _value;
     }
 
+    [EnumType]
+    public readonly struct JobStatus : IEquatable<JobStatus>
+    {
+        private readonly string _value;
+
+        private JobStatus(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static JobStatus Succeeded { get; } = new JobStatus("succeeded");
+        public static JobStatus Failed { get; } = new JobStatus("failed");
+        public static JobStatus Canceled { get; } = new JobStatus("canceled");
+
+        public static bool operator ==(JobStatus left, JobStatus right) => left.Equals(right);
+        public static bool operator !=(JobStatus left, JobStatus right) => !left.Equals(right);
+
+        public static explicit operator string(JobStatus value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is JobStatus other && Equals(other);
+        public bool Equals(JobStatus other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    [EnumType]
+    public readonly struct Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus : IEquatable<Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus>
+    {
+        private readonly string _value;
+
+        private Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus Succeeded { get; } = new Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus("succeeded");
+        public static Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus Failed { get; } = new Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus("failed");
+        public static Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus Canceled { get; } = new Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus("canceled");
+
+        public static bool operator ==(Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus left, Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus right) => left.Equals(right);
+        public static bool operator !=(Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus left, Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus right) => !left.Equals(right);
+
+        public static explicit operator string(Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus other && Equals(other);
+        public bool Equals(Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
     /// <summary>
     /// The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
     /// </summary>
@@ -675,7 +917,7 @@ namespace Pulumi.Render.Services
     }
 
     /// <summary>
-    /// Environment (runtime)
+    /// This field has been deprecated, runtime should be used in its place.
     /// </summary>
     [EnumType]
     public readonly struct PrivateServiceDetailsCreateEnv : IEquatable<PrivateServiceDetailsCreateEnv>
@@ -711,6 +953,9 @@ namespace Pulumi.Render.Services
         public override string ToString() => _value;
     }
 
+    /// <summary>
+    /// Defaults to "starter"
+    /// </summary>
     [EnumType]
     public readonly struct PrivateServiceDetailsCreatePlan : IEquatable<PrivateServiceDetailsCreatePlan>
     {
@@ -774,6 +1019,9 @@ namespace Pulumi.Render.Services
         public override string ToString() => _value;
     }
 
+    /// <summary>
+    /// Defaults to "oregon"
+    /// </summary>
     [EnumType]
     public readonly struct PrivateServiceDetailsCreateRegion : IEquatable<PrivateServiceDetailsCreateRegion>
     {
@@ -788,6 +1036,7 @@ namespace Pulumi.Render.Services
         public static PrivateServiceDetailsCreateRegion Oregon { get; } = new PrivateServiceDetailsCreateRegion("oregon");
         public static PrivateServiceDetailsCreateRegion Ohio { get; } = new PrivateServiceDetailsCreateRegion("ohio");
         public static PrivateServiceDetailsCreateRegion Singapore { get; } = new PrivateServiceDetailsCreateRegion("singapore");
+        public static PrivateServiceDetailsCreateRegion Virginia { get; } = new PrivateServiceDetailsCreateRegion("virginia");
 
         public static bool operator ==(PrivateServiceDetailsCreateRegion left, PrivateServiceDetailsCreateRegion right) => left.Equals(right);
         public static bool operator !=(PrivateServiceDetailsCreateRegion left, PrivateServiceDetailsCreateRegion right) => !left.Equals(right);
@@ -805,7 +1054,72 @@ namespace Pulumi.Render.Services
     }
 
     /// <summary>
-    /// Environment (runtime)
+    /// Runtime
+    /// </summary>
+    [EnumType]
+    public readonly struct PrivateServiceDetailsCreateRuntime : IEquatable<PrivateServiceDetailsCreateRuntime>
+    {
+        private readonly string _value;
+
+        private PrivateServiceDetailsCreateRuntime(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static PrivateServiceDetailsCreateRuntime Docker { get; } = new PrivateServiceDetailsCreateRuntime("docker");
+        public static PrivateServiceDetailsCreateRuntime Elixir { get; } = new PrivateServiceDetailsCreateRuntime("elixir");
+        public static PrivateServiceDetailsCreateRuntime Go { get; } = new PrivateServiceDetailsCreateRuntime("go");
+        public static PrivateServiceDetailsCreateRuntime Node { get; } = new PrivateServiceDetailsCreateRuntime("node");
+        public static PrivateServiceDetailsCreateRuntime Python { get; } = new PrivateServiceDetailsCreateRuntime("python");
+        public static PrivateServiceDetailsCreateRuntime Ruby { get; } = new PrivateServiceDetailsCreateRuntime("ruby");
+        public static PrivateServiceDetailsCreateRuntime Rust { get; } = new PrivateServiceDetailsCreateRuntime("rust");
+        public static PrivateServiceDetailsCreateRuntime Image { get; } = new PrivateServiceDetailsCreateRuntime("image");
+
+        public static bool operator ==(PrivateServiceDetailsCreateRuntime left, PrivateServiceDetailsCreateRuntime right) => left.Equals(right);
+        public static bool operator !=(PrivateServiceDetailsCreateRuntime left, PrivateServiceDetailsCreateRuntime right) => !left.Equals(right);
+
+        public static explicit operator string(PrivateServiceDetailsCreateRuntime value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is PrivateServiceDetailsCreateRuntime other && Equals(other);
+        public bool Equals(PrivateServiceDetailsCreateRuntime other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    [EnumType]
+    public readonly struct PrivateServiceDetailsOutputBuildPlan : IEquatable<PrivateServiceDetailsOutputBuildPlan>
+    {
+        private readonly string _value;
+
+        private PrivateServiceDetailsOutputBuildPlan(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static PrivateServiceDetailsOutputBuildPlan Starter { get; } = new PrivateServiceDetailsOutputBuildPlan("starter");
+        public static PrivateServiceDetailsOutputBuildPlan Performance { get; } = new PrivateServiceDetailsOutputBuildPlan("performance");
+
+        public static bool operator ==(PrivateServiceDetailsOutputBuildPlan left, PrivateServiceDetailsOutputBuildPlan right) => left.Equals(right);
+        public static bool operator !=(PrivateServiceDetailsOutputBuildPlan left, PrivateServiceDetailsOutputBuildPlan right) => !left.Equals(right);
+
+        public static explicit operator string(PrivateServiceDetailsOutputBuildPlan value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is PrivateServiceDetailsOutputBuildPlan other && Equals(other);
+        public bool Equals(PrivateServiceDetailsOutputBuildPlan other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    /// <summary>
+    /// Runtime
     /// </summary>
     [EnumType]
     public readonly struct PrivateServiceDetailsOutputEnv : IEquatable<PrivateServiceDetailsOutputEnv>
@@ -880,6 +1194,9 @@ namespace Pulumi.Render.Services
         public override string ToString() => _value;
     }
 
+    /// <summary>
+    /// Defaults to "no"
+    /// </summary>
     [EnumType]
     public readonly struct PrivateServiceDetailsOutputPullRequestPreviewsEnabled : IEquatable<PrivateServiceDetailsOutputPullRequestPreviewsEnabled>
     {
@@ -908,6 +1225,9 @@ namespace Pulumi.Render.Services
         public override string ToString() => _value;
     }
 
+    /// <summary>
+    /// Defaults to "oregon"
+    /// </summary>
     [EnumType]
     public readonly struct PrivateServiceDetailsOutputRegion : IEquatable<PrivateServiceDetailsOutputRegion>
     {
@@ -922,6 +1242,7 @@ namespace Pulumi.Render.Services
         public static PrivateServiceDetailsOutputRegion Oregon { get; } = new PrivateServiceDetailsOutputRegion("oregon");
         public static PrivateServiceDetailsOutputRegion Ohio { get; } = new PrivateServiceDetailsOutputRegion("ohio");
         public static PrivateServiceDetailsOutputRegion Singapore { get; } = new PrivateServiceDetailsOutputRegion("singapore");
+        public static PrivateServiceDetailsOutputRegion Virginia { get; } = new PrivateServiceDetailsOutputRegion("virginia");
 
         public static bool operator ==(PrivateServiceDetailsOutputRegion left, PrivateServiceDetailsOutputRegion right) => left.Equals(right);
         public static bool operator !=(PrivateServiceDetailsOutputRegion left, PrivateServiceDetailsOutputRegion right) => !left.Equals(right);
@@ -954,6 +1275,7 @@ namespace Pulumi.Render.Services
         public static RegistryCredentialRegistry Github { get; } = new RegistryCredentialRegistry("GITHUB");
         public static RegistryCredentialRegistry Gitlab { get; } = new RegistryCredentialRegistry("GITLAB");
         public static RegistryCredentialRegistry Docker { get; } = new RegistryCredentialRegistry("DOCKER");
+        public static RegistryCredentialRegistry GoogleArtifact { get; } = new RegistryCredentialRegistry("GOOGLE_ARTIFACT");
 
         public static bool operator ==(RegistryCredentialRegistry left, RegistryCredentialRegistry right) => left.Equals(right);
         public static bool operator !=(RegistryCredentialRegistry left, RegistryCredentialRegistry right) => !left.Equals(right);
@@ -963,6 +1285,34 @@ namespace Pulumi.Render.Services
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool Equals(object? obj) => obj is RegistryCredentialRegistry other && Equals(other);
         public bool Equals(RegistryCredentialRegistry other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    [EnumType]
+    public readonly struct RouteCreateType : IEquatable<RouteCreateType>
+    {
+        private readonly string _value;
+
+        private RouteCreateType(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static RouteCreateType Redirect { get; } = new RouteCreateType("redirect");
+        public static RouteCreateType Rewrite { get; } = new RouteCreateType("rewrite");
+
+        public static bool operator ==(RouteCreateType left, RouteCreateType right) => left.Equals(right);
+        public static bool operator !=(RouteCreateType left, RouteCreateType right) => !left.Equals(right);
+
+        public static explicit operator string(RouteCreateType value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is RouteCreateType other && Equals(other);
+        public bool Equals(RouteCreateType other) => string.Equals(_value, other._value, StringComparison.Ordinal);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => _value?.GetHashCode() ?? 0;
@@ -1054,9 +1404,6 @@ namespace Pulumi.Render.Services
         public override string ToString() => _value;
     }
 
-    /// <summary>
-    /// Defaults to "yes"
-    /// </summary>
     [EnumType]
     public readonly struct ServiceCreateAutoDeploy : IEquatable<ServiceCreateAutoDeploy>
     {
@@ -1205,6 +1552,37 @@ namespace Pulumi.Render.Services
     }
 
     [EnumType]
+    public readonly struct StaticSiteDetailsOutputBuildPlan : IEquatable<StaticSiteDetailsOutputBuildPlan>
+    {
+        private readonly string _value;
+
+        private StaticSiteDetailsOutputBuildPlan(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static StaticSiteDetailsOutputBuildPlan Starter { get; } = new StaticSiteDetailsOutputBuildPlan("starter");
+        public static StaticSiteDetailsOutputBuildPlan Performance { get; } = new StaticSiteDetailsOutputBuildPlan("performance");
+
+        public static bool operator ==(StaticSiteDetailsOutputBuildPlan left, StaticSiteDetailsOutputBuildPlan right) => left.Equals(right);
+        public static bool operator !=(StaticSiteDetailsOutputBuildPlan left, StaticSiteDetailsOutputBuildPlan right) => !left.Equals(right);
+
+        public static explicit operator string(StaticSiteDetailsOutputBuildPlan value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is StaticSiteDetailsOutputBuildPlan other && Equals(other);
+        public bool Equals(StaticSiteDetailsOutputBuildPlan other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    /// <summary>
+    /// Defaults to "no"
+    /// </summary>
+    [EnumType]
     public readonly struct StaticSiteDetailsOutputPullRequestPreviewsEnabled : IEquatable<StaticSiteDetailsOutputPullRequestPreviewsEnabled>
     {
         private readonly string _value;
@@ -1304,8 +1682,36 @@ namespace Pulumi.Render.Services
         public override string ToString() => _value;
     }
 
+    [EnumType]
+    public readonly struct Type : IEquatable<Type>
+    {
+        private readonly string _value;
+
+        private Type(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static Type Redirect { get; } = new Type("redirect");
+        public static Type Rewrite { get; } = new Type("rewrite");
+
+        public static bool operator ==(Type left, Type right) => left.Equals(right);
+        public static bool operator !=(Type left, Type right) => !left.Equals(right);
+
+        public static explicit operator string(Type value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is Type other && Equals(other);
+        public bool Equals(Type other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
     /// <summary>
-    /// Environment (runtime)
+    /// This field has been deprecated, runtime should be used in its place.
     /// </summary>
     [EnumType]
     public readonly struct WebServiceDetailsCreateEnv : IEquatable<WebServiceDetailsCreateEnv>
@@ -1341,6 +1747,9 @@ namespace Pulumi.Render.Services
         public override string ToString() => _value;
     }
 
+    /// <summary>
+    /// Defaults to "starter"
+    /// </summary>
     [EnumType]
     public readonly struct WebServiceDetailsCreatePlan : IEquatable<WebServiceDetailsCreatePlan>
     {
@@ -1404,6 +1813,9 @@ namespace Pulumi.Render.Services
         public override string ToString() => _value;
     }
 
+    /// <summary>
+    /// Defaults to "oregon"
+    /// </summary>
     [EnumType]
     public readonly struct WebServiceDetailsCreateRegion : IEquatable<WebServiceDetailsCreateRegion>
     {
@@ -1418,6 +1830,7 @@ namespace Pulumi.Render.Services
         public static WebServiceDetailsCreateRegion Oregon { get; } = new WebServiceDetailsCreateRegion("oregon");
         public static WebServiceDetailsCreateRegion Ohio { get; } = new WebServiceDetailsCreateRegion("ohio");
         public static WebServiceDetailsCreateRegion Singapore { get; } = new WebServiceDetailsCreateRegion("singapore");
+        public static WebServiceDetailsCreateRegion Virginia { get; } = new WebServiceDetailsCreateRegion("virginia");
 
         public static bool operator ==(WebServiceDetailsCreateRegion left, WebServiceDetailsCreateRegion right) => left.Equals(right);
         public static bool operator !=(WebServiceDetailsCreateRegion left, WebServiceDetailsCreateRegion right) => !left.Equals(right);
@@ -1435,7 +1848,72 @@ namespace Pulumi.Render.Services
     }
 
     /// <summary>
-    /// Environment (runtime)
+    /// Runtime
+    /// </summary>
+    [EnumType]
+    public readonly struct WebServiceDetailsCreateRuntime : IEquatable<WebServiceDetailsCreateRuntime>
+    {
+        private readonly string _value;
+
+        private WebServiceDetailsCreateRuntime(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static WebServiceDetailsCreateRuntime Docker { get; } = new WebServiceDetailsCreateRuntime("docker");
+        public static WebServiceDetailsCreateRuntime Elixir { get; } = new WebServiceDetailsCreateRuntime("elixir");
+        public static WebServiceDetailsCreateRuntime Go { get; } = new WebServiceDetailsCreateRuntime("go");
+        public static WebServiceDetailsCreateRuntime Node { get; } = new WebServiceDetailsCreateRuntime("node");
+        public static WebServiceDetailsCreateRuntime Python { get; } = new WebServiceDetailsCreateRuntime("python");
+        public static WebServiceDetailsCreateRuntime Ruby { get; } = new WebServiceDetailsCreateRuntime("ruby");
+        public static WebServiceDetailsCreateRuntime Rust { get; } = new WebServiceDetailsCreateRuntime("rust");
+        public static WebServiceDetailsCreateRuntime Image { get; } = new WebServiceDetailsCreateRuntime("image");
+
+        public static bool operator ==(WebServiceDetailsCreateRuntime left, WebServiceDetailsCreateRuntime right) => left.Equals(right);
+        public static bool operator !=(WebServiceDetailsCreateRuntime left, WebServiceDetailsCreateRuntime right) => !left.Equals(right);
+
+        public static explicit operator string(WebServiceDetailsCreateRuntime value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is WebServiceDetailsCreateRuntime other && Equals(other);
+        public bool Equals(WebServiceDetailsCreateRuntime other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    [EnumType]
+    public readonly struct WebServiceDetailsOutputBuildPlan : IEquatable<WebServiceDetailsOutputBuildPlan>
+    {
+        private readonly string _value;
+
+        private WebServiceDetailsOutputBuildPlan(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static WebServiceDetailsOutputBuildPlan Starter { get; } = new WebServiceDetailsOutputBuildPlan("starter");
+        public static WebServiceDetailsOutputBuildPlan Performance { get; } = new WebServiceDetailsOutputBuildPlan("performance");
+
+        public static bool operator ==(WebServiceDetailsOutputBuildPlan left, WebServiceDetailsOutputBuildPlan right) => left.Equals(right);
+        public static bool operator !=(WebServiceDetailsOutputBuildPlan left, WebServiceDetailsOutputBuildPlan right) => !left.Equals(right);
+
+        public static explicit operator string(WebServiceDetailsOutputBuildPlan value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is WebServiceDetailsOutputBuildPlan other && Equals(other);
+        public bool Equals(WebServiceDetailsOutputBuildPlan other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    /// <summary>
+    /// Runtime
     /// </summary>
     [EnumType]
     public readonly struct WebServiceDetailsOutputEnv : IEquatable<WebServiceDetailsOutputEnv>
@@ -1510,6 +1988,9 @@ namespace Pulumi.Render.Services
         public override string ToString() => _value;
     }
 
+    /// <summary>
+    /// Defaults to "no"
+    /// </summary>
     [EnumType]
     public readonly struct WebServiceDetailsOutputPullRequestPreviewsEnabled : IEquatable<WebServiceDetailsOutputPullRequestPreviewsEnabled>
     {
@@ -1538,6 +2019,9 @@ namespace Pulumi.Render.Services
         public override string ToString() => _value;
     }
 
+    /// <summary>
+    /// Defaults to "oregon"
+    /// </summary>
     [EnumType]
     public readonly struct WebServiceDetailsOutputRegion : IEquatable<WebServiceDetailsOutputRegion>
     {
@@ -1552,6 +2036,7 @@ namespace Pulumi.Render.Services
         public static WebServiceDetailsOutputRegion Oregon { get; } = new WebServiceDetailsOutputRegion("oregon");
         public static WebServiceDetailsOutputRegion Ohio { get; } = new WebServiceDetailsOutputRegion("ohio");
         public static WebServiceDetailsOutputRegion Singapore { get; } = new WebServiceDetailsOutputRegion("singapore");
+        public static WebServiceDetailsOutputRegion Virginia { get; } = new WebServiceDetailsOutputRegion("virginia");
 
         public static bool operator ==(WebServiceDetailsOutputRegion left, WebServiceDetailsOutputRegion right) => left.Equals(right);
         public static bool operator !=(WebServiceDetailsOutputRegion left, WebServiceDetailsOutputRegion right) => !left.Equals(right);

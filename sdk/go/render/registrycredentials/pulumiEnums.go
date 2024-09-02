@@ -10,12 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The registry to use this credential with
 type Registry string
 
 const (
-	RegistryGithub = Registry("GITHUB")
-	RegistryGitlab = Registry("GITLAB")
-	RegistryDocker = Registry("DOCKER")
+	RegistryGithub         = Registry("GITHUB")
+	RegistryGitlab         = Registry("GITLAB")
+	RegistryDocker         = Registry("DOCKER")
+	RegistryGoogleArtifact = Registry("GOOGLE_ARTIFACT")
 )
 
 func (Registry) ElementType() reflect.Type {
@@ -143,6 +145,7 @@ func (o RegistryPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pul
 //	RegistryGithub
 //	RegistryGitlab
 //	RegistryDocker
+//	RegistryGoogleArtifact
 type RegistryInput interface {
 	pulumi.Input
 
@@ -181,9 +184,10 @@ func (in *registryPtr) ToRegistryPtrOutputWithContext(ctx context.Context) Regis
 type RegistryCredentialRegistry string
 
 const (
-	RegistryCredentialRegistryGithub = RegistryCredentialRegistry("GITHUB")
-	RegistryCredentialRegistryGitlab = RegistryCredentialRegistry("GITLAB")
-	RegistryCredentialRegistryDocker = RegistryCredentialRegistry("DOCKER")
+	RegistryCredentialRegistryGithub         = RegistryCredentialRegistry("GITHUB")
+	RegistryCredentialRegistryGitlab         = RegistryCredentialRegistry("GITLAB")
+	RegistryCredentialRegistryDocker         = RegistryCredentialRegistry("DOCKER")
+	RegistryCredentialRegistryGoogleArtifact = RegistryCredentialRegistry("GOOGLE_ARTIFACT")
 )
 
 type RegistryCredentialRegistryOutput struct{ *pulumi.OutputState }

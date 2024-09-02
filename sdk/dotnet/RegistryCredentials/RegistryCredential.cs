@@ -91,6 +91,9 @@ namespace Pulumi.Render.RegistryCredentials
         [Input("ownerId", required: true)]
         public Input<string> OwnerId { get; set; } = null!;
 
+        /// <summary>
+        /// The registry to use this credential with
+        /// </summary>
         [Input("registry", required: true)]
         public Input<Pulumi.Render.RegistryCredentials.Registry> Registry { get; set; } = null!;
 

@@ -24,8 +24,17 @@ namespace Pulumi.Render.Services
         [Output("createdAt")]
         public Output<string?> CreatedAt { get; private set; } = null!;
 
+        /// <summary>
+        /// The URL to view the service in the Render Dashboard
+        /// </summary>
+        [Output("dashboardUrl")]
+        public Output<string?> DashboardUrl { get; private set; } = null!;
+
         [Output("envVars")]
-        public Output<ImmutableArray<Union<Outputs.EnvVarKeyValue, Outputs.EnvVarKeyGenerateValue>>> EnvVars { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.EnvVarInput>> EnvVars { get; private set; } = null!;
+
+        [Output("environmentId")]
+        public Output<string?> EnvironmentId { get; private set; } = null!;
 
         [Output("image")]
         public Output<Outputs.Image?> Image { get; private set; } = null!;
@@ -42,6 +51,9 @@ namespace Pulumi.Render.Services
         [Output("ownerId")]
         public Output<string?> OwnerId { get; private set; } = null!;
 
+        [Output("registryCredential")]
+        public Output<Outputs.RegistryCredentialSummary?> RegistryCredential { get; private set; } = null!;
+
         [Output("repo")]
         public Output<string?> Repo { get; private set; } = null!;
 
@@ -49,7 +61,7 @@ namespace Pulumi.Render.Services
         public Output<string?> RootDir { get; private set; } = null!;
 
         [Output("secretFiles")]
-        public Output<ImmutableArray<Outputs.SecretFile>> SecretFiles { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.SecretFileInput>> SecretFiles { get; private set; } = null!;
 
         [Output("serviceDetails")]
         public Output<Outputs.BackgroundWorkerDetailsOutput?> ServiceDetails { get; private set; } = null!;
@@ -115,9 +127,6 @@ namespace Pulumi.Render.Services
 
     public sealed class BackgroundWorkerArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Defaults to "yes"
-        /// </summary>
         [Input("autoDeploy")]
         public Input<Pulumi.Render.Services.ServiceCreateAutoDeploy>? AutoDeploy { get; set; }
 
@@ -131,10 +140,10 @@ namespace Pulumi.Render.Services
         public Input<Inputs.BuildFilterArgs>? BuildFilter { get; set; }
 
         [Input("envVars")]
-        private InputList<Union<Inputs.EnvVarKeyValueArgs, Inputs.EnvVarKeyGenerateValueArgs>>? _envVars;
-        public InputList<Union<Inputs.EnvVarKeyValueArgs, Inputs.EnvVarKeyGenerateValueArgs>> EnvVars
+        private InputList<Inputs.EnvVarInputArgs>? _envVars;
+        public InputList<Inputs.EnvVarInputArgs> EnvVars
         {
-            get => _envVars ?? (_envVars = new InputList<Union<Inputs.EnvVarKeyValueArgs, Inputs.EnvVarKeyGenerateValueArgs>>());
+            get => _envVars ?? (_envVars = new InputList<Inputs.EnvVarInputArgs>());
             set => _envVars = value;
         }
 
@@ -157,10 +166,10 @@ namespace Pulumi.Render.Services
         public Input<string>? RootDir { get; set; }
 
         [Input("secretFiles")]
-        private InputList<Inputs.SecretFileArgs>? _secretFiles;
-        public InputList<Inputs.SecretFileArgs> SecretFiles
+        private InputList<Inputs.SecretFileInputArgs>? _secretFiles;
+        public InputList<Inputs.SecretFileInputArgs> SecretFiles
         {
-            get => _secretFiles ?? (_secretFiles = new InputList<Inputs.SecretFileArgs>());
+            get => _secretFiles ?? (_secretFiles = new InputList<Inputs.SecretFileInputArgs>());
             set => _secretFiles = value;
         }
 

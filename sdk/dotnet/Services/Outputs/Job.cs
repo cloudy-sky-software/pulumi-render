@@ -20,7 +20,7 @@ namespace Pulumi.Render.Services.Outputs
         public readonly string ServiceId;
         public readonly string StartCommand;
         public readonly string? StartedAt;
-        public readonly string? Status;
+        public readonly Pulumi.Render.Services.JobStatus? Status;
 
         [OutputConstructor]
         private Job(
@@ -38,7 +38,7 @@ namespace Pulumi.Render.Services.Outputs
 
             string? startedAt,
 
-            string? status)
+            Pulumi.Render.Services.JobStatus? status)
         {
             CreatedAt = createdAt;
             FinishedAt = finishedAt;

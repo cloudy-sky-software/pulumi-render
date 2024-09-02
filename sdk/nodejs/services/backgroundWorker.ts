@@ -38,15 +38,21 @@ export class BackgroundWorker extends pulumi.CustomResource {
     public readonly branch!: pulumi.Output<string | undefined>;
     public readonly buildFilter!: pulumi.Output<outputs.services.BuildFilter | undefined>;
     public /*out*/ readonly createdAt!: pulumi.Output<string | undefined>;
-    public readonly envVars!: pulumi.Output<(outputs.services.EnvVarKeyValue | outputs.services.EnvVarKeyGenerateValue)[] | undefined>;
+    /**
+     * The URL to view the service in the Render Dashboard
+     */
+    public /*out*/ readonly dashboardUrl!: pulumi.Output<string | undefined>;
+    public readonly envVars!: pulumi.Output<outputs.services.EnvVarInput[] | undefined>;
+    public /*out*/ readonly environmentId!: pulumi.Output<string | undefined>;
     public readonly image!: pulumi.Output<outputs.services.Image | undefined>;
     public /*out*/ readonly imagePath!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string | undefined>;
     public /*out*/ readonly notifyOnFail!: pulumi.Output<enums.services.ServiceNotifyOnFail | undefined>;
     public readonly ownerId!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly registryCredential!: pulumi.Output<outputs.services.RegistryCredentialSummary | undefined>;
     public readonly repo!: pulumi.Output<string | undefined>;
     public readonly rootDir!: pulumi.Output<string | undefined>;
-    public readonly secretFiles!: pulumi.Output<outputs.services.SecretFile[] | undefined>;
+    public readonly secretFiles!: pulumi.Output<outputs.services.SecretFileInput[] | undefined>;
     public readonly serviceDetails!: pulumi.Output<outputs.services.BackgroundWorkerDetailsOutput | undefined>;
     public /*out*/ readonly slug!: pulumi.Output<string | undefined>;
     public /*out*/ readonly suspended!: pulumi.Output<enums.services.ServiceSuspended | undefined>;
@@ -84,8 +90,11 @@ export class BackgroundWorker extends pulumi.CustomResource {
             resourceInputs["serviceDetails"] = args ? (args.serviceDetails ? pulumi.output(args.serviceDetails).apply(inputs.services.backgroundWorkerDetailsCreateArgsProvideDefaults) : undefined) : undefined;
             resourceInputs["type"] = (args ? args.type : undefined) ?? "background_worker";
             resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["dashboardUrl"] = undefined /*out*/;
+            resourceInputs["environmentId"] = undefined /*out*/;
             resourceInputs["imagePath"] = undefined /*out*/;
             resourceInputs["notifyOnFail"] = undefined /*out*/;
+            resourceInputs["registryCredential"] = undefined /*out*/;
             resourceInputs["slug"] = undefined /*out*/;
             resourceInputs["suspended"] = undefined /*out*/;
             resourceInputs["suspenders"] = undefined /*out*/;
@@ -95,12 +104,15 @@ export class BackgroundWorker extends pulumi.CustomResource {
             resourceInputs["branch"] = undefined /*out*/;
             resourceInputs["buildFilter"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["dashboardUrl"] = undefined /*out*/;
             resourceInputs["envVars"] = undefined /*out*/;
+            resourceInputs["environmentId"] = undefined /*out*/;
             resourceInputs["image"] = undefined /*out*/;
             resourceInputs["imagePath"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;
             resourceInputs["notifyOnFail"] = undefined /*out*/;
             resourceInputs["ownerId"] = undefined /*out*/;
+            resourceInputs["registryCredential"] = undefined /*out*/;
             resourceInputs["repo"] = undefined /*out*/;
             resourceInputs["rootDir"] = undefined /*out*/;
             resourceInputs["secretFiles"] = undefined /*out*/;
@@ -120,16 +132,13 @@ export class BackgroundWorker extends pulumi.CustomResource {
  * The set of arguments for constructing a BackgroundWorker resource.
  */
 export interface BackgroundWorkerArgs {
-    /**
-     * Defaults to "yes"
-     */
     autoDeploy?: pulumi.Input<enums.services.ServiceCreateAutoDeploy>;
     /**
      * If left empty, this will fall back to the default branch of the repository
      */
     branch?: pulumi.Input<string>;
     buildFilter?: pulumi.Input<inputs.services.BuildFilterArgs>;
-    envVars?: pulumi.Input<pulumi.Input<inputs.services.EnvVarKeyValueArgs | inputs.services.EnvVarKeyGenerateValueArgs>[]>;
+    envVars?: pulumi.Input<pulumi.Input<inputs.services.EnvVarInputArgs>[]>;
     image?: pulumi.Input<inputs.services.ImageArgs>;
     name: pulumi.Input<string>;
     ownerId: pulumi.Input<string>;
@@ -138,7 +147,7 @@ export interface BackgroundWorkerArgs {
      */
     repo?: pulumi.Input<string>;
     rootDir?: pulumi.Input<string>;
-    secretFiles?: pulumi.Input<pulumi.Input<inputs.services.SecretFileArgs>[]>;
+    secretFiles?: pulumi.Input<pulumi.Input<inputs.services.SecretFileInputArgs>[]>;
     serviceDetails?: pulumi.Input<inputs.services.BackgroundWorkerDetailsCreateArgs>;
     type?: pulumi.Input<string>;
 }

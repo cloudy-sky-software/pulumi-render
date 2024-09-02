@@ -13,377 +13,25 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
-type AutoscalingConfig struct {
-	Criteria AutoscalingCriteria `pulumi:"criteria"`
-	Enabled  bool                `pulumi:"enabled"`
-	// The maximum number of instances for the service
-	Max int `pulumi:"max"`
-	// The minimum number of instances for the service
-	Min int `pulumi:"min"`
-}
-
-// Defaults sets the appropriate defaults for AutoscalingConfig
-func (val *AutoscalingConfig) Defaults() *AutoscalingConfig {
-	if val == nil {
-		return nil
-	}
-	tmp := *val
-	tmp.Criteria = *tmp.Criteria.Defaults()
-
-	if internal.IsZero(tmp.Enabled) {
-		tmp.Enabled = false
-	}
-	return &tmp
-}
-
-type AutoscalingConfigOutput struct{ *pulumi.OutputState }
-
-func (AutoscalingConfigOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AutoscalingConfig)(nil)).Elem()
-}
-
-func (o AutoscalingConfigOutput) ToAutoscalingConfigOutput() AutoscalingConfigOutput {
-	return o
-}
-
-func (o AutoscalingConfigOutput) ToAutoscalingConfigOutputWithContext(ctx context.Context) AutoscalingConfigOutput {
-	return o
-}
-
-func (o AutoscalingConfigOutput) Criteria() AutoscalingCriteriaOutput {
-	return o.ApplyT(func(v AutoscalingConfig) AutoscalingCriteria { return v.Criteria }).(AutoscalingCriteriaOutput)
-}
-
-func (o AutoscalingConfigOutput) Enabled() pulumi.BoolOutput {
-	return o.ApplyT(func(v AutoscalingConfig) bool { return v.Enabled }).(pulumi.BoolOutput)
-}
-
-// The maximum number of instances for the service
-func (o AutoscalingConfigOutput) Max() pulumi.IntOutput {
-	return o.ApplyT(func(v AutoscalingConfig) int { return v.Max }).(pulumi.IntOutput)
-}
-
-// The minimum number of instances for the service
-func (o AutoscalingConfigOutput) Min() pulumi.IntOutput {
-	return o.ApplyT(func(v AutoscalingConfig) int { return v.Min }).(pulumi.IntOutput)
-}
-
-type AutoscalingConfigPtrOutput struct{ *pulumi.OutputState }
-
-func (AutoscalingConfigPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**AutoscalingConfig)(nil)).Elem()
-}
-
-func (o AutoscalingConfigPtrOutput) ToAutoscalingConfigPtrOutput() AutoscalingConfigPtrOutput {
-	return o
-}
-
-func (o AutoscalingConfigPtrOutput) ToAutoscalingConfigPtrOutputWithContext(ctx context.Context) AutoscalingConfigPtrOutput {
-	return o
-}
-
-func (o AutoscalingConfigPtrOutput) Elem() AutoscalingConfigOutput {
-	return o.ApplyT(func(v *AutoscalingConfig) AutoscalingConfig {
-		if v != nil {
-			return *v
-		}
-		var ret AutoscalingConfig
-		return ret
-	}).(AutoscalingConfigOutput)
-}
-
-func (o AutoscalingConfigPtrOutput) Criteria() AutoscalingCriteriaPtrOutput {
-	return o.ApplyT(func(v *AutoscalingConfig) *AutoscalingCriteria {
-		if v == nil {
-			return nil
-		}
-		return &v.Criteria
-	}).(AutoscalingCriteriaPtrOutput)
-}
-
-func (o AutoscalingConfigPtrOutput) Enabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *AutoscalingConfig) *bool {
-		if v == nil {
-			return nil
-		}
-		return &v.Enabled
-	}).(pulumi.BoolPtrOutput)
-}
-
-// The maximum number of instances for the service
-func (o AutoscalingConfigPtrOutput) Max() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *AutoscalingConfig) *int {
-		if v == nil {
-			return nil
-		}
-		return &v.Max
-	}).(pulumi.IntPtrOutput)
-}
-
-// The minimum number of instances for the service
-func (o AutoscalingConfigPtrOutput) Min() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *AutoscalingConfig) *int {
-		if v == nil {
-			return nil
-		}
-		return &v.Min
-	}).(pulumi.IntPtrOutput)
-}
-
-type AutoscalingCriteria struct {
-	Cpu    AutoscalingCriteriaPercentage `pulumi:"cpu"`
-	Memory AutoscalingCriteriaPercentage `pulumi:"memory"`
-}
-
-// Defaults sets the appropriate defaults for AutoscalingCriteria
-func (val *AutoscalingCriteria) Defaults() *AutoscalingCriteria {
-	if val == nil {
-		return nil
-	}
-	tmp := *val
-	tmp.Cpu = *tmp.Cpu.Defaults()
-
-	tmp.Memory = *tmp.Memory.Defaults()
-
-	return &tmp
-}
-
-// AutoscalingCriteriaInput is an input type that accepts AutoscalingCriteriaArgs and AutoscalingCriteriaOutput values.
-// You can construct a concrete instance of `AutoscalingCriteriaInput` via:
-//
-//	AutoscalingCriteriaArgs{...}
-type AutoscalingCriteriaInput interface {
-	pulumi.Input
-
-	ToAutoscalingCriteriaOutput() AutoscalingCriteriaOutput
-	ToAutoscalingCriteriaOutputWithContext(context.Context) AutoscalingCriteriaOutput
-}
-
-type AutoscalingCriteriaArgs struct {
-	Cpu    AutoscalingCriteriaPercentageInput `pulumi:"cpu"`
-	Memory AutoscalingCriteriaPercentageInput `pulumi:"memory"`
-}
-
-// Defaults sets the appropriate defaults for AutoscalingCriteriaArgs
-func (val *AutoscalingCriteriaArgs) Defaults() *AutoscalingCriteriaArgs {
-	if val == nil {
-		return nil
-	}
-	tmp := *val
-
-	return &tmp
-}
-func (AutoscalingCriteriaArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*AutoscalingCriteria)(nil)).Elem()
-}
-
-func (i AutoscalingCriteriaArgs) ToAutoscalingCriteriaOutput() AutoscalingCriteriaOutput {
-	return i.ToAutoscalingCriteriaOutputWithContext(context.Background())
-}
-
-func (i AutoscalingCriteriaArgs) ToAutoscalingCriteriaOutputWithContext(ctx context.Context) AutoscalingCriteriaOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AutoscalingCriteriaOutput)
-}
-
-type AutoscalingCriteriaOutput struct{ *pulumi.OutputState }
-
-func (AutoscalingCriteriaOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AutoscalingCriteria)(nil)).Elem()
-}
-
-func (o AutoscalingCriteriaOutput) ToAutoscalingCriteriaOutput() AutoscalingCriteriaOutput {
-	return o
-}
-
-func (o AutoscalingCriteriaOutput) ToAutoscalingCriteriaOutputWithContext(ctx context.Context) AutoscalingCriteriaOutput {
-	return o
-}
-
-func (o AutoscalingCriteriaOutput) Cpu() AutoscalingCriteriaPercentageOutput {
-	return o.ApplyT(func(v AutoscalingCriteria) AutoscalingCriteriaPercentage { return v.Cpu }).(AutoscalingCriteriaPercentageOutput)
-}
-
-func (o AutoscalingCriteriaOutput) Memory() AutoscalingCriteriaPercentageOutput {
-	return o.ApplyT(func(v AutoscalingCriteria) AutoscalingCriteriaPercentage { return v.Memory }).(AutoscalingCriteriaPercentageOutput)
-}
-
-type AutoscalingCriteriaPtrOutput struct{ *pulumi.OutputState }
-
-func (AutoscalingCriteriaPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**AutoscalingCriteria)(nil)).Elem()
-}
-
-func (o AutoscalingCriteriaPtrOutput) ToAutoscalingCriteriaPtrOutput() AutoscalingCriteriaPtrOutput {
-	return o
-}
-
-func (o AutoscalingCriteriaPtrOutput) ToAutoscalingCriteriaPtrOutputWithContext(ctx context.Context) AutoscalingCriteriaPtrOutput {
-	return o
-}
-
-func (o AutoscalingCriteriaPtrOutput) Elem() AutoscalingCriteriaOutput {
-	return o.ApplyT(func(v *AutoscalingCriteria) AutoscalingCriteria {
-		if v != nil {
-			return *v
-		}
-		var ret AutoscalingCriteria
-		return ret
-	}).(AutoscalingCriteriaOutput)
-}
-
-func (o AutoscalingCriteriaPtrOutput) Cpu() AutoscalingCriteriaPercentagePtrOutput {
-	return o.ApplyT(func(v *AutoscalingCriteria) *AutoscalingCriteriaPercentage {
-		if v == nil {
-			return nil
-		}
-		return &v.Cpu
-	}).(AutoscalingCriteriaPercentagePtrOutput)
-}
-
-func (o AutoscalingCriteriaPtrOutput) Memory() AutoscalingCriteriaPercentagePtrOutput {
-	return o.ApplyT(func(v *AutoscalingCriteria) *AutoscalingCriteriaPercentage {
-		if v == nil {
-			return nil
-		}
-		return &v.Memory
-	}).(AutoscalingCriteriaPercentagePtrOutput)
-}
-
-type AutoscalingCriteriaPercentage struct {
-	Enabled bool `pulumi:"enabled"`
-	// Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
-	Percentage int `pulumi:"percentage"`
-}
-
-// Defaults sets the appropriate defaults for AutoscalingCriteriaPercentage
-func (val *AutoscalingCriteriaPercentage) Defaults() *AutoscalingCriteriaPercentage {
-	if val == nil {
-		return nil
-	}
-	tmp := *val
-	if internal.IsZero(tmp.Enabled) {
-		tmp.Enabled = false
-	}
-	return &tmp
-}
-
-// AutoscalingCriteriaPercentageInput is an input type that accepts AutoscalingCriteriaPercentageArgs and AutoscalingCriteriaPercentageOutput values.
-// You can construct a concrete instance of `AutoscalingCriteriaPercentageInput` via:
-//
-//	AutoscalingCriteriaPercentageArgs{...}
-type AutoscalingCriteriaPercentageInput interface {
-	pulumi.Input
-
-	ToAutoscalingCriteriaPercentageOutput() AutoscalingCriteriaPercentageOutput
-	ToAutoscalingCriteriaPercentageOutputWithContext(context.Context) AutoscalingCriteriaPercentageOutput
-}
-
-type AutoscalingCriteriaPercentageArgs struct {
-	Enabled pulumi.BoolInput `pulumi:"enabled"`
-	// Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
-	Percentage pulumi.IntInput `pulumi:"percentage"`
-}
-
-// Defaults sets the appropriate defaults for AutoscalingCriteriaPercentageArgs
-func (val *AutoscalingCriteriaPercentageArgs) Defaults() *AutoscalingCriteriaPercentageArgs {
-	if val == nil {
-		return nil
-	}
-	tmp := *val
-	if tmp.Enabled == nil {
-		tmp.Enabled = pulumi.Bool(false)
-	}
-	return &tmp
-}
-func (AutoscalingCriteriaPercentageArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*AutoscalingCriteriaPercentage)(nil)).Elem()
-}
-
-func (i AutoscalingCriteriaPercentageArgs) ToAutoscalingCriteriaPercentageOutput() AutoscalingCriteriaPercentageOutput {
-	return i.ToAutoscalingCriteriaPercentageOutputWithContext(context.Background())
-}
-
-func (i AutoscalingCriteriaPercentageArgs) ToAutoscalingCriteriaPercentageOutputWithContext(ctx context.Context) AutoscalingCriteriaPercentageOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AutoscalingCriteriaPercentageOutput)
-}
-
-type AutoscalingCriteriaPercentageOutput struct{ *pulumi.OutputState }
-
-func (AutoscalingCriteriaPercentageOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AutoscalingCriteriaPercentage)(nil)).Elem()
-}
-
-func (o AutoscalingCriteriaPercentageOutput) ToAutoscalingCriteriaPercentageOutput() AutoscalingCriteriaPercentageOutput {
-	return o
-}
-
-func (o AutoscalingCriteriaPercentageOutput) ToAutoscalingCriteriaPercentageOutputWithContext(ctx context.Context) AutoscalingCriteriaPercentageOutput {
-	return o
-}
-
-func (o AutoscalingCriteriaPercentageOutput) Enabled() pulumi.BoolOutput {
-	return o.ApplyT(func(v AutoscalingCriteriaPercentage) bool { return v.Enabled }).(pulumi.BoolOutput)
-}
-
-// Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
-func (o AutoscalingCriteriaPercentageOutput) Percentage() pulumi.IntOutput {
-	return o.ApplyT(func(v AutoscalingCriteriaPercentage) int { return v.Percentage }).(pulumi.IntOutput)
-}
-
-type AutoscalingCriteriaPercentagePtrOutput struct{ *pulumi.OutputState }
-
-func (AutoscalingCriteriaPercentagePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**AutoscalingCriteriaPercentage)(nil)).Elem()
-}
-
-func (o AutoscalingCriteriaPercentagePtrOutput) ToAutoscalingCriteriaPercentagePtrOutput() AutoscalingCriteriaPercentagePtrOutput {
-	return o
-}
-
-func (o AutoscalingCriteriaPercentagePtrOutput) ToAutoscalingCriteriaPercentagePtrOutputWithContext(ctx context.Context) AutoscalingCriteriaPercentagePtrOutput {
-	return o
-}
-
-func (o AutoscalingCriteriaPercentagePtrOutput) Elem() AutoscalingCriteriaPercentageOutput {
-	return o.ApplyT(func(v *AutoscalingCriteriaPercentage) AutoscalingCriteriaPercentage {
-		if v != nil {
-			return *v
-		}
-		var ret AutoscalingCriteriaPercentage
-		return ret
-	}).(AutoscalingCriteriaPercentageOutput)
-}
-
-func (o AutoscalingCriteriaPercentagePtrOutput) Enabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *AutoscalingCriteriaPercentage) *bool {
-		if v == nil {
-			return nil
-		}
-		return &v.Enabled
-	}).(pulumi.BoolPtrOutput)
-}
-
-// Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
-func (o AutoscalingCriteriaPercentagePtrOutput) Percentage() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *AutoscalingCriteriaPercentage) *int {
-		if v == nil {
-			return nil
-		}
-		return &v.Percentage
-	}).(pulumi.IntPtrOutput)
-}
-
 type BackgroundWorkerDetailsCreate struct {
-	Disk *BackgroundWorkerDetailsCreateDiskProperties `pulumi:"disk"`
-	// Environment (runtime)
-	Env                BackgroundWorkerDetailsCreateEnv `pulumi:"env"`
-	EnvSpecificDetails interface{}                      `pulumi:"envSpecificDetails"`
+	Autoscaling *WebServiceDetailspropertiesautoscaling `pulumi:"autoscaling"`
+	Disk        *ServiceDisk                            `pulumi:"disk"`
+	// This field has been deprecated, runtime should be used in its place.
+	Env                *BackgroundWorkerDetailsCreateEnv `pulumi:"env"`
+	EnvSpecificDetails *EnvSpecificDetailsCreate         `pulumi:"envSpecificDetails"`
+	// The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
+	MaxShutdownDelaySeconds *int `pulumi:"maxShutdownDelaySeconds"`
 	// Defaults to 1
-	NumInstances *int                               `pulumi:"numInstances"`
-	Plan         *BackgroundWorkerDetailsCreatePlan `pulumi:"plan"`
+	NumInstances *int `pulumi:"numInstances"`
+	// Defaults to "starter"
+	Plan             *BackgroundWorkerDetailsCreatePlan `pulumi:"plan"`
+	PreDeployCommand *string                            `pulumi:"preDeployCommand"`
 	// Defaults to "no"
 	PullRequestPreviewsEnabled *BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
-	Region                     *BackgroundWorkerDetailsCreateRegion                     `pulumi:"region"`
+	// Defaults to "oregon"
+	Region *BackgroundWorkerDetailsCreateRegion `pulumi:"region"`
+	// Runtime
+	Runtime BackgroundWorkerDetailsCreateRuntime `pulumi:"runtime"`
 }
 
 // Defaults sets the appropriate defaults for BackgroundWorkerDetailsCreate
@@ -392,13 +40,27 @@ func (val *BackgroundWorkerDetailsCreate) Defaults() *BackgroundWorkerDetailsCre
 		return nil
 	}
 	tmp := *val
+	tmp.Autoscaling = tmp.Autoscaling.Defaults()
+
+	if tmp.MaxShutdownDelaySeconds == nil {
+		maxShutdownDelaySeconds_ := 30
+		tmp.MaxShutdownDelaySeconds = &maxShutdownDelaySeconds_
+	}
 	if tmp.NumInstances == nil {
 		numInstances_ := 1
 		tmp.NumInstances = &numInstances_
 	}
+	if tmp.Plan == nil {
+		plan_ := BackgroundWorkerDetailsCreatePlan("starter")
+		tmp.Plan = &plan_
+	}
 	if tmp.PullRequestPreviewsEnabled == nil {
 		pullRequestPreviewsEnabled_ := BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled("no")
 		tmp.PullRequestPreviewsEnabled = &pullRequestPreviewsEnabled_
+	}
+	if tmp.Region == nil {
+		region_ := BackgroundWorkerDetailsCreateRegion("oregon")
+		tmp.Region = &region_
 	}
 	return &tmp
 }
@@ -415,16 +77,24 @@ type BackgroundWorkerDetailsCreateInput interface {
 }
 
 type BackgroundWorkerDetailsCreateArgs struct {
-	Disk BackgroundWorkerDetailsCreateDiskPropertiesPtrInput `pulumi:"disk"`
-	// Environment (runtime)
-	Env                BackgroundWorkerDetailsCreateEnvInput `pulumi:"env"`
-	EnvSpecificDetails pulumi.Input                          `pulumi:"envSpecificDetails"`
+	Autoscaling WebServiceDetailspropertiesautoscalingPtrInput `pulumi:"autoscaling"`
+	Disk        ServiceDiskPtrInput                            `pulumi:"disk"`
+	// This field has been deprecated, runtime should be used in its place.
+	Env                BackgroundWorkerDetailsCreateEnvPtrInput `pulumi:"env"`
+	EnvSpecificDetails EnvSpecificDetailsCreatePtrInput         `pulumi:"envSpecificDetails"`
+	// The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
+	MaxShutdownDelaySeconds pulumi.IntPtrInput `pulumi:"maxShutdownDelaySeconds"`
 	// Defaults to 1
-	NumInstances pulumi.IntPtrInput                        `pulumi:"numInstances"`
-	Plan         BackgroundWorkerDetailsCreatePlanPtrInput `pulumi:"plan"`
+	NumInstances pulumi.IntPtrInput `pulumi:"numInstances"`
+	// Defaults to "starter"
+	Plan             BackgroundWorkerDetailsCreatePlanPtrInput `pulumi:"plan"`
+	PreDeployCommand pulumi.StringPtrInput                     `pulumi:"preDeployCommand"`
 	// Defaults to "no"
 	PullRequestPreviewsEnabled BackgroundWorkerDetailsCreatePullRequestPreviewsEnabledPtrInput `pulumi:"pullRequestPreviewsEnabled"`
-	Region                     BackgroundWorkerDetailsCreateRegionPtrInput                     `pulumi:"region"`
+	// Defaults to "oregon"
+	Region BackgroundWorkerDetailsCreateRegionPtrInput `pulumi:"region"`
+	// Runtime
+	Runtime BackgroundWorkerDetailsCreateRuntimeInput `pulumi:"runtime"`
 }
 
 // Defaults sets the appropriate defaults for BackgroundWorkerDetailsCreateArgs
@@ -433,11 +103,21 @@ func (val *BackgroundWorkerDetailsCreateArgs) Defaults() *BackgroundWorkerDetail
 		return nil
 	}
 	tmp := *val
+
+	if tmp.MaxShutdownDelaySeconds == nil {
+		tmp.MaxShutdownDelaySeconds = pulumi.IntPtr(30)
+	}
 	if tmp.NumInstances == nil {
 		tmp.NumInstances = pulumi.IntPtr(1)
 	}
+	if tmp.Plan == nil {
+		tmp.Plan = BackgroundWorkerDetailsCreatePlan("starter")
+	}
 	if tmp.PullRequestPreviewsEnabled == nil {
 		tmp.PullRequestPreviewsEnabled = BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled("no")
+	}
+	if tmp.Region == nil {
+		tmp.Region = BackgroundWorkerDetailsCreateRegion("oregon")
 	}
 	return &tmp
 }
@@ -518,17 +198,26 @@ func (o BackgroundWorkerDetailsCreateOutput) ToBackgroundWorkerDetailsCreatePtrO
 	}).(BackgroundWorkerDetailsCreatePtrOutput)
 }
 
-func (o BackgroundWorkerDetailsCreateOutput) Disk() BackgroundWorkerDetailsCreateDiskPropertiesPtrOutput {
-	return o.ApplyT(func(v BackgroundWorkerDetailsCreate) *BackgroundWorkerDetailsCreateDiskProperties { return v.Disk }).(BackgroundWorkerDetailsCreateDiskPropertiesPtrOutput)
+func (o BackgroundWorkerDetailsCreateOutput) Autoscaling() WebServiceDetailspropertiesautoscalingPtrOutput {
+	return o.ApplyT(func(v BackgroundWorkerDetailsCreate) *WebServiceDetailspropertiesautoscaling { return v.Autoscaling }).(WebServiceDetailspropertiesautoscalingPtrOutput)
 }
 
-// Environment (runtime)
-func (o BackgroundWorkerDetailsCreateOutput) Env() BackgroundWorkerDetailsCreateEnvOutput {
-	return o.ApplyT(func(v BackgroundWorkerDetailsCreate) BackgroundWorkerDetailsCreateEnv { return v.Env }).(BackgroundWorkerDetailsCreateEnvOutput)
+func (o BackgroundWorkerDetailsCreateOutput) Disk() ServiceDiskPtrOutput {
+	return o.ApplyT(func(v BackgroundWorkerDetailsCreate) *ServiceDisk { return v.Disk }).(ServiceDiskPtrOutput)
 }
 
-func (o BackgroundWorkerDetailsCreateOutput) EnvSpecificDetails() pulumi.AnyOutput {
-	return o.ApplyT(func(v BackgroundWorkerDetailsCreate) interface{} { return v.EnvSpecificDetails }).(pulumi.AnyOutput)
+// This field has been deprecated, runtime should be used in its place.
+func (o BackgroundWorkerDetailsCreateOutput) Env() BackgroundWorkerDetailsCreateEnvPtrOutput {
+	return o.ApplyT(func(v BackgroundWorkerDetailsCreate) *BackgroundWorkerDetailsCreateEnv { return v.Env }).(BackgroundWorkerDetailsCreateEnvPtrOutput)
+}
+
+func (o BackgroundWorkerDetailsCreateOutput) EnvSpecificDetails() EnvSpecificDetailsCreatePtrOutput {
+	return o.ApplyT(func(v BackgroundWorkerDetailsCreate) *EnvSpecificDetailsCreate { return v.EnvSpecificDetails }).(EnvSpecificDetailsCreatePtrOutput)
+}
+
+// The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
+func (o BackgroundWorkerDetailsCreateOutput) MaxShutdownDelaySeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v BackgroundWorkerDetailsCreate) *int { return v.MaxShutdownDelaySeconds }).(pulumi.IntPtrOutput)
 }
 
 // Defaults to 1
@@ -536,8 +225,13 @@ func (o BackgroundWorkerDetailsCreateOutput) NumInstances() pulumi.IntPtrOutput 
 	return o.ApplyT(func(v BackgroundWorkerDetailsCreate) *int { return v.NumInstances }).(pulumi.IntPtrOutput)
 }
 
+// Defaults to "starter"
 func (o BackgroundWorkerDetailsCreateOutput) Plan() BackgroundWorkerDetailsCreatePlanPtrOutput {
 	return o.ApplyT(func(v BackgroundWorkerDetailsCreate) *BackgroundWorkerDetailsCreatePlan { return v.Plan }).(BackgroundWorkerDetailsCreatePlanPtrOutput)
+}
+
+func (o BackgroundWorkerDetailsCreateOutput) PreDeployCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BackgroundWorkerDetailsCreate) *string { return v.PreDeployCommand }).(pulumi.StringPtrOutput)
 }
 
 // Defaults to "no"
@@ -547,8 +241,14 @@ func (o BackgroundWorkerDetailsCreateOutput) PullRequestPreviewsEnabled() Backgr
 	}).(BackgroundWorkerDetailsCreatePullRequestPreviewsEnabledPtrOutput)
 }
 
+// Defaults to "oregon"
 func (o BackgroundWorkerDetailsCreateOutput) Region() BackgroundWorkerDetailsCreateRegionPtrOutput {
 	return o.ApplyT(func(v BackgroundWorkerDetailsCreate) *BackgroundWorkerDetailsCreateRegion { return v.Region }).(BackgroundWorkerDetailsCreateRegionPtrOutput)
+}
+
+// Runtime
+func (o BackgroundWorkerDetailsCreateOutput) Runtime() BackgroundWorkerDetailsCreateRuntimeOutput {
+	return o.ApplyT(func(v BackgroundWorkerDetailsCreate) BackgroundWorkerDetailsCreateRuntime { return v.Runtime }).(BackgroundWorkerDetailsCreateRuntimeOutput)
 }
 
 type BackgroundWorkerDetailsCreatePtrOutput struct{ *pulumi.OutputState }
@@ -575,32 +275,51 @@ func (o BackgroundWorkerDetailsCreatePtrOutput) Elem() BackgroundWorkerDetailsCr
 	}).(BackgroundWorkerDetailsCreateOutput)
 }
 
-func (o BackgroundWorkerDetailsCreatePtrOutput) Disk() BackgroundWorkerDetailsCreateDiskPropertiesPtrOutput {
-	return o.ApplyT(func(v *BackgroundWorkerDetailsCreate) *BackgroundWorkerDetailsCreateDiskProperties {
+func (o BackgroundWorkerDetailsCreatePtrOutput) Autoscaling() WebServiceDetailspropertiesautoscalingPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorkerDetailsCreate) *WebServiceDetailspropertiesautoscaling {
+		if v == nil {
+			return nil
+		}
+		return v.Autoscaling
+	}).(WebServiceDetailspropertiesautoscalingPtrOutput)
+}
+
+func (o BackgroundWorkerDetailsCreatePtrOutput) Disk() ServiceDiskPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorkerDetailsCreate) *ServiceDisk {
 		if v == nil {
 			return nil
 		}
 		return v.Disk
-	}).(BackgroundWorkerDetailsCreateDiskPropertiesPtrOutput)
+	}).(ServiceDiskPtrOutput)
 }
 
-// Environment (runtime)
+// This field has been deprecated, runtime should be used in its place.
 func (o BackgroundWorkerDetailsCreatePtrOutput) Env() BackgroundWorkerDetailsCreateEnvPtrOutput {
 	return o.ApplyT(func(v *BackgroundWorkerDetailsCreate) *BackgroundWorkerDetailsCreateEnv {
 		if v == nil {
 			return nil
 		}
-		return &v.Env
+		return v.Env
 	}).(BackgroundWorkerDetailsCreateEnvPtrOutput)
 }
 
-func (o BackgroundWorkerDetailsCreatePtrOutput) EnvSpecificDetails() pulumi.AnyOutput {
-	return o.ApplyT(func(v *BackgroundWorkerDetailsCreate) interface{} {
+func (o BackgroundWorkerDetailsCreatePtrOutput) EnvSpecificDetails() EnvSpecificDetailsCreatePtrOutput {
+	return o.ApplyT(func(v *BackgroundWorkerDetailsCreate) *EnvSpecificDetailsCreate {
 		if v == nil {
 			return nil
 		}
 		return v.EnvSpecificDetails
-	}).(pulumi.AnyOutput)
+	}).(EnvSpecificDetailsCreatePtrOutput)
+}
+
+// The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
+func (o BackgroundWorkerDetailsCreatePtrOutput) MaxShutdownDelaySeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorkerDetailsCreate) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxShutdownDelaySeconds
+	}).(pulumi.IntPtrOutput)
 }
 
 // Defaults to 1
@@ -613,6 +332,7 @@ func (o BackgroundWorkerDetailsCreatePtrOutput) NumInstances() pulumi.IntPtrOutp
 	}).(pulumi.IntPtrOutput)
 }
 
+// Defaults to "starter"
 func (o BackgroundWorkerDetailsCreatePtrOutput) Plan() BackgroundWorkerDetailsCreatePlanPtrOutput {
 	return o.ApplyT(func(v *BackgroundWorkerDetailsCreate) *BackgroundWorkerDetailsCreatePlan {
 		if v == nil {
@@ -620,6 +340,15 @@ func (o BackgroundWorkerDetailsCreatePtrOutput) Plan() BackgroundWorkerDetailsCr
 		}
 		return v.Plan
 	}).(BackgroundWorkerDetailsCreatePlanPtrOutput)
+}
+
+func (o BackgroundWorkerDetailsCreatePtrOutput) PreDeployCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorkerDetailsCreate) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PreDeployCommand
+	}).(pulumi.StringPtrOutput)
 }
 
 // Defaults to "no"
@@ -632,6 +361,7 @@ func (o BackgroundWorkerDetailsCreatePtrOutput) PullRequestPreviewsEnabled() Bac
 	}).(BackgroundWorkerDetailsCreatePullRequestPreviewsEnabledPtrOutput)
 }
 
+// Defaults to "oregon"
 func (o BackgroundWorkerDetailsCreatePtrOutput) Region() BackgroundWorkerDetailsCreateRegionPtrOutput {
 	return o.ApplyT(func(v *BackgroundWorkerDetailsCreate) *BackgroundWorkerDetailsCreateRegion {
 		if v == nil {
@@ -641,187 +371,34 @@ func (o BackgroundWorkerDetailsCreatePtrOutput) Region() BackgroundWorkerDetails
 	}).(BackgroundWorkerDetailsCreateRegionPtrOutput)
 }
 
-type BackgroundWorkerDetailsCreateDiskProperties struct {
-	MountPath string `pulumi:"mountPath"`
-	Name      string `pulumi:"name"`
-	// Defaults to 1
-	SizeGB *int `pulumi:"sizeGB"`
-}
-
-// BackgroundWorkerDetailsCreateDiskPropertiesInput is an input type that accepts BackgroundWorkerDetailsCreateDiskPropertiesArgs and BackgroundWorkerDetailsCreateDiskPropertiesOutput values.
-// You can construct a concrete instance of `BackgroundWorkerDetailsCreateDiskPropertiesInput` via:
-//
-//	BackgroundWorkerDetailsCreateDiskPropertiesArgs{...}
-type BackgroundWorkerDetailsCreateDiskPropertiesInput interface {
-	pulumi.Input
-
-	ToBackgroundWorkerDetailsCreateDiskPropertiesOutput() BackgroundWorkerDetailsCreateDiskPropertiesOutput
-	ToBackgroundWorkerDetailsCreateDiskPropertiesOutputWithContext(context.Context) BackgroundWorkerDetailsCreateDiskPropertiesOutput
-}
-
-type BackgroundWorkerDetailsCreateDiskPropertiesArgs struct {
-	MountPath pulumi.StringInput `pulumi:"mountPath"`
-	Name      pulumi.StringInput `pulumi:"name"`
-	// Defaults to 1
-	SizeGB pulumi.IntPtrInput `pulumi:"sizeGB"`
-}
-
-func (BackgroundWorkerDetailsCreateDiskPropertiesArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*BackgroundWorkerDetailsCreateDiskProperties)(nil)).Elem()
-}
-
-func (i BackgroundWorkerDetailsCreateDiskPropertiesArgs) ToBackgroundWorkerDetailsCreateDiskPropertiesOutput() BackgroundWorkerDetailsCreateDiskPropertiesOutput {
-	return i.ToBackgroundWorkerDetailsCreateDiskPropertiesOutputWithContext(context.Background())
-}
-
-func (i BackgroundWorkerDetailsCreateDiskPropertiesArgs) ToBackgroundWorkerDetailsCreateDiskPropertiesOutputWithContext(ctx context.Context) BackgroundWorkerDetailsCreateDiskPropertiesOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BackgroundWorkerDetailsCreateDiskPropertiesOutput)
-}
-
-func (i BackgroundWorkerDetailsCreateDiskPropertiesArgs) ToBackgroundWorkerDetailsCreateDiskPropertiesPtrOutput() BackgroundWorkerDetailsCreateDiskPropertiesPtrOutput {
-	return i.ToBackgroundWorkerDetailsCreateDiskPropertiesPtrOutputWithContext(context.Background())
-}
-
-func (i BackgroundWorkerDetailsCreateDiskPropertiesArgs) ToBackgroundWorkerDetailsCreateDiskPropertiesPtrOutputWithContext(ctx context.Context) BackgroundWorkerDetailsCreateDiskPropertiesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BackgroundWorkerDetailsCreateDiskPropertiesOutput).ToBackgroundWorkerDetailsCreateDiskPropertiesPtrOutputWithContext(ctx)
-}
-
-// BackgroundWorkerDetailsCreateDiskPropertiesPtrInput is an input type that accepts BackgroundWorkerDetailsCreateDiskPropertiesArgs, BackgroundWorkerDetailsCreateDiskPropertiesPtr and BackgroundWorkerDetailsCreateDiskPropertiesPtrOutput values.
-// You can construct a concrete instance of `BackgroundWorkerDetailsCreateDiskPropertiesPtrInput` via:
-//
-//	        BackgroundWorkerDetailsCreateDiskPropertiesArgs{...}
-//
-//	or:
-//
-//	        nil
-type BackgroundWorkerDetailsCreateDiskPropertiesPtrInput interface {
-	pulumi.Input
-
-	ToBackgroundWorkerDetailsCreateDiskPropertiesPtrOutput() BackgroundWorkerDetailsCreateDiskPropertiesPtrOutput
-	ToBackgroundWorkerDetailsCreateDiskPropertiesPtrOutputWithContext(context.Context) BackgroundWorkerDetailsCreateDiskPropertiesPtrOutput
-}
-
-type backgroundWorkerDetailsCreateDiskPropertiesPtrType BackgroundWorkerDetailsCreateDiskPropertiesArgs
-
-func BackgroundWorkerDetailsCreateDiskPropertiesPtr(v *BackgroundWorkerDetailsCreateDiskPropertiesArgs) BackgroundWorkerDetailsCreateDiskPropertiesPtrInput {
-	return (*backgroundWorkerDetailsCreateDiskPropertiesPtrType)(v)
-}
-
-func (*backgroundWorkerDetailsCreateDiskPropertiesPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**BackgroundWorkerDetailsCreateDiskProperties)(nil)).Elem()
-}
-
-func (i *backgroundWorkerDetailsCreateDiskPropertiesPtrType) ToBackgroundWorkerDetailsCreateDiskPropertiesPtrOutput() BackgroundWorkerDetailsCreateDiskPropertiesPtrOutput {
-	return i.ToBackgroundWorkerDetailsCreateDiskPropertiesPtrOutputWithContext(context.Background())
-}
-
-func (i *backgroundWorkerDetailsCreateDiskPropertiesPtrType) ToBackgroundWorkerDetailsCreateDiskPropertiesPtrOutputWithContext(ctx context.Context) BackgroundWorkerDetailsCreateDiskPropertiesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BackgroundWorkerDetailsCreateDiskPropertiesPtrOutput)
-}
-
-type BackgroundWorkerDetailsCreateDiskPropertiesOutput struct{ *pulumi.OutputState }
-
-func (BackgroundWorkerDetailsCreateDiskPropertiesOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*BackgroundWorkerDetailsCreateDiskProperties)(nil)).Elem()
-}
-
-func (o BackgroundWorkerDetailsCreateDiskPropertiesOutput) ToBackgroundWorkerDetailsCreateDiskPropertiesOutput() BackgroundWorkerDetailsCreateDiskPropertiesOutput {
-	return o
-}
-
-func (o BackgroundWorkerDetailsCreateDiskPropertiesOutput) ToBackgroundWorkerDetailsCreateDiskPropertiesOutputWithContext(ctx context.Context) BackgroundWorkerDetailsCreateDiskPropertiesOutput {
-	return o
-}
-
-func (o BackgroundWorkerDetailsCreateDiskPropertiesOutput) ToBackgroundWorkerDetailsCreateDiskPropertiesPtrOutput() BackgroundWorkerDetailsCreateDiskPropertiesPtrOutput {
-	return o.ToBackgroundWorkerDetailsCreateDiskPropertiesPtrOutputWithContext(context.Background())
-}
-
-func (o BackgroundWorkerDetailsCreateDiskPropertiesOutput) ToBackgroundWorkerDetailsCreateDiskPropertiesPtrOutputWithContext(ctx context.Context) BackgroundWorkerDetailsCreateDiskPropertiesPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v BackgroundWorkerDetailsCreateDiskProperties) *BackgroundWorkerDetailsCreateDiskProperties {
-		return &v
-	}).(BackgroundWorkerDetailsCreateDiskPropertiesPtrOutput)
-}
-
-func (o BackgroundWorkerDetailsCreateDiskPropertiesOutput) MountPath() pulumi.StringOutput {
-	return o.ApplyT(func(v BackgroundWorkerDetailsCreateDiskProperties) string { return v.MountPath }).(pulumi.StringOutput)
-}
-
-func (o BackgroundWorkerDetailsCreateDiskPropertiesOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v BackgroundWorkerDetailsCreateDiskProperties) string { return v.Name }).(pulumi.StringOutput)
-}
-
-// Defaults to 1
-func (o BackgroundWorkerDetailsCreateDiskPropertiesOutput) SizeGB() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v BackgroundWorkerDetailsCreateDiskProperties) *int { return v.SizeGB }).(pulumi.IntPtrOutput)
-}
-
-type BackgroundWorkerDetailsCreateDiskPropertiesPtrOutput struct{ *pulumi.OutputState }
-
-func (BackgroundWorkerDetailsCreateDiskPropertiesPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**BackgroundWorkerDetailsCreateDiskProperties)(nil)).Elem()
-}
-
-func (o BackgroundWorkerDetailsCreateDiskPropertiesPtrOutput) ToBackgroundWorkerDetailsCreateDiskPropertiesPtrOutput() BackgroundWorkerDetailsCreateDiskPropertiesPtrOutput {
-	return o
-}
-
-func (o BackgroundWorkerDetailsCreateDiskPropertiesPtrOutput) ToBackgroundWorkerDetailsCreateDiskPropertiesPtrOutputWithContext(ctx context.Context) BackgroundWorkerDetailsCreateDiskPropertiesPtrOutput {
-	return o
-}
-
-func (o BackgroundWorkerDetailsCreateDiskPropertiesPtrOutput) Elem() BackgroundWorkerDetailsCreateDiskPropertiesOutput {
-	return o.ApplyT(func(v *BackgroundWorkerDetailsCreateDiskProperties) BackgroundWorkerDetailsCreateDiskProperties {
-		if v != nil {
-			return *v
-		}
-		var ret BackgroundWorkerDetailsCreateDiskProperties
-		return ret
-	}).(BackgroundWorkerDetailsCreateDiskPropertiesOutput)
-}
-
-func (o BackgroundWorkerDetailsCreateDiskPropertiesPtrOutput) MountPath() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *BackgroundWorkerDetailsCreateDiskProperties) *string {
+// Runtime
+func (o BackgroundWorkerDetailsCreatePtrOutput) Runtime() BackgroundWorkerDetailsCreateRuntimePtrOutput {
+	return o.ApplyT(func(v *BackgroundWorkerDetailsCreate) *BackgroundWorkerDetailsCreateRuntime {
 		if v == nil {
 			return nil
 		}
-		return &v.MountPath
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o BackgroundWorkerDetailsCreateDiskPropertiesPtrOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *BackgroundWorkerDetailsCreateDiskProperties) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.Name
-	}).(pulumi.StringPtrOutput)
-}
-
-// Defaults to 1
-func (o BackgroundWorkerDetailsCreateDiskPropertiesPtrOutput) SizeGB() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *BackgroundWorkerDetailsCreateDiskProperties) *int {
-		if v == nil {
-			return nil
-		}
-		return v.SizeGB
-	}).(pulumi.IntPtrOutput)
+		return &v.Runtime
+	}).(BackgroundWorkerDetailsCreateRuntimePtrOutput)
 }
 
 type BackgroundWorkerDetailsOutput struct {
-	Autoscaling *AutoscalingConfig `pulumi:"autoscaling"`
-	BuildPlan   string             `pulumi:"buildPlan"`
-	Disk        *Disk              `pulumi:"disk"`
-	// Environment (runtime)
+	Autoscaling *WebServiceDetailspropertiesautoscaling `pulumi:"autoscaling"`
+	BuildPlan   BackgroundWorkerDetailsOutputBuildPlan  `pulumi:"buildPlan"`
+	Disk        *WebServiceDetailspropertiesdisk        `pulumi:"disk"`
+	// Runtime
 	Env                BackgroundWorkerDetailsOutputEnv `pulumi:"env"`
-	EnvSpecificDetails interface{}                      `pulumi:"envSpecificDetails"`
+	EnvSpecificDetails EnvSpecificDetails               `pulumi:"envSpecificDetails"`
+	// The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
+	MaxShutdownDelaySeconds *int `pulumi:"maxShutdownDelaySeconds"`
 	// For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
 	NumInstances int       `pulumi:"numInstances"`
 	ParentServer *Resource `pulumi:"parentServer"`
 	// The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
-	Plan                       BackgroundWorkerDetailsOutputPlan                       `pulumi:"plan"`
-	PullRequestPreviewsEnabled BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
-	Region                     BackgroundWorkerDetailsOutputRegion                     `pulumi:"region"`
+	Plan BackgroundWorkerDetailsOutputPlan `pulumi:"plan"`
+	// Defaults to "no"
+	PullRequestPreviewsEnabled *BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
+	// Defaults to "oregon"
+	Region BackgroundWorkerDetailsOutputRegion `pulumi:"region"`
 }
 
 // Defaults sets the appropriate defaults for BackgroundWorkerDetailsOutput
@@ -832,6 +409,20 @@ func (val *BackgroundWorkerDetailsOutput) Defaults() *BackgroundWorkerDetailsOut
 	tmp := *val
 	tmp.Autoscaling = tmp.Autoscaling.Defaults()
 
+	if internal.IsZero(tmp.BuildPlan) {
+		tmp.BuildPlan = BackgroundWorkerDetailsOutputBuildPlan("starter")
+	}
+	if tmp.MaxShutdownDelaySeconds == nil {
+		maxShutdownDelaySeconds_ := 30
+		tmp.MaxShutdownDelaySeconds = &maxShutdownDelaySeconds_
+	}
+	if tmp.PullRequestPreviewsEnabled == nil {
+		pullRequestPreviewsEnabled_ := BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled("no")
+		tmp.PullRequestPreviewsEnabled = &pullRequestPreviewsEnabled_
+	}
+	if internal.IsZero(tmp.Region) {
+		tmp.Region = BackgroundWorkerDetailsOutputRegion("oregon")
+	}
 	return &tmp
 }
 
@@ -849,25 +440,30 @@ func (o BackgroundWorkerDetailsOutputOutput) ToBackgroundWorkerDetailsOutputOutp
 	return o
 }
 
-func (o BackgroundWorkerDetailsOutputOutput) Autoscaling() AutoscalingConfigPtrOutput {
-	return o.ApplyT(func(v BackgroundWorkerDetailsOutput) *AutoscalingConfig { return v.Autoscaling }).(AutoscalingConfigPtrOutput)
+func (o BackgroundWorkerDetailsOutputOutput) Autoscaling() WebServiceDetailspropertiesautoscalingPtrOutput {
+	return o.ApplyT(func(v BackgroundWorkerDetailsOutput) *WebServiceDetailspropertiesautoscaling { return v.Autoscaling }).(WebServiceDetailspropertiesautoscalingPtrOutput)
 }
 
-func (o BackgroundWorkerDetailsOutputOutput) BuildPlan() pulumi.StringOutput {
-	return o.ApplyT(func(v BackgroundWorkerDetailsOutput) string { return v.BuildPlan }).(pulumi.StringOutput)
+func (o BackgroundWorkerDetailsOutputOutput) BuildPlan() BackgroundWorkerDetailsOutputBuildPlanOutput {
+	return o.ApplyT(func(v BackgroundWorkerDetailsOutput) BackgroundWorkerDetailsOutputBuildPlan { return v.BuildPlan }).(BackgroundWorkerDetailsOutputBuildPlanOutput)
 }
 
-func (o BackgroundWorkerDetailsOutputOutput) Disk() DiskPtrOutput {
-	return o.ApplyT(func(v BackgroundWorkerDetailsOutput) *Disk { return v.Disk }).(DiskPtrOutput)
+func (o BackgroundWorkerDetailsOutputOutput) Disk() WebServiceDetailspropertiesdiskPtrOutput {
+	return o.ApplyT(func(v BackgroundWorkerDetailsOutput) *WebServiceDetailspropertiesdisk { return v.Disk }).(WebServiceDetailspropertiesdiskPtrOutput)
 }
 
-// Environment (runtime)
+// Runtime
 func (o BackgroundWorkerDetailsOutputOutput) Env() BackgroundWorkerDetailsOutputEnvOutput {
 	return o.ApplyT(func(v BackgroundWorkerDetailsOutput) BackgroundWorkerDetailsOutputEnv { return v.Env }).(BackgroundWorkerDetailsOutputEnvOutput)
 }
 
-func (o BackgroundWorkerDetailsOutputOutput) EnvSpecificDetails() pulumi.AnyOutput {
-	return o.ApplyT(func(v BackgroundWorkerDetailsOutput) interface{} { return v.EnvSpecificDetails }).(pulumi.AnyOutput)
+func (o BackgroundWorkerDetailsOutputOutput) EnvSpecificDetails() EnvSpecificDetailsOutput {
+	return o.ApplyT(func(v BackgroundWorkerDetailsOutput) EnvSpecificDetails { return v.EnvSpecificDetails }).(EnvSpecificDetailsOutput)
+}
+
+// The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
+func (o BackgroundWorkerDetailsOutputOutput) MaxShutdownDelaySeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v BackgroundWorkerDetailsOutput) *int { return v.MaxShutdownDelaySeconds }).(pulumi.IntPtrOutput)
 }
 
 // For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
@@ -884,12 +480,14 @@ func (o BackgroundWorkerDetailsOutputOutput) Plan() BackgroundWorkerDetailsOutpu
 	return o.ApplyT(func(v BackgroundWorkerDetailsOutput) BackgroundWorkerDetailsOutputPlan { return v.Plan }).(BackgroundWorkerDetailsOutputPlanOutput)
 }
 
-func (o BackgroundWorkerDetailsOutputOutput) PullRequestPreviewsEnabled() BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledOutput {
-	return o.ApplyT(func(v BackgroundWorkerDetailsOutput) BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled {
+// Defaults to "no"
+func (o BackgroundWorkerDetailsOutputOutput) PullRequestPreviewsEnabled() BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledPtrOutput {
+	return o.ApplyT(func(v BackgroundWorkerDetailsOutput) *BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled {
 		return v.PullRequestPreviewsEnabled
-	}).(BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledOutput)
+	}).(BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledPtrOutput)
 }
 
+// Defaults to "oregon"
 func (o BackgroundWorkerDetailsOutputOutput) Region() BackgroundWorkerDetailsOutputRegionOutput {
 	return o.ApplyT(func(v BackgroundWorkerDetailsOutput) BackgroundWorkerDetailsOutputRegion { return v.Region }).(BackgroundWorkerDetailsOutputRegionOutput)
 }
@@ -918,34 +516,34 @@ func (o BackgroundWorkerDetailsOutputPtrOutput) Elem() BackgroundWorkerDetailsOu
 	}).(BackgroundWorkerDetailsOutputOutput)
 }
 
-func (o BackgroundWorkerDetailsOutputPtrOutput) Autoscaling() AutoscalingConfigPtrOutput {
-	return o.ApplyT(func(v *BackgroundWorkerDetailsOutput) *AutoscalingConfig {
+func (o BackgroundWorkerDetailsOutputPtrOutput) Autoscaling() WebServiceDetailspropertiesautoscalingPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorkerDetailsOutput) *WebServiceDetailspropertiesautoscaling {
 		if v == nil {
 			return nil
 		}
 		return v.Autoscaling
-	}).(AutoscalingConfigPtrOutput)
+	}).(WebServiceDetailspropertiesautoscalingPtrOutput)
 }
 
-func (o BackgroundWorkerDetailsOutputPtrOutput) BuildPlan() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *BackgroundWorkerDetailsOutput) *string {
+func (o BackgroundWorkerDetailsOutputPtrOutput) BuildPlan() BackgroundWorkerDetailsOutputBuildPlanPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorkerDetailsOutput) *BackgroundWorkerDetailsOutputBuildPlan {
 		if v == nil {
 			return nil
 		}
 		return &v.BuildPlan
-	}).(pulumi.StringPtrOutput)
+	}).(BackgroundWorkerDetailsOutputBuildPlanPtrOutput)
 }
 
-func (o BackgroundWorkerDetailsOutputPtrOutput) Disk() DiskPtrOutput {
-	return o.ApplyT(func(v *BackgroundWorkerDetailsOutput) *Disk {
+func (o BackgroundWorkerDetailsOutputPtrOutput) Disk() WebServiceDetailspropertiesdiskPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorkerDetailsOutput) *WebServiceDetailspropertiesdisk {
 		if v == nil {
 			return nil
 		}
 		return v.Disk
-	}).(DiskPtrOutput)
+	}).(WebServiceDetailspropertiesdiskPtrOutput)
 }
 
-// Environment (runtime)
+// Runtime
 func (o BackgroundWorkerDetailsOutputPtrOutput) Env() BackgroundWorkerDetailsOutputEnvPtrOutput {
 	return o.ApplyT(func(v *BackgroundWorkerDetailsOutput) *BackgroundWorkerDetailsOutputEnv {
 		if v == nil {
@@ -955,13 +553,23 @@ func (o BackgroundWorkerDetailsOutputPtrOutput) Env() BackgroundWorkerDetailsOut
 	}).(BackgroundWorkerDetailsOutputEnvPtrOutput)
 }
 
-func (o BackgroundWorkerDetailsOutputPtrOutput) EnvSpecificDetails() pulumi.AnyOutput {
-	return o.ApplyT(func(v *BackgroundWorkerDetailsOutput) interface{} {
+func (o BackgroundWorkerDetailsOutputPtrOutput) EnvSpecificDetails() EnvSpecificDetailsPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorkerDetailsOutput) *EnvSpecificDetails {
 		if v == nil {
 			return nil
 		}
-		return v.EnvSpecificDetails
-	}).(pulumi.AnyOutput)
+		return &v.EnvSpecificDetails
+	}).(EnvSpecificDetailsPtrOutput)
+}
+
+// The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
+func (o BackgroundWorkerDetailsOutputPtrOutput) MaxShutdownDelaySeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorkerDetailsOutput) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxShutdownDelaySeconds
+	}).(pulumi.IntPtrOutput)
 }
 
 // For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
@@ -993,15 +601,17 @@ func (o BackgroundWorkerDetailsOutputPtrOutput) Plan() BackgroundWorkerDetailsOu
 	}).(BackgroundWorkerDetailsOutputPlanPtrOutput)
 }
 
+// Defaults to "no"
 func (o BackgroundWorkerDetailsOutputPtrOutput) PullRequestPreviewsEnabled() BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledPtrOutput {
 	return o.ApplyT(func(v *BackgroundWorkerDetailsOutput) *BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled {
 		if v == nil {
 			return nil
 		}
-		return &v.PullRequestPreviewsEnabled
+		return v.PullRequestPreviewsEnabled
 	}).(BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledPtrOutput)
 }
 
+// Defaults to "oregon"
 func (o BackgroundWorkerDetailsOutputPtrOutput) Region() BackgroundWorkerDetailsOutputRegionPtrOutput {
 	return o.ApplyT(func(v *BackgroundWorkerDetailsOutput) *BackgroundWorkerDetailsOutputRegion {
 		if v == nil {
@@ -1012,23 +622,27 @@ func (o BackgroundWorkerDetailsOutputPtrOutput) Region() BackgroundWorkerDetails
 }
 
 type BackgroundWorkerOutputType struct {
-	AutoDeploy     ServiceAutoDeploy              `pulumi:"autoDeploy"`
-	Branch         *string                        `pulumi:"branch"`
-	BuildFilter    *BuildFilter                   `pulumi:"buildFilter"`
-	CreatedAt      string                         `pulumi:"createdAt"`
-	Id             string                         `pulumi:"id"`
-	ImagePath      *string                        `pulumi:"imagePath"`
-	Name           string                         `pulumi:"name"`
-	NotifyOnFail   ServiceNotifyOnFail            `pulumi:"notifyOnFail"`
-	OwnerId        string                         `pulumi:"ownerId"`
-	Repo           *string                        `pulumi:"repo"`
-	RootDir        string                         `pulumi:"rootDir"`
-	ServiceDetails *BackgroundWorkerDetailsOutput `pulumi:"serviceDetails"`
-	Slug           string                         `pulumi:"slug"`
-	Suspended      ServiceSuspended               `pulumi:"suspended"`
-	Suspenders     []ServiceSuspendersItem        `pulumi:"suspenders"`
-	Type           *string                        `pulumi:"type"`
-	UpdatedAt      string                         `pulumi:"updatedAt"`
+	AutoDeploy  ServiceAutoDeploy `pulumi:"autoDeploy"`
+	Branch      *string           `pulumi:"branch"`
+	BuildFilter *BuildFilter      `pulumi:"buildFilter"`
+	CreatedAt   string            `pulumi:"createdAt"`
+	// The URL to view the service in the Render Dashboard
+	DashboardUrl       string                         `pulumi:"dashboardUrl"`
+	EnvironmentId      *string                        `pulumi:"environmentId"`
+	Id                 string                         `pulumi:"id"`
+	ImagePath          *string                        `pulumi:"imagePath"`
+	Name               string                         `pulumi:"name"`
+	NotifyOnFail       ServiceNotifyOnFail            `pulumi:"notifyOnFail"`
+	OwnerId            string                         `pulumi:"ownerId"`
+	RegistryCredential *RegistryCredentialSummary     `pulumi:"registryCredential"`
+	Repo               *string                        `pulumi:"repo"`
+	RootDir            string                         `pulumi:"rootDir"`
+	ServiceDetails     *BackgroundWorkerDetailsOutput `pulumi:"serviceDetails"`
+	Slug               string                         `pulumi:"slug"`
+	Suspended          ServiceSuspended               `pulumi:"suspended"`
+	Suspenders         []ServiceSuspendersItem        `pulumi:"suspenders"`
+	Type               *string                        `pulumi:"type"`
+	UpdatedAt          string                         `pulumi:"updatedAt"`
 }
 
 // Defaults sets the appropriate defaults for BackgroundWorkerOutputType
@@ -1037,6 +651,9 @@ func (val *BackgroundWorkerOutputType) Defaults() *BackgroundWorkerOutputType {
 		return nil
 	}
 	tmp := *val
+	if internal.IsZero(tmp.AutoDeploy) {
+		tmp.AutoDeploy = ServiceAutoDeploy("yes")
+	}
 	tmp.ServiceDetails = tmp.ServiceDetails.Defaults()
 
 	if tmp.Type == nil {
@@ -1076,6 +693,15 @@ func (o BackgroundWorkerOutputTypeOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v BackgroundWorkerOutputType) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// The URL to view the service in the Render Dashboard
+func (o BackgroundWorkerOutputTypeOutput) DashboardUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v BackgroundWorkerOutputType) string { return v.DashboardUrl }).(pulumi.StringOutput)
+}
+
+func (o BackgroundWorkerOutputTypeOutput) EnvironmentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BackgroundWorkerOutputType) *string { return v.EnvironmentId }).(pulumi.StringPtrOutput)
+}
+
 func (o BackgroundWorkerOutputTypeOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v BackgroundWorkerOutputType) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -1094,6 +720,10 @@ func (o BackgroundWorkerOutputTypeOutput) NotifyOnFail() ServiceNotifyOnFailOutp
 
 func (o BackgroundWorkerOutputTypeOutput) OwnerId() pulumi.StringOutput {
 	return o.ApplyT(func(v BackgroundWorkerOutputType) string { return v.OwnerId }).(pulumi.StringOutput)
+}
+
+func (o BackgroundWorkerOutputTypeOutput) RegistryCredential() RegistryCredentialSummaryPtrOutput {
+	return o.ApplyT(func(v BackgroundWorkerOutputType) *RegistryCredentialSummary { return v.RegistryCredential }).(RegistryCredentialSummaryPtrOutput)
 }
 
 func (o BackgroundWorkerOutputTypeOutput) Repo() pulumi.StringPtrOutput {
@@ -1188,6 +818,25 @@ func (o BackgroundWorkerOutputTypePtrOutput) CreatedAt() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
+// The URL to view the service in the Render Dashboard
+func (o BackgroundWorkerOutputTypePtrOutput) DashboardUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorkerOutputType) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.DashboardUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o BackgroundWorkerOutputTypePtrOutput) EnvironmentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorkerOutputType) *string {
+		if v == nil {
+			return nil
+		}
+		return v.EnvironmentId
+	}).(pulumi.StringPtrOutput)
+}
+
 func (o BackgroundWorkerOutputTypePtrOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BackgroundWorkerOutputType) *string {
 		if v == nil {
@@ -1231,6 +880,15 @@ func (o BackgroundWorkerOutputTypePtrOutput) OwnerId() pulumi.StringPtrOutput {
 		}
 		return &v.OwnerId
 	}).(pulumi.StringPtrOutput)
+}
+
+func (o BackgroundWorkerOutputTypePtrOutput) RegistryCredential() RegistryCredentialSummaryPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorkerOutputType) *RegistryCredentialSummary {
+		if v == nil {
+			return nil
+		}
+		return v.RegistryCredential
+	}).(RegistryCredentialSummaryPtrOutput)
 }
 
 func (o BackgroundWorkerOutputTypePtrOutput) Repo() pulumi.StringPtrOutput {
@@ -1536,13 +1194,194 @@ func (o CommitPropertiesPtrOutput) Message() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type CriteriaProperties struct {
+	Cpu    CriteriaPropertiesCpuProperties                                       `pulumi:"cpu"`
+	Memory WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpu `pulumi:"memory"`
+}
+
+// Defaults sets the appropriate defaults for CriteriaProperties
+func (val *CriteriaProperties) Defaults() *CriteriaProperties {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	tmp.Cpu = *tmp.Cpu.Defaults()
+
+	tmp.Memory = *tmp.Memory.Defaults()
+
+	return &tmp
+}
+
+// CriteriaPropertiesInput is an input type that accepts CriteriaPropertiesArgs and CriteriaPropertiesOutput values.
+// You can construct a concrete instance of `CriteriaPropertiesInput` via:
+//
+//	CriteriaPropertiesArgs{...}
+type CriteriaPropertiesInput interface {
+	pulumi.Input
+
+	ToCriteriaPropertiesOutput() CriteriaPropertiesOutput
+	ToCriteriaPropertiesOutputWithContext(context.Context) CriteriaPropertiesOutput
+}
+
+type CriteriaPropertiesArgs struct {
+	Cpu    CriteriaPropertiesCpuPropertiesInput                                       `pulumi:"cpu"`
+	Memory WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuInput `pulumi:"memory"`
+}
+
+// Defaults sets the appropriate defaults for CriteriaPropertiesArgs
+func (val *CriteriaPropertiesArgs) Defaults() *CriteriaPropertiesArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+
+	return &tmp
+}
+func (CriteriaPropertiesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CriteriaProperties)(nil)).Elem()
+}
+
+func (i CriteriaPropertiesArgs) ToCriteriaPropertiesOutput() CriteriaPropertiesOutput {
+	return i.ToCriteriaPropertiesOutputWithContext(context.Background())
+}
+
+func (i CriteriaPropertiesArgs) ToCriteriaPropertiesOutputWithContext(ctx context.Context) CriteriaPropertiesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CriteriaPropertiesOutput)
+}
+
+type CriteriaPropertiesOutput struct{ *pulumi.OutputState }
+
+func (CriteriaPropertiesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CriteriaProperties)(nil)).Elem()
+}
+
+func (o CriteriaPropertiesOutput) ToCriteriaPropertiesOutput() CriteriaPropertiesOutput {
+	return o
+}
+
+func (o CriteriaPropertiesOutput) ToCriteriaPropertiesOutputWithContext(ctx context.Context) CriteriaPropertiesOutput {
+	return o
+}
+
+func (o CriteriaPropertiesOutput) Cpu() CriteriaPropertiesCpuPropertiesOutput {
+	return o.ApplyT(func(v CriteriaProperties) CriteriaPropertiesCpuProperties { return v.Cpu }).(CriteriaPropertiesCpuPropertiesOutput)
+}
+
+func (o CriteriaPropertiesOutput) Memory() WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuOutput {
+	return o.ApplyT(func(v CriteriaProperties) WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpu {
+		return v.Memory
+	}).(WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuOutput)
+}
+
+type CriteriaPropertiesCpuProperties struct {
+	Enabled bool `pulumi:"enabled"`
+	// Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+	Percentage int `pulumi:"percentage"`
+}
+
+// Defaults sets the appropriate defaults for CriteriaPropertiesCpuProperties
+func (val *CriteriaPropertiesCpuProperties) Defaults() *CriteriaPropertiesCpuProperties {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if internal.IsZero(tmp.Enabled) {
+		tmp.Enabled = false
+	}
+	return &tmp
+}
+
+// CriteriaPropertiesCpuPropertiesInput is an input type that accepts CriteriaPropertiesCpuPropertiesArgs and CriteriaPropertiesCpuPropertiesOutput values.
+// You can construct a concrete instance of `CriteriaPropertiesCpuPropertiesInput` via:
+//
+//	CriteriaPropertiesCpuPropertiesArgs{...}
+type CriteriaPropertiesCpuPropertiesInput interface {
+	pulumi.Input
+
+	ToCriteriaPropertiesCpuPropertiesOutput() CriteriaPropertiesCpuPropertiesOutput
+	ToCriteriaPropertiesCpuPropertiesOutputWithContext(context.Context) CriteriaPropertiesCpuPropertiesOutput
+}
+
+type CriteriaPropertiesCpuPropertiesArgs struct {
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+	Percentage pulumi.IntInput `pulumi:"percentage"`
+}
+
+// Defaults sets the appropriate defaults for CriteriaPropertiesCpuPropertiesArgs
+func (val *CriteriaPropertiesCpuPropertiesArgs) Defaults() *CriteriaPropertiesCpuPropertiesArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Enabled == nil {
+		tmp.Enabled = pulumi.Bool(false)
+	}
+	return &tmp
+}
+func (CriteriaPropertiesCpuPropertiesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CriteriaPropertiesCpuProperties)(nil)).Elem()
+}
+
+func (i CriteriaPropertiesCpuPropertiesArgs) ToCriteriaPropertiesCpuPropertiesOutput() CriteriaPropertiesCpuPropertiesOutput {
+	return i.ToCriteriaPropertiesCpuPropertiesOutputWithContext(context.Background())
+}
+
+func (i CriteriaPropertiesCpuPropertiesArgs) ToCriteriaPropertiesCpuPropertiesOutputWithContext(ctx context.Context) CriteriaPropertiesCpuPropertiesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CriteriaPropertiesCpuPropertiesOutput)
+}
+
+type CriteriaPropertiesCpuPropertiesOutput struct{ *pulumi.OutputState }
+
+func (CriteriaPropertiesCpuPropertiesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CriteriaPropertiesCpuProperties)(nil)).Elem()
+}
+
+func (o CriteriaPropertiesCpuPropertiesOutput) ToCriteriaPropertiesCpuPropertiesOutput() CriteriaPropertiesCpuPropertiesOutput {
+	return o
+}
+
+func (o CriteriaPropertiesCpuPropertiesOutput) ToCriteriaPropertiesCpuPropertiesOutputWithContext(ctx context.Context) CriteriaPropertiesCpuPropertiesOutput {
+	return o
+}
+
+func (o CriteriaPropertiesCpuPropertiesOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v CriteriaPropertiesCpuProperties) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+func (o CriteriaPropertiesCpuPropertiesOutput) Percentage() pulumi.IntOutput {
+	return o.ApplyT(func(v CriteriaPropertiesCpuProperties) int { return v.Percentage }).(pulumi.IntOutput)
+}
+
 type CronJobDetailsCreate struct {
-	// Environment (runtime)
-	Env                CronJobDetailsCreateEnv     `pulumi:"env"`
-	EnvSpecificDetails interface{}                 `pulumi:"envSpecificDetails"`
-	Plan               *CronJobDetailsCreatePlan   `pulumi:"plan"`
-	Region             *CronJobDetailsCreateRegion `pulumi:"region"`
-	Schedule           string                      `pulumi:"schedule"`
+	// This field has been deprecated, runtime should be used in its place.
+	Env                *CronJobDetailsCreateEnv `pulumi:"env"`
+	EnvSpecificDetails *EnvSpecificDetails      `pulumi:"envSpecificDetails"`
+	// Defaults to "starter"
+	Plan *CronJobDetailsCreatePlan `pulumi:"plan"`
+	// Defaults to "oregon"
+	Region *CronJobDetailsCreateRegion `pulumi:"region"`
+	// Runtime
+	Runtime  CronJobDetailsCreateRuntime `pulumi:"runtime"`
+	Schedule string                      `pulumi:"schedule"`
+}
+
+// Defaults sets the appropriate defaults for CronJobDetailsCreate
+func (val *CronJobDetailsCreate) Defaults() *CronJobDetailsCreate {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Plan == nil {
+		plan_ := CronJobDetailsCreatePlan("starter")
+		tmp.Plan = &plan_
+	}
+	if tmp.Region == nil {
+		region_ := CronJobDetailsCreateRegion("oregon")
+		tmp.Region = &region_
+	}
+	return &tmp
 }
 
 // CronJobDetailsCreateInput is an input type that accepts CronJobDetailsCreateArgs and CronJobDetailsCreateOutput values.
@@ -1557,14 +1396,32 @@ type CronJobDetailsCreateInput interface {
 }
 
 type CronJobDetailsCreateArgs struct {
-	// Environment (runtime)
-	Env                CronJobDetailsCreateEnvInput       `pulumi:"env"`
-	EnvSpecificDetails pulumi.Input                       `pulumi:"envSpecificDetails"`
-	Plan               CronJobDetailsCreatePlanPtrInput   `pulumi:"plan"`
-	Region             CronJobDetailsCreateRegionPtrInput `pulumi:"region"`
-	Schedule           pulumi.StringInput                 `pulumi:"schedule"`
+	// This field has been deprecated, runtime should be used in its place.
+	Env                CronJobDetailsCreateEnvPtrInput `pulumi:"env"`
+	EnvSpecificDetails EnvSpecificDetailsPtrInput      `pulumi:"envSpecificDetails"`
+	// Defaults to "starter"
+	Plan CronJobDetailsCreatePlanPtrInput `pulumi:"plan"`
+	// Defaults to "oregon"
+	Region CronJobDetailsCreateRegionPtrInput `pulumi:"region"`
+	// Runtime
+	Runtime  CronJobDetailsCreateRuntimeInput `pulumi:"runtime"`
+	Schedule pulumi.StringInput               `pulumi:"schedule"`
 }
 
+// Defaults sets the appropriate defaults for CronJobDetailsCreateArgs
+func (val *CronJobDetailsCreateArgs) Defaults() *CronJobDetailsCreateArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Plan == nil {
+		tmp.Plan = CronJobDetailsCreatePlan("starter")
+	}
+	if tmp.Region == nil {
+		tmp.Region = CronJobDetailsCreateRegion("oregon")
+	}
+	return &tmp
+}
 func (CronJobDetailsCreateArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*CronJobDetailsCreate)(nil)).Elem()
 }
@@ -1642,21 +1499,28 @@ func (o CronJobDetailsCreateOutput) ToCronJobDetailsCreatePtrOutputWithContext(c
 	}).(CronJobDetailsCreatePtrOutput)
 }
 
-// Environment (runtime)
-func (o CronJobDetailsCreateOutput) Env() CronJobDetailsCreateEnvOutput {
-	return o.ApplyT(func(v CronJobDetailsCreate) CronJobDetailsCreateEnv { return v.Env }).(CronJobDetailsCreateEnvOutput)
+// This field has been deprecated, runtime should be used in its place.
+func (o CronJobDetailsCreateOutput) Env() CronJobDetailsCreateEnvPtrOutput {
+	return o.ApplyT(func(v CronJobDetailsCreate) *CronJobDetailsCreateEnv { return v.Env }).(CronJobDetailsCreateEnvPtrOutput)
 }
 
-func (o CronJobDetailsCreateOutput) EnvSpecificDetails() pulumi.AnyOutput {
-	return o.ApplyT(func(v CronJobDetailsCreate) interface{} { return v.EnvSpecificDetails }).(pulumi.AnyOutput)
+func (o CronJobDetailsCreateOutput) EnvSpecificDetails() EnvSpecificDetailsPtrOutput {
+	return o.ApplyT(func(v CronJobDetailsCreate) *EnvSpecificDetails { return v.EnvSpecificDetails }).(EnvSpecificDetailsPtrOutput)
 }
 
+// Defaults to "starter"
 func (o CronJobDetailsCreateOutput) Plan() CronJobDetailsCreatePlanPtrOutput {
 	return o.ApplyT(func(v CronJobDetailsCreate) *CronJobDetailsCreatePlan { return v.Plan }).(CronJobDetailsCreatePlanPtrOutput)
 }
 
+// Defaults to "oregon"
 func (o CronJobDetailsCreateOutput) Region() CronJobDetailsCreateRegionPtrOutput {
 	return o.ApplyT(func(v CronJobDetailsCreate) *CronJobDetailsCreateRegion { return v.Region }).(CronJobDetailsCreateRegionPtrOutput)
+}
+
+// Runtime
+func (o CronJobDetailsCreateOutput) Runtime() CronJobDetailsCreateRuntimeOutput {
+	return o.ApplyT(func(v CronJobDetailsCreate) CronJobDetailsCreateRuntime { return v.Runtime }).(CronJobDetailsCreateRuntimeOutput)
 }
 
 func (o CronJobDetailsCreateOutput) Schedule() pulumi.StringOutput {
@@ -1687,25 +1551,26 @@ func (o CronJobDetailsCreatePtrOutput) Elem() CronJobDetailsCreateOutput {
 	}).(CronJobDetailsCreateOutput)
 }
 
-// Environment (runtime)
+// This field has been deprecated, runtime should be used in its place.
 func (o CronJobDetailsCreatePtrOutput) Env() CronJobDetailsCreateEnvPtrOutput {
 	return o.ApplyT(func(v *CronJobDetailsCreate) *CronJobDetailsCreateEnv {
 		if v == nil {
 			return nil
 		}
-		return &v.Env
+		return v.Env
 	}).(CronJobDetailsCreateEnvPtrOutput)
 }
 
-func (o CronJobDetailsCreatePtrOutput) EnvSpecificDetails() pulumi.AnyOutput {
-	return o.ApplyT(func(v *CronJobDetailsCreate) interface{} {
+func (o CronJobDetailsCreatePtrOutput) EnvSpecificDetails() EnvSpecificDetailsPtrOutput {
+	return o.ApplyT(func(v *CronJobDetailsCreate) *EnvSpecificDetails {
 		if v == nil {
 			return nil
 		}
 		return v.EnvSpecificDetails
-	}).(pulumi.AnyOutput)
+	}).(EnvSpecificDetailsPtrOutput)
 }
 
+// Defaults to "starter"
 func (o CronJobDetailsCreatePtrOutput) Plan() CronJobDetailsCreatePlanPtrOutput {
 	return o.ApplyT(func(v *CronJobDetailsCreate) *CronJobDetailsCreatePlan {
 		if v == nil {
@@ -1715,6 +1580,7 @@ func (o CronJobDetailsCreatePtrOutput) Plan() CronJobDetailsCreatePlanPtrOutput 
 	}).(CronJobDetailsCreatePlanPtrOutput)
 }
 
+// Defaults to "oregon"
 func (o CronJobDetailsCreatePtrOutput) Region() CronJobDetailsCreateRegionPtrOutput {
 	return o.ApplyT(func(v *CronJobDetailsCreate) *CronJobDetailsCreateRegion {
 		if v == nil {
@@ -1722,6 +1588,16 @@ func (o CronJobDetailsCreatePtrOutput) Region() CronJobDetailsCreateRegionPtrOut
 		}
 		return v.Region
 	}).(CronJobDetailsCreateRegionPtrOutput)
+}
+
+// Runtime
+func (o CronJobDetailsCreatePtrOutput) Runtime() CronJobDetailsCreateRuntimePtrOutput {
+	return o.ApplyT(func(v *CronJobDetailsCreate) *CronJobDetailsCreateRuntime {
+		if v == nil {
+			return nil
+		}
+		return &v.Runtime
+	}).(CronJobDetailsCreateRuntimePtrOutput)
 }
 
 func (o CronJobDetailsCreatePtrOutput) Schedule() pulumi.StringPtrOutput {
@@ -1734,15 +1610,31 @@ func (o CronJobDetailsCreatePtrOutput) Schedule() pulumi.StringPtrOutput {
 }
 
 type CronJobDetailsOutput struct {
-	BuildPlan string `pulumi:"buildPlan"`
-	// Environment (runtime)
+	BuildPlan CronJobDetailsOutputBuildPlan `pulumi:"buildPlan"`
+	// Runtime
 	Env                 CronJobDetailsOutputEnv `pulumi:"env"`
-	EnvSpecificDetails  interface{}             `pulumi:"envSpecificDetails"`
+	EnvSpecificDetails  EnvSpecificDetails      `pulumi:"envSpecificDetails"`
 	LastSuccessfulRunAt *string                 `pulumi:"lastSuccessfulRunAt"`
 	// The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
-	Plan     CronJobDetailsOutputPlan   `pulumi:"plan"`
+	Plan CronJobDetailsOutputPlan `pulumi:"plan"`
+	// Defaults to "oregon"
 	Region   CronJobDetailsOutputRegion `pulumi:"region"`
 	Schedule string                     `pulumi:"schedule"`
+}
+
+// Defaults sets the appropriate defaults for CronJobDetailsOutput
+func (val *CronJobDetailsOutput) Defaults() *CronJobDetailsOutput {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if internal.IsZero(tmp.BuildPlan) {
+		tmp.BuildPlan = CronJobDetailsOutputBuildPlan("starter")
+	}
+	if internal.IsZero(tmp.Region) {
+		tmp.Region = CronJobDetailsOutputRegion("oregon")
+	}
+	return &tmp
 }
 
 type CronJobDetailsOutputOutput struct{ *pulumi.OutputState }
@@ -1759,17 +1651,17 @@ func (o CronJobDetailsOutputOutput) ToCronJobDetailsOutputOutputWithContext(ctx 
 	return o
 }
 
-func (o CronJobDetailsOutputOutput) BuildPlan() pulumi.StringOutput {
-	return o.ApplyT(func(v CronJobDetailsOutput) string { return v.BuildPlan }).(pulumi.StringOutput)
+func (o CronJobDetailsOutputOutput) BuildPlan() CronJobDetailsOutputBuildPlanOutput {
+	return o.ApplyT(func(v CronJobDetailsOutput) CronJobDetailsOutputBuildPlan { return v.BuildPlan }).(CronJobDetailsOutputBuildPlanOutput)
 }
 
-// Environment (runtime)
+// Runtime
 func (o CronJobDetailsOutputOutput) Env() CronJobDetailsOutputEnvOutput {
 	return o.ApplyT(func(v CronJobDetailsOutput) CronJobDetailsOutputEnv { return v.Env }).(CronJobDetailsOutputEnvOutput)
 }
 
-func (o CronJobDetailsOutputOutput) EnvSpecificDetails() pulumi.AnyOutput {
-	return o.ApplyT(func(v CronJobDetailsOutput) interface{} { return v.EnvSpecificDetails }).(pulumi.AnyOutput)
+func (o CronJobDetailsOutputOutput) EnvSpecificDetails() EnvSpecificDetailsOutput {
+	return o.ApplyT(func(v CronJobDetailsOutput) EnvSpecificDetails { return v.EnvSpecificDetails }).(EnvSpecificDetailsOutput)
 }
 
 func (o CronJobDetailsOutputOutput) LastSuccessfulRunAt() pulumi.StringPtrOutput {
@@ -1781,6 +1673,7 @@ func (o CronJobDetailsOutputOutput) Plan() CronJobDetailsOutputPlanOutput {
 	return o.ApplyT(func(v CronJobDetailsOutput) CronJobDetailsOutputPlan { return v.Plan }).(CronJobDetailsOutputPlanOutput)
 }
 
+// Defaults to "oregon"
 func (o CronJobDetailsOutputOutput) Region() CronJobDetailsOutputRegionOutput {
 	return o.ApplyT(func(v CronJobDetailsOutput) CronJobDetailsOutputRegion { return v.Region }).(CronJobDetailsOutputRegionOutput)
 }
@@ -1813,16 +1706,16 @@ func (o CronJobDetailsOutputPtrOutput) Elem() CronJobDetailsOutputOutput {
 	}).(CronJobDetailsOutputOutput)
 }
 
-func (o CronJobDetailsOutputPtrOutput) BuildPlan() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *CronJobDetailsOutput) *string {
+func (o CronJobDetailsOutputPtrOutput) BuildPlan() CronJobDetailsOutputBuildPlanPtrOutput {
+	return o.ApplyT(func(v *CronJobDetailsOutput) *CronJobDetailsOutputBuildPlan {
 		if v == nil {
 			return nil
 		}
 		return &v.BuildPlan
-	}).(pulumi.StringPtrOutput)
+	}).(CronJobDetailsOutputBuildPlanPtrOutput)
 }
 
-// Environment (runtime)
+// Runtime
 func (o CronJobDetailsOutputPtrOutput) Env() CronJobDetailsOutputEnvPtrOutput {
 	return o.ApplyT(func(v *CronJobDetailsOutput) *CronJobDetailsOutputEnv {
 		if v == nil {
@@ -1832,13 +1725,13 @@ func (o CronJobDetailsOutputPtrOutput) Env() CronJobDetailsOutputEnvPtrOutput {
 	}).(CronJobDetailsOutputEnvPtrOutput)
 }
 
-func (o CronJobDetailsOutputPtrOutput) EnvSpecificDetails() pulumi.AnyOutput {
-	return o.ApplyT(func(v *CronJobDetailsOutput) interface{} {
+func (o CronJobDetailsOutputPtrOutput) EnvSpecificDetails() EnvSpecificDetailsPtrOutput {
+	return o.ApplyT(func(v *CronJobDetailsOutput) *EnvSpecificDetails {
 		if v == nil {
 			return nil
 		}
-		return v.EnvSpecificDetails
-	}).(pulumi.AnyOutput)
+		return &v.EnvSpecificDetails
+	}).(EnvSpecificDetailsPtrOutput)
 }
 
 func (o CronJobDetailsOutputPtrOutput) LastSuccessfulRunAt() pulumi.StringPtrOutput {
@@ -1860,6 +1753,7 @@ func (o CronJobDetailsOutputPtrOutput) Plan() CronJobDetailsOutputPlanPtrOutput 
 	}).(CronJobDetailsOutputPlanPtrOutput)
 }
 
+// Defaults to "oregon"
 func (o CronJobDetailsOutputPtrOutput) Region() CronJobDetailsOutputRegionPtrOutput {
 	return o.ApplyT(func(v *CronJobDetailsOutput) *CronJobDetailsOutputRegion {
 		if v == nil {
@@ -1879,23 +1773,27 @@ func (o CronJobDetailsOutputPtrOutput) Schedule() pulumi.StringPtrOutput {
 }
 
 type CronJobOutputType struct {
-	AutoDeploy     ServiceAutoDeploy       `pulumi:"autoDeploy"`
-	Branch         *string                 `pulumi:"branch"`
-	BuildFilter    *BuildFilter            `pulumi:"buildFilter"`
-	CreatedAt      string                  `pulumi:"createdAt"`
-	Id             string                  `pulumi:"id"`
-	ImagePath      *string                 `pulumi:"imagePath"`
-	Name           string                  `pulumi:"name"`
-	NotifyOnFail   ServiceNotifyOnFail     `pulumi:"notifyOnFail"`
-	OwnerId        string                  `pulumi:"ownerId"`
-	Repo           *string                 `pulumi:"repo"`
-	RootDir        string                  `pulumi:"rootDir"`
-	ServiceDetails *CronJobDetailsOutput   `pulumi:"serviceDetails"`
-	Slug           string                  `pulumi:"slug"`
-	Suspended      ServiceSuspended        `pulumi:"suspended"`
-	Suspenders     []ServiceSuspendersItem `pulumi:"suspenders"`
-	Type           *string                 `pulumi:"type"`
-	UpdatedAt      string                  `pulumi:"updatedAt"`
+	AutoDeploy  ServiceAutoDeploy `pulumi:"autoDeploy"`
+	Branch      *string           `pulumi:"branch"`
+	BuildFilter *BuildFilter      `pulumi:"buildFilter"`
+	CreatedAt   string            `pulumi:"createdAt"`
+	// The URL to view the service in the Render Dashboard
+	DashboardUrl       string                     `pulumi:"dashboardUrl"`
+	EnvironmentId      *string                    `pulumi:"environmentId"`
+	Id                 string                     `pulumi:"id"`
+	ImagePath          *string                    `pulumi:"imagePath"`
+	Name               string                     `pulumi:"name"`
+	NotifyOnFail       ServiceNotifyOnFail        `pulumi:"notifyOnFail"`
+	OwnerId            string                     `pulumi:"ownerId"`
+	RegistryCredential *RegistryCredentialSummary `pulumi:"registryCredential"`
+	Repo               *string                    `pulumi:"repo"`
+	RootDir            string                     `pulumi:"rootDir"`
+	ServiceDetails     *CronJobDetailsOutput      `pulumi:"serviceDetails"`
+	Slug               string                     `pulumi:"slug"`
+	Suspended          ServiceSuspended           `pulumi:"suspended"`
+	Suspenders         []ServiceSuspendersItem    `pulumi:"suspenders"`
+	Type               *string                    `pulumi:"type"`
+	UpdatedAt          string                     `pulumi:"updatedAt"`
 }
 
 // Defaults sets the appropriate defaults for CronJobOutputType
@@ -1904,6 +1802,11 @@ func (val *CronJobOutputType) Defaults() *CronJobOutputType {
 		return nil
 	}
 	tmp := *val
+	if internal.IsZero(tmp.AutoDeploy) {
+		tmp.AutoDeploy = ServiceAutoDeploy("yes")
+	}
+	tmp.ServiceDetails = tmp.ServiceDetails.Defaults()
+
 	if tmp.Type == nil {
 		type_ := "cron_job"
 		tmp.Type = &type_
@@ -1941,6 +1844,15 @@ func (o CronJobOutputTypeOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v CronJobOutputType) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// The URL to view the service in the Render Dashboard
+func (o CronJobOutputTypeOutput) DashboardUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v CronJobOutputType) string { return v.DashboardUrl }).(pulumi.StringOutput)
+}
+
+func (o CronJobOutputTypeOutput) EnvironmentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CronJobOutputType) *string { return v.EnvironmentId }).(pulumi.StringPtrOutput)
+}
+
 func (o CronJobOutputTypeOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v CronJobOutputType) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -1959,6 +1871,10 @@ func (o CronJobOutputTypeOutput) NotifyOnFail() ServiceNotifyOnFailOutput {
 
 func (o CronJobOutputTypeOutput) OwnerId() pulumi.StringOutput {
 	return o.ApplyT(func(v CronJobOutputType) string { return v.OwnerId }).(pulumi.StringOutput)
+}
+
+func (o CronJobOutputTypeOutput) RegistryCredential() RegistryCredentialSummaryPtrOutput {
+	return o.ApplyT(func(v CronJobOutputType) *RegistryCredentialSummary { return v.RegistryCredential }).(RegistryCredentialSummaryPtrOutput)
 }
 
 func (o CronJobOutputTypeOutput) Repo() pulumi.StringPtrOutput {
@@ -2053,6 +1969,25 @@ func (o CronJobOutputTypePtrOutput) CreatedAt() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// The URL to view the service in the Render Dashboard
+func (o CronJobOutputTypePtrOutput) DashboardUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CronJobOutputType) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.DashboardUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CronJobOutputTypePtrOutput) EnvironmentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CronJobOutputType) *string {
+		if v == nil {
+			return nil
+		}
+		return v.EnvironmentId
+	}).(pulumi.StringPtrOutput)
+}
+
 func (o CronJobOutputTypePtrOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CronJobOutputType) *string {
 		if v == nil {
@@ -2096,6 +2031,15 @@ func (o CronJobOutputTypePtrOutput) OwnerId() pulumi.StringPtrOutput {
 		}
 		return &v.OwnerId
 	}).(pulumi.StringPtrOutput)
+}
+
+func (o CronJobOutputTypePtrOutput) RegistryCredential() RegistryCredentialSummaryPtrOutput {
+	return o.ApplyT(func(v *CronJobOutputType) *RegistryCredentialSummary {
+		if v == nil {
+			return nil
+		}
+		return v.RegistryCredential
+	}).(RegistryCredentialSummaryPtrOutput)
 }
 
 func (o CronJobOutputTypePtrOutput) Repo() pulumi.StringPtrOutput {
@@ -2227,102 +2171,6 @@ func (o CustomDomainTypeOutput) VerificationStatus() CustomDomainVerificationSta
 	return o.ApplyT(func(v CustomDomainType) CustomDomainVerificationStatus { return v.VerificationStatus }).(CustomDomainVerificationStatusOutput)
 }
 
-type CustomDomainTypePtrOutput struct{ *pulumi.OutputState }
-
-func (CustomDomainTypePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**CustomDomainType)(nil)).Elem()
-}
-
-func (o CustomDomainTypePtrOutput) ToCustomDomainTypePtrOutput() CustomDomainTypePtrOutput {
-	return o
-}
-
-func (o CustomDomainTypePtrOutput) ToCustomDomainTypePtrOutputWithContext(ctx context.Context) CustomDomainTypePtrOutput {
-	return o
-}
-
-func (o CustomDomainTypePtrOutput) Elem() CustomDomainTypeOutput {
-	return o.ApplyT(func(v *CustomDomainType) CustomDomainType {
-		if v != nil {
-			return *v
-		}
-		var ret CustomDomainType
-		return ret
-	}).(CustomDomainTypeOutput)
-}
-
-func (o CustomDomainTypePtrOutput) CreatedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *CustomDomainType) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.CreatedAt
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o CustomDomainTypePtrOutput) DomainType() CustomDomainDomainTypePtrOutput {
-	return o.ApplyT(func(v *CustomDomainType) *CustomDomainDomainType {
-		if v == nil {
-			return nil
-		}
-		return &v.DomainType
-	}).(CustomDomainDomainTypePtrOutput)
-}
-
-func (o CustomDomainTypePtrOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *CustomDomainType) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.Id
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o CustomDomainTypePtrOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *CustomDomainType) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.Name
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o CustomDomainTypePtrOutput) PublicSuffix() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *CustomDomainType) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.PublicSuffix
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o CustomDomainTypePtrOutput) RedirectForName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *CustomDomainType) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.RedirectForName
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o CustomDomainTypePtrOutput) Server() CustomDomainServerPropertiesPtrOutput {
-	return o.ApplyT(func(v *CustomDomainType) *CustomDomainServerProperties {
-		if v == nil {
-			return nil
-		}
-		return v.Server
-	}).(CustomDomainServerPropertiesPtrOutput)
-}
-
-func (o CustomDomainTypePtrOutput) VerificationStatus() CustomDomainVerificationStatusPtrOutput {
-	return o.ApplyT(func(v *CustomDomainType) *CustomDomainVerificationStatus {
-		if v == nil {
-			return nil
-		}
-		return &v.VerificationStatus
-	}).(CustomDomainVerificationStatusPtrOutput)
-}
-
 type CustomDomainServerProperties struct {
 	Id   *string `pulumi:"id"`
 	Name *string `pulumi:"name"`
@@ -2390,6 +2238,53 @@ func (o CustomDomainServerPropertiesPtrOutput) Name() pulumi.StringPtrOutput {
 		}
 		return v.Name
 	}).(pulumi.StringPtrOutput)
+}
+
+type CustomDomainWithCursor struct {
+	Cursor       string           `pulumi:"cursor"`
+	CustomDomain CustomDomainType `pulumi:"customDomain"`
+}
+
+type CustomDomainWithCursorOutput struct{ *pulumi.OutputState }
+
+func (CustomDomainWithCursorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomDomainWithCursor)(nil)).Elem()
+}
+
+func (o CustomDomainWithCursorOutput) ToCustomDomainWithCursorOutput() CustomDomainWithCursorOutput {
+	return o
+}
+
+func (o CustomDomainWithCursorOutput) ToCustomDomainWithCursorOutputWithContext(ctx context.Context) CustomDomainWithCursorOutput {
+	return o
+}
+
+func (o CustomDomainWithCursorOutput) Cursor() pulumi.StringOutput {
+	return o.ApplyT(func(v CustomDomainWithCursor) string { return v.Cursor }).(pulumi.StringOutput)
+}
+
+func (o CustomDomainWithCursorOutput) CustomDomain() CustomDomainTypeOutput {
+	return o.ApplyT(func(v CustomDomainWithCursor) CustomDomainType { return v.CustomDomain }).(CustomDomainTypeOutput)
+}
+
+type CustomDomainWithCursorArrayOutput struct{ *pulumi.OutputState }
+
+func (CustomDomainWithCursorArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CustomDomainWithCursor)(nil)).Elem()
+}
+
+func (o CustomDomainWithCursorArrayOutput) ToCustomDomainWithCursorArrayOutput() CustomDomainWithCursorArrayOutput {
+	return o
+}
+
+func (o CustomDomainWithCursorArrayOutput) ToCustomDomainWithCursorArrayOutputWithContext(ctx context.Context) CustomDomainWithCursorArrayOutput {
+	return o
+}
+
+func (o CustomDomainWithCursorArrayOutput) Index(i pulumi.IntInput) CustomDomainWithCursorOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CustomDomainWithCursor {
+		return vs[0].([]CustomDomainWithCursor)[vs[1].(int)]
+	}).(CustomDomainWithCursorOutput)
 }
 
 type DeployType struct {
@@ -2725,280 +2620,204 @@ func (o DeployImagePropertiesPtrOutput) Sha() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-type Disk struct {
-	Id        string `pulumi:"id"`
-	MountPath string `pulumi:"mountPath"`
-	Name      string `pulumi:"name"`
-	SizeGB    int    `pulumi:"sizeGB"`
-}
-
-type DiskOutput struct{ *pulumi.OutputState }
-
-func (DiskOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*Disk)(nil)).Elem()
-}
-
-func (o DiskOutput) ToDiskOutput() DiskOutput {
-	return o
-}
-
-func (o DiskOutput) ToDiskOutputWithContext(ctx context.Context) DiskOutput {
-	return o
-}
-
-func (o DiskOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v Disk) string { return v.Id }).(pulumi.StringOutput)
-}
-
-func (o DiskOutput) MountPath() pulumi.StringOutput {
-	return o.ApplyT(func(v Disk) string { return v.MountPath }).(pulumi.StringOutput)
-}
-
-func (o DiskOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v Disk) string { return v.Name }).(pulumi.StringOutput)
-}
-
-func (o DiskOutput) SizeGB() pulumi.IntOutput {
-	return o.ApplyT(func(v Disk) int { return v.SizeGB }).(pulumi.IntOutput)
-}
-
-type DiskPtrOutput struct{ *pulumi.OutputState }
-
-func (DiskPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**Disk)(nil)).Elem()
-}
-
-func (o DiskPtrOutput) ToDiskPtrOutput() DiskPtrOutput {
-	return o
-}
-
-func (o DiskPtrOutput) ToDiskPtrOutputWithContext(ctx context.Context) DiskPtrOutput {
-	return o
-}
-
-func (o DiskPtrOutput) Elem() DiskOutput {
-	return o.ApplyT(func(v *Disk) Disk {
-		if v != nil {
-			return *v
-		}
-		var ret Disk
-		return ret
-	}).(DiskOutput)
-}
-
-func (o DiskPtrOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Disk) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.Id
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o DiskPtrOutput) MountPath() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Disk) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.MountPath
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o DiskPtrOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Disk) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.Name
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o DiskPtrOutput) SizeGB() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *Disk) *int {
-		if v == nil {
-			return nil
-		}
-		return &v.SizeGB
-	}).(pulumi.IntPtrOutput)
-}
-
-type DockerDetails struct {
-	DockerCommand      string              `pulumi:"dockerCommand"`
-	DockerContext      string              `pulumi:"dockerContext"`
-	DockerfilePath     string              `pulumi:"dockerfilePath"`
+type EnvSpecificDetails struct {
+	BuildCommand       *string             `pulumi:"buildCommand"`
+	DockerCommand      *string             `pulumi:"dockerCommand"`
+	DockerContext      *string             `pulumi:"dockerContext"`
+	DockerfilePath     *string             `pulumi:"dockerfilePath"`
 	PreDeployCommand   *string             `pulumi:"preDeployCommand"`
 	RegistryCredential *RegistryCredential `pulumi:"registryCredential"`
+	StartCommand       *string             `pulumi:"startCommand"`
 }
 
-// DockerDetailsInput is an input type that accepts DockerDetailsArgs and DockerDetailsOutput values.
-// You can construct a concrete instance of `DockerDetailsInput` via:
+// EnvSpecificDetailsInput is an input type that accepts EnvSpecificDetailsArgs and EnvSpecificDetailsOutput values.
+// You can construct a concrete instance of `EnvSpecificDetailsInput` via:
 //
-//	DockerDetailsArgs{...}
-type DockerDetailsInput interface {
+//	EnvSpecificDetailsArgs{...}
+type EnvSpecificDetailsInput interface {
 	pulumi.Input
 
-	ToDockerDetailsOutput() DockerDetailsOutput
-	ToDockerDetailsOutputWithContext(context.Context) DockerDetailsOutput
+	ToEnvSpecificDetailsOutput() EnvSpecificDetailsOutput
+	ToEnvSpecificDetailsOutputWithContext(context.Context) EnvSpecificDetailsOutput
 }
 
-type DockerDetailsArgs struct {
-	DockerCommand      pulumi.StringInput         `pulumi:"dockerCommand"`
-	DockerContext      pulumi.StringInput         `pulumi:"dockerContext"`
-	DockerfilePath     pulumi.StringInput         `pulumi:"dockerfilePath"`
+type EnvSpecificDetailsArgs struct {
+	BuildCommand       pulumi.StringPtrInput      `pulumi:"buildCommand"`
+	DockerCommand      pulumi.StringPtrInput      `pulumi:"dockerCommand"`
+	DockerContext      pulumi.StringPtrInput      `pulumi:"dockerContext"`
+	DockerfilePath     pulumi.StringPtrInput      `pulumi:"dockerfilePath"`
 	PreDeployCommand   pulumi.StringPtrInput      `pulumi:"preDeployCommand"`
 	RegistryCredential RegistryCredentialPtrInput `pulumi:"registryCredential"`
+	StartCommand       pulumi.StringPtrInput      `pulumi:"startCommand"`
 }
 
-func (DockerDetailsArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*DockerDetails)(nil)).Elem()
+func (EnvSpecificDetailsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvSpecificDetails)(nil)).Elem()
 }
 
-func (i DockerDetailsArgs) ToDockerDetailsOutput() DockerDetailsOutput {
-	return i.ToDockerDetailsOutputWithContext(context.Background())
+func (i EnvSpecificDetailsArgs) ToEnvSpecificDetailsOutput() EnvSpecificDetailsOutput {
+	return i.ToEnvSpecificDetailsOutputWithContext(context.Background())
 }
 
-func (i DockerDetailsArgs) ToDockerDetailsOutputWithContext(ctx context.Context) DockerDetailsOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DockerDetailsOutput)
+func (i EnvSpecificDetailsArgs) ToEnvSpecificDetailsOutputWithContext(ctx context.Context) EnvSpecificDetailsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvSpecificDetailsOutput)
 }
 
-func (i DockerDetailsArgs) ToDockerDetailsPtrOutput() DockerDetailsPtrOutput {
-	return i.ToDockerDetailsPtrOutputWithContext(context.Background())
+func (i EnvSpecificDetailsArgs) ToEnvSpecificDetailsPtrOutput() EnvSpecificDetailsPtrOutput {
+	return i.ToEnvSpecificDetailsPtrOutputWithContext(context.Background())
 }
 
-func (i DockerDetailsArgs) ToDockerDetailsPtrOutputWithContext(ctx context.Context) DockerDetailsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DockerDetailsOutput).ToDockerDetailsPtrOutputWithContext(ctx)
+func (i EnvSpecificDetailsArgs) ToEnvSpecificDetailsPtrOutputWithContext(ctx context.Context) EnvSpecificDetailsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvSpecificDetailsOutput).ToEnvSpecificDetailsPtrOutputWithContext(ctx)
 }
 
-// DockerDetailsPtrInput is an input type that accepts DockerDetailsArgs, DockerDetailsPtr and DockerDetailsPtrOutput values.
-// You can construct a concrete instance of `DockerDetailsPtrInput` via:
+// EnvSpecificDetailsPtrInput is an input type that accepts EnvSpecificDetailsArgs, EnvSpecificDetailsPtr and EnvSpecificDetailsPtrOutput values.
+// You can construct a concrete instance of `EnvSpecificDetailsPtrInput` via:
 //
-//	        DockerDetailsArgs{...}
+//	        EnvSpecificDetailsArgs{...}
 //
 //	or:
 //
 //	        nil
-type DockerDetailsPtrInput interface {
+type EnvSpecificDetailsPtrInput interface {
 	pulumi.Input
 
-	ToDockerDetailsPtrOutput() DockerDetailsPtrOutput
-	ToDockerDetailsPtrOutputWithContext(context.Context) DockerDetailsPtrOutput
+	ToEnvSpecificDetailsPtrOutput() EnvSpecificDetailsPtrOutput
+	ToEnvSpecificDetailsPtrOutputWithContext(context.Context) EnvSpecificDetailsPtrOutput
 }
 
-type dockerDetailsPtrType DockerDetailsArgs
+type envSpecificDetailsPtrType EnvSpecificDetailsArgs
 
-func DockerDetailsPtr(v *DockerDetailsArgs) DockerDetailsPtrInput {
-	return (*dockerDetailsPtrType)(v)
+func EnvSpecificDetailsPtr(v *EnvSpecificDetailsArgs) EnvSpecificDetailsPtrInput {
+	return (*envSpecificDetailsPtrType)(v)
 }
 
-func (*dockerDetailsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**DockerDetails)(nil)).Elem()
+func (*envSpecificDetailsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvSpecificDetails)(nil)).Elem()
 }
 
-func (i *dockerDetailsPtrType) ToDockerDetailsPtrOutput() DockerDetailsPtrOutput {
-	return i.ToDockerDetailsPtrOutputWithContext(context.Background())
+func (i *envSpecificDetailsPtrType) ToEnvSpecificDetailsPtrOutput() EnvSpecificDetailsPtrOutput {
+	return i.ToEnvSpecificDetailsPtrOutputWithContext(context.Background())
 }
 
-func (i *dockerDetailsPtrType) ToDockerDetailsPtrOutputWithContext(ctx context.Context) DockerDetailsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DockerDetailsPtrOutput)
+func (i *envSpecificDetailsPtrType) ToEnvSpecificDetailsPtrOutputWithContext(ctx context.Context) EnvSpecificDetailsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvSpecificDetailsPtrOutput)
 }
 
-type DockerDetailsOutput struct{ *pulumi.OutputState }
+type EnvSpecificDetailsOutput struct{ *pulumi.OutputState }
 
-func (DockerDetailsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DockerDetails)(nil)).Elem()
+func (EnvSpecificDetailsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvSpecificDetails)(nil)).Elem()
 }
 
-func (o DockerDetailsOutput) ToDockerDetailsOutput() DockerDetailsOutput {
+func (o EnvSpecificDetailsOutput) ToEnvSpecificDetailsOutput() EnvSpecificDetailsOutput {
 	return o
 }
 
-func (o DockerDetailsOutput) ToDockerDetailsOutputWithContext(ctx context.Context) DockerDetailsOutput {
+func (o EnvSpecificDetailsOutput) ToEnvSpecificDetailsOutputWithContext(ctx context.Context) EnvSpecificDetailsOutput {
 	return o
 }
 
-func (o DockerDetailsOutput) ToDockerDetailsPtrOutput() DockerDetailsPtrOutput {
-	return o.ToDockerDetailsPtrOutputWithContext(context.Background())
+func (o EnvSpecificDetailsOutput) ToEnvSpecificDetailsPtrOutput() EnvSpecificDetailsPtrOutput {
+	return o.ToEnvSpecificDetailsPtrOutputWithContext(context.Background())
 }
 
-func (o DockerDetailsOutput) ToDockerDetailsPtrOutputWithContext(ctx context.Context) DockerDetailsPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v DockerDetails) *DockerDetails {
+func (o EnvSpecificDetailsOutput) ToEnvSpecificDetailsPtrOutputWithContext(ctx context.Context) EnvSpecificDetailsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EnvSpecificDetails) *EnvSpecificDetails {
 		return &v
-	}).(DockerDetailsPtrOutput)
+	}).(EnvSpecificDetailsPtrOutput)
 }
 
-func (o DockerDetailsOutput) DockerCommand() pulumi.StringOutput {
-	return o.ApplyT(func(v DockerDetails) string { return v.DockerCommand }).(pulumi.StringOutput)
+func (o EnvSpecificDetailsOutput) BuildCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvSpecificDetails) *string { return v.BuildCommand }).(pulumi.StringPtrOutput)
 }
 
-func (o DockerDetailsOutput) DockerContext() pulumi.StringOutput {
-	return o.ApplyT(func(v DockerDetails) string { return v.DockerContext }).(pulumi.StringOutput)
+func (o EnvSpecificDetailsOutput) DockerCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvSpecificDetails) *string { return v.DockerCommand }).(pulumi.StringPtrOutput)
 }
 
-func (o DockerDetailsOutput) DockerfilePath() pulumi.StringOutput {
-	return o.ApplyT(func(v DockerDetails) string { return v.DockerfilePath }).(pulumi.StringOutput)
+func (o EnvSpecificDetailsOutput) DockerContext() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvSpecificDetails) *string { return v.DockerContext }).(pulumi.StringPtrOutput)
 }
 
-func (o DockerDetailsOutput) PreDeployCommand() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DockerDetails) *string { return v.PreDeployCommand }).(pulumi.StringPtrOutput)
+func (o EnvSpecificDetailsOutput) DockerfilePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvSpecificDetails) *string { return v.DockerfilePath }).(pulumi.StringPtrOutput)
 }
 
-func (o DockerDetailsOutput) RegistryCredential() RegistryCredentialPtrOutput {
-	return o.ApplyT(func(v DockerDetails) *RegistryCredential { return v.RegistryCredential }).(RegistryCredentialPtrOutput)
+func (o EnvSpecificDetailsOutput) PreDeployCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvSpecificDetails) *string { return v.PreDeployCommand }).(pulumi.StringPtrOutput)
 }
 
-type DockerDetailsPtrOutput struct{ *pulumi.OutputState }
-
-func (DockerDetailsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DockerDetails)(nil)).Elem()
+func (o EnvSpecificDetailsOutput) RegistryCredential() RegistryCredentialPtrOutput {
+	return o.ApplyT(func(v EnvSpecificDetails) *RegistryCredential { return v.RegistryCredential }).(RegistryCredentialPtrOutput)
 }
 
-func (o DockerDetailsPtrOutput) ToDockerDetailsPtrOutput() DockerDetailsPtrOutput {
+func (o EnvSpecificDetailsOutput) StartCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvSpecificDetails) *string { return v.StartCommand }).(pulumi.StringPtrOutput)
+}
+
+type EnvSpecificDetailsPtrOutput struct{ *pulumi.OutputState }
+
+func (EnvSpecificDetailsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvSpecificDetails)(nil)).Elem()
+}
+
+func (o EnvSpecificDetailsPtrOutput) ToEnvSpecificDetailsPtrOutput() EnvSpecificDetailsPtrOutput {
 	return o
 }
 
-func (o DockerDetailsPtrOutput) ToDockerDetailsPtrOutputWithContext(ctx context.Context) DockerDetailsPtrOutput {
+func (o EnvSpecificDetailsPtrOutput) ToEnvSpecificDetailsPtrOutputWithContext(ctx context.Context) EnvSpecificDetailsPtrOutput {
 	return o
 }
 
-func (o DockerDetailsPtrOutput) Elem() DockerDetailsOutput {
-	return o.ApplyT(func(v *DockerDetails) DockerDetails {
+func (o EnvSpecificDetailsPtrOutput) Elem() EnvSpecificDetailsOutput {
+	return o.ApplyT(func(v *EnvSpecificDetails) EnvSpecificDetails {
 		if v != nil {
 			return *v
 		}
-		var ret DockerDetails
+		var ret EnvSpecificDetails
 		return ret
-	}).(DockerDetailsOutput)
+	}).(EnvSpecificDetailsOutput)
 }
 
-func (o DockerDetailsPtrOutput) DockerCommand() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DockerDetails) *string {
+func (o EnvSpecificDetailsPtrOutput) BuildCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvSpecificDetails) *string {
 		if v == nil {
 			return nil
 		}
-		return &v.DockerCommand
+		return v.BuildCommand
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o DockerDetailsPtrOutput) DockerContext() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DockerDetails) *string {
+func (o EnvSpecificDetailsPtrOutput) DockerCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvSpecificDetails) *string {
 		if v == nil {
 			return nil
 		}
-		return &v.DockerContext
+		return v.DockerCommand
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o DockerDetailsPtrOutput) DockerfilePath() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DockerDetails) *string {
+func (o EnvSpecificDetailsPtrOutput) DockerContext() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvSpecificDetails) *string {
 		if v == nil {
 			return nil
 		}
-		return &v.DockerfilePath
+		return v.DockerContext
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o DockerDetailsPtrOutput) PreDeployCommand() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DockerDetails) *string {
+func (o EnvSpecificDetailsPtrOutput) DockerfilePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvSpecificDetails) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DockerfilePath
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o EnvSpecificDetailsPtrOutput) PreDeployCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvSpecificDetails) *string {
 		if v == nil {
 			return nil
 		}
@@ -3006,13 +2825,234 @@ func (o DockerDetailsPtrOutput) PreDeployCommand() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o DockerDetailsPtrOutput) RegistryCredential() RegistryCredentialPtrOutput {
-	return o.ApplyT(func(v *DockerDetails) *RegistryCredential {
+func (o EnvSpecificDetailsPtrOutput) RegistryCredential() RegistryCredentialPtrOutput {
+	return o.ApplyT(func(v *EnvSpecificDetails) *RegistryCredential {
 		if v == nil {
 			return nil
 		}
 		return v.RegistryCredential
 	}).(RegistryCredentialPtrOutput)
+}
+
+func (o EnvSpecificDetailsPtrOutput) StartCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvSpecificDetails) *string {
+		if v == nil {
+			return nil
+		}
+		return v.StartCommand
+	}).(pulumi.StringPtrOutput)
+}
+
+type EnvSpecificDetailsCreate struct {
+	BuildCommand  *string `pulumi:"buildCommand"`
+	DockerCommand *string `pulumi:"dockerCommand"`
+	DockerContext *string `pulumi:"dockerContext"`
+	// Defaults to "./Dockerfile"
+	DockerfilePath       *string `pulumi:"dockerfilePath"`
+	RegistryCredentialId *string `pulumi:"registryCredentialId"`
+	StartCommand         *string `pulumi:"startCommand"`
+}
+
+// EnvSpecificDetailsCreateInput is an input type that accepts EnvSpecificDetailsCreateArgs and EnvSpecificDetailsCreateOutput values.
+// You can construct a concrete instance of `EnvSpecificDetailsCreateInput` via:
+//
+//	EnvSpecificDetailsCreateArgs{...}
+type EnvSpecificDetailsCreateInput interface {
+	pulumi.Input
+
+	ToEnvSpecificDetailsCreateOutput() EnvSpecificDetailsCreateOutput
+	ToEnvSpecificDetailsCreateOutputWithContext(context.Context) EnvSpecificDetailsCreateOutput
+}
+
+type EnvSpecificDetailsCreateArgs struct {
+	BuildCommand  pulumi.StringPtrInput `pulumi:"buildCommand"`
+	DockerCommand pulumi.StringPtrInput `pulumi:"dockerCommand"`
+	DockerContext pulumi.StringPtrInput `pulumi:"dockerContext"`
+	// Defaults to "./Dockerfile"
+	DockerfilePath       pulumi.StringPtrInput `pulumi:"dockerfilePath"`
+	RegistryCredentialId pulumi.StringPtrInput `pulumi:"registryCredentialId"`
+	StartCommand         pulumi.StringPtrInput `pulumi:"startCommand"`
+}
+
+func (EnvSpecificDetailsCreateArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvSpecificDetailsCreate)(nil)).Elem()
+}
+
+func (i EnvSpecificDetailsCreateArgs) ToEnvSpecificDetailsCreateOutput() EnvSpecificDetailsCreateOutput {
+	return i.ToEnvSpecificDetailsCreateOutputWithContext(context.Background())
+}
+
+func (i EnvSpecificDetailsCreateArgs) ToEnvSpecificDetailsCreateOutputWithContext(ctx context.Context) EnvSpecificDetailsCreateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvSpecificDetailsCreateOutput)
+}
+
+func (i EnvSpecificDetailsCreateArgs) ToEnvSpecificDetailsCreatePtrOutput() EnvSpecificDetailsCreatePtrOutput {
+	return i.ToEnvSpecificDetailsCreatePtrOutputWithContext(context.Background())
+}
+
+func (i EnvSpecificDetailsCreateArgs) ToEnvSpecificDetailsCreatePtrOutputWithContext(ctx context.Context) EnvSpecificDetailsCreatePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvSpecificDetailsCreateOutput).ToEnvSpecificDetailsCreatePtrOutputWithContext(ctx)
+}
+
+// EnvSpecificDetailsCreatePtrInput is an input type that accepts EnvSpecificDetailsCreateArgs, EnvSpecificDetailsCreatePtr and EnvSpecificDetailsCreatePtrOutput values.
+// You can construct a concrete instance of `EnvSpecificDetailsCreatePtrInput` via:
+//
+//	        EnvSpecificDetailsCreateArgs{...}
+//
+//	or:
+//
+//	        nil
+type EnvSpecificDetailsCreatePtrInput interface {
+	pulumi.Input
+
+	ToEnvSpecificDetailsCreatePtrOutput() EnvSpecificDetailsCreatePtrOutput
+	ToEnvSpecificDetailsCreatePtrOutputWithContext(context.Context) EnvSpecificDetailsCreatePtrOutput
+}
+
+type envSpecificDetailsCreatePtrType EnvSpecificDetailsCreateArgs
+
+func EnvSpecificDetailsCreatePtr(v *EnvSpecificDetailsCreateArgs) EnvSpecificDetailsCreatePtrInput {
+	return (*envSpecificDetailsCreatePtrType)(v)
+}
+
+func (*envSpecificDetailsCreatePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvSpecificDetailsCreate)(nil)).Elem()
+}
+
+func (i *envSpecificDetailsCreatePtrType) ToEnvSpecificDetailsCreatePtrOutput() EnvSpecificDetailsCreatePtrOutput {
+	return i.ToEnvSpecificDetailsCreatePtrOutputWithContext(context.Background())
+}
+
+func (i *envSpecificDetailsCreatePtrType) ToEnvSpecificDetailsCreatePtrOutputWithContext(ctx context.Context) EnvSpecificDetailsCreatePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvSpecificDetailsCreatePtrOutput)
+}
+
+type EnvSpecificDetailsCreateOutput struct{ *pulumi.OutputState }
+
+func (EnvSpecificDetailsCreateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvSpecificDetailsCreate)(nil)).Elem()
+}
+
+func (o EnvSpecificDetailsCreateOutput) ToEnvSpecificDetailsCreateOutput() EnvSpecificDetailsCreateOutput {
+	return o
+}
+
+func (o EnvSpecificDetailsCreateOutput) ToEnvSpecificDetailsCreateOutputWithContext(ctx context.Context) EnvSpecificDetailsCreateOutput {
+	return o
+}
+
+func (o EnvSpecificDetailsCreateOutput) ToEnvSpecificDetailsCreatePtrOutput() EnvSpecificDetailsCreatePtrOutput {
+	return o.ToEnvSpecificDetailsCreatePtrOutputWithContext(context.Background())
+}
+
+func (o EnvSpecificDetailsCreateOutput) ToEnvSpecificDetailsCreatePtrOutputWithContext(ctx context.Context) EnvSpecificDetailsCreatePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EnvSpecificDetailsCreate) *EnvSpecificDetailsCreate {
+		return &v
+	}).(EnvSpecificDetailsCreatePtrOutput)
+}
+
+func (o EnvSpecificDetailsCreateOutput) BuildCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvSpecificDetailsCreate) *string { return v.BuildCommand }).(pulumi.StringPtrOutput)
+}
+
+func (o EnvSpecificDetailsCreateOutput) DockerCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvSpecificDetailsCreate) *string { return v.DockerCommand }).(pulumi.StringPtrOutput)
+}
+
+func (o EnvSpecificDetailsCreateOutput) DockerContext() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvSpecificDetailsCreate) *string { return v.DockerContext }).(pulumi.StringPtrOutput)
+}
+
+// Defaults to "./Dockerfile"
+func (o EnvSpecificDetailsCreateOutput) DockerfilePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvSpecificDetailsCreate) *string { return v.DockerfilePath }).(pulumi.StringPtrOutput)
+}
+
+func (o EnvSpecificDetailsCreateOutput) RegistryCredentialId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvSpecificDetailsCreate) *string { return v.RegistryCredentialId }).(pulumi.StringPtrOutput)
+}
+
+func (o EnvSpecificDetailsCreateOutput) StartCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvSpecificDetailsCreate) *string { return v.StartCommand }).(pulumi.StringPtrOutput)
+}
+
+type EnvSpecificDetailsCreatePtrOutput struct{ *pulumi.OutputState }
+
+func (EnvSpecificDetailsCreatePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvSpecificDetailsCreate)(nil)).Elem()
+}
+
+func (o EnvSpecificDetailsCreatePtrOutput) ToEnvSpecificDetailsCreatePtrOutput() EnvSpecificDetailsCreatePtrOutput {
+	return o
+}
+
+func (o EnvSpecificDetailsCreatePtrOutput) ToEnvSpecificDetailsCreatePtrOutputWithContext(ctx context.Context) EnvSpecificDetailsCreatePtrOutput {
+	return o
+}
+
+func (o EnvSpecificDetailsCreatePtrOutput) Elem() EnvSpecificDetailsCreateOutput {
+	return o.ApplyT(func(v *EnvSpecificDetailsCreate) EnvSpecificDetailsCreate {
+		if v != nil {
+			return *v
+		}
+		var ret EnvSpecificDetailsCreate
+		return ret
+	}).(EnvSpecificDetailsCreateOutput)
+}
+
+func (o EnvSpecificDetailsCreatePtrOutput) BuildCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvSpecificDetailsCreate) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BuildCommand
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o EnvSpecificDetailsCreatePtrOutput) DockerCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvSpecificDetailsCreate) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DockerCommand
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o EnvSpecificDetailsCreatePtrOutput) DockerContext() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvSpecificDetailsCreate) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DockerContext
+	}).(pulumi.StringPtrOutput)
+}
+
+// Defaults to "./Dockerfile"
+func (o EnvSpecificDetailsCreatePtrOutput) DockerfilePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvSpecificDetailsCreate) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DockerfilePath
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o EnvSpecificDetailsCreatePtrOutput) RegistryCredentialId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvSpecificDetailsCreate) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RegistryCredentialId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o EnvSpecificDetailsCreatePtrOutput) StartCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvSpecificDetailsCreate) *string {
+		if v == nil {
+			return nil
+		}
+		return v.StartCommand
+	}).(pulumi.StringPtrOutput)
 }
 
 type EnvVar struct {
@@ -3042,114 +3082,92 @@ func (o EnvVarOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v EnvVar) string { return v.Value }).(pulumi.StringOutput)
 }
 
-type EnvVarKeyGenerateValue struct {
-	GenerateValue bool   `pulumi:"generateValue"`
-	Key           string `pulumi:"key"`
+type EnvVarInputType struct {
 }
 
-// EnvVarKeyGenerateValueInput is an input type that accepts EnvVarKeyGenerateValueArgs and EnvVarKeyGenerateValueOutput values.
-// You can construct a concrete instance of `EnvVarKeyGenerateValueInput` via:
+// EnvVarInputTypeInput is an input type that accepts EnvVarInputTypeArgs and EnvVarInputTypeOutput values.
+// You can construct a concrete instance of `EnvVarInputTypeInput` via:
 //
-//	EnvVarKeyGenerateValueArgs{...}
-type EnvVarKeyGenerateValueInput interface {
+//	EnvVarInputTypeArgs{...}
+type EnvVarInputTypeInput interface {
 	pulumi.Input
 
-	ToEnvVarKeyGenerateValueOutput() EnvVarKeyGenerateValueOutput
-	ToEnvVarKeyGenerateValueOutputWithContext(context.Context) EnvVarKeyGenerateValueOutput
+	ToEnvVarInputTypeOutput() EnvVarInputTypeOutput
+	ToEnvVarInputTypeOutputWithContext(context.Context) EnvVarInputTypeOutput
 }
 
-type EnvVarKeyGenerateValueArgs struct {
-	GenerateValue pulumi.BoolInput   `pulumi:"generateValue"`
-	Key           pulumi.StringInput `pulumi:"key"`
+type EnvVarInputTypeArgs struct {
 }
 
-func (EnvVarKeyGenerateValueArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*EnvVarKeyGenerateValue)(nil)).Elem()
+func (EnvVarInputTypeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvVarInputType)(nil)).Elem()
 }
 
-func (i EnvVarKeyGenerateValueArgs) ToEnvVarKeyGenerateValueOutput() EnvVarKeyGenerateValueOutput {
-	return i.ToEnvVarKeyGenerateValueOutputWithContext(context.Background())
+func (i EnvVarInputTypeArgs) ToEnvVarInputTypeOutput() EnvVarInputTypeOutput {
+	return i.ToEnvVarInputTypeOutputWithContext(context.Background())
 }
 
-func (i EnvVarKeyGenerateValueArgs) ToEnvVarKeyGenerateValueOutputWithContext(ctx context.Context) EnvVarKeyGenerateValueOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EnvVarKeyGenerateValueOutput)
+func (i EnvVarInputTypeArgs) ToEnvVarInputTypeOutputWithContext(ctx context.Context) EnvVarInputTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvVarInputTypeOutput)
 }
 
-type EnvVarKeyGenerateValueOutput struct{ *pulumi.OutputState }
-
-func (EnvVarKeyGenerateValueOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EnvVarKeyGenerateValue)(nil)).Elem()
-}
-
-func (o EnvVarKeyGenerateValueOutput) ToEnvVarKeyGenerateValueOutput() EnvVarKeyGenerateValueOutput {
-	return o
-}
-
-func (o EnvVarKeyGenerateValueOutput) ToEnvVarKeyGenerateValueOutputWithContext(ctx context.Context) EnvVarKeyGenerateValueOutput {
-	return o
-}
-
-func (o EnvVarKeyGenerateValueOutput) GenerateValue() pulumi.BoolOutput {
-	return o.ApplyT(func(v EnvVarKeyGenerateValue) bool { return v.GenerateValue }).(pulumi.BoolOutput)
-}
-
-func (o EnvVarKeyGenerateValueOutput) Key() pulumi.StringOutput {
-	return o.ApplyT(func(v EnvVarKeyGenerateValue) string { return v.Key }).(pulumi.StringOutput)
-}
-
-type EnvVarKeyValue struct {
-	Key   string `pulumi:"key"`
-	Value string `pulumi:"value"`
-}
-
-// EnvVarKeyValueInput is an input type that accepts EnvVarKeyValueArgs and EnvVarKeyValueOutput values.
-// You can construct a concrete instance of `EnvVarKeyValueInput` via:
+// EnvVarInputTypeArrayInput is an input type that accepts EnvVarInputTypeArray and EnvVarInputTypeArrayOutput values.
+// You can construct a concrete instance of `EnvVarInputTypeArrayInput` via:
 //
-//	EnvVarKeyValueArgs{...}
-type EnvVarKeyValueInput interface {
+//	EnvVarInputTypeArray{ EnvVarInputTypeArgs{...} }
+type EnvVarInputTypeArrayInput interface {
 	pulumi.Input
 
-	ToEnvVarKeyValueOutput() EnvVarKeyValueOutput
-	ToEnvVarKeyValueOutputWithContext(context.Context) EnvVarKeyValueOutput
+	ToEnvVarInputTypeArrayOutput() EnvVarInputTypeArrayOutput
+	ToEnvVarInputTypeArrayOutputWithContext(context.Context) EnvVarInputTypeArrayOutput
 }
 
-type EnvVarKeyValueArgs struct {
-	Key   pulumi.StringInput `pulumi:"key"`
-	Value pulumi.StringInput `pulumi:"value"`
+type EnvVarInputTypeArray []EnvVarInputTypeInput
+
+func (EnvVarInputTypeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EnvVarInputType)(nil)).Elem()
 }
 
-func (EnvVarKeyValueArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*EnvVarKeyValue)(nil)).Elem()
+func (i EnvVarInputTypeArray) ToEnvVarInputTypeArrayOutput() EnvVarInputTypeArrayOutput {
+	return i.ToEnvVarInputTypeArrayOutputWithContext(context.Background())
 }
 
-func (i EnvVarKeyValueArgs) ToEnvVarKeyValueOutput() EnvVarKeyValueOutput {
-	return i.ToEnvVarKeyValueOutputWithContext(context.Background())
+func (i EnvVarInputTypeArray) ToEnvVarInputTypeArrayOutputWithContext(ctx context.Context) EnvVarInputTypeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvVarInputTypeArrayOutput)
 }
 
-func (i EnvVarKeyValueArgs) ToEnvVarKeyValueOutputWithContext(ctx context.Context) EnvVarKeyValueOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EnvVarKeyValueOutput)
+type EnvVarInputTypeOutput struct{ *pulumi.OutputState }
+
+func (EnvVarInputTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvVarInputType)(nil)).Elem()
 }
 
-type EnvVarKeyValueOutput struct{ *pulumi.OutputState }
-
-func (EnvVarKeyValueOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EnvVarKeyValue)(nil)).Elem()
-}
-
-func (o EnvVarKeyValueOutput) ToEnvVarKeyValueOutput() EnvVarKeyValueOutput {
+func (o EnvVarInputTypeOutput) ToEnvVarInputTypeOutput() EnvVarInputTypeOutput {
 	return o
 }
 
-func (o EnvVarKeyValueOutput) ToEnvVarKeyValueOutputWithContext(ctx context.Context) EnvVarKeyValueOutput {
+func (o EnvVarInputTypeOutput) ToEnvVarInputTypeOutputWithContext(ctx context.Context) EnvVarInputTypeOutput {
 	return o
 }
 
-func (o EnvVarKeyValueOutput) Key() pulumi.StringOutput {
-	return o.ApplyT(func(v EnvVarKeyValue) string { return v.Key }).(pulumi.StringOutput)
+type EnvVarInputTypeArrayOutput struct{ *pulumi.OutputState }
+
+func (EnvVarInputTypeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EnvVarInputType)(nil)).Elem()
 }
 
-func (o EnvVarKeyValueOutput) Value() pulumi.StringOutput {
-	return o.ApplyT(func(v EnvVarKeyValue) string { return v.Value }).(pulumi.StringOutput)
+func (o EnvVarInputTypeArrayOutput) ToEnvVarInputTypeArrayOutput() EnvVarInputTypeArrayOutput {
+	return o
+}
+
+func (o EnvVarInputTypeArrayOutput) ToEnvVarInputTypeArrayOutputWithContext(ctx context.Context) EnvVarInputTypeArrayOutput {
+	return o
+}
+
+func (o EnvVarInputTypeArrayOutput) Index(i pulumi.IntInput) EnvVarInputTypeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EnvVarInputType {
+		return vs[0].([]EnvVarInputType)[vs[1].(int)]
+	}).(EnvVarInputTypeOutput)
 }
 
 type EnvVarWithCursor struct {
@@ -3200,23 +3218,27 @@ func (o EnvVarWithCursorArrayOutput) Index(i pulumi.IntInput) EnvVarWithCursorOu
 }
 
 type GetBackgroundWorkerType struct {
-	AutoDeploy     ServiceAutoDeploy              `pulumi:"autoDeploy"`
-	Branch         *string                        `pulumi:"branch"`
-	BuildFilter    *BuildFilter                   `pulumi:"buildFilter"`
-	CreatedAt      string                         `pulumi:"createdAt"`
-	Id             string                         `pulumi:"id"`
-	ImagePath      *string                        `pulumi:"imagePath"`
-	Name           string                         `pulumi:"name"`
-	NotifyOnFail   ServiceNotifyOnFail            `pulumi:"notifyOnFail"`
-	OwnerId        string                         `pulumi:"ownerId"`
-	Repo           *string                        `pulumi:"repo"`
-	RootDir        string                         `pulumi:"rootDir"`
-	ServiceDetails *BackgroundWorkerDetailsOutput `pulumi:"serviceDetails"`
-	Slug           string                         `pulumi:"slug"`
-	Suspended      ServiceSuspended               `pulumi:"suspended"`
-	Suspenders     []ServiceSuspendersItem        `pulumi:"suspenders"`
-	Type           *string                        `pulumi:"type"`
-	UpdatedAt      string                         `pulumi:"updatedAt"`
+	AutoDeploy  ServiceAutoDeploy `pulumi:"autoDeploy"`
+	Branch      *string           `pulumi:"branch"`
+	BuildFilter *BuildFilter      `pulumi:"buildFilter"`
+	CreatedAt   string            `pulumi:"createdAt"`
+	// The URL to view the service in the Render Dashboard
+	DashboardUrl       string                         `pulumi:"dashboardUrl"`
+	EnvironmentId      *string                        `pulumi:"environmentId"`
+	Id                 string                         `pulumi:"id"`
+	ImagePath          *string                        `pulumi:"imagePath"`
+	Name               string                         `pulumi:"name"`
+	NotifyOnFail       ServiceNotifyOnFail            `pulumi:"notifyOnFail"`
+	OwnerId            string                         `pulumi:"ownerId"`
+	RegistryCredential *RegistryCredentialSummary     `pulumi:"registryCredential"`
+	Repo               *string                        `pulumi:"repo"`
+	RootDir            string                         `pulumi:"rootDir"`
+	ServiceDetails     *BackgroundWorkerDetailsOutput `pulumi:"serviceDetails"`
+	Slug               string                         `pulumi:"slug"`
+	Suspended          ServiceSuspended               `pulumi:"suspended"`
+	Suspenders         []ServiceSuspendersItem        `pulumi:"suspenders"`
+	Type               *string                        `pulumi:"type"`
+	UpdatedAt          string                         `pulumi:"updatedAt"`
 }
 
 // Defaults sets the appropriate defaults for GetBackgroundWorkerType
@@ -3225,6 +3247,9 @@ func (val *GetBackgroundWorkerType) Defaults() *GetBackgroundWorkerType {
 		return nil
 	}
 	tmp := *val
+	if internal.IsZero(tmp.AutoDeploy) {
+		tmp.AutoDeploy = ServiceAutoDeploy("yes")
+	}
 	tmp.ServiceDetails = tmp.ServiceDetails.Defaults()
 
 	if tmp.Type == nil {
@@ -3264,6 +3289,15 @@ func (o GetBackgroundWorkerTypeOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBackgroundWorkerType) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// The URL to view the service in the Render Dashboard
+func (o GetBackgroundWorkerTypeOutput) DashboardUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackgroundWorkerType) string { return v.DashboardUrl }).(pulumi.StringOutput)
+}
+
+func (o GetBackgroundWorkerTypeOutput) EnvironmentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetBackgroundWorkerType) *string { return v.EnvironmentId }).(pulumi.StringPtrOutput)
+}
+
 func (o GetBackgroundWorkerTypeOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBackgroundWorkerType) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -3282,6 +3316,10 @@ func (o GetBackgroundWorkerTypeOutput) NotifyOnFail() ServiceNotifyOnFailOutput 
 
 func (o GetBackgroundWorkerTypeOutput) OwnerId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBackgroundWorkerType) string { return v.OwnerId }).(pulumi.StringOutput)
+}
+
+func (o GetBackgroundWorkerTypeOutput) RegistryCredential() RegistryCredentialSummaryPtrOutput {
+	return o.ApplyT(func(v GetBackgroundWorkerType) *RegistryCredentialSummary { return v.RegistryCredential }).(RegistryCredentialSummaryPtrOutput)
 }
 
 func (o GetBackgroundWorkerTypeOutput) Repo() pulumi.StringPtrOutput {
@@ -3317,23 +3355,27 @@ func (o GetBackgroundWorkerTypeOutput) UpdatedAt() pulumi.StringOutput {
 }
 
 type GetCronJobType struct {
-	AutoDeploy     ServiceAutoDeploy       `pulumi:"autoDeploy"`
-	Branch         *string                 `pulumi:"branch"`
-	BuildFilter    *BuildFilter            `pulumi:"buildFilter"`
-	CreatedAt      string                  `pulumi:"createdAt"`
-	Id             string                  `pulumi:"id"`
-	ImagePath      *string                 `pulumi:"imagePath"`
-	Name           string                  `pulumi:"name"`
-	NotifyOnFail   ServiceNotifyOnFail     `pulumi:"notifyOnFail"`
-	OwnerId        string                  `pulumi:"ownerId"`
-	Repo           *string                 `pulumi:"repo"`
-	RootDir        string                  `pulumi:"rootDir"`
-	ServiceDetails *CronJobDetailsOutput   `pulumi:"serviceDetails"`
-	Slug           string                  `pulumi:"slug"`
-	Suspended      ServiceSuspended        `pulumi:"suspended"`
-	Suspenders     []ServiceSuspendersItem `pulumi:"suspenders"`
-	Type           *string                 `pulumi:"type"`
-	UpdatedAt      string                  `pulumi:"updatedAt"`
+	AutoDeploy  ServiceAutoDeploy `pulumi:"autoDeploy"`
+	Branch      *string           `pulumi:"branch"`
+	BuildFilter *BuildFilter      `pulumi:"buildFilter"`
+	CreatedAt   string            `pulumi:"createdAt"`
+	// The URL to view the service in the Render Dashboard
+	DashboardUrl       string                     `pulumi:"dashboardUrl"`
+	EnvironmentId      *string                    `pulumi:"environmentId"`
+	Id                 string                     `pulumi:"id"`
+	ImagePath          *string                    `pulumi:"imagePath"`
+	Name               string                     `pulumi:"name"`
+	NotifyOnFail       ServiceNotifyOnFail        `pulumi:"notifyOnFail"`
+	OwnerId            string                     `pulumi:"ownerId"`
+	RegistryCredential *RegistryCredentialSummary `pulumi:"registryCredential"`
+	Repo               *string                    `pulumi:"repo"`
+	RootDir            string                     `pulumi:"rootDir"`
+	ServiceDetails     *CronJobDetailsOutput      `pulumi:"serviceDetails"`
+	Slug               string                     `pulumi:"slug"`
+	Suspended          ServiceSuspended           `pulumi:"suspended"`
+	Suspenders         []ServiceSuspendersItem    `pulumi:"suspenders"`
+	Type               *string                    `pulumi:"type"`
+	UpdatedAt          string                     `pulumi:"updatedAt"`
 }
 
 // Defaults sets the appropriate defaults for GetCronJobType
@@ -3342,6 +3384,11 @@ func (val *GetCronJobType) Defaults() *GetCronJobType {
 		return nil
 	}
 	tmp := *val
+	if internal.IsZero(tmp.AutoDeploy) {
+		tmp.AutoDeploy = ServiceAutoDeploy("yes")
+	}
+	tmp.ServiceDetails = tmp.ServiceDetails.Defaults()
+
 	if tmp.Type == nil {
 		type_ := "cron_job"
 		tmp.Type = &type_
@@ -3379,6 +3426,15 @@ func (o GetCronJobTypeOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCronJobType) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// The URL to view the service in the Render Dashboard
+func (o GetCronJobTypeOutput) DashboardUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCronJobType) string { return v.DashboardUrl }).(pulumi.StringOutput)
+}
+
+func (o GetCronJobTypeOutput) EnvironmentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetCronJobType) *string { return v.EnvironmentId }).(pulumi.StringPtrOutput)
+}
+
 func (o GetCronJobTypeOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCronJobType) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -3397,6 +3453,10 @@ func (o GetCronJobTypeOutput) NotifyOnFail() ServiceNotifyOnFailOutput {
 
 func (o GetCronJobTypeOutput) OwnerId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCronJobType) string { return v.OwnerId }).(pulumi.StringOutput)
+}
+
+func (o GetCronJobTypeOutput) RegistryCredential() RegistryCredentialSummaryPtrOutput {
+	return o.ApplyT(func(v GetCronJobType) *RegistryCredentialSummary { return v.RegistryCredential }).(RegistryCredentialSummaryPtrOutput)
 }
 
 func (o GetCronJobTypeOutput) Repo() pulumi.StringPtrOutput {
@@ -3432,23 +3492,27 @@ func (o GetCronJobTypeOutput) UpdatedAt() pulumi.StringOutput {
 }
 
 type GetPrivateServiceType struct {
-	AutoDeploy     ServiceAutoDeploy            `pulumi:"autoDeploy"`
-	Branch         *string                      `pulumi:"branch"`
-	BuildFilter    *BuildFilter                 `pulumi:"buildFilter"`
-	CreatedAt      string                       `pulumi:"createdAt"`
-	Id             string                       `pulumi:"id"`
-	ImagePath      *string                      `pulumi:"imagePath"`
-	Name           string                       `pulumi:"name"`
-	NotifyOnFail   ServiceNotifyOnFail          `pulumi:"notifyOnFail"`
-	OwnerId        string                       `pulumi:"ownerId"`
-	Repo           *string                      `pulumi:"repo"`
-	RootDir        string                       `pulumi:"rootDir"`
-	ServiceDetails *PrivateServiceDetailsOutput `pulumi:"serviceDetails"`
-	Slug           string                       `pulumi:"slug"`
-	Suspended      ServiceSuspended             `pulumi:"suspended"`
-	Suspenders     []ServiceSuspendersItem      `pulumi:"suspenders"`
-	Type           *string                      `pulumi:"type"`
-	UpdatedAt      string                       `pulumi:"updatedAt"`
+	AutoDeploy  ServiceAutoDeploy `pulumi:"autoDeploy"`
+	Branch      *string           `pulumi:"branch"`
+	BuildFilter *BuildFilter      `pulumi:"buildFilter"`
+	CreatedAt   string            `pulumi:"createdAt"`
+	// The URL to view the service in the Render Dashboard
+	DashboardUrl       string                       `pulumi:"dashboardUrl"`
+	EnvironmentId      *string                      `pulumi:"environmentId"`
+	Id                 string                       `pulumi:"id"`
+	ImagePath          *string                      `pulumi:"imagePath"`
+	Name               string                       `pulumi:"name"`
+	NotifyOnFail       ServiceNotifyOnFail          `pulumi:"notifyOnFail"`
+	OwnerId            string                       `pulumi:"ownerId"`
+	RegistryCredential *RegistryCredentialSummary   `pulumi:"registryCredential"`
+	Repo               *string                      `pulumi:"repo"`
+	RootDir            string                       `pulumi:"rootDir"`
+	ServiceDetails     *PrivateServiceDetailsOutput `pulumi:"serviceDetails"`
+	Slug               string                       `pulumi:"slug"`
+	Suspended          ServiceSuspended             `pulumi:"suspended"`
+	Suspenders         []ServiceSuspendersItem      `pulumi:"suspenders"`
+	Type               *string                      `pulumi:"type"`
+	UpdatedAt          string                       `pulumi:"updatedAt"`
 }
 
 // Defaults sets the appropriate defaults for GetPrivateServiceType
@@ -3457,6 +3521,9 @@ func (val *GetPrivateServiceType) Defaults() *GetPrivateServiceType {
 		return nil
 	}
 	tmp := *val
+	if internal.IsZero(tmp.AutoDeploy) {
+		tmp.AutoDeploy = ServiceAutoDeploy("yes")
+	}
 	tmp.ServiceDetails = tmp.ServiceDetails.Defaults()
 
 	if tmp.Type == nil {
@@ -3496,6 +3563,15 @@ func (o GetPrivateServiceTypeOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPrivateServiceType) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// The URL to view the service in the Render Dashboard
+func (o GetPrivateServiceTypeOutput) DashboardUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivateServiceType) string { return v.DashboardUrl }).(pulumi.StringOutput)
+}
+
+func (o GetPrivateServiceTypeOutput) EnvironmentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetPrivateServiceType) *string { return v.EnvironmentId }).(pulumi.StringPtrOutput)
+}
+
 func (o GetPrivateServiceTypeOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPrivateServiceType) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -3514,6 +3590,10 @@ func (o GetPrivateServiceTypeOutput) NotifyOnFail() ServiceNotifyOnFailOutput {
 
 func (o GetPrivateServiceTypeOutput) OwnerId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPrivateServiceType) string { return v.OwnerId }).(pulumi.StringOutput)
+}
+
+func (o GetPrivateServiceTypeOutput) RegistryCredential() RegistryCredentialSummaryPtrOutput {
+	return o.ApplyT(func(v GetPrivateServiceType) *RegistryCredentialSummary { return v.RegistryCredential }).(RegistryCredentialSummaryPtrOutput)
 }
 
 func (o GetPrivateServiceTypeOutput) Repo() pulumi.StringPtrOutput {
@@ -3549,23 +3629,27 @@ func (o GetPrivateServiceTypeOutput) UpdatedAt() pulumi.StringOutput {
 }
 
 type GetStaticSiteType struct {
-	AutoDeploy     ServiceAutoDeploy        `pulumi:"autoDeploy"`
-	Branch         *string                  `pulumi:"branch"`
-	BuildFilter    *BuildFilter             `pulumi:"buildFilter"`
-	CreatedAt      string                   `pulumi:"createdAt"`
-	Id             string                   `pulumi:"id"`
-	ImagePath      *string                  `pulumi:"imagePath"`
-	Name           string                   `pulumi:"name"`
-	NotifyOnFail   ServiceNotifyOnFail      `pulumi:"notifyOnFail"`
-	OwnerId        string                   `pulumi:"ownerId"`
-	Repo           *string                  `pulumi:"repo"`
-	RootDir        string                   `pulumi:"rootDir"`
-	ServiceDetails *StaticSiteDetailsOutput `pulumi:"serviceDetails"`
-	Slug           string                   `pulumi:"slug"`
-	Suspended      ServiceSuspended         `pulumi:"suspended"`
-	Suspenders     []ServiceSuspendersItem  `pulumi:"suspenders"`
-	Type           *string                  `pulumi:"type"`
-	UpdatedAt      string                   `pulumi:"updatedAt"`
+	AutoDeploy  ServiceAutoDeploy `pulumi:"autoDeploy"`
+	Branch      *string           `pulumi:"branch"`
+	BuildFilter *BuildFilter      `pulumi:"buildFilter"`
+	CreatedAt   string            `pulumi:"createdAt"`
+	// The URL to view the service in the Render Dashboard
+	DashboardUrl       string                     `pulumi:"dashboardUrl"`
+	EnvironmentId      *string                    `pulumi:"environmentId"`
+	Id                 string                     `pulumi:"id"`
+	ImagePath          *string                    `pulumi:"imagePath"`
+	Name               string                     `pulumi:"name"`
+	NotifyOnFail       ServiceNotifyOnFail        `pulumi:"notifyOnFail"`
+	OwnerId            string                     `pulumi:"ownerId"`
+	RegistryCredential *RegistryCredentialSummary `pulumi:"registryCredential"`
+	Repo               *string                    `pulumi:"repo"`
+	RootDir            string                     `pulumi:"rootDir"`
+	ServiceDetails     *StaticSiteDetailsOutput   `pulumi:"serviceDetails"`
+	Slug               string                     `pulumi:"slug"`
+	Suspended          ServiceSuspended           `pulumi:"suspended"`
+	Suspenders         []ServiceSuspendersItem    `pulumi:"suspenders"`
+	Type               *string                    `pulumi:"type"`
+	UpdatedAt          string                     `pulumi:"updatedAt"`
 }
 
 // Defaults sets the appropriate defaults for GetStaticSiteType
@@ -3574,6 +3658,11 @@ func (val *GetStaticSiteType) Defaults() *GetStaticSiteType {
 		return nil
 	}
 	tmp := *val
+	if internal.IsZero(tmp.AutoDeploy) {
+		tmp.AutoDeploy = ServiceAutoDeploy("yes")
+	}
+	tmp.ServiceDetails = tmp.ServiceDetails.Defaults()
+
 	if tmp.Type == nil {
 		type_ := "static_site"
 		tmp.Type = &type_
@@ -3611,6 +3700,15 @@ func (o GetStaticSiteTypeOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStaticSiteType) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// The URL to view the service in the Render Dashboard
+func (o GetStaticSiteTypeOutput) DashboardUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStaticSiteType) string { return v.DashboardUrl }).(pulumi.StringOutput)
+}
+
+func (o GetStaticSiteTypeOutput) EnvironmentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetStaticSiteType) *string { return v.EnvironmentId }).(pulumi.StringPtrOutput)
+}
+
 func (o GetStaticSiteTypeOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStaticSiteType) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -3629,6 +3727,10 @@ func (o GetStaticSiteTypeOutput) NotifyOnFail() ServiceNotifyOnFailOutput {
 
 func (o GetStaticSiteTypeOutput) OwnerId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStaticSiteType) string { return v.OwnerId }).(pulumi.StringOutput)
+}
+
+func (o GetStaticSiteTypeOutput) RegistryCredential() RegistryCredentialSummaryPtrOutput {
+	return o.ApplyT(func(v GetStaticSiteType) *RegistryCredentialSummary { return v.RegistryCredential }).(RegistryCredentialSummaryPtrOutput)
 }
 
 func (o GetStaticSiteTypeOutput) Repo() pulumi.StringPtrOutput {
@@ -3664,23 +3766,27 @@ func (o GetStaticSiteTypeOutput) UpdatedAt() pulumi.StringOutput {
 }
 
 type GetWebServiceType struct {
-	AutoDeploy     ServiceAutoDeploy        `pulumi:"autoDeploy"`
-	Branch         *string                  `pulumi:"branch"`
-	BuildFilter    *BuildFilter             `pulumi:"buildFilter"`
-	CreatedAt      string                   `pulumi:"createdAt"`
-	Id             string                   `pulumi:"id"`
-	ImagePath      *string                  `pulumi:"imagePath"`
-	Name           string                   `pulumi:"name"`
-	NotifyOnFail   ServiceNotifyOnFail      `pulumi:"notifyOnFail"`
-	OwnerId        string                   `pulumi:"ownerId"`
-	Repo           *string                  `pulumi:"repo"`
-	RootDir        string                   `pulumi:"rootDir"`
-	ServiceDetails *WebServiceDetailsOutput `pulumi:"serviceDetails"`
-	Slug           string                   `pulumi:"slug"`
-	Suspended      ServiceSuspended         `pulumi:"suspended"`
-	Suspenders     []ServiceSuspendersItem  `pulumi:"suspenders"`
-	Type           *string                  `pulumi:"type"`
-	UpdatedAt      string                   `pulumi:"updatedAt"`
+	AutoDeploy  ServiceAutoDeploy `pulumi:"autoDeploy"`
+	Branch      *string           `pulumi:"branch"`
+	BuildFilter *BuildFilter      `pulumi:"buildFilter"`
+	CreatedAt   string            `pulumi:"createdAt"`
+	// The URL to view the service in the Render Dashboard
+	DashboardUrl       string                     `pulumi:"dashboardUrl"`
+	EnvironmentId      *string                    `pulumi:"environmentId"`
+	Id                 string                     `pulumi:"id"`
+	ImagePath          *string                    `pulumi:"imagePath"`
+	Name               string                     `pulumi:"name"`
+	NotifyOnFail       ServiceNotifyOnFail        `pulumi:"notifyOnFail"`
+	OwnerId            string                     `pulumi:"ownerId"`
+	RegistryCredential *RegistryCredentialSummary `pulumi:"registryCredential"`
+	Repo               *string                    `pulumi:"repo"`
+	RootDir            string                     `pulumi:"rootDir"`
+	ServiceDetails     *WebServiceDetailsOutput   `pulumi:"serviceDetails"`
+	Slug               string                     `pulumi:"slug"`
+	Suspended          ServiceSuspended           `pulumi:"suspended"`
+	Suspenders         []ServiceSuspendersItem    `pulumi:"suspenders"`
+	Type               *string                    `pulumi:"type"`
+	UpdatedAt          string                     `pulumi:"updatedAt"`
 }
 
 // Defaults sets the appropriate defaults for GetWebServiceType
@@ -3689,6 +3795,9 @@ func (val *GetWebServiceType) Defaults() *GetWebServiceType {
 		return nil
 	}
 	tmp := *val
+	if internal.IsZero(tmp.AutoDeploy) {
+		tmp.AutoDeploy = ServiceAutoDeploy("yes")
+	}
 	tmp.ServiceDetails = tmp.ServiceDetails.Defaults()
 
 	if tmp.Type == nil {
@@ -3728,6 +3837,15 @@ func (o GetWebServiceTypeOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetWebServiceType) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// The URL to view the service in the Render Dashboard
+func (o GetWebServiceTypeOutput) DashboardUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebServiceType) string { return v.DashboardUrl }).(pulumi.StringOutput)
+}
+
+func (o GetWebServiceTypeOutput) EnvironmentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetWebServiceType) *string { return v.EnvironmentId }).(pulumi.StringPtrOutput)
+}
+
 func (o GetWebServiceTypeOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetWebServiceType) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -3746,6 +3864,10 @@ func (o GetWebServiceTypeOutput) NotifyOnFail() ServiceNotifyOnFailOutput {
 
 func (o GetWebServiceTypeOutput) OwnerId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetWebServiceType) string { return v.OwnerId }).(pulumi.StringOutput)
+}
+
+func (o GetWebServiceTypeOutput) RegistryCredential() RegistryCredentialSummaryPtrOutput {
+	return o.ApplyT(func(v GetWebServiceType) *RegistryCredentialSummary { return v.RegistryCredential }).(RegistryCredentialSummaryPtrOutput)
 }
 
 func (o GetWebServiceTypeOutput) Repo() pulumi.StringPtrOutput {
@@ -3780,69 +3902,69 @@ func (o GetWebServiceTypeOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetWebServiceType) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
-type Header struct {
+type HeaderType struct {
 	Id    string `pulumi:"id"`
 	Name  string `pulumi:"name"`
 	Path  string `pulumi:"path"`
 	Value string `pulumi:"value"`
 }
 
-type HeaderOutput struct{ *pulumi.OutputState }
+type HeaderTypeOutput struct{ *pulumi.OutputState }
 
-func (HeaderOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*Header)(nil)).Elem()
+func (HeaderTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*HeaderType)(nil)).Elem()
 }
 
-func (o HeaderOutput) ToHeaderOutput() HeaderOutput {
+func (o HeaderTypeOutput) ToHeaderTypeOutput() HeaderTypeOutput {
 	return o
 }
 
-func (o HeaderOutput) ToHeaderOutputWithContext(ctx context.Context) HeaderOutput {
+func (o HeaderTypeOutput) ToHeaderTypeOutputWithContext(ctx context.Context) HeaderTypeOutput {
 	return o
 }
 
-func (o HeaderOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v Header) string { return v.Id }).(pulumi.StringOutput)
+func (o HeaderTypeOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v HeaderType) string { return v.Id }).(pulumi.StringOutput)
 }
 
-func (o HeaderOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v Header) string { return v.Name }).(pulumi.StringOutput)
+func (o HeaderTypeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v HeaderType) string { return v.Name }).(pulumi.StringOutput)
 }
 
-func (o HeaderOutput) Path() pulumi.StringOutput {
-	return o.ApplyT(func(v Header) string { return v.Path }).(pulumi.StringOutput)
+func (o HeaderTypeOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v HeaderType) string { return v.Path }).(pulumi.StringOutput)
 }
 
-func (o HeaderOutput) Value() pulumi.StringOutput {
-	return o.ApplyT(func(v Header) string { return v.Value }).(pulumi.StringOutput)
+func (o HeaderTypeOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v HeaderType) string { return v.Value }).(pulumi.StringOutput)
 }
 
-type HeaderPtrOutput struct{ *pulumi.OutputState }
+type HeaderTypePtrOutput struct{ *pulumi.OutputState }
 
-func (HeaderPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**Header)(nil)).Elem()
+func (HeaderTypePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**HeaderType)(nil)).Elem()
 }
 
-func (o HeaderPtrOutput) ToHeaderPtrOutput() HeaderPtrOutput {
+func (o HeaderTypePtrOutput) ToHeaderTypePtrOutput() HeaderTypePtrOutput {
 	return o
 }
 
-func (o HeaderPtrOutput) ToHeaderPtrOutputWithContext(ctx context.Context) HeaderPtrOutput {
+func (o HeaderTypePtrOutput) ToHeaderTypePtrOutputWithContext(ctx context.Context) HeaderTypePtrOutput {
 	return o
 }
 
-func (o HeaderPtrOutput) Elem() HeaderOutput {
-	return o.ApplyT(func(v *Header) Header {
+func (o HeaderTypePtrOutput) Elem() HeaderTypeOutput {
+	return o.ApplyT(func(v *HeaderType) HeaderType {
 		if v != nil {
 			return *v
 		}
-		var ret Header
+		var ret HeaderType
 		return ret
-	}).(HeaderOutput)
+	}).(HeaderTypeOutput)
 }
 
-func (o HeaderPtrOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Header) *string {
+func (o HeaderTypePtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *HeaderType) *string {
 		if v == nil {
 			return nil
 		}
@@ -3850,8 +3972,8 @@ func (o HeaderPtrOutput) Id() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o HeaderPtrOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Header) *string {
+func (o HeaderTypePtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *HeaderType) *string {
 		if v == nil {
 			return nil
 		}
@@ -3859,8 +3981,8 @@ func (o HeaderPtrOutput) Name() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o HeaderPtrOutput) Path() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Header) *string {
+func (o HeaderTypePtrOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *HeaderType) *string {
 		if v == nil {
 			return nil
 		}
@@ -3868,8 +3990,8 @@ func (o HeaderPtrOutput) Path() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o HeaderPtrOutput) Value() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Header) *string {
+func (o HeaderTypePtrOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *HeaderType) *string {
 		if v == nil {
 			return nil
 		}
@@ -3877,7 +3999,7 @@ func (o HeaderPtrOutput) Value() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-type HeaderCreate struct {
+type HeaderInputType struct {
 	// Header name
 	Name string `pulumi:"name"`
 	// The request path to add the header to. Wildcards will cause headers to be applied to all matching paths.
@@ -3886,18 +4008,18 @@ type HeaderCreate struct {
 	Value string `pulumi:"value"`
 }
 
-// HeaderCreateInput is an input type that accepts HeaderCreateArgs and HeaderCreateOutput values.
-// You can construct a concrete instance of `HeaderCreateInput` via:
+// HeaderInputTypeInput is an input type that accepts HeaderInputTypeArgs and HeaderInputTypeOutput values.
+// You can construct a concrete instance of `HeaderInputTypeInput` via:
 //
-//	HeaderCreateArgs{...}
-type HeaderCreateInput interface {
+//	HeaderInputTypeArgs{...}
+type HeaderInputTypeInput interface {
 	pulumi.Input
 
-	ToHeaderCreateOutput() HeaderCreateOutput
-	ToHeaderCreateOutputWithContext(context.Context) HeaderCreateOutput
+	ToHeaderInputTypeOutput() HeaderInputTypeOutput
+	ToHeaderInputTypeOutputWithContext(context.Context) HeaderInputTypeOutput
 }
 
-type HeaderCreateArgs struct {
+type HeaderInputTypeArgs struct {
 	// Header name
 	Name pulumi.StringInput `pulumi:"name"`
 	// The request path to add the header to. Wildcards will cause headers to be applied to all matching paths.
@@ -3906,90 +4028,137 @@ type HeaderCreateArgs struct {
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
-func (HeaderCreateArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*HeaderCreate)(nil)).Elem()
+func (HeaderInputTypeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*HeaderInputType)(nil)).Elem()
 }
 
-func (i HeaderCreateArgs) ToHeaderCreateOutput() HeaderCreateOutput {
-	return i.ToHeaderCreateOutputWithContext(context.Background())
+func (i HeaderInputTypeArgs) ToHeaderInputTypeOutput() HeaderInputTypeOutput {
+	return i.ToHeaderInputTypeOutputWithContext(context.Background())
 }
 
-func (i HeaderCreateArgs) ToHeaderCreateOutputWithContext(ctx context.Context) HeaderCreateOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HeaderCreateOutput)
+func (i HeaderInputTypeArgs) ToHeaderInputTypeOutputWithContext(ctx context.Context) HeaderInputTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HeaderInputTypeOutput)
 }
 
-// HeaderCreateArrayInput is an input type that accepts HeaderCreateArray and HeaderCreateArrayOutput values.
-// You can construct a concrete instance of `HeaderCreateArrayInput` via:
+// HeaderInputTypeArrayInput is an input type that accepts HeaderInputTypeArray and HeaderInputTypeArrayOutput values.
+// You can construct a concrete instance of `HeaderInputTypeArrayInput` via:
 //
-//	HeaderCreateArray{ HeaderCreateArgs{...} }
-type HeaderCreateArrayInput interface {
+//	HeaderInputTypeArray{ HeaderInputTypeArgs{...} }
+type HeaderInputTypeArrayInput interface {
 	pulumi.Input
 
-	ToHeaderCreateArrayOutput() HeaderCreateArrayOutput
-	ToHeaderCreateArrayOutputWithContext(context.Context) HeaderCreateArrayOutput
+	ToHeaderInputTypeArrayOutput() HeaderInputTypeArrayOutput
+	ToHeaderInputTypeArrayOutputWithContext(context.Context) HeaderInputTypeArrayOutput
 }
 
-type HeaderCreateArray []HeaderCreateInput
+type HeaderInputTypeArray []HeaderInputTypeInput
 
-func (HeaderCreateArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]HeaderCreate)(nil)).Elem()
+func (HeaderInputTypeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]HeaderInputType)(nil)).Elem()
 }
 
-func (i HeaderCreateArray) ToHeaderCreateArrayOutput() HeaderCreateArrayOutput {
-	return i.ToHeaderCreateArrayOutputWithContext(context.Background())
+func (i HeaderInputTypeArray) ToHeaderInputTypeArrayOutput() HeaderInputTypeArrayOutput {
+	return i.ToHeaderInputTypeArrayOutputWithContext(context.Background())
 }
 
-func (i HeaderCreateArray) ToHeaderCreateArrayOutputWithContext(ctx context.Context) HeaderCreateArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(HeaderCreateArrayOutput)
+func (i HeaderInputTypeArray) ToHeaderInputTypeArrayOutputWithContext(ctx context.Context) HeaderInputTypeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HeaderInputTypeArrayOutput)
 }
 
-type HeaderCreateOutput struct{ *pulumi.OutputState }
+type HeaderInputTypeOutput struct{ *pulumi.OutputState }
 
-func (HeaderCreateOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*HeaderCreate)(nil)).Elem()
+func (HeaderInputTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*HeaderInputType)(nil)).Elem()
 }
 
-func (o HeaderCreateOutput) ToHeaderCreateOutput() HeaderCreateOutput {
+func (o HeaderInputTypeOutput) ToHeaderInputTypeOutput() HeaderInputTypeOutput {
 	return o
 }
 
-func (o HeaderCreateOutput) ToHeaderCreateOutputWithContext(ctx context.Context) HeaderCreateOutput {
+func (o HeaderInputTypeOutput) ToHeaderInputTypeOutputWithContext(ctx context.Context) HeaderInputTypeOutput {
 	return o
 }
 
 // Header name
-func (o HeaderCreateOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v HeaderCreate) string { return v.Name }).(pulumi.StringOutput)
+func (o HeaderInputTypeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v HeaderInputType) string { return v.Name }).(pulumi.StringOutput)
 }
 
 // The request path to add the header to. Wildcards will cause headers to be applied to all matching paths.
-func (o HeaderCreateOutput) Path() pulumi.StringOutput {
-	return o.ApplyT(func(v HeaderCreate) string { return v.Path }).(pulumi.StringOutput)
+func (o HeaderInputTypeOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v HeaderInputType) string { return v.Path }).(pulumi.StringOutput)
 }
 
 // Header value
-func (o HeaderCreateOutput) Value() pulumi.StringOutput {
-	return o.ApplyT(func(v HeaderCreate) string { return v.Value }).(pulumi.StringOutput)
+func (o HeaderInputTypeOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v HeaderInputType) string { return v.Value }).(pulumi.StringOutput)
 }
 
-type HeaderCreateArrayOutput struct{ *pulumi.OutputState }
+type HeaderInputTypeArrayOutput struct{ *pulumi.OutputState }
 
-func (HeaderCreateArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]HeaderCreate)(nil)).Elem()
+func (HeaderInputTypeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]HeaderInputType)(nil)).Elem()
 }
 
-func (o HeaderCreateArrayOutput) ToHeaderCreateArrayOutput() HeaderCreateArrayOutput {
+func (o HeaderInputTypeArrayOutput) ToHeaderInputTypeArrayOutput() HeaderInputTypeArrayOutput {
 	return o
 }
 
-func (o HeaderCreateArrayOutput) ToHeaderCreateArrayOutputWithContext(ctx context.Context) HeaderCreateArrayOutput {
+func (o HeaderInputTypeArrayOutput) ToHeaderInputTypeArrayOutputWithContext(ctx context.Context) HeaderInputTypeArrayOutput {
 	return o
 }
 
-func (o HeaderCreateArrayOutput) Index(i pulumi.IntInput) HeaderCreateOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) HeaderCreate {
-		return vs[0].([]HeaderCreate)[vs[1].(int)]
-	}).(HeaderCreateOutput)
+func (o HeaderInputTypeArrayOutput) Index(i pulumi.IntInput) HeaderInputTypeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) HeaderInputType {
+		return vs[0].([]HeaderInputType)[vs[1].(int)]
+	}).(HeaderInputTypeOutput)
+}
+
+type HeaderWithCursor struct {
+	Cursor string     `pulumi:"cursor"`
+	Header HeaderType `pulumi:"header"`
+}
+
+type HeaderWithCursorOutput struct{ *pulumi.OutputState }
+
+func (HeaderWithCursorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*HeaderWithCursor)(nil)).Elem()
+}
+
+func (o HeaderWithCursorOutput) ToHeaderWithCursorOutput() HeaderWithCursorOutput {
+	return o
+}
+
+func (o HeaderWithCursorOutput) ToHeaderWithCursorOutputWithContext(ctx context.Context) HeaderWithCursorOutput {
+	return o
+}
+
+func (o HeaderWithCursorOutput) Cursor() pulumi.StringOutput {
+	return o.ApplyT(func(v HeaderWithCursor) string { return v.Cursor }).(pulumi.StringOutput)
+}
+
+func (o HeaderWithCursorOutput) Header() HeaderTypeOutput {
+	return o.ApplyT(func(v HeaderWithCursor) HeaderType { return v.Header }).(HeaderTypeOutput)
+}
+
+type HeaderWithCursorArrayOutput struct{ *pulumi.OutputState }
+
+func (HeaderWithCursorArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]HeaderWithCursor)(nil)).Elem()
+}
+
+func (o HeaderWithCursorArrayOutput) ToHeaderWithCursorArrayOutput() HeaderWithCursorArrayOutput {
+	return o
+}
+
+func (o HeaderWithCursorArrayOutput) ToHeaderWithCursorArrayOutputWithContext(ctx context.Context) HeaderWithCursorArrayOutput {
+	return o
+}
+
+func (o HeaderWithCursorArrayOutput) Index(i pulumi.IntInput) HeaderWithCursorOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) HeaderWithCursor {
+		return vs[0].([]HeaderWithCursor)[vs[1].(int)]
+	}).(HeaderWithCursorOutput)
 }
 
 type Image struct {
@@ -4262,14 +4431,14 @@ func (o ImagePropertiesPtrOutput) Sha() pulumi.StringPtrOutput {
 }
 
 type JobType struct {
-	CreatedAt    string  `pulumi:"createdAt"`
-	FinishedAt   *string `pulumi:"finishedAt"`
-	Id           string  `pulumi:"id"`
-	PlanId       string  `pulumi:"planId"`
-	ServiceId    string  `pulumi:"serviceId"`
-	StartCommand string  `pulumi:"startCommand"`
-	StartedAt    *string `pulumi:"startedAt"`
-	Status       *string `pulumi:"status"`
+	CreatedAt    string     `pulumi:"createdAt"`
+	FinishedAt   *string    `pulumi:"finishedAt"`
+	Id           string     `pulumi:"id"`
+	PlanId       string     `pulumi:"planId"`
+	ServiceId    string     `pulumi:"serviceId"`
+	StartCommand string     `pulumi:"startCommand"`
+	StartedAt    *string    `pulumi:"startedAt"`
+	Status       *JobStatus `pulumi:"status"`
 }
 
 type JobTypeOutput struct{ *pulumi.OutputState }
@@ -4314,151 +4483,8 @@ func (o JobTypeOutput) StartedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobType) *string { return v.StartedAt }).(pulumi.StringPtrOutput)
 }
 
-func (o JobTypeOutput) Status() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v JobType) *string { return v.Status }).(pulumi.StringPtrOutput)
-}
-
-type JobTypePtrOutput struct{ *pulumi.OutputState }
-
-func (JobTypePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**JobType)(nil)).Elem()
-}
-
-func (o JobTypePtrOutput) ToJobTypePtrOutput() JobTypePtrOutput {
-	return o
-}
-
-func (o JobTypePtrOutput) ToJobTypePtrOutputWithContext(ctx context.Context) JobTypePtrOutput {
-	return o
-}
-
-func (o JobTypePtrOutput) Elem() JobTypeOutput {
-	return o.ApplyT(func(v *JobType) JobType {
-		if v != nil {
-			return *v
-		}
-		var ret JobType
-		return ret
-	}).(JobTypeOutput)
-}
-
-func (o JobTypePtrOutput) CreatedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *JobType) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.CreatedAt
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o JobTypePtrOutput) FinishedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *JobType) *string {
-		if v == nil {
-			return nil
-		}
-		return v.FinishedAt
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o JobTypePtrOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *JobType) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.Id
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o JobTypePtrOutput) PlanId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *JobType) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.PlanId
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o JobTypePtrOutput) ServiceId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *JobType) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.ServiceId
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o JobTypePtrOutput) StartCommand() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *JobType) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.StartCommand
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o JobTypePtrOutput) StartedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *JobType) *string {
-		if v == nil {
-			return nil
-		}
-		return v.StartedAt
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o JobTypePtrOutput) Status() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *JobType) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Status
-	}).(pulumi.StringPtrOutput)
-}
-
-type ListCustomDomainsItemProperties struct {
-	Cursor       *string           `pulumi:"cursor"`
-	CustomDomain *CustomDomainType `pulumi:"customDomain"`
-}
-
-type ListCustomDomainsItemPropertiesOutput struct{ *pulumi.OutputState }
-
-func (ListCustomDomainsItemPropertiesOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ListCustomDomainsItemProperties)(nil)).Elem()
-}
-
-func (o ListCustomDomainsItemPropertiesOutput) ToListCustomDomainsItemPropertiesOutput() ListCustomDomainsItemPropertiesOutput {
-	return o
-}
-
-func (o ListCustomDomainsItemPropertiesOutput) ToListCustomDomainsItemPropertiesOutputWithContext(ctx context.Context) ListCustomDomainsItemPropertiesOutput {
-	return o
-}
-
-func (o ListCustomDomainsItemPropertiesOutput) Cursor() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ListCustomDomainsItemProperties) *string { return v.Cursor }).(pulumi.StringPtrOutput)
-}
-
-func (o ListCustomDomainsItemPropertiesOutput) CustomDomain() CustomDomainTypePtrOutput {
-	return o.ApplyT(func(v ListCustomDomainsItemProperties) *CustomDomainType { return v.CustomDomain }).(CustomDomainTypePtrOutput)
-}
-
-type ListCustomDomainsItemPropertiesArrayOutput struct{ *pulumi.OutputState }
-
-func (ListCustomDomainsItemPropertiesArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ListCustomDomainsItemProperties)(nil)).Elem()
-}
-
-func (o ListCustomDomainsItemPropertiesArrayOutput) ToListCustomDomainsItemPropertiesArrayOutput() ListCustomDomainsItemPropertiesArrayOutput {
-	return o
-}
-
-func (o ListCustomDomainsItemPropertiesArrayOutput) ToListCustomDomainsItemPropertiesArrayOutputWithContext(ctx context.Context) ListCustomDomainsItemPropertiesArrayOutput {
-	return o
-}
-
-func (o ListCustomDomainsItemPropertiesArrayOutput) Index(i pulumi.IntInput) ListCustomDomainsItemPropertiesOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListCustomDomainsItemProperties {
-		return vs[0].([]ListCustomDomainsItemProperties)[vs[1].(int)]
-	}).(ListCustomDomainsItemPropertiesOutput)
+func (o JobTypeOutput) Status() JobStatusPtrOutput {
+	return o.ApplyT(func(v JobType) *JobStatus { return v.Status }).(JobStatusPtrOutput)
 }
 
 type ListDeploysItemProperties struct {
@@ -4509,8 +4535,8 @@ func (o ListDeploysItemPropertiesArrayOutput) Index(i pulumi.IntInput) ListDeplo
 }
 
 type ListJobItemProperties struct {
-	Cursor *string  `pulumi:"cursor"`
-	Job    *JobType `pulumi:"job"`
+	Cursor *string                                                                           `pulumi:"cursor"`
+	Job    *Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema `pulumi:"job"`
 }
 
 type ListJobItemPropertiesOutput struct{ *pulumi.OutputState }
@@ -4531,8 +4557,10 @@ func (o ListJobItemPropertiesOutput) Cursor() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ListJobItemProperties) *string { return v.Cursor }).(pulumi.StringPtrOutput)
 }
 
-func (o ListJobItemPropertiesOutput) Job() JobTypePtrOutput {
-	return o.ApplyT(func(v ListJobItemProperties) *JobType { return v.Job }).(JobTypePtrOutput)
+func (o ListJobItemPropertiesOutput) Job() Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaPtrOutput {
+	return o.ApplyT(func(v ListJobItemProperties) *Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema {
+		return v.Job
+	}).(Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaPtrOutput)
 }
 
 type ListJobItemPropertiesArrayOutput struct{ *pulumi.OutputState }
@@ -4553,100 +4581,6 @@ func (o ListJobItemPropertiesArrayOutput) Index(i pulumi.IntInput) ListJobItemPr
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListJobItemProperties {
 		return vs[0].([]ListJobItemProperties)[vs[1].(int)]
 	}).(ListJobItemPropertiesOutput)
-}
-
-type ListRetrieveHeadersItemProperties struct {
-	Cursor  *string `pulumi:"cursor"`
-	Headers *Header `pulumi:"headers"`
-}
-
-type ListRetrieveHeadersItemPropertiesOutput struct{ *pulumi.OutputState }
-
-func (ListRetrieveHeadersItemPropertiesOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ListRetrieveHeadersItemProperties)(nil)).Elem()
-}
-
-func (o ListRetrieveHeadersItemPropertiesOutput) ToListRetrieveHeadersItemPropertiesOutput() ListRetrieveHeadersItemPropertiesOutput {
-	return o
-}
-
-func (o ListRetrieveHeadersItemPropertiesOutput) ToListRetrieveHeadersItemPropertiesOutputWithContext(ctx context.Context) ListRetrieveHeadersItemPropertiesOutput {
-	return o
-}
-
-func (o ListRetrieveHeadersItemPropertiesOutput) Cursor() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ListRetrieveHeadersItemProperties) *string { return v.Cursor }).(pulumi.StringPtrOutput)
-}
-
-func (o ListRetrieveHeadersItemPropertiesOutput) Headers() HeaderPtrOutput {
-	return o.ApplyT(func(v ListRetrieveHeadersItemProperties) *Header { return v.Headers }).(HeaderPtrOutput)
-}
-
-type ListRetrieveHeadersItemPropertiesArrayOutput struct{ *pulumi.OutputState }
-
-func (ListRetrieveHeadersItemPropertiesArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ListRetrieveHeadersItemProperties)(nil)).Elem()
-}
-
-func (o ListRetrieveHeadersItemPropertiesArrayOutput) ToListRetrieveHeadersItemPropertiesArrayOutput() ListRetrieveHeadersItemPropertiesArrayOutput {
-	return o
-}
-
-func (o ListRetrieveHeadersItemPropertiesArrayOutput) ToListRetrieveHeadersItemPropertiesArrayOutputWithContext(ctx context.Context) ListRetrieveHeadersItemPropertiesArrayOutput {
-	return o
-}
-
-func (o ListRetrieveHeadersItemPropertiesArrayOutput) Index(i pulumi.IntInput) ListRetrieveHeadersItemPropertiesOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListRetrieveHeadersItemProperties {
-		return vs[0].([]ListRetrieveHeadersItemProperties)[vs[1].(int)]
-	}).(ListRetrieveHeadersItemPropertiesOutput)
-}
-
-type ListRetrieveRoutesItemProperties struct {
-	Cursor *string `pulumi:"cursor"`
-	Routes *Route  `pulumi:"routes"`
-}
-
-type ListRetrieveRoutesItemPropertiesOutput struct{ *pulumi.OutputState }
-
-func (ListRetrieveRoutesItemPropertiesOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ListRetrieveRoutesItemProperties)(nil)).Elem()
-}
-
-func (o ListRetrieveRoutesItemPropertiesOutput) ToListRetrieveRoutesItemPropertiesOutput() ListRetrieveRoutesItemPropertiesOutput {
-	return o
-}
-
-func (o ListRetrieveRoutesItemPropertiesOutput) ToListRetrieveRoutesItemPropertiesOutputWithContext(ctx context.Context) ListRetrieveRoutesItemPropertiesOutput {
-	return o
-}
-
-func (o ListRetrieveRoutesItemPropertiesOutput) Cursor() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ListRetrieveRoutesItemProperties) *string { return v.Cursor }).(pulumi.StringPtrOutput)
-}
-
-func (o ListRetrieveRoutesItemPropertiesOutput) Routes() RoutePtrOutput {
-	return o.ApplyT(func(v ListRetrieveRoutesItemProperties) *Route { return v.Routes }).(RoutePtrOutput)
-}
-
-type ListRetrieveRoutesItemPropertiesArrayOutput struct{ *pulumi.OutputState }
-
-func (ListRetrieveRoutesItemPropertiesArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ListRetrieveRoutesItemProperties)(nil)).Elem()
-}
-
-func (o ListRetrieveRoutesItemPropertiesArrayOutput) ToListRetrieveRoutesItemPropertiesArrayOutput() ListRetrieveRoutesItemPropertiesArrayOutput {
-	return o
-}
-
-func (o ListRetrieveRoutesItemPropertiesArrayOutput) ToListRetrieveRoutesItemPropertiesArrayOutputWithContext(ctx context.Context) ListRetrieveRoutesItemPropertiesArrayOutput {
-	return o
-}
-
-func (o ListRetrieveRoutesItemPropertiesArrayOutput) Index(i pulumi.IntInput) ListRetrieveRoutesItemPropertiesOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListRetrieveRoutesItemProperties {
-		return vs[0].([]ListRetrieveRoutesItemProperties)[vs[1].(int)]
-	}).(ListRetrieveRoutesItemPropertiesOutput)
 }
 
 type ListServicesResponse struct {
@@ -4696,180 +4630,25 @@ func (o ListServicesResponseArrayOutput) Index(i pulumi.IntInput) ListServicesRe
 	}).(ListServicesResponseOutput)
 }
 
-type NativeEnvironmentDetails struct {
-	BuildCommand     string  `pulumi:"buildCommand"`
-	PreDeployCommand *string `pulumi:"preDeployCommand"`
-	StartCommand     string  `pulumi:"startCommand"`
-}
-
-// NativeEnvironmentDetailsInput is an input type that accepts NativeEnvironmentDetailsArgs and NativeEnvironmentDetailsOutput values.
-// You can construct a concrete instance of `NativeEnvironmentDetailsInput` via:
-//
-//	NativeEnvironmentDetailsArgs{...}
-type NativeEnvironmentDetailsInput interface {
-	pulumi.Input
-
-	ToNativeEnvironmentDetailsOutput() NativeEnvironmentDetailsOutput
-	ToNativeEnvironmentDetailsOutputWithContext(context.Context) NativeEnvironmentDetailsOutput
-}
-
-type NativeEnvironmentDetailsArgs struct {
-	BuildCommand     pulumi.StringInput    `pulumi:"buildCommand"`
-	PreDeployCommand pulumi.StringPtrInput `pulumi:"preDeployCommand"`
-	StartCommand     pulumi.StringInput    `pulumi:"startCommand"`
-}
-
-func (NativeEnvironmentDetailsArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*NativeEnvironmentDetails)(nil)).Elem()
-}
-
-func (i NativeEnvironmentDetailsArgs) ToNativeEnvironmentDetailsOutput() NativeEnvironmentDetailsOutput {
-	return i.ToNativeEnvironmentDetailsOutputWithContext(context.Background())
-}
-
-func (i NativeEnvironmentDetailsArgs) ToNativeEnvironmentDetailsOutputWithContext(ctx context.Context) NativeEnvironmentDetailsOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NativeEnvironmentDetailsOutput)
-}
-
-func (i NativeEnvironmentDetailsArgs) ToNativeEnvironmentDetailsPtrOutput() NativeEnvironmentDetailsPtrOutput {
-	return i.ToNativeEnvironmentDetailsPtrOutputWithContext(context.Background())
-}
-
-func (i NativeEnvironmentDetailsArgs) ToNativeEnvironmentDetailsPtrOutputWithContext(ctx context.Context) NativeEnvironmentDetailsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NativeEnvironmentDetailsOutput).ToNativeEnvironmentDetailsPtrOutputWithContext(ctx)
-}
-
-// NativeEnvironmentDetailsPtrInput is an input type that accepts NativeEnvironmentDetailsArgs, NativeEnvironmentDetailsPtr and NativeEnvironmentDetailsPtrOutput values.
-// You can construct a concrete instance of `NativeEnvironmentDetailsPtrInput` via:
-//
-//	        NativeEnvironmentDetailsArgs{...}
-//
-//	or:
-//
-//	        nil
-type NativeEnvironmentDetailsPtrInput interface {
-	pulumi.Input
-
-	ToNativeEnvironmentDetailsPtrOutput() NativeEnvironmentDetailsPtrOutput
-	ToNativeEnvironmentDetailsPtrOutputWithContext(context.Context) NativeEnvironmentDetailsPtrOutput
-}
-
-type nativeEnvironmentDetailsPtrType NativeEnvironmentDetailsArgs
-
-func NativeEnvironmentDetailsPtr(v *NativeEnvironmentDetailsArgs) NativeEnvironmentDetailsPtrInput {
-	return (*nativeEnvironmentDetailsPtrType)(v)
-}
-
-func (*nativeEnvironmentDetailsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**NativeEnvironmentDetails)(nil)).Elem()
-}
-
-func (i *nativeEnvironmentDetailsPtrType) ToNativeEnvironmentDetailsPtrOutput() NativeEnvironmentDetailsPtrOutput {
-	return i.ToNativeEnvironmentDetailsPtrOutputWithContext(context.Background())
-}
-
-func (i *nativeEnvironmentDetailsPtrType) ToNativeEnvironmentDetailsPtrOutputWithContext(ctx context.Context) NativeEnvironmentDetailsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NativeEnvironmentDetailsPtrOutput)
-}
-
-type NativeEnvironmentDetailsOutput struct{ *pulumi.OutputState }
-
-func (NativeEnvironmentDetailsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*NativeEnvironmentDetails)(nil)).Elem()
-}
-
-func (o NativeEnvironmentDetailsOutput) ToNativeEnvironmentDetailsOutput() NativeEnvironmentDetailsOutput {
-	return o
-}
-
-func (o NativeEnvironmentDetailsOutput) ToNativeEnvironmentDetailsOutputWithContext(ctx context.Context) NativeEnvironmentDetailsOutput {
-	return o
-}
-
-func (o NativeEnvironmentDetailsOutput) ToNativeEnvironmentDetailsPtrOutput() NativeEnvironmentDetailsPtrOutput {
-	return o.ToNativeEnvironmentDetailsPtrOutputWithContext(context.Background())
-}
-
-func (o NativeEnvironmentDetailsOutput) ToNativeEnvironmentDetailsPtrOutputWithContext(ctx context.Context) NativeEnvironmentDetailsPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v NativeEnvironmentDetails) *NativeEnvironmentDetails {
-		return &v
-	}).(NativeEnvironmentDetailsPtrOutput)
-}
-
-func (o NativeEnvironmentDetailsOutput) BuildCommand() pulumi.StringOutput {
-	return o.ApplyT(func(v NativeEnvironmentDetails) string { return v.BuildCommand }).(pulumi.StringOutput)
-}
-
-func (o NativeEnvironmentDetailsOutput) PreDeployCommand() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v NativeEnvironmentDetails) *string { return v.PreDeployCommand }).(pulumi.StringPtrOutput)
-}
-
-func (o NativeEnvironmentDetailsOutput) StartCommand() pulumi.StringOutput {
-	return o.ApplyT(func(v NativeEnvironmentDetails) string { return v.StartCommand }).(pulumi.StringOutput)
-}
-
-type NativeEnvironmentDetailsPtrOutput struct{ *pulumi.OutputState }
-
-func (NativeEnvironmentDetailsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**NativeEnvironmentDetails)(nil)).Elem()
-}
-
-func (o NativeEnvironmentDetailsPtrOutput) ToNativeEnvironmentDetailsPtrOutput() NativeEnvironmentDetailsPtrOutput {
-	return o
-}
-
-func (o NativeEnvironmentDetailsPtrOutput) ToNativeEnvironmentDetailsPtrOutputWithContext(ctx context.Context) NativeEnvironmentDetailsPtrOutput {
-	return o
-}
-
-func (o NativeEnvironmentDetailsPtrOutput) Elem() NativeEnvironmentDetailsOutput {
-	return o.ApplyT(func(v *NativeEnvironmentDetails) NativeEnvironmentDetails {
-		if v != nil {
-			return *v
-		}
-		var ret NativeEnvironmentDetails
-		return ret
-	}).(NativeEnvironmentDetailsOutput)
-}
-
-func (o NativeEnvironmentDetailsPtrOutput) BuildCommand() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *NativeEnvironmentDetails) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.BuildCommand
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o NativeEnvironmentDetailsPtrOutput) PreDeployCommand() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *NativeEnvironmentDetails) *string {
-		if v == nil {
-			return nil
-		}
-		return v.PreDeployCommand
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o NativeEnvironmentDetailsPtrOutput) StartCommand() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *NativeEnvironmentDetails) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.StartCommand
-	}).(pulumi.StringPtrOutput)
-}
-
 type PrivateServiceDetailsCreate struct {
-	Disk *PrivateServiceDetailsCreateDiskProperties `pulumi:"disk"`
-	// Environment (runtime)
-	Env                PrivateServiceDetailsCreateEnv `pulumi:"env"`
-	EnvSpecificDetails interface{}                    `pulumi:"envSpecificDetails"`
+	Autoscaling *WebServiceDetailspropertiesautoscaling `pulumi:"autoscaling"`
+	Disk        *ServiceDisk                            `pulumi:"disk"`
+	// This field has been deprecated, runtime should be used in its place.
+	Env                *PrivateServiceDetailsCreateEnv `pulumi:"env"`
+	EnvSpecificDetails *EnvSpecificDetailsCreate       `pulumi:"envSpecificDetails"`
+	// The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
+	MaxShutdownDelaySeconds *int `pulumi:"maxShutdownDelaySeconds"`
 	// Defaults to 1
-	NumInstances *int                             `pulumi:"numInstances"`
-	Plan         *PrivateServiceDetailsCreatePlan `pulumi:"plan"`
+	NumInstances *int `pulumi:"numInstances"`
+	// Defaults to "starter"
+	Plan             *PrivateServiceDetailsCreatePlan `pulumi:"plan"`
+	PreDeployCommand *string                          `pulumi:"preDeployCommand"`
 	// Defaults to "no"
 	PullRequestPreviewsEnabled *PrivateServiceDetailsCreatePullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
-	Region                     *PrivateServiceDetailsCreateRegion                     `pulumi:"region"`
+	// Defaults to "oregon"
+	Region *PrivateServiceDetailsCreateRegion `pulumi:"region"`
+	// Runtime
+	Runtime PrivateServiceDetailsCreateRuntime `pulumi:"runtime"`
 }
 
 // Defaults sets the appropriate defaults for PrivateServiceDetailsCreate
@@ -4878,13 +4657,27 @@ func (val *PrivateServiceDetailsCreate) Defaults() *PrivateServiceDetailsCreate 
 		return nil
 	}
 	tmp := *val
+	tmp.Autoscaling = tmp.Autoscaling.Defaults()
+
+	if tmp.MaxShutdownDelaySeconds == nil {
+		maxShutdownDelaySeconds_ := 30
+		tmp.MaxShutdownDelaySeconds = &maxShutdownDelaySeconds_
+	}
 	if tmp.NumInstances == nil {
 		numInstances_ := 1
 		tmp.NumInstances = &numInstances_
 	}
+	if tmp.Plan == nil {
+		plan_ := PrivateServiceDetailsCreatePlan("starter")
+		tmp.Plan = &plan_
+	}
 	if tmp.PullRequestPreviewsEnabled == nil {
 		pullRequestPreviewsEnabled_ := PrivateServiceDetailsCreatePullRequestPreviewsEnabled("no")
 		tmp.PullRequestPreviewsEnabled = &pullRequestPreviewsEnabled_
+	}
+	if tmp.Region == nil {
+		region_ := PrivateServiceDetailsCreateRegion("oregon")
+		tmp.Region = &region_
 	}
 	return &tmp
 }
@@ -4901,16 +4694,24 @@ type PrivateServiceDetailsCreateInput interface {
 }
 
 type PrivateServiceDetailsCreateArgs struct {
-	Disk PrivateServiceDetailsCreateDiskPropertiesPtrInput `pulumi:"disk"`
-	// Environment (runtime)
-	Env                PrivateServiceDetailsCreateEnvInput `pulumi:"env"`
-	EnvSpecificDetails pulumi.Input                        `pulumi:"envSpecificDetails"`
+	Autoscaling WebServiceDetailspropertiesautoscalingPtrInput `pulumi:"autoscaling"`
+	Disk        ServiceDiskPtrInput                            `pulumi:"disk"`
+	// This field has been deprecated, runtime should be used in its place.
+	Env                PrivateServiceDetailsCreateEnvPtrInput `pulumi:"env"`
+	EnvSpecificDetails EnvSpecificDetailsCreatePtrInput       `pulumi:"envSpecificDetails"`
+	// The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
+	MaxShutdownDelaySeconds pulumi.IntPtrInput `pulumi:"maxShutdownDelaySeconds"`
 	// Defaults to 1
-	NumInstances pulumi.IntPtrInput                      `pulumi:"numInstances"`
-	Plan         PrivateServiceDetailsCreatePlanPtrInput `pulumi:"plan"`
+	NumInstances pulumi.IntPtrInput `pulumi:"numInstances"`
+	// Defaults to "starter"
+	Plan             PrivateServiceDetailsCreatePlanPtrInput `pulumi:"plan"`
+	PreDeployCommand pulumi.StringPtrInput                   `pulumi:"preDeployCommand"`
 	// Defaults to "no"
 	PullRequestPreviewsEnabled PrivateServiceDetailsCreatePullRequestPreviewsEnabledPtrInput `pulumi:"pullRequestPreviewsEnabled"`
-	Region                     PrivateServiceDetailsCreateRegionPtrInput                     `pulumi:"region"`
+	// Defaults to "oregon"
+	Region PrivateServiceDetailsCreateRegionPtrInput `pulumi:"region"`
+	// Runtime
+	Runtime PrivateServiceDetailsCreateRuntimeInput `pulumi:"runtime"`
 }
 
 // Defaults sets the appropriate defaults for PrivateServiceDetailsCreateArgs
@@ -4919,11 +4720,21 @@ func (val *PrivateServiceDetailsCreateArgs) Defaults() *PrivateServiceDetailsCre
 		return nil
 	}
 	tmp := *val
+
+	if tmp.MaxShutdownDelaySeconds == nil {
+		tmp.MaxShutdownDelaySeconds = pulumi.IntPtr(30)
+	}
 	if tmp.NumInstances == nil {
 		tmp.NumInstances = pulumi.IntPtr(1)
 	}
+	if tmp.Plan == nil {
+		tmp.Plan = PrivateServiceDetailsCreatePlan("starter")
+	}
 	if tmp.PullRequestPreviewsEnabled == nil {
 		tmp.PullRequestPreviewsEnabled = PrivateServiceDetailsCreatePullRequestPreviewsEnabled("no")
+	}
+	if tmp.Region == nil {
+		tmp.Region = PrivateServiceDetailsCreateRegion("oregon")
 	}
 	return &tmp
 }
@@ -5004,17 +4815,26 @@ func (o PrivateServiceDetailsCreateOutput) ToPrivateServiceDetailsCreatePtrOutpu
 	}).(PrivateServiceDetailsCreatePtrOutput)
 }
 
-func (o PrivateServiceDetailsCreateOutput) Disk() PrivateServiceDetailsCreateDiskPropertiesPtrOutput {
-	return o.ApplyT(func(v PrivateServiceDetailsCreate) *PrivateServiceDetailsCreateDiskProperties { return v.Disk }).(PrivateServiceDetailsCreateDiskPropertiesPtrOutput)
+func (o PrivateServiceDetailsCreateOutput) Autoscaling() WebServiceDetailspropertiesautoscalingPtrOutput {
+	return o.ApplyT(func(v PrivateServiceDetailsCreate) *WebServiceDetailspropertiesautoscaling { return v.Autoscaling }).(WebServiceDetailspropertiesautoscalingPtrOutput)
 }
 
-// Environment (runtime)
-func (o PrivateServiceDetailsCreateOutput) Env() PrivateServiceDetailsCreateEnvOutput {
-	return o.ApplyT(func(v PrivateServiceDetailsCreate) PrivateServiceDetailsCreateEnv { return v.Env }).(PrivateServiceDetailsCreateEnvOutput)
+func (o PrivateServiceDetailsCreateOutput) Disk() ServiceDiskPtrOutput {
+	return o.ApplyT(func(v PrivateServiceDetailsCreate) *ServiceDisk { return v.Disk }).(ServiceDiskPtrOutput)
 }
 
-func (o PrivateServiceDetailsCreateOutput) EnvSpecificDetails() pulumi.AnyOutput {
-	return o.ApplyT(func(v PrivateServiceDetailsCreate) interface{} { return v.EnvSpecificDetails }).(pulumi.AnyOutput)
+// This field has been deprecated, runtime should be used in its place.
+func (o PrivateServiceDetailsCreateOutput) Env() PrivateServiceDetailsCreateEnvPtrOutput {
+	return o.ApplyT(func(v PrivateServiceDetailsCreate) *PrivateServiceDetailsCreateEnv { return v.Env }).(PrivateServiceDetailsCreateEnvPtrOutput)
+}
+
+func (o PrivateServiceDetailsCreateOutput) EnvSpecificDetails() EnvSpecificDetailsCreatePtrOutput {
+	return o.ApplyT(func(v PrivateServiceDetailsCreate) *EnvSpecificDetailsCreate { return v.EnvSpecificDetails }).(EnvSpecificDetailsCreatePtrOutput)
+}
+
+// The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
+func (o PrivateServiceDetailsCreateOutput) MaxShutdownDelaySeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v PrivateServiceDetailsCreate) *int { return v.MaxShutdownDelaySeconds }).(pulumi.IntPtrOutput)
 }
 
 // Defaults to 1
@@ -5022,8 +4842,13 @@ func (o PrivateServiceDetailsCreateOutput) NumInstances() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v PrivateServiceDetailsCreate) *int { return v.NumInstances }).(pulumi.IntPtrOutput)
 }
 
+// Defaults to "starter"
 func (o PrivateServiceDetailsCreateOutput) Plan() PrivateServiceDetailsCreatePlanPtrOutput {
 	return o.ApplyT(func(v PrivateServiceDetailsCreate) *PrivateServiceDetailsCreatePlan { return v.Plan }).(PrivateServiceDetailsCreatePlanPtrOutput)
+}
+
+func (o PrivateServiceDetailsCreateOutput) PreDeployCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PrivateServiceDetailsCreate) *string { return v.PreDeployCommand }).(pulumi.StringPtrOutput)
 }
 
 // Defaults to "no"
@@ -5033,8 +4858,14 @@ func (o PrivateServiceDetailsCreateOutput) PullRequestPreviewsEnabled() PrivateS
 	}).(PrivateServiceDetailsCreatePullRequestPreviewsEnabledPtrOutput)
 }
 
+// Defaults to "oregon"
 func (o PrivateServiceDetailsCreateOutput) Region() PrivateServiceDetailsCreateRegionPtrOutput {
 	return o.ApplyT(func(v PrivateServiceDetailsCreate) *PrivateServiceDetailsCreateRegion { return v.Region }).(PrivateServiceDetailsCreateRegionPtrOutput)
+}
+
+// Runtime
+func (o PrivateServiceDetailsCreateOutput) Runtime() PrivateServiceDetailsCreateRuntimeOutput {
+	return o.ApplyT(func(v PrivateServiceDetailsCreate) PrivateServiceDetailsCreateRuntime { return v.Runtime }).(PrivateServiceDetailsCreateRuntimeOutput)
 }
 
 type PrivateServiceDetailsCreatePtrOutput struct{ *pulumi.OutputState }
@@ -5061,32 +4892,51 @@ func (o PrivateServiceDetailsCreatePtrOutput) Elem() PrivateServiceDetailsCreate
 	}).(PrivateServiceDetailsCreateOutput)
 }
 
-func (o PrivateServiceDetailsCreatePtrOutput) Disk() PrivateServiceDetailsCreateDiskPropertiesPtrOutput {
-	return o.ApplyT(func(v *PrivateServiceDetailsCreate) *PrivateServiceDetailsCreateDiskProperties {
+func (o PrivateServiceDetailsCreatePtrOutput) Autoscaling() WebServiceDetailspropertiesautoscalingPtrOutput {
+	return o.ApplyT(func(v *PrivateServiceDetailsCreate) *WebServiceDetailspropertiesautoscaling {
+		if v == nil {
+			return nil
+		}
+		return v.Autoscaling
+	}).(WebServiceDetailspropertiesautoscalingPtrOutput)
+}
+
+func (o PrivateServiceDetailsCreatePtrOutput) Disk() ServiceDiskPtrOutput {
+	return o.ApplyT(func(v *PrivateServiceDetailsCreate) *ServiceDisk {
 		if v == nil {
 			return nil
 		}
 		return v.Disk
-	}).(PrivateServiceDetailsCreateDiskPropertiesPtrOutput)
+	}).(ServiceDiskPtrOutput)
 }
 
-// Environment (runtime)
+// This field has been deprecated, runtime should be used in its place.
 func (o PrivateServiceDetailsCreatePtrOutput) Env() PrivateServiceDetailsCreateEnvPtrOutput {
 	return o.ApplyT(func(v *PrivateServiceDetailsCreate) *PrivateServiceDetailsCreateEnv {
 		if v == nil {
 			return nil
 		}
-		return &v.Env
+		return v.Env
 	}).(PrivateServiceDetailsCreateEnvPtrOutput)
 }
 
-func (o PrivateServiceDetailsCreatePtrOutput) EnvSpecificDetails() pulumi.AnyOutput {
-	return o.ApplyT(func(v *PrivateServiceDetailsCreate) interface{} {
+func (o PrivateServiceDetailsCreatePtrOutput) EnvSpecificDetails() EnvSpecificDetailsCreatePtrOutput {
+	return o.ApplyT(func(v *PrivateServiceDetailsCreate) *EnvSpecificDetailsCreate {
 		if v == nil {
 			return nil
 		}
 		return v.EnvSpecificDetails
-	}).(pulumi.AnyOutput)
+	}).(EnvSpecificDetailsCreatePtrOutput)
+}
+
+// The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
+func (o PrivateServiceDetailsCreatePtrOutput) MaxShutdownDelaySeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *PrivateServiceDetailsCreate) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxShutdownDelaySeconds
+	}).(pulumi.IntPtrOutput)
 }
 
 // Defaults to 1
@@ -5099,6 +4949,7 @@ func (o PrivateServiceDetailsCreatePtrOutput) NumInstances() pulumi.IntPtrOutput
 	}).(pulumi.IntPtrOutput)
 }
 
+// Defaults to "starter"
 func (o PrivateServiceDetailsCreatePtrOutput) Plan() PrivateServiceDetailsCreatePlanPtrOutput {
 	return o.ApplyT(func(v *PrivateServiceDetailsCreate) *PrivateServiceDetailsCreatePlan {
 		if v == nil {
@@ -5106,6 +4957,15 @@ func (o PrivateServiceDetailsCreatePtrOutput) Plan() PrivateServiceDetailsCreate
 		}
 		return v.Plan
 	}).(PrivateServiceDetailsCreatePlanPtrOutput)
+}
+
+func (o PrivateServiceDetailsCreatePtrOutput) PreDeployCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PrivateServiceDetailsCreate) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PreDeployCommand
+	}).(pulumi.StringPtrOutput)
 }
 
 // Defaults to "no"
@@ -5118,6 +4978,7 @@ func (o PrivateServiceDetailsCreatePtrOutput) PullRequestPreviewsEnabled() Priva
 	}).(PrivateServiceDetailsCreatePullRequestPreviewsEnabledPtrOutput)
 }
 
+// Defaults to "oregon"
 func (o PrivateServiceDetailsCreatePtrOutput) Region() PrivateServiceDetailsCreateRegionPtrOutput {
 	return o.ApplyT(func(v *PrivateServiceDetailsCreate) *PrivateServiceDetailsCreateRegion {
 		if v == nil {
@@ -5127,189 +4988,36 @@ func (o PrivateServiceDetailsCreatePtrOutput) Region() PrivateServiceDetailsCrea
 	}).(PrivateServiceDetailsCreateRegionPtrOutput)
 }
 
-type PrivateServiceDetailsCreateDiskProperties struct {
-	MountPath string `pulumi:"mountPath"`
-	Name      string `pulumi:"name"`
-	// Defaults to 1
-	SizeGB *int `pulumi:"sizeGB"`
-}
-
-// PrivateServiceDetailsCreateDiskPropertiesInput is an input type that accepts PrivateServiceDetailsCreateDiskPropertiesArgs and PrivateServiceDetailsCreateDiskPropertiesOutput values.
-// You can construct a concrete instance of `PrivateServiceDetailsCreateDiskPropertiesInput` via:
-//
-//	PrivateServiceDetailsCreateDiskPropertiesArgs{...}
-type PrivateServiceDetailsCreateDiskPropertiesInput interface {
-	pulumi.Input
-
-	ToPrivateServiceDetailsCreateDiskPropertiesOutput() PrivateServiceDetailsCreateDiskPropertiesOutput
-	ToPrivateServiceDetailsCreateDiskPropertiesOutputWithContext(context.Context) PrivateServiceDetailsCreateDiskPropertiesOutput
-}
-
-type PrivateServiceDetailsCreateDiskPropertiesArgs struct {
-	MountPath pulumi.StringInput `pulumi:"mountPath"`
-	Name      pulumi.StringInput `pulumi:"name"`
-	// Defaults to 1
-	SizeGB pulumi.IntPtrInput `pulumi:"sizeGB"`
-}
-
-func (PrivateServiceDetailsCreateDiskPropertiesArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*PrivateServiceDetailsCreateDiskProperties)(nil)).Elem()
-}
-
-func (i PrivateServiceDetailsCreateDiskPropertiesArgs) ToPrivateServiceDetailsCreateDiskPropertiesOutput() PrivateServiceDetailsCreateDiskPropertiesOutput {
-	return i.ToPrivateServiceDetailsCreateDiskPropertiesOutputWithContext(context.Background())
-}
-
-func (i PrivateServiceDetailsCreateDiskPropertiesArgs) ToPrivateServiceDetailsCreateDiskPropertiesOutputWithContext(ctx context.Context) PrivateServiceDetailsCreateDiskPropertiesOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PrivateServiceDetailsCreateDiskPropertiesOutput)
-}
-
-func (i PrivateServiceDetailsCreateDiskPropertiesArgs) ToPrivateServiceDetailsCreateDiskPropertiesPtrOutput() PrivateServiceDetailsCreateDiskPropertiesPtrOutput {
-	return i.ToPrivateServiceDetailsCreateDiskPropertiesPtrOutputWithContext(context.Background())
-}
-
-func (i PrivateServiceDetailsCreateDiskPropertiesArgs) ToPrivateServiceDetailsCreateDiskPropertiesPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsCreateDiskPropertiesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PrivateServiceDetailsCreateDiskPropertiesOutput).ToPrivateServiceDetailsCreateDiskPropertiesPtrOutputWithContext(ctx)
-}
-
-// PrivateServiceDetailsCreateDiskPropertiesPtrInput is an input type that accepts PrivateServiceDetailsCreateDiskPropertiesArgs, PrivateServiceDetailsCreateDiskPropertiesPtr and PrivateServiceDetailsCreateDiskPropertiesPtrOutput values.
-// You can construct a concrete instance of `PrivateServiceDetailsCreateDiskPropertiesPtrInput` via:
-//
-//	        PrivateServiceDetailsCreateDiskPropertiesArgs{...}
-//
-//	or:
-//
-//	        nil
-type PrivateServiceDetailsCreateDiskPropertiesPtrInput interface {
-	pulumi.Input
-
-	ToPrivateServiceDetailsCreateDiskPropertiesPtrOutput() PrivateServiceDetailsCreateDiskPropertiesPtrOutput
-	ToPrivateServiceDetailsCreateDiskPropertiesPtrOutputWithContext(context.Context) PrivateServiceDetailsCreateDiskPropertiesPtrOutput
-}
-
-type privateServiceDetailsCreateDiskPropertiesPtrType PrivateServiceDetailsCreateDiskPropertiesArgs
-
-func PrivateServiceDetailsCreateDiskPropertiesPtr(v *PrivateServiceDetailsCreateDiskPropertiesArgs) PrivateServiceDetailsCreateDiskPropertiesPtrInput {
-	return (*privateServiceDetailsCreateDiskPropertiesPtrType)(v)
-}
-
-func (*privateServiceDetailsCreateDiskPropertiesPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**PrivateServiceDetailsCreateDiskProperties)(nil)).Elem()
-}
-
-func (i *privateServiceDetailsCreateDiskPropertiesPtrType) ToPrivateServiceDetailsCreateDiskPropertiesPtrOutput() PrivateServiceDetailsCreateDiskPropertiesPtrOutput {
-	return i.ToPrivateServiceDetailsCreateDiskPropertiesPtrOutputWithContext(context.Background())
-}
-
-func (i *privateServiceDetailsCreateDiskPropertiesPtrType) ToPrivateServiceDetailsCreateDiskPropertiesPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsCreateDiskPropertiesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PrivateServiceDetailsCreateDiskPropertiesPtrOutput)
-}
-
-type PrivateServiceDetailsCreateDiskPropertiesOutput struct{ *pulumi.OutputState }
-
-func (PrivateServiceDetailsCreateDiskPropertiesOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*PrivateServiceDetailsCreateDiskProperties)(nil)).Elem()
-}
-
-func (o PrivateServiceDetailsCreateDiskPropertiesOutput) ToPrivateServiceDetailsCreateDiskPropertiesOutput() PrivateServiceDetailsCreateDiskPropertiesOutput {
-	return o
-}
-
-func (o PrivateServiceDetailsCreateDiskPropertiesOutput) ToPrivateServiceDetailsCreateDiskPropertiesOutputWithContext(ctx context.Context) PrivateServiceDetailsCreateDiskPropertiesOutput {
-	return o
-}
-
-func (o PrivateServiceDetailsCreateDiskPropertiesOutput) ToPrivateServiceDetailsCreateDiskPropertiesPtrOutput() PrivateServiceDetailsCreateDiskPropertiesPtrOutput {
-	return o.ToPrivateServiceDetailsCreateDiskPropertiesPtrOutputWithContext(context.Background())
-}
-
-func (o PrivateServiceDetailsCreateDiskPropertiesOutput) ToPrivateServiceDetailsCreateDiskPropertiesPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsCreateDiskPropertiesPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v PrivateServiceDetailsCreateDiskProperties) *PrivateServiceDetailsCreateDiskProperties {
-		return &v
-	}).(PrivateServiceDetailsCreateDiskPropertiesPtrOutput)
-}
-
-func (o PrivateServiceDetailsCreateDiskPropertiesOutput) MountPath() pulumi.StringOutput {
-	return o.ApplyT(func(v PrivateServiceDetailsCreateDiskProperties) string { return v.MountPath }).(pulumi.StringOutput)
-}
-
-func (o PrivateServiceDetailsCreateDiskPropertiesOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v PrivateServiceDetailsCreateDiskProperties) string { return v.Name }).(pulumi.StringOutput)
-}
-
-// Defaults to 1
-func (o PrivateServiceDetailsCreateDiskPropertiesOutput) SizeGB() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v PrivateServiceDetailsCreateDiskProperties) *int { return v.SizeGB }).(pulumi.IntPtrOutput)
-}
-
-type PrivateServiceDetailsCreateDiskPropertiesPtrOutput struct{ *pulumi.OutputState }
-
-func (PrivateServiceDetailsCreateDiskPropertiesPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**PrivateServiceDetailsCreateDiskProperties)(nil)).Elem()
-}
-
-func (o PrivateServiceDetailsCreateDiskPropertiesPtrOutput) ToPrivateServiceDetailsCreateDiskPropertiesPtrOutput() PrivateServiceDetailsCreateDiskPropertiesPtrOutput {
-	return o
-}
-
-func (o PrivateServiceDetailsCreateDiskPropertiesPtrOutput) ToPrivateServiceDetailsCreateDiskPropertiesPtrOutputWithContext(ctx context.Context) PrivateServiceDetailsCreateDiskPropertiesPtrOutput {
-	return o
-}
-
-func (o PrivateServiceDetailsCreateDiskPropertiesPtrOutput) Elem() PrivateServiceDetailsCreateDiskPropertiesOutput {
-	return o.ApplyT(func(v *PrivateServiceDetailsCreateDiskProperties) PrivateServiceDetailsCreateDiskProperties {
-		if v != nil {
-			return *v
-		}
-		var ret PrivateServiceDetailsCreateDiskProperties
-		return ret
-	}).(PrivateServiceDetailsCreateDiskPropertiesOutput)
-}
-
-func (o PrivateServiceDetailsCreateDiskPropertiesPtrOutput) MountPath() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *PrivateServiceDetailsCreateDiskProperties) *string {
+// Runtime
+func (o PrivateServiceDetailsCreatePtrOutput) Runtime() PrivateServiceDetailsCreateRuntimePtrOutput {
+	return o.ApplyT(func(v *PrivateServiceDetailsCreate) *PrivateServiceDetailsCreateRuntime {
 		if v == nil {
 			return nil
 		}
-		return &v.MountPath
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o PrivateServiceDetailsCreateDiskPropertiesPtrOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *PrivateServiceDetailsCreateDiskProperties) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.Name
-	}).(pulumi.StringPtrOutput)
-}
-
-// Defaults to 1
-func (o PrivateServiceDetailsCreateDiskPropertiesPtrOutput) SizeGB() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *PrivateServiceDetailsCreateDiskProperties) *int {
-		if v == nil {
-			return nil
-		}
-		return v.SizeGB
-	}).(pulumi.IntPtrOutput)
+		return &v.Runtime
+	}).(PrivateServiceDetailsCreateRuntimePtrOutput)
 }
 
 type PrivateServiceDetailsOutput struct {
-	Autoscaling *AutoscalingConfig `pulumi:"autoscaling"`
-	BuildPlan   string             `pulumi:"buildPlan"`
-	Disk        *Disk              `pulumi:"disk"`
-	// Environment (runtime)
+	Autoscaling *WebServiceDetailspropertiesautoscaling `pulumi:"autoscaling"`
+	BuildPlan   PrivateServiceDetailsOutputBuildPlan    `pulumi:"buildPlan"`
+	Disk        *WebServiceDetailspropertiesdisk        `pulumi:"disk"`
+	// Runtime
 	Env                PrivateServiceDetailsOutputEnv `pulumi:"env"`
-	EnvSpecificDetails interface{}                    `pulumi:"envSpecificDetails"`
+	EnvSpecificDetails EnvSpecificDetails             `pulumi:"envSpecificDetails"`
+	// The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
+	MaxShutdownDelaySeconds *int `pulumi:"maxShutdownDelaySeconds"`
 	// For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
 	NumInstances int          `pulumi:"numInstances"`
 	OpenPorts    []ServerPort `pulumi:"openPorts"`
 	ParentServer *Resource    `pulumi:"parentServer"`
 	// The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
-	Plan                       PrivateServiceDetailsOutputPlan                       `pulumi:"plan"`
-	PullRequestPreviewsEnabled PrivateServiceDetailsOutputPullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
-	Region                     PrivateServiceDetailsOutputRegion                     `pulumi:"region"`
-	Url                        string                                                `pulumi:"url"`
+	Plan PrivateServiceDetailsOutputPlan `pulumi:"plan"`
+	// Defaults to "no"
+	PullRequestPreviewsEnabled *PrivateServiceDetailsOutputPullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
+	// Defaults to "oregon"
+	Region PrivateServiceDetailsOutputRegion `pulumi:"region"`
+	Url    string                            `pulumi:"url"`
 }
 
 // Defaults sets the appropriate defaults for PrivateServiceDetailsOutput
@@ -5320,6 +5028,20 @@ func (val *PrivateServiceDetailsOutput) Defaults() *PrivateServiceDetailsOutput 
 	tmp := *val
 	tmp.Autoscaling = tmp.Autoscaling.Defaults()
 
+	if internal.IsZero(tmp.BuildPlan) {
+		tmp.BuildPlan = PrivateServiceDetailsOutputBuildPlan("starter")
+	}
+	if tmp.MaxShutdownDelaySeconds == nil {
+		maxShutdownDelaySeconds_ := 30
+		tmp.MaxShutdownDelaySeconds = &maxShutdownDelaySeconds_
+	}
+	if tmp.PullRequestPreviewsEnabled == nil {
+		pullRequestPreviewsEnabled_ := PrivateServiceDetailsOutputPullRequestPreviewsEnabled("no")
+		tmp.PullRequestPreviewsEnabled = &pullRequestPreviewsEnabled_
+	}
+	if internal.IsZero(tmp.Region) {
+		tmp.Region = PrivateServiceDetailsOutputRegion("oregon")
+	}
 	return &tmp
 }
 
@@ -5337,25 +5059,30 @@ func (o PrivateServiceDetailsOutputOutput) ToPrivateServiceDetailsOutputOutputWi
 	return o
 }
 
-func (o PrivateServiceDetailsOutputOutput) Autoscaling() AutoscalingConfigPtrOutput {
-	return o.ApplyT(func(v PrivateServiceDetailsOutput) *AutoscalingConfig { return v.Autoscaling }).(AutoscalingConfigPtrOutput)
+func (o PrivateServiceDetailsOutputOutput) Autoscaling() WebServiceDetailspropertiesautoscalingPtrOutput {
+	return o.ApplyT(func(v PrivateServiceDetailsOutput) *WebServiceDetailspropertiesautoscaling { return v.Autoscaling }).(WebServiceDetailspropertiesautoscalingPtrOutput)
 }
 
-func (o PrivateServiceDetailsOutputOutput) BuildPlan() pulumi.StringOutput {
-	return o.ApplyT(func(v PrivateServiceDetailsOutput) string { return v.BuildPlan }).(pulumi.StringOutput)
+func (o PrivateServiceDetailsOutputOutput) BuildPlan() PrivateServiceDetailsOutputBuildPlanOutput {
+	return o.ApplyT(func(v PrivateServiceDetailsOutput) PrivateServiceDetailsOutputBuildPlan { return v.BuildPlan }).(PrivateServiceDetailsOutputBuildPlanOutput)
 }
 
-func (o PrivateServiceDetailsOutputOutput) Disk() DiskPtrOutput {
-	return o.ApplyT(func(v PrivateServiceDetailsOutput) *Disk { return v.Disk }).(DiskPtrOutput)
+func (o PrivateServiceDetailsOutputOutput) Disk() WebServiceDetailspropertiesdiskPtrOutput {
+	return o.ApplyT(func(v PrivateServiceDetailsOutput) *WebServiceDetailspropertiesdisk { return v.Disk }).(WebServiceDetailspropertiesdiskPtrOutput)
 }
 
-// Environment (runtime)
+// Runtime
 func (o PrivateServiceDetailsOutputOutput) Env() PrivateServiceDetailsOutputEnvOutput {
 	return o.ApplyT(func(v PrivateServiceDetailsOutput) PrivateServiceDetailsOutputEnv { return v.Env }).(PrivateServiceDetailsOutputEnvOutput)
 }
 
-func (o PrivateServiceDetailsOutputOutput) EnvSpecificDetails() pulumi.AnyOutput {
-	return o.ApplyT(func(v PrivateServiceDetailsOutput) interface{} { return v.EnvSpecificDetails }).(pulumi.AnyOutput)
+func (o PrivateServiceDetailsOutputOutput) EnvSpecificDetails() EnvSpecificDetailsOutput {
+	return o.ApplyT(func(v PrivateServiceDetailsOutput) EnvSpecificDetails { return v.EnvSpecificDetails }).(EnvSpecificDetailsOutput)
+}
+
+// The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
+func (o PrivateServiceDetailsOutputOutput) MaxShutdownDelaySeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v PrivateServiceDetailsOutput) *int { return v.MaxShutdownDelaySeconds }).(pulumi.IntPtrOutput)
 }
 
 // For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
@@ -5376,12 +5103,14 @@ func (o PrivateServiceDetailsOutputOutput) Plan() PrivateServiceDetailsOutputPla
 	return o.ApplyT(func(v PrivateServiceDetailsOutput) PrivateServiceDetailsOutputPlan { return v.Plan }).(PrivateServiceDetailsOutputPlanOutput)
 }
 
-func (o PrivateServiceDetailsOutputOutput) PullRequestPreviewsEnabled() PrivateServiceDetailsOutputPullRequestPreviewsEnabledOutput {
-	return o.ApplyT(func(v PrivateServiceDetailsOutput) PrivateServiceDetailsOutputPullRequestPreviewsEnabled {
+// Defaults to "no"
+func (o PrivateServiceDetailsOutputOutput) PullRequestPreviewsEnabled() PrivateServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput {
+	return o.ApplyT(func(v PrivateServiceDetailsOutput) *PrivateServiceDetailsOutputPullRequestPreviewsEnabled {
 		return v.PullRequestPreviewsEnabled
-	}).(PrivateServiceDetailsOutputPullRequestPreviewsEnabledOutput)
+	}).(PrivateServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput)
 }
 
+// Defaults to "oregon"
 func (o PrivateServiceDetailsOutputOutput) Region() PrivateServiceDetailsOutputRegionOutput {
 	return o.ApplyT(func(v PrivateServiceDetailsOutput) PrivateServiceDetailsOutputRegion { return v.Region }).(PrivateServiceDetailsOutputRegionOutput)
 }
@@ -5414,34 +5143,34 @@ func (o PrivateServiceDetailsOutputPtrOutput) Elem() PrivateServiceDetailsOutput
 	}).(PrivateServiceDetailsOutputOutput)
 }
 
-func (o PrivateServiceDetailsOutputPtrOutput) Autoscaling() AutoscalingConfigPtrOutput {
-	return o.ApplyT(func(v *PrivateServiceDetailsOutput) *AutoscalingConfig {
+func (o PrivateServiceDetailsOutputPtrOutput) Autoscaling() WebServiceDetailspropertiesautoscalingPtrOutput {
+	return o.ApplyT(func(v *PrivateServiceDetailsOutput) *WebServiceDetailspropertiesautoscaling {
 		if v == nil {
 			return nil
 		}
 		return v.Autoscaling
-	}).(AutoscalingConfigPtrOutput)
+	}).(WebServiceDetailspropertiesautoscalingPtrOutput)
 }
 
-func (o PrivateServiceDetailsOutputPtrOutput) BuildPlan() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *PrivateServiceDetailsOutput) *string {
+func (o PrivateServiceDetailsOutputPtrOutput) BuildPlan() PrivateServiceDetailsOutputBuildPlanPtrOutput {
+	return o.ApplyT(func(v *PrivateServiceDetailsOutput) *PrivateServiceDetailsOutputBuildPlan {
 		if v == nil {
 			return nil
 		}
 		return &v.BuildPlan
-	}).(pulumi.StringPtrOutput)
+	}).(PrivateServiceDetailsOutputBuildPlanPtrOutput)
 }
 
-func (o PrivateServiceDetailsOutputPtrOutput) Disk() DiskPtrOutput {
-	return o.ApplyT(func(v *PrivateServiceDetailsOutput) *Disk {
+func (o PrivateServiceDetailsOutputPtrOutput) Disk() WebServiceDetailspropertiesdiskPtrOutput {
+	return o.ApplyT(func(v *PrivateServiceDetailsOutput) *WebServiceDetailspropertiesdisk {
 		if v == nil {
 			return nil
 		}
 		return v.Disk
-	}).(DiskPtrOutput)
+	}).(WebServiceDetailspropertiesdiskPtrOutput)
 }
 
-// Environment (runtime)
+// Runtime
 func (o PrivateServiceDetailsOutputPtrOutput) Env() PrivateServiceDetailsOutputEnvPtrOutput {
 	return o.ApplyT(func(v *PrivateServiceDetailsOutput) *PrivateServiceDetailsOutputEnv {
 		if v == nil {
@@ -5451,13 +5180,23 @@ func (o PrivateServiceDetailsOutputPtrOutput) Env() PrivateServiceDetailsOutputE
 	}).(PrivateServiceDetailsOutputEnvPtrOutput)
 }
 
-func (o PrivateServiceDetailsOutputPtrOutput) EnvSpecificDetails() pulumi.AnyOutput {
-	return o.ApplyT(func(v *PrivateServiceDetailsOutput) interface{} {
+func (o PrivateServiceDetailsOutputPtrOutput) EnvSpecificDetails() EnvSpecificDetailsPtrOutput {
+	return o.ApplyT(func(v *PrivateServiceDetailsOutput) *EnvSpecificDetails {
 		if v == nil {
 			return nil
 		}
-		return v.EnvSpecificDetails
-	}).(pulumi.AnyOutput)
+		return &v.EnvSpecificDetails
+	}).(EnvSpecificDetailsPtrOutput)
+}
+
+// The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
+func (o PrivateServiceDetailsOutputPtrOutput) MaxShutdownDelaySeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *PrivateServiceDetailsOutput) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxShutdownDelaySeconds
+	}).(pulumi.IntPtrOutput)
 }
 
 // For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
@@ -5498,15 +5237,17 @@ func (o PrivateServiceDetailsOutputPtrOutput) Plan() PrivateServiceDetailsOutput
 	}).(PrivateServiceDetailsOutputPlanPtrOutput)
 }
 
+// Defaults to "no"
 func (o PrivateServiceDetailsOutputPtrOutput) PullRequestPreviewsEnabled() PrivateServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput {
 	return o.ApplyT(func(v *PrivateServiceDetailsOutput) *PrivateServiceDetailsOutputPullRequestPreviewsEnabled {
 		if v == nil {
 			return nil
 		}
-		return &v.PullRequestPreviewsEnabled
+		return v.PullRequestPreviewsEnabled
 	}).(PrivateServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput)
 }
 
+// Defaults to "oregon"
 func (o PrivateServiceDetailsOutputPtrOutput) Region() PrivateServiceDetailsOutputRegionPtrOutput {
 	return o.ApplyT(func(v *PrivateServiceDetailsOutput) *PrivateServiceDetailsOutputRegion {
 		if v == nil {
@@ -5526,23 +5267,27 @@ func (o PrivateServiceDetailsOutputPtrOutput) Url() pulumi.StringPtrOutput {
 }
 
 type PrivateServiceOutputType struct {
-	AutoDeploy     ServiceAutoDeploy            `pulumi:"autoDeploy"`
-	Branch         *string                      `pulumi:"branch"`
-	BuildFilter    *BuildFilter                 `pulumi:"buildFilter"`
-	CreatedAt      string                       `pulumi:"createdAt"`
-	Id             string                       `pulumi:"id"`
-	ImagePath      *string                      `pulumi:"imagePath"`
-	Name           string                       `pulumi:"name"`
-	NotifyOnFail   ServiceNotifyOnFail          `pulumi:"notifyOnFail"`
-	OwnerId        string                       `pulumi:"ownerId"`
-	Repo           *string                      `pulumi:"repo"`
-	RootDir        string                       `pulumi:"rootDir"`
-	ServiceDetails *PrivateServiceDetailsOutput `pulumi:"serviceDetails"`
-	Slug           string                       `pulumi:"slug"`
-	Suspended      ServiceSuspended             `pulumi:"suspended"`
-	Suspenders     []ServiceSuspendersItem      `pulumi:"suspenders"`
-	Type           *string                      `pulumi:"type"`
-	UpdatedAt      string                       `pulumi:"updatedAt"`
+	AutoDeploy  ServiceAutoDeploy `pulumi:"autoDeploy"`
+	Branch      *string           `pulumi:"branch"`
+	BuildFilter *BuildFilter      `pulumi:"buildFilter"`
+	CreatedAt   string            `pulumi:"createdAt"`
+	// The URL to view the service in the Render Dashboard
+	DashboardUrl       string                       `pulumi:"dashboardUrl"`
+	EnvironmentId      *string                      `pulumi:"environmentId"`
+	Id                 string                       `pulumi:"id"`
+	ImagePath          *string                      `pulumi:"imagePath"`
+	Name               string                       `pulumi:"name"`
+	NotifyOnFail       ServiceNotifyOnFail          `pulumi:"notifyOnFail"`
+	OwnerId            string                       `pulumi:"ownerId"`
+	RegistryCredential *RegistryCredentialSummary   `pulumi:"registryCredential"`
+	Repo               *string                      `pulumi:"repo"`
+	RootDir            string                       `pulumi:"rootDir"`
+	ServiceDetails     *PrivateServiceDetailsOutput `pulumi:"serviceDetails"`
+	Slug               string                       `pulumi:"slug"`
+	Suspended          ServiceSuspended             `pulumi:"suspended"`
+	Suspenders         []ServiceSuspendersItem      `pulumi:"suspenders"`
+	Type               *string                      `pulumi:"type"`
+	UpdatedAt          string                       `pulumi:"updatedAt"`
 }
 
 // Defaults sets the appropriate defaults for PrivateServiceOutputType
@@ -5551,6 +5296,9 @@ func (val *PrivateServiceOutputType) Defaults() *PrivateServiceOutputType {
 		return nil
 	}
 	tmp := *val
+	if internal.IsZero(tmp.AutoDeploy) {
+		tmp.AutoDeploy = ServiceAutoDeploy("yes")
+	}
 	tmp.ServiceDetails = tmp.ServiceDetails.Defaults()
 
 	if tmp.Type == nil {
@@ -5590,6 +5338,15 @@ func (o PrivateServiceOutputTypeOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v PrivateServiceOutputType) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// The URL to view the service in the Render Dashboard
+func (o PrivateServiceOutputTypeOutput) DashboardUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v PrivateServiceOutputType) string { return v.DashboardUrl }).(pulumi.StringOutput)
+}
+
+func (o PrivateServiceOutputTypeOutput) EnvironmentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PrivateServiceOutputType) *string { return v.EnvironmentId }).(pulumi.StringPtrOutput)
+}
+
 func (o PrivateServiceOutputTypeOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v PrivateServiceOutputType) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -5608,6 +5365,10 @@ func (o PrivateServiceOutputTypeOutput) NotifyOnFail() ServiceNotifyOnFailOutput
 
 func (o PrivateServiceOutputTypeOutput) OwnerId() pulumi.StringOutput {
 	return o.ApplyT(func(v PrivateServiceOutputType) string { return v.OwnerId }).(pulumi.StringOutput)
+}
+
+func (o PrivateServiceOutputTypeOutput) RegistryCredential() RegistryCredentialSummaryPtrOutput {
+	return o.ApplyT(func(v PrivateServiceOutputType) *RegistryCredentialSummary { return v.RegistryCredential }).(RegistryCredentialSummaryPtrOutput)
 }
 
 func (o PrivateServiceOutputTypeOutput) Repo() pulumi.StringPtrOutput {
@@ -5702,6 +5463,25 @@ func (o PrivateServiceOutputTypePtrOutput) CreatedAt() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// The URL to view the service in the Render Dashboard
+func (o PrivateServiceOutputTypePtrOutput) DashboardUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PrivateServiceOutputType) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.DashboardUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o PrivateServiceOutputTypePtrOutput) EnvironmentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PrivateServiceOutputType) *string {
+		if v == nil {
+			return nil
+		}
+		return v.EnvironmentId
+	}).(pulumi.StringPtrOutput)
+}
+
 func (o PrivateServiceOutputTypePtrOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PrivateServiceOutputType) *string {
 		if v == nil {
@@ -5745,6 +5525,15 @@ func (o PrivateServiceOutputTypePtrOutput) OwnerId() pulumi.StringPtrOutput {
 		}
 		return &v.OwnerId
 	}).(pulumi.StringPtrOutput)
+}
+
+func (o PrivateServiceOutputTypePtrOutput) RegistryCredential() RegistryCredentialSummaryPtrOutput {
+	return o.ApplyT(func(v *PrivateServiceOutputType) *RegistryCredentialSummary {
+		if v == nil {
+			return nil
+		}
+		return v.RegistryCredential
+	}).(RegistryCredentialSummaryPtrOutput)
 }
 
 func (o PrivateServiceOutputTypePtrOutput) Repo() pulumi.StringPtrOutput {
@@ -6013,6 +5802,75 @@ func (o RegistryCredentialPtrOutput) Username() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type RegistryCredentialSummary struct {
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+}
+
+type RegistryCredentialSummaryOutput struct{ *pulumi.OutputState }
+
+func (RegistryCredentialSummaryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegistryCredentialSummary)(nil)).Elem()
+}
+
+func (o RegistryCredentialSummaryOutput) ToRegistryCredentialSummaryOutput() RegistryCredentialSummaryOutput {
+	return o
+}
+
+func (o RegistryCredentialSummaryOutput) ToRegistryCredentialSummaryOutputWithContext(ctx context.Context) RegistryCredentialSummaryOutput {
+	return o
+}
+
+func (o RegistryCredentialSummaryOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v RegistryCredentialSummary) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o RegistryCredentialSummaryOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v RegistryCredentialSummary) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type RegistryCredentialSummaryPtrOutput struct{ *pulumi.OutputState }
+
+func (RegistryCredentialSummaryPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RegistryCredentialSummary)(nil)).Elem()
+}
+
+func (o RegistryCredentialSummaryPtrOutput) ToRegistryCredentialSummaryPtrOutput() RegistryCredentialSummaryPtrOutput {
+	return o
+}
+
+func (o RegistryCredentialSummaryPtrOutput) ToRegistryCredentialSummaryPtrOutputWithContext(ctx context.Context) RegistryCredentialSummaryPtrOutput {
+	return o
+}
+
+func (o RegistryCredentialSummaryPtrOutput) Elem() RegistryCredentialSummaryOutput {
+	return o.ApplyT(func(v *RegistryCredentialSummary) RegistryCredentialSummary {
+		if v != nil {
+			return *v
+		}
+		var ret RegistryCredentialSummary
+		return ret
+	}).(RegistryCredentialSummaryOutput)
+}
+
+func (o RegistryCredentialSummaryPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RegistryCredentialSummary) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o RegistryCredentialSummaryPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RegistryCredentialSummary) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
 type Resource struct {
 	Id   string `pulumi:"id"`
 	Name string `pulumi:"name"`
@@ -6082,253 +5940,215 @@ func (o ResourcePtrOutput) Name() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-type Route struct {
+type RouteType struct {
 	Destination string `pulumi:"destination"`
 	Id          string `pulumi:"id"`
 	// Redirect and Rewrite Rules are applied in priority order starting at 0
-	Priority int       `pulumi:"priority"`
-	Source   string    `pulumi:"source"`
-	Type     RouteType `pulumi:"type"`
+	Priority int           `pulumi:"priority"`
+	Source   string        `pulumi:"source"`
+	Type     RouteTypeEnum `pulumi:"type"`
 }
 
-// RouteInput is an input type that accepts RouteArgs and RouteOutput values.
-// You can construct a concrete instance of `RouteInput` via:
+type RouteTypeOutput struct{ *pulumi.OutputState }
+
+func (RouteTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouteType)(nil)).Elem()
+}
+
+func (o RouteTypeOutput) ToRouteTypeOutput() RouteTypeOutput {
+	return o
+}
+
+func (o RouteTypeOutput) ToRouteTypeOutputWithContext(ctx context.Context) RouteTypeOutput {
+	return o
+}
+
+func (o RouteTypeOutput) Destination() pulumi.StringOutput {
+	return o.ApplyT(func(v RouteType) string { return v.Destination }).(pulumi.StringOutput)
+}
+
+func (o RouteTypeOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v RouteType) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Redirect and Rewrite Rules are applied in priority order starting at 0
+func (o RouteTypeOutput) Priority() pulumi.IntOutput {
+	return o.ApplyT(func(v RouteType) int { return v.Priority }).(pulumi.IntOutput)
+}
+
+func (o RouteTypeOutput) Source() pulumi.StringOutput {
+	return o.ApplyT(func(v RouteType) string { return v.Source }).(pulumi.StringOutput)
+}
+
+func (o RouteTypeOutput) Type() RouteTypeEnumOutput {
+	return o.ApplyT(func(v RouteType) RouteTypeEnum { return v.Type }).(RouteTypeEnumOutput)
+}
+
+type RouteCreate struct {
+	Destination string `pulumi:"destination"`
+	// Redirect and Rewrite Rules are applied in priority order starting at 0. Defaults to last in the priority list.
+	Priority *int            `pulumi:"priority"`
+	Source   string          `pulumi:"source"`
+	Type     RouteCreateType `pulumi:"type"`
+}
+
+// RouteCreateInput is an input type that accepts RouteCreateArgs and RouteCreateOutput values.
+// You can construct a concrete instance of `RouteCreateInput` via:
 //
-//	RouteArgs{...}
-type RouteInput interface {
+//	RouteCreateArgs{...}
+type RouteCreateInput interface {
 	pulumi.Input
 
-	ToRouteOutput() RouteOutput
-	ToRouteOutputWithContext(context.Context) RouteOutput
+	ToRouteCreateOutput() RouteCreateOutput
+	ToRouteCreateOutputWithContext(context.Context) RouteCreateOutput
 }
 
-type RouteArgs struct {
+type RouteCreateArgs struct {
 	Destination pulumi.StringInput `pulumi:"destination"`
-	Id          pulumi.StringInput `pulumi:"id"`
-	// Redirect and Rewrite Rules are applied in priority order starting at 0
-	Priority pulumi.IntInput    `pulumi:"priority"`
-	Source   pulumi.StringInput `pulumi:"source"`
-	Type     RouteTypeInput     `pulumi:"type"`
+	// Redirect and Rewrite Rules are applied in priority order starting at 0. Defaults to last in the priority list.
+	Priority pulumi.IntPtrInput   `pulumi:"priority"`
+	Source   pulumi.StringInput   `pulumi:"source"`
+	Type     RouteCreateTypeInput `pulumi:"type"`
 }
 
-func (RouteArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*Route)(nil)).Elem()
+func (RouteCreateArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouteCreate)(nil)).Elem()
 }
 
-func (i RouteArgs) ToRouteOutput() RouteOutput {
-	return i.ToRouteOutputWithContext(context.Background())
+func (i RouteCreateArgs) ToRouteCreateOutput() RouteCreateOutput {
+	return i.ToRouteCreateOutputWithContext(context.Background())
 }
 
-func (i RouteArgs) ToRouteOutputWithContext(ctx context.Context) RouteOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouteOutput)
+func (i RouteCreateArgs) ToRouteCreateOutputWithContext(ctx context.Context) RouteCreateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouteCreateOutput)
 }
 
-// RouteArrayInput is an input type that accepts RouteArray and RouteArrayOutput values.
-// You can construct a concrete instance of `RouteArrayInput` via:
+// RouteCreateArrayInput is an input type that accepts RouteCreateArray and RouteCreateArrayOutput values.
+// You can construct a concrete instance of `RouteCreateArrayInput` via:
 //
-//	RouteArray{ RouteArgs{...} }
-type RouteArrayInput interface {
+//	RouteCreateArray{ RouteCreateArgs{...} }
+type RouteCreateArrayInput interface {
 	pulumi.Input
 
-	ToRouteArrayOutput() RouteArrayOutput
-	ToRouteArrayOutputWithContext(context.Context) RouteArrayOutput
+	ToRouteCreateArrayOutput() RouteCreateArrayOutput
+	ToRouteCreateArrayOutputWithContext(context.Context) RouteCreateArrayOutput
 }
 
-type RouteArray []RouteInput
+type RouteCreateArray []RouteCreateInput
 
-func (RouteArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]Route)(nil)).Elem()
+func (RouteCreateArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RouteCreate)(nil)).Elem()
 }
 
-func (i RouteArray) ToRouteArrayOutput() RouteArrayOutput {
-	return i.ToRouteArrayOutputWithContext(context.Background())
+func (i RouteCreateArray) ToRouteCreateArrayOutput() RouteCreateArrayOutput {
+	return i.ToRouteCreateArrayOutputWithContext(context.Background())
 }
 
-func (i RouteArray) ToRouteArrayOutputWithContext(ctx context.Context) RouteArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouteArrayOutput)
+func (i RouteCreateArray) ToRouteCreateArrayOutputWithContext(ctx context.Context) RouteCreateArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouteCreateArrayOutput)
 }
 
-type RouteOutput struct{ *pulumi.OutputState }
+type RouteCreateOutput struct{ *pulumi.OutputState }
 
-func (RouteOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*Route)(nil)).Elem()
+func (RouteCreateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouteCreate)(nil)).Elem()
 }
 
-func (o RouteOutput) ToRouteOutput() RouteOutput {
+func (o RouteCreateOutput) ToRouteCreateOutput() RouteCreateOutput {
 	return o
 }
 
-func (o RouteOutput) ToRouteOutputWithContext(ctx context.Context) RouteOutput {
+func (o RouteCreateOutput) ToRouteCreateOutputWithContext(ctx context.Context) RouteCreateOutput {
 	return o
 }
 
-func (o RouteOutput) Destination() pulumi.StringOutput {
-	return o.ApplyT(func(v Route) string { return v.Destination }).(pulumi.StringOutput)
+func (o RouteCreateOutput) Destination() pulumi.StringOutput {
+	return o.ApplyT(func(v RouteCreate) string { return v.Destination }).(pulumi.StringOutput)
 }
 
-func (o RouteOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v Route) string { return v.Id }).(pulumi.StringOutput)
+// Redirect and Rewrite Rules are applied in priority order starting at 0. Defaults to last in the priority list.
+func (o RouteCreateOutput) Priority() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v RouteCreate) *int { return v.Priority }).(pulumi.IntPtrOutput)
 }
 
-// Redirect and Rewrite Rules are applied in priority order starting at 0
-func (o RouteOutput) Priority() pulumi.IntOutput {
-	return o.ApplyT(func(v Route) int { return v.Priority }).(pulumi.IntOutput)
+func (o RouteCreateOutput) Source() pulumi.StringOutput {
+	return o.ApplyT(func(v RouteCreate) string { return v.Source }).(pulumi.StringOutput)
 }
 
-func (o RouteOutput) Source() pulumi.StringOutput {
-	return o.ApplyT(func(v Route) string { return v.Source }).(pulumi.StringOutput)
+func (o RouteCreateOutput) Type() RouteCreateTypeOutput {
+	return o.ApplyT(func(v RouteCreate) RouteCreateType { return v.Type }).(RouteCreateTypeOutput)
 }
 
-func (o RouteOutput) Type() RouteTypeOutput {
-	return o.ApplyT(func(v Route) RouteType { return v.Type }).(RouteTypeOutput)
+type RouteCreateArrayOutput struct{ *pulumi.OutputState }
+
+func (RouteCreateArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RouteCreate)(nil)).Elem()
 }
 
-type RoutePtrOutput struct{ *pulumi.OutputState }
-
-func (RoutePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**Route)(nil)).Elem()
-}
-
-func (o RoutePtrOutput) ToRoutePtrOutput() RoutePtrOutput {
+func (o RouteCreateArrayOutput) ToRouteCreateArrayOutput() RouteCreateArrayOutput {
 	return o
 }
 
-func (o RoutePtrOutput) ToRoutePtrOutputWithContext(ctx context.Context) RoutePtrOutput {
+func (o RouteCreateArrayOutput) ToRouteCreateArrayOutputWithContext(ctx context.Context) RouteCreateArrayOutput {
 	return o
 }
 
-func (o RoutePtrOutput) Elem() RouteOutput {
-	return o.ApplyT(func(v *Route) Route {
-		if v != nil {
-			return *v
-		}
-		var ret Route
-		return ret
-	}).(RouteOutput)
+func (o RouteCreateArrayOutput) Index(i pulumi.IntInput) RouteCreateOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RouteCreate {
+		return vs[0].([]RouteCreate)[vs[1].(int)]
+	}).(RouteCreateOutput)
 }
 
-func (o RoutePtrOutput) Destination() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Route) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.Destination
-	}).(pulumi.StringPtrOutput)
+type RouteWithCursor struct {
+	Cursor string    `pulumi:"cursor"`
+	Route  RouteType `pulumi:"route"`
 }
 
-func (o RoutePtrOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Route) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.Id
-	}).(pulumi.StringPtrOutput)
+type RouteWithCursorOutput struct{ *pulumi.OutputState }
+
+func (RouteWithCursorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouteWithCursor)(nil)).Elem()
 }
 
-// Redirect and Rewrite Rules are applied in priority order starting at 0
-func (o RoutePtrOutput) Priority() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *Route) *int {
-		if v == nil {
-			return nil
-		}
-		return &v.Priority
-	}).(pulumi.IntPtrOutput)
-}
-
-func (o RoutePtrOutput) Source() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Route) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.Source
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o RoutePtrOutput) Type() RouteTypePtrOutput {
-	return o.ApplyT(func(v *Route) *RouteType {
-		if v == nil {
-			return nil
-		}
-		return &v.Type
-	}).(RouteTypePtrOutput)
-}
-
-type RouteArrayOutput struct{ *pulumi.OutputState }
-
-func (RouteArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]Route)(nil)).Elem()
-}
-
-func (o RouteArrayOutput) ToRouteArrayOutput() RouteArrayOutput {
+func (o RouteWithCursorOutput) ToRouteWithCursorOutput() RouteWithCursorOutput {
 	return o
 }
 
-func (o RouteArrayOutput) ToRouteArrayOutputWithContext(ctx context.Context) RouteArrayOutput {
+func (o RouteWithCursorOutput) ToRouteWithCursorOutputWithContext(ctx context.Context) RouteWithCursorOutput {
 	return o
 }
 
-func (o RouteArrayOutput) Index(i pulumi.IntInput) RouteOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Route {
-		return vs[0].([]Route)[vs[1].(int)]
-	}).(RouteOutput)
+func (o RouteWithCursorOutput) Cursor() pulumi.StringOutput {
+	return o.ApplyT(func(v RouteWithCursor) string { return v.Cursor }).(pulumi.StringOutput)
+}
+
+func (o RouteWithCursorOutput) Route() RouteTypeOutput {
+	return o.ApplyT(func(v RouteWithCursor) RouteType { return v.Route }).(RouteTypeOutput)
+}
+
+type RouteWithCursorArrayOutput struct{ *pulumi.OutputState }
+
+func (RouteWithCursorArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RouteWithCursor)(nil)).Elem()
+}
+
+func (o RouteWithCursorArrayOutput) ToRouteWithCursorArrayOutput() RouteWithCursorArrayOutput {
+	return o
+}
+
+func (o RouteWithCursorArrayOutput) ToRouteWithCursorArrayOutputWithContext(ctx context.Context) RouteWithCursorArrayOutput {
+	return o
+}
+
+func (o RouteWithCursorArrayOutput) Index(i pulumi.IntInput) RouteWithCursorOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RouteWithCursor {
+		return vs[0].([]RouteWithCursor)[vs[1].(int)]
+	}).(RouteWithCursorOutput)
 }
 
 type SecretFile struct {
-	Id   string `pulumi:"id"`
-	Name string `pulumi:"name"`
-}
-
-// SecretFileInput is an input type that accepts SecretFileArgs and SecretFileOutput values.
-// You can construct a concrete instance of `SecretFileInput` via:
-//
-//	SecretFileArgs{...}
-type SecretFileInput interface {
-	pulumi.Input
-
-	ToSecretFileOutput() SecretFileOutput
-	ToSecretFileOutputWithContext(context.Context) SecretFileOutput
-}
-
-type SecretFileArgs struct {
-	Id   pulumi.StringInput `pulumi:"id"`
-	Name pulumi.StringInput `pulumi:"name"`
-}
-
-func (SecretFileArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretFile)(nil)).Elem()
-}
-
-func (i SecretFileArgs) ToSecretFileOutput() SecretFileOutput {
-	return i.ToSecretFileOutputWithContext(context.Background())
-}
-
-func (i SecretFileArgs) ToSecretFileOutputWithContext(ctx context.Context) SecretFileOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretFileOutput)
-}
-
-// SecretFileArrayInput is an input type that accepts SecretFileArray and SecretFileArrayOutput values.
-// You can construct a concrete instance of `SecretFileArrayInput` via:
-//
-//	SecretFileArray{ SecretFileArgs{...} }
-type SecretFileArrayInput interface {
-	pulumi.Input
-
-	ToSecretFileArrayOutput() SecretFileArrayOutput
-	ToSecretFileArrayOutputWithContext(context.Context) SecretFileArrayOutput
-}
-
-type SecretFileArray []SecretFileInput
-
-func (SecretFileArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SecretFile)(nil)).Elem()
-}
-
-func (i SecretFileArray) ToSecretFileArrayOutput() SecretFileArrayOutput {
-	return i.ToSecretFileArrayOutputWithContext(context.Background())
-}
-
-func (i SecretFileArray) ToSecretFileArrayOutputWithContext(ctx context.Context) SecretFileArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretFileArrayOutput)
+	Content string `pulumi:"content"`
+	Name    string `pulumi:"name"`
 }
 
 type SecretFileOutput struct{ *pulumi.OutputState }
@@ -6345,32 +6165,159 @@ func (o SecretFileOutput) ToSecretFileOutputWithContext(ctx context.Context) Sec
 	return o
 }
 
-func (o SecretFileOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v SecretFile) string { return v.Id }).(pulumi.StringOutput)
+func (o SecretFileOutput) Content() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretFile) string { return v.Content }).(pulumi.StringOutput)
 }
 
 func (o SecretFileOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretFile) string { return v.Name }).(pulumi.StringOutput)
 }
 
-type SecretFileArrayOutput struct{ *pulumi.OutputState }
-
-func (SecretFileArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SecretFile)(nil)).Elem()
+type SecretFileInputType struct {
+	Content string `pulumi:"content"`
+	Name    string `pulumi:"name"`
 }
 
-func (o SecretFileArrayOutput) ToSecretFileArrayOutput() SecretFileArrayOutput {
+// SecretFileInputTypeInput is an input type that accepts SecretFileInputTypeArgs and SecretFileInputTypeOutput values.
+// You can construct a concrete instance of `SecretFileInputTypeInput` via:
+//
+//	SecretFileInputTypeArgs{...}
+type SecretFileInputTypeInput interface {
+	pulumi.Input
+
+	ToSecretFileInputTypeOutput() SecretFileInputTypeOutput
+	ToSecretFileInputTypeOutputWithContext(context.Context) SecretFileInputTypeOutput
+}
+
+type SecretFileInputTypeArgs struct {
+	Content pulumi.StringInput `pulumi:"content"`
+	Name    pulumi.StringInput `pulumi:"name"`
+}
+
+func (SecretFileInputTypeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretFileInputType)(nil)).Elem()
+}
+
+func (i SecretFileInputTypeArgs) ToSecretFileInputTypeOutput() SecretFileInputTypeOutput {
+	return i.ToSecretFileInputTypeOutputWithContext(context.Background())
+}
+
+func (i SecretFileInputTypeArgs) ToSecretFileInputTypeOutputWithContext(ctx context.Context) SecretFileInputTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretFileInputTypeOutput)
+}
+
+// SecretFileInputTypeArrayInput is an input type that accepts SecretFileInputTypeArray and SecretFileInputTypeArrayOutput values.
+// You can construct a concrete instance of `SecretFileInputTypeArrayInput` via:
+//
+//	SecretFileInputTypeArray{ SecretFileInputTypeArgs{...} }
+type SecretFileInputTypeArrayInput interface {
+	pulumi.Input
+
+	ToSecretFileInputTypeArrayOutput() SecretFileInputTypeArrayOutput
+	ToSecretFileInputTypeArrayOutputWithContext(context.Context) SecretFileInputTypeArrayOutput
+}
+
+type SecretFileInputTypeArray []SecretFileInputTypeInput
+
+func (SecretFileInputTypeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretFileInputType)(nil)).Elem()
+}
+
+func (i SecretFileInputTypeArray) ToSecretFileInputTypeArrayOutput() SecretFileInputTypeArrayOutput {
+	return i.ToSecretFileInputTypeArrayOutputWithContext(context.Background())
+}
+
+func (i SecretFileInputTypeArray) ToSecretFileInputTypeArrayOutputWithContext(ctx context.Context) SecretFileInputTypeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretFileInputTypeArrayOutput)
+}
+
+type SecretFileInputTypeOutput struct{ *pulumi.OutputState }
+
+func (SecretFileInputTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretFileInputType)(nil)).Elem()
+}
+
+func (o SecretFileInputTypeOutput) ToSecretFileInputTypeOutput() SecretFileInputTypeOutput {
 	return o
 }
 
-func (o SecretFileArrayOutput) ToSecretFileArrayOutputWithContext(ctx context.Context) SecretFileArrayOutput {
+func (o SecretFileInputTypeOutput) ToSecretFileInputTypeOutputWithContext(ctx context.Context) SecretFileInputTypeOutput {
 	return o
 }
 
-func (o SecretFileArrayOutput) Index(i pulumi.IntInput) SecretFileOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretFile {
-		return vs[0].([]SecretFile)[vs[1].(int)]
-	}).(SecretFileOutput)
+func (o SecretFileInputTypeOutput) Content() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretFileInputType) string { return v.Content }).(pulumi.StringOutput)
+}
+
+func (o SecretFileInputTypeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretFileInputType) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type SecretFileInputTypeArrayOutput struct{ *pulumi.OutputState }
+
+func (SecretFileInputTypeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretFileInputType)(nil)).Elem()
+}
+
+func (o SecretFileInputTypeArrayOutput) ToSecretFileInputTypeArrayOutput() SecretFileInputTypeArrayOutput {
+	return o
+}
+
+func (o SecretFileInputTypeArrayOutput) ToSecretFileInputTypeArrayOutputWithContext(ctx context.Context) SecretFileInputTypeArrayOutput {
+	return o
+}
+
+func (o SecretFileInputTypeArrayOutput) Index(i pulumi.IntInput) SecretFileInputTypeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretFileInputType {
+		return vs[0].([]SecretFileInputType)[vs[1].(int)]
+	}).(SecretFileInputTypeOutput)
+}
+
+type SecretFileWithCursor struct {
+	Cursor     string     `pulumi:"cursor"`
+	SecretFile SecretFile `pulumi:"secretFile"`
+}
+
+type SecretFileWithCursorOutput struct{ *pulumi.OutputState }
+
+func (SecretFileWithCursorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretFileWithCursor)(nil)).Elem()
+}
+
+func (o SecretFileWithCursorOutput) ToSecretFileWithCursorOutput() SecretFileWithCursorOutput {
+	return o
+}
+
+func (o SecretFileWithCursorOutput) ToSecretFileWithCursorOutputWithContext(ctx context.Context) SecretFileWithCursorOutput {
+	return o
+}
+
+func (o SecretFileWithCursorOutput) Cursor() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretFileWithCursor) string { return v.Cursor }).(pulumi.StringOutput)
+}
+
+func (o SecretFileWithCursorOutput) SecretFile() SecretFileOutput {
+	return o.ApplyT(func(v SecretFileWithCursor) SecretFile { return v.SecretFile }).(SecretFileOutput)
+}
+
+type SecretFileWithCursorArrayOutput struct{ *pulumi.OutputState }
+
+func (SecretFileWithCursorArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretFileWithCursor)(nil)).Elem()
+}
+
+func (o SecretFileWithCursorArrayOutput) ToSecretFileWithCursorArrayOutput() SecretFileWithCursorArrayOutput {
+	return o
+}
+
+func (o SecretFileWithCursorArrayOutput) ToSecretFileWithCursorArrayOutputWithContext(ctx context.Context) SecretFileWithCursorArrayOutput {
+	return o
+}
+
+func (o SecretFileWithCursorArrayOutput) Index(i pulumi.IntInput) SecretFileWithCursorOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretFileWithCursor {
+		return vs[0].([]SecretFileWithCursor)[vs[1].(int)]
+	}).(SecretFileWithCursorOutput)
 }
 
 type ServerPort struct {
@@ -6421,21 +6368,37 @@ func (o ServerPortArrayOutput) Index(i pulumi.IntInput) ServerPortOutput {
 }
 
 type Service struct {
-	AutoDeploy   ServiceAutoDeploy       `pulumi:"autoDeploy"`
-	Branch       *string                 `pulumi:"branch"`
-	BuildFilter  *BuildFilter            `pulumi:"buildFilter"`
-	CreatedAt    string                  `pulumi:"createdAt"`
-	Id           string                  `pulumi:"id"`
-	ImagePath    *string                 `pulumi:"imagePath"`
-	Name         string                  `pulumi:"name"`
-	NotifyOnFail ServiceNotifyOnFail     `pulumi:"notifyOnFail"`
-	OwnerId      string                  `pulumi:"ownerId"`
-	Repo         *string                 `pulumi:"repo"`
-	RootDir      string                  `pulumi:"rootDir"`
-	Slug         string                  `pulumi:"slug"`
-	Suspended    ServiceSuspended        `pulumi:"suspended"`
-	Suspenders   []ServiceSuspendersItem `pulumi:"suspenders"`
-	UpdatedAt    string                  `pulumi:"updatedAt"`
+	AutoDeploy  ServiceAutoDeploy `pulumi:"autoDeploy"`
+	Branch      *string           `pulumi:"branch"`
+	BuildFilter *BuildFilter      `pulumi:"buildFilter"`
+	CreatedAt   string            `pulumi:"createdAt"`
+	// The URL to view the service in the Render Dashboard
+	DashboardUrl       string                     `pulumi:"dashboardUrl"`
+	EnvironmentId      *string                    `pulumi:"environmentId"`
+	Id                 string                     `pulumi:"id"`
+	ImagePath          *string                    `pulumi:"imagePath"`
+	Name               string                     `pulumi:"name"`
+	NotifyOnFail       ServiceNotifyOnFail        `pulumi:"notifyOnFail"`
+	OwnerId            string                     `pulumi:"ownerId"`
+	RegistryCredential *RegistryCredentialSummary `pulumi:"registryCredential"`
+	Repo               *string                    `pulumi:"repo"`
+	RootDir            string                     `pulumi:"rootDir"`
+	Slug               string                     `pulumi:"slug"`
+	Suspended          ServiceSuspended           `pulumi:"suspended"`
+	Suspenders         []ServiceSuspendersItem    `pulumi:"suspenders"`
+	UpdatedAt          string                     `pulumi:"updatedAt"`
+}
+
+// Defaults sets the appropriate defaults for Service
+func (val *Service) Defaults() *Service {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if internal.IsZero(tmp.AutoDeploy) {
+		tmp.AutoDeploy = ServiceAutoDeploy("yes")
+	}
+	return &tmp
 }
 
 type ServiceOutput struct{ *pulumi.OutputState }
@@ -6468,6 +6431,15 @@ func (o ServiceOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v Service) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// The URL to view the service in the Render Dashboard
+func (o ServiceOutput) DashboardUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v Service) string { return v.DashboardUrl }).(pulumi.StringOutput)
+}
+
+func (o ServiceOutput) EnvironmentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Service) *string { return v.EnvironmentId }).(pulumi.StringPtrOutput)
+}
+
 func (o ServiceOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v Service) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -6486,6 +6458,10 @@ func (o ServiceOutput) NotifyOnFail() ServiceNotifyOnFailOutput {
 
 func (o ServiceOutput) OwnerId() pulumi.StringOutput {
 	return o.ApplyT(func(v Service) string { return v.OwnerId }).(pulumi.StringOutput)
+}
+
+func (o ServiceOutput) RegistryCredential() RegistryCredentialSummaryPtrOutput {
+	return o.ApplyT(func(v Service) *RegistryCredentialSummary { return v.RegistryCredential }).(RegistryCredentialSummaryPtrOutput)
 }
 
 func (o ServiceOutput) Repo() pulumi.StringPtrOutput {
@@ -6572,6 +6548,25 @@ func (o ServicePtrOutput) CreatedAt() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// The URL to view the service in the Render Dashboard
+func (o ServicePtrOutput) DashboardUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Service) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.DashboardUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ServicePtrOutput) EnvironmentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Service) *string {
+		if v == nil {
+			return nil
+		}
+		return v.EnvironmentId
+	}).(pulumi.StringPtrOutput)
+}
+
 func (o ServicePtrOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Service) *string {
 		if v == nil {
@@ -6615,6 +6610,15 @@ func (o ServicePtrOutput) OwnerId() pulumi.StringPtrOutput {
 		}
 		return &v.OwnerId
 	}).(pulumi.StringPtrOutput)
+}
+
+func (o ServicePtrOutput) RegistryCredential() RegistryCredentialSummaryPtrOutput {
+	return o.ApplyT(func(v *Service) *RegistryCredentialSummary {
+		if v == nil {
+			return nil
+		}
+		return v.RegistryCredential
+	}).(RegistryCredentialSummaryPtrOutput)
 }
 
 func (o ServicePtrOutput) Repo() pulumi.StringPtrOutput {
@@ -6671,14 +6675,181 @@ func (o ServicePtrOutput) UpdatedAt() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type ServiceDisk struct {
+	MountPath string `pulumi:"mountPath"`
+	Name      string `pulumi:"name"`
+	// Defaults to 1
+	SizeGB *int `pulumi:"sizeGB"`
+}
+
+// ServiceDiskInput is an input type that accepts ServiceDiskArgs and ServiceDiskOutput values.
+// You can construct a concrete instance of `ServiceDiskInput` via:
+//
+//	ServiceDiskArgs{...}
+type ServiceDiskInput interface {
+	pulumi.Input
+
+	ToServiceDiskOutput() ServiceDiskOutput
+	ToServiceDiskOutputWithContext(context.Context) ServiceDiskOutput
+}
+
+type ServiceDiskArgs struct {
+	MountPath pulumi.StringInput `pulumi:"mountPath"`
+	Name      pulumi.StringInput `pulumi:"name"`
+	// Defaults to 1
+	SizeGB pulumi.IntPtrInput `pulumi:"sizeGB"`
+}
+
+func (ServiceDiskArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceDisk)(nil)).Elem()
+}
+
+func (i ServiceDiskArgs) ToServiceDiskOutput() ServiceDiskOutput {
+	return i.ToServiceDiskOutputWithContext(context.Background())
+}
+
+func (i ServiceDiskArgs) ToServiceDiskOutputWithContext(ctx context.Context) ServiceDiskOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceDiskOutput)
+}
+
+func (i ServiceDiskArgs) ToServiceDiskPtrOutput() ServiceDiskPtrOutput {
+	return i.ToServiceDiskPtrOutputWithContext(context.Background())
+}
+
+func (i ServiceDiskArgs) ToServiceDiskPtrOutputWithContext(ctx context.Context) ServiceDiskPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceDiskOutput).ToServiceDiskPtrOutputWithContext(ctx)
+}
+
+// ServiceDiskPtrInput is an input type that accepts ServiceDiskArgs, ServiceDiskPtr and ServiceDiskPtrOutput values.
+// You can construct a concrete instance of `ServiceDiskPtrInput` via:
+//
+//	        ServiceDiskArgs{...}
+//
+//	or:
+//
+//	        nil
+type ServiceDiskPtrInput interface {
+	pulumi.Input
+
+	ToServiceDiskPtrOutput() ServiceDiskPtrOutput
+	ToServiceDiskPtrOutputWithContext(context.Context) ServiceDiskPtrOutput
+}
+
+type serviceDiskPtrType ServiceDiskArgs
+
+func ServiceDiskPtr(v *ServiceDiskArgs) ServiceDiskPtrInput {
+	return (*serviceDiskPtrType)(v)
+}
+
+func (*serviceDiskPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceDisk)(nil)).Elem()
+}
+
+func (i *serviceDiskPtrType) ToServiceDiskPtrOutput() ServiceDiskPtrOutput {
+	return i.ToServiceDiskPtrOutputWithContext(context.Background())
+}
+
+func (i *serviceDiskPtrType) ToServiceDiskPtrOutputWithContext(ctx context.Context) ServiceDiskPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceDiskPtrOutput)
+}
+
+type ServiceDiskOutput struct{ *pulumi.OutputState }
+
+func (ServiceDiskOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceDisk)(nil)).Elem()
+}
+
+func (o ServiceDiskOutput) ToServiceDiskOutput() ServiceDiskOutput {
+	return o
+}
+
+func (o ServiceDiskOutput) ToServiceDiskOutputWithContext(ctx context.Context) ServiceDiskOutput {
+	return o
+}
+
+func (o ServiceDiskOutput) ToServiceDiskPtrOutput() ServiceDiskPtrOutput {
+	return o.ToServiceDiskPtrOutputWithContext(context.Background())
+}
+
+func (o ServiceDiskOutput) ToServiceDiskPtrOutputWithContext(ctx context.Context) ServiceDiskPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ServiceDisk) *ServiceDisk {
+		return &v
+	}).(ServiceDiskPtrOutput)
+}
+
+func (o ServiceDiskOutput) MountPath() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceDisk) string { return v.MountPath }).(pulumi.StringOutput)
+}
+
+func (o ServiceDiskOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceDisk) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Defaults to 1
+func (o ServiceDiskOutput) SizeGB() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceDisk) *int { return v.SizeGB }).(pulumi.IntPtrOutput)
+}
+
+type ServiceDiskPtrOutput struct{ *pulumi.OutputState }
+
+func (ServiceDiskPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceDisk)(nil)).Elem()
+}
+
+func (o ServiceDiskPtrOutput) ToServiceDiskPtrOutput() ServiceDiskPtrOutput {
+	return o
+}
+
+func (o ServiceDiskPtrOutput) ToServiceDiskPtrOutputWithContext(ctx context.Context) ServiceDiskPtrOutput {
+	return o
+}
+
+func (o ServiceDiskPtrOutput) Elem() ServiceDiskOutput {
+	return o.ApplyT(func(v *ServiceDisk) ServiceDisk {
+		if v != nil {
+			return *v
+		}
+		var ret ServiceDisk
+		return ret
+	}).(ServiceDiskOutput)
+}
+
+func (o ServiceDiskPtrOutput) MountPath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceDisk) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.MountPath
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ServiceDiskPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceDisk) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+// Defaults to 1
+func (o ServiceDiskPtrOutput) SizeGB() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ServiceDisk) *int {
+		if v == nil {
+			return nil
+		}
+		return v.SizeGB
+	}).(pulumi.IntPtrOutput)
+}
+
 type StaticSiteDetailsCreate struct {
-	BuildCommand *string        `pulumi:"buildCommand"`
-	Headers      []HeaderCreate `pulumi:"headers"`
+	BuildCommand *string           `pulumi:"buildCommand"`
+	Headers      []HeaderInputType `pulumi:"headers"`
 	// Defaults to "public"
 	PublishPath *string `pulumi:"publishPath"`
 	// Defaults to "no"
 	PullRequestPreviewsEnabled *StaticSiteDetailsCreatePullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
-	Routes                     []Route                                            `pulumi:"routes"`
+	Routes                     []RouteCreate                                      `pulumi:"routes"`
 }
 
 // Defaults sets the appropriate defaults for StaticSiteDetailsCreate
@@ -6706,13 +6877,13 @@ type StaticSiteDetailsCreateInput interface {
 }
 
 type StaticSiteDetailsCreateArgs struct {
-	BuildCommand pulumi.StringPtrInput  `pulumi:"buildCommand"`
-	Headers      HeaderCreateArrayInput `pulumi:"headers"`
+	BuildCommand pulumi.StringPtrInput     `pulumi:"buildCommand"`
+	Headers      HeaderInputTypeArrayInput `pulumi:"headers"`
 	// Defaults to "public"
 	PublishPath pulumi.StringPtrInput `pulumi:"publishPath"`
 	// Defaults to "no"
 	PullRequestPreviewsEnabled StaticSiteDetailsCreatePullRequestPreviewsEnabledPtrInput `pulumi:"pullRequestPreviewsEnabled"`
-	Routes                     RouteArrayInput                                           `pulumi:"routes"`
+	Routes                     RouteCreateArrayInput                                     `pulumi:"routes"`
 }
 
 // Defaults sets the appropriate defaults for StaticSiteDetailsCreateArgs
@@ -6807,8 +6978,8 @@ func (o StaticSiteDetailsCreateOutput) BuildCommand() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v StaticSiteDetailsCreate) *string { return v.BuildCommand }).(pulumi.StringPtrOutput)
 }
 
-func (o StaticSiteDetailsCreateOutput) Headers() HeaderCreateArrayOutput {
-	return o.ApplyT(func(v StaticSiteDetailsCreate) []HeaderCreate { return v.Headers }).(HeaderCreateArrayOutput)
+func (o StaticSiteDetailsCreateOutput) Headers() HeaderInputTypeArrayOutput {
+	return o.ApplyT(func(v StaticSiteDetailsCreate) []HeaderInputType { return v.Headers }).(HeaderInputTypeArrayOutput)
 }
 
 // Defaults to "public"
@@ -6823,8 +6994,8 @@ func (o StaticSiteDetailsCreateOutput) PullRequestPreviewsEnabled() StaticSiteDe
 	}).(StaticSiteDetailsCreatePullRequestPreviewsEnabledPtrOutput)
 }
 
-func (o StaticSiteDetailsCreateOutput) Routes() RouteArrayOutput {
-	return o.ApplyT(func(v StaticSiteDetailsCreate) []Route { return v.Routes }).(RouteArrayOutput)
+func (o StaticSiteDetailsCreateOutput) Routes() RouteCreateArrayOutput {
+	return o.ApplyT(func(v StaticSiteDetailsCreate) []RouteCreate { return v.Routes }).(RouteCreateArrayOutput)
 }
 
 type StaticSiteDetailsCreatePtrOutput struct{ *pulumi.OutputState }
@@ -6860,13 +7031,13 @@ func (o StaticSiteDetailsCreatePtrOutput) BuildCommand() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o StaticSiteDetailsCreatePtrOutput) Headers() HeaderCreateArrayOutput {
-	return o.ApplyT(func(v *StaticSiteDetailsCreate) []HeaderCreate {
+func (o StaticSiteDetailsCreatePtrOutput) Headers() HeaderInputTypeArrayOutput {
+	return o.ApplyT(func(v *StaticSiteDetailsCreate) []HeaderInputType {
 		if v == nil {
 			return nil
 		}
 		return v.Headers
-	}).(HeaderCreateArrayOutput)
+	}).(HeaderInputTypeArrayOutput)
 }
 
 // Defaults to "public"
@@ -6889,22 +7060,39 @@ func (o StaticSiteDetailsCreatePtrOutput) PullRequestPreviewsEnabled() StaticSit
 	}).(StaticSiteDetailsCreatePullRequestPreviewsEnabledPtrOutput)
 }
 
-func (o StaticSiteDetailsCreatePtrOutput) Routes() RouteArrayOutput {
-	return o.ApplyT(func(v *StaticSiteDetailsCreate) []Route {
+func (o StaticSiteDetailsCreatePtrOutput) Routes() RouteCreateArrayOutput {
+	return o.ApplyT(func(v *StaticSiteDetailsCreate) []RouteCreate {
 		if v == nil {
 			return nil
 		}
 		return v.Routes
-	}).(RouteArrayOutput)
+	}).(RouteCreateArrayOutput)
 }
 
 type StaticSiteDetailsOutput struct {
-	BuildCommand               string                                            `pulumi:"buildCommand"`
-	BuildPlan                  string                                            `pulumi:"buildPlan"`
-	ParentServer               *Resource                                         `pulumi:"parentServer"`
-	PublishPath                string                                            `pulumi:"publishPath"`
-	PullRequestPreviewsEnabled StaticSiteDetailsOutputPullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
-	Url                        string                                            `pulumi:"url"`
+	BuildCommand string                           `pulumi:"buildCommand"`
+	BuildPlan    StaticSiteDetailsOutputBuildPlan `pulumi:"buildPlan"`
+	ParentServer *Resource                        `pulumi:"parentServer"`
+	PublishPath  string                           `pulumi:"publishPath"`
+	// Defaults to "no"
+	PullRequestPreviewsEnabled *StaticSiteDetailsOutputPullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
+	Url                        string                                             `pulumi:"url"`
+}
+
+// Defaults sets the appropriate defaults for StaticSiteDetailsOutput
+func (val *StaticSiteDetailsOutput) Defaults() *StaticSiteDetailsOutput {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if internal.IsZero(tmp.BuildPlan) {
+		tmp.BuildPlan = StaticSiteDetailsOutputBuildPlan("starter")
+	}
+	if tmp.PullRequestPreviewsEnabled == nil {
+		pullRequestPreviewsEnabled_ := StaticSiteDetailsOutputPullRequestPreviewsEnabled("no")
+		tmp.PullRequestPreviewsEnabled = &pullRequestPreviewsEnabled_
+	}
+	return &tmp
 }
 
 type StaticSiteDetailsOutputOutput struct{ *pulumi.OutputState }
@@ -6925,8 +7113,8 @@ func (o StaticSiteDetailsOutputOutput) BuildCommand() pulumi.StringOutput {
 	return o.ApplyT(func(v StaticSiteDetailsOutput) string { return v.BuildCommand }).(pulumi.StringOutput)
 }
 
-func (o StaticSiteDetailsOutputOutput) BuildPlan() pulumi.StringOutput {
-	return o.ApplyT(func(v StaticSiteDetailsOutput) string { return v.BuildPlan }).(pulumi.StringOutput)
+func (o StaticSiteDetailsOutputOutput) BuildPlan() StaticSiteDetailsOutputBuildPlanOutput {
+	return o.ApplyT(func(v StaticSiteDetailsOutput) StaticSiteDetailsOutputBuildPlan { return v.BuildPlan }).(StaticSiteDetailsOutputBuildPlanOutput)
 }
 
 func (o StaticSiteDetailsOutputOutput) ParentServer() ResourcePtrOutput {
@@ -6937,10 +7125,11 @@ func (o StaticSiteDetailsOutputOutput) PublishPath() pulumi.StringOutput {
 	return o.ApplyT(func(v StaticSiteDetailsOutput) string { return v.PublishPath }).(pulumi.StringOutput)
 }
 
-func (o StaticSiteDetailsOutputOutput) PullRequestPreviewsEnabled() StaticSiteDetailsOutputPullRequestPreviewsEnabledOutput {
-	return o.ApplyT(func(v StaticSiteDetailsOutput) StaticSiteDetailsOutputPullRequestPreviewsEnabled {
+// Defaults to "no"
+func (o StaticSiteDetailsOutputOutput) PullRequestPreviewsEnabled() StaticSiteDetailsOutputPullRequestPreviewsEnabledPtrOutput {
+	return o.ApplyT(func(v StaticSiteDetailsOutput) *StaticSiteDetailsOutputPullRequestPreviewsEnabled {
 		return v.PullRequestPreviewsEnabled
-	}).(StaticSiteDetailsOutputPullRequestPreviewsEnabledOutput)
+	}).(StaticSiteDetailsOutputPullRequestPreviewsEnabledPtrOutput)
 }
 
 func (o StaticSiteDetailsOutputOutput) Url() pulumi.StringOutput {
@@ -6980,13 +7169,13 @@ func (o StaticSiteDetailsOutputPtrOutput) BuildCommand() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o StaticSiteDetailsOutputPtrOutput) BuildPlan() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *StaticSiteDetailsOutput) *string {
+func (o StaticSiteDetailsOutputPtrOutput) BuildPlan() StaticSiteDetailsOutputBuildPlanPtrOutput {
+	return o.ApplyT(func(v *StaticSiteDetailsOutput) *StaticSiteDetailsOutputBuildPlan {
 		if v == nil {
 			return nil
 		}
 		return &v.BuildPlan
-	}).(pulumi.StringPtrOutput)
+	}).(StaticSiteDetailsOutputBuildPlanPtrOutput)
 }
 
 func (o StaticSiteDetailsOutputPtrOutput) ParentServer() ResourcePtrOutput {
@@ -7007,12 +7196,13 @@ func (o StaticSiteDetailsOutputPtrOutput) PublishPath() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Defaults to "no"
 func (o StaticSiteDetailsOutputPtrOutput) PullRequestPreviewsEnabled() StaticSiteDetailsOutputPullRequestPreviewsEnabledPtrOutput {
 	return o.ApplyT(func(v *StaticSiteDetailsOutput) *StaticSiteDetailsOutputPullRequestPreviewsEnabled {
 		if v == nil {
 			return nil
 		}
-		return &v.PullRequestPreviewsEnabled
+		return v.PullRequestPreviewsEnabled
 	}).(StaticSiteDetailsOutputPullRequestPreviewsEnabledPtrOutput)
 }
 
@@ -7026,23 +7216,27 @@ func (o StaticSiteDetailsOutputPtrOutput) Url() pulumi.StringPtrOutput {
 }
 
 type StaticSiteOutputType struct {
-	AutoDeploy     ServiceAutoDeploy        `pulumi:"autoDeploy"`
-	Branch         *string                  `pulumi:"branch"`
-	BuildFilter    *BuildFilter             `pulumi:"buildFilter"`
-	CreatedAt      string                   `pulumi:"createdAt"`
-	Id             string                   `pulumi:"id"`
-	ImagePath      *string                  `pulumi:"imagePath"`
-	Name           string                   `pulumi:"name"`
-	NotifyOnFail   ServiceNotifyOnFail      `pulumi:"notifyOnFail"`
-	OwnerId        string                   `pulumi:"ownerId"`
-	Repo           *string                  `pulumi:"repo"`
-	RootDir        string                   `pulumi:"rootDir"`
-	ServiceDetails *StaticSiteDetailsOutput `pulumi:"serviceDetails"`
-	Slug           string                   `pulumi:"slug"`
-	Suspended      ServiceSuspended         `pulumi:"suspended"`
-	Suspenders     []ServiceSuspendersItem  `pulumi:"suspenders"`
-	Type           *string                  `pulumi:"type"`
-	UpdatedAt      string                   `pulumi:"updatedAt"`
+	AutoDeploy  ServiceAutoDeploy `pulumi:"autoDeploy"`
+	Branch      *string           `pulumi:"branch"`
+	BuildFilter *BuildFilter      `pulumi:"buildFilter"`
+	CreatedAt   string            `pulumi:"createdAt"`
+	// The URL to view the service in the Render Dashboard
+	DashboardUrl       string                     `pulumi:"dashboardUrl"`
+	EnvironmentId      *string                    `pulumi:"environmentId"`
+	Id                 string                     `pulumi:"id"`
+	ImagePath          *string                    `pulumi:"imagePath"`
+	Name               string                     `pulumi:"name"`
+	NotifyOnFail       ServiceNotifyOnFail        `pulumi:"notifyOnFail"`
+	OwnerId            string                     `pulumi:"ownerId"`
+	RegistryCredential *RegistryCredentialSummary `pulumi:"registryCredential"`
+	Repo               *string                    `pulumi:"repo"`
+	RootDir            string                     `pulumi:"rootDir"`
+	ServiceDetails     *StaticSiteDetailsOutput   `pulumi:"serviceDetails"`
+	Slug               string                     `pulumi:"slug"`
+	Suspended          ServiceSuspended           `pulumi:"suspended"`
+	Suspenders         []ServiceSuspendersItem    `pulumi:"suspenders"`
+	Type               *string                    `pulumi:"type"`
+	UpdatedAt          string                     `pulumi:"updatedAt"`
 }
 
 // Defaults sets the appropriate defaults for StaticSiteOutputType
@@ -7051,6 +7245,11 @@ func (val *StaticSiteOutputType) Defaults() *StaticSiteOutputType {
 		return nil
 	}
 	tmp := *val
+	if internal.IsZero(tmp.AutoDeploy) {
+		tmp.AutoDeploy = ServiceAutoDeploy("yes")
+	}
+	tmp.ServiceDetails = tmp.ServiceDetails.Defaults()
+
 	if tmp.Type == nil {
 		type_ := "static_site"
 		tmp.Type = &type_
@@ -7088,6 +7287,15 @@ func (o StaticSiteOutputTypeOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v StaticSiteOutputType) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// The URL to view the service in the Render Dashboard
+func (o StaticSiteOutputTypeOutput) DashboardUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v StaticSiteOutputType) string { return v.DashboardUrl }).(pulumi.StringOutput)
+}
+
+func (o StaticSiteOutputTypeOutput) EnvironmentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StaticSiteOutputType) *string { return v.EnvironmentId }).(pulumi.StringPtrOutput)
+}
+
 func (o StaticSiteOutputTypeOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v StaticSiteOutputType) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -7106,6 +7314,10 @@ func (o StaticSiteOutputTypeOutput) NotifyOnFail() ServiceNotifyOnFailOutput {
 
 func (o StaticSiteOutputTypeOutput) OwnerId() pulumi.StringOutput {
 	return o.ApplyT(func(v StaticSiteOutputType) string { return v.OwnerId }).(pulumi.StringOutput)
+}
+
+func (o StaticSiteOutputTypeOutput) RegistryCredential() RegistryCredentialSummaryPtrOutput {
+	return o.ApplyT(func(v StaticSiteOutputType) *RegistryCredentialSummary { return v.RegistryCredential }).(RegistryCredentialSummaryPtrOutput)
 }
 
 func (o StaticSiteOutputTypeOutput) Repo() pulumi.StringPtrOutput {
@@ -7200,6 +7412,25 @@ func (o StaticSiteOutputTypePtrOutput) CreatedAt() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// The URL to view the service in the Render Dashboard
+func (o StaticSiteOutputTypePtrOutput) DashboardUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StaticSiteOutputType) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.DashboardUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o StaticSiteOutputTypePtrOutput) EnvironmentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StaticSiteOutputType) *string {
+		if v == nil {
+			return nil
+		}
+		return v.EnvironmentId
+	}).(pulumi.StringPtrOutput)
+}
+
 func (o StaticSiteOutputTypePtrOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StaticSiteOutputType) *string {
 		if v == nil {
@@ -7243,6 +7474,15 @@ func (o StaticSiteOutputTypePtrOutput) OwnerId() pulumi.StringPtrOutput {
 		}
 		return &v.OwnerId
 	}).(pulumi.StringPtrOutput)
+}
+
+func (o StaticSiteOutputTypePtrOutput) RegistryCredential() RegistryCredentialSummaryPtrOutput {
+	return o.ApplyT(func(v *StaticSiteOutputType) *RegistryCredentialSummary {
+		if v == nil {
+			return nil
+		}
+		return v.RegistryCredential
+	}).(RegistryCredentialSummaryPtrOutput)
 }
 
 func (o StaticSiteOutputTypePtrOutput) Repo() pulumi.StringPtrOutput {
@@ -7318,17 +7558,25 @@ func (o StaticSiteOutputTypePtrOutput) UpdatedAt() pulumi.StringPtrOutput {
 }
 
 type WebServiceDetailsCreate struct {
-	Disk *WebServiceDetailsCreateDiskProperties `pulumi:"disk"`
-	// Environment (runtime)
-	Env                WebServiceDetailsCreateEnv `pulumi:"env"`
-	EnvSpecificDetails interface{}                `pulumi:"envSpecificDetails"`
-	HealthCheckPath    *string                    `pulumi:"healthCheckPath"`
+	Autoscaling *WebServiceDetailspropertiesautoscaling `pulumi:"autoscaling"`
+	Disk        *ServiceDisk                            `pulumi:"disk"`
+	// This field has been deprecated, runtime should be used in its place.
+	Env                *WebServiceDetailsCreateEnv `pulumi:"env"`
+	EnvSpecificDetails *EnvSpecificDetailsCreate   `pulumi:"envSpecificDetails"`
+	HealthCheckPath    *string                     `pulumi:"healthCheckPath"`
+	// The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
+	MaxShutdownDelaySeconds *int `pulumi:"maxShutdownDelaySeconds"`
 	// Defaults to 1
-	NumInstances *int                         `pulumi:"numInstances"`
-	Plan         *WebServiceDetailsCreatePlan `pulumi:"plan"`
+	NumInstances *int `pulumi:"numInstances"`
+	// Defaults to "starter"
+	Plan             *WebServiceDetailsCreatePlan `pulumi:"plan"`
+	PreDeployCommand *string                      `pulumi:"preDeployCommand"`
 	// Defaults to "no"
 	PullRequestPreviewsEnabled *WebServiceDetailsCreatePullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
-	Region                     *WebServiceDetailsCreateRegion                     `pulumi:"region"`
+	// Defaults to "oregon"
+	Region *WebServiceDetailsCreateRegion `pulumi:"region"`
+	// Runtime
+	Runtime WebServiceDetailsCreateRuntime `pulumi:"runtime"`
 }
 
 // Defaults sets the appropriate defaults for WebServiceDetailsCreate
@@ -7337,9 +7585,23 @@ func (val *WebServiceDetailsCreate) Defaults() *WebServiceDetailsCreate {
 		return nil
 	}
 	tmp := *val
+	tmp.Autoscaling = tmp.Autoscaling.Defaults()
+
+	if tmp.MaxShutdownDelaySeconds == nil {
+		maxShutdownDelaySeconds_ := 30
+		tmp.MaxShutdownDelaySeconds = &maxShutdownDelaySeconds_
+	}
+	if tmp.Plan == nil {
+		plan_ := WebServiceDetailsCreatePlan("starter")
+		tmp.Plan = &plan_
+	}
 	if tmp.PullRequestPreviewsEnabled == nil {
 		pullRequestPreviewsEnabled_ := WebServiceDetailsCreatePullRequestPreviewsEnabled("no")
 		tmp.PullRequestPreviewsEnabled = &pullRequestPreviewsEnabled_
+	}
+	if tmp.Region == nil {
+		region_ := WebServiceDetailsCreateRegion("oregon")
+		tmp.Region = &region_
 	}
 	return &tmp
 }
@@ -7356,17 +7618,25 @@ type WebServiceDetailsCreateInput interface {
 }
 
 type WebServiceDetailsCreateArgs struct {
-	Disk WebServiceDetailsCreateDiskPropertiesPtrInput `pulumi:"disk"`
-	// Environment (runtime)
-	Env                WebServiceDetailsCreateEnvInput `pulumi:"env"`
-	EnvSpecificDetails pulumi.Input                    `pulumi:"envSpecificDetails"`
-	HealthCheckPath    pulumi.StringPtrInput           `pulumi:"healthCheckPath"`
+	Autoscaling WebServiceDetailspropertiesautoscalingPtrInput `pulumi:"autoscaling"`
+	Disk        ServiceDiskPtrInput                            `pulumi:"disk"`
+	// This field has been deprecated, runtime should be used in its place.
+	Env                WebServiceDetailsCreateEnvPtrInput `pulumi:"env"`
+	EnvSpecificDetails EnvSpecificDetailsCreatePtrInput   `pulumi:"envSpecificDetails"`
+	HealthCheckPath    pulumi.StringPtrInput              `pulumi:"healthCheckPath"`
+	// The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
+	MaxShutdownDelaySeconds pulumi.IntPtrInput `pulumi:"maxShutdownDelaySeconds"`
 	// Defaults to 1
-	NumInstances pulumi.IntPtrInput                  `pulumi:"numInstances"`
-	Plan         WebServiceDetailsCreatePlanPtrInput `pulumi:"plan"`
+	NumInstances pulumi.IntPtrInput `pulumi:"numInstances"`
+	// Defaults to "starter"
+	Plan             WebServiceDetailsCreatePlanPtrInput `pulumi:"plan"`
+	PreDeployCommand pulumi.StringPtrInput               `pulumi:"preDeployCommand"`
 	// Defaults to "no"
 	PullRequestPreviewsEnabled WebServiceDetailsCreatePullRequestPreviewsEnabledPtrInput `pulumi:"pullRequestPreviewsEnabled"`
-	Region                     WebServiceDetailsCreateRegionPtrInput                     `pulumi:"region"`
+	// Defaults to "oregon"
+	Region WebServiceDetailsCreateRegionPtrInput `pulumi:"region"`
+	// Runtime
+	Runtime WebServiceDetailsCreateRuntimeInput `pulumi:"runtime"`
 }
 
 // Defaults sets the appropriate defaults for WebServiceDetailsCreateArgs
@@ -7375,8 +7645,18 @@ func (val *WebServiceDetailsCreateArgs) Defaults() *WebServiceDetailsCreateArgs 
 		return nil
 	}
 	tmp := *val
+
+	if tmp.MaxShutdownDelaySeconds == nil {
+		tmp.MaxShutdownDelaySeconds = pulumi.IntPtr(30)
+	}
+	if tmp.Plan == nil {
+		tmp.Plan = WebServiceDetailsCreatePlan("starter")
+	}
 	if tmp.PullRequestPreviewsEnabled == nil {
 		tmp.PullRequestPreviewsEnabled = WebServiceDetailsCreatePullRequestPreviewsEnabled("no")
+	}
+	if tmp.Region == nil {
+		tmp.Region = WebServiceDetailsCreateRegion("oregon")
 	}
 	return &tmp
 }
@@ -7457,21 +7737,30 @@ func (o WebServiceDetailsCreateOutput) ToWebServiceDetailsCreatePtrOutputWithCon
 	}).(WebServiceDetailsCreatePtrOutput)
 }
 
-func (o WebServiceDetailsCreateOutput) Disk() WebServiceDetailsCreateDiskPropertiesPtrOutput {
-	return o.ApplyT(func(v WebServiceDetailsCreate) *WebServiceDetailsCreateDiskProperties { return v.Disk }).(WebServiceDetailsCreateDiskPropertiesPtrOutput)
+func (o WebServiceDetailsCreateOutput) Autoscaling() WebServiceDetailspropertiesautoscalingPtrOutput {
+	return o.ApplyT(func(v WebServiceDetailsCreate) *WebServiceDetailspropertiesautoscaling { return v.Autoscaling }).(WebServiceDetailspropertiesautoscalingPtrOutput)
 }
 
-// Environment (runtime)
-func (o WebServiceDetailsCreateOutput) Env() WebServiceDetailsCreateEnvOutput {
-	return o.ApplyT(func(v WebServiceDetailsCreate) WebServiceDetailsCreateEnv { return v.Env }).(WebServiceDetailsCreateEnvOutput)
+func (o WebServiceDetailsCreateOutput) Disk() ServiceDiskPtrOutput {
+	return o.ApplyT(func(v WebServiceDetailsCreate) *ServiceDisk { return v.Disk }).(ServiceDiskPtrOutput)
 }
 
-func (o WebServiceDetailsCreateOutput) EnvSpecificDetails() pulumi.AnyOutput {
-	return o.ApplyT(func(v WebServiceDetailsCreate) interface{} { return v.EnvSpecificDetails }).(pulumi.AnyOutput)
+// This field has been deprecated, runtime should be used in its place.
+func (o WebServiceDetailsCreateOutput) Env() WebServiceDetailsCreateEnvPtrOutput {
+	return o.ApplyT(func(v WebServiceDetailsCreate) *WebServiceDetailsCreateEnv { return v.Env }).(WebServiceDetailsCreateEnvPtrOutput)
+}
+
+func (o WebServiceDetailsCreateOutput) EnvSpecificDetails() EnvSpecificDetailsCreatePtrOutput {
+	return o.ApplyT(func(v WebServiceDetailsCreate) *EnvSpecificDetailsCreate { return v.EnvSpecificDetails }).(EnvSpecificDetailsCreatePtrOutput)
 }
 
 func (o WebServiceDetailsCreateOutput) HealthCheckPath() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WebServiceDetailsCreate) *string { return v.HealthCheckPath }).(pulumi.StringPtrOutput)
+}
+
+// The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
+func (o WebServiceDetailsCreateOutput) MaxShutdownDelaySeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v WebServiceDetailsCreate) *int { return v.MaxShutdownDelaySeconds }).(pulumi.IntPtrOutput)
 }
 
 // Defaults to 1
@@ -7479,8 +7768,13 @@ func (o WebServiceDetailsCreateOutput) NumInstances() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WebServiceDetailsCreate) *int { return v.NumInstances }).(pulumi.IntPtrOutput)
 }
 
+// Defaults to "starter"
 func (o WebServiceDetailsCreateOutput) Plan() WebServiceDetailsCreatePlanPtrOutput {
 	return o.ApplyT(func(v WebServiceDetailsCreate) *WebServiceDetailsCreatePlan { return v.Plan }).(WebServiceDetailsCreatePlanPtrOutput)
+}
+
+func (o WebServiceDetailsCreateOutput) PreDeployCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WebServiceDetailsCreate) *string { return v.PreDeployCommand }).(pulumi.StringPtrOutput)
 }
 
 // Defaults to "no"
@@ -7490,8 +7784,14 @@ func (o WebServiceDetailsCreateOutput) PullRequestPreviewsEnabled() WebServiceDe
 	}).(WebServiceDetailsCreatePullRequestPreviewsEnabledPtrOutput)
 }
 
+// Defaults to "oregon"
 func (o WebServiceDetailsCreateOutput) Region() WebServiceDetailsCreateRegionPtrOutput {
 	return o.ApplyT(func(v WebServiceDetailsCreate) *WebServiceDetailsCreateRegion { return v.Region }).(WebServiceDetailsCreateRegionPtrOutput)
+}
+
+// Runtime
+func (o WebServiceDetailsCreateOutput) Runtime() WebServiceDetailsCreateRuntimeOutput {
+	return o.ApplyT(func(v WebServiceDetailsCreate) WebServiceDetailsCreateRuntime { return v.Runtime }).(WebServiceDetailsCreateRuntimeOutput)
 }
 
 type WebServiceDetailsCreatePtrOutput struct{ *pulumi.OutputState }
@@ -7518,32 +7818,41 @@ func (o WebServiceDetailsCreatePtrOutput) Elem() WebServiceDetailsCreateOutput {
 	}).(WebServiceDetailsCreateOutput)
 }
 
-func (o WebServiceDetailsCreatePtrOutput) Disk() WebServiceDetailsCreateDiskPropertiesPtrOutput {
-	return o.ApplyT(func(v *WebServiceDetailsCreate) *WebServiceDetailsCreateDiskProperties {
+func (o WebServiceDetailsCreatePtrOutput) Autoscaling() WebServiceDetailspropertiesautoscalingPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailsCreate) *WebServiceDetailspropertiesautoscaling {
+		if v == nil {
+			return nil
+		}
+		return v.Autoscaling
+	}).(WebServiceDetailspropertiesautoscalingPtrOutput)
+}
+
+func (o WebServiceDetailsCreatePtrOutput) Disk() ServiceDiskPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailsCreate) *ServiceDisk {
 		if v == nil {
 			return nil
 		}
 		return v.Disk
-	}).(WebServiceDetailsCreateDiskPropertiesPtrOutput)
+	}).(ServiceDiskPtrOutput)
 }
 
-// Environment (runtime)
+// This field has been deprecated, runtime should be used in its place.
 func (o WebServiceDetailsCreatePtrOutput) Env() WebServiceDetailsCreateEnvPtrOutput {
 	return o.ApplyT(func(v *WebServiceDetailsCreate) *WebServiceDetailsCreateEnv {
 		if v == nil {
 			return nil
 		}
-		return &v.Env
+		return v.Env
 	}).(WebServiceDetailsCreateEnvPtrOutput)
 }
 
-func (o WebServiceDetailsCreatePtrOutput) EnvSpecificDetails() pulumi.AnyOutput {
-	return o.ApplyT(func(v *WebServiceDetailsCreate) interface{} {
+func (o WebServiceDetailsCreatePtrOutput) EnvSpecificDetails() EnvSpecificDetailsCreatePtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailsCreate) *EnvSpecificDetailsCreate {
 		if v == nil {
 			return nil
 		}
 		return v.EnvSpecificDetails
-	}).(pulumi.AnyOutput)
+	}).(EnvSpecificDetailsCreatePtrOutput)
 }
 
 func (o WebServiceDetailsCreatePtrOutput) HealthCheckPath() pulumi.StringPtrOutput {
@@ -7553,6 +7862,16 @@ func (o WebServiceDetailsCreatePtrOutput) HealthCheckPath() pulumi.StringPtrOutp
 		}
 		return v.HealthCheckPath
 	}).(pulumi.StringPtrOutput)
+}
+
+// The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
+func (o WebServiceDetailsCreatePtrOutput) MaxShutdownDelaySeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailsCreate) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxShutdownDelaySeconds
+	}).(pulumi.IntPtrOutput)
 }
 
 // Defaults to 1
@@ -7565,6 +7884,7 @@ func (o WebServiceDetailsCreatePtrOutput) NumInstances() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+// Defaults to "starter"
 func (o WebServiceDetailsCreatePtrOutput) Plan() WebServiceDetailsCreatePlanPtrOutput {
 	return o.ApplyT(func(v *WebServiceDetailsCreate) *WebServiceDetailsCreatePlan {
 		if v == nil {
@@ -7572,6 +7892,15 @@ func (o WebServiceDetailsCreatePtrOutput) Plan() WebServiceDetailsCreatePlanPtrO
 		}
 		return v.Plan
 	}).(WebServiceDetailsCreatePlanPtrOutput)
+}
+
+func (o WebServiceDetailsCreatePtrOutput) PreDeployCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailsCreate) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PreDeployCommand
+	}).(pulumi.StringPtrOutput)
 }
 
 // Defaults to "no"
@@ -7584,6 +7913,7 @@ func (o WebServiceDetailsCreatePtrOutput) PullRequestPreviewsEnabled() WebServic
 	}).(WebServiceDetailsCreatePullRequestPreviewsEnabledPtrOutput)
 }
 
+// Defaults to "oregon"
 func (o WebServiceDetailsCreatePtrOutput) Region() WebServiceDetailsCreateRegionPtrOutput {
 	return o.ApplyT(func(v *WebServiceDetailsCreate) *WebServiceDetailsCreateRegion {
 		if v == nil {
@@ -7593,190 +7923,37 @@ func (o WebServiceDetailsCreatePtrOutput) Region() WebServiceDetailsCreateRegion
 	}).(WebServiceDetailsCreateRegionPtrOutput)
 }
 
-type WebServiceDetailsCreateDiskProperties struct {
-	MountPath string `pulumi:"mountPath"`
-	Name      string `pulumi:"name"`
-	// Defaults to 1
-	SizeGB *int `pulumi:"sizeGB"`
-}
-
-// WebServiceDetailsCreateDiskPropertiesInput is an input type that accepts WebServiceDetailsCreateDiskPropertiesArgs and WebServiceDetailsCreateDiskPropertiesOutput values.
-// You can construct a concrete instance of `WebServiceDetailsCreateDiskPropertiesInput` via:
-//
-//	WebServiceDetailsCreateDiskPropertiesArgs{...}
-type WebServiceDetailsCreateDiskPropertiesInput interface {
-	pulumi.Input
-
-	ToWebServiceDetailsCreateDiskPropertiesOutput() WebServiceDetailsCreateDiskPropertiesOutput
-	ToWebServiceDetailsCreateDiskPropertiesOutputWithContext(context.Context) WebServiceDetailsCreateDiskPropertiesOutput
-}
-
-type WebServiceDetailsCreateDiskPropertiesArgs struct {
-	MountPath pulumi.StringInput `pulumi:"mountPath"`
-	Name      pulumi.StringInput `pulumi:"name"`
-	// Defaults to 1
-	SizeGB pulumi.IntPtrInput `pulumi:"sizeGB"`
-}
-
-func (WebServiceDetailsCreateDiskPropertiesArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebServiceDetailsCreateDiskProperties)(nil)).Elem()
-}
-
-func (i WebServiceDetailsCreateDiskPropertiesArgs) ToWebServiceDetailsCreateDiskPropertiesOutput() WebServiceDetailsCreateDiskPropertiesOutput {
-	return i.ToWebServiceDetailsCreateDiskPropertiesOutputWithContext(context.Background())
-}
-
-func (i WebServiceDetailsCreateDiskPropertiesArgs) ToWebServiceDetailsCreateDiskPropertiesOutputWithContext(ctx context.Context) WebServiceDetailsCreateDiskPropertiesOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebServiceDetailsCreateDiskPropertiesOutput)
-}
-
-func (i WebServiceDetailsCreateDiskPropertiesArgs) ToWebServiceDetailsCreateDiskPropertiesPtrOutput() WebServiceDetailsCreateDiskPropertiesPtrOutput {
-	return i.ToWebServiceDetailsCreateDiskPropertiesPtrOutputWithContext(context.Background())
-}
-
-func (i WebServiceDetailsCreateDiskPropertiesArgs) ToWebServiceDetailsCreateDiskPropertiesPtrOutputWithContext(ctx context.Context) WebServiceDetailsCreateDiskPropertiesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebServiceDetailsCreateDiskPropertiesOutput).ToWebServiceDetailsCreateDiskPropertiesPtrOutputWithContext(ctx)
-}
-
-// WebServiceDetailsCreateDiskPropertiesPtrInput is an input type that accepts WebServiceDetailsCreateDiskPropertiesArgs, WebServiceDetailsCreateDiskPropertiesPtr and WebServiceDetailsCreateDiskPropertiesPtrOutput values.
-// You can construct a concrete instance of `WebServiceDetailsCreateDiskPropertiesPtrInput` via:
-//
-//	        WebServiceDetailsCreateDiskPropertiesArgs{...}
-//
-//	or:
-//
-//	        nil
-type WebServiceDetailsCreateDiskPropertiesPtrInput interface {
-	pulumi.Input
-
-	ToWebServiceDetailsCreateDiskPropertiesPtrOutput() WebServiceDetailsCreateDiskPropertiesPtrOutput
-	ToWebServiceDetailsCreateDiskPropertiesPtrOutputWithContext(context.Context) WebServiceDetailsCreateDiskPropertiesPtrOutput
-}
-
-type webServiceDetailsCreateDiskPropertiesPtrType WebServiceDetailsCreateDiskPropertiesArgs
-
-func WebServiceDetailsCreateDiskPropertiesPtr(v *WebServiceDetailsCreateDiskPropertiesArgs) WebServiceDetailsCreateDiskPropertiesPtrInput {
-	return (*webServiceDetailsCreateDiskPropertiesPtrType)(v)
-}
-
-func (*webServiceDetailsCreateDiskPropertiesPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebServiceDetailsCreateDiskProperties)(nil)).Elem()
-}
-
-func (i *webServiceDetailsCreateDiskPropertiesPtrType) ToWebServiceDetailsCreateDiskPropertiesPtrOutput() WebServiceDetailsCreateDiskPropertiesPtrOutput {
-	return i.ToWebServiceDetailsCreateDiskPropertiesPtrOutputWithContext(context.Background())
-}
-
-func (i *webServiceDetailsCreateDiskPropertiesPtrType) ToWebServiceDetailsCreateDiskPropertiesPtrOutputWithContext(ctx context.Context) WebServiceDetailsCreateDiskPropertiesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebServiceDetailsCreateDiskPropertiesPtrOutput)
-}
-
-type WebServiceDetailsCreateDiskPropertiesOutput struct{ *pulumi.OutputState }
-
-func (WebServiceDetailsCreateDiskPropertiesOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebServiceDetailsCreateDiskProperties)(nil)).Elem()
-}
-
-func (o WebServiceDetailsCreateDiskPropertiesOutput) ToWebServiceDetailsCreateDiskPropertiesOutput() WebServiceDetailsCreateDiskPropertiesOutput {
-	return o
-}
-
-func (o WebServiceDetailsCreateDiskPropertiesOutput) ToWebServiceDetailsCreateDiskPropertiesOutputWithContext(ctx context.Context) WebServiceDetailsCreateDiskPropertiesOutput {
-	return o
-}
-
-func (o WebServiceDetailsCreateDiskPropertiesOutput) ToWebServiceDetailsCreateDiskPropertiesPtrOutput() WebServiceDetailsCreateDiskPropertiesPtrOutput {
-	return o.ToWebServiceDetailsCreateDiskPropertiesPtrOutputWithContext(context.Background())
-}
-
-func (o WebServiceDetailsCreateDiskPropertiesOutput) ToWebServiceDetailsCreateDiskPropertiesPtrOutputWithContext(ctx context.Context) WebServiceDetailsCreateDiskPropertiesPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebServiceDetailsCreateDiskProperties) *WebServiceDetailsCreateDiskProperties {
-		return &v
-	}).(WebServiceDetailsCreateDiskPropertiesPtrOutput)
-}
-
-func (o WebServiceDetailsCreateDiskPropertiesOutput) MountPath() pulumi.StringOutput {
-	return o.ApplyT(func(v WebServiceDetailsCreateDiskProperties) string { return v.MountPath }).(pulumi.StringOutput)
-}
-
-func (o WebServiceDetailsCreateDiskPropertiesOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v WebServiceDetailsCreateDiskProperties) string { return v.Name }).(pulumi.StringOutput)
-}
-
-// Defaults to 1
-func (o WebServiceDetailsCreateDiskPropertiesOutput) SizeGB() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v WebServiceDetailsCreateDiskProperties) *int { return v.SizeGB }).(pulumi.IntPtrOutput)
-}
-
-type WebServiceDetailsCreateDiskPropertiesPtrOutput struct{ *pulumi.OutputState }
-
-func (WebServiceDetailsCreateDiskPropertiesPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebServiceDetailsCreateDiskProperties)(nil)).Elem()
-}
-
-func (o WebServiceDetailsCreateDiskPropertiesPtrOutput) ToWebServiceDetailsCreateDiskPropertiesPtrOutput() WebServiceDetailsCreateDiskPropertiesPtrOutput {
-	return o
-}
-
-func (o WebServiceDetailsCreateDiskPropertiesPtrOutput) ToWebServiceDetailsCreateDiskPropertiesPtrOutputWithContext(ctx context.Context) WebServiceDetailsCreateDiskPropertiesPtrOutput {
-	return o
-}
-
-func (o WebServiceDetailsCreateDiskPropertiesPtrOutput) Elem() WebServiceDetailsCreateDiskPropertiesOutput {
-	return o.ApplyT(func(v *WebServiceDetailsCreateDiskProperties) WebServiceDetailsCreateDiskProperties {
-		if v != nil {
-			return *v
-		}
-		var ret WebServiceDetailsCreateDiskProperties
-		return ret
-	}).(WebServiceDetailsCreateDiskPropertiesOutput)
-}
-
-func (o WebServiceDetailsCreateDiskPropertiesPtrOutput) MountPath() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *WebServiceDetailsCreateDiskProperties) *string {
+// Runtime
+func (o WebServiceDetailsCreatePtrOutput) Runtime() WebServiceDetailsCreateRuntimePtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailsCreate) *WebServiceDetailsCreateRuntime {
 		if v == nil {
 			return nil
 		}
-		return &v.MountPath
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o WebServiceDetailsCreateDiskPropertiesPtrOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *WebServiceDetailsCreateDiskProperties) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.Name
-	}).(pulumi.StringPtrOutput)
-}
-
-// Defaults to 1
-func (o WebServiceDetailsCreateDiskPropertiesPtrOutput) SizeGB() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *WebServiceDetailsCreateDiskProperties) *int {
-		if v == nil {
-			return nil
-		}
-		return v.SizeGB
-	}).(pulumi.IntPtrOutput)
+		return &v.Runtime
+	}).(WebServiceDetailsCreateRuntimePtrOutput)
 }
 
 type WebServiceDetailsOutput struct {
-	Autoscaling *AutoscalingConfig `pulumi:"autoscaling"`
-	BuildPlan   string             `pulumi:"buildPlan"`
-	Disk        *Disk              `pulumi:"disk"`
-	// Environment (runtime)
+	Autoscaling *WebServiceDetailsOutputAutoscalingProperties `pulumi:"autoscaling"`
+	BuildPlan   WebServiceDetailsOutputBuildPlan              `pulumi:"buildPlan"`
+	Disk        *WebServiceDetailsOutputDiskProperties        `pulumi:"disk"`
+	// Runtime
 	Env                WebServiceDetailsOutputEnv `pulumi:"env"`
-	EnvSpecificDetails interface{}                `pulumi:"envSpecificDetails"`
+	EnvSpecificDetails EnvSpecificDetails         `pulumi:"envSpecificDetails"`
 	HealthCheckPath    string                     `pulumi:"healthCheckPath"`
+	// The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
+	MaxShutdownDelaySeconds *int `pulumi:"maxShutdownDelaySeconds"`
 	// For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
 	NumInstances int          `pulumi:"numInstances"`
 	OpenPorts    []ServerPort `pulumi:"openPorts"`
 	ParentServer *Resource    `pulumi:"parentServer"`
 	// The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
-	Plan                       WebServiceDetailsOutputPlan                       `pulumi:"plan"`
-	PullRequestPreviewsEnabled WebServiceDetailsOutputPullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
-	Region                     WebServiceDetailsOutputRegion                     `pulumi:"region"`
-	Url                        string                                            `pulumi:"url"`
+	Plan WebServiceDetailsOutputPlan `pulumi:"plan"`
+	// Defaults to "no"
+	PullRequestPreviewsEnabled *WebServiceDetailsOutputPullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
+	// Defaults to "oregon"
+	Region WebServiceDetailsOutputRegion `pulumi:"region"`
+	Url    string                        `pulumi:"url"`
 }
 
 // Defaults sets the appropriate defaults for WebServiceDetailsOutput
@@ -7787,6 +7964,20 @@ func (val *WebServiceDetailsOutput) Defaults() *WebServiceDetailsOutput {
 	tmp := *val
 	tmp.Autoscaling = tmp.Autoscaling.Defaults()
 
+	if internal.IsZero(tmp.BuildPlan) {
+		tmp.BuildPlan = WebServiceDetailsOutputBuildPlan("starter")
+	}
+	if tmp.MaxShutdownDelaySeconds == nil {
+		maxShutdownDelaySeconds_ := 30
+		tmp.MaxShutdownDelaySeconds = &maxShutdownDelaySeconds_
+	}
+	if tmp.PullRequestPreviewsEnabled == nil {
+		pullRequestPreviewsEnabled_ := WebServiceDetailsOutputPullRequestPreviewsEnabled("no")
+		tmp.PullRequestPreviewsEnabled = &pullRequestPreviewsEnabled_
+	}
+	if internal.IsZero(tmp.Region) {
+		tmp.Region = WebServiceDetailsOutputRegion("oregon")
+	}
 	return &tmp
 }
 
@@ -7804,29 +7995,34 @@ func (o WebServiceDetailsOutputOutput) ToWebServiceDetailsOutputOutputWithContex
 	return o
 }
 
-func (o WebServiceDetailsOutputOutput) Autoscaling() AutoscalingConfigPtrOutput {
-	return o.ApplyT(func(v WebServiceDetailsOutput) *AutoscalingConfig { return v.Autoscaling }).(AutoscalingConfigPtrOutput)
+func (o WebServiceDetailsOutputOutput) Autoscaling() WebServiceDetailsOutputAutoscalingPropertiesPtrOutput {
+	return o.ApplyT(func(v WebServiceDetailsOutput) *WebServiceDetailsOutputAutoscalingProperties { return v.Autoscaling }).(WebServiceDetailsOutputAutoscalingPropertiesPtrOutput)
 }
 
-func (o WebServiceDetailsOutputOutput) BuildPlan() pulumi.StringOutput {
-	return o.ApplyT(func(v WebServiceDetailsOutput) string { return v.BuildPlan }).(pulumi.StringOutput)
+func (o WebServiceDetailsOutputOutput) BuildPlan() WebServiceDetailsOutputBuildPlanOutput {
+	return o.ApplyT(func(v WebServiceDetailsOutput) WebServiceDetailsOutputBuildPlan { return v.BuildPlan }).(WebServiceDetailsOutputBuildPlanOutput)
 }
 
-func (o WebServiceDetailsOutputOutput) Disk() DiskPtrOutput {
-	return o.ApplyT(func(v WebServiceDetailsOutput) *Disk { return v.Disk }).(DiskPtrOutput)
+func (o WebServiceDetailsOutputOutput) Disk() WebServiceDetailsOutputDiskPropertiesPtrOutput {
+	return o.ApplyT(func(v WebServiceDetailsOutput) *WebServiceDetailsOutputDiskProperties { return v.Disk }).(WebServiceDetailsOutputDiskPropertiesPtrOutput)
 }
 
-// Environment (runtime)
+// Runtime
 func (o WebServiceDetailsOutputOutput) Env() WebServiceDetailsOutputEnvOutput {
 	return o.ApplyT(func(v WebServiceDetailsOutput) WebServiceDetailsOutputEnv { return v.Env }).(WebServiceDetailsOutputEnvOutput)
 }
 
-func (o WebServiceDetailsOutputOutput) EnvSpecificDetails() pulumi.AnyOutput {
-	return o.ApplyT(func(v WebServiceDetailsOutput) interface{} { return v.EnvSpecificDetails }).(pulumi.AnyOutput)
+func (o WebServiceDetailsOutputOutput) EnvSpecificDetails() EnvSpecificDetailsOutput {
+	return o.ApplyT(func(v WebServiceDetailsOutput) EnvSpecificDetails { return v.EnvSpecificDetails }).(EnvSpecificDetailsOutput)
 }
 
 func (o WebServiceDetailsOutputOutput) HealthCheckPath() pulumi.StringOutput {
 	return o.ApplyT(func(v WebServiceDetailsOutput) string { return v.HealthCheckPath }).(pulumi.StringOutput)
+}
+
+// The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
+func (o WebServiceDetailsOutputOutput) MaxShutdownDelaySeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v WebServiceDetailsOutput) *int { return v.MaxShutdownDelaySeconds }).(pulumi.IntPtrOutput)
 }
 
 // For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
@@ -7847,12 +8043,14 @@ func (o WebServiceDetailsOutputOutput) Plan() WebServiceDetailsOutputPlanOutput 
 	return o.ApplyT(func(v WebServiceDetailsOutput) WebServiceDetailsOutputPlan { return v.Plan }).(WebServiceDetailsOutputPlanOutput)
 }
 
-func (o WebServiceDetailsOutputOutput) PullRequestPreviewsEnabled() WebServiceDetailsOutputPullRequestPreviewsEnabledOutput {
-	return o.ApplyT(func(v WebServiceDetailsOutput) WebServiceDetailsOutputPullRequestPreviewsEnabled {
+// Defaults to "no"
+func (o WebServiceDetailsOutputOutput) PullRequestPreviewsEnabled() WebServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput {
+	return o.ApplyT(func(v WebServiceDetailsOutput) *WebServiceDetailsOutputPullRequestPreviewsEnabled {
 		return v.PullRequestPreviewsEnabled
-	}).(WebServiceDetailsOutputPullRequestPreviewsEnabledOutput)
+	}).(WebServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput)
 }
 
+// Defaults to "oregon"
 func (o WebServiceDetailsOutputOutput) Region() WebServiceDetailsOutputRegionOutput {
 	return o.ApplyT(func(v WebServiceDetailsOutput) WebServiceDetailsOutputRegion { return v.Region }).(WebServiceDetailsOutputRegionOutput)
 }
@@ -7885,34 +8083,34 @@ func (o WebServiceDetailsOutputPtrOutput) Elem() WebServiceDetailsOutputOutput {
 	}).(WebServiceDetailsOutputOutput)
 }
 
-func (o WebServiceDetailsOutputPtrOutput) Autoscaling() AutoscalingConfigPtrOutput {
-	return o.ApplyT(func(v *WebServiceDetailsOutput) *AutoscalingConfig {
+func (o WebServiceDetailsOutputPtrOutput) Autoscaling() WebServiceDetailsOutputAutoscalingPropertiesPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailsOutput) *WebServiceDetailsOutputAutoscalingProperties {
 		if v == nil {
 			return nil
 		}
 		return v.Autoscaling
-	}).(AutoscalingConfigPtrOutput)
+	}).(WebServiceDetailsOutputAutoscalingPropertiesPtrOutput)
 }
 
-func (o WebServiceDetailsOutputPtrOutput) BuildPlan() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *WebServiceDetailsOutput) *string {
+func (o WebServiceDetailsOutputPtrOutput) BuildPlan() WebServiceDetailsOutputBuildPlanPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailsOutput) *WebServiceDetailsOutputBuildPlan {
 		if v == nil {
 			return nil
 		}
 		return &v.BuildPlan
-	}).(pulumi.StringPtrOutput)
+	}).(WebServiceDetailsOutputBuildPlanPtrOutput)
 }
 
-func (o WebServiceDetailsOutputPtrOutput) Disk() DiskPtrOutput {
-	return o.ApplyT(func(v *WebServiceDetailsOutput) *Disk {
+func (o WebServiceDetailsOutputPtrOutput) Disk() WebServiceDetailsOutputDiskPropertiesPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailsOutput) *WebServiceDetailsOutputDiskProperties {
 		if v == nil {
 			return nil
 		}
 		return v.Disk
-	}).(DiskPtrOutput)
+	}).(WebServiceDetailsOutputDiskPropertiesPtrOutput)
 }
 
-// Environment (runtime)
+// Runtime
 func (o WebServiceDetailsOutputPtrOutput) Env() WebServiceDetailsOutputEnvPtrOutput {
 	return o.ApplyT(func(v *WebServiceDetailsOutput) *WebServiceDetailsOutputEnv {
 		if v == nil {
@@ -7922,13 +8120,13 @@ func (o WebServiceDetailsOutputPtrOutput) Env() WebServiceDetailsOutputEnvPtrOut
 	}).(WebServiceDetailsOutputEnvPtrOutput)
 }
 
-func (o WebServiceDetailsOutputPtrOutput) EnvSpecificDetails() pulumi.AnyOutput {
-	return o.ApplyT(func(v *WebServiceDetailsOutput) interface{} {
+func (o WebServiceDetailsOutputPtrOutput) EnvSpecificDetails() EnvSpecificDetailsPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailsOutput) *EnvSpecificDetails {
 		if v == nil {
 			return nil
 		}
-		return v.EnvSpecificDetails
-	}).(pulumi.AnyOutput)
+		return &v.EnvSpecificDetails
+	}).(EnvSpecificDetailsPtrOutput)
 }
 
 func (o WebServiceDetailsOutputPtrOutput) HealthCheckPath() pulumi.StringPtrOutput {
@@ -7938,6 +8136,16 @@ func (o WebServiceDetailsOutputPtrOutput) HealthCheckPath() pulumi.StringPtrOutp
 		}
 		return &v.HealthCheckPath
 	}).(pulumi.StringPtrOutput)
+}
+
+// The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
+func (o WebServiceDetailsOutputPtrOutput) MaxShutdownDelaySeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailsOutput) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxShutdownDelaySeconds
+	}).(pulumi.IntPtrOutput)
 }
 
 // For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
@@ -7978,15 +8186,17 @@ func (o WebServiceDetailsOutputPtrOutput) Plan() WebServiceDetailsOutputPlanPtrO
 	}).(WebServiceDetailsOutputPlanPtrOutput)
 }
 
+// Defaults to "no"
 func (o WebServiceDetailsOutputPtrOutput) PullRequestPreviewsEnabled() WebServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput {
 	return o.ApplyT(func(v *WebServiceDetailsOutput) *WebServiceDetailsOutputPullRequestPreviewsEnabled {
 		if v == nil {
 			return nil
 		}
-		return &v.PullRequestPreviewsEnabled
+		return v.PullRequestPreviewsEnabled
 	}).(WebServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput)
 }
 
+// Defaults to "oregon"
 func (o WebServiceDetailsOutputPtrOutput) Region() WebServiceDetailsOutputRegionPtrOutput {
 	return o.ApplyT(func(v *WebServiceDetailsOutput) *WebServiceDetailsOutputRegion {
 		if v == nil {
@@ -8005,24 +8215,1253 @@ func (o WebServiceDetailsOutputPtrOutput) Url() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type WebServiceDetailsOutputAutoscalingProperties struct {
+	Criteria WebServiceDetailsOutputAutoscalingPropertiesCriteriaProperties `pulumi:"criteria"`
+	Enabled  bool                                                           `pulumi:"enabled"`
+	// The maximum number of instances for the service
+	Max int `pulumi:"max"`
+	// The minimum number of instances for the service
+	Min int `pulumi:"min"`
+}
+
+// Defaults sets the appropriate defaults for WebServiceDetailsOutputAutoscalingProperties
+func (val *WebServiceDetailsOutputAutoscalingProperties) Defaults() *WebServiceDetailsOutputAutoscalingProperties {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	tmp.Criteria = *tmp.Criteria.Defaults()
+
+	if internal.IsZero(tmp.Enabled) {
+		tmp.Enabled = false
+	}
+	return &tmp
+}
+
+type WebServiceDetailsOutputAutoscalingPropertiesOutput struct{ *pulumi.OutputState }
+
+func (WebServiceDetailsOutputAutoscalingPropertiesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceDetailsOutputAutoscalingProperties)(nil)).Elem()
+}
+
+func (o WebServiceDetailsOutputAutoscalingPropertiesOutput) ToWebServiceDetailsOutputAutoscalingPropertiesOutput() WebServiceDetailsOutputAutoscalingPropertiesOutput {
+	return o
+}
+
+func (o WebServiceDetailsOutputAutoscalingPropertiesOutput) ToWebServiceDetailsOutputAutoscalingPropertiesOutputWithContext(ctx context.Context) WebServiceDetailsOutputAutoscalingPropertiesOutput {
+	return o
+}
+
+func (o WebServiceDetailsOutputAutoscalingPropertiesOutput) Criteria() WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesOutput {
+	return o.ApplyT(func(v WebServiceDetailsOutputAutoscalingProperties) WebServiceDetailsOutputAutoscalingPropertiesCriteriaProperties {
+		return v.Criteria
+	}).(WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesOutput)
+}
+
+func (o WebServiceDetailsOutputAutoscalingPropertiesOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v WebServiceDetailsOutputAutoscalingProperties) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// The maximum number of instances for the service
+func (o WebServiceDetailsOutputAutoscalingPropertiesOutput) Max() pulumi.IntOutput {
+	return o.ApplyT(func(v WebServiceDetailsOutputAutoscalingProperties) int { return v.Max }).(pulumi.IntOutput)
+}
+
+// The minimum number of instances for the service
+func (o WebServiceDetailsOutputAutoscalingPropertiesOutput) Min() pulumi.IntOutput {
+	return o.ApplyT(func(v WebServiceDetailsOutputAutoscalingProperties) int { return v.Min }).(pulumi.IntOutput)
+}
+
+type WebServiceDetailsOutputAutoscalingPropertiesPtrOutput struct{ *pulumi.OutputState }
+
+func (WebServiceDetailsOutputAutoscalingPropertiesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebServiceDetailsOutputAutoscalingProperties)(nil)).Elem()
+}
+
+func (o WebServiceDetailsOutputAutoscalingPropertiesPtrOutput) ToWebServiceDetailsOutputAutoscalingPropertiesPtrOutput() WebServiceDetailsOutputAutoscalingPropertiesPtrOutput {
+	return o
+}
+
+func (o WebServiceDetailsOutputAutoscalingPropertiesPtrOutput) ToWebServiceDetailsOutputAutoscalingPropertiesPtrOutputWithContext(ctx context.Context) WebServiceDetailsOutputAutoscalingPropertiesPtrOutput {
+	return o
+}
+
+func (o WebServiceDetailsOutputAutoscalingPropertiesPtrOutput) Elem() WebServiceDetailsOutputAutoscalingPropertiesOutput {
+	return o.ApplyT(func(v *WebServiceDetailsOutputAutoscalingProperties) WebServiceDetailsOutputAutoscalingProperties {
+		if v != nil {
+			return *v
+		}
+		var ret WebServiceDetailsOutputAutoscalingProperties
+		return ret
+	}).(WebServiceDetailsOutputAutoscalingPropertiesOutput)
+}
+
+func (o WebServiceDetailsOutputAutoscalingPropertiesPtrOutput) Criteria() WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailsOutputAutoscalingProperties) *WebServiceDetailsOutputAutoscalingPropertiesCriteriaProperties {
+		if v == nil {
+			return nil
+		}
+		return &v.Criteria
+	}).(WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesPtrOutput)
+}
+
+func (o WebServiceDetailsOutputAutoscalingPropertiesPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailsOutputAutoscalingProperties) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The maximum number of instances for the service
+func (o WebServiceDetailsOutputAutoscalingPropertiesPtrOutput) Max() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailsOutputAutoscalingProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Max
+	}).(pulumi.IntPtrOutput)
+}
+
+// The minimum number of instances for the service
+func (o WebServiceDetailsOutputAutoscalingPropertiesPtrOutput) Min() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailsOutputAutoscalingProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Min
+	}).(pulumi.IntPtrOutput)
+}
+
+type WebServiceDetailsOutputAutoscalingPropertiesCriteriaProperties struct {
+	Cpu    WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuProperties `pulumi:"cpu"`
+	Memory WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpu       `pulumi:"memory"`
+}
+
+// Defaults sets the appropriate defaults for WebServiceDetailsOutputAutoscalingPropertiesCriteriaProperties
+func (val *WebServiceDetailsOutputAutoscalingPropertiesCriteriaProperties) Defaults() *WebServiceDetailsOutputAutoscalingPropertiesCriteriaProperties {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	tmp.Cpu = *tmp.Cpu.Defaults()
+
+	tmp.Memory = *tmp.Memory.Defaults()
+
+	return &tmp
+}
+
+type WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesOutput struct{ *pulumi.OutputState }
+
+func (WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceDetailsOutputAutoscalingPropertiesCriteriaProperties)(nil)).Elem()
+}
+
+func (o WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesOutput) ToWebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesOutput() WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesOutput {
+	return o
+}
+
+func (o WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesOutput) ToWebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesOutputWithContext(ctx context.Context) WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesOutput {
+	return o
+}
+
+func (o WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesOutput) Cpu() WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuPropertiesOutput {
+	return o.ApplyT(func(v WebServiceDetailsOutputAutoscalingPropertiesCriteriaProperties) WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuProperties {
+		return v.Cpu
+	}).(WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuPropertiesOutput)
+}
+
+func (o WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesOutput) Memory() WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuOutput {
+	return o.ApplyT(func(v WebServiceDetailsOutputAutoscalingPropertiesCriteriaProperties) WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpu {
+		return v.Memory
+	}).(WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuOutput)
+}
+
+type WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesPtrOutput struct{ *pulumi.OutputState }
+
+func (WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebServiceDetailsOutputAutoscalingPropertiesCriteriaProperties)(nil)).Elem()
+}
+
+func (o WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesPtrOutput) ToWebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesPtrOutput() WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesPtrOutput {
+	return o
+}
+
+func (o WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesPtrOutput) ToWebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesPtrOutputWithContext(ctx context.Context) WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesPtrOutput {
+	return o
+}
+
+func (o WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesPtrOutput) Elem() WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesOutput {
+	return o.ApplyT(func(v *WebServiceDetailsOutputAutoscalingPropertiesCriteriaProperties) WebServiceDetailsOutputAutoscalingPropertiesCriteriaProperties {
+		if v != nil {
+			return *v
+		}
+		var ret WebServiceDetailsOutputAutoscalingPropertiesCriteriaProperties
+		return ret
+	}).(WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesOutput)
+}
+
+func (o WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesPtrOutput) Cpu() WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuPropertiesPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailsOutputAutoscalingPropertiesCriteriaProperties) *WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuProperties {
+		if v == nil {
+			return nil
+		}
+		return &v.Cpu
+	}).(WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuPropertiesPtrOutput)
+}
+
+func (o WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesPtrOutput) Memory() WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailsOutputAutoscalingPropertiesCriteriaProperties) *WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpu {
+		if v == nil {
+			return nil
+		}
+		return &v.Memory
+	}).(WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutput)
+}
+
+type WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuProperties struct {
+	Enabled bool `pulumi:"enabled"`
+	// Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+	Percentage int `pulumi:"percentage"`
+}
+
+// Defaults sets the appropriate defaults for WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuProperties
+func (val *WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuProperties) Defaults() *WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuProperties {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if internal.IsZero(tmp.Enabled) {
+		tmp.Enabled = false
+	}
+	return &tmp
+}
+
+type WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuPropertiesOutput struct{ *pulumi.OutputState }
+
+func (WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuPropertiesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuProperties)(nil)).Elem()
+}
+
+func (o WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuPropertiesOutput) ToWebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuPropertiesOutput() WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuPropertiesOutput {
+	return o
+}
+
+func (o WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuPropertiesOutput) ToWebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuPropertiesOutputWithContext(ctx context.Context) WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuPropertiesOutput {
+	return o
+}
+
+func (o WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuPropertiesOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuProperties) bool {
+		return v.Enabled
+	}).(pulumi.BoolOutput)
+}
+
+// Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+func (o WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuPropertiesOutput) Percentage() pulumi.IntOutput {
+	return o.ApplyT(func(v WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuProperties) int {
+		return v.Percentage
+	}).(pulumi.IntOutput)
+}
+
+type WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuPropertiesPtrOutput struct{ *pulumi.OutputState }
+
+func (WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuPropertiesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuProperties)(nil)).Elem()
+}
+
+func (o WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuPropertiesPtrOutput) ToWebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuPropertiesPtrOutput() WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuPropertiesPtrOutput {
+	return o
+}
+
+func (o WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuPropertiesPtrOutput) ToWebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuPropertiesPtrOutputWithContext(ctx context.Context) WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuPropertiesPtrOutput {
+	return o
+}
+
+func (o WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuPropertiesPtrOutput) Elem() WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuPropertiesOutput {
+	return o.ApplyT(func(v *WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuProperties) WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuProperties {
+		if v != nil {
+			return *v
+		}
+		var ret WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuProperties
+		return ret
+	}).(WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuPropertiesOutput)
+}
+
+func (o WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuPropertiesPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuProperties) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+func (o WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuPropertiesPtrOutput) Percentage() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Percentage
+	}).(pulumi.IntPtrOutput)
+}
+
+type WebServiceDetailsOutputDiskProperties struct {
+	Id        string `pulumi:"id"`
+	MountPath string `pulumi:"mountPath"`
+	Name      string `pulumi:"name"`
+	SizeGB    int    `pulumi:"sizeGB"`
+}
+
+type WebServiceDetailsOutputDiskPropertiesOutput struct{ *pulumi.OutputState }
+
+func (WebServiceDetailsOutputDiskPropertiesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceDetailsOutputDiskProperties)(nil)).Elem()
+}
+
+func (o WebServiceDetailsOutputDiskPropertiesOutput) ToWebServiceDetailsOutputDiskPropertiesOutput() WebServiceDetailsOutputDiskPropertiesOutput {
+	return o
+}
+
+func (o WebServiceDetailsOutputDiskPropertiesOutput) ToWebServiceDetailsOutputDiskPropertiesOutputWithContext(ctx context.Context) WebServiceDetailsOutputDiskPropertiesOutput {
+	return o
+}
+
+func (o WebServiceDetailsOutputDiskPropertiesOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v WebServiceDetailsOutputDiskProperties) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o WebServiceDetailsOutputDiskPropertiesOutput) MountPath() pulumi.StringOutput {
+	return o.ApplyT(func(v WebServiceDetailsOutputDiskProperties) string { return v.MountPath }).(pulumi.StringOutput)
+}
+
+func (o WebServiceDetailsOutputDiskPropertiesOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v WebServiceDetailsOutputDiskProperties) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WebServiceDetailsOutputDiskPropertiesOutput) SizeGB() pulumi.IntOutput {
+	return o.ApplyT(func(v WebServiceDetailsOutputDiskProperties) int { return v.SizeGB }).(pulumi.IntOutput)
+}
+
+type WebServiceDetailsOutputDiskPropertiesPtrOutput struct{ *pulumi.OutputState }
+
+func (WebServiceDetailsOutputDiskPropertiesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebServiceDetailsOutputDiskProperties)(nil)).Elem()
+}
+
+func (o WebServiceDetailsOutputDiskPropertiesPtrOutput) ToWebServiceDetailsOutputDiskPropertiesPtrOutput() WebServiceDetailsOutputDiskPropertiesPtrOutput {
+	return o
+}
+
+func (o WebServiceDetailsOutputDiskPropertiesPtrOutput) ToWebServiceDetailsOutputDiskPropertiesPtrOutputWithContext(ctx context.Context) WebServiceDetailsOutputDiskPropertiesPtrOutput {
+	return o
+}
+
+func (o WebServiceDetailsOutputDiskPropertiesPtrOutput) Elem() WebServiceDetailsOutputDiskPropertiesOutput {
+	return o.ApplyT(func(v *WebServiceDetailsOutputDiskProperties) WebServiceDetailsOutputDiskProperties {
+		if v != nil {
+			return *v
+		}
+		var ret WebServiceDetailsOutputDiskProperties
+		return ret
+	}).(WebServiceDetailsOutputDiskPropertiesOutput)
+}
+
+func (o WebServiceDetailsOutputDiskPropertiesPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailsOutputDiskProperties) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WebServiceDetailsOutputDiskPropertiesPtrOutput) MountPath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailsOutputDiskProperties) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.MountPath
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WebServiceDetailsOutputDiskPropertiesPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailsOutputDiskProperties) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WebServiceDetailsOutputDiskPropertiesPtrOutput) SizeGB() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailsOutputDiskProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.SizeGB
+	}).(pulumi.IntPtrOutput)
+}
+
+type WebServiceDetailspropertiesautoscaling struct {
+	Criteria WebServiceDetailspropertiesautoscalingCriteriaProperties `pulumi:"criteria"`
+	Enabled  bool                                                     `pulumi:"enabled"`
+	// The maximum number of instances for the service
+	Max int `pulumi:"max"`
+	// The minimum number of instances for the service
+	Min int `pulumi:"min"`
+}
+
+// Defaults sets the appropriate defaults for WebServiceDetailspropertiesautoscaling
+func (val *WebServiceDetailspropertiesautoscaling) Defaults() *WebServiceDetailspropertiesautoscaling {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	tmp.Criteria = *tmp.Criteria.Defaults()
+
+	if internal.IsZero(tmp.Enabled) {
+		tmp.Enabled = false
+	}
+	return &tmp
+}
+
+// WebServiceDetailspropertiesautoscalingInput is an input type that accepts WebServiceDetailspropertiesautoscalingArgs and WebServiceDetailspropertiesautoscalingOutput values.
+// You can construct a concrete instance of `WebServiceDetailspropertiesautoscalingInput` via:
+//
+//	WebServiceDetailspropertiesautoscalingArgs{...}
+type WebServiceDetailspropertiesautoscalingInput interface {
+	pulumi.Input
+
+	ToWebServiceDetailspropertiesautoscalingOutput() WebServiceDetailspropertiesautoscalingOutput
+	ToWebServiceDetailspropertiesautoscalingOutputWithContext(context.Context) WebServiceDetailspropertiesautoscalingOutput
+}
+
+type WebServiceDetailspropertiesautoscalingArgs struct {
+	Criteria WebServiceDetailspropertiesautoscalingCriteriaPropertiesInput `pulumi:"criteria"`
+	Enabled  pulumi.BoolInput                                              `pulumi:"enabled"`
+	// The maximum number of instances for the service
+	Max pulumi.IntInput `pulumi:"max"`
+	// The minimum number of instances for the service
+	Min pulumi.IntInput `pulumi:"min"`
+}
+
+// Defaults sets the appropriate defaults for WebServiceDetailspropertiesautoscalingArgs
+func (val *WebServiceDetailspropertiesautoscalingArgs) Defaults() *WebServiceDetailspropertiesautoscalingArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+
+	if tmp.Enabled == nil {
+		tmp.Enabled = pulumi.Bool(false)
+	}
+	return &tmp
+}
+func (WebServiceDetailspropertiesautoscalingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceDetailspropertiesautoscaling)(nil)).Elem()
+}
+
+func (i WebServiceDetailspropertiesautoscalingArgs) ToWebServiceDetailspropertiesautoscalingOutput() WebServiceDetailspropertiesautoscalingOutput {
+	return i.ToWebServiceDetailspropertiesautoscalingOutputWithContext(context.Background())
+}
+
+func (i WebServiceDetailspropertiesautoscalingArgs) ToWebServiceDetailspropertiesautoscalingOutputWithContext(ctx context.Context) WebServiceDetailspropertiesautoscalingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebServiceDetailspropertiesautoscalingOutput)
+}
+
+func (i WebServiceDetailspropertiesautoscalingArgs) ToWebServiceDetailspropertiesautoscalingPtrOutput() WebServiceDetailspropertiesautoscalingPtrOutput {
+	return i.ToWebServiceDetailspropertiesautoscalingPtrOutputWithContext(context.Background())
+}
+
+func (i WebServiceDetailspropertiesautoscalingArgs) ToWebServiceDetailspropertiesautoscalingPtrOutputWithContext(ctx context.Context) WebServiceDetailspropertiesautoscalingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebServiceDetailspropertiesautoscalingOutput).ToWebServiceDetailspropertiesautoscalingPtrOutputWithContext(ctx)
+}
+
+// WebServiceDetailspropertiesautoscalingPtrInput is an input type that accepts WebServiceDetailspropertiesautoscalingArgs, WebServiceDetailspropertiesautoscalingPtr and WebServiceDetailspropertiesautoscalingPtrOutput values.
+// You can construct a concrete instance of `WebServiceDetailspropertiesautoscalingPtrInput` via:
+//
+//	        WebServiceDetailspropertiesautoscalingArgs{...}
+//
+//	or:
+//
+//	        nil
+type WebServiceDetailspropertiesautoscalingPtrInput interface {
+	pulumi.Input
+
+	ToWebServiceDetailspropertiesautoscalingPtrOutput() WebServiceDetailspropertiesautoscalingPtrOutput
+	ToWebServiceDetailspropertiesautoscalingPtrOutputWithContext(context.Context) WebServiceDetailspropertiesautoscalingPtrOutput
+}
+
+type webServiceDetailspropertiesautoscalingPtrType WebServiceDetailspropertiesautoscalingArgs
+
+func WebServiceDetailspropertiesautoscalingPtr(v *WebServiceDetailspropertiesautoscalingArgs) WebServiceDetailspropertiesautoscalingPtrInput {
+	return (*webServiceDetailspropertiesautoscalingPtrType)(v)
+}
+
+func (*webServiceDetailspropertiesautoscalingPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebServiceDetailspropertiesautoscaling)(nil)).Elem()
+}
+
+func (i *webServiceDetailspropertiesautoscalingPtrType) ToWebServiceDetailspropertiesautoscalingPtrOutput() WebServiceDetailspropertiesautoscalingPtrOutput {
+	return i.ToWebServiceDetailspropertiesautoscalingPtrOutputWithContext(context.Background())
+}
+
+func (i *webServiceDetailspropertiesautoscalingPtrType) ToWebServiceDetailspropertiesautoscalingPtrOutputWithContext(ctx context.Context) WebServiceDetailspropertiesautoscalingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebServiceDetailspropertiesautoscalingPtrOutput)
+}
+
+type WebServiceDetailspropertiesautoscalingOutput struct{ *pulumi.OutputState }
+
+func (WebServiceDetailspropertiesautoscalingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceDetailspropertiesautoscaling)(nil)).Elem()
+}
+
+func (o WebServiceDetailspropertiesautoscalingOutput) ToWebServiceDetailspropertiesautoscalingOutput() WebServiceDetailspropertiesautoscalingOutput {
+	return o
+}
+
+func (o WebServiceDetailspropertiesautoscalingOutput) ToWebServiceDetailspropertiesautoscalingOutputWithContext(ctx context.Context) WebServiceDetailspropertiesautoscalingOutput {
+	return o
+}
+
+func (o WebServiceDetailspropertiesautoscalingOutput) ToWebServiceDetailspropertiesautoscalingPtrOutput() WebServiceDetailspropertiesautoscalingPtrOutput {
+	return o.ToWebServiceDetailspropertiesautoscalingPtrOutputWithContext(context.Background())
+}
+
+func (o WebServiceDetailspropertiesautoscalingOutput) ToWebServiceDetailspropertiesautoscalingPtrOutputWithContext(ctx context.Context) WebServiceDetailspropertiesautoscalingPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebServiceDetailspropertiesautoscaling) *WebServiceDetailspropertiesautoscaling {
+		return &v
+	}).(WebServiceDetailspropertiesautoscalingPtrOutput)
+}
+
+func (o WebServiceDetailspropertiesautoscalingOutput) Criteria() WebServiceDetailspropertiesautoscalingCriteriaPropertiesOutput {
+	return o.ApplyT(func(v WebServiceDetailspropertiesautoscaling) WebServiceDetailspropertiesautoscalingCriteriaProperties {
+		return v.Criteria
+	}).(WebServiceDetailspropertiesautoscalingCriteriaPropertiesOutput)
+}
+
+func (o WebServiceDetailspropertiesautoscalingOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v WebServiceDetailspropertiesautoscaling) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// The maximum number of instances for the service
+func (o WebServiceDetailspropertiesautoscalingOutput) Max() pulumi.IntOutput {
+	return o.ApplyT(func(v WebServiceDetailspropertiesautoscaling) int { return v.Max }).(pulumi.IntOutput)
+}
+
+// The minimum number of instances for the service
+func (o WebServiceDetailspropertiesautoscalingOutput) Min() pulumi.IntOutput {
+	return o.ApplyT(func(v WebServiceDetailspropertiesautoscaling) int { return v.Min }).(pulumi.IntOutput)
+}
+
+type WebServiceDetailspropertiesautoscalingPtrOutput struct{ *pulumi.OutputState }
+
+func (WebServiceDetailspropertiesautoscalingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebServiceDetailspropertiesautoscaling)(nil)).Elem()
+}
+
+func (o WebServiceDetailspropertiesautoscalingPtrOutput) ToWebServiceDetailspropertiesautoscalingPtrOutput() WebServiceDetailspropertiesautoscalingPtrOutput {
+	return o
+}
+
+func (o WebServiceDetailspropertiesautoscalingPtrOutput) ToWebServiceDetailspropertiesautoscalingPtrOutputWithContext(ctx context.Context) WebServiceDetailspropertiesautoscalingPtrOutput {
+	return o
+}
+
+func (o WebServiceDetailspropertiesautoscalingPtrOutput) Elem() WebServiceDetailspropertiesautoscalingOutput {
+	return o.ApplyT(func(v *WebServiceDetailspropertiesautoscaling) WebServiceDetailspropertiesautoscaling {
+		if v != nil {
+			return *v
+		}
+		var ret WebServiceDetailspropertiesautoscaling
+		return ret
+	}).(WebServiceDetailspropertiesautoscalingOutput)
+}
+
+func (o WebServiceDetailspropertiesautoscalingPtrOutput) Criteria() WebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailspropertiesautoscaling) *WebServiceDetailspropertiesautoscalingCriteriaProperties {
+		if v == nil {
+			return nil
+		}
+		return &v.Criteria
+	}).(WebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrOutput)
+}
+
+func (o WebServiceDetailspropertiesautoscalingPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailspropertiesautoscaling) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The maximum number of instances for the service
+func (o WebServiceDetailspropertiesautoscalingPtrOutput) Max() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailspropertiesautoscaling) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Max
+	}).(pulumi.IntPtrOutput)
+}
+
+// The minimum number of instances for the service
+func (o WebServiceDetailspropertiesautoscalingPtrOutput) Min() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailspropertiesautoscaling) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Min
+	}).(pulumi.IntPtrOutput)
+}
+
+type WebServiceDetailspropertiesautoscalingCriteriaProperties struct {
+	Cpu    WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuProperties `pulumi:"cpu"`
+	Memory WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpu `pulumi:"memory"`
+}
+
+// Defaults sets the appropriate defaults for WebServiceDetailspropertiesautoscalingCriteriaProperties
+func (val *WebServiceDetailspropertiesautoscalingCriteriaProperties) Defaults() *WebServiceDetailspropertiesautoscalingCriteriaProperties {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	tmp.Cpu = *tmp.Cpu.Defaults()
+
+	tmp.Memory = *tmp.Memory.Defaults()
+
+	return &tmp
+}
+
+// WebServiceDetailspropertiesautoscalingCriteriaPropertiesInput is an input type that accepts WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgs and WebServiceDetailspropertiesautoscalingCriteriaPropertiesOutput values.
+// You can construct a concrete instance of `WebServiceDetailspropertiesautoscalingCriteriaPropertiesInput` via:
+//
+//	WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgs{...}
+type WebServiceDetailspropertiesautoscalingCriteriaPropertiesInput interface {
+	pulumi.Input
+
+	ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesOutput() WebServiceDetailspropertiesautoscalingCriteriaPropertiesOutput
+	ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesOutputWithContext(context.Context) WebServiceDetailspropertiesautoscalingCriteriaPropertiesOutput
+}
+
+type WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgs struct {
+	Cpu    WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesInput `pulumi:"cpu"`
+	Memory WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuInput `pulumi:"memory"`
+}
+
+// Defaults sets the appropriate defaults for WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgs
+func (val *WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgs) Defaults() *WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+
+	return &tmp
+}
+func (WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceDetailspropertiesautoscalingCriteriaProperties)(nil)).Elem()
+}
+
+func (i WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgs) ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesOutput() WebServiceDetailspropertiesautoscalingCriteriaPropertiesOutput {
+	return i.ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesOutputWithContext(context.Background())
+}
+
+func (i WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgs) ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesOutputWithContext(ctx context.Context) WebServiceDetailspropertiesautoscalingCriteriaPropertiesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebServiceDetailspropertiesautoscalingCriteriaPropertiesOutput)
+}
+
+func (i WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgs) ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrOutput() WebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrOutput {
+	return i.ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrOutputWithContext(context.Background())
+}
+
+func (i WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgs) ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrOutputWithContext(ctx context.Context) WebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebServiceDetailspropertiesautoscalingCriteriaPropertiesOutput).ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrOutputWithContext(ctx)
+}
+
+// WebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrInput is an input type that accepts WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgs, WebServiceDetailspropertiesautoscalingCriteriaPropertiesPtr and WebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrOutput values.
+// You can construct a concrete instance of `WebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrInput` via:
+//
+//	        WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgs{...}
+//
+//	or:
+//
+//	        nil
+type WebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrInput interface {
+	pulumi.Input
+
+	ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrOutput() WebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrOutput
+	ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrOutputWithContext(context.Context) WebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrOutput
+}
+
+type webServiceDetailspropertiesautoscalingCriteriaPropertiesPtrType WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgs
+
+func WebServiceDetailspropertiesautoscalingCriteriaPropertiesPtr(v *WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgs) WebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrInput {
+	return (*webServiceDetailspropertiesautoscalingCriteriaPropertiesPtrType)(v)
+}
+
+func (*webServiceDetailspropertiesautoscalingCriteriaPropertiesPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebServiceDetailspropertiesautoscalingCriteriaProperties)(nil)).Elem()
+}
+
+func (i *webServiceDetailspropertiesautoscalingCriteriaPropertiesPtrType) ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrOutput() WebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrOutput {
+	return i.ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrOutputWithContext(context.Background())
+}
+
+func (i *webServiceDetailspropertiesautoscalingCriteriaPropertiesPtrType) ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrOutputWithContext(ctx context.Context) WebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrOutput)
+}
+
+type WebServiceDetailspropertiesautoscalingCriteriaPropertiesOutput struct{ *pulumi.OutputState }
+
+func (WebServiceDetailspropertiesautoscalingCriteriaPropertiesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceDetailspropertiesautoscalingCriteriaProperties)(nil)).Elem()
+}
+
+func (o WebServiceDetailspropertiesautoscalingCriteriaPropertiesOutput) ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesOutput() WebServiceDetailspropertiesautoscalingCriteriaPropertiesOutput {
+	return o
+}
+
+func (o WebServiceDetailspropertiesautoscalingCriteriaPropertiesOutput) ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesOutputWithContext(ctx context.Context) WebServiceDetailspropertiesautoscalingCriteriaPropertiesOutput {
+	return o
+}
+
+func (o WebServiceDetailspropertiesautoscalingCriteriaPropertiesOutput) ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrOutput() WebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrOutput {
+	return o.ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrOutputWithContext(context.Background())
+}
+
+func (o WebServiceDetailspropertiesautoscalingCriteriaPropertiesOutput) ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrOutputWithContext(ctx context.Context) WebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebServiceDetailspropertiesautoscalingCriteriaProperties) *WebServiceDetailspropertiesautoscalingCriteriaProperties {
+		return &v
+	}).(WebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrOutput)
+}
+
+func (o WebServiceDetailspropertiesautoscalingCriteriaPropertiesOutput) Cpu() WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesOutput {
+	return o.ApplyT(func(v WebServiceDetailspropertiesautoscalingCriteriaProperties) WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuProperties {
+		return v.Cpu
+	}).(WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesOutput)
+}
+
+func (o WebServiceDetailspropertiesautoscalingCriteriaPropertiesOutput) Memory() WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuOutput {
+	return o.ApplyT(func(v WebServiceDetailspropertiesautoscalingCriteriaProperties) WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpu {
+		return v.Memory
+	}).(WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuOutput)
+}
+
+type WebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrOutput struct{ *pulumi.OutputState }
+
+func (WebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebServiceDetailspropertiesautoscalingCriteriaProperties)(nil)).Elem()
+}
+
+func (o WebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrOutput) ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrOutput() WebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrOutput {
+	return o
+}
+
+func (o WebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrOutput) ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrOutputWithContext(ctx context.Context) WebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrOutput {
+	return o
+}
+
+func (o WebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrOutput) Elem() WebServiceDetailspropertiesautoscalingCriteriaPropertiesOutput {
+	return o.ApplyT(func(v *WebServiceDetailspropertiesautoscalingCriteriaProperties) WebServiceDetailspropertiesautoscalingCriteriaProperties {
+		if v != nil {
+			return *v
+		}
+		var ret WebServiceDetailspropertiesautoscalingCriteriaProperties
+		return ret
+	}).(WebServiceDetailspropertiesautoscalingCriteriaPropertiesOutput)
+}
+
+func (o WebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrOutput) Cpu() WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailspropertiesautoscalingCriteriaProperties) *WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuProperties {
+		if v == nil {
+			return nil
+		}
+		return &v.Cpu
+	}).(WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrOutput)
+}
+
+func (o WebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrOutput) Memory() WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailspropertiesautoscalingCriteriaProperties) *WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpu {
+		if v == nil {
+			return nil
+		}
+		return &v.Memory
+	}).(WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutput)
+}
+
+type WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuProperties struct {
+	Enabled bool `pulumi:"enabled"`
+	// Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+	Percentage int `pulumi:"percentage"`
+}
+
+// Defaults sets the appropriate defaults for WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuProperties
+func (val *WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuProperties) Defaults() *WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuProperties {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if internal.IsZero(tmp.Enabled) {
+		tmp.Enabled = false
+	}
+	return &tmp
+}
+
+// WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesInput is an input type that accepts WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs and WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesOutput values.
+// You can construct a concrete instance of `WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesInput` via:
+//
+//	WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs{...}
+type WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesInput interface {
+	pulumi.Input
+
+	ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesOutput() WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesOutput
+	ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesOutputWithContext(context.Context) WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesOutput
+}
+
+type WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs struct {
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+	Percentage pulumi.IntInput `pulumi:"percentage"`
+}
+
+// Defaults sets the appropriate defaults for WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs
+func (val *WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs) Defaults() *WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Enabled == nil {
+		tmp.Enabled = pulumi.Bool(false)
+	}
+	return &tmp
+}
+func (WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuProperties)(nil)).Elem()
+}
+
+func (i WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs) ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesOutput() WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesOutput {
+	return i.ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesOutputWithContext(context.Background())
+}
+
+func (i WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs) ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesOutputWithContext(ctx context.Context) WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesOutput)
+}
+
+func (i WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs) ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrOutput() WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrOutput {
+	return i.ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrOutputWithContext(context.Background())
+}
+
+func (i WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs) ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrOutputWithContext(ctx context.Context) WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesOutput).ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrOutputWithContext(ctx)
+}
+
+// WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrInput is an input type that accepts WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs, WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtr and WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrOutput values.
+// You can construct a concrete instance of `WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrInput` via:
+//
+//	        WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs{...}
+//
+//	or:
+//
+//	        nil
+type WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrInput interface {
+	pulumi.Input
+
+	ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrOutput() WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrOutput
+	ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrOutputWithContext(context.Context) WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrOutput
+}
+
+type webServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrType WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs
+
+func WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtr(v *WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs) WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrInput {
+	return (*webServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrType)(v)
+}
+
+func (*webServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuProperties)(nil)).Elem()
+}
+
+func (i *webServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrType) ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrOutput() WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrOutput {
+	return i.ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrOutputWithContext(context.Background())
+}
+
+func (i *webServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrType) ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrOutputWithContext(ctx context.Context) WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrOutput)
+}
+
+type WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesOutput struct{ *pulumi.OutputState }
+
+func (WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuProperties)(nil)).Elem()
+}
+
+func (o WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesOutput) ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesOutput() WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesOutput {
+	return o
+}
+
+func (o WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesOutput) ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesOutputWithContext(ctx context.Context) WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesOutput {
+	return o
+}
+
+func (o WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesOutput) ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrOutput() WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrOutput {
+	return o.ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrOutputWithContext(context.Background())
+}
+
+func (o WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesOutput) ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrOutputWithContext(ctx context.Context) WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuProperties) *WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuProperties {
+		return &v
+	}).(WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrOutput)
+}
+
+func (o WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuProperties) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+func (o WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesOutput) Percentage() pulumi.IntOutput {
+	return o.ApplyT(func(v WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuProperties) int { return v.Percentage }).(pulumi.IntOutput)
+}
+
+type WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrOutput struct{ *pulumi.OutputState }
+
+func (WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuProperties)(nil)).Elem()
+}
+
+func (o WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrOutput) ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrOutput() WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrOutput {
+	return o
+}
+
+func (o WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrOutput) ToWebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrOutputWithContext(ctx context.Context) WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrOutput {
+	return o
+}
+
+func (o WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrOutput) Elem() WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesOutput {
+	return o.ApplyT(func(v *WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuProperties) WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuProperties {
+		if v != nil {
+			return *v
+		}
+		var ret WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuProperties
+		return ret
+	}).(WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesOutput)
+}
+
+func (o WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuProperties) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+func (o WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrOutput) Percentage() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuProperties) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Percentage
+	}).(pulumi.IntPtrOutput)
+}
+
+type WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpu struct {
+	Enabled bool `pulumi:"enabled"`
+	// Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+	Percentage int `pulumi:"percentage"`
+}
+
+// Defaults sets the appropriate defaults for WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpu
+func (val *WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpu) Defaults() *WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpu {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if internal.IsZero(tmp.Enabled) {
+		tmp.Enabled = false
+	}
+	return &tmp
+}
+
+// WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuInput is an input type that accepts WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs and WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuOutput values.
+// You can construct a concrete instance of `WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuInput` via:
+//
+//	WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs{...}
+type WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuInput interface {
+	pulumi.Input
+
+	ToWebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuOutput() WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuOutput
+	ToWebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuOutputWithContext(context.Context) WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuOutput
+}
+
+type WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs struct {
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+	Percentage pulumi.IntInput `pulumi:"percentage"`
+}
+
+// Defaults sets the appropriate defaults for WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs
+func (val *WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs) Defaults() *WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Enabled == nil {
+		tmp.Enabled = pulumi.Bool(false)
+	}
+	return &tmp
+}
+func (WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpu)(nil)).Elem()
+}
+
+func (i WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs) ToWebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuOutput() WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuOutput {
+	return i.ToWebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuOutputWithContext(context.Background())
+}
+
+func (i WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs) ToWebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuOutputWithContext(ctx context.Context) WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuOutput)
+}
+
+func (i WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs) ToWebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutput() WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutput {
+	return i.ToWebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutputWithContext(context.Background())
+}
+
+func (i WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs) ToWebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutputWithContext(ctx context.Context) WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuOutput).ToWebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutputWithContext(ctx)
+}
+
+// WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrInput is an input type that accepts WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs, WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtr and WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutput values.
+// You can construct a concrete instance of `WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrInput` via:
+//
+//	        WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs{...}
+//
+//	or:
+//
+//	        nil
+type WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrInput interface {
+	pulumi.Input
+
+	ToWebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutput() WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutput
+	ToWebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutputWithContext(context.Context) WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutput
+}
+
+type webServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrType WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs
+
+func WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtr(v *WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs) WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrInput {
+	return (*webServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrType)(v)
+}
+
+func (*webServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpu)(nil)).Elem()
+}
+
+func (i *webServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrType) ToWebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutput() WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutput {
+	return i.ToWebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutputWithContext(context.Background())
+}
+
+func (i *webServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrType) ToWebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutputWithContext(ctx context.Context) WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutput)
+}
+
+type WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuOutput struct{ *pulumi.OutputState }
+
+func (WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpu)(nil)).Elem()
+}
+
+func (o WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuOutput) ToWebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuOutput() WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuOutput {
+	return o
+}
+
+func (o WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuOutput) ToWebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuOutputWithContext(ctx context.Context) WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuOutput {
+	return o
+}
+
+func (o WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuOutput) ToWebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutput() WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutput {
+	return o.ToWebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutputWithContext(context.Background())
+}
+
+func (o WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuOutput) ToWebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutputWithContext(ctx context.Context) WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpu) *WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpu {
+		return &v
+	}).(WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutput)
+}
+
+func (o WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpu) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+func (o WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuOutput) Percentage() pulumi.IntOutput {
+	return o.ApplyT(func(v WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpu) int { return v.Percentage }).(pulumi.IntOutput)
+}
+
+type WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutput struct{ *pulumi.OutputState }
+
+func (WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpu)(nil)).Elem()
+}
+
+func (o WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutput) ToWebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutput() WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutput {
+	return o
+}
+
+func (o WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutput) ToWebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutputWithContext(ctx context.Context) WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutput {
+	return o
+}
+
+func (o WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutput) Elem() WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuOutput {
+	return o.ApplyT(func(v *WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpu) WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpu {
+		if v != nil {
+			return *v
+		}
+		var ret WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpu
+		return ret
+	}).(WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuOutput)
+}
+
+func (o WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpu) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+func (o WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutput) Percentage() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpu) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Percentage
+	}).(pulumi.IntPtrOutput)
+}
+
+type WebServiceDetailspropertiesdisk struct {
+	Id        string `pulumi:"id"`
+	MountPath string `pulumi:"mountPath"`
+	Name      string `pulumi:"name"`
+	SizeGB    int    `pulumi:"sizeGB"`
+}
+
+type WebServiceDetailspropertiesdiskOutput struct{ *pulumi.OutputState }
+
+func (WebServiceDetailspropertiesdiskOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceDetailspropertiesdisk)(nil)).Elem()
+}
+
+func (o WebServiceDetailspropertiesdiskOutput) ToWebServiceDetailspropertiesdiskOutput() WebServiceDetailspropertiesdiskOutput {
+	return o
+}
+
+func (o WebServiceDetailspropertiesdiskOutput) ToWebServiceDetailspropertiesdiskOutputWithContext(ctx context.Context) WebServiceDetailspropertiesdiskOutput {
+	return o
+}
+
+func (o WebServiceDetailspropertiesdiskOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v WebServiceDetailspropertiesdisk) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o WebServiceDetailspropertiesdiskOutput) MountPath() pulumi.StringOutput {
+	return o.ApplyT(func(v WebServiceDetailspropertiesdisk) string { return v.MountPath }).(pulumi.StringOutput)
+}
+
+func (o WebServiceDetailspropertiesdiskOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v WebServiceDetailspropertiesdisk) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o WebServiceDetailspropertiesdiskOutput) SizeGB() pulumi.IntOutput {
+	return o.ApplyT(func(v WebServiceDetailspropertiesdisk) int { return v.SizeGB }).(pulumi.IntOutput)
+}
+
+type WebServiceDetailspropertiesdiskPtrOutput struct{ *pulumi.OutputState }
+
+func (WebServiceDetailspropertiesdiskPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebServiceDetailspropertiesdisk)(nil)).Elem()
+}
+
+func (o WebServiceDetailspropertiesdiskPtrOutput) ToWebServiceDetailspropertiesdiskPtrOutput() WebServiceDetailspropertiesdiskPtrOutput {
+	return o
+}
+
+func (o WebServiceDetailspropertiesdiskPtrOutput) ToWebServiceDetailspropertiesdiskPtrOutputWithContext(ctx context.Context) WebServiceDetailspropertiesdiskPtrOutput {
+	return o
+}
+
+func (o WebServiceDetailspropertiesdiskPtrOutput) Elem() WebServiceDetailspropertiesdiskOutput {
+	return o.ApplyT(func(v *WebServiceDetailspropertiesdisk) WebServiceDetailspropertiesdisk {
+		if v != nil {
+			return *v
+		}
+		var ret WebServiceDetailspropertiesdisk
+		return ret
+	}).(WebServiceDetailspropertiesdiskOutput)
+}
+
+func (o WebServiceDetailspropertiesdiskPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailspropertiesdisk) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WebServiceDetailspropertiesdiskPtrOutput) MountPath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailspropertiesdisk) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.MountPath
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WebServiceDetailspropertiesdiskPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailspropertiesdisk) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WebServiceDetailspropertiesdiskPtrOutput) SizeGB() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailspropertiesdisk) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.SizeGB
+	}).(pulumi.IntPtrOutput)
+}
+
 type WebServiceOutputType struct {
-	AutoDeploy     ServiceAutoDeploy        `pulumi:"autoDeploy"`
-	Branch         *string                  `pulumi:"branch"`
-	BuildFilter    *BuildFilter             `pulumi:"buildFilter"`
-	CreatedAt      string                   `pulumi:"createdAt"`
-	Id             string                   `pulumi:"id"`
-	ImagePath      *string                  `pulumi:"imagePath"`
-	Name           string                   `pulumi:"name"`
-	NotifyOnFail   ServiceNotifyOnFail      `pulumi:"notifyOnFail"`
-	OwnerId        string                   `pulumi:"ownerId"`
-	Repo           *string                  `pulumi:"repo"`
-	RootDir        string                   `pulumi:"rootDir"`
-	ServiceDetails *WebServiceDetailsOutput `pulumi:"serviceDetails"`
-	Slug           string                   `pulumi:"slug"`
-	Suspended      ServiceSuspended         `pulumi:"suspended"`
-	Suspenders     []ServiceSuspendersItem  `pulumi:"suspenders"`
-	Type           *string                  `pulumi:"type"`
-	UpdatedAt      string                   `pulumi:"updatedAt"`
+	AutoDeploy  ServiceAutoDeploy `pulumi:"autoDeploy"`
+	Branch      *string           `pulumi:"branch"`
+	BuildFilter *BuildFilter      `pulumi:"buildFilter"`
+	CreatedAt   string            `pulumi:"createdAt"`
+	// The URL to view the service in the Render Dashboard
+	DashboardUrl       string                     `pulumi:"dashboardUrl"`
+	EnvironmentId      *string                    `pulumi:"environmentId"`
+	Id                 string                     `pulumi:"id"`
+	ImagePath          *string                    `pulumi:"imagePath"`
+	Name               string                     `pulumi:"name"`
+	NotifyOnFail       ServiceNotifyOnFail        `pulumi:"notifyOnFail"`
+	OwnerId            string                     `pulumi:"ownerId"`
+	RegistryCredential *RegistryCredentialSummary `pulumi:"registryCredential"`
+	Repo               *string                    `pulumi:"repo"`
+	RootDir            string                     `pulumi:"rootDir"`
+	ServiceDetails     *WebServiceDetailsOutput   `pulumi:"serviceDetails"`
+	Slug               string                     `pulumi:"slug"`
+	Suspended          ServiceSuspended           `pulumi:"suspended"`
+	Suspenders         []ServiceSuspendersItem    `pulumi:"suspenders"`
+	Type               *string                    `pulumi:"type"`
+	UpdatedAt          string                     `pulumi:"updatedAt"`
 }
 
 // Defaults sets the appropriate defaults for WebServiceOutputType
@@ -8031,6 +9470,9 @@ func (val *WebServiceOutputType) Defaults() *WebServiceOutputType {
 		return nil
 	}
 	tmp := *val
+	if internal.IsZero(tmp.AutoDeploy) {
+		tmp.AutoDeploy = ServiceAutoDeploy("yes")
+	}
 	tmp.ServiceDetails = tmp.ServiceDetails.Defaults()
 
 	if tmp.Type == nil {
@@ -8070,6 +9512,15 @@ func (o WebServiceOutputTypeOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v WebServiceOutputType) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// The URL to view the service in the Render Dashboard
+func (o WebServiceOutputTypeOutput) DashboardUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v WebServiceOutputType) string { return v.DashboardUrl }).(pulumi.StringOutput)
+}
+
+func (o WebServiceOutputTypeOutput) EnvironmentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WebServiceOutputType) *string { return v.EnvironmentId }).(pulumi.StringPtrOutput)
+}
+
 func (o WebServiceOutputTypeOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v WebServiceOutputType) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -8088,6 +9539,10 @@ func (o WebServiceOutputTypeOutput) NotifyOnFail() ServiceNotifyOnFailOutput {
 
 func (o WebServiceOutputTypeOutput) OwnerId() pulumi.StringOutput {
 	return o.ApplyT(func(v WebServiceOutputType) string { return v.OwnerId }).(pulumi.StringOutput)
+}
+
+func (o WebServiceOutputTypeOutput) RegistryCredential() RegistryCredentialSummaryPtrOutput {
+	return o.ApplyT(func(v WebServiceOutputType) *RegistryCredentialSummary { return v.RegistryCredential }).(RegistryCredentialSummaryPtrOutput)
 }
 
 func (o WebServiceOutputTypeOutput) Repo() pulumi.StringPtrOutput {
@@ -8182,6 +9637,25 @@ func (o WebServiceOutputTypePtrOutput) CreatedAt() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// The URL to view the service in the Render Dashboard
+func (o WebServiceOutputTypePtrOutput) DashboardUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebServiceOutputType) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.DashboardUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WebServiceOutputTypePtrOutput) EnvironmentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebServiceOutputType) *string {
+		if v == nil {
+			return nil
+		}
+		return v.EnvironmentId
+	}).(pulumi.StringPtrOutput)
+}
+
 func (o WebServiceOutputTypePtrOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WebServiceOutputType) *string {
 		if v == nil {
@@ -8225,6 +9699,15 @@ func (o WebServiceOutputTypePtrOutput) OwnerId() pulumi.StringPtrOutput {
 		}
 		return &v.OwnerId
 	}).(pulumi.StringPtrOutput)
+}
+
+func (o WebServiceOutputTypePtrOutput) RegistryCredential() RegistryCredentialSummaryPtrOutput {
+	return o.ApplyT(func(v *WebServiceOutputType) *RegistryCredentialSummary {
+		if v == nil {
+			return nil
+		}
+		return v.RegistryCredential
+	}).(RegistryCredentialSummaryPtrOutput)
 }
 
 func (o WebServiceOutputTypePtrOutput) Repo() pulumi.StringPtrOutput {
@@ -8299,53 +9782,218 @@ func (o WebServiceOutputTypePtrOutput) UpdatedAt() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema struct {
+	CreatedAt    string                                                                                  `pulumi:"createdAt"`
+	FinishedAt   *string                                                                                 `pulumi:"finishedAt"`
+	Id           string                                                                                  `pulumi:"id"`
+	PlanId       string                                                                                  `pulumi:"planId"`
+	ServiceId    string                                                                                  `pulumi:"serviceId"`
+	StartCommand string                                                                                  `pulumi:"startCommand"`
+	StartedAt    *string                                                                                 `pulumi:"startedAt"`
+	Status       *Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus `pulumi:"status"`
+}
+
+type Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaOutput struct{ *pulumi.OutputState }
+
+func (Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema)(nil)).Elem()
+}
+
+func (o Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaOutput) ToPaths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaOutput() Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaOutput {
+	return o
+}
+
+func (o Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaOutput) ToPaths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaOutputWithContext(ctx context.Context) Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaOutput {
+	return o
+}
+
+func (o Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema) string {
+		return v.CreatedAt
+	}).(pulumi.StringOutput)
+}
+
+func (o Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaOutput) FinishedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema) *string {
+		return v.FinishedAt
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema) string {
+		return v.Id
+	}).(pulumi.StringOutput)
+}
+
+func (o Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaOutput) PlanId() pulumi.StringOutput {
+	return o.ApplyT(func(v Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema) string {
+		return v.PlanId
+	}).(pulumi.StringOutput)
+}
+
+func (o Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaOutput) ServiceId() pulumi.StringOutput {
+	return o.ApplyT(func(v Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema) string {
+		return v.ServiceId
+	}).(pulumi.StringOutput)
+}
+
+func (o Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaOutput) StartCommand() pulumi.StringOutput {
+	return o.ApplyT(func(v Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema) string {
+		return v.StartCommand
+	}).(pulumi.StringOutput)
+}
+
+func (o Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaOutput) StartedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema) *string {
+		return v.StartedAt
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaOutput) Status() Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusPtrOutput {
+	return o.ApplyT(func(v Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema) *Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus {
+		return v.Status
+	}).(Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusPtrOutput)
+}
+
+type Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaPtrOutput struct{ *pulumi.OutputState }
+
+func (Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema)(nil)).Elem()
+}
+
+func (o Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaPtrOutput) ToPaths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaPtrOutput() Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaPtrOutput {
+	return o
+}
+
+func (o Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaPtrOutput) ToPaths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaPtrOutputWithContext(ctx context.Context) Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaPtrOutput {
+	return o
+}
+
+func (o Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaPtrOutput) Elem() Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaOutput {
+	return o.ApplyT(func(v *Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema) Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema {
+		if v != nil {
+			return *v
+		}
+		var ret Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema
+		return ret
+	}).(Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaOutput)
+}
+
+func (o Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaPtrOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.CreatedAt
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaPtrOutput) FinishedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FinishedAt
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaPtrOutput) PlanId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.PlanId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaPtrOutput) ServiceId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ServiceId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaPtrOutput) StartCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.StartCommand
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaPtrOutput) StartedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema) *string {
+		if v == nil {
+			return nil
+		}
+		return v.StartedAt
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaPtrOutput) Status() Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusPtrOutput {
+	return o.ApplyT(func(v *Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema) *Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus {
+		if v == nil {
+			return nil
+		}
+		return v.Status
+	}).(Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusPtrOutput)
+}
+
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*AutoscalingCriteriaInput)(nil)).Elem(), AutoscalingCriteriaArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AutoscalingCriteriaPercentageInput)(nil)).Elem(), AutoscalingCriteriaPercentageArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BackgroundWorkerDetailsCreateInput)(nil)).Elem(), BackgroundWorkerDetailsCreateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BackgroundWorkerDetailsCreatePtrInput)(nil)).Elem(), BackgroundWorkerDetailsCreateArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*BackgroundWorkerDetailsCreateDiskPropertiesInput)(nil)).Elem(), BackgroundWorkerDetailsCreateDiskPropertiesArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*BackgroundWorkerDetailsCreateDiskPropertiesPtrInput)(nil)).Elem(), BackgroundWorkerDetailsCreateDiskPropertiesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BuildFilterInput)(nil)).Elem(), BuildFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BuildFilterPtrInput)(nil)).Elem(), BuildFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CriteriaPropertiesInput)(nil)).Elem(), CriteriaPropertiesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CriteriaPropertiesCpuPropertiesInput)(nil)).Elem(), CriteriaPropertiesCpuPropertiesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CronJobDetailsCreateInput)(nil)).Elem(), CronJobDetailsCreateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CronJobDetailsCreatePtrInput)(nil)).Elem(), CronJobDetailsCreateArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DockerDetailsInput)(nil)).Elem(), DockerDetailsArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DockerDetailsPtrInput)(nil)).Elem(), DockerDetailsArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EnvVarKeyGenerateValueInput)(nil)).Elem(), EnvVarKeyGenerateValueArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EnvVarKeyValueInput)(nil)).Elem(), EnvVarKeyValueArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*HeaderCreateInput)(nil)).Elem(), HeaderCreateArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*HeaderCreateArrayInput)(nil)).Elem(), HeaderCreateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvSpecificDetailsInput)(nil)).Elem(), EnvSpecificDetailsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvSpecificDetailsPtrInput)(nil)).Elem(), EnvSpecificDetailsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvSpecificDetailsCreateInput)(nil)).Elem(), EnvSpecificDetailsCreateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvSpecificDetailsCreatePtrInput)(nil)).Elem(), EnvSpecificDetailsCreateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvVarInputTypeInput)(nil)).Elem(), EnvVarInputTypeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvVarInputTypeArrayInput)(nil)).Elem(), EnvVarInputTypeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*HeaderInputTypeInput)(nil)).Elem(), HeaderInputTypeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*HeaderInputTypeArrayInput)(nil)).Elem(), HeaderInputTypeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ImageInput)(nil)).Elem(), ImageArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ImagePtrInput)(nil)).Elem(), ImageArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*NativeEnvironmentDetailsInput)(nil)).Elem(), NativeEnvironmentDetailsArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*NativeEnvironmentDetailsPtrInput)(nil)).Elem(), NativeEnvironmentDetailsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceDetailsCreateInput)(nil)).Elem(), PrivateServiceDetailsCreateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceDetailsCreatePtrInput)(nil)).Elem(), PrivateServiceDetailsCreateArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceDetailsCreateDiskPropertiesInput)(nil)).Elem(), PrivateServiceDetailsCreateDiskPropertiesArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceDetailsCreateDiskPropertiesPtrInput)(nil)).Elem(), PrivateServiceDetailsCreateDiskPropertiesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistryCredentialInput)(nil)).Elem(), RegistryCredentialArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistryCredentialPtrInput)(nil)).Elem(), RegistryCredentialArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*RouteInput)(nil)).Elem(), RouteArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*RouteArrayInput)(nil)).Elem(), RouteArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*SecretFileInput)(nil)).Elem(), SecretFileArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*SecretFileArrayInput)(nil)).Elem(), SecretFileArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouteCreateInput)(nil)).Elem(), RouteCreateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouteCreateArrayInput)(nil)).Elem(), RouteCreateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretFileInputTypeInput)(nil)).Elem(), SecretFileInputTypeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretFileInputTypeArrayInput)(nil)).Elem(), SecretFileInputTypeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceDiskInput)(nil)).Elem(), ServiceDiskArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceDiskPtrInput)(nil)).Elem(), ServiceDiskArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteDetailsCreateInput)(nil)).Elem(), StaticSiteDetailsCreateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteDetailsCreatePtrInput)(nil)).Elem(), StaticSiteDetailsCreateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceDetailsCreateInput)(nil)).Elem(), WebServiceDetailsCreateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceDetailsCreatePtrInput)(nil)).Elem(), WebServiceDetailsCreateArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceDetailsCreateDiskPropertiesInput)(nil)).Elem(), WebServiceDetailsCreateDiskPropertiesArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceDetailsCreateDiskPropertiesPtrInput)(nil)).Elem(), WebServiceDetailsCreateDiskPropertiesArgs{})
-	pulumi.RegisterOutputType(AutoscalingConfigOutput{})
-	pulumi.RegisterOutputType(AutoscalingConfigPtrOutput{})
-	pulumi.RegisterOutputType(AutoscalingCriteriaOutput{})
-	pulumi.RegisterOutputType(AutoscalingCriteriaPtrOutput{})
-	pulumi.RegisterOutputType(AutoscalingCriteriaPercentageOutput{})
-	pulumi.RegisterOutputType(AutoscalingCriteriaPercentagePtrOutput{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceDetailspropertiesautoscalingInput)(nil)).Elem(), WebServiceDetailspropertiesautoscalingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceDetailspropertiesautoscalingPtrInput)(nil)).Elem(), WebServiceDetailspropertiesautoscalingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceDetailspropertiesautoscalingCriteriaPropertiesInput)(nil)).Elem(), WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrInput)(nil)).Elem(), WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesInput)(nil)).Elem(), WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrInput)(nil)).Elem(), WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuInput)(nil)).Elem(), WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrInput)(nil)).Elem(), WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs{})
 	pulumi.RegisterOutputType(BackgroundWorkerDetailsCreateOutput{})
 	pulumi.RegisterOutputType(BackgroundWorkerDetailsCreatePtrOutput{})
-	pulumi.RegisterOutputType(BackgroundWorkerDetailsCreateDiskPropertiesOutput{})
-	pulumi.RegisterOutputType(BackgroundWorkerDetailsCreateDiskPropertiesPtrOutput{})
 	pulumi.RegisterOutputType(BackgroundWorkerDetailsOutputOutput{})
 	pulumi.RegisterOutputType(BackgroundWorkerDetailsOutputPtrOutput{})
 	pulumi.RegisterOutputType(BackgroundWorkerOutputTypeOutput{})
@@ -8354,6 +10002,8 @@ func init() {
 	pulumi.RegisterOutputType(BuildFilterPtrOutput{})
 	pulumi.RegisterOutputType(CommitPropertiesOutput{})
 	pulumi.RegisterOutputType(CommitPropertiesPtrOutput{})
+	pulumi.RegisterOutputType(CriteriaPropertiesOutput{})
+	pulumi.RegisterOutputType(CriteriaPropertiesCpuPropertiesOutput{})
 	pulumi.RegisterOutputType(CronJobDetailsCreateOutput{})
 	pulumi.RegisterOutputType(CronJobDetailsCreatePtrOutput{})
 	pulumi.RegisterOutputType(CronJobDetailsOutputOutput{})
@@ -8361,22 +10011,23 @@ func init() {
 	pulumi.RegisterOutputType(CronJobOutputTypeOutput{})
 	pulumi.RegisterOutputType(CronJobOutputTypePtrOutput{})
 	pulumi.RegisterOutputType(CustomDomainTypeOutput{})
-	pulumi.RegisterOutputType(CustomDomainTypePtrOutput{})
 	pulumi.RegisterOutputType(CustomDomainServerPropertiesOutput{})
 	pulumi.RegisterOutputType(CustomDomainServerPropertiesPtrOutput{})
+	pulumi.RegisterOutputType(CustomDomainWithCursorOutput{})
+	pulumi.RegisterOutputType(CustomDomainWithCursorArrayOutput{})
 	pulumi.RegisterOutputType(DeployTypeOutput{})
 	pulumi.RegisterOutputType(DeployTypePtrOutput{})
 	pulumi.RegisterOutputType(DeployCommitPropertiesOutput{})
 	pulumi.RegisterOutputType(DeployCommitPropertiesPtrOutput{})
 	pulumi.RegisterOutputType(DeployImagePropertiesOutput{})
 	pulumi.RegisterOutputType(DeployImagePropertiesPtrOutput{})
-	pulumi.RegisterOutputType(DiskOutput{})
-	pulumi.RegisterOutputType(DiskPtrOutput{})
-	pulumi.RegisterOutputType(DockerDetailsOutput{})
-	pulumi.RegisterOutputType(DockerDetailsPtrOutput{})
+	pulumi.RegisterOutputType(EnvSpecificDetailsOutput{})
+	pulumi.RegisterOutputType(EnvSpecificDetailsPtrOutput{})
+	pulumi.RegisterOutputType(EnvSpecificDetailsCreateOutput{})
+	pulumi.RegisterOutputType(EnvSpecificDetailsCreatePtrOutput{})
 	pulumi.RegisterOutputType(EnvVarOutput{})
-	pulumi.RegisterOutputType(EnvVarKeyGenerateValueOutput{})
-	pulumi.RegisterOutputType(EnvVarKeyValueOutput{})
+	pulumi.RegisterOutputType(EnvVarInputTypeOutput{})
+	pulumi.RegisterOutputType(EnvVarInputTypeArrayOutput{})
 	pulumi.RegisterOutputType(EnvVarWithCursorOutput{})
 	pulumi.RegisterOutputType(EnvVarWithCursorArrayOutput{})
 	pulumi.RegisterOutputType(GetBackgroundWorkerTypeOutput{})
@@ -8384,51 +10035,51 @@ func init() {
 	pulumi.RegisterOutputType(GetPrivateServiceTypeOutput{})
 	pulumi.RegisterOutputType(GetStaticSiteTypeOutput{})
 	pulumi.RegisterOutputType(GetWebServiceTypeOutput{})
-	pulumi.RegisterOutputType(HeaderOutput{})
-	pulumi.RegisterOutputType(HeaderPtrOutput{})
-	pulumi.RegisterOutputType(HeaderCreateOutput{})
-	pulumi.RegisterOutputType(HeaderCreateArrayOutput{})
+	pulumi.RegisterOutputType(HeaderTypeOutput{})
+	pulumi.RegisterOutputType(HeaderTypePtrOutput{})
+	pulumi.RegisterOutputType(HeaderInputTypeOutput{})
+	pulumi.RegisterOutputType(HeaderInputTypeArrayOutput{})
+	pulumi.RegisterOutputType(HeaderWithCursorOutput{})
+	pulumi.RegisterOutputType(HeaderWithCursorArrayOutput{})
 	pulumi.RegisterOutputType(ImageOutput{})
 	pulumi.RegisterOutputType(ImagePtrOutput{})
 	pulumi.RegisterOutputType(ImagePropertiesOutput{})
 	pulumi.RegisterOutputType(ImagePropertiesPtrOutput{})
 	pulumi.RegisterOutputType(JobTypeOutput{})
-	pulumi.RegisterOutputType(JobTypePtrOutput{})
-	pulumi.RegisterOutputType(ListCustomDomainsItemPropertiesOutput{})
-	pulumi.RegisterOutputType(ListCustomDomainsItemPropertiesArrayOutput{})
 	pulumi.RegisterOutputType(ListDeploysItemPropertiesOutput{})
 	pulumi.RegisterOutputType(ListDeploysItemPropertiesArrayOutput{})
 	pulumi.RegisterOutputType(ListJobItemPropertiesOutput{})
 	pulumi.RegisterOutputType(ListJobItemPropertiesArrayOutput{})
-	pulumi.RegisterOutputType(ListRetrieveHeadersItemPropertiesOutput{})
-	pulumi.RegisterOutputType(ListRetrieveHeadersItemPropertiesArrayOutput{})
-	pulumi.RegisterOutputType(ListRetrieveRoutesItemPropertiesOutput{})
-	pulumi.RegisterOutputType(ListRetrieveRoutesItemPropertiesArrayOutput{})
 	pulumi.RegisterOutputType(ListServicesResponseOutput{})
 	pulumi.RegisterOutputType(ListServicesResponseArrayOutput{})
-	pulumi.RegisterOutputType(NativeEnvironmentDetailsOutput{})
-	pulumi.RegisterOutputType(NativeEnvironmentDetailsPtrOutput{})
 	pulumi.RegisterOutputType(PrivateServiceDetailsCreateOutput{})
 	pulumi.RegisterOutputType(PrivateServiceDetailsCreatePtrOutput{})
-	pulumi.RegisterOutputType(PrivateServiceDetailsCreateDiskPropertiesOutput{})
-	pulumi.RegisterOutputType(PrivateServiceDetailsCreateDiskPropertiesPtrOutput{})
 	pulumi.RegisterOutputType(PrivateServiceDetailsOutputOutput{})
 	pulumi.RegisterOutputType(PrivateServiceDetailsOutputPtrOutput{})
 	pulumi.RegisterOutputType(PrivateServiceOutputTypeOutput{})
 	pulumi.RegisterOutputType(PrivateServiceOutputTypePtrOutput{})
 	pulumi.RegisterOutputType(RegistryCredentialOutput{})
 	pulumi.RegisterOutputType(RegistryCredentialPtrOutput{})
+	pulumi.RegisterOutputType(RegistryCredentialSummaryOutput{})
+	pulumi.RegisterOutputType(RegistryCredentialSummaryPtrOutput{})
 	pulumi.RegisterOutputType(ResourceOutput{})
 	pulumi.RegisterOutputType(ResourcePtrOutput{})
-	pulumi.RegisterOutputType(RouteOutput{})
-	pulumi.RegisterOutputType(RoutePtrOutput{})
-	pulumi.RegisterOutputType(RouteArrayOutput{})
+	pulumi.RegisterOutputType(RouteTypeOutput{})
+	pulumi.RegisterOutputType(RouteCreateOutput{})
+	pulumi.RegisterOutputType(RouteCreateArrayOutput{})
+	pulumi.RegisterOutputType(RouteWithCursorOutput{})
+	pulumi.RegisterOutputType(RouteWithCursorArrayOutput{})
 	pulumi.RegisterOutputType(SecretFileOutput{})
-	pulumi.RegisterOutputType(SecretFileArrayOutput{})
+	pulumi.RegisterOutputType(SecretFileInputTypeOutput{})
+	pulumi.RegisterOutputType(SecretFileInputTypeArrayOutput{})
+	pulumi.RegisterOutputType(SecretFileWithCursorOutput{})
+	pulumi.RegisterOutputType(SecretFileWithCursorArrayOutput{})
 	pulumi.RegisterOutputType(ServerPortOutput{})
 	pulumi.RegisterOutputType(ServerPortArrayOutput{})
 	pulumi.RegisterOutputType(ServiceOutput{})
 	pulumi.RegisterOutputType(ServicePtrOutput{})
+	pulumi.RegisterOutputType(ServiceDiskOutput{})
+	pulumi.RegisterOutputType(ServiceDiskPtrOutput{})
 	pulumi.RegisterOutputType(StaticSiteDetailsCreateOutput{})
 	pulumi.RegisterOutputType(StaticSiteDetailsCreatePtrOutput{})
 	pulumi.RegisterOutputType(StaticSiteDetailsOutputOutput{})
@@ -8437,10 +10088,28 @@ func init() {
 	pulumi.RegisterOutputType(StaticSiteOutputTypePtrOutput{})
 	pulumi.RegisterOutputType(WebServiceDetailsCreateOutput{})
 	pulumi.RegisterOutputType(WebServiceDetailsCreatePtrOutput{})
-	pulumi.RegisterOutputType(WebServiceDetailsCreateDiskPropertiesOutput{})
-	pulumi.RegisterOutputType(WebServiceDetailsCreateDiskPropertiesPtrOutput{})
 	pulumi.RegisterOutputType(WebServiceDetailsOutputOutput{})
 	pulumi.RegisterOutputType(WebServiceDetailsOutputPtrOutput{})
+	pulumi.RegisterOutputType(WebServiceDetailsOutputAutoscalingPropertiesOutput{})
+	pulumi.RegisterOutputType(WebServiceDetailsOutputAutoscalingPropertiesPtrOutput{})
+	pulumi.RegisterOutputType(WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesOutput{})
+	pulumi.RegisterOutputType(WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesPtrOutput{})
+	pulumi.RegisterOutputType(WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuPropertiesOutput{})
+	pulumi.RegisterOutputType(WebServiceDetailsOutputAutoscalingPropertiesCriteriaPropertiesCpuPropertiesPtrOutput{})
+	pulumi.RegisterOutputType(WebServiceDetailsOutputDiskPropertiesOutput{})
+	pulumi.RegisterOutputType(WebServiceDetailsOutputDiskPropertiesPtrOutput{})
+	pulumi.RegisterOutputType(WebServiceDetailspropertiesautoscalingOutput{})
+	pulumi.RegisterOutputType(WebServiceDetailspropertiesautoscalingPtrOutput{})
+	pulumi.RegisterOutputType(WebServiceDetailspropertiesautoscalingCriteriaPropertiesOutput{})
+	pulumi.RegisterOutputType(WebServiceDetailspropertiesautoscalingCriteriaPropertiesPtrOutput{})
+	pulumi.RegisterOutputType(WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesOutput{})
+	pulumi.RegisterOutputType(WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrOutput{})
+	pulumi.RegisterOutputType(WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuOutput{})
+	pulumi.RegisterOutputType(WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrOutput{})
+	pulumi.RegisterOutputType(WebServiceDetailspropertiesdiskOutput{})
+	pulumi.RegisterOutputType(WebServiceDetailspropertiesdiskPtrOutput{})
 	pulumi.RegisterOutputType(WebServiceOutputTypeOutput{})
 	pulumi.RegisterOutputType(WebServiceOutputTypePtrOutput{})
+	pulumi.RegisterOutputType(Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaOutput{})
+	pulumi.RegisterOutputType(Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaPtrOutput{})
 }

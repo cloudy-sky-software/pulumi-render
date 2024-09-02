@@ -13,14 +13,18 @@ namespace Pulumi.Render.Services.Outputs
     [OutputType]
     public sealed class BackgroundWorkerDetailsOutput
     {
-        public readonly Outputs.AutoscalingConfig? Autoscaling;
-        public readonly string BuildPlan;
-        public readonly Outputs.Disk? Disk;
+        public readonly Outputs.WebServiceDetailspropertiesautoscaling? Autoscaling;
+        public readonly Pulumi.Render.Services.BackgroundWorkerDetailsOutputBuildPlan BuildPlan;
+        public readonly Outputs.WebServiceDetailspropertiesdisk? Disk;
         /// <summary>
-        /// Environment (runtime)
+        /// Runtime
         /// </summary>
         public readonly Pulumi.Render.Services.BackgroundWorkerDetailsOutputEnv Env;
-        public readonly Union<Outputs.DockerDetails, Outputs.NativeEnvironmentDetails> EnvSpecificDetails;
+        public readonly Outputs.EnvSpecificDetails EnvSpecificDetails;
+        /// <summary>
+        /// The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
+        /// </summary>
+        public readonly int? MaxShutdownDelaySeconds;
         /// <summary>
         /// For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
         /// </summary>
@@ -30,20 +34,28 @@ namespace Pulumi.Render.Services.Outputs
         /// The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
         /// </summary>
         public readonly Pulumi.Render.Services.BackgroundWorkerDetailsOutputPlan Plan;
-        public readonly Pulumi.Render.Services.BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled PullRequestPreviewsEnabled;
+        /// <summary>
+        /// Defaults to "no"
+        /// </summary>
+        public readonly Pulumi.Render.Services.BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled? PullRequestPreviewsEnabled;
+        /// <summary>
+        /// Defaults to "oregon"
+        /// </summary>
         public readonly Pulumi.Render.Services.BackgroundWorkerDetailsOutputRegion Region;
 
         [OutputConstructor]
         private BackgroundWorkerDetailsOutput(
-            Outputs.AutoscalingConfig? autoscaling,
+            Outputs.WebServiceDetailspropertiesautoscaling? autoscaling,
 
-            string buildPlan,
+            Pulumi.Render.Services.BackgroundWorkerDetailsOutputBuildPlan buildPlan,
 
-            Outputs.Disk? disk,
+            Outputs.WebServiceDetailspropertiesdisk? disk,
 
             Pulumi.Render.Services.BackgroundWorkerDetailsOutputEnv env,
 
-            Union<Outputs.DockerDetails, Outputs.NativeEnvironmentDetails> envSpecificDetails,
+            Outputs.EnvSpecificDetails envSpecificDetails,
+
+            int? maxShutdownDelaySeconds,
 
             int numInstances,
 
@@ -51,7 +63,7 @@ namespace Pulumi.Render.Services.Outputs
 
             Pulumi.Render.Services.BackgroundWorkerDetailsOutputPlan plan,
 
-            Pulumi.Render.Services.BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled pullRequestPreviewsEnabled,
+            Pulumi.Render.Services.BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled? pullRequestPreviewsEnabled,
 
             Pulumi.Render.Services.BackgroundWorkerDetailsOutputRegion region)
         {
@@ -60,6 +72,7 @@ namespace Pulumi.Render.Services.Outputs
             Disk = disk;
             Env = env;
             EnvSpecificDetails = envSpecificDetails;
+            MaxShutdownDelaySeconds = maxShutdownDelaySeconds;
             NumInstances = numInstances;
             ParentServer = parentServer;
             Plan = plan;

@@ -16,7 +16,7 @@ __all__ = ['EnvVarsForServiceArgs', 'EnvVarsForService']
 @pulumi.input_type
 class EnvVarsForServiceArgs:
     def __init__(__self__, *,
-                 env_vars: Optional[pulumi.Input[Sequence[pulumi.Input[Union['EnvVarKeyValueArgs', 'EnvVarKeyGenerateValueArgs']]]]] = None,
+                 env_vars: Optional[pulumi.Input[Sequence[pulumi.Input['EnvVarInputArgs']]]] = None,
                  service_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a EnvVarsForService resource.
@@ -29,11 +29,11 @@ class EnvVarsForServiceArgs:
 
     @property
     @pulumi.getter(name="envVars")
-    def env_vars(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[Union['EnvVarKeyValueArgs', 'EnvVarKeyGenerateValueArgs']]]]]:
+    def env_vars(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['EnvVarInputArgs']]]]:
         return pulumi.get(self, "env_vars")
 
     @env_vars.setter
-    def env_vars(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[Union['EnvVarKeyValueArgs', 'EnvVarKeyGenerateValueArgs']]]]]):
+    def env_vars(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['EnvVarInputArgs']]]]):
         pulumi.set(self, "env_vars", value)
 
     @property
@@ -54,7 +54,7 @@ class EnvVarsForService(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 env_vars: Optional[pulumi.Input[Sequence[pulumi.Input[Union[Union['EnvVarKeyValueArgs', 'EnvVarKeyValueArgsDict'], Union['EnvVarKeyGenerateValueArgs', 'EnvVarKeyGenerateValueArgsDict']]]]]] = None,
+                 env_vars: Optional[pulumi.Input[Sequence[pulumi.Input[Union['EnvVarInputArgs', 'EnvVarInputArgsDict']]]]] = None,
                  service_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -86,7 +86,7 @@ class EnvVarsForService(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 env_vars: Optional[pulumi.Input[Sequence[pulumi.Input[Union[Union['EnvVarKeyValueArgs', 'EnvVarKeyValueArgsDict'], Union['EnvVarKeyGenerateValueArgs', 'EnvVarKeyGenerateValueArgsDict']]]]]] = None,
+                 env_vars: Optional[pulumi.Input[Sequence[pulumi.Input[Union['EnvVarInputArgs', 'EnvVarInputArgsDict']]]]] = None,
                  service_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -126,6 +126,6 @@ class EnvVarsForService(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="envVars")
-    def env_vars(self) -> pulumi.Output[Optional[Sequence[Any]]]:
+    def env_vars(self) -> pulumi.Output[Optional[Sequence['outputs.EnvVarInput']]]:
         return pulumi.get(self, "env_vars")
 

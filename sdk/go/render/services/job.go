@@ -21,7 +21,7 @@ type Job struct {
 	ServiceId    pulumi.StringOutput    `pulumi:"serviceId"`
 	StartCommand pulumi.StringOutput    `pulumi:"startCommand"`
 	StartedAt    pulumi.StringPtrOutput `pulumi:"startedAt"`
-	Status       pulumi.StringPtrOutput `pulumi:"status"`
+	Status       JobStatusPtrOutput     `pulumi:"status"`
 }
 
 // NewJob registers a new resource with the given unique name, arguments, and options.
@@ -142,8 +142,8 @@ func (o JobOutput) StartedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Job) pulumi.StringPtrOutput { return v.StartedAt }).(pulumi.StringPtrOutput)
 }
 
-func (o JobOutput) Status() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Job) pulumi.StringPtrOutput { return v.Status }).(pulumi.StringPtrOutput)
+func (o JobOutput) Status() JobStatusPtrOutput {
+	return o.ApplyT(func(v *Job) JobStatusPtrOutput { return v.Status }).(JobStatusPtrOutput)
 }
 
 func init() {

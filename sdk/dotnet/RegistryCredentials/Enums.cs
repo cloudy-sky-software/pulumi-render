@@ -7,6 +7,9 @@ using Pulumi;
 
 namespace Pulumi.Render.RegistryCredentials
 {
+    /// <summary>
+    /// The registry to use this credential with
+    /// </summary>
     [EnumType]
     public readonly struct Registry : IEquatable<Registry>
     {
@@ -20,6 +23,7 @@ namespace Pulumi.Render.RegistryCredentials
         public static Registry Github { get; } = new Registry("GITHUB");
         public static Registry Gitlab { get; } = new Registry("GITLAB");
         public static Registry Docker { get; } = new Registry("DOCKER");
+        public static Registry GoogleArtifact { get; } = new Registry("GOOGLE_ARTIFACT");
 
         public static bool operator ==(Registry left, Registry right) => left.Equals(right);
         public static bool operator !=(Registry left, Registry right) => !left.Equals(right);
@@ -52,6 +56,7 @@ namespace Pulumi.Render.RegistryCredentials
         public static RegistryCredentialRegistry Github { get; } = new RegistryCredentialRegistry("GITHUB");
         public static RegistryCredentialRegistry Gitlab { get; } = new RegistryCredentialRegistry("GITLAB");
         public static RegistryCredentialRegistry Docker { get; } = new RegistryCredentialRegistry("DOCKER");
+        public static RegistryCredentialRegistry GoogleArtifact { get; } = new RegistryCredentialRegistry("GOOGLE_ARTIFACT");
 
         public static bool operator ==(RegistryCredentialRegistry left, RegistryCredentialRegistry right) => left.Equals(right);
         public static bool operator !=(RegistryCredentialRegistry left, RegistryCredentialRegistry right) => !left.Equals(right);

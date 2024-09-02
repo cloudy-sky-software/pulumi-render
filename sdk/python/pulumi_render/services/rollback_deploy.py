@@ -20,7 +20,7 @@ class RollbackDeployArgs:
                  service_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a RollbackDeploy resource.
-        :param pulumi.Input[str] deploy_id: The ID of the deploy to rollback to
+        :param pulumi.Input[str] deploy_id: The ID of the deploy to roll back to
         :param pulumi.Input[str] service_id: The ID of the service
         """
         pulumi.set(__self__, "deploy_id", deploy_id)
@@ -31,7 +31,7 @@ class RollbackDeployArgs:
     @pulumi.getter(name="deployId")
     def deploy_id(self) -> pulumi.Input[str]:
         """
-        The ID of the deploy to rollback to
+        The ID of the deploy to roll back to
         """
         return pulumi.get(self, "deploy_id")
 
@@ -64,7 +64,7 @@ class RollbackDeploy(pulumi.CustomResource):
         Create a RollbackDeploy resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] deploy_id: The ID of the deploy to rollback to
+        :param pulumi.Input[str] deploy_id: The ID of the deploy to roll back to
         :param pulumi.Input[str] service_id: The ID of the service
         """
         ...
@@ -158,7 +158,7 @@ class RollbackDeploy(pulumi.CustomResource):
     @pulumi.getter(name="deployId")
     def deploy_id(self) -> pulumi.Output[str]:
         """
-        The ID of the deploy to rollback to
+        The ID of the deploy to roll back to
         """
         return pulumi.get(self, "deploy_id")
 

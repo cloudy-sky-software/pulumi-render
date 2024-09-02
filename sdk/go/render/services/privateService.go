@@ -15,25 +15,29 @@ import (
 type PrivateService struct {
 	pulumi.CustomResourceState
 
-	AutoDeploy     ServiceAutoDeployPtrOutput           `pulumi:"autoDeploy"`
-	Branch         pulumi.StringPtrOutput               `pulumi:"branch"`
-	BuildFilter    BuildFilterPtrOutput                 `pulumi:"buildFilter"`
-	CreatedAt      pulumi.StringPtrOutput               `pulumi:"createdAt"`
-	EnvVars        pulumi.ArrayOutput                   `pulumi:"envVars"`
-	Image          ImagePtrOutput                       `pulumi:"image"`
-	ImagePath      pulumi.StringPtrOutput               `pulumi:"imagePath"`
-	Name           pulumi.StringPtrOutput               `pulumi:"name"`
-	NotifyOnFail   ServiceNotifyOnFailPtrOutput         `pulumi:"notifyOnFail"`
-	OwnerId        pulumi.StringPtrOutput               `pulumi:"ownerId"`
-	Repo           pulumi.StringPtrOutput               `pulumi:"repo"`
-	RootDir        pulumi.StringPtrOutput               `pulumi:"rootDir"`
-	SecretFiles    SecretFileArrayOutput                `pulumi:"secretFiles"`
-	ServiceDetails PrivateServiceDetailsOutputPtrOutput `pulumi:"serviceDetails"`
-	Slug           pulumi.StringPtrOutput               `pulumi:"slug"`
-	Suspended      ServiceSuspendedPtrOutput            `pulumi:"suspended"`
-	Suspenders     ServiceSuspendersItemArrayOutput     `pulumi:"suspenders"`
-	Type           pulumi.StringPtrOutput               `pulumi:"type"`
-	UpdatedAt      pulumi.StringPtrOutput               `pulumi:"updatedAt"`
+	AutoDeploy  ServiceAutoDeployPtrOutput `pulumi:"autoDeploy"`
+	Branch      pulumi.StringPtrOutput     `pulumi:"branch"`
+	BuildFilter BuildFilterPtrOutput       `pulumi:"buildFilter"`
+	CreatedAt   pulumi.StringPtrOutput     `pulumi:"createdAt"`
+	// The URL to view the service in the Render Dashboard
+	DashboardUrl       pulumi.StringPtrOutput               `pulumi:"dashboardUrl"`
+	EnvVars            EnvVarInputTypeArrayOutput           `pulumi:"envVars"`
+	EnvironmentId      pulumi.StringPtrOutput               `pulumi:"environmentId"`
+	Image              ImagePtrOutput                       `pulumi:"image"`
+	ImagePath          pulumi.StringPtrOutput               `pulumi:"imagePath"`
+	Name               pulumi.StringPtrOutput               `pulumi:"name"`
+	NotifyOnFail       ServiceNotifyOnFailPtrOutput         `pulumi:"notifyOnFail"`
+	OwnerId            pulumi.StringPtrOutput               `pulumi:"ownerId"`
+	RegistryCredential RegistryCredentialSummaryPtrOutput   `pulumi:"registryCredential"`
+	Repo               pulumi.StringPtrOutput               `pulumi:"repo"`
+	RootDir            pulumi.StringPtrOutput               `pulumi:"rootDir"`
+	SecretFiles        SecretFileInputTypeArrayOutput       `pulumi:"secretFiles"`
+	ServiceDetails     PrivateServiceDetailsOutputPtrOutput `pulumi:"serviceDetails"`
+	Slug               pulumi.StringPtrOutput               `pulumi:"slug"`
+	Suspended          ServiceSuspendedPtrOutput            `pulumi:"suspended"`
+	Suspenders         ServiceSuspendersItemArrayOutput     `pulumi:"suspenders"`
+	Type               pulumi.StringPtrOutput               `pulumi:"type"`
+	UpdatedAt          pulumi.StringPtrOutput               `pulumi:"updatedAt"`
 }
 
 // NewPrivateService registers a new resource with the given unique name, arguments, and options.
@@ -91,38 +95,36 @@ func (PrivateServiceState) ElementType() reflect.Type {
 }
 
 type privateServiceArgs struct {
-	// Defaults to "yes"
 	AutoDeploy *ServiceCreateAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository
-	Branch      *string       `pulumi:"branch"`
-	BuildFilter *BuildFilter  `pulumi:"buildFilter"`
-	EnvVars     []interface{} `pulumi:"envVars"`
-	Image       *Image        `pulumi:"image"`
-	Name        string        `pulumi:"name"`
-	OwnerId     string        `pulumi:"ownerId"`
+	Branch      *string           `pulumi:"branch"`
+	BuildFilter *BuildFilter      `pulumi:"buildFilter"`
+	EnvVars     []EnvVarInputType `pulumi:"envVars"`
+	Image       *Image            `pulumi:"image"`
+	Name        string            `pulumi:"name"`
+	OwnerId     string            `pulumi:"ownerId"`
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
 	Repo           *string                      `pulumi:"repo"`
 	RootDir        *string                      `pulumi:"rootDir"`
-	SecretFiles    []SecretFile                 `pulumi:"secretFiles"`
+	SecretFiles    []SecretFileInputType        `pulumi:"secretFiles"`
 	ServiceDetails *PrivateServiceDetailsCreate `pulumi:"serviceDetails"`
 	Type           *string                      `pulumi:"type"`
 }
 
 // The set of arguments for constructing a PrivateService resource.
 type PrivateServiceArgs struct {
-	// Defaults to "yes"
 	AutoDeploy ServiceCreateAutoDeployPtrInput
 	// If left empty, this will fall back to the default branch of the repository
 	Branch      pulumi.StringPtrInput
 	BuildFilter BuildFilterPtrInput
-	EnvVars     pulumi.ArrayInput
+	EnvVars     EnvVarInputTypeArrayInput
 	Image       ImagePtrInput
 	Name        pulumi.StringInput
 	OwnerId     pulumi.StringInput
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
 	Repo           pulumi.StringPtrInput
 	RootDir        pulumi.StringPtrInput
-	SecretFiles    SecretFileArrayInput
+	SecretFiles    SecretFileInputTypeArrayInput
 	ServiceDetails PrivateServiceDetailsCreatePtrInput
 	Type           pulumi.StringPtrInput
 }
@@ -180,8 +182,17 @@ func (o PrivateServiceOutput) CreatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PrivateService) pulumi.StringPtrOutput { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
 
-func (o PrivateServiceOutput) EnvVars() pulumi.ArrayOutput {
-	return o.ApplyT(func(v *PrivateService) pulumi.ArrayOutput { return v.EnvVars }).(pulumi.ArrayOutput)
+// The URL to view the service in the Render Dashboard
+func (o PrivateServiceOutput) DashboardUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PrivateService) pulumi.StringPtrOutput { return v.DashboardUrl }).(pulumi.StringPtrOutput)
+}
+
+func (o PrivateServiceOutput) EnvVars() EnvVarInputTypeArrayOutput {
+	return o.ApplyT(func(v *PrivateService) EnvVarInputTypeArrayOutput { return v.EnvVars }).(EnvVarInputTypeArrayOutput)
+}
+
+func (o PrivateServiceOutput) EnvironmentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PrivateService) pulumi.StringPtrOutput { return v.EnvironmentId }).(pulumi.StringPtrOutput)
 }
 
 func (o PrivateServiceOutput) Image() ImagePtrOutput {
@@ -204,6 +215,10 @@ func (o PrivateServiceOutput) OwnerId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PrivateService) pulumi.StringPtrOutput { return v.OwnerId }).(pulumi.StringPtrOutput)
 }
 
+func (o PrivateServiceOutput) RegistryCredential() RegistryCredentialSummaryPtrOutput {
+	return o.ApplyT(func(v *PrivateService) RegistryCredentialSummaryPtrOutput { return v.RegistryCredential }).(RegistryCredentialSummaryPtrOutput)
+}
+
 func (o PrivateServiceOutput) Repo() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PrivateService) pulumi.StringPtrOutput { return v.Repo }).(pulumi.StringPtrOutput)
 }
@@ -212,8 +227,8 @@ func (o PrivateServiceOutput) RootDir() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PrivateService) pulumi.StringPtrOutput { return v.RootDir }).(pulumi.StringPtrOutput)
 }
 
-func (o PrivateServiceOutput) SecretFiles() SecretFileArrayOutput {
-	return o.ApplyT(func(v *PrivateService) SecretFileArrayOutput { return v.SecretFiles }).(SecretFileArrayOutput)
+func (o PrivateServiceOutput) SecretFiles() SecretFileInputTypeArrayOutput {
+	return o.ApplyT(func(v *PrivateService) SecretFileInputTypeArrayOutput { return v.SecretFiles }).(SecretFileInputTypeArrayOutput)
 }
 
 func (o PrivateServiceOutput) ServiceDetails() PrivateServiceDetailsOutputPtrOutput {

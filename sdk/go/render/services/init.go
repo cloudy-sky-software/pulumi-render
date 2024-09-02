@@ -37,6 +37,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Deploy{}
 	case "render:services:EnvVarsForService":
 		r = &EnvVarsForService{}
+	case "render:services:Header":
+		r = &Header{}
 	case "render:services:Job":
 		r = &Job{}
 	case "render:services:PreviewService":
@@ -45,12 +47,16 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &PrivateService{}
 	case "render:services:RefreshCustomDomain":
 		r = &RefreshCustomDomain{}
-	case "render:services:RestartServer":
-		r = &RestartServer{}
+	case "render:services:RestartService":
+		r = &RestartService{}
 	case "render:services:RollbackDeploy":
 		r = &RollbackDeploy{}
+	case "render:services:Route":
+		r = &Route{}
 	case "render:services:ScaleService":
 		r = &ScaleService{}
+	case "render:services:SecretFilesForService":
+		r = &SecretFilesForService{}
 	case "render:services:StaticSite":
 		r = &StaticSite{}
 	case "render:services:SuspendService":

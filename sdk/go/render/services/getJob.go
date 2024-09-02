@@ -29,7 +29,7 @@ type LookupJobArgs struct {
 }
 
 type LookupJobResult struct {
-	Items JobType `pulumi:"items"`
+	Items GetJobProperties `pulumi:"items"`
 }
 
 func LookupJobOutput(ctx *pulumi.Context, args LookupJobOutputArgs, opts ...pulumi.InvokeOption) LookupJobResultOutput {
@@ -70,8 +70,8 @@ func (o LookupJobResultOutput) ToLookupJobResultOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o LookupJobResultOutput) Items() JobTypeOutput {
-	return o.ApplyT(func(v LookupJobResult) JobType { return v.Items }).(JobTypeOutput)
+func (o LookupJobResultOutput) Items() GetJobPropertiesOutput {
+	return o.ApplyT(func(v LookupJobResult) GetJobProperties { return v.Items }).(GetJobPropertiesOutput)
 }
 
 func init() {

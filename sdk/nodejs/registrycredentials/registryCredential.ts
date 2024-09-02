@@ -96,6 +96,9 @@ export interface RegistryCredentialArgs {
     authToken: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     ownerId: pulumi.Input<string>;
+    /**
+     * The registry to use this credential with
+     */
     registry: pulumi.Input<enums.registrycredentials.Registry>;
     username: pulumi.Input<string>;
 }

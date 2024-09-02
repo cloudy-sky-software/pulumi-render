@@ -15,8 +15,8 @@ import (
 type AutoscaleService struct {
 	pulumi.CustomResourceState
 
-	Criteria AutoscalingCriteriaOutput `pulumi:"criteria"`
-	Enabled  pulumi.BoolOutput         `pulumi:"enabled"`
+	Criteria CriteriaPropertiesOutput `pulumi:"criteria"`
+	Enabled  pulumi.BoolOutput        `pulumi:"enabled"`
 	// The maximum number of instances for the service
 	Max pulumi.IntOutput `pulumi:"max"`
 	// The minimum number of instances for the service
@@ -39,7 +39,7 @@ func NewAutoscaleService(ctx *pulumi.Context,
 	if args.Min == nil {
 		return nil, errors.New("invalid value for required argument 'Min'")
 	}
-	args.Criteria = args.Criteria.ToAutoscalingCriteriaOutput().ApplyT(func(v AutoscalingCriteria) AutoscalingCriteria { return *v.Defaults() }).(AutoscalingCriteriaOutput)
+	args.Criteria = args.Criteria.ToCriteriaPropertiesOutput().ApplyT(func(v CriteriaProperties) CriteriaProperties { return *v.Defaults() }).(CriteriaPropertiesOutput)
 	if args.Enabled == nil {
 		args.Enabled = pulumi.Bool(false)
 	}
@@ -76,8 +76,8 @@ func (AutoscaleServiceState) ElementType() reflect.Type {
 }
 
 type autoscaleServiceArgs struct {
-	Criteria AutoscalingCriteria `pulumi:"criteria"`
-	Enabled  bool                `pulumi:"enabled"`
+	Criteria CriteriaProperties `pulumi:"criteria"`
+	Enabled  bool               `pulumi:"enabled"`
 	// The maximum number of instances for the service
 	Max int `pulumi:"max"`
 	// The minimum number of instances for the service
@@ -88,7 +88,7 @@ type autoscaleServiceArgs struct {
 
 // The set of arguments for constructing a AutoscaleService resource.
 type AutoscaleServiceArgs struct {
-	Criteria AutoscalingCriteriaInput
+	Criteria CriteriaPropertiesInput
 	Enabled  pulumi.BoolInput
 	// The maximum number of instances for the service
 	Max pulumi.IntInput
@@ -135,8 +135,8 @@ func (o AutoscaleServiceOutput) ToAutoscaleServiceOutputWithContext(ctx context.
 	return o
 }
 
-func (o AutoscaleServiceOutput) Criteria() AutoscalingCriteriaOutput {
-	return o.ApplyT(func(v *AutoscaleService) AutoscalingCriteriaOutput { return v.Criteria }).(AutoscalingCriteriaOutput)
+func (o AutoscaleServiceOutput) Criteria() CriteriaPropertiesOutput {
+	return o.ApplyT(func(v *AutoscaleService) CriteriaPropertiesOutput { return v.Criteria }).(CriteriaPropertiesOutput)
 }
 
 func (o AutoscaleServiceOutput) Enabled() pulumi.BoolOutput {

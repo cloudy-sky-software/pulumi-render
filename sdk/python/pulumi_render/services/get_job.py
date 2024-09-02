@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._enums import *
 
 __all__ = [
     'GetJobResult',
@@ -26,7 +27,7 @@ class GetJobResult:
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.Job':
+    def items(self) -> 'outputs.GetJobProperties':
         return pulumi.get(self, "items")
 
 

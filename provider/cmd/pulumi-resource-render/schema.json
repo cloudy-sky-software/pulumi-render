@@ -38,10 +38,20 @@
             "rootNamespace": "Pulumi"
         },
         "go": {
-            "importBasePath": "github.com/cloudy-sky-software/pulumi-render/sdk/go/render"
+            "importBasePath": "github.com/cloudy-sky-software/pulumi-render/sdk/go/render",
+            "moduleToPackage": {
+                "cron-jobs": "cronJobs",
+                "env-groups": "envGroups",
+                "notification-settings": "notificationSettings"
+            }
         },
         "nodejs": {
-            "packageName": "@cloudyskysoftware/pulumi-render"
+            "packageName": "@cloudyskysoftware/pulumi-render",
+            "moduleToPackage": {
+                "cron-jobs": "cronjobs",
+                "env-groups": "envgroups",
+                "notification-settings": "notificationsettings"
+            }
         },
         "python": {
             "packageName": "pulumi_render",
@@ -2128,6 +2138,19 @@
                 "name"
             ]
         },
+        "render:postgres:RecoverPostgresSuspended": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Suspended",
+                    "value": "suspended"
+                },
+                {
+                    "name": "NotSuspended",
+                    "value": "not_suspended"
+                }
+            ]
+        },
         "render:postgres:RedisDetailpropertiesmaintenance": {
             "properties": {
                 "id": {
@@ -2276,7 +2299,7 @@
             "type": "string",
             "enum": [
                 {
-                    "name": "Suspended",
+                    "name": "Suspended_",
                     "value": "suspended"
                 },
                 {
@@ -7780,7 +7803,7 @@
                     "$ref": "#/types/render:postgres:Status"
                 },
                 "suspended": {
-                    "$ref": "#/types/render:postgres:Suspended"
+                    "$ref": "#/types/render:postgres:RecoverPostgresSuspended"
                 },
                 "suspenders": {
                     "type": "array",

@@ -8,6 +8,8 @@ import (
 
 	"github.com/getkin/kin-openapi/openapi3"
 
+	gogen "github.com/pulumi/pulumi/pkg/v3/codegen/go"
+	nodejsgen "github.com/pulumi/pulumi/pkg/v3/codegen/nodejs"
 	pschema "github.com/pulumi/pulumi/pkg/v3/codegen/schema"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
@@ -158,11 +160,21 @@ func PulumiSchema(openAPIDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 		// "dictionaryConstructors": true,
 	})
 
-	pkg.Language["go"] = rawMessage(map[string]interface{}{
-		"importBasePath": "github.com/cloudy-sky-software/pulumi-render/sdk/go/render",
+	pkg.Language["go"] = rawMessage(gogen.GoPackageInfo{
+		ImportBasePath: "github.com/cloudy-sky-software/pulumi-render/sdk/go/render",
+		ModuleToPackage: map[string]string{
+			"cron-jobs":             "cronJobs",
+			"env-groups":            "envGroups",
+			"notification-settings": "notificationSettings",
+		},
 	})
-	pkg.Language["nodejs"] = rawMessage(map[string]interface{}{
-		"packageName": "@cloudyskysoftware/pulumi-render",
+	pkg.Language["nodejs"] = rawMessage(nodejsgen.NodePackageInfo{
+		PackageName: "@cloudyskysoftware/pulumi-render",
+		ModuleToPackage: map[string]string{
+			"cron-jobs":             "cronjobs",
+			"env-groups":            "envgroups",
+			"notification-settings": "notificationsettings",
+		},
 	})
 	pkg.Language["python"] = rawMessage(map[string]interface{}{
 		"packageName": "pulumi_render",

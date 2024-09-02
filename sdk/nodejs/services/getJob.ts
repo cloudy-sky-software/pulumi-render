@@ -28,7 +28,7 @@ export interface GetJobArgs {
 }
 
 export interface GetJobResult {
-    readonly items: outputs.services.Job;
+    readonly items: outputs.services.GetJobProperties;
 }
 export function getJobOutput(args: GetJobOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetJobResult> {
     return pulumi.output(args).apply((a: any) => getJob(a, opts))

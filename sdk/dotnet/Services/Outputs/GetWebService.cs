@@ -17,11 +17,17 @@ namespace Pulumi.Render.Services.Outputs
         public readonly string? Branch;
         public readonly Outputs.BuildFilter? BuildFilter;
         public readonly string CreatedAt;
+        /// <summary>
+        /// The URL to view the service in the Render Dashboard
+        /// </summary>
+        public readonly string DashboardUrl;
+        public readonly string? EnvironmentId;
         public readonly string Id;
         public readonly string? ImagePath;
         public readonly string Name;
         public readonly Pulumi.Render.Services.ServiceNotifyOnFail NotifyOnFail;
         public readonly string OwnerId;
+        public readonly Outputs.RegistryCredentialSummary? RegistryCredential;
         public readonly string? Repo;
         public readonly string RootDir;
         public readonly Outputs.WebServiceDetailsOutput? ServiceDetails;
@@ -41,6 +47,10 @@ namespace Pulumi.Render.Services.Outputs
 
             string createdAt,
 
+            string dashboardUrl,
+
+            string? environmentId,
+
             string id,
 
             string? imagePath,
@@ -50,6 +60,8 @@ namespace Pulumi.Render.Services.Outputs
             Pulumi.Render.Services.ServiceNotifyOnFail notifyOnFail,
 
             string ownerId,
+
+            Outputs.RegistryCredentialSummary? registryCredential,
 
             string? repo,
 
@@ -71,11 +83,14 @@ namespace Pulumi.Render.Services.Outputs
             Branch = branch;
             BuildFilter = buildFilter;
             CreatedAt = createdAt;
+            DashboardUrl = dashboardUrl;
+            EnvironmentId = environmentId;
             Id = id;
             ImagePath = imagePath;
             Name = name;
             NotifyOnFail = notifyOnFail;
             OwnerId = ownerId;
+            RegistryCredential = registryCredential;
             Repo = repo;
             RootDir = rootDir;
             ServiceDetails = serviceDetails;

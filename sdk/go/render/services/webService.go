@@ -15,25 +15,29 @@ import (
 type WebService struct {
 	pulumi.CustomResourceState
 
-	AutoDeploy     ServiceAutoDeployPtrOutput       `pulumi:"autoDeploy"`
-	Branch         pulumi.StringPtrOutput           `pulumi:"branch"`
-	BuildFilter    BuildFilterPtrOutput             `pulumi:"buildFilter"`
-	CreatedAt      pulumi.StringPtrOutput           `pulumi:"createdAt"`
-	EnvVars        pulumi.ArrayOutput               `pulumi:"envVars"`
-	Image          ImagePtrOutput                   `pulumi:"image"`
-	ImagePath      pulumi.StringPtrOutput           `pulumi:"imagePath"`
-	Name           pulumi.StringPtrOutput           `pulumi:"name"`
-	NotifyOnFail   ServiceNotifyOnFailPtrOutput     `pulumi:"notifyOnFail"`
-	OwnerId        pulumi.StringPtrOutput           `pulumi:"ownerId"`
-	Repo           pulumi.StringPtrOutput           `pulumi:"repo"`
-	RootDir        pulumi.StringPtrOutput           `pulumi:"rootDir"`
-	SecretFiles    SecretFileArrayOutput            `pulumi:"secretFiles"`
-	ServiceDetails WebServiceDetailsOutputPtrOutput `pulumi:"serviceDetails"`
-	Slug           pulumi.StringPtrOutput           `pulumi:"slug"`
-	Suspended      ServiceSuspendedPtrOutput        `pulumi:"suspended"`
-	Suspenders     ServiceSuspendersItemArrayOutput `pulumi:"suspenders"`
-	Type           pulumi.StringPtrOutput           `pulumi:"type"`
-	UpdatedAt      pulumi.StringPtrOutput           `pulumi:"updatedAt"`
+	AutoDeploy  ServiceAutoDeployPtrOutput `pulumi:"autoDeploy"`
+	Branch      pulumi.StringPtrOutput     `pulumi:"branch"`
+	BuildFilter BuildFilterPtrOutput       `pulumi:"buildFilter"`
+	CreatedAt   pulumi.StringPtrOutput     `pulumi:"createdAt"`
+	// The URL to view the service in the Render Dashboard
+	DashboardUrl       pulumi.StringPtrOutput             `pulumi:"dashboardUrl"`
+	EnvVars            EnvVarInputTypeArrayOutput         `pulumi:"envVars"`
+	EnvironmentId      pulumi.StringPtrOutput             `pulumi:"environmentId"`
+	Image              ImagePtrOutput                     `pulumi:"image"`
+	ImagePath          pulumi.StringPtrOutput             `pulumi:"imagePath"`
+	Name               pulumi.StringPtrOutput             `pulumi:"name"`
+	NotifyOnFail       ServiceNotifyOnFailPtrOutput       `pulumi:"notifyOnFail"`
+	OwnerId            pulumi.StringPtrOutput             `pulumi:"ownerId"`
+	RegistryCredential RegistryCredentialSummaryPtrOutput `pulumi:"registryCredential"`
+	Repo               pulumi.StringPtrOutput             `pulumi:"repo"`
+	RootDir            pulumi.StringPtrOutput             `pulumi:"rootDir"`
+	SecretFiles        SecretFileInputTypeArrayOutput     `pulumi:"secretFiles"`
+	ServiceDetails     WebServiceDetailsOutputPtrOutput   `pulumi:"serviceDetails"`
+	Slug               pulumi.StringPtrOutput             `pulumi:"slug"`
+	Suspended          ServiceSuspendedPtrOutput          `pulumi:"suspended"`
+	Suspenders         ServiceSuspendersItemArrayOutput   `pulumi:"suspenders"`
+	Type               pulumi.StringPtrOutput             `pulumi:"type"`
+	UpdatedAt          pulumi.StringPtrOutput             `pulumi:"updatedAt"`
 }
 
 // NewWebService registers a new resource with the given unique name, arguments, and options.
@@ -91,38 +95,36 @@ func (WebServiceState) ElementType() reflect.Type {
 }
 
 type webServiceArgs struct {
-	// Defaults to "yes"
 	AutoDeploy *ServiceCreateAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository
-	Branch      *string       `pulumi:"branch"`
-	BuildFilter *BuildFilter  `pulumi:"buildFilter"`
-	EnvVars     []interface{} `pulumi:"envVars"`
-	Image       *Image        `pulumi:"image"`
-	Name        string        `pulumi:"name"`
-	OwnerId     string        `pulumi:"ownerId"`
+	Branch      *string           `pulumi:"branch"`
+	BuildFilter *BuildFilter      `pulumi:"buildFilter"`
+	EnvVars     []EnvVarInputType `pulumi:"envVars"`
+	Image       *Image            `pulumi:"image"`
+	Name        string            `pulumi:"name"`
+	OwnerId     string            `pulumi:"ownerId"`
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
 	Repo           *string                  `pulumi:"repo"`
 	RootDir        *string                  `pulumi:"rootDir"`
-	SecretFiles    []SecretFile             `pulumi:"secretFiles"`
+	SecretFiles    []SecretFileInputType    `pulumi:"secretFiles"`
 	ServiceDetails *WebServiceDetailsCreate `pulumi:"serviceDetails"`
 	Type           *string                  `pulumi:"type"`
 }
 
 // The set of arguments for constructing a WebService resource.
 type WebServiceArgs struct {
-	// Defaults to "yes"
 	AutoDeploy ServiceCreateAutoDeployPtrInput
 	// If left empty, this will fall back to the default branch of the repository
 	Branch      pulumi.StringPtrInput
 	BuildFilter BuildFilterPtrInput
-	EnvVars     pulumi.ArrayInput
+	EnvVars     EnvVarInputTypeArrayInput
 	Image       ImagePtrInput
 	Name        pulumi.StringInput
 	OwnerId     pulumi.StringInput
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
 	Repo           pulumi.StringPtrInput
 	RootDir        pulumi.StringPtrInput
-	SecretFiles    SecretFileArrayInput
+	SecretFiles    SecretFileInputTypeArrayInput
 	ServiceDetails WebServiceDetailsCreatePtrInput
 	Type           pulumi.StringPtrInput
 }
@@ -180,8 +182,17 @@ func (o WebServiceOutput) CreatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WebService) pulumi.StringPtrOutput { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
 
-func (o WebServiceOutput) EnvVars() pulumi.ArrayOutput {
-	return o.ApplyT(func(v *WebService) pulumi.ArrayOutput { return v.EnvVars }).(pulumi.ArrayOutput)
+// The URL to view the service in the Render Dashboard
+func (o WebServiceOutput) DashboardUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebService) pulumi.StringPtrOutput { return v.DashboardUrl }).(pulumi.StringPtrOutput)
+}
+
+func (o WebServiceOutput) EnvVars() EnvVarInputTypeArrayOutput {
+	return o.ApplyT(func(v *WebService) EnvVarInputTypeArrayOutput { return v.EnvVars }).(EnvVarInputTypeArrayOutput)
+}
+
+func (o WebServiceOutput) EnvironmentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebService) pulumi.StringPtrOutput { return v.EnvironmentId }).(pulumi.StringPtrOutput)
 }
 
 func (o WebServiceOutput) Image() ImagePtrOutput {
@@ -204,6 +215,10 @@ func (o WebServiceOutput) OwnerId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WebService) pulumi.StringPtrOutput { return v.OwnerId }).(pulumi.StringPtrOutput)
 }
 
+func (o WebServiceOutput) RegistryCredential() RegistryCredentialSummaryPtrOutput {
+	return o.ApplyT(func(v *WebService) RegistryCredentialSummaryPtrOutput { return v.RegistryCredential }).(RegistryCredentialSummaryPtrOutput)
+}
+
 func (o WebServiceOutput) Repo() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WebService) pulumi.StringPtrOutput { return v.Repo }).(pulumi.StringPtrOutput)
 }
@@ -212,8 +227,8 @@ func (o WebServiceOutput) RootDir() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WebService) pulumi.StringPtrOutput { return v.RootDir }).(pulumi.StringPtrOutput)
 }
 
-func (o WebServiceOutput) SecretFiles() SecretFileArrayOutput {
-	return o.ApplyT(func(v *WebService) SecretFileArrayOutput { return v.SecretFiles }).(SecretFileArrayOutput)
+func (o WebServiceOutput) SecretFiles() SecretFileInputTypeArrayOutput {
+	return o.ApplyT(func(v *WebService) SecretFileInputTypeArrayOutput { return v.SecretFiles }).(SecretFileInputTypeArrayOutput)
 }
 
 func (o WebServiceOutput) ServiceDetails() WebServiceDetailsOutputPtrOutput {

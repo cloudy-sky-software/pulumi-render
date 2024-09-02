@@ -22,6 +22,7 @@ class RegistryCredentialArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a RegistryCredential resource.
+        :param pulumi.Input['Registry'] registry: The registry to use this credential with
         """
         pulumi.set(__self__, "auth_token", auth_token)
         pulumi.set(__self__, "owner_id", owner_id)
@@ -51,6 +52,9 @@ class RegistryCredentialArgs:
     @property
     @pulumi.getter
     def registry(self) -> pulumi.Input['Registry']:
+        """
+        The registry to use this credential with
+        """
         return pulumi.get(self, "registry")
 
     @registry.setter
@@ -91,6 +95,7 @@ class RegistryCredential(pulumi.CustomResource):
         Create a RegistryCredential resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input['Registry'] registry: The registry to use this credential with
         """
         ...
     @overload

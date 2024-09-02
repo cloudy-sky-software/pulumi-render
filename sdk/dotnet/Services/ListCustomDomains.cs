@@ -51,10 +51,10 @@ namespace Pulumi.Render.Services
     [OutputType]
     public sealed class ListCustomDomainsResult
     {
-        public readonly ImmutableArray<Outputs.ListCustomDomainsItemProperties> Items;
+        public readonly ImmutableArray<Outputs.CustomDomainWithCursor> Items;
 
         [OutputConstructor]
-        private ListCustomDomainsResult(ImmutableArray<Outputs.ListCustomDomainsItemProperties> items)
+        private ListCustomDomainsResult(ImmutableArray<Outputs.CustomDomainWithCursor> items)
         {
             Items = items;
         }

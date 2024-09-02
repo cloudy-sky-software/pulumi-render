@@ -14,13 +14,13 @@ import (
 type CancelJob struct {
 	pulumi.CustomResourceState
 
-	CreatedAt    pulumi.StringOutput    `pulumi:"createdAt"`
-	FinishedAt   pulumi.StringPtrOutput `pulumi:"finishedAt"`
-	PlanId       pulumi.StringOutput    `pulumi:"planId"`
-	ServiceId    pulumi.StringOutput    `pulumi:"serviceId"`
-	StartCommand pulumi.StringOutput    `pulumi:"startCommand"`
-	StartedAt    pulumi.StringPtrOutput `pulumi:"startedAt"`
-	Status       pulumi.StringPtrOutput `pulumi:"status"`
+	CreatedAt    pulumi.StringOutput      `pulumi:"createdAt"`
+	FinishedAt   pulumi.StringPtrOutput   `pulumi:"finishedAt"`
+	PlanId       pulumi.StringOutput      `pulumi:"planId"`
+	ServiceId    pulumi.StringOutput      `pulumi:"serviceId"`
+	StartCommand pulumi.StringOutput      `pulumi:"startCommand"`
+	StartedAt    pulumi.StringPtrOutput   `pulumi:"startedAt"`
+	Status       CancelJobStatusPtrOutput `pulumi:"status"`
 }
 
 // NewCancelJob registers a new resource with the given unique name, arguments, and options.
@@ -138,8 +138,8 @@ func (o CancelJobOutput) StartedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CancelJob) pulumi.StringPtrOutput { return v.StartedAt }).(pulumi.StringPtrOutput)
 }
 
-func (o CancelJobOutput) Status() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *CancelJob) pulumi.StringPtrOutput { return v.Status }).(pulumi.StringPtrOutput)
+func (o CancelJobOutput) Status() CancelJobStatusPtrOutput {
+	return o.ApplyT(func(v *CancelJob) CancelJobStatusPtrOutput { return v.Status }).(CancelJobStatusPtrOutput)
 }
 
 func init() {

@@ -13,7 +13,7 @@ namespace Pulumi.Render.Services
     public partial class AutoscaleService : global::Pulumi.CustomResource
     {
         [Output("criteria")]
-        public Output<Outputs.AutoscalingCriteria> Criteria { get; private set; } = null!;
+        public Output<Outputs.CriteriaProperties> Criteria { get; private set; } = null!;
 
         [Output("enabled")]
         public Output<bool> Enabled { get; private set; } = null!;
@@ -77,7 +77,7 @@ namespace Pulumi.Render.Services
     public sealed class AutoscaleServiceArgs : global::Pulumi.ResourceArgs
     {
         [Input("criteria", required: true)]
-        public Input<Inputs.AutoscalingCriteriaArgs> Criteria { get; set; } = null!;
+        public Input<Inputs.CriteriaPropertiesArgs> Criteria { get; set; } = null!;
 
         [Input("enabled", required: true)]
         public Input<bool> Enabled { get; set; } = null!;

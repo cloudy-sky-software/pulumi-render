@@ -19,7 +19,7 @@ namespace Pulumi.Render.Services
         public Output<string?> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the deploy to rollback to
+        /// The ID of the deploy to roll back to
         /// </summary>
         [Output("deployId")]
         public Output<string> DeployId { get; private set; } = null!;
@@ -89,7 +89,7 @@ namespace Pulumi.Render.Services
     public sealed class RollbackDeployArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the deploy to rollback to
+        /// The ID of the deploy to roll back to
         /// </summary>
         [Input("deployId", required: true)]
         public Input<string> DeployId { get; set; } = null!;

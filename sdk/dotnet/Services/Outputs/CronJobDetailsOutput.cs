@@ -13,27 +13,30 @@ namespace Pulumi.Render.Services.Outputs
     [OutputType]
     public sealed class CronJobDetailsOutput
     {
-        public readonly string BuildPlan;
+        public readonly Pulumi.Render.Services.CronJobDetailsOutputBuildPlan BuildPlan;
         /// <summary>
-        /// Environment (runtime)
+        /// Runtime
         /// </summary>
         public readonly Pulumi.Render.Services.CronJobDetailsOutputEnv Env;
-        public readonly Union<Outputs.DockerDetails, Outputs.NativeEnvironmentDetails> EnvSpecificDetails;
+        public readonly Outputs.EnvSpecificDetails EnvSpecificDetails;
         public readonly string? LastSuccessfulRunAt;
         /// <summary>
         /// The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
         /// </summary>
         public readonly Pulumi.Render.Services.CronJobDetailsOutputPlan Plan;
+        /// <summary>
+        /// Defaults to "oregon"
+        /// </summary>
         public readonly Pulumi.Render.Services.CronJobDetailsOutputRegion Region;
         public readonly string Schedule;
 
         [OutputConstructor]
         private CronJobDetailsOutput(
-            string buildPlan,
+            Pulumi.Render.Services.CronJobDetailsOutputBuildPlan buildPlan,
 
             Pulumi.Render.Services.CronJobDetailsOutputEnv env,
 
-            Union<Outputs.DockerDetails, Outputs.NativeEnvironmentDetails> envSpecificDetails,
+            Outputs.EnvSpecificDetails envSpecificDetails,
 
             string? lastSuccessfulRunAt,
 

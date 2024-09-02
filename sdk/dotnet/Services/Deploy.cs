@@ -13,7 +13,7 @@ namespace Pulumi.Render.Services
     public partial class Deploy : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Defaults to "do_not_clear"
+        /// If `clear`, Render clears the service's build cache before deploying. This can be useful if you're experiencing issues with your build.
         /// </summary>
         [Output("clearCache")]
         public Output<Pulumi.Render.Services.ClearCache?> ClearCache { get; private set; } = null!;
@@ -22,7 +22,13 @@ namespace Pulumi.Render.Services
         public Output<Outputs.CommitProperties?> Commit { get; private set; } = null!;
 
         /// <summary>
-        /// Specific ID of commit to deploy for a web service, defaults to latest commit. Not supported for Cron Job deploys.
+        /// The SHA of a specific Git commit to deploy for a service. Defaults to the latest commit on the service's connected branch.
+        /// 
+        /// Note that deploying a specific commit with this endpoint does not disable autodeploys for the service.
+        /// 
+        /// You can toggle autodeploys for your service with the [Update service](https://api-docs.render.com/reference/update-service) endpoint or in the Render Dashboard.
+        /// 
+        /// Not supported for cron jobs.
         /// </summary>
         [Output("commitId")]
         public Output<string?> CommitId { get; private set; } = null!;
@@ -40,7 +46,9 @@ namespace Pulumi.Render.Services
         public Output<Outputs.ImageProperties?> Image { get; private set; } = null!;
 
         /// <summary>
-        /// URL of the image to deploy for an image-backed service. The host, repository, and image name must match the currently configured image for the service.
+        /// The URL of the image to deploy for an image-backed service.
+        /// 
+        /// The host, repository, and image name all must match the currently configured image for the service.
         /// </summary>
         [Output("imageUrl")]
         public Output<string?> ImageUrl { get; private set; } = null!;
@@ -101,19 +109,27 @@ namespace Pulumi.Render.Services
     public sealed class DeployArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Defaults to "do_not_clear"
+        /// If `clear`, Render clears the service's build cache before deploying. This can be useful if you're experiencing issues with your build.
         /// </summary>
         [Input("clearCache")]
         public Input<Pulumi.Render.Services.ClearCache>? ClearCache { get; set; }
 
         /// <summary>
-        /// Specific ID of commit to deploy for a web service, defaults to latest commit. Not supported for Cron Job deploys.
+        /// The SHA of a specific Git commit to deploy for a service. Defaults to the latest commit on the service's connected branch.
+        /// 
+        /// Note that deploying a specific commit with this endpoint does not disable autodeploys for the service.
+        /// 
+        /// You can toggle autodeploys for your service with the [Update service](https://api-docs.render.com/reference/update-service) endpoint or in the Render Dashboard.
+        /// 
+        /// Not supported for cron jobs.
         /// </summary>
         [Input("commitId")]
         public Input<string>? CommitId { get; set; }
 
         /// <summary>
-        /// URL of the image to deploy for an image-backed service. The host, repository, and image name must match the currently configured image for the service.
+        /// The URL of the image to deploy for an image-backed service.
+        /// 
+        /// The host, repository, and image name all must match the currently configured image for the service.
         /// </summary>
         [Input("imageUrl")]
         public Input<string>? ImageUrl { get; set; }

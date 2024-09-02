@@ -37,7 +37,7 @@ export class RollbackDeploy extends pulumi.CustomResource {
     public /*out*/ readonly commit!: pulumi.Output<outputs.services.CommitProperties | undefined>;
     public /*out*/ readonly createdAt!: pulumi.Output<string | undefined>;
     /**
-     * The ID of the deploy to rollback to
+     * The ID of the deploy to roll back to
      */
     public readonly deployId!: pulumi.Output<string>;
     public /*out*/ readonly finishedAt!: pulumi.Output<string | undefined>;
@@ -92,7 +92,7 @@ export class RollbackDeploy extends pulumi.CustomResource {
  */
 export interface RollbackDeployArgs {
     /**
-     * The ID of the deploy to rollback to
+     * The ID of the deploy to roll back to
      */
     deployId: pulumi.Input<string>;
     /**

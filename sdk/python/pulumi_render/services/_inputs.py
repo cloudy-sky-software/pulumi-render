@@ -11,197 +11,145 @@ from .. import _utilities
 from ._enums import *
 
 __all__ = [
-    'AutoscalingCriteriaPercentageArgs',
-    'AutoscalingCriteriaArgs',
-    'BackgroundWorkerDetailsCreateDiskPropertiesArgs',
     'BackgroundWorkerDetailsCreateArgs',
     'BuildFilterArgs',
+    'CriteriaPropertiesCpuPropertiesArgs',
+    'CriteriaPropertiesArgs',
     'CronJobDetailsCreateArgs',
-    'DockerDetailsArgs',
-    'EnvVarKeyGenerateValueArgs',
-    'EnvVarKeyValueArgs',
-    'HeaderCreateArgs',
+    'EnvSpecificDetailsCreateArgs',
+    'EnvSpecificDetailsArgs',
+    'EnvVarInputArgs',
+    'HeaderInputArgs',
     'ImageArgs',
-    'NativeEnvironmentDetailsArgs',
-    'PrivateServiceDetailsCreateDiskPropertiesArgs',
     'PrivateServiceDetailsCreateArgs',
-    'RegistryCredentialArgs',
-    'RouteArgs',
-    'SecretFileArgs',
+    'RouteCreateArgs',
+    'SecretFileInputArgs',
+    'ServiceDiskArgs',
     'StaticSiteDetailsCreateArgs',
-    'WebServiceDetailsCreateDiskPropertiesArgs',
     'WebServiceDetailsCreateArgs',
+    'WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs',
+    'WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgs',
+    'WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs',
+    'WebServiceDetailspropertiesautoscalingArgs',
 ]
-
-@pulumi.input_type
-class AutoscalingCriteriaPercentageArgs:
-    def __init__(__self__, *,
-                 enabled: Optional[pulumi.Input[bool]] = None,
-                 percentage: pulumi.Input[int]):
-        """
-        :param pulumi.Input[int] percentage: Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
-        """
-        if enabled is None:
-            enabled = False
-        pulumi.set(__self__, "enabled", enabled)
-        pulumi.set(__self__, "percentage", percentage)
-
-    @property
-    @pulumi.getter
-    def enabled(self) -> pulumi.Input[bool]:
-        return pulumi.get(self, "enabled")
-
-    @enabled.setter
-    def enabled(self, value: pulumi.Input[bool]):
-        pulumi.set(self, "enabled", value)
-
-    @property
-    @pulumi.getter
-    def percentage(self) -> pulumi.Input[int]:
-        """
-        Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
-        """
-        return pulumi.get(self, "percentage")
-
-    @percentage.setter
-    def percentage(self, value: pulumi.Input[int]):
-        pulumi.set(self, "percentage", value)
-
-
-@pulumi.input_type
-class AutoscalingCriteriaArgs:
-    def __init__(__self__, *,
-                 cpu: pulumi.Input['AutoscalingCriteriaPercentageArgs'],
-                 memory: pulumi.Input['AutoscalingCriteriaPercentageArgs']):
-        pulumi.set(__self__, "cpu", cpu)
-        pulumi.set(__self__, "memory", memory)
-
-    @property
-    @pulumi.getter
-    def cpu(self) -> pulumi.Input['AutoscalingCriteriaPercentageArgs']:
-        return pulumi.get(self, "cpu")
-
-    @cpu.setter
-    def cpu(self, value: pulumi.Input['AutoscalingCriteriaPercentageArgs']):
-        pulumi.set(self, "cpu", value)
-
-    @property
-    @pulumi.getter
-    def memory(self) -> pulumi.Input['AutoscalingCriteriaPercentageArgs']:
-        return pulumi.get(self, "memory")
-
-    @memory.setter
-    def memory(self, value: pulumi.Input['AutoscalingCriteriaPercentageArgs']):
-        pulumi.set(self, "memory", value)
-
-
-@pulumi.input_type
-class BackgroundWorkerDetailsCreateDiskPropertiesArgs:
-    def __init__(__self__, *,
-                 mount_path: pulumi.Input[str],
-                 name: pulumi.Input[str],
-                 size_gb: Optional[pulumi.Input[int]] = None):
-        """
-        :param pulumi.Input[int] size_gb: Defaults to 1
-        """
-        pulumi.set(__self__, "mount_path", mount_path)
-        pulumi.set(__self__, "name", name)
-        if size_gb is not None:
-            pulumi.set(__self__, "size_gb", size_gb)
-
-    @property
-    @pulumi.getter(name="mountPath")
-    def mount_path(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "mount_path")
-
-    @mount_path.setter
-    def mount_path(self, value: pulumi.Input[str]):
-        pulumi.set(self, "mount_path", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter(name="sizeGB")
-    def size_gb(self) -> Optional[pulumi.Input[int]]:
-        """
-        Defaults to 1
-        """
-        return pulumi.get(self, "size_gb")
-
-    @size_gb.setter
-    def size_gb(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "size_gb", value)
-
 
 @pulumi.input_type
 class BackgroundWorkerDetailsCreateArgs:
     def __init__(__self__, *,
-                 env: pulumi.Input['BackgroundWorkerDetailsCreateEnv'],
-                 disk: Optional[pulumi.Input['BackgroundWorkerDetailsCreateDiskPropertiesArgs']] = None,
-                 env_specific_details: Optional[pulumi.Input[Union['DockerDetailsArgs', 'NativeEnvironmentDetailsArgs']]] = None,
+                 runtime: pulumi.Input['BackgroundWorkerDetailsCreateRuntime'],
+                 autoscaling: Optional[pulumi.Input['WebServiceDetailspropertiesautoscalingArgs']] = None,
+                 disk: Optional[pulumi.Input['ServiceDiskArgs']] = None,
+                 env: Optional[pulumi.Input['BackgroundWorkerDetailsCreateEnv']] = None,
+                 env_specific_details: Optional[pulumi.Input['EnvSpecificDetailsCreateArgs']] = None,
+                 max_shutdown_delay_seconds: Optional[pulumi.Input[int]] = None,
                  num_instances: Optional[pulumi.Input[int]] = None,
                  plan: Optional[pulumi.Input['BackgroundWorkerDetailsCreatePlan']] = None,
+                 pre_deploy_command: Optional[pulumi.Input[str]] = None,
                  pull_request_previews_enabled: Optional[pulumi.Input['BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled']] = None,
                  region: Optional[pulumi.Input['BackgroundWorkerDetailsCreateRegion']] = None):
         """
-        :param pulumi.Input['BackgroundWorkerDetailsCreateEnv'] env: Environment (runtime)
+        :param pulumi.Input['BackgroundWorkerDetailsCreateRuntime'] runtime: Runtime
+        :param pulumi.Input['BackgroundWorkerDetailsCreateEnv'] env: This field has been deprecated, runtime should be used in its place.
+        :param pulumi.Input[int] max_shutdown_delay_seconds: The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
         :param pulumi.Input[int] num_instances: Defaults to 1
+        :param pulumi.Input['BackgroundWorkerDetailsCreatePlan'] plan: Defaults to "starter"
         :param pulumi.Input['BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled'] pull_request_previews_enabled: Defaults to "no"
+        :param pulumi.Input['BackgroundWorkerDetailsCreateRegion'] region: Defaults to "oregon"
         """
-        pulumi.set(__self__, "env", env)
+        pulumi.set(__self__, "runtime", runtime)
+        if autoscaling is not None:
+            pulumi.set(__self__, "autoscaling", autoscaling)
         if disk is not None:
             pulumi.set(__self__, "disk", disk)
+        if env is not None:
+            pulumi.set(__self__, "env", env)
         if env_specific_details is not None:
             pulumi.set(__self__, "env_specific_details", env_specific_details)
+        if max_shutdown_delay_seconds is None:
+            max_shutdown_delay_seconds = 30
+        if max_shutdown_delay_seconds is not None:
+            pulumi.set(__self__, "max_shutdown_delay_seconds", max_shutdown_delay_seconds)
         if num_instances is None:
             num_instances = 1
         if num_instances is not None:
             pulumi.set(__self__, "num_instances", num_instances)
+        if plan is None:
+            plan = 'starter'
         if plan is not None:
             pulumi.set(__self__, "plan", plan)
+        if pre_deploy_command is not None:
+            pulumi.set(__self__, "pre_deploy_command", pre_deploy_command)
         if pull_request_previews_enabled is None:
             pull_request_previews_enabled = 'no'
         if pull_request_previews_enabled is not None:
             pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
+        if region is None:
+            region = 'oregon'
         if region is not None:
             pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter
-    def env(self) -> pulumi.Input['BackgroundWorkerDetailsCreateEnv']:
+    def runtime(self) -> pulumi.Input['BackgroundWorkerDetailsCreateRuntime']:
         """
-        Environment (runtime)
+        Runtime
+        """
+        return pulumi.get(self, "runtime")
+
+    @runtime.setter
+    def runtime(self, value: pulumi.Input['BackgroundWorkerDetailsCreateRuntime']):
+        pulumi.set(self, "runtime", value)
+
+    @property
+    @pulumi.getter
+    def autoscaling(self) -> Optional[pulumi.Input['WebServiceDetailspropertiesautoscalingArgs']]:
+        return pulumi.get(self, "autoscaling")
+
+    @autoscaling.setter
+    def autoscaling(self, value: Optional[pulumi.Input['WebServiceDetailspropertiesautoscalingArgs']]):
+        pulumi.set(self, "autoscaling", value)
+
+    @property
+    @pulumi.getter
+    def disk(self) -> Optional[pulumi.Input['ServiceDiskArgs']]:
+        return pulumi.get(self, "disk")
+
+    @disk.setter
+    def disk(self, value: Optional[pulumi.Input['ServiceDiskArgs']]):
+        pulumi.set(self, "disk", value)
+
+    @property
+    @pulumi.getter
+    def env(self) -> Optional[pulumi.Input['BackgroundWorkerDetailsCreateEnv']]:
+        """
+        This field has been deprecated, runtime should be used in its place.
         """
         return pulumi.get(self, "env")
 
     @env.setter
-    def env(self, value: pulumi.Input['BackgroundWorkerDetailsCreateEnv']):
+    def env(self, value: Optional[pulumi.Input['BackgroundWorkerDetailsCreateEnv']]):
         pulumi.set(self, "env", value)
 
     @property
-    @pulumi.getter
-    def disk(self) -> Optional[pulumi.Input['BackgroundWorkerDetailsCreateDiskPropertiesArgs']]:
-        return pulumi.get(self, "disk")
-
-    @disk.setter
-    def disk(self, value: Optional[pulumi.Input['BackgroundWorkerDetailsCreateDiskPropertiesArgs']]):
-        pulumi.set(self, "disk", value)
-
-    @property
     @pulumi.getter(name="envSpecificDetails")
-    def env_specific_details(self) -> Optional[pulumi.Input[Union['DockerDetailsArgs', 'NativeEnvironmentDetailsArgs']]]:
+    def env_specific_details(self) -> Optional[pulumi.Input['EnvSpecificDetailsCreateArgs']]:
         return pulumi.get(self, "env_specific_details")
 
     @env_specific_details.setter
-    def env_specific_details(self, value: Optional[pulumi.Input[Union['DockerDetailsArgs', 'NativeEnvironmentDetailsArgs']]]):
+    def env_specific_details(self, value: Optional[pulumi.Input['EnvSpecificDetailsCreateArgs']]):
         pulumi.set(self, "env_specific_details", value)
+
+    @property
+    @pulumi.getter(name="maxShutdownDelaySeconds")
+    def max_shutdown_delay_seconds(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
+        """
+        return pulumi.get(self, "max_shutdown_delay_seconds")
+
+    @max_shutdown_delay_seconds.setter
+    def max_shutdown_delay_seconds(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_shutdown_delay_seconds", value)
 
     @property
     @pulumi.getter(name="numInstances")
@@ -218,11 +166,23 @@ class BackgroundWorkerDetailsCreateArgs:
     @property
     @pulumi.getter
     def plan(self) -> Optional[pulumi.Input['BackgroundWorkerDetailsCreatePlan']]:
+        """
+        Defaults to "starter"
+        """
         return pulumi.get(self, "plan")
 
     @plan.setter
     def plan(self, value: Optional[pulumi.Input['BackgroundWorkerDetailsCreatePlan']]):
         pulumi.set(self, "plan", value)
+
+    @property
+    @pulumi.getter(name="preDeployCommand")
+    def pre_deploy_command(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "pre_deploy_command")
+
+    @pre_deploy_command.setter
+    def pre_deploy_command(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pre_deploy_command", value)
 
     @property
     @pulumi.getter(name="pullRequestPreviewsEnabled")
@@ -239,6 +199,9 @@ class BackgroundWorkerDetailsCreateArgs:
     @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input['BackgroundWorkerDetailsCreateRegion']]:
+        """
+        Defaults to "oregon"
+        """
         return pulumi.get(self, "region")
 
     @region.setter
@@ -274,36 +237,108 @@ class BuildFilterArgs:
 
 
 @pulumi.input_type
+class CriteriaPropertiesCpuPropertiesArgs:
+    def __init__(__self__, *,
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 percentage: pulumi.Input[int]):
+        """
+        :param pulumi.Input[int] percentage: Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+        """
+        if enabled is None:
+            enabled = False
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "percentage", percentage)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter
+    def percentage(self) -> pulumi.Input[int]:
+        """
+        Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+        """
+        return pulumi.get(self, "percentage")
+
+    @percentage.setter
+    def percentage(self, value: pulumi.Input[int]):
+        pulumi.set(self, "percentage", value)
+
+
+@pulumi.input_type
+class CriteriaPropertiesArgs:
+    def __init__(__self__, *,
+                 cpu: pulumi.Input['CriteriaPropertiesCpuPropertiesArgs'],
+                 memory: pulumi.Input['WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs']):
+        pulumi.set(__self__, "cpu", cpu)
+        pulumi.set(__self__, "memory", memory)
+
+    @property
+    @pulumi.getter
+    def cpu(self) -> pulumi.Input['CriteriaPropertiesCpuPropertiesArgs']:
+        return pulumi.get(self, "cpu")
+
+    @cpu.setter
+    def cpu(self, value: pulumi.Input['CriteriaPropertiesCpuPropertiesArgs']):
+        pulumi.set(self, "cpu", value)
+
+    @property
+    @pulumi.getter
+    def memory(self) -> pulumi.Input['WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs']:
+        return pulumi.get(self, "memory")
+
+    @memory.setter
+    def memory(self, value: pulumi.Input['WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs']):
+        pulumi.set(self, "memory", value)
+
+
+@pulumi.input_type
 class CronJobDetailsCreateArgs:
     def __init__(__self__, *,
-                 env: pulumi.Input['CronJobDetailsCreateEnv'],
+                 runtime: pulumi.Input['CronJobDetailsCreateRuntime'],
                  schedule: pulumi.Input[str],
-                 env_specific_details: Optional[pulumi.Input[Union['DockerDetailsArgs', 'NativeEnvironmentDetailsArgs']]] = None,
+                 env: Optional[pulumi.Input['CronJobDetailsCreateEnv']] = None,
+                 env_specific_details: Optional[pulumi.Input['EnvSpecificDetailsArgs']] = None,
                  plan: Optional[pulumi.Input['CronJobDetailsCreatePlan']] = None,
                  region: Optional[pulumi.Input['CronJobDetailsCreateRegion']] = None):
         """
-        :param pulumi.Input['CronJobDetailsCreateEnv'] env: Environment (runtime)
+        :param pulumi.Input['CronJobDetailsCreateRuntime'] runtime: Runtime
+        :param pulumi.Input['CronJobDetailsCreateEnv'] env: This field has been deprecated, runtime should be used in its place.
+        :param pulumi.Input['CronJobDetailsCreatePlan'] plan: Defaults to "starter"
+        :param pulumi.Input['CronJobDetailsCreateRegion'] region: Defaults to "oregon"
         """
-        pulumi.set(__self__, "env", env)
+        pulumi.set(__self__, "runtime", runtime)
         pulumi.set(__self__, "schedule", schedule)
+        if env is not None:
+            pulumi.set(__self__, "env", env)
         if env_specific_details is not None:
             pulumi.set(__self__, "env_specific_details", env_specific_details)
+        if plan is None:
+            plan = 'starter'
         if plan is not None:
             pulumi.set(__self__, "plan", plan)
+        if region is None:
+            region = 'oregon'
         if region is not None:
             pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter
-    def env(self) -> pulumi.Input['CronJobDetailsCreateEnv']:
+    def runtime(self) -> pulumi.Input['CronJobDetailsCreateRuntime']:
         """
-        Environment (runtime)
+        Runtime
         """
-        return pulumi.get(self, "env")
+        return pulumi.get(self, "runtime")
 
-    @env.setter
-    def env(self, value: pulumi.Input['CronJobDetailsCreateEnv']):
-        pulumi.set(self, "env", value)
+    @runtime.setter
+    def runtime(self, value: pulumi.Input['CronJobDetailsCreateRuntime']):
+        pulumi.set(self, "runtime", value)
 
     @property
     @pulumi.getter
@@ -315,17 +350,32 @@ class CronJobDetailsCreateArgs:
         pulumi.set(self, "schedule", value)
 
     @property
+    @pulumi.getter
+    def env(self) -> Optional[pulumi.Input['CronJobDetailsCreateEnv']]:
+        """
+        This field has been deprecated, runtime should be used in its place.
+        """
+        return pulumi.get(self, "env")
+
+    @env.setter
+    def env(self, value: Optional[pulumi.Input['CronJobDetailsCreateEnv']]):
+        pulumi.set(self, "env", value)
+
+    @property
     @pulumi.getter(name="envSpecificDetails")
-    def env_specific_details(self) -> Optional[pulumi.Input[Union['DockerDetailsArgs', 'NativeEnvironmentDetailsArgs']]]:
+    def env_specific_details(self) -> Optional[pulumi.Input['EnvSpecificDetailsArgs']]:
         return pulumi.get(self, "env_specific_details")
 
     @env_specific_details.setter
-    def env_specific_details(self, value: Optional[pulumi.Input[Union['DockerDetailsArgs', 'NativeEnvironmentDetailsArgs']]]):
+    def env_specific_details(self, value: Optional[pulumi.Input['EnvSpecificDetailsArgs']]):
         pulumi.set(self, "env_specific_details", value)
 
     @property
     @pulumi.getter
     def plan(self) -> Optional[pulumi.Input['CronJobDetailsCreatePlan']]:
+        """
+        Defaults to "starter"
+        """
         return pulumi.get(self, "plan")
 
     @plan.setter
@@ -335,6 +385,9 @@ class CronJobDetailsCreateArgs:
     @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input['CronJobDetailsCreateRegion']]:
+        """
+        Defaults to "oregon"
+        """
         return pulumi.get(self, "region")
 
     @region.setter
@@ -343,123 +396,25 @@ class CronJobDetailsCreateArgs:
 
 
 @pulumi.input_type
-class DockerDetailsArgs:
-    def __init__(__self__, *,
-                 docker_command: pulumi.Input[str],
-                 docker_context: pulumi.Input[str],
-                 dockerfile_path: pulumi.Input[str],
-                 pre_deploy_command: Optional[pulumi.Input[str]] = None,
-                 registry_credential: Optional[pulumi.Input['RegistryCredentialArgs']] = None):
-        pulumi.set(__self__, "docker_command", docker_command)
-        pulumi.set(__self__, "docker_context", docker_context)
-        pulumi.set(__self__, "dockerfile_path", dockerfile_path)
-        if pre_deploy_command is not None:
-            pulumi.set(__self__, "pre_deploy_command", pre_deploy_command)
-        if registry_credential is not None:
-            pulumi.set(__self__, "registry_credential", registry_credential)
-
-    @property
-    @pulumi.getter(name="dockerCommand")
-    def docker_command(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "docker_command")
-
-    @docker_command.setter
-    def docker_command(self, value: pulumi.Input[str]):
-        pulumi.set(self, "docker_command", value)
-
-    @property
-    @pulumi.getter(name="dockerContext")
-    def docker_context(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "docker_context")
-
-    @docker_context.setter
-    def docker_context(self, value: pulumi.Input[str]):
-        pulumi.set(self, "docker_context", value)
-
-    @property
-    @pulumi.getter(name="dockerfilePath")
-    def dockerfile_path(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "dockerfile_path")
-
-    @dockerfile_path.setter
-    def dockerfile_path(self, value: pulumi.Input[str]):
-        pulumi.set(self, "dockerfile_path", value)
-
-    @property
-    @pulumi.getter(name="preDeployCommand")
-    def pre_deploy_command(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "pre_deploy_command")
-
-    @pre_deploy_command.setter
-    def pre_deploy_command(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "pre_deploy_command", value)
-
-    @property
-    @pulumi.getter(name="registryCredential")
-    def registry_credential(self) -> Optional[pulumi.Input['RegistryCredentialArgs']]:
-        return pulumi.get(self, "registry_credential")
-
-    @registry_credential.setter
-    def registry_credential(self, value: Optional[pulumi.Input['RegistryCredentialArgs']]):
-        pulumi.set(self, "registry_credential", value)
+class EnvSpecificDetailsCreateArgs:
+    def __init__(__self__):
+        pass
 
 
 @pulumi.input_type
-class EnvVarKeyGenerateValueArgs:
-    def __init__(__self__, *,
-                 generate_value: pulumi.Input[bool],
-                 key: pulumi.Input[str]):
-        pulumi.set(__self__, "generate_value", generate_value)
-        pulumi.set(__self__, "key", key)
-
-    @property
-    @pulumi.getter(name="generateValue")
-    def generate_value(self) -> pulumi.Input[bool]:
-        return pulumi.get(self, "generate_value")
-
-    @generate_value.setter
-    def generate_value(self, value: pulumi.Input[bool]):
-        pulumi.set(self, "generate_value", value)
-
-    @property
-    @pulumi.getter
-    def key(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "key")
-
-    @key.setter
-    def key(self, value: pulumi.Input[str]):
-        pulumi.set(self, "key", value)
+class EnvSpecificDetailsArgs:
+    def __init__(__self__):
+        pass
 
 
 @pulumi.input_type
-class EnvVarKeyValueArgs:
-    def __init__(__self__, *,
-                 key: pulumi.Input[str],
-                 value: pulumi.Input[str]):
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "value", value)
-
-    @property
-    @pulumi.getter
-    def key(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "key")
-
-    @key.setter
-    def key(self, value: pulumi.Input[str]):
-        pulumi.set(self, "key", value)
-
-    @property
-    @pulumi.getter
-    def value(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "value")
-
-    @value.setter
-    def value(self, value: pulumi.Input[str]):
-        pulumi.set(self, "value", value)
+class EnvVarInputArgs:
+    def __init__(__self__):
+        pass
 
 
 @pulumi.input_type
-class HeaderCreateArgs:
+class HeaderInputArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
                  path: pulumi.Input[str],
@@ -564,33 +519,146 @@ class ImageArgs:
 
 
 @pulumi.input_type
-class NativeEnvironmentDetailsArgs:
+class PrivateServiceDetailsCreateArgs:
     def __init__(__self__, *,
-                 build_command: pulumi.Input[str],
-                 start_command: pulumi.Input[str],
-                 pre_deploy_command: Optional[pulumi.Input[str]] = None):
-        pulumi.set(__self__, "build_command", build_command)
-        pulumi.set(__self__, "start_command", start_command)
+                 runtime: pulumi.Input['PrivateServiceDetailsCreateRuntime'],
+                 autoscaling: Optional[pulumi.Input['WebServiceDetailspropertiesautoscalingArgs']] = None,
+                 disk: Optional[pulumi.Input['ServiceDiskArgs']] = None,
+                 env: Optional[pulumi.Input['PrivateServiceDetailsCreateEnv']] = None,
+                 env_specific_details: Optional[pulumi.Input['EnvSpecificDetailsCreateArgs']] = None,
+                 max_shutdown_delay_seconds: Optional[pulumi.Input[int]] = None,
+                 num_instances: Optional[pulumi.Input[int]] = None,
+                 plan: Optional[pulumi.Input['PrivateServiceDetailsCreatePlan']] = None,
+                 pre_deploy_command: Optional[pulumi.Input[str]] = None,
+                 pull_request_previews_enabled: Optional[pulumi.Input['PrivateServiceDetailsCreatePullRequestPreviewsEnabled']] = None,
+                 region: Optional[pulumi.Input['PrivateServiceDetailsCreateRegion']] = None):
+        """
+        :param pulumi.Input['PrivateServiceDetailsCreateRuntime'] runtime: Runtime
+        :param pulumi.Input['PrivateServiceDetailsCreateEnv'] env: This field has been deprecated, runtime should be used in its place.
+        :param pulumi.Input[int] max_shutdown_delay_seconds: The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
+        :param pulumi.Input[int] num_instances: Defaults to 1
+        :param pulumi.Input['PrivateServiceDetailsCreatePlan'] plan: Defaults to "starter"
+        :param pulumi.Input['PrivateServiceDetailsCreatePullRequestPreviewsEnabled'] pull_request_previews_enabled: Defaults to "no"
+        :param pulumi.Input['PrivateServiceDetailsCreateRegion'] region: Defaults to "oregon"
+        """
+        pulumi.set(__self__, "runtime", runtime)
+        if autoscaling is not None:
+            pulumi.set(__self__, "autoscaling", autoscaling)
+        if disk is not None:
+            pulumi.set(__self__, "disk", disk)
+        if env is not None:
+            pulumi.set(__self__, "env", env)
+        if env_specific_details is not None:
+            pulumi.set(__self__, "env_specific_details", env_specific_details)
+        if max_shutdown_delay_seconds is None:
+            max_shutdown_delay_seconds = 30
+        if max_shutdown_delay_seconds is not None:
+            pulumi.set(__self__, "max_shutdown_delay_seconds", max_shutdown_delay_seconds)
+        if num_instances is None:
+            num_instances = 1
+        if num_instances is not None:
+            pulumi.set(__self__, "num_instances", num_instances)
+        if plan is None:
+            plan = 'starter'
+        if plan is not None:
+            pulumi.set(__self__, "plan", plan)
         if pre_deploy_command is not None:
             pulumi.set(__self__, "pre_deploy_command", pre_deploy_command)
+        if pull_request_previews_enabled is None:
+            pull_request_previews_enabled = 'no'
+        if pull_request_previews_enabled is not None:
+            pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
+        if region is None:
+            region = 'oregon'
+        if region is not None:
+            pulumi.set(__self__, "region", region)
 
     @property
-    @pulumi.getter(name="buildCommand")
-    def build_command(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "build_command")
+    @pulumi.getter
+    def runtime(self) -> pulumi.Input['PrivateServiceDetailsCreateRuntime']:
+        """
+        Runtime
+        """
+        return pulumi.get(self, "runtime")
 
-    @build_command.setter
-    def build_command(self, value: pulumi.Input[str]):
-        pulumi.set(self, "build_command", value)
+    @runtime.setter
+    def runtime(self, value: pulumi.Input['PrivateServiceDetailsCreateRuntime']):
+        pulumi.set(self, "runtime", value)
 
     @property
-    @pulumi.getter(name="startCommand")
-    def start_command(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "start_command")
+    @pulumi.getter
+    def autoscaling(self) -> Optional[pulumi.Input['WebServiceDetailspropertiesautoscalingArgs']]:
+        return pulumi.get(self, "autoscaling")
 
-    @start_command.setter
-    def start_command(self, value: pulumi.Input[str]):
-        pulumi.set(self, "start_command", value)
+    @autoscaling.setter
+    def autoscaling(self, value: Optional[pulumi.Input['WebServiceDetailspropertiesautoscalingArgs']]):
+        pulumi.set(self, "autoscaling", value)
+
+    @property
+    @pulumi.getter
+    def disk(self) -> Optional[pulumi.Input['ServiceDiskArgs']]:
+        return pulumi.get(self, "disk")
+
+    @disk.setter
+    def disk(self, value: Optional[pulumi.Input['ServiceDiskArgs']]):
+        pulumi.set(self, "disk", value)
+
+    @property
+    @pulumi.getter
+    def env(self) -> Optional[pulumi.Input['PrivateServiceDetailsCreateEnv']]:
+        """
+        This field has been deprecated, runtime should be used in its place.
+        """
+        return pulumi.get(self, "env")
+
+    @env.setter
+    def env(self, value: Optional[pulumi.Input['PrivateServiceDetailsCreateEnv']]):
+        pulumi.set(self, "env", value)
+
+    @property
+    @pulumi.getter(name="envSpecificDetails")
+    def env_specific_details(self) -> Optional[pulumi.Input['EnvSpecificDetailsCreateArgs']]:
+        return pulumi.get(self, "env_specific_details")
+
+    @env_specific_details.setter
+    def env_specific_details(self, value: Optional[pulumi.Input['EnvSpecificDetailsCreateArgs']]):
+        pulumi.set(self, "env_specific_details", value)
+
+    @property
+    @pulumi.getter(name="maxShutdownDelaySeconds")
+    def max_shutdown_delay_seconds(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
+        """
+        return pulumi.get(self, "max_shutdown_delay_seconds")
+
+    @max_shutdown_delay_seconds.setter
+    def max_shutdown_delay_seconds(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_shutdown_delay_seconds", value)
+
+    @property
+    @pulumi.getter(name="numInstances")
+    def num_instances(self) -> Optional[pulumi.Input[int]]:
+        """
+        Defaults to 1
+        """
+        return pulumi.get(self, "num_instances")
+
+    @num_instances.setter
+    def num_instances(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "num_instances", value)
+
+    @property
+    @pulumi.getter
+    def plan(self) -> Optional[pulumi.Input['PrivateServiceDetailsCreatePlan']]:
+        """
+        Defaults to "starter"
+        """
+        return pulumi.get(self, "plan")
+
+    @plan.setter
+    def plan(self, value: Optional[pulumi.Input['PrivateServiceDetailsCreatePlan']]):
+        pulumi.set(self, "plan", value)
 
     @property
     @pulumi.getter(name="preDeployCommand")
@@ -601,9 +669,116 @@ class NativeEnvironmentDetailsArgs:
     def pre_deploy_command(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "pre_deploy_command", value)
 
+    @property
+    @pulumi.getter(name="pullRequestPreviewsEnabled")
+    def pull_request_previews_enabled(self) -> Optional[pulumi.Input['PrivateServiceDetailsCreatePullRequestPreviewsEnabled']]:
+        """
+        Defaults to "no"
+        """
+        return pulumi.get(self, "pull_request_previews_enabled")
+
+    @pull_request_previews_enabled.setter
+    def pull_request_previews_enabled(self, value: Optional[pulumi.Input['PrivateServiceDetailsCreatePullRequestPreviewsEnabled']]):
+        pulumi.set(self, "pull_request_previews_enabled", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input['PrivateServiceDetailsCreateRegion']]:
+        """
+        Defaults to "oregon"
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input['PrivateServiceDetailsCreateRegion']]):
+        pulumi.set(self, "region", value)
+
 
 @pulumi.input_type
-class PrivateServiceDetailsCreateDiskPropertiesArgs:
+class RouteCreateArgs:
+    def __init__(__self__, *,
+                 destination: pulumi.Input[str],
+                 source: pulumi.Input[str],
+                 type: pulumi.Input['RouteCreateType'],
+                 priority: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] priority: Redirect and Rewrite Rules are applied in priority order starting at 0. Defaults to last in the priority list.
+        """
+        pulumi.set(__self__, "destination", destination)
+        pulumi.set(__self__, "source", source)
+        pulumi.set(__self__, "type", type)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
+
+    @property
+    @pulumi.getter
+    def destination(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "destination")
+
+    @destination.setter
+    def destination(self, value: pulumi.Input[str]):
+        pulumi.set(self, "destination", value)
+
+    @property
+    @pulumi.getter
+    def source(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "source")
+
+    @source.setter
+    def source(self, value: pulumi.Input[str]):
+        pulumi.set(self, "source", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Input['RouteCreateType']:
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input['RouteCreateType']):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter
+    def priority(self) -> Optional[pulumi.Input[int]]:
+        """
+        Redirect and Rewrite Rules are applied in priority order starting at 0. Defaults to last in the priority list.
+        """
+        return pulumi.get(self, "priority")
+
+    @priority.setter
+    def priority(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "priority", value)
+
+
+@pulumi.input_type
+class SecretFileInputArgs:
+    def __init__(__self__, *,
+                 content: pulumi.Input[str],
+                 name: pulumi.Input[str]):
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def content(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "content")
+
+    @content.setter
+    def content(self, value: pulumi.Input[str]):
+        pulumi.set(self, "content", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class ServiceDiskArgs:
     def __init__(__self__, *,
                  mount_path: pulumi.Input[str],
                  name: pulumi.Input[str],
@@ -648,279 +823,13 @@ class PrivateServiceDetailsCreateDiskPropertiesArgs:
 
 
 @pulumi.input_type
-class PrivateServiceDetailsCreateArgs:
-    def __init__(__self__, *,
-                 env: pulumi.Input['PrivateServiceDetailsCreateEnv'],
-                 disk: Optional[pulumi.Input['PrivateServiceDetailsCreateDiskPropertiesArgs']] = None,
-                 env_specific_details: Optional[pulumi.Input[Union['DockerDetailsArgs', 'NativeEnvironmentDetailsArgs']]] = None,
-                 num_instances: Optional[pulumi.Input[int]] = None,
-                 plan: Optional[pulumi.Input['PrivateServiceDetailsCreatePlan']] = None,
-                 pull_request_previews_enabled: Optional[pulumi.Input['PrivateServiceDetailsCreatePullRequestPreviewsEnabled']] = None,
-                 region: Optional[pulumi.Input['PrivateServiceDetailsCreateRegion']] = None):
-        """
-        :param pulumi.Input['PrivateServiceDetailsCreateEnv'] env: Environment (runtime)
-        :param pulumi.Input[int] num_instances: Defaults to 1
-        :param pulumi.Input['PrivateServiceDetailsCreatePullRequestPreviewsEnabled'] pull_request_previews_enabled: Defaults to "no"
-        """
-        pulumi.set(__self__, "env", env)
-        if disk is not None:
-            pulumi.set(__self__, "disk", disk)
-        if env_specific_details is not None:
-            pulumi.set(__self__, "env_specific_details", env_specific_details)
-        if num_instances is None:
-            num_instances = 1
-        if num_instances is not None:
-            pulumi.set(__self__, "num_instances", num_instances)
-        if plan is not None:
-            pulumi.set(__self__, "plan", plan)
-        if pull_request_previews_enabled is None:
-            pull_request_previews_enabled = 'no'
-        if pull_request_previews_enabled is not None:
-            pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
-        if region is not None:
-            pulumi.set(__self__, "region", region)
-
-    @property
-    @pulumi.getter
-    def env(self) -> pulumi.Input['PrivateServiceDetailsCreateEnv']:
-        """
-        Environment (runtime)
-        """
-        return pulumi.get(self, "env")
-
-    @env.setter
-    def env(self, value: pulumi.Input['PrivateServiceDetailsCreateEnv']):
-        pulumi.set(self, "env", value)
-
-    @property
-    @pulumi.getter
-    def disk(self) -> Optional[pulumi.Input['PrivateServiceDetailsCreateDiskPropertiesArgs']]:
-        return pulumi.get(self, "disk")
-
-    @disk.setter
-    def disk(self, value: Optional[pulumi.Input['PrivateServiceDetailsCreateDiskPropertiesArgs']]):
-        pulumi.set(self, "disk", value)
-
-    @property
-    @pulumi.getter(name="envSpecificDetails")
-    def env_specific_details(self) -> Optional[pulumi.Input[Union['DockerDetailsArgs', 'NativeEnvironmentDetailsArgs']]]:
-        return pulumi.get(self, "env_specific_details")
-
-    @env_specific_details.setter
-    def env_specific_details(self, value: Optional[pulumi.Input[Union['DockerDetailsArgs', 'NativeEnvironmentDetailsArgs']]]):
-        pulumi.set(self, "env_specific_details", value)
-
-    @property
-    @pulumi.getter(name="numInstances")
-    def num_instances(self) -> Optional[pulumi.Input[int]]:
-        """
-        Defaults to 1
-        """
-        return pulumi.get(self, "num_instances")
-
-    @num_instances.setter
-    def num_instances(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "num_instances", value)
-
-    @property
-    @pulumi.getter
-    def plan(self) -> Optional[pulumi.Input['PrivateServiceDetailsCreatePlan']]:
-        return pulumi.get(self, "plan")
-
-    @plan.setter
-    def plan(self, value: Optional[pulumi.Input['PrivateServiceDetailsCreatePlan']]):
-        pulumi.set(self, "plan", value)
-
-    @property
-    @pulumi.getter(name="pullRequestPreviewsEnabled")
-    def pull_request_previews_enabled(self) -> Optional[pulumi.Input['PrivateServiceDetailsCreatePullRequestPreviewsEnabled']]:
-        """
-        Defaults to "no"
-        """
-        return pulumi.get(self, "pull_request_previews_enabled")
-
-    @pull_request_previews_enabled.setter
-    def pull_request_previews_enabled(self, value: Optional[pulumi.Input['PrivateServiceDetailsCreatePullRequestPreviewsEnabled']]):
-        pulumi.set(self, "pull_request_previews_enabled", value)
-
-    @property
-    @pulumi.getter
-    def region(self) -> Optional[pulumi.Input['PrivateServiceDetailsCreateRegion']]:
-        return pulumi.get(self, "region")
-
-    @region.setter
-    def region(self, value: Optional[pulumi.Input['PrivateServiceDetailsCreateRegion']]):
-        pulumi.set(self, "region", value)
-
-
-@pulumi.input_type
-class RegistryCredentialArgs:
-    def __init__(__self__, *,
-                 id: pulumi.Input[str],
-                 name: pulumi.Input[str],
-                 registry: pulumi.Input['RegistryCredentialRegistry'],
-                 username: pulumi.Input[str]):
-        """
-        :param pulumi.Input[str] id: Unique identifier for this credential
-        :param pulumi.Input[str] name: Descriptive name for this credential
-        :param pulumi.Input['RegistryCredentialRegistry'] registry: The registry to use this credential with
-        :param pulumi.Input[str] username: The username associated with the credential
-        """
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "registry", registry)
-        pulumi.set(__self__, "username", username)
-
-    @property
-    @pulumi.getter
-    def id(self) -> pulumi.Input[str]:
-        """
-        Unique identifier for this credential
-        """
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: pulumi.Input[str]):
-        pulumi.set(self, "id", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        """
-        Descriptive name for this credential
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def registry(self) -> pulumi.Input['RegistryCredentialRegistry']:
-        """
-        The registry to use this credential with
-        """
-        return pulumi.get(self, "registry")
-
-    @registry.setter
-    def registry(self, value: pulumi.Input['RegistryCredentialRegistry']):
-        pulumi.set(self, "registry", value)
-
-    @property
-    @pulumi.getter
-    def username(self) -> pulumi.Input[str]:
-        """
-        The username associated with the credential
-        """
-        return pulumi.get(self, "username")
-
-    @username.setter
-    def username(self, value: pulumi.Input[str]):
-        pulumi.set(self, "username", value)
-
-
-@pulumi.input_type
-class RouteArgs:
-    def __init__(__self__, *,
-                 destination: pulumi.Input[str],
-                 id: pulumi.Input[str],
-                 priority: pulumi.Input[int],
-                 source: pulumi.Input[str],
-                 type: pulumi.Input['RouteType']):
-        """
-        :param pulumi.Input[int] priority: Redirect and Rewrite Rules are applied in priority order starting at 0
-        """
-        pulumi.set(__self__, "destination", destination)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "priority", priority)
-        pulumi.set(__self__, "source", source)
-        pulumi.set(__self__, "type", type)
-
-    @property
-    @pulumi.getter
-    def destination(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "destination")
-
-    @destination.setter
-    def destination(self, value: pulumi.Input[str]):
-        pulumi.set(self, "destination", value)
-
-    @property
-    @pulumi.getter
-    def id(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: pulumi.Input[str]):
-        pulumi.set(self, "id", value)
-
-    @property
-    @pulumi.getter
-    def priority(self) -> pulumi.Input[int]:
-        """
-        Redirect and Rewrite Rules are applied in priority order starting at 0
-        """
-        return pulumi.get(self, "priority")
-
-    @priority.setter
-    def priority(self, value: pulumi.Input[int]):
-        pulumi.set(self, "priority", value)
-
-    @property
-    @pulumi.getter
-    def source(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "source")
-
-    @source.setter
-    def source(self, value: pulumi.Input[str]):
-        pulumi.set(self, "source", value)
-
-    @property
-    @pulumi.getter
-    def type(self) -> pulumi.Input['RouteType']:
-        return pulumi.get(self, "type")
-
-    @type.setter
-    def type(self, value: pulumi.Input['RouteType']):
-        pulumi.set(self, "type", value)
-
-
-@pulumi.input_type
-class SecretFileArgs:
-    def __init__(__self__, *,
-                 id: pulumi.Input[str],
-                 name: pulumi.Input[str]):
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "name", name)
-
-    @property
-    @pulumi.getter
-    def id(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: pulumi.Input[str]):
-        pulumi.set(self, "id", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-
-@pulumi.input_type
 class StaticSiteDetailsCreateArgs:
     def __init__(__self__, *,
                  build_command: Optional[pulumi.Input[str]] = None,
-                 headers: Optional[pulumi.Input[Sequence[pulumi.Input['HeaderCreateArgs']]]] = None,
+                 headers: Optional[pulumi.Input[Sequence[pulumi.Input['HeaderInputArgs']]]] = None,
                  publish_path: Optional[pulumi.Input[str]] = None,
                  pull_request_previews_enabled: Optional[pulumi.Input['StaticSiteDetailsCreatePullRequestPreviewsEnabled']] = None,
-                 routes: Optional[pulumi.Input[Sequence[pulumi.Input['RouteArgs']]]] = None):
+                 routes: Optional[pulumi.Input[Sequence[pulumi.Input['RouteCreateArgs']]]] = None):
         """
         :param pulumi.Input[str] publish_path: Defaults to "public"
         :param pulumi.Input['StaticSiteDetailsCreatePullRequestPreviewsEnabled'] pull_request_previews_enabled: Defaults to "no"
@@ -949,11 +858,11 @@ class StaticSiteDetailsCreateArgs:
 
     @property
     @pulumi.getter
-    def headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['HeaderCreateArgs']]]]:
+    def headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['HeaderInputArgs']]]]:
         return pulumi.get(self, "headers")
 
     @headers.setter
-    def headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['HeaderCreateArgs']]]]):
+    def headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['HeaderInputArgs']]]]):
         pulumi.set(self, "headers", value)
 
     @property
@@ -982,121 +891,119 @@ class StaticSiteDetailsCreateArgs:
 
     @property
     @pulumi.getter
-    def routes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RouteArgs']]]]:
+    def routes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RouteCreateArgs']]]]:
         return pulumi.get(self, "routes")
 
     @routes.setter
-    def routes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RouteArgs']]]]):
+    def routes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RouteCreateArgs']]]]):
         pulumi.set(self, "routes", value)
-
-
-@pulumi.input_type
-class WebServiceDetailsCreateDiskPropertiesArgs:
-    def __init__(__self__, *,
-                 mount_path: pulumi.Input[str],
-                 name: pulumi.Input[str],
-                 size_gb: Optional[pulumi.Input[int]] = None):
-        """
-        :param pulumi.Input[int] size_gb: Defaults to 1
-        """
-        pulumi.set(__self__, "mount_path", mount_path)
-        pulumi.set(__self__, "name", name)
-        if size_gb is not None:
-            pulumi.set(__self__, "size_gb", size_gb)
-
-    @property
-    @pulumi.getter(name="mountPath")
-    def mount_path(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "mount_path")
-
-    @mount_path.setter
-    def mount_path(self, value: pulumi.Input[str]):
-        pulumi.set(self, "mount_path", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter(name="sizeGB")
-    def size_gb(self) -> Optional[pulumi.Input[int]]:
-        """
-        Defaults to 1
-        """
-        return pulumi.get(self, "size_gb")
-
-    @size_gb.setter
-    def size_gb(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "size_gb", value)
 
 
 @pulumi.input_type
 class WebServiceDetailsCreateArgs:
     def __init__(__self__, *,
-                 env: pulumi.Input['WebServiceDetailsCreateEnv'],
-                 disk: Optional[pulumi.Input['WebServiceDetailsCreateDiskPropertiesArgs']] = None,
-                 env_specific_details: Optional[pulumi.Input[Union['DockerDetailsArgs', 'NativeEnvironmentDetailsArgs']]] = None,
+                 runtime: pulumi.Input['WebServiceDetailsCreateRuntime'],
+                 autoscaling: Optional[pulumi.Input['WebServiceDetailspropertiesautoscalingArgs']] = None,
+                 disk: Optional[pulumi.Input['ServiceDiskArgs']] = None,
+                 env: Optional[pulumi.Input['WebServiceDetailsCreateEnv']] = None,
+                 env_specific_details: Optional[pulumi.Input['EnvSpecificDetailsCreateArgs']] = None,
                  health_check_path: Optional[pulumi.Input[str]] = None,
+                 max_shutdown_delay_seconds: Optional[pulumi.Input[int]] = None,
                  num_instances: Optional[pulumi.Input[int]] = None,
                  plan: Optional[pulumi.Input['WebServiceDetailsCreatePlan']] = None,
+                 pre_deploy_command: Optional[pulumi.Input[str]] = None,
                  pull_request_previews_enabled: Optional[pulumi.Input['WebServiceDetailsCreatePullRequestPreviewsEnabled']] = None,
                  region: Optional[pulumi.Input['WebServiceDetailsCreateRegion']] = None):
         """
-        :param pulumi.Input['WebServiceDetailsCreateEnv'] env: Environment (runtime)
+        :param pulumi.Input['WebServiceDetailsCreateRuntime'] runtime: Runtime
+        :param pulumi.Input['WebServiceDetailsCreateEnv'] env: This field has been deprecated, runtime should be used in its place.
+        :param pulumi.Input[int] max_shutdown_delay_seconds: The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
         :param pulumi.Input[int] num_instances: Defaults to 1
+        :param pulumi.Input['WebServiceDetailsCreatePlan'] plan: Defaults to "starter"
         :param pulumi.Input['WebServiceDetailsCreatePullRequestPreviewsEnabled'] pull_request_previews_enabled: Defaults to "no"
+        :param pulumi.Input['WebServiceDetailsCreateRegion'] region: Defaults to "oregon"
         """
-        pulumi.set(__self__, "env", env)
+        pulumi.set(__self__, "runtime", runtime)
+        if autoscaling is not None:
+            pulumi.set(__self__, "autoscaling", autoscaling)
         if disk is not None:
             pulumi.set(__self__, "disk", disk)
+        if env is not None:
+            pulumi.set(__self__, "env", env)
         if env_specific_details is not None:
             pulumi.set(__self__, "env_specific_details", env_specific_details)
         if health_check_path is not None:
             pulumi.set(__self__, "health_check_path", health_check_path)
+        if max_shutdown_delay_seconds is None:
+            max_shutdown_delay_seconds = 30
+        if max_shutdown_delay_seconds is not None:
+            pulumi.set(__self__, "max_shutdown_delay_seconds", max_shutdown_delay_seconds)
         if num_instances is not None:
             pulumi.set(__self__, "num_instances", num_instances)
+        if plan is None:
+            plan = 'starter'
         if plan is not None:
             pulumi.set(__self__, "plan", plan)
+        if pre_deploy_command is not None:
+            pulumi.set(__self__, "pre_deploy_command", pre_deploy_command)
         if pull_request_previews_enabled is None:
             pull_request_previews_enabled = 'no'
         if pull_request_previews_enabled is not None:
             pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
+        if region is None:
+            region = 'oregon'
         if region is not None:
             pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter
-    def env(self) -> pulumi.Input['WebServiceDetailsCreateEnv']:
+    def runtime(self) -> pulumi.Input['WebServiceDetailsCreateRuntime']:
         """
-        Environment (runtime)
+        Runtime
+        """
+        return pulumi.get(self, "runtime")
+
+    @runtime.setter
+    def runtime(self, value: pulumi.Input['WebServiceDetailsCreateRuntime']):
+        pulumi.set(self, "runtime", value)
+
+    @property
+    @pulumi.getter
+    def autoscaling(self) -> Optional[pulumi.Input['WebServiceDetailspropertiesautoscalingArgs']]:
+        return pulumi.get(self, "autoscaling")
+
+    @autoscaling.setter
+    def autoscaling(self, value: Optional[pulumi.Input['WebServiceDetailspropertiesautoscalingArgs']]):
+        pulumi.set(self, "autoscaling", value)
+
+    @property
+    @pulumi.getter
+    def disk(self) -> Optional[pulumi.Input['ServiceDiskArgs']]:
+        return pulumi.get(self, "disk")
+
+    @disk.setter
+    def disk(self, value: Optional[pulumi.Input['ServiceDiskArgs']]):
+        pulumi.set(self, "disk", value)
+
+    @property
+    @pulumi.getter
+    def env(self) -> Optional[pulumi.Input['WebServiceDetailsCreateEnv']]:
+        """
+        This field has been deprecated, runtime should be used in its place.
         """
         return pulumi.get(self, "env")
 
     @env.setter
-    def env(self, value: pulumi.Input['WebServiceDetailsCreateEnv']):
+    def env(self, value: Optional[pulumi.Input['WebServiceDetailsCreateEnv']]):
         pulumi.set(self, "env", value)
 
     @property
-    @pulumi.getter
-    def disk(self) -> Optional[pulumi.Input['WebServiceDetailsCreateDiskPropertiesArgs']]:
-        return pulumi.get(self, "disk")
-
-    @disk.setter
-    def disk(self, value: Optional[pulumi.Input['WebServiceDetailsCreateDiskPropertiesArgs']]):
-        pulumi.set(self, "disk", value)
-
-    @property
     @pulumi.getter(name="envSpecificDetails")
-    def env_specific_details(self) -> Optional[pulumi.Input[Union['DockerDetailsArgs', 'NativeEnvironmentDetailsArgs']]]:
+    def env_specific_details(self) -> Optional[pulumi.Input['EnvSpecificDetailsCreateArgs']]:
         return pulumi.get(self, "env_specific_details")
 
     @env_specific_details.setter
-    def env_specific_details(self, value: Optional[pulumi.Input[Union['DockerDetailsArgs', 'NativeEnvironmentDetailsArgs']]]):
+    def env_specific_details(self, value: Optional[pulumi.Input['EnvSpecificDetailsCreateArgs']]):
         pulumi.set(self, "env_specific_details", value)
 
     @property
@@ -1107,6 +1014,18 @@ class WebServiceDetailsCreateArgs:
     @health_check_path.setter
     def health_check_path(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "health_check_path", value)
+
+    @property
+    @pulumi.getter(name="maxShutdownDelaySeconds")
+    def max_shutdown_delay_seconds(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
+        """
+        return pulumi.get(self, "max_shutdown_delay_seconds")
+
+    @max_shutdown_delay_seconds.setter
+    def max_shutdown_delay_seconds(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_shutdown_delay_seconds", value)
 
     @property
     @pulumi.getter(name="numInstances")
@@ -1123,11 +1042,23 @@ class WebServiceDetailsCreateArgs:
     @property
     @pulumi.getter
     def plan(self) -> Optional[pulumi.Input['WebServiceDetailsCreatePlan']]:
+        """
+        Defaults to "starter"
+        """
         return pulumi.get(self, "plan")
 
     @plan.setter
     def plan(self, value: Optional[pulumi.Input['WebServiceDetailsCreatePlan']]):
         pulumi.set(self, "plan", value)
+
+    @property
+    @pulumi.getter(name="preDeployCommand")
+    def pre_deploy_command(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "pre_deploy_command")
+
+    @pre_deploy_command.setter
+    def pre_deploy_command(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pre_deploy_command", value)
 
     @property
     @pulumi.getter(name="pullRequestPreviewsEnabled")
@@ -1144,10 +1075,171 @@ class WebServiceDetailsCreateArgs:
     @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input['WebServiceDetailsCreateRegion']]:
+        """
+        Defaults to "oregon"
+        """
         return pulumi.get(self, "region")
 
     @region.setter
     def region(self, value: Optional[pulumi.Input['WebServiceDetailsCreateRegion']]):
         pulumi.set(self, "region", value)
+
+
+@pulumi.input_type
+class WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs:
+    def __init__(__self__, *,
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 percentage: pulumi.Input[int]):
+        """
+        :param pulumi.Input[int] percentage: Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+        """
+        if enabled is None:
+            enabled = False
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "percentage", percentage)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter
+    def percentage(self) -> pulumi.Input[int]:
+        """
+        Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+        """
+        return pulumi.get(self, "percentage")
+
+    @percentage.setter
+    def percentage(self, value: pulumi.Input[int]):
+        pulumi.set(self, "percentage", value)
+
+
+@pulumi.input_type
+class WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgs:
+    def __init__(__self__, *,
+                 cpu: pulumi.Input['WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs'],
+                 memory: pulumi.Input['WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs']):
+        pulumi.set(__self__, "cpu", cpu)
+        pulumi.set(__self__, "memory", memory)
+
+    @property
+    @pulumi.getter
+    def cpu(self) -> pulumi.Input['WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs']:
+        return pulumi.get(self, "cpu")
+
+    @cpu.setter
+    def cpu(self, value: pulumi.Input['WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs']):
+        pulumi.set(self, "cpu", value)
+
+    @property
+    @pulumi.getter
+    def memory(self) -> pulumi.Input['WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs']:
+        return pulumi.get(self, "memory")
+
+    @memory.setter
+    def memory(self, value: pulumi.Input['WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs']):
+        pulumi.set(self, "memory", value)
+
+
+@pulumi.input_type
+class WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs:
+    def __init__(__self__, *,
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 percentage: pulumi.Input[int]):
+        """
+        :param pulumi.Input[int] percentage: Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+        """
+        if enabled is None:
+            enabled = False
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "percentage", percentage)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter
+    def percentage(self) -> pulumi.Input[int]:
+        """
+        Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+        """
+        return pulumi.get(self, "percentage")
+
+    @percentage.setter
+    def percentage(self, value: pulumi.Input[int]):
+        pulumi.set(self, "percentage", value)
+
+
+@pulumi.input_type
+class WebServiceDetailspropertiesautoscalingArgs:
+    def __init__(__self__, *,
+                 criteria: pulumi.Input['WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgs'],
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 max: pulumi.Input[int],
+                 min: pulumi.Input[int]):
+        """
+        :param pulumi.Input[int] max: The maximum number of instances for the service
+        :param pulumi.Input[int] min: The minimum number of instances for the service
+        """
+        pulumi.set(__self__, "criteria", criteria)
+        if enabled is None:
+            enabled = False
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "max", max)
+        pulumi.set(__self__, "min", min)
+
+    @property
+    @pulumi.getter
+    def criteria(self) -> pulumi.Input['WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgs']:
+        return pulumi.get(self, "criteria")
+
+    @criteria.setter
+    def criteria(self, value: pulumi.Input['WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgs']):
+        pulumi.set(self, "criteria", value)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter
+    def max(self) -> pulumi.Input[int]:
+        """
+        The maximum number of instances for the service
+        """
+        return pulumi.get(self, "max")
+
+    @max.setter
+    def max(self, value: pulumi.Input[int]):
+        pulumi.set(self, "max", value)
+
+    @property
+    @pulumi.getter
+    def min(self) -> pulumi.Input[int]:
+        """
+        The minimum number of instances for the service
+        """
+        return pulumi.get(self, "min")
+
+    @min.setter
+    def min(self, value: pulumi.Input[int]):
+        pulumi.set(self, "min", value)
 
 

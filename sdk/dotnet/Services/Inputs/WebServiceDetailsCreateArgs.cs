@@ -12,20 +12,29 @@ namespace Pulumi.Render.Services.Inputs
 
     public sealed class WebServiceDetailsCreateArgs : global::Pulumi.ResourceArgs
     {
+        [Input("autoscaling")]
+        public Input<Inputs.WebServiceDetailspropertiesautoscalingArgs>? Autoscaling { get; set; }
+
         [Input("disk")]
-        public Input<Inputs.WebServiceDetailsCreateDiskPropertiesArgs>? Disk { get; set; }
+        public Input<Inputs.ServiceDiskArgs>? Disk { get; set; }
 
         /// <summary>
-        /// Environment (runtime)
+        /// This field has been deprecated, runtime should be used in its place.
         /// </summary>
-        [Input("env", required: true)]
-        public Input<Pulumi.Render.Services.WebServiceDetailsCreateEnv> Env { get; set; } = null!;
+        [Input("env")]
+        public Input<Pulumi.Render.Services.WebServiceDetailsCreateEnv>? Env { get; set; }
 
         [Input("envSpecificDetails")]
-        public InputUnion<Inputs.DockerDetailsArgs, Inputs.NativeEnvironmentDetailsArgs>? EnvSpecificDetails { get; set; }
+        public Input<Inputs.EnvSpecificDetailsCreateArgs>? EnvSpecificDetails { get; set; }
 
         [Input("healthCheckPath")]
         public Input<string>? HealthCheckPath { get; set; }
+
+        /// <summary>
+        /// The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
+        /// </summary>
+        [Input("maxShutdownDelaySeconds")]
+        public Input<int>? MaxShutdownDelaySeconds { get; set; }
 
         /// <summary>
         /// Defaults to 1
@@ -33,8 +42,14 @@ namespace Pulumi.Render.Services.Inputs
         [Input("numInstances")]
         public Input<int>? NumInstances { get; set; }
 
+        /// <summary>
+        /// Defaults to "starter"
+        /// </summary>
         [Input("plan")]
         public Input<Pulumi.Render.Services.WebServiceDetailsCreatePlan>? Plan { get; set; }
+
+        [Input("preDeployCommand")]
+        public Input<string>? PreDeployCommand { get; set; }
 
         /// <summary>
         /// Defaults to "no"
@@ -42,12 +57,24 @@ namespace Pulumi.Render.Services.Inputs
         [Input("pullRequestPreviewsEnabled")]
         public Input<Pulumi.Render.Services.WebServiceDetailsCreatePullRequestPreviewsEnabled>? PullRequestPreviewsEnabled { get; set; }
 
+        /// <summary>
+        /// Defaults to "oregon"
+        /// </summary>
         [Input("region")]
         public Input<Pulumi.Render.Services.WebServiceDetailsCreateRegion>? Region { get; set; }
 
+        /// <summary>
+        /// Runtime
+        /// </summary>
+        [Input("runtime", required: true)]
+        public Input<Pulumi.Render.Services.WebServiceDetailsCreateRuntime> Runtime { get; set; } = null!;
+
         public WebServiceDetailsCreateArgs()
         {
+            MaxShutdownDelaySeconds = 30;
+            Plan = Pulumi.Render.Services.WebServiceDetailsCreatePlan.Starter;
             PullRequestPreviewsEnabled = Pulumi.Render.Services.WebServiceDetailsCreatePullRequestPreviewsEnabled.No;
+            Region = Pulumi.Render.Services.WebServiceDetailsCreateRegion.Oregon;
         }
         public static new WebServiceDetailsCreateArgs Empty => new WebServiceDetailsCreateArgs();
     }

@@ -35,12 +35,18 @@ export class Deploy extends pulumi.CustomResource {
     }
 
     /**
-     * Defaults to "do_not_clear"
+     * If `clear`, Render clears the service's build cache before deploying. This can be useful if you're experiencing issues with your build.
      */
     public readonly clearCache!: pulumi.Output<enums.services.ClearCache | undefined>;
     public /*out*/ readonly commit!: pulumi.Output<outputs.services.CommitProperties | undefined>;
     /**
-     * Specific ID of commit to deploy for a web service, defaults to latest commit. Not supported for Cron Job deploys.
+     * The SHA of a specific Git commit to deploy for a service. Defaults to the latest commit on the service's connected branch.
+     *
+     * Note that deploying a specific commit with this endpoint does not disable autodeploys for the service.
+     *
+     * You can toggle autodeploys for your service with the [Update service](https://api-docs.render.com/reference/update-service) endpoint or in the Render Dashboard.
+     *
+     * Not supported for cron jobs.
      */
     public readonly commitId!: pulumi.Output<string | undefined>;
     public /*out*/ readonly createdAt!: pulumi.Output<string | undefined>;
@@ -50,7 +56,9 @@ export class Deploy extends pulumi.CustomResource {
      */
     public /*out*/ readonly image!: pulumi.Output<outputs.services.ImageProperties | undefined>;
     /**
-     * URL of the image to deploy for an image-backed service. The host, repository, and image name must match the currently configured image for the service.
+     * The URL of the image to deploy for an image-backed service.
+     *
+     * The host, repository, and image name all must match the currently configured image for the service.
      */
     public readonly imageUrl!: pulumi.Output<string | undefined>;
     public /*out*/ readonly status!: pulumi.Output<enums.services.Status | undefined>;
@@ -101,15 +109,23 @@ export class Deploy extends pulumi.CustomResource {
  */
 export interface DeployArgs {
     /**
-     * Defaults to "do_not_clear"
+     * If `clear`, Render clears the service's build cache before deploying. This can be useful if you're experiencing issues with your build.
      */
     clearCache?: pulumi.Input<enums.services.ClearCache>;
     /**
-     * Specific ID of commit to deploy for a web service, defaults to latest commit. Not supported for Cron Job deploys.
+     * The SHA of a specific Git commit to deploy for a service. Defaults to the latest commit on the service's connected branch.
+     *
+     * Note that deploying a specific commit with this endpoint does not disable autodeploys for the service.
+     *
+     * You can toggle autodeploys for your service with the [Update service](https://api-docs.render.com/reference/update-service) endpoint or in the Render Dashboard.
+     *
+     * Not supported for cron jobs.
      */
     commitId?: pulumi.Input<string>;
     /**
-     * URL of the image to deploy for an image-backed service. The host, repository, and image name must match the currently configured image for the service.
+     * The URL of the image to deploy for an image-backed service.
+     *
+     * The host, repository, and image name all must match the currently configured image for the service.
      */
     imageUrl?: pulumi.Input<string>;
     /**

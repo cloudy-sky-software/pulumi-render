@@ -16,6 +16,10 @@ namespace Pulumi.Render.Owners.Outputs
         public readonly string Email;
         public readonly string Id;
         public readonly string Name;
+        /// <summary>
+        /// Whether two-factor authentication is enabled for the owner. Only present for user owners.
+        /// </summary>
+        public readonly bool? TwoFactorAuthEnabled;
         public readonly Pulumi.Render.Owners.OwnerType Type;
 
         [OutputConstructor]
@@ -26,11 +30,14 @@ namespace Pulumi.Render.Owners.Outputs
 
             string name,
 
+            bool? twoFactorAuthEnabled,
+
             Pulumi.Render.Owners.OwnerType type)
         {
             Email = email;
             Id = id;
             Name = name;
+            TwoFactorAuthEnabled = twoFactorAuthEnabled;
             Type = type;
         }
     }

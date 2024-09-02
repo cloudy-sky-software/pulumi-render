@@ -14,23 +14,26 @@ namespace Pulumi.Render.Services.Outputs
     public sealed class StaticSiteDetailsOutput
     {
         public readonly string BuildCommand;
-        public readonly string BuildPlan;
+        public readonly Pulumi.Render.Services.StaticSiteDetailsOutputBuildPlan BuildPlan;
         public readonly Outputs.Resource? ParentServer;
         public readonly string PublishPath;
-        public readonly Pulumi.Render.Services.StaticSiteDetailsOutputPullRequestPreviewsEnabled PullRequestPreviewsEnabled;
+        /// <summary>
+        /// Defaults to "no"
+        /// </summary>
+        public readonly Pulumi.Render.Services.StaticSiteDetailsOutputPullRequestPreviewsEnabled? PullRequestPreviewsEnabled;
         public readonly string Url;
 
         [OutputConstructor]
         private StaticSiteDetailsOutput(
             string buildCommand,
 
-            string buildPlan,
+            Pulumi.Render.Services.StaticSiteDetailsOutputBuildPlan buildPlan,
 
             Outputs.Resource? parentServer,
 
             string publishPath,
 
-            Pulumi.Render.Services.StaticSiteDetailsOutputPullRequestPreviewsEnabled pullRequestPreviewsEnabled,
+            Pulumi.Render.Services.StaticSiteDetailsOutputPullRequestPreviewsEnabled? pullRequestPreviewsEnabled,
 
             string url)
         {

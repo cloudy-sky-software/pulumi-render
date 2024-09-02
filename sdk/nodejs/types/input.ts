@@ -8,62 +8,112 @@ import * as enums from "../types/enums";
 
 import * as utilities from "../utilities";
 
+export namespace blueprints {
+}
+
+export namespace disks {
+}
+
+export namespace envgroups {
+    export interface EnvVarInputArgs {
+    }
+
+    export interface SecretFileInputArgs {
+        content: pulumi.Input<string>;
+        name: pulumi.Input<string>;
+    }
+
+}
+
+export namespace environments {
+}
+
+export namespace metrics {
+}
+
+export namespace notificationsettings {
+}
+
 export namespace owners {
+}
+
+export namespace postgres {
+    export interface CidrBlockAndDescriptionArgs {
+        cidrBlock: pulumi.Input<string>;
+        /**
+         * User-provided description of the CIDR block
+         */
+        description: pulumi.Input<string>;
+    }
+
+    export interface ReadReplicaInputArgs {
+        /**
+         * The display name of the replica instance.
+         */
+        name: pulumi.Input<string>;
+    }
+
+}
+
+export namespace projects {
+    export interface ProjectCreateEnvironmentInputArgs {
+        name: pulumi.Input<string>;
+        /**
+         * Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
+         */
+        protectedStatus?: pulumi.Input<enums.projects.ProjectCreateEnvironmentInputProtectedStatus>;
+    }
+
+}
+
+export namespace redis {
+    export interface CidrBlockAndDescriptionArgs {
+        cidrBlock: pulumi.Input<string>;
+        /**
+         * User-provided description of the CIDR block
+         */
+        description: pulumi.Input<string>;
+    }
+
 }
 
 export namespace registrycredentials {
 }
 
 export namespace services {
-    export interface AutoscalingCriteriaArgs {
-        cpu: pulumi.Input<inputs.services.AutoscalingCriteriaPercentageArgs>;
-        memory: pulumi.Input<inputs.services.AutoscalingCriteriaPercentageArgs>;
-    }
-    /**
-     * autoscalingCriteriaArgsProvideDefaults sets the appropriate defaults for AutoscalingCriteriaArgs
-     */
-    export function autoscalingCriteriaArgsProvideDefaults(val: AutoscalingCriteriaArgs): AutoscalingCriteriaArgs {
-        return {
-            ...val,
-            cpu: pulumi.output(val.cpu).apply(inputs.services.autoscalingCriteriaPercentageArgsProvideDefaults),
-            memory: pulumi.output(val.memory).apply(inputs.services.autoscalingCriteriaPercentageArgsProvideDefaults),
-        };
-    }
-
-    export interface AutoscalingCriteriaPercentageArgs {
-        enabled: pulumi.Input<boolean>;
-        /**
-         * Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
-         */
-        percentage: pulumi.Input<number>;
-    }
-    /**
-     * autoscalingCriteriaPercentageArgsProvideDefaults sets the appropriate defaults for AutoscalingCriteriaPercentageArgs
-     */
-    export function autoscalingCriteriaPercentageArgsProvideDefaults(val: AutoscalingCriteriaPercentageArgs): AutoscalingCriteriaPercentageArgs {
-        return {
-            ...val,
-            enabled: (val.enabled) ?? false,
-        };
-    }
-
     export interface BackgroundWorkerDetailsCreateArgs {
-        disk?: pulumi.Input<inputs.services.BackgroundWorkerDetailsCreateDiskPropertiesArgs>;
+        autoscaling?: pulumi.Input<inputs.services.WebServiceDetailspropertiesautoscalingArgs>;
+        disk?: pulumi.Input<inputs.services.ServiceDiskArgs>;
         /**
-         * Environment (runtime)
+         * This field has been deprecated, runtime should be used in its place.
          */
-        env: pulumi.Input<enums.services.BackgroundWorkerDetailsCreateEnv>;
-        envSpecificDetails?: pulumi.Input<inputs.services.DockerDetailsArgs | inputs.services.NativeEnvironmentDetailsArgs>;
+        env?: pulumi.Input<enums.services.BackgroundWorkerDetailsCreateEnv>;
+        envSpecificDetails?: pulumi.Input<inputs.services.EnvSpecificDetailsCreateArgs>;
+        /**
+         * The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
+         */
+        maxShutdownDelaySeconds?: pulumi.Input<number>;
         /**
          * Defaults to 1
          */
         numInstances?: pulumi.Input<number>;
+        /**
+         * Defaults to "starter"
+         */
         plan?: pulumi.Input<enums.services.BackgroundWorkerDetailsCreatePlan>;
+        preDeployCommand?: pulumi.Input<string>;
         /**
          * Defaults to "no"
          */
         pullRequestPreviewsEnabled?: pulumi.Input<enums.services.BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled>;
+        /**
+         * Defaults to "oregon"
+         */
         region?: pulumi.Input<enums.services.BackgroundWorkerDetailsCreateRegion>;
+        /**
+         * Runtime
+         */
+        runtime: pulumi.Input<enums.services.BackgroundWorkerDetailsCreateRuntime>;
     }
     /**
      * backgroundWorkerDetailsCreateArgsProvideDefaults sets the appropriate defaults for BackgroundWorkerDetailsCreateArgs
@@ -71,18 +121,13 @@ export namespace services {
     export function backgroundWorkerDetailsCreateArgsProvideDefaults(val: BackgroundWorkerDetailsCreateArgs): BackgroundWorkerDetailsCreateArgs {
         return {
             ...val,
+            autoscaling: (val.autoscaling ? pulumi.output(val.autoscaling).apply(inputs.services.webServiceDetailspropertiesautoscalingArgsProvideDefaults) : undefined),
+            maxShutdownDelaySeconds: (val.maxShutdownDelaySeconds) ?? 30,
             numInstances: (val.numInstances) ?? 1,
+            plan: (val.plan) ?? "starter",
             pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
+            region: (val.region) ?? "oregon",
         };
-    }
-
-    export interface BackgroundWorkerDetailsCreateDiskPropertiesArgs {
-        mountPath: pulumi.Input<string>;
-        name: pulumi.Input<string>;
-        /**
-         * Defaults to 1
-         */
-        sizeGB?: pulumi.Input<number>;
     }
 
     export interface BuildFilterArgs {
@@ -90,36 +135,79 @@ export namespace services {
         paths: pulumi.Input<pulumi.Input<string>[]>;
     }
 
+    export interface CriteriaPropertiesArgs {
+        cpu: pulumi.Input<inputs.services.CriteriaPropertiesCpuPropertiesArgs>;
+        memory: pulumi.Input<inputs.services.WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs>;
+    }
+    /**
+     * criteriaPropertiesArgsProvideDefaults sets the appropriate defaults for CriteriaPropertiesArgs
+     */
+    export function criteriaPropertiesArgsProvideDefaults(val: CriteriaPropertiesArgs): CriteriaPropertiesArgs {
+        return {
+            ...val,
+            cpu: pulumi.output(val.cpu).apply(inputs.services.criteriaPropertiesCpuPropertiesArgsProvideDefaults),
+            memory: pulumi.output(val.memory).apply(inputs.services.webServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgsProvideDefaults),
+        };
+    }
+
+    export interface CriteriaPropertiesCpuPropertiesArgs {
+        enabled: pulumi.Input<boolean>;
+        /**
+         * Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+         */
+        percentage: pulumi.Input<number>;
+    }
+    /**
+     * criteriaPropertiesCpuPropertiesArgsProvideDefaults sets the appropriate defaults for CriteriaPropertiesCpuPropertiesArgs
+     */
+    export function criteriaPropertiesCpuPropertiesArgsProvideDefaults(val: CriteriaPropertiesCpuPropertiesArgs): CriteriaPropertiesCpuPropertiesArgs {
+        return {
+            ...val,
+            enabled: (val.enabled) ?? false,
+        };
+    }
+
     export interface CronJobDetailsCreateArgs {
         /**
-         * Environment (runtime)
+         * This field has been deprecated, runtime should be used in its place.
          */
-        env: pulumi.Input<enums.services.CronJobDetailsCreateEnv>;
-        envSpecificDetails?: pulumi.Input<inputs.services.DockerDetailsArgs | inputs.services.NativeEnvironmentDetailsArgs>;
+        env?: pulumi.Input<enums.services.CronJobDetailsCreateEnv>;
+        envSpecificDetails?: pulumi.Input<inputs.services.EnvSpecificDetailsArgs>;
+        /**
+         * Defaults to "starter"
+         */
         plan?: pulumi.Input<enums.services.CronJobDetailsCreatePlan>;
+        /**
+         * Defaults to "oregon"
+         */
         region?: pulumi.Input<enums.services.CronJobDetailsCreateRegion>;
+        /**
+         * Runtime
+         */
+        runtime: pulumi.Input<enums.services.CronJobDetailsCreateRuntime>;
         schedule: pulumi.Input<string>;
     }
-
-    export interface DockerDetailsArgs {
-        dockerCommand: pulumi.Input<string>;
-        dockerContext: pulumi.Input<string>;
-        dockerfilePath: pulumi.Input<string>;
-        preDeployCommand?: pulumi.Input<string>;
-        registryCredential?: pulumi.Input<inputs.services.RegistryCredentialArgs>;
+    /**
+     * cronJobDetailsCreateArgsProvideDefaults sets the appropriate defaults for CronJobDetailsCreateArgs
+     */
+    export function cronJobDetailsCreateArgsProvideDefaults(val: CronJobDetailsCreateArgs): CronJobDetailsCreateArgs {
+        return {
+            ...val,
+            plan: (val.plan) ?? "starter",
+            region: (val.region) ?? "oregon",
+        };
     }
 
-    export interface EnvVarKeyGenerateValueArgs {
-        generateValue: pulumi.Input<boolean>;
-        key: pulumi.Input<string>;
+    export interface EnvSpecificDetailsArgs {
     }
 
-    export interface EnvVarKeyValueArgs {
-        key: pulumi.Input<string>;
-        value: pulumi.Input<string>;
+    export interface EnvSpecificDetailsCreateArgs {
     }
 
-    export interface HeaderCreateArgs {
+    export interface EnvVarInputArgs {
+    }
+
+    export interface HeaderInputArgs {
         /**
          * Header name
          */
@@ -149,29 +237,39 @@ export namespace services {
         registryCredentialId?: pulumi.Input<string>;
     }
 
-    export interface NativeEnvironmentDetailsArgs {
-        buildCommand: pulumi.Input<string>;
-        preDeployCommand?: pulumi.Input<string>;
-        startCommand: pulumi.Input<string>;
-    }
-
     export interface PrivateServiceDetailsCreateArgs {
-        disk?: pulumi.Input<inputs.services.PrivateServiceDetailsCreateDiskPropertiesArgs>;
+        autoscaling?: pulumi.Input<inputs.services.WebServiceDetailspropertiesautoscalingArgs>;
+        disk?: pulumi.Input<inputs.services.ServiceDiskArgs>;
         /**
-         * Environment (runtime)
+         * This field has been deprecated, runtime should be used in its place.
          */
-        env: pulumi.Input<enums.services.PrivateServiceDetailsCreateEnv>;
-        envSpecificDetails?: pulumi.Input<inputs.services.DockerDetailsArgs | inputs.services.NativeEnvironmentDetailsArgs>;
+        env?: pulumi.Input<enums.services.PrivateServiceDetailsCreateEnv>;
+        envSpecificDetails?: pulumi.Input<inputs.services.EnvSpecificDetailsCreateArgs>;
+        /**
+         * The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
+         */
+        maxShutdownDelaySeconds?: pulumi.Input<number>;
         /**
          * Defaults to 1
          */
         numInstances?: pulumi.Input<number>;
+        /**
+         * Defaults to "starter"
+         */
         plan?: pulumi.Input<enums.services.PrivateServiceDetailsCreatePlan>;
+        preDeployCommand?: pulumi.Input<string>;
         /**
          * Defaults to "no"
          */
         pullRequestPreviewsEnabled?: pulumi.Input<enums.services.PrivateServiceDetailsCreatePullRequestPreviewsEnabled>;
+        /**
+         * Defaults to "oregon"
+         */
         region?: pulumi.Input<enums.services.PrivateServiceDetailsCreateRegion>;
+        /**
+         * Runtime
+         */
+        runtime: pulumi.Input<enums.services.PrivateServiceDetailsCreateRuntime>;
     }
     /**
      * privateServiceDetailsCreateArgsProvideDefaults sets the appropriate defaults for PrivateServiceDetailsCreateArgs
@@ -179,12 +277,31 @@ export namespace services {
     export function privateServiceDetailsCreateArgsProvideDefaults(val: PrivateServiceDetailsCreateArgs): PrivateServiceDetailsCreateArgs {
         return {
             ...val,
+            autoscaling: (val.autoscaling ? pulumi.output(val.autoscaling).apply(inputs.services.webServiceDetailspropertiesautoscalingArgsProvideDefaults) : undefined),
+            maxShutdownDelaySeconds: (val.maxShutdownDelaySeconds) ?? 30,
             numInstances: (val.numInstances) ?? 1,
+            plan: (val.plan) ?? "starter",
             pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
+            region: (val.region) ?? "oregon",
         };
     }
 
-    export interface PrivateServiceDetailsCreateDiskPropertiesArgs {
+    export interface RouteCreateArgs {
+        destination: pulumi.Input<string>;
+        /**
+         * Redirect and Rewrite Rules are applied in priority order starting at 0. Defaults to last in the priority list.
+         */
+        priority?: pulumi.Input<number>;
+        source: pulumi.Input<string>;
+        type: pulumi.Input<enums.services.RouteCreateType>;
+    }
+
+    export interface SecretFileInputArgs {
+        content: pulumi.Input<string>;
+        name: pulumi.Input<string>;
+    }
+
+    export interface ServiceDiskArgs {
         mountPath: pulumi.Input<string>;
         name: pulumi.Input<string>;
         /**
@@ -193,44 +310,9 @@ export namespace services {
         sizeGB?: pulumi.Input<number>;
     }
 
-    export interface RegistryCredentialArgs {
-        /**
-         * Unique identifier for this credential
-         */
-        id: pulumi.Input<string>;
-        /**
-         * Descriptive name for this credential
-         */
-        name: pulumi.Input<string>;
-        /**
-         * The registry to use this credential with
-         */
-        registry: pulumi.Input<enums.services.RegistryCredentialRegistry>;
-        /**
-         * The username associated with the credential
-         */
-        username: pulumi.Input<string>;
-    }
-
-    export interface RouteArgs {
-        destination: pulumi.Input<string>;
-        id: pulumi.Input<string>;
-        /**
-         * Redirect and Rewrite Rules are applied in priority order starting at 0
-         */
-        priority: pulumi.Input<number>;
-        source: pulumi.Input<string>;
-        type: pulumi.Input<enums.services.RouteType>;
-    }
-
-    export interface SecretFileArgs {
-        id: pulumi.Input<string>;
-        name: pulumi.Input<string>;
-    }
-
     export interface StaticSiteDetailsCreateArgs {
         buildCommand?: pulumi.Input<string>;
-        headers?: pulumi.Input<pulumi.Input<inputs.services.HeaderCreateArgs>[]>;
+        headers?: pulumi.Input<pulumi.Input<inputs.services.HeaderInputArgs>[]>;
         /**
          * Defaults to "public"
          */
@@ -239,7 +321,7 @@ export namespace services {
          * Defaults to "no"
          */
         pullRequestPreviewsEnabled?: pulumi.Input<enums.services.StaticSiteDetailsCreatePullRequestPreviewsEnabled>;
-        routes?: pulumi.Input<pulumi.Input<inputs.services.RouteArgs>[]>;
+        routes?: pulumi.Input<pulumi.Input<inputs.services.RouteCreateArgs>[]>;
     }
     /**
      * staticSiteDetailsCreateArgsProvideDefaults sets the appropriate defaults for StaticSiteDetailsCreateArgs
@@ -252,23 +334,39 @@ export namespace services {
     }
 
     export interface WebServiceDetailsCreateArgs {
-        disk?: pulumi.Input<inputs.services.WebServiceDetailsCreateDiskPropertiesArgs>;
+        autoscaling?: pulumi.Input<inputs.services.WebServiceDetailspropertiesautoscalingArgs>;
+        disk?: pulumi.Input<inputs.services.ServiceDiskArgs>;
         /**
-         * Environment (runtime)
+         * This field has been deprecated, runtime should be used in its place.
          */
-        env: pulumi.Input<enums.services.WebServiceDetailsCreateEnv>;
-        envSpecificDetails?: pulumi.Input<inputs.services.DockerDetailsArgs | inputs.services.NativeEnvironmentDetailsArgs>;
+        env?: pulumi.Input<enums.services.WebServiceDetailsCreateEnv>;
+        envSpecificDetails?: pulumi.Input<inputs.services.EnvSpecificDetailsCreateArgs>;
         healthCheckPath?: pulumi.Input<string>;
+        /**
+         * The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
+         */
+        maxShutdownDelaySeconds?: pulumi.Input<number>;
         /**
          * Defaults to 1
          */
         numInstances?: pulumi.Input<number>;
+        /**
+         * Defaults to "starter"
+         */
         plan?: pulumi.Input<enums.services.WebServiceDetailsCreatePlan>;
+        preDeployCommand?: pulumi.Input<string>;
         /**
          * Defaults to "no"
          */
         pullRequestPreviewsEnabled?: pulumi.Input<enums.services.WebServiceDetailsCreatePullRequestPreviewsEnabled>;
+        /**
+         * Defaults to "oregon"
+         */
         region?: pulumi.Input<enums.services.WebServiceDetailsCreateRegion>;
+        /**
+         * Runtime
+         */
+        runtime: pulumi.Input<enums.services.WebServiceDetailsCreateRuntime>;
     }
     /**
      * webServiceDetailsCreateArgsProvideDefaults sets the appropriate defaults for WebServiceDetailsCreateArgs
@@ -276,17 +374,84 @@ export namespace services {
     export function webServiceDetailsCreateArgsProvideDefaults(val: WebServiceDetailsCreateArgs): WebServiceDetailsCreateArgs {
         return {
             ...val,
+            autoscaling: (val.autoscaling ? pulumi.output(val.autoscaling).apply(inputs.services.webServiceDetailspropertiesautoscalingArgsProvideDefaults) : undefined),
+            maxShutdownDelaySeconds: (val.maxShutdownDelaySeconds) ?? 30,
+            plan: (val.plan) ?? "starter",
             pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
+            region: (val.region) ?? "oregon",
         };
     }
 
-    export interface WebServiceDetailsCreateDiskPropertiesArgs {
-        mountPath: pulumi.Input<string>;
-        name: pulumi.Input<string>;
+    export interface WebServiceDetailspropertiesautoscalingArgs {
+        criteria: pulumi.Input<inputs.services.WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgs>;
+        enabled: pulumi.Input<boolean>;
         /**
-         * Defaults to 1
+         * The maximum number of instances for the service
          */
-        sizeGB?: pulumi.Input<number>;
+        max: pulumi.Input<number>;
+        /**
+         * The minimum number of instances for the service
+         */
+        min: pulumi.Input<number>;
+    }
+    /**
+     * webServiceDetailspropertiesautoscalingArgsProvideDefaults sets the appropriate defaults for WebServiceDetailspropertiesautoscalingArgs
+     */
+    export function webServiceDetailspropertiesautoscalingArgsProvideDefaults(val: WebServiceDetailspropertiesautoscalingArgs): WebServiceDetailspropertiesautoscalingArgs {
+        return {
+            ...val,
+            criteria: pulumi.output(val.criteria).apply(inputs.services.webServiceDetailspropertiesautoscalingCriteriaPropertiesArgsProvideDefaults),
+            enabled: (val.enabled) ?? false,
+        };
+    }
+
+    export interface WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgs {
+        cpu: pulumi.Input<inputs.services.WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs>;
+        memory: pulumi.Input<inputs.services.WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs>;
+    }
+    /**
+     * webServiceDetailspropertiesautoscalingCriteriaPropertiesArgsProvideDefaults sets the appropriate defaults for WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgs
+     */
+    export function webServiceDetailspropertiesautoscalingCriteriaPropertiesArgsProvideDefaults(val: WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgs): WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgs {
+        return {
+            ...val,
+            cpu: pulumi.output(val.cpu).apply(inputs.services.webServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgsProvideDefaults),
+            memory: pulumi.output(val.memory).apply(inputs.services.webServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgsProvideDefaults),
+        };
+    }
+
+    export interface WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs {
+        enabled: pulumi.Input<boolean>;
+        /**
+         * Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+         */
+        percentage: pulumi.Input<number>;
+    }
+    /**
+     * webServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgsProvideDefaults sets the appropriate defaults for WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs
+     */
+    export function webServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgsProvideDefaults(val: WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs): WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs {
+        return {
+            ...val,
+            enabled: (val.enabled) ?? false,
+        };
+    }
+
+    export interface WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs {
+        enabled: pulumi.Input<boolean>;
+        /**
+         * Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+         */
+        percentage: pulumi.Input<number>;
+    }
+    /**
+     * webServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgsProvideDefaults sets the appropriate defaults for WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs
+     */
+    export function webServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgsProvideDefaults(val: WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs): WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs {
+        return {
+            ...val,
+            enabled: (val.enabled) ?? false,
+        };
     }
 
 }

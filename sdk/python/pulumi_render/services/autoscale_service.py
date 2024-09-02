@@ -16,7 +16,7 @@ __all__ = ['AutoscaleServiceArgs', 'AutoscaleService']
 @pulumi.input_type
 class AutoscaleServiceArgs:
     def __init__(__self__, *,
-                 criteria: pulumi.Input['AutoscalingCriteriaArgs'],
+                 criteria: pulumi.Input['CriteriaPropertiesArgs'],
                  enabled: Optional[pulumi.Input[bool]] = None,
                  max: pulumi.Input[int],
                  min: pulumi.Input[int],
@@ -38,11 +38,11 @@ class AutoscaleServiceArgs:
 
     @property
     @pulumi.getter
-    def criteria(self) -> pulumi.Input['AutoscalingCriteriaArgs']:
+    def criteria(self) -> pulumi.Input['CriteriaPropertiesArgs']:
         return pulumi.get(self, "criteria")
 
     @criteria.setter
-    def criteria(self, value: pulumi.Input['AutoscalingCriteriaArgs']):
+    def criteria(self, value: pulumi.Input['CriteriaPropertiesArgs']):
         pulumi.set(self, "criteria", value)
 
     @property
@@ -96,7 +96,7 @@ class AutoscaleService(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 criteria: Optional[pulumi.Input[Union['AutoscalingCriteriaArgs', 'AutoscalingCriteriaArgsDict']]] = None,
+                 criteria: Optional[pulumi.Input[Union['CriteriaPropertiesArgs', 'CriteriaPropertiesArgsDict']]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  max: Optional[pulumi.Input[int]] = None,
                  min: Optional[pulumi.Input[int]] = None,
@@ -133,7 +133,7 @@ class AutoscaleService(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 criteria: Optional[pulumi.Input[Union['AutoscalingCriteriaArgs', 'AutoscalingCriteriaArgsDict']]] = None,
+                 criteria: Optional[pulumi.Input[Union['CriteriaPropertiesArgs', 'CriteriaPropertiesArgsDict']]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  max: Optional[pulumi.Input[int]] = None,
                  min: Optional[pulumi.Input[int]] = None,
@@ -192,7 +192,7 @@ class AutoscaleService(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def criteria(self) -> pulumi.Output['outputs.AutoscalingCriteria']:
+    def criteria(self) -> pulumi.Output['outputs.CriteriaProperties']:
         return pulumi.get(self, "criteria")
 
     @property

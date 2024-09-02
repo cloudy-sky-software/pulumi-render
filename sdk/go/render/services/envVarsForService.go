@@ -14,7 +14,7 @@ import (
 type EnvVarsForService struct {
 	pulumi.CustomResourceState
 
-	EnvVars pulumi.ArrayOutput `pulumi:"envVars"`
+	EnvVars EnvVarInputTypeArrayOutput `pulumi:"envVars"`
 }
 
 // NewEnvVarsForService registers a new resource with the given unique name, arguments, and options.
@@ -57,14 +57,14 @@ func (EnvVarsForServiceState) ElementType() reflect.Type {
 }
 
 type envVarsForServiceArgs struct {
-	EnvVars []interface{} `pulumi:"envVars"`
+	EnvVars []EnvVarInputType `pulumi:"envVars"`
 	// The ID of the service
 	ServiceId *string `pulumi:"serviceId"`
 }
 
 // The set of arguments for constructing a EnvVarsForService resource.
 type EnvVarsForServiceArgs struct {
-	EnvVars pulumi.ArrayInput
+	EnvVars EnvVarInputTypeArrayInput
 	// The ID of the service
 	ServiceId pulumi.StringPtrInput
 }
@@ -106,8 +106,8 @@ func (o EnvVarsForServiceOutput) ToEnvVarsForServiceOutputWithContext(ctx contex
 	return o
 }
 
-func (o EnvVarsForServiceOutput) EnvVars() pulumi.ArrayOutput {
-	return o.ApplyT(func(v *EnvVarsForService) pulumi.ArrayOutput { return v.EnvVars }).(pulumi.ArrayOutput)
+func (o EnvVarsForServiceOutput) EnvVars() EnvVarInputTypeArrayOutput {
+	return o.ApplyT(func(v *EnvVarsForService) EnvVarInputTypeArrayOutput { return v.EnvVars }).(EnvVarInputTypeArrayOutput)
 }
 
 func init() {

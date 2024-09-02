@@ -13,15 +13,19 @@ namespace Pulumi.Render.Services.Outputs
     [OutputType]
     public sealed class WebServiceDetailsOutput
     {
-        public readonly Outputs.AutoscalingConfig? Autoscaling;
-        public readonly string BuildPlan;
-        public readonly Outputs.Disk? Disk;
+        public readonly Outputs.WebServiceDetailsOutputAutoscalingProperties? Autoscaling;
+        public readonly Pulumi.Render.Services.WebServiceDetailsOutputBuildPlan BuildPlan;
+        public readonly Outputs.WebServiceDetailsOutputDiskProperties? Disk;
         /// <summary>
-        /// Environment (runtime)
+        /// Runtime
         /// </summary>
         public readonly Pulumi.Render.Services.WebServiceDetailsOutputEnv Env;
-        public readonly Union<Outputs.DockerDetails, Outputs.NativeEnvironmentDetails> EnvSpecificDetails;
+        public readonly Outputs.EnvSpecificDetails EnvSpecificDetails;
         public readonly string HealthCheckPath;
+        /// <summary>
+        /// The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
+        /// </summary>
+        public readonly int? MaxShutdownDelaySeconds;
         /// <summary>
         /// For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
         /// </summary>
@@ -32,23 +36,31 @@ namespace Pulumi.Render.Services.Outputs
         /// The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
         /// </summary>
         public readonly Pulumi.Render.Services.WebServiceDetailsOutputPlan Plan;
-        public readonly Pulumi.Render.Services.WebServiceDetailsOutputPullRequestPreviewsEnabled PullRequestPreviewsEnabled;
+        /// <summary>
+        /// Defaults to "no"
+        /// </summary>
+        public readonly Pulumi.Render.Services.WebServiceDetailsOutputPullRequestPreviewsEnabled? PullRequestPreviewsEnabled;
+        /// <summary>
+        /// Defaults to "oregon"
+        /// </summary>
         public readonly Pulumi.Render.Services.WebServiceDetailsOutputRegion Region;
         public readonly string Url;
 
         [OutputConstructor]
         private WebServiceDetailsOutput(
-            Outputs.AutoscalingConfig? autoscaling,
+            Outputs.WebServiceDetailsOutputAutoscalingProperties? autoscaling,
 
-            string buildPlan,
+            Pulumi.Render.Services.WebServiceDetailsOutputBuildPlan buildPlan,
 
-            Outputs.Disk? disk,
+            Outputs.WebServiceDetailsOutputDiskProperties? disk,
 
             Pulumi.Render.Services.WebServiceDetailsOutputEnv env,
 
-            Union<Outputs.DockerDetails, Outputs.NativeEnvironmentDetails> envSpecificDetails,
+            Outputs.EnvSpecificDetails envSpecificDetails,
 
             string healthCheckPath,
+
+            int? maxShutdownDelaySeconds,
 
             int numInstances,
 
@@ -58,7 +70,7 @@ namespace Pulumi.Render.Services.Outputs
 
             Pulumi.Render.Services.WebServiceDetailsOutputPlan plan,
 
-            Pulumi.Render.Services.WebServiceDetailsOutputPullRequestPreviewsEnabled pullRequestPreviewsEnabled,
+            Pulumi.Render.Services.WebServiceDetailsOutputPullRequestPreviewsEnabled? pullRequestPreviewsEnabled,
 
             Pulumi.Render.Services.WebServiceDetailsOutputRegion region,
 
@@ -70,6 +82,7 @@ namespace Pulumi.Render.Services.Outputs
             Env = env;
             EnvSpecificDetails = envSpecificDetails;
             HealthCheckPath = healthCheckPath;
+            MaxShutdownDelaySeconds = maxShutdownDelaySeconds;
             NumInstances = numInstances;
             OpenPorts = openPorts;
             ParentServer = parentServer;

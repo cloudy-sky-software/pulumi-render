@@ -35,7 +35,8 @@ const testCreateJSONPayload = `{
         "numInstances": 1,
         "plan": "starter",
         "pullRequestPreviewsEnabled": "no",
-        "region": "oregon"
+        "region": "oregon",
+		"runtime": "docker"
     },
     "type": "web_service"
 }

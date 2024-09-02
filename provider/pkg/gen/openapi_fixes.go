@@ -343,12 +343,14 @@ func fixListJobsEndpoint(openAPIDoc *openapi3.T) {
 	contract.Assertf(pathItem != nil, "path /services/{serviceId}/jobs not found")
 
 	jobSchema := pathItem.Post.Responses.Status(200).Value.Content.Get(jsonMimeType).Schema
-	openAPIDoc.Components.Schemas["Job"] = jobSchema
-	pathItem.Post.Responses.Status(200).Value.Content.Get(jsonMimeType).Schema = openapi3.NewSchemaRef("#/components/schema/Job", jobSchema.Value)
+	openAPIDoc.Components.Schemas["Job"] = openapi3.NewSchemaRef("", jobSchema.Value)
+	pathItem.Post.Responses.Status(200).Value.Content.Get(jsonMimeType).Schema.Value = jobSchema.Value
+	pathItem.Post.Responses.Status(200).Value.Content.Get(jsonMimeType).Schema.Ref = "#/components/schemas/Job"
 
 	pathItem = openAPIDoc.Paths.Find("/services/{serviceId}/jobs/{jobId}")
 	contract.Assertf(pathItem != nil, "path /services/{serviceId}/jobs/{jobId} not found")
-	pathItem.Get.Responses.Status(200).Value.Content.Get(jsonMimeType).Schema = jobSchema
+	pathItem.Get.Responses.Status(200).Value.Content.Get(jsonMimeType).Schema.Ref = "#/components/schemas/Job"
+	pathItem.Get.Responses.Status(200).Value.Content.Get(jsonMimeType).Schema.Value = jobSchema.Value
 }
 
 func fixPostgresResponseInvalidRequiredProp(openAPIDoc *openapi3.T) {
@@ -377,6 +379,8 @@ func FixOpenAPIDoc(openAPIDoc *openapi3.T) error {
 	fixDeleteServiceEndpoint(openAPIDoc)
 	fixListJobsEndpoint((openAPIDoc))
 	fixPostgresResponseInvalidRequiredProp(openAPIDoc)
+	// TODO: Convert oneOf schemas of envSpecificDetails|envSpecificDetailsPATCH|envSpecificDetailsPOST
+	// to allOf since there is no discriminator.
 
 	return nil
 }

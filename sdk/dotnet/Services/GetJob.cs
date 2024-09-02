@@ -63,10 +63,10 @@ namespace Pulumi.Render.Services
     [OutputType]
     public sealed class GetJobResult
     {
-        public readonly Outputs.GetJobProperties Items;
+        public readonly Outputs.Job Items;
 
         [OutputConstructor]
-        private GetJobResult(Outputs.GetJobProperties items)
+        private GetJobResult(Outputs.Job items)
         {
             Items = items;
         }

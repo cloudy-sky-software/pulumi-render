@@ -986,6 +986,13 @@ export namespace services {
     }
 
     export interface EnvSpecificDetails {
+        buildCommand?: string;
+        dockerCommand?: string;
+        dockerContext?: string;
+        dockerfilePath?: string;
+        preDeployCommand?: string;
+        registryCredential?: outputs.services.RegistryCredential;
+        startCommand?: string;
     }
 
     export interface EnvVar {
@@ -1073,17 +1080,6 @@ export namespace services {
             serviceDetails: (val.serviceDetails ? outputs.services.cronJobDetailsOutputProvideDefaults(val.serviceDetails) : undefined),
             type: (val.type) ?? "cron_job",
         };
-    }
-
-    export interface GetJobProperties {
-        createdAt: string;
-        finishedAt?: string;
-        id: string;
-        planId: string;
-        serviceId: string;
-        startCommand: string;
-        startedAt?: string;
-        status?: enums.services.GetJobPropertiesStatus;
     }
 
     export interface GetPrivateService {
@@ -1242,6 +1238,17 @@ export namespace services {
         sha?: string;
     }
 
+    export interface Job {
+        createdAt: string;
+        finishedAt?: string;
+        id: string;
+        planId: string;
+        serviceId: string;
+        startCommand: string;
+        startedAt?: string;
+        status?: enums.services.JobStatus;
+    }
+
     export interface ListDeploysItemProperties {
         cursor?: string;
         deploy?: outputs.services.Deploy;
@@ -1350,6 +1357,25 @@ export namespace services {
             serviceDetails: (val.serviceDetails ? outputs.services.privateServiceDetailsOutputProvideDefaults(val.serviceDetails) : undefined),
             type: (val.type) ?? "private_service",
         };
+    }
+
+    export interface RegistryCredential {
+        /**
+         * Unique identifier for this credential
+         */
+        id: string;
+        /**
+         * Descriptive name for this credential
+         */
+        name: string;
+        /**
+         * The registry to use this credential with
+         */
+        registry: enums.services.RegistryCredentialRegistry;
+        /**
+         * The username associated with the credential
+         */
+        username: string;
     }
 
     export interface RegistryCredentialSummary {

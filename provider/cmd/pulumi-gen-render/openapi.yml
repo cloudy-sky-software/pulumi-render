@@ -9095,8 +9095,11 @@ components:
                       $ref: >-
                         #/paths/~1services~1%7BserviceId%7D~1jobs~1%7BjobId%7D/parameters/1/schema
                     status:
-                      $ref: >-
-                        #/paths/~1services~1%7BserviceId%7D~1jobs/post/responses/200/content/application~1json/schema/properties/status
+                      type: string
+                      enum:
+                        - succeeded
+                        - failed
+                        - canceled
                     reason:
                       $ref: >-
                         #/components/schemas/serviceEventWithCursor/properties/event/properties/details/oneOf/9/properties/reason

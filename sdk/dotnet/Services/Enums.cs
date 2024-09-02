@@ -820,35 +820,6 @@ namespace Pulumi.Render.Services
     }
 
     [EnumType]
-    public readonly struct GetJobPropertiesStatus : IEquatable<GetJobPropertiesStatus>
-    {
-        private readonly string _value;
-
-        private GetJobPropertiesStatus(string value)
-        {
-            _value = value ?? throw new ArgumentNullException(nameof(value));
-        }
-
-        public static GetJobPropertiesStatus Succeeded { get; } = new GetJobPropertiesStatus("succeeded");
-        public static GetJobPropertiesStatus Failed { get; } = new GetJobPropertiesStatus("failed");
-        public static GetJobPropertiesStatus Canceled { get; } = new GetJobPropertiesStatus("canceled");
-
-        public static bool operator ==(GetJobPropertiesStatus left, GetJobPropertiesStatus right) => left.Equals(right);
-        public static bool operator !=(GetJobPropertiesStatus left, GetJobPropertiesStatus right) => !left.Equals(right);
-
-        public static explicit operator string(GetJobPropertiesStatus value) => value._value;
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is GetJobPropertiesStatus other && Equals(other);
-        public bool Equals(GetJobPropertiesStatus other) => string.Equals(_value, other._value, StringComparison.Ordinal);
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
-
-        public override string ToString() => _value;
-    }
-
-    [EnumType]
     public readonly struct JobStatus : IEquatable<JobStatus>
     {
         private readonly string _value;
@@ -1281,6 +1252,39 @@ namespace Pulumi.Render.Services
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool Equals(object? obj) => obj is PrivateServiceDetailsOutputRegion other && Equals(other);
         public bool Equals(PrivateServiceDetailsOutputRegion other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    /// <summary>
+    /// The registry to use this credential with
+    /// </summary>
+    [EnumType]
+    public readonly struct RegistryCredentialRegistry : IEquatable<RegistryCredentialRegistry>
+    {
+        private readonly string _value;
+
+        private RegistryCredentialRegistry(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static RegistryCredentialRegistry Github { get; } = new RegistryCredentialRegistry("GITHUB");
+        public static RegistryCredentialRegistry Gitlab { get; } = new RegistryCredentialRegistry("GITLAB");
+        public static RegistryCredentialRegistry Docker { get; } = new RegistryCredentialRegistry("DOCKER");
+        public static RegistryCredentialRegistry GoogleArtifact { get; } = new RegistryCredentialRegistry("GOOGLE_ARTIFACT");
+
+        public static bool operator ==(RegistryCredentialRegistry left, RegistryCredentialRegistry right) => left.Equals(right);
+        public static bool operator !=(RegistryCredentialRegistry left, RegistryCredentialRegistry right) => !left.Equals(right);
+
+        public static explicit operator string(RegistryCredentialRegistry value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is RegistryCredentialRegistry other && Equals(other);
+        public bool Equals(RegistryCredentialRegistry other) => string.Equals(_value, other._value, StringComparison.Ordinal);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => _value?.GetHashCode() ?? 0;

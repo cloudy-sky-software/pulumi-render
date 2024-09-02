@@ -310,14 +310,6 @@ export const DeployTrigger = {
 
 export type DeployTrigger = (typeof DeployTrigger)[keyof typeof DeployTrigger];
 
-export const GetJobPropertiesStatus = {
-    Succeeded: "succeeded",
-    Failed: "failed",
-    Canceled: "canceled",
-} as const;
-
-export type GetJobPropertiesStatus = (typeof GetJobPropertiesStatus)[keyof typeof GetJobPropertiesStatus];
-
 export const JobStatus = {
     Succeeded: "succeeded",
     Failed: "failed",
@@ -484,6 +476,18 @@ export const PrivateServiceDetailsOutputRegion = {
  * Defaults to "oregon"
  */
 export type PrivateServiceDetailsOutputRegion = (typeof PrivateServiceDetailsOutputRegion)[keyof typeof PrivateServiceDetailsOutputRegion];
+
+export const RegistryCredentialRegistry = {
+    Github: "GITHUB",
+    Gitlab: "GITLAB",
+    Docker: "DOCKER",
+    GoogleArtifact: "GOOGLE_ARTIFACT",
+} as const;
+
+/**
+ * The registry to use this credential with
+ */
+export type RegistryCredentialRegistry = (typeof RegistryCredentialRegistry)[keyof typeof RegistryCredentialRegistry];
 
 export const RouteCreateType = {
     Redirect: "redirect",

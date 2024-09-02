@@ -22,6 +22,7 @@ __all__ = [
     'HeaderInputArgs',
     'ImageArgs',
     'PrivateServiceDetailsCreateArgs',
+    'RegistryCredentialArgs',
     'RouteCreateArgs',
     'SecretFileInputArgs',
     'ServiceDiskArgs',
@@ -397,14 +398,174 @@ class CronJobDetailsCreateArgs:
 
 @pulumi.input_type
 class EnvSpecificDetailsCreateArgs:
-    def __init__(__self__):
-        pass
+    def __init__(__self__, *,
+                 build_command: Optional[pulumi.Input[str]] = None,
+                 docker_command: Optional[pulumi.Input[str]] = None,
+                 docker_context: Optional[pulumi.Input[str]] = None,
+                 dockerfile_path: Optional[pulumi.Input[str]] = None,
+                 registry_credential_id: Optional[pulumi.Input[str]] = None,
+                 start_command: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] dockerfile_path: Defaults to "./Dockerfile"
+        """
+        if build_command is not None:
+            pulumi.set(__self__, "build_command", build_command)
+        if docker_command is not None:
+            pulumi.set(__self__, "docker_command", docker_command)
+        if docker_context is not None:
+            pulumi.set(__self__, "docker_context", docker_context)
+        if dockerfile_path is not None:
+            pulumi.set(__self__, "dockerfile_path", dockerfile_path)
+        if registry_credential_id is not None:
+            pulumi.set(__self__, "registry_credential_id", registry_credential_id)
+        if start_command is not None:
+            pulumi.set(__self__, "start_command", start_command)
+
+    @property
+    @pulumi.getter(name="buildCommand")
+    def build_command(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "build_command")
+
+    @build_command.setter
+    def build_command(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "build_command", value)
+
+    @property
+    @pulumi.getter(name="dockerCommand")
+    def docker_command(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "docker_command")
+
+    @docker_command.setter
+    def docker_command(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "docker_command", value)
+
+    @property
+    @pulumi.getter(name="dockerContext")
+    def docker_context(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "docker_context")
+
+    @docker_context.setter
+    def docker_context(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "docker_context", value)
+
+    @property
+    @pulumi.getter(name="dockerfilePath")
+    def dockerfile_path(self) -> Optional[pulumi.Input[str]]:
+        """
+        Defaults to "./Dockerfile"
+        """
+        return pulumi.get(self, "dockerfile_path")
+
+    @dockerfile_path.setter
+    def dockerfile_path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dockerfile_path", value)
+
+    @property
+    @pulumi.getter(name="registryCredentialId")
+    def registry_credential_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "registry_credential_id")
+
+    @registry_credential_id.setter
+    def registry_credential_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "registry_credential_id", value)
+
+    @property
+    @pulumi.getter(name="startCommand")
+    def start_command(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "start_command")
+
+    @start_command.setter
+    def start_command(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "start_command", value)
 
 
 @pulumi.input_type
 class EnvSpecificDetailsArgs:
-    def __init__(__self__):
-        pass
+    def __init__(__self__, *,
+                 build_command: Optional[pulumi.Input[str]] = None,
+                 docker_command: Optional[pulumi.Input[str]] = None,
+                 docker_context: Optional[pulumi.Input[str]] = None,
+                 dockerfile_path: Optional[pulumi.Input[str]] = None,
+                 pre_deploy_command: Optional[pulumi.Input[str]] = None,
+                 registry_credential: Optional[pulumi.Input['RegistryCredentialArgs']] = None,
+                 start_command: Optional[pulumi.Input[str]] = None):
+        if build_command is not None:
+            pulumi.set(__self__, "build_command", build_command)
+        if docker_command is not None:
+            pulumi.set(__self__, "docker_command", docker_command)
+        if docker_context is not None:
+            pulumi.set(__self__, "docker_context", docker_context)
+        if dockerfile_path is not None:
+            pulumi.set(__self__, "dockerfile_path", dockerfile_path)
+        if pre_deploy_command is not None:
+            pulumi.set(__self__, "pre_deploy_command", pre_deploy_command)
+        if registry_credential is not None:
+            pulumi.set(__self__, "registry_credential", registry_credential)
+        if start_command is not None:
+            pulumi.set(__self__, "start_command", start_command)
+
+    @property
+    @pulumi.getter(name="buildCommand")
+    def build_command(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "build_command")
+
+    @build_command.setter
+    def build_command(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "build_command", value)
+
+    @property
+    @pulumi.getter(name="dockerCommand")
+    def docker_command(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "docker_command")
+
+    @docker_command.setter
+    def docker_command(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "docker_command", value)
+
+    @property
+    @pulumi.getter(name="dockerContext")
+    def docker_context(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "docker_context")
+
+    @docker_context.setter
+    def docker_context(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "docker_context", value)
+
+    @property
+    @pulumi.getter(name="dockerfilePath")
+    def dockerfile_path(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "dockerfile_path")
+
+    @dockerfile_path.setter
+    def dockerfile_path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dockerfile_path", value)
+
+    @property
+    @pulumi.getter(name="preDeployCommand")
+    def pre_deploy_command(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "pre_deploy_command")
+
+    @pre_deploy_command.setter
+    def pre_deploy_command(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pre_deploy_command", value)
+
+    @property
+    @pulumi.getter(name="registryCredential")
+    def registry_credential(self) -> Optional[pulumi.Input['RegistryCredentialArgs']]:
+        return pulumi.get(self, "registry_credential")
+
+    @registry_credential.setter
+    def registry_credential(self, value: Optional[pulumi.Input['RegistryCredentialArgs']]):
+        pulumi.set(self, "registry_credential", value)
+
+    @property
+    @pulumi.getter(name="startCommand")
+    def start_command(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "start_command")
+
+    @start_command.setter
+    def start_command(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "start_command", value)
 
 
 @pulumi.input_type
@@ -692,6 +853,73 @@ class PrivateServiceDetailsCreateArgs:
     @region.setter
     def region(self, value: Optional[pulumi.Input['PrivateServiceDetailsCreateRegion']]):
         pulumi.set(self, "region", value)
+
+
+@pulumi.input_type
+class RegistryCredentialArgs:
+    def __init__(__self__, *,
+                 id: pulumi.Input[str],
+                 name: pulumi.Input[str],
+                 registry: pulumi.Input['RegistryCredentialRegistry'],
+                 username: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] id: Unique identifier for this credential
+        :param pulumi.Input[str] name: Descriptive name for this credential
+        :param pulumi.Input['RegistryCredentialRegistry'] registry: The registry to use this credential with
+        :param pulumi.Input[str] username: The username associated with the credential
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "registry", registry)
+        pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def id(self) -> pulumi.Input[str]:
+        """
+        Unique identifier for this credential
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        Descriptive name for this credential
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def registry(self) -> pulumi.Input['RegistryCredentialRegistry']:
+        """
+        The registry to use this credential with
+        """
+        return pulumi.get(self, "registry")
+
+    @registry.setter
+    def registry(self, value: pulumi.Input['RegistryCredentialRegistry']):
+        pulumi.set(self, "registry", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> pulumi.Input[str]:
+        """
+        The username associated with the credential
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: pulumi.Input[str]):
+        pulumi.set(self, "username", value)
 
 
 @pulumi.input_type

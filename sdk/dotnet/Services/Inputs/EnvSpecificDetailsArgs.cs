@@ -12,6 +12,27 @@ namespace Pulumi.Render.Services.Inputs
 
     public sealed class EnvSpecificDetailsArgs : global::Pulumi.ResourceArgs
     {
+        [Input("buildCommand")]
+        public Input<string>? BuildCommand { get; set; }
+
+        [Input("dockerCommand")]
+        public Input<string>? DockerCommand { get; set; }
+
+        [Input("dockerContext")]
+        public Input<string>? DockerContext { get; set; }
+
+        [Input("dockerfilePath")]
+        public Input<string>? DockerfilePath { get; set; }
+
+        [Input("preDeployCommand")]
+        public Input<string>? PreDeployCommand { get; set; }
+
+        [Input("registryCredential")]
+        public Input<Inputs.RegistryCredentialArgs>? RegistryCredential { get; set; }
+
+        [Input("startCommand")]
+        public Input<string>? StartCommand { get; set; }
+
         public EnvSpecificDetailsArgs()
         {
         }

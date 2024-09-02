@@ -29,7 +29,6 @@ __all__ = [
     'CustomDomainVerificationStatus',
     'DeployStatus',
     'DeployTrigger',
-    'GetJobPropertiesStatus',
     'JobStatus',
     'Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus',
     'Plan',
@@ -43,6 +42,7 @@ __all__ = [
     'PrivateServiceDetailsOutputPlan',
     'PrivateServiceDetailsOutputPullRequestPreviewsEnabled',
     'PrivateServiceDetailsOutputRegion',
+    'RegistryCredentialRegistry',
     'RouteCreateType',
     'RouteType',
     'ServerPortProtocol',
@@ -330,12 +330,6 @@ class DeployTrigger(str, Enum):
     SERVICE_UPDATED = "service_updated"
 
 
-class GetJobPropertiesStatus(str, Enum):
-    SUCCEEDED = "succeeded"
-    FAILED = "failed"
-    CANCELED = "canceled"
-
-
 class JobStatus(str, Enum):
     SUCCEEDED = "succeeded"
     FAILED = "failed"
@@ -475,6 +469,16 @@ class PrivateServiceDetailsOutputRegion(str, Enum):
     OHIO = "ohio"
     SINGAPORE = "singapore"
     VIRGINIA = "virginia"
+
+
+class RegistryCredentialRegistry(str, Enum):
+    """
+    The registry to use this credential with
+    """
+    GITHUB = "GITHUB"
+    GITLAB = "GITLAB"
+    DOCKER = "DOCKER"
+    GOOGLE_ARTIFACT = "GOOGLE_ARTIFACT"
 
 
 class RouteCreateType(str, Enum):

@@ -199,9 +199,25 @@ export namespace services {
     }
 
     export interface EnvSpecificDetailsArgs {
+        buildCommand?: pulumi.Input<string>;
+        dockerCommand?: pulumi.Input<string>;
+        dockerContext?: pulumi.Input<string>;
+        dockerfilePath?: pulumi.Input<string>;
+        preDeployCommand?: pulumi.Input<string>;
+        registryCredential?: pulumi.Input<inputs.services.RegistryCredentialArgs>;
+        startCommand?: pulumi.Input<string>;
     }
 
     export interface EnvSpecificDetailsCreateArgs {
+        buildCommand?: pulumi.Input<string>;
+        dockerCommand?: pulumi.Input<string>;
+        dockerContext?: pulumi.Input<string>;
+        /**
+         * Defaults to "./Dockerfile"
+         */
+        dockerfilePath?: pulumi.Input<string>;
+        registryCredentialId?: pulumi.Input<string>;
+        startCommand?: pulumi.Input<string>;
     }
 
     export interface EnvVarInputArgs {
@@ -284,6 +300,25 @@ export namespace services {
             pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
             region: (val.region) ?? "oregon",
         };
+    }
+
+    export interface RegistryCredentialArgs {
+        /**
+         * Unique identifier for this credential
+         */
+        id: pulumi.Input<string>;
+        /**
+         * Descriptive name for this credential
+         */
+        name: pulumi.Input<string>;
+        /**
+         * The registry to use this credential with
+         */
+        registry: pulumi.Input<enums.services.RegistryCredentialRegistry>;
+        /**
+         * The username associated with the credential
+         */
+        username: pulumi.Input<string>;
     }
 
     export interface RouteCreateArgs {

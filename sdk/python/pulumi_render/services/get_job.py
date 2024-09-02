@@ -27,7 +27,7 @@ class GetJobResult:
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.GetJobProperties':
+    def items(self) -> 'outputs.Job':
         return pulumi.get(self, "items")
 
 

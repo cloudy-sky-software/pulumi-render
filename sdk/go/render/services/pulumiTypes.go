@@ -2621,6 +2621,13 @@ func (o DeployImagePropertiesPtrOutput) Sha() pulumi.StringPtrOutput {
 }
 
 type EnvSpecificDetails struct {
+	BuildCommand       *string             `pulumi:"buildCommand"`
+	DockerCommand      *string             `pulumi:"dockerCommand"`
+	DockerContext      *string             `pulumi:"dockerContext"`
+	DockerfilePath     *string             `pulumi:"dockerfilePath"`
+	PreDeployCommand   *string             `pulumi:"preDeployCommand"`
+	RegistryCredential *RegistryCredential `pulumi:"registryCredential"`
+	StartCommand       *string             `pulumi:"startCommand"`
 }
 
 // EnvSpecificDetailsInput is an input type that accepts EnvSpecificDetailsArgs and EnvSpecificDetailsOutput values.
@@ -2635,6 +2642,13 @@ type EnvSpecificDetailsInput interface {
 }
 
 type EnvSpecificDetailsArgs struct {
+	BuildCommand       pulumi.StringPtrInput      `pulumi:"buildCommand"`
+	DockerCommand      pulumi.StringPtrInput      `pulumi:"dockerCommand"`
+	DockerContext      pulumi.StringPtrInput      `pulumi:"dockerContext"`
+	DockerfilePath     pulumi.StringPtrInput      `pulumi:"dockerfilePath"`
+	PreDeployCommand   pulumi.StringPtrInput      `pulumi:"preDeployCommand"`
+	RegistryCredential RegistryCredentialPtrInput `pulumi:"registryCredential"`
+	StartCommand       pulumi.StringPtrInput      `pulumi:"startCommand"`
 }
 
 func (EnvSpecificDetailsArgs) ElementType() reflect.Type {
@@ -2714,6 +2728,34 @@ func (o EnvSpecificDetailsOutput) ToEnvSpecificDetailsPtrOutputWithContext(ctx c
 	}).(EnvSpecificDetailsPtrOutput)
 }
 
+func (o EnvSpecificDetailsOutput) BuildCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvSpecificDetails) *string { return v.BuildCommand }).(pulumi.StringPtrOutput)
+}
+
+func (o EnvSpecificDetailsOutput) DockerCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvSpecificDetails) *string { return v.DockerCommand }).(pulumi.StringPtrOutput)
+}
+
+func (o EnvSpecificDetailsOutput) DockerContext() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvSpecificDetails) *string { return v.DockerContext }).(pulumi.StringPtrOutput)
+}
+
+func (o EnvSpecificDetailsOutput) DockerfilePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvSpecificDetails) *string { return v.DockerfilePath }).(pulumi.StringPtrOutput)
+}
+
+func (o EnvSpecificDetailsOutput) PreDeployCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvSpecificDetails) *string { return v.PreDeployCommand }).(pulumi.StringPtrOutput)
+}
+
+func (o EnvSpecificDetailsOutput) RegistryCredential() RegistryCredentialPtrOutput {
+	return o.ApplyT(func(v EnvSpecificDetails) *RegistryCredential { return v.RegistryCredential }).(RegistryCredentialPtrOutput)
+}
+
+func (o EnvSpecificDetailsOutput) StartCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvSpecificDetails) *string { return v.StartCommand }).(pulumi.StringPtrOutput)
+}
+
 type EnvSpecificDetailsPtrOutput struct{ *pulumi.OutputState }
 
 func (EnvSpecificDetailsPtrOutput) ElementType() reflect.Type {
@@ -2738,7 +2780,77 @@ func (o EnvSpecificDetailsPtrOutput) Elem() EnvSpecificDetailsOutput {
 	}).(EnvSpecificDetailsOutput)
 }
 
+func (o EnvSpecificDetailsPtrOutput) BuildCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvSpecificDetails) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BuildCommand
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o EnvSpecificDetailsPtrOutput) DockerCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvSpecificDetails) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DockerCommand
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o EnvSpecificDetailsPtrOutput) DockerContext() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvSpecificDetails) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DockerContext
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o EnvSpecificDetailsPtrOutput) DockerfilePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvSpecificDetails) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DockerfilePath
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o EnvSpecificDetailsPtrOutput) PreDeployCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvSpecificDetails) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PreDeployCommand
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o EnvSpecificDetailsPtrOutput) RegistryCredential() RegistryCredentialPtrOutput {
+	return o.ApplyT(func(v *EnvSpecificDetails) *RegistryCredential {
+		if v == nil {
+			return nil
+		}
+		return v.RegistryCredential
+	}).(RegistryCredentialPtrOutput)
+}
+
+func (o EnvSpecificDetailsPtrOutput) StartCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvSpecificDetails) *string {
+		if v == nil {
+			return nil
+		}
+		return v.StartCommand
+	}).(pulumi.StringPtrOutput)
+}
+
 type EnvSpecificDetailsCreate struct {
+	BuildCommand  *string `pulumi:"buildCommand"`
+	DockerCommand *string `pulumi:"dockerCommand"`
+	DockerContext *string `pulumi:"dockerContext"`
+	// Defaults to "./Dockerfile"
+	DockerfilePath       *string `pulumi:"dockerfilePath"`
+	RegistryCredentialId *string `pulumi:"registryCredentialId"`
+	StartCommand         *string `pulumi:"startCommand"`
 }
 
 // EnvSpecificDetailsCreateInput is an input type that accepts EnvSpecificDetailsCreateArgs and EnvSpecificDetailsCreateOutput values.
@@ -2753,6 +2865,13 @@ type EnvSpecificDetailsCreateInput interface {
 }
 
 type EnvSpecificDetailsCreateArgs struct {
+	BuildCommand  pulumi.StringPtrInput `pulumi:"buildCommand"`
+	DockerCommand pulumi.StringPtrInput `pulumi:"dockerCommand"`
+	DockerContext pulumi.StringPtrInput `pulumi:"dockerContext"`
+	// Defaults to "./Dockerfile"
+	DockerfilePath       pulumi.StringPtrInput `pulumi:"dockerfilePath"`
+	RegistryCredentialId pulumi.StringPtrInput `pulumi:"registryCredentialId"`
+	StartCommand         pulumi.StringPtrInput `pulumi:"startCommand"`
 }
 
 func (EnvSpecificDetailsCreateArgs) ElementType() reflect.Type {
@@ -2832,6 +2951,31 @@ func (o EnvSpecificDetailsCreateOutput) ToEnvSpecificDetailsCreatePtrOutputWithC
 	}).(EnvSpecificDetailsCreatePtrOutput)
 }
 
+func (o EnvSpecificDetailsCreateOutput) BuildCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvSpecificDetailsCreate) *string { return v.BuildCommand }).(pulumi.StringPtrOutput)
+}
+
+func (o EnvSpecificDetailsCreateOutput) DockerCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvSpecificDetailsCreate) *string { return v.DockerCommand }).(pulumi.StringPtrOutput)
+}
+
+func (o EnvSpecificDetailsCreateOutput) DockerContext() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvSpecificDetailsCreate) *string { return v.DockerContext }).(pulumi.StringPtrOutput)
+}
+
+// Defaults to "./Dockerfile"
+func (o EnvSpecificDetailsCreateOutput) DockerfilePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvSpecificDetailsCreate) *string { return v.DockerfilePath }).(pulumi.StringPtrOutput)
+}
+
+func (o EnvSpecificDetailsCreateOutput) RegistryCredentialId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvSpecificDetailsCreate) *string { return v.RegistryCredentialId }).(pulumi.StringPtrOutput)
+}
+
+func (o EnvSpecificDetailsCreateOutput) StartCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvSpecificDetailsCreate) *string { return v.StartCommand }).(pulumi.StringPtrOutput)
+}
+
 type EnvSpecificDetailsCreatePtrOutput struct{ *pulumi.OutputState }
 
 func (EnvSpecificDetailsCreatePtrOutput) ElementType() reflect.Type {
@@ -2854,6 +2998,61 @@ func (o EnvSpecificDetailsCreatePtrOutput) Elem() EnvSpecificDetailsCreateOutput
 		var ret EnvSpecificDetailsCreate
 		return ret
 	}).(EnvSpecificDetailsCreateOutput)
+}
+
+func (o EnvSpecificDetailsCreatePtrOutput) BuildCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvSpecificDetailsCreate) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BuildCommand
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o EnvSpecificDetailsCreatePtrOutput) DockerCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvSpecificDetailsCreate) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DockerCommand
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o EnvSpecificDetailsCreatePtrOutput) DockerContext() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvSpecificDetailsCreate) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DockerContext
+	}).(pulumi.StringPtrOutput)
+}
+
+// Defaults to "./Dockerfile"
+func (o EnvSpecificDetailsCreatePtrOutput) DockerfilePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvSpecificDetailsCreate) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DockerfilePath
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o EnvSpecificDetailsCreatePtrOutput) RegistryCredentialId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvSpecificDetailsCreate) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RegistryCredentialId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o EnvSpecificDetailsCreatePtrOutput) StartCommand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EnvSpecificDetailsCreate) *string {
+		if v == nil {
+			return nil
+		}
+		return v.StartCommand
+	}).(pulumi.StringPtrOutput)
 }
 
 type EnvVar struct {
@@ -3290,63 +3489,6 @@ func (o GetCronJobTypeOutput) Type() pulumi.StringPtrOutput {
 
 func (o GetCronJobTypeOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCronJobType) string { return v.UpdatedAt }).(pulumi.StringOutput)
-}
-
-type GetJobProperties struct {
-	CreatedAt    string                  `pulumi:"createdAt"`
-	FinishedAt   *string                 `pulumi:"finishedAt"`
-	Id           string                  `pulumi:"id"`
-	PlanId       string                  `pulumi:"planId"`
-	ServiceId    string                  `pulumi:"serviceId"`
-	StartCommand string                  `pulumi:"startCommand"`
-	StartedAt    *string                 `pulumi:"startedAt"`
-	Status       *GetJobPropertiesStatus `pulumi:"status"`
-}
-
-type GetJobPropertiesOutput struct{ *pulumi.OutputState }
-
-func (GetJobPropertiesOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetJobProperties)(nil)).Elem()
-}
-
-func (o GetJobPropertiesOutput) ToGetJobPropertiesOutput() GetJobPropertiesOutput {
-	return o
-}
-
-func (o GetJobPropertiesOutput) ToGetJobPropertiesOutputWithContext(ctx context.Context) GetJobPropertiesOutput {
-	return o
-}
-
-func (o GetJobPropertiesOutput) CreatedAt() pulumi.StringOutput {
-	return o.ApplyT(func(v GetJobProperties) string { return v.CreatedAt }).(pulumi.StringOutput)
-}
-
-func (o GetJobPropertiesOutput) FinishedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetJobProperties) *string { return v.FinishedAt }).(pulumi.StringPtrOutput)
-}
-
-func (o GetJobPropertiesOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetJobProperties) string { return v.Id }).(pulumi.StringOutput)
-}
-
-func (o GetJobPropertiesOutput) PlanId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetJobProperties) string { return v.PlanId }).(pulumi.StringOutput)
-}
-
-func (o GetJobPropertiesOutput) ServiceId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetJobProperties) string { return v.ServiceId }).(pulumi.StringOutput)
-}
-
-func (o GetJobPropertiesOutput) StartCommand() pulumi.StringOutput {
-	return o.ApplyT(func(v GetJobProperties) string { return v.StartCommand }).(pulumi.StringOutput)
-}
-
-func (o GetJobPropertiesOutput) StartedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetJobProperties) *string { return v.StartedAt }).(pulumi.StringPtrOutput)
-}
-
-func (o GetJobPropertiesOutput) Status() GetJobPropertiesStatusPtrOutput {
-	return o.ApplyT(func(v GetJobProperties) *GetJobPropertiesStatus { return v.Status }).(GetJobPropertiesStatusPtrOutput)
 }
 
 type GetPrivateServiceType struct {
@@ -4286,6 +4428,63 @@ func (o ImagePropertiesPtrOutput) Sha() pulumi.StringPtrOutput {
 		}
 		return v.Sha
 	}).(pulumi.StringPtrOutput)
+}
+
+type JobType struct {
+	CreatedAt    string     `pulumi:"createdAt"`
+	FinishedAt   *string    `pulumi:"finishedAt"`
+	Id           string     `pulumi:"id"`
+	PlanId       string     `pulumi:"planId"`
+	ServiceId    string     `pulumi:"serviceId"`
+	StartCommand string     `pulumi:"startCommand"`
+	StartedAt    *string    `pulumi:"startedAt"`
+	Status       *JobStatus `pulumi:"status"`
+}
+
+type JobTypeOutput struct{ *pulumi.OutputState }
+
+func (JobTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobType)(nil)).Elem()
+}
+
+func (o JobTypeOutput) ToJobTypeOutput() JobTypeOutput {
+	return o
+}
+
+func (o JobTypeOutput) ToJobTypeOutputWithContext(ctx context.Context) JobTypeOutput {
+	return o
+}
+
+func (o JobTypeOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v JobType) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+func (o JobTypeOutput) FinishedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v JobType) *string { return v.FinishedAt }).(pulumi.StringPtrOutput)
+}
+
+func (o JobTypeOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v JobType) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o JobTypeOutput) PlanId() pulumi.StringOutput {
+	return o.ApplyT(func(v JobType) string { return v.PlanId }).(pulumi.StringOutput)
+}
+
+func (o JobTypeOutput) ServiceId() pulumi.StringOutput {
+	return o.ApplyT(func(v JobType) string { return v.ServiceId }).(pulumi.StringOutput)
+}
+
+func (o JobTypeOutput) StartCommand() pulumi.StringOutput {
+	return o.ApplyT(func(v JobType) string { return v.StartCommand }).(pulumi.StringOutput)
+}
+
+func (o JobTypeOutput) StartedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v JobType) *string { return v.StartedAt }).(pulumi.StringPtrOutput)
+}
+
+func (o JobTypeOutput) Status() JobStatusPtrOutput {
+	return o.ApplyT(func(v JobType) *JobStatus { return v.Status }).(JobStatusPtrOutput)
 }
 
 type ListDeploysItemProperties struct {
@@ -5406,6 +5605,200 @@ func (o PrivateServiceOutputTypePtrOutput) UpdatedAt() pulumi.StringPtrOutput {
 			return nil
 		}
 		return &v.UpdatedAt
+	}).(pulumi.StringPtrOutput)
+}
+
+type RegistryCredential struct {
+	// Unique identifier for this credential
+	Id string `pulumi:"id"`
+	// Descriptive name for this credential
+	Name string `pulumi:"name"`
+	// The registry to use this credential with
+	Registry RegistryCredentialRegistry `pulumi:"registry"`
+	// The username associated with the credential
+	Username string `pulumi:"username"`
+}
+
+// RegistryCredentialInput is an input type that accepts RegistryCredentialArgs and RegistryCredentialOutput values.
+// You can construct a concrete instance of `RegistryCredentialInput` via:
+//
+//	RegistryCredentialArgs{...}
+type RegistryCredentialInput interface {
+	pulumi.Input
+
+	ToRegistryCredentialOutput() RegistryCredentialOutput
+	ToRegistryCredentialOutputWithContext(context.Context) RegistryCredentialOutput
+}
+
+type RegistryCredentialArgs struct {
+	// Unique identifier for this credential
+	Id pulumi.StringInput `pulumi:"id"`
+	// Descriptive name for this credential
+	Name pulumi.StringInput `pulumi:"name"`
+	// The registry to use this credential with
+	Registry RegistryCredentialRegistryInput `pulumi:"registry"`
+	// The username associated with the credential
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (RegistryCredentialArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegistryCredential)(nil)).Elem()
+}
+
+func (i RegistryCredentialArgs) ToRegistryCredentialOutput() RegistryCredentialOutput {
+	return i.ToRegistryCredentialOutputWithContext(context.Background())
+}
+
+func (i RegistryCredentialArgs) ToRegistryCredentialOutputWithContext(ctx context.Context) RegistryCredentialOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistryCredentialOutput)
+}
+
+func (i RegistryCredentialArgs) ToRegistryCredentialPtrOutput() RegistryCredentialPtrOutput {
+	return i.ToRegistryCredentialPtrOutputWithContext(context.Background())
+}
+
+func (i RegistryCredentialArgs) ToRegistryCredentialPtrOutputWithContext(ctx context.Context) RegistryCredentialPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistryCredentialOutput).ToRegistryCredentialPtrOutputWithContext(ctx)
+}
+
+// RegistryCredentialPtrInput is an input type that accepts RegistryCredentialArgs, RegistryCredentialPtr and RegistryCredentialPtrOutput values.
+// You can construct a concrete instance of `RegistryCredentialPtrInput` via:
+//
+//	        RegistryCredentialArgs{...}
+//
+//	or:
+//
+//	        nil
+type RegistryCredentialPtrInput interface {
+	pulumi.Input
+
+	ToRegistryCredentialPtrOutput() RegistryCredentialPtrOutput
+	ToRegistryCredentialPtrOutputWithContext(context.Context) RegistryCredentialPtrOutput
+}
+
+type registryCredentialPtrType RegistryCredentialArgs
+
+func RegistryCredentialPtr(v *RegistryCredentialArgs) RegistryCredentialPtrInput {
+	return (*registryCredentialPtrType)(v)
+}
+
+func (*registryCredentialPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RegistryCredential)(nil)).Elem()
+}
+
+func (i *registryCredentialPtrType) ToRegistryCredentialPtrOutput() RegistryCredentialPtrOutput {
+	return i.ToRegistryCredentialPtrOutputWithContext(context.Background())
+}
+
+func (i *registryCredentialPtrType) ToRegistryCredentialPtrOutputWithContext(ctx context.Context) RegistryCredentialPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistryCredentialPtrOutput)
+}
+
+type RegistryCredentialOutput struct{ *pulumi.OutputState }
+
+func (RegistryCredentialOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegistryCredential)(nil)).Elem()
+}
+
+func (o RegistryCredentialOutput) ToRegistryCredentialOutput() RegistryCredentialOutput {
+	return o
+}
+
+func (o RegistryCredentialOutput) ToRegistryCredentialOutputWithContext(ctx context.Context) RegistryCredentialOutput {
+	return o
+}
+
+func (o RegistryCredentialOutput) ToRegistryCredentialPtrOutput() RegistryCredentialPtrOutput {
+	return o.ToRegistryCredentialPtrOutputWithContext(context.Background())
+}
+
+func (o RegistryCredentialOutput) ToRegistryCredentialPtrOutputWithContext(ctx context.Context) RegistryCredentialPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RegistryCredential) *RegistryCredential {
+		return &v
+	}).(RegistryCredentialPtrOutput)
+}
+
+// Unique identifier for this credential
+func (o RegistryCredentialOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v RegistryCredential) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Descriptive name for this credential
+func (o RegistryCredentialOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v RegistryCredential) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The registry to use this credential with
+func (o RegistryCredentialOutput) Registry() RegistryCredentialRegistryOutput {
+	return o.ApplyT(func(v RegistryCredential) RegistryCredentialRegistry { return v.Registry }).(RegistryCredentialRegistryOutput)
+}
+
+// The username associated with the credential
+func (o RegistryCredentialOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v RegistryCredential) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type RegistryCredentialPtrOutput struct{ *pulumi.OutputState }
+
+func (RegistryCredentialPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RegistryCredential)(nil)).Elem()
+}
+
+func (o RegistryCredentialPtrOutput) ToRegistryCredentialPtrOutput() RegistryCredentialPtrOutput {
+	return o
+}
+
+func (o RegistryCredentialPtrOutput) ToRegistryCredentialPtrOutputWithContext(ctx context.Context) RegistryCredentialPtrOutput {
+	return o
+}
+
+func (o RegistryCredentialPtrOutput) Elem() RegistryCredentialOutput {
+	return o.ApplyT(func(v *RegistryCredential) RegistryCredential {
+		if v != nil {
+			return *v
+		}
+		var ret RegistryCredential
+		return ret
+	}).(RegistryCredentialOutput)
+}
+
+// Unique identifier for this credential
+func (o RegistryCredentialPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RegistryCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// Descriptive name for this credential
+func (o RegistryCredentialPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RegistryCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+// The registry to use this credential with
+func (o RegistryCredentialPtrOutput) Registry() RegistryCredentialRegistryPtrOutput {
+	return o.ApplyT(func(v *RegistryCredential) *RegistryCredentialRegistry {
+		if v == nil {
+			return nil
+		}
+		return &v.Registry
+	}).(RegistryCredentialRegistryPtrOutput)
+}
+
+// The username associated with the credential
+func (o RegistryCredentialPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RegistryCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Username
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -9579,6 +9972,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ImagePtrInput)(nil)).Elem(), ImageArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceDetailsCreateInput)(nil)).Elem(), PrivateServiceDetailsCreateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceDetailsCreatePtrInput)(nil)).Elem(), PrivateServiceDetailsCreateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RegistryCredentialInput)(nil)).Elem(), RegistryCredentialArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RegistryCredentialPtrInput)(nil)).Elem(), RegistryCredentialArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteCreateInput)(nil)).Elem(), RouteCreateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteCreateArrayInput)(nil)).Elem(), RouteCreateArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretFileInputTypeInput)(nil)).Elem(), SecretFileInputTypeArgs{})
@@ -9637,7 +10032,6 @@ func init() {
 	pulumi.RegisterOutputType(EnvVarWithCursorArrayOutput{})
 	pulumi.RegisterOutputType(GetBackgroundWorkerTypeOutput{})
 	pulumi.RegisterOutputType(GetCronJobTypeOutput{})
-	pulumi.RegisterOutputType(GetJobPropertiesOutput{})
 	pulumi.RegisterOutputType(GetPrivateServiceTypeOutput{})
 	pulumi.RegisterOutputType(GetStaticSiteTypeOutput{})
 	pulumi.RegisterOutputType(GetWebServiceTypeOutput{})
@@ -9651,6 +10045,7 @@ func init() {
 	pulumi.RegisterOutputType(ImagePtrOutput{})
 	pulumi.RegisterOutputType(ImagePropertiesOutput{})
 	pulumi.RegisterOutputType(ImagePropertiesPtrOutput{})
+	pulumi.RegisterOutputType(JobTypeOutput{})
 	pulumi.RegisterOutputType(ListDeploysItemPropertiesOutput{})
 	pulumi.RegisterOutputType(ListDeploysItemPropertiesArrayOutput{})
 	pulumi.RegisterOutputType(ListJobItemPropertiesOutput{})
@@ -9663,6 +10058,8 @@ func init() {
 	pulumi.RegisterOutputType(PrivateServiceDetailsOutputPtrOutput{})
 	pulumi.RegisterOutputType(PrivateServiceOutputTypeOutput{})
 	pulumi.RegisterOutputType(PrivateServiceOutputTypePtrOutput{})
+	pulumi.RegisterOutputType(RegistryCredentialOutput{})
+	pulumi.RegisterOutputType(RegistryCredentialPtrOutput{})
 	pulumi.RegisterOutputType(RegistryCredentialSummaryOutput{})
 	pulumi.RegisterOutputType(RegistryCredentialSummaryPtrOutput{})
 	pulumi.RegisterOutputType(ResourceOutput{})

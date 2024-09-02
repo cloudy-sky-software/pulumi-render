@@ -13,9 +13,37 @@ namespace Pulumi.Render.Services.Outputs
     [OutputType]
     public sealed class EnvSpecificDetails
     {
+        public readonly string? BuildCommand;
+        public readonly string? DockerCommand;
+        public readonly string? DockerContext;
+        public readonly string? DockerfilePath;
+        public readonly string? PreDeployCommand;
+        public readonly Outputs.RegistryCredential? RegistryCredential;
+        public readonly string? StartCommand;
+
         [OutputConstructor]
-        private EnvSpecificDetails()
+        private EnvSpecificDetails(
+            string? buildCommand,
+
+            string? dockerCommand,
+
+            string? dockerContext,
+
+            string? dockerfilePath,
+
+            string? preDeployCommand,
+
+            Outputs.RegistryCredential? registryCredential,
+
+            string? startCommand)
         {
+            BuildCommand = buildCommand;
+            DockerCommand = dockerCommand;
+            DockerContext = dockerContext;
+            DockerfilePath = dockerfilePath;
+            PreDeployCommand = preDeployCommand;
+            RegistryCredential = registryCredential;
+            StartCommand = startCommand;
         }
     }
 }

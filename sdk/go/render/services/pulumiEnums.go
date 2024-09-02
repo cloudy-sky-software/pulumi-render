@@ -3064,97 +3064,6 @@ func (o DeployTriggerPtrOutput) ToStringPtrOutputWithContext(ctx context.Context
 	}).(pulumi.StringPtrOutput)
 }
 
-type GetJobPropertiesStatus string
-
-const (
-	GetJobPropertiesStatusSucceeded = GetJobPropertiesStatus("succeeded")
-	GetJobPropertiesStatusFailed    = GetJobPropertiesStatus("failed")
-	GetJobPropertiesStatusCanceled  = GetJobPropertiesStatus("canceled")
-)
-
-type GetJobPropertiesStatusOutput struct{ *pulumi.OutputState }
-
-func (GetJobPropertiesStatusOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetJobPropertiesStatus)(nil)).Elem()
-}
-
-func (o GetJobPropertiesStatusOutput) ToGetJobPropertiesStatusOutput() GetJobPropertiesStatusOutput {
-	return o
-}
-
-func (o GetJobPropertiesStatusOutput) ToGetJobPropertiesStatusOutputWithContext(ctx context.Context) GetJobPropertiesStatusOutput {
-	return o
-}
-
-func (o GetJobPropertiesStatusOutput) ToGetJobPropertiesStatusPtrOutput() GetJobPropertiesStatusPtrOutput {
-	return o.ToGetJobPropertiesStatusPtrOutputWithContext(context.Background())
-}
-
-func (o GetJobPropertiesStatusOutput) ToGetJobPropertiesStatusPtrOutputWithContext(ctx context.Context) GetJobPropertiesStatusPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetJobPropertiesStatus) *GetJobPropertiesStatus {
-		return &v
-	}).(GetJobPropertiesStatusPtrOutput)
-}
-
-func (o GetJobPropertiesStatusOutput) ToStringOutput() pulumi.StringOutput {
-	return o.ToStringOutputWithContext(context.Background())
-}
-
-func (o GetJobPropertiesStatusOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e GetJobPropertiesStatus) string {
-		return string(e)
-	}).(pulumi.StringOutput)
-}
-
-func (o GetJobPropertiesStatusOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
-	return o.ToStringPtrOutputWithContext(context.Background())
-}
-
-func (o GetJobPropertiesStatusOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e GetJobPropertiesStatus) *string {
-		v := string(e)
-		return &v
-	}).(pulumi.StringPtrOutput)
-}
-
-type GetJobPropertiesStatusPtrOutput struct{ *pulumi.OutputState }
-
-func (GetJobPropertiesStatusPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**GetJobPropertiesStatus)(nil)).Elem()
-}
-
-func (o GetJobPropertiesStatusPtrOutput) ToGetJobPropertiesStatusPtrOutput() GetJobPropertiesStatusPtrOutput {
-	return o
-}
-
-func (o GetJobPropertiesStatusPtrOutput) ToGetJobPropertiesStatusPtrOutputWithContext(ctx context.Context) GetJobPropertiesStatusPtrOutput {
-	return o
-}
-
-func (o GetJobPropertiesStatusPtrOutput) Elem() GetJobPropertiesStatusOutput {
-	return o.ApplyT(func(v *GetJobPropertiesStatus) GetJobPropertiesStatus {
-		if v != nil {
-			return *v
-		}
-		var ret GetJobPropertiesStatus
-		return ret
-	}).(GetJobPropertiesStatusOutput)
-}
-
-func (o GetJobPropertiesStatusPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
-	return o.ToStringPtrOutputWithContext(context.Background())
-}
-
-func (o GetJobPropertiesStatusPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e *GetJobPropertiesStatus) *string {
-		if e == nil {
-			return nil
-		}
-		v := string(*e)
-		return &v
-	}).(pulumi.StringPtrOutput)
-}
-
 type JobStatus string
 
 const (
@@ -4856,6 +4765,176 @@ func (o PrivateServiceDetailsOutputRegionPtrOutput) ToStringPtrOutputWithContext
 		v := string(*e)
 		return &v
 	}).(pulumi.StringPtrOutput)
+}
+
+// The registry to use this credential with
+type RegistryCredentialRegistry string
+
+const (
+	RegistryCredentialRegistryGithub         = RegistryCredentialRegistry("GITHUB")
+	RegistryCredentialRegistryGitlab         = RegistryCredentialRegistry("GITLAB")
+	RegistryCredentialRegistryDocker         = RegistryCredentialRegistry("DOCKER")
+	RegistryCredentialRegistryGoogleArtifact = RegistryCredentialRegistry("GOOGLE_ARTIFACT")
+)
+
+func (RegistryCredentialRegistry) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegistryCredentialRegistry)(nil)).Elem()
+}
+
+func (e RegistryCredentialRegistry) ToRegistryCredentialRegistryOutput() RegistryCredentialRegistryOutput {
+	return pulumi.ToOutput(e).(RegistryCredentialRegistryOutput)
+}
+
+func (e RegistryCredentialRegistry) ToRegistryCredentialRegistryOutputWithContext(ctx context.Context) RegistryCredentialRegistryOutput {
+	return pulumi.ToOutputWithContext(ctx, e).(RegistryCredentialRegistryOutput)
+}
+
+func (e RegistryCredentialRegistry) ToRegistryCredentialRegistryPtrOutput() RegistryCredentialRegistryPtrOutput {
+	return e.ToRegistryCredentialRegistryPtrOutputWithContext(context.Background())
+}
+
+func (e RegistryCredentialRegistry) ToRegistryCredentialRegistryPtrOutputWithContext(ctx context.Context) RegistryCredentialRegistryPtrOutput {
+	return RegistryCredentialRegistry(e).ToRegistryCredentialRegistryOutputWithContext(ctx).ToRegistryCredentialRegistryPtrOutputWithContext(ctx)
+}
+
+func (e RegistryCredentialRegistry) ToStringOutput() pulumi.StringOutput {
+	return pulumi.ToOutput(pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e RegistryCredentialRegistry) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return pulumi.ToOutputWithContext(ctx, pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e RegistryCredentialRegistry) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringPtrOutputWithContext(context.Background())
+}
+
+func (e RegistryCredentialRegistry) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
+}
+
+type RegistryCredentialRegistryOutput struct{ *pulumi.OutputState }
+
+func (RegistryCredentialRegistryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegistryCredentialRegistry)(nil)).Elem()
+}
+
+func (o RegistryCredentialRegistryOutput) ToRegistryCredentialRegistryOutput() RegistryCredentialRegistryOutput {
+	return o
+}
+
+func (o RegistryCredentialRegistryOutput) ToRegistryCredentialRegistryOutputWithContext(ctx context.Context) RegistryCredentialRegistryOutput {
+	return o
+}
+
+func (o RegistryCredentialRegistryOutput) ToRegistryCredentialRegistryPtrOutput() RegistryCredentialRegistryPtrOutput {
+	return o.ToRegistryCredentialRegistryPtrOutputWithContext(context.Background())
+}
+
+func (o RegistryCredentialRegistryOutput) ToRegistryCredentialRegistryPtrOutputWithContext(ctx context.Context) RegistryCredentialRegistryPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RegistryCredentialRegistry) *RegistryCredentialRegistry {
+		return &v
+	}).(RegistryCredentialRegistryPtrOutput)
+}
+
+func (o RegistryCredentialRegistryOutput) ToStringOutput() pulumi.StringOutput {
+	return o.ToStringOutputWithContext(context.Background())
+}
+
+func (o RegistryCredentialRegistryOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e RegistryCredentialRegistry) string {
+		return string(e)
+	}).(pulumi.StringOutput)
+}
+
+func (o RegistryCredentialRegistryOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o RegistryCredentialRegistryOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e RegistryCredentialRegistry) *string {
+		v := string(e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+type RegistryCredentialRegistryPtrOutput struct{ *pulumi.OutputState }
+
+func (RegistryCredentialRegistryPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RegistryCredentialRegistry)(nil)).Elem()
+}
+
+func (o RegistryCredentialRegistryPtrOutput) ToRegistryCredentialRegistryPtrOutput() RegistryCredentialRegistryPtrOutput {
+	return o
+}
+
+func (o RegistryCredentialRegistryPtrOutput) ToRegistryCredentialRegistryPtrOutputWithContext(ctx context.Context) RegistryCredentialRegistryPtrOutput {
+	return o
+}
+
+func (o RegistryCredentialRegistryPtrOutput) Elem() RegistryCredentialRegistryOutput {
+	return o.ApplyT(func(v *RegistryCredentialRegistry) RegistryCredentialRegistry {
+		if v != nil {
+			return *v
+		}
+		var ret RegistryCredentialRegistry
+		return ret
+	}).(RegistryCredentialRegistryOutput)
+}
+
+func (o RegistryCredentialRegistryPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o RegistryCredentialRegistryPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *RegistryCredentialRegistry) *string {
+		if e == nil {
+			return nil
+		}
+		v := string(*e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+// RegistryCredentialRegistryInput is an input type that accepts values of the RegistryCredentialRegistry enum
+// A concrete instance of `RegistryCredentialRegistryInput` can be one of the following:
+//
+//	RegistryCredentialRegistryGithub
+//	RegistryCredentialRegistryGitlab
+//	RegistryCredentialRegistryDocker
+//	RegistryCredentialRegistryGoogleArtifact
+type RegistryCredentialRegistryInput interface {
+	pulumi.Input
+
+	ToRegistryCredentialRegistryOutput() RegistryCredentialRegistryOutput
+	ToRegistryCredentialRegistryOutputWithContext(context.Context) RegistryCredentialRegistryOutput
+}
+
+var registryCredentialRegistryPtrType = reflect.TypeOf((**RegistryCredentialRegistry)(nil)).Elem()
+
+type RegistryCredentialRegistryPtrInput interface {
+	pulumi.Input
+
+	ToRegistryCredentialRegistryPtrOutput() RegistryCredentialRegistryPtrOutput
+	ToRegistryCredentialRegistryPtrOutputWithContext(context.Context) RegistryCredentialRegistryPtrOutput
+}
+
+type registryCredentialRegistryPtr string
+
+func RegistryCredentialRegistryPtr(v string) RegistryCredentialRegistryPtrInput {
+	return (*registryCredentialRegistryPtr)(&v)
+}
+
+func (*registryCredentialRegistryPtr) ElementType() reflect.Type {
+	return registryCredentialRegistryPtrType
+}
+
+func (in *registryCredentialRegistryPtr) ToRegistryCredentialRegistryPtrOutput() RegistryCredentialRegistryPtrOutput {
+	return pulumi.ToOutput(in).(RegistryCredentialRegistryPtrOutput)
+}
+
+func (in *registryCredentialRegistryPtr) ToRegistryCredentialRegistryPtrOutputWithContext(ctx context.Context) RegistryCredentialRegistryPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, in).(RegistryCredentialRegistryPtrOutput)
 }
 
 type RouteCreateType string
@@ -7832,6 +7911,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceDetailsCreateRegionPtrInput)(nil)).Elem(), PrivateServiceDetailsCreateRegion("frankfurt"))
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceDetailsCreateRuntimeInput)(nil)).Elem(), PrivateServiceDetailsCreateRuntime("docker"))
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceDetailsCreateRuntimePtrInput)(nil)).Elem(), PrivateServiceDetailsCreateRuntime("docker"))
+	pulumi.RegisterInputType(reflect.TypeOf((*RegistryCredentialRegistryInput)(nil)).Elem(), RegistryCredentialRegistry("GITHUB"))
+	pulumi.RegisterInputType(reflect.TypeOf((*RegistryCredentialRegistryPtrInput)(nil)).Elem(), RegistryCredentialRegistry("GITHUB"))
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteCreateTypeInput)(nil)).Elem(), RouteCreateType("redirect"))
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteCreateTypePtrInput)(nil)).Elem(), RouteCreateType("redirect"))
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceCreateAutoDeployInput)(nil)).Elem(), ServiceCreateAutoDeploy("yes"))
@@ -7898,8 +7979,6 @@ func init() {
 	pulumi.RegisterOutputType(DeployStatusPtrOutput{})
 	pulumi.RegisterOutputType(DeployTriggerOutput{})
 	pulumi.RegisterOutputType(DeployTriggerPtrOutput{})
-	pulumi.RegisterOutputType(GetJobPropertiesStatusOutput{})
-	pulumi.RegisterOutputType(GetJobPropertiesStatusPtrOutput{})
 	pulumi.RegisterOutputType(JobStatusOutput{})
 	pulumi.RegisterOutputType(JobStatusPtrOutput{})
 	pulumi.RegisterOutputType(Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusOutput{})
@@ -7926,6 +8005,8 @@ func init() {
 	pulumi.RegisterOutputType(PrivateServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput{})
 	pulumi.RegisterOutputType(PrivateServiceDetailsOutputRegionOutput{})
 	pulumi.RegisterOutputType(PrivateServiceDetailsOutputRegionPtrOutput{})
+	pulumi.RegisterOutputType(RegistryCredentialRegistryOutput{})
+	pulumi.RegisterOutputType(RegistryCredentialRegistryPtrOutput{})
 	pulumi.RegisterOutputType(RouteCreateTypeOutput{})
 	pulumi.RegisterOutputType(RouteCreateTypePtrOutput{})
 	pulumi.RegisterOutputType(RouteTypeEnumOutput{})

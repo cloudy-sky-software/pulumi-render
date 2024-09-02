@@ -32,7 +32,6 @@ __all__ = [
     'EnvVarWithCursor',
     'GetBackgroundWorker',
     'GetCronJob',
-    'GetJobProperties',
     'GetPrivateService',
     'GetStaticSite',
     'GetWebService',
@@ -40,11 +39,13 @@ __all__ = [
     'HeaderWithCursor',
     'Image',
     'ImageProperties',
+    'Job',
     'ListDeploysItemProperties',
     'ListJobItemProperties',
     'ListServicesResponse',
     'PrivateServiceDetailsOutput',
     'PrivateServiceOutput',
+    'RegistryCredential',
     'RegistryCredentialSummary',
     'Resource',
     'Route',
@@ -1020,8 +1021,92 @@ class DeployImageProperties(dict):
 
 @pulumi.output_type
 class EnvSpecificDetails(dict):
-    def __init__(__self__):
-        pass
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "buildCommand":
+            suggest = "build_command"
+        elif key == "dockerCommand":
+            suggest = "docker_command"
+        elif key == "dockerContext":
+            suggest = "docker_context"
+        elif key == "dockerfilePath":
+            suggest = "dockerfile_path"
+        elif key == "preDeployCommand":
+            suggest = "pre_deploy_command"
+        elif key == "registryCredential":
+            suggest = "registry_credential"
+        elif key == "startCommand":
+            suggest = "start_command"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in EnvSpecificDetails. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        EnvSpecificDetails.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        EnvSpecificDetails.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 build_command: Optional[str] = None,
+                 docker_command: Optional[str] = None,
+                 docker_context: Optional[str] = None,
+                 dockerfile_path: Optional[str] = None,
+                 pre_deploy_command: Optional[str] = None,
+                 registry_credential: Optional['outputs.RegistryCredential'] = None,
+                 start_command: Optional[str] = None):
+        if build_command is not None:
+            pulumi.set(__self__, "build_command", build_command)
+        if docker_command is not None:
+            pulumi.set(__self__, "docker_command", docker_command)
+        if docker_context is not None:
+            pulumi.set(__self__, "docker_context", docker_context)
+        if dockerfile_path is not None:
+            pulumi.set(__self__, "dockerfile_path", dockerfile_path)
+        if pre_deploy_command is not None:
+            pulumi.set(__self__, "pre_deploy_command", pre_deploy_command)
+        if registry_credential is not None:
+            pulumi.set(__self__, "registry_credential", registry_credential)
+        if start_command is not None:
+            pulumi.set(__self__, "start_command", start_command)
+
+    @property
+    @pulumi.getter(name="buildCommand")
+    def build_command(self) -> Optional[str]:
+        return pulumi.get(self, "build_command")
+
+    @property
+    @pulumi.getter(name="dockerCommand")
+    def docker_command(self) -> Optional[str]:
+        return pulumi.get(self, "docker_command")
+
+    @property
+    @pulumi.getter(name="dockerContext")
+    def docker_context(self) -> Optional[str]:
+        return pulumi.get(self, "docker_context")
+
+    @property
+    @pulumi.getter(name="dockerfilePath")
+    def dockerfile_path(self) -> Optional[str]:
+        return pulumi.get(self, "dockerfile_path")
+
+    @property
+    @pulumi.getter(name="preDeployCommand")
+    def pre_deploy_command(self) -> Optional[str]:
+        return pulumi.get(self, "pre_deploy_command")
+
+    @property
+    @pulumi.getter(name="registryCredential")
+    def registry_credential(self) -> Optional['outputs.RegistryCredential']:
+        return pulumi.get(self, "registry_credential")
+
+    @property
+    @pulumi.getter(name="startCommand")
+    def start_command(self) -> Optional[str]:
+        return pulumi.get(self, "start_command")
 
 
 @pulumi.output_type
@@ -1392,70 +1477,6 @@ class GetCronJob(dict):
     @pulumi.getter
     def type(self) -> Optional[str]:
         return pulumi.get(self, "type")
-
-
-@pulumi.output_type
-class GetJobProperties(dict):
-    def __init__(__self__, *,
-                 created_at: str,
-                 id: str,
-                 plan_id: str,
-                 service_id: str,
-                 start_command: str,
-                 finished_at: Optional[str] = None,
-                 started_at: Optional[str] = None,
-                 status: Optional['GetJobPropertiesStatus'] = None):
-        pulumi.set(__self__, "created_at", created_at)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "plan_id", plan_id)
-        pulumi.set(__self__, "service_id", service_id)
-        pulumi.set(__self__, "start_command", start_command)
-        if finished_at is not None:
-            pulumi.set(__self__, "finished_at", finished_at)
-        if started_at is not None:
-            pulumi.set(__self__, "started_at", started_at)
-        if status is not None:
-            pulumi.set(__self__, "status", status)
-
-    @property
-    @pulumi.getter(name="createdAt")
-    def created_at(self) -> str:
-        return pulumi.get(self, "created_at")
-
-    @property
-    @pulumi.getter
-    def id(self) -> str:
-        return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter(name="planId")
-    def plan_id(self) -> str:
-        return pulumi.get(self, "plan_id")
-
-    @property
-    @pulumi.getter(name="serviceId")
-    def service_id(self) -> str:
-        return pulumi.get(self, "service_id")
-
-    @property
-    @pulumi.getter(name="startCommand")
-    def start_command(self) -> str:
-        return pulumi.get(self, "start_command")
-
-    @property
-    @pulumi.getter(name="finishedAt")
-    def finished_at(self) -> Optional[str]:
-        return pulumi.get(self, "finished_at")
-
-    @property
-    @pulumi.getter(name="startedAt")
-    def started_at(self) -> Optional[str]:
-        return pulumi.get(self, "started_at")
-
-    @property
-    @pulumi.getter
-    def status(self) -> Optional['GetJobPropertiesStatus']:
-        return pulumi.get(self, "status")
 
 
 @pulumi.output_type
@@ -2126,6 +2147,70 @@ class ImageProperties(dict):
 
 
 @pulumi.output_type
+class Job(dict):
+    def __init__(__self__, *,
+                 created_at: str,
+                 id: str,
+                 plan_id: str,
+                 service_id: str,
+                 start_command: str,
+                 finished_at: Optional[str] = None,
+                 started_at: Optional[str] = None,
+                 status: Optional['JobStatus'] = None):
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "plan_id", plan_id)
+        pulumi.set(__self__, "service_id", service_id)
+        pulumi.set(__self__, "start_command", start_command)
+        if finished_at is not None:
+            pulumi.set(__self__, "finished_at", finished_at)
+        if started_at is not None:
+            pulumi.set(__self__, "started_at", started_at)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="planId")
+    def plan_id(self) -> str:
+        return pulumi.get(self, "plan_id")
+
+    @property
+    @pulumi.getter(name="serviceId")
+    def service_id(self) -> str:
+        return pulumi.get(self, "service_id")
+
+    @property
+    @pulumi.getter(name="startCommand")
+    def start_command(self) -> str:
+        return pulumi.get(self, "start_command")
+
+    @property
+    @pulumi.getter(name="finishedAt")
+    def finished_at(self) -> Optional[str]:
+        return pulumi.get(self, "finished_at")
+
+    @property
+    @pulumi.getter(name="startedAt")
+    def started_at(self) -> Optional[str]:
+        return pulumi.get(self, "started_at")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional['JobStatus']:
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
 class ListDeploysItemProperties(dict):
     def __init__(__self__, *,
                  cursor: Optional[str] = None,
@@ -2513,6 +2598,57 @@ class PrivateServiceOutput(dict):
     @pulumi.getter
     def type(self) -> Optional[str]:
         return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class RegistryCredential(dict):
+    def __init__(__self__, *,
+                 id: str,
+                 name: str,
+                 registry: 'RegistryCredentialRegistry',
+                 username: str):
+        """
+        :param str id: Unique identifier for this credential
+        :param str name: Descriptive name for this credential
+        :param 'RegistryCredentialRegistry' registry: The registry to use this credential with
+        :param str username: The username associated with the credential
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "registry", registry)
+        pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        Unique identifier for this credential
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Descriptive name for this credential
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def registry(self) -> 'RegistryCredentialRegistry':
+        """
+        The registry to use this credential with
+        """
+        return pulumi.get(self, "registry")
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        """
+        The username associated with the credential
+        """
+        return pulumi.get(self, "username")
 
 
 @pulumi.output_type

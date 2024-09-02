@@ -1,7 +1,12 @@
+## 0.3.0
+
+Updated the OpenAPI spec to the latest which adds many new resources including
+Postgres, Redis, environment groups.
+
 ## 0.2.1
 
-* Fix request validation error when updating `EnvVarsForService` resource.
-* Check for all service types in OnPostUpdate to trigger a service deployment.
+- Fix request validation error when updating `EnvVarsForService` resource.
+- Check for all service types in OnPostUpdate to trigger a service deployment.
 
 ## 0.2.0
 

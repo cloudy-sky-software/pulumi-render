@@ -7509,7 +7509,7 @@
                 "resourceIds"
             ]
         },
-        "render:postgres:FailoverGre": {
+        "render:postgres:FailoverPostgres": {
             "type": "object",
             "inputProperties": {
                 "postgresId": {
@@ -7517,7 +7517,7 @@
                 }
             }
         },
-        "render:postgres:Gre": {
+        "render:postgres:Postgres": {
             "description": "Input for creating a database",
             "properties": {
                 "createdAt": {
@@ -7624,7 +7624,6 @@
                 "owner",
                 "ownerId",
                 "plan",
-                "project",
                 "readReplicas",
                 "region",
                 "role",
@@ -7694,7 +7693,7 @@
                 "version"
             ]
         },
-        "render:postgres:GresBackup": {
+        "render:postgres:PostgresBackup": {
             "type": "object",
             "inputProperties": {
                 "postgresId": {
@@ -7702,7 +7701,7 @@
                 }
             }
         },
-        "render:postgres:RecoverGre": {
+        "render:postgres:RecoverPostgres": {
             "properties": {
                 "createdAt": {
                     "type": "string"
@@ -7808,7 +7807,6 @@
                 "name",
                 "owner",
                 "plan",
-                "project",
                 "readReplicas",
                 "region",
                 "restoreTime",
@@ -7848,7 +7846,7 @@
                 "restoreTime"
             ]
         },
-        "render:postgres:RestartGre": {
+        "render:postgres:RestartPostgres": {
             "type": "object",
             "inputProperties": {
                 "postgresId": {
@@ -7856,7 +7854,7 @@
                 }
             }
         },
-        "render:postgres:ResumeGre": {
+        "render:postgres:ResumePostgres": {
             "type": "object",
             "inputProperties": {
                 "postgresId": {
@@ -7864,7 +7862,7 @@
                 }
             }
         },
-        "render:postgres:SuspendGre": {
+        "render:postgres:SuspendPostgres": {
             "type": "object",
             "inputProperties": {
                 "postgresId": {
@@ -9682,7 +9680,7 @@
                 ]
             }
         },
-        "render:postgres:getPostgre": {
+        "render:postgres:getPostgres": {
             "inputs": {
                 "properties": {
                     "postgresId": {

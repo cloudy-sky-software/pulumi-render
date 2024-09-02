@@ -1690,7 +1690,6 @@ components:
                 - highAvailabilityEnabled
                 - name
                 - owner
-                - project
                 - plan
                 - region
                 - readReplicas

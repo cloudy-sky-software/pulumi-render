@@ -362,6 +362,27 @@ func fixPostgresResponseInvalidRequiredProp(openAPIDoc *openapi3.T) {
 	})
 }
 
+// fixEnvSpecificDetailsSchemas modifies the types
+// envSpecificDetails|PATCH|POST from using oneOf
+// to allOf definitions since they don't use a
+// discriminator.
+func fixEnvSpecificDetailsSchemas(openAPIDoc *openapi3.T) {
+	removeRequiredProps := func(schemas *openapi3.SchemaRefs) {
+		for _, schemaRef := range *schemas {
+			schemaRef.Value.Required = nil
+		}
+	}
+
+	types := []string{"envSpecificDetails", "envSpecificDetailsPATCH", "envSpecificDetailsPOST"}
+	for _, t := range types {
+		schemaRef, ok := openAPIDoc.Components.Schemas[t]
+		contract.Assertf(ok, "schema %s not found", t)
+		schemaRef.Value.AllOf = schemaRef.Value.OneOf
+		removeRequiredProps(&schemaRef.Value.AllOf)
+		schemaRef.Value.OneOf = nil
+	}
+}
+
 func FixOpenAPIDoc(openAPIDoc *openapi3.T) error {
 	if err := ensureOperationID(openAPIDoc); err != nil {
 		return err
@@ -379,8 +400,7 @@ func FixOpenAPIDoc(openAPIDoc *openapi3.T) error {
 	fixDeleteServiceEndpoint(openAPIDoc)
 	fixListJobsEndpoint((openAPIDoc))
 	fixPostgresResponseInvalidRequiredProp(openAPIDoc)
-	// TODO: Convert oneOf schemas of envSpecificDetails|envSpecificDetailsPATCH|envSpecificDetailsPOST
-	// to allOf since there is no discriminator.
+	fixEnvSpecificDetailsSchemas(openAPIDoc)
 
 	return nil
 }

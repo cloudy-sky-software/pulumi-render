@@ -1019,10 +1019,6 @@ components:
                     type: string
                 registryCredential:
                     $ref: '#/components/schemas/registryCredential'
-            required:
-                - dockerCommand
-                - dockerContext
-                - dockerfilePath
             type: object
         dockerDetailsPATCH:
             properties:
@@ -1124,15 +1120,15 @@ components:
                 - envVars
             type: object
         envSpecificDetails:
-            oneOf:
+            allOf:
                 - $ref: '#/components/schemas/dockerDetails'
                 - $ref: '#/components/schemas/nativeEnvironmentDetails'
         envSpecificDetailsPATCH:
-            oneOf:
+            allOf:
                 - $ref: '#/components/schemas/dockerDetailsPATCH'
                 - $ref: '#/components/schemas/nativeEnvironmentDetailsPATCH'
         envSpecificDetailsPOST:
-            oneOf:
+            allOf:
                 - $ref: '#/components/schemas/dockerDetailsPOST'
                 - $ref: '#/components/schemas/nativeEnvironmentDetailsPOST'
         envVar:
@@ -1394,9 +1390,6 @@ components:
                     type: string
                 startCommand:
                     type: string
-            required:
-                - buildCommand
-                - startCommand
             type: object
         nativeEnvironmentDetailsPATCH:
             properties:
@@ -1412,9 +1405,6 @@ components:
                     type: string
                 startCommand:
                     type: string
-            required:
-                - buildCommand
-                - startCommand
             type: object
         notificationOverrideWithCursor:
             properties:
@@ -8486,7 +8476,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schema/Job'
+                                $ref: '#/components/schemas/Job'
                     description: OK
                 "400":
                     $ref: '#/components/responses/400BadRequest'
@@ -8513,43 +8503,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                properties:
-                                    createdAt:
-                                        example: "2021-07-15T07:20:05.777035-07:00"
-                                        format: date-time
-                                        type: string
-                                    finishedAt:
-                                        example: "2021-07-15T07:20:05.777035-07:00"
-                                        format: date-time
-                                        type: string
-                                    id:
-                                        $ref: '#/paths/~1services~1%7BserviceId%7D~1jobs~1%7BjobId%7D/parameters/1/schema'
-                                    planId:
-                                        example: plan-srv-004
-                                        type: string
-                                    serviceId:
-                                        example: srv-xxxxx
-                                        type: string
-                                    startCommand:
-                                        example: echo 'hello world'
-                                        type: string
-                                    startedAt:
-                                        example: "2021-07-15T07:20:05.777035-07:00"
-                                        format: date-time
-                                        type: string
-                                    status:
-                                        enum:
-                                            - succeeded
-                                            - failed
-                                            - canceled
-                                        type: string
-                                required:
-                                    - id
-                                    - serviceId
-                                    - startCommand
-                                    - planId
-                                    - createdAt
-                                type: object
+                                $ref: '#/components/schemas/Job'
                     description: OK
                 "400":
                     $ref: '#/components/responses/400BadRequest'

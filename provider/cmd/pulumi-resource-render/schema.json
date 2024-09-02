@@ -4496,9 +4496,53 @@
             ]
         },
         "render:services:EnvSpecificDetails": {
+            "properties": {
+                "buildCommand": {
+                    "type": "string"
+                },
+                "dockerCommand": {
+                    "type": "string"
+                },
+                "dockerContext": {
+                    "type": "string"
+                },
+                "dockerfilePath": {
+                    "type": "string"
+                },
+                "preDeployCommand": {
+                    "type": "string"
+                },
+                "registryCredential": {
+                    "$ref": "#/types/render:services:RegistryCredential"
+                },
+                "startCommand": {
+                    "type": "string"
+                }
+            },
             "type": "object"
         },
         "render:services:EnvSpecificDetailsCreate": {
+            "properties": {
+                "buildCommand": {
+                    "type": "string"
+                },
+                "dockerCommand": {
+                    "type": "string"
+                },
+                "dockerContext": {
+                    "type": "string"
+                },
+                "dockerfilePath": {
+                    "type": "string",
+                    "description": "Defaults to \"./Dockerfile\""
+                },
+                "registryCredentialId": {
+                    "type": "string"
+                },
+                "startCommand": {
+                    "type": "string"
+                }
+            },
             "type": "object"
         },
         "render:services:EnvVar": {
@@ -4702,59 +4746,6 @@
                 "suspended",
                 "suspenders",
                 "updatedAt"
-            ]
-        },
-        "render:services:GetJobProperties": {
-            "properties": {
-                "createdAt": {
-                    "type": "string"
-                },
-                "finishedAt": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "planId": {
-                    "type": "string"
-                },
-                "serviceId": {
-                    "type": "string"
-                },
-                "startCommand": {
-                    "type": "string"
-                },
-                "startedAt": {
-                    "type": "string"
-                },
-                "status": {
-                    "$ref": "#/types/render:services:GetJobPropertiesStatus"
-                }
-            },
-            "type": "object",
-            "required": [
-                "createdAt",
-                "id",
-                "planId",
-                "serviceId",
-                "startCommand"
-            ]
-        },
-        "render:services:GetJobPropertiesStatus": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Succeeded",
-                    "value": "succeeded"
-                },
-                {
-                    "name": "Failed",
-                    "value": "failed"
-                },
-                {
-                    "name": "Canceled",
-                    "value": "canceled"
-                }
             ]
         },
         "render:services:GetPrivateService": {
@@ -5110,6 +5101,42 @@
                 }
             },
             "type": "object"
+        },
+        "render:services:Job": {
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "finishedAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "planId": {
+                    "type": "string"
+                },
+                "serviceId": {
+                    "type": "string"
+                },
+                "startCommand": {
+                    "type": "string"
+                },
+                "startedAt": {
+                    "type": "string"
+                },
+                "status": {
+                    "$ref": "#/types/render:services:JobStatus"
+                }
+            },
+            "type": "object",
+            "required": [
+                "createdAt",
+                "id",
+                "planId",
+                "serviceId",
+                "startCommand"
+            ]
         },
         "render:services:JobStatus": {
             "type": "string",
@@ -5736,6 +5763,55 @@
                 "suspended",
                 "suspenders",
                 "updatedAt"
+            ]
+        },
+        "render:services:RegistryCredential": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Unique identifier for this credential"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Descriptive name for this credential"
+                },
+                "registry": {
+                    "$ref": "#/types/render:services:RegistryCredentialRegistry",
+                    "description": "The registry to use this credential with"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "The username associated with the credential"
+                }
+            },
+            "type": "object",
+            "required": [
+                "id",
+                "name",
+                "registry",
+                "username"
+            ]
+        },
+        "render:services:RegistryCredentialRegistry": {
+            "description": "The registry to use this credential with",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Github",
+                    "value": "GITHUB"
+                },
+                {
+                    "name": "Gitlab",
+                    "value": "GITLAB"
+                },
+                {
+                    "name": "Docker",
+                    "value": "DOCKER"
+                },
+                {
+                    "name": "GoogleArtifact",
+                    "value": "GOOGLE_ARTIFACT"
+                }
             ]
         },
         "render:services:RegistryCredentialSummary": {
@@ -10097,7 +10173,7 @@
             "outputs": {
                 "properties": {
                     "items": {
-                        "$ref": "#/types/render:services:GetJobProperties"
+                        "$ref": "#/types/render:services:Job"
                     }
                 },
                 "required": [

@@ -3,7 +3,7 @@ module github.com/cloudy-sky-software/pulumi-render/provider
 go 1.21
 
 require (
-	github.com/cloudy-sky-software/pulschema v0.0.0-20240830064015-1cf7e42b7fa2
+	github.com/cloudy-sky-software/pulschema v0.0.0-20240902014450-2c593bb4b9fa
 	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20240829144818-b9e12d455247
 	github.com/getkin/kin-openapi v0.127.0
 	github.com/pulumi/pulumi/pkg/v3 v3.130.0
@@ -194,5 +194,3 @@ require (
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 	lukechampine.com/frand v1.4.2 // indirect
 )
-
-replace github.com/cloudy-sky-software/pulschema => ../../pulschema

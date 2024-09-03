@@ -1,4 +1,4 @@
-# Pulumi Native Provider for Render (Preview)
+# Pulumi Native Provider for Render
 
 [Render](https://render.com/) is a unified cloud to build and run all your apps and websites with free TLS certificates, a global CDN, DDoS protection, private networks, and auto deploys from Git.
 
@@ -15,10 +15,6 @@
 
 You'll need an API key. Follow Render's [docs](https://render.com/docs/api#getting-started) for creating one.
 Then set the API key as a secret with `pulumi config set --secret render:apiKey`.
-
-## Preview Status
-
-See [`cloudy-sky-software/pulumi-render#100`](https://github.com/cloudy-sky-software/pulumi-render/issues/100).
 
 ## Releasing A New Version
 

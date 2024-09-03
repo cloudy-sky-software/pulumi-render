@@ -1,4 +1,4 @@
-## 0.3.0
+## 0.3.0, 0.3.1
 
 Updated the OpenAPI spec to the latest which adds many new resources including
 Postgres, Redis, environment groups.

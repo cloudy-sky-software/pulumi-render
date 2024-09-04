@@ -6,9 +6,9 @@ from .. import _utilities
 import typing
 # Export this package's modules as members:
 from ._enums import *
-from .get_redi import *
+from .get_redis import *
 from .get_redis_connection_info import *
 from .list_redis import *
-from .redi import *
+from .redis import *
 from ._inputs import *
 from . import outputs

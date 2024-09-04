@@ -8035,7 +8035,7 @@
                 "ownerId"
             ]
         },
-        "render:redis:Redi": {
+        "render:redis:Redis": {
             "description": "Input type for creating a Redis instance",
             "properties": {
                 "createdAt": {
@@ -9924,7 +9924,7 @@
                 ]
             }
         },
-        "render:redis:getRedi": {
+        "render:redis:getRedis": {
             "inputs": {
                 "properties": {
                     "redisId": {

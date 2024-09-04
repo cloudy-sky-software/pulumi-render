@@ -12,8 +12,8 @@ namespace Pulumi.Render.Redis
     /// <summary>
     /// Input type for creating a Redis instance
     /// </summary>
-    [RenderResourceType("render:redis:Redi")]
-    public partial class Redi : global::Pulumi.CustomResource
+    [RenderResourceType("render:redis:Redis")]
+    public partial class Redis : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The creation time of the Redis instance
@@ -89,19 +89,19 @@ namespace Pulumi.Render.Redis
 
 
         /// <summary>
-        /// Create a Redi resource with the given unique name, arguments, and options.
+        /// Create a Redis resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Redi(string name, RediArgs args, CustomResourceOptions? options = null)
-            : base("render:redis:Redi", name, args ?? new RediArgs(), MakeResourceOptions(options, ""))
+        public Redis(string name, RedisArgs args, CustomResourceOptions? options = null)
+            : base("render:redis:Redis", name, args ?? new RedisArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private Redi(string name, Input<string> id, CustomResourceOptions? options = null)
-            : base("render:redis:Redi", name, null, MakeResourceOptions(options, id))
+        private Redis(string name, Input<string> id, CustomResourceOptions? options = null)
+            : base("render:redis:Redis", name, null, MakeResourceOptions(options, id))
         {
         }
 
@@ -118,20 +118,20 @@ namespace Pulumi.Render.Redis
             return merged;
         }
         /// <summary>
-        /// Get an existing Redi resource's state with the given name, ID, and optional extra
+        /// Get an existing Redis resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resulting resource.</param>
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static Redi Get(string name, Input<string> id, CustomResourceOptions? options = null)
+        public static Redis Get(string name, Input<string> id, CustomResourceOptions? options = null)
         {
-            return new Redi(name, id, options);
+            return new Redis(name, id, options);
         }
     }
 
-    public sealed class RediArgs : global::Pulumi.ResourceArgs
+    public sealed class RedisArgs : global::Pulumi.ResourceArgs
     {
         [Input("environmentId")]
         public Input<string>? EnvironmentId { get; set; }
@@ -171,9 +171,9 @@ namespace Pulumi.Render.Redis
         [Input("region")]
         public Input<string>? Region { get; set; }
 
-        public RediArgs()
+        public RedisArgs()
         {
         }
-        public static new RediArgs Empty => new RediArgs();
+        public static new RedisArgs Empty => new RedisArgs();
     }
 }

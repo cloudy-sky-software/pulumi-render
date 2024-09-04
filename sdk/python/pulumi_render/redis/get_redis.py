@@ -12,14 +12,14 @@ from . import outputs
 from ._enums import *
 
 __all__ = [
-    'GetRediResult',
-    'AwaitableGetRediResult',
-    'get_redi',
-    'get_redi_output',
+    'GetRedisResult',
+    'AwaitableGetRedisResult',
+    'get_redis',
+    'get_redis_output',
 ]
 
 @pulumi.output_type
-class GetRediResult:
+class GetRedisResult:
     def __init__(__self__, items=None):
         if items and not isinstance(items, dict):
             raise TypeError("Expected argument 'items' to be a dict")
@@ -31,32 +31,32 @@ class GetRediResult:
         return pulumi.get(self, "items")
 
 
-class AwaitableGetRediResult(GetRediResult):
+class AwaitableGetRedisResult(GetRedisResult):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetRediResult(
+        return GetRedisResult(
             items=self.items)
 
 
-def get_redi(redis_id: Optional[str] = None,
-             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRediResult:
+def get_redis(redis_id: Optional[str] = None,
+              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRedisResult:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['redisId'] = redis_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('render:redis:getRedi', __args__, opts=opts, typ=GetRediResult).value
+    __ret__ = pulumi.runtime.invoke('render:redis:getRedis', __args__, opts=opts, typ=GetRedisResult).value
 
-    return AwaitableGetRediResult(
+    return AwaitableGetRedisResult(
         items=pulumi.get(__ret__, 'items'))
 
 
-@_utilities.lift_output_func(get_redi)
-def get_redi_output(redis_id: Optional[pulumi.Input[str]] = None,
-                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRediResult]:
+@_utilities.lift_output_func(get_redis)
+def get_redis_output(redis_id: Optional[pulumi.Input[str]] = None,
+                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRedisResult]:
     """
     Use this data source to access information about an existing resource.
     """

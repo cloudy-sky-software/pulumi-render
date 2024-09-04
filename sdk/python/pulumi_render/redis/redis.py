@@ -12,10 +12,10 @@ from . import outputs
 from ._enums import *
 from ._inputs import *
 
-__all__ = ['RediArgs', 'Redi']
+__all__ = ['RedisArgs', 'Redis']
 
 @pulumi.input_type
-class RediArgs:
+class RedisArgs:
     def __init__(__self__, *,
                  owner_id: pulumi.Input[str],
                  plan: pulumi.Input['Plan'],
@@ -25,7 +25,7 @@ class RediArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None):
         """
-        The set of arguments for constructing a Redi resource.
+        The set of arguments for constructing a Redis resource.
         :param pulumi.Input[str] owner_id: The ID of the owner of the Redis instance
         :param pulumi.Input['MaxmemoryPolicy'] maxmemory_policy: The eviction policy for the Redis instance
         :param pulumi.Input[str] name: The name of the Redis instance
@@ -120,7 +120,7 @@ class RediArgs:
         pulumi.set(self, "region", value)
 
 
-class Redi(pulumi.CustomResource):
+class Redis(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -147,18 +147,18 @@ class Redi(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: RediArgs,
+                 args: RedisArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Input type for creating a Redis instance
 
         :param str resource_name: The name of the resource.
-        :param RediArgs args: The arguments to use to populate this resource's properties.
+        :param RedisArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(RediArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(RedisArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -181,7 +181,7 @@ class Redi(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = RediArgs.__new__(RediArgs)
+            __props__ = RedisArgs.__new__(RedisArgs)
 
             __props__.__dict__["environment_id"] = environment_id
             __props__.__dict__["ip_allow_list"] = ip_allow_list
@@ -201,8 +201,8 @@ class Redi(pulumi.CustomResource):
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
             __props__.__dict__["version"] = None
-        super(Redi, __self__).__init__(
-            'render:redis:Redi',
+        super(Redis, __self__).__init__(
+            'render:redis:Redis',
             resource_name,
             __props__,
             opts)
@@ -210,9 +210,9 @@ class Redi(pulumi.CustomResource):
     @staticmethod
     def get(resource_name: str,
             id: pulumi.Input[str],
-            opts: Optional[pulumi.ResourceOptions] = None) -> 'Redi':
+            opts: Optional[pulumi.ResourceOptions] = None) -> 'Redis':
         """
-        Get an existing Redi resource's state with the given name, id, and optional extra
+        Get an existing Redis resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -221,7 +221,7 @@ class Redi(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = RediArgs.__new__(RediArgs)
+        __props__ = RedisArgs.__new__(RedisArgs)
 
         __props__.__dict__["created_at"] = None
         __props__.__dict__["environment_id"] = None
@@ -237,7 +237,7 @@ class Redi(pulumi.CustomResource):
         __props__.__dict__["status"] = None
         __props__.__dict__["updated_at"] = None
         __props__.__dict__["version"] = None
-        return Redi(resource_name, opts=opts, __props__=__props__)
+        return Redis(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="createdAt")

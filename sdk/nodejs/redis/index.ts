@@ -5,10 +5,10 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export { GetRediArgs, GetRediResult, GetRediOutputArgs } from "./getRedi";
-export const getRedi: typeof import("./getRedi").getRedi = null as any;
-export const getRediOutput: typeof import("./getRedi").getRediOutput = null as any;
-utilities.lazyLoad(exports, ["getRedi","getRediOutput"], () => require("./getRedi"));
+export { GetRedisArgs, GetRedisResult, GetRedisOutputArgs } from "./getRedis";
+export const getRedis: typeof import("./getRedis").getRedis = null as any;
+export const getRedisOutput: typeof import("./getRedis").getRedisOutput = null as any;
+utilities.lazyLoad(exports, ["getRedis","getRedisOutput"], () => require("./getRedis"));
 
 export { GetRedisConnectionInfoArgs, GetRedisConnectionInfoResult, GetRedisConnectionInfoOutputArgs } from "./getRedisConnectionInfo";
 export const getRedisConnectionInfo: typeof import("./getRedisConnectionInfo").getRedisConnectionInfo = null as any;
@@ -20,10 +20,10 @@ export const listRedis: typeof import("./listRedis").listRedis = null as any;
 export const listRedisOutput: typeof import("./listRedis").listRedisOutput = null as any;
 utilities.lazyLoad(exports, ["listRedis","listRedisOutput"], () => require("./listRedis"));
 
-export { RediArgs } from "./redi";
-export type Redi = import("./redi").Redi;
-export const Redi: typeof import("./redi").Redi = null as any;
-utilities.lazyLoad(exports, ["Redi"], () => require("./redi"));
+export { RedisArgs } from "./redis";
+export type Redis = import("./redis").Redis;
+export const Redis: typeof import("./redis").Redis = null as any;
+utilities.lazyLoad(exports, ["Redis"], () => require("./redis"));
 
 
 // Export enums:
@@ -33,8 +33,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
-            case "render:redis:Redi":
-                return new Redi(name, <any>undefined, { urn })
+            case "render:redis:Redis":
+                return new Redis(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }

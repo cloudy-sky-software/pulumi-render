@@ -7,25 +7,25 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function getRedi(args: GetRediArgs, opts?: pulumi.InvokeOptions): Promise<GetRediResult> {
+export function getRedis(args: GetRedisArgs, opts?: pulumi.InvokeOptions): Promise<GetRedisResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invoke("render:redis:getRedi", {
+    return pulumi.runtime.invoke("render:redis:getRedis", {
         "redisId": args.redisId,
     }, opts);
 }
 
-export interface GetRediArgs {
+export interface GetRedisArgs {
     redisId: string;
 }
 
-export interface GetRediResult {
+export interface GetRedisResult {
     readonly items: outputs.redis.RedisDetail;
 }
-export function getRediOutput(args: GetRediOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRediResult> {
-    return pulumi.output(args).apply((a: any) => getRedi(a, opts))
+export function getRedisOutput(args: GetRedisOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRedisResult> {
+    return pulumi.output(args).apply((a: any) => getRedis(a, opts))
 }
 
-export interface GetRediOutputArgs {
+export interface GetRedisOutputArgs {
     redisId: pulumi.Input<string>;
 }

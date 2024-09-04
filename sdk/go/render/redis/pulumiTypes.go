@@ -119,7 +119,7 @@ func (o CidrBlockAndDescriptionArrayOutput) Index(i pulumi.IntInput) CidrBlockAn
 type ListRedisItemProperties struct {
 	Cursor *string `pulumi:"cursor"`
 	// A Redis instance
-	Redis *Redis `pulumi:"redis"`
+	Redis *RedisType `pulumi:"redis"`
 }
 
 // Defaults sets the appropriate defaults for ListRedisItemProperties
@@ -152,8 +152,8 @@ func (o ListRedisItemPropertiesOutput) Cursor() pulumi.StringPtrOutput {
 }
 
 // A Redis instance
-func (o ListRedisItemPropertiesOutput) Redis() RedisPtrOutput {
-	return o.ApplyT(func(v ListRedisItemProperties) *Redis { return v.Redis }).(RedisPtrOutput)
+func (o ListRedisItemPropertiesOutput) Redis() RedisTypePtrOutput {
+	return o.ApplyT(func(v ListRedisItemProperties) *RedisType { return v.Redis }).(RedisTypePtrOutput)
 }
 
 type ListRedisItemPropertiesArrayOutput struct{ *pulumi.OutputState }
@@ -405,7 +405,7 @@ func (o OwnerPtrOutput) Type() OwnerTypePtrOutput {
 }
 
 // A Redis instance
-type Redis struct {
+type RedisType struct {
 	// The creation time of the Redis instance
 	CreatedAt string `pulumi:"createdAt"`
 	// The URL to view the Redis instance in the Render Dashboard
@@ -431,8 +431,8 @@ type Redis struct {
 	Version string `pulumi:"version"`
 }
 
-// Defaults sets the appropriate defaults for Redis
-func (val *Redis) Defaults() *Redis {
+// Defaults sets the appropriate defaults for RedisType
+func (val *RedisType) Defaults() *RedisType {
 	if val == nil {
 		return nil
 	}
@@ -444,109 +444,109 @@ func (val *Redis) Defaults() *Redis {
 }
 
 // A Redis instance
-type RedisOutput struct{ *pulumi.OutputState }
+type RedisTypeOutput struct{ *pulumi.OutputState }
 
-func (RedisOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*Redis)(nil)).Elem()
+func (RedisTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RedisType)(nil)).Elem()
 }
 
-func (o RedisOutput) ToRedisOutput() RedisOutput {
+func (o RedisTypeOutput) ToRedisTypeOutput() RedisTypeOutput {
 	return o
 }
 
-func (o RedisOutput) ToRedisOutputWithContext(ctx context.Context) RedisOutput {
+func (o RedisTypeOutput) ToRedisTypeOutputWithContext(ctx context.Context) RedisTypeOutput {
 	return o
 }
 
 // The creation time of the Redis instance
-func (o RedisOutput) CreatedAt() pulumi.StringOutput {
-	return o.ApplyT(func(v Redis) string { return v.CreatedAt }).(pulumi.StringOutput)
+func (o RedisTypeOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v RedisType) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
 // The URL to view the Redis instance in the Render Dashboard
-func (o RedisOutput) DashboardUrl() pulumi.StringOutput {
-	return o.ApplyT(func(v Redis) string { return v.DashboardUrl }).(pulumi.StringOutput)
+func (o RedisTypeOutput) DashboardUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v RedisType) string { return v.DashboardUrl }).(pulumi.StringOutput)
 }
 
 // The ID of the environment the Redis instance is associated with
-func (o RedisOutput) EnvironmentId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v Redis) *string { return v.EnvironmentId }).(pulumi.StringPtrOutput)
+func (o RedisTypeOutput) EnvironmentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RedisType) *string { return v.EnvironmentId }).(pulumi.StringPtrOutput)
 }
 
 // The ID of the Redis instance
-func (o RedisOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v Redis) string { return v.Id }).(pulumi.StringOutput)
+func (o RedisTypeOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v RedisType) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // The IP allow list for the Redis instance
-func (o RedisOutput) IpAllowList() CidrBlockAndDescriptionArrayOutput {
-	return o.ApplyT(func(v Redis) []CidrBlockAndDescription { return v.IpAllowList }).(CidrBlockAndDescriptionArrayOutput)
+func (o RedisTypeOutput) IpAllowList() CidrBlockAndDescriptionArrayOutput {
+	return o.ApplyT(func(v RedisType) []CidrBlockAndDescription { return v.IpAllowList }).(CidrBlockAndDescriptionArrayOutput)
 }
 
 // The name of the Redis instance
-func (o RedisOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v Redis) string { return v.Name }).(pulumi.StringOutput)
+func (o RedisTypeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v RedisType) string { return v.Name }).(pulumi.StringOutput)
 }
 
 // Options for a Redis instance
-func (o RedisOutput) Options() RedisOptionsOutput {
-	return o.ApplyT(func(v Redis) RedisOptions { return v.Options }).(RedisOptionsOutput)
+func (o RedisTypeOutput) Options() RedisOptionsOutput {
+	return o.ApplyT(func(v RedisType) RedisOptions { return v.Options }).(RedisOptionsOutput)
 }
 
-func (o RedisOutput) Owner() OwnerOutput {
-	return o.ApplyT(func(v Redis) Owner { return v.Owner }).(OwnerOutput)
+func (o RedisTypeOutput) Owner() OwnerOutput {
+	return o.ApplyT(func(v RedisType) Owner { return v.Owner }).(OwnerOutput)
 }
 
-func (o RedisOutput) Plan() RedisPlanOutput {
-	return o.ApplyT(func(v Redis) RedisPlan { return v.Plan }).(RedisPlanOutput)
+func (o RedisTypeOutput) Plan() RedisPlanOutput {
+	return o.ApplyT(func(v RedisType) RedisPlan { return v.Plan }).(RedisPlanOutput)
 }
 
 // Defaults to "oregon"
-func (o RedisOutput) Region() RedisRegionOutput {
-	return o.ApplyT(func(v Redis) RedisRegion { return v.Region }).(RedisRegionOutput)
+func (o RedisTypeOutput) Region() RedisRegionOutput {
+	return o.ApplyT(func(v RedisType) RedisRegion { return v.Region }).(RedisRegionOutput)
 }
 
-func (o RedisOutput) Status() RedisStatusOutput {
-	return o.ApplyT(func(v Redis) RedisStatus { return v.Status }).(RedisStatusOutput)
+func (o RedisTypeOutput) Status() RedisStatusOutput {
+	return o.ApplyT(func(v RedisType) RedisStatus { return v.Status }).(RedisStatusOutput)
 }
 
 // The last updated time of the Redis instance
-func (o RedisOutput) UpdatedAt() pulumi.StringOutput {
-	return o.ApplyT(func(v Redis) string { return v.UpdatedAt }).(pulumi.StringOutput)
+func (o RedisTypeOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v RedisType) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
 // The version of Redis
-func (o RedisOutput) Version() pulumi.StringOutput {
-	return o.ApplyT(func(v Redis) string { return v.Version }).(pulumi.StringOutput)
+func (o RedisTypeOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v RedisType) string { return v.Version }).(pulumi.StringOutput)
 }
 
-type RedisPtrOutput struct{ *pulumi.OutputState }
+type RedisTypePtrOutput struct{ *pulumi.OutputState }
 
-func (RedisPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**Redis)(nil)).Elem()
+func (RedisTypePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RedisType)(nil)).Elem()
 }
 
-func (o RedisPtrOutput) ToRedisPtrOutput() RedisPtrOutput {
+func (o RedisTypePtrOutput) ToRedisTypePtrOutput() RedisTypePtrOutput {
 	return o
 }
 
-func (o RedisPtrOutput) ToRedisPtrOutputWithContext(ctx context.Context) RedisPtrOutput {
+func (o RedisTypePtrOutput) ToRedisTypePtrOutputWithContext(ctx context.Context) RedisTypePtrOutput {
 	return o
 }
 
-func (o RedisPtrOutput) Elem() RedisOutput {
-	return o.ApplyT(func(v *Redis) Redis {
+func (o RedisTypePtrOutput) Elem() RedisTypeOutput {
+	return o.ApplyT(func(v *RedisType) RedisType {
 		if v != nil {
 			return *v
 		}
-		var ret Redis
+		var ret RedisType
 		return ret
-	}).(RedisOutput)
+	}).(RedisTypeOutput)
 }
 
 // The creation time of the Redis instance
-func (o RedisPtrOutput) CreatedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Redis) *string {
+func (o RedisTypePtrOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RedisType) *string {
 		if v == nil {
 			return nil
 		}
@@ -555,8 +555,8 @@ func (o RedisPtrOutput) CreatedAt() pulumi.StringPtrOutput {
 }
 
 // The URL to view the Redis instance in the Render Dashboard
-func (o RedisPtrOutput) DashboardUrl() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Redis) *string {
+func (o RedisTypePtrOutput) DashboardUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RedisType) *string {
 		if v == nil {
 			return nil
 		}
@@ -565,8 +565,8 @@ func (o RedisPtrOutput) DashboardUrl() pulumi.StringPtrOutput {
 }
 
 // The ID of the environment the Redis instance is associated with
-func (o RedisPtrOutput) EnvironmentId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Redis) *string {
+func (o RedisTypePtrOutput) EnvironmentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RedisType) *string {
 		if v == nil {
 			return nil
 		}
@@ -575,8 +575,8 @@ func (o RedisPtrOutput) EnvironmentId() pulumi.StringPtrOutput {
 }
 
 // The ID of the Redis instance
-func (o RedisPtrOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Redis) *string {
+func (o RedisTypePtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RedisType) *string {
 		if v == nil {
 			return nil
 		}
@@ -585,8 +585,8 @@ func (o RedisPtrOutput) Id() pulumi.StringPtrOutput {
 }
 
 // The IP allow list for the Redis instance
-func (o RedisPtrOutput) IpAllowList() CidrBlockAndDescriptionArrayOutput {
-	return o.ApplyT(func(v *Redis) []CidrBlockAndDescription {
+func (o RedisTypePtrOutput) IpAllowList() CidrBlockAndDescriptionArrayOutput {
+	return o.ApplyT(func(v *RedisType) []CidrBlockAndDescription {
 		if v == nil {
 			return nil
 		}
@@ -595,8 +595,8 @@ func (o RedisPtrOutput) IpAllowList() CidrBlockAndDescriptionArrayOutput {
 }
 
 // The name of the Redis instance
-func (o RedisPtrOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Redis) *string {
+func (o RedisTypePtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RedisType) *string {
 		if v == nil {
 			return nil
 		}
@@ -605,8 +605,8 @@ func (o RedisPtrOutput) Name() pulumi.StringPtrOutput {
 }
 
 // Options for a Redis instance
-func (o RedisPtrOutput) Options() RedisOptionsPtrOutput {
-	return o.ApplyT(func(v *Redis) *RedisOptions {
+func (o RedisTypePtrOutput) Options() RedisOptionsPtrOutput {
+	return o.ApplyT(func(v *RedisType) *RedisOptions {
 		if v == nil {
 			return nil
 		}
@@ -614,8 +614,8 @@ func (o RedisPtrOutput) Options() RedisOptionsPtrOutput {
 	}).(RedisOptionsPtrOutput)
 }
 
-func (o RedisPtrOutput) Owner() OwnerPtrOutput {
-	return o.ApplyT(func(v *Redis) *Owner {
+func (o RedisTypePtrOutput) Owner() OwnerPtrOutput {
+	return o.ApplyT(func(v *RedisType) *Owner {
 		if v == nil {
 			return nil
 		}
@@ -623,8 +623,8 @@ func (o RedisPtrOutput) Owner() OwnerPtrOutput {
 	}).(OwnerPtrOutput)
 }
 
-func (o RedisPtrOutput) Plan() RedisPlanPtrOutput {
-	return o.ApplyT(func(v *Redis) *RedisPlan {
+func (o RedisTypePtrOutput) Plan() RedisPlanPtrOutput {
+	return o.ApplyT(func(v *RedisType) *RedisPlan {
 		if v == nil {
 			return nil
 		}
@@ -633,8 +633,8 @@ func (o RedisPtrOutput) Plan() RedisPlanPtrOutput {
 }
 
 // Defaults to "oregon"
-func (o RedisPtrOutput) Region() RedisRegionPtrOutput {
-	return o.ApplyT(func(v *Redis) *RedisRegion {
+func (o RedisTypePtrOutput) Region() RedisRegionPtrOutput {
+	return o.ApplyT(func(v *RedisType) *RedisRegion {
 		if v == nil {
 			return nil
 		}
@@ -642,8 +642,8 @@ func (o RedisPtrOutput) Region() RedisRegionPtrOutput {
 	}).(RedisRegionPtrOutput)
 }
 
-func (o RedisPtrOutput) Status() RedisStatusPtrOutput {
-	return o.ApplyT(func(v *Redis) *RedisStatus {
+func (o RedisTypePtrOutput) Status() RedisStatusPtrOutput {
+	return o.ApplyT(func(v *RedisType) *RedisStatus {
 		if v == nil {
 			return nil
 		}
@@ -652,8 +652,8 @@ func (o RedisPtrOutput) Status() RedisStatusPtrOutput {
 }
 
 // The last updated time of the Redis instance
-func (o RedisPtrOutput) UpdatedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Redis) *string {
+func (o RedisTypePtrOutput) UpdatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RedisType) *string {
 		if v == nil {
 			return nil
 		}
@@ -662,8 +662,8 @@ func (o RedisPtrOutput) UpdatedAt() pulumi.StringPtrOutput {
 }
 
 // The version of Redis
-func (o RedisPtrOutput) Version() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Redis) *string {
+func (o RedisTypePtrOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RedisType) *string {
 		if v == nil {
 			return nil
 		}
@@ -1007,8 +1007,8 @@ func init() {
 	pulumi.RegisterOutputType(MaintenancePropertiesPtrOutput{})
 	pulumi.RegisterOutputType(OwnerOutput{})
 	pulumi.RegisterOutputType(OwnerPtrOutput{})
-	pulumi.RegisterOutputType(RedisOutput{})
-	pulumi.RegisterOutputType(RedisPtrOutput{})
+	pulumi.RegisterOutputType(RedisTypeOutput{})
+	pulumi.RegisterOutputType(RedisTypePtrOutput{})
 	pulumi.RegisterOutputType(RedisConnectionInfoOutput{})
 	pulumi.RegisterOutputType(RedisDetailOutput{})
 	pulumi.RegisterOutputType(RedisDetailMaintenancePropertiesOutput{})

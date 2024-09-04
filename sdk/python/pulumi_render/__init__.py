@@ -118,7 +118,7 @@ _utilities.register(
   "mod": "redis",
   "fqn": "pulumi_render.redis",
   "classes": {
-   "render:redis:Redi": "Redi"
+   "render:redis:Redis": "Redis"
   }
  },
  {

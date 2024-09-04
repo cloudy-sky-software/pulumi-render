@@ -21,8 +21,8 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
-	case "render:redis:Redi":
-		r = &Redi{}
+	case "render:redis:Redis":
+		r = &Redis{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}

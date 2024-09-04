@@ -1,3 +1,7 @@
+## 0.3.2
+
+Fix resource name for Redis.
+
 ## 0.3.0, 0.3.1
 
 Updated the OpenAPI spec to the latest which adds many new resources including

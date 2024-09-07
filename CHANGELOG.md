@@ -1,4 +1,4 @@
-## 0.3.3
+## 0.3.3, 0.3.4
 
 Upgrade pulumi-provider-framework to fix a bug with validating response codes for DELETE calls.
 

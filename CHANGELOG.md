@@ -1,3 +1,7 @@
+## 0.3.3
+
+Upgrade pulumi-provider-framework to fix a bug with validating response codes for DELETE calls.
+
 ## 0.3.2
 
 Fix resource name for Redis.

@@ -69,14 +69,6 @@ func (p *renderProvider) OnPreInvoke(_ context.Context, _ *pulumirpc.InvokeReque
 }
 
 func (p *renderProvider) OnPostInvoke(_ context.Context, req *pulumirpc.InvokeRequest, outputs interface{}) (map[string]interface{}, error) {
-	invokeTypeToken := req.GetTok()
-
-	if strings.Contains(invokeTypeToken, ":list") {
-		m := make(map[string]interface{})
-		m["items"] = outputs
-		return m, nil
-	}
-
 	return outputs.(map[string]interface{}), nil
 }
 

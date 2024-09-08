@@ -68,7 +68,7 @@ func (p *renderProvider) OnPreInvoke(_ context.Context, _ *pulumirpc.InvokeReque
 	return nil
 }
 
-func (p *renderProvider) OnPostInvoke(_ context.Context, req *pulumirpc.InvokeRequest, outputs interface{}) (map[string]interface{}, error) {
+func (p *renderProvider) OnPostInvoke(_ context.Context, _ *pulumirpc.InvokeRequest, outputs interface{}) (map[string]interface{}, error) {
 	return outputs.(map[string]interface{}), nil
 }
 

@@ -68,8 +68,8 @@ func (p *renderProvider) OnPreInvoke(_ context.Context, _ *pulumirpc.InvokeReque
 	return nil
 }
 
-func (p *renderProvider) OnPostInvoke(_ context.Context, _ *pulumirpc.InvokeRequest, outputs interface{}) (map[string]interface{}, error) {
-	return outputs.(map[string]interface{}), nil
+func (p *renderProvider) OnPostInvoke(_ context.Context, req *pulumirpc.InvokeRequest, outputs interface{}) (map[string]interface{}, error) {
+	return nil, nil
 }
 
 // OnConfigure is called by the provider framework when Pulumi calls Configure on

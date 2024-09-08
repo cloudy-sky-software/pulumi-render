@@ -11,11 +11,11 @@ namespace Pulumi.Render.Blueprints
 {
     public static class GetBlueprint
     {
-        public static Task<GetBlueprintResult> InvokeAsync(GetBlueprintArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetBlueprintResult>("render:blueprints:getBlueprint", args ?? new GetBlueprintArgs(), options.WithDefaults());
+        public static Task<Outputs.GetBlueprintProperties> InvokeAsync(GetBlueprintArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<Outputs.GetBlueprintProperties>("render:blueprints:getBlueprint", args ?? new GetBlueprintArgs(), options.WithDefaults());
 
-        public static Output<GetBlueprintResult> Invoke(GetBlueprintInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetBlueprintResult>("render:blueprints:getBlueprint", args ?? new GetBlueprintInvokeArgs(), options.WithDefaults());
+        public static Output<Outputs.GetBlueprintProperties> Invoke(GetBlueprintInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetBlueprintProperties>("render:blueprints:getBlueprint", args ?? new GetBlueprintInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -45,18 +45,5 @@ namespace Pulumi.Render.Blueprints
         {
         }
         public static new GetBlueprintInvokeArgs Empty => new GetBlueprintInvokeArgs();
-    }
-
-
-    [OutputType]
-    public sealed class GetBlueprintResult
-    {
-        public readonly Outputs.GetBlueprintProperties Items;
-
-        [OutputConstructor]
-        private GetBlueprintResult(Outputs.GetBlueprintProperties items)
-        {
-            Items = items;
-        }
     }
 }

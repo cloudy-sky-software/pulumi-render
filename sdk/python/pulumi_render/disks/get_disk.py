@@ -6,41 +6,94 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
 from .. import _utilities
-from . import outputs
 
 __all__ = [
-    'GetDiskResult',
-    'AwaitableGetDiskResult',
+    'DiskWithCursorpropertiesdisk',
+    'AwaitableDiskWithCursorpropertiesdisk',
     'get_disk',
     'get_disk_output',
 ]
 
 @pulumi.output_type
-class GetDiskResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class DiskWithCursorpropertiesdisk:
+    def __init__(__self__, created_at=None, id=None, mount_path=None, name=None, service_id=None, size_gb=None, updated_at=None):
+        if created_at and not isinstance(created_at, str):
+            raise TypeError("Expected argument 'created_at' to be a str")
+        pulumi.set(__self__, "created_at", created_at)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if mount_path and not isinstance(mount_path, str):
+            raise TypeError("Expected argument 'mount_path' to be a str")
+        pulumi.set(__self__, "mount_path", mount_path)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if service_id and not isinstance(service_id, str):
+            raise TypeError("Expected argument 'service_id' to be a str")
+        pulumi.set(__self__, "service_id", service_id)
+        if size_gb and not isinstance(size_gb, int):
+            raise TypeError("Expected argument 'size_gb' to be a int")
+        pulumi.set(__self__, "size_gb", size_gb)
+        if updated_at and not isinstance(updated_at, str):
+            raise TypeError("Expected argument 'updated_at' to be a str")
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.DiskWithCursorpropertiesdisk':
-        return pulumi.get(self, "items")
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="mountPath")
+    def mount_path(self) -> str:
+        return pulumi.get(self, "mount_path")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="serviceId")
+    def service_id(self) -> Optional[str]:
+        return pulumi.get(self, "service_id")
+
+    @property
+    @pulumi.getter(name="sizeGB")
+    def size_gb(self) -> int:
+        return pulumi.get(self, "size_gb")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        return pulumi.get(self, "updated_at")
 
 
-class AwaitableGetDiskResult(GetDiskResult):
+class AwaitableDiskWithCursorpropertiesdisk(DiskWithCursorpropertiesdisk):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetDiskResult(
-            items=self.items)
+        return DiskWithCursorpropertiesdisk(
+            created_at=self.created_at,
+            id=self.id,
+            mount_path=self.mount_path,
+            name=self.name,
+            service_id=self.service_id,
+            size_gb=self.size_gb,
+            updated_at=self.updated_at)
 
 
 def get_disk(disk_id: Optional[str] = None,
-             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDiskResult:
+             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableDiskWithCursorpropertiesdisk:
     """
     Use this data source to access information about an existing resource.
 
@@ -49,15 +102,21 @@ def get_disk(disk_id: Optional[str] = None,
     __args__ = dict()
     __args__['diskId'] = disk_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('render:disks:getDisk', __args__, opts=opts, typ=GetDiskResult).value
+    __ret__ = pulumi.runtime.invoke('render:disks:getDisk', __args__, opts=opts, typ=DiskWithCursorpropertiesdisk).value
 
-    return AwaitableGetDiskResult(
-        items=pulumi.get(__ret__, 'items'))
+    return AwaitableDiskWithCursorpropertiesdisk(
+        created_at=pulumi.get(__ret__, 'created_at'),
+        id=pulumi.get(__ret__, 'id'),
+        mount_path=pulumi.get(__ret__, 'mount_path'),
+        name=pulumi.get(__ret__, 'name'),
+        service_id=pulumi.get(__ret__, 'service_id'),
+        size_gb=pulumi.get(__ret__, 'size_gb'),
+        updated_at=pulumi.get(__ret__, 'updated_at'))
 
 
 @_utilities.lift_output_func(get_disk)
 def get_disk_output(disk_id: Optional[pulumi.Input[str]] = None,
-                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDiskResult]:
+                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[DiskWithCursorpropertiesdisk]:
     """
     Use this data source to access information about an existing resource.
 

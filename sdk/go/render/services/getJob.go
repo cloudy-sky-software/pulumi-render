@@ -29,7 +29,14 @@ type LookupJobArgs struct {
 }
 
 type LookupJobResult struct {
-	Items JobType `pulumi:"items"`
+	CreatedAt    string     `pulumi:"createdAt"`
+	FinishedAt   *string    `pulumi:"finishedAt"`
+	Id           string     `pulumi:"id"`
+	PlanId       string     `pulumi:"planId"`
+	ServiceId    string     `pulumi:"serviceId"`
+	StartCommand string     `pulumi:"startCommand"`
+	StartedAt    *string    `pulumi:"startedAt"`
+	Status       *JobStatus `pulumi:"status"`
 }
 
 func LookupJobOutput(ctx *pulumi.Context, args LookupJobOutputArgs, opts ...pulumi.InvokeOption) LookupJobResultOutput {
@@ -70,8 +77,36 @@ func (o LookupJobResultOutput) ToLookupJobResultOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o LookupJobResultOutput) Items() JobTypeOutput {
-	return o.ApplyT(func(v LookupJobResult) JobType { return v.Items }).(JobTypeOutput)
+func (o LookupJobResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupJobResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+func (o LookupJobResultOutput) FinishedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupJobResult) *string { return v.FinishedAt }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupJobResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupJobResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupJobResultOutput) PlanId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupJobResult) string { return v.PlanId }).(pulumi.StringOutput)
+}
+
+func (o LookupJobResultOutput) ServiceId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupJobResult) string { return v.ServiceId }).(pulumi.StringOutput)
+}
+
+func (o LookupJobResultOutput) StartCommand() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupJobResult) string { return v.StartCommand }).(pulumi.StringOutput)
+}
+
+func (o LookupJobResultOutput) StartedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupJobResult) *string { return v.StartedAt }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupJobResultOutput) Status() JobStatusPtrOutput {
+	return o.ApplyT(func(v LookupJobResult) *JobStatus { return v.Status }).(JobStatusPtrOutput)
 }
 
 func init() {

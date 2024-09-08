@@ -45,52 +45,52 @@ export type EnvVarsForService = import("./envVarsForService").EnvVarsForService;
 export const EnvVarsForService: typeof import("./envVarsForService").EnvVarsForService = null as any;
 utilities.lazyLoad(exports, ["EnvVarsForService"], () => require("./envVarsForService"));
 
-export { GetBackgroundWorkerArgs, GetBackgroundWorkerResult, GetBackgroundWorkerOutputArgs } from "./getBackgroundWorker";
+export { GetBackgroundWorkerArgs, GetBackgroundWorkerOutputArgs } from "./getBackgroundWorker";
 export const getBackgroundWorker: typeof import("./getBackgroundWorker").getBackgroundWorker = null as any;
 export const getBackgroundWorkerOutput: typeof import("./getBackgroundWorker").getBackgroundWorkerOutput = null as any;
 utilities.lazyLoad(exports, ["getBackgroundWorker","getBackgroundWorkerOutput"], () => require("./getBackgroundWorker"));
 
-export { GetCronJobArgs, GetCronJobResult, GetCronJobOutputArgs } from "./getCronJob";
+export { GetCronJobArgs, GetCronJobOutputArgs } from "./getCronJob";
 export const getCronJob: typeof import("./getCronJob").getCronJob = null as any;
 export const getCronJobOutput: typeof import("./getCronJob").getCronJobOutput = null as any;
 utilities.lazyLoad(exports, ["getCronJob","getCronJobOutput"], () => require("./getCronJob"));
 
-export { GetCustomDomainArgs, GetCustomDomainResult, GetCustomDomainOutputArgs } from "./getCustomDomain";
+export { GetCustomDomainArgs, GetCustomDomainOutputArgs } from "./getCustomDomain";
 export const getCustomDomain: typeof import("./getCustomDomain").getCustomDomain = null as any;
 export const getCustomDomainOutput: typeof import("./getCustomDomain").getCustomDomainOutput = null as any;
 utilities.lazyLoad(exports, ["getCustomDomain","getCustomDomainOutput"], () => require("./getCustomDomain"));
 
-export { GetDeployArgs, GetDeployResult, GetDeployOutputArgs } from "./getDeploy";
+export { GetDeployArgs, GetDeployOutputArgs } from "./getDeploy";
 export const getDeploy: typeof import("./getDeploy").getDeploy = null as any;
 export const getDeployOutput: typeof import("./getDeploy").getDeployOutput = null as any;
 utilities.lazyLoad(exports, ["getDeploy","getDeployOutput"], () => require("./getDeploy"));
 
-export { GetEnvVarArgs, GetEnvVarResult, GetEnvVarOutputArgs } from "./getEnvVar";
+export { GetEnvVarArgs, GetEnvVarOutputArgs } from "./getEnvVar";
 export const getEnvVar: typeof import("./getEnvVar").getEnvVar = null as any;
 export const getEnvVarOutput: typeof import("./getEnvVar").getEnvVarOutput = null as any;
 utilities.lazyLoad(exports, ["getEnvVar","getEnvVarOutput"], () => require("./getEnvVar"));
 
-export { GetJobArgs, GetJobResult, GetJobOutputArgs } from "./getJob";
+export { GetJobArgs, GetJobOutputArgs } from "./getJob";
 export const getJob: typeof import("./getJob").getJob = null as any;
 export const getJobOutput: typeof import("./getJob").getJobOutput = null as any;
 utilities.lazyLoad(exports, ["getJob","getJobOutput"], () => require("./getJob"));
 
-export { GetPrivateServiceArgs, GetPrivateServiceResult, GetPrivateServiceOutputArgs } from "./getPrivateService";
+export { GetPrivateServiceArgs, GetPrivateServiceOutputArgs } from "./getPrivateService";
 export const getPrivateService: typeof import("./getPrivateService").getPrivateService = null as any;
 export const getPrivateServiceOutput: typeof import("./getPrivateService").getPrivateServiceOutput = null as any;
 utilities.lazyLoad(exports, ["getPrivateService","getPrivateServiceOutput"], () => require("./getPrivateService"));
 
-export { GetSecretFileArgs, GetSecretFileResult, GetSecretFileOutputArgs } from "./getSecretFile";
+export { GetSecretFileArgs, GetSecretFileOutputArgs } from "./getSecretFile";
 export const getSecretFile: typeof import("./getSecretFile").getSecretFile = null as any;
 export const getSecretFileOutput: typeof import("./getSecretFile").getSecretFileOutput = null as any;
 utilities.lazyLoad(exports, ["getSecretFile","getSecretFileOutput"], () => require("./getSecretFile"));
 
-export { GetStaticSiteArgs, GetStaticSiteResult, GetStaticSiteOutputArgs } from "./getStaticSite";
+export { GetStaticSiteArgs, GetStaticSiteOutputArgs } from "./getStaticSite";
 export const getStaticSite: typeof import("./getStaticSite").getStaticSite = null as any;
 export const getStaticSiteOutput: typeof import("./getStaticSite").getStaticSiteOutput = null as any;
 utilities.lazyLoad(exports, ["getStaticSite","getStaticSiteOutput"], () => require("./getStaticSite"));
 
-export { GetWebServiceArgs, GetWebServiceResult, GetWebServiceOutputArgs } from "./getWebService";
+export { GetWebServiceArgs, GetWebServiceOutputArgs } from "./getWebService";
 export const getWebService: typeof import("./getWebService").getWebService = null as any;
 export const getWebServiceOutput: typeof import("./getWebService").getWebServiceOutput = null as any;
 utilities.lazyLoad(exports, ["getWebService","getWebServiceOutput"], () => require("./getWebService"));

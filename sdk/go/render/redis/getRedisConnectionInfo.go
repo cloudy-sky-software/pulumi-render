@@ -25,8 +25,14 @@ type GetRedisConnectionInfoArgs struct {
 	RedisId string `pulumi:"redisId"`
 }
 
+// A Redis instance
 type GetRedisConnectionInfoResult struct {
-	Items RedisConnectionInfo `pulumi:"items"`
+	// The connection string to use from outside Render
+	ExternalConnectionString string `pulumi:"externalConnectionString"`
+	// The connection string to use from within Render
+	InternalConnectionString string `pulumi:"internalConnectionString"`
+	// The Redis CLI command to connect to the Redis instance
+	RedisCLICommand string `pulumi:"redisCLICommand"`
 }
 
 func GetRedisConnectionInfoOutput(ctx *pulumi.Context, args GetRedisConnectionInfoOutputArgs, opts ...pulumi.InvokeOption) GetRedisConnectionInfoResultOutput {
@@ -50,6 +56,7 @@ func (GetRedisConnectionInfoOutputArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*GetRedisConnectionInfoArgs)(nil)).Elem()
 }
 
+// A Redis instance
 type GetRedisConnectionInfoResultOutput struct{ *pulumi.OutputState }
 
 func (GetRedisConnectionInfoResultOutput) ElementType() reflect.Type {
@@ -64,8 +71,19 @@ func (o GetRedisConnectionInfoResultOutput) ToGetRedisConnectionInfoResultOutput
 	return o
 }
 
-func (o GetRedisConnectionInfoResultOutput) Items() RedisConnectionInfoOutput {
-	return o.ApplyT(func(v GetRedisConnectionInfoResult) RedisConnectionInfo { return v.Items }).(RedisConnectionInfoOutput)
+// The connection string to use from outside Render
+func (o GetRedisConnectionInfoResultOutput) ExternalConnectionString() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRedisConnectionInfoResult) string { return v.ExternalConnectionString }).(pulumi.StringOutput)
+}
+
+// The connection string to use from within Render
+func (o GetRedisConnectionInfoResultOutput) InternalConnectionString() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRedisConnectionInfoResult) string { return v.InternalConnectionString }).(pulumi.StringOutput)
+}
+
+// The Redis CLI command to connect to the Redis instance
+func (o GetRedisConnectionInfoResultOutput) RedisCLICommand() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRedisConnectionInfoResult) string { return v.RedisCLICommand }).(pulumi.StringOutput)
 }
 
 func init() {

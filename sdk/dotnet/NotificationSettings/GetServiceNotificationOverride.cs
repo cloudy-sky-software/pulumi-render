@@ -11,11 +11,11 @@ namespace Pulumi.Render.NotificationSettings
 {
     public static class GetServiceNotificationOverride
     {
-        public static Task<GetServiceNotificationOverrideResult> InvokeAsync(GetServiceNotificationOverrideArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetServiceNotificationOverrideResult>("render:notification-settings:getServiceNotificationOverride", args ?? new GetServiceNotificationOverrideArgs(), options.WithDefaults());
+        public static Task<Outputs.GetServiceNotificationOverrideProperties> InvokeAsync(GetServiceNotificationOverrideArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<Outputs.GetServiceNotificationOverrideProperties>("render:notification-settings:getServiceNotificationOverride", args ?? new GetServiceNotificationOverrideArgs(), options.WithDefaults());
 
-        public static Output<GetServiceNotificationOverrideResult> Invoke(GetServiceNotificationOverrideInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetServiceNotificationOverrideResult>("render:notification-settings:getServiceNotificationOverride", args ?? new GetServiceNotificationOverrideInvokeArgs(), options.WithDefaults());
+        public static Output<Outputs.GetServiceNotificationOverrideProperties> Invoke(GetServiceNotificationOverrideInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetServiceNotificationOverrideProperties>("render:notification-settings:getServiceNotificationOverride", args ?? new GetServiceNotificationOverrideInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -45,18 +45,5 @@ namespace Pulumi.Render.NotificationSettings
         {
         }
         public static new GetServiceNotificationOverrideInvokeArgs Empty => new GetServiceNotificationOverrideInvokeArgs();
-    }
-
-
-    [OutputType]
-    public sealed class GetServiceNotificationOverrideResult
-    {
-        public readonly Outputs.GetServiceNotificationOverrideProperties Items;
-
-        [OutputConstructor]
-        private GetServiceNotificationOverrideResult(Outputs.GetServiceNotificationOverrideProperties items)
-        {
-            Items = items;
-        }
     }
 }

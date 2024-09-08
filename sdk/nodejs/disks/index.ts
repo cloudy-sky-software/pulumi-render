@@ -10,7 +10,7 @@ export type Disk = import("./disk").Disk;
 export const Disk: typeof import("./disk").Disk = null as any;
 utilities.lazyLoad(exports, ["Disk"], () => require("./disk"));
 
-export { GetDiskArgs, GetDiskResult, GetDiskOutputArgs } from "./getDisk";
+export { GetDiskArgs, GetDiskOutputArgs } from "./getDisk";
 export const getDisk: typeof import("./getDisk").getDisk = null as any;
 export const getDiskOutput: typeof import("./getDisk").getDiskOutput = null as any;
 utilities.lazyLoad(exports, ["getDisk","getDiskOutput"], () => require("./getDisk"));

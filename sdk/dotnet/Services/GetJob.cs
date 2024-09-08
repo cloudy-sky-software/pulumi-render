@@ -11,11 +11,11 @@ namespace Pulumi.Render.Services
 {
     public static class GetJob
     {
-        public static Task<GetJobResult> InvokeAsync(GetJobArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetJobResult>("render:services:getJob", args ?? new GetJobArgs(), options.WithDefaults());
+        public static Task<Outputs.Job> InvokeAsync(GetJobArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<Outputs.Job>("render:services:getJob", args ?? new GetJobArgs(), options.WithDefaults());
 
-        public static Output<GetJobResult> Invoke(GetJobInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetJobResult>("render:services:getJob", args ?? new GetJobInvokeArgs(), options.WithDefaults());
+        public static Output<Outputs.Job> Invoke(GetJobInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.Job>("render:services:getJob", args ?? new GetJobInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -57,18 +57,5 @@ namespace Pulumi.Render.Services
         {
         }
         public static new GetJobInvokeArgs Empty => new GetJobInvokeArgs();
-    }
-
-
-    [OutputType]
-    public sealed class GetJobResult
-    {
-        public readonly Outputs.Job Items;
-
-        [OutputConstructor]
-        private GetJobResult(Outputs.Job items)
-        {
-            Items = items;
-        }
     }
 }

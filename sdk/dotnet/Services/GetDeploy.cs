@@ -11,11 +11,11 @@ namespace Pulumi.Render.Services
 {
     public static class GetDeploy
     {
-        public static Task<GetDeployResult> InvokeAsync(GetDeployArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetDeployResult>("render:services:getDeploy", args ?? new GetDeployArgs(), options.WithDefaults());
+        public static Task<Outputs.Deploy> InvokeAsync(GetDeployArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<Outputs.Deploy>("render:services:getDeploy", args ?? new GetDeployArgs(), options.WithDefaults());
 
-        public static Output<GetDeployResult> Invoke(GetDeployInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetDeployResult>("render:services:getDeploy", args ?? new GetDeployInvokeArgs(), options.WithDefaults());
+        public static Output<Outputs.Deploy> Invoke(GetDeployInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.Deploy>("render:services:getDeploy", args ?? new GetDeployInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -57,18 +57,5 @@ namespace Pulumi.Render.Services
         {
         }
         public static new GetDeployInvokeArgs Empty => new GetDeployInvokeArgs();
-    }
-
-
-    [OutputType]
-    public sealed class GetDeployResult
-    {
-        public readonly Outputs.Deploy Items;
-
-        [OutputConstructor]
-        private GetDeployResult(Outputs.Deploy items)
-        {
-            Items = items;
-        }
     }
 }

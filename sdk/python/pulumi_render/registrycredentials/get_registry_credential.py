@@ -6,42 +6,80 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
 from .. import _utilities
-from . import outputs
 from ._enums import *
 
 __all__ = [
-    'GetRegistryCredentialResult',
-    'AwaitableGetRegistryCredentialResult',
+    'RegistryCredential',
+    'AwaitableRegistryCredential',
     'get_registry_credential',
     'get_registry_credential_output',
 ]
 
 @pulumi.output_type
-class GetRegistryCredentialResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class RegistryCredential:
+    def __init__(__self__, id=None, name=None, registry=None, username=None):
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if registry and not isinstance(registry, str):
+            raise TypeError("Expected argument 'registry' to be a str")
+        pulumi.set(__self__, "registry", registry)
+        if username and not isinstance(username, str):
+            raise TypeError("Expected argument 'username' to be a str")
+        pulumi.set(__self__, "username", username)
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.RegistryCredential':
-        return pulumi.get(self, "items")
+    def id(self) -> str:
+        """
+        Unique identifier for this credential
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Descriptive name for this credential
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def registry(self) -> 'RegistryCredentialRegistry':
+        """
+        The registry to use this credential with
+        """
+        return pulumi.get(self, "registry")
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        """
+        The username associated with the credential
+        """
+        return pulumi.get(self, "username")
 
 
-class AwaitableGetRegistryCredentialResult(GetRegistryCredentialResult):
+class AwaitableRegistryCredential(RegistryCredential):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetRegistryCredentialResult(
-            items=self.items)
+        return RegistryCredential(
+            id=self.id,
+            name=self.name,
+            registry=self.registry,
+            username=self.username)
 
 
 def get_registry_credential(registry_credential_id: Optional[str] = None,
-                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRegistryCredentialResult:
+                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableRegistryCredential:
     """
     Use this data source to access information about an existing resource.
 
@@ -50,15 +88,18 @@ def get_registry_credential(registry_credential_id: Optional[str] = None,
     __args__ = dict()
     __args__['registryCredentialId'] = registry_credential_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('render:registrycredentials:getRegistryCredential', __args__, opts=opts, typ=GetRegistryCredentialResult).value
+    __ret__ = pulumi.runtime.invoke('render:registrycredentials:getRegistryCredential', __args__, opts=opts, typ=RegistryCredential).value
 
-    return AwaitableGetRegistryCredentialResult(
-        items=pulumi.get(__ret__, 'items'))
+    return AwaitableRegistryCredential(
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        registry=pulumi.get(__ret__, 'registry'),
+        username=pulumi.get(__ret__, 'username'))
 
 
 @_utilities.lift_output_func(get_registry_credential)
 def get_registry_credential_output(registry_credential_id: Optional[pulumi.Input[str]] = None,
-                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRegistryCredentialResult]:
+                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[RegistryCredential]:
     """
     Use this data source to access information about an existing resource.
 

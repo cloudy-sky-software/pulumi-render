@@ -29,7 +29,8 @@ type GetEnvGroupEnvVarArgs struct {
 }
 
 type GetEnvGroupEnvVarResult struct {
-	Items EnvVar `pulumi:"items"`
+	Key   string `pulumi:"key"`
+	Value string `pulumi:"value"`
 }
 
 func GetEnvGroupEnvVarOutput(ctx *pulumi.Context, args GetEnvGroupEnvVarOutputArgs, opts ...pulumi.InvokeOption) GetEnvGroupEnvVarResultOutput {
@@ -70,8 +71,32 @@ func (o GetEnvGroupEnvVarResultOutput) ToGetEnvGroupEnvVarResultOutputWithContex
 	return o
 }
 
-func (o GetEnvGroupEnvVarResultOutput) Items() EnvVarOutput {
-	return o.ApplyT(func(v GetEnvGroupEnvVarResult) EnvVar { return v.Items }).(EnvVarOutput)
+func (o GetEnvGroupEnvVarResultOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvGroupEnvVarResult) string { return v.Key }).(pulumi.StringOutput)
+}
+
+func (o GetEnvGroupEnvVarResultOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvGroupEnvVarResult) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetEnvGroupEnvVarResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEnvGroupEnvVarResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEnvGroupEnvVarResult)(nil)).Elem()
+}
+
+func (o GetEnvGroupEnvVarResultArrayOutput) ToGetEnvGroupEnvVarResultArrayOutput() GetEnvGroupEnvVarResultArrayOutput {
+	return o
+}
+
+func (o GetEnvGroupEnvVarResultArrayOutput) ToGetEnvGroupEnvVarResultArrayOutputWithContext(ctx context.Context) GetEnvGroupEnvVarResultArrayOutput {
+	return o
+}
+
+func (o GetEnvGroupEnvVarResultArrayOutput) Index(i pulumi.IntInput) GetEnvGroupEnvVarResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEnvGroupEnvVarResult {
+		return vs[0].([]GetEnvGroupEnvVarResult)[vs[1].(int)]
+	}).(GetEnvGroupEnvVarResultOutput)
 }
 
 func init() {

@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function getDeploy(args: GetDeployArgs, opts?: pulumi.InvokeOptions): Promise<GetDeployResult> {
+export function getDeploy(args: GetDeployArgs, opts?: pulumi.InvokeOptions): Promise<outputs.services.Deploy> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:getDeploy", {
@@ -26,11 +26,7 @@ export interface GetDeployArgs {
      */
     serviceId: string;
 }
-
-export interface GetDeployResult {
-    readonly items: outputs.services.Deploy;
-}
-export function getDeployOutput(args: GetDeployOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDeployResult> {
+export function getDeployOutput(args: GetDeployOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.services.Deploy> {
     return pulumi.output(args).apply((a: any) => getDeploy(a, opts))
 }
 

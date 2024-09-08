@@ -6,42 +6,50 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
 from .. import _utilities
-from . import outputs
 
 __all__ = [
-    'GetEnvGroupSecretFileResult',
-    'AwaitableGetEnvGroupSecretFileResult',
+    'SecretFile',
+    'AwaitableSecretFile',
     'get_env_group_secret_file',
     'get_env_group_secret_file_output',
 ]
 
 @pulumi.output_type
-class GetEnvGroupSecretFileResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class SecretFile:
+    def __init__(__self__, content=None, name=None):
+        if content and not isinstance(content, str):
+            raise TypeError("Expected argument 'content' to be a str")
+        pulumi.set(__self__, "content", content)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.SecretFile':
-        return pulumi.get(self, "items")
+    def content(self) -> str:
+        return pulumi.get(self, "content")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
 
 
-class AwaitableGetEnvGroupSecretFileResult(GetEnvGroupSecretFileResult):
+class AwaitableSecretFile(SecretFile):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetEnvGroupSecretFileResult(
-            items=self.items)
+        return SecretFile(
+            content=self.content,
+            name=self.name)
 
 
 def get_env_group_secret_file(env_group_id: Optional[str] = None,
                               secret_file_name: Optional[str] = None,
-                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetEnvGroupSecretFileResult:
+                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableSecretFile:
     """
     Use this data source to access information about an existing resource.
 
@@ -52,16 +60,17 @@ def get_env_group_secret_file(env_group_id: Optional[str] = None,
     __args__['envGroupId'] = env_group_id
     __args__['secretFileName'] = secret_file_name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('render:env-groups:getEnvGroupSecretFile', __args__, opts=opts, typ=GetEnvGroupSecretFileResult).value
+    __ret__ = pulumi.runtime.invoke('render:env-groups:getEnvGroupSecretFile', __args__, opts=opts, typ=SecretFile).value
 
-    return AwaitableGetEnvGroupSecretFileResult(
-        items=pulumi.get(__ret__, 'items'))
+    return AwaitableSecretFile(
+        content=pulumi.get(__ret__, 'content'),
+        name=pulumi.get(__ret__, 'name'))
 
 
 @_utilities.lift_output_func(get_env_group_secret_file)
 def get_env_group_secret_file_output(env_group_id: Optional[pulumi.Input[str]] = None,
                                      secret_file_name: Optional[pulumi.Input[str]] = None,
-                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetEnvGroupSecretFileResult]:
+                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[SecretFile]:
     """
     Use this data source to access information about an existing resource.
 

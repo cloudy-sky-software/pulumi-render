@@ -29,7 +29,8 @@ type GetEnvVarArgs struct {
 }
 
 type GetEnvVarResult struct {
-	Items EnvVar `pulumi:"items"`
+	Key   string `pulumi:"key"`
+	Value string `pulumi:"value"`
 }
 
 func GetEnvVarOutput(ctx *pulumi.Context, args GetEnvVarOutputArgs, opts ...pulumi.InvokeOption) GetEnvVarResultOutput {
@@ -70,8 +71,12 @@ func (o GetEnvVarResultOutput) ToGetEnvVarResultOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o GetEnvVarResultOutput) Items() EnvVarOutput {
-	return o.ApplyT(func(v GetEnvVarResult) EnvVar { return v.Items }).(EnvVarOutput)
+func (o GetEnvVarResultOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvVarResult) string { return v.Key }).(pulumi.StringOutput)
+}
+
+func (o GetEnvVarResultOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvVarResult) string { return v.Value }).(pulumi.StringOutput)
 }
 
 func init() {

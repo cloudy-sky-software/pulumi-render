@@ -6,43 +6,106 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
 from .. import _utilities
 from . import outputs
 from ._enums import *
 
 __all__ = [
-    'GetCustomDomainResult',
-    'AwaitableGetCustomDomainResult',
+    'CustomDomain',
+    'AwaitableCustomDomain',
     'get_custom_domain',
     'get_custom_domain_output',
 ]
 
 @pulumi.output_type
-class GetCustomDomainResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class CustomDomain:
+    def __init__(__self__, created_at=None, domain_type=None, id=None, name=None, public_suffix=None, redirect_for_name=None, server=None, verification_status=None):
+        if created_at and not isinstance(created_at, str):
+            raise TypeError("Expected argument 'created_at' to be a str")
+        pulumi.set(__self__, "created_at", created_at)
+        if domain_type and not isinstance(domain_type, str):
+            raise TypeError("Expected argument 'domain_type' to be a str")
+        pulumi.set(__self__, "domain_type", domain_type)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if public_suffix and not isinstance(public_suffix, str):
+            raise TypeError("Expected argument 'public_suffix' to be a str")
+        pulumi.set(__self__, "public_suffix", public_suffix)
+        if redirect_for_name and not isinstance(redirect_for_name, str):
+            raise TypeError("Expected argument 'redirect_for_name' to be a str")
+        pulumi.set(__self__, "redirect_for_name", redirect_for_name)
+        if server and not isinstance(server, dict):
+            raise TypeError("Expected argument 'server' to be a dict")
+        pulumi.set(__self__, "server", server)
+        if verification_status and not isinstance(verification_status, str):
+            raise TypeError("Expected argument 'verification_status' to be a str")
+        pulumi.set(__self__, "verification_status", verification_status)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="domainType")
+    def domain_type(self) -> 'CustomDomainDomainType':
+        return pulumi.get(self, "domain_type")
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.CustomDomain':
-        return pulumi.get(self, "items")
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="publicSuffix")
+    def public_suffix(self) -> str:
+        return pulumi.get(self, "public_suffix")
+
+    @property
+    @pulumi.getter(name="redirectForName")
+    def redirect_for_name(self) -> str:
+        return pulumi.get(self, "redirect_for_name")
+
+    @property
+    @pulumi.getter
+    def server(self) -> Optional['outputs.CustomDomainServerProperties']:
+        return pulumi.get(self, "server")
+
+    @property
+    @pulumi.getter(name="verificationStatus")
+    def verification_status(self) -> 'CustomDomainVerificationStatus':
+        return pulumi.get(self, "verification_status")
 
 
-class AwaitableGetCustomDomainResult(GetCustomDomainResult):
+class AwaitableCustomDomain(CustomDomain):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetCustomDomainResult(
-            items=self.items)
+        return CustomDomain(
+            created_at=self.created_at,
+            domain_type=self.domain_type,
+            id=self.id,
+            name=self.name,
+            public_suffix=self.public_suffix,
+            redirect_for_name=self.redirect_for_name,
+            server=self.server,
+            verification_status=self.verification_status)
 
 
 def get_custom_domain(custom_domain_id_or_name: Optional[str] = None,
                       service_id: Optional[str] = None,
-                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCustomDomainResult:
+                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableCustomDomain:
     """
     Use this data source to access information about an existing resource.
 
@@ -53,16 +116,23 @@ def get_custom_domain(custom_domain_id_or_name: Optional[str] = None,
     __args__['customDomainIdOrName'] = custom_domain_id_or_name
     __args__['serviceId'] = service_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('render:services:getCustomDomain', __args__, opts=opts, typ=GetCustomDomainResult).value
+    __ret__ = pulumi.runtime.invoke('render:services:getCustomDomain', __args__, opts=opts, typ=CustomDomain).value
 
-    return AwaitableGetCustomDomainResult(
-        items=pulumi.get(__ret__, 'items'))
+    return AwaitableCustomDomain(
+        created_at=pulumi.get(__ret__, 'created_at'),
+        domain_type=pulumi.get(__ret__, 'domain_type'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        public_suffix=pulumi.get(__ret__, 'public_suffix'),
+        redirect_for_name=pulumi.get(__ret__, 'redirect_for_name'),
+        server=pulumi.get(__ret__, 'server'),
+        verification_status=pulumi.get(__ret__, 'verification_status'))
 
 
 @_utilities.lift_output_func(get_custom_domain)
 def get_custom_domain_output(custom_domain_id_or_name: Optional[pulumi.Input[str]] = None,
                              service_id: Optional[pulumi.Input[str]] = None,
-                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCustomDomainResult]:
+                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[CustomDomain]:
     """
     Use this data source to access information about an existing resource.
 

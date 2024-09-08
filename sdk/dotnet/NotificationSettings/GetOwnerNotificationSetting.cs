@@ -11,11 +11,11 @@ namespace Pulumi.Render.NotificationSettings
 {
     public static class GetOwnerNotificationSetting
     {
-        public static Task<GetOwnerNotificationSettingResult> InvokeAsync(GetOwnerNotificationSettingArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetOwnerNotificationSettingResult>("render:notification-settings:getOwnerNotificationSetting", args ?? new GetOwnerNotificationSettingArgs(), options.WithDefaults());
+        public static Task<Outputs.GetOwnerNotificationSettingProperties> InvokeAsync(GetOwnerNotificationSettingArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<Outputs.GetOwnerNotificationSettingProperties>("render:notification-settings:getOwnerNotificationSetting", args ?? new GetOwnerNotificationSettingArgs(), options.WithDefaults());
 
-        public static Output<GetOwnerNotificationSettingResult> Invoke(GetOwnerNotificationSettingInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetOwnerNotificationSettingResult>("render:notification-settings:getOwnerNotificationSetting", args ?? new GetOwnerNotificationSettingInvokeArgs(), options.WithDefaults());
+        public static Output<Outputs.GetOwnerNotificationSettingProperties> Invoke(GetOwnerNotificationSettingInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetOwnerNotificationSettingProperties>("render:notification-settings:getOwnerNotificationSetting", args ?? new GetOwnerNotificationSettingInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -45,18 +45,5 @@ namespace Pulumi.Render.NotificationSettings
         {
         }
         public static new GetOwnerNotificationSettingInvokeArgs Empty => new GetOwnerNotificationSettingInvokeArgs();
-    }
-
-
-    [OutputType]
-    public sealed class GetOwnerNotificationSettingResult
-    {
-        public readonly Outputs.GetOwnerNotificationSettingProperties Items;
-
-        [OutputConstructor]
-        private GetOwnerNotificationSettingResult(Outputs.GetOwnerNotificationSettingProperties items)
-        {
-            Items = items;
-        }
     }
 }

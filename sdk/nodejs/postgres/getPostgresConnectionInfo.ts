@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function getPostgresConnectionInfo(args: GetPostgresConnectionInfoArgs, opts?: pulumi.InvokeOptions): Promise<GetPostgresConnectionInfoResult> {
+export function getPostgresConnectionInfo(args: GetPostgresConnectionInfoArgs, opts?: pulumi.InvokeOptions): Promise<outputs.postgres.PostgresConnectionInfo> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:postgres:getPostgresConnectionInfo", {
@@ -18,11 +18,7 @@ export function getPostgresConnectionInfo(args: GetPostgresConnectionInfoArgs, o
 export interface GetPostgresConnectionInfoArgs {
     postgresId: string;
 }
-
-export interface GetPostgresConnectionInfoResult {
-    readonly items: outputs.postgres.PostgresConnectionInfo;
-}
-export function getPostgresConnectionInfoOutput(args: GetPostgresConnectionInfoOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPostgresConnectionInfoResult> {
+export function getPostgresConnectionInfoOutput(args: GetPostgresConnectionInfoOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.postgres.PostgresConnectionInfo> {
     return pulumi.output(args).apply((a: any) => getPostgresConnectionInfo(a, opts))
 }
 

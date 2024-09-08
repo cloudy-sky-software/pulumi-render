@@ -5,12 +5,12 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export { GetRedisArgs, GetRedisResult, GetRedisOutputArgs } from "./getRedis";
+export { GetRedisArgs, GetRedisOutputArgs } from "./getRedis";
 export const getRedis: typeof import("./getRedis").getRedis = null as any;
 export const getRedisOutput: typeof import("./getRedis").getRedisOutput = null as any;
 utilities.lazyLoad(exports, ["getRedis","getRedisOutput"], () => require("./getRedis"));
 
-export { GetRedisConnectionInfoArgs, GetRedisConnectionInfoResult, GetRedisConnectionInfoOutputArgs } from "./getRedisConnectionInfo";
+export { GetRedisConnectionInfoArgs, GetRedisConnectionInfoOutputArgs } from "./getRedisConnectionInfo";
 export const getRedisConnectionInfo: typeof import("./getRedisConnectionInfo").getRedisConnectionInfo = null as any;
 export const getRedisConnectionInfoOutput: typeof import("./getRedisConnectionInfo").getRedisConnectionInfoOutput = null as any;
 utilities.lazyLoad(exports, ["getRedisConnectionInfo","getRedisConnectionInfoOutput"], () => require("./getRedisConnectionInfo"));

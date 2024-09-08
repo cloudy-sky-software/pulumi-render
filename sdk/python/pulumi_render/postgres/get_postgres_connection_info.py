@@ -6,56 +6,85 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
 from .. import _utilities
-from . import outputs
 
 __all__ = [
-    'GetPostgresConnectionInfoResult',
-    'AwaitableGetPostgresConnectionInfoResult',
+    'PostgresConnectionInfo',
+    'AwaitablePostgresConnectionInfo',
     'get_postgres_connection_info',
     'get_postgres_connection_info_output',
 ]
 
 @pulumi.output_type
-class GetPostgresConnectionInfoResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class PostgresConnectionInfo:
+    def __init__(__self__, external_connection_string=None, internal_connection_string=None, password=None, psql_command=None):
+        if external_connection_string and not isinstance(external_connection_string, str):
+            raise TypeError("Expected argument 'external_connection_string' to be a str")
+        pulumi.set(__self__, "external_connection_string", external_connection_string)
+        if internal_connection_string and not isinstance(internal_connection_string, str):
+            raise TypeError("Expected argument 'internal_connection_string' to be a str")
+        pulumi.set(__self__, "internal_connection_string", internal_connection_string)
+        if password and not isinstance(password, str):
+            raise TypeError("Expected argument 'password' to be a str")
+        pulumi.set(__self__, "password", password)
+        if psql_command and not isinstance(psql_command, str):
+            raise TypeError("Expected argument 'psql_command' to be a str")
+        pulumi.set(__self__, "psql_command", psql_command)
+
+    @property
+    @pulumi.getter(name="externalConnectionString")
+    def external_connection_string(self) -> str:
+        return pulumi.get(self, "external_connection_string")
+
+    @property
+    @pulumi.getter(name="internalConnectionString")
+    def internal_connection_string(self) -> str:
+        return pulumi.get(self, "internal_connection_string")
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.PostgresConnectionInfo':
-        return pulumi.get(self, "items")
+    def password(self) -> str:
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="psqlCommand")
+    def psql_command(self) -> str:
+        return pulumi.get(self, "psql_command")
 
 
-class AwaitableGetPostgresConnectionInfoResult(GetPostgresConnectionInfoResult):
+class AwaitablePostgresConnectionInfo(PostgresConnectionInfo):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetPostgresConnectionInfoResult(
-            items=self.items)
+        return PostgresConnectionInfo(
+            external_connection_string=self.external_connection_string,
+            internal_connection_string=self.internal_connection_string,
+            password=self.password,
+            psql_command=self.psql_command)
 
 
 def get_postgres_connection_info(postgres_id: Optional[str] = None,
-                                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPostgresConnectionInfoResult:
+                                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitablePostgresConnectionInfo:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['postgresId'] = postgres_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('render:postgres:getPostgresConnectionInfo', __args__, opts=opts, typ=GetPostgresConnectionInfoResult).value
+    __ret__ = pulumi.runtime.invoke('render:postgres:getPostgresConnectionInfo', __args__, opts=opts, typ=PostgresConnectionInfo).value
 
-    return AwaitableGetPostgresConnectionInfoResult(
-        items=pulumi.get(__ret__, 'items'))
+    return AwaitablePostgresConnectionInfo(
+        external_connection_string=pulumi.get(__ret__, 'external_connection_string'),
+        internal_connection_string=pulumi.get(__ret__, 'internal_connection_string'),
+        password=pulumi.get(__ret__, 'password'),
+        psql_command=pulumi.get(__ret__, 'psql_command'))
 
 
 @_utilities.lift_output_func(get_postgres_connection_info)
 def get_postgres_connection_info_output(postgres_id: Optional[pulumi.Input[str]] = None,
-                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPostgresConnectionInfoResult]:
+                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[PostgresConnectionInfo]:
     """
     Use this data source to access information about an existing resource.
     """

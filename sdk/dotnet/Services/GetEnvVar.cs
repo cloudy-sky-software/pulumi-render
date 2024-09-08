@@ -11,11 +11,11 @@ namespace Pulumi.Render.Services
 {
     public static class GetEnvVar
     {
-        public static Task<GetEnvVarResult> InvokeAsync(GetEnvVarArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetEnvVarResult>("render:services:getEnvVar", args ?? new GetEnvVarArgs(), options.WithDefaults());
+        public static Task<Outputs.EnvVar> InvokeAsync(GetEnvVarArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<Outputs.EnvVar>("render:services:getEnvVar", args ?? new GetEnvVarArgs(), options.WithDefaults());
 
-        public static Output<GetEnvVarResult> Invoke(GetEnvVarInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetEnvVarResult>("render:services:getEnvVar", args ?? new GetEnvVarInvokeArgs(), options.WithDefaults());
+        public static Output<Outputs.EnvVar> Invoke(GetEnvVarInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.EnvVar>("render:services:getEnvVar", args ?? new GetEnvVarInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -57,18 +57,5 @@ namespace Pulumi.Render.Services
         {
         }
         public static new GetEnvVarInvokeArgs Empty => new GetEnvVarInvokeArgs();
-    }
-
-
-    [OutputType]
-    public sealed class GetEnvVarResult
-    {
-        public readonly Outputs.EnvVar Items;
-
-        [OutputConstructor]
-        private GetEnvVarResult(Outputs.EnvVar items)
-        {
-            Items = items;
-        }
     }
 }

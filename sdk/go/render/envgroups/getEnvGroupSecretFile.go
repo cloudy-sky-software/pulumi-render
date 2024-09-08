@@ -29,7 +29,8 @@ type GetEnvGroupSecretFileArgs struct {
 }
 
 type GetEnvGroupSecretFileResult struct {
-	Items SecretFile `pulumi:"items"`
+	Content string `pulumi:"content"`
+	Name    string `pulumi:"name"`
 }
 
 func GetEnvGroupSecretFileOutput(ctx *pulumi.Context, args GetEnvGroupSecretFileOutputArgs, opts ...pulumi.InvokeOption) GetEnvGroupSecretFileResultOutput {
@@ -70,8 +71,32 @@ func (o GetEnvGroupSecretFileResultOutput) ToGetEnvGroupSecretFileResultOutputWi
 	return o
 }
 
-func (o GetEnvGroupSecretFileResultOutput) Items() SecretFileOutput {
-	return o.ApplyT(func(v GetEnvGroupSecretFileResult) SecretFile { return v.Items }).(SecretFileOutput)
+func (o GetEnvGroupSecretFileResultOutput) Content() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvGroupSecretFileResult) string { return v.Content }).(pulumi.StringOutput)
+}
+
+func (o GetEnvGroupSecretFileResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvGroupSecretFileResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetEnvGroupSecretFileResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEnvGroupSecretFileResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEnvGroupSecretFileResult)(nil)).Elem()
+}
+
+func (o GetEnvGroupSecretFileResultArrayOutput) ToGetEnvGroupSecretFileResultArrayOutput() GetEnvGroupSecretFileResultArrayOutput {
+	return o
+}
+
+func (o GetEnvGroupSecretFileResultArrayOutput) ToGetEnvGroupSecretFileResultArrayOutputWithContext(ctx context.Context) GetEnvGroupSecretFileResultArrayOutput {
+	return o
+}
+
+func (o GetEnvGroupSecretFileResultArrayOutput) Index(i pulumi.IntInput) GetEnvGroupSecretFileResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEnvGroupSecretFileResult {
+		return vs[0].([]GetEnvGroupSecretFileResult)[vs[1].(int)]
+	}).(GetEnvGroupSecretFileResultOutput)
 }
 
 func init() {

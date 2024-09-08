@@ -13,7 +13,6 @@ from . import outputs
 __all__ = [
     'DiskWithCursor',
     'DiskWithCursorDiskProperties',
-    'DiskWithCursorpropertiesdisk',
 ]
 
 @pulumi.output_type
@@ -37,61 +36,6 @@ class DiskWithCursor(dict):
 
 @pulumi.output_type
 class DiskWithCursorDiskProperties(dict):
-    def __init__(__self__, *,
-                 created_at: str,
-                 id: str,
-                 mount_path: str,
-                 name: str,
-                 size_gb: int,
-                 updated_at: str,
-                 service_id: Optional[str] = None):
-        pulumi.set(__self__, "created_at", created_at)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "mount_path", mount_path)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "size_gb", size_gb)
-        pulumi.set(__self__, "updated_at", updated_at)
-        if service_id is not None:
-            pulumi.set(__self__, "service_id", service_id)
-
-    @property
-    @pulumi.getter(name="createdAt")
-    def created_at(self) -> str:
-        return pulumi.get(self, "created_at")
-
-    @property
-    @pulumi.getter
-    def id(self) -> str:
-        return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter(name="mountPath")
-    def mount_path(self) -> str:
-        return pulumi.get(self, "mount_path")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter(name="sizeGB")
-    def size_gb(self) -> int:
-        return pulumi.get(self, "size_gb")
-
-    @property
-    @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> str:
-        return pulumi.get(self, "updated_at")
-
-    @property
-    @pulumi.getter(name="serviceId")
-    def service_id(self) -> Optional[str]:
-        return pulumi.get(self, "service_id")
-
-
-@pulumi.output_type
-class DiskWithCursorpropertiesdisk(dict):
     def __init__(__self__, *,
                  created_at: str,
                  id: str,

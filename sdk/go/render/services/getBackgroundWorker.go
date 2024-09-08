@@ -27,7 +27,27 @@ type LookupBackgroundWorkerArgs struct {
 }
 
 type LookupBackgroundWorkerResult struct {
-	Items GetBackgroundWorkerType `pulumi:"items"`
+	AutoDeploy  ServiceAutoDeploy `pulumi:"autoDeploy"`
+	Branch      *string           `pulumi:"branch"`
+	BuildFilter *BuildFilter      `pulumi:"buildFilter"`
+	CreatedAt   string            `pulumi:"createdAt"`
+	// The URL to view the service in the Render Dashboard
+	DashboardUrl       string                         `pulumi:"dashboardUrl"`
+	EnvironmentId      *string                        `pulumi:"environmentId"`
+	Id                 string                         `pulumi:"id"`
+	ImagePath          *string                        `pulumi:"imagePath"`
+	Name               string                         `pulumi:"name"`
+	NotifyOnFail       ServiceNotifyOnFail            `pulumi:"notifyOnFail"`
+	OwnerId            string                         `pulumi:"ownerId"`
+	RegistryCredential *RegistryCredentialSummary     `pulumi:"registryCredential"`
+	Repo               *string                        `pulumi:"repo"`
+	RootDir            string                         `pulumi:"rootDir"`
+	ServiceDetails     *BackgroundWorkerDetailsOutput `pulumi:"serviceDetails"`
+	Slug               string                         `pulumi:"slug"`
+	Suspended          ServiceSuspended               `pulumi:"suspended"`
+	Suspenders         []ServiceSuspendersItem        `pulumi:"suspenders"`
+	Type               *string                        `pulumi:"type"`
+	UpdatedAt          string                         `pulumi:"updatedAt"`
 }
 
 // Defaults sets the appropriate defaults for LookupBackgroundWorkerResult
@@ -36,8 +56,15 @@ func (val *LookupBackgroundWorkerResult) Defaults() *LookupBackgroundWorkerResul
 		return nil
 	}
 	tmp := *val
-	tmp.Items = *tmp.Items.Defaults()
+	if internal.IsZero(tmp.AutoDeploy) {
+		tmp.AutoDeploy = ServiceAutoDeploy("yes")
+	}
+	tmp.ServiceDetails = tmp.ServiceDetails.Defaults()
 
+	if tmp.Type == nil {
+		type_ := "background_worker"
+		tmp.Type = &type_
+	}
 	return &tmp
 }
 
@@ -77,8 +104,85 @@ func (o LookupBackgroundWorkerResultOutput) ToLookupBackgroundWorkerResultOutput
 	return o
 }
 
-func (o LookupBackgroundWorkerResultOutput) Items() GetBackgroundWorkerTypeOutput {
-	return o.ApplyT(func(v LookupBackgroundWorkerResult) GetBackgroundWorkerType { return v.Items }).(GetBackgroundWorkerTypeOutput)
+func (o LookupBackgroundWorkerResultOutput) AutoDeploy() ServiceAutoDeployOutput {
+	return o.ApplyT(func(v LookupBackgroundWorkerResult) ServiceAutoDeploy { return v.AutoDeploy }).(ServiceAutoDeployOutput)
+}
+
+func (o LookupBackgroundWorkerResultOutput) Branch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupBackgroundWorkerResult) *string { return v.Branch }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupBackgroundWorkerResultOutput) BuildFilter() BuildFilterPtrOutput {
+	return o.ApplyT(func(v LookupBackgroundWorkerResult) *BuildFilter { return v.BuildFilter }).(BuildFilterPtrOutput)
+}
+
+func (o LookupBackgroundWorkerResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBackgroundWorkerResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The URL to view the service in the Render Dashboard
+func (o LookupBackgroundWorkerResultOutput) DashboardUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBackgroundWorkerResult) string { return v.DashboardUrl }).(pulumi.StringOutput)
+}
+
+func (o LookupBackgroundWorkerResultOutput) EnvironmentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupBackgroundWorkerResult) *string { return v.EnvironmentId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupBackgroundWorkerResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBackgroundWorkerResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupBackgroundWorkerResultOutput) ImagePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupBackgroundWorkerResult) *string { return v.ImagePath }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupBackgroundWorkerResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBackgroundWorkerResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupBackgroundWorkerResultOutput) NotifyOnFail() ServiceNotifyOnFailOutput {
+	return o.ApplyT(func(v LookupBackgroundWorkerResult) ServiceNotifyOnFail { return v.NotifyOnFail }).(ServiceNotifyOnFailOutput)
+}
+
+func (o LookupBackgroundWorkerResultOutput) OwnerId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBackgroundWorkerResult) string { return v.OwnerId }).(pulumi.StringOutput)
+}
+
+func (o LookupBackgroundWorkerResultOutput) RegistryCredential() RegistryCredentialSummaryPtrOutput {
+	return o.ApplyT(func(v LookupBackgroundWorkerResult) *RegistryCredentialSummary { return v.RegistryCredential }).(RegistryCredentialSummaryPtrOutput)
+}
+
+func (o LookupBackgroundWorkerResultOutput) Repo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupBackgroundWorkerResult) *string { return v.Repo }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupBackgroundWorkerResultOutput) RootDir() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBackgroundWorkerResult) string { return v.RootDir }).(pulumi.StringOutput)
+}
+
+func (o LookupBackgroundWorkerResultOutput) ServiceDetails() BackgroundWorkerDetailsOutputPtrOutput {
+	return o.ApplyT(func(v LookupBackgroundWorkerResult) *BackgroundWorkerDetailsOutput { return v.ServiceDetails }).(BackgroundWorkerDetailsOutputPtrOutput)
+}
+
+func (o LookupBackgroundWorkerResultOutput) Slug() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBackgroundWorkerResult) string { return v.Slug }).(pulumi.StringOutput)
+}
+
+func (o LookupBackgroundWorkerResultOutput) Suspended() ServiceSuspendedOutput {
+	return o.ApplyT(func(v LookupBackgroundWorkerResult) ServiceSuspended { return v.Suspended }).(ServiceSuspendedOutput)
+}
+
+func (o LookupBackgroundWorkerResultOutput) Suspenders() ServiceSuspendersItemArrayOutput {
+	return o.ApplyT(func(v LookupBackgroundWorkerResult) []ServiceSuspendersItem { return v.Suspenders }).(ServiceSuspendersItemArrayOutput)
+}
+
+func (o LookupBackgroundWorkerResultOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupBackgroundWorkerResult) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupBackgroundWorkerResultOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBackgroundWorkerResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
 func init() {

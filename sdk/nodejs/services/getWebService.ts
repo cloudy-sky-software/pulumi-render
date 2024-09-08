@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function getWebService(args: GetWebServiceArgs, opts?: pulumi.InvokeOptions): Promise<GetWebServiceResult> {
+export function getWebService(args: GetWebServiceArgs, opts?: pulumi.InvokeOptions): Promise<outputs.services.GetWebService> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:getWebService", {
@@ -21,11 +21,7 @@ export interface GetWebServiceArgs {
      */
     serviceId: string;
 }
-
-export interface GetWebServiceResult {
-    readonly items: outputs.services.GetWebService;
-}
-export function getWebServiceOutput(args: GetWebServiceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetWebServiceResult> {
+export function getWebServiceOutput(args: GetWebServiceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.services.GetWebService> {
     return pulumi.output(args).apply((a: any) => getWebService(a, opts))
 }
 

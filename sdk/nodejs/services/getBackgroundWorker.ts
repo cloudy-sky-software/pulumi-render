@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function getBackgroundWorker(args: GetBackgroundWorkerArgs, opts?: pulumi.InvokeOptions): Promise<GetBackgroundWorkerResult> {
+export function getBackgroundWorker(args: GetBackgroundWorkerArgs, opts?: pulumi.InvokeOptions): Promise<outputs.services.GetBackgroundWorker> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:getBackgroundWorker", {
@@ -21,11 +21,7 @@ export interface GetBackgroundWorkerArgs {
      */
     serviceId: string;
 }
-
-export interface GetBackgroundWorkerResult {
-    readonly items: outputs.services.GetBackgroundWorker;
-}
-export function getBackgroundWorkerOutput(args: GetBackgroundWorkerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBackgroundWorkerResult> {
+export function getBackgroundWorkerOutput(args: GetBackgroundWorkerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.services.GetBackgroundWorker> {
     return pulumi.output(args).apply((a: any) => getBackgroundWorker(a, opts))
 }
 

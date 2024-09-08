@@ -11,11 +11,11 @@ namespace Pulumi.Render.Services
 {
     public static class GetCronJob
     {
-        public static Task<GetCronJobResult> InvokeAsync(GetCronJobArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetCronJobResult>("render:services:getCronJob", args ?? new GetCronJobArgs(), options.WithDefaults());
+        public static Task<Outputs.GetCronJob> InvokeAsync(GetCronJobArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<Outputs.GetCronJob>("render:services:getCronJob", args ?? new GetCronJobArgs(), options.WithDefaults());
 
-        public static Output<GetCronJobResult> Invoke(GetCronJobInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetCronJobResult>("render:services:getCronJob", args ?? new GetCronJobInvokeArgs(), options.WithDefaults());
+        public static Output<Outputs.GetCronJob> Invoke(GetCronJobInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetCronJob>("render:services:getCronJob", args ?? new GetCronJobInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -45,18 +45,5 @@ namespace Pulumi.Render.Services
         {
         }
         public static new GetCronJobInvokeArgs Empty => new GetCronJobInvokeArgs();
-    }
-
-
-    [OutputType]
-    public sealed class GetCronJobResult
-    {
-        public readonly Outputs.GetCronJob Items;
-
-        [OutputConstructor]
-        private GetCronJobResult(Outputs.GetCronJob items)
-        {
-            Items = items;
-        }
     }
 }

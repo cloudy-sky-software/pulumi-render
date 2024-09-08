@@ -11,11 +11,11 @@ namespace Pulumi.Render.Redis
 {
     public static class GetRedis
     {
-        public static Task<GetRedisResult> InvokeAsync(GetRedisArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetRedisResult>("render:redis:getRedis", args ?? new GetRedisArgs(), options.WithDefaults());
+        public static Task<Outputs.RedisDetail> InvokeAsync(GetRedisArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<Outputs.RedisDetail>("render:redis:getRedis", args ?? new GetRedisArgs(), options.WithDefaults());
 
-        public static Output<GetRedisResult> Invoke(GetRedisInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetRedisResult>("render:redis:getRedis", args ?? new GetRedisInvokeArgs(), options.WithDefaults());
+        public static Output<Outputs.RedisDetail> Invoke(GetRedisInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.RedisDetail>("render:redis:getRedis", args ?? new GetRedisInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -39,18 +39,5 @@ namespace Pulumi.Render.Redis
         {
         }
         public static new GetRedisInvokeArgs Empty => new GetRedisInvokeArgs();
-    }
-
-
-    [OutputType]
-    public sealed class GetRedisResult
-    {
-        public readonly Outputs.RedisDetail Items;
-
-        [OutputConstructor]
-        private GetRedisResult(Outputs.RedisDetail items)
-        {
-            Items = items;
-        }
     }
 }

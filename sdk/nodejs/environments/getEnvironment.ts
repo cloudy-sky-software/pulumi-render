@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function getEnvironment(args: GetEnvironmentArgs, opts?: pulumi.InvokeOptions): Promise<GetEnvironmentResult> {
+export function getEnvironment(args: GetEnvironmentArgs, opts?: pulumi.InvokeOptions): Promise<outputs.environments.Environment> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:environments:getEnvironment", {
@@ -18,11 +18,7 @@ export function getEnvironment(args: GetEnvironmentArgs, opts?: pulumi.InvokeOpt
 export interface GetEnvironmentArgs {
     environmentId: string;
 }
-
-export interface GetEnvironmentResult {
-    readonly items: outputs.environments.Environment;
-}
-export function getEnvironmentOutput(args: GetEnvironmentOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEnvironmentResult> {
+export function getEnvironmentOutput(args: GetEnvironmentOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.environments.Environment> {
     return pulumi.output(args).apply((a: any) => getEnvironment(a, opts))
 }
 

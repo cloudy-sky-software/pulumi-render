@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function getEnvGroupEnvVar(args: GetEnvGroupEnvVarArgs, opts?: pulumi.InvokeOptions): Promise<GetEnvGroupEnvVarResult> {
+export function getEnvGroupEnvVar(args: GetEnvGroupEnvVarArgs, opts?: pulumi.InvokeOptions): Promise<outputs.envgroups.EnvVar> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:env-groups:getEnvGroupEnvVar", {
@@ -26,11 +26,7 @@ export interface GetEnvGroupEnvVarArgs {
      */
     envVarKey: string;
 }
-
-export interface GetEnvGroupEnvVarResult {
-    readonly items: outputs.envgroups.EnvVar;
-}
-export function getEnvGroupEnvVarOutput(args: GetEnvGroupEnvVarOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEnvGroupEnvVarResult> {
+export function getEnvGroupEnvVarOutput(args: GetEnvGroupEnvVarOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.envgroups.EnvVar> {
     return pulumi.output(args).apply((a: any) => getEnvGroupEnvVar(a, opts))
 }
 

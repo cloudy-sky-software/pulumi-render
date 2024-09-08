@@ -6,42 +6,117 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
 from .. import _utilities
 from . import outputs
 from ._enums import *
 
 __all__ = [
-    'GetEnvGroupResult',
-    'AwaitableGetEnvGroupResult',
+    'EnvGroup',
+    'AwaitableEnvGroup',
     'get_env_group',
     'get_env_group_output',
 ]
 
 @pulumi.output_type
-class GetEnvGroupResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class EnvGroup:
+    def __init__(__self__, created_at=None, env_vars=None, environment_id=None, id=None, name=None, owner_id=None, secret_files=None, service_links=None, updated_at=None):
+        if created_at and not isinstance(created_at, str):
+            raise TypeError("Expected argument 'created_at' to be a str")
+        pulumi.set(__self__, "created_at", created_at)
+        if env_vars and not isinstance(env_vars, list):
+            raise TypeError("Expected argument 'env_vars' to be a list")
+        pulumi.set(__self__, "env_vars", env_vars)
+        if environment_id and not isinstance(environment_id, str):
+            raise TypeError("Expected argument 'environment_id' to be a str")
+        pulumi.set(__self__, "environment_id", environment_id)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if owner_id and not isinstance(owner_id, str):
+            raise TypeError("Expected argument 'owner_id' to be a str")
+        pulumi.set(__self__, "owner_id", owner_id)
+        if secret_files and not isinstance(secret_files, list):
+            raise TypeError("Expected argument 'secret_files' to be a list")
+        pulumi.set(__self__, "secret_files", secret_files)
+        if service_links and not isinstance(service_links, list):
+            raise TypeError("Expected argument 'service_links' to be a list")
+        pulumi.set(__self__, "service_links", service_links)
+        if updated_at and not isinstance(updated_at, str):
+            raise TypeError("Expected argument 'updated_at' to be a str")
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="envVars")
+    def env_vars(self) -> Sequence['outputs.EnvVar']:
+        return pulumi.get(self, "env_vars")
+
+    @property
+    @pulumi.getter(name="environmentId")
+    def environment_id(self) -> Optional[str]:
+        return pulumi.get(self, "environment_id")
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.EnvGroup':
-        return pulumi.get(self, "items")
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> str:
+        return pulumi.get(self, "owner_id")
+
+    @property
+    @pulumi.getter(name="secretFiles")
+    def secret_files(self) -> Sequence['outputs.SecretFile']:
+        return pulumi.get(self, "secret_files")
+
+    @property
+    @pulumi.getter(name="serviceLinks")
+    def service_links(self) -> Sequence['outputs.ServiceLink']:
+        """
+        List of serviceIds linked to the envGroup
+        """
+        return pulumi.get(self, "service_links")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        return pulumi.get(self, "updated_at")
 
 
-class AwaitableGetEnvGroupResult(GetEnvGroupResult):
+class AwaitableEnvGroup(EnvGroup):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetEnvGroupResult(
-            items=self.items)
+        return EnvGroup(
+            created_at=self.created_at,
+            env_vars=self.env_vars,
+            environment_id=self.environment_id,
+            id=self.id,
+            name=self.name,
+            owner_id=self.owner_id,
+            secret_files=self.secret_files,
+            service_links=self.service_links,
+            updated_at=self.updated_at)
 
 
 def get_env_group(env_group_id: Optional[str] = None,
-                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetEnvGroupResult:
+                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableEnvGroup:
     """
     Use this data source to access information about an existing resource.
 
@@ -50,15 +125,23 @@ def get_env_group(env_group_id: Optional[str] = None,
     __args__ = dict()
     __args__['envGroupId'] = env_group_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('render:env-groups:getEnvGroup', __args__, opts=opts, typ=GetEnvGroupResult).value
+    __ret__ = pulumi.runtime.invoke('render:env-groups:getEnvGroup', __args__, opts=opts, typ=EnvGroup).value
 
-    return AwaitableGetEnvGroupResult(
-        items=pulumi.get(__ret__, 'items'))
+    return AwaitableEnvGroup(
+        created_at=pulumi.get(__ret__, 'created_at'),
+        env_vars=pulumi.get(__ret__, 'env_vars'),
+        environment_id=pulumi.get(__ret__, 'environment_id'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        owner_id=pulumi.get(__ret__, 'owner_id'),
+        secret_files=pulumi.get(__ret__, 'secret_files'),
+        service_links=pulumi.get(__ret__, 'service_links'),
+        updated_at=pulumi.get(__ret__, 'updated_at'))
 
 
 @_utilities.lift_output_func(get_env_group)
 def get_env_group_output(env_group_id: Optional[pulumi.Input[str]] = None,
-                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetEnvGroupResult]:
+                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[EnvGroup]:
     """
     Use this data source to access information about an existing resource.
 

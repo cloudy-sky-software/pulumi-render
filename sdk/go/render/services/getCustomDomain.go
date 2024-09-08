@@ -29,7 +29,14 @@ type LookupCustomDomainArgs struct {
 }
 
 type LookupCustomDomainResult struct {
-	Items CustomDomainType `pulumi:"items"`
+	CreatedAt          string                         `pulumi:"createdAt"`
+	DomainType         CustomDomainDomainType         `pulumi:"domainType"`
+	Id                 string                         `pulumi:"id"`
+	Name               string                         `pulumi:"name"`
+	PublicSuffix       string                         `pulumi:"publicSuffix"`
+	RedirectForName    string                         `pulumi:"redirectForName"`
+	Server             *CustomDomainServerProperties  `pulumi:"server"`
+	VerificationStatus CustomDomainVerificationStatus `pulumi:"verificationStatus"`
 }
 
 func LookupCustomDomainOutput(ctx *pulumi.Context, args LookupCustomDomainOutputArgs, opts ...pulumi.InvokeOption) LookupCustomDomainResultOutput {
@@ -70,8 +77,36 @@ func (o LookupCustomDomainResultOutput) ToLookupCustomDomainResultOutputWithCont
 	return o
 }
 
-func (o LookupCustomDomainResultOutput) Items() CustomDomainTypeOutput {
-	return o.ApplyT(func(v LookupCustomDomainResult) CustomDomainType { return v.Items }).(CustomDomainTypeOutput)
+func (o LookupCustomDomainResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCustomDomainResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+func (o LookupCustomDomainResultOutput) DomainType() CustomDomainDomainTypeOutput {
+	return o.ApplyT(func(v LookupCustomDomainResult) CustomDomainDomainType { return v.DomainType }).(CustomDomainDomainTypeOutput)
+}
+
+func (o LookupCustomDomainResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCustomDomainResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupCustomDomainResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCustomDomainResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupCustomDomainResultOutput) PublicSuffix() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCustomDomainResult) string { return v.PublicSuffix }).(pulumi.StringOutput)
+}
+
+func (o LookupCustomDomainResultOutput) RedirectForName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCustomDomainResult) string { return v.RedirectForName }).(pulumi.StringOutput)
+}
+
+func (o LookupCustomDomainResultOutput) Server() CustomDomainServerPropertiesPtrOutput {
+	return o.ApplyT(func(v LookupCustomDomainResult) *CustomDomainServerProperties { return v.Server }).(CustomDomainServerPropertiesPtrOutput)
+}
+
+func (o LookupCustomDomainResultOutput) VerificationStatus() CustomDomainVerificationStatusOutput {
+	return o.ApplyT(func(v LookupCustomDomainResult) CustomDomainVerificationStatus { return v.VerificationStatus }).(CustomDomainVerificationStatusOutput)
 }
 
 func init() {

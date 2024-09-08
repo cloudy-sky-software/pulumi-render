@@ -11,11 +11,11 @@ namespace Pulumi.Render.Projects
 {
     public static class GetProject
     {
-        public static Task<GetProjectResult> InvokeAsync(GetProjectArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetProjectResult>("render:projects:getProject", args ?? new GetProjectArgs(), options.WithDefaults());
+        public static Task<Outputs.Project> InvokeAsync(GetProjectArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<Outputs.Project>("render:projects:getProject", args ?? new GetProjectArgs(), options.WithDefaults());
 
-        public static Output<GetProjectResult> Invoke(GetProjectInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetProjectResult>("render:projects:getProject", args ?? new GetProjectInvokeArgs(), options.WithDefaults());
+        public static Output<Outputs.Project> Invoke(GetProjectInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.Project>("render:projects:getProject", args ?? new GetProjectInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -39,18 +39,5 @@ namespace Pulumi.Render.Projects
         {
         }
         public static new GetProjectInvokeArgs Empty => new GetProjectInvokeArgs();
-    }
-
-
-    [OutputType]
-    public sealed class GetProjectResult
-    {
-        public readonly Outputs.Project Items;
-
-        [OutputConstructor]
-        private GetProjectResult(Outputs.Project items)
-        {
-            Items = items;
-        }
     }
 }

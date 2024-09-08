@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function getPostgresRecoveryInfo(args: GetPostgresRecoveryInfoArgs, opts?: pulumi.InvokeOptions): Promise<GetPostgresRecoveryInfoResult> {
+export function getPostgresRecoveryInfo(args: GetPostgresRecoveryInfoArgs, opts?: pulumi.InvokeOptions): Promise<outputs.postgres.GetPostgresRecoveryInfoProperties> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:postgres:getPostgresRecoveryInfo", {
@@ -18,11 +18,7 @@ export function getPostgresRecoveryInfo(args: GetPostgresRecoveryInfoArgs, opts?
 export interface GetPostgresRecoveryInfoArgs {
     postgresId: string;
 }
-
-export interface GetPostgresRecoveryInfoResult {
-    readonly items: outputs.postgres.GetPostgresRecoveryInfoProperties;
-}
-export function getPostgresRecoveryInfoOutput(args: GetPostgresRecoveryInfoOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPostgresRecoveryInfoResult> {
+export function getPostgresRecoveryInfoOutput(args: GetPostgresRecoveryInfoOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.postgres.GetPostgresRecoveryInfoProperties> {
     return pulumi.output(args).apply((a: any) => getPostgresRecoveryInfo(a, opts))
 }
 

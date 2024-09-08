@@ -6,42 +6,50 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
 from .. import _utilities
-from . import outputs
 
 __all__ = [
-    'GetEnvGroupEnvVarResult',
-    'AwaitableGetEnvGroupEnvVarResult',
+    'EnvVar',
+    'AwaitableEnvVar',
     'get_env_group_env_var',
     'get_env_group_env_var_output',
 ]
 
 @pulumi.output_type
-class GetEnvGroupEnvVarResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class EnvVar:
+    def __init__(__self__, key=None, value=None):
+        if key and not isinstance(key, str):
+            raise TypeError("Expected argument 'key' to be a str")
+        pulumi.set(__self__, "key", key)
+        if value and not isinstance(value, str):
+            raise TypeError("Expected argument 'value' to be a str")
+        pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.EnvVar':
-        return pulumi.get(self, "items")
+    def key(self) -> str:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        return pulumi.get(self, "value")
 
 
-class AwaitableGetEnvGroupEnvVarResult(GetEnvGroupEnvVarResult):
+class AwaitableEnvVar(EnvVar):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetEnvGroupEnvVarResult(
-            items=self.items)
+        return EnvVar(
+            key=self.key,
+            value=self.value)
 
 
 def get_env_group_env_var(env_group_id: Optional[str] = None,
                           env_var_key: Optional[str] = None,
-                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetEnvGroupEnvVarResult:
+                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableEnvVar:
     """
     Use this data source to access information about an existing resource.
 
@@ -52,16 +60,17 @@ def get_env_group_env_var(env_group_id: Optional[str] = None,
     __args__['envGroupId'] = env_group_id
     __args__['envVarKey'] = env_var_key
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('render:env-groups:getEnvGroupEnvVar', __args__, opts=opts, typ=GetEnvGroupEnvVarResult).value
+    __ret__ = pulumi.runtime.invoke('render:env-groups:getEnvGroupEnvVar', __args__, opts=opts, typ=EnvVar).value
 
-    return AwaitableGetEnvGroupEnvVarResult(
-        items=pulumi.get(__ret__, 'items'))
+    return AwaitableEnvVar(
+        key=pulumi.get(__ret__, 'key'),
+        value=pulumi.get(__ret__, 'value'))
 
 
 @_utilities.lift_output_func(get_env_group_env_var)
 def get_env_group_env_var_output(env_group_id: Optional[pulumi.Input[str]] = None,
                                  env_var_key: Optional[pulumi.Input[str]] = None,
-                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetEnvGroupEnvVarResult]:
+                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[EnvVar]:
     """
     Use this data source to access information about an existing resource.
 

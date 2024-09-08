@@ -27,7 +27,16 @@ type LookupEnvGroupArgs struct {
 }
 
 type LookupEnvGroupResult struct {
-	Items EnvGroupType `pulumi:"items"`
+	CreatedAt     string       `pulumi:"createdAt"`
+	EnvVars       []EnvVar     `pulumi:"envVars"`
+	EnvironmentId *string      `pulumi:"environmentId"`
+	Id            string       `pulumi:"id"`
+	Name          string       `pulumi:"name"`
+	OwnerId       string       `pulumi:"ownerId"`
+	SecretFiles   []SecretFile `pulumi:"secretFiles"`
+	// List of serviceIds linked to the envGroup
+	ServiceLinks []ServiceLink `pulumi:"serviceLinks"`
+	UpdatedAt    string        `pulumi:"updatedAt"`
 }
 
 func LookupEnvGroupOutput(ctx *pulumi.Context, args LookupEnvGroupOutputArgs, opts ...pulumi.InvokeOption) LookupEnvGroupResultOutput {
@@ -66,8 +75,41 @@ func (o LookupEnvGroupResultOutput) ToLookupEnvGroupResultOutputWithContext(ctx 
 	return o
 }
 
-func (o LookupEnvGroupResultOutput) Items() EnvGroupTypeOutput {
-	return o.ApplyT(func(v LookupEnvGroupResult) EnvGroupType { return v.Items }).(EnvGroupTypeOutput)
+func (o LookupEnvGroupResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupEnvGroupResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+func (o LookupEnvGroupResultOutput) EnvVars() EnvVarArrayOutput {
+	return o.ApplyT(func(v LookupEnvGroupResult) []EnvVar { return v.EnvVars }).(EnvVarArrayOutput)
+}
+
+func (o LookupEnvGroupResultOutput) EnvironmentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupEnvGroupResult) *string { return v.EnvironmentId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupEnvGroupResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupEnvGroupResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupEnvGroupResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupEnvGroupResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupEnvGroupResultOutput) OwnerId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupEnvGroupResult) string { return v.OwnerId }).(pulumi.StringOutput)
+}
+
+func (o LookupEnvGroupResultOutput) SecretFiles() SecretFileArrayOutput {
+	return o.ApplyT(func(v LookupEnvGroupResult) []SecretFile { return v.SecretFiles }).(SecretFileArrayOutput)
+}
+
+// List of serviceIds linked to the envGroup
+func (o LookupEnvGroupResultOutput) ServiceLinks() ServiceLinkArrayOutput {
+	return o.ApplyT(func(v LookupEnvGroupResult) []ServiceLink { return v.ServiceLinks }).(ServiceLinkArrayOutput)
+}
+
+func (o LookupEnvGroupResultOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupEnvGroupResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
 func init() {

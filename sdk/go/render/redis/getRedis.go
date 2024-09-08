@@ -25,8 +25,30 @@ type LookupRedisArgs struct {
 	RedisId string `pulumi:"redisId"`
 }
 
+// A Redis instance
 type LookupRedisResult struct {
-	Items RedisDetail `pulumi:"items"`
+	// The creation time of the Redis instance
+	CreatedAt string `pulumi:"createdAt"`
+	// The ID of the environment the Redis instance is associated with
+	EnvironmentId *string `pulumi:"environmentId"`
+	// The ID of the Redis instance
+	Id string `pulumi:"id"`
+	// The IP allow list for the Redis instance
+	IpAllowList []CidrBlockAndDescription         `pulumi:"ipAllowList"`
+	Maintenance *RedisDetailMaintenanceProperties `pulumi:"maintenance"`
+	// The name of the Redis instance
+	Name string `pulumi:"name"`
+	// Options for a Redis instance
+	Options RedisOptions    `pulumi:"options"`
+	Owner   Owner           `pulumi:"owner"`
+	Plan    RedisDetailPlan `pulumi:"plan"`
+	// Defaults to "oregon"
+	Region RedisDetailRegion `pulumi:"region"`
+	Status RedisDetailStatus `pulumi:"status"`
+	// The last updated time of the Redis instance
+	UpdatedAt string `pulumi:"updatedAt"`
+	// The version of Redis
+	Version string `pulumi:"version"`
 }
 
 // Defaults sets the appropriate defaults for LookupRedisResult
@@ -35,8 +57,9 @@ func (val *LookupRedisResult) Defaults() *LookupRedisResult {
 		return nil
 	}
 	tmp := *val
-	tmp.Items = *tmp.Items.Defaults()
-
+	if internal.IsZero(tmp.Region) {
+		tmp.Region = RedisDetailRegion("oregon")
+	}
 	return &tmp
 }
 
@@ -61,6 +84,7 @@ func (LookupRedisOutputArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*LookupRedisArgs)(nil)).Elem()
 }
 
+// A Redis instance
 type LookupRedisResultOutput struct{ *pulumi.OutputState }
 
 func (LookupRedisResultOutput) ElementType() reflect.Type {
@@ -75,8 +99,65 @@ func (o LookupRedisResultOutput) ToLookupRedisResultOutputWithContext(ctx contex
 	return o
 }
 
-func (o LookupRedisResultOutput) Items() RedisDetailOutput {
-	return o.ApplyT(func(v LookupRedisResult) RedisDetail { return v.Items }).(RedisDetailOutput)
+// The creation time of the Redis instance
+func (o LookupRedisResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRedisResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The ID of the environment the Redis instance is associated with
+func (o LookupRedisResultOutput) EnvironmentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupRedisResult) *string { return v.EnvironmentId }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the Redis instance
+func (o LookupRedisResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRedisResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The IP allow list for the Redis instance
+func (o LookupRedisResultOutput) IpAllowList() CidrBlockAndDescriptionArrayOutput {
+	return o.ApplyT(func(v LookupRedisResult) []CidrBlockAndDescription { return v.IpAllowList }).(CidrBlockAndDescriptionArrayOutput)
+}
+
+func (o LookupRedisResultOutput) Maintenance() RedisDetailMaintenancePropertiesPtrOutput {
+	return o.ApplyT(func(v LookupRedisResult) *RedisDetailMaintenanceProperties { return v.Maintenance }).(RedisDetailMaintenancePropertiesPtrOutput)
+}
+
+// The name of the Redis instance
+func (o LookupRedisResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRedisResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Options for a Redis instance
+func (o LookupRedisResultOutput) Options() RedisOptionsOutput {
+	return o.ApplyT(func(v LookupRedisResult) RedisOptions { return v.Options }).(RedisOptionsOutput)
+}
+
+func (o LookupRedisResultOutput) Owner() OwnerOutput {
+	return o.ApplyT(func(v LookupRedisResult) Owner { return v.Owner }).(OwnerOutput)
+}
+
+func (o LookupRedisResultOutput) Plan() RedisDetailPlanOutput {
+	return o.ApplyT(func(v LookupRedisResult) RedisDetailPlan { return v.Plan }).(RedisDetailPlanOutput)
+}
+
+// Defaults to "oregon"
+func (o LookupRedisResultOutput) Region() RedisDetailRegionOutput {
+	return o.ApplyT(func(v LookupRedisResult) RedisDetailRegion { return v.Region }).(RedisDetailRegionOutput)
+}
+
+func (o LookupRedisResultOutput) Status() RedisDetailStatusOutput {
+	return o.ApplyT(func(v LookupRedisResult) RedisDetailStatus { return v.Status }).(RedisDetailStatusOutput)
+}
+
+// The last updated time of the Redis instance
+func (o LookupRedisResultOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRedisResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// The version of Redis
+func (o LookupRedisResultOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRedisResult) string { return v.Version }).(pulumi.StringOutput)
 }
 
 func init() {

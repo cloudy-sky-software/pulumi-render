@@ -26,7 +26,33 @@ type LookupPostgresArgs struct {
 }
 
 type LookupPostgresResult struct {
-	Items PostgresDetail `pulumi:"items"`
+	CreatedAt string `pulumi:"createdAt"`
+	// The URL to view the PostgreSQL instance in the Render Dashboard
+	DashboardUrl  string  `pulumi:"dashboardUrl"`
+	DatabaseName  string  `pulumi:"databaseName"`
+	DatabaseUser  string  `pulumi:"databaseUser"`
+	DiskSizeGB    *int    `pulumi:"diskSizeGB"`
+	EnvironmentId *string `pulumi:"environmentId"`
+	// The time at which the database will be expire. Applies to free tier databases only.
+	ExpiresAt               *string                           `pulumi:"expiresAt"`
+	HighAvailabilityEnabled bool                              `pulumi:"highAvailabilityEnabled"`
+	Id                      string                            `pulumi:"id"`
+	IpAllowList             []CidrBlockAndDescription         `pulumi:"ipAllowList"`
+	Maintenance             *RedisDetailpropertiesmaintenance `pulumi:"maintenance"`
+	Name                    string                            `pulumi:"name"`
+	Owner                   Owner                             `pulumi:"owner"`
+	Plan                    PostgresDetailPlan                `pulumi:"plan"`
+	PrimaryPostgresID       *string                           `pulumi:"primaryPostgresID"`
+	ReadReplicas            []ReadReplica                     `pulumi:"readReplicas"`
+	// Defaults to "oregon"
+	Region     PostgresDetailRegion           `pulumi:"region"`
+	Role       PostgresDetailRole             `pulumi:"role"`
+	Status     PostgresDetailStatus           `pulumi:"status"`
+	Suspended  PostgresDetailSuspended        `pulumi:"suspended"`
+	Suspenders []PostgresDetailSuspendersItem `pulumi:"suspenders"`
+	UpdatedAt  string                         `pulumi:"updatedAt"`
+	// The PostgreSQL version
+	Version PostgresDetailVersion `pulumi:"version"`
 }
 
 // Defaults sets the appropriate defaults for LookupPostgresResult
@@ -35,8 +61,9 @@ func (val *LookupPostgresResult) Defaults() *LookupPostgresResult {
 		return nil
 	}
 	tmp := *val
-	tmp.Items = *tmp.Items.Defaults()
-
+	if internal.IsZero(tmp.Region) {
+		tmp.Region = PostgresDetailRegion("oregon")
+	}
 	return &tmp
 }
 
@@ -75,8 +102,100 @@ func (o LookupPostgresResultOutput) ToLookupPostgresResultOutputWithContext(ctx 
 	return o
 }
 
-func (o LookupPostgresResultOutput) Items() PostgresDetailOutput {
-	return o.ApplyT(func(v LookupPostgresResult) PostgresDetail { return v.Items }).(PostgresDetailOutput)
+func (o LookupPostgresResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPostgresResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The URL to view the PostgreSQL instance in the Render Dashboard
+func (o LookupPostgresResultOutput) DashboardUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPostgresResult) string { return v.DashboardUrl }).(pulumi.StringOutput)
+}
+
+func (o LookupPostgresResultOutput) DatabaseName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPostgresResult) string { return v.DatabaseName }).(pulumi.StringOutput)
+}
+
+func (o LookupPostgresResultOutput) DatabaseUser() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPostgresResult) string { return v.DatabaseUser }).(pulumi.StringOutput)
+}
+
+func (o LookupPostgresResultOutput) DiskSizeGB() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v LookupPostgresResult) *int { return v.DiskSizeGB }).(pulumi.IntPtrOutput)
+}
+
+func (o LookupPostgresResultOutput) EnvironmentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupPostgresResult) *string { return v.EnvironmentId }).(pulumi.StringPtrOutput)
+}
+
+// The time at which the database will be expire. Applies to free tier databases only.
+func (o LookupPostgresResultOutput) ExpiresAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupPostgresResult) *string { return v.ExpiresAt }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupPostgresResultOutput) HighAvailabilityEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupPostgresResult) bool { return v.HighAvailabilityEnabled }).(pulumi.BoolOutput)
+}
+
+func (o LookupPostgresResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPostgresResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupPostgresResultOutput) IpAllowList() CidrBlockAndDescriptionArrayOutput {
+	return o.ApplyT(func(v LookupPostgresResult) []CidrBlockAndDescription { return v.IpAllowList }).(CidrBlockAndDescriptionArrayOutput)
+}
+
+func (o LookupPostgresResultOutput) Maintenance() RedisDetailpropertiesmaintenancePtrOutput {
+	return o.ApplyT(func(v LookupPostgresResult) *RedisDetailpropertiesmaintenance { return v.Maintenance }).(RedisDetailpropertiesmaintenancePtrOutput)
+}
+
+func (o LookupPostgresResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPostgresResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupPostgresResultOutput) Owner() OwnerOutput {
+	return o.ApplyT(func(v LookupPostgresResult) Owner { return v.Owner }).(OwnerOutput)
+}
+
+func (o LookupPostgresResultOutput) Plan() PostgresDetailPlanOutput {
+	return o.ApplyT(func(v LookupPostgresResult) PostgresDetailPlan { return v.Plan }).(PostgresDetailPlanOutput)
+}
+
+func (o LookupPostgresResultOutput) PrimaryPostgresID() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupPostgresResult) *string { return v.PrimaryPostgresID }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupPostgresResultOutput) ReadReplicas() ReadReplicaArrayOutput {
+	return o.ApplyT(func(v LookupPostgresResult) []ReadReplica { return v.ReadReplicas }).(ReadReplicaArrayOutput)
+}
+
+// Defaults to "oregon"
+func (o LookupPostgresResultOutput) Region() PostgresDetailRegionOutput {
+	return o.ApplyT(func(v LookupPostgresResult) PostgresDetailRegion { return v.Region }).(PostgresDetailRegionOutput)
+}
+
+func (o LookupPostgresResultOutput) Role() PostgresDetailRoleOutput {
+	return o.ApplyT(func(v LookupPostgresResult) PostgresDetailRole { return v.Role }).(PostgresDetailRoleOutput)
+}
+
+func (o LookupPostgresResultOutput) Status() PostgresDetailStatusOutput {
+	return o.ApplyT(func(v LookupPostgresResult) PostgresDetailStatus { return v.Status }).(PostgresDetailStatusOutput)
+}
+
+func (o LookupPostgresResultOutput) Suspended() PostgresDetailSuspendedOutput {
+	return o.ApplyT(func(v LookupPostgresResult) PostgresDetailSuspended { return v.Suspended }).(PostgresDetailSuspendedOutput)
+}
+
+func (o LookupPostgresResultOutput) Suspenders() PostgresDetailSuspendersItemArrayOutput {
+	return o.ApplyT(func(v LookupPostgresResult) []PostgresDetailSuspendersItem { return v.Suspenders }).(PostgresDetailSuspendersItemArrayOutput)
+}
+
+func (o LookupPostgresResultOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPostgresResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// The PostgreSQL version
+func (o LookupPostgresResultOutput) Version() PostgresDetailVersionOutput {
+	return o.ApplyT(func(v LookupPostgresResult) PostgresDetailVersion { return v.Version }).(PostgresDetailVersionOutput)
 }
 
 func init() {

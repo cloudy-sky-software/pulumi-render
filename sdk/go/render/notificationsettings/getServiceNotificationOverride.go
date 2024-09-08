@@ -27,7 +27,9 @@ type GetServiceNotificationOverrideArgs struct {
 }
 
 type GetServiceNotificationOverrideResult struct {
-	Items GetServiceNotificationOverrideProperties `pulumi:"items"`
+	NotificationsToSend         GetServiceNotificationOverridePropertiesNotificationsToSend         `pulumi:"notificationsToSend"`
+	PreviewNotificationsEnabled GetServiceNotificationOverridePropertiesPreviewNotificationsEnabled `pulumi:"previewNotificationsEnabled"`
+	ServiceId                   string                                                              `pulumi:"serviceId"`
 }
 
 func GetServiceNotificationOverrideOutput(ctx *pulumi.Context, args GetServiceNotificationOverrideOutputArgs, opts ...pulumi.InvokeOption) GetServiceNotificationOverrideResultOutput {
@@ -66,8 +68,20 @@ func (o GetServiceNotificationOverrideResultOutput) ToGetServiceNotificationOver
 	return o
 }
 
-func (o GetServiceNotificationOverrideResultOutput) Items() GetServiceNotificationOverridePropertiesOutput {
-	return o.ApplyT(func(v GetServiceNotificationOverrideResult) GetServiceNotificationOverrideProperties { return v.Items }).(GetServiceNotificationOverridePropertiesOutput)
+func (o GetServiceNotificationOverrideResultOutput) NotificationsToSend() GetServiceNotificationOverridePropertiesNotificationsToSendOutput {
+	return o.ApplyT(func(v GetServiceNotificationOverrideResult) GetServiceNotificationOverridePropertiesNotificationsToSend {
+		return v.NotificationsToSend
+	}).(GetServiceNotificationOverridePropertiesNotificationsToSendOutput)
+}
+
+func (o GetServiceNotificationOverrideResultOutput) PreviewNotificationsEnabled() GetServiceNotificationOverridePropertiesPreviewNotificationsEnabledOutput {
+	return o.ApplyT(func(v GetServiceNotificationOverrideResult) GetServiceNotificationOverridePropertiesPreviewNotificationsEnabled {
+		return v.PreviewNotificationsEnabled
+	}).(GetServiceNotificationOverridePropertiesPreviewNotificationsEnabledOutput)
+}
+
+func (o GetServiceNotificationOverrideResultOutput) ServiceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServiceNotificationOverrideResult) string { return v.ServiceId }).(pulumi.StringOutput)
 }
 
 func init() {

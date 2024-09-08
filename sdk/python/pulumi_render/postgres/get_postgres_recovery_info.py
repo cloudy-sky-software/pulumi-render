@@ -6,57 +6,69 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
 from .. import _utilities
-from . import outputs
 from ._enums import *
 
 __all__ = [
-    'GetPostgresRecoveryInfoResult',
-    'AwaitableGetPostgresRecoveryInfoResult',
+    'GetPostgresRecoveryInfoProperties',
+    'AwaitableGetPostgresRecoveryInfoProperties',
     'get_postgres_recovery_info',
     'get_postgres_recovery_info_output',
 ]
 
 @pulumi.output_type
-class GetPostgresRecoveryInfoResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class GetPostgresRecoveryInfoProperties:
+    def __init__(__self__, recovery_status=None, starts_at=None):
+        if recovery_status and not isinstance(recovery_status, str):
+            raise TypeError("Expected argument 'recovery_status' to be a str")
+        pulumi.set(__self__, "recovery_status", recovery_status)
+        if starts_at and not isinstance(starts_at, str):
+            raise TypeError("Expected argument 'starts_at' to be a str")
+        pulumi.set(__self__, "starts_at", starts_at)
 
     @property
-    @pulumi.getter
-    def items(self) -> 'outputs.GetPostgresRecoveryInfoProperties':
-        return pulumi.get(self, "items")
+    @pulumi.getter(name="recoveryStatus")
+    def recovery_status(self) -> 'GetPostgresRecoveryInfoPropertiesRecoveryStatus':
+        """
+        Availability of point-in-time recovery.
+        """
+        return pulumi.get(self, "recovery_status")
+
+    @property
+    @pulumi.getter(name="startsAt")
+    def starts_at(self) -> Optional[str]:
+        return pulumi.get(self, "starts_at")
 
 
-class AwaitableGetPostgresRecoveryInfoResult(GetPostgresRecoveryInfoResult):
+class AwaitableGetPostgresRecoveryInfoProperties(GetPostgresRecoveryInfoProperties):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetPostgresRecoveryInfoResult(
-            items=self.items)
+        return GetPostgresRecoveryInfoProperties(
+            recovery_status=self.recovery_status,
+            starts_at=self.starts_at)
 
 
 def get_postgres_recovery_info(postgres_id: Optional[str] = None,
-                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPostgresRecoveryInfoResult:
+                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPostgresRecoveryInfoProperties:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['postgresId'] = postgres_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('render:postgres:getPostgresRecoveryInfo', __args__, opts=opts, typ=GetPostgresRecoveryInfoResult).value
+    __ret__ = pulumi.runtime.invoke('render:postgres:getPostgresRecoveryInfo', __args__, opts=opts, typ=GetPostgresRecoveryInfoProperties).value
 
-    return AwaitableGetPostgresRecoveryInfoResult(
-        items=pulumi.get(__ret__, 'items'))
+    return AwaitableGetPostgresRecoveryInfoProperties(
+        recovery_status=pulumi.get(__ret__, 'recovery_status'),
+        starts_at=pulumi.get(__ret__, 'starts_at'))
 
 
 @_utilities.lift_output_func(get_postgres_recovery_info)
 def get_postgres_recovery_info_output(postgres_id: Optional[pulumi.Input[str]] = None,
-                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPostgresRecoveryInfoResult]:
+                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPostgresRecoveryInfoProperties]:
     """
     Use this data source to access information about an existing resource.
     """

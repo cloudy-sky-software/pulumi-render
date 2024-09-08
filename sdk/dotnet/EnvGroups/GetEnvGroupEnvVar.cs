@@ -11,11 +11,11 @@ namespace Pulumi.Render.EnvGroups
 {
     public static class GetEnvGroupEnvVar
     {
-        public static Task<GetEnvGroupEnvVarResult> InvokeAsync(GetEnvGroupEnvVarArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetEnvGroupEnvVarResult>("render:env-groups:getEnvGroupEnvVar", args ?? new GetEnvGroupEnvVarArgs(), options.WithDefaults());
+        public static Task<Outputs.EnvVar> InvokeAsync(GetEnvGroupEnvVarArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<Outputs.EnvVar>("render:env-groups:getEnvGroupEnvVar", args ?? new GetEnvGroupEnvVarArgs(), options.WithDefaults());
 
-        public static Output<GetEnvGroupEnvVarResult> Invoke(GetEnvGroupEnvVarInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetEnvGroupEnvVarResult>("render:env-groups:getEnvGroupEnvVar", args ?? new GetEnvGroupEnvVarInvokeArgs(), options.WithDefaults());
+        public static Output<Outputs.EnvVar> Invoke(GetEnvGroupEnvVarInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.EnvVar>("render:env-groups:getEnvGroupEnvVar", args ?? new GetEnvGroupEnvVarInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -57,18 +57,5 @@ namespace Pulumi.Render.EnvGroups
         {
         }
         public static new GetEnvGroupEnvVarInvokeArgs Empty => new GetEnvGroupEnvVarInvokeArgs();
-    }
-
-
-    [OutputType]
-    public sealed class GetEnvGroupEnvVarResult
-    {
-        public readonly Outputs.EnvVar Items;
-
-        [OutputConstructor]
-        private GetEnvGroupEnvVarResult(Outputs.EnvVar items)
-        {
-            Items = items;
-        }
     }
 }

@@ -27,7 +27,13 @@ type LookupDiskArgs struct {
 }
 
 type LookupDiskResult struct {
-	Items DiskWithCursorpropertiesdisk `pulumi:"items"`
+	CreatedAt string  `pulumi:"createdAt"`
+	Id        string  `pulumi:"id"`
+	MountPath string  `pulumi:"mountPath"`
+	Name      string  `pulumi:"name"`
+	ServiceId *string `pulumi:"serviceId"`
+	SizeGB    int     `pulumi:"sizeGB"`
+	UpdatedAt string  `pulumi:"updatedAt"`
 }
 
 func LookupDiskOutput(ctx *pulumi.Context, args LookupDiskOutputArgs, opts ...pulumi.InvokeOption) LookupDiskResultOutput {
@@ -66,8 +72,32 @@ func (o LookupDiskResultOutput) ToLookupDiskResultOutputWithContext(ctx context.
 	return o
 }
 
-func (o LookupDiskResultOutput) Items() DiskWithCursorpropertiesdiskOutput {
-	return o.ApplyT(func(v LookupDiskResult) DiskWithCursorpropertiesdisk { return v.Items }).(DiskWithCursorpropertiesdiskOutput)
+func (o LookupDiskResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDiskResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+func (o LookupDiskResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDiskResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupDiskResultOutput) MountPath() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDiskResult) string { return v.MountPath }).(pulumi.StringOutput)
+}
+
+func (o LookupDiskResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDiskResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupDiskResultOutput) ServiceId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupDiskResult) *string { return v.ServiceId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupDiskResultOutput) SizeGB() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupDiskResult) int { return v.SizeGB }).(pulumi.IntOutput)
+}
+
+func (o LookupDiskResultOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDiskResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
 func init() {

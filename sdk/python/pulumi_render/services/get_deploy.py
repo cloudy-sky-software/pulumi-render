@@ -6,43 +6,109 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
 from .. import _utilities
 from . import outputs
 from ._enums import *
 
 __all__ = [
-    'GetDeployResult',
-    'AwaitableGetDeployResult',
+    'Deploy',
+    'AwaitableDeploy',
     'get_deploy',
     'get_deploy_output',
 ]
 
 @pulumi.output_type
-class GetDeployResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class Deploy:
+    def __init__(__self__, commit=None, created_at=None, finished_at=None, id=None, image=None, status=None, trigger=None, updated_at=None):
+        if commit and not isinstance(commit, dict):
+            raise TypeError("Expected argument 'commit' to be a dict")
+        pulumi.set(__self__, "commit", commit)
+        if created_at and not isinstance(created_at, str):
+            raise TypeError("Expected argument 'created_at' to be a str")
+        pulumi.set(__self__, "created_at", created_at)
+        if finished_at and not isinstance(finished_at, str):
+            raise TypeError("Expected argument 'finished_at' to be a str")
+        pulumi.set(__self__, "finished_at", finished_at)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if image and not isinstance(image, dict):
+            raise TypeError("Expected argument 'image' to be a dict")
+        pulumi.set(__self__, "image", image)
+        if status and not isinstance(status, str):
+            raise TypeError("Expected argument 'status' to be a str")
+        pulumi.set(__self__, "status", status)
+        if trigger and not isinstance(trigger, str):
+            raise TypeError("Expected argument 'trigger' to be a str")
+        pulumi.set(__self__, "trigger", trigger)
+        if updated_at and not isinstance(updated_at, str):
+            raise TypeError("Expected argument 'updated_at' to be a str")
+        pulumi.set(__self__, "updated_at", updated_at)
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.Deploy':
-        return pulumi.get(self, "items")
+    def commit(self) -> Optional['outputs.DeployCommitProperties']:
+        return pulumi.get(self, "commit")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[str]:
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="finishedAt")
+    def finished_at(self) -> Optional[str]:
+        return pulumi.get(self, "finished_at")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def image(self) -> Optional['outputs.DeployImageProperties']:
+        """
+        Image information used when creating the deploy. Not present for Git-backed deploys
+        """
+        return pulumi.get(self, "image")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional['DeployStatus']:
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def trigger(self) -> Optional['DeployTrigger']:
+        return pulumi.get(self, "trigger")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> Optional[str]:
+        return pulumi.get(self, "updated_at")
 
 
-class AwaitableGetDeployResult(GetDeployResult):
+class AwaitableDeploy(Deploy):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetDeployResult(
-            items=self.items)
+        return Deploy(
+            commit=self.commit,
+            created_at=self.created_at,
+            finished_at=self.finished_at,
+            id=self.id,
+            image=self.image,
+            status=self.status,
+            trigger=self.trigger,
+            updated_at=self.updated_at)
 
 
 def get_deploy(deploy_id: Optional[str] = None,
                service_id: Optional[str] = None,
-               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDeployResult:
+               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableDeploy:
     """
     Use this data source to access information about an existing resource.
 
@@ -53,16 +119,23 @@ def get_deploy(deploy_id: Optional[str] = None,
     __args__['deployId'] = deploy_id
     __args__['serviceId'] = service_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('render:services:getDeploy', __args__, opts=opts, typ=GetDeployResult).value
+    __ret__ = pulumi.runtime.invoke('render:services:getDeploy', __args__, opts=opts, typ=Deploy).value
 
-    return AwaitableGetDeployResult(
-        items=pulumi.get(__ret__, 'items'))
+    return AwaitableDeploy(
+        commit=pulumi.get(__ret__, 'commit'),
+        created_at=pulumi.get(__ret__, 'created_at'),
+        finished_at=pulumi.get(__ret__, 'finished_at'),
+        id=pulumi.get(__ret__, 'id'),
+        image=pulumi.get(__ret__, 'image'),
+        status=pulumi.get(__ret__, 'status'),
+        trigger=pulumi.get(__ret__, 'trigger'),
+        updated_at=pulumi.get(__ret__, 'updated_at'))
 
 
 @_utilities.lift_output_func(get_deploy)
 def get_deploy_output(deploy_id: Optional[pulumi.Input[str]] = None,
                       service_id: Optional[pulumi.Input[str]] = None,
-                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDeployResult]:
+                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[Deploy]:
     """
     Use this data source to access information about an existing resource.
 

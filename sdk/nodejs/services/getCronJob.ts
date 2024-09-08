@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function getCronJob(args: GetCronJobArgs, opts?: pulumi.InvokeOptions): Promise<GetCronJobResult> {
+export function getCronJob(args: GetCronJobArgs, opts?: pulumi.InvokeOptions): Promise<outputs.services.GetCronJob> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:getCronJob", {
@@ -21,11 +21,7 @@ export interface GetCronJobArgs {
      */
     serviceId: string;
 }
-
-export interface GetCronJobResult {
-    readonly items: outputs.services.GetCronJob;
-}
-export function getCronJobOutput(args: GetCronJobOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCronJobResult> {
+export function getCronJobOutput(args: GetCronJobOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.services.GetCronJob> {
     return pulumi.output(args).apply((a: any) => getCronJob(a, opts))
 }
 

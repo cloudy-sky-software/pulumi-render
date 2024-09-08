@@ -26,7 +26,15 @@ type LookupEnvironmentArgs struct {
 }
 
 type LookupEnvironmentResult struct {
-	Items EnvironmentType `pulumi:"items"`
+	DatabasesIds []string `pulumi:"databasesIds"`
+	EnvGroupIds  []string `pulumi:"envGroupIds"`
+	Id           string   `pulumi:"id"`
+	Name         string   `pulumi:"name"`
+	ProjectId    string   `pulumi:"projectId"`
+	// Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
+	ProtectedStatus EnvironmentProtectedStatus `pulumi:"protectedStatus"`
+	RedisIds        []string                   `pulumi:"redisIds"`
+	ServiceIds      []string                   `pulumi:"serviceIds"`
 }
 
 func LookupEnvironmentOutput(ctx *pulumi.Context, args LookupEnvironmentOutputArgs, opts ...pulumi.InvokeOption) LookupEnvironmentResultOutput {
@@ -64,8 +72,37 @@ func (o LookupEnvironmentResultOutput) ToLookupEnvironmentResultOutputWithContex
 	return o
 }
 
-func (o LookupEnvironmentResultOutput) Items() EnvironmentTypeOutput {
-	return o.ApplyT(func(v LookupEnvironmentResult) EnvironmentType { return v.Items }).(EnvironmentTypeOutput)
+func (o LookupEnvironmentResultOutput) DatabasesIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupEnvironmentResult) []string { return v.DatabasesIds }).(pulumi.StringArrayOutput)
+}
+
+func (o LookupEnvironmentResultOutput) EnvGroupIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupEnvironmentResult) []string { return v.EnvGroupIds }).(pulumi.StringArrayOutput)
+}
+
+func (o LookupEnvironmentResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupEnvironmentResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupEnvironmentResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupEnvironmentResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupEnvironmentResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupEnvironmentResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
+func (o LookupEnvironmentResultOutput) ProtectedStatus() EnvironmentProtectedStatusOutput {
+	return o.ApplyT(func(v LookupEnvironmentResult) EnvironmentProtectedStatus { return v.ProtectedStatus }).(EnvironmentProtectedStatusOutput)
+}
+
+func (o LookupEnvironmentResultOutput) RedisIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupEnvironmentResult) []string { return v.RedisIds }).(pulumi.StringArrayOutput)
+}
+
+func (o LookupEnvironmentResultOutput) ServiceIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupEnvironmentResult) []string { return v.ServiceIds }).(pulumi.StringArrayOutput)
 }
 
 func init() {

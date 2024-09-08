@@ -6,43 +6,105 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
 from .. import _utilities
-from . import outputs
 from ._enums import *
 
 __all__ = [
-    'GetJobResult',
-    'AwaitableGetJobResult',
+    'Job',
+    'AwaitableJob',
     'get_job',
     'get_job_output',
 ]
 
 @pulumi.output_type
-class GetJobResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class Job:
+    def __init__(__self__, created_at=None, finished_at=None, id=None, plan_id=None, service_id=None, start_command=None, started_at=None, status=None):
+        if created_at and not isinstance(created_at, str):
+            raise TypeError("Expected argument 'created_at' to be a str")
+        pulumi.set(__self__, "created_at", created_at)
+        if finished_at and not isinstance(finished_at, str):
+            raise TypeError("Expected argument 'finished_at' to be a str")
+        pulumi.set(__self__, "finished_at", finished_at)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if plan_id and not isinstance(plan_id, str):
+            raise TypeError("Expected argument 'plan_id' to be a str")
+        pulumi.set(__self__, "plan_id", plan_id)
+        if service_id and not isinstance(service_id, str):
+            raise TypeError("Expected argument 'service_id' to be a str")
+        pulumi.set(__self__, "service_id", service_id)
+        if start_command and not isinstance(start_command, str):
+            raise TypeError("Expected argument 'start_command' to be a str")
+        pulumi.set(__self__, "start_command", start_command)
+        if started_at and not isinstance(started_at, str):
+            raise TypeError("Expected argument 'started_at' to be a str")
+        pulumi.set(__self__, "started_at", started_at)
+        if status and not isinstance(status, str):
+            raise TypeError("Expected argument 'status' to be a str")
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="finishedAt")
+    def finished_at(self) -> Optional[str]:
+        return pulumi.get(self, "finished_at")
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.Job':
-        return pulumi.get(self, "items")
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="planId")
+    def plan_id(self) -> str:
+        return pulumi.get(self, "plan_id")
+
+    @property
+    @pulumi.getter(name="serviceId")
+    def service_id(self) -> str:
+        return pulumi.get(self, "service_id")
+
+    @property
+    @pulumi.getter(name="startCommand")
+    def start_command(self) -> str:
+        return pulumi.get(self, "start_command")
+
+    @property
+    @pulumi.getter(name="startedAt")
+    def started_at(self) -> Optional[str]:
+        return pulumi.get(self, "started_at")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional['JobStatus']:
+        return pulumi.get(self, "status")
 
 
-class AwaitableGetJobResult(GetJobResult):
+class AwaitableJob(Job):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetJobResult(
-            items=self.items)
+        return Job(
+            created_at=self.created_at,
+            finished_at=self.finished_at,
+            id=self.id,
+            plan_id=self.plan_id,
+            service_id=self.service_id,
+            start_command=self.start_command,
+            started_at=self.started_at,
+            status=self.status)
 
 
 def get_job(job_id: Optional[str] = None,
             service_id: Optional[str] = None,
-            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetJobResult:
+            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableJob:
     """
     Use this data source to access information about an existing resource.
 
@@ -53,16 +115,23 @@ def get_job(job_id: Optional[str] = None,
     __args__['jobId'] = job_id
     __args__['serviceId'] = service_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('render:services:getJob', __args__, opts=opts, typ=GetJobResult).value
+    __ret__ = pulumi.runtime.invoke('render:services:getJob', __args__, opts=opts, typ=Job).value
 
-    return AwaitableGetJobResult(
-        items=pulumi.get(__ret__, 'items'))
+    return AwaitableJob(
+        created_at=pulumi.get(__ret__, 'created_at'),
+        finished_at=pulumi.get(__ret__, 'finished_at'),
+        id=pulumi.get(__ret__, 'id'),
+        plan_id=pulumi.get(__ret__, 'plan_id'),
+        service_id=pulumi.get(__ret__, 'service_id'),
+        start_command=pulumi.get(__ret__, 'start_command'),
+        started_at=pulumi.get(__ret__, 'started_at'),
+        status=pulumi.get(__ret__, 'status'))
 
 
 @_utilities.lift_output_func(get_job)
 def get_job_output(job_id: Optional[pulumi.Input[str]] = None,
                    service_id: Optional[pulumi.Input[str]] = None,
-                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetJobResult]:
+                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[Job]:
     """
     Use this data source to access information about an existing resource.
 

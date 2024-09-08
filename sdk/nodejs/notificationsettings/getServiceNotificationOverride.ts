@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function getServiceNotificationOverride(args: GetServiceNotificationOverrideArgs, opts?: pulumi.InvokeOptions): Promise<GetServiceNotificationOverrideResult> {
+export function getServiceNotificationOverride(args: GetServiceNotificationOverrideArgs, opts?: pulumi.InvokeOptions): Promise<outputs.notificationsettings.GetServiceNotificationOverrideProperties> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:notification-settings:getServiceNotificationOverride", {
@@ -21,11 +21,7 @@ export interface GetServiceNotificationOverrideArgs {
      */
     serviceId: string;
 }
-
-export interface GetServiceNotificationOverrideResult {
-    readonly items: outputs.notificationsettings.GetServiceNotificationOverrideProperties;
-}
-export function getServiceNotificationOverrideOutput(args: GetServiceNotificationOverrideOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetServiceNotificationOverrideResult> {
+export function getServiceNotificationOverrideOutput(args: GetServiceNotificationOverrideOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.notificationsettings.GetServiceNotificationOverrideProperties> {
     return pulumi.output(args).apply((a: any) => getServiceNotificationOverride(a, opts))
 }
 

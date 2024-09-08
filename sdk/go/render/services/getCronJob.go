@@ -27,7 +27,27 @@ type LookupCronJobArgs struct {
 }
 
 type LookupCronJobResult struct {
-	Items GetCronJobType `pulumi:"items"`
+	AutoDeploy  ServiceAutoDeploy `pulumi:"autoDeploy"`
+	Branch      *string           `pulumi:"branch"`
+	BuildFilter *BuildFilter      `pulumi:"buildFilter"`
+	CreatedAt   string            `pulumi:"createdAt"`
+	// The URL to view the service in the Render Dashboard
+	DashboardUrl       string                     `pulumi:"dashboardUrl"`
+	EnvironmentId      *string                    `pulumi:"environmentId"`
+	Id                 string                     `pulumi:"id"`
+	ImagePath          *string                    `pulumi:"imagePath"`
+	Name               string                     `pulumi:"name"`
+	NotifyOnFail       ServiceNotifyOnFail        `pulumi:"notifyOnFail"`
+	OwnerId            string                     `pulumi:"ownerId"`
+	RegistryCredential *RegistryCredentialSummary `pulumi:"registryCredential"`
+	Repo               *string                    `pulumi:"repo"`
+	RootDir            string                     `pulumi:"rootDir"`
+	ServiceDetails     *CronJobDetailsOutput      `pulumi:"serviceDetails"`
+	Slug               string                     `pulumi:"slug"`
+	Suspended          ServiceSuspended           `pulumi:"suspended"`
+	Suspenders         []ServiceSuspendersItem    `pulumi:"suspenders"`
+	Type               *string                    `pulumi:"type"`
+	UpdatedAt          string                     `pulumi:"updatedAt"`
 }
 
 // Defaults sets the appropriate defaults for LookupCronJobResult
@@ -36,8 +56,15 @@ func (val *LookupCronJobResult) Defaults() *LookupCronJobResult {
 		return nil
 	}
 	tmp := *val
-	tmp.Items = *tmp.Items.Defaults()
+	if internal.IsZero(tmp.AutoDeploy) {
+		tmp.AutoDeploy = ServiceAutoDeploy("yes")
+	}
+	tmp.ServiceDetails = tmp.ServiceDetails.Defaults()
 
+	if tmp.Type == nil {
+		type_ := "cron_job"
+		tmp.Type = &type_
+	}
 	return &tmp
 }
 
@@ -77,8 +104,85 @@ func (o LookupCronJobResultOutput) ToLookupCronJobResultOutputWithContext(ctx co
 	return o
 }
 
-func (o LookupCronJobResultOutput) Items() GetCronJobTypeOutput {
-	return o.ApplyT(func(v LookupCronJobResult) GetCronJobType { return v.Items }).(GetCronJobTypeOutput)
+func (o LookupCronJobResultOutput) AutoDeploy() ServiceAutoDeployOutput {
+	return o.ApplyT(func(v LookupCronJobResult) ServiceAutoDeploy { return v.AutoDeploy }).(ServiceAutoDeployOutput)
+}
+
+func (o LookupCronJobResultOutput) Branch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupCronJobResult) *string { return v.Branch }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupCronJobResultOutput) BuildFilter() BuildFilterPtrOutput {
+	return o.ApplyT(func(v LookupCronJobResult) *BuildFilter { return v.BuildFilter }).(BuildFilterPtrOutput)
+}
+
+func (o LookupCronJobResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCronJobResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The URL to view the service in the Render Dashboard
+func (o LookupCronJobResultOutput) DashboardUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCronJobResult) string { return v.DashboardUrl }).(pulumi.StringOutput)
+}
+
+func (o LookupCronJobResultOutput) EnvironmentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupCronJobResult) *string { return v.EnvironmentId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupCronJobResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCronJobResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupCronJobResultOutput) ImagePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupCronJobResult) *string { return v.ImagePath }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupCronJobResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCronJobResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupCronJobResultOutput) NotifyOnFail() ServiceNotifyOnFailOutput {
+	return o.ApplyT(func(v LookupCronJobResult) ServiceNotifyOnFail { return v.NotifyOnFail }).(ServiceNotifyOnFailOutput)
+}
+
+func (o LookupCronJobResultOutput) OwnerId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCronJobResult) string { return v.OwnerId }).(pulumi.StringOutput)
+}
+
+func (o LookupCronJobResultOutput) RegistryCredential() RegistryCredentialSummaryPtrOutput {
+	return o.ApplyT(func(v LookupCronJobResult) *RegistryCredentialSummary { return v.RegistryCredential }).(RegistryCredentialSummaryPtrOutput)
+}
+
+func (o LookupCronJobResultOutput) Repo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupCronJobResult) *string { return v.Repo }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupCronJobResultOutput) RootDir() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCronJobResult) string { return v.RootDir }).(pulumi.StringOutput)
+}
+
+func (o LookupCronJobResultOutput) ServiceDetails() CronJobDetailsOutputPtrOutput {
+	return o.ApplyT(func(v LookupCronJobResult) *CronJobDetailsOutput { return v.ServiceDetails }).(CronJobDetailsOutputPtrOutput)
+}
+
+func (o LookupCronJobResultOutput) Slug() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCronJobResult) string { return v.Slug }).(pulumi.StringOutput)
+}
+
+func (o LookupCronJobResultOutput) Suspended() ServiceSuspendedOutput {
+	return o.ApplyT(func(v LookupCronJobResult) ServiceSuspended { return v.Suspended }).(ServiceSuspendedOutput)
+}
+
+func (o LookupCronJobResultOutput) Suspenders() ServiceSuspendersItemArrayOutput {
+	return o.ApplyT(func(v LookupCronJobResult) []ServiceSuspendersItem { return v.Suspenders }).(ServiceSuspendersItemArrayOutput)
+}
+
+func (o LookupCronJobResultOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupCronJobResult) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupCronJobResultOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCronJobResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
 func init() {

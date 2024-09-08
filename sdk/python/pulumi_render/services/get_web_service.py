@@ -6,42 +6,216 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
 from .. import _utilities
 from . import outputs
 from ._enums import *
 
 __all__ = [
-    'GetWebServiceResult',
-    'AwaitableGetWebServiceResult',
+    'GetWebService',
+    'AwaitableGetWebService',
     'get_web_service',
     'get_web_service_output',
 ]
 
 @pulumi.output_type
-class GetWebServiceResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class GetWebService:
+    def __init__(__self__, auto_deploy=None, branch=None, build_filter=None, created_at=None, dashboard_url=None, environment_id=None, id=None, image_path=None, name=None, notify_on_fail=None, owner_id=None, registry_credential=None, repo=None, root_dir=None, service_details=None, slug=None, suspended=None, suspenders=None, type=None, updated_at=None):
+        if auto_deploy and not isinstance(auto_deploy, str):
+            raise TypeError("Expected argument 'auto_deploy' to be a str")
+        pulumi.set(__self__, "auto_deploy", auto_deploy)
+        if branch and not isinstance(branch, str):
+            raise TypeError("Expected argument 'branch' to be a str")
+        pulumi.set(__self__, "branch", branch)
+        if build_filter and not isinstance(build_filter, dict):
+            raise TypeError("Expected argument 'build_filter' to be a dict")
+        pulumi.set(__self__, "build_filter", build_filter)
+        if created_at and not isinstance(created_at, str):
+            raise TypeError("Expected argument 'created_at' to be a str")
+        pulumi.set(__self__, "created_at", created_at)
+        if dashboard_url and not isinstance(dashboard_url, str):
+            raise TypeError("Expected argument 'dashboard_url' to be a str")
+        pulumi.set(__self__, "dashboard_url", dashboard_url)
+        if environment_id and not isinstance(environment_id, str):
+            raise TypeError("Expected argument 'environment_id' to be a str")
+        pulumi.set(__self__, "environment_id", environment_id)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if image_path and not isinstance(image_path, str):
+            raise TypeError("Expected argument 'image_path' to be a str")
+        pulumi.set(__self__, "image_path", image_path)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if notify_on_fail and not isinstance(notify_on_fail, str):
+            raise TypeError("Expected argument 'notify_on_fail' to be a str")
+        pulumi.set(__self__, "notify_on_fail", notify_on_fail)
+        if owner_id and not isinstance(owner_id, str):
+            raise TypeError("Expected argument 'owner_id' to be a str")
+        pulumi.set(__self__, "owner_id", owner_id)
+        if registry_credential and not isinstance(registry_credential, dict):
+            raise TypeError("Expected argument 'registry_credential' to be a dict")
+        pulumi.set(__self__, "registry_credential", registry_credential)
+        if repo and not isinstance(repo, str):
+            raise TypeError("Expected argument 'repo' to be a str")
+        pulumi.set(__self__, "repo", repo)
+        if root_dir and not isinstance(root_dir, str):
+            raise TypeError("Expected argument 'root_dir' to be a str")
+        pulumi.set(__self__, "root_dir", root_dir)
+        if service_details and not isinstance(service_details, dict):
+            raise TypeError("Expected argument 'service_details' to be a dict")
+        pulumi.set(__self__, "service_details", service_details)
+        if slug and not isinstance(slug, str):
+            raise TypeError("Expected argument 'slug' to be a str")
+        pulumi.set(__self__, "slug", slug)
+        if suspended and not isinstance(suspended, str):
+            raise TypeError("Expected argument 'suspended' to be a str")
+        pulumi.set(__self__, "suspended", suspended)
+        if suspenders and not isinstance(suspenders, list):
+            raise TypeError("Expected argument 'suspenders' to be a list")
+        pulumi.set(__self__, "suspenders", suspenders)
+        if type and not isinstance(type, str):
+            raise TypeError("Expected argument 'type' to be a str")
+        pulumi.set(__self__, "type", type)
+        if updated_at and not isinstance(updated_at, str):
+            raise TypeError("Expected argument 'updated_at' to be a str")
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @property
+    @pulumi.getter(name="autoDeploy")
+    def auto_deploy(self) -> 'ServiceAutoDeploy':
+        return pulumi.get(self, "auto_deploy")
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.GetWebService':
-        return pulumi.get(self, "items")
+    def branch(self) -> Optional[str]:
+        return pulumi.get(self, "branch")
+
+    @property
+    @pulumi.getter(name="buildFilter")
+    def build_filter(self) -> Optional['outputs.BuildFilter']:
+        return pulumi.get(self, "build_filter")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="dashboardUrl")
+    def dashboard_url(self) -> str:
+        """
+        The URL to view the service in the Render Dashboard
+        """
+        return pulumi.get(self, "dashboard_url")
+
+    @property
+    @pulumi.getter(name="environmentId")
+    def environment_id(self) -> Optional[str]:
+        return pulumi.get(self, "environment_id")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="imagePath")
+    def image_path(self) -> Optional[str]:
+        return pulumi.get(self, "image_path")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="notifyOnFail")
+    def notify_on_fail(self) -> 'ServiceNotifyOnFail':
+        return pulumi.get(self, "notify_on_fail")
+
+    @property
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> str:
+        return pulumi.get(self, "owner_id")
+
+    @property
+    @pulumi.getter(name="registryCredential")
+    def registry_credential(self) -> Optional['outputs.RegistryCredentialSummary']:
+        return pulumi.get(self, "registry_credential")
+
+    @property
+    @pulumi.getter
+    def repo(self) -> Optional[str]:
+        return pulumi.get(self, "repo")
+
+    @property
+    @pulumi.getter(name="rootDir")
+    def root_dir(self) -> str:
+        return pulumi.get(self, "root_dir")
+
+    @property
+    @pulumi.getter(name="serviceDetails")
+    def service_details(self) -> Optional['outputs.WebServiceDetailsOutput']:
+        return pulumi.get(self, "service_details")
+
+    @property
+    @pulumi.getter
+    def slug(self) -> str:
+        return pulumi.get(self, "slug")
+
+    @property
+    @pulumi.getter
+    def suspended(self) -> 'ServiceSuspended':
+        return pulumi.get(self, "suspended")
+
+    @property
+    @pulumi.getter
+    def suspenders(self) -> Sequence['ServiceSuspendersItem']:
+        return pulumi.get(self, "suspenders")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        return pulumi.get(self, "updated_at")
 
 
-class AwaitableGetWebServiceResult(GetWebServiceResult):
+class AwaitableGetWebService(GetWebService):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetWebServiceResult(
-            items=self.items)
+        return GetWebService(
+            auto_deploy=self.auto_deploy,
+            branch=self.branch,
+            build_filter=self.build_filter,
+            created_at=self.created_at,
+            dashboard_url=self.dashboard_url,
+            environment_id=self.environment_id,
+            id=self.id,
+            image_path=self.image_path,
+            name=self.name,
+            notify_on_fail=self.notify_on_fail,
+            owner_id=self.owner_id,
+            registry_credential=self.registry_credential,
+            repo=self.repo,
+            root_dir=self.root_dir,
+            service_details=self.service_details,
+            slug=self.slug,
+            suspended=self.suspended,
+            suspenders=self.suspenders,
+            type=self.type,
+            updated_at=self.updated_at)
 
 
 def get_web_service(service_id: Optional[str] = None,
-                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetWebServiceResult:
+                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetWebService:
     """
     Use this data source to access information about an existing resource.
 
@@ -50,15 +224,34 @@ def get_web_service(service_id: Optional[str] = None,
     __args__ = dict()
     __args__['serviceId'] = service_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('render:services:getWebService', __args__, opts=opts, typ=GetWebServiceResult).value
+    __ret__ = pulumi.runtime.invoke('render:services:getWebService', __args__, opts=opts, typ=GetWebService).value
 
-    return AwaitableGetWebServiceResult(
-        items=pulumi.get(__ret__, 'items'))
+    return AwaitableGetWebService(
+        auto_deploy=pulumi.get(__ret__, 'auto_deploy'),
+        branch=pulumi.get(__ret__, 'branch'),
+        build_filter=pulumi.get(__ret__, 'build_filter'),
+        created_at=pulumi.get(__ret__, 'created_at'),
+        dashboard_url=pulumi.get(__ret__, 'dashboard_url'),
+        environment_id=pulumi.get(__ret__, 'environment_id'),
+        id=pulumi.get(__ret__, 'id'),
+        image_path=pulumi.get(__ret__, 'image_path'),
+        name=pulumi.get(__ret__, 'name'),
+        notify_on_fail=pulumi.get(__ret__, 'notify_on_fail'),
+        owner_id=pulumi.get(__ret__, 'owner_id'),
+        registry_credential=pulumi.get(__ret__, 'registry_credential'),
+        repo=pulumi.get(__ret__, 'repo'),
+        root_dir=pulumi.get(__ret__, 'root_dir'),
+        service_details=pulumi.get(__ret__, 'service_details'),
+        slug=pulumi.get(__ret__, 'slug'),
+        suspended=pulumi.get(__ret__, 'suspended'),
+        suspenders=pulumi.get(__ret__, 'suspenders'),
+        type=pulumi.get(__ret__, 'type'),
+        updated_at=pulumi.get(__ret__, 'updated_at'))
 
 
 @_utilities.lift_output_func(get_web_service)
 def get_web_service_output(service_id: Optional[pulumi.Input[str]] = None,
-                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetWebServiceResult]:
+                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetWebService]:
     """
     Use this data source to access information about an existing resource.
 

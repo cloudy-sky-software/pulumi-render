@@ -10,17 +10,17 @@ export type FailoverPostgres = import("./failoverPostgres").FailoverPostgres;
 export const FailoverPostgres: typeof import("./failoverPostgres").FailoverPostgres = null as any;
 utilities.lazyLoad(exports, ["FailoverPostgres"], () => require("./failoverPostgres"));
 
-export { GetPostgresArgs, GetPostgresResult, GetPostgresOutputArgs } from "./getPostgres";
+export { GetPostgresArgs, GetPostgresOutputArgs } from "./getPostgres";
 export const getPostgres: typeof import("./getPostgres").getPostgres = null as any;
 export const getPostgresOutput: typeof import("./getPostgres").getPostgresOutput = null as any;
 utilities.lazyLoad(exports, ["getPostgres","getPostgresOutput"], () => require("./getPostgres"));
 
-export { GetPostgresConnectionInfoArgs, GetPostgresConnectionInfoResult, GetPostgresConnectionInfoOutputArgs } from "./getPostgresConnectionInfo";
+export { GetPostgresConnectionInfoArgs, GetPostgresConnectionInfoOutputArgs } from "./getPostgresConnectionInfo";
 export const getPostgresConnectionInfo: typeof import("./getPostgresConnectionInfo").getPostgresConnectionInfo = null as any;
 export const getPostgresConnectionInfoOutput: typeof import("./getPostgresConnectionInfo").getPostgresConnectionInfoOutput = null as any;
 utilities.lazyLoad(exports, ["getPostgresConnectionInfo","getPostgresConnectionInfoOutput"], () => require("./getPostgresConnectionInfo"));
 
-export { GetPostgresRecoveryInfoArgs, GetPostgresRecoveryInfoResult, GetPostgresRecoveryInfoOutputArgs } from "./getPostgresRecoveryInfo";
+export { GetPostgresRecoveryInfoArgs, GetPostgresRecoveryInfoOutputArgs } from "./getPostgresRecoveryInfo";
 export const getPostgresRecoveryInfo: typeof import("./getPostgresRecoveryInfo").getPostgresRecoveryInfo = null as any;
 export const getPostgresRecoveryInfoOutput: typeof import("./getPostgresRecoveryInfo").getPostgresRecoveryInfoOutput = null as any;
 utilities.lazyLoad(exports, ["getPostgresRecoveryInfo","getPostgresRecoveryInfoOutput"], () => require("./getPostgresRecoveryInfo"));

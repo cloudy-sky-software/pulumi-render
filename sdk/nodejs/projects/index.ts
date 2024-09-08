@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export { GetProjectArgs, GetProjectResult, GetProjectOutputArgs } from "./getProject";
+export { GetProjectArgs, GetProjectOutputArgs } from "./getProject";
 export const getProject: typeof import("./getProject").getProject = null as any;
 export const getProjectOutput: typeof import("./getProject").getProjectOutput = null as any;
 utilities.lazyLoad(exports, ["getProject","getProjectOutput"], () => require("./getProject"));

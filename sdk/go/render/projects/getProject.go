@@ -25,8 +25,17 @@ type LookupProjectArgs struct {
 	ProjectId string `pulumi:"projectId"`
 }
 
+// A project is a collection of environments
 type LookupProjectResult struct {
-	Items ProjectType `pulumi:"items"`
+	CreatedAt string `pulumi:"createdAt"`
+	// The environments associated with the project
+	EnvironmentIds []string `pulumi:"environmentIds"`
+	// The ID of the project
+	Id string `pulumi:"id"`
+	// The name of the project
+	Name      string `pulumi:"name"`
+	Owner     Owner  `pulumi:"owner"`
+	UpdatedAt string `pulumi:"updatedAt"`
 }
 
 func LookupProjectOutput(ctx *pulumi.Context, args LookupProjectOutputArgs, opts ...pulumi.InvokeOption) LookupProjectResultOutput {
@@ -50,6 +59,7 @@ func (LookupProjectOutputArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*LookupProjectArgs)(nil)).Elem()
 }
 
+// A project is a collection of environments
 type LookupProjectResultOutput struct{ *pulumi.OutputState }
 
 func (LookupProjectResultOutput) ElementType() reflect.Type {
@@ -64,8 +74,31 @@ func (o LookupProjectResultOutput) ToLookupProjectResultOutputWithContext(ctx co
 	return o
 }
 
-func (o LookupProjectResultOutput) Items() ProjectTypeOutput {
-	return o.ApplyT(func(v LookupProjectResult) ProjectType { return v.Items }).(ProjectTypeOutput)
+func (o LookupProjectResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupProjectResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The environments associated with the project
+func (o LookupProjectResultOutput) EnvironmentIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupProjectResult) []string { return v.EnvironmentIds }).(pulumi.StringArrayOutput)
+}
+
+// The ID of the project
+func (o LookupProjectResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupProjectResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The name of the project
+func (o LookupProjectResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupProjectResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupProjectResultOutput) Owner() OwnerOutput {
+	return o.ApplyT(func(v LookupProjectResult) Owner { return v.Owner }).(OwnerOutput)
+}
+
+func (o LookupProjectResultOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupProjectResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
 func init() {

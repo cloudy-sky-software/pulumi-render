@@ -11,11 +11,11 @@ namespace Pulumi.Render.Environments
 {
     public static class GetEnvironment
     {
-        public static Task<GetEnvironmentResult> InvokeAsync(GetEnvironmentArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetEnvironmentResult>("render:environments:getEnvironment", args ?? new GetEnvironmentArgs(), options.WithDefaults());
+        public static Task<Outputs.Environment> InvokeAsync(GetEnvironmentArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<Outputs.Environment>("render:environments:getEnvironment", args ?? new GetEnvironmentArgs(), options.WithDefaults());
 
-        public static Output<GetEnvironmentResult> Invoke(GetEnvironmentInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetEnvironmentResult>("render:environments:getEnvironment", args ?? new GetEnvironmentInvokeArgs(), options.WithDefaults());
+        public static Output<Outputs.Environment> Invoke(GetEnvironmentInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.Environment>("render:environments:getEnvironment", args ?? new GetEnvironmentInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -39,18 +39,5 @@ namespace Pulumi.Render.Environments
         {
         }
         public static new GetEnvironmentInvokeArgs Empty => new GetEnvironmentInvokeArgs();
-    }
-
-
-    [OutputType]
-    public sealed class GetEnvironmentResult
-    {
-        public readonly Outputs.Environment Items;
-
-        [OutputConstructor]
-        private GetEnvironmentResult(Outputs.Environment items)
-        {
-            Items = items;
-        }
     }
 }

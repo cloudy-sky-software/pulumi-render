@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function getEnvGroupSecretFile(args: GetEnvGroupSecretFileArgs, opts?: pulumi.InvokeOptions): Promise<GetEnvGroupSecretFileResult> {
+export function getEnvGroupSecretFile(args: GetEnvGroupSecretFileArgs, opts?: pulumi.InvokeOptions): Promise<outputs.envgroups.SecretFile> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:env-groups:getEnvGroupSecretFile", {
@@ -26,11 +26,7 @@ export interface GetEnvGroupSecretFileArgs {
      */
     secretFileName: string;
 }
-
-export interface GetEnvGroupSecretFileResult {
-    readonly items: outputs.envgroups.SecretFile;
-}
-export function getEnvGroupSecretFileOutput(args: GetEnvGroupSecretFileOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEnvGroupSecretFileResult> {
+export function getEnvGroupSecretFileOutput(args: GetEnvGroupSecretFileOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.envgroups.SecretFile> {
     return pulumi.output(args).apply((a: any) => getEnvGroupSecretFile(a, opts))
 }
 

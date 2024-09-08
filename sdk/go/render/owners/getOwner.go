@@ -27,7 +27,12 @@ type GetOwnerArgs struct {
 }
 
 type GetOwnerResult struct {
-	Items Owner `pulumi:"items"`
+	Email string `pulumi:"email"`
+	Id    string `pulumi:"id"`
+	Name  string `pulumi:"name"`
+	// Whether two-factor authentication is enabled for the owner. Only present for user owners.
+	TwoFactorAuthEnabled *bool     `pulumi:"twoFactorAuthEnabled"`
+	Type                 OwnerType `pulumi:"type"`
 }
 
 func GetOwnerOutput(ctx *pulumi.Context, args GetOwnerOutputArgs, opts ...pulumi.InvokeOption) GetOwnerResultOutput {
@@ -66,8 +71,95 @@ func (o GetOwnerResultOutput) ToGetOwnerResultOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o GetOwnerResultOutput) Items() OwnerOutput {
-	return o.ApplyT(func(v GetOwnerResult) Owner { return v.Items }).(OwnerOutput)
+func (o GetOwnerResultOutput) Email() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOwnerResult) string { return v.Email }).(pulumi.StringOutput)
+}
+
+func (o GetOwnerResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOwnerResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetOwnerResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOwnerResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Whether two-factor authentication is enabled for the owner. Only present for user owners.
+func (o GetOwnerResultOutput) TwoFactorAuthEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetOwnerResult) *bool { return v.TwoFactorAuthEnabled }).(pulumi.BoolPtrOutput)
+}
+
+func (o GetOwnerResultOutput) Type() OwnerTypeOutput {
+	return o.ApplyT(func(v GetOwnerResult) OwnerType { return v.Type }).(OwnerTypeOutput)
+}
+
+type GetOwnerResultPtrOutput struct{ *pulumi.OutputState }
+
+func (GetOwnerResultPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetOwnerResult)(nil)).Elem()
+}
+
+func (o GetOwnerResultPtrOutput) ToGetOwnerResultPtrOutput() GetOwnerResultPtrOutput {
+	return o
+}
+
+func (o GetOwnerResultPtrOutput) ToGetOwnerResultPtrOutputWithContext(ctx context.Context) GetOwnerResultPtrOutput {
+	return o
+}
+
+func (o GetOwnerResultPtrOutput) Elem() GetOwnerResultOutput {
+	return o.ApplyT(func(v *GetOwnerResult) GetOwnerResult {
+		if v != nil {
+			return *v
+		}
+		var ret GetOwnerResult
+		return ret
+	}).(GetOwnerResultOutput)
+}
+
+func (o GetOwnerResultPtrOutput) Email() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetOwnerResult) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Email
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o GetOwnerResultPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetOwnerResult) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o GetOwnerResultPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetOwnerResult) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+// Whether two-factor authentication is enabled for the owner. Only present for user owners.
+func (o GetOwnerResultPtrOutput) TwoFactorAuthEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GetOwnerResult) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.TwoFactorAuthEnabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o GetOwnerResultPtrOutput) Type() OwnerTypePtrOutput {
+	return o.ApplyT(func(v *GetOwnerResult) *OwnerType {
+		if v == nil {
+			return nil
+		}
+		return &v.Type
+	}).(OwnerTypePtrOutput)
 }
 
 func init() {

@@ -4,12 +4,12 @@
 import * as utilities from "../utilities";
 
 // Export members:
-export { GetOwnerNotificationSettingArgs, GetOwnerNotificationSettingResult, GetOwnerNotificationSettingOutputArgs } from "./getOwnerNotificationSetting";
+export { GetOwnerNotificationSettingArgs, GetOwnerNotificationSettingOutputArgs } from "./getOwnerNotificationSetting";
 export const getOwnerNotificationSetting: typeof import("./getOwnerNotificationSetting").getOwnerNotificationSetting = null as any;
 export const getOwnerNotificationSettingOutput: typeof import("./getOwnerNotificationSetting").getOwnerNotificationSettingOutput = null as any;
 utilities.lazyLoad(exports, ["getOwnerNotificationSetting","getOwnerNotificationSettingOutput"], () => require("./getOwnerNotificationSetting"));
 
-export { GetServiceNotificationOverrideArgs, GetServiceNotificationOverrideResult, GetServiceNotificationOverrideOutputArgs } from "./getServiceNotificationOverride";
+export { GetServiceNotificationOverrideArgs, GetServiceNotificationOverrideOutputArgs } from "./getServiceNotificationOverride";
 export const getServiceNotificationOverride: typeof import("./getServiceNotificationOverride").getServiceNotificationOverride = null as any;
 export const getServiceNotificationOverrideOutput: typeof import("./getServiceNotificationOverride").getServiceNotificationOverrideOutput = null as any;
 utilities.lazyLoad(exports, ["getServiceNotificationOverride","getServiceNotificationOverrideOutput"], () => require("./getServiceNotificationOverride"));

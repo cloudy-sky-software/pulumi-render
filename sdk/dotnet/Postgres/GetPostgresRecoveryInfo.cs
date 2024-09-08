@@ -11,11 +11,11 @@ namespace Pulumi.Render.Postgres
 {
     public static class GetPostgresRecoveryInfo
     {
-        public static Task<GetPostgresRecoveryInfoResult> InvokeAsync(GetPostgresRecoveryInfoArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetPostgresRecoveryInfoResult>("render:postgres:getPostgresRecoveryInfo", args ?? new GetPostgresRecoveryInfoArgs(), options.WithDefaults());
+        public static Task<Outputs.GetPostgresRecoveryInfoProperties> InvokeAsync(GetPostgresRecoveryInfoArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<Outputs.GetPostgresRecoveryInfoProperties>("render:postgres:getPostgresRecoveryInfo", args ?? new GetPostgresRecoveryInfoArgs(), options.WithDefaults());
 
-        public static Output<GetPostgresRecoveryInfoResult> Invoke(GetPostgresRecoveryInfoInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetPostgresRecoveryInfoResult>("render:postgres:getPostgresRecoveryInfo", args ?? new GetPostgresRecoveryInfoInvokeArgs(), options.WithDefaults());
+        public static Output<Outputs.GetPostgresRecoveryInfoProperties> Invoke(GetPostgresRecoveryInfoInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetPostgresRecoveryInfoProperties>("render:postgres:getPostgresRecoveryInfo", args ?? new GetPostgresRecoveryInfoInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -39,18 +39,5 @@ namespace Pulumi.Render.Postgres
         {
         }
         public static new GetPostgresRecoveryInfoInvokeArgs Empty => new GetPostgresRecoveryInfoInvokeArgs();
-    }
-
-
-    [OutputType]
-    public sealed class GetPostgresRecoveryInfoResult
-    {
-        public readonly Outputs.GetPostgresRecoveryInfoProperties Items;
-
-        [OutputConstructor]
-        private GetPostgresRecoveryInfoResult(Outputs.GetPostgresRecoveryInfoProperties items)
-        {
-            Items = items;
-        }
     }
 }

@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function getOwnerNotificationSetting(args: GetOwnerNotificationSettingArgs, opts?: pulumi.InvokeOptions): Promise<GetOwnerNotificationSettingResult> {
+export function getOwnerNotificationSetting(args: GetOwnerNotificationSettingArgs, opts?: pulumi.InvokeOptions): Promise<outputs.notificationsettings.GetOwnerNotificationSettingProperties> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:notification-settings:getOwnerNotificationSetting", {
@@ -21,11 +21,7 @@ export interface GetOwnerNotificationSettingArgs {
      */
     ownerId: string;
 }
-
-export interface GetOwnerNotificationSettingResult {
-    readonly items: outputs.notificationsettings.GetOwnerNotificationSettingProperties;
-}
-export function getOwnerNotificationSettingOutput(args: GetOwnerNotificationSettingOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOwnerNotificationSettingResult> {
+export function getOwnerNotificationSettingOutput(args: GetOwnerNotificationSettingOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.notificationsettings.GetOwnerNotificationSettingProperties> {
     return pulumi.output(args).apply((a: any) => getOwnerNotificationSetting(a, opts))
 }
 

@@ -9422,14 +9422,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/render:blueprints:GetBlueprintProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/render:blueprints:GetBlueprintProperties"
             }
         },
         "render:blueprints:listBlueprintSyncs": {
@@ -9447,10 +9440,10 @@
             "outputs": {
                 "properties": {
                     "items": {
-                        "type": "array",
                         "items": {
                             "$ref": "#/types/render:blueprints:SyncWithCursor"
-                        }
+                        },
+                        "type": "array"
                     }
                 },
                 "required": [
@@ -9463,10 +9456,10 @@
             "outputs": {
                 "properties": {
                     "items": {
-                        "type": "array",
                         "items": {
                             "$ref": "#/types/render:blueprints:BlueprintWithCursor"
-                        }
+                        },
+                        "type": "array"
                     }
                 },
                 "required": [
@@ -9487,14 +9480,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/render:disks:DiskWithCursorpropertiesdisk"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/render:disks:DiskWithCursorpropertiesdisk"
             }
         },
         "render:disks:listDisks": {
@@ -9502,10 +9488,10 @@
             "outputs": {
                 "properties": {
                     "items": {
-                        "type": "array",
                         "items": {
                             "$ref": "#/types/render:disks:DiskWithCursor"
-                        }
+                        },
+                        "type": "array"
                     }
                 },
                 "required": [
@@ -9526,14 +9512,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/render:env-groups:EnvGroup"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/render:env-groups:EnvGroup"
             }
         },
         "render:env-groups:getEnvGroupEnvVar": {
@@ -9554,14 +9533,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/render:env-groups:EnvVar"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/render:env-groups:EnvVar"
             }
         },
         "render:env-groups:getEnvGroupSecretFile": {
@@ -9582,14 +9554,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/render:env-groups:SecretFile"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/render:env-groups:SecretFile"
             }
         },
         "render:env-groups:listEnvGroups": {
@@ -9597,10 +9562,10 @@
             "outputs": {
                 "properties": {
                     "items": {
-                        "type": "array",
                         "items": {
                             "$ref": "#/types/render:env-groups:EnvGroupMeta"
-                        }
+                        },
+                        "type": "array"
                     }
                 },
                 "required": [
@@ -9620,14 +9585,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/render:environments:Environment"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/render:environments:Environment"
             }
         },
         "render:environments:listEnvironments": {
@@ -9635,10 +9593,10 @@
             "outputs": {
                 "properties": {
                     "items": {
-                        "type": "array",
                         "items": {
                             "$ref": "#/types/render:environments:EnvironmentWithCursor"
-                        }
+                        },
+                        "type": "array"
                     }
                 },
                 "required": [
@@ -9651,10 +9609,10 @@
             "outputs": {
                 "properties": {
                     "items": {
-                        "type": "array",
                         "items": {
                             "$ref": "#/types/render:metrics:ListActiveConnectionsItemProperties"
-                        }
+                        },
+                        "type": "array"
                     }
                 },
                 "required": [
@@ -9667,10 +9625,10 @@
             "outputs": {
                 "properties": {
                     "items": {
-                        "type": "array",
                         "items": {
                             "$ref": "#/types/render:metrics:ListReplicationLagItemProperties"
-                        }
+                        },
+                        "type": "array"
                     }
                 },
                 "required": [
@@ -9691,14 +9649,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/render:notification-settings:GetOwnerNotificationSettingProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/render:notification-settings:GetOwnerNotificationSettingProperties"
             }
         },
         "render:notification-settings:getServiceNotificationOverride": {
@@ -9714,14 +9665,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/render:notification-settings:GetServiceNotificationOverrideProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/render:notification-settings:GetServiceNotificationOverrideProperties"
             }
         },
         "render:notification-settings:listNotificationOverrides": {
@@ -9729,10 +9673,10 @@
             "outputs": {
                 "properties": {
                     "items": {
-                        "type": "array",
                         "items": {
                             "$ref": "#/types/render:notification-settings:NotificationOverrideWithCursor"
-                        }
+                        },
+                        "type": "array"
                     }
                 },
                 "required": [
@@ -9753,14 +9697,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/render:owners:Owner"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/render:owners:Owner"
             }
         },
         "render:owners:listOwners": {
@@ -9768,10 +9705,10 @@
             "outputs": {
                 "properties": {
                     "items": {
-                        "type": "array",
                         "items": {
                             "$ref": "#/types/render:owners:ListOwnersItemProperties"
-                        }
+                        },
+                        "type": "array"
                     }
                 },
                 "required": [
@@ -9791,14 +9728,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/render:postgres:PostgresDetail"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/render:postgres:PostgresDetail"
             }
         },
         "render:postgres:getPostgresConnectionInfo": {
@@ -9813,14 +9743,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/render:postgres:PostgresConnectionInfo"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/render:postgres:PostgresConnectionInfo"
             }
         },
         "render:postgres:getPostgresRecoveryInfo": {
@@ -9835,14 +9758,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/render:postgres:GetPostgresRecoveryInfoProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/render:postgres:GetPostgresRecoveryInfoProperties"
             }
         },
         "render:postgres:listPostgres": {
@@ -9850,10 +9766,10 @@
             "outputs": {
                 "properties": {
                     "items": {
-                        "type": "array",
                         "items": {
                             "$ref": "#/types/render:postgres:ListPostgresItemProperties"
-                        }
+                        },
+                        "type": "array"
                     }
                 },
                 "required": [
@@ -9875,10 +9791,10 @@
             "outputs": {
                 "properties": {
                     "items": {
-                        "type": "array",
                         "items": {
                             "$ref": "#/types/render:postgres:ListPostgresBackupItemProperties"
-                        }
+                        },
+                        "type": "array"
                     }
                 },
                 "required": [
@@ -9898,14 +9814,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/render:projects:Project"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/render:projects:Project"
             }
         },
         "render:projects:listProjects": {
@@ -9913,10 +9822,10 @@
             "outputs": {
                 "properties": {
                     "items": {
-                        "type": "array",
                         "items": {
                             "$ref": "#/types/render:projects:ProjectWithCursor"
-                        }
+                        },
+                        "type": "array"
                     }
                 },
                 "required": [
@@ -9936,14 +9845,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/render:redis:RedisDetail"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/render:redis:RedisDetail"
             }
         },
         "render:redis:getRedisConnectionInfo": {
@@ -9958,14 +9860,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/render:redis:RedisConnectionInfo"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/render:redis:RedisConnectionInfo"
             }
         },
         "render:redis:listRedis": {
@@ -9973,10 +9868,10 @@
             "outputs": {
                 "properties": {
                     "items": {
-                        "type": "array",
                         "items": {
                             "$ref": "#/types/render:redis:ListRedisItemProperties"
-                        }
+                        },
+                        "type": "array"
                     }
                 },
                 "required": [
@@ -9997,14 +9892,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/render:registrycredentials:RegistryCredential"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/render:registrycredentials:RegistryCredential"
             }
         },
         "render:registrycredentials:listRegistryCredentials": {
@@ -10012,10 +9900,10 @@
             "outputs": {
                 "properties": {
                     "items": {
-                        "type": "array",
                         "items": {
                             "$ref": "#/types/render:registrycredentials:RegistryCredential"
-                        }
+                        },
+                        "type": "array"
                     }
                 },
                 "required": [
@@ -10036,14 +9924,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/render:services:GetBackgroundWorker"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/render:services:GetBackgroundWorker"
             }
         },
         "render:services:getCronJob": {
@@ -10059,14 +9940,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/render:services:GetCronJob"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/render:services:GetCronJob"
             }
         },
         "render:services:getCustomDomain": {
@@ -10087,14 +9961,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/render:services:CustomDomain"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/render:services:CustomDomain"
             }
         },
         "render:services:getDeploy": {
@@ -10115,14 +9982,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/render:services:Deploy"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/render:services:Deploy"
             }
         },
         "render:services:getEnvVar": {
@@ -10143,14 +10003,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/render:services:EnvVar"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/render:services:EnvVar"
             }
         },
         "render:services:getJob": {
@@ -10171,14 +10024,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/render:services:Job"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/render:services:Job"
             }
         },
         "render:services:getPrivateService": {
@@ -10194,14 +10040,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/render:services:GetPrivateService"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/render:services:GetPrivateService"
             }
         },
         "render:services:getSecretFile": {
@@ -10222,14 +10061,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/render:services:SecretFile"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/render:services:SecretFile"
             }
         },
         "render:services:getStaticSite": {
@@ -10245,14 +10077,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/render:services:GetStaticSite"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/render:services:GetStaticSite"
             }
         },
         "render:services:getWebService": {
@@ -10268,14 +10093,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/render:services:GetWebService"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/render:services:GetWebService"
             }
         },
         "render:services:listCustomDomains": {
@@ -10293,10 +10111,10 @@
             "outputs": {
                 "properties": {
                     "items": {
-                        "type": "array",
                         "items": {
                             "$ref": "#/types/render:services:CustomDomainWithCursor"
-                        }
+                        },
+                        "type": "array"
                     }
                 },
                 "required": [
@@ -10319,10 +10137,10 @@
             "outputs": {
                 "properties": {
                     "items": {
-                        "type": "array",
                         "items": {
                             "$ref": "#/types/render:services:ListDeploysItemProperties"
-                        }
+                        },
+                        "type": "array"
                     }
                 },
                 "required": [
@@ -10345,10 +10163,10 @@
             "outputs": {
                 "properties": {
                     "items": {
-                        "type": "array",
                         "items": {
                             "$ref": "#/types/render:services:EnvVarWithCursor"
-                        }
+                        },
+                        "type": "array"
                     }
                 },
                 "required": [
@@ -10371,10 +10189,10 @@
             "outputs": {
                 "properties": {
                     "items": {
-                        "type": "array",
                         "items": {
                             "$ref": "#/types/render:services:HeaderWithCursor"
-                        }
+                        },
+                        "type": "array"
                     }
                 },
                 "required": [
@@ -10397,10 +10215,10 @@
             "outputs": {
                 "properties": {
                     "items": {
-                        "type": "array",
                         "items": {
                             "$ref": "#/types/render:services:ListJobItemProperties"
-                        }
+                        },
+                        "type": "array"
                     }
                 },
                 "required": [
@@ -10423,10 +10241,10 @@
             "outputs": {
                 "properties": {
                     "items": {
-                        "type": "array",
                         "items": {
                             "$ref": "#/types/render:services:RouteWithCursor"
-                        }
+                        },
+                        "type": "array"
                     }
                 },
                 "required": [
@@ -10449,10 +10267,10 @@
             "outputs": {
                 "properties": {
                     "items": {
-                        "type": "array",
                         "items": {
                             "$ref": "#/types/render:services:SecretFileWithCursor"
-                        }
+                        },
+                        "type": "array"
                     }
                 },
                 "required": [
@@ -10465,10 +10283,10 @@
             "outputs": {
                 "properties": {
                     "items": {
-                        "type": "array",
                         "items": {
                             "$ref": "#/types/render:services:ListServicesResponse"
-                        }
+                        },
+                        "type": "array"
                     }
                 },
                 "required": [

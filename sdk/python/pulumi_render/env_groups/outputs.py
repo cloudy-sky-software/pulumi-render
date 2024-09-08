@@ -12,87 +12,11 @@ from . import outputs
 from ._enums import *
 
 __all__ = [
-    'EnvGroup',
     'EnvGroupMeta',
     'EnvVar',
     'SecretFile',
     'ServiceLink',
 ]
-
-@pulumi.output_type
-class EnvGroup(dict):
-    def __init__(__self__, *,
-                 created_at: str,
-                 env_vars: Sequence['outputs.EnvVar'],
-                 id: str,
-                 name: str,
-                 owner_id: str,
-                 secret_files: Sequence['outputs.SecretFile'],
-                 service_links: Sequence['outputs.ServiceLink'],
-                 updated_at: str,
-                 environment_id: Optional[str] = None):
-        """
-        :param Sequence['ServiceLink'] service_links: List of serviceIds linked to the envGroup
-        """
-        pulumi.set(__self__, "created_at", created_at)
-        pulumi.set(__self__, "env_vars", env_vars)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "owner_id", owner_id)
-        pulumi.set(__self__, "secret_files", secret_files)
-        pulumi.set(__self__, "service_links", service_links)
-        pulumi.set(__self__, "updated_at", updated_at)
-        if environment_id is not None:
-            pulumi.set(__self__, "environment_id", environment_id)
-
-    @property
-    @pulumi.getter(name="createdAt")
-    def created_at(self) -> str:
-        return pulumi.get(self, "created_at")
-
-    @property
-    @pulumi.getter(name="envVars")
-    def env_vars(self) -> Sequence['outputs.EnvVar']:
-        return pulumi.get(self, "env_vars")
-
-    @property
-    @pulumi.getter
-    def id(self) -> str:
-        return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter(name="ownerId")
-    def owner_id(self) -> str:
-        return pulumi.get(self, "owner_id")
-
-    @property
-    @pulumi.getter(name="secretFiles")
-    def secret_files(self) -> Sequence['outputs.SecretFile']:
-        return pulumi.get(self, "secret_files")
-
-    @property
-    @pulumi.getter(name="serviceLinks")
-    def service_links(self) -> Sequence['outputs.ServiceLink']:
-        """
-        List of serviceIds linked to the envGroup
-        """
-        return pulumi.get(self, "service_links")
-
-    @property
-    @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> str:
-        return pulumi.get(self, "updated_at")
-
-    @property
-    @pulumi.getter(name="environmentId")
-    def environment_id(self) -> Optional[str]:
-        return pulumi.get(self, "environment_id")
-
 
 @pulumi.output_type
 class EnvGroupMeta(dict):

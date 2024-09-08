@@ -6,42 +6,77 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
 from .. import _utilities
-from . import outputs
 from ._enums import *
 
 __all__ = [
-    'GetOwnerNotificationSettingResult',
-    'AwaitableGetOwnerNotificationSettingResult',
+    'GetOwnerNotificationSettingProperties',
+    'AwaitableGetOwnerNotificationSettingProperties',
     'get_owner_notification_setting',
     'get_owner_notification_setting_output',
 ]
 
 @pulumi.output_type
-class GetOwnerNotificationSettingResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class GetOwnerNotificationSettingProperties:
+    def __init__(__self__, email_enabled=None, notifications_to_send=None, owner_id=None, preview_notifications_enabled=None, slack_enabled=None):
+        if email_enabled and not isinstance(email_enabled, bool):
+            raise TypeError("Expected argument 'email_enabled' to be a bool")
+        pulumi.set(__self__, "email_enabled", email_enabled)
+        if notifications_to_send and not isinstance(notifications_to_send, str):
+            raise TypeError("Expected argument 'notifications_to_send' to be a str")
+        pulumi.set(__self__, "notifications_to_send", notifications_to_send)
+        if owner_id and not isinstance(owner_id, str):
+            raise TypeError("Expected argument 'owner_id' to be a str")
+        pulumi.set(__self__, "owner_id", owner_id)
+        if preview_notifications_enabled and not isinstance(preview_notifications_enabled, bool):
+            raise TypeError("Expected argument 'preview_notifications_enabled' to be a bool")
+        pulumi.set(__self__, "preview_notifications_enabled", preview_notifications_enabled)
+        if slack_enabled and not isinstance(slack_enabled, bool):
+            raise TypeError("Expected argument 'slack_enabled' to be a bool")
+        pulumi.set(__self__, "slack_enabled", slack_enabled)
 
     @property
-    @pulumi.getter
-    def items(self) -> 'outputs.GetOwnerNotificationSettingProperties':
-        return pulumi.get(self, "items")
+    @pulumi.getter(name="emailEnabled")
+    def email_enabled(self) -> bool:
+        return pulumi.get(self, "email_enabled")
+
+    @property
+    @pulumi.getter(name="notificationsToSend")
+    def notifications_to_send(self) -> 'GetOwnerNotificationSettingPropertiesNotificationsToSend':
+        return pulumi.get(self, "notifications_to_send")
+
+    @property
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> str:
+        return pulumi.get(self, "owner_id")
+
+    @property
+    @pulumi.getter(name="previewNotificationsEnabled")
+    def preview_notifications_enabled(self) -> bool:
+        return pulumi.get(self, "preview_notifications_enabled")
+
+    @property
+    @pulumi.getter(name="slackEnabled")
+    def slack_enabled(self) -> bool:
+        return pulumi.get(self, "slack_enabled")
 
 
-class AwaitableGetOwnerNotificationSettingResult(GetOwnerNotificationSettingResult):
+class AwaitableGetOwnerNotificationSettingProperties(GetOwnerNotificationSettingProperties):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetOwnerNotificationSettingResult(
-            items=self.items)
+        return GetOwnerNotificationSettingProperties(
+            email_enabled=self.email_enabled,
+            notifications_to_send=self.notifications_to_send,
+            owner_id=self.owner_id,
+            preview_notifications_enabled=self.preview_notifications_enabled,
+            slack_enabled=self.slack_enabled)
 
 
 def get_owner_notification_setting(owner_id: Optional[str] = None,
-                                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOwnerNotificationSettingResult:
+                                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOwnerNotificationSettingProperties:
     """
     Use this data source to access information about an existing resource.
 
@@ -50,15 +85,19 @@ def get_owner_notification_setting(owner_id: Optional[str] = None,
     __args__ = dict()
     __args__['ownerId'] = owner_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('render:notification-settings:getOwnerNotificationSetting', __args__, opts=opts, typ=GetOwnerNotificationSettingResult).value
+    __ret__ = pulumi.runtime.invoke('render:notification-settings:getOwnerNotificationSetting', __args__, opts=opts, typ=GetOwnerNotificationSettingProperties).value
 
-    return AwaitableGetOwnerNotificationSettingResult(
-        items=pulumi.get(__ret__, 'items'))
+    return AwaitableGetOwnerNotificationSettingProperties(
+        email_enabled=pulumi.get(__ret__, 'email_enabled'),
+        notifications_to_send=pulumi.get(__ret__, 'notifications_to_send'),
+        owner_id=pulumi.get(__ret__, 'owner_id'),
+        preview_notifications_enabled=pulumi.get(__ret__, 'preview_notifications_enabled'),
+        slack_enabled=pulumi.get(__ret__, 'slack_enabled'))
 
 
 @_utilities.lift_output_func(get_owner_notification_setting)
 def get_owner_notification_setting_output(owner_id: Optional[pulumi.Input[str]] = None,
-                                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOwnerNotificationSettingResult]:
+                                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOwnerNotificationSettingProperties]:
     """
     Use this data source to access information about an existing resource.
 

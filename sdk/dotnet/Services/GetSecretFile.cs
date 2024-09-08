@@ -11,11 +11,11 @@ namespace Pulumi.Render.Services
 {
     public static class GetSecretFile
     {
-        public static Task<GetSecretFileResult> InvokeAsync(GetSecretFileArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetSecretFileResult>("render:services:getSecretFile", args ?? new GetSecretFileArgs(), options.WithDefaults());
+        public static Task<Outputs.SecretFile> InvokeAsync(GetSecretFileArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<Outputs.SecretFile>("render:services:getSecretFile", args ?? new GetSecretFileArgs(), options.WithDefaults());
 
-        public static Output<GetSecretFileResult> Invoke(GetSecretFileInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetSecretFileResult>("render:services:getSecretFile", args ?? new GetSecretFileInvokeArgs(), options.WithDefaults());
+        public static Output<Outputs.SecretFile> Invoke(GetSecretFileInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.SecretFile>("render:services:getSecretFile", args ?? new GetSecretFileInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -57,18 +57,5 @@ namespace Pulumi.Render.Services
         {
         }
         public static new GetSecretFileInvokeArgs Empty => new GetSecretFileInvokeArgs();
-    }
-
-
-    [OutputType]
-    public sealed class GetSecretFileResult
-    {
-        public readonly Outputs.SecretFile Items;
-
-        [OutputConstructor]
-        private GetSecretFileResult(Outputs.SecretFile items)
-        {
-            Items = items;
-        }
     }
 }

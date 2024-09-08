@@ -29,7 +29,8 @@ type GetSecretFileArgs struct {
 }
 
 type GetSecretFileResult struct {
-	Items SecretFile `pulumi:"items"`
+	Content string `pulumi:"content"`
+	Name    string `pulumi:"name"`
 }
 
 func GetSecretFileOutput(ctx *pulumi.Context, args GetSecretFileOutputArgs, opts ...pulumi.InvokeOption) GetSecretFileResultOutput {
@@ -70,8 +71,12 @@ func (o GetSecretFileResultOutput) ToGetSecretFileResultOutputWithContext(ctx co
 	return o
 }
 
-func (o GetSecretFileResultOutput) Items() SecretFileOutput {
-	return o.ApplyT(func(v GetSecretFileResult) SecretFile { return v.Items }).(SecretFileOutput)
+func (o GetSecretFileResultOutput) Content() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretFileResult) string { return v.Content }).(pulumi.StringOutput)
+}
+
+func (o GetSecretFileResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretFileResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 func init() {

@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function getPrivateService(args: GetPrivateServiceArgs, opts?: pulumi.InvokeOptions): Promise<GetPrivateServiceResult> {
+export function getPrivateService(args: GetPrivateServiceArgs, opts?: pulumi.InvokeOptions): Promise<outputs.services.GetPrivateService> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:getPrivateService", {
@@ -21,11 +21,7 @@ export interface GetPrivateServiceArgs {
      */
     serviceId: string;
 }
-
-export interface GetPrivateServiceResult {
-    readonly items: outputs.services.GetPrivateService;
-}
-export function getPrivateServiceOutput(args: GetPrivateServiceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPrivateServiceResult> {
+export function getPrivateServiceOutput(args: GetPrivateServiceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.services.GetPrivateService> {
     return pulumi.output(args).apply((a: any) => getPrivateService(a, opts))
 }
 

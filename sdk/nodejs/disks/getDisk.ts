@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function getDisk(args: GetDiskArgs, opts?: pulumi.InvokeOptions): Promise<GetDiskResult> {
+export function getDisk(args: GetDiskArgs, opts?: pulumi.InvokeOptions): Promise<outputs.disks.DiskWithCursorpropertiesdisk> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:disks:getDisk", {
@@ -21,11 +21,7 @@ export interface GetDiskArgs {
      */
     diskId: string;
 }
-
-export interface GetDiskResult {
-    readonly items: outputs.disks.DiskWithCursorpropertiesdisk;
-}
-export function getDiskOutput(args: GetDiskOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDiskResult> {
+export function getDiskOutput(args: GetDiskOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.disks.DiskWithCursorpropertiesdisk> {
     return pulumi.output(args).apply((a: any) => getDisk(a, opts))
 }
 

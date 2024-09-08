@@ -27,7 +27,15 @@ type GetBlueprintArgs struct {
 }
 
 type GetBlueprintResult struct {
-	Items GetBlueprintProperties `pulumi:"items"`
+	// Automatically sync changes to render.yaml
+	AutoSync  bool                                            `pulumi:"autoSync"`
+	Branch    string                                          `pulumi:"branch"`
+	Id        string                                          `pulumi:"id"`
+	LastSync  *string                                         `pulumi:"lastSync"`
+	Name      string                                          `pulumi:"name"`
+	Repo      string                                          `pulumi:"repo"`
+	Resources []GetBlueprintPropertiesResourcesItemProperties `pulumi:"resources"`
+	Status    GetBlueprintPropertiesStatus                    `pulumi:"status"`
 }
 
 func GetBlueprintOutput(ctx *pulumi.Context, args GetBlueprintOutputArgs, opts ...pulumi.InvokeOption) GetBlueprintResultOutput {
@@ -66,8 +74,37 @@ func (o GetBlueprintResultOutput) ToGetBlueprintResultOutputWithContext(ctx cont
 	return o
 }
 
-func (o GetBlueprintResultOutput) Items() GetBlueprintPropertiesOutput {
-	return o.ApplyT(func(v GetBlueprintResult) GetBlueprintProperties { return v.Items }).(GetBlueprintPropertiesOutput)
+// Automatically sync changes to render.yaml
+func (o GetBlueprintResultOutput) AutoSync() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetBlueprintResult) bool { return v.AutoSync }).(pulumi.BoolOutput)
+}
+
+func (o GetBlueprintResultOutput) Branch() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBlueprintResult) string { return v.Branch }).(pulumi.StringOutput)
+}
+
+func (o GetBlueprintResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBlueprintResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetBlueprintResultOutput) LastSync() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetBlueprintResult) *string { return v.LastSync }).(pulumi.StringPtrOutput)
+}
+
+func (o GetBlueprintResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBlueprintResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetBlueprintResultOutput) Repo() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBlueprintResult) string { return v.Repo }).(pulumi.StringOutput)
+}
+
+func (o GetBlueprintResultOutput) Resources() GetBlueprintPropertiesResourcesItemPropertiesArrayOutput {
+	return o.ApplyT(func(v GetBlueprintResult) []GetBlueprintPropertiesResourcesItemProperties { return v.Resources }).(GetBlueprintPropertiesResourcesItemPropertiesArrayOutput)
+}
+
+func (o GetBlueprintResultOutput) Status() GetBlueprintPropertiesStatusOutput {
+	return o.ApplyT(func(v GetBlueprintResult) GetBlueprintPropertiesStatus { return v.Status }).(GetBlueprintPropertiesStatusOutput)
 }
 
 func init() {

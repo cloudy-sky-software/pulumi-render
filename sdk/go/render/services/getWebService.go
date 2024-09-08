@@ -27,7 +27,27 @@ type LookupWebServiceArgs struct {
 }
 
 type LookupWebServiceResult struct {
-	Items GetWebServiceType `pulumi:"items"`
+	AutoDeploy  ServiceAutoDeploy `pulumi:"autoDeploy"`
+	Branch      *string           `pulumi:"branch"`
+	BuildFilter *BuildFilter      `pulumi:"buildFilter"`
+	CreatedAt   string            `pulumi:"createdAt"`
+	// The URL to view the service in the Render Dashboard
+	DashboardUrl       string                     `pulumi:"dashboardUrl"`
+	EnvironmentId      *string                    `pulumi:"environmentId"`
+	Id                 string                     `pulumi:"id"`
+	ImagePath          *string                    `pulumi:"imagePath"`
+	Name               string                     `pulumi:"name"`
+	NotifyOnFail       ServiceNotifyOnFail        `pulumi:"notifyOnFail"`
+	OwnerId            string                     `pulumi:"ownerId"`
+	RegistryCredential *RegistryCredentialSummary `pulumi:"registryCredential"`
+	Repo               *string                    `pulumi:"repo"`
+	RootDir            string                     `pulumi:"rootDir"`
+	ServiceDetails     *WebServiceDetailsOutput   `pulumi:"serviceDetails"`
+	Slug               string                     `pulumi:"slug"`
+	Suspended          ServiceSuspended           `pulumi:"suspended"`
+	Suspenders         []ServiceSuspendersItem    `pulumi:"suspenders"`
+	Type               *string                    `pulumi:"type"`
+	UpdatedAt          string                     `pulumi:"updatedAt"`
 }
 
 // Defaults sets the appropriate defaults for LookupWebServiceResult
@@ -36,8 +56,15 @@ func (val *LookupWebServiceResult) Defaults() *LookupWebServiceResult {
 		return nil
 	}
 	tmp := *val
-	tmp.Items = *tmp.Items.Defaults()
+	if internal.IsZero(tmp.AutoDeploy) {
+		tmp.AutoDeploy = ServiceAutoDeploy("yes")
+	}
+	tmp.ServiceDetails = tmp.ServiceDetails.Defaults()
 
+	if tmp.Type == nil {
+		type_ := "web_service"
+		tmp.Type = &type_
+	}
 	return &tmp
 }
 
@@ -77,8 +104,85 @@ func (o LookupWebServiceResultOutput) ToLookupWebServiceResultOutputWithContext(
 	return o
 }
 
-func (o LookupWebServiceResultOutput) Items() GetWebServiceTypeOutput {
-	return o.ApplyT(func(v LookupWebServiceResult) GetWebServiceType { return v.Items }).(GetWebServiceTypeOutput)
+func (o LookupWebServiceResultOutput) AutoDeploy() ServiceAutoDeployOutput {
+	return o.ApplyT(func(v LookupWebServiceResult) ServiceAutoDeploy { return v.AutoDeploy }).(ServiceAutoDeployOutput)
+}
+
+func (o LookupWebServiceResultOutput) Branch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupWebServiceResult) *string { return v.Branch }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupWebServiceResultOutput) BuildFilter() BuildFilterPtrOutput {
+	return o.ApplyT(func(v LookupWebServiceResult) *BuildFilter { return v.BuildFilter }).(BuildFilterPtrOutput)
+}
+
+func (o LookupWebServiceResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupWebServiceResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The URL to view the service in the Render Dashboard
+func (o LookupWebServiceResultOutput) DashboardUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupWebServiceResult) string { return v.DashboardUrl }).(pulumi.StringOutput)
+}
+
+func (o LookupWebServiceResultOutput) EnvironmentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupWebServiceResult) *string { return v.EnvironmentId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupWebServiceResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupWebServiceResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupWebServiceResultOutput) ImagePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupWebServiceResult) *string { return v.ImagePath }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupWebServiceResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupWebServiceResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupWebServiceResultOutput) NotifyOnFail() ServiceNotifyOnFailOutput {
+	return o.ApplyT(func(v LookupWebServiceResult) ServiceNotifyOnFail { return v.NotifyOnFail }).(ServiceNotifyOnFailOutput)
+}
+
+func (o LookupWebServiceResultOutput) OwnerId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupWebServiceResult) string { return v.OwnerId }).(pulumi.StringOutput)
+}
+
+func (o LookupWebServiceResultOutput) RegistryCredential() RegistryCredentialSummaryPtrOutput {
+	return o.ApplyT(func(v LookupWebServiceResult) *RegistryCredentialSummary { return v.RegistryCredential }).(RegistryCredentialSummaryPtrOutput)
+}
+
+func (o LookupWebServiceResultOutput) Repo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupWebServiceResult) *string { return v.Repo }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupWebServiceResultOutput) RootDir() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupWebServiceResult) string { return v.RootDir }).(pulumi.StringOutput)
+}
+
+func (o LookupWebServiceResultOutput) ServiceDetails() WebServiceDetailsOutputPtrOutput {
+	return o.ApplyT(func(v LookupWebServiceResult) *WebServiceDetailsOutput { return v.ServiceDetails }).(WebServiceDetailsOutputPtrOutput)
+}
+
+func (o LookupWebServiceResultOutput) Slug() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupWebServiceResult) string { return v.Slug }).(pulumi.StringOutput)
+}
+
+func (o LookupWebServiceResultOutput) Suspended() ServiceSuspendedOutput {
+	return o.ApplyT(func(v LookupWebServiceResult) ServiceSuspended { return v.Suspended }).(ServiceSuspendedOutput)
+}
+
+func (o LookupWebServiceResultOutput) Suspenders() ServiceSuspendersItemArrayOutput {
+	return o.ApplyT(func(v LookupWebServiceResult) []ServiceSuspendersItem { return v.Suspenders }).(ServiceSuspendersItemArrayOutput)
+}
+
+func (o LookupWebServiceResultOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupWebServiceResult) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupWebServiceResultOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupWebServiceResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
 func init() {

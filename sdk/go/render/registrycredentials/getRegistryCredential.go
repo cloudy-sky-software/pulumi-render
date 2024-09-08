@@ -27,7 +27,14 @@ type LookupRegistryCredentialArgs struct {
 }
 
 type LookupRegistryCredentialResult struct {
-	Items RegistryCredentialType `pulumi:"items"`
+	// Unique identifier for this credential
+	Id string `pulumi:"id"`
+	// Descriptive name for this credential
+	Name string `pulumi:"name"`
+	// The registry to use this credential with
+	Registry RegistryCredentialRegistry `pulumi:"registry"`
+	// The username associated with the credential
+	Username string `pulumi:"username"`
 }
 
 func LookupRegistryCredentialOutput(ctx *pulumi.Context, args LookupRegistryCredentialOutputArgs, opts ...pulumi.InvokeOption) LookupRegistryCredentialResultOutput {
@@ -66,8 +73,44 @@ func (o LookupRegistryCredentialResultOutput) ToLookupRegistryCredentialResultOu
 	return o
 }
 
-func (o LookupRegistryCredentialResultOutput) Items() RegistryCredentialTypeOutput {
-	return o.ApplyT(func(v LookupRegistryCredentialResult) RegistryCredentialType { return v.Items }).(RegistryCredentialTypeOutput)
+// Unique identifier for this credential
+func (o LookupRegistryCredentialResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRegistryCredentialResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Descriptive name for this credential
+func (o LookupRegistryCredentialResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRegistryCredentialResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The registry to use this credential with
+func (o LookupRegistryCredentialResultOutput) Registry() RegistryCredentialRegistryOutput {
+	return o.ApplyT(func(v LookupRegistryCredentialResult) RegistryCredentialRegistry { return v.Registry }).(RegistryCredentialRegistryOutput)
+}
+
+// The username associated with the credential
+func (o LookupRegistryCredentialResultOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRegistryCredentialResult) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type LookupRegistryCredentialResultArrayOutput struct{ *pulumi.OutputState }
+
+func (LookupRegistryCredentialResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LookupRegistryCredentialResult)(nil)).Elem()
+}
+
+func (o LookupRegistryCredentialResultArrayOutput) ToLookupRegistryCredentialResultArrayOutput() LookupRegistryCredentialResultArrayOutput {
+	return o
+}
+
+func (o LookupRegistryCredentialResultArrayOutput) ToLookupRegistryCredentialResultArrayOutputWithContext(ctx context.Context) LookupRegistryCredentialResultArrayOutput {
+	return o
+}
+
+func (o LookupRegistryCredentialResultArrayOutput) Index(i pulumi.IntInput) LookupRegistryCredentialResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LookupRegistryCredentialResult {
+		return vs[0].([]LookupRegistryCredentialResult)[vs[1].(int)]
+	}).(LookupRegistryCredentialResultOutput)
 }
 
 func init() {

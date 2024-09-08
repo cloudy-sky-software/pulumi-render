@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function getSecretFile(args: GetSecretFileArgs, opts?: pulumi.InvokeOptions): Promise<GetSecretFileResult> {
+export function getSecretFile(args: GetSecretFileArgs, opts?: pulumi.InvokeOptions): Promise<outputs.services.SecretFile> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:getSecretFile", {
@@ -26,11 +26,7 @@ export interface GetSecretFileArgs {
      */
     serviceId: string;
 }
-
-export interface GetSecretFileResult {
-    readonly items: outputs.services.SecretFile;
-}
-export function getSecretFileOutput(args: GetSecretFileOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSecretFileResult> {
+export function getSecretFileOutput(args: GetSecretFileOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.services.SecretFile> {
     return pulumi.output(args).apply((a: any) => getSecretFile(a, opts))
 }
 

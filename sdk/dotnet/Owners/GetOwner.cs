@@ -11,11 +11,11 @@ namespace Pulumi.Render.Owners
 {
     public static class GetOwner
     {
-        public static Task<GetOwnerResult> InvokeAsync(GetOwnerArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetOwnerResult>("render:owners:getOwner", args ?? new GetOwnerArgs(), options.WithDefaults());
+        public static Task<Outputs.Owner> InvokeAsync(GetOwnerArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<Outputs.Owner>("render:owners:getOwner", args ?? new GetOwnerArgs(), options.WithDefaults());
 
-        public static Output<GetOwnerResult> Invoke(GetOwnerInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetOwnerResult>("render:owners:getOwner", args ?? new GetOwnerInvokeArgs(), options.WithDefaults());
+        public static Output<Outputs.Owner> Invoke(GetOwnerInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.Owner>("render:owners:getOwner", args ?? new GetOwnerInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -45,18 +45,5 @@ namespace Pulumi.Render.Owners
         {
         }
         public static new GetOwnerInvokeArgs Empty => new GetOwnerInvokeArgs();
-    }
-
-
-    [OutputType]
-    public sealed class GetOwnerResult
-    {
-        public readonly Outputs.Owner Items;
-
-        [OutputConstructor]
-        private GetOwnerResult(Outputs.Owner items)
-        {
-            Items = items;
-        }
     }
 }

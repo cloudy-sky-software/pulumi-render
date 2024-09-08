@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function getOwner(args: GetOwnerArgs, opts?: pulumi.InvokeOptions): Promise<GetOwnerResult> {
+export function getOwner(args: GetOwnerArgs, opts?: pulumi.InvokeOptions): Promise<outputs.owners.Owner> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:owners:getOwner", {
@@ -21,11 +21,7 @@ export interface GetOwnerArgs {
      */
     ownerId: string;
 }
-
-export interface GetOwnerResult {
-    readonly items: outputs.owners.Owner;
-}
-export function getOwnerOutput(args: GetOwnerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOwnerResult> {
+export function getOwnerOutput(args: GetOwnerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.owners.Owner> {
     return pulumi.output(args).apply((a: any) => getOwner(a, opts))
 }
 

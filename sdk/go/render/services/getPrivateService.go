@@ -27,7 +27,27 @@ type LookupPrivateServiceArgs struct {
 }
 
 type LookupPrivateServiceResult struct {
-	Items GetPrivateServiceType `pulumi:"items"`
+	AutoDeploy  ServiceAutoDeploy `pulumi:"autoDeploy"`
+	Branch      *string           `pulumi:"branch"`
+	BuildFilter *BuildFilter      `pulumi:"buildFilter"`
+	CreatedAt   string            `pulumi:"createdAt"`
+	// The URL to view the service in the Render Dashboard
+	DashboardUrl       string                       `pulumi:"dashboardUrl"`
+	EnvironmentId      *string                      `pulumi:"environmentId"`
+	Id                 string                       `pulumi:"id"`
+	ImagePath          *string                      `pulumi:"imagePath"`
+	Name               string                       `pulumi:"name"`
+	NotifyOnFail       ServiceNotifyOnFail          `pulumi:"notifyOnFail"`
+	OwnerId            string                       `pulumi:"ownerId"`
+	RegistryCredential *RegistryCredentialSummary   `pulumi:"registryCredential"`
+	Repo               *string                      `pulumi:"repo"`
+	RootDir            string                       `pulumi:"rootDir"`
+	ServiceDetails     *PrivateServiceDetailsOutput `pulumi:"serviceDetails"`
+	Slug               string                       `pulumi:"slug"`
+	Suspended          ServiceSuspended             `pulumi:"suspended"`
+	Suspenders         []ServiceSuspendersItem      `pulumi:"suspenders"`
+	Type               *string                      `pulumi:"type"`
+	UpdatedAt          string                       `pulumi:"updatedAt"`
 }
 
 // Defaults sets the appropriate defaults for LookupPrivateServiceResult
@@ -36,8 +56,15 @@ func (val *LookupPrivateServiceResult) Defaults() *LookupPrivateServiceResult {
 		return nil
 	}
 	tmp := *val
-	tmp.Items = *tmp.Items.Defaults()
+	if internal.IsZero(tmp.AutoDeploy) {
+		tmp.AutoDeploy = ServiceAutoDeploy("yes")
+	}
+	tmp.ServiceDetails = tmp.ServiceDetails.Defaults()
 
+	if tmp.Type == nil {
+		type_ := "private_service"
+		tmp.Type = &type_
+	}
 	return &tmp
 }
 
@@ -77,8 +104,85 @@ func (o LookupPrivateServiceResultOutput) ToLookupPrivateServiceResultOutputWith
 	return o
 }
 
-func (o LookupPrivateServiceResultOutput) Items() GetPrivateServiceTypeOutput {
-	return o.ApplyT(func(v LookupPrivateServiceResult) GetPrivateServiceType { return v.Items }).(GetPrivateServiceTypeOutput)
+func (o LookupPrivateServiceResultOutput) AutoDeploy() ServiceAutoDeployOutput {
+	return o.ApplyT(func(v LookupPrivateServiceResult) ServiceAutoDeploy { return v.AutoDeploy }).(ServiceAutoDeployOutput)
+}
+
+func (o LookupPrivateServiceResultOutput) Branch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupPrivateServiceResult) *string { return v.Branch }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupPrivateServiceResultOutput) BuildFilter() BuildFilterPtrOutput {
+	return o.ApplyT(func(v LookupPrivateServiceResult) *BuildFilter { return v.BuildFilter }).(BuildFilterPtrOutput)
+}
+
+func (o LookupPrivateServiceResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPrivateServiceResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The URL to view the service in the Render Dashboard
+func (o LookupPrivateServiceResultOutput) DashboardUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPrivateServiceResult) string { return v.DashboardUrl }).(pulumi.StringOutput)
+}
+
+func (o LookupPrivateServiceResultOutput) EnvironmentId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupPrivateServiceResult) *string { return v.EnvironmentId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupPrivateServiceResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPrivateServiceResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupPrivateServiceResultOutput) ImagePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupPrivateServiceResult) *string { return v.ImagePath }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupPrivateServiceResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPrivateServiceResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupPrivateServiceResultOutput) NotifyOnFail() ServiceNotifyOnFailOutput {
+	return o.ApplyT(func(v LookupPrivateServiceResult) ServiceNotifyOnFail { return v.NotifyOnFail }).(ServiceNotifyOnFailOutput)
+}
+
+func (o LookupPrivateServiceResultOutput) OwnerId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPrivateServiceResult) string { return v.OwnerId }).(pulumi.StringOutput)
+}
+
+func (o LookupPrivateServiceResultOutput) RegistryCredential() RegistryCredentialSummaryPtrOutput {
+	return o.ApplyT(func(v LookupPrivateServiceResult) *RegistryCredentialSummary { return v.RegistryCredential }).(RegistryCredentialSummaryPtrOutput)
+}
+
+func (o LookupPrivateServiceResultOutput) Repo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupPrivateServiceResult) *string { return v.Repo }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupPrivateServiceResultOutput) RootDir() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPrivateServiceResult) string { return v.RootDir }).(pulumi.StringOutput)
+}
+
+func (o LookupPrivateServiceResultOutput) ServiceDetails() PrivateServiceDetailsOutputPtrOutput {
+	return o.ApplyT(func(v LookupPrivateServiceResult) *PrivateServiceDetailsOutput { return v.ServiceDetails }).(PrivateServiceDetailsOutputPtrOutput)
+}
+
+func (o LookupPrivateServiceResultOutput) Slug() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPrivateServiceResult) string { return v.Slug }).(pulumi.StringOutput)
+}
+
+func (o LookupPrivateServiceResultOutput) Suspended() ServiceSuspendedOutput {
+	return o.ApplyT(func(v LookupPrivateServiceResult) ServiceSuspended { return v.Suspended }).(ServiceSuspendedOutput)
+}
+
+func (o LookupPrivateServiceResultOutput) Suspenders() ServiceSuspendersItemArrayOutput {
+	return o.ApplyT(func(v LookupPrivateServiceResult) []ServiceSuspendersItem { return v.Suspenders }).(ServiceSuspendersItemArrayOutput)
+}
+
+func (o LookupPrivateServiceResultOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupPrivateServiceResult) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupPrivateServiceResultOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPrivateServiceResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
 func init() {

@@ -11,11 +11,11 @@ namespace Pulumi.Render.Services
 {
     public static class GetPrivateService
     {
-        public static Task<GetPrivateServiceResult> InvokeAsync(GetPrivateServiceArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetPrivateServiceResult>("render:services:getPrivateService", args ?? new GetPrivateServiceArgs(), options.WithDefaults());
+        public static Task<Outputs.GetPrivateService> InvokeAsync(GetPrivateServiceArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<Outputs.GetPrivateService>("render:services:getPrivateService", args ?? new GetPrivateServiceArgs(), options.WithDefaults());
 
-        public static Output<GetPrivateServiceResult> Invoke(GetPrivateServiceInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetPrivateServiceResult>("render:services:getPrivateService", args ?? new GetPrivateServiceInvokeArgs(), options.WithDefaults());
+        public static Output<Outputs.GetPrivateService> Invoke(GetPrivateServiceInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetPrivateService>("render:services:getPrivateService", args ?? new GetPrivateServiceInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -45,18 +45,5 @@ namespace Pulumi.Render.Services
         {
         }
         public static new GetPrivateServiceInvokeArgs Empty => new GetPrivateServiceInvokeArgs();
-    }
-
-
-    [OutputType]
-    public sealed class GetPrivateServiceResult
-    {
-        public readonly Outputs.GetPrivateService Items;
-
-        [OutputConstructor]
-        private GetPrivateServiceResult(Outputs.GetPrivateService items)
-        {
-            Items = items;
-        }
     }
 }

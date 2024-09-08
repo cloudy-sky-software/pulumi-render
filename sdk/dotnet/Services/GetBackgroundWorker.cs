@@ -11,11 +11,11 @@ namespace Pulumi.Render.Services
 {
     public static class GetBackgroundWorker
     {
-        public static Task<GetBackgroundWorkerResult> InvokeAsync(GetBackgroundWorkerArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetBackgroundWorkerResult>("render:services:getBackgroundWorker", args ?? new GetBackgroundWorkerArgs(), options.WithDefaults());
+        public static Task<Outputs.GetBackgroundWorker> InvokeAsync(GetBackgroundWorkerArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<Outputs.GetBackgroundWorker>("render:services:getBackgroundWorker", args ?? new GetBackgroundWorkerArgs(), options.WithDefaults());
 
-        public static Output<GetBackgroundWorkerResult> Invoke(GetBackgroundWorkerInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetBackgroundWorkerResult>("render:services:getBackgroundWorker", args ?? new GetBackgroundWorkerInvokeArgs(), options.WithDefaults());
+        public static Output<Outputs.GetBackgroundWorker> Invoke(GetBackgroundWorkerInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetBackgroundWorker>("render:services:getBackgroundWorker", args ?? new GetBackgroundWorkerInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -45,18 +45,5 @@ namespace Pulumi.Render.Services
         {
         }
         public static new GetBackgroundWorkerInvokeArgs Empty => new GetBackgroundWorkerInvokeArgs();
-    }
-
-
-    [OutputType]
-    public sealed class GetBackgroundWorkerResult
-    {
-        public readonly Outputs.GetBackgroundWorker Items;
-
-        [OutputConstructor]
-        private GetBackgroundWorkerResult(Outputs.GetBackgroundWorker items)
-        {
-            Items = items;
-        }
     }
 }

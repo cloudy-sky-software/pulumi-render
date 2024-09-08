@@ -26,7 +26,10 @@ type GetPostgresConnectionInfoArgs struct {
 }
 
 type GetPostgresConnectionInfoResult struct {
-	Items PostgresConnectionInfo `pulumi:"items"`
+	ExternalConnectionString string `pulumi:"externalConnectionString"`
+	InternalConnectionString string `pulumi:"internalConnectionString"`
+	Password                 string `pulumi:"password"`
+	PsqlCommand              string `pulumi:"psqlCommand"`
 }
 
 func GetPostgresConnectionInfoOutput(ctx *pulumi.Context, args GetPostgresConnectionInfoOutputArgs, opts ...pulumi.InvokeOption) GetPostgresConnectionInfoResultOutput {
@@ -64,8 +67,20 @@ func (o GetPostgresConnectionInfoResultOutput) ToGetPostgresConnectionInfoResult
 	return o
 }
 
-func (o GetPostgresConnectionInfoResultOutput) Items() PostgresConnectionInfoOutput {
-	return o.ApplyT(func(v GetPostgresConnectionInfoResult) PostgresConnectionInfo { return v.Items }).(PostgresConnectionInfoOutput)
+func (o GetPostgresConnectionInfoResultOutput) ExternalConnectionString() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPostgresConnectionInfoResult) string { return v.ExternalConnectionString }).(pulumi.StringOutput)
+}
+
+func (o GetPostgresConnectionInfoResultOutput) InternalConnectionString() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPostgresConnectionInfoResult) string { return v.InternalConnectionString }).(pulumi.StringOutput)
+}
+
+func (o GetPostgresConnectionInfoResultOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPostgresConnectionInfoResult) string { return v.Password }).(pulumi.StringOutput)
+}
+
+func (o GetPostgresConnectionInfoResultOutput) PsqlCommand() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPostgresConnectionInfoResult) string { return v.PsqlCommand }).(pulumi.StringOutput)
 }
 
 func init() {

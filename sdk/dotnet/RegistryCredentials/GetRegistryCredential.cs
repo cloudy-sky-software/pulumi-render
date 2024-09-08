@@ -11,11 +11,11 @@ namespace Pulumi.Render.RegistryCredentials
 {
     public static class GetRegistryCredential
     {
-        public static Task<GetRegistryCredentialResult> InvokeAsync(GetRegistryCredentialArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetRegistryCredentialResult>("render:registrycredentials:getRegistryCredential", args ?? new GetRegistryCredentialArgs(), options.WithDefaults());
+        public static Task<Outputs.RegistryCredential> InvokeAsync(GetRegistryCredentialArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<Outputs.RegistryCredential>("render:registrycredentials:getRegistryCredential", args ?? new GetRegistryCredentialArgs(), options.WithDefaults());
 
-        public static Output<GetRegistryCredentialResult> Invoke(GetRegistryCredentialInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetRegistryCredentialResult>("render:registrycredentials:getRegistryCredential", args ?? new GetRegistryCredentialInvokeArgs(), options.WithDefaults());
+        public static Output<Outputs.RegistryCredential> Invoke(GetRegistryCredentialInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.RegistryCredential>("render:registrycredentials:getRegistryCredential", args ?? new GetRegistryCredentialInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -45,18 +45,5 @@ namespace Pulumi.Render.RegistryCredentials
         {
         }
         public static new GetRegistryCredentialInvokeArgs Empty => new GetRegistryCredentialInvokeArgs();
-    }
-
-
-    [OutputType]
-    public sealed class GetRegistryCredentialResult
-    {
-        public readonly Outputs.RegistryCredential Items;
-
-        [OutputConstructor]
-        private GetRegistryCredentialResult(Outputs.RegistryCredential items)
-        {
-            Items = items;
-        }
     }
 }

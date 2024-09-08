@@ -14,7 +14,6 @@ from ._enums import *
 __all__ = [
     'BlueprintWithCursor',
     'BlueprintWithCursorBlueprintProperties',
-    'GetBlueprintProperties',
     'GetBlueprintPropertiesResourcesItemProperties',
     'SyncWithCursor',
     'SyncWithCursorSyncProperties',
@@ -99,74 +98,6 @@ class BlueprintWithCursorBlueprintProperties(dict):
     @property
     @pulumi.getter
     def status(self) -> 'BlueprintWithCursorBlueprintPropertiesStatus':
-        return pulumi.get(self, "status")
-
-    @property
-    @pulumi.getter(name="lastSync")
-    def last_sync(self) -> Optional[str]:
-        return pulumi.get(self, "last_sync")
-
-
-@pulumi.output_type
-class GetBlueprintProperties(dict):
-    def __init__(__self__, *,
-                 auto_sync: bool,
-                 branch: str,
-                 id: str,
-                 name: str,
-                 repo: str,
-                 resources: Sequence['outputs.GetBlueprintPropertiesResourcesItemProperties'],
-                 status: 'GetBlueprintPropertiesStatus',
-                 last_sync: Optional[str] = None):
-        """
-        :param bool auto_sync: Automatically sync changes to render.yaml
-        """
-        pulumi.set(__self__, "auto_sync", auto_sync)
-        pulumi.set(__self__, "branch", branch)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "repo", repo)
-        pulumi.set(__self__, "resources", resources)
-        pulumi.set(__self__, "status", status)
-        if last_sync is not None:
-            pulumi.set(__self__, "last_sync", last_sync)
-
-    @property
-    @pulumi.getter(name="autoSync")
-    def auto_sync(self) -> bool:
-        """
-        Automatically sync changes to render.yaml
-        """
-        return pulumi.get(self, "auto_sync")
-
-    @property
-    @pulumi.getter
-    def branch(self) -> str:
-        return pulumi.get(self, "branch")
-
-    @property
-    @pulumi.getter
-    def id(self) -> str:
-        return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def repo(self) -> str:
-        return pulumi.get(self, "repo")
-
-    @property
-    @pulumi.getter
-    def resources(self) -> Sequence['outputs.GetBlueprintPropertiesResourcesItemProperties']:
-        return pulumi.get(self, "resources")
-
-    @property
-    @pulumi.getter
-    def status(self) -> 'GetBlueprintPropertiesStatus':
         return pulumi.get(self, "status")
 
     @property

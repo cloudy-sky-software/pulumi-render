@@ -11,11 +11,11 @@ namespace Pulumi.Render.Disks
 {
     public static class GetDisk
     {
-        public static Task<GetDiskResult> InvokeAsync(GetDiskArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetDiskResult>("render:disks:getDisk", args ?? new GetDiskArgs(), options.WithDefaults());
+        public static Task<Outputs.DiskWithCursorpropertiesdisk> InvokeAsync(GetDiskArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<Outputs.DiskWithCursorpropertiesdisk>("render:disks:getDisk", args ?? new GetDiskArgs(), options.WithDefaults());
 
-        public static Output<GetDiskResult> Invoke(GetDiskInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetDiskResult>("render:disks:getDisk", args ?? new GetDiskInvokeArgs(), options.WithDefaults());
+        public static Output<Outputs.DiskWithCursorpropertiesdisk> Invoke(GetDiskInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.DiskWithCursorpropertiesdisk>("render:disks:getDisk", args ?? new GetDiskInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -45,18 +45,5 @@ namespace Pulumi.Render.Disks
         {
         }
         public static new GetDiskInvokeArgs Empty => new GetDiskInvokeArgs();
-    }
-
-
-    [OutputType]
-    public sealed class GetDiskResult
-    {
-        public readonly Outputs.DiskWithCursorpropertiesdisk Items;
-
-        [OutputConstructor]
-        private GetDiskResult(Outputs.DiskWithCursorpropertiesdisk items)
-        {
-            Items = items;
-        }
     }
 }

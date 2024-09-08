@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function getCustomDomain(args: GetCustomDomainArgs, opts?: pulumi.InvokeOptions): Promise<GetCustomDomainResult> {
+export function getCustomDomain(args: GetCustomDomainArgs, opts?: pulumi.InvokeOptions): Promise<outputs.services.CustomDomain> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:getCustomDomain", {
@@ -26,11 +26,7 @@ export interface GetCustomDomainArgs {
      */
     serviceId: string;
 }
-
-export interface GetCustomDomainResult {
-    readonly items: outputs.services.CustomDomain;
-}
-export function getCustomDomainOutput(args: GetCustomDomainOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCustomDomainResult> {
+export function getCustomDomainOutput(args: GetCustomDomainOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.services.CustomDomain> {
     return pulumi.output(args).apply((a: any) => getCustomDomain(a, opts))
 }
 

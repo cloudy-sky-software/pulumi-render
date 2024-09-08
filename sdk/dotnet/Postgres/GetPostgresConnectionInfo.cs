@@ -11,11 +11,11 @@ namespace Pulumi.Render.Postgres
 {
     public static class GetPostgresConnectionInfo
     {
-        public static Task<GetPostgresConnectionInfoResult> InvokeAsync(GetPostgresConnectionInfoArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetPostgresConnectionInfoResult>("render:postgres:getPostgresConnectionInfo", args ?? new GetPostgresConnectionInfoArgs(), options.WithDefaults());
+        public static Task<Outputs.PostgresConnectionInfo> InvokeAsync(GetPostgresConnectionInfoArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<Outputs.PostgresConnectionInfo>("render:postgres:getPostgresConnectionInfo", args ?? new GetPostgresConnectionInfoArgs(), options.WithDefaults());
 
-        public static Output<GetPostgresConnectionInfoResult> Invoke(GetPostgresConnectionInfoInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetPostgresConnectionInfoResult>("render:postgres:getPostgresConnectionInfo", args ?? new GetPostgresConnectionInfoInvokeArgs(), options.WithDefaults());
+        public static Output<Outputs.PostgresConnectionInfo> Invoke(GetPostgresConnectionInfoInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.PostgresConnectionInfo>("render:postgres:getPostgresConnectionInfo", args ?? new GetPostgresConnectionInfoInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -39,18 +39,5 @@ namespace Pulumi.Render.Postgres
         {
         }
         public static new GetPostgresConnectionInfoInvokeArgs Empty => new GetPostgresConnectionInfoInvokeArgs();
-    }
-
-
-    [OutputType]
-    public sealed class GetPostgresConnectionInfoResult
-    {
-        public readonly Outputs.PostgresConnectionInfo Items;
-
-        [OutputConstructor]
-        private GetPostgresConnectionInfoResult(Outputs.PostgresConnectionInfo items)
-        {
-            Items = items;
-        }
     }
 }

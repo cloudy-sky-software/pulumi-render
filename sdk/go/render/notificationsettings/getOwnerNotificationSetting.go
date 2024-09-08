@@ -27,7 +27,11 @@ type GetOwnerNotificationSettingArgs struct {
 }
 
 type GetOwnerNotificationSettingResult struct {
-	Items GetOwnerNotificationSettingProperties `pulumi:"items"`
+	EmailEnabled                bool                                                     `pulumi:"emailEnabled"`
+	NotificationsToSend         GetOwnerNotificationSettingPropertiesNotificationsToSend `pulumi:"notificationsToSend"`
+	OwnerId                     string                                                   `pulumi:"ownerId"`
+	PreviewNotificationsEnabled bool                                                     `pulumi:"previewNotificationsEnabled"`
+	SlackEnabled                bool                                                     `pulumi:"slackEnabled"`
 }
 
 func GetOwnerNotificationSettingOutput(ctx *pulumi.Context, args GetOwnerNotificationSettingOutputArgs, opts ...pulumi.InvokeOption) GetOwnerNotificationSettingResultOutput {
@@ -66,8 +70,26 @@ func (o GetOwnerNotificationSettingResultOutput) ToGetOwnerNotificationSettingRe
 	return o
 }
 
-func (o GetOwnerNotificationSettingResultOutput) Items() GetOwnerNotificationSettingPropertiesOutput {
-	return o.ApplyT(func(v GetOwnerNotificationSettingResult) GetOwnerNotificationSettingProperties { return v.Items }).(GetOwnerNotificationSettingPropertiesOutput)
+func (o GetOwnerNotificationSettingResultOutput) EmailEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetOwnerNotificationSettingResult) bool { return v.EmailEnabled }).(pulumi.BoolOutput)
+}
+
+func (o GetOwnerNotificationSettingResultOutput) NotificationsToSend() GetOwnerNotificationSettingPropertiesNotificationsToSendOutput {
+	return o.ApplyT(func(v GetOwnerNotificationSettingResult) GetOwnerNotificationSettingPropertiesNotificationsToSend {
+		return v.NotificationsToSend
+	}).(GetOwnerNotificationSettingPropertiesNotificationsToSendOutput)
+}
+
+func (o GetOwnerNotificationSettingResultOutput) OwnerId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOwnerNotificationSettingResult) string { return v.OwnerId }).(pulumi.StringOutput)
+}
+
+func (o GetOwnerNotificationSettingResultOutput) PreviewNotificationsEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetOwnerNotificationSettingResult) bool { return v.PreviewNotificationsEnabled }).(pulumi.BoolOutput)
+}
+
+func (o GetOwnerNotificationSettingResultOutput) SlackEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetOwnerNotificationSettingResult) bool { return v.SlackEnabled }).(pulumi.BoolOutput)
 }
 
 func init() {

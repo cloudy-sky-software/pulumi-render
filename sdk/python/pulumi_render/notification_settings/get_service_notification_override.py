@@ -6,42 +6,59 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
 from .. import _utilities
-from . import outputs
 from ._enums import *
 
 __all__ = [
-    'GetServiceNotificationOverrideResult',
-    'AwaitableGetServiceNotificationOverrideResult',
+    'GetServiceNotificationOverrideProperties',
+    'AwaitableGetServiceNotificationOverrideProperties',
     'get_service_notification_override',
     'get_service_notification_override_output',
 ]
 
 @pulumi.output_type
-class GetServiceNotificationOverrideResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class GetServiceNotificationOverrideProperties:
+    def __init__(__self__, notifications_to_send=None, preview_notifications_enabled=None, service_id=None):
+        if notifications_to_send and not isinstance(notifications_to_send, str):
+            raise TypeError("Expected argument 'notifications_to_send' to be a str")
+        pulumi.set(__self__, "notifications_to_send", notifications_to_send)
+        if preview_notifications_enabled and not isinstance(preview_notifications_enabled, str):
+            raise TypeError("Expected argument 'preview_notifications_enabled' to be a str")
+        pulumi.set(__self__, "preview_notifications_enabled", preview_notifications_enabled)
+        if service_id and not isinstance(service_id, str):
+            raise TypeError("Expected argument 'service_id' to be a str")
+        pulumi.set(__self__, "service_id", service_id)
 
     @property
-    @pulumi.getter
-    def items(self) -> 'outputs.GetServiceNotificationOverrideProperties':
-        return pulumi.get(self, "items")
+    @pulumi.getter(name="notificationsToSend")
+    def notifications_to_send(self) -> 'GetServiceNotificationOverridePropertiesNotificationsToSend':
+        return pulumi.get(self, "notifications_to_send")
+
+    @property
+    @pulumi.getter(name="previewNotificationsEnabled")
+    def preview_notifications_enabled(self) -> 'GetServiceNotificationOverridePropertiesPreviewNotificationsEnabled':
+        return pulumi.get(self, "preview_notifications_enabled")
+
+    @property
+    @pulumi.getter(name="serviceId")
+    def service_id(self) -> str:
+        return pulumi.get(self, "service_id")
 
 
-class AwaitableGetServiceNotificationOverrideResult(GetServiceNotificationOverrideResult):
+class AwaitableGetServiceNotificationOverrideProperties(GetServiceNotificationOverrideProperties):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetServiceNotificationOverrideResult(
-            items=self.items)
+        return GetServiceNotificationOverrideProperties(
+            notifications_to_send=self.notifications_to_send,
+            preview_notifications_enabled=self.preview_notifications_enabled,
+            service_id=self.service_id)
 
 
 def get_service_notification_override(service_id: Optional[str] = None,
-                                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServiceNotificationOverrideResult:
+                                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServiceNotificationOverrideProperties:
     """
     Use this data source to access information about an existing resource.
 
@@ -50,15 +67,17 @@ def get_service_notification_override(service_id: Optional[str] = None,
     __args__ = dict()
     __args__['serviceId'] = service_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('render:notification-settings:getServiceNotificationOverride', __args__, opts=opts, typ=GetServiceNotificationOverrideResult).value
+    __ret__ = pulumi.runtime.invoke('render:notification-settings:getServiceNotificationOverride', __args__, opts=opts, typ=GetServiceNotificationOverrideProperties).value
 
-    return AwaitableGetServiceNotificationOverrideResult(
-        items=pulumi.get(__ret__, 'items'))
+    return AwaitableGetServiceNotificationOverrideProperties(
+        notifications_to_send=pulumi.get(__ret__, 'notifications_to_send'),
+        preview_notifications_enabled=pulumi.get(__ret__, 'preview_notifications_enabled'),
+        service_id=pulumi.get(__ret__, 'service_id'))
 
 
 @_utilities.lift_output_func(get_service_notification_override)
 def get_service_notification_override_output(service_id: Optional[pulumi.Input[str]] = None,
-                                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetServiceNotificationOverrideResult]:
+                                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetServiceNotificationOverrideProperties]:
     """
     Use this data source to access information about an existing resource.
 

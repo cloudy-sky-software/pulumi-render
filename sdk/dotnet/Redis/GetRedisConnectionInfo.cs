@@ -11,11 +11,11 @@ namespace Pulumi.Render.Redis
 {
     public static class GetRedisConnectionInfo
     {
-        public static Task<GetRedisConnectionInfoResult> InvokeAsync(GetRedisConnectionInfoArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetRedisConnectionInfoResult>("render:redis:getRedisConnectionInfo", args ?? new GetRedisConnectionInfoArgs(), options.WithDefaults());
+        public static Task<Outputs.RedisConnectionInfo> InvokeAsync(GetRedisConnectionInfoArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<Outputs.RedisConnectionInfo>("render:redis:getRedisConnectionInfo", args ?? new GetRedisConnectionInfoArgs(), options.WithDefaults());
 
-        public static Output<GetRedisConnectionInfoResult> Invoke(GetRedisConnectionInfoInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetRedisConnectionInfoResult>("render:redis:getRedisConnectionInfo", args ?? new GetRedisConnectionInfoInvokeArgs(), options.WithDefaults());
+        public static Output<Outputs.RedisConnectionInfo> Invoke(GetRedisConnectionInfoInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.RedisConnectionInfo>("render:redis:getRedisConnectionInfo", args ?? new GetRedisConnectionInfoInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -39,18 +39,5 @@ namespace Pulumi.Render.Redis
         {
         }
         public static new GetRedisConnectionInfoInvokeArgs Empty => new GetRedisConnectionInfoInvokeArgs();
-    }
-
-
-    [OutputType]
-    public sealed class GetRedisConnectionInfoResult
-    {
-        public readonly Outputs.RedisConnectionInfo Items;
-
-        [OutputConstructor]
-        private GetRedisConnectionInfoResult(Outputs.RedisConnectionInfo items)
-        {
-            Items = items;
-        }
     }
 }

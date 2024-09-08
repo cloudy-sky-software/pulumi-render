@@ -11,11 +11,11 @@ namespace Pulumi.Render.EnvGroups
 {
     public static class GetEnvGroupSecretFile
     {
-        public static Task<GetEnvGroupSecretFileResult> InvokeAsync(GetEnvGroupSecretFileArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetEnvGroupSecretFileResult>("render:env-groups:getEnvGroupSecretFile", args ?? new GetEnvGroupSecretFileArgs(), options.WithDefaults());
+        public static Task<Outputs.SecretFile> InvokeAsync(GetEnvGroupSecretFileArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<Outputs.SecretFile>("render:env-groups:getEnvGroupSecretFile", args ?? new GetEnvGroupSecretFileArgs(), options.WithDefaults());
 
-        public static Output<GetEnvGroupSecretFileResult> Invoke(GetEnvGroupSecretFileInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetEnvGroupSecretFileResult>("render:env-groups:getEnvGroupSecretFile", args ?? new GetEnvGroupSecretFileInvokeArgs(), options.WithDefaults());
+        public static Output<Outputs.SecretFile> Invoke(GetEnvGroupSecretFileInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.SecretFile>("render:env-groups:getEnvGroupSecretFile", args ?? new GetEnvGroupSecretFileInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -57,18 +57,5 @@ namespace Pulumi.Render.EnvGroups
         {
         }
         public static new GetEnvGroupSecretFileInvokeArgs Empty => new GetEnvGroupSecretFileInvokeArgs();
-    }
-
-
-    [OutputType]
-    public sealed class GetEnvGroupSecretFileResult
-    {
-        public readonly Outputs.SecretFile Items;
-
-        [OutputConstructor]
-        private GetEnvGroupSecretFileResult(Outputs.SecretFile items)
-        {
-            Items = items;
-        }
     }
 }

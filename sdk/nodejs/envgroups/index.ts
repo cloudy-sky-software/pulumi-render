@@ -10,17 +10,17 @@ export type EnvGroup = import("./envGroup").EnvGroup;
 export const EnvGroup: typeof import("./envGroup").EnvGroup = null as any;
 utilities.lazyLoad(exports, ["EnvGroup"], () => require("./envGroup"));
 
-export { GetEnvGroupArgs, GetEnvGroupResult, GetEnvGroupOutputArgs } from "./getEnvGroup";
+export { GetEnvGroupArgs, GetEnvGroupOutputArgs } from "./getEnvGroup";
 export const getEnvGroup: typeof import("./getEnvGroup").getEnvGroup = null as any;
 export const getEnvGroupOutput: typeof import("./getEnvGroup").getEnvGroupOutput = null as any;
 utilities.lazyLoad(exports, ["getEnvGroup","getEnvGroupOutput"], () => require("./getEnvGroup"));
 
-export { GetEnvGroupEnvVarArgs, GetEnvGroupEnvVarResult, GetEnvGroupEnvVarOutputArgs } from "./getEnvGroupEnvVar";
+export { GetEnvGroupEnvVarArgs, GetEnvGroupEnvVarOutputArgs } from "./getEnvGroupEnvVar";
 export const getEnvGroupEnvVar: typeof import("./getEnvGroupEnvVar").getEnvGroupEnvVar = null as any;
 export const getEnvGroupEnvVarOutput: typeof import("./getEnvGroupEnvVar").getEnvGroupEnvVarOutput = null as any;
 utilities.lazyLoad(exports, ["getEnvGroupEnvVar","getEnvGroupEnvVarOutput"], () => require("./getEnvGroupEnvVar"));
 
-export { GetEnvGroupSecretFileArgs, GetEnvGroupSecretFileResult, GetEnvGroupSecretFileOutputArgs } from "./getEnvGroupSecretFile";
+export { GetEnvGroupSecretFileArgs, GetEnvGroupSecretFileOutputArgs } from "./getEnvGroupSecretFile";
 export const getEnvGroupSecretFile: typeof import("./getEnvGroupSecretFile").getEnvGroupSecretFile = null as any;
 export const getEnvGroupSecretFileOutput: typeof import("./getEnvGroupSecretFile").getEnvGroupSecretFileOutput = null as any;
 utilities.lazyLoad(exports, ["getEnvGroupSecretFile","getEnvGroupSecretFileOutput"], () => require("./getEnvGroupSecretFile"));

@@ -11,11 +11,11 @@ namespace Pulumi.Render.Postgres
 {
     public static class GetPostgres
     {
-        public static Task<GetPostgresResult> InvokeAsync(GetPostgresArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetPostgresResult>("render:postgres:getPostgres", args ?? new GetPostgresArgs(), options.WithDefaults());
+        public static Task<Outputs.PostgresDetail> InvokeAsync(GetPostgresArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<Outputs.PostgresDetail>("render:postgres:getPostgres", args ?? new GetPostgresArgs(), options.WithDefaults());
 
-        public static Output<GetPostgresResult> Invoke(GetPostgresInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetPostgresResult>("render:postgres:getPostgres", args ?? new GetPostgresInvokeArgs(), options.WithDefaults());
+        public static Output<Outputs.PostgresDetail> Invoke(GetPostgresInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.PostgresDetail>("render:postgres:getPostgres", args ?? new GetPostgresInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -39,18 +39,5 @@ namespace Pulumi.Render.Postgres
         {
         }
         public static new GetPostgresInvokeArgs Empty => new GetPostgresInvokeArgs();
-    }
-
-
-    [OutputType]
-    public sealed class GetPostgresResult
-    {
-        public readonly Outputs.PostgresDetail Items;
-
-        [OutputConstructor]
-        private GetPostgresResult(Outputs.PostgresDetail items)
-        {
-            Items = items;
-        }
     }
 }

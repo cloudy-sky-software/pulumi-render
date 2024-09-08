@@ -4,7 +4,7 @@
 import * as utilities from "../utilities";
 
 // Export members:
-export { GetBlueprintArgs, GetBlueprintResult, GetBlueprintOutputArgs } from "./getBlueprint";
+export { GetBlueprintArgs, GetBlueprintOutputArgs } from "./getBlueprint";
 export const getBlueprint: typeof import("./getBlueprint").getBlueprint = null as any;
 export const getBlueprintOutput: typeof import("./getBlueprint").getBlueprintOutput = null as any;
 utilities.lazyLoad(exports, ["getBlueprint","getBlueprintOutput"], () => require("./getBlueprint"));

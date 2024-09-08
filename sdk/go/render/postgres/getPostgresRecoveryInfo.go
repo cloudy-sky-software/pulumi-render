@@ -26,7 +26,9 @@ type GetPostgresRecoveryInfoArgs struct {
 }
 
 type GetPostgresRecoveryInfoResult struct {
-	Items GetPostgresRecoveryInfoProperties `pulumi:"items"`
+	// Availability of point-in-time recovery.
+	RecoveryStatus GetPostgresRecoveryInfoPropertiesRecoveryStatus `pulumi:"recoveryStatus"`
+	StartsAt       *string                                         `pulumi:"startsAt"`
 }
 
 func GetPostgresRecoveryInfoOutput(ctx *pulumi.Context, args GetPostgresRecoveryInfoOutputArgs, opts ...pulumi.InvokeOption) GetPostgresRecoveryInfoResultOutput {
@@ -64,8 +66,15 @@ func (o GetPostgresRecoveryInfoResultOutput) ToGetPostgresRecoveryInfoResultOutp
 	return o
 }
 
-func (o GetPostgresRecoveryInfoResultOutput) Items() GetPostgresRecoveryInfoPropertiesOutput {
-	return o.ApplyT(func(v GetPostgresRecoveryInfoResult) GetPostgresRecoveryInfoProperties { return v.Items }).(GetPostgresRecoveryInfoPropertiesOutput)
+// Availability of point-in-time recovery.
+func (o GetPostgresRecoveryInfoResultOutput) RecoveryStatus() GetPostgresRecoveryInfoPropertiesRecoveryStatusOutput {
+	return o.ApplyT(func(v GetPostgresRecoveryInfoResult) GetPostgresRecoveryInfoPropertiesRecoveryStatus {
+		return v.RecoveryStatus
+	}).(GetPostgresRecoveryInfoPropertiesRecoveryStatusOutput)
+}
+
+func (o GetPostgresRecoveryInfoResultOutput) StartsAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetPostgresRecoveryInfoResult) *string { return v.StartsAt }).(pulumi.StringPtrOutput)
 }
 
 func init() {

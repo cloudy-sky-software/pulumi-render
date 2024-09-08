@@ -11,11 +11,11 @@ namespace Pulumi.Render.Services
 {
     public static class GetWebService
     {
-        public static Task<GetWebServiceResult> InvokeAsync(GetWebServiceArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetWebServiceResult>("render:services:getWebService", args ?? new GetWebServiceArgs(), options.WithDefaults());
+        public static Task<Outputs.GetWebService> InvokeAsync(GetWebServiceArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<Outputs.GetWebService>("render:services:getWebService", args ?? new GetWebServiceArgs(), options.WithDefaults());
 
-        public static Output<GetWebServiceResult> Invoke(GetWebServiceInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetWebServiceResult>("render:services:getWebService", args ?? new GetWebServiceInvokeArgs(), options.WithDefaults());
+        public static Output<Outputs.GetWebService> Invoke(GetWebServiceInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetWebService>("render:services:getWebService", args ?? new GetWebServiceInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -45,18 +45,5 @@ namespace Pulumi.Render.Services
         {
         }
         public static new GetWebServiceInvokeArgs Empty => new GetWebServiceInvokeArgs();
-    }
-
-
-    [OutputType]
-    public sealed class GetWebServiceResult
-    {
-        public readonly Outputs.GetWebService Items;
-
-        [OutputConstructor]
-        private GetWebServiceResult(Outputs.GetWebService items)
-        {
-            Items = items;
-        }
     }
 }

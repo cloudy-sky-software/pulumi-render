@@ -1,6 +1,10 @@
+## 0.3.6
+
+Fix execution error of list-style invokes.
+
 ## 0.3.5
 
-- Remove unnecessary envelope properties from `get*` and `list*` functions.
+Remove unnecessary envelope properties from `get*` and `list*` functions.
 
 ## 0.3.3, 0.3.4
 

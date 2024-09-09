@@ -1,3 +1,7 @@
+## 0.3.8
+
+Fix input type for `EnvVarsForService`. This was broken in the 0.3.0 release.
+
 ## 0.3.6, 0.3.7
 
 Fix execution error of list-style invokes.

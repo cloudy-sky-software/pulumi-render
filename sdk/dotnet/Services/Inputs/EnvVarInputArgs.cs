@@ -12,6 +12,15 @@ namespace Pulumi.Render.Services.Inputs
 
     public sealed class EnvVarInputArgs : global::Pulumi.ResourceArgs
     {
+        [Input("generateValue")]
+        public Input<bool>? GenerateValue { get; set; }
+
+        [Input("key")]
+        public Input<string>? Key { get; set; }
+
+        [Input("value")]
+        public Input<string>? Value { get; set; }
+
         public EnvVarInputArgs()
         {
         }

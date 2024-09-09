@@ -17,8 +17,43 @@ __all__ = [
 
 @pulumi.input_type
 class EnvVarInputArgs:
-    def __init__(__self__):
-        pass
+    def __init__(__self__, *,
+                 generate_value: Optional[pulumi.Input[bool]] = None,
+                 key: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        if generate_value is not None:
+            pulumi.set(__self__, "generate_value", generate_value)
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="generateValue")
+    def generate_value(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "generate_value")
+
+    @generate_value.setter
+    def generate_value(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "generate_value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
 
 
 @pulumi.input_type

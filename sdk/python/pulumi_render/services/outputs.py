@@ -1124,8 +1124,48 @@ class EnvVar(dict):
 
 @pulumi.output_type
 class EnvVarInput(dict):
-    def __init__(__self__):
-        pass
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "generateValue":
+            suggest = "generate_value"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in EnvVarInput. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        EnvVarInput.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        EnvVarInput.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 generate_value: Optional[bool] = None,
+                 key: Optional[str] = None,
+                 value: Optional[str] = None):
+        if generate_value is not None:
+            pulumi.set(__self__, "generate_value", generate_value)
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="generateValue")
+    def generate_value(self) -> Optional[bool]:
+        return pulumi.get(self, "generate_value")
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[str]:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type

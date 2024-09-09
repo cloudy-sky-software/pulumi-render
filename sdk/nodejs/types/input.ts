@@ -16,6 +16,9 @@ export namespace disks {
 
 export namespace envgroups {
     export interface EnvVarInputArgs {
+        generateValue?: pulumi.Input<boolean>;
+        key?: pulumi.Input<string>;
+        value?: pulumi.Input<string>;
     }
 
     export interface SecretFileInputArgs {
@@ -221,6 +224,9 @@ export namespace services {
     }
 
     export interface EnvVarInputArgs {
+        generateValue?: pulumi.Input<boolean>;
+        key?: pulumi.Input<string>;
+        value?: pulumi.Input<string>;
     }
 
     export interface HeaderInputArgs {

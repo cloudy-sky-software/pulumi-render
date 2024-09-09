@@ -13,9 +13,21 @@ namespace Pulumi.Render.Services.Outputs
     [OutputType]
     public sealed class EnvVarInput
     {
+        public readonly bool? GenerateValue;
+        public readonly string? Key;
+        public readonly string? Value;
+
         [OutputConstructor]
-        private EnvVarInput()
+        private EnvVarInput(
+            bool? generateValue,
+
+            string? key,
+
+            string? value)
         {
+            GenerateValue = generateValue;
+            Key = key;
+            Value = value;
         }
     }
 }

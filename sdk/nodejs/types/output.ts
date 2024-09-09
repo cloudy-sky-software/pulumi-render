@@ -1001,6 +1001,9 @@ export namespace services {
     }
 
     export interface EnvVarInput {
+        generateValue?: boolean;
+        key?: string;
+        value?: string;
     }
 
     export interface EnvVarWithCursor {

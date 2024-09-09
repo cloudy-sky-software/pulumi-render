@@ -1149,7 +1149,7 @@ components:
                 - generateValue
             type: object
         envVarInput:
-            oneOf:
+            allOf:
                 - $ref: '#/components/schemas/envVarKeyValue'
                 - $ref: '#/components/schemas/envVarKeyGenerateValue'
             type: object
@@ -1163,9 +1163,6 @@ components:
                     type: boolean
                 key:
                     type: string
-            required:
-                - key
-                - generateValue
             type: object
         envVarKeyValue:
             properties:
@@ -1173,9 +1170,6 @@ components:
                     type: string
                 value:
                     type: string
-            required:
-                - key
-                - value
             type: object
         envVarValue:
             properties:

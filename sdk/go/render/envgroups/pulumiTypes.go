@@ -199,6 +199,9 @@ func (o EnvVarArrayOutput) Index(i pulumi.IntInput) EnvVarOutput {
 }
 
 type EnvVarInputType struct {
+	GenerateValue *bool   `pulumi:"generateValue"`
+	Key           *string `pulumi:"key"`
+	Value         *string `pulumi:"value"`
 }
 
 // EnvVarInputTypeInput is an input type that accepts EnvVarInputTypeArgs and EnvVarInputTypeOutput values.
@@ -213,6 +216,9 @@ type EnvVarInputTypeInput interface {
 }
 
 type EnvVarInputTypeArgs struct {
+	GenerateValue pulumi.BoolPtrInput   `pulumi:"generateValue"`
+	Key           pulumi.StringPtrInput `pulumi:"key"`
+	Value         pulumi.StringPtrInput `pulumi:"value"`
 }
 
 func (EnvVarInputTypeArgs) ElementType() reflect.Type {
@@ -264,6 +270,18 @@ func (o EnvVarInputTypeOutput) ToEnvVarInputTypeOutput() EnvVarInputTypeOutput {
 
 func (o EnvVarInputTypeOutput) ToEnvVarInputTypeOutputWithContext(ctx context.Context) EnvVarInputTypeOutput {
 	return o
+}
+
+func (o EnvVarInputTypeOutput) GenerateValue() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v EnvVarInputType) *bool { return v.GenerateValue }).(pulumi.BoolPtrOutput)
+}
+
+func (o EnvVarInputTypeOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvVarInputType) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+func (o EnvVarInputTypeOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EnvVarInputType) *string { return v.Value }).(pulumi.StringPtrOutput)
 }
 
 type EnvVarInputTypeArrayOutput struct{ *pulumi.OutputState }

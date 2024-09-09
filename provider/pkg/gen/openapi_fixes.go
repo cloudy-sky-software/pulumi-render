@@ -54,12 +54,16 @@ func getResourceFromPath(path string) (string, error) {
 	return pulschema_pkg.ToPascalCase(resourceName), nil
 }
 
+// fixEnvVarsPutEndpoint fixes the `PUT /services/{serviceId}/env-vars`
+// endpoint.
+//
+// The API for replacing env vars just takes a
+// top-level array of objects. We are nesting it
+// under an envVars property to help with resource
+// construction via Pulumi and handle the
+// conversion in the OnPreCreate provider
+// callback.
 func fixEnvVarsPutEndpoint(openAPIDoc *openapi3.T) error {
-	// The actual API for updating/replacing env vars
-	// actually just takes a top-level array of objects.
-	// We've nested it under an envVars property to help
-	// with resource construction via Pulumi and handle
-	// the conversion in the OnPreCreate provider callback.
 	pathItem := openAPIDoc.Paths.Find("/services/{serviceId}/env-vars")
 	if pathItem == nil {
 		return errors.New("expected to find /services/{serviceId}/env-vars")
@@ -362,18 +366,16 @@ func fixPostgresResponseInvalidRequiredProp(openAPIDoc *openapi3.T) {
 	})
 }
 
-// fixEnvSpecificDetailsSchemas modifies the types
-// envSpecificDetails|PATCH|POST from using oneOf
-// to allOf definitions since they don't use a
-// discriminator.
-func fixEnvSpecificDetailsSchemas(openAPIDoc *openapi3.T) {
+// convertFromOneOfToAllOf modifies the specified types
+// from using oneOf to allOf definitions since they
+// don't use a discriminator.
+func convertFromOneOfToAllOf(openAPIDoc *openapi3.T, types []string) {
 	removeRequiredProps := func(schemas *openapi3.SchemaRefs) {
 		for _, schemaRef := range *schemas {
 			schemaRef.Value.Required = nil
 		}
 	}
 
-	types := []string{"envSpecificDetails", "envSpecificDetailsPATCH", "envSpecificDetailsPOST"}
 	for _, t := range types {
 		schemaRef, ok := openAPIDoc.Components.Schemas[t]
 		contract.Assertf(ok, "schema %s not found", t)
@@ -400,7 +402,9 @@ func FixOpenAPIDoc(openAPIDoc *openapi3.T) error {
 	fixDeleteServiceEndpoint(openAPIDoc)
 	fixListJobsEndpoint((openAPIDoc))
 	fixPostgresResponseInvalidRequiredProp(openAPIDoc)
-	fixEnvSpecificDetailsSchemas(openAPIDoc)
-
+	// Convert envSpecificDetails|PATCH|POST schema types from oneOf to allOf.
+	convertFromOneOfToAllOf(openAPIDoc, []string{"envSpecificDetails", "envSpecificDetailsPATCH", "envSpecificDetailsPOST"})
+	// Convert envVarInput from oneOf to allOf.
+	convertFromOneOfToAllOf(openAPIDoc, []string{"envVarInput"})
 	return nil
 }

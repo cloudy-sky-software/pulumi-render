@@ -575,6 +575,17 @@
             ]
         },
         "render:env-groups:EnvVarInput": {
+            "properties": {
+                "generateValue": {
+                    "type": "boolean"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
             "type": "object"
         },
         "render:env-groups:SecretFile": {
@@ -4561,6 +4572,17 @@
             ]
         },
         "render:services:EnvVarInput": {
+            "properties": {
+                "generateValue": {
+                    "type": "boolean"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
             "type": "object"
         },
         "render:services:EnvVarWithCursor": {

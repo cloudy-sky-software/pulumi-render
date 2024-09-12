@@ -70,14 +70,20 @@ func (val *LookupWebServiceResult) Defaults() *LookupWebServiceResult {
 
 func LookupWebServiceOutput(ctx *pulumi.Context, args LookupWebServiceOutputArgs, opts ...pulumi.InvokeOption) LookupWebServiceResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupWebServiceResult, error) {
+		ApplyT(func(v interface{}) (LookupWebServiceResultOutput, error) {
 			args := v.(LookupWebServiceArgs)
-			r, err := LookupWebService(ctx, &args, opts...)
-			var s LookupWebServiceResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupWebServiceResult
+			secret, err := ctx.InvokePackageRaw("render:services:getWebService", args, &rv, "", opts...)
+			if err != nil {
+				return LookupWebServiceResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupWebServiceResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupWebServiceResultOutput), nil
+			}
+			return output, nil
 		}).(LookupWebServiceResultOutput)
 }
 

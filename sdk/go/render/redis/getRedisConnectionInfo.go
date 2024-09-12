@@ -37,14 +37,20 @@ type GetRedisConnectionInfoResult struct {
 
 func GetRedisConnectionInfoOutput(ctx *pulumi.Context, args GetRedisConnectionInfoOutputArgs, opts ...pulumi.InvokeOption) GetRedisConnectionInfoResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetRedisConnectionInfoResult, error) {
+		ApplyT(func(v interface{}) (GetRedisConnectionInfoResultOutput, error) {
 			args := v.(GetRedisConnectionInfoArgs)
-			r, err := GetRedisConnectionInfo(ctx, &args, opts...)
-			var s GetRedisConnectionInfoResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetRedisConnectionInfoResult
+			secret, err := ctx.InvokePackageRaw("render:redis:getRedisConnectionInfo", args, &rv, "", opts...)
+			if err != nil {
+				return GetRedisConnectionInfoResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetRedisConnectionInfoResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetRedisConnectionInfoResultOutput), nil
+			}
+			return output, nil
 		}).(GetRedisConnectionInfoResultOutput)
 }
 

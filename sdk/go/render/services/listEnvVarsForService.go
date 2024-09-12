@@ -32,14 +32,20 @@ type ListEnvVarsForServiceResult struct {
 
 func ListEnvVarsForServiceOutput(ctx *pulumi.Context, args ListEnvVarsForServiceOutputArgs, opts ...pulumi.InvokeOption) ListEnvVarsForServiceResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (ListEnvVarsForServiceResult, error) {
+		ApplyT(func(v interface{}) (ListEnvVarsForServiceResultOutput, error) {
 			args := v.(ListEnvVarsForServiceArgs)
-			r, err := ListEnvVarsForService(ctx, &args, opts...)
-			var s ListEnvVarsForServiceResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv ListEnvVarsForServiceResult
+			secret, err := ctx.InvokePackageRaw("render:services:listEnvVarsForService", args, &rv, "", opts...)
+			if err != nil {
+				return ListEnvVarsForServiceResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(ListEnvVarsForServiceResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(ListEnvVarsForServiceResultOutput), nil
+			}
+			return output, nil
 		}).(ListEnvVarsForServiceResultOutput)
 }
 

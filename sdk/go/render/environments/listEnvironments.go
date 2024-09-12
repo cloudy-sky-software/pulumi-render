@@ -30,14 +30,20 @@ type ListEnvironmentsResult struct {
 
 func ListEnvironmentsOutput(ctx *pulumi.Context, args ListEnvironmentsOutputArgs, opts ...pulumi.InvokeOption) ListEnvironmentsResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (ListEnvironmentsResult, error) {
+		ApplyT(func(v interface{}) (ListEnvironmentsResultOutput, error) {
 			args := v.(ListEnvironmentsArgs)
-			r, err := ListEnvironments(ctx, &args, opts...)
-			var s ListEnvironmentsResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv ListEnvironmentsResult
+			secret, err := ctx.InvokePackageRaw("render:environments:listEnvironments", args, &rv, "", opts...)
+			if err != nil {
+				return ListEnvironmentsResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(ListEnvironmentsResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(ListEnvironmentsResultOutput), nil
+			}
+			return output, nil
 		}).(ListEnvironmentsResultOutput)
 }
 

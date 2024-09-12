@@ -30,14 +30,20 @@ type ListActiveConnectionsResult struct {
 
 func ListActiveConnectionsOutput(ctx *pulumi.Context, args ListActiveConnectionsOutputArgs, opts ...pulumi.InvokeOption) ListActiveConnectionsResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (ListActiveConnectionsResult, error) {
+		ApplyT(func(v interface{}) (ListActiveConnectionsResultOutput, error) {
 			args := v.(ListActiveConnectionsArgs)
-			r, err := ListActiveConnections(ctx, &args, opts...)
-			var s ListActiveConnectionsResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv ListActiveConnectionsResult
+			secret, err := ctx.InvokePackageRaw("render:metrics:listActiveConnections", args, &rv, "", opts...)
+			if err != nil {
+				return ListActiveConnectionsResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(ListActiveConnectionsResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(ListActiveConnectionsResultOutput), nil
+			}
+			return output, nil
 		}).(ListActiveConnectionsResultOutput)
 }
 

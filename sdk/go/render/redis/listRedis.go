@@ -30,14 +30,20 @@ type ListRedisResult struct {
 
 func ListRedisOutput(ctx *pulumi.Context, args ListRedisOutputArgs, opts ...pulumi.InvokeOption) ListRedisResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (ListRedisResult, error) {
+		ApplyT(func(v interface{}) (ListRedisResultOutput, error) {
 			args := v.(ListRedisArgs)
-			r, err := ListRedis(ctx, &args, opts...)
-			var s ListRedisResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv ListRedisResult
+			secret, err := ctx.InvokePackageRaw("render:redis:listRedis", args, &rv, "", opts...)
+			if err != nil {
+				return ListRedisResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(ListRedisResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(ListRedisResultOutput), nil
+			}
+			return output, nil
 		}).(ListRedisResultOutput)
 }
 

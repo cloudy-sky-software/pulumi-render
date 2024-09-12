@@ -32,14 +32,20 @@ type ListHeadersResult struct {
 
 func ListHeadersOutput(ctx *pulumi.Context, args ListHeadersOutputArgs, opts ...pulumi.InvokeOption) ListHeadersResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (ListHeadersResult, error) {
+		ApplyT(func(v interface{}) (ListHeadersResultOutput, error) {
 			args := v.(ListHeadersArgs)
-			r, err := ListHeaders(ctx, &args, opts...)
-			var s ListHeadersResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv ListHeadersResult
+			secret, err := ctx.InvokePackageRaw("render:services:listHeaders", args, &rv, "", opts...)
+			if err != nil {
+				return ListHeadersResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(ListHeadersResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(ListHeadersResultOutput), nil
+			}
+			return output, nil
 		}).(ListHeadersResultOutput)
 }
 

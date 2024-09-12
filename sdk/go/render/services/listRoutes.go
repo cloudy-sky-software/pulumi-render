@@ -32,14 +32,20 @@ type ListRoutesResult struct {
 
 func ListRoutesOutput(ctx *pulumi.Context, args ListRoutesOutputArgs, opts ...pulumi.InvokeOption) ListRoutesResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (ListRoutesResult, error) {
+		ApplyT(func(v interface{}) (ListRoutesResultOutput, error) {
 			args := v.(ListRoutesArgs)
-			r, err := ListRoutes(ctx, &args, opts...)
-			var s ListRoutesResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv ListRoutesResult
+			secret, err := ctx.InvokePackageRaw("render:services:listRoutes", args, &rv, "", opts...)
+			if err != nil {
+				return ListRoutesResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(ListRoutesResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(ListRoutesResultOutput), nil
+			}
+			return output, nil
 		}).(ListRoutesResultOutput)
 }
 

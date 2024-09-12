@@ -33,14 +33,20 @@ type GetPostgresRecoveryInfoResult struct {
 
 func GetPostgresRecoveryInfoOutput(ctx *pulumi.Context, args GetPostgresRecoveryInfoOutputArgs, opts ...pulumi.InvokeOption) GetPostgresRecoveryInfoResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetPostgresRecoveryInfoResult, error) {
+		ApplyT(func(v interface{}) (GetPostgresRecoveryInfoResultOutput, error) {
 			args := v.(GetPostgresRecoveryInfoArgs)
-			r, err := GetPostgresRecoveryInfo(ctx, &args, opts...)
-			var s GetPostgresRecoveryInfoResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetPostgresRecoveryInfoResult
+			secret, err := ctx.InvokePackageRaw("render:postgres:getPostgresRecoveryInfo", args, &rv, "", opts...)
+			if err != nil {
+				return GetPostgresRecoveryInfoResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetPostgresRecoveryInfoResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetPostgresRecoveryInfoResultOutput), nil
+			}
+			return output, nil
 		}).(GetPostgresRecoveryInfoResultOutput)
 }
 

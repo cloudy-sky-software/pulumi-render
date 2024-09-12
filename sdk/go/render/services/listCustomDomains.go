@@ -32,14 +32,20 @@ type ListCustomDomainsResult struct {
 
 func ListCustomDomainsOutput(ctx *pulumi.Context, args ListCustomDomainsOutputArgs, opts ...pulumi.InvokeOption) ListCustomDomainsResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (ListCustomDomainsResult, error) {
+		ApplyT(func(v interface{}) (ListCustomDomainsResultOutput, error) {
 			args := v.(ListCustomDomainsArgs)
-			r, err := ListCustomDomains(ctx, &args, opts...)
-			var s ListCustomDomainsResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv ListCustomDomainsResult
+			secret, err := ctx.InvokePackageRaw("render:services:listCustomDomains", args, &rv, "", opts...)
+			if err != nil {
+				return ListCustomDomainsResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(ListCustomDomainsResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(ListCustomDomainsResultOutput), nil
+			}
+			return output, nil
 		}).(ListCustomDomainsResultOutput)
 }
 

@@ -32,14 +32,20 @@ type ListJobResult struct {
 
 func ListJobOutput(ctx *pulumi.Context, args ListJobOutputArgs, opts ...pulumi.InvokeOption) ListJobResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (ListJobResult, error) {
+		ApplyT(func(v interface{}) (ListJobResultOutput, error) {
 			args := v.(ListJobArgs)
-			r, err := ListJob(ctx, &args, opts...)
-			var s ListJobResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv ListJobResult
+			secret, err := ctx.InvokePackageRaw("render:services:listJob", args, &rv, "", opts...)
+			if err != nil {
+				return ListJobResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(ListJobResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(ListJobResultOutput), nil
+			}
+			return output, nil
 		}).(ListJobResultOutput)
 }
 

@@ -31,14 +31,20 @@ type ListPostgresBackupResult struct {
 
 func ListPostgresBackupOutput(ctx *pulumi.Context, args ListPostgresBackupOutputArgs, opts ...pulumi.InvokeOption) ListPostgresBackupResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (ListPostgresBackupResult, error) {
+		ApplyT(func(v interface{}) (ListPostgresBackupResultOutput, error) {
 			args := v.(ListPostgresBackupArgs)
-			r, err := ListPostgresBackup(ctx, &args, opts...)
-			var s ListPostgresBackupResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv ListPostgresBackupResult
+			secret, err := ctx.InvokePackageRaw("render:postgres:listPostgresBackup", args, &rv, "", opts...)
+			if err != nil {
+				return ListPostgresBackupResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(ListPostgresBackupResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(ListPostgresBackupResultOutput), nil
+			}
+			return output, nil
 		}).(ListPostgresBackupResultOutput)
 }
 

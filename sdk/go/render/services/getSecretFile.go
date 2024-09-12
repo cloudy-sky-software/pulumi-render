@@ -35,14 +35,20 @@ type GetSecretFileResult struct {
 
 func GetSecretFileOutput(ctx *pulumi.Context, args GetSecretFileOutputArgs, opts ...pulumi.InvokeOption) GetSecretFileResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetSecretFileResult, error) {
+		ApplyT(func(v interface{}) (GetSecretFileResultOutput, error) {
 			args := v.(GetSecretFileArgs)
-			r, err := GetSecretFile(ctx, &args, opts...)
-			var s GetSecretFileResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetSecretFileResult
+			secret, err := ctx.InvokePackageRaw("render:services:getSecretFile", args, &rv, "", opts...)
+			if err != nil {
+				return GetSecretFileResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetSecretFileResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetSecretFileResultOutput), nil
+			}
+			return output, nil
 		}).(GetSecretFileResultOutput)
 }
 

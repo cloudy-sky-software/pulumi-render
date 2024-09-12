@@ -41,14 +41,20 @@ type LookupEnvGroupResult struct {
 
 func LookupEnvGroupOutput(ctx *pulumi.Context, args LookupEnvGroupOutputArgs, opts ...pulumi.InvokeOption) LookupEnvGroupResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupEnvGroupResult, error) {
+		ApplyT(func(v interface{}) (LookupEnvGroupResultOutput, error) {
 			args := v.(LookupEnvGroupArgs)
-			r, err := LookupEnvGroup(ctx, &args, opts...)
-			var s LookupEnvGroupResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupEnvGroupResult
+			secret, err := ctx.InvokePackageRaw("render:env-groups:getEnvGroup", args, &rv, "", opts...)
+			if err != nil {
+				return LookupEnvGroupResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupEnvGroupResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupEnvGroupResultOutput), nil
+			}
+			return output, nil
 		}).(LookupEnvGroupResultOutput)
 }
 

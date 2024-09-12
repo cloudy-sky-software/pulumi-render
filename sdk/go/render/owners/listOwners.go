@@ -30,14 +30,20 @@ type ListOwnersResult struct {
 
 func ListOwnersOutput(ctx *pulumi.Context, args ListOwnersOutputArgs, opts ...pulumi.InvokeOption) ListOwnersResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (ListOwnersResult, error) {
+		ApplyT(func(v interface{}) (ListOwnersResultOutput, error) {
 			args := v.(ListOwnersArgs)
-			r, err := ListOwners(ctx, &args, opts...)
-			var s ListOwnersResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv ListOwnersResult
+			secret, err := ctx.InvokePackageRaw("render:owners:listOwners", args, &rv, "", opts...)
+			if err != nil {
+				return ListOwnersResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(ListOwnersResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(ListOwnersResultOutput), nil
+			}
+			return output, nil
 		}).(ListOwnersResultOutput)
 }
 

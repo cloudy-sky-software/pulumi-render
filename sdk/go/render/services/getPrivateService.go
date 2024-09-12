@@ -70,14 +70,20 @@ func (val *LookupPrivateServiceResult) Defaults() *LookupPrivateServiceResult {
 
 func LookupPrivateServiceOutput(ctx *pulumi.Context, args LookupPrivateServiceOutputArgs, opts ...pulumi.InvokeOption) LookupPrivateServiceResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupPrivateServiceResult, error) {
+		ApplyT(func(v interface{}) (LookupPrivateServiceResultOutput, error) {
 			args := v.(LookupPrivateServiceArgs)
-			r, err := LookupPrivateService(ctx, &args, opts...)
-			var s LookupPrivateServiceResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupPrivateServiceResult
+			secret, err := ctx.InvokePackageRaw("render:services:getPrivateService", args, &rv, "", opts...)
+			if err != nil {
+				return LookupPrivateServiceResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupPrivateServiceResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupPrivateServiceResultOutput), nil
+			}
+			return output, nil
 		}).(LookupPrivateServiceResultOutput)
 }
 

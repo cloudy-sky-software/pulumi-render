@@ -35,14 +35,20 @@ type GetEnvGroupEnvVarResult struct {
 
 func GetEnvGroupEnvVarOutput(ctx *pulumi.Context, args GetEnvGroupEnvVarOutputArgs, opts ...pulumi.InvokeOption) GetEnvGroupEnvVarResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetEnvGroupEnvVarResult, error) {
+		ApplyT(func(v interface{}) (GetEnvGroupEnvVarResultOutput, error) {
 			args := v.(GetEnvGroupEnvVarArgs)
-			r, err := GetEnvGroupEnvVar(ctx, &args, opts...)
-			var s GetEnvGroupEnvVarResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetEnvGroupEnvVarResult
+			secret, err := ctx.InvokePackageRaw("render:env-groups:getEnvGroupEnvVar", args, &rv, "", opts...)
+			if err != nil {
+				return GetEnvGroupEnvVarResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetEnvGroupEnvVarResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetEnvGroupEnvVarResultOutput), nil
+			}
+			return output, nil
 		}).(GetEnvGroupEnvVarResultOutput)
 }
 

@@ -30,14 +30,20 @@ type ListEnvGroupsResult struct {
 
 func ListEnvGroupsOutput(ctx *pulumi.Context, args ListEnvGroupsOutputArgs, opts ...pulumi.InvokeOption) ListEnvGroupsResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (ListEnvGroupsResult, error) {
+		ApplyT(func(v interface{}) (ListEnvGroupsResultOutput, error) {
 			args := v.(ListEnvGroupsArgs)
-			r, err := ListEnvGroups(ctx, &args, opts...)
-			var s ListEnvGroupsResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv ListEnvGroupsResult
+			secret, err := ctx.InvokePackageRaw("render:env-groups:listEnvGroups", args, &rv, "", opts...)
+			if err != nil {
+				return ListEnvGroupsResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(ListEnvGroupsResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(ListEnvGroupsResultOutput), nil
+			}
+			return output, nil
 		}).(ListEnvGroupsResultOutput)
 }
 

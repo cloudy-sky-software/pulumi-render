@@ -39,14 +39,20 @@ type LookupRegistryCredentialResult struct {
 
 func LookupRegistryCredentialOutput(ctx *pulumi.Context, args LookupRegistryCredentialOutputArgs, opts ...pulumi.InvokeOption) LookupRegistryCredentialResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupRegistryCredentialResult, error) {
+		ApplyT(func(v interface{}) (LookupRegistryCredentialResultOutput, error) {
 			args := v.(LookupRegistryCredentialArgs)
-			r, err := LookupRegistryCredential(ctx, &args, opts...)
-			var s LookupRegistryCredentialResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupRegistryCredentialResult
+			secret, err := ctx.InvokePackageRaw("render:registrycredentials:getRegistryCredential", args, &rv, "", opts...)
+			if err != nil {
+				return LookupRegistryCredentialResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupRegistryCredentialResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupRegistryCredentialResultOutput), nil
+			}
+			return output, nil
 		}).(LookupRegistryCredentialResultOutput)
 }
 

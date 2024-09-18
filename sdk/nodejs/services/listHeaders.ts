@@ -8,7 +8,6 @@ import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export function listHeaders(args: ListHeadersArgs, opts?: pulumi.InvokeOptions): Promise<ListHeadersResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:listHeaders", {
         "serviceId": args.serviceId,
@@ -26,7 +25,10 @@ export interface ListHeadersResult {
     readonly items: outputs.services.HeaderWithCursor[];
 }
 export function listHeadersOutput(args: ListHeadersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListHeadersResult> {
-    return pulumi.output(args).apply((a: any) => listHeaders(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("render:services:listHeaders", {
+        "serviceId": args.serviceId,
+    }, opts);
 }
 
 export interface ListHeadersOutputArgs {

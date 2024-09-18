@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
 
 export function listPostgres(args?: ListPostgresArgs, opts?: pulumi.InvokeOptions): Promise<ListPostgresResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:postgres:listPostgres", {
     }, opts);
@@ -22,5 +21,8 @@ export interface ListPostgresResult {
     readonly items: outputs.postgres.ListPostgresItemProperties[];
 }
 export function listPostgresOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListPostgresResult> {
-    return pulumi.output(listPostgres(opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("render:postgres:listPostgres", {
+    }, opts);
 }
+

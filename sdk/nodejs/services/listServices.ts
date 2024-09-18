@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
 
 export function listServices(args?: ListServicesArgs, opts?: pulumi.InvokeOptions): Promise<ListServicesResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:listServices", {
     }, opts);
@@ -22,5 +21,8 @@ export interface ListServicesResult {
     readonly items: outputs.services.ListServicesResponse[];
 }
 export function listServicesOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListServicesResult> {
-    return pulumi.output(listServices(opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("render:services:listServices", {
+    }, opts);
 }
+

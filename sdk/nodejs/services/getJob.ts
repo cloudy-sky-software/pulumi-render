@@ -8,7 +8,6 @@ import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export function getJob(args: GetJobArgs, opts?: pulumi.InvokeOptions): Promise<outputs.services.Job> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:getJob", {
         "jobId": args.jobId,
@@ -27,7 +26,11 @@ export interface GetJobArgs {
     serviceId: string;
 }
 export function getJobOutput(args: GetJobOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.services.Job> {
-    return pulumi.output(args).apply((a: any) => getJob(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("render:services:getJob", {
+        "jobId": args.jobId,
+        "serviceId": args.serviceId,
+    }, opts);
 }
 
 export interface GetJobOutputArgs {

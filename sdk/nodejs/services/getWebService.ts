@@ -8,7 +8,6 @@ import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export function getWebService(args: GetWebServiceArgs, opts?: pulumi.InvokeOptions): Promise<outputs.services.GetWebService> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:getWebService", {
         "serviceId": args.serviceId,
@@ -22,7 +21,10 @@ export interface GetWebServiceArgs {
     serviceId: string;
 }
 export function getWebServiceOutput(args: GetWebServiceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.services.GetWebService> {
-    return pulumi.output(args).apply((a: any) => getWebService(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("render:services:getWebService", {
+        "serviceId": args.serviceId,
+    }, opts);
 }
 
 export interface GetWebServiceOutputArgs {

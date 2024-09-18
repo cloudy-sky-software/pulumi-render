@@ -8,7 +8,6 @@ import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export function getOwnerNotificationSetting(args: GetOwnerNotificationSettingArgs, opts?: pulumi.InvokeOptions): Promise<outputs.notificationsettings.GetOwnerNotificationSettingProperties> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:notification-settings:getOwnerNotificationSetting", {
         "ownerId": args.ownerId,
@@ -22,7 +21,10 @@ export interface GetOwnerNotificationSettingArgs {
     ownerId: string;
 }
 export function getOwnerNotificationSettingOutput(args: GetOwnerNotificationSettingOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.notificationsettings.GetOwnerNotificationSettingProperties> {
-    return pulumi.output(args).apply((a: any) => getOwnerNotificationSetting(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("render:notification-settings:getOwnerNotificationSetting", {
+        "ownerId": args.ownerId,
+    }, opts);
 }
 
 export interface GetOwnerNotificationSettingOutputArgs {

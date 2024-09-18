@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
 
 export function listNotificationOverrides(args?: ListNotificationOverridesArgs, opts?: pulumi.InvokeOptions): Promise<ListNotificationOverridesResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:notification-settings:listNotificationOverrides", {
     }, opts);
@@ -22,5 +21,8 @@ export interface ListNotificationOverridesResult {
     readonly items: outputs.notificationsettings.NotificationOverrideWithCursor[];
 }
 export function listNotificationOverridesOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListNotificationOverridesResult> {
-    return pulumi.output(listNotificationOverrides(opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("render:notification-settings:listNotificationOverrides", {
+    }, opts);
 }
+

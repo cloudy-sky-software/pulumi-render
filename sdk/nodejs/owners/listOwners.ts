@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
 
 export function listOwners(args?: ListOwnersArgs, opts?: pulumi.InvokeOptions): Promise<ListOwnersResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:owners:listOwners", {
     }, opts);
@@ -22,5 +21,8 @@ export interface ListOwnersResult {
     readonly items: outputs.owners.ListOwnersItemProperties[];
 }
 export function listOwnersOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListOwnersResult> {
-    return pulumi.output(listOwners(opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("render:owners:listOwners", {
+    }, opts);
 }
+

@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
 
 export function listEnvironments(args?: ListEnvironmentsArgs, opts?: pulumi.InvokeOptions): Promise<ListEnvironmentsResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:environments:listEnvironments", {
     }, opts);
@@ -22,5 +21,8 @@ export interface ListEnvironmentsResult {
     readonly items: outputs.environments.EnvironmentWithCursor[];
 }
 export function listEnvironmentsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListEnvironmentsResult> {
-    return pulumi.output(listEnvironments(opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("render:environments:listEnvironments", {
+    }, opts);
 }
+

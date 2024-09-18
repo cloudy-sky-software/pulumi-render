@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
 
 export function listReplicationLag(args?: ListReplicationLagArgs, opts?: pulumi.InvokeOptions): Promise<ListReplicationLagResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:metrics:listReplicationLag", {
     }, opts);
@@ -22,5 +21,8 @@ export interface ListReplicationLagResult {
     readonly items: outputs.metrics.ListReplicationLagItemProperties[];
 }
 export function listReplicationLagOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListReplicationLagResult> {
-    return pulumi.output(listReplicationLag(opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("render:metrics:listReplicationLag", {
+    }, opts);
 }
+

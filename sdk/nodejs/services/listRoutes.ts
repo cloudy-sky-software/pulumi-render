@@ -8,7 +8,6 @@ import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export function listRoutes(args: ListRoutesArgs, opts?: pulumi.InvokeOptions): Promise<ListRoutesResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:listRoutes", {
         "serviceId": args.serviceId,
@@ -26,7 +25,10 @@ export interface ListRoutesResult {
     readonly items: outputs.services.RouteWithCursor[];
 }
 export function listRoutesOutput(args: ListRoutesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListRoutesResult> {
-    return pulumi.output(args).apply((a: any) => listRoutes(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("render:services:listRoutes", {
+        "serviceId": args.serviceId,
+    }, opts);
 }
 
 export interface ListRoutesOutputArgs {

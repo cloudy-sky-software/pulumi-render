@@ -8,7 +8,6 @@ import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export function getDeploy(args: GetDeployArgs, opts?: pulumi.InvokeOptions): Promise<outputs.services.Deploy> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:getDeploy", {
         "deployId": args.deployId,
@@ -27,7 +26,11 @@ export interface GetDeployArgs {
     serviceId: string;
 }
 export function getDeployOutput(args: GetDeployOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.services.Deploy> {
-    return pulumi.output(args).apply((a: any) => getDeploy(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("render:services:getDeploy", {
+        "deployId": args.deployId,
+        "serviceId": args.serviceId,
+    }, opts);
 }
 
 export interface GetDeployOutputArgs {

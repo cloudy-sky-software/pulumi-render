@@ -8,7 +8,6 @@ import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export function getPostgresConnectionInfo(args: GetPostgresConnectionInfoArgs, opts?: pulumi.InvokeOptions): Promise<outputs.postgres.PostgresConnectionInfo> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:postgres:getPostgresConnectionInfo", {
         "postgresId": args.postgresId,
@@ -19,7 +18,10 @@ export interface GetPostgresConnectionInfoArgs {
     postgresId: string;
 }
 export function getPostgresConnectionInfoOutput(args: GetPostgresConnectionInfoOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.postgres.PostgresConnectionInfo> {
-    return pulumi.output(args).apply((a: any) => getPostgresConnectionInfo(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("render:postgres:getPostgresConnectionInfo", {
+        "postgresId": args.postgresId,
+    }, opts);
 }
 
 export interface GetPostgresConnectionInfoOutputArgs {

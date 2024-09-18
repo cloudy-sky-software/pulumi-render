@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
 
 export function listRegistryCredentials(args?: ListRegistryCredentialsArgs, opts?: pulumi.InvokeOptions): Promise<ListRegistryCredentialsResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:registrycredentials:listRegistryCredentials", {
     }, opts);
@@ -22,5 +21,8 @@ export interface ListRegistryCredentialsResult {
     readonly items: outputs.registrycredentials.RegistryCredential[];
 }
 export function listRegistryCredentialsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListRegistryCredentialsResult> {
-    return pulumi.output(listRegistryCredentials(opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("render:registrycredentials:listRegistryCredentials", {
+    }, opts);
 }
+

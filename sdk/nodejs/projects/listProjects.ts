@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
 
 export function listProjects(args?: ListProjectsArgs, opts?: pulumi.InvokeOptions): Promise<ListProjectsResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:projects:listProjects", {
     }, opts);
@@ -22,5 +21,8 @@ export interface ListProjectsResult {
     readonly items: outputs.projects.ProjectWithCursor[];
 }
 export function listProjectsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListProjectsResult> {
-    return pulumi.output(listProjects(opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("render:projects:listProjects", {
+    }, opts);
 }
+

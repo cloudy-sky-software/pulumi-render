@@ -8,7 +8,6 @@ import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export function getRedis(args: GetRedisArgs, opts?: pulumi.InvokeOptions): Promise<outputs.redis.RedisDetail> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:redis:getRedis", {
         "redisId": args.redisId,
@@ -19,7 +18,10 @@ export interface GetRedisArgs {
     redisId: string;
 }
 export function getRedisOutput(args: GetRedisOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.redis.RedisDetail> {
-    return pulumi.output(args).apply((a: any) => getRedis(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("render:redis:getRedis", {
+        "redisId": args.redisId,
+    }, opts);
 }
 
 export interface GetRedisOutputArgs {

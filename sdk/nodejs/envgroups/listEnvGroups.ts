@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
 
 export function listEnvGroups(args?: ListEnvGroupsArgs, opts?: pulumi.InvokeOptions): Promise<ListEnvGroupsResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:env-groups:listEnvGroups", {
     }, opts);
@@ -22,5 +21,8 @@ export interface ListEnvGroupsResult {
     readonly items: outputs.envgroups.EnvGroupMeta[];
 }
 export function listEnvGroupsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListEnvGroupsResult> {
-    return pulumi.output(listEnvGroups(opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("render:env-groups:listEnvGroups", {
+    }, opts);
 }
+

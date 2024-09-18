@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
 
 export function listRedis(args?: ListRedisArgs, opts?: pulumi.InvokeOptions): Promise<ListRedisResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:redis:listRedis", {
     }, opts);
@@ -22,5 +21,8 @@ export interface ListRedisResult {
     readonly items: outputs.redis.ListRedisItemProperties[];
 }
 export function listRedisOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListRedisResult> {
-    return pulumi.output(listRedis(opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("render:redis:listRedis", {
+    }, opts);
 }
+

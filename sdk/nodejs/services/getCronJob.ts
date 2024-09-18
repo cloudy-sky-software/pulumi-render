@@ -8,7 +8,6 @@ import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export function getCronJob(args: GetCronJobArgs, opts?: pulumi.InvokeOptions): Promise<outputs.services.GetCronJob> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:getCronJob", {
         "serviceId": args.serviceId,
@@ -22,7 +21,10 @@ export interface GetCronJobArgs {
     serviceId: string;
 }
 export function getCronJobOutput(args: GetCronJobOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.services.GetCronJob> {
-    return pulumi.output(args).apply((a: any) => getCronJob(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("render:services:getCronJob", {
+        "serviceId": args.serviceId,
+    }, opts);
 }
 
 export interface GetCronJobOutputArgs {

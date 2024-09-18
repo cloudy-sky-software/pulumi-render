@@ -8,7 +8,6 @@ import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export function getRegistryCredential(args: GetRegistryCredentialArgs, opts?: pulumi.InvokeOptions): Promise<outputs.registrycredentials.RegistryCredential> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:registrycredentials:getRegistryCredential", {
         "registryCredentialId": args.registryCredentialId,
@@ -22,7 +21,10 @@ export interface GetRegistryCredentialArgs {
     registryCredentialId: string;
 }
 export function getRegistryCredentialOutput(args: GetRegistryCredentialOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.registrycredentials.RegistryCredential> {
-    return pulumi.output(args).apply((a: any) => getRegistryCredential(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("render:registrycredentials:getRegistryCredential", {
+        "registryCredentialId": args.registryCredentialId,
+    }, opts);
 }
 
 export interface GetRegistryCredentialOutputArgs {

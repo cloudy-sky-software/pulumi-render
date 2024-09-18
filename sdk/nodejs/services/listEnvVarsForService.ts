@@ -8,7 +8,6 @@ import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export function listEnvVarsForService(args: ListEnvVarsForServiceArgs, opts?: pulumi.InvokeOptions): Promise<ListEnvVarsForServiceResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:listEnvVarsForService", {
         "serviceId": args.serviceId,
@@ -26,7 +25,10 @@ export interface ListEnvVarsForServiceResult {
     readonly items: outputs.services.EnvVarWithCursor[];
 }
 export function listEnvVarsForServiceOutput(args: ListEnvVarsForServiceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListEnvVarsForServiceResult> {
-    return pulumi.output(args).apply((a: any) => listEnvVarsForService(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("render:services:listEnvVarsForService", {
+        "serviceId": args.serviceId,
+    }, opts);
 }
 
 export interface ListEnvVarsForServiceOutputArgs {

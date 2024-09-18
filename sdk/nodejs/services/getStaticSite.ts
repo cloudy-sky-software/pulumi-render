@@ -8,7 +8,6 @@ import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export function getStaticSite(args: GetStaticSiteArgs, opts?: pulumi.InvokeOptions): Promise<outputs.services.GetStaticSite> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:getStaticSite", {
         "serviceId": args.serviceId,
@@ -22,7 +21,10 @@ export interface GetStaticSiteArgs {
     serviceId: string;
 }
 export function getStaticSiteOutput(args: GetStaticSiteOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.services.GetStaticSite> {
-    return pulumi.output(args).apply((a: any) => getStaticSite(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("render:services:getStaticSite", {
+        "serviceId": args.serviceId,
+    }, opts);
 }
 
 export interface GetStaticSiteOutputArgs {

@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
 
 export function listDisks(args?: ListDisksArgs, opts?: pulumi.InvokeOptions): Promise<ListDisksResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:disks:listDisks", {
     }, opts);
@@ -22,5 +21,8 @@ export interface ListDisksResult {
     readonly items: outputs.disks.DiskWithCursor[];
 }
 export function listDisksOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListDisksResult> {
-    return pulumi.output(listDisks(opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("render:disks:listDisks", {
+    }, opts);
 }
+

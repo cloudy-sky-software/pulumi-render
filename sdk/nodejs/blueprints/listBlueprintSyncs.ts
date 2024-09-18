@@ -8,7 +8,6 @@ import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export function listBlueprintSyncs(args: ListBlueprintSyncsArgs, opts?: pulumi.InvokeOptions): Promise<ListBlueprintSyncsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:blueprints:listBlueprintSyncs", {
         "blueprintId": args.blueprintId,
@@ -26,7 +25,10 @@ export interface ListBlueprintSyncsResult {
     readonly items: outputs.blueprints.SyncWithCursor[];
 }
 export function listBlueprintSyncsOutput(args: ListBlueprintSyncsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListBlueprintSyncsResult> {
-    return pulumi.output(args).apply((a: any) => listBlueprintSyncs(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("render:blueprints:listBlueprintSyncs", {
+        "blueprintId": args.blueprintId,
+    }, opts);
 }
 
 export interface ListBlueprintSyncsOutputArgs {

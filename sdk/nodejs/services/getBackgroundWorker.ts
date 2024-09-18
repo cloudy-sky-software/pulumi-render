@@ -8,7 +8,6 @@ import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export function getBackgroundWorker(args: GetBackgroundWorkerArgs, opts?: pulumi.InvokeOptions): Promise<outputs.services.GetBackgroundWorker> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:getBackgroundWorker", {
         "serviceId": args.serviceId,
@@ -22,7 +21,10 @@ export interface GetBackgroundWorkerArgs {
     serviceId: string;
 }
 export function getBackgroundWorkerOutput(args: GetBackgroundWorkerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.services.GetBackgroundWorker> {
-    return pulumi.output(args).apply((a: any) => getBackgroundWorker(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("render:services:getBackgroundWorker", {
+        "serviceId": args.serviceId,
+    }, opts);
 }
 
 export interface GetBackgroundWorkerOutputArgs {

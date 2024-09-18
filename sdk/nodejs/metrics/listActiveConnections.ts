@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
 
 export function listActiveConnections(args?: ListActiveConnectionsArgs, opts?: pulumi.InvokeOptions): Promise<ListActiveConnectionsResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:metrics:listActiveConnections", {
     }, opts);
@@ -22,5 +21,8 @@ export interface ListActiveConnectionsResult {
     readonly items: outputs.metrics.ListActiveConnectionsItemProperties[];
 }
 export function listActiveConnectionsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListActiveConnectionsResult> {
-    return pulumi.output(listActiveConnections(opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("render:metrics:listActiveConnections", {
+    }, opts);
 }
+

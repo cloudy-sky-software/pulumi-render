@@ -8,7 +8,6 @@ import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export function getPostgres(args: GetPostgresArgs, opts?: pulumi.InvokeOptions): Promise<outputs.postgres.PostgresDetail> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:postgres:getPostgres", {
         "postgresId": args.postgresId,
@@ -19,7 +18,10 @@ export interface GetPostgresArgs {
     postgresId: string;
 }
 export function getPostgresOutput(args: GetPostgresOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.postgres.PostgresDetail> {
-    return pulumi.output(args).apply((a: any) => getPostgres(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("render:postgres:getPostgres", {
+        "postgresId": args.postgresId,
+    }, opts);
 }
 
 export interface GetPostgresOutputArgs {

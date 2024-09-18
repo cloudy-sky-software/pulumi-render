@@ -8,7 +8,6 @@ import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export function getSecretFile(args: GetSecretFileArgs, opts?: pulumi.InvokeOptions): Promise<outputs.services.SecretFile> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:getSecretFile", {
         "secretFileName": args.secretFileName,
@@ -27,7 +26,11 @@ export interface GetSecretFileArgs {
     serviceId: string;
 }
 export function getSecretFileOutput(args: GetSecretFileOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.services.SecretFile> {
-    return pulumi.output(args).apply((a: any) => getSecretFile(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("render:services:getSecretFile", {
+        "secretFileName": args.secretFileName,
+        "serviceId": args.serviceId,
+    }, opts);
 }
 
 export interface GetSecretFileOutputArgs {

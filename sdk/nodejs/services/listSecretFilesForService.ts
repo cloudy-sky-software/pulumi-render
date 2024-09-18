@@ -8,7 +8,6 @@ import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export function listSecretFilesForService(args: ListSecretFilesForServiceArgs, opts?: pulumi.InvokeOptions): Promise<ListSecretFilesForServiceResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:listSecretFilesForService", {
         "serviceId": args.serviceId,
@@ -26,7 +25,10 @@ export interface ListSecretFilesForServiceResult {
     readonly items: outputs.services.SecretFileWithCursor[];
 }
 export function listSecretFilesForServiceOutput(args: ListSecretFilesForServiceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListSecretFilesForServiceResult> {
-    return pulumi.output(args).apply((a: any) => listSecretFilesForService(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("render:services:listSecretFilesForService", {
+        "serviceId": args.serviceId,
+    }, opts);
 }
 
 export interface ListSecretFilesForServiceOutputArgs {

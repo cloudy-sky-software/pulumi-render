@@ -8,7 +8,6 @@ import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export function getEnvVar(args: GetEnvVarArgs, opts?: pulumi.InvokeOptions): Promise<outputs.services.EnvVar> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:getEnvVar", {
         "envVarKey": args.envVarKey,
@@ -27,7 +26,11 @@ export interface GetEnvVarArgs {
     serviceId: string;
 }
 export function getEnvVarOutput(args: GetEnvVarOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.services.EnvVar> {
-    return pulumi.output(args).apply((a: any) => getEnvVar(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("render:services:getEnvVar", {
+        "envVarKey": args.envVarKey,
+        "serviceId": args.serviceId,
+    }, opts);
 }
 
 export interface GetEnvVarOutputArgs {

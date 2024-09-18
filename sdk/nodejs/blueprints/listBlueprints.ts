@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
 
 export function listBlueprints(args?: ListBlueprintsArgs, opts?: pulumi.InvokeOptions): Promise<ListBlueprintsResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:blueprints:listBlueprints", {
     }, opts);
@@ -22,5 +21,8 @@ export interface ListBlueprintsResult {
     readonly items: outputs.blueprints.BlueprintWithCursor[];
 }
 export function listBlueprintsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListBlueprintsResult> {
-    return pulumi.output(listBlueprints(opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("render:blueprints:listBlueprints", {
+    }, opts);
 }
+

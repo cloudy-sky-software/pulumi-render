@@ -8,7 +8,6 @@ import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export function getServiceNotificationOverride(args: GetServiceNotificationOverrideArgs, opts?: pulumi.InvokeOptions): Promise<outputs.notificationsettings.GetServiceNotificationOverrideProperties> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:notification-settings:getServiceNotificationOverride", {
         "serviceId": args.serviceId,
@@ -22,7 +21,10 @@ export interface GetServiceNotificationOverrideArgs {
     serviceId: string;
 }
 export function getServiceNotificationOverrideOutput(args: GetServiceNotificationOverrideOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.notificationsettings.GetServiceNotificationOverrideProperties> {
-    return pulumi.output(args).apply((a: any) => getServiceNotificationOverride(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("render:notification-settings:getServiceNotificationOverride", {
+        "serviceId": args.serviceId,
+    }, opts);
 }
 
 export interface GetServiceNotificationOverrideOutputArgs {

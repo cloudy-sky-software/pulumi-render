@@ -8,7 +8,6 @@ import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export function getBlueprint(args: GetBlueprintArgs, opts?: pulumi.InvokeOptions): Promise<outputs.blueprints.GetBlueprintProperties> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:blueprints:getBlueprint", {
         "blueprintId": args.blueprintId,
@@ -22,7 +21,10 @@ export interface GetBlueprintArgs {
     blueprintId: string;
 }
 export function getBlueprintOutput(args: GetBlueprintOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.blueprints.GetBlueprintProperties> {
-    return pulumi.output(args).apply((a: any) => getBlueprint(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("render:blueprints:getBlueprint", {
+        "blueprintId": args.blueprintId,
+    }, opts);
 }
 
 export interface GetBlueprintOutputArgs {

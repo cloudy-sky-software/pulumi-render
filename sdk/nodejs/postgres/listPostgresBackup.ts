@@ -8,7 +8,6 @@ import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export function listPostgresBackup(args: ListPostgresBackupArgs, opts?: pulumi.InvokeOptions): Promise<ListPostgresBackupResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:postgres:listPostgresBackup", {
         "postgresId": args.postgresId,
@@ -23,7 +22,10 @@ export interface ListPostgresBackupResult {
     readonly items: outputs.postgres.ListPostgresBackupItemProperties[];
 }
 export function listPostgresBackupOutput(args: ListPostgresBackupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListPostgresBackupResult> {
-    return pulumi.output(args).apply((a: any) => listPostgresBackup(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("render:postgres:listPostgresBackup", {
+        "postgresId": args.postgresId,
+    }, opts);
 }
 
 export interface ListPostgresBackupOutputArgs {

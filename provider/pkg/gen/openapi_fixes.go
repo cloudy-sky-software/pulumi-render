@@ -81,6 +81,26 @@ func fixEnvVarsPutEndpoint(openAPIDoc *openapi3.T) error {
 	return nil
 }
 
+// fixSecretFilesPutEndpoint fixes the `PUT /services/{serviceId}/secret-files`
+// endpoint similar to `fixEnvVarsPutEndpoint`.
+func fixSecretFilesPutEndpoint(openAPIDoc *openapi3.T) error {
+	pathItem := openAPIDoc.Paths.Find("/services/{serviceId}/secret-files")
+	if pathItem == nil {
+		return errors.New("expected to find /services/{serviceId}/secret-files")
+	}
+
+	contract.Assertf(pathItem.Put != nil, "put operation is nil")
+
+	reqBodySchema := pathItem.Put.RequestBody.Value.Content.Get(jsonMimeType)
+	originalSchema := reqBodySchema.Schema.Value
+	schema := openapi3.NewSchema().WithProperties(map[string]*openapi3.Schema{
+		"secretFiles": originalSchema,
+	})
+	reqBodySchema.Schema = openapi3.NewSchemaRef("", schema)
+
+	return nil
+}
+
 // Render's API operations do not have an operationId,
 // so we'll need to generate them based on the resource
 // in the operation path.
@@ -391,6 +411,10 @@ func FixOpenAPIDoc(openAPIDoc *openapi3.T) error {
 	}
 
 	if err := fixEnvVarsPutEndpoint(openAPIDoc); err != nil {
+		return err
+	}
+
+	if err := fixSecretFilesPutEndpoint(openAPIDoc); err != nil {
 		return err
 	}
 

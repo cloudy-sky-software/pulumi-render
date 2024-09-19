@@ -9141,8 +9141,22 @@
             ]
         },
         "render:services:SecretFilesForService": {
+            "properties": {
+                "secretFiles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:SecretFileInput"
+                    }
+                }
+            },
             "type": "object",
             "inputProperties": {
+                "secretFiles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:services:SecretFileInput"
+                    }
+                },
                 "serviceId": {
                     "type": "string",
                     "description": "The ID of the service"

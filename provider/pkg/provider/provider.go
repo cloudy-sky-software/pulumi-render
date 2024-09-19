@@ -44,6 +44,7 @@ var (
 const (
 	envVarResourceTypeToken       = "render:services:EnvVarsForService"
 	customDomainResourceTypeToken = "render:services:CustomDomain"
+	secretFilesResourceTypeToken  = "render:services:SecretFilesForService"
 )
 
 func makeProvider(host *provider.HostClient, name, version string, pulumiSchemaBytes, openapiDocBytes, metadataBytes []byte) (pulumirpc.ResourceProviderServer, error) {

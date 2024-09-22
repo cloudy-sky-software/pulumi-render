@@ -19,6 +19,12 @@ import (
 const (
 	jsonMimeType     = "application/json"
 	schemasRefPrefix = "#/components/schemas/"
+	// EnvVarsRootObjectName is the root object used to wrap a raw array response
+	// payload for PUT env-vars endpoint.
+	EnvVarsRootObjectName = "envVars"
+	// SecretFilesRootObjectName is the root object used to wrap a raw array response
+	// payload PUT secret-files endpoint.
+	SecretFilesRootObjectName = "secretFiles"
 )
 
 var (
@@ -74,7 +80,7 @@ func fixEnvVarsPutEndpoint(openAPIDoc *openapi3.T) error {
 	reqBodySchema := pathItem.Put.RequestBody.Value.Content.Get(jsonMimeType)
 	originalSchema := reqBodySchema.Schema.Value
 	schema := openapi3.NewSchema().WithProperties(map[string]*openapi3.Schema{
-		"envVars": originalSchema,
+		EnvVarsRootObjectName: originalSchema,
 	})
 	reqBodySchema.Schema = openapi3.NewSchemaRef("", schema)
 
@@ -94,7 +100,7 @@ func fixSecretFilesPutEndpoint(openAPIDoc *openapi3.T) error {
 	reqBodySchema := pathItem.Put.RequestBody.Value.Content.Get(jsonMimeType)
 	originalSchema := reqBodySchema.Schema.Value
 	schema := openapi3.NewSchema().WithProperties(map[string]*openapi3.Schema{
-		"secretFiles": originalSchema,
+		SecretFilesRootObjectName: originalSchema,
 	})
 	reqBodySchema.Schema = openapi3.NewSchemaRef("", schema)
 

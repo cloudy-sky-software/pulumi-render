@@ -151,23 +151,13 @@ func (p *renderProvider) OnDiff(_ context.Context, _ *pulumirpc.DiffRequest, res
 
 func (p *renderProvider) OnPreCreate(_ context.Context, req *pulumirpc.CreateRequest, httpReq *http.Request) error {
 	resourceTypeToken := fwRest.GetResourceTypeToken(req.GetUrn())
-	if resourceTypeToken != envVarResourceTypeToken {
+	if _, ok := arrayResourceTypeTokenToRootObjectName[resourceTypeToken]; !ok {
 		return nil
 	}
 
-	logging.V(3).Infof("handling pre-create callback for %s", envVarResourceTypeToken)
+	logging.V(3).Infof("handling pre-create callback for %s", resourceTypeToken)
 
-	body, err := io.ReadAll(httpReq.Body)
-	if err != nil {
-		return errors.Wrapf(err, "reading body in OnPreCreate while handling %s", resourceTypeToken)
-	}
-
-	var m map[string]interface{}
-	if err := json.Unmarshal(body, &m); err != nil {
-		return errors.Wrap(err, "unmarshaling body in OnPreCreate")
-	}
-
-	modifiedRequestBody, err := json.Marshal(m["envVars"])
+	modifiedRequestBody, err := unWrapArrayRequest(httpReq, resourceTypeToken)
 	if err != nil {
 		return errors.Wrap(err, "marshaling modified body in OnPreCreate")
 	}
@@ -181,21 +171,18 @@ func (p *renderProvider) OnPostCreate(_ context.Context, req *pulumirpc.CreateRe
 	resourceTypeToken := fwRest.GetResourceTypeToken(req.GetUrn())
 	var outputsMap map[string]interface{}
 
-	// Env-vars resource does not have an "id".
-	// We'll fake one for the sake of serializing
-	// the resource into the state.
-	if resourceTypeToken == envVarResourceTypeToken {
-		envVarResp := outputs.([]interface{})
+	if _, ok := arrayResourceTypeTokenToRootObjectName[resourceTypeToken]; ok {
+		outputsMap = wrapArrayResponse(outputs, resourceTypeToken)
+
 		id := sha256.New()
-
-		b, _ := json.Marshal(envVarResp)
-
+		resp := outputs.([]interface{})
+		b, _ := json.Marshal(resp)
 		id.Write(b)
+		// Array-type responses do not have a provider-generated "id".
+		// We'll fake one for the sake of serializing the resource
+		// into the state.
+		outputsMap["id"] = fmt.Sprintf("%x", id.Sum(nil))
 
-		outputsMap = map[string]interface{}{
-			"id":      fmt.Sprintf("%x", id.Sum(nil)),
-			"envVars": envVarResp,
-		}
 		return outputsMap, nil
 	}
 
@@ -241,14 +228,11 @@ func (p *renderProvider) OnPreRead(_ context.Context, _ *pulumirpc.ReadRequest, 
 
 func (p *renderProvider) OnPostRead(_ context.Context, req *pulumirpc.ReadRequest, outputs interface{}) (map[string]interface{}, error) {
 	resourceTypeToken := fwRest.GetResourceTypeToken(req.GetUrn())
-	if resourceTypeToken == envVarResourceTypeToken {
-		var outputsMap map[string]interface{}
-		envVarResp := outputs.([]interface{})
 
-		outputsMap = map[string]interface{}{
-			"id":      req.Id,
-			"envVars": envVarResp,
-		}
+	if _, ok := arrayResourceTypeTokenToRootObjectName[resourceTypeToken]; ok {
+		outputsMap := wrapArrayResponse(outputs, resourceTypeToken)
+		// Re-use the previously-generated id from ReadRequest.
+		outputsMap["id"] = req.Id
 		return outputsMap, nil
 	}
 
@@ -257,23 +241,13 @@ func (p *renderProvider) OnPostRead(_ context.Context, req *pulumirpc.ReadReques
 
 func (p *renderProvider) OnPreUpdate(_ context.Context, req *pulumirpc.UpdateRequest, httpReq *http.Request) error {
 	resourceTypeToken := fwRest.GetResourceTypeToken(req.GetUrn())
-	if resourceTypeToken != envVarResourceTypeToken {
+	if _, ok := arrayResourceTypeTokenToRootObjectName[resourceTypeToken]; !ok {
 		return nil
 	}
 
-	logging.V(3).Infof("OnePreUpdate: Modifying request body for %s", envVarResourceTypeToken)
+	logging.V(3).Infof("OnePreUpdate: Modifying request body for %s", resourceTypeToken)
 
-	body, err := io.ReadAll(httpReq.Body)
-	if err != nil {
-		return errors.Wrapf(err, "reading body in OnPreUpdate while handling %s", resourceTypeToken)
-	}
-
-	var m map[string]interface{}
-	if err := json.Unmarshal(body, &m); err != nil {
-		return errors.Wrap(err, "unmarshaling body in OnPreUpdate")
-	}
-
-	modifiedRequestBody, err := json.Marshal(m["envVars"])
+	modifiedRequestBody, err := unWrapArrayRequest(httpReq, resourceTypeToken)
 	if err != nil {
 		return errors.Wrap(err, "marshaling modified body in OnPreUpdate")
 	}
@@ -286,18 +260,19 @@ func (p *renderProvider) OnPostUpdate(ctx context.Context, req *pulumirpc.Update
 	resourceTypeToken := fwRest.GetResourceTypeToken(req.GetUrn())
 	var outputsMap map[string]interface{}
 
-	if resourceTypeToken == envVarResourceTypeToken {
-		envVarResp := outputs.([]interface{})
+	if _, ok := arrayResourceTypeTokenToRootObjectName[resourceTypeToken]; ok {
+		outputsMap = wrapArrayResponse(outputs, resourceTypeToken)
+
 		id := sha256.New()
-
-		b, _ := json.Marshal(envVarResp)
-
+		resp := outputs.([]interface{})
+		b, _ := json.Marshal(resp)
 		id.Write(b)
+		// Array-type responses do not have a provider-generated "id".
+		// We'll fake one for the sake of serializing the resource
+		// into the state.
+		outputsMap["id"] = fmt.Sprintf("%x", id.Sum(nil))
 
-		outputsMap = map[string]interface{}{
-			"id":      fmt.Sprintf("%x", id.Sum(nil)),
-			"envVars": envVarResp,
-		}
+		return outputsMap, nil
 	} else {
 		outputsMap = outputs.(map[string]interface{})
 	}

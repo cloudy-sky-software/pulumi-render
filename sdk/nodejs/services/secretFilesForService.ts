@@ -2,6 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export class SecretFilesForService extends pulumi.CustomResource {
@@ -31,6 +34,7 @@ export class SecretFilesForService extends pulumi.CustomResource {
         return obj['__pulumiType'] === SecretFilesForService.__pulumiType;
     }
 
+    public readonly secretFiles!: pulumi.Output<outputs.services.SecretFileInput[] | undefined>;
 
     /**
      * Create a SecretFilesForService resource with the given unique name, arguments, and options.
@@ -43,8 +47,10 @@ export class SecretFilesForService extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
+            resourceInputs["secretFiles"] = args ? args.secretFiles : undefined;
             resourceInputs["serviceId"] = args ? args.serviceId : undefined;
         } else {
+            resourceInputs["secretFiles"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SecretFilesForService.__pulumiType, name, resourceInputs, opts);
@@ -55,6 +61,7 @@ export class SecretFilesForService extends pulumi.CustomResource {
  * The set of arguments for constructing a SecretFilesForService resource.
  */
 export interface SecretFilesForServiceArgs {
+    secretFiles?: pulumi.Input<pulumi.Input<inputs.services.SecretFileInputArgs>[]>;
     /**
      * The ID of the service
      */

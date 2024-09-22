@@ -13,6 +13,8 @@ import (
 
 type SecretFilesForService struct {
 	pulumi.CustomResourceState
+
+	SecretFiles SecretFileInputTypeArrayOutput `pulumi:"secretFiles"`
 }
 
 // NewSecretFilesForService registers a new resource with the given unique name, arguments, and options.
@@ -55,12 +57,14 @@ func (SecretFilesForServiceState) ElementType() reflect.Type {
 }
 
 type secretFilesForServiceArgs struct {
+	SecretFiles []SecretFileInputType `pulumi:"secretFiles"`
 	// The ID of the service
 	ServiceId *string `pulumi:"serviceId"`
 }
 
 // The set of arguments for constructing a SecretFilesForService resource.
 type SecretFilesForServiceArgs struct {
+	SecretFiles SecretFileInputTypeArrayInput
 	// The ID of the service
 	ServiceId pulumi.StringPtrInput
 }
@@ -100,6 +104,10 @@ func (o SecretFilesForServiceOutput) ToSecretFilesForServiceOutput() SecretFiles
 
 func (o SecretFilesForServiceOutput) ToSecretFilesForServiceOutputWithContext(ctx context.Context) SecretFilesForServiceOutput {
 	return o
+}
+
+func (o SecretFilesForServiceOutput) SecretFiles() SecretFileInputTypeArrayOutput {
+	return o.ApplyT(func(v *SecretFilesForService) SecretFileInputTypeArrayOutput { return v.SecretFiles }).(SecretFileInputTypeArrayOutput)
 }
 
 func init() {

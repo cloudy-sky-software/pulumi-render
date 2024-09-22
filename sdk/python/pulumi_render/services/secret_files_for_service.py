@@ -8,19 +8,33 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['SecretFilesForServiceArgs', 'SecretFilesForService']
 
 @pulumi.input_type
 class SecretFilesForServiceArgs:
     def __init__(__self__, *,
+                 secret_files: Optional[pulumi.Input[Sequence[pulumi.Input['SecretFileInputArgs']]]] = None,
                  service_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SecretFilesForService resource.
         :param pulumi.Input[str] service_id: The ID of the service
         """
+        if secret_files is not None:
+            pulumi.set(__self__, "secret_files", secret_files)
         if service_id is not None:
             pulumi.set(__self__, "service_id", service_id)
+
+    @property
+    @pulumi.getter(name="secretFiles")
+    def secret_files(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretFileInputArgs']]]]:
+        return pulumi.get(self, "secret_files")
+
+    @secret_files.setter
+    def secret_files(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecretFileInputArgs']]]]):
+        pulumi.set(self, "secret_files", value)
 
     @property
     @pulumi.getter(name="serviceId")
@@ -40,6 +54,7 @@ class SecretFilesForService(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 secret_files: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretFileInputArgs', 'SecretFileInputArgsDict']]]]] = None,
                  service_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -71,6 +86,7 @@ class SecretFilesForService(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 secret_files: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretFileInputArgs', 'SecretFileInputArgsDict']]]]] = None,
                  service_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -81,6 +97,7 @@ class SecretFilesForService(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SecretFilesForServiceArgs.__new__(SecretFilesForServiceArgs)
 
+            __props__.__dict__["secret_files"] = secret_files
             __props__.__dict__["service_id"] = service_id
         super(SecretFilesForService, __self__).__init__(
             'render:services:SecretFilesForService',
@@ -104,5 +121,11 @@ class SecretFilesForService(pulumi.CustomResource):
 
         __props__ = SecretFilesForServiceArgs.__new__(SecretFilesForServiceArgs)
 
+        __props__.__dict__["secret_files"] = None
         return SecretFilesForService(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="secretFiles")
+    def secret_files(self) -> pulumi.Output[Optional[Sequence['outputs.SecretFileInput']]]:
+        return pulumi.get(self, "secret_files")
 

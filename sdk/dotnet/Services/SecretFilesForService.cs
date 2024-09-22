@@ -12,6 +12,10 @@ namespace Pulumi.Render.Services
     [RenderResourceType("render:services:SecretFilesForService")]
     public partial class SecretFilesForService : global::Pulumi.CustomResource
     {
+        [Output("secretFiles")]
+        public Output<ImmutableArray<Outputs.SecretFileInput>> SecretFiles { get; private set; } = null!;
+
+
         /// <summary>
         /// Create a SecretFilesForService resource with the given unique name, arguments, and options.
         /// </summary>
@@ -57,6 +61,14 @@ namespace Pulumi.Render.Services
 
     public sealed class SecretFilesForServiceArgs : global::Pulumi.ResourceArgs
     {
+        [Input("secretFiles")]
+        private InputList<Inputs.SecretFileInputArgs>? _secretFiles;
+        public InputList<Inputs.SecretFileInputArgs> SecretFiles
+        {
+            get => _secretFiles ?? (_secretFiles = new InputList<Inputs.SecretFileInputArgs>());
+            set => _secretFiles = value;
+        }
+
         /// <summary>
         /// The ID of the service
         /// </summary>

@@ -19,6 +19,12 @@ import (
 const (
 	jsonMimeType     = "application/json"
 	schemasRefPrefix = "#/components/schemas/"
+	// EnvVarsRootObjectName is the root object used to wrap a raw array response
+	// payload for PUT env-vars endpoint.
+	EnvVarsRootObjectName = "envVars"
+	// SecretFilesRootObjectName is the root object used to wrap a raw array response
+	// payload PUT secret-files endpoint.
+	SecretFilesRootObjectName = "secretFiles"
 )
 
 var (
@@ -74,7 +80,27 @@ func fixEnvVarsPutEndpoint(openAPIDoc *openapi3.T) error {
 	reqBodySchema := pathItem.Put.RequestBody.Value.Content.Get(jsonMimeType)
 	originalSchema := reqBodySchema.Schema.Value
 	schema := openapi3.NewSchema().WithProperties(map[string]*openapi3.Schema{
-		"envVars": originalSchema,
+		EnvVarsRootObjectName: originalSchema,
+	})
+	reqBodySchema.Schema = openapi3.NewSchemaRef("", schema)
+
+	return nil
+}
+
+// fixSecretFilesPutEndpoint fixes the `PUT /services/{serviceId}/secret-files`
+// endpoint similar to `fixEnvVarsPutEndpoint`.
+func fixSecretFilesPutEndpoint(openAPIDoc *openapi3.T) error {
+	pathItem := openAPIDoc.Paths.Find("/services/{serviceId}/secret-files")
+	if pathItem == nil {
+		return errors.New("expected to find /services/{serviceId}/secret-files")
+	}
+
+	contract.Assertf(pathItem.Put != nil, "put operation is nil")
+
+	reqBodySchema := pathItem.Put.RequestBody.Value.Content.Get(jsonMimeType)
+	originalSchema := reqBodySchema.Schema.Value
+	schema := openapi3.NewSchema().WithProperties(map[string]*openapi3.Schema{
+		SecretFilesRootObjectName: originalSchema,
 	})
 	reqBodySchema.Schema = openapi3.NewSchemaRef("", schema)
 
@@ -391,6 +417,10 @@ func FixOpenAPIDoc(openAPIDoc *openapi3.T) error {
 	}
 
 	if err := fixEnvVarsPutEndpoint(openAPIDoc); err != nil {
+		return err
+	}
+
+	if err := fixSecretFilesPutEndpoint(openAPIDoc); err != nil {
 		return err
 	}
 

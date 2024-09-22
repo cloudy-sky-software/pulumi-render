@@ -9035,9 +9035,11 @@ paths:
                 content:
                     application/json:
                         schema:
-                            items:
-                                $ref: '#/components/schemas/secretFileInput'
-                            type: array
+                            properties:
+                                secretFiles:
+                                    items:
+                                        $ref: '#/components/schemas/secretFileInput'
+                                    type: array
                 required: true
             responses:
                 "200":

@@ -193,6 +193,8 @@ func PulumiSchema(openAPIDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 	// TODO: Can pulschema handle this instead?
 	envVarsReadEndpoint := "/services/{serviceId}/env-vars"
 	providerMetadata.ResourceCRUDMap["render:services:EnvVarsForService"].R = &envVarsReadEndpoint
+	secretFilesReadEndpoint := "/services/{serviceId}/secret-files"
+	providerMetadata.ResourceCRUDMap["render:services:SecretFilesForService"].R = &secretFilesReadEndpoint
 
 	metadata := openapigen.ProviderMetadata{
 		ResourceCRUDMap:  providerMetadata.ResourceCRUDMap,

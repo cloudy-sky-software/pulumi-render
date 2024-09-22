@@ -271,8 +271,6 @@ func (p *renderProvider) OnPostUpdate(ctx context.Context, req *pulumirpc.Update
 		// We'll fake one for the sake of serializing the resource
 		// into the state.
 		outputsMap["id"] = fmt.Sprintf("%x", id.Sum(nil))
-
-		return outputsMap, nil
 	} else {
 		outputsMap = outputs.(map[string]interface{})
 	}

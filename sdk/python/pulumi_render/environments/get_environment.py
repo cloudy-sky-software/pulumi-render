@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from ._enums import *
 
@@ -124,12 +129,21 @@ def get_environment(environment_id: Optional[str] = None,
         protected_status=pulumi.get(__ret__, 'protected_status'),
         redis_ids=pulumi.get(__ret__, 'redis_ids'),
         service_ids=pulumi.get(__ret__, 'service_ids'))
-
-
-@_utilities.lift_output_func(get_environment)
 def get_environment_output(environment_id: Optional[pulumi.Input[str]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[Environment]:
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    __args__['environmentId'] = environment_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('render:environments:getEnvironment', __args__, opts=opts, typ=Environment)
+    return __ret__.apply(lambda __response__: Environment(
+        databases_ids=pulumi.get(__response__, 'databases_ids'),
+        env_group_ids=pulumi.get(__response__, 'env_group_ids'),
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        protected_status=pulumi.get(__response__, 'protected_status'),
+        redis_ids=pulumi.get(__response__, 'redis_ids'),
+        service_ids=pulumi.get(__response__, 'service_ids')))

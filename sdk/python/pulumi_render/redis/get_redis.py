@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._enums import *
@@ -202,12 +207,26 @@ def get_redis(redis_id: Optional[str] = None,
         status=pulumi.get(__ret__, 'status'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         version=pulumi.get(__ret__, 'version'))
-
-
-@_utilities.lift_output_func(get_redis)
 def get_redis_output(redis_id: Optional[pulumi.Input[str]] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[RedisDetail]:
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    __args__['redisId'] = redis_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('render:redis:getRedis', __args__, opts=opts, typ=RedisDetail)
+    return __ret__.apply(lambda __response__: RedisDetail(
+        created_at=pulumi.get(__response__, 'created_at'),
+        environment_id=pulumi.get(__response__, 'environment_id'),
+        id=pulumi.get(__response__, 'id'),
+        ip_allow_list=pulumi.get(__response__, 'ip_allow_list'),
+        maintenance=pulumi.get(__response__, 'maintenance'),
+        name=pulumi.get(__response__, 'name'),
+        options=pulumi.get(__response__, 'options'),
+        owner=pulumi.get(__response__, 'owner'),
+        plan=pulumi.get(__response__, 'plan'),
+        region=pulumi.get(__response__, 'region'),
+        status=pulumi.get(__response__, 'status'),
+        updated_at=pulumi.get(__response__, 'updated_at'),
+        version=pulumi.get(__response__, 'version')))

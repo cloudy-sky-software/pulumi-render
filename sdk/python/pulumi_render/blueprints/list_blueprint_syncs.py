@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._enums import *
@@ -54,9 +59,6 @@ def list_blueprint_syncs(blueprint_id: Optional[str] = None,
 
     return AwaitableListBlueprintSyncsResult(
         items=pulumi.get(__ret__, 'items'))
-
-
-@_utilities.lift_output_func(list_blueprint_syncs)
 def list_blueprint_syncs_output(blueprint_id: Optional[pulumi.Input[str]] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListBlueprintSyncsResult]:
     """
@@ -64,4 +66,9 @@ def list_blueprint_syncs_output(blueprint_id: Optional[pulumi.Input[str]] = None
 
     :param str blueprint_id: The ID of the blueprint
     """
-    ...
+    __args__ = dict()
+    __args__['blueprintId'] = blueprint_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('render:blueprints:listBlueprintSyncs', __args__, opts=opts, typ=ListBlueprintSyncsResult)
+    return __ret__.apply(lambda __response__: ListBlueprintSyncsResult(
+        items=pulumi.get(__response__, 'items')))

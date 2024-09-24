@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._enums import *
@@ -284,12 +289,36 @@ def get_postgres(postgres_id: Optional[str] = None,
         suspenders=pulumi.get(__ret__, 'suspenders'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         version=pulumi.get(__ret__, 'version'))
-
-
-@_utilities.lift_output_func(get_postgres)
 def get_postgres_output(postgres_id: Optional[pulumi.Input[str]] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[PostgresDetail]:
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    __args__['postgresId'] = postgres_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('render:postgres:getPostgres', __args__, opts=opts, typ=PostgresDetail)
+    return __ret__.apply(lambda __response__: PostgresDetail(
+        created_at=pulumi.get(__response__, 'created_at'),
+        dashboard_url=pulumi.get(__response__, 'dashboard_url'),
+        database_name=pulumi.get(__response__, 'database_name'),
+        database_user=pulumi.get(__response__, 'database_user'),
+        disk_size_gb=pulumi.get(__response__, 'disk_size_gb'),
+        environment_id=pulumi.get(__response__, 'environment_id'),
+        expires_at=pulumi.get(__response__, 'expires_at'),
+        high_availability_enabled=pulumi.get(__response__, 'high_availability_enabled'),
+        id=pulumi.get(__response__, 'id'),
+        ip_allow_list=pulumi.get(__response__, 'ip_allow_list'),
+        maintenance=pulumi.get(__response__, 'maintenance'),
+        name=pulumi.get(__response__, 'name'),
+        owner=pulumi.get(__response__, 'owner'),
+        plan=pulumi.get(__response__, 'plan'),
+        primary_postgres_id=pulumi.get(__response__, 'primary_postgres_id'),
+        read_replicas=pulumi.get(__response__, 'read_replicas'),
+        region=pulumi.get(__response__, 'region'),
+        role=pulumi.get(__response__, 'role'),
+        status=pulumi.get(__response__, 'status'),
+        suspended=pulumi.get(__response__, 'suspended'),
+        suspenders=pulumi.get(__response__, 'suspenders'),
+        updated_at=pulumi.get(__response__, 'updated_at'),
+        version=pulumi.get(__response__, 'version')))

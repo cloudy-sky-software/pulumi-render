@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
@@ -65,9 +70,6 @@ def get_env_group_secret_file(env_group_id: Optional[str] = None,
     return AwaitableSecretFile(
         content=pulumi.get(__ret__, 'content'),
         name=pulumi.get(__ret__, 'name'))
-
-
-@_utilities.lift_output_func(get_env_group_secret_file)
 def get_env_group_secret_file_output(env_group_id: Optional[pulumi.Input[str]] = None,
                                      secret_file_name: Optional[pulumi.Input[str]] = None,
                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[SecretFile]:
@@ -77,4 +79,11 @@ def get_env_group_secret_file_output(env_group_id: Optional[pulumi.Input[str]] =
     :param str env_group_id: Filter for resources that belong to an environment group
     :param str secret_file_name: The name of the secret file
     """
-    ...
+    __args__ = dict()
+    __args__['envGroupId'] = env_group_id
+    __args__['secretFileName'] = secret_file_name
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('render:env-groups:getEnvGroupSecretFile', __args__, opts=opts, typ=SecretFile)
+    return __ret__.apply(lambda __response__: SecretFile(
+        content=pulumi.get(__response__, 'content'),
+        name=pulumi.get(__response__, 'name')))

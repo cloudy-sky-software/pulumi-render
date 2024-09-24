@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._enums import *
@@ -127,9 +132,6 @@ def get_custom_domain(custom_domain_id_or_name: Optional[str] = None,
         redirect_for_name=pulumi.get(__ret__, 'redirect_for_name'),
         server=pulumi.get(__ret__, 'server'),
         verification_status=pulumi.get(__ret__, 'verification_status'))
-
-
-@_utilities.lift_output_func(get_custom_domain)
 def get_custom_domain_output(custom_domain_id_or_name: Optional[pulumi.Input[str]] = None,
                              service_id: Optional[pulumi.Input[str]] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[CustomDomain]:
@@ -139,4 +141,17 @@ def get_custom_domain_output(custom_domain_id_or_name: Optional[pulumi.Input[str
     :param str custom_domain_id_or_name: The ID or name of the custom domain
     :param str service_id: The ID of the service
     """
-    ...
+    __args__ = dict()
+    __args__['customDomainIdOrName'] = custom_domain_id_or_name
+    __args__['serviceId'] = service_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('render:services:getCustomDomain', __args__, opts=opts, typ=CustomDomain)
+    return __ret__.apply(lambda __response__: CustomDomain(
+        created_at=pulumi.get(__response__, 'created_at'),
+        domain_type=pulumi.get(__response__, 'domain_type'),
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        public_suffix=pulumi.get(__response__, 'public_suffix'),
+        redirect_for_name=pulumi.get(__response__, 'redirect_for_name'),
+        server=pulumi.get(__response__, 'server'),
+        verification_status=pulumi.get(__response__, 'verification_status')))

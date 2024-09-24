@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._enums import *
@@ -50,11 +55,12 @@ def list_notification_overrides(opts: Optional[pulumi.InvokeOptions] = None) -> 
 
     return AwaitableListNotificationOverridesResult(
         items=pulumi.get(__ret__, 'items'))
-
-
-@_utilities.lift_output_func(list_notification_overrides)
 def list_notification_overrides_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListNotificationOverridesResult]:
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('render:notification-settings:listNotificationOverrides', __args__, opts=opts, typ=ListNotificationOverridesResult)
+    return __ret__.apply(lambda __response__: ListNotificationOverridesResult(
+        items=pulumi.get(__response__, 'items')))

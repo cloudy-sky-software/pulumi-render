@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from ._enums import *
 
@@ -126,9 +131,6 @@ def get_job(job_id: Optional[str] = None,
         start_command=pulumi.get(__ret__, 'start_command'),
         started_at=pulumi.get(__ret__, 'started_at'),
         status=pulumi.get(__ret__, 'status'))
-
-
-@_utilities.lift_output_func(get_job)
 def get_job_output(job_id: Optional[pulumi.Input[str]] = None,
                    service_id: Optional[pulumi.Input[str]] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[Job]:
@@ -138,4 +140,17 @@ def get_job_output(job_id: Optional[pulumi.Input[str]] = None,
     :param str job_id: The ID of the job
     :param str service_id: The ID of the service
     """
-    ...
+    __args__ = dict()
+    __args__['jobId'] = job_id
+    __args__['serviceId'] = service_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('render:services:getJob', __args__, opts=opts, typ=Job)
+    return __ret__.apply(lambda __response__: Job(
+        created_at=pulumi.get(__response__, 'created_at'),
+        finished_at=pulumi.get(__response__, 'finished_at'),
+        id=pulumi.get(__response__, 'id'),
+        plan_id=pulumi.get(__response__, 'plan_id'),
+        service_id=pulumi.get(__response__, 'service_id'),
+        start_command=pulumi.get(__response__, 'start_command'),
+        started_at=pulumi.get(__response__, 'started_at'),
+        status=pulumi.get(__response__, 'status')))

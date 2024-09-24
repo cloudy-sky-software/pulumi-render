@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from ._enums import *
 
@@ -93,9 +98,6 @@ def get_owner_notification_setting(owner_id: Optional[str] = None,
         owner_id=pulumi.get(__ret__, 'owner_id'),
         preview_notifications_enabled=pulumi.get(__ret__, 'preview_notifications_enabled'),
         slack_enabled=pulumi.get(__ret__, 'slack_enabled'))
-
-
-@_utilities.lift_output_func(get_owner_notification_setting)
 def get_owner_notification_setting_output(owner_id: Optional[pulumi.Input[str]] = None,
                                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOwnerNotificationSettingProperties]:
     """
@@ -103,4 +105,13 @@ def get_owner_notification_setting_output(owner_id: Optional[pulumi.Input[str]] 
 
     :param str owner_id: The ID of the owner (team or personal user) whose resources should be returned
     """
-    ...
+    __args__ = dict()
+    __args__['ownerId'] = owner_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('render:notification-settings:getOwnerNotificationSetting', __args__, opts=opts, typ=GetOwnerNotificationSettingProperties)
+    return __ret__.apply(lambda __response__: GetOwnerNotificationSettingProperties(
+        email_enabled=pulumi.get(__response__, 'email_enabled'),
+        notifications_to_send=pulumi.get(__response__, 'notifications_to_send'),
+        owner_id=pulumi.get(__response__, 'owner_id'),
+        preview_notifications_enabled=pulumi.get(__response__, 'preview_notifications_enabled'),
+        slack_enabled=pulumi.get(__response__, 'slack_enabled')))

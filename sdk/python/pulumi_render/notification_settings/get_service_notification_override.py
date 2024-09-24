@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from ._enums import *
 
@@ -73,9 +78,6 @@ def get_service_notification_override(service_id: Optional[str] = None,
         notifications_to_send=pulumi.get(__ret__, 'notifications_to_send'),
         preview_notifications_enabled=pulumi.get(__ret__, 'preview_notifications_enabled'),
         service_id=pulumi.get(__ret__, 'service_id'))
-
-
-@_utilities.lift_output_func(get_service_notification_override)
 def get_service_notification_override_output(service_id: Optional[pulumi.Input[str]] = None,
                                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetServiceNotificationOverrideProperties]:
     """
@@ -83,4 +85,11 @@ def get_service_notification_override_output(service_id: Optional[pulumi.Input[s
 
     :param str service_id: The ID of the service
     """
-    ...
+    __args__ = dict()
+    __args__['serviceId'] = service_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('render:notification-settings:getServiceNotificationOverride', __args__, opts=opts, typ=GetServiceNotificationOverrideProperties)
+    return __ret__.apply(lambda __response__: GetServiceNotificationOverrideProperties(
+        notifications_to_send=pulumi.get(__response__, 'notifications_to_send'),
+        preview_notifications_enabled=pulumi.get(__response__, 'preview_notifications_enabled'),
+        service_id=pulumi.get(__response__, 'service_id')))

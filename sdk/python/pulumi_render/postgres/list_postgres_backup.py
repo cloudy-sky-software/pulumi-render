@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 
@@ -51,12 +56,14 @@ def list_postgres_backup(postgres_id: Optional[str] = None,
 
     return AwaitableListPostgresBackupResult(
         items=pulumi.get(__ret__, 'items'))
-
-
-@_utilities.lift_output_func(list_postgres_backup)
 def list_postgres_backup_output(postgres_id: Optional[pulumi.Input[str]] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListPostgresBackupResult]:
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    __args__['postgresId'] = postgres_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('render:postgres:listPostgresBackup', __args__, opts=opts, typ=ListPostgresBackupResult)
+    return __ret__.apply(lambda __response__: ListPostgresBackupResult(
+        items=pulumi.get(__response__, 'items')))

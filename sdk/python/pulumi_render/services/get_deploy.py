@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._enums import *
@@ -130,9 +135,6 @@ def get_deploy(deploy_id: Optional[str] = None,
         status=pulumi.get(__ret__, 'status'),
         trigger=pulumi.get(__ret__, 'trigger'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
-
-
-@_utilities.lift_output_func(get_deploy)
 def get_deploy_output(deploy_id: Optional[pulumi.Input[str]] = None,
                       service_id: Optional[pulumi.Input[str]] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[Deploy]:
@@ -142,4 +144,17 @@ def get_deploy_output(deploy_id: Optional[pulumi.Input[str]] = None,
     :param str deploy_id: The ID of the deploy
     :param str service_id: The ID of the service
     """
-    ...
+    __args__ = dict()
+    __args__['deployId'] = deploy_id
+    __args__['serviceId'] = service_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('render:services:getDeploy', __args__, opts=opts, typ=Deploy)
+    return __ret__.apply(lambda __response__: Deploy(
+        commit=pulumi.get(__response__, 'commit'),
+        created_at=pulumi.get(__response__, 'created_at'),
+        finished_at=pulumi.get(__response__, 'finished_at'),
+        id=pulumi.get(__response__, 'id'),
+        image=pulumi.get(__response__, 'image'),
+        status=pulumi.get(__response__, 'status'),
+        trigger=pulumi.get(__response__, 'trigger'),
+        updated_at=pulumi.get(__response__, 'updated_at')))

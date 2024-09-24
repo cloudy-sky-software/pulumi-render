@@ -4,15 +4,33 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from ._enums import *
 
 __all__ = [
     'ProjectCreateEnvironmentInputArgs',
+    'ProjectCreateEnvironmentInputArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class ProjectCreateEnvironmentInputArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        protected_status: NotRequired[pulumi.Input['ProjectCreateEnvironmentInputProtectedStatus']]
+        """
+        Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
+        """
+elif False:
+    ProjectCreateEnvironmentInputArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ProjectCreateEnvironmentInputArgs:

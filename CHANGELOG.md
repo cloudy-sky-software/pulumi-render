@@ -1,3 +1,7 @@
+## 0.3.10
+
+Fix issue with resource imports by upgrading `pulumi-provider-framework` to the latest.
+
 ## 0.3.9
 
 Fix input type for `SecretFilesForService`.

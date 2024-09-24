@@ -16,6 +16,39 @@
 You'll need an API key. Follow Render's [docs](https://render.com/docs/api#getting-started) for creating one.
 Then set the API key as a secret with `pulumi config set --secret render:apiKey`.
 
+### Importing Existing Resources
+
+This provider uses REST API endpoint path-style import IDs. The endpoint path should be as exactly defined in the [OpenAPI spec](https://github.com/cloudy-sky-software/pulumi-render/blob/main/provider/cmd/pulumi-gen-render/openapi.yml).
+
+For example, to read a custom domain, the path in the OpenAPI spec is: `GET /services/{serviceId}/custom-domains/{customDomainIdOrName}`.
+
+Thus, the `pulumi import` command to run is:
+
+```bash
+# The type render:services:CustomDomain can be easily found by using your IDEs
+# Go To Definition functionality for the resource and looking at the type
+# property defined in the custom resource's class definition.
+pulumi import render:services:CustomDomain {resourceName} /services/{serviceId}/custom-domains/{customDomainIdOrName}
+```
+
+Alternatively, you can also import using the `import` Pulumi resource option.
+Run `pulumi up` to import the resource into your stack's state. Once imported,
+you should remove the `import` resource option.
+
+```typescript
+const myCustomDomain = new render.services.CustomDomain(
+  "myCustomDomain",
+  { name: "www.somedomain.com", serviceId: staticSite.id },
+  {
+    protect: true,
+    import: `/services/srv-xxxxxxxxxxxxxxx/custom-domains/www.somedomain.com`,
+  }
+);
+```
+
+Refer to the Pulumi [docs](https://www.pulumi.com/docs/iac/adopting-pulumi/import/) for importing a
+resource.
+
 ## Releasing A New Version
 
 :info: Switch to the `main` branch first and get the latest `git pull origin main && git fetch`. Check what the last release tag was.

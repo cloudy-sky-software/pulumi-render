@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from ._enums import *
 
@@ -64,12 +69,15 @@ def get_postgres_recovery_info(postgres_id: Optional[str] = None,
     return AwaitableGetPostgresRecoveryInfoProperties(
         recovery_status=pulumi.get(__ret__, 'recovery_status'),
         starts_at=pulumi.get(__ret__, 'starts_at'))
-
-
-@_utilities.lift_output_func(get_postgres_recovery_info)
 def get_postgres_recovery_info_output(postgres_id: Optional[pulumi.Input[str]] = None,
                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPostgresRecoveryInfoProperties]:
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    __args__['postgresId'] = postgres_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('render:postgres:getPostgresRecoveryInfo', __args__, opts=opts, typ=GetPostgresRecoveryInfoProperties)
+    return __ret__.apply(lambda __response__: GetPostgresRecoveryInfoProperties(
+        recovery_status=pulumi.get(__response__, 'recovery_status'),
+        starts_at=pulumi.get(__response__, 'starts_at')))

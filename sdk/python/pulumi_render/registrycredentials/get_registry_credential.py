@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from ._enums import *
 
@@ -95,9 +100,6 @@ def get_registry_credential(registry_credential_id: Optional[str] = None,
         name=pulumi.get(__ret__, 'name'),
         registry=pulumi.get(__ret__, 'registry'),
         username=pulumi.get(__ret__, 'username'))
-
-
-@_utilities.lift_output_func(get_registry_credential)
 def get_registry_credential_output(registry_credential_id: Optional[pulumi.Input[str]] = None,
                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[RegistryCredential]:
     """
@@ -105,4 +107,12 @@ def get_registry_credential_output(registry_credential_id: Optional[pulumi.Input
 
     :param str registry_credential_id: The ID of the registry credential
     """
-    ...
+    __args__ = dict()
+    __args__['registryCredentialId'] = registry_credential_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('render:registrycredentials:getRegistryCredential', __args__, opts=opts, typ=RegistryCredential)
+    return __ret__.apply(lambda __response__: RegistryCredential(
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        registry=pulumi.get(__response__, 'registry'),
+        username=pulumi.get(__response__, 'username')))

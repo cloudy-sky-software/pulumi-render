@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 
@@ -53,9 +58,6 @@ def list_env_vars_for_service(service_id: Optional[str] = None,
 
     return AwaitableListEnvVarsForServiceResult(
         items=pulumi.get(__ret__, 'items'))
-
-
-@_utilities.lift_output_func(list_env_vars_for_service)
 def list_env_vars_for_service_output(service_id: Optional[pulumi.Input[str]] = None,
                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListEnvVarsForServiceResult]:
     """
@@ -63,4 +65,9 @@ def list_env_vars_for_service_output(service_id: Optional[pulumi.Input[str]] = N
 
     :param str service_id: The ID of the service
     """
-    ...
+    __args__ = dict()
+    __args__['serviceId'] = service_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('render:services:listEnvVarsForService', __args__, opts=opts, typ=ListEnvVarsForServiceResult)
+    return __ret__.apply(lambda __response__: ListEnvVarsForServiceResult(
+        items=pulumi.get(__response__, 'items')))

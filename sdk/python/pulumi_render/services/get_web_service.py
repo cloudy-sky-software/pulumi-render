@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._enums import *
@@ -247,9 +252,6 @@ def get_web_service(service_id: Optional[str] = None,
         suspenders=pulumi.get(__ret__, 'suspenders'),
         type=pulumi.get(__ret__, 'type'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
-
-
-@_utilities.lift_output_func(get_web_service)
 def get_web_service_output(service_id: Optional[pulumi.Input[str]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetWebService]:
     """
@@ -257,4 +259,28 @@ def get_web_service_output(service_id: Optional[pulumi.Input[str]] = None,
 
     :param str service_id: The ID of the service
     """
-    ...
+    __args__ = dict()
+    __args__['serviceId'] = service_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('render:services:getWebService', __args__, opts=opts, typ=GetWebService)
+    return __ret__.apply(lambda __response__: GetWebService(
+        auto_deploy=pulumi.get(__response__, 'auto_deploy'),
+        branch=pulumi.get(__response__, 'branch'),
+        build_filter=pulumi.get(__response__, 'build_filter'),
+        created_at=pulumi.get(__response__, 'created_at'),
+        dashboard_url=pulumi.get(__response__, 'dashboard_url'),
+        environment_id=pulumi.get(__response__, 'environment_id'),
+        id=pulumi.get(__response__, 'id'),
+        image_path=pulumi.get(__response__, 'image_path'),
+        name=pulumi.get(__response__, 'name'),
+        notify_on_fail=pulumi.get(__response__, 'notify_on_fail'),
+        owner_id=pulumi.get(__response__, 'owner_id'),
+        registry_credential=pulumi.get(__response__, 'registry_credential'),
+        repo=pulumi.get(__response__, 'repo'),
+        root_dir=pulumi.get(__response__, 'root_dir'),
+        service_details=pulumi.get(__response__, 'service_details'),
+        slug=pulumi.get(__response__, 'slug'),
+        suspended=pulumi.get(__response__, 'suspended'),
+        suspenders=pulumi.get(__response__, 'suspenders'),
+        type=pulumi.get(__response__, 'type'),
+        updated_at=pulumi.get(__response__, 'updated_at')))

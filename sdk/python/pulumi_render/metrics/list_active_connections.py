@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 
@@ -49,11 +54,12 @@ def list_active_connections(opts: Optional[pulumi.InvokeOptions] = None) -> Awai
 
     return AwaitableListActiveConnectionsResult(
         items=pulumi.get(__ret__, 'items'))
-
-
-@_utilities.lift_output_func(list_active_connections)
 def list_active_connections_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListActiveConnectionsResult]:
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('render:metrics:listActiveConnections', __args__, opts=opts, typ=ListActiveConnectionsResult)
+    return __ret__.apply(lambda __response__: ListActiveConnectionsResult(
+        items=pulumi.get(__response__, 'items')))

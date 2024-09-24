@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
@@ -80,12 +85,17 @@ def get_postgres_connection_info(postgres_id: Optional[str] = None,
         internal_connection_string=pulumi.get(__ret__, 'internal_connection_string'),
         password=pulumi.get(__ret__, 'password'),
         psql_command=pulumi.get(__ret__, 'psql_command'))
-
-
-@_utilities.lift_output_func(get_postgres_connection_info)
 def get_postgres_connection_info_output(postgres_id: Optional[pulumi.Input[str]] = None,
                                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[PostgresConnectionInfo]:
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    __args__['postgresId'] = postgres_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('render:postgres:getPostgresConnectionInfo', __args__, opts=opts, typ=PostgresConnectionInfo)
+    return __ret__.apply(lambda __response__: PostgresConnectionInfo(
+        external_connection_string=pulumi.get(__response__, 'external_connection_string'),
+        internal_connection_string=pulumi.get(__response__, 'internal_connection_string'),
+        password=pulumi.get(__response__, 'password'),
+        psql_command=pulumi.get(__response__, 'psql_command')))

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
@@ -65,9 +70,6 @@ def get_env_group_env_var(env_group_id: Optional[str] = None,
     return AwaitableEnvVar(
         key=pulumi.get(__ret__, 'key'),
         value=pulumi.get(__ret__, 'value'))
-
-
-@_utilities.lift_output_func(get_env_group_env_var)
 def get_env_group_env_var_output(env_group_id: Optional[pulumi.Input[str]] = None,
                                  env_var_key: Optional[pulumi.Input[str]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[EnvVar]:
@@ -77,4 +79,11 @@ def get_env_group_env_var_output(env_group_id: Optional[pulumi.Input[str]] = Non
     :param str env_group_id: Filter for resources that belong to an environment group
     :param str env_var_key: The name of the environment variable
     """
-    ...
+    __args__ = dict()
+    __args__['envGroupId'] = env_group_id
+    __args__['envVarKey'] = env_var_key
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('render:env-groups:getEnvGroupEnvVar', __args__, opts=opts, typ=EnvVar)
+    return __ret__.apply(lambda __response__: EnvVar(
+        key=pulumi.get(__response__, 'key'),
+        value=pulumi.get(__response__, 'value')))

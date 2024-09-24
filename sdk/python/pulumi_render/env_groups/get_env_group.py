@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._enums import *
@@ -137,9 +142,6 @@ def get_env_group(env_group_id: Optional[str] = None,
         secret_files=pulumi.get(__ret__, 'secret_files'),
         service_links=pulumi.get(__ret__, 'service_links'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
-
-
-@_utilities.lift_output_func(get_env_group)
 def get_env_group_output(env_group_id: Optional[pulumi.Input[str]] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[EnvGroup]:
     """
@@ -147,4 +149,17 @@ def get_env_group_output(env_group_id: Optional[pulumi.Input[str]] = None,
 
     :param str env_group_id: Filter for resources that belong to an environment group
     """
-    ...
+    __args__ = dict()
+    __args__['envGroupId'] = env_group_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('render:env-groups:getEnvGroup', __args__, opts=opts, typ=EnvGroup)
+    return __ret__.apply(lambda __response__: EnvGroup(
+        created_at=pulumi.get(__response__, 'created_at'),
+        env_vars=pulumi.get(__response__, 'env_vars'),
+        environment_id=pulumi.get(__response__, 'environment_id'),
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        owner_id=pulumi.get(__response__, 'owner_id'),
+        secret_files=pulumi.get(__response__, 'secret_files'),
+        service_links=pulumi.get(__response__, 'service_links'),
+        updated_at=pulumi.get(__response__, 'updated_at')))

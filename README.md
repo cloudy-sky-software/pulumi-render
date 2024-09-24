@@ -18,7 +18,9 @@ Then set the API key as a secret with `pulumi config set --secret render:apiKey`
 
 ### Importing Existing Resources
 
-This provider uses REST API endpoint path-style import IDs. The endpoint path should be as exactly defined in the [OpenAPI spec](https://github.com/cloudy-sky-software/pulumi-render/blob/main/provider/cmd/pulumi-gen-render/openapi.yml).
+Import IDs should satisfy all ID segments in the `GET` endpoint for the resource
+you are importing. The IDs required in the path should be separated by `/`.
+Locate the `GET` endpoint in the [OpenAPI spec](https://github.com/cloudy-sky-software/pulumi-render/blob/main/provider/cmd/pulumi-gen-render/openapi.yml).
 
 For example, to read a custom domain, the path in the OpenAPI spec is: `GET /services/{serviceId}/custom-domains/{customDomainIdOrName}`.
 
@@ -28,7 +30,7 @@ Thus, the `pulumi import` command to run is:
 # The type render:services:CustomDomain can be easily found by using your IDEs
 # Go To Definition functionality for the resource and looking at the type
 # property defined in the custom resource's class definition.
-pulumi import render:services:CustomDomain {resourceName} /services/{serviceId}/custom-domains/{customDomainIdOrName}
+pulumi import render:services:CustomDomain {resourceName} /{serviceId}/{customDomainIdOrName}
 ```
 
 Alternatively, you can also import using the `import` Pulumi resource option.
@@ -41,7 +43,7 @@ const myCustomDomain = new render.services.CustomDomain(
   { name: "www.somedomain.com", serviceId: staticSite.id },
   {
     protect: true,
-    import: `/services/srv-xxxxxxxxxxxxxxx/custom-domains/www.somedomain.com`,
+    import: `/srv-xxxxxxxxxxxxxxx/www.somedomain.com`,
   }
 );
 ```

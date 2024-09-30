@@ -1,3 +1,7 @@
+## 0.3.11
+
+Upgrade pulumi-provider-framework to the latest to fix import issue caused by a leading '/'.
+
 ## 0.3.10
 
 Fix issue with resource imports by upgrading `pulumi-provider-framework` to the latest.

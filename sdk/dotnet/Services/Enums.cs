@@ -80,7 +80,7 @@ namespace Pulumi.Render.Services
     }
 
     /// <summary>
-    /// Defaults to "no"
+    /// This field has been deprecated. previews.generation should be used in its place.
     /// </summary>
     [EnumType]
     public readonly struct BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled : IEquatable<BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled>
@@ -286,7 +286,7 @@ namespace Pulumi.Render.Services
     }
 
     /// <summary>
-    /// Defaults to "no"
+    /// This field has been deprecated. previews.generation should be used in its place.
     /// </summary>
     [EnumType]
     public readonly struct BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled : IEquatable<BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled>
@@ -917,6 +917,38 @@ namespace Pulumi.Render.Services
     }
 
     /// <summary>
+    /// Defaults to "off"
+    /// </summary>
+    [EnumType]
+    public readonly struct PreviewsGeneration : IEquatable<PreviewsGeneration>
+    {
+        private readonly string _value;
+
+        private PreviewsGeneration(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static PreviewsGeneration Off { get; } = new PreviewsGeneration("off");
+        public static PreviewsGeneration Manual { get; } = new PreviewsGeneration("manual");
+        public static PreviewsGeneration Automatic { get; } = new PreviewsGeneration("automatic");
+
+        public static bool operator ==(PreviewsGeneration left, PreviewsGeneration right) => left.Equals(right);
+        public static bool operator !=(PreviewsGeneration left, PreviewsGeneration right) => !left.Equals(right);
+
+        public static explicit operator string(PreviewsGeneration value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is PreviewsGeneration other && Equals(other);
+        public bool Equals(PreviewsGeneration other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    /// <summary>
     /// This field has been deprecated, runtime should be used in its place.
     /// </summary>
     [EnumType]
@@ -989,7 +1021,7 @@ namespace Pulumi.Render.Services
     }
 
     /// <summary>
-    /// Defaults to "no"
+    /// This field has been deprecated. previews.generation should be used in its place.
     /// </summary>
     [EnumType]
     public readonly struct PrivateServiceDetailsCreatePullRequestPreviewsEnabled : IEquatable<PrivateServiceDetailsCreatePullRequestPreviewsEnabled>
@@ -1195,7 +1227,7 @@ namespace Pulumi.Render.Services
     }
 
     /// <summary>
-    /// Defaults to "no"
+    /// This field has been deprecated. previews.generation should be used in its place.
     /// </summary>
     [EnumType]
     public readonly struct PrivateServiceDetailsOutputPullRequestPreviewsEnabled : IEquatable<PrivateServiceDetailsOutputPullRequestPreviewsEnabled>
@@ -1276,6 +1308,7 @@ namespace Pulumi.Render.Services
         public static RegistryCredentialRegistry Gitlab { get; } = new RegistryCredentialRegistry("GITLAB");
         public static RegistryCredentialRegistry Docker { get; } = new RegistryCredentialRegistry("DOCKER");
         public static RegistryCredentialRegistry GoogleArtifact { get; } = new RegistryCredentialRegistry("GOOGLE_ARTIFACT");
+        public static RegistryCredentialRegistry AwsEcr { get; } = new RegistryCredentialRegistry("AWS_ECR");
 
         public static bool operator ==(RegistryCredentialRegistry left, RegistryCredentialRegistry right) => left.Equals(right);
         public static bool operator !=(RegistryCredentialRegistry left, RegistryCredentialRegistry right) => !left.Equals(right);
@@ -1521,7 +1554,7 @@ namespace Pulumi.Render.Services
     }
 
     /// <summary>
-    /// Defaults to "no"
+    /// This field has been deprecated. previews.generation should be used in its place.
     /// </summary>
     [EnumType]
     public readonly struct StaticSiteDetailsCreatePullRequestPreviewsEnabled : IEquatable<StaticSiteDetailsCreatePullRequestPreviewsEnabled>
@@ -1580,7 +1613,7 @@ namespace Pulumi.Render.Services
     }
 
     /// <summary>
-    /// Defaults to "no"
+    /// This field has been deprecated. previews.generation should be used in its place.
     /// </summary>
     [EnumType]
     public readonly struct StaticSiteDetailsOutputPullRequestPreviewsEnabled : IEquatable<StaticSiteDetailsOutputPullRequestPreviewsEnabled>
@@ -1783,7 +1816,7 @@ namespace Pulumi.Render.Services
     }
 
     /// <summary>
-    /// Defaults to "no"
+    /// This field has been deprecated. previews.generation should be used in its place.
     /// </summary>
     [EnumType]
     public readonly struct WebServiceDetailsCreatePullRequestPreviewsEnabled : IEquatable<WebServiceDetailsCreatePullRequestPreviewsEnabled>
@@ -1989,7 +2022,7 @@ namespace Pulumi.Render.Services
     }
 
     /// <summary>
-    /// Defaults to "no"
+    /// This field has been deprecated. previews.generation should be used in its place.
     /// </summary>
     [EnumType]
     public readonly struct WebServiceDetailsOutputPullRequestPreviewsEnabled : IEquatable<WebServiceDetailsOutputPullRequestPreviewsEnabled>

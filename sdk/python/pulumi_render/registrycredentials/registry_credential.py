@@ -152,6 +152,7 @@ class RegistryCredential(pulumi.CustomResource):
             if username is None and not opts.urn:
                 raise TypeError("Missing required property 'username'")
             __props__.__dict__["username"] = username
+            __props__.__dict__["updated_at"] = None
         super(RegistryCredential, __self__).__init__(
             'render:registrycredentials:RegistryCredential',
             resource_name,
@@ -178,6 +179,7 @@ class RegistryCredential(pulumi.CustomResource):
         __props__.__dict__["name"] = None
         __props__.__dict__["owner_id"] = None
         __props__.__dict__["registry"] = None
+        __props__.__dict__["updated_at"] = None
         __props__.__dict__["username"] = None
         return RegistryCredential(resource_name, opts=opts, __props__=__props__)
 
@@ -206,6 +208,14 @@ class RegistryCredential(pulumi.CustomResource):
         The registry to use this credential with
         """
         return pulumi.get(self, "registry")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> pulumi.Output[str]:
+        """
+        Last updated time for the credential
+        """
+        return pulumi.get(self, "updated_at")
 
     @property
     @pulumi.getter

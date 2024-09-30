@@ -7,6 +7,7 @@ export const Registry = {
     Gitlab: "GITLAB",
     Docker: "DOCKER",
     GoogleArtifact: "GOOGLE_ARTIFACT",
+    AwsEcr: "AWS_ECR",
 } as const;
 
 /**
@@ -19,6 +20,7 @@ export const RegistryCredentialRegistry = {
     Gitlab: "GITLAB",
     Docker: "DOCKER",
     GoogleArtifact: "GOOGLE_ARTIFACT",
+    AwsEcr: "AWS_ECR",
 } as const;
 
 /**

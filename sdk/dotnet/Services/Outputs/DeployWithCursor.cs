@@ -11,13 +11,13 @@ namespace Pulumi.Render.Services.Outputs
 {
 
     [OutputType]
-    public sealed class ListDeploysItemProperties
+    public sealed class DeployWithCursor
     {
         public readonly string? Cursor;
         public readonly Outputs.Deploy? Deploy;
 
         [OutputConstructor]
-        private ListDeploysItemProperties(
+        private DeployWithCursor(
             string? cursor,
 
             Outputs.Deploy? deploy)

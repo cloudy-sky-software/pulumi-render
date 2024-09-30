@@ -362,7 +362,7 @@ func (in *backgroundWorkerDetailsCreatePlanPtr) ToBackgroundWorkerDetailsCreateP
 	return pulumi.ToOutputWithContext(ctx, in).(BackgroundWorkerDetailsCreatePlanPtrOutput)
 }
 
-// Defaults to "no"
+// This field has been deprecated. previews.generation should be used in its place.
 type BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled string
 
 const (
@@ -1164,7 +1164,7 @@ func (o BackgroundWorkerDetailsOutputPlanPtrOutput) ToStringPtrOutputWithContext
 	}).(pulumi.StringPtrOutput)
 }
 
-// Defaults to "no"
+// This field has been deprecated. previews.generation should be used in its place.
 type BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled string
 
 const (
@@ -3428,6 +3428,174 @@ func (in *planPtr) ToPlanPtrOutputWithContext(ctx context.Context) PlanPtrOutput
 	return pulumi.ToOutputWithContext(ctx, in).(PlanPtrOutput)
 }
 
+// Defaults to "off"
+type PreviewsGeneration string
+
+const (
+	PreviewsGenerationOff       = PreviewsGeneration("off")
+	PreviewsGenerationManual    = PreviewsGeneration("manual")
+	PreviewsGenerationAutomatic = PreviewsGeneration("automatic")
+)
+
+func (PreviewsGeneration) ElementType() reflect.Type {
+	return reflect.TypeOf((*PreviewsGeneration)(nil)).Elem()
+}
+
+func (e PreviewsGeneration) ToPreviewsGenerationOutput() PreviewsGenerationOutput {
+	return pulumi.ToOutput(e).(PreviewsGenerationOutput)
+}
+
+func (e PreviewsGeneration) ToPreviewsGenerationOutputWithContext(ctx context.Context) PreviewsGenerationOutput {
+	return pulumi.ToOutputWithContext(ctx, e).(PreviewsGenerationOutput)
+}
+
+func (e PreviewsGeneration) ToPreviewsGenerationPtrOutput() PreviewsGenerationPtrOutput {
+	return e.ToPreviewsGenerationPtrOutputWithContext(context.Background())
+}
+
+func (e PreviewsGeneration) ToPreviewsGenerationPtrOutputWithContext(ctx context.Context) PreviewsGenerationPtrOutput {
+	return PreviewsGeneration(e).ToPreviewsGenerationOutputWithContext(ctx).ToPreviewsGenerationPtrOutputWithContext(ctx)
+}
+
+func (e PreviewsGeneration) ToStringOutput() pulumi.StringOutput {
+	return pulumi.ToOutput(pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e PreviewsGeneration) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return pulumi.ToOutputWithContext(ctx, pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e PreviewsGeneration) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringPtrOutputWithContext(context.Background())
+}
+
+func (e PreviewsGeneration) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
+}
+
+type PreviewsGenerationOutput struct{ *pulumi.OutputState }
+
+func (PreviewsGenerationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PreviewsGeneration)(nil)).Elem()
+}
+
+func (o PreviewsGenerationOutput) ToPreviewsGenerationOutput() PreviewsGenerationOutput {
+	return o
+}
+
+func (o PreviewsGenerationOutput) ToPreviewsGenerationOutputWithContext(ctx context.Context) PreviewsGenerationOutput {
+	return o
+}
+
+func (o PreviewsGenerationOutput) ToPreviewsGenerationPtrOutput() PreviewsGenerationPtrOutput {
+	return o.ToPreviewsGenerationPtrOutputWithContext(context.Background())
+}
+
+func (o PreviewsGenerationOutput) ToPreviewsGenerationPtrOutputWithContext(ctx context.Context) PreviewsGenerationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PreviewsGeneration) *PreviewsGeneration {
+		return &v
+	}).(PreviewsGenerationPtrOutput)
+}
+
+func (o PreviewsGenerationOutput) ToStringOutput() pulumi.StringOutput {
+	return o.ToStringOutputWithContext(context.Background())
+}
+
+func (o PreviewsGenerationOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e PreviewsGeneration) string {
+		return string(e)
+	}).(pulumi.StringOutput)
+}
+
+func (o PreviewsGenerationOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o PreviewsGenerationOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e PreviewsGeneration) *string {
+		v := string(e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+type PreviewsGenerationPtrOutput struct{ *pulumi.OutputState }
+
+func (PreviewsGenerationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PreviewsGeneration)(nil)).Elem()
+}
+
+func (o PreviewsGenerationPtrOutput) ToPreviewsGenerationPtrOutput() PreviewsGenerationPtrOutput {
+	return o
+}
+
+func (o PreviewsGenerationPtrOutput) ToPreviewsGenerationPtrOutputWithContext(ctx context.Context) PreviewsGenerationPtrOutput {
+	return o
+}
+
+func (o PreviewsGenerationPtrOutput) Elem() PreviewsGenerationOutput {
+	return o.ApplyT(func(v *PreviewsGeneration) PreviewsGeneration {
+		if v != nil {
+			return *v
+		}
+		var ret PreviewsGeneration
+		return ret
+	}).(PreviewsGenerationOutput)
+}
+
+func (o PreviewsGenerationPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o PreviewsGenerationPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *PreviewsGeneration) *string {
+		if e == nil {
+			return nil
+		}
+		v := string(*e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+// PreviewsGenerationInput is an input type that accepts values of the PreviewsGeneration enum
+// A concrete instance of `PreviewsGenerationInput` can be one of the following:
+//
+//	PreviewsGenerationOff
+//	PreviewsGenerationManual
+//	PreviewsGenerationAutomatic
+type PreviewsGenerationInput interface {
+	pulumi.Input
+
+	ToPreviewsGenerationOutput() PreviewsGenerationOutput
+	ToPreviewsGenerationOutputWithContext(context.Context) PreviewsGenerationOutput
+}
+
+var previewsGenerationPtrType = reflect.TypeOf((**PreviewsGeneration)(nil)).Elem()
+
+type PreviewsGenerationPtrInput interface {
+	pulumi.Input
+
+	ToPreviewsGenerationPtrOutput() PreviewsGenerationPtrOutput
+	ToPreviewsGenerationPtrOutputWithContext(context.Context) PreviewsGenerationPtrOutput
+}
+
+type previewsGenerationPtr string
+
+func PreviewsGenerationPtr(v string) PreviewsGenerationPtrInput {
+	return (*previewsGenerationPtr)(&v)
+}
+
+func (*previewsGenerationPtr) ElementType() reflect.Type {
+	return previewsGenerationPtrType
+}
+
+func (in *previewsGenerationPtr) ToPreviewsGenerationPtrOutput() PreviewsGenerationPtrOutput {
+	return pulumi.ToOutput(in).(PreviewsGenerationPtrOutput)
+}
+
+func (in *previewsGenerationPtr) ToPreviewsGenerationPtrOutputWithContext(ctx context.Context) PreviewsGenerationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, in).(PreviewsGenerationPtrOutput)
+}
+
 // This field has been deprecated, runtime should be used in its place.
 type PrivateServiceDetailsCreateEnv string
 
@@ -3780,7 +3948,7 @@ func (in *privateServiceDetailsCreatePlanPtr) ToPrivateServiceDetailsCreatePlanP
 	return pulumi.ToOutputWithContext(ctx, in).(PrivateServiceDetailsCreatePlanPtrOutput)
 }
 
-// Defaults to "no"
+// This field has been deprecated. previews.generation should be used in its place.
 type PrivateServiceDetailsCreatePullRequestPreviewsEnabled string
 
 const (
@@ -4582,7 +4750,7 @@ func (o PrivateServiceDetailsOutputPlanPtrOutput) ToStringPtrOutputWithContext(c
 	}).(pulumi.StringPtrOutput)
 }
 
-// Defaults to "no"
+// This field has been deprecated. previews.generation should be used in its place.
 type PrivateServiceDetailsOutputPullRequestPreviewsEnabled string
 
 const (
@@ -4775,6 +4943,7 @@ const (
 	RegistryCredentialRegistryGitlab         = RegistryCredentialRegistry("GITLAB")
 	RegistryCredentialRegistryDocker         = RegistryCredentialRegistry("DOCKER")
 	RegistryCredentialRegistryGoogleArtifact = RegistryCredentialRegistry("GOOGLE_ARTIFACT")
+	RegistryCredentialRegistryAwsEcr         = RegistryCredentialRegistry("AWS_ECR")
 )
 
 func (RegistryCredentialRegistry) ElementType() reflect.Type {
@@ -4903,6 +5072,7 @@ func (o RegistryCredentialRegistryPtrOutput) ToStringPtrOutputWithContext(ctx co
 //	RegistryCredentialRegistryGitlab
 //	RegistryCredentialRegistryDocker
 //	RegistryCredentialRegistryGoogleArtifact
+//	RegistryCredentialRegistryAwsEcr
 type RegistryCredentialRegistryInput interface {
 	pulumi.Input
 
@@ -5831,7 +6001,7 @@ func (o ServiceSuspendersItemArrayOutput) Index(i pulumi.IntInput) ServiceSuspen
 	}).(ServiceSuspendersItemOutput)
 }
 
-// Defaults to "no"
+// This field has been deprecated. previews.generation should be used in its place.
 type StaticSiteDetailsCreatePullRequestPreviewsEnabled string
 
 const (
@@ -6087,7 +6257,7 @@ func (o StaticSiteDetailsOutputBuildPlanPtrOutput) ToStringPtrOutputWithContext(
 	}).(pulumi.StringPtrOutput)
 }
 
-// Defaults to "no"
+// This field has been deprecated. previews.generation should be used in its place.
 type StaticSiteDetailsOutputPullRequestPreviewsEnabled string
 
 const (
@@ -6891,7 +7061,7 @@ func (in *webServiceDetailsCreatePlanPtr) ToWebServiceDetailsCreatePlanPtrOutput
 	return pulumi.ToOutputWithContext(ctx, in).(WebServiceDetailsCreatePlanPtrOutput)
 }
 
-// Defaults to "no"
+// This field has been deprecated. previews.generation should be used in its place.
 type WebServiceDetailsCreatePullRequestPreviewsEnabled string
 
 const (
@@ -7693,7 +7863,7 @@ func (o WebServiceDetailsOutputPlanPtrOutput) ToStringPtrOutputWithContext(ctx c
 	}).(pulumi.StringPtrOutput)
 }
 
-// Defaults to "no"
+// This field has been deprecated. previews.generation should be used in its place.
 type WebServiceDetailsOutputPullRequestPreviewsEnabled string
 
 const (
@@ -7901,6 +8071,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CronJobDetailsCreateRuntimePtrInput)(nil)).Elem(), CronJobDetailsCreateRuntime("docker"))
 	pulumi.RegisterInputType(reflect.TypeOf((*PlanInput)(nil)).Elem(), Plan("starter"))
 	pulumi.RegisterInputType(reflect.TypeOf((*PlanPtrInput)(nil)).Elem(), Plan("starter"))
+	pulumi.RegisterInputType(reflect.TypeOf((*PreviewsGenerationInput)(nil)).Elem(), PreviewsGeneration("off"))
+	pulumi.RegisterInputType(reflect.TypeOf((*PreviewsGenerationPtrInput)(nil)).Elem(), PreviewsGeneration("off"))
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceDetailsCreateEnvInput)(nil)).Elem(), PrivateServiceDetailsCreateEnv("docker"))
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceDetailsCreateEnvPtrInput)(nil)).Elem(), PrivateServiceDetailsCreateEnv("docker"))
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceDetailsCreatePlanInput)(nil)).Elem(), PrivateServiceDetailsCreatePlan("starter"))
@@ -7985,6 +8157,8 @@ func init() {
 	pulumi.RegisterOutputType(Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusPtrOutput{})
 	pulumi.RegisterOutputType(PlanOutput{})
 	pulumi.RegisterOutputType(PlanPtrOutput{})
+	pulumi.RegisterOutputType(PreviewsGenerationOutput{})
+	pulumi.RegisterOutputType(PreviewsGenerationPtrOutput{})
 	pulumi.RegisterOutputType(PrivateServiceDetailsCreateEnvOutput{})
 	pulumi.RegisterOutputType(PrivateServiceDetailsCreateEnvPtrOutput{})
 	pulumi.RegisterOutputType(PrivateServiceDetailsCreatePlanOutput{})

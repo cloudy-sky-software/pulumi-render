@@ -31,6 +31,9 @@ export namespace envgroups {
 export namespace environments {
 }
 
+export namespace logs {
+}
+
 export namespace metrics {
 }
 
@@ -105,8 +108,9 @@ export namespace services {
          */
         plan?: pulumi.Input<enums.services.BackgroundWorkerDetailsCreatePlan>;
         preDeployCommand?: pulumi.Input<string>;
+        previews?: pulumi.Input<inputs.services.PreviewsArgs>;
         /**
-         * Defaults to "no"
+         * This field has been deprecated. previews.generation should be used in its place.
          */
         pullRequestPreviewsEnabled?: pulumi.Input<enums.services.BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled>;
         /**
@@ -128,6 +132,7 @@ export namespace services {
             maxShutdownDelaySeconds: (val.maxShutdownDelaySeconds) ?? 30,
             numInstances: (val.numInstances) ?? 1,
             plan: (val.plan) ?? "starter",
+            previews: (val.previews ? pulumi.output(val.previews).apply(inputs.services.previewsArgsProvideDefaults) : undefined),
             pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
             region: (val.region) ?? "oregon",
         };
@@ -259,6 +264,30 @@ export namespace services {
         registryCredentialId?: pulumi.Input<string>;
     }
 
+    export interface MaintenanceModeArgs {
+        enabled: pulumi.Input<boolean>;
+        /**
+         * The page to be served when [maintenance mode](https://docs.render.com/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
+         */
+        uri: pulumi.Input<string>;
+    }
+
+    export interface PreviewsArgs {
+        /**
+         * Defaults to "off"
+         */
+        generation?: pulumi.Input<enums.services.PreviewsGeneration>;
+    }
+    /**
+     * previewsArgsProvideDefaults sets the appropriate defaults for PreviewsArgs
+     */
+    export function previewsArgsProvideDefaults(val: PreviewsArgs): PreviewsArgs {
+        return {
+            ...val,
+            generation: (val.generation) ?? "off",
+        };
+    }
+
     export interface PrivateServiceDetailsCreateArgs {
         autoscaling?: pulumi.Input<inputs.services.WebServiceDetailspropertiesautoscalingArgs>;
         disk?: pulumi.Input<inputs.services.ServiceDiskArgs>;
@@ -280,8 +309,9 @@ export namespace services {
          */
         plan?: pulumi.Input<enums.services.PrivateServiceDetailsCreatePlan>;
         preDeployCommand?: pulumi.Input<string>;
+        previews?: pulumi.Input<inputs.services.PreviewsArgs>;
         /**
-         * Defaults to "no"
+         * This field has been deprecated. previews.generation should be used in its place.
          */
         pullRequestPreviewsEnabled?: pulumi.Input<enums.services.PrivateServiceDetailsCreatePullRequestPreviewsEnabled>;
         /**
@@ -303,6 +333,7 @@ export namespace services {
             maxShutdownDelaySeconds: (val.maxShutdownDelaySeconds) ?? 30,
             numInstances: (val.numInstances) ?? 1,
             plan: (val.plan) ?? "starter",
+            previews: (val.previews ? pulumi.output(val.previews).apply(inputs.services.previewsArgsProvideDefaults) : undefined),
             pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
             region: (val.region) ?? "oregon",
         };
@@ -321,6 +352,10 @@ export namespace services {
          * The registry to use this credential with
          */
         registry: pulumi.Input<enums.services.RegistryCredentialRegistry>;
+        /**
+         * Last updated time for the credential
+         */
+        updatedAt: pulumi.Input<string>;
         /**
          * The username associated with the credential
          */
@@ -354,12 +389,13 @@ export namespace services {
     export interface StaticSiteDetailsCreateArgs {
         buildCommand?: pulumi.Input<string>;
         headers?: pulumi.Input<pulumi.Input<inputs.services.HeaderInputArgs>[]>;
+        previews?: pulumi.Input<inputs.services.PreviewsArgs>;
         /**
          * Defaults to "public"
          */
         publishPath?: pulumi.Input<string>;
         /**
-         * Defaults to "no"
+         * This field has been deprecated. previews.generation should be used in its place.
          */
         pullRequestPreviewsEnabled?: pulumi.Input<enums.services.StaticSiteDetailsCreatePullRequestPreviewsEnabled>;
         routes?: pulumi.Input<pulumi.Input<inputs.services.RouteCreateArgs>[]>;
@@ -370,6 +406,7 @@ export namespace services {
     export function staticSiteDetailsCreateArgsProvideDefaults(val: StaticSiteDetailsCreateArgs): StaticSiteDetailsCreateArgs {
         return {
             ...val,
+            previews: (val.previews ? pulumi.output(val.previews).apply(inputs.services.previewsArgsProvideDefaults) : undefined),
             pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
         };
     }
@@ -383,6 +420,7 @@ export namespace services {
         env?: pulumi.Input<enums.services.WebServiceDetailsCreateEnv>;
         envSpecificDetails?: pulumi.Input<inputs.services.EnvSpecificDetailsCreateArgs>;
         healthCheckPath?: pulumi.Input<string>;
+        maintenanceMode?: pulumi.Input<inputs.services.MaintenanceModeArgs>;
         /**
          * The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
          */
@@ -396,8 +434,9 @@ export namespace services {
          */
         plan?: pulumi.Input<enums.services.WebServiceDetailsCreatePlan>;
         preDeployCommand?: pulumi.Input<string>;
+        previews?: pulumi.Input<inputs.services.PreviewsArgs>;
         /**
-         * Defaults to "no"
+         * This field has been deprecated. previews.generation should be used in its place.
          */
         pullRequestPreviewsEnabled?: pulumi.Input<enums.services.WebServiceDetailsCreatePullRequestPreviewsEnabled>;
         /**
@@ -418,6 +457,7 @@ export namespace services {
             autoscaling: (val.autoscaling ? pulumi.output(val.autoscaling).apply(inputs.services.webServiceDetailspropertiesautoscalingArgsProvideDefaults) : undefined),
             maxShutdownDelaySeconds: (val.maxShutdownDelaySeconds) ?? 30,
             plan: (val.plan) ?? "starter",
+            previews: (val.previews ? pulumi.output(val.previews).apply(inputs.services.previewsArgsProvideDefaults) : undefined),
             pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
             region: (val.region) ?? "oregon",
         };

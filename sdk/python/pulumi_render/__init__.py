@@ -21,6 +21,8 @@ if typing.TYPE_CHECKING:
     env_groups = __env_groups
     import pulumi_render.environments as __environments
     environments = __environments
+    import pulumi_render.logs as __logs
+    logs = __logs
     import pulumi_render.metrics as __metrics
     metrics = __metrics
     import pulumi_render.notification_settings as __notification_settings
@@ -44,6 +46,7 @@ else:
     disks = _utilities.lazy_import('pulumi_render.disks')
     env_groups = _utilities.lazy_import('pulumi_render.env_groups')
     environments = _utilities.lazy_import('pulumi_render.environments')
+    logs = _utilities.lazy_import('pulumi_render.logs')
     metrics = _utilities.lazy_import('pulumi_render.metrics')
     notification_settings = _utilities.lazy_import('pulumi_render.notification_settings')
     owners = _utilities.lazy_import('pulumi_render.owners')

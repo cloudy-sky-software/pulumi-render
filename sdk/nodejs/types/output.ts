@@ -175,6 +175,63 @@ export namespace environments {
 
 }
 
+export namespace logs {
+    /**
+     * Owner log stream settings
+     */
+    export interface GetOwnerLogStreamProperties {
+        /**
+         * The endpoint to stream logs to.
+         */
+        endpoint?: string;
+        /**
+         * The ID of the owner.
+         */
+        ownerId?: string;
+        /**
+         * Whether to send logs or drop them.
+         */
+        preview?: enums.logs.GetOwnerLogStreamPropertiesPreview;
+    }
+
+    /**
+     * Resource log stream overrides
+     */
+    export interface GetResourceLogStreamProperties {
+        /**
+         * The endpoint to stream logs to. Must be present if setting is send. Cannot be present if setting is drop.
+         */
+        endpoint?: string;
+        /**
+         * The ID of the resource.
+         */
+        resourceId?: string;
+        /**
+         * Whether to send logs or drop them.
+         */
+        setting?: enums.logs.GetResourceLogStreamPropertiesSetting;
+    }
+
+    /**
+     * Resource log stream overrides
+     */
+    export interface Paths1logs1streams1resource17BresourceId7Dgetresponses200contentapplication1jsonschema {
+        /**
+         * The endpoint to stream logs to. Must be present if setting is send. Cannot be present if setting is drop.
+         */
+        endpoint?: string;
+        /**
+         * The ID of the resource.
+         */
+        resourceId?: string;
+        /**
+         * Whether to send logs or drop them.
+         */
+        setting?: enums.logs.Paths1logs1streams1resource17BresourceId7Dgetresponses200contentapplication1jsonschemaSetting;
+    }
+
+}
+
 export namespace metrics {
     /**
      * A time series data point
@@ -269,11 +326,6 @@ export namespace notificationsettings {
 }
 
 export namespace owners {
-    export interface ListOwnersItemProperties {
-        cursor?: string;
-        owner?: outputs.owners.Owner;
-    }
-
     export interface Owner {
         email: string;
         id: string;
@@ -283,6 +335,11 @@ export namespace owners {
          */
         twoFactorAuthEnabled?: boolean;
         type: enums.owners.OwnerType;
+    }
+
+    export interface OwnerWithCursor {
+        cursor?: string;
+        owner?: outputs.owners.Owner;
     }
 
 }
@@ -727,6 +784,10 @@ export namespace registrycredentials {
          */
         registry: enums.registrycredentials.RegistryCredentialRegistry;
         /**
+         * Last updated time for the credential
+         */
+        updatedAt: string;
+        /**
          * The username associated with the credential
          */
         username: string;
@@ -757,8 +818,9 @@ export namespace services {
          * The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
          */
         plan: enums.services.BackgroundWorkerDetailsOutputPlan;
+        previews?: outputs.services.Previews;
         /**
-         * Defaults to "no"
+         * This field has been deprecated. previews.generation should be used in its place.
          */
         pullRequestPreviewsEnabled?: enums.services.BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled;
         /**
@@ -775,6 +837,7 @@ export namespace services {
             autoscaling: (val.autoscaling ? outputs.services.webServiceDetailspropertiesautoscalingProvideDefaults(val.autoscaling) : undefined),
             buildPlan: (val.buildPlan) ?? "starter",
             maxShutdownDelaySeconds: (val.maxShutdownDelaySeconds) ?? 30,
+            previews: (val.previews ? outputs.services.previewsProvideDefaults(val.previews) : undefined),
             pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
             region: (val.region) ?? "oregon",
         };
@@ -983,6 +1046,11 @@ export namespace services {
          * SHA that the image reference was resolved to when creating the deploy
          */
         sha?: string;
+    }
+
+    export interface DeployWithCursor {
+        cursor?: string;
+        deploy?: outputs.services.Deploy;
     }
 
     export interface EnvSpecificDetails {
@@ -1252,11 +1320,6 @@ export namespace services {
         status?: enums.services.JobStatus;
     }
 
-    export interface ListDeploysItemProperties {
-        cursor?: string;
-        deploy?: outputs.services.Deploy;
-    }
-
     export interface ListJobItemProperties {
         cursor?: string;
         job?: outputs.services.Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema;
@@ -1265,6 +1328,14 @@ export namespace services {
     export interface ListServicesResponse {
         cursor?: string;
         service?: outputs.services.BackgroundWorkerOutput | outputs.services.CronJobOutput | outputs.services.PrivateServiceOutput | outputs.services.StaticSiteOutput | outputs.services.WebServiceOutput;
+    }
+
+    export interface MaintenanceMode {
+        enabled: boolean;
+        /**
+         * The page to be served when [maintenance mode](https://docs.render.com/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
+         */
+        uri: string;
     }
 
     export interface Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema {
@@ -1276,6 +1347,22 @@ export namespace services {
         startCommand: string;
         startedAt?: string;
         status?: enums.services.Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus;
+    }
+
+    export interface Previews {
+        /**
+         * Defaults to "off"
+         */
+        generation?: enums.services.PreviewsGeneration;
+    }
+    /**
+     * previewsProvideDefaults sets the appropriate defaults for Previews
+     */
+    export function previewsProvideDefaults(val: Previews): Previews {
+        return {
+            ...val,
+            generation: (val.generation) ?? "off",
+        };
     }
 
     export interface PrivateServiceDetailsOutput {
@@ -1301,8 +1388,9 @@ export namespace services {
          * The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
          */
         plan: enums.services.PrivateServiceDetailsOutputPlan;
+        previews?: outputs.services.Previews;
         /**
-         * Defaults to "no"
+         * This field has been deprecated. previews.generation should be used in its place.
          */
         pullRequestPreviewsEnabled?: enums.services.PrivateServiceDetailsOutputPullRequestPreviewsEnabled;
         /**
@@ -1320,6 +1408,7 @@ export namespace services {
             autoscaling: (val.autoscaling ? outputs.services.webServiceDetailspropertiesautoscalingProvideDefaults(val.autoscaling) : undefined),
             buildPlan: (val.buildPlan) ?? "starter",
             maxShutdownDelaySeconds: (val.maxShutdownDelaySeconds) ?? 30,
+            previews: (val.previews ? outputs.services.previewsProvideDefaults(val.previews) : undefined),
             pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
             region: (val.region) ?? "oregon",
         };
@@ -1375,6 +1464,10 @@ export namespace services {
          * The registry to use this credential with
          */
         registry: enums.services.RegistryCredentialRegistry;
+        /**
+         * Last updated time for the credential
+         */
+        updatedAt: string;
         /**
          * The username associated with the credential
          */
@@ -1464,9 +1557,10 @@ export namespace services {
         buildCommand: string;
         buildPlan: enums.services.StaticSiteDetailsOutputBuildPlan;
         parentServer?: outputs.services.Resource;
+        previews?: outputs.services.Previews;
         publishPath: string;
         /**
-         * Defaults to "no"
+         * This field has been deprecated. previews.generation should be used in its place.
          */
         pullRequestPreviewsEnabled?: enums.services.StaticSiteDetailsOutputPullRequestPreviewsEnabled;
         url: string;
@@ -1478,6 +1572,7 @@ export namespace services {
         return {
             ...val,
             buildPlan: (val.buildPlan) ?? "starter",
+            previews: (val.previews ? outputs.services.previewsProvideDefaults(val.previews) : undefined),
             pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
         };
     }
@@ -1529,6 +1624,7 @@ export namespace services {
         env: enums.services.WebServiceDetailsOutputEnv;
         envSpecificDetails: outputs.services.EnvSpecificDetails;
         healthCheckPath: string;
+        maintenanceMode?: outputs.services.MaintenanceMode;
         /**
          * The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
          */
@@ -1543,8 +1639,9 @@ export namespace services {
          * The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
          */
         plan: enums.services.WebServiceDetailsOutputPlan;
+        previews?: outputs.services.Previews;
         /**
-         * Defaults to "no"
+         * This field has been deprecated. previews.generation should be used in its place.
          */
         pullRequestPreviewsEnabled?: enums.services.WebServiceDetailsOutputPullRequestPreviewsEnabled;
         /**
@@ -1562,6 +1659,7 @@ export namespace services {
             autoscaling: (val.autoscaling ? outputs.services.webServiceDetailsOutputAutoscalingPropertiesProvideDefaults(val.autoscaling) : undefined),
             buildPlan: (val.buildPlan) ?? "starter",
             maxShutdownDelaySeconds: (val.maxShutdownDelaySeconds) ?? 30,
+            previews: (val.previews ? outputs.services.previewsProvideDefaults(val.previews) : undefined),
             pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
             region: (val.region) ?? "oregon",
         };

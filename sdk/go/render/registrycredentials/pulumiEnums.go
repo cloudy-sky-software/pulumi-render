@@ -18,6 +18,7 @@ const (
 	RegistryGitlab         = Registry("GITLAB")
 	RegistryDocker         = Registry("DOCKER")
 	RegistryGoogleArtifact = Registry("GOOGLE_ARTIFACT")
+	RegistryAwsEcr         = Registry("AWS_ECR")
 )
 
 func (Registry) ElementType() reflect.Type {
@@ -146,6 +147,7 @@ func (o RegistryPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pul
 //	RegistryGitlab
 //	RegistryDocker
 //	RegistryGoogleArtifact
+//	RegistryAwsEcr
 type RegistryInput interface {
 	pulumi.Input
 
@@ -188,6 +190,7 @@ const (
 	RegistryCredentialRegistryGitlab         = RegistryCredentialRegistry("GITLAB")
 	RegistryCredentialRegistryDocker         = RegistryCredentialRegistry("DOCKER")
 	RegistryCredentialRegistryGoogleArtifact = RegistryCredentialRegistry("GOOGLE_ARTIFACT")
+	RegistryCredentialRegistryAwsEcr         = RegistryCredentialRegistry("AWS_ECR")
 )
 
 type RegistryCredentialRegistryOutput struct{ *pulumi.OutputState }

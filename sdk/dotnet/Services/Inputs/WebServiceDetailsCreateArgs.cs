@@ -30,6 +30,9 @@ namespace Pulumi.Render.Services.Inputs
         [Input("healthCheckPath")]
         public Input<string>? HealthCheckPath { get; set; }
 
+        [Input("maintenanceMode")]
+        public Input<Inputs.MaintenanceModeArgs>? MaintenanceMode { get; set; }
+
         /// <summary>
         /// The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
         /// </summary>
@@ -51,8 +54,11 @@ namespace Pulumi.Render.Services.Inputs
         [Input("preDeployCommand")]
         public Input<string>? PreDeployCommand { get; set; }
 
+        [Input("previews")]
+        public Input<Inputs.PreviewsArgs>? Previews { get; set; }
+
         /// <summary>
-        /// Defaults to "no"
+        /// This field has been deprecated. previews.generation should be used in its place.
         /// </summary>
         [Input("pullRequestPreviewsEnabled")]
         public Input<Pulumi.Render.Services.WebServiceDetailsCreatePullRequestPreviewsEnabled>? PullRequestPreviewsEnabled { get; set; }

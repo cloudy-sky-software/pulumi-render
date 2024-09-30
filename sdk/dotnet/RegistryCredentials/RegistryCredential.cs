@@ -31,6 +31,12 @@ namespace Pulumi.Render.RegistryCredentials
         public Output<Pulumi.Render.RegistryCredentials.Registry> Registry { get; private set; } = null!;
 
         /// <summary>
+        /// Last updated time for the credential
+        /// </summary>
+        [Output("updatedAt")]
+        public Output<string> UpdatedAt { get; private set; } = null!;
+
+        /// <summary>
         /// The username associated with the credential
         /// </summary>
         [Output("username")]

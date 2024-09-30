@@ -18,7 +18,7 @@ export interface ListOwnersArgs {
 }
 
 export interface ListOwnersResult {
-    readonly items: outputs.owners.ListOwnersItemProperties[];
+    readonly items: outputs.owners.OwnerWithCursor[];
 }
 export function listOwnersOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListOwnersResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

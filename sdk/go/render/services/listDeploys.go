@@ -27,7 +27,7 @@ type ListDeploysArgs struct {
 }
 
 type ListDeploysResult struct {
-	Items []ListDeploysItemProperties `pulumi:"items"`
+	Items []DeployWithCursor `pulumi:"items"`
 }
 
 func ListDeploysOutput(ctx *pulumi.Context, args ListDeploysOutputArgs, opts ...pulumi.InvokeOption) ListDeploysResultOutput {
@@ -72,8 +72,8 @@ func (o ListDeploysResultOutput) ToListDeploysResultOutputWithContext(ctx contex
 	return o
 }
 
-func (o ListDeploysResultOutput) Items() ListDeploysItemPropertiesArrayOutput {
-	return o.ApplyT(func(v ListDeploysResult) []ListDeploysItemProperties { return v.Items }).(ListDeploysItemPropertiesArrayOutput)
+func (o ListDeploysResultOutput) Items() DeployWithCursorArrayOutput {
+	return o.ApplyT(func(v ListDeploysResult) []DeployWithCursor { return v.Items }).(DeployWithCursorArrayOutput)
 }
 
 func init() {

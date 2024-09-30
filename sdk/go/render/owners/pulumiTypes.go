@@ -13,53 +13,6 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
-type ListOwnersItemProperties struct {
-	Cursor *string `pulumi:"cursor"`
-	Owner  *Owner  `pulumi:"owner"`
-}
-
-type ListOwnersItemPropertiesOutput struct{ *pulumi.OutputState }
-
-func (ListOwnersItemPropertiesOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ListOwnersItemProperties)(nil)).Elem()
-}
-
-func (o ListOwnersItemPropertiesOutput) ToListOwnersItemPropertiesOutput() ListOwnersItemPropertiesOutput {
-	return o
-}
-
-func (o ListOwnersItemPropertiesOutput) ToListOwnersItemPropertiesOutputWithContext(ctx context.Context) ListOwnersItemPropertiesOutput {
-	return o
-}
-
-func (o ListOwnersItemPropertiesOutput) Cursor() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ListOwnersItemProperties) *string { return v.Cursor }).(pulumi.StringPtrOutput)
-}
-
-func (o ListOwnersItemPropertiesOutput) Owner() OwnerPtrOutput {
-	return o.ApplyT(func(v ListOwnersItemProperties) *Owner { return v.Owner }).(OwnerPtrOutput)
-}
-
-type ListOwnersItemPropertiesArrayOutput struct{ *pulumi.OutputState }
-
-func (ListOwnersItemPropertiesArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ListOwnersItemProperties)(nil)).Elem()
-}
-
-func (o ListOwnersItemPropertiesArrayOutput) ToListOwnersItemPropertiesArrayOutput() ListOwnersItemPropertiesArrayOutput {
-	return o
-}
-
-func (o ListOwnersItemPropertiesArrayOutput) ToListOwnersItemPropertiesArrayOutputWithContext(ctx context.Context) ListOwnersItemPropertiesArrayOutput {
-	return o
-}
-
-func (o ListOwnersItemPropertiesArrayOutput) Index(i pulumi.IntInput) ListOwnersItemPropertiesOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListOwnersItemProperties {
-		return vs[0].([]ListOwnersItemProperties)[vs[1].(int)]
-	}).(ListOwnersItemPropertiesOutput)
-}
-
 type Owner struct {
 	Email string `pulumi:"email"`
 	Id    string `pulumi:"id"`
@@ -174,9 +127,56 @@ func (o OwnerPtrOutput) Type() OwnerTypePtrOutput {
 	}).(OwnerTypePtrOutput)
 }
 
+type OwnerWithCursor struct {
+	Cursor *string `pulumi:"cursor"`
+	Owner  *Owner  `pulumi:"owner"`
+}
+
+type OwnerWithCursorOutput struct{ *pulumi.OutputState }
+
+func (OwnerWithCursorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OwnerWithCursor)(nil)).Elem()
+}
+
+func (o OwnerWithCursorOutput) ToOwnerWithCursorOutput() OwnerWithCursorOutput {
+	return o
+}
+
+func (o OwnerWithCursorOutput) ToOwnerWithCursorOutputWithContext(ctx context.Context) OwnerWithCursorOutput {
+	return o
+}
+
+func (o OwnerWithCursorOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v OwnerWithCursor) *string { return v.Cursor }).(pulumi.StringPtrOutput)
+}
+
+func (o OwnerWithCursorOutput) Owner() OwnerPtrOutput {
+	return o.ApplyT(func(v OwnerWithCursor) *Owner { return v.Owner }).(OwnerPtrOutput)
+}
+
+type OwnerWithCursorArrayOutput struct{ *pulumi.OutputState }
+
+func (OwnerWithCursorArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]OwnerWithCursor)(nil)).Elem()
+}
+
+func (o OwnerWithCursorArrayOutput) ToOwnerWithCursorArrayOutput() OwnerWithCursorArrayOutput {
+	return o
+}
+
+func (o OwnerWithCursorArrayOutput) ToOwnerWithCursorArrayOutputWithContext(ctx context.Context) OwnerWithCursorArrayOutput {
+	return o
+}
+
+func (o OwnerWithCursorArrayOutput) Index(i pulumi.IntInput) OwnerWithCursorOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) OwnerWithCursor {
+		return vs[0].([]OwnerWithCursor)[vs[1].(int)]
+	}).(OwnerWithCursorOutput)
+}
+
 func init() {
-	pulumi.RegisterOutputType(ListOwnersItemPropertiesOutput{})
-	pulumi.RegisterOutputType(ListOwnersItemPropertiesArrayOutput{})
 	pulumi.RegisterOutputType(OwnerOutput{})
 	pulumi.RegisterOutputType(OwnerPtrOutput{})
+	pulumi.RegisterOutputType(OwnerWithCursorOutput{})
+	pulumi.RegisterOutputType(OwnerWithCursorArrayOutput{})
 }

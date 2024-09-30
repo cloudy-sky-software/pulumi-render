@@ -24,6 +24,7 @@ namespace Pulumi.Render.RegistryCredentials
         public static Registry Gitlab { get; } = new Registry("GITLAB");
         public static Registry Docker { get; } = new Registry("DOCKER");
         public static Registry GoogleArtifact { get; } = new Registry("GOOGLE_ARTIFACT");
+        public static Registry AwsEcr { get; } = new Registry("AWS_ECR");
 
         public static bool operator ==(Registry left, Registry right) => left.Equals(right);
         public static bool operator !=(Registry left, Registry right) => !left.Equals(right);
@@ -57,6 +58,7 @@ namespace Pulumi.Render.RegistryCredentials
         public static RegistryCredentialRegistry Gitlab { get; } = new RegistryCredentialRegistry("GITLAB");
         public static RegistryCredentialRegistry Docker { get; } = new RegistryCredentialRegistry("DOCKER");
         public static RegistryCredentialRegistry GoogleArtifact { get; } = new RegistryCredentialRegistry("GOOGLE_ARTIFACT");
+        public static RegistryCredentialRegistry AwsEcr { get; } = new RegistryCredentialRegistry("AWS_ECR");
 
         public static bool operator ==(RegistryCredentialRegistry left, RegistryCredentialRegistry right) => left.Equals(right);
         public static bool operator !=(RegistryCredentialRegistry left, RegistryCredentialRegistry right) => !left.Equals(right);

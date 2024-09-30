@@ -25,7 +25,7 @@ type ListOwnersArgs struct {
 }
 
 type ListOwnersResult struct {
-	Items []ListOwnersItemProperties `pulumi:"items"`
+	Items []OwnerWithCursor `pulumi:"items"`
 }
 
 func ListOwnersOutput(ctx *pulumi.Context, args ListOwnersOutputArgs, opts ...pulumi.InvokeOption) ListOwnersResultOutput {
@@ -68,8 +68,8 @@ func (o ListOwnersResultOutput) ToListOwnersResultOutputWithContext(ctx context.
 	return o
 }
 
-func (o ListOwnersResultOutput) Items() ListOwnersItemPropertiesArrayOutput {
-	return o.ApplyT(func(v ListOwnersResult) []ListOwnersItemProperties { return v.Items }).(ListOwnersItemPropertiesArrayOutput)
+func (o ListOwnersResultOutput) Items() OwnerWithCursorArrayOutput {
+	return o.ApplyT(func(v ListOwnersResult) []OwnerWithCursor { return v.Items }).(OwnerWithCursorArrayOutput)
 }
 
 func init() {

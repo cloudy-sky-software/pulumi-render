@@ -11,13 +11,13 @@ namespace Pulumi.Render.Owners.Outputs
 {
 
     [OutputType]
-    public sealed class ListOwnersItemProperties
+    public sealed class OwnerWithCursor
     {
         public readonly string? Cursor;
         public readonly Outputs.Owner? Owner;
 
         [OutputConstructor]
-        private ListOwnersItemProperties(
+        private OwnerWithCursor(
             string? cursor,
 
             Outputs.Owner? owner)

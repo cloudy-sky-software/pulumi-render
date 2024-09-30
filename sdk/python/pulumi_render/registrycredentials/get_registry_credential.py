@@ -24,7 +24,7 @@ __all__ = [
 
 @pulumi.output_type
 class RegistryCredential:
-    def __init__(__self__, id=None, name=None, registry=None, username=None):
+    def __init__(__self__, id=None, name=None, registry=None, updated_at=None, username=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -34,6 +34,9 @@ class RegistryCredential:
         if registry and not isinstance(registry, str):
             raise TypeError("Expected argument 'registry' to be a str")
         pulumi.set(__self__, "registry", registry)
+        if updated_at and not isinstance(updated_at, str):
+            raise TypeError("Expected argument 'updated_at' to be a str")
+        pulumi.set(__self__, "updated_at", updated_at)
         if username and not isinstance(username, str):
             raise TypeError("Expected argument 'username' to be a str")
         pulumi.set(__self__, "username", username)
@@ -63,6 +66,14 @@ class RegistryCredential:
         return pulumi.get(self, "registry")
 
     @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        Last updated time for the credential
+        """
+        return pulumi.get(self, "updated_at")
+
+    @property
     @pulumi.getter
     def username(self) -> str:
         """
@@ -80,6 +91,7 @@ class AwaitableRegistryCredential(RegistryCredential):
             id=self.id,
             name=self.name,
             registry=self.registry,
+            updated_at=self.updated_at,
             username=self.username)
 
 
@@ -99,6 +111,7 @@ def get_registry_credential(registry_credential_id: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         registry=pulumi.get(__ret__, 'registry'),
+        updated_at=pulumi.get(__ret__, 'updated_at'),
         username=pulumi.get(__ret__, 'username'))
 def get_registry_credential_output(registry_credential_id: Optional[pulumi.Input[str]] = None,
                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[RegistryCredential]:
@@ -115,4 +128,5 @@ def get_registry_credential_output(registry_credential_id: Optional[pulumi.Input
         id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),
         registry=pulumi.get(__response__, 'registry'),
+        updated_at=pulumi.get(__response__, 'updated_at'),
         username=pulumi.get(__response__, 'username')))

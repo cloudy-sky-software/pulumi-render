@@ -6,6 +6,7 @@ import * as blueprints from "./blueprints";
 import * as cronjobs from "./cronjobs";
 import * as envgroups from "./envgroups";
 import * as environments from "./environments";
+import * as logs from "./logs";
 import * as notificationsettings from "./notificationsettings";
 import * as owners from "./owners";
 import * as postgres from "./postgres";
@@ -19,6 +20,7 @@ export {
     cronjobs,
     envgroups,
     environments,
+    logs,
     notificationsettings,
     owners,
     postgres,

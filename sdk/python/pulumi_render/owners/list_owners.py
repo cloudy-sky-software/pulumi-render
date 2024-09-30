@@ -32,7 +32,7 @@ class ListOwnersResult:
 
     @property
     @pulumi.getter
-    def items(self) -> Sequence['outputs.ListOwnersItemProperties']:
+    def items(self) -> Sequence['outputs.OwnerWithCursor']:
         return pulumi.get(self, "items")
 
 

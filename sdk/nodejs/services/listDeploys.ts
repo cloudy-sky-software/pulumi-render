@@ -22,7 +22,7 @@ export interface ListDeploysArgs {
 }
 
 export interface ListDeploysResult {
-    readonly items: outputs.services.ListDeploysItemProperties[];
+    readonly items: outputs.services.DeployWithCursor[];
 }
 export function listDeploysOutput(args: ListDeploysOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListDeploysResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

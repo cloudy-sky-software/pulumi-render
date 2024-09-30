@@ -45,6 +45,10 @@ export class RegistryCredential extends pulumi.CustomResource {
      */
     public readonly registry!: pulumi.Output<enums.registrycredentials.Registry>;
     /**
+     * Last updated time for the credential
+     */
+    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    /**
      * The username associated with the credential
      */
     public readonly username!: pulumi.Output<string>;
@@ -77,11 +81,13 @@ export class RegistryCredential extends pulumi.CustomResource {
             resourceInputs["ownerId"] = args ? args.ownerId : undefined;
             resourceInputs["registry"] = args ? args.registry : undefined;
             resourceInputs["username"] = args ? args.username : undefined;
+            resourceInputs["updatedAt"] = undefined /*out*/;
         } else {
             resourceInputs["authToken"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;
             resourceInputs["ownerId"] = undefined /*out*/;
             resourceInputs["registry"] = undefined /*out*/;
+            resourceInputs["updatedAt"] = undefined /*out*/;
             resourceInputs["username"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

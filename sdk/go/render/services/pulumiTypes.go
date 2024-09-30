@@ -26,7 +26,8 @@ type BackgroundWorkerDetailsCreate struct {
 	// Defaults to "starter"
 	Plan             *BackgroundWorkerDetailsCreatePlan `pulumi:"plan"`
 	PreDeployCommand *string                            `pulumi:"preDeployCommand"`
-	// Defaults to "no"
+	Previews         *Previews                          `pulumi:"previews"`
+	// This field has been deprecated. previews.generation should be used in its place.
 	PullRequestPreviewsEnabled *BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
 	// Defaults to "oregon"
 	Region *BackgroundWorkerDetailsCreateRegion `pulumi:"region"`
@@ -54,6 +55,8 @@ func (val *BackgroundWorkerDetailsCreate) Defaults() *BackgroundWorkerDetailsCre
 		plan_ := BackgroundWorkerDetailsCreatePlan("starter")
 		tmp.Plan = &plan_
 	}
+	tmp.Previews = tmp.Previews.Defaults()
+
 	if tmp.PullRequestPreviewsEnabled == nil {
 		pullRequestPreviewsEnabled_ := BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled("no")
 		tmp.PullRequestPreviewsEnabled = &pullRequestPreviewsEnabled_
@@ -89,7 +92,8 @@ type BackgroundWorkerDetailsCreateArgs struct {
 	// Defaults to "starter"
 	Plan             BackgroundWorkerDetailsCreatePlanPtrInput `pulumi:"plan"`
 	PreDeployCommand pulumi.StringPtrInput                     `pulumi:"preDeployCommand"`
-	// Defaults to "no"
+	Previews         PreviewsPtrInput                          `pulumi:"previews"`
+	// This field has been deprecated. previews.generation should be used in its place.
 	PullRequestPreviewsEnabled BackgroundWorkerDetailsCreatePullRequestPreviewsEnabledPtrInput `pulumi:"pullRequestPreviewsEnabled"`
 	// Defaults to "oregon"
 	Region BackgroundWorkerDetailsCreateRegionPtrInput `pulumi:"region"`
@@ -113,6 +117,7 @@ func (val *BackgroundWorkerDetailsCreateArgs) Defaults() *BackgroundWorkerDetail
 	if tmp.Plan == nil {
 		tmp.Plan = BackgroundWorkerDetailsCreatePlan("starter")
 	}
+
 	if tmp.PullRequestPreviewsEnabled == nil {
 		tmp.PullRequestPreviewsEnabled = BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled("no")
 	}
@@ -234,7 +239,11 @@ func (o BackgroundWorkerDetailsCreateOutput) PreDeployCommand() pulumi.StringPtr
 	return o.ApplyT(func(v BackgroundWorkerDetailsCreate) *string { return v.PreDeployCommand }).(pulumi.StringPtrOutput)
 }
 
-// Defaults to "no"
+func (o BackgroundWorkerDetailsCreateOutput) Previews() PreviewsPtrOutput {
+	return o.ApplyT(func(v BackgroundWorkerDetailsCreate) *Previews { return v.Previews }).(PreviewsPtrOutput)
+}
+
+// This field has been deprecated. previews.generation should be used in its place.
 func (o BackgroundWorkerDetailsCreateOutput) PullRequestPreviewsEnabled() BackgroundWorkerDetailsCreatePullRequestPreviewsEnabledPtrOutput {
 	return o.ApplyT(func(v BackgroundWorkerDetailsCreate) *BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled {
 		return v.PullRequestPreviewsEnabled
@@ -351,7 +360,16 @@ func (o BackgroundWorkerDetailsCreatePtrOutput) PreDeployCommand() pulumi.String
 	}).(pulumi.StringPtrOutput)
 }
 
-// Defaults to "no"
+func (o BackgroundWorkerDetailsCreatePtrOutput) Previews() PreviewsPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorkerDetailsCreate) *Previews {
+		if v == nil {
+			return nil
+		}
+		return v.Previews
+	}).(PreviewsPtrOutput)
+}
+
+// This field has been deprecated. previews.generation should be used in its place.
 func (o BackgroundWorkerDetailsCreatePtrOutput) PullRequestPreviewsEnabled() BackgroundWorkerDetailsCreatePullRequestPreviewsEnabledPtrOutput {
 	return o.ApplyT(func(v *BackgroundWorkerDetailsCreate) *BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled {
 		if v == nil {
@@ -394,8 +412,9 @@ type BackgroundWorkerDetailsOutput struct {
 	NumInstances int       `pulumi:"numInstances"`
 	ParentServer *Resource `pulumi:"parentServer"`
 	// The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
-	Plan BackgroundWorkerDetailsOutputPlan `pulumi:"plan"`
-	// Defaults to "no"
+	Plan     BackgroundWorkerDetailsOutputPlan `pulumi:"plan"`
+	Previews *Previews                         `pulumi:"previews"`
+	// This field has been deprecated. previews.generation should be used in its place.
 	PullRequestPreviewsEnabled *BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
 	// Defaults to "oregon"
 	Region BackgroundWorkerDetailsOutputRegion `pulumi:"region"`
@@ -416,6 +435,8 @@ func (val *BackgroundWorkerDetailsOutput) Defaults() *BackgroundWorkerDetailsOut
 		maxShutdownDelaySeconds_ := 30
 		tmp.MaxShutdownDelaySeconds = &maxShutdownDelaySeconds_
 	}
+	tmp.Previews = tmp.Previews.Defaults()
+
 	if tmp.PullRequestPreviewsEnabled == nil {
 		pullRequestPreviewsEnabled_ := BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled("no")
 		tmp.PullRequestPreviewsEnabled = &pullRequestPreviewsEnabled_
@@ -480,7 +501,11 @@ func (o BackgroundWorkerDetailsOutputOutput) Plan() BackgroundWorkerDetailsOutpu
 	return o.ApplyT(func(v BackgroundWorkerDetailsOutput) BackgroundWorkerDetailsOutputPlan { return v.Plan }).(BackgroundWorkerDetailsOutputPlanOutput)
 }
 
-// Defaults to "no"
+func (o BackgroundWorkerDetailsOutputOutput) Previews() PreviewsPtrOutput {
+	return o.ApplyT(func(v BackgroundWorkerDetailsOutput) *Previews { return v.Previews }).(PreviewsPtrOutput)
+}
+
+// This field has been deprecated. previews.generation should be used in its place.
 func (o BackgroundWorkerDetailsOutputOutput) PullRequestPreviewsEnabled() BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledPtrOutput {
 	return o.ApplyT(func(v BackgroundWorkerDetailsOutput) *BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled {
 		return v.PullRequestPreviewsEnabled
@@ -601,7 +626,16 @@ func (o BackgroundWorkerDetailsOutputPtrOutput) Plan() BackgroundWorkerDetailsOu
 	}).(BackgroundWorkerDetailsOutputPlanPtrOutput)
 }
 
-// Defaults to "no"
+func (o BackgroundWorkerDetailsOutputPtrOutput) Previews() PreviewsPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorkerDetailsOutput) *Previews {
+		if v == nil {
+			return nil
+		}
+		return v.Previews
+	}).(PreviewsPtrOutput)
+}
+
+// This field has been deprecated. previews.generation should be used in its place.
 func (o BackgroundWorkerDetailsOutputPtrOutput) PullRequestPreviewsEnabled() BackgroundWorkerDetailsOutputPullRequestPreviewsEnabledPtrOutput {
 	return o.ApplyT(func(v *BackgroundWorkerDetailsOutput) *BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled {
 		if v == nil {
@@ -2620,6 +2654,53 @@ func (o DeployImagePropertiesPtrOutput) Sha() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type DeployWithCursor struct {
+	Cursor *string     `pulumi:"cursor"`
+	Deploy *DeployType `pulumi:"deploy"`
+}
+
+type DeployWithCursorOutput struct{ *pulumi.OutputState }
+
+func (DeployWithCursorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeployWithCursor)(nil)).Elem()
+}
+
+func (o DeployWithCursorOutput) ToDeployWithCursorOutput() DeployWithCursorOutput {
+	return o
+}
+
+func (o DeployWithCursorOutput) ToDeployWithCursorOutputWithContext(ctx context.Context) DeployWithCursorOutput {
+	return o
+}
+
+func (o DeployWithCursorOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeployWithCursor) *string { return v.Cursor }).(pulumi.StringPtrOutput)
+}
+
+func (o DeployWithCursorOutput) Deploy() DeployTypePtrOutput {
+	return o.ApplyT(func(v DeployWithCursor) *DeployType { return v.Deploy }).(DeployTypePtrOutput)
+}
+
+type DeployWithCursorArrayOutput struct{ *pulumi.OutputState }
+
+func (DeployWithCursorArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DeployWithCursor)(nil)).Elem()
+}
+
+func (o DeployWithCursorArrayOutput) ToDeployWithCursorArrayOutput() DeployWithCursorArrayOutput {
+	return o
+}
+
+func (o DeployWithCursorArrayOutput) ToDeployWithCursorArrayOutputWithContext(ctx context.Context) DeployWithCursorArrayOutput {
+	return o
+}
+
+func (o DeployWithCursorArrayOutput) Index(i pulumi.IntInput) DeployWithCursorOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DeployWithCursor {
+		return vs[0].([]DeployWithCursor)[vs[1].(int)]
+	}).(DeployWithCursorOutput)
+}
+
 type EnvSpecificDetails struct {
 	BuildCommand       *string             `pulumi:"buildCommand"`
 	DockerCommand      *string             `pulumi:"dockerCommand"`
@@ -4505,53 +4586,6 @@ func (o JobTypeOutput) Status() JobStatusPtrOutput {
 	return o.ApplyT(func(v JobType) *JobStatus { return v.Status }).(JobStatusPtrOutput)
 }
 
-type ListDeploysItemProperties struct {
-	Cursor *string     `pulumi:"cursor"`
-	Deploy *DeployType `pulumi:"deploy"`
-}
-
-type ListDeploysItemPropertiesOutput struct{ *pulumi.OutputState }
-
-func (ListDeploysItemPropertiesOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ListDeploysItemProperties)(nil)).Elem()
-}
-
-func (o ListDeploysItemPropertiesOutput) ToListDeploysItemPropertiesOutput() ListDeploysItemPropertiesOutput {
-	return o
-}
-
-func (o ListDeploysItemPropertiesOutput) ToListDeploysItemPropertiesOutputWithContext(ctx context.Context) ListDeploysItemPropertiesOutput {
-	return o
-}
-
-func (o ListDeploysItemPropertiesOutput) Cursor() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ListDeploysItemProperties) *string { return v.Cursor }).(pulumi.StringPtrOutput)
-}
-
-func (o ListDeploysItemPropertiesOutput) Deploy() DeployTypePtrOutput {
-	return o.ApplyT(func(v ListDeploysItemProperties) *DeployType { return v.Deploy }).(DeployTypePtrOutput)
-}
-
-type ListDeploysItemPropertiesArrayOutput struct{ *pulumi.OutputState }
-
-func (ListDeploysItemPropertiesArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ListDeploysItemProperties)(nil)).Elem()
-}
-
-func (o ListDeploysItemPropertiesArrayOutput) ToListDeploysItemPropertiesArrayOutput() ListDeploysItemPropertiesArrayOutput {
-	return o
-}
-
-func (o ListDeploysItemPropertiesArrayOutput) ToListDeploysItemPropertiesArrayOutputWithContext(ctx context.Context) ListDeploysItemPropertiesArrayOutput {
-	return o
-}
-
-func (o ListDeploysItemPropertiesArrayOutput) Index(i pulumi.IntInput) ListDeploysItemPropertiesOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListDeploysItemProperties {
-		return vs[0].([]ListDeploysItemProperties)[vs[1].(int)]
-	}).(ListDeploysItemPropertiesOutput)
-}
-
 type ListJobItemProperties struct {
 	Cursor *string                                                                           `pulumi:"cursor"`
 	Job    *Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema `pulumi:"job"`
@@ -4648,6 +4682,319 @@ func (o ListServicesResponseArrayOutput) Index(i pulumi.IntInput) ListServicesRe
 	}).(ListServicesResponseOutput)
 }
 
+type MaintenanceMode struct {
+	Enabled bool `pulumi:"enabled"`
+	// The page to be served when [maintenance mode](https://docs.render.com/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
+	Uri string `pulumi:"uri"`
+}
+
+// MaintenanceModeInput is an input type that accepts MaintenanceModeArgs and MaintenanceModeOutput values.
+// You can construct a concrete instance of `MaintenanceModeInput` via:
+//
+//	MaintenanceModeArgs{...}
+type MaintenanceModeInput interface {
+	pulumi.Input
+
+	ToMaintenanceModeOutput() MaintenanceModeOutput
+	ToMaintenanceModeOutputWithContext(context.Context) MaintenanceModeOutput
+}
+
+type MaintenanceModeArgs struct {
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// The page to be served when [maintenance mode](https://docs.render.com/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
+	Uri pulumi.StringInput `pulumi:"uri"`
+}
+
+func (MaintenanceModeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MaintenanceMode)(nil)).Elem()
+}
+
+func (i MaintenanceModeArgs) ToMaintenanceModeOutput() MaintenanceModeOutput {
+	return i.ToMaintenanceModeOutputWithContext(context.Background())
+}
+
+func (i MaintenanceModeArgs) ToMaintenanceModeOutputWithContext(ctx context.Context) MaintenanceModeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MaintenanceModeOutput)
+}
+
+func (i MaintenanceModeArgs) ToMaintenanceModePtrOutput() MaintenanceModePtrOutput {
+	return i.ToMaintenanceModePtrOutputWithContext(context.Background())
+}
+
+func (i MaintenanceModeArgs) ToMaintenanceModePtrOutputWithContext(ctx context.Context) MaintenanceModePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MaintenanceModeOutput).ToMaintenanceModePtrOutputWithContext(ctx)
+}
+
+// MaintenanceModePtrInput is an input type that accepts MaintenanceModeArgs, MaintenanceModePtr and MaintenanceModePtrOutput values.
+// You can construct a concrete instance of `MaintenanceModePtrInput` via:
+//
+//	        MaintenanceModeArgs{...}
+//
+//	or:
+//
+//	        nil
+type MaintenanceModePtrInput interface {
+	pulumi.Input
+
+	ToMaintenanceModePtrOutput() MaintenanceModePtrOutput
+	ToMaintenanceModePtrOutputWithContext(context.Context) MaintenanceModePtrOutput
+}
+
+type maintenanceModePtrType MaintenanceModeArgs
+
+func MaintenanceModePtr(v *MaintenanceModeArgs) MaintenanceModePtrInput {
+	return (*maintenanceModePtrType)(v)
+}
+
+func (*maintenanceModePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**MaintenanceMode)(nil)).Elem()
+}
+
+func (i *maintenanceModePtrType) ToMaintenanceModePtrOutput() MaintenanceModePtrOutput {
+	return i.ToMaintenanceModePtrOutputWithContext(context.Background())
+}
+
+func (i *maintenanceModePtrType) ToMaintenanceModePtrOutputWithContext(ctx context.Context) MaintenanceModePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MaintenanceModePtrOutput)
+}
+
+type MaintenanceModeOutput struct{ *pulumi.OutputState }
+
+func (MaintenanceModeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MaintenanceMode)(nil)).Elem()
+}
+
+func (o MaintenanceModeOutput) ToMaintenanceModeOutput() MaintenanceModeOutput {
+	return o
+}
+
+func (o MaintenanceModeOutput) ToMaintenanceModeOutputWithContext(ctx context.Context) MaintenanceModeOutput {
+	return o
+}
+
+func (o MaintenanceModeOutput) ToMaintenanceModePtrOutput() MaintenanceModePtrOutput {
+	return o.ToMaintenanceModePtrOutputWithContext(context.Background())
+}
+
+func (o MaintenanceModeOutput) ToMaintenanceModePtrOutputWithContext(ctx context.Context) MaintenanceModePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v MaintenanceMode) *MaintenanceMode {
+		return &v
+	}).(MaintenanceModePtrOutput)
+}
+
+func (o MaintenanceModeOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v MaintenanceMode) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// The page to be served when [maintenance mode](https://docs.render.com/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
+func (o MaintenanceModeOutput) Uri() pulumi.StringOutput {
+	return o.ApplyT(func(v MaintenanceMode) string { return v.Uri }).(pulumi.StringOutput)
+}
+
+type MaintenanceModePtrOutput struct{ *pulumi.OutputState }
+
+func (MaintenanceModePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**MaintenanceMode)(nil)).Elem()
+}
+
+func (o MaintenanceModePtrOutput) ToMaintenanceModePtrOutput() MaintenanceModePtrOutput {
+	return o
+}
+
+func (o MaintenanceModePtrOutput) ToMaintenanceModePtrOutputWithContext(ctx context.Context) MaintenanceModePtrOutput {
+	return o
+}
+
+func (o MaintenanceModePtrOutput) Elem() MaintenanceModeOutput {
+	return o.ApplyT(func(v *MaintenanceMode) MaintenanceMode {
+		if v != nil {
+			return *v
+		}
+		var ret MaintenanceMode
+		return ret
+	}).(MaintenanceModeOutput)
+}
+
+func (o MaintenanceModePtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *MaintenanceMode) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The page to be served when [maintenance mode](https://docs.render.com/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
+func (o MaintenanceModePtrOutput) Uri() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MaintenanceMode) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Uri
+	}).(pulumi.StringPtrOutput)
+}
+
+type Previews struct {
+	// Defaults to "off"
+	Generation *PreviewsGeneration `pulumi:"generation"`
+}
+
+// Defaults sets the appropriate defaults for Previews
+func (val *Previews) Defaults() *Previews {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Generation == nil {
+		generation_ := PreviewsGeneration("off")
+		tmp.Generation = &generation_
+	}
+	return &tmp
+}
+
+// PreviewsInput is an input type that accepts PreviewsArgs and PreviewsOutput values.
+// You can construct a concrete instance of `PreviewsInput` via:
+//
+//	PreviewsArgs{...}
+type PreviewsInput interface {
+	pulumi.Input
+
+	ToPreviewsOutput() PreviewsOutput
+	ToPreviewsOutputWithContext(context.Context) PreviewsOutput
+}
+
+type PreviewsArgs struct {
+	// Defaults to "off"
+	Generation PreviewsGenerationPtrInput `pulumi:"generation"`
+}
+
+// Defaults sets the appropriate defaults for PreviewsArgs
+func (val *PreviewsArgs) Defaults() *PreviewsArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Generation == nil {
+		tmp.Generation = PreviewsGeneration("off")
+	}
+	return &tmp
+}
+func (PreviewsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*Previews)(nil)).Elem()
+}
+
+func (i PreviewsArgs) ToPreviewsOutput() PreviewsOutput {
+	return i.ToPreviewsOutputWithContext(context.Background())
+}
+
+func (i PreviewsArgs) ToPreviewsOutputWithContext(ctx context.Context) PreviewsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PreviewsOutput)
+}
+
+func (i PreviewsArgs) ToPreviewsPtrOutput() PreviewsPtrOutput {
+	return i.ToPreviewsPtrOutputWithContext(context.Background())
+}
+
+func (i PreviewsArgs) ToPreviewsPtrOutputWithContext(ctx context.Context) PreviewsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PreviewsOutput).ToPreviewsPtrOutputWithContext(ctx)
+}
+
+// PreviewsPtrInput is an input type that accepts PreviewsArgs, PreviewsPtr and PreviewsPtrOutput values.
+// You can construct a concrete instance of `PreviewsPtrInput` via:
+//
+//	        PreviewsArgs{...}
+//
+//	or:
+//
+//	        nil
+type PreviewsPtrInput interface {
+	pulumi.Input
+
+	ToPreviewsPtrOutput() PreviewsPtrOutput
+	ToPreviewsPtrOutputWithContext(context.Context) PreviewsPtrOutput
+}
+
+type previewsPtrType PreviewsArgs
+
+func PreviewsPtr(v *PreviewsArgs) PreviewsPtrInput {
+	return (*previewsPtrType)(v)
+}
+
+func (*previewsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**Previews)(nil)).Elem()
+}
+
+func (i *previewsPtrType) ToPreviewsPtrOutput() PreviewsPtrOutput {
+	return i.ToPreviewsPtrOutputWithContext(context.Background())
+}
+
+func (i *previewsPtrType) ToPreviewsPtrOutputWithContext(ctx context.Context) PreviewsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PreviewsPtrOutput)
+}
+
+type PreviewsOutput struct{ *pulumi.OutputState }
+
+func (PreviewsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Previews)(nil)).Elem()
+}
+
+func (o PreviewsOutput) ToPreviewsOutput() PreviewsOutput {
+	return o
+}
+
+func (o PreviewsOutput) ToPreviewsOutputWithContext(ctx context.Context) PreviewsOutput {
+	return o
+}
+
+func (o PreviewsOutput) ToPreviewsPtrOutput() PreviewsPtrOutput {
+	return o.ToPreviewsPtrOutputWithContext(context.Background())
+}
+
+func (o PreviewsOutput) ToPreviewsPtrOutputWithContext(ctx context.Context) PreviewsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v Previews) *Previews {
+		return &v
+	}).(PreviewsPtrOutput)
+}
+
+// Defaults to "off"
+func (o PreviewsOutput) Generation() PreviewsGenerationPtrOutput {
+	return o.ApplyT(func(v Previews) *PreviewsGeneration { return v.Generation }).(PreviewsGenerationPtrOutput)
+}
+
+type PreviewsPtrOutput struct{ *pulumi.OutputState }
+
+func (PreviewsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Previews)(nil)).Elem()
+}
+
+func (o PreviewsPtrOutput) ToPreviewsPtrOutput() PreviewsPtrOutput {
+	return o
+}
+
+func (o PreviewsPtrOutput) ToPreviewsPtrOutputWithContext(ctx context.Context) PreviewsPtrOutput {
+	return o
+}
+
+func (o PreviewsPtrOutput) Elem() PreviewsOutput {
+	return o.ApplyT(func(v *Previews) Previews {
+		if v != nil {
+			return *v
+		}
+		var ret Previews
+		return ret
+	}).(PreviewsOutput)
+}
+
+// Defaults to "off"
+func (o PreviewsPtrOutput) Generation() PreviewsGenerationPtrOutput {
+	return o.ApplyT(func(v *Previews) *PreviewsGeneration {
+		if v == nil {
+			return nil
+		}
+		return v.Generation
+	}).(PreviewsGenerationPtrOutput)
+}
+
 type PrivateServiceDetailsCreate struct {
 	Autoscaling *WebServiceDetailspropertiesautoscaling `pulumi:"autoscaling"`
 	Disk        *ServiceDisk                            `pulumi:"disk"`
@@ -4661,7 +5008,8 @@ type PrivateServiceDetailsCreate struct {
 	// Defaults to "starter"
 	Plan             *PrivateServiceDetailsCreatePlan `pulumi:"plan"`
 	PreDeployCommand *string                          `pulumi:"preDeployCommand"`
-	// Defaults to "no"
+	Previews         *Previews                        `pulumi:"previews"`
+	// This field has been deprecated. previews.generation should be used in its place.
 	PullRequestPreviewsEnabled *PrivateServiceDetailsCreatePullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
 	// Defaults to "oregon"
 	Region *PrivateServiceDetailsCreateRegion `pulumi:"region"`
@@ -4689,6 +5037,8 @@ func (val *PrivateServiceDetailsCreate) Defaults() *PrivateServiceDetailsCreate 
 		plan_ := PrivateServiceDetailsCreatePlan("starter")
 		tmp.Plan = &plan_
 	}
+	tmp.Previews = tmp.Previews.Defaults()
+
 	if tmp.PullRequestPreviewsEnabled == nil {
 		pullRequestPreviewsEnabled_ := PrivateServiceDetailsCreatePullRequestPreviewsEnabled("no")
 		tmp.PullRequestPreviewsEnabled = &pullRequestPreviewsEnabled_
@@ -4724,7 +5074,8 @@ type PrivateServiceDetailsCreateArgs struct {
 	// Defaults to "starter"
 	Plan             PrivateServiceDetailsCreatePlanPtrInput `pulumi:"plan"`
 	PreDeployCommand pulumi.StringPtrInput                   `pulumi:"preDeployCommand"`
-	// Defaults to "no"
+	Previews         PreviewsPtrInput                        `pulumi:"previews"`
+	// This field has been deprecated. previews.generation should be used in its place.
 	PullRequestPreviewsEnabled PrivateServiceDetailsCreatePullRequestPreviewsEnabledPtrInput `pulumi:"pullRequestPreviewsEnabled"`
 	// Defaults to "oregon"
 	Region PrivateServiceDetailsCreateRegionPtrInput `pulumi:"region"`
@@ -4748,6 +5099,7 @@ func (val *PrivateServiceDetailsCreateArgs) Defaults() *PrivateServiceDetailsCre
 	if tmp.Plan == nil {
 		tmp.Plan = PrivateServiceDetailsCreatePlan("starter")
 	}
+
 	if tmp.PullRequestPreviewsEnabled == nil {
 		tmp.PullRequestPreviewsEnabled = PrivateServiceDetailsCreatePullRequestPreviewsEnabled("no")
 	}
@@ -4869,7 +5221,11 @@ func (o PrivateServiceDetailsCreateOutput) PreDeployCommand() pulumi.StringPtrOu
 	return o.ApplyT(func(v PrivateServiceDetailsCreate) *string { return v.PreDeployCommand }).(pulumi.StringPtrOutput)
 }
 
-// Defaults to "no"
+func (o PrivateServiceDetailsCreateOutput) Previews() PreviewsPtrOutput {
+	return o.ApplyT(func(v PrivateServiceDetailsCreate) *Previews { return v.Previews }).(PreviewsPtrOutput)
+}
+
+// This field has been deprecated. previews.generation should be used in its place.
 func (o PrivateServiceDetailsCreateOutput) PullRequestPreviewsEnabled() PrivateServiceDetailsCreatePullRequestPreviewsEnabledPtrOutput {
 	return o.ApplyT(func(v PrivateServiceDetailsCreate) *PrivateServiceDetailsCreatePullRequestPreviewsEnabled {
 		return v.PullRequestPreviewsEnabled
@@ -4986,7 +5342,16 @@ func (o PrivateServiceDetailsCreatePtrOutput) PreDeployCommand() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
-// Defaults to "no"
+func (o PrivateServiceDetailsCreatePtrOutput) Previews() PreviewsPtrOutput {
+	return o.ApplyT(func(v *PrivateServiceDetailsCreate) *Previews {
+		if v == nil {
+			return nil
+		}
+		return v.Previews
+	}).(PreviewsPtrOutput)
+}
+
+// This field has been deprecated. previews.generation should be used in its place.
 func (o PrivateServiceDetailsCreatePtrOutput) PullRequestPreviewsEnabled() PrivateServiceDetailsCreatePullRequestPreviewsEnabledPtrOutput {
 	return o.ApplyT(func(v *PrivateServiceDetailsCreate) *PrivateServiceDetailsCreatePullRequestPreviewsEnabled {
 		if v == nil {
@@ -5030,8 +5395,9 @@ type PrivateServiceDetailsOutput struct {
 	OpenPorts    []ServerPort `pulumi:"openPorts"`
 	ParentServer *Resource    `pulumi:"parentServer"`
 	// The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
-	Plan PrivateServiceDetailsOutputPlan `pulumi:"plan"`
-	// Defaults to "no"
+	Plan     PrivateServiceDetailsOutputPlan `pulumi:"plan"`
+	Previews *Previews                       `pulumi:"previews"`
+	// This field has been deprecated. previews.generation should be used in its place.
 	PullRequestPreviewsEnabled *PrivateServiceDetailsOutputPullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
 	// Defaults to "oregon"
 	Region PrivateServiceDetailsOutputRegion `pulumi:"region"`
@@ -5053,6 +5419,8 @@ func (val *PrivateServiceDetailsOutput) Defaults() *PrivateServiceDetailsOutput 
 		maxShutdownDelaySeconds_ := 30
 		tmp.MaxShutdownDelaySeconds = &maxShutdownDelaySeconds_
 	}
+	tmp.Previews = tmp.Previews.Defaults()
+
 	if tmp.PullRequestPreviewsEnabled == nil {
 		pullRequestPreviewsEnabled_ := PrivateServiceDetailsOutputPullRequestPreviewsEnabled("no")
 		tmp.PullRequestPreviewsEnabled = &pullRequestPreviewsEnabled_
@@ -5121,7 +5489,11 @@ func (o PrivateServiceDetailsOutputOutput) Plan() PrivateServiceDetailsOutputPla
 	return o.ApplyT(func(v PrivateServiceDetailsOutput) PrivateServiceDetailsOutputPlan { return v.Plan }).(PrivateServiceDetailsOutputPlanOutput)
 }
 
-// Defaults to "no"
+func (o PrivateServiceDetailsOutputOutput) Previews() PreviewsPtrOutput {
+	return o.ApplyT(func(v PrivateServiceDetailsOutput) *Previews { return v.Previews }).(PreviewsPtrOutput)
+}
+
+// This field has been deprecated. previews.generation should be used in its place.
 func (o PrivateServiceDetailsOutputOutput) PullRequestPreviewsEnabled() PrivateServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput {
 	return o.ApplyT(func(v PrivateServiceDetailsOutput) *PrivateServiceDetailsOutputPullRequestPreviewsEnabled {
 		return v.PullRequestPreviewsEnabled
@@ -5255,7 +5627,16 @@ func (o PrivateServiceDetailsOutputPtrOutput) Plan() PrivateServiceDetailsOutput
 	}).(PrivateServiceDetailsOutputPlanPtrOutput)
 }
 
-// Defaults to "no"
+func (o PrivateServiceDetailsOutputPtrOutput) Previews() PreviewsPtrOutput {
+	return o.ApplyT(func(v *PrivateServiceDetailsOutput) *Previews {
+		if v == nil {
+			return nil
+		}
+		return v.Previews
+	}).(PreviewsPtrOutput)
+}
+
+// This field has been deprecated. previews.generation should be used in its place.
 func (o PrivateServiceDetailsOutputPtrOutput) PullRequestPreviewsEnabled() PrivateServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput {
 	return o.ApplyT(func(v *PrivateServiceDetailsOutput) *PrivateServiceDetailsOutputPullRequestPreviewsEnabled {
 		if v == nil {
@@ -5633,6 +6014,8 @@ type RegistryCredential struct {
 	Name string `pulumi:"name"`
 	// The registry to use this credential with
 	Registry RegistryCredentialRegistry `pulumi:"registry"`
+	// Last updated time for the credential
+	UpdatedAt string `pulumi:"updatedAt"`
 	// The username associated with the credential
 	Username string `pulumi:"username"`
 }
@@ -5655,6 +6038,8 @@ type RegistryCredentialArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The registry to use this credential with
 	Registry RegistryCredentialRegistryInput `pulumi:"registry"`
+	// Last updated time for the credential
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
 	// The username associated with the credential
 	Username pulumi.StringInput `pulumi:"username"`
 }
@@ -5751,6 +6136,11 @@ func (o RegistryCredentialOutput) Registry() RegistryCredentialRegistryOutput {
 	return o.ApplyT(func(v RegistryCredential) RegistryCredentialRegistry { return v.Registry }).(RegistryCredentialRegistryOutput)
 }
 
+// Last updated time for the credential
+func (o RegistryCredentialOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v RegistryCredential) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
 // The username associated with the credential
 func (o RegistryCredentialOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v RegistryCredential) string { return v.Username }).(pulumi.StringOutput)
@@ -5808,6 +6198,16 @@ func (o RegistryCredentialPtrOutput) Registry() RegistryCredentialRegistryPtrOut
 		}
 		return &v.Registry
 	}).(RegistryCredentialRegistryPtrOutput)
+}
+
+// Last updated time for the credential
+func (o RegistryCredentialPtrOutput) UpdatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RegistryCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.UpdatedAt
+	}).(pulumi.StringPtrOutput)
 }
 
 // The username associated with the credential
@@ -6863,9 +7263,10 @@ func (o ServiceDiskPtrOutput) SizeGB() pulumi.IntPtrOutput {
 type StaticSiteDetailsCreate struct {
 	BuildCommand *string           `pulumi:"buildCommand"`
 	Headers      []HeaderInputType `pulumi:"headers"`
+	Previews     *Previews         `pulumi:"previews"`
 	// Defaults to "public"
 	PublishPath *string `pulumi:"publishPath"`
-	// Defaults to "no"
+	// This field has been deprecated. previews.generation should be used in its place.
 	PullRequestPreviewsEnabled *StaticSiteDetailsCreatePullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
 	Routes                     []RouteCreate                                      `pulumi:"routes"`
 }
@@ -6876,6 +7277,8 @@ func (val *StaticSiteDetailsCreate) Defaults() *StaticSiteDetailsCreate {
 		return nil
 	}
 	tmp := *val
+	tmp.Previews = tmp.Previews.Defaults()
+
 	if tmp.PullRequestPreviewsEnabled == nil {
 		pullRequestPreviewsEnabled_ := StaticSiteDetailsCreatePullRequestPreviewsEnabled("no")
 		tmp.PullRequestPreviewsEnabled = &pullRequestPreviewsEnabled_
@@ -6897,9 +7300,10 @@ type StaticSiteDetailsCreateInput interface {
 type StaticSiteDetailsCreateArgs struct {
 	BuildCommand pulumi.StringPtrInput     `pulumi:"buildCommand"`
 	Headers      HeaderInputTypeArrayInput `pulumi:"headers"`
+	Previews     PreviewsPtrInput          `pulumi:"previews"`
 	// Defaults to "public"
 	PublishPath pulumi.StringPtrInput `pulumi:"publishPath"`
-	// Defaults to "no"
+	// This field has been deprecated. previews.generation should be used in its place.
 	PullRequestPreviewsEnabled StaticSiteDetailsCreatePullRequestPreviewsEnabledPtrInput `pulumi:"pullRequestPreviewsEnabled"`
 	Routes                     RouteCreateArrayInput                                     `pulumi:"routes"`
 }
@@ -6910,6 +7314,7 @@ func (val *StaticSiteDetailsCreateArgs) Defaults() *StaticSiteDetailsCreateArgs 
 		return nil
 	}
 	tmp := *val
+
 	if tmp.PullRequestPreviewsEnabled == nil {
 		tmp.PullRequestPreviewsEnabled = StaticSiteDetailsCreatePullRequestPreviewsEnabled("no")
 	}
@@ -7000,12 +7405,16 @@ func (o StaticSiteDetailsCreateOutput) Headers() HeaderInputTypeArrayOutput {
 	return o.ApplyT(func(v StaticSiteDetailsCreate) []HeaderInputType { return v.Headers }).(HeaderInputTypeArrayOutput)
 }
 
+func (o StaticSiteDetailsCreateOutput) Previews() PreviewsPtrOutput {
+	return o.ApplyT(func(v StaticSiteDetailsCreate) *Previews { return v.Previews }).(PreviewsPtrOutput)
+}
+
 // Defaults to "public"
 func (o StaticSiteDetailsCreateOutput) PublishPath() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v StaticSiteDetailsCreate) *string { return v.PublishPath }).(pulumi.StringPtrOutput)
 }
 
-// Defaults to "no"
+// This field has been deprecated. previews.generation should be used in its place.
 func (o StaticSiteDetailsCreateOutput) PullRequestPreviewsEnabled() StaticSiteDetailsCreatePullRequestPreviewsEnabledPtrOutput {
 	return o.ApplyT(func(v StaticSiteDetailsCreate) *StaticSiteDetailsCreatePullRequestPreviewsEnabled {
 		return v.PullRequestPreviewsEnabled
@@ -7058,6 +7467,15 @@ func (o StaticSiteDetailsCreatePtrOutput) Headers() HeaderInputTypeArrayOutput {
 	}).(HeaderInputTypeArrayOutput)
 }
 
+func (o StaticSiteDetailsCreatePtrOutput) Previews() PreviewsPtrOutput {
+	return o.ApplyT(func(v *StaticSiteDetailsCreate) *Previews {
+		if v == nil {
+			return nil
+		}
+		return v.Previews
+	}).(PreviewsPtrOutput)
+}
+
 // Defaults to "public"
 func (o StaticSiteDetailsCreatePtrOutput) PublishPath() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StaticSiteDetailsCreate) *string {
@@ -7068,7 +7486,7 @@ func (o StaticSiteDetailsCreatePtrOutput) PublishPath() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Defaults to "no"
+// This field has been deprecated. previews.generation should be used in its place.
 func (o StaticSiteDetailsCreatePtrOutput) PullRequestPreviewsEnabled() StaticSiteDetailsCreatePullRequestPreviewsEnabledPtrOutput {
 	return o.ApplyT(func(v *StaticSiteDetailsCreate) *StaticSiteDetailsCreatePullRequestPreviewsEnabled {
 		if v == nil {
@@ -7091,8 +7509,9 @@ type StaticSiteDetailsOutput struct {
 	BuildCommand string                           `pulumi:"buildCommand"`
 	BuildPlan    StaticSiteDetailsOutputBuildPlan `pulumi:"buildPlan"`
 	ParentServer *Resource                        `pulumi:"parentServer"`
+	Previews     *Previews                        `pulumi:"previews"`
 	PublishPath  string                           `pulumi:"publishPath"`
-	// Defaults to "no"
+	// This field has been deprecated. previews.generation should be used in its place.
 	PullRequestPreviewsEnabled *StaticSiteDetailsOutputPullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
 	Url                        string                                             `pulumi:"url"`
 }
@@ -7106,6 +7525,8 @@ func (val *StaticSiteDetailsOutput) Defaults() *StaticSiteDetailsOutput {
 	if internal.IsZero(tmp.BuildPlan) {
 		tmp.BuildPlan = StaticSiteDetailsOutputBuildPlan("starter")
 	}
+	tmp.Previews = tmp.Previews.Defaults()
+
 	if tmp.PullRequestPreviewsEnabled == nil {
 		pullRequestPreviewsEnabled_ := StaticSiteDetailsOutputPullRequestPreviewsEnabled("no")
 		tmp.PullRequestPreviewsEnabled = &pullRequestPreviewsEnabled_
@@ -7139,11 +7560,15 @@ func (o StaticSiteDetailsOutputOutput) ParentServer() ResourcePtrOutput {
 	return o.ApplyT(func(v StaticSiteDetailsOutput) *Resource { return v.ParentServer }).(ResourcePtrOutput)
 }
 
+func (o StaticSiteDetailsOutputOutput) Previews() PreviewsPtrOutput {
+	return o.ApplyT(func(v StaticSiteDetailsOutput) *Previews { return v.Previews }).(PreviewsPtrOutput)
+}
+
 func (o StaticSiteDetailsOutputOutput) PublishPath() pulumi.StringOutput {
 	return o.ApplyT(func(v StaticSiteDetailsOutput) string { return v.PublishPath }).(pulumi.StringOutput)
 }
 
-// Defaults to "no"
+// This field has been deprecated. previews.generation should be used in its place.
 func (o StaticSiteDetailsOutputOutput) PullRequestPreviewsEnabled() StaticSiteDetailsOutputPullRequestPreviewsEnabledPtrOutput {
 	return o.ApplyT(func(v StaticSiteDetailsOutput) *StaticSiteDetailsOutputPullRequestPreviewsEnabled {
 		return v.PullRequestPreviewsEnabled
@@ -7205,6 +7630,15 @@ func (o StaticSiteDetailsOutputPtrOutput) ParentServer() ResourcePtrOutput {
 	}).(ResourcePtrOutput)
 }
 
+func (o StaticSiteDetailsOutputPtrOutput) Previews() PreviewsPtrOutput {
+	return o.ApplyT(func(v *StaticSiteDetailsOutput) *Previews {
+		if v == nil {
+			return nil
+		}
+		return v.Previews
+	}).(PreviewsPtrOutput)
+}
+
 func (o StaticSiteDetailsOutputPtrOutput) PublishPath() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StaticSiteDetailsOutput) *string {
 		if v == nil {
@@ -7214,7 +7648,7 @@ func (o StaticSiteDetailsOutputPtrOutput) PublishPath() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Defaults to "no"
+// This field has been deprecated. previews.generation should be used in its place.
 func (o StaticSiteDetailsOutputPtrOutput) PullRequestPreviewsEnabled() StaticSiteDetailsOutputPullRequestPreviewsEnabledPtrOutput {
 	return o.ApplyT(func(v *StaticSiteDetailsOutput) *StaticSiteDetailsOutputPullRequestPreviewsEnabled {
 		if v == nil {
@@ -7582,6 +8016,7 @@ type WebServiceDetailsCreate struct {
 	Env                *WebServiceDetailsCreateEnv `pulumi:"env"`
 	EnvSpecificDetails *EnvSpecificDetailsCreate   `pulumi:"envSpecificDetails"`
 	HealthCheckPath    *string                     `pulumi:"healthCheckPath"`
+	MaintenanceMode    *MaintenanceMode            `pulumi:"maintenanceMode"`
 	// The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
 	MaxShutdownDelaySeconds *int `pulumi:"maxShutdownDelaySeconds"`
 	// Defaults to 1
@@ -7589,7 +8024,8 @@ type WebServiceDetailsCreate struct {
 	// Defaults to "starter"
 	Plan             *WebServiceDetailsCreatePlan `pulumi:"plan"`
 	PreDeployCommand *string                      `pulumi:"preDeployCommand"`
-	// Defaults to "no"
+	Previews         *Previews                    `pulumi:"previews"`
+	// This field has been deprecated. previews.generation should be used in its place.
 	PullRequestPreviewsEnabled *WebServiceDetailsCreatePullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
 	// Defaults to "oregon"
 	Region *WebServiceDetailsCreateRegion `pulumi:"region"`
@@ -7613,6 +8049,8 @@ func (val *WebServiceDetailsCreate) Defaults() *WebServiceDetailsCreate {
 		plan_ := WebServiceDetailsCreatePlan("starter")
 		tmp.Plan = &plan_
 	}
+	tmp.Previews = tmp.Previews.Defaults()
+
 	if tmp.PullRequestPreviewsEnabled == nil {
 		pullRequestPreviewsEnabled_ := WebServiceDetailsCreatePullRequestPreviewsEnabled("no")
 		tmp.PullRequestPreviewsEnabled = &pullRequestPreviewsEnabled_
@@ -7642,6 +8080,7 @@ type WebServiceDetailsCreateArgs struct {
 	Env                WebServiceDetailsCreateEnvPtrInput `pulumi:"env"`
 	EnvSpecificDetails EnvSpecificDetailsCreatePtrInput   `pulumi:"envSpecificDetails"`
 	HealthCheckPath    pulumi.StringPtrInput              `pulumi:"healthCheckPath"`
+	MaintenanceMode    MaintenanceModePtrInput            `pulumi:"maintenanceMode"`
 	// The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
 	MaxShutdownDelaySeconds pulumi.IntPtrInput `pulumi:"maxShutdownDelaySeconds"`
 	// Defaults to 1
@@ -7649,7 +8088,8 @@ type WebServiceDetailsCreateArgs struct {
 	// Defaults to "starter"
 	Plan             WebServiceDetailsCreatePlanPtrInput `pulumi:"plan"`
 	PreDeployCommand pulumi.StringPtrInput               `pulumi:"preDeployCommand"`
-	// Defaults to "no"
+	Previews         PreviewsPtrInput                    `pulumi:"previews"`
+	// This field has been deprecated. previews.generation should be used in its place.
 	PullRequestPreviewsEnabled WebServiceDetailsCreatePullRequestPreviewsEnabledPtrInput `pulumi:"pullRequestPreviewsEnabled"`
 	// Defaults to "oregon"
 	Region WebServiceDetailsCreateRegionPtrInput `pulumi:"region"`
@@ -7670,6 +8110,7 @@ func (val *WebServiceDetailsCreateArgs) Defaults() *WebServiceDetailsCreateArgs 
 	if tmp.Plan == nil {
 		tmp.Plan = WebServiceDetailsCreatePlan("starter")
 	}
+
 	if tmp.PullRequestPreviewsEnabled == nil {
 		tmp.PullRequestPreviewsEnabled = WebServiceDetailsCreatePullRequestPreviewsEnabled("no")
 	}
@@ -7776,6 +8217,10 @@ func (o WebServiceDetailsCreateOutput) HealthCheckPath() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v WebServiceDetailsCreate) *string { return v.HealthCheckPath }).(pulumi.StringPtrOutput)
 }
 
+func (o WebServiceDetailsCreateOutput) MaintenanceMode() MaintenanceModePtrOutput {
+	return o.ApplyT(func(v WebServiceDetailsCreate) *MaintenanceMode { return v.MaintenanceMode }).(MaintenanceModePtrOutput)
+}
+
 // The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
 func (o WebServiceDetailsCreateOutput) MaxShutdownDelaySeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WebServiceDetailsCreate) *int { return v.MaxShutdownDelaySeconds }).(pulumi.IntPtrOutput)
@@ -7795,7 +8240,11 @@ func (o WebServiceDetailsCreateOutput) PreDeployCommand() pulumi.StringPtrOutput
 	return o.ApplyT(func(v WebServiceDetailsCreate) *string { return v.PreDeployCommand }).(pulumi.StringPtrOutput)
 }
 
-// Defaults to "no"
+func (o WebServiceDetailsCreateOutput) Previews() PreviewsPtrOutput {
+	return o.ApplyT(func(v WebServiceDetailsCreate) *Previews { return v.Previews }).(PreviewsPtrOutput)
+}
+
+// This field has been deprecated. previews.generation should be used in its place.
 func (o WebServiceDetailsCreateOutput) PullRequestPreviewsEnabled() WebServiceDetailsCreatePullRequestPreviewsEnabledPtrOutput {
 	return o.ApplyT(func(v WebServiceDetailsCreate) *WebServiceDetailsCreatePullRequestPreviewsEnabled {
 		return v.PullRequestPreviewsEnabled
@@ -7882,6 +8331,15 @@ func (o WebServiceDetailsCreatePtrOutput) HealthCheckPath() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
+func (o WebServiceDetailsCreatePtrOutput) MaintenanceMode() MaintenanceModePtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailsCreate) *MaintenanceMode {
+		if v == nil {
+			return nil
+		}
+		return v.MaintenanceMode
+	}).(MaintenanceModePtrOutput)
+}
+
 // The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
 func (o WebServiceDetailsCreatePtrOutput) MaxShutdownDelaySeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WebServiceDetailsCreate) *int {
@@ -7921,7 +8379,16 @@ func (o WebServiceDetailsCreatePtrOutput) PreDeployCommand() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
-// Defaults to "no"
+func (o WebServiceDetailsCreatePtrOutput) Previews() PreviewsPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailsCreate) *Previews {
+		if v == nil {
+			return nil
+		}
+		return v.Previews
+	}).(PreviewsPtrOutput)
+}
+
+// This field has been deprecated. previews.generation should be used in its place.
 func (o WebServiceDetailsCreatePtrOutput) PullRequestPreviewsEnabled() WebServiceDetailsCreatePullRequestPreviewsEnabledPtrOutput {
 	return o.ApplyT(func(v *WebServiceDetailsCreate) *WebServiceDetailsCreatePullRequestPreviewsEnabled {
 		if v == nil {
@@ -7959,6 +8426,7 @@ type WebServiceDetailsOutput struct {
 	Env                WebServiceDetailsOutputEnv `pulumi:"env"`
 	EnvSpecificDetails EnvSpecificDetails         `pulumi:"envSpecificDetails"`
 	HealthCheckPath    string                     `pulumi:"healthCheckPath"`
+	MaintenanceMode    *MaintenanceMode           `pulumi:"maintenanceMode"`
 	// The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
 	MaxShutdownDelaySeconds *int `pulumi:"maxShutdownDelaySeconds"`
 	// For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
@@ -7966,8 +8434,9 @@ type WebServiceDetailsOutput struct {
 	OpenPorts    []ServerPort `pulumi:"openPorts"`
 	ParentServer *Resource    `pulumi:"parentServer"`
 	// The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
-	Plan WebServiceDetailsOutputPlan `pulumi:"plan"`
-	// Defaults to "no"
+	Plan     WebServiceDetailsOutputPlan `pulumi:"plan"`
+	Previews *Previews                   `pulumi:"previews"`
+	// This field has been deprecated. previews.generation should be used in its place.
 	PullRequestPreviewsEnabled *WebServiceDetailsOutputPullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
 	// Defaults to "oregon"
 	Region WebServiceDetailsOutputRegion `pulumi:"region"`
@@ -7989,6 +8458,8 @@ func (val *WebServiceDetailsOutput) Defaults() *WebServiceDetailsOutput {
 		maxShutdownDelaySeconds_ := 30
 		tmp.MaxShutdownDelaySeconds = &maxShutdownDelaySeconds_
 	}
+	tmp.Previews = tmp.Previews.Defaults()
+
 	if tmp.PullRequestPreviewsEnabled == nil {
 		pullRequestPreviewsEnabled_ := WebServiceDetailsOutputPullRequestPreviewsEnabled("no")
 		tmp.PullRequestPreviewsEnabled = &pullRequestPreviewsEnabled_
@@ -8038,6 +8509,10 @@ func (o WebServiceDetailsOutputOutput) HealthCheckPath() pulumi.StringOutput {
 	return o.ApplyT(func(v WebServiceDetailsOutput) string { return v.HealthCheckPath }).(pulumi.StringOutput)
 }
 
+func (o WebServiceDetailsOutputOutput) MaintenanceMode() MaintenanceModePtrOutput {
+	return o.ApplyT(func(v WebServiceDetailsOutput) *MaintenanceMode { return v.MaintenanceMode }).(MaintenanceModePtrOutput)
+}
+
 // The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
 func (o WebServiceDetailsOutputOutput) MaxShutdownDelaySeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WebServiceDetailsOutput) *int { return v.MaxShutdownDelaySeconds }).(pulumi.IntPtrOutput)
@@ -8061,7 +8536,11 @@ func (o WebServiceDetailsOutputOutput) Plan() WebServiceDetailsOutputPlanOutput 
 	return o.ApplyT(func(v WebServiceDetailsOutput) WebServiceDetailsOutputPlan { return v.Plan }).(WebServiceDetailsOutputPlanOutput)
 }
 
-// Defaults to "no"
+func (o WebServiceDetailsOutputOutput) Previews() PreviewsPtrOutput {
+	return o.ApplyT(func(v WebServiceDetailsOutput) *Previews { return v.Previews }).(PreviewsPtrOutput)
+}
+
+// This field has been deprecated. previews.generation should be used in its place.
 func (o WebServiceDetailsOutputOutput) PullRequestPreviewsEnabled() WebServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput {
 	return o.ApplyT(func(v WebServiceDetailsOutput) *WebServiceDetailsOutputPullRequestPreviewsEnabled {
 		return v.PullRequestPreviewsEnabled
@@ -8156,6 +8635,15 @@ func (o WebServiceDetailsOutputPtrOutput) HealthCheckPath() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
+func (o WebServiceDetailsOutputPtrOutput) MaintenanceMode() MaintenanceModePtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailsOutput) *MaintenanceMode {
+		if v == nil {
+			return nil
+		}
+		return v.MaintenanceMode
+	}).(MaintenanceModePtrOutput)
+}
+
 // The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
 func (o WebServiceDetailsOutputPtrOutput) MaxShutdownDelaySeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WebServiceDetailsOutput) *int {
@@ -8204,7 +8692,16 @@ func (o WebServiceDetailsOutputPtrOutput) Plan() WebServiceDetailsOutputPlanPtrO
 	}).(WebServiceDetailsOutputPlanPtrOutput)
 }
 
-// Defaults to "no"
+func (o WebServiceDetailsOutputPtrOutput) Previews() PreviewsPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailsOutput) *Previews {
+		if v == nil {
+			return nil
+		}
+		return v.Previews
+	}).(PreviewsPtrOutput)
+}
+
+// This field has been deprecated. previews.generation should be used in its place.
 func (o WebServiceDetailsOutputPtrOutput) PullRequestPreviewsEnabled() WebServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput {
 	return o.ApplyT(func(v *WebServiceDetailsOutput) *WebServiceDetailsOutputPullRequestPreviewsEnabled {
 		if v == nil {
@@ -9988,6 +10485,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*HeaderInputTypeArrayInput)(nil)).Elem(), HeaderInputTypeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ImageInput)(nil)).Elem(), ImageArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ImagePtrInput)(nil)).Elem(), ImageArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MaintenanceModeInput)(nil)).Elem(), MaintenanceModeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MaintenanceModePtrInput)(nil)).Elem(), MaintenanceModeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PreviewsInput)(nil)).Elem(), PreviewsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PreviewsPtrInput)(nil)).Elem(), PreviewsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceDetailsCreateInput)(nil)).Elem(), PrivateServiceDetailsCreateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceDetailsCreatePtrInput)(nil)).Elem(), PrivateServiceDetailsCreateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistryCredentialInput)(nil)).Elem(), RegistryCredentialArgs{})
@@ -10039,6 +10540,8 @@ func init() {
 	pulumi.RegisterOutputType(DeployCommitPropertiesPtrOutput{})
 	pulumi.RegisterOutputType(DeployImagePropertiesOutput{})
 	pulumi.RegisterOutputType(DeployImagePropertiesPtrOutput{})
+	pulumi.RegisterOutputType(DeployWithCursorOutput{})
+	pulumi.RegisterOutputType(DeployWithCursorArrayOutput{})
 	pulumi.RegisterOutputType(EnvSpecificDetailsOutput{})
 	pulumi.RegisterOutputType(EnvSpecificDetailsPtrOutput{})
 	pulumi.RegisterOutputType(EnvSpecificDetailsCreateOutput{})
@@ -10064,12 +10567,14 @@ func init() {
 	pulumi.RegisterOutputType(ImagePropertiesOutput{})
 	pulumi.RegisterOutputType(ImagePropertiesPtrOutput{})
 	pulumi.RegisterOutputType(JobTypeOutput{})
-	pulumi.RegisterOutputType(ListDeploysItemPropertiesOutput{})
-	pulumi.RegisterOutputType(ListDeploysItemPropertiesArrayOutput{})
 	pulumi.RegisterOutputType(ListJobItemPropertiesOutput{})
 	pulumi.RegisterOutputType(ListJobItemPropertiesArrayOutput{})
 	pulumi.RegisterOutputType(ListServicesResponseOutput{})
 	pulumi.RegisterOutputType(ListServicesResponseArrayOutput{})
+	pulumi.RegisterOutputType(MaintenanceModeOutput{})
+	pulumi.RegisterOutputType(MaintenanceModePtrOutput{})
+	pulumi.RegisterOutputType(PreviewsOutput{})
+	pulumi.RegisterOutputType(PreviewsPtrOutput{})
 	pulumi.RegisterOutputType(PrivateServiceDetailsCreateOutput{})
 	pulumi.RegisterOutputType(PrivateServiceDetailsCreatePtrOutput{})
 	pulumi.RegisterOutputType(PrivateServiceDetailsOutputOutput{})

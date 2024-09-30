@@ -113,6 +113,8 @@ components:
                         - initial_deploy_hook_started
                         - instance_count_changed
                         - job_run_ended
+                        - maintenance_mode_enabled
+                        - maintenance_mode_uri_updated
                         - maintenance_ended
                         - maintenance_started
                         - plan_changed
@@ -340,46 +342,6 @@ components:
                     schema:
                         $ref: '#/components/schemas/error'
             description: Server currently unavailable.
-        GetOwnerLogsStreams200Response:
-            content:
-                application/json:
-                    schema:
-                        description: Owner log stream settings
-                        properties:
-                            endpoint:
-                                description: The endpoint to stream logs to.
-                                type: string
-                            ownerId:
-                                description: The ID of the owner.
-                                type: string
-                            preview:
-                                description: Whether to send logs or drop them.
-                                enum:
-                                    - send
-                                    - drop
-                                type: string
-                        type: object
-            description: Owner log stream setting
-        GetResourceLogsStreams200Response:
-            content:
-                application/json:
-                    schema:
-                        description: Resource log stream overrides
-                        properties:
-                            endpoint:
-                                description: The endpoint to stream logs to. Must be present if setting is send. Cannot be present if setting is drop.
-                                type: string
-                            resourceId:
-                                description: The ID of the resource.
-                                type: string
-                            setting:
-                                description: Whether to send logs or drop them.
-                                enum:
-                                    - send
-                                    - drop
-                                type: string
-                        type: object
-            description: Resource log stream override
         Logs200Response:
             content:
                 application/json:
@@ -418,14 +380,6 @@ components:
                             type: string
                         type: array
             description: An array of possible values for a log label
-        ResourceLogsStreams200Response:
-            content:
-                application/json:
-                    schema:
-                        items:
-                            $ref: '#/components/responses/GetResourceLogsStreams200Response/content/application~1json/schema'
-                        type: array
-            description: Resource log stream override
     schemas:
         Job:
             properties:
@@ -508,6 +462,8 @@ components:
                     $ref: '#/components/schemas/resource'
                 plan:
                     $ref: '#/components/schemas/plan'
+                previews:
+                    $ref: '#/components/schemas/previews'
                 pullRequestPreviewsEnabled:
                     $ref: '#/components/schemas/pullRequestPreviewsEnabled'
                 region:
@@ -541,6 +497,8 @@ components:
                     $ref: '#/components/schemas/resource'
                 plan:
                     $ref: '#/components/schemas/plan'
+                previews:
+                    $ref: '#/components/schemas/previews'
                 pullRequestPreviewsEnabled:
                     $ref: '#/components/schemas/pullRequestPreviewsEnabled'
                 region:
@@ -563,6 +521,8 @@ components:
                     $ref: '#/components/schemas/paidPlan'
                 preDeployCommand:
                     type: string
+                previews:
+                    $ref: '#/components/schemas/previews'
                 pullRequestPreviewsEnabled:
                     $ref: '#/components/schemas/pullRequestPreviewsEnabled'
                 runtime:
@@ -589,6 +549,8 @@ components:
                     $ref: '#/components/schemas/paidPlan'
                 preDeployCommand:
                     type: string
+                previews:
+                    $ref: '#/components/schemas/previews'
                 pullRequestPreviewsEnabled:
                     $ref: '#/components/schemas/pullRequestPreviewsEnabled'
                 region:
@@ -963,6 +925,17 @@ components:
             required:
                 - id
             type: object
+        deployList:
+            items:
+                $ref: '#/components/schemas/deployWithCursor'
+            type: array
+        deployWithCursor:
+            properties:
+                cursor:
+                    $ref: '#/components/schemas/cursor'
+                deploy:
+                    $ref: '#/components/schemas/deploy'
+            type: object
         diskSnapshot:
             properties:
                 createdAt:
@@ -1335,28 +1308,19 @@ components:
             description: When a service with a disk is scaled, the instanceId is used to identify the instance that the disk is attached to. Each instance's disks get their own snapshots, and can be restored separately.
             type: string
         listServices:
-            items:
-                $ref: '#/components/schemas/listServicesResponse'
-            type: array
+            $ref: '#/components/schemas/serviceList'
         listServicesResponse:
+            $ref: '#/components/schemas/serviceWithCursor'
+        maintenanceMode:
             properties:
-                cursor:
-                    $ref: '#/components/schemas/cursor'
-                service:
-                    discriminator:
-                        mapping:
-                            background_worker: '#/components/schemas/backgroundWorkerOutput'
-                            cron_job: '#/components/schemas/cronJobOutput'
-                            private_service: '#/components/schemas/privateServiceOutput'
-                            static_site: '#/components/schemas/staticSiteOutput'
-                            web_service: '#/components/schemas/webServiceOutput'
-                        propertyName: type
-                    oneOf:
-                        - $ref: '#/components/schemas/backgroundWorkerOutput'
-                        - $ref: '#/components/schemas/cronJobOutput'
-                        - $ref: '#/components/schemas/privateServiceOutput'
-                        - $ref: '#/components/schemas/staticSiteOutput'
-                        - $ref: '#/components/schemas/webServiceOutput'
+                enabled:
+                    type: boolean
+                uri:
+                    description: The page to be served when [maintenance mode](https://docs.render.com/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
+                    type: string
+            required:
+                - enabled
+                - uri
             type: object
         maxShutdownDelaySeconds:
             default: 30
@@ -1449,6 +1413,13 @@ components:
                 - name
                 - email
                 - type
+            type: object
+        ownerWithCursor:
+            properties:
+                cursor:
+                    $ref: '#/components/schemas/cursor'
+                owner:
+                    $ref: '#/components/schemas/owner'
             type: object
         paidPlan:
             default: starter
@@ -1771,6 +1742,17 @@ components:
             required:
                 - imagePath
             type: object
+        previews:
+            properties:
+                generation:
+                    default: "off"
+                    description: Defaults to "off"
+                    enum:
+                        - "off"
+                        - manual
+                        - automatic
+                    type: string
+            type: object
         privateService:
             allOf:
                 - $ref: '#/components/schemas/servicePOST'
@@ -1807,6 +1789,8 @@ components:
                     $ref: '#/components/schemas/resource'
                 plan:
                     $ref: '#/components/schemas/plan'
+                previews:
+                    $ref: '#/components/schemas/previews'
                 pullRequestPreviewsEnabled:
                     $ref: '#/components/schemas/pullRequestPreviewsEnabled'
                 region:
@@ -1848,6 +1832,8 @@ components:
                     $ref: '#/components/schemas/resource'
                 plan:
                     $ref: '#/components/schemas/plan'
+                previews:
+                    $ref: '#/components/schemas/previews'
                 pullRequestPreviewsEnabled:
                     $ref: '#/components/schemas/pullRequestPreviewsEnabled'
                 region:
@@ -1874,6 +1860,8 @@ components:
                     $ref: '#/components/schemas/paidPlan'
                 preDeployCommand:
                     type: string
+                previews:
+                    $ref: '#/components/schemas/previews'
                 pullRequestPreviewsEnabled:
                     $ref: '#/components/schemas/pullRequestPreviewsEnabled'
                 runtime:
@@ -1900,6 +1888,8 @@ components:
                     $ref: '#/components/schemas/paidPlan'
                 preDeployCommand:
                     type: string
+                previews:
+                    $ref: '#/components/schemas/previews'
                 pullRequestPreviewsEnabled:
                     $ref: '#/components/schemas/pullRequestPreviewsEnabled'
                 region:
@@ -2013,7 +2003,8 @@ components:
             type: string
         pullRequestPreviewsEnabled:
             default: "no"
-            description: Defaults to "no"
+            deprecated: true
+            description: This field has been deprecated. previews.generation should be used in its place.
             enum:
                 - "yes"
                 - "no"
@@ -2269,6 +2260,10 @@ components:
                     type: string
                 registry:
                     $ref: '#/components/schemas/registryCredentialRegistry'
+                updatedAt:
+                    description: Last updated time for the credential
+                    format: date-time
+                    type: string
                 username:
                     description: The username associated with the credential
                     type: string
@@ -2277,6 +2272,7 @@ components:
                 - name
                 - username
                 - registry
+                - updatedAt
             type: object
         registryCredentialRegistry:
             description: The registry to use this credential with
@@ -2285,6 +2281,7 @@ components:
                 - GITLAB
                 - DOCKER
                 - GOOGLE_ARTIFACT
+                - AWS_ECR
             type: string
         registryCredentialSummary:
             properties:
@@ -2817,6 +2814,21 @@ components:
                                     - jobId
                                     - status
                                   type: object
+                                - properties:
+                                    enabled:
+                                        type: boolean
+                                  required:
+                                    - enabled
+                                  type: object
+                                - properties:
+                                    fromURI:
+                                        type: string
+                                    toURI:
+                                        type: string
+                                  required:
+                                    - fromURI
+                                    - toURI
+                                  type: object
                                 - type: object
                                 - properties:
                                     trigger:
@@ -2941,6 +2953,10 @@ components:
                 - name
                 - type
             type: object
+        serviceList:
+            items:
+                $ref: '#/components/schemas/listServicesResponse'
+            type: array
         servicePATCH:
             properties:
                 autoDeploy:
@@ -3018,6 +3034,26 @@ components:
                 - worker
                 - cron
             type: string
+        serviceWithCursor:
+            properties:
+                cursor:
+                    $ref: '#/components/schemas/cursor'
+                service:
+                    discriminator:
+                        mapping:
+                            background_worker: '#/components/schemas/backgroundWorkerOutput'
+                            cron_job: '#/components/schemas/cronJobOutput'
+                            private_service: '#/components/schemas/privateServiceOutput'
+                            static_site: '#/components/schemas/staticSiteOutput'
+                            web_service: '#/components/schemas/webServiceOutput'
+                        propertyName: type
+                    oneOf:
+                        - $ref: '#/components/schemas/backgroundWorkerOutput'
+                        - $ref: '#/components/schemas/cronJobOutput'
+                        - $ref: '#/components/schemas/privateServiceOutput'
+                        - $ref: '#/components/schemas/staticSiteOutput'
+                        - $ref: '#/components/schemas/webServiceOutput'
+            type: object
         snapshotRestorePOST:
             properties:
                 instanceId:
@@ -3046,6 +3082,8 @@ components:
                     $ref: '#/components/schemas/buildPlan'
                 parentServer:
                     $ref: '#/components/schemas/resource'
+                previews:
+                    $ref: '#/components/schemas/previews'
                 publishPath:
                     type: string
                 pullRequestPreviewsEnabled:
@@ -3066,6 +3104,8 @@ components:
                     $ref: '#/components/schemas/buildPlan'
                 parentServer:
                     $ref: '#/components/schemas/resource'
+                previews:
+                    $ref: '#/components/schemas/previews'
                 publishPath:
                     type: string
                 pullRequestPreviewsEnabled:
@@ -3082,6 +3122,8 @@ components:
             properties:
                 buildCommand:
                     type: string
+                previews:
+                    $ref: '#/components/schemas/previews'
                 publishPath:
                     type: string
                 pullRequestPreviewsEnabled:
@@ -3095,6 +3137,8 @@ components:
                     items:
                         $ref: '#/components/schemas/headerInput'
                     type: array
+                previews:
+                    $ref: '#/components/schemas/previews'
                 publishPath:
                     description: Defaults to "public"
                     type: string
@@ -3251,6 +3295,8 @@ components:
                     $ref: '#/components/schemas/envSpecificDetails'
                 healthCheckPath:
                     type: string
+                maintenanceMode:
+                    $ref: '#/components/schemas/maintenanceMode'
                 maxShutdownDelaySeconds:
                     $ref: '#/components/schemas/maxShutdownDelaySeconds'
                 numInstances:
@@ -3264,6 +3310,8 @@ components:
                     $ref: '#/components/schemas/resource'
                 plan:
                     $ref: '#/components/schemas/plan'
+                previews:
+                    $ref: '#/components/schemas/previews'
                 pullRequestPreviewsEnabled:
                     $ref: '#/components/schemas/pullRequestPreviewsEnabled'
                 region:
@@ -3345,6 +3393,8 @@ components:
                     $ref: '#/components/schemas/envSpecificDetails'
                 healthCheckPath:
                     type: string
+                maintenanceMode:
+                    $ref: '#/components/schemas/maintenanceMode'
                 maxShutdownDelaySeconds:
                     $ref: '#/components/schemas/maxShutdownDelaySeconds'
                 numInstances:
@@ -3358,6 +3408,8 @@ components:
                     $ref: '#/components/schemas/resource'
                 plan:
                     $ref: '#/components/schemas/plan'
+                previews:
+                    $ref: '#/components/schemas/previews'
                 pullRequestPreviewsEnabled:
                     $ref: '#/components/schemas/pullRequestPreviewsEnabled'
                 region:
@@ -3381,12 +3433,16 @@ components:
                     $ref: '#/components/schemas/envSpecificDetailsPATCH'
                 healthCheckPath:
                     type: string
+                maintenanceMode:
+                    $ref: '#/components/schemas/maintenanceMode'
                 maxShutdownDelaySeconds:
                     $ref: '#/components/schemas/maxShutdownDelaySeconds'
                 plan:
                     $ref: '#/components/schemas/paidPlan'
                 preDeployCommand:
                     type: string
+                previews:
+                    $ref: '#/components/schemas/previews'
                 pullRequestPreviewsEnabled:
                     $ref: '#/components/schemas/pullRequestPreviewsEnabled'
                 runtime:
@@ -3404,6 +3460,8 @@ components:
                     $ref: '#/components/schemas/envSpecificDetailsPOST'
                 healthCheckPath:
                     type: string
+                maintenanceMode:
+                    $ref: '#/components/schemas/maintenanceMode'
                 maxShutdownDelaySeconds:
                     $ref: '#/components/schemas/maxShutdownDelaySeconds'
                 numInstances:
@@ -3414,6 +3472,8 @@ components:
                     $ref: '#/components/schemas/paidPlan'
                 preDeployCommand:
                     type: string
+                previews:
+                    $ref: '#/components/schemas/previews'
                 pullRequestPreviewsEnabled:
                     $ref: '#/components/schemas/pullRequestPreviewsEnabled'
                 region:
@@ -4845,6 +4905,321 @@ paths:
             summary: List logs
             tags:
                 - Logs
+    /logs/streams/owner/{ownerId}:
+        delete:
+            description: Remove the log stream information for the provided owner.
+            operationId: delete-owner-log-stream
+            parameters:
+                - description: The ID of the owner (team or personal user) whose log streams should be returned
+                  in: path
+                  name: ownerId
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "204":
+                    description: Log stream setting deleted
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+                "429":
+                    $ref: '#/components/responses/429RateLimit'
+                "500":
+                    $ref: '#/components/responses/500InternalServerError'
+                "503":
+                    $ref: '#/components/responses/503ServiceUnavailable'
+            summary: Delete owner log stream
+            tags:
+                - Logs
+        get:
+            description: Get log stream information for the provided owner.
+            operationId: get-owner-log-stream
+            parameters:
+                - description: The ID of the owner (team or personal user) whose log streams should be returned
+                  in: path
+                  name: ownerId
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    content:
+                        application/json:
+                            schema:
+                                description: Owner log stream settings
+                                properties:
+                                    endpoint:
+                                        description: The endpoint to stream logs to.
+                                        type: string
+                                    ownerId:
+                                        description: The ID of the owner.
+                                        type: string
+                                    preview:
+                                        $ref: '#/paths/~1logs~1streams~1owner~1%7BownerId%7D/put/requestBody/content/application~1json/schema/properties/preview'
+                                type: object
+                    description: Owner log stream setting
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "403":
+                    $ref: '#/components/responses/403Forbidden'
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+                "406":
+                    $ref: '#/components/responses/406NotAcceptable'
+                "410":
+                    $ref: '#/components/responses/410Gone'
+                "429":
+                    $ref: '#/components/responses/429RateLimit'
+                "500":
+                    $ref: '#/components/responses/500InternalServerError'
+                "503":
+                    $ref: '#/components/responses/503ServiceUnavailable'
+            summary: Get owner log stream
+            tags:
+                - Logs
+        put:
+            description: Update default log stream information for the provided owner. All logs for resources owned by this owner will be sent to this log stream unless overridden by a resource log stream.
+            operationId: update-owner-log-stream
+            parameters:
+                - description: The ID of the owner (team or personal user) whose log streams should be returned
+                  in: path
+                  name: ownerId
+                  required: true
+                  schema:
+                    type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            properties:
+                                endpoint:
+                                    description: The endpoint to stream logs to.
+                                    type: string
+                                preview:
+                                    description: Whether to send logs or drop them.
+                                    enum:
+                                        - send
+                                        - drop
+                                    type: string
+                                token:
+                                    description: The optional token to authenticate the log stream.
+                                    type: string
+                            required:
+                                - preview
+                            type: object
+                required: true
+            responses:
+                "200":
+                    $ref: '#/paths/~1logs~1streams~1owner~1%7BownerId%7D/get/responses/200'
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "403":
+                    $ref: '#/components/responses/403Forbidden'
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+                "406":
+                    $ref: '#/components/responses/406NotAcceptable'
+                "410":
+                    $ref: '#/components/responses/410Gone'
+                "429":
+                    $ref: '#/components/responses/429RateLimit'
+                "500":
+                    $ref: '#/components/responses/500InternalServerError'
+                "503":
+                    $ref: '#/components/responses/503ServiceUnavailable'
+            summary: Update owner log stream
+            tags:
+                - Logs
+    /logs/streams/resource:
+        get:
+            description: List resource log stream overrides for the provided filters. These overrides take precedence over any existing owner log streams.
+            operationId: list-resource-log-streams
+            parameters:
+                - $ref: '#/components/parameters/ownerIdParam'
+                - description: Filter log streams by their id.
+                  in: query
+                  name: logStreamId
+                  schema:
+                    items:
+                        type: string
+                    type: array
+                - $ref: '#/components/parameters/resourceIdParam'
+                - description: Filter log streams by their setting.
+                  in: query
+                  name: setting
+                  schema:
+                    items:
+                        description: Whether to send logs or drop them.
+                        enum:
+                            - send
+                            - drop
+                        type: string
+                    type: array
+                - $ref: '#/components/parameters/cursorParam'
+                - $ref: '#/components/parameters/limitParam'
+            responses:
+                "200":
+                    content:
+                        application/json:
+                            schema:
+                                items:
+                                    $ref: '#/paths/~1logs~1streams~1resource~1%7BresourceId%7D/get/responses/200/content/application~1json/schema'
+                                type: array
+                    description: Resource log stream override
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "403":
+                    $ref: '#/components/responses/403Forbidden'
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+                "406":
+                    $ref: '#/components/responses/406NotAcceptable'
+                "410":
+                    $ref: '#/components/responses/410Gone'
+                "429":
+                    $ref: '#/components/responses/429RateLimit'
+                "500":
+                    $ref: '#/components/responses/500InternalServerError'
+                "503":
+                    $ref: '#/components/responses/503ServiceUnavailable'
+            summary: List resource log stream overrides
+            tags:
+                - Logs
+    /logs/streams/resource/{resourceId}:
+        delete:
+            description: Remove the resource log stream override for the provided resource. This resource will now use the owner log stream if it exists.
+            operationId: delete-resource-log-stream
+            parameters:
+                - description: The ID of the resource (server, cron job, postgres, or redis) whose log streams should be returned
+                  in: path
+                  name: resourceId
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "204":
+                    description: Log stream setting deleted
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+                "429":
+                    $ref: '#/components/responses/429RateLimit'
+                "500":
+                    $ref: '#/components/responses/500InternalServerError'
+                "503":
+                    $ref: '#/components/responses/503ServiceUnavailable'
+            summary: Delete resource log stream override
+            tags:
+                - Logs
+        get:
+            description: Get resource log stream override information for the provided resource. A resource log stream override takes precedence over a owner log stream if it exists.
+            operationId: get-resource-log-stream
+            parameters:
+                - description: The ID of the resource (server, cron job, postgres, or redis) whose log streams should be returned
+                  in: path
+                  name: resourceId
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    content:
+                        application/json:
+                            schema:
+                                description: Resource log stream overrides
+                                properties:
+                                    endpoint:
+                                        description: The endpoint to stream logs to. Must be present if setting is send. Cannot be present if setting is drop.
+                                        type: string
+                                    resourceId:
+                                        description: The ID of the resource.
+                                        type: string
+                                    setting:
+                                        $ref: '#/paths/~1logs~1streams~1resource/get/parameters/3/schema/items'
+                                type: object
+                    description: Resource log stream override
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "403":
+                    $ref: '#/components/responses/403Forbidden'
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+                "406":
+                    $ref: '#/components/responses/406NotAcceptable'
+                "410":
+                    $ref: '#/components/responses/410Gone'
+                "429":
+                    $ref: '#/components/responses/429RateLimit'
+                "500":
+                    $ref: '#/components/responses/500InternalServerError'
+                "503":
+                    $ref: '#/components/responses/503ServiceUnavailable'
+            summary: Get resource log stream override
+            tags:
+                - Logs
+        put:
+            description: Update resource log stream override information for the provided resource. A resource log stream override takes precedence over a owner log stream if it exists.
+            operationId: update-resource-log-stream
+            parameters:
+                - description: The ID of the resource (server, cron job, postgres, or redis) whose log streams should be returned
+                  in: path
+                  name: resourceId
+                  required: true
+                  schema:
+                    type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            properties:
+                                endpoint:
+                                    $ref: '#/paths/~1logs~1streams~1owner~1%7BownerId%7D/put/requestBody/content/application~1json/schema/properties/endpoint'
+                                setting:
+                                    $ref: '#/paths/~1logs~1streams~1resource/get/parameters/3/schema/items'
+                                token:
+                                    $ref: '#/paths/~1logs~1streams~1owner~1%7BownerId%7D/put/requestBody/content/application~1json/schema/properties/token'
+                            required:
+                                - setting
+                            type: object
+                required: true
+            responses:
+                "200":
+                    $ref: '#/paths/~1logs~1streams~1resource~1%7BresourceId%7D/get/responses/200'
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "403":
+                    $ref: '#/components/responses/403Forbidden'
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+                "406":
+                    $ref: '#/components/responses/406NotAcceptable'
+                "410":
+                    $ref: '#/components/responses/410Gone'
+                "429":
+                    $ref: '#/components/responses/429RateLimit'
+                "500":
+                    $ref: '#/components/responses/500InternalServerError'
+                "503":
+                    $ref: '#/components/responses/503ServiceUnavailable'
+            summary: Update resource log stream override
+            tags:
+                - Logs
     /logs/subscribe:
         get:
             description: |
@@ -5953,11 +6328,7 @@ paths:
                         application/json:
                             schema:
                                 items:
-                                    properties:
-                                        cursor:
-                                            $ref: '#/components/schemas/cursor'
-                                        owner:
-                                            $ref: '#/components/schemas/owner'
+                                    $ref: '#/components/schemas/ownerWithCursor'
                                 type: array
                     description: OK
                 "401":
@@ -7794,14 +8165,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                items:
-                                    properties:
-                                        cursor:
-                                            $ref: '#/components/schemas/cursor'
-                                        deploy:
-                                            $ref: '#/components/schemas/deploy'
-                                    type: object
-                                type: array
+                                $ref: '#/components/schemas/deployList'
                     description: OK
                 "401":
                     $ref: '#/components/responses/401Unauthorized'

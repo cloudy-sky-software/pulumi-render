@@ -18,6 +18,7 @@ class Registry(str, Enum):
     GITLAB = "GITLAB"
     DOCKER = "DOCKER"
     GOOGLE_ARTIFACT = "GOOGLE_ARTIFACT"
+    AWS_ECR = "AWS_ECR"
 
 
 class RegistryCredentialRegistry(str, Enum):
@@ -28,3 +29,4 @@ class RegistryCredentialRegistry(str, Enum):
     GITLAB = "GITLAB"
     DOCKER = "DOCKER"
     GOOGLE_ARTIFACT = "GOOGLE_ARTIFACT"
+    AWS_ECR = "AWS_ECR"

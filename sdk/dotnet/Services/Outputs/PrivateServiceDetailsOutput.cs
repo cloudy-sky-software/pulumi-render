@@ -35,8 +35,9 @@ namespace Pulumi.Render.Services.Outputs
         /// The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
         /// </summary>
         public readonly Pulumi.Render.Services.PrivateServiceDetailsOutputPlan Plan;
+        public readonly Outputs.Previews? Previews;
         /// <summary>
-        /// Defaults to "no"
+        /// This field has been deprecated. previews.generation should be used in its place.
         /// </summary>
         public readonly Pulumi.Render.Services.PrivateServiceDetailsOutputPullRequestPreviewsEnabled? PullRequestPreviewsEnabled;
         /// <summary>
@@ -67,6 +68,8 @@ namespace Pulumi.Render.Services.Outputs
 
             Pulumi.Render.Services.PrivateServiceDetailsOutputPlan plan,
 
+            Outputs.Previews? previews,
+
             Pulumi.Render.Services.PrivateServiceDetailsOutputPullRequestPreviewsEnabled? pullRequestPreviewsEnabled,
 
             Pulumi.Render.Services.PrivateServiceDetailsOutputRegion region,
@@ -83,6 +86,7 @@ namespace Pulumi.Render.Services.Outputs
             OpenPorts = openPorts;
             ParentServer = parentServer;
             Plan = plan;
+            Previews = previews;
             PullRequestPreviewsEnabled = pullRequestPreviewsEnabled;
             Region = region;
             Url = url;

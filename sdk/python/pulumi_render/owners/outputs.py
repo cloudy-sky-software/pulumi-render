@@ -17,30 +17,9 @@ from . import outputs
 from ._enums import *
 
 __all__ = [
-    'ListOwnersItemProperties',
     'Owner',
+    'OwnerWithCursor',
 ]
-
-@pulumi.output_type
-class ListOwnersItemProperties(dict):
-    def __init__(__self__, *,
-                 cursor: Optional[str] = None,
-                 owner: Optional['outputs.Owner'] = None):
-        if cursor is not None:
-            pulumi.set(__self__, "cursor", cursor)
-        if owner is not None:
-            pulumi.set(__self__, "owner", owner)
-
-    @property
-    @pulumi.getter
-    def cursor(self) -> Optional[str]:
-        return pulumi.get(self, "cursor")
-
-    @property
-    @pulumi.getter
-    def owner(self) -> Optional['outputs.Owner']:
-        return pulumi.get(self, "owner")
-
 
 @pulumi.output_type
 class Owner(dict):
@@ -87,5 +66,26 @@ class Owner(dict):
         Whether two-factor authentication is enabled for the owner. Only present for user owners.
         """
         return pulumi.get(self, "two_factor_auth_enabled")
+
+
+@pulumi.output_type
+class OwnerWithCursor(dict):
+    def __init__(__self__, *,
+                 cursor: Optional[str] = None,
+                 owner: Optional['outputs.Owner'] = None):
+        if cursor is not None:
+            pulumi.set(__self__, "cursor", cursor)
+        if owner is not None:
+            pulumi.set(__self__, "owner", owner)
+
+    @property
+    @pulumi.getter
+    def cursor(self) -> Optional[str]:
+        return pulumi.get(self, "cursor")
+
+    @property
+    @pulumi.getter
+    def owner(self) -> Optional['outputs.Owner']:
+        return pulumi.get(self, "owner")
 
 

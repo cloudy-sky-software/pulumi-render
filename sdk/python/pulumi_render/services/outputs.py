@@ -31,6 +31,7 @@ __all__ = [
     'Deploy',
     'DeployCommitProperties',
     'DeployImageProperties',
+    'DeployWithCursor',
     'EnvSpecificDetails',
     'EnvVar',
     'EnvVarInput',
@@ -39,9 +40,10 @@ __all__ = [
     'HeaderWithCursor',
     'Image',
     'ImageProperties',
-    'ListDeploysItemProperties',
     'ListJobItemProperties',
     'ListServicesResponse',
+    'MaintenanceMode',
+    'Previews',
     'PrivateServiceDetailsOutput',
     'PrivateServiceOutput',
     'RegistryCredential',
@@ -110,6 +112,7 @@ class BackgroundWorkerDetailsOutput(dict):
                  disk: Optional['outputs.WebServiceDetailspropertiesdisk'] = None,
                  max_shutdown_delay_seconds: Optional[int] = None,
                  parent_server: Optional['outputs.Resource'] = None,
+                 previews: Optional['outputs.Previews'] = None,
                  pull_request_previews_enabled: Optional['BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled'] = None):
         """
         :param 'BackgroundWorkerDetailsOutputEnv' env: Runtime
@@ -117,7 +120,7 @@ class BackgroundWorkerDetailsOutput(dict):
         :param 'BackgroundWorkerDetailsOutputPlan' plan: The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
         :param 'BackgroundWorkerDetailsOutputRegion' region: Defaults to "oregon"
         :param int max_shutdown_delay_seconds: The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
-        :param 'BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled' pull_request_previews_enabled: Defaults to "no"
+        :param 'BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled' pull_request_previews_enabled: This field has been deprecated. previews.generation should be used in its place.
         """
         if build_plan is None:
             build_plan = 'starter'
@@ -139,6 +142,8 @@ class BackgroundWorkerDetailsOutput(dict):
             pulumi.set(__self__, "max_shutdown_delay_seconds", max_shutdown_delay_seconds)
         if parent_server is not None:
             pulumi.set(__self__, "parent_server", parent_server)
+        if previews is not None:
+            pulumi.set(__self__, "previews", previews)
         if pull_request_previews_enabled is None:
             pull_request_previews_enabled = 'no'
         if pull_request_previews_enabled is not None:
@@ -210,10 +215,15 @@ class BackgroundWorkerDetailsOutput(dict):
         return pulumi.get(self, "parent_server")
 
     @property
+    @pulumi.getter
+    def previews(self) -> Optional['outputs.Previews']:
+        return pulumi.get(self, "previews")
+
+    @property
     @pulumi.getter(name="pullRequestPreviewsEnabled")
     def pull_request_previews_enabled(self) -> Optional['BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled']:
         """
-        Defaults to "no"
+        This field has been deprecated. previews.generation should be used in its place.
         """
         return pulumi.get(self, "pull_request_previews_enabled")
 
@@ -1019,6 +1029,27 @@ class DeployImageProperties(dict):
 
 
 @pulumi.output_type
+class DeployWithCursor(dict):
+    def __init__(__self__, *,
+                 cursor: Optional[str] = None,
+                 deploy: Optional['outputs.Deploy'] = None):
+        if cursor is not None:
+            pulumi.set(__self__, "cursor", cursor)
+        if deploy is not None:
+            pulumi.set(__self__, "deploy", deploy)
+
+    @property
+    @pulumi.getter
+    def cursor(self) -> Optional[str]:
+        return pulumi.get(self, "cursor")
+
+    @property
+    @pulumi.getter
+    def deploy(self) -> Optional['outputs.Deploy']:
+        return pulumi.get(self, "deploy")
+
+
+@pulumi.output_type
 class EnvSpecificDetails(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -1371,27 +1402,6 @@ class ImageProperties(dict):
 
 
 @pulumi.output_type
-class ListDeploysItemProperties(dict):
-    def __init__(__self__, *,
-                 cursor: Optional[str] = None,
-                 deploy: Optional['outputs.Deploy'] = None):
-        if cursor is not None:
-            pulumi.set(__self__, "cursor", cursor)
-        if deploy is not None:
-            pulumi.set(__self__, "deploy", deploy)
-
-    @property
-    @pulumi.getter
-    def cursor(self) -> Optional[str]:
-        return pulumi.get(self, "cursor")
-
-    @property
-    @pulumi.getter
-    def deploy(self) -> Optional['outputs.Deploy']:
-        return pulumi.get(self, "deploy")
-
-
-@pulumi.output_type
 class ListJobItemProperties(dict):
     def __init__(__self__, *,
                  cursor: Optional[str] = None,
@@ -1431,6 +1441,52 @@ class ListServicesResponse(dict):
     @pulumi.getter
     def service(self) -> Optional[Any]:
         return pulumi.get(self, "service")
+
+
+@pulumi.output_type
+class MaintenanceMode(dict):
+    def __init__(__self__, *,
+                 enabled: bool,
+                 uri: str):
+        """
+        :param str uri: The page to be served when [maintenance mode](https://docs.render.com/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "uri", uri)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter
+    def uri(self) -> str:
+        """
+        The page to be served when [maintenance mode](https://docs.render.com/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
+        """
+        return pulumi.get(self, "uri")
+
+
+@pulumi.output_type
+class Previews(dict):
+    def __init__(__self__, *,
+                 generation: Optional['PreviewsGeneration'] = None):
+        """
+        :param 'PreviewsGeneration' generation: Defaults to "off"
+        """
+        if generation is None:
+            generation = 'off'
+        if generation is not None:
+            pulumi.set(__self__, "generation", generation)
+
+    @property
+    @pulumi.getter
+    def generation(self) -> Optional['PreviewsGeneration']:
+        """
+        Defaults to "off"
+        """
+        return pulumi.get(self, "generation")
 
 
 @pulumi.output_type
@@ -1477,6 +1533,7 @@ class PrivateServiceDetailsOutput(dict):
                  disk: Optional['outputs.WebServiceDetailspropertiesdisk'] = None,
                  max_shutdown_delay_seconds: Optional[int] = None,
                  parent_server: Optional['outputs.Resource'] = None,
+                 previews: Optional['outputs.Previews'] = None,
                  pull_request_previews_enabled: Optional['PrivateServiceDetailsOutputPullRequestPreviewsEnabled'] = None):
         """
         :param 'PrivateServiceDetailsOutputEnv' env: Runtime
@@ -1484,7 +1541,7 @@ class PrivateServiceDetailsOutput(dict):
         :param 'PrivateServiceDetailsOutputPlan' plan: The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
         :param 'PrivateServiceDetailsOutputRegion' region: Defaults to "oregon"
         :param int max_shutdown_delay_seconds: The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
-        :param 'PrivateServiceDetailsOutputPullRequestPreviewsEnabled' pull_request_previews_enabled: Defaults to "no"
+        :param 'PrivateServiceDetailsOutputPullRequestPreviewsEnabled' pull_request_previews_enabled: This field has been deprecated. previews.generation should be used in its place.
         """
         if build_plan is None:
             build_plan = 'starter'
@@ -1508,6 +1565,8 @@ class PrivateServiceDetailsOutput(dict):
             pulumi.set(__self__, "max_shutdown_delay_seconds", max_shutdown_delay_seconds)
         if parent_server is not None:
             pulumi.set(__self__, "parent_server", parent_server)
+        if previews is not None:
+            pulumi.set(__self__, "previews", previews)
         if pull_request_previews_enabled is None:
             pull_request_previews_enabled = 'no'
         if pull_request_previews_enabled is not None:
@@ -1589,10 +1648,15 @@ class PrivateServiceDetailsOutput(dict):
         return pulumi.get(self, "parent_server")
 
     @property
+    @pulumi.getter
+    def previews(self) -> Optional['outputs.Previews']:
+        return pulumi.get(self, "previews")
+
+    @property
     @pulumi.getter(name="pullRequestPreviewsEnabled")
     def pull_request_previews_enabled(self) -> Optional['PrivateServiceDetailsOutputPullRequestPreviewsEnabled']:
         """
-        Defaults to "no"
+        This field has been deprecated. previews.generation should be used in its place.
         """
         return pulumi.get(self, "pull_request_previews_enabled")
 
@@ -1762,20 +1826,40 @@ class PrivateServiceOutput(dict):
 
 @pulumi.output_type
 class RegistryCredential(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "updatedAt":
+            suggest = "updated_at"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RegistryCredential. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RegistryCredential.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RegistryCredential.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  id: str,
                  name: str,
                  registry: 'RegistryCredentialRegistry',
+                 updated_at: str,
                  username: str):
         """
         :param str id: Unique identifier for this credential
         :param str name: Descriptive name for this credential
         :param 'RegistryCredentialRegistry' registry: The registry to use this credential with
+        :param str updated_at: Last updated time for the credential
         :param str username: The username associated with the credential
         """
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "registry", registry)
+        pulumi.set(__self__, "updated_at", updated_at)
         pulumi.set(__self__, "username", username)
 
     @property
@@ -1801,6 +1885,14 @@ class RegistryCredential(dict):
         The registry to use this credential with
         """
         return pulumi.get(self, "registry")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        Last updated time for the credential
+        """
+        return pulumi.get(self, "updated_at")
 
     @property
     @pulumi.getter
@@ -2205,9 +2297,10 @@ class StaticSiteDetailsOutput(dict):
                  publish_path: str,
                  url: str,
                  parent_server: Optional['outputs.Resource'] = None,
+                 previews: Optional['outputs.Previews'] = None,
                  pull_request_previews_enabled: Optional['StaticSiteDetailsOutputPullRequestPreviewsEnabled'] = None):
         """
-        :param 'StaticSiteDetailsOutputPullRequestPreviewsEnabled' pull_request_previews_enabled: Defaults to "no"
+        :param 'StaticSiteDetailsOutputPullRequestPreviewsEnabled' pull_request_previews_enabled: This field has been deprecated. previews.generation should be used in its place.
         """
         pulumi.set(__self__, "build_command", build_command)
         if build_plan is None:
@@ -2217,6 +2310,8 @@ class StaticSiteDetailsOutput(dict):
         pulumi.set(__self__, "url", url)
         if parent_server is not None:
             pulumi.set(__self__, "parent_server", parent_server)
+        if previews is not None:
+            pulumi.set(__self__, "previews", previews)
         if pull_request_previews_enabled is None:
             pull_request_previews_enabled = 'no'
         if pull_request_previews_enabled is not None:
@@ -2248,10 +2343,15 @@ class StaticSiteDetailsOutput(dict):
         return pulumi.get(self, "parent_server")
 
     @property
+    @pulumi.getter
+    def previews(self) -> Optional['outputs.Previews']:
+        return pulumi.get(self, "previews")
+
+    @property
     @pulumi.getter(name="pullRequestPreviewsEnabled")
     def pull_request_previews_enabled(self) -> Optional['StaticSiteDetailsOutputPullRequestPreviewsEnabled']:
         """
-        Defaults to "no"
+        This field has been deprecated. previews.generation should be used in its place.
         """
         return pulumi.get(self, "pull_request_previews_enabled")
 
@@ -2434,6 +2534,8 @@ class WebServiceDetailsOutput(dict):
             suggest = "num_instances"
         elif key == "openPorts":
             suggest = "open_ports"
+        elif key == "maintenanceMode":
+            suggest = "maintenance_mode"
         elif key == "maxShutdownDelaySeconds":
             suggest = "max_shutdown_delay_seconds"
         elif key == "parentServer":
@@ -2464,8 +2566,10 @@ class WebServiceDetailsOutput(dict):
                  url: str,
                  autoscaling: Optional['outputs.WebServiceDetailsOutputAutoscalingProperties'] = None,
                  disk: Optional['outputs.WebServiceDetailsOutputDiskProperties'] = None,
+                 maintenance_mode: Optional['outputs.MaintenanceMode'] = None,
                  max_shutdown_delay_seconds: Optional[int] = None,
                  parent_server: Optional['outputs.Resource'] = None,
+                 previews: Optional['outputs.Previews'] = None,
                  pull_request_previews_enabled: Optional['WebServiceDetailsOutputPullRequestPreviewsEnabled'] = None):
         """
         :param 'WebServiceDetailsOutputEnv' env: Runtime
@@ -2473,7 +2577,7 @@ class WebServiceDetailsOutput(dict):
         :param 'WebServiceDetailsOutputPlan' plan: The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
         :param 'WebServiceDetailsOutputRegion' region: Defaults to "oregon"
         :param int max_shutdown_delay_seconds: The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
-        :param 'WebServiceDetailsOutputPullRequestPreviewsEnabled' pull_request_previews_enabled: Defaults to "no"
+        :param 'WebServiceDetailsOutputPullRequestPreviewsEnabled' pull_request_previews_enabled: This field has been deprecated. previews.generation should be used in its place.
         """
         if build_plan is None:
             build_plan = 'starter'
@@ -2492,12 +2596,16 @@ class WebServiceDetailsOutput(dict):
             pulumi.set(__self__, "autoscaling", autoscaling)
         if disk is not None:
             pulumi.set(__self__, "disk", disk)
+        if maintenance_mode is not None:
+            pulumi.set(__self__, "maintenance_mode", maintenance_mode)
         if max_shutdown_delay_seconds is None:
             max_shutdown_delay_seconds = 30
         if max_shutdown_delay_seconds is not None:
             pulumi.set(__self__, "max_shutdown_delay_seconds", max_shutdown_delay_seconds)
         if parent_server is not None:
             pulumi.set(__self__, "parent_server", parent_server)
+        if previews is not None:
+            pulumi.set(__self__, "previews", previews)
         if pull_request_previews_enabled is None:
             pull_request_previews_enabled = 'no'
         if pull_request_previews_enabled is not None:
@@ -2571,6 +2679,11 @@ class WebServiceDetailsOutput(dict):
         return pulumi.get(self, "disk")
 
     @property
+    @pulumi.getter(name="maintenanceMode")
+    def maintenance_mode(self) -> Optional['outputs.MaintenanceMode']:
+        return pulumi.get(self, "maintenance_mode")
+
+    @property
     @pulumi.getter(name="maxShutdownDelaySeconds")
     def max_shutdown_delay_seconds(self) -> Optional[int]:
         """
@@ -2584,10 +2697,15 @@ class WebServiceDetailsOutput(dict):
         return pulumi.get(self, "parent_server")
 
     @property
+    @pulumi.getter
+    def previews(self) -> Optional['outputs.Previews']:
+        return pulumi.get(self, "previews")
+
+    @property
     @pulumi.getter(name="pullRequestPreviewsEnabled")
     def pull_request_previews_enabled(self) -> Optional['WebServiceDetailsOutputPullRequestPreviewsEnabled']:
         """
-        Defaults to "no"
+        This field has been deprecated. previews.generation should be used in its place.
         """
         return pulumi.get(self, "pull_request_previews_enabled")
 

@@ -32,6 +32,7 @@ __all__ = [
     'JobStatus',
     'Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus',
     'Plan',
+    'PreviewsGeneration',
     'PrivateServiceDetailsCreateEnv',
     'PrivateServiceDetailsCreatePlan',
     'PrivateServiceDetailsCreatePullRequestPreviewsEnabled',
@@ -98,7 +99,7 @@ class BackgroundWorkerDetailsCreatePlan(str, Enum):
 
 class BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled(str, Enum):
     """
-    Defaults to "no"
+    This field has been deprecated. previews.generation should be used in its place.
     """
     YES = "yes"
     NO = "no"
@@ -166,7 +167,7 @@ class BackgroundWorkerDetailsOutputPlan(str, Enum):
 
 class BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled(str, Enum):
     """
-    Defaults to "no"
+    This field has been deprecated. previews.generation should be used in its place.
     """
     YES = "yes"
     NO = "no"
@@ -358,6 +359,15 @@ class Plan(str, Enum):
     CUSTOM = "custom"
 
 
+class PreviewsGeneration(str, Enum):
+    """
+    Defaults to "off"
+    """
+    OFF = "off"
+    MANUAL = "manual"
+    AUTOMATIC = "automatic"
+
+
 class PrivateServiceDetailsCreateEnv(str, Enum):
     """
     This field has been deprecated, runtime should be used in its place.
@@ -386,7 +396,7 @@ class PrivateServiceDetailsCreatePlan(str, Enum):
 
 class PrivateServiceDetailsCreatePullRequestPreviewsEnabled(str, Enum):
     """
-    Defaults to "no"
+    This field has been deprecated. previews.generation should be used in its place.
     """
     YES = "yes"
     NO = "no"
@@ -454,7 +464,7 @@ class PrivateServiceDetailsOutputPlan(str, Enum):
 
 class PrivateServiceDetailsOutputPullRequestPreviewsEnabled(str, Enum):
     """
-    Defaults to "no"
+    This field has been deprecated. previews.generation should be used in its place.
     """
     YES = "yes"
     NO = "no"
@@ -479,6 +489,7 @@ class RegistryCredentialRegistry(str, Enum):
     GITLAB = "GITLAB"
     DOCKER = "DOCKER"
     GOOGLE_ARTIFACT = "GOOGLE_ARTIFACT"
+    AWS_ECR = "AWS_ECR"
 
 
 class RouteCreateType(str, Enum):
@@ -527,7 +538,7 @@ class ServiceSuspendersItem(str, Enum):
 
 class StaticSiteDetailsCreatePullRequestPreviewsEnabled(str, Enum):
     """
-    Defaults to "no"
+    This field has been deprecated. previews.generation should be used in its place.
     """
     YES = "yes"
     NO = "no"
@@ -540,7 +551,7 @@ class StaticSiteDetailsOutputBuildPlan(str, Enum):
 
 class StaticSiteDetailsOutputPullRequestPreviewsEnabled(str, Enum):
     """
-    Defaults to "no"
+    This field has been deprecated. previews.generation should be used in its place.
     """
     YES = "yes"
     NO = "no"
@@ -605,7 +616,7 @@ class WebServiceDetailsCreatePlan(str, Enum):
 
 class WebServiceDetailsCreatePullRequestPreviewsEnabled(str, Enum):
     """
-    Defaults to "no"
+    This field has been deprecated. previews.generation should be used in its place.
     """
     YES = "yes"
     NO = "no"
@@ -673,7 +684,7 @@ class WebServiceDetailsOutputPlan(str, Enum):
 
 class WebServiceDetailsOutputPullRequestPreviewsEnabled(str, Enum):
     """
-    Defaults to "no"
+    This field has been deprecated. previews.generation should be used in its place.
     """
     YES = "yes"
     NO = "no"

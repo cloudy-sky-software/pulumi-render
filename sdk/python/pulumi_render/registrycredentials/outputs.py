@@ -25,16 +25,19 @@ class RegistryCredential(dict):
                  id: str,
                  name: str,
                  registry: 'RegistryCredentialRegistry',
+                 updated_at: str,
                  username: str):
         """
         :param str id: Unique identifier for this credential
         :param str name: Descriptive name for this credential
         :param 'RegistryCredentialRegistry' registry: The registry to use this credential with
+        :param str updated_at: Last updated time for the credential
         :param str username: The username associated with the credential
         """
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "registry", registry)
+        pulumi.set(__self__, "updated_at", updated_at)
         pulumi.set(__self__, "username", username)
 
     @property
@@ -60,6 +63,14 @@ class RegistryCredential(dict):
         The registry to use this credential with
         """
         return pulumi.get(self, "registry")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        Last updated time for the credential
+        """
+        return pulumi.get(self, "updated_at")
 
     @property
     @pulumi.getter

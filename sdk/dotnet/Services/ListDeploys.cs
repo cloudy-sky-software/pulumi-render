@@ -51,10 +51,10 @@ namespace Pulumi.Render.Services
     [OutputType]
     public sealed class ListDeploysResult
     {
-        public readonly ImmutableArray<Outputs.ListDeploysItemProperties> Items;
+        public readonly ImmutableArray<Outputs.DeployWithCursor> Items;
 
         [OutputConstructor]
-        private ListDeploysResult(ImmutableArray<Outputs.ListDeploysItemProperties> items)
+        private ListDeploysResult(ImmutableArray<Outputs.DeployWithCursor> items)
         {
             Items = items;
         }

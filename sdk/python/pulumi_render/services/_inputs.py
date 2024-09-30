@@ -36,6 +36,10 @@ __all__ = [
     'HeaderInputArgsDict',
     'ImageArgs',
     'ImageArgsDict',
+    'MaintenanceModeArgs',
+    'MaintenanceModeArgsDict',
+    'PreviewsArgs',
+    'PreviewsArgsDict',
     'PrivateServiceDetailsCreateArgs',
     'PrivateServiceDetailsCreateArgsDict',
     'RegistryCredentialArgs',
@@ -88,9 +92,10 @@ if not MYPY:
         Defaults to "starter"
         """
         pre_deploy_command: NotRequired[pulumi.Input[str]]
+        previews: NotRequired[pulumi.Input['PreviewsArgsDict']]
         pull_request_previews_enabled: NotRequired[pulumi.Input['BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled']]
         """
-        Defaults to "no"
+        This field has been deprecated. previews.generation should be used in its place.
         """
         region: NotRequired[pulumi.Input['BackgroundWorkerDetailsCreateRegion']]
         """
@@ -111,6 +116,7 @@ class BackgroundWorkerDetailsCreateArgs:
                  num_instances: Optional[pulumi.Input[int]] = None,
                  plan: Optional[pulumi.Input['BackgroundWorkerDetailsCreatePlan']] = None,
                  pre_deploy_command: Optional[pulumi.Input[str]] = None,
+                 previews: Optional[pulumi.Input['PreviewsArgs']] = None,
                  pull_request_previews_enabled: Optional[pulumi.Input['BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled']] = None,
                  region: Optional[pulumi.Input['BackgroundWorkerDetailsCreateRegion']] = None):
         """
@@ -119,7 +125,7 @@ class BackgroundWorkerDetailsCreateArgs:
         :param pulumi.Input[int] max_shutdown_delay_seconds: The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
         :param pulumi.Input[int] num_instances: Defaults to 1
         :param pulumi.Input['BackgroundWorkerDetailsCreatePlan'] plan: Defaults to "starter"
-        :param pulumi.Input['BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled'] pull_request_previews_enabled: Defaults to "no"
+        :param pulumi.Input['BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled'] pull_request_previews_enabled: This field has been deprecated. previews.generation should be used in its place.
         :param pulumi.Input['BackgroundWorkerDetailsCreateRegion'] region: Defaults to "oregon"
         """
         pulumi.set(__self__, "runtime", runtime)
@@ -145,6 +151,8 @@ class BackgroundWorkerDetailsCreateArgs:
             pulumi.set(__self__, "plan", plan)
         if pre_deploy_command is not None:
             pulumi.set(__self__, "pre_deploy_command", pre_deploy_command)
+        if previews is not None:
+            pulumi.set(__self__, "previews", previews)
         if pull_request_previews_enabled is None:
             pull_request_previews_enabled = 'no'
         if pull_request_previews_enabled is not None:
@@ -251,10 +259,19 @@ class BackgroundWorkerDetailsCreateArgs:
         pulumi.set(self, "pre_deploy_command", value)
 
     @property
+    @pulumi.getter
+    def previews(self) -> Optional[pulumi.Input['PreviewsArgs']]:
+        return pulumi.get(self, "previews")
+
+    @previews.setter
+    def previews(self, value: Optional[pulumi.Input['PreviewsArgs']]):
+        pulumi.set(self, "previews", value)
+
+    @property
     @pulumi.getter(name="pullRequestPreviewsEnabled")
     def pull_request_previews_enabled(self) -> Optional[pulumi.Input['BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled']]:
         """
-        Defaults to "no"
+        This field has been deprecated. previews.generation should be used in its place.
         """
         return pulumi.get(self, "pull_request_previews_enabled")
 
@@ -895,6 +912,83 @@ class ImageArgs:
 
 
 if not MYPY:
+    class MaintenanceModeArgsDict(TypedDict):
+        enabled: pulumi.Input[bool]
+        uri: pulumi.Input[str]
+        """
+        The page to be served when [maintenance mode](https://docs.render.com/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
+        """
+elif False:
+    MaintenanceModeArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class MaintenanceModeArgs:
+    def __init__(__self__, *,
+                 enabled: pulumi.Input[bool],
+                 uri: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] uri: The page to be served when [maintenance mode](https://docs.render.com/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "uri", uri)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[bool]:
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter
+    def uri(self) -> pulumi.Input[str]:
+        """
+        The page to be served when [maintenance mode](https://docs.render.com/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
+        """
+        return pulumi.get(self, "uri")
+
+    @uri.setter
+    def uri(self, value: pulumi.Input[str]):
+        pulumi.set(self, "uri", value)
+
+
+if not MYPY:
+    class PreviewsArgsDict(TypedDict):
+        generation: NotRequired[pulumi.Input['PreviewsGeneration']]
+        """
+        Defaults to "off"
+        """
+elif False:
+    PreviewsArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class PreviewsArgs:
+    def __init__(__self__, *,
+                 generation: Optional[pulumi.Input['PreviewsGeneration']] = None):
+        """
+        :param pulumi.Input['PreviewsGeneration'] generation: Defaults to "off"
+        """
+        if generation is None:
+            generation = 'off'
+        if generation is not None:
+            pulumi.set(__self__, "generation", generation)
+
+    @property
+    @pulumi.getter
+    def generation(self) -> Optional[pulumi.Input['PreviewsGeneration']]:
+        """
+        Defaults to "off"
+        """
+        return pulumi.get(self, "generation")
+
+    @generation.setter
+    def generation(self, value: Optional[pulumi.Input['PreviewsGeneration']]):
+        pulumi.set(self, "generation", value)
+
+
+if not MYPY:
     class PrivateServiceDetailsCreateArgsDict(TypedDict):
         runtime: pulumi.Input['PrivateServiceDetailsCreateRuntime']
         """
@@ -920,9 +1014,10 @@ if not MYPY:
         Defaults to "starter"
         """
         pre_deploy_command: NotRequired[pulumi.Input[str]]
+        previews: NotRequired[pulumi.Input['PreviewsArgsDict']]
         pull_request_previews_enabled: NotRequired[pulumi.Input['PrivateServiceDetailsCreatePullRequestPreviewsEnabled']]
         """
-        Defaults to "no"
+        This field has been deprecated. previews.generation should be used in its place.
         """
         region: NotRequired[pulumi.Input['PrivateServiceDetailsCreateRegion']]
         """
@@ -943,6 +1038,7 @@ class PrivateServiceDetailsCreateArgs:
                  num_instances: Optional[pulumi.Input[int]] = None,
                  plan: Optional[pulumi.Input['PrivateServiceDetailsCreatePlan']] = None,
                  pre_deploy_command: Optional[pulumi.Input[str]] = None,
+                 previews: Optional[pulumi.Input['PreviewsArgs']] = None,
                  pull_request_previews_enabled: Optional[pulumi.Input['PrivateServiceDetailsCreatePullRequestPreviewsEnabled']] = None,
                  region: Optional[pulumi.Input['PrivateServiceDetailsCreateRegion']] = None):
         """
@@ -951,7 +1047,7 @@ class PrivateServiceDetailsCreateArgs:
         :param pulumi.Input[int] max_shutdown_delay_seconds: The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
         :param pulumi.Input[int] num_instances: Defaults to 1
         :param pulumi.Input['PrivateServiceDetailsCreatePlan'] plan: Defaults to "starter"
-        :param pulumi.Input['PrivateServiceDetailsCreatePullRequestPreviewsEnabled'] pull_request_previews_enabled: Defaults to "no"
+        :param pulumi.Input['PrivateServiceDetailsCreatePullRequestPreviewsEnabled'] pull_request_previews_enabled: This field has been deprecated. previews.generation should be used in its place.
         :param pulumi.Input['PrivateServiceDetailsCreateRegion'] region: Defaults to "oregon"
         """
         pulumi.set(__self__, "runtime", runtime)
@@ -977,6 +1073,8 @@ class PrivateServiceDetailsCreateArgs:
             pulumi.set(__self__, "plan", plan)
         if pre_deploy_command is not None:
             pulumi.set(__self__, "pre_deploy_command", pre_deploy_command)
+        if previews is not None:
+            pulumi.set(__self__, "previews", previews)
         if pull_request_previews_enabled is None:
             pull_request_previews_enabled = 'no'
         if pull_request_previews_enabled is not None:
@@ -1083,10 +1181,19 @@ class PrivateServiceDetailsCreateArgs:
         pulumi.set(self, "pre_deploy_command", value)
 
     @property
+    @pulumi.getter
+    def previews(self) -> Optional[pulumi.Input['PreviewsArgs']]:
+        return pulumi.get(self, "previews")
+
+    @previews.setter
+    def previews(self, value: Optional[pulumi.Input['PreviewsArgs']]):
+        pulumi.set(self, "previews", value)
+
+    @property
     @pulumi.getter(name="pullRequestPreviewsEnabled")
     def pull_request_previews_enabled(self) -> Optional[pulumi.Input['PrivateServiceDetailsCreatePullRequestPreviewsEnabled']]:
         """
-        Defaults to "no"
+        This field has been deprecated. previews.generation should be used in its place.
         """
         return pulumi.get(self, "pull_request_previews_enabled")
 
@@ -1121,6 +1228,10 @@ if not MYPY:
         """
         The registry to use this credential with
         """
+        updated_at: pulumi.Input[str]
+        """
+        Last updated time for the credential
+        """
         username: pulumi.Input[str]
         """
         The username associated with the credential
@@ -1134,16 +1245,19 @@ class RegistryCredentialArgs:
                  id: pulumi.Input[str],
                  name: pulumi.Input[str],
                  registry: pulumi.Input['RegistryCredentialRegistry'],
+                 updated_at: pulumi.Input[str],
                  username: pulumi.Input[str]):
         """
         :param pulumi.Input[str] id: Unique identifier for this credential
         :param pulumi.Input[str] name: Descriptive name for this credential
         :param pulumi.Input['RegistryCredentialRegistry'] registry: The registry to use this credential with
+        :param pulumi.Input[str] updated_at: Last updated time for the credential
         :param pulumi.Input[str] username: The username associated with the credential
         """
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "registry", registry)
+        pulumi.set(__self__, "updated_at", updated_at)
         pulumi.set(__self__, "username", username)
 
     @property
@@ -1181,6 +1295,18 @@ class RegistryCredentialArgs:
     @registry.setter
     def registry(self, value: pulumi.Input['RegistryCredentialRegistry']):
         pulumi.set(self, "registry", value)
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> pulumi.Input[str]:
+        """
+        Last updated time for the credential
+        """
+        return pulumi.get(self, "updated_at")
+
+    @updated_at.setter
+    def updated_at(self, value: pulumi.Input[str]):
+        pulumi.set(self, "updated_at", value)
 
     @property
     @pulumi.getter
@@ -1357,13 +1483,14 @@ if not MYPY:
     class StaticSiteDetailsCreateArgsDict(TypedDict):
         build_command: NotRequired[pulumi.Input[str]]
         headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['HeaderInputArgsDict']]]]
+        previews: NotRequired[pulumi.Input['PreviewsArgsDict']]
         publish_path: NotRequired[pulumi.Input[str]]
         """
         Defaults to "public"
         """
         pull_request_previews_enabled: NotRequired[pulumi.Input['StaticSiteDetailsCreatePullRequestPreviewsEnabled']]
         """
-        Defaults to "no"
+        This field has been deprecated. previews.generation should be used in its place.
         """
         routes: NotRequired[pulumi.Input[Sequence[pulumi.Input['RouteCreateArgsDict']]]]
 elif False:
@@ -1374,17 +1501,20 @@ class StaticSiteDetailsCreateArgs:
     def __init__(__self__, *,
                  build_command: Optional[pulumi.Input[str]] = None,
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input['HeaderInputArgs']]]] = None,
+                 previews: Optional[pulumi.Input['PreviewsArgs']] = None,
                  publish_path: Optional[pulumi.Input[str]] = None,
                  pull_request_previews_enabled: Optional[pulumi.Input['StaticSiteDetailsCreatePullRequestPreviewsEnabled']] = None,
                  routes: Optional[pulumi.Input[Sequence[pulumi.Input['RouteCreateArgs']]]] = None):
         """
         :param pulumi.Input[str] publish_path: Defaults to "public"
-        :param pulumi.Input['StaticSiteDetailsCreatePullRequestPreviewsEnabled'] pull_request_previews_enabled: Defaults to "no"
+        :param pulumi.Input['StaticSiteDetailsCreatePullRequestPreviewsEnabled'] pull_request_previews_enabled: This field has been deprecated. previews.generation should be used in its place.
         """
         if build_command is not None:
             pulumi.set(__self__, "build_command", build_command)
         if headers is not None:
             pulumi.set(__self__, "headers", headers)
+        if previews is not None:
+            pulumi.set(__self__, "previews", previews)
         if publish_path is not None:
             pulumi.set(__self__, "publish_path", publish_path)
         if pull_request_previews_enabled is None:
@@ -1413,6 +1543,15 @@ class StaticSiteDetailsCreateArgs:
         pulumi.set(self, "headers", value)
 
     @property
+    @pulumi.getter
+    def previews(self) -> Optional[pulumi.Input['PreviewsArgs']]:
+        return pulumi.get(self, "previews")
+
+    @previews.setter
+    def previews(self, value: Optional[pulumi.Input['PreviewsArgs']]):
+        pulumi.set(self, "previews", value)
+
+    @property
     @pulumi.getter(name="publishPath")
     def publish_path(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1428,7 +1567,7 @@ class StaticSiteDetailsCreateArgs:
     @pulumi.getter(name="pullRequestPreviewsEnabled")
     def pull_request_previews_enabled(self) -> Optional[pulumi.Input['StaticSiteDetailsCreatePullRequestPreviewsEnabled']]:
         """
-        Defaults to "no"
+        This field has been deprecated. previews.generation should be used in its place.
         """
         return pulumi.get(self, "pull_request_previews_enabled")
 
@@ -1460,6 +1599,7 @@ if not MYPY:
         """
         env_specific_details: NotRequired[pulumi.Input['EnvSpecificDetailsCreateArgsDict']]
         health_check_path: NotRequired[pulumi.Input[str]]
+        maintenance_mode: NotRequired[pulumi.Input['MaintenanceModeArgsDict']]
         max_shutdown_delay_seconds: NotRequired[pulumi.Input[int]]
         """
         The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
@@ -1473,9 +1613,10 @@ if not MYPY:
         Defaults to "starter"
         """
         pre_deploy_command: NotRequired[pulumi.Input[str]]
+        previews: NotRequired[pulumi.Input['PreviewsArgsDict']]
         pull_request_previews_enabled: NotRequired[pulumi.Input['WebServiceDetailsCreatePullRequestPreviewsEnabled']]
         """
-        Defaults to "no"
+        This field has been deprecated. previews.generation should be used in its place.
         """
         region: NotRequired[pulumi.Input['WebServiceDetailsCreateRegion']]
         """
@@ -1493,10 +1634,12 @@ class WebServiceDetailsCreateArgs:
                  env: Optional[pulumi.Input['WebServiceDetailsCreateEnv']] = None,
                  env_specific_details: Optional[pulumi.Input['EnvSpecificDetailsCreateArgs']] = None,
                  health_check_path: Optional[pulumi.Input[str]] = None,
+                 maintenance_mode: Optional[pulumi.Input['MaintenanceModeArgs']] = None,
                  max_shutdown_delay_seconds: Optional[pulumi.Input[int]] = None,
                  num_instances: Optional[pulumi.Input[int]] = None,
                  plan: Optional[pulumi.Input['WebServiceDetailsCreatePlan']] = None,
                  pre_deploy_command: Optional[pulumi.Input[str]] = None,
+                 previews: Optional[pulumi.Input['PreviewsArgs']] = None,
                  pull_request_previews_enabled: Optional[pulumi.Input['WebServiceDetailsCreatePullRequestPreviewsEnabled']] = None,
                  region: Optional[pulumi.Input['WebServiceDetailsCreateRegion']] = None):
         """
@@ -1505,7 +1648,7 @@ class WebServiceDetailsCreateArgs:
         :param pulumi.Input[int] max_shutdown_delay_seconds: The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
         :param pulumi.Input[int] num_instances: Defaults to 1
         :param pulumi.Input['WebServiceDetailsCreatePlan'] plan: Defaults to "starter"
-        :param pulumi.Input['WebServiceDetailsCreatePullRequestPreviewsEnabled'] pull_request_previews_enabled: Defaults to "no"
+        :param pulumi.Input['WebServiceDetailsCreatePullRequestPreviewsEnabled'] pull_request_previews_enabled: This field has been deprecated. previews.generation should be used in its place.
         :param pulumi.Input['WebServiceDetailsCreateRegion'] region: Defaults to "oregon"
         """
         pulumi.set(__self__, "runtime", runtime)
@@ -1519,6 +1662,8 @@ class WebServiceDetailsCreateArgs:
             pulumi.set(__self__, "env_specific_details", env_specific_details)
         if health_check_path is not None:
             pulumi.set(__self__, "health_check_path", health_check_path)
+        if maintenance_mode is not None:
+            pulumi.set(__self__, "maintenance_mode", maintenance_mode)
         if max_shutdown_delay_seconds is None:
             max_shutdown_delay_seconds = 30
         if max_shutdown_delay_seconds is not None:
@@ -1531,6 +1676,8 @@ class WebServiceDetailsCreateArgs:
             pulumi.set(__self__, "plan", plan)
         if pre_deploy_command is not None:
             pulumi.set(__self__, "pre_deploy_command", pre_deploy_command)
+        if previews is not None:
+            pulumi.set(__self__, "previews", previews)
         if pull_request_previews_enabled is None:
             pull_request_previews_enabled = 'no'
         if pull_request_previews_enabled is not None:
@@ -1601,6 +1748,15 @@ class WebServiceDetailsCreateArgs:
         pulumi.set(self, "health_check_path", value)
 
     @property
+    @pulumi.getter(name="maintenanceMode")
+    def maintenance_mode(self) -> Optional[pulumi.Input['MaintenanceModeArgs']]:
+        return pulumi.get(self, "maintenance_mode")
+
+    @maintenance_mode.setter
+    def maintenance_mode(self, value: Optional[pulumi.Input['MaintenanceModeArgs']]):
+        pulumi.set(self, "maintenance_mode", value)
+
+    @property
     @pulumi.getter(name="maxShutdownDelaySeconds")
     def max_shutdown_delay_seconds(self) -> Optional[pulumi.Input[int]]:
         """
@@ -1646,10 +1802,19 @@ class WebServiceDetailsCreateArgs:
         pulumi.set(self, "pre_deploy_command", value)
 
     @property
+    @pulumi.getter
+    def previews(self) -> Optional[pulumi.Input['PreviewsArgs']]:
+        return pulumi.get(self, "previews")
+
+    @previews.setter
+    def previews(self, value: Optional[pulumi.Input['PreviewsArgs']]):
+        pulumi.set(self, "previews", value)
+
+    @property
     @pulumi.getter(name="pullRequestPreviewsEnabled")
     def pull_request_previews_enabled(self) -> Optional[pulumi.Input['WebServiceDetailsCreatePullRequestPreviewsEnabled']]:
         """
-        Defaults to "no"
+        This field has been deprecated. previews.generation should be used in its place.
         """
         return pulumi.get(self, "pull_request_previews_enabled")
 

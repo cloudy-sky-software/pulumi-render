@@ -31,6 +31,12 @@ namespace Pulumi.Render.Services.Inputs
         public Input<Pulumi.Render.Services.RegistryCredentialRegistry> Registry { get; set; } = null!;
 
         /// <summary>
+        /// Last updated time for the credential
+        /// </summary>
+        [Input("updatedAt", required: true)]
+        public Input<string> UpdatedAt { get; set; } = null!;
+
+        /// <summary>
         /// The username associated with the credential
         /// </summary>
         [Input("username", required: true)]

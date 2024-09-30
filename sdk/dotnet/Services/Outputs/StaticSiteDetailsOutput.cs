@@ -16,9 +16,10 @@ namespace Pulumi.Render.Services.Outputs
         public readonly string BuildCommand;
         public readonly Pulumi.Render.Services.StaticSiteDetailsOutputBuildPlan BuildPlan;
         public readonly Outputs.Resource? ParentServer;
+        public readonly Outputs.Previews? Previews;
         public readonly string PublishPath;
         /// <summary>
-        /// Defaults to "no"
+        /// This field has been deprecated. previews.generation should be used in its place.
         /// </summary>
         public readonly Pulumi.Render.Services.StaticSiteDetailsOutputPullRequestPreviewsEnabled? PullRequestPreviewsEnabled;
         public readonly string Url;
@@ -31,6 +32,8 @@ namespace Pulumi.Render.Services.Outputs
 
             Outputs.Resource? parentServer,
 
+            Outputs.Previews? previews,
+
             string publishPath,
 
             Pulumi.Render.Services.StaticSiteDetailsOutputPullRequestPreviewsEnabled? pullRequestPreviewsEnabled,
@@ -40,6 +43,7 @@ namespace Pulumi.Render.Services.Outputs
             BuildCommand = buildCommand;
             BuildPlan = buildPlan;
             ParentServer = parentServer;
+            Previews = previews;
             PublishPath = publishPath;
             PullRequestPreviewsEnabled = pullRequestPreviewsEnabled;
             Url = url;

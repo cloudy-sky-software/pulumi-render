@@ -23,6 +23,9 @@ namespace Pulumi.Render.Services.Inputs
             set => _headers = value;
         }
 
+        [Input("previews")]
+        public Input<Inputs.PreviewsArgs>? Previews { get; set; }
+
         /// <summary>
         /// Defaults to "public"
         /// </summary>
@@ -30,7 +33,7 @@ namespace Pulumi.Render.Services.Inputs
         public Input<string>? PublishPath { get; set; }
 
         /// <summary>
-        /// Defaults to "no"
+        /// This field has been deprecated. previews.generation should be used in its place.
         /// </summary>
         [Input("pullRequestPreviewsEnabled")]
         public Input<Pulumi.Render.Services.StaticSiteDetailsCreatePullRequestPreviewsEnabled>? PullRequestPreviewsEnabled { get; set; }

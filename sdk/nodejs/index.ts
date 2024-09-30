@@ -18,6 +18,7 @@ import * as cronjobs from "./cronjobs";
 import * as disks from "./disks";
 import * as envgroups from "./envgroups";
 import * as environments from "./environments";
+import * as logs from "./logs";
 import * as metrics from "./metrics";
 import * as notificationsettings from "./notificationsettings";
 import * as owners from "./owners";
@@ -35,6 +36,7 @@ export {
     disks,
     envgroups,
     environments,
+    logs,
     metrics,
     notificationsettings,
     owners,

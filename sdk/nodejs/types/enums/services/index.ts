@@ -38,7 +38,7 @@ export const BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled = {
 } as const;
 
 /**
- * Defaults to "no"
+ * This field has been deprecated. previews.generation should be used in its place.
  */
 export type BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled = (typeof BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled)[keyof typeof BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled];
 
@@ -118,7 +118,7 @@ export const BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled = {
 } as const;
 
 /**
- * Defaults to "no"
+ * This field has been deprecated. previews.generation should be used in its place.
  */
 export type BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled = (typeof BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled)[keyof typeof BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled];
 
@@ -344,6 +344,17 @@ export const Plan = {
  */
 export type Plan = (typeof Plan)[keyof typeof Plan];
 
+export const PreviewsGeneration = {
+    Off: "off",
+    Manual: "manual",
+    Automatic: "automatic",
+} as const;
+
+/**
+ * Defaults to "off"
+ */
+export type PreviewsGeneration = (typeof PreviewsGeneration)[keyof typeof PreviewsGeneration];
+
 export const PrivateServiceDetailsCreateEnv = {
     Docker: "docker",
     Elixir: "elixir",
@@ -380,7 +391,7 @@ export const PrivateServiceDetailsCreatePullRequestPreviewsEnabled = {
 } as const;
 
 /**
- * Defaults to "no"
+ * This field has been deprecated. previews.generation should be used in its place.
  */
 export type PrivateServiceDetailsCreatePullRequestPreviewsEnabled = (typeof PrivateServiceDetailsCreatePullRequestPreviewsEnabled)[keyof typeof PrivateServiceDetailsCreatePullRequestPreviewsEnabled];
 
@@ -460,7 +471,7 @@ export const PrivateServiceDetailsOutputPullRequestPreviewsEnabled = {
 } as const;
 
 /**
- * Defaults to "no"
+ * This field has been deprecated. previews.generation should be used in its place.
  */
 export type PrivateServiceDetailsOutputPullRequestPreviewsEnabled = (typeof PrivateServiceDetailsOutputPullRequestPreviewsEnabled)[keyof typeof PrivateServiceDetailsOutputPullRequestPreviewsEnabled];
 
@@ -482,6 +493,7 @@ export const RegistryCredentialRegistry = {
     Gitlab: "GITLAB",
     Docker: "DOCKER",
     GoogleArtifact: "GOOGLE_ARTIFACT",
+    AwsEcr: "AWS_ECR",
 } as const;
 
 /**
@@ -555,7 +567,7 @@ export const StaticSiteDetailsCreatePullRequestPreviewsEnabled = {
 } as const;
 
 /**
- * Defaults to "no"
+ * This field has been deprecated. previews.generation should be used in its place.
  */
 export type StaticSiteDetailsCreatePullRequestPreviewsEnabled = (typeof StaticSiteDetailsCreatePullRequestPreviewsEnabled)[keyof typeof StaticSiteDetailsCreatePullRequestPreviewsEnabled];
 
@@ -572,7 +584,7 @@ export const StaticSiteDetailsOutputPullRequestPreviewsEnabled = {
 } as const;
 
 /**
- * Defaults to "no"
+ * This field has been deprecated. previews.generation should be used in its place.
  */
 export type StaticSiteDetailsOutputPullRequestPreviewsEnabled = (typeof StaticSiteDetailsOutputPullRequestPreviewsEnabled)[keyof typeof StaticSiteDetailsOutputPullRequestPreviewsEnabled];
 
@@ -649,7 +661,7 @@ export const WebServiceDetailsCreatePullRequestPreviewsEnabled = {
 } as const;
 
 /**
- * Defaults to "no"
+ * This field has been deprecated. previews.generation should be used in its place.
  */
 export type WebServiceDetailsCreatePullRequestPreviewsEnabled = (typeof WebServiceDetailsCreatePullRequestPreviewsEnabled)[keyof typeof WebServiceDetailsCreatePullRequestPreviewsEnabled];
 
@@ -729,7 +741,7 @@ export const WebServiceDetailsOutputPullRequestPreviewsEnabled = {
 } as const;
 
 /**
- * Defaults to "no"
+ * This field has been deprecated. previews.generation should be used in its place.
  */
 export type WebServiceDetailsOutputPullRequestPreviewsEnabled = (typeof WebServiceDetailsOutputPullRequestPreviewsEnabled)[keyof typeof WebServiceDetailsOutputPullRequestPreviewsEnabled];
 

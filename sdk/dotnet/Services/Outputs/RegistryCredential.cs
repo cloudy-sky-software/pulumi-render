@@ -26,6 +26,10 @@ namespace Pulumi.Render.Services.Outputs
         /// </summary>
         public readonly Pulumi.Render.Services.RegistryCredentialRegistry Registry;
         /// <summary>
+        /// Last updated time for the credential
+        /// </summary>
+        public readonly string UpdatedAt;
+        /// <summary>
         /// The username associated with the credential
         /// </summary>
         public readonly string Username;
@@ -38,11 +42,14 @@ namespace Pulumi.Render.Services.Outputs
 
             Pulumi.Render.Services.RegistryCredentialRegistry registry,
 
+            string updatedAt,
+
             string username)
         {
             Id = id;
             Name = name;
             Registry = registry;
+            UpdatedAt = updatedAt;
             Username = username;
         }
     }

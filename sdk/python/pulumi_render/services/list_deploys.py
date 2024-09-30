@@ -32,7 +32,7 @@ class ListDeploysResult:
 
     @property
     @pulumi.getter
-    def items(self) -> Sequence['outputs.ListDeploysItemProperties']:
+    def items(self) -> Sequence['outputs.DeployWithCursor']:
         return pulumi.get(self, "items")
 
 

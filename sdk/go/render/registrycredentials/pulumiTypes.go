@@ -20,6 +20,8 @@ type RegistryCredentialType struct {
 	Name string `pulumi:"name"`
 	// The registry to use this credential with
 	Registry RegistryCredentialRegistry `pulumi:"registry"`
+	// Last updated time for the credential
+	UpdatedAt string `pulumi:"updatedAt"`
 	// The username associated with the credential
 	Username string `pulumi:"username"`
 }
@@ -51,6 +53,11 @@ func (o RegistryCredentialTypeOutput) Name() pulumi.StringOutput {
 // The registry to use this credential with
 func (o RegistryCredentialTypeOutput) Registry() RegistryCredentialRegistryOutput {
 	return o.ApplyT(func(v RegistryCredentialType) RegistryCredentialRegistry { return v.Registry }).(RegistryCredentialRegistryOutput)
+}
+
+// Last updated time for the credential
+func (o RegistryCredentialTypeOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v RegistryCredentialType) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
 // The username associated with the credential

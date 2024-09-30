@@ -22,6 +22,7 @@ namespace Pulumi.Render.Services.Outputs
         public readonly Pulumi.Render.Services.WebServiceDetailsOutputEnv Env;
         public readonly Outputs.EnvSpecificDetails EnvSpecificDetails;
         public readonly string HealthCheckPath;
+        public readonly Outputs.MaintenanceMode? MaintenanceMode;
         /// <summary>
         /// The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
         /// </summary>
@@ -36,8 +37,9 @@ namespace Pulumi.Render.Services.Outputs
         /// The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
         /// </summary>
         public readonly Pulumi.Render.Services.WebServiceDetailsOutputPlan Plan;
+        public readonly Outputs.Previews? Previews;
         /// <summary>
-        /// Defaults to "no"
+        /// This field has been deprecated. previews.generation should be used in its place.
         /// </summary>
         public readonly Pulumi.Render.Services.WebServiceDetailsOutputPullRequestPreviewsEnabled? PullRequestPreviewsEnabled;
         /// <summary>
@@ -60,6 +62,8 @@ namespace Pulumi.Render.Services.Outputs
 
             string healthCheckPath,
 
+            Outputs.MaintenanceMode? maintenanceMode,
+
             int? maxShutdownDelaySeconds,
 
             int numInstances,
@@ -69,6 +73,8 @@ namespace Pulumi.Render.Services.Outputs
             Outputs.Resource? parentServer,
 
             Pulumi.Render.Services.WebServiceDetailsOutputPlan plan,
+
+            Outputs.Previews? previews,
 
             Pulumi.Render.Services.WebServiceDetailsOutputPullRequestPreviewsEnabled? pullRequestPreviewsEnabled,
 
@@ -82,11 +88,13 @@ namespace Pulumi.Render.Services.Outputs
             Env = env;
             EnvSpecificDetails = envSpecificDetails;
             HealthCheckPath = healthCheckPath;
+            MaintenanceMode = maintenanceMode;
             MaxShutdownDelaySeconds = maxShutdownDelaySeconds;
             NumInstances = numInstances;
             OpenPorts = openPorts;
             ParentServer = parentServer;
             Plan = plan;
+            Previews = previews;
             PullRequestPreviewsEnabled = pullRequestPreviewsEnabled;
             Region = region;
             Url = url;

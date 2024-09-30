@@ -22,6 +22,7 @@
                 "disks": "Disks",
                 "env-groups": "EnvGroups",
                 "environments": "Environments",
+                "logs": "Logs",
                 "metrics": "Metrics",
                 "notification-settings": "NotificationSettings",
                 "owners": "Owners",
@@ -758,6 +759,102 @@
                 }
             ]
         },
+        "render:logs:GetOwnerLogStreamProperties": {
+            "description": "Owner log stream settings",
+            "properties": {
+                "endpoint": {
+                    "type": "string",
+                    "description": "The endpoint to stream logs to."
+                },
+                "ownerId": {
+                    "type": "string",
+                    "description": "The ID of the owner."
+                },
+                "preview": {
+                    "$ref": "#/types/render:logs:GetOwnerLogStreamPropertiesPreview",
+                    "description": "Whether to send logs or drop them."
+                }
+            },
+            "type": "object"
+        },
+        "render:logs:GetOwnerLogStreamPropertiesPreview": {
+            "description": "Whether to send logs or drop them.",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Send",
+                    "value": "send"
+                },
+                {
+                    "name": "Drop",
+                    "value": "drop"
+                }
+            ]
+        },
+        "render:logs:GetResourceLogStreamProperties": {
+            "description": "Resource log stream overrides",
+            "properties": {
+                "endpoint": {
+                    "type": "string",
+                    "description": "The endpoint to stream logs to. Must be present if setting is send. Cannot be present if setting is drop."
+                },
+                "resourceId": {
+                    "type": "string",
+                    "description": "The ID of the resource."
+                },
+                "setting": {
+                    "$ref": "#/types/render:logs:GetResourceLogStreamPropertiesSetting",
+                    "description": "Whether to send logs or drop them."
+                }
+            },
+            "type": "object"
+        },
+        "render:logs:GetResourceLogStreamPropertiesSetting": {
+            "description": "Whether to send logs or drop them.",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Send",
+                    "value": "send"
+                },
+                {
+                    "name": "Drop",
+                    "value": "drop"
+                }
+            ]
+        },
+        "render:logs:Paths1logs1streams1resource17BresourceId7Dgetresponses200contentapplication1jsonschemaSetting": {
+            "description": "Whether to send logs or drop them.",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Send",
+                    "value": "send"
+                },
+                {
+                    "name": "Drop",
+                    "value": "drop"
+                }
+            ]
+        },
+        "render:logs:paths1logs1streams1resource17BresourceId7Dgetresponses200contentapplication1jsonschema": {
+            "description": "Resource log stream overrides",
+            "properties": {
+                "endpoint": {
+                    "type": "string",
+                    "description": "The endpoint to stream logs to. Must be present if setting is send. Cannot be present if setting is drop."
+                },
+                "resourceId": {
+                    "type": "string",
+                    "description": "The ID of the resource."
+                },
+                "setting": {
+                    "$ref": "#/types/render:logs:Paths1logs1streams1resource17BresourceId7Dgetresponses200contentapplication1jsonschemaSetting",
+                    "description": "Whether to send logs or drop them."
+                }
+            },
+            "type": "object"
+        },
         "render:metrics:ListActiveConnectionsItemProperties": {
             "description": "A time series data point",
             "properties": {
@@ -1051,17 +1148,6 @@
                 }
             ]
         },
-        "render:owners:ListOwnersItemProperties": {
-            "properties": {
-                "cursor": {
-                    "type": "string"
-                },
-                "owner": {
-                    "$ref": "#/types/render:owners:Owner"
-                }
-            },
-            "type": "object"
-        },
         "render:owners:Owner": {
             "properties": {
                 "email": {
@@ -1101,6 +1187,17 @@
                     "value": "team"
                 }
             ]
+        },
+        "render:owners:OwnerWithCursor": {
+            "properties": {
+                "cursor": {
+                    "type": "string"
+                },
+                "owner": {
+                    "$ref": "#/types/render:owners:Owner"
+                }
+            },
+            "type": "object"
         },
         "render:postgres:CidrBlockAndDescription": {
             "properties": {
@@ -3222,6 +3319,10 @@
                 {
                     "name": "GoogleArtifact",
                     "value": "GOOGLE_ARTIFACT"
+                },
+                {
+                    "name": "AwsEcr",
+                    "value": "AWS_ECR"
                 }
             ]
         },
@@ -3239,6 +3340,10 @@
                     "$ref": "#/types/render:registrycredentials:RegistryCredentialRegistry",
                     "description": "The registry to use this credential with"
                 },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "Last updated time for the credential"
+                },
                 "username": {
                     "type": "string",
                     "description": "The username associated with the credential"
@@ -3249,6 +3354,7 @@
                 "id",
                 "name",
                 "registry",
+                "updatedAt",
                 "username"
             ]
         },
@@ -3271,6 +3377,10 @@
                 {
                     "name": "GoogleArtifact",
                     "value": "GOOGLE_ARTIFACT"
+                },
+                {
+                    "name": "AwsEcr",
+                    "value": "AWS_ECR"
                 }
             ]
         },
@@ -3307,9 +3417,12 @@
                 "preDeployCommand": {
                     "type": "string"
                 },
+                "previews": {
+                    "$ref": "#/types/render:services:Previews"
+                },
                 "pullRequestPreviewsEnabled": {
                     "$ref": "#/types/render:services:BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled",
-                    "description": "Defaults to \"no\"",
+                    "description": "This field has been deprecated. previews.generation should be used in its place.",
                     "default": "no"
                 },
                 "region": {
@@ -3396,7 +3509,7 @@
             ]
         },
         "render:services:BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled": {
-            "description": "Defaults to \"no\"",
+            "description": "This field has been deprecated. previews.generation should be used in its place.",
             "type": "string",
             "enum": [
                 {
@@ -3508,9 +3621,12 @@
                     "$ref": "#/types/render:services:BackgroundWorkerDetailsOutputPlan",
                     "description": "The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type."
                 },
+                "previews": {
+                    "$ref": "#/types/render:services:Previews"
+                },
                 "pullRequestPreviewsEnabled": {
                     "$ref": "#/types/render:services:BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled",
-                    "description": "Defaults to \"no\"",
+                    "description": "This field has been deprecated. previews.generation should be used in its place.",
                     "default": "no"
                 },
                 "region": {
@@ -3627,7 +3743,7 @@
             ]
         },
         "render:services:BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled": {
-            "description": "Defaults to \"no\"",
+            "description": "This field has been deprecated. previews.generation should be used in its place.",
             "type": "string",
             "enum": [
                 {
@@ -4506,6 +4622,17 @@
                 }
             ]
         },
+        "render:services:DeployWithCursor": {
+            "properties": {
+                "cursor": {
+                    "type": "string"
+                },
+                "deploy": {
+                    "$ref": "#/types/render:services:Deploy"
+                }
+            },
+            "type": "object"
+        },
         "render:services:EnvSpecificDetails": {
             "properties": {
                 "buildCommand": {
@@ -5177,17 +5304,6 @@
                 }
             ]
         },
-        "render:services:ListDeploysItemProperties": {
-            "properties": {
-                "cursor": {
-                    "type": "string"
-                },
-                "deploy": {
-                    "$ref": "#/types/render:services:Deploy"
-                }
-            },
-            "type": "object"
-        },
         "render:services:ListJobItemProperties": {
             "properties": {
                 "cursor": {
@@ -5235,6 +5351,22 @@
                 }
             },
             "type": "object"
+        },
+        "render:services:MaintenanceMode": {
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "uri": {
+                    "type": "string",
+                    "description": "The page to be served when [maintenance mode](https://docs.render.com/maintenance-mode) is enabled. When empty, the default maintenance mode page is served."
+                }
+            },
+            "type": "object",
+            "required": [
+                "enabled",
+                "uri"
+            ]
         },
         "render:services:Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus": {
             "type": "string",
@@ -5299,6 +5431,34 @@
                 }
             ]
         },
+        "render:services:Previews": {
+            "properties": {
+                "generation": {
+                    "$ref": "#/types/render:services:PreviewsGeneration",
+                    "description": "Defaults to \"off\"",
+                    "default": "off"
+                }
+            },
+            "type": "object"
+        },
+        "render:services:PreviewsGeneration": {
+            "description": "Defaults to \"off\"",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Off",
+                    "value": "off"
+                },
+                {
+                    "name": "Manual",
+                    "value": "manual"
+                },
+                {
+                    "name": "Automatic",
+                    "value": "automatic"
+                }
+            ]
+        },
         "render:services:PrivateServiceDetailsCreate": {
             "properties": {
                 "autoscaling": {
@@ -5332,9 +5492,12 @@
                 "preDeployCommand": {
                     "type": "string"
                 },
+                "previews": {
+                    "$ref": "#/types/render:services:Previews"
+                },
                 "pullRequestPreviewsEnabled": {
                     "$ref": "#/types/render:services:PrivateServiceDetailsCreatePullRequestPreviewsEnabled",
-                    "description": "Defaults to \"no\"",
+                    "description": "This field has been deprecated. previews.generation should be used in its place.",
                     "default": "no"
                 },
                 "region": {
@@ -5421,7 +5584,7 @@
             ]
         },
         "render:services:PrivateServiceDetailsCreatePullRequestPreviewsEnabled": {
-            "description": "Defaults to \"no\"",
+            "description": "This field has been deprecated. previews.generation should be used in its place.",
             "type": "string",
             "enum": [
                 {
@@ -5539,9 +5702,12 @@
                     "$ref": "#/types/render:services:PrivateServiceDetailsOutputPlan",
                     "description": "The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type."
                 },
+                "previews": {
+                    "$ref": "#/types/render:services:Previews"
+                },
                 "pullRequestPreviewsEnabled": {
                     "$ref": "#/types/render:services:PrivateServiceDetailsOutputPullRequestPreviewsEnabled",
-                    "description": "Defaults to \"no\"",
+                    "description": "This field has been deprecated. previews.generation should be used in its place.",
                     "default": "no"
                 },
                 "region": {
@@ -5663,7 +5829,7 @@
             ]
         },
         "render:services:PrivateServiceDetailsOutputPullRequestPreviewsEnabled": {
-            "description": "Defaults to \"no\"",
+            "description": "This field has been deprecated. previews.generation should be used in its place.",
             "type": "string",
             "enum": [
                 {
@@ -5801,6 +5967,10 @@
                     "$ref": "#/types/render:services:RegistryCredentialRegistry",
                     "description": "The registry to use this credential with"
                 },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "Last updated time for the credential"
+                },
                 "username": {
                     "type": "string",
                     "description": "The username associated with the credential"
@@ -5811,6 +5981,7 @@
                 "id",
                 "name",
                 "registry",
+                "updatedAt",
                 "username"
             ]
         },
@@ -5833,6 +6004,10 @@
                 {
                     "name": "GoogleArtifact",
                     "value": "GOOGLE_ARTIFACT"
+                },
+                {
+                    "name": "AwsEcr",
+                    "value": "AWS_ECR"
                 }
             ]
         },
@@ -6220,13 +6395,16 @@
                         "$ref": "#/types/render:services:HeaderInput"
                     }
                 },
+                "previews": {
+                    "$ref": "#/types/render:services:Previews"
+                },
                 "publishPath": {
                     "type": "string",
                     "description": "Defaults to \"public\""
                 },
                 "pullRequestPreviewsEnabled": {
                     "$ref": "#/types/render:services:StaticSiteDetailsCreatePullRequestPreviewsEnabled",
-                    "description": "Defaults to \"no\"",
+                    "description": "This field has been deprecated. previews.generation should be used in its place.",
                     "default": "no"
                 },
                 "routes": {
@@ -6239,7 +6417,7 @@
             "type": "object"
         },
         "render:services:StaticSiteDetailsCreatePullRequestPreviewsEnabled": {
-            "description": "Defaults to \"no\"",
+            "description": "This field has been deprecated. previews.generation should be used in its place.",
             "type": "string",
             "enum": [
                 {
@@ -6264,12 +6442,15 @@
                 "parentServer": {
                     "$ref": "#/types/render:services:Resource"
                 },
+                "previews": {
+                    "$ref": "#/types/render:services:Previews"
+                },
                 "publishPath": {
                     "type": "string"
                 },
                 "pullRequestPreviewsEnabled": {
                     "$ref": "#/types/render:services:StaticSiteDetailsOutputPullRequestPreviewsEnabled",
-                    "description": "Defaults to \"no\"",
+                    "description": "This field has been deprecated. previews.generation should be used in its place.",
                     "default": "no"
                 },
                 "url": {
@@ -6298,7 +6479,7 @@
             ]
         },
         "render:services:StaticSiteDetailsOutputPullRequestPreviewsEnabled": {
-            "description": "Defaults to \"no\"",
+            "description": "This field has been deprecated. previews.generation should be used in its place.",
             "type": "string",
             "enum": [
                 {
@@ -6517,6 +6698,9 @@
                 "healthCheckPath": {
                     "type": "string"
                 },
+                "maintenanceMode": {
+                    "$ref": "#/types/render:services:MaintenanceMode"
+                },
                 "maxShutdownDelaySeconds": {
                     "type": "integer",
                     "description": "The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.",
@@ -6534,9 +6718,12 @@
                 "preDeployCommand": {
                     "type": "string"
                 },
+                "previews": {
+                    "$ref": "#/types/render:services:Previews"
+                },
                 "pullRequestPreviewsEnabled": {
                     "$ref": "#/types/render:services:WebServiceDetailsCreatePullRequestPreviewsEnabled",
-                    "description": "Defaults to \"no\"",
+                    "description": "This field has been deprecated. previews.generation should be used in its place.",
                     "default": "no"
                 },
                 "region": {
@@ -6623,7 +6810,7 @@
             ]
         },
         "render:services:WebServiceDetailsCreatePullRequestPreviewsEnabled": {
-            "description": "Defaults to \"no\"",
+            "description": "This field has been deprecated. previews.generation should be used in its place.",
             "type": "string",
             "enum": [
                 {
@@ -6722,6 +6909,9 @@
                 "healthCheckPath": {
                     "type": "string"
                 },
+                "maintenanceMode": {
+                    "$ref": "#/types/render:services:MaintenanceMode"
+                },
                 "maxShutdownDelaySeconds": {
                     "type": "integer",
                     "description": "The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.",
@@ -6744,9 +6934,12 @@
                     "$ref": "#/types/render:services:WebServiceDetailsOutputPlan",
                     "description": "The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type."
                 },
+                "previews": {
+                    "$ref": "#/types/render:services:Previews"
+                },
                 "pullRequestPreviewsEnabled": {
                     "$ref": "#/types/render:services:WebServiceDetailsOutputPullRequestPreviewsEnabled",
-                    "description": "Defaults to \"no\"",
+                    "description": "This field has been deprecated. previews.generation should be used in its place.",
                     "default": "no"
                 },
                 "region": {
@@ -6950,7 +7143,7 @@
             ]
         },
         "render:services:WebServiceDetailsOutputPullRequestPreviewsEnabled": {
-            "description": "Defaults to \"no\"",
+            "description": "This field has been deprecated. previews.generation should be used in its place.",
             "type": "string",
             "enum": [
                 {
@@ -8182,6 +8375,10 @@
                     "$ref": "#/types/render:registrycredentials:Registry",
                     "description": "The registry to use this credential with"
                 },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "Last updated time for the credential"
+                },
                 "username": {
                     "type": "string",
                     "description": "The username associated with the credential"
@@ -8193,6 +8390,7 @@
                 "name",
                 "ownerId",
                 "registry",
+                "updatedAt",
                 "username"
             ],
             "inputProperties": {
@@ -9640,6 +9838,54 @@
                 ]
             }
         },
+        "render:logs:getOwnerLogStream": {
+            "inputs": {
+                "properties": {
+                    "ownerId": {
+                        "type": "string",
+                        "description": "The ID of the owner (team or personal user) whose log streams should be returned"
+                    }
+                },
+                "required": [
+                    "ownerId"
+                ]
+            },
+            "outputs": {
+                "$ref": "#/types/render:logs:GetOwnerLogStreamProperties"
+            }
+        },
+        "render:logs:getResourceLogStream": {
+            "inputs": {
+                "properties": {
+                    "resourceId": {
+                        "type": "string",
+                        "description": "The ID of the resource (server, cron job, postgres, or redis) whose log streams should be returned"
+                    }
+                },
+                "required": [
+                    "resourceId"
+                ]
+            },
+            "outputs": {
+                "$ref": "#/types/render:logs:GetResourceLogStreamProperties"
+            }
+        },
+        "render:logs:listResourceLogStreams": {
+            "inputs": {},
+            "outputs": {
+                "properties": {
+                    "items": {
+                        "items": {
+                            "$ref": "#/types/render:logs:paths1logs1streams1resource17BresourceId7Dgetresponses200contentapplication1jsonschema"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "items"
+                ]
+            }
+        },
         "render:metrics:listActiveConnections": {
             "inputs": {},
             "outputs": {
@@ -9742,7 +9988,7 @@
                 "properties": {
                     "items": {
                         "items": {
-                            "$ref": "#/types/render:owners:ListOwnersItemProperties"
+                            "$ref": "#/types/render:owners:OwnerWithCursor"
                         },
                         "type": "array"
                     }
@@ -10174,7 +10420,7 @@
                 "properties": {
                     "items": {
                         "items": {
-                            "$ref": "#/types/render:services:ListDeploysItemProperties"
+                            "$ref": "#/types/render:services:DeployWithCursor"
                         },
                         "type": "array"
                     }

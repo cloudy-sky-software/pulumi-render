@@ -17,7 +17,7 @@ namespace Pulumi.Render.Services.Outputs
         public readonly Pulumi.Render.Services.WebServiceDetailsOutputBuildPlan BuildPlan;
         public readonly Outputs.WebServiceDetailsOutputDiskProperties? Disk;
         /// <summary>
-        /// Runtime
+        /// This field has been deprecated, runtime should be used in its place.
         /// </summary>
         public readonly Pulumi.Render.Services.WebServiceDetailsOutputEnv Env;
         public readonly Outputs.EnvSpecificDetails EnvSpecificDetails;
@@ -46,6 +46,14 @@ namespace Pulumi.Render.Services.Outputs
         /// Defaults to "oregon"
         /// </summary>
         public readonly Pulumi.Render.Services.WebServiceDetailsOutputRegion Region;
+        /// <summary>
+        /// Runtime
+        /// </summary>
+        public readonly Pulumi.Render.Services.WebServiceDetailsOutputRuntime Runtime;
+        /// <summary>
+        /// The SSH address for the service. Only present for services that have SSH enabled.
+        /// </summary>
+        public readonly string? SshAddress;
         public readonly string Url;
 
         [OutputConstructor]
@@ -80,6 +88,10 @@ namespace Pulumi.Render.Services.Outputs
 
             Pulumi.Render.Services.WebServiceDetailsOutputRegion region,
 
+            Pulumi.Render.Services.WebServiceDetailsOutputRuntime runtime,
+
+            string? sshAddress,
+
             string url)
         {
             Autoscaling = autoscaling;
@@ -97,6 +109,8 @@ namespace Pulumi.Render.Services.Outputs
             Previews = previews;
             PullRequestPreviewsEnabled = pullRequestPreviewsEnabled;
             Region = region;
+            Runtime = runtime;
+            SshAddress = sshAddress;
             Url = url;
         }
     }

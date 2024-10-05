@@ -1267,17 +1267,6 @@
                 "id"
             ]
         },
-        "render:postgres:ListPostgresItemProperties": {
-            "properties": {
-                "cursor": {
-                    "type": "string"
-                },
-                "postgres": {
-                    "$ref": "#/types/render:postgres:Postgres"
-                }
-            },
-            "type": "object"
-        },
         "render:postgres:Owner": {
             "properties": {
                 "email": {
@@ -2215,6 +2204,21 @@
                     "name": "16",
                     "value": "16"
                 }
+            ]
+        },
+        "render:postgres:PostgresWithCursor": {
+            "properties": {
+                "cursor": {
+                    "type": "string"
+                },
+                "postgres": {
+                    "$ref": "#/types/render:postgres:Postgres"
+                }
+            },
+            "type": "object",
+            "required": [
+                "cursor",
+                "postgres"
             ]
         },
         "render:postgres:ReadReplica": {
@@ -3600,7 +3604,7 @@
                 },
                 "env": {
                     "$ref": "#/types/render:services:BackgroundWorkerDetailsOutputEnv",
-                    "description": "Runtime"
+                    "description": "This field has been deprecated, runtime should be used in its place."
                 },
                 "envSpecificDetails": {
                     "$ref": "#/types/render:services:EnvSpecificDetails"
@@ -3633,6 +3637,14 @@
                     "$ref": "#/types/render:services:BackgroundWorkerDetailsOutputRegion",
                     "description": "Defaults to \"oregon\"",
                     "default": "oregon"
+                },
+                "runtime": {
+                    "$ref": "#/types/render:services:BackgroundWorkerDetailsOutputRuntime",
+                    "description": "Runtime"
+                },
+                "sshAddress": {
+                    "type": "string",
+                    "description": "The SSH address for the service. Only present for services that have SSH enabled."
                 }
             },
             "type": "object",
@@ -3642,7 +3654,8 @@
                 "envSpecificDetails",
                 "numInstances",
                 "plan",
-                "region"
+                "region",
+                "runtime"
             ]
         },
         "render:services:BackgroundWorkerDetailsOutputBuildPlan": {
@@ -3659,7 +3672,7 @@
             ]
         },
         "render:services:BackgroundWorkerDetailsOutputEnv": {
-            "description": "Runtime",
+            "description": "This field has been deprecated, runtime should be used in its place.",
             "type": "string",
             "enum": [
                 {
@@ -3779,6 +3792,44 @@
                 {
                     "name": "Virginia",
                     "value": "virginia"
+                }
+            ]
+        },
+        "render:services:BackgroundWorkerDetailsOutputRuntime": {
+            "description": "Runtime",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Docker",
+                    "value": "docker"
+                },
+                {
+                    "name": "Elixir",
+                    "value": "elixir"
+                },
+                {
+                    "name": "Go",
+                    "value": "go"
+                },
+                {
+                    "name": "Node",
+                    "value": "node"
+                },
+                {
+                    "name": "Python",
+                    "value": "python"
+                },
+                {
+                    "name": "Ruby",
+                    "value": "ruby"
+                },
+                {
+                    "name": "Rust",
+                    "value": "rust"
+                },
+                {
+                    "name": "Image",
+                    "value": "image"
                 }
             ]
         },
@@ -4138,7 +4189,7 @@
                 },
                 "env": {
                     "$ref": "#/types/render:services:CronJobDetailsOutputEnv",
-                    "description": "Runtime"
+                    "description": "This field has been deprecated, runtime should be used in its place."
                 },
                 "envSpecificDetails": {
                     "$ref": "#/types/render:services:EnvSpecificDetails"
@@ -4155,6 +4206,10 @@
                     "description": "Defaults to \"oregon\"",
                     "default": "oregon"
                 },
+                "runtime": {
+                    "$ref": "#/types/render:services:CronJobDetailsOutputRuntime",
+                    "description": "Runtime"
+                },
                 "schedule": {
                     "type": "string"
                 }
@@ -4166,6 +4221,7 @@
                 "envSpecificDetails",
                 "plan",
                 "region",
+                "runtime",
                 "schedule"
             ]
         },
@@ -4183,7 +4239,7 @@
             ]
         },
         "render:services:CronJobDetailsOutputEnv": {
-            "description": "Runtime",
+            "description": "This field has been deprecated, runtime should be used in its place.",
             "type": "string",
             "enum": [
                 {
@@ -4289,6 +4345,44 @@
                 {
                     "name": "Virginia",
                     "value": "virginia"
+                }
+            ]
+        },
+        "render:services:CronJobDetailsOutputRuntime": {
+            "description": "Runtime",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Docker",
+                    "value": "docker"
+                },
+                {
+                    "name": "Elixir",
+                    "value": "elixir"
+                },
+                {
+                    "name": "Go",
+                    "value": "go"
+                },
+                {
+                    "name": "Node",
+                    "value": "node"
+                },
+                {
+                    "name": "Python",
+                    "value": "python"
+                },
+                {
+                    "name": "Ruby",
+                    "value": "ruby"
+                },
+                {
+                    "name": "Rust",
+                    "value": "rust"
+                },
+                {
+                    "name": "Image",
+                    "value": "image"
                 }
             ]
         },
@@ -5675,7 +5769,7 @@
                 },
                 "env": {
                     "$ref": "#/types/render:services:PrivateServiceDetailsOutputEnv",
-                    "description": "Runtime"
+                    "description": "This field has been deprecated, runtime should be used in its place."
                 },
                 "envSpecificDetails": {
                     "$ref": "#/types/render:services:EnvSpecificDetails"
@@ -5715,6 +5809,14 @@
                     "description": "Defaults to \"oregon\"",
                     "default": "oregon"
                 },
+                "runtime": {
+                    "$ref": "#/types/render:services:PrivateServiceDetailsOutputRuntime",
+                    "description": "Runtime"
+                },
+                "sshAddress": {
+                    "type": "string",
+                    "description": "The SSH address for the service. Only present for services that have SSH enabled."
+                },
                 "url": {
                     "type": "string"
                 }
@@ -5728,6 +5830,7 @@
                 "openPorts",
                 "plan",
                 "region",
+                "runtime",
                 "url"
             ]
         },
@@ -5745,7 +5848,7 @@
             ]
         },
         "render:services:PrivateServiceDetailsOutputEnv": {
-            "description": "Runtime",
+            "description": "This field has been deprecated, runtime should be used in its place.",
             "type": "string",
             "enum": [
                 {
@@ -5865,6 +5968,44 @@
                 {
                     "name": "Virginia",
                     "value": "virginia"
+                }
+            ]
+        },
+        "render:services:PrivateServiceDetailsOutputRuntime": {
+            "description": "Runtime",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Docker",
+                    "value": "docker"
+                },
+                {
+                    "name": "Elixir",
+                    "value": "elixir"
+                },
+                {
+                    "name": "Go",
+                    "value": "go"
+                },
+                {
+                    "name": "Node",
+                    "value": "node"
+                },
+                {
+                    "name": "Python",
+                    "value": "python"
+                },
+                {
+                    "name": "Ruby",
+                    "value": "ruby"
+                },
+                {
+                    "name": "Rust",
+                    "value": "rust"
+                },
+                {
+                    "name": "Image",
+                    "value": "image"
                 }
             ]
         },
@@ -6901,7 +7042,7 @@
                 },
                 "env": {
                     "$ref": "#/types/render:services:WebServiceDetailsOutputEnv",
-                    "description": "Runtime"
+                    "description": "This field has been deprecated, runtime should be used in its place."
                 },
                 "envSpecificDetails": {
                     "$ref": "#/types/render:services:EnvSpecificDetails"
@@ -6947,6 +7088,14 @@
                     "description": "Defaults to \"oregon\"",
                     "default": "oregon"
                 },
+                "runtime": {
+                    "$ref": "#/types/render:services:WebServiceDetailsOutputRuntime",
+                    "description": "Runtime"
+                },
+                "sshAddress": {
+                    "type": "string",
+                    "description": "The SSH address for the service. Only present for services that have SSH enabled."
+                },
                 "url": {
                     "type": "string"
                 }
@@ -6961,6 +7110,7 @@
                 "openPorts",
                 "plan",
                 "region",
+                "runtime",
                 "url"
             ]
         },
@@ -7059,7 +7209,7 @@
             ]
         },
         "render:services:WebServiceDetailsOutputEnv": {
-            "description": "Runtime",
+            "description": "This field has been deprecated, runtime should be used in its place.",
             "type": "string",
             "enum": [
                 {
@@ -7179,6 +7329,44 @@
                 {
                     "name": "Virginia",
                     "value": "virginia"
+                }
+            ]
+        },
+        "render:services:WebServiceDetailsOutputRuntime": {
+            "description": "Runtime",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Docker",
+                    "value": "docker"
+                },
+                {
+                    "name": "Elixir",
+                    "value": "elixir"
+                },
+                {
+                    "name": "Go",
+                    "value": "go"
+                },
+                {
+                    "name": "Node",
+                    "value": "node"
+                },
+                {
+                    "name": "Python",
+                    "value": "python"
+                },
+                {
+                    "name": "Ruby",
+                    "value": "ruby"
+                },
+                {
+                    "name": "Rust",
+                    "value": "rust"
+                },
+                {
+                    "name": "Image",
+                    "value": "image"
                 }
             ]
         },
@@ -10049,7 +10237,7 @@
                 "properties": {
                     "items": {
                         "items": {
-                            "$ref": "#/types/render:postgres:ListPostgresItemProperties"
+                            "$ref": "#/types/render:postgres:PostgresWithCursor"
                         },
                         "type": "array"
                     }

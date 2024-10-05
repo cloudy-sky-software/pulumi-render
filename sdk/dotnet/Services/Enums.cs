@@ -210,7 +210,7 @@ namespace Pulumi.Render.Services
     }
 
     /// <summary>
-    /// Runtime
+    /// This field has been deprecated, runtime should be used in its place.
     /// </summary>
     [EnumType]
     public readonly struct BackgroundWorkerDetailsOutputEnv : IEquatable<BackgroundWorkerDetailsOutputEnv>
@@ -343,6 +343,43 @@ namespace Pulumi.Render.Services
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool Equals(object? obj) => obj is BackgroundWorkerDetailsOutputRegion other && Equals(other);
         public bool Equals(BackgroundWorkerDetailsOutputRegion other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    /// <summary>
+    /// Runtime
+    /// </summary>
+    [EnumType]
+    public readonly struct BackgroundWorkerDetailsOutputRuntime : IEquatable<BackgroundWorkerDetailsOutputRuntime>
+    {
+        private readonly string _value;
+
+        private BackgroundWorkerDetailsOutputRuntime(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static BackgroundWorkerDetailsOutputRuntime Docker { get; } = new BackgroundWorkerDetailsOutputRuntime("docker");
+        public static BackgroundWorkerDetailsOutputRuntime Elixir { get; } = new BackgroundWorkerDetailsOutputRuntime("elixir");
+        public static BackgroundWorkerDetailsOutputRuntime Go { get; } = new BackgroundWorkerDetailsOutputRuntime("go");
+        public static BackgroundWorkerDetailsOutputRuntime Node { get; } = new BackgroundWorkerDetailsOutputRuntime("node");
+        public static BackgroundWorkerDetailsOutputRuntime Python { get; } = new BackgroundWorkerDetailsOutputRuntime("python");
+        public static BackgroundWorkerDetailsOutputRuntime Ruby { get; } = new BackgroundWorkerDetailsOutputRuntime("ruby");
+        public static BackgroundWorkerDetailsOutputRuntime Rust { get; } = new BackgroundWorkerDetailsOutputRuntime("rust");
+        public static BackgroundWorkerDetailsOutputRuntime Image { get; } = new BackgroundWorkerDetailsOutputRuntime("image");
+
+        public static bool operator ==(BackgroundWorkerDetailsOutputRuntime left, BackgroundWorkerDetailsOutputRuntime right) => left.Equals(right);
+        public static bool operator !=(BackgroundWorkerDetailsOutputRuntime left, BackgroundWorkerDetailsOutputRuntime right) => !left.Equals(right);
+
+        public static explicit operator string(BackgroundWorkerDetailsOutputRuntime value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is BackgroundWorkerDetailsOutputRuntime other && Equals(other);
+        public bool Equals(BackgroundWorkerDetailsOutputRuntime other) => string.Equals(_value, other._value, StringComparison.Ordinal);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => _value?.GetHashCode() ?? 0;
@@ -582,7 +619,7 @@ namespace Pulumi.Render.Services
     }
 
     /// <summary>
-    /// Runtime
+    /// This field has been deprecated, runtime should be used in its place.
     /// </summary>
     [EnumType]
     public readonly struct CronJobDetailsOutputEnv : IEquatable<CronJobDetailsOutputEnv>
@@ -684,6 +721,43 @@ namespace Pulumi.Render.Services
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool Equals(object? obj) => obj is CronJobDetailsOutputRegion other && Equals(other);
         public bool Equals(CronJobDetailsOutputRegion other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    /// <summary>
+    /// Runtime
+    /// </summary>
+    [EnumType]
+    public readonly struct CronJobDetailsOutputRuntime : IEquatable<CronJobDetailsOutputRuntime>
+    {
+        private readonly string _value;
+
+        private CronJobDetailsOutputRuntime(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static CronJobDetailsOutputRuntime Docker { get; } = new CronJobDetailsOutputRuntime("docker");
+        public static CronJobDetailsOutputRuntime Elixir { get; } = new CronJobDetailsOutputRuntime("elixir");
+        public static CronJobDetailsOutputRuntime Go { get; } = new CronJobDetailsOutputRuntime("go");
+        public static CronJobDetailsOutputRuntime Node { get; } = new CronJobDetailsOutputRuntime("node");
+        public static CronJobDetailsOutputRuntime Python { get; } = new CronJobDetailsOutputRuntime("python");
+        public static CronJobDetailsOutputRuntime Ruby { get; } = new CronJobDetailsOutputRuntime("ruby");
+        public static CronJobDetailsOutputRuntime Rust { get; } = new CronJobDetailsOutputRuntime("rust");
+        public static CronJobDetailsOutputRuntime Image { get; } = new CronJobDetailsOutputRuntime("image");
+
+        public static bool operator ==(CronJobDetailsOutputRuntime left, CronJobDetailsOutputRuntime right) => left.Equals(right);
+        public static bool operator !=(CronJobDetailsOutputRuntime left, CronJobDetailsOutputRuntime right) => !left.Equals(right);
+
+        public static explicit operator string(CronJobDetailsOutputRuntime value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is CronJobDetailsOutputRuntime other && Equals(other);
+        public bool Equals(CronJobDetailsOutputRuntime other) => string.Equals(_value, other._value, StringComparison.Ordinal);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => _value?.GetHashCode() ?? 0;
@@ -1151,7 +1225,7 @@ namespace Pulumi.Render.Services
     }
 
     /// <summary>
-    /// Runtime
+    /// This field has been deprecated, runtime should be used in its place.
     /// </summary>
     [EnumType]
     public readonly struct PrivateServiceDetailsOutputEnv : IEquatable<PrivateServiceDetailsOutputEnv>
@@ -1284,6 +1358,43 @@ namespace Pulumi.Render.Services
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool Equals(object? obj) => obj is PrivateServiceDetailsOutputRegion other && Equals(other);
         public bool Equals(PrivateServiceDetailsOutputRegion other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    /// <summary>
+    /// Runtime
+    /// </summary>
+    [EnumType]
+    public readonly struct PrivateServiceDetailsOutputRuntime : IEquatable<PrivateServiceDetailsOutputRuntime>
+    {
+        private readonly string _value;
+
+        private PrivateServiceDetailsOutputRuntime(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static PrivateServiceDetailsOutputRuntime Docker { get; } = new PrivateServiceDetailsOutputRuntime("docker");
+        public static PrivateServiceDetailsOutputRuntime Elixir { get; } = new PrivateServiceDetailsOutputRuntime("elixir");
+        public static PrivateServiceDetailsOutputRuntime Go { get; } = new PrivateServiceDetailsOutputRuntime("go");
+        public static PrivateServiceDetailsOutputRuntime Node { get; } = new PrivateServiceDetailsOutputRuntime("node");
+        public static PrivateServiceDetailsOutputRuntime Python { get; } = new PrivateServiceDetailsOutputRuntime("python");
+        public static PrivateServiceDetailsOutputRuntime Ruby { get; } = new PrivateServiceDetailsOutputRuntime("ruby");
+        public static PrivateServiceDetailsOutputRuntime Rust { get; } = new PrivateServiceDetailsOutputRuntime("rust");
+        public static PrivateServiceDetailsOutputRuntime Image { get; } = new PrivateServiceDetailsOutputRuntime("image");
+
+        public static bool operator ==(PrivateServiceDetailsOutputRuntime left, PrivateServiceDetailsOutputRuntime right) => left.Equals(right);
+        public static bool operator !=(PrivateServiceDetailsOutputRuntime left, PrivateServiceDetailsOutputRuntime right) => !left.Equals(right);
+
+        public static explicit operator string(PrivateServiceDetailsOutputRuntime value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is PrivateServiceDetailsOutputRuntime other && Equals(other);
+        public bool Equals(PrivateServiceDetailsOutputRuntime other) => string.Equals(_value, other._value, StringComparison.Ordinal);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => _value?.GetHashCode() ?? 0;
@@ -1946,7 +2057,7 @@ namespace Pulumi.Render.Services
     }
 
     /// <summary>
-    /// Runtime
+    /// This field has been deprecated, runtime should be used in its place.
     /// </summary>
     [EnumType]
     public readonly struct WebServiceDetailsOutputEnv : IEquatable<WebServiceDetailsOutputEnv>
@@ -2079,6 +2190,43 @@ namespace Pulumi.Render.Services
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool Equals(object? obj) => obj is WebServiceDetailsOutputRegion other && Equals(other);
         public bool Equals(WebServiceDetailsOutputRegion other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    /// <summary>
+    /// Runtime
+    /// </summary>
+    [EnumType]
+    public readonly struct WebServiceDetailsOutputRuntime : IEquatable<WebServiceDetailsOutputRuntime>
+    {
+        private readonly string _value;
+
+        private WebServiceDetailsOutputRuntime(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static WebServiceDetailsOutputRuntime Docker { get; } = new WebServiceDetailsOutputRuntime("docker");
+        public static WebServiceDetailsOutputRuntime Elixir { get; } = new WebServiceDetailsOutputRuntime("elixir");
+        public static WebServiceDetailsOutputRuntime Go { get; } = new WebServiceDetailsOutputRuntime("go");
+        public static WebServiceDetailsOutputRuntime Node { get; } = new WebServiceDetailsOutputRuntime("node");
+        public static WebServiceDetailsOutputRuntime Python { get; } = new WebServiceDetailsOutputRuntime("python");
+        public static WebServiceDetailsOutputRuntime Ruby { get; } = new WebServiceDetailsOutputRuntime("ruby");
+        public static WebServiceDetailsOutputRuntime Rust { get; } = new WebServiceDetailsOutputRuntime("rust");
+        public static WebServiceDetailsOutputRuntime Image { get; } = new WebServiceDetailsOutputRuntime("image");
+
+        public static bool operator ==(WebServiceDetailsOutputRuntime left, WebServiceDetailsOutputRuntime right) => left.Equals(right);
+        public static bool operator !=(WebServiceDetailsOutputRuntime left, WebServiceDetailsOutputRuntime right) => !left.Equals(right);
+
+        public static explicit operator string(WebServiceDetailsOutputRuntime value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is WebServiceDetailsOutputRuntime other && Equals(other);
+        public bool Equals(WebServiceDetailsOutputRuntime other) => string.Equals(_value, other._value, StringComparison.Ordinal);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => _value?.GetHashCode() ?? 0;

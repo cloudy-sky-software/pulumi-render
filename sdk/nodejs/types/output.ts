@@ -370,20 +370,6 @@ export namespace postgres {
         url?: string;
     }
 
-    export interface ListPostgresItemProperties {
-        cursor?: string;
-        postgres?: outputs.postgres.Postgres;
-    }
-    /**
-     * listPostgresItemPropertiesProvideDefaults sets the appropriate defaults for ListPostgresItemProperties
-     */
-    export function listPostgresItemPropertiesProvideDefaults(val: ListPostgresItemProperties): ListPostgresItemProperties {
-        return {
-            ...val,
-            postgres: (val.postgres ? outputs.postgres.postgresProvideDefaults(val.postgres) : undefined),
-        };
-    }
-
     export interface Owner {
         email: string;
         id: string;
@@ -492,6 +478,20 @@ export namespace postgres {
         return {
             ...val,
             region: (val.region) ?? "oregon",
+        };
+    }
+
+    export interface PostgresWithCursor {
+        cursor: string;
+        postgres: outputs.postgres.Postgres;
+    }
+    /**
+     * postgresWithCursorProvideDefaults sets the appropriate defaults for PostgresWithCursor
+     */
+    export function postgresWithCursorProvideDefaults(val: PostgresWithCursor): PostgresWithCursor {
+        return {
+            ...val,
+            postgres: outputs.postgres.postgresProvideDefaults(val.postgres),
         };
     }
 
@@ -801,7 +801,7 @@ export namespace services {
         buildPlan: enums.services.BackgroundWorkerDetailsOutputBuildPlan;
         disk?: outputs.services.WebServiceDetailspropertiesdisk;
         /**
-         * Runtime
+         * This field has been deprecated, runtime should be used in its place.
          */
         env: enums.services.BackgroundWorkerDetailsOutputEnv;
         envSpecificDetails: outputs.services.EnvSpecificDetails;
@@ -827,6 +827,14 @@ export namespace services {
          * Defaults to "oregon"
          */
         region: enums.services.BackgroundWorkerDetailsOutputRegion;
+        /**
+         * Runtime
+         */
+        runtime: enums.services.BackgroundWorkerDetailsOutputRuntime;
+        /**
+         * The SSH address for the service. Only present for services that have SSH enabled.
+         */
+        sshAddress?: string;
     }
     /**
      * backgroundWorkerDetailsOutputProvideDefaults sets the appropriate defaults for BackgroundWorkerDetailsOutput
@@ -926,7 +934,7 @@ export namespace services {
     export interface CronJobDetailsOutput {
         buildPlan: enums.services.CronJobDetailsOutputBuildPlan;
         /**
-         * Runtime
+         * This field has been deprecated, runtime should be used in its place.
          */
         env: enums.services.CronJobDetailsOutputEnv;
         envSpecificDetails: outputs.services.EnvSpecificDetails;
@@ -939,6 +947,10 @@ export namespace services {
          * Defaults to "oregon"
          */
         region: enums.services.CronJobDetailsOutputRegion;
+        /**
+         * Runtime
+         */
+        runtime: enums.services.CronJobDetailsOutputRuntime;
         schedule: string;
     }
     /**
@@ -1370,7 +1382,7 @@ export namespace services {
         buildPlan: enums.services.PrivateServiceDetailsOutputBuildPlan;
         disk?: outputs.services.WebServiceDetailspropertiesdisk;
         /**
-         * Runtime
+         * This field has been deprecated, runtime should be used in its place.
          */
         env: enums.services.PrivateServiceDetailsOutputEnv;
         envSpecificDetails: outputs.services.EnvSpecificDetails;
@@ -1397,6 +1409,14 @@ export namespace services {
          * Defaults to "oregon"
          */
         region: enums.services.PrivateServiceDetailsOutputRegion;
+        /**
+         * Runtime
+         */
+        runtime: enums.services.PrivateServiceDetailsOutputRuntime;
+        /**
+         * The SSH address for the service. Only present for services that have SSH enabled.
+         */
+        sshAddress?: string;
         url: string;
     }
     /**
@@ -1619,7 +1639,7 @@ export namespace services {
         buildPlan: enums.services.WebServiceDetailsOutputBuildPlan;
         disk?: outputs.services.WebServiceDetailsOutputDiskProperties;
         /**
-         * Runtime
+         * This field has been deprecated, runtime should be used in its place.
          */
         env: enums.services.WebServiceDetailsOutputEnv;
         envSpecificDetails: outputs.services.EnvSpecificDetails;
@@ -1648,6 +1668,14 @@ export namespace services {
          * Defaults to "oregon"
          */
         region: enums.services.WebServiceDetailsOutputRegion;
+        /**
+         * Runtime
+         */
+        runtime: enums.services.WebServiceDetailsOutputRuntime;
+        /**
+         * The SSH address for the service. Only present for services that have SSH enabled.
+         */
+        sshAddress?: string;
         url: string;
     }
     /**

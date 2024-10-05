@@ -25,7 +25,7 @@ type ListPostgresArgs struct {
 }
 
 type ListPostgresResult struct {
-	Items []ListPostgresItemProperties `pulumi:"items"`
+	Items []PostgresWithCursor `pulumi:"items"`
 }
 
 func ListPostgresOutput(ctx *pulumi.Context, args ListPostgresOutputArgs, opts ...pulumi.InvokeOption) ListPostgresResultOutput {
@@ -68,8 +68,8 @@ func (o ListPostgresResultOutput) ToListPostgresResultOutputWithContext(ctx cont
 	return o
 }
 
-func (o ListPostgresResultOutput) Items() ListPostgresItemPropertiesArrayOutput {
-	return o.ApplyT(func(v ListPostgresResult) []ListPostgresItemProperties { return v.Items }).(ListPostgresItemPropertiesArrayOutput)
+func (o ListPostgresResultOutput) Items() PostgresWithCursorArrayOutput {
+	return o.ApplyT(func(v ListPostgresResult) []PostgresWithCursor { return v.Items }).(PostgresWithCursorArrayOutput)
 }
 
 func init() {

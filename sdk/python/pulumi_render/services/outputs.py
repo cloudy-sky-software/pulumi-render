@@ -89,6 +89,8 @@ class BackgroundWorkerDetailsOutput(dict):
             suggest = "parent_server"
         elif key == "pullRequestPreviewsEnabled":
             suggest = "pull_request_previews_enabled"
+        elif key == "sshAddress":
+            suggest = "ssh_address"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in BackgroundWorkerDetailsOutput. Access the value via the '{suggest}' property getter instead.")
@@ -108,19 +110,23 @@ class BackgroundWorkerDetailsOutput(dict):
                  num_instances: int,
                  plan: 'BackgroundWorkerDetailsOutputPlan',
                  region: Optional['BackgroundWorkerDetailsOutputRegion'] = None,
+                 runtime: 'BackgroundWorkerDetailsOutputRuntime',
                  autoscaling: Optional['outputs.WebServiceDetailspropertiesautoscaling'] = None,
                  disk: Optional['outputs.WebServiceDetailspropertiesdisk'] = None,
                  max_shutdown_delay_seconds: Optional[int] = None,
                  parent_server: Optional['outputs.Resource'] = None,
                  previews: Optional['outputs.Previews'] = None,
-                 pull_request_previews_enabled: Optional['BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled'] = None):
+                 pull_request_previews_enabled: Optional['BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled'] = None,
+                 ssh_address: Optional[str] = None):
         """
-        :param 'BackgroundWorkerDetailsOutputEnv' env: Runtime
+        :param 'BackgroundWorkerDetailsOutputEnv' env: This field has been deprecated, runtime should be used in its place.
         :param int num_instances: For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
         :param 'BackgroundWorkerDetailsOutputPlan' plan: The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
         :param 'BackgroundWorkerDetailsOutputRegion' region: Defaults to "oregon"
+        :param 'BackgroundWorkerDetailsOutputRuntime' runtime: Runtime
         :param int max_shutdown_delay_seconds: The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
         :param 'BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled' pull_request_previews_enabled: This field has been deprecated. previews.generation should be used in its place.
+        :param str ssh_address: The SSH address for the service. Only present for services that have SSH enabled.
         """
         if build_plan is None:
             build_plan = 'starter'
@@ -132,6 +138,7 @@ class BackgroundWorkerDetailsOutput(dict):
         if region is None:
             region = 'oregon'
         pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "runtime", runtime)
         if autoscaling is not None:
             pulumi.set(__self__, "autoscaling", autoscaling)
         if disk is not None:
@@ -148,6 +155,8 @@ class BackgroundWorkerDetailsOutput(dict):
             pull_request_previews_enabled = 'no'
         if pull_request_previews_enabled is not None:
             pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
+        if ssh_address is not None:
+            pulumi.set(__self__, "ssh_address", ssh_address)
 
     @property
     @pulumi.getter(name="buildPlan")
@@ -158,7 +167,7 @@ class BackgroundWorkerDetailsOutput(dict):
     @pulumi.getter
     def env(self) -> 'BackgroundWorkerDetailsOutputEnv':
         """
-        Runtime
+        This field has been deprecated, runtime should be used in its place.
         """
         return pulumi.get(self, "env")
 
@@ -190,6 +199,14 @@ class BackgroundWorkerDetailsOutput(dict):
         Defaults to "oregon"
         """
         return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter
+    def runtime(self) -> 'BackgroundWorkerDetailsOutputRuntime':
+        """
+        Runtime
+        """
+        return pulumi.get(self, "runtime")
 
     @property
     @pulumi.getter
@@ -226,6 +243,14 @@ class BackgroundWorkerDetailsOutput(dict):
         This field has been deprecated. previews.generation should be used in its place.
         """
         return pulumi.get(self, "pull_request_previews_enabled")
+
+    @property
+    @pulumi.getter(name="sshAddress")
+    def ssh_address(self) -> Optional[str]:
+        """
+        The SSH address for the service. Only present for services that have SSH enabled.
+        """
+        return pulumi.get(self, "ssh_address")
 
 
 @pulumi.output_type
@@ -548,12 +573,14 @@ class CronJobDetailsOutput(dict):
                  env_specific_details: 'outputs.EnvSpecificDetails',
                  plan: 'CronJobDetailsOutputPlan',
                  region: Optional['CronJobDetailsOutputRegion'] = None,
+                 runtime: 'CronJobDetailsOutputRuntime',
                  schedule: str,
                  last_successful_run_at: Optional[str] = None):
         """
-        :param 'CronJobDetailsOutputEnv' env: Runtime
+        :param 'CronJobDetailsOutputEnv' env: This field has been deprecated, runtime should be used in its place.
         :param 'CronJobDetailsOutputPlan' plan: The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
         :param 'CronJobDetailsOutputRegion' region: Defaults to "oregon"
+        :param 'CronJobDetailsOutputRuntime' runtime: Runtime
         """
         if build_plan is None:
             build_plan = 'starter'
@@ -564,6 +591,7 @@ class CronJobDetailsOutput(dict):
         if region is None:
             region = 'oregon'
         pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "runtime", runtime)
         pulumi.set(__self__, "schedule", schedule)
         if last_successful_run_at is not None:
             pulumi.set(__self__, "last_successful_run_at", last_successful_run_at)
@@ -577,7 +605,7 @@ class CronJobDetailsOutput(dict):
     @pulumi.getter
     def env(self) -> 'CronJobDetailsOutputEnv':
         """
-        Runtime
+        This field has been deprecated, runtime should be used in its place.
         """
         return pulumi.get(self, "env")
 
@@ -601,6 +629,14 @@ class CronJobDetailsOutput(dict):
         Defaults to "oregon"
         """
         return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter
+    def runtime(self) -> 'CronJobDetailsOutputRuntime':
+        """
+        Runtime
+        """
+        return pulumi.get(self, "runtime")
 
     @property
     @pulumi.getter
@@ -1508,6 +1544,8 @@ class PrivateServiceDetailsOutput(dict):
             suggest = "parent_server"
         elif key == "pullRequestPreviewsEnabled":
             suggest = "pull_request_previews_enabled"
+        elif key == "sshAddress":
+            suggest = "ssh_address"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in PrivateServiceDetailsOutput. Access the value via the '{suggest}' property getter instead.")
@@ -1528,20 +1566,24 @@ class PrivateServiceDetailsOutput(dict):
                  open_ports: Sequence['outputs.ServerPort'],
                  plan: 'PrivateServiceDetailsOutputPlan',
                  region: Optional['PrivateServiceDetailsOutputRegion'] = None,
+                 runtime: 'PrivateServiceDetailsOutputRuntime',
                  url: str,
                  autoscaling: Optional['outputs.WebServiceDetailspropertiesautoscaling'] = None,
                  disk: Optional['outputs.WebServiceDetailspropertiesdisk'] = None,
                  max_shutdown_delay_seconds: Optional[int] = None,
                  parent_server: Optional['outputs.Resource'] = None,
                  previews: Optional['outputs.Previews'] = None,
-                 pull_request_previews_enabled: Optional['PrivateServiceDetailsOutputPullRequestPreviewsEnabled'] = None):
+                 pull_request_previews_enabled: Optional['PrivateServiceDetailsOutputPullRequestPreviewsEnabled'] = None,
+                 ssh_address: Optional[str] = None):
         """
-        :param 'PrivateServiceDetailsOutputEnv' env: Runtime
+        :param 'PrivateServiceDetailsOutputEnv' env: This field has been deprecated, runtime should be used in its place.
         :param int num_instances: For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
         :param 'PrivateServiceDetailsOutputPlan' plan: The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
         :param 'PrivateServiceDetailsOutputRegion' region: Defaults to "oregon"
+        :param 'PrivateServiceDetailsOutputRuntime' runtime: Runtime
         :param int max_shutdown_delay_seconds: The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
         :param 'PrivateServiceDetailsOutputPullRequestPreviewsEnabled' pull_request_previews_enabled: This field has been deprecated. previews.generation should be used in its place.
+        :param str ssh_address: The SSH address for the service. Only present for services that have SSH enabled.
         """
         if build_plan is None:
             build_plan = 'starter'
@@ -1554,6 +1596,7 @@ class PrivateServiceDetailsOutput(dict):
         if region is None:
             region = 'oregon'
         pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "runtime", runtime)
         pulumi.set(__self__, "url", url)
         if autoscaling is not None:
             pulumi.set(__self__, "autoscaling", autoscaling)
@@ -1571,6 +1614,8 @@ class PrivateServiceDetailsOutput(dict):
             pull_request_previews_enabled = 'no'
         if pull_request_previews_enabled is not None:
             pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
+        if ssh_address is not None:
+            pulumi.set(__self__, "ssh_address", ssh_address)
 
     @property
     @pulumi.getter(name="buildPlan")
@@ -1581,7 +1626,7 @@ class PrivateServiceDetailsOutput(dict):
     @pulumi.getter
     def env(self) -> 'PrivateServiceDetailsOutputEnv':
         """
-        Runtime
+        This field has been deprecated, runtime should be used in its place.
         """
         return pulumi.get(self, "env")
 
@@ -1618,6 +1663,14 @@ class PrivateServiceDetailsOutput(dict):
         Defaults to "oregon"
         """
         return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter
+    def runtime(self) -> 'PrivateServiceDetailsOutputRuntime':
+        """
+        Runtime
+        """
+        return pulumi.get(self, "runtime")
 
     @property
     @pulumi.getter
@@ -1659,6 +1712,14 @@ class PrivateServiceDetailsOutput(dict):
         This field has been deprecated. previews.generation should be used in its place.
         """
         return pulumi.get(self, "pull_request_previews_enabled")
+
+    @property
+    @pulumi.getter(name="sshAddress")
+    def ssh_address(self) -> Optional[str]:
+        """
+        The SSH address for the service. Only present for services that have SSH enabled.
+        """
+        return pulumi.get(self, "ssh_address")
 
 
 @pulumi.output_type
@@ -2542,6 +2603,8 @@ class WebServiceDetailsOutput(dict):
             suggest = "parent_server"
         elif key == "pullRequestPreviewsEnabled":
             suggest = "pull_request_previews_enabled"
+        elif key == "sshAddress":
+            suggest = "ssh_address"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in WebServiceDetailsOutput. Access the value via the '{suggest}' property getter instead.")
@@ -2563,6 +2626,7 @@ class WebServiceDetailsOutput(dict):
                  open_ports: Sequence['outputs.ServerPort'],
                  plan: 'WebServiceDetailsOutputPlan',
                  region: Optional['WebServiceDetailsOutputRegion'] = None,
+                 runtime: 'WebServiceDetailsOutputRuntime',
                  url: str,
                  autoscaling: Optional['outputs.WebServiceDetailsOutputAutoscalingProperties'] = None,
                  disk: Optional['outputs.WebServiceDetailsOutputDiskProperties'] = None,
@@ -2570,14 +2634,17 @@ class WebServiceDetailsOutput(dict):
                  max_shutdown_delay_seconds: Optional[int] = None,
                  parent_server: Optional['outputs.Resource'] = None,
                  previews: Optional['outputs.Previews'] = None,
-                 pull_request_previews_enabled: Optional['WebServiceDetailsOutputPullRequestPreviewsEnabled'] = None):
+                 pull_request_previews_enabled: Optional['WebServiceDetailsOutputPullRequestPreviewsEnabled'] = None,
+                 ssh_address: Optional[str] = None):
         """
-        :param 'WebServiceDetailsOutputEnv' env: Runtime
+        :param 'WebServiceDetailsOutputEnv' env: This field has been deprecated, runtime should be used in its place.
         :param int num_instances: For a *manually* scaled service, this is the number of instances the service is scaled to. DOES NOT indicate the number of running instances for an *autoscaled* service.
         :param 'WebServiceDetailsOutputPlan' plan: The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
         :param 'WebServiceDetailsOutputRegion' region: Defaults to "oregon"
+        :param 'WebServiceDetailsOutputRuntime' runtime: Runtime
         :param int max_shutdown_delay_seconds: The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
         :param 'WebServiceDetailsOutputPullRequestPreviewsEnabled' pull_request_previews_enabled: This field has been deprecated. previews.generation should be used in its place.
+        :param str ssh_address: The SSH address for the service. Only present for services that have SSH enabled.
         """
         if build_plan is None:
             build_plan = 'starter'
@@ -2591,6 +2658,7 @@ class WebServiceDetailsOutput(dict):
         if region is None:
             region = 'oregon'
         pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "runtime", runtime)
         pulumi.set(__self__, "url", url)
         if autoscaling is not None:
             pulumi.set(__self__, "autoscaling", autoscaling)
@@ -2610,6 +2678,8 @@ class WebServiceDetailsOutput(dict):
             pull_request_previews_enabled = 'no'
         if pull_request_previews_enabled is not None:
             pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
+        if ssh_address is not None:
+            pulumi.set(__self__, "ssh_address", ssh_address)
 
     @property
     @pulumi.getter(name="buildPlan")
@@ -2620,7 +2690,7 @@ class WebServiceDetailsOutput(dict):
     @pulumi.getter
     def env(self) -> 'WebServiceDetailsOutputEnv':
         """
-        Runtime
+        This field has been deprecated, runtime should be used in its place.
         """
         return pulumi.get(self, "env")
 
@@ -2662,6 +2732,14 @@ class WebServiceDetailsOutput(dict):
         Defaults to "oregon"
         """
         return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter
+    def runtime(self) -> 'WebServiceDetailsOutputRuntime':
+        """
+        Runtime
+        """
+        return pulumi.get(self, "runtime")
 
     @property
     @pulumi.getter
@@ -2708,6 +2786,14 @@ class WebServiceDetailsOutput(dict):
         This field has been deprecated. previews.generation should be used in its place.
         """
         return pulumi.get(self, "pull_request_previews_enabled")
+
+    @property
+    @pulumi.getter(name="sshAddress")
+    def ssh_address(self) -> Optional[str]:
+        """
+        The SSH address for the service. Only present for services that have SSH enabled.
+        """
+        return pulumi.get(self, "ssh_address")
 
 
 @pulumi.output_type

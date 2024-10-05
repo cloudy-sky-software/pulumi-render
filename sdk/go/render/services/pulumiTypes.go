@@ -403,7 +403,7 @@ type BackgroundWorkerDetailsOutput struct {
 	Autoscaling *WebServiceDetailspropertiesautoscaling `pulumi:"autoscaling"`
 	BuildPlan   BackgroundWorkerDetailsOutputBuildPlan  `pulumi:"buildPlan"`
 	Disk        *WebServiceDetailspropertiesdisk        `pulumi:"disk"`
-	// Runtime
+	// This field has been deprecated, runtime should be used in its place.
 	Env                BackgroundWorkerDetailsOutputEnv `pulumi:"env"`
 	EnvSpecificDetails EnvSpecificDetails               `pulumi:"envSpecificDetails"`
 	// The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
@@ -418,6 +418,10 @@ type BackgroundWorkerDetailsOutput struct {
 	PullRequestPreviewsEnabled *BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
 	// Defaults to "oregon"
 	Region BackgroundWorkerDetailsOutputRegion `pulumi:"region"`
+	// Runtime
+	Runtime BackgroundWorkerDetailsOutputRuntime `pulumi:"runtime"`
+	// The SSH address for the service. Only present for services that have SSH enabled.
+	SshAddress *string `pulumi:"sshAddress"`
 }
 
 // Defaults sets the appropriate defaults for BackgroundWorkerDetailsOutput
@@ -473,7 +477,7 @@ func (o BackgroundWorkerDetailsOutputOutput) Disk() WebServiceDetailspropertiesd
 	return o.ApplyT(func(v BackgroundWorkerDetailsOutput) *WebServiceDetailspropertiesdisk { return v.Disk }).(WebServiceDetailspropertiesdiskPtrOutput)
 }
 
-// Runtime
+// This field has been deprecated, runtime should be used in its place.
 func (o BackgroundWorkerDetailsOutputOutput) Env() BackgroundWorkerDetailsOutputEnvOutput {
 	return o.ApplyT(func(v BackgroundWorkerDetailsOutput) BackgroundWorkerDetailsOutputEnv { return v.Env }).(BackgroundWorkerDetailsOutputEnvOutput)
 }
@@ -515,6 +519,16 @@ func (o BackgroundWorkerDetailsOutputOutput) PullRequestPreviewsEnabled() Backgr
 // Defaults to "oregon"
 func (o BackgroundWorkerDetailsOutputOutput) Region() BackgroundWorkerDetailsOutputRegionOutput {
 	return o.ApplyT(func(v BackgroundWorkerDetailsOutput) BackgroundWorkerDetailsOutputRegion { return v.Region }).(BackgroundWorkerDetailsOutputRegionOutput)
+}
+
+// Runtime
+func (o BackgroundWorkerDetailsOutputOutput) Runtime() BackgroundWorkerDetailsOutputRuntimeOutput {
+	return o.ApplyT(func(v BackgroundWorkerDetailsOutput) BackgroundWorkerDetailsOutputRuntime { return v.Runtime }).(BackgroundWorkerDetailsOutputRuntimeOutput)
+}
+
+// The SSH address for the service. Only present for services that have SSH enabled.
+func (o BackgroundWorkerDetailsOutputOutput) SshAddress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BackgroundWorkerDetailsOutput) *string { return v.SshAddress }).(pulumi.StringPtrOutput)
 }
 
 type BackgroundWorkerDetailsOutputPtrOutput struct{ *pulumi.OutputState }
@@ -568,7 +582,7 @@ func (o BackgroundWorkerDetailsOutputPtrOutput) Disk() WebServiceDetailsproperti
 	}).(WebServiceDetailspropertiesdiskPtrOutput)
 }
 
-// Runtime
+// This field has been deprecated, runtime should be used in its place.
 func (o BackgroundWorkerDetailsOutputPtrOutput) Env() BackgroundWorkerDetailsOutputEnvPtrOutput {
 	return o.ApplyT(func(v *BackgroundWorkerDetailsOutput) *BackgroundWorkerDetailsOutputEnv {
 		if v == nil {
@@ -653,6 +667,26 @@ func (o BackgroundWorkerDetailsOutputPtrOutput) Region() BackgroundWorkerDetails
 		}
 		return &v.Region
 	}).(BackgroundWorkerDetailsOutputRegionPtrOutput)
+}
+
+// Runtime
+func (o BackgroundWorkerDetailsOutputPtrOutput) Runtime() BackgroundWorkerDetailsOutputRuntimePtrOutput {
+	return o.ApplyT(func(v *BackgroundWorkerDetailsOutput) *BackgroundWorkerDetailsOutputRuntime {
+		if v == nil {
+			return nil
+		}
+		return &v.Runtime
+	}).(BackgroundWorkerDetailsOutputRuntimePtrOutput)
+}
+
+// The SSH address for the service. Only present for services that have SSH enabled.
+func (o BackgroundWorkerDetailsOutputPtrOutput) SshAddress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorkerDetailsOutput) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SshAddress
+	}).(pulumi.StringPtrOutput)
 }
 
 type BackgroundWorkerOutputType struct {
@@ -1645,15 +1679,17 @@ func (o CronJobDetailsCreatePtrOutput) Schedule() pulumi.StringPtrOutput {
 
 type CronJobDetailsOutput struct {
 	BuildPlan CronJobDetailsOutputBuildPlan `pulumi:"buildPlan"`
-	// Runtime
+	// This field has been deprecated, runtime should be used in its place.
 	Env                 CronJobDetailsOutputEnv `pulumi:"env"`
 	EnvSpecificDetails  EnvSpecificDetails      `pulumi:"envSpecificDetails"`
 	LastSuccessfulRunAt *string                 `pulumi:"lastSuccessfulRunAt"`
 	// The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
 	Plan CronJobDetailsOutputPlan `pulumi:"plan"`
 	// Defaults to "oregon"
-	Region   CronJobDetailsOutputRegion `pulumi:"region"`
-	Schedule string                     `pulumi:"schedule"`
+	Region CronJobDetailsOutputRegion `pulumi:"region"`
+	// Runtime
+	Runtime  CronJobDetailsOutputRuntime `pulumi:"runtime"`
+	Schedule string                      `pulumi:"schedule"`
 }
 
 // Defaults sets the appropriate defaults for CronJobDetailsOutput
@@ -1689,7 +1725,7 @@ func (o CronJobDetailsOutputOutput) BuildPlan() CronJobDetailsOutputBuildPlanOut
 	return o.ApplyT(func(v CronJobDetailsOutput) CronJobDetailsOutputBuildPlan { return v.BuildPlan }).(CronJobDetailsOutputBuildPlanOutput)
 }
 
-// Runtime
+// This field has been deprecated, runtime should be used in its place.
 func (o CronJobDetailsOutputOutput) Env() CronJobDetailsOutputEnvOutput {
 	return o.ApplyT(func(v CronJobDetailsOutput) CronJobDetailsOutputEnv { return v.Env }).(CronJobDetailsOutputEnvOutput)
 }
@@ -1710,6 +1746,11 @@ func (o CronJobDetailsOutputOutput) Plan() CronJobDetailsOutputPlanOutput {
 // Defaults to "oregon"
 func (o CronJobDetailsOutputOutput) Region() CronJobDetailsOutputRegionOutput {
 	return o.ApplyT(func(v CronJobDetailsOutput) CronJobDetailsOutputRegion { return v.Region }).(CronJobDetailsOutputRegionOutput)
+}
+
+// Runtime
+func (o CronJobDetailsOutputOutput) Runtime() CronJobDetailsOutputRuntimeOutput {
+	return o.ApplyT(func(v CronJobDetailsOutput) CronJobDetailsOutputRuntime { return v.Runtime }).(CronJobDetailsOutputRuntimeOutput)
 }
 
 func (o CronJobDetailsOutputOutput) Schedule() pulumi.StringOutput {
@@ -1749,7 +1790,7 @@ func (o CronJobDetailsOutputPtrOutput) BuildPlan() CronJobDetailsOutputBuildPlan
 	}).(CronJobDetailsOutputBuildPlanPtrOutput)
 }
 
-// Runtime
+// This field has been deprecated, runtime should be used in its place.
 func (o CronJobDetailsOutputPtrOutput) Env() CronJobDetailsOutputEnvPtrOutput {
 	return o.ApplyT(func(v *CronJobDetailsOutput) *CronJobDetailsOutputEnv {
 		if v == nil {
@@ -1795,6 +1836,16 @@ func (o CronJobDetailsOutputPtrOutput) Region() CronJobDetailsOutputRegionPtrOut
 		}
 		return &v.Region
 	}).(CronJobDetailsOutputRegionPtrOutput)
+}
+
+// Runtime
+func (o CronJobDetailsOutputPtrOutput) Runtime() CronJobDetailsOutputRuntimePtrOutput {
+	return o.ApplyT(func(v *CronJobDetailsOutput) *CronJobDetailsOutputRuntime {
+		if v == nil {
+			return nil
+		}
+		return &v.Runtime
+	}).(CronJobDetailsOutputRuntimePtrOutput)
 }
 
 func (o CronJobDetailsOutputPtrOutput) Schedule() pulumi.StringPtrOutput {
@@ -5385,7 +5436,7 @@ type PrivateServiceDetailsOutput struct {
 	Autoscaling *WebServiceDetailspropertiesautoscaling `pulumi:"autoscaling"`
 	BuildPlan   PrivateServiceDetailsOutputBuildPlan    `pulumi:"buildPlan"`
 	Disk        *WebServiceDetailspropertiesdisk        `pulumi:"disk"`
-	// Runtime
+	// This field has been deprecated, runtime should be used in its place.
 	Env                PrivateServiceDetailsOutputEnv `pulumi:"env"`
 	EnvSpecificDetails EnvSpecificDetails             `pulumi:"envSpecificDetails"`
 	// The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
@@ -5401,7 +5452,11 @@ type PrivateServiceDetailsOutput struct {
 	PullRequestPreviewsEnabled *PrivateServiceDetailsOutputPullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
 	// Defaults to "oregon"
 	Region PrivateServiceDetailsOutputRegion `pulumi:"region"`
-	Url    string                            `pulumi:"url"`
+	// Runtime
+	Runtime PrivateServiceDetailsOutputRuntime `pulumi:"runtime"`
+	// The SSH address for the service. Only present for services that have SSH enabled.
+	SshAddress *string `pulumi:"sshAddress"`
+	Url        string  `pulumi:"url"`
 }
 
 // Defaults sets the appropriate defaults for PrivateServiceDetailsOutput
@@ -5457,7 +5512,7 @@ func (o PrivateServiceDetailsOutputOutput) Disk() WebServiceDetailspropertiesdis
 	return o.ApplyT(func(v PrivateServiceDetailsOutput) *WebServiceDetailspropertiesdisk { return v.Disk }).(WebServiceDetailspropertiesdiskPtrOutput)
 }
 
-// Runtime
+// This field has been deprecated, runtime should be used in its place.
 func (o PrivateServiceDetailsOutputOutput) Env() PrivateServiceDetailsOutputEnvOutput {
 	return o.ApplyT(func(v PrivateServiceDetailsOutput) PrivateServiceDetailsOutputEnv { return v.Env }).(PrivateServiceDetailsOutputEnvOutput)
 }
@@ -5503,6 +5558,16 @@ func (o PrivateServiceDetailsOutputOutput) PullRequestPreviewsEnabled() PrivateS
 // Defaults to "oregon"
 func (o PrivateServiceDetailsOutputOutput) Region() PrivateServiceDetailsOutputRegionOutput {
 	return o.ApplyT(func(v PrivateServiceDetailsOutput) PrivateServiceDetailsOutputRegion { return v.Region }).(PrivateServiceDetailsOutputRegionOutput)
+}
+
+// Runtime
+func (o PrivateServiceDetailsOutputOutput) Runtime() PrivateServiceDetailsOutputRuntimeOutput {
+	return o.ApplyT(func(v PrivateServiceDetailsOutput) PrivateServiceDetailsOutputRuntime { return v.Runtime }).(PrivateServiceDetailsOutputRuntimeOutput)
+}
+
+// The SSH address for the service. Only present for services that have SSH enabled.
+func (o PrivateServiceDetailsOutputOutput) SshAddress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PrivateServiceDetailsOutput) *string { return v.SshAddress }).(pulumi.StringPtrOutput)
 }
 
 func (o PrivateServiceDetailsOutputOutput) Url() pulumi.StringOutput {
@@ -5560,7 +5625,7 @@ func (o PrivateServiceDetailsOutputPtrOutput) Disk() WebServiceDetailsproperties
 	}).(WebServiceDetailspropertiesdiskPtrOutput)
 }
 
-// Runtime
+// This field has been deprecated, runtime should be used in its place.
 func (o PrivateServiceDetailsOutputPtrOutput) Env() PrivateServiceDetailsOutputEnvPtrOutput {
 	return o.ApplyT(func(v *PrivateServiceDetailsOutput) *PrivateServiceDetailsOutputEnv {
 		if v == nil {
@@ -5654,6 +5719,26 @@ func (o PrivateServiceDetailsOutputPtrOutput) Region() PrivateServiceDetailsOutp
 		}
 		return &v.Region
 	}).(PrivateServiceDetailsOutputRegionPtrOutput)
+}
+
+// Runtime
+func (o PrivateServiceDetailsOutputPtrOutput) Runtime() PrivateServiceDetailsOutputRuntimePtrOutput {
+	return o.ApplyT(func(v *PrivateServiceDetailsOutput) *PrivateServiceDetailsOutputRuntime {
+		if v == nil {
+			return nil
+		}
+		return &v.Runtime
+	}).(PrivateServiceDetailsOutputRuntimePtrOutput)
+}
+
+// The SSH address for the service. Only present for services that have SSH enabled.
+func (o PrivateServiceDetailsOutputPtrOutput) SshAddress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PrivateServiceDetailsOutput) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SshAddress
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o PrivateServiceDetailsOutputPtrOutput) Url() pulumi.StringPtrOutput {
@@ -8422,7 +8507,7 @@ type WebServiceDetailsOutput struct {
 	Autoscaling *WebServiceDetailsOutputAutoscalingProperties `pulumi:"autoscaling"`
 	BuildPlan   WebServiceDetailsOutputBuildPlan              `pulumi:"buildPlan"`
 	Disk        *WebServiceDetailsOutputDiskProperties        `pulumi:"disk"`
-	// Runtime
+	// This field has been deprecated, runtime should be used in its place.
 	Env                WebServiceDetailsOutputEnv `pulumi:"env"`
 	EnvSpecificDetails EnvSpecificDetails         `pulumi:"envSpecificDetails"`
 	HealthCheckPath    string                     `pulumi:"healthCheckPath"`
@@ -8440,7 +8525,11 @@ type WebServiceDetailsOutput struct {
 	PullRequestPreviewsEnabled *WebServiceDetailsOutputPullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
 	// Defaults to "oregon"
 	Region WebServiceDetailsOutputRegion `pulumi:"region"`
-	Url    string                        `pulumi:"url"`
+	// Runtime
+	Runtime WebServiceDetailsOutputRuntime `pulumi:"runtime"`
+	// The SSH address for the service. Only present for services that have SSH enabled.
+	SshAddress *string `pulumi:"sshAddress"`
+	Url        string  `pulumi:"url"`
 }
 
 // Defaults sets the appropriate defaults for WebServiceDetailsOutput
@@ -8496,7 +8585,7 @@ func (o WebServiceDetailsOutputOutput) Disk() WebServiceDetailsOutputDiskPropert
 	return o.ApplyT(func(v WebServiceDetailsOutput) *WebServiceDetailsOutputDiskProperties { return v.Disk }).(WebServiceDetailsOutputDiskPropertiesPtrOutput)
 }
 
-// Runtime
+// This field has been deprecated, runtime should be used in its place.
 func (o WebServiceDetailsOutputOutput) Env() WebServiceDetailsOutputEnvOutput {
 	return o.ApplyT(func(v WebServiceDetailsOutput) WebServiceDetailsOutputEnv { return v.Env }).(WebServiceDetailsOutputEnvOutput)
 }
@@ -8550,6 +8639,16 @@ func (o WebServiceDetailsOutputOutput) PullRequestPreviewsEnabled() WebServiceDe
 // Defaults to "oregon"
 func (o WebServiceDetailsOutputOutput) Region() WebServiceDetailsOutputRegionOutput {
 	return o.ApplyT(func(v WebServiceDetailsOutput) WebServiceDetailsOutputRegion { return v.Region }).(WebServiceDetailsOutputRegionOutput)
+}
+
+// Runtime
+func (o WebServiceDetailsOutputOutput) Runtime() WebServiceDetailsOutputRuntimeOutput {
+	return o.ApplyT(func(v WebServiceDetailsOutput) WebServiceDetailsOutputRuntime { return v.Runtime }).(WebServiceDetailsOutputRuntimeOutput)
+}
+
+// The SSH address for the service. Only present for services that have SSH enabled.
+func (o WebServiceDetailsOutputOutput) SshAddress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WebServiceDetailsOutput) *string { return v.SshAddress }).(pulumi.StringPtrOutput)
 }
 
 func (o WebServiceDetailsOutputOutput) Url() pulumi.StringOutput {
@@ -8607,7 +8706,7 @@ func (o WebServiceDetailsOutputPtrOutput) Disk() WebServiceDetailsOutputDiskProp
 	}).(WebServiceDetailsOutputDiskPropertiesPtrOutput)
 }
 
-// Runtime
+// This field has been deprecated, runtime should be used in its place.
 func (o WebServiceDetailsOutputPtrOutput) Env() WebServiceDetailsOutputEnvPtrOutput {
 	return o.ApplyT(func(v *WebServiceDetailsOutput) *WebServiceDetailsOutputEnv {
 		if v == nil {
@@ -8719,6 +8818,26 @@ func (o WebServiceDetailsOutputPtrOutput) Region() WebServiceDetailsOutputRegion
 		}
 		return &v.Region
 	}).(WebServiceDetailsOutputRegionPtrOutput)
+}
+
+// Runtime
+func (o WebServiceDetailsOutputPtrOutput) Runtime() WebServiceDetailsOutputRuntimePtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailsOutput) *WebServiceDetailsOutputRuntime {
+		if v == nil {
+			return nil
+		}
+		return &v.Runtime
+	}).(WebServiceDetailsOutputRuntimePtrOutput)
+}
+
+// The SSH address for the service. Only present for services that have SSH enabled.
+func (o WebServiceDetailsOutputPtrOutput) SshAddress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailsOutput) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SshAddress
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o WebServiceDetailsOutputPtrOutput) Url() pulumi.StringPtrOutput {

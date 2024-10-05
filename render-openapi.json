@@ -4247,13 +4247,7 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "postgres": { "$ref": "#/components/schemas/postgres" },
-                      "cursor": { "$ref": "#/components/schemas/cursor" }
-                    }
-                  }
+                  "items": { "$ref": "#/components/schemas/postgresWithCursor" }
                 }
               }
             }
@@ -5831,6 +5825,20 @@
         "style": "form",
         "explode": false,
         "required": false,
+        "deprecated": true,
+        "description": "Filter for environments (runtimes) of services (deprecated; use `runtime` instead)"
+      },
+      "runtimeParam": {
+        "name": "env",
+        "in": "query",
+        "schema": {
+          "type": "array",
+          "items": { "$ref": "#/components/schemas/serviceRuntime" }
+        },
+        "style": "form",
+        "explode": false,
+        "required": false,
+        "deprecated": true,
         "description": "Filter for environments (runtimes) of services"
       },
       "regionParam": {
@@ -6201,6 +6209,7 @@
         "type": "object",
         "required": [
           "env",
+          "runtime",
           "envSpecificDetails",
           "plan",
           "region",
@@ -6258,7 +6267,7 @@
               "mountPath": { "type": "string" }
             }
           },
-          "env": { "$ref": "#/components/schemas/serviceRuntime" },
+          "env": { "$ref": "#/components/schemas/serviceEnv" },
           "envSpecificDetails": {
             "$ref": "#/components/schemas/envSpecificDetails"
           },
@@ -6279,6 +6288,8 @@
           },
           "previews": { "$ref": "#/components/schemas/previews" },
           "region": { "$ref": "#/components/schemas/region" },
+          "runtime": { "$ref": "#/components/schemas/serviceRuntime" },
+          "sshAddress": { "$ref": "#/components/schemas/sshAddress" },
           "url": { "type": "string" },
           "buildPlan": { "$ref": "#/components/schemas/buildPlan" },
           "maxShutdownDelaySeconds": {
@@ -6316,6 +6327,7 @@
         "type": "object",
         "required": [
           "env",
+          "runtime",
           "envSpecificDetails",
           "plan",
           "region",
@@ -6331,7 +6343,7 @@
           "disk": {
             "$ref": "#/components/schemas/webServiceDetails/properties/disk"
           },
-          "env": { "$ref": "#/components/schemas/serviceRuntime" },
+          "env": { "$ref": "#/components/schemas/serviceEnv" },
           "envSpecificDetails": {
             "$ref": "#/components/schemas/envSpecificDetails"
           },
@@ -6350,6 +6362,8 @@
           },
           "previews": { "$ref": "#/components/schemas/previews" },
           "region": { "$ref": "#/components/schemas/region" },
+          "runtime": { "$ref": "#/components/schemas/serviceRuntime" },
+          "sshAddress": { "$ref": "#/components/schemas/sshAddress" },
           "url": { "type": "string" },
           "buildPlan": { "$ref": "#/components/schemas/buildPlan" },
           "maxShutdownDelaySeconds": {
@@ -6423,6 +6437,7 @@
         "type": "object",
         "required": [
           "env",
+          "runtime",
           "envSpecificDetails",
           "plan",
           "region",
@@ -6436,7 +6451,7 @@
           "disk": {
             "$ref": "#/components/schemas/webServiceDetails/properties/disk"
           },
-          "env": { "$ref": "#/components/schemas/serviceRuntime" },
+          "env": { "$ref": "#/components/schemas/serviceEnv" },
           "envSpecificDetails": {
             "$ref": "#/components/schemas/envSpecificDetails"
           },
@@ -6451,6 +6466,8 @@
           },
           "previews": { "$ref": "#/components/schemas/previews" },
           "region": { "$ref": "#/components/schemas/region" },
+          "runtime": { "$ref": "#/components/schemas/serviceRuntime" },
+          "sshAddress": { "$ref": "#/components/schemas/sshAddress" },
           "buildPlan": { "$ref": "#/components/schemas/buildPlan" },
           "maxShutdownDelaySeconds": {
             "$ref": "#/components/schemas/maxShutdownDelaySeconds"
@@ -6460,6 +6477,7 @@
       "cronJobDetails": {
         "required": [
           "env",
+          "runtime",
           "envSpecificDetails",
           "plan",
           "region",
@@ -6468,13 +6486,14 @@
         ],
         "type": "object",
         "properties": {
-          "env": { "$ref": "#/components/schemas/serviceRuntime" },
+          "env": { "$ref": "#/components/schemas/serviceEnv" },
           "envSpecificDetails": {
             "$ref": "#/components/schemas/envSpecificDetails"
           },
           "lastSuccessfulRunAt": { "type": "string", "format": "date-time" },
           "plan": { "$ref": "#/components/schemas/plan" },
           "region": { "$ref": "#/components/schemas/region" },
+          "runtime": { "$ref": "#/components/schemas/serviceRuntime" },
           "schedule": { "type": "string" },
           "buildPlan": { "$ref": "#/components/schemas/buildPlan" }
         }
@@ -7053,6 +7072,10 @@
         ],
         "deprecated": true,
         "description": "This field has been deprecated, runtime should be used in its place."
+      },
+      "sshAddress": {
+        "type": "string",
+        "description": "The SSH address for the service. Only present for services that have SSH enabled."
       },
       "region": {
         "type": "string",
@@ -7819,6 +7842,14 @@
             "format": "password"
           },
           "psqlCommand": { "type": "string", "format": "password" }
+        }
+      },
+      "postgresWithCursor": {
+        "type": "object",
+        "required": ["postgres", "cursor"],
+        "properties": {
+          "postgres": { "$ref": "#/components/schemas/postgres" },
+          "cursor": { "$ref": "#/components/schemas/cursor" }
         }
       },
       "postgres": {

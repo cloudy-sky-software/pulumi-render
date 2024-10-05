@@ -201,64 +201,6 @@ func (o ListPostgresBackupItemPropertiesArrayOutput) Index(i pulumi.IntInput) Li
 	}).(ListPostgresBackupItemPropertiesOutput)
 }
 
-type ListPostgresItemProperties struct {
-	Cursor   *string       `pulumi:"cursor"`
-	Postgres *PostgresType `pulumi:"postgres"`
-}
-
-// Defaults sets the appropriate defaults for ListPostgresItemProperties
-func (val *ListPostgresItemProperties) Defaults() *ListPostgresItemProperties {
-	if val == nil {
-		return nil
-	}
-	tmp := *val
-	tmp.Postgres = tmp.Postgres.Defaults()
-
-	return &tmp
-}
-
-type ListPostgresItemPropertiesOutput struct{ *pulumi.OutputState }
-
-func (ListPostgresItemPropertiesOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ListPostgresItemProperties)(nil)).Elem()
-}
-
-func (o ListPostgresItemPropertiesOutput) ToListPostgresItemPropertiesOutput() ListPostgresItemPropertiesOutput {
-	return o
-}
-
-func (o ListPostgresItemPropertiesOutput) ToListPostgresItemPropertiesOutputWithContext(ctx context.Context) ListPostgresItemPropertiesOutput {
-	return o
-}
-
-func (o ListPostgresItemPropertiesOutput) Cursor() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ListPostgresItemProperties) *string { return v.Cursor }).(pulumi.StringPtrOutput)
-}
-
-func (o ListPostgresItemPropertiesOutput) Postgres() PostgresTypePtrOutput {
-	return o.ApplyT(func(v ListPostgresItemProperties) *PostgresType { return v.Postgres }).(PostgresTypePtrOutput)
-}
-
-type ListPostgresItemPropertiesArrayOutput struct{ *pulumi.OutputState }
-
-func (ListPostgresItemPropertiesArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ListPostgresItemProperties)(nil)).Elem()
-}
-
-func (o ListPostgresItemPropertiesArrayOutput) ToListPostgresItemPropertiesArrayOutput() ListPostgresItemPropertiesArrayOutput {
-	return o
-}
-
-func (o ListPostgresItemPropertiesArrayOutput) ToListPostgresItemPropertiesArrayOutputWithContext(ctx context.Context) ListPostgresItemPropertiesArrayOutput {
-	return o
-}
-
-func (o ListPostgresItemPropertiesArrayOutput) Index(i pulumi.IntInput) ListPostgresItemPropertiesOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListPostgresItemProperties {
-		return vs[0].([]ListPostgresItemProperties)[vs[1].(int)]
-	}).(ListPostgresItemPropertiesOutput)
-}
-
 type Owner struct {
 	Email string `pulumi:"email"`
 	Id    string `pulumi:"id"`
@@ -301,76 +243,6 @@ func (o OwnerOutput) TwoFactorAuthEnabled() pulumi.BoolPtrOutput {
 
 func (o OwnerOutput) Type() OwnerTypeOutput {
 	return o.ApplyT(func(v Owner) OwnerType { return v.Type }).(OwnerTypeOutput)
-}
-
-type OwnerPtrOutput struct{ *pulumi.OutputState }
-
-func (OwnerPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**Owner)(nil)).Elem()
-}
-
-func (o OwnerPtrOutput) ToOwnerPtrOutput() OwnerPtrOutput {
-	return o
-}
-
-func (o OwnerPtrOutput) ToOwnerPtrOutputWithContext(ctx context.Context) OwnerPtrOutput {
-	return o
-}
-
-func (o OwnerPtrOutput) Elem() OwnerOutput {
-	return o.ApplyT(func(v *Owner) Owner {
-		if v != nil {
-			return *v
-		}
-		var ret Owner
-		return ret
-	}).(OwnerOutput)
-}
-
-func (o OwnerPtrOutput) Email() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Owner) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.Email
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o OwnerPtrOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Owner) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.Id
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o OwnerPtrOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Owner) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.Name
-	}).(pulumi.StringPtrOutput)
-}
-
-// Whether two-factor authentication is enabled for the owner. Only present for user owners.
-func (o OwnerPtrOutput) TwoFactorAuthEnabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *Owner) *bool {
-		if v == nil {
-			return nil
-		}
-		return v.TwoFactorAuthEnabled
-	}).(pulumi.BoolPtrOutput)
-}
-
-func (o OwnerPtrOutput) Type() OwnerTypePtrOutput {
-	return o.ApplyT(func(v *Owner) *OwnerType {
-		if v == nil {
-			return nil
-		}
-		return &v.Type
-	}).(OwnerTypePtrOutput)
 }
 
 type PostgresType struct {
@@ -518,232 +390,6 @@ func (o PostgresTypeOutput) UpdatedAt() pulumi.StringOutput {
 // The PostgreSQL version
 func (o PostgresTypeOutput) Version() PostgresVersionOutput {
 	return o.ApplyT(func(v PostgresType) PostgresVersion { return v.Version }).(PostgresVersionOutput)
-}
-
-type PostgresTypePtrOutput struct{ *pulumi.OutputState }
-
-func (PostgresTypePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**PostgresType)(nil)).Elem()
-}
-
-func (o PostgresTypePtrOutput) ToPostgresTypePtrOutput() PostgresTypePtrOutput {
-	return o
-}
-
-func (o PostgresTypePtrOutput) ToPostgresTypePtrOutputWithContext(ctx context.Context) PostgresTypePtrOutput {
-	return o
-}
-
-func (o PostgresTypePtrOutput) Elem() PostgresTypeOutput {
-	return o.ApplyT(func(v *PostgresType) PostgresType {
-		if v != nil {
-			return *v
-		}
-		var ret PostgresType
-		return ret
-	}).(PostgresTypeOutput)
-}
-
-func (o PostgresTypePtrOutput) CreatedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *PostgresType) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.CreatedAt
-	}).(pulumi.StringPtrOutput)
-}
-
-// The URL to view the PostgreSQL instance in the Render Dashboard
-func (o PostgresTypePtrOutput) DashboardUrl() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *PostgresType) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.DashboardUrl
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o PostgresTypePtrOutput) DatabaseName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *PostgresType) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.DatabaseName
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o PostgresTypePtrOutput) DatabaseUser() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *PostgresType) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.DatabaseUser
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o PostgresTypePtrOutput) DiskSizeGB() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *PostgresType) *int {
-		if v == nil {
-			return nil
-		}
-		return v.DiskSizeGB
-	}).(pulumi.IntPtrOutput)
-}
-
-func (o PostgresTypePtrOutput) EnvironmentId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *PostgresType) *string {
-		if v == nil {
-			return nil
-		}
-		return v.EnvironmentId
-	}).(pulumi.StringPtrOutput)
-}
-
-// The time at which the database will be expire. Applies to free tier databases only.
-func (o PostgresTypePtrOutput) ExpiresAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *PostgresType) *string {
-		if v == nil {
-			return nil
-		}
-		return v.ExpiresAt
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o PostgresTypePtrOutput) HighAvailabilityEnabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *PostgresType) *bool {
-		if v == nil {
-			return nil
-		}
-		return &v.HighAvailabilityEnabled
-	}).(pulumi.BoolPtrOutput)
-}
-
-func (o PostgresTypePtrOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *PostgresType) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.Id
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o PostgresTypePtrOutput) IpAllowList() CidrBlockAndDescriptionArrayOutput {
-	return o.ApplyT(func(v *PostgresType) []CidrBlockAndDescription {
-		if v == nil {
-			return nil
-		}
-		return v.IpAllowList
-	}).(CidrBlockAndDescriptionArrayOutput)
-}
-
-func (o PostgresTypePtrOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *PostgresType) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.Name
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o PostgresTypePtrOutput) Owner() OwnerPtrOutput {
-	return o.ApplyT(func(v *PostgresType) *Owner {
-		if v == nil {
-			return nil
-		}
-		return &v.Owner
-	}).(OwnerPtrOutput)
-}
-
-func (o PostgresTypePtrOutput) Plan() PostgresPlanPtrOutput {
-	return o.ApplyT(func(v *PostgresType) *PostgresPlan {
-		if v == nil {
-			return nil
-		}
-		return &v.Plan
-	}).(PostgresPlanPtrOutput)
-}
-
-func (o PostgresTypePtrOutput) PrimaryPostgresID() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *PostgresType) *string {
-		if v == nil {
-			return nil
-		}
-		return v.PrimaryPostgresID
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o PostgresTypePtrOutput) ReadReplicas() ReadReplicaArrayOutput {
-	return o.ApplyT(func(v *PostgresType) []ReadReplica {
-		if v == nil {
-			return nil
-		}
-		return v.ReadReplicas
-	}).(ReadReplicaArrayOutput)
-}
-
-// Defaults to "oregon"
-func (o PostgresTypePtrOutput) Region() PostgresRegionPtrOutput {
-	return o.ApplyT(func(v *PostgresType) *PostgresRegion {
-		if v == nil {
-			return nil
-		}
-		return &v.Region
-	}).(PostgresRegionPtrOutput)
-}
-
-func (o PostgresTypePtrOutput) Role() PostgresRolePtrOutput {
-	return o.ApplyT(func(v *PostgresType) *PostgresRole {
-		if v == nil {
-			return nil
-		}
-		return &v.Role
-	}).(PostgresRolePtrOutput)
-}
-
-func (o PostgresTypePtrOutput) Status() PostgresStatusPtrOutput {
-	return o.ApplyT(func(v *PostgresType) *PostgresStatus {
-		if v == nil {
-			return nil
-		}
-		return &v.Status
-	}).(PostgresStatusPtrOutput)
-}
-
-func (o PostgresTypePtrOutput) Suspended() PostgresSuspendedPtrOutput {
-	return o.ApplyT(func(v *PostgresType) *PostgresSuspended {
-		if v == nil {
-			return nil
-		}
-		return &v.Suspended
-	}).(PostgresSuspendedPtrOutput)
-}
-
-func (o PostgresTypePtrOutput) Suspenders() PostgresSuspendersItemArrayOutput {
-	return o.ApplyT(func(v *PostgresType) []PostgresSuspendersItem {
-		if v == nil {
-			return nil
-		}
-		return v.Suspenders
-	}).(PostgresSuspendersItemArrayOutput)
-}
-
-func (o PostgresTypePtrOutput) UpdatedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *PostgresType) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.UpdatedAt
-	}).(pulumi.StringPtrOutput)
-}
-
-// The PostgreSQL version
-func (o PostgresTypePtrOutput) Version() PostgresVersionPtrOutput {
-	return o.ApplyT(func(v *PostgresType) *PostgresVersion {
-		if v == nil {
-			return nil
-		}
-		return &v.Version
-	}).(PostgresVersionPtrOutput)
 }
 
 type PostgresConnectionInfo struct {
@@ -933,6 +579,64 @@ func (o PostgresDetailOutput) UpdatedAt() pulumi.StringOutput {
 // The PostgreSQL version
 func (o PostgresDetailOutput) Version() PostgresDetailVersionOutput {
 	return o.ApplyT(func(v PostgresDetail) PostgresDetailVersion { return v.Version }).(PostgresDetailVersionOutput)
+}
+
+type PostgresWithCursor struct {
+	Cursor   string       `pulumi:"cursor"`
+	Postgres PostgresType `pulumi:"postgres"`
+}
+
+// Defaults sets the appropriate defaults for PostgresWithCursor
+func (val *PostgresWithCursor) Defaults() *PostgresWithCursor {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	tmp.Postgres = *tmp.Postgres.Defaults()
+
+	return &tmp
+}
+
+type PostgresWithCursorOutput struct{ *pulumi.OutputState }
+
+func (PostgresWithCursorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PostgresWithCursor)(nil)).Elem()
+}
+
+func (o PostgresWithCursorOutput) ToPostgresWithCursorOutput() PostgresWithCursorOutput {
+	return o
+}
+
+func (o PostgresWithCursorOutput) ToPostgresWithCursorOutputWithContext(ctx context.Context) PostgresWithCursorOutput {
+	return o
+}
+
+func (o PostgresWithCursorOutput) Cursor() pulumi.StringOutput {
+	return o.ApplyT(func(v PostgresWithCursor) string { return v.Cursor }).(pulumi.StringOutput)
+}
+
+func (o PostgresWithCursorOutput) Postgres() PostgresTypeOutput {
+	return o.ApplyT(func(v PostgresWithCursor) PostgresType { return v.Postgres }).(PostgresTypeOutput)
+}
+
+type PostgresWithCursorArrayOutput struct{ *pulumi.OutputState }
+
+func (PostgresWithCursorArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PostgresWithCursor)(nil)).Elem()
+}
+
+func (o PostgresWithCursorArrayOutput) ToPostgresWithCursorArrayOutput() PostgresWithCursorArrayOutput {
+	return o
+}
+
+func (o PostgresWithCursorArrayOutput) ToPostgresWithCursorArrayOutputWithContext(ctx context.Context) PostgresWithCursorArrayOutput {
+	return o
+}
+
+func (o PostgresWithCursorArrayOutput) Index(i pulumi.IntInput) PostgresWithCursorOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PostgresWithCursor {
+		return vs[0].([]PostgresWithCursor)[vs[1].(int)]
+	}).(PostgresWithCursorOutput)
 }
 
 type ReadReplica struct {
@@ -1207,14 +911,12 @@ func init() {
 	pulumi.RegisterOutputType(GetPostgresRecoveryInfoPropertiesOutput{})
 	pulumi.RegisterOutputType(ListPostgresBackupItemPropertiesOutput{})
 	pulumi.RegisterOutputType(ListPostgresBackupItemPropertiesArrayOutput{})
-	pulumi.RegisterOutputType(ListPostgresItemPropertiesOutput{})
-	pulumi.RegisterOutputType(ListPostgresItemPropertiesArrayOutput{})
 	pulumi.RegisterOutputType(OwnerOutput{})
-	pulumi.RegisterOutputType(OwnerPtrOutput{})
 	pulumi.RegisterOutputType(PostgresTypeOutput{})
-	pulumi.RegisterOutputType(PostgresTypePtrOutput{})
 	pulumi.RegisterOutputType(PostgresConnectionInfoOutput{})
 	pulumi.RegisterOutputType(PostgresDetailOutput{})
+	pulumi.RegisterOutputType(PostgresWithCursorOutput{})
+	pulumi.RegisterOutputType(PostgresWithCursorArrayOutput{})
 	pulumi.RegisterOutputType(ReadReplicaOutput{})
 	pulumi.RegisterOutputType(ReadReplicaArrayOutput{})
 	pulumi.RegisterOutputType(ReadReplicaInputTypeOutput{})

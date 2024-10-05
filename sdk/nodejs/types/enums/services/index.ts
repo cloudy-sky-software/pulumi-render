@@ -90,7 +90,7 @@ export const BackgroundWorkerDetailsOutputEnv = {
 } as const;
 
 /**
- * Runtime
+ * This field has been deprecated, runtime should be used in its place.
  */
 export type BackgroundWorkerDetailsOutputEnv = (typeof BackgroundWorkerDetailsOutputEnv)[keyof typeof BackgroundWorkerDetailsOutputEnv];
 
@@ -134,6 +134,22 @@ export const BackgroundWorkerDetailsOutputRegion = {
  * Defaults to "oregon"
  */
 export type BackgroundWorkerDetailsOutputRegion = (typeof BackgroundWorkerDetailsOutputRegion)[keyof typeof BackgroundWorkerDetailsOutputRegion];
+
+export const BackgroundWorkerDetailsOutputRuntime = {
+    Docker: "docker",
+    Elixir: "elixir",
+    Go: "go",
+    Node: "node",
+    Python: "python",
+    Ruby: "ruby",
+    Rust: "rust",
+    Image: "image",
+} as const;
+
+/**
+ * Runtime
+ */
+export type BackgroundWorkerDetailsOutputRuntime = (typeof BackgroundWorkerDetailsOutputRuntime)[keyof typeof BackgroundWorkerDetailsOutputRuntime];
 
 export const CancelJobStatus = {
     Succeeded: "succeeded",
@@ -231,7 +247,7 @@ export const CronJobDetailsOutputEnv = {
 } as const;
 
 /**
- * Runtime
+ * This field has been deprecated, runtime should be used in its place.
  */
 export type CronJobDetailsOutputEnv = (typeof CronJobDetailsOutputEnv)[keyof typeof CronJobDetailsOutputEnv];
 
@@ -265,6 +281,22 @@ export const CronJobDetailsOutputRegion = {
  * Defaults to "oregon"
  */
 export type CronJobDetailsOutputRegion = (typeof CronJobDetailsOutputRegion)[keyof typeof CronJobDetailsOutputRegion];
+
+export const CronJobDetailsOutputRuntime = {
+    Docker: "docker",
+    Elixir: "elixir",
+    Go: "go",
+    Node: "node",
+    Python: "python",
+    Ruby: "ruby",
+    Rust: "rust",
+    Image: "image",
+} as const;
+
+/**
+ * Runtime
+ */
+export type CronJobDetailsOutputRuntime = (typeof CronJobDetailsOutputRuntime)[keyof typeof CronJobDetailsOutputRuntime];
 
 export const CustomDomainDomainType = {
     Apex: "apex",
@@ -443,7 +475,7 @@ export const PrivateServiceDetailsOutputEnv = {
 } as const;
 
 /**
- * Runtime
+ * This field has been deprecated, runtime should be used in its place.
  */
 export type PrivateServiceDetailsOutputEnv = (typeof PrivateServiceDetailsOutputEnv)[keyof typeof PrivateServiceDetailsOutputEnv];
 
@@ -487,6 +519,22 @@ export const PrivateServiceDetailsOutputRegion = {
  * Defaults to "oregon"
  */
 export type PrivateServiceDetailsOutputRegion = (typeof PrivateServiceDetailsOutputRegion)[keyof typeof PrivateServiceDetailsOutputRegion];
+
+export const PrivateServiceDetailsOutputRuntime = {
+    Docker: "docker",
+    Elixir: "elixir",
+    Go: "go",
+    Node: "node",
+    Python: "python",
+    Ruby: "ruby",
+    Rust: "rust",
+    Image: "image",
+} as const;
+
+/**
+ * Runtime
+ */
+export type PrivateServiceDetailsOutputRuntime = (typeof PrivateServiceDetailsOutputRuntime)[keyof typeof PrivateServiceDetailsOutputRuntime];
 
 export const RegistryCredentialRegistry = {
     Github: "GITHUB",
@@ -713,7 +761,7 @@ export const WebServiceDetailsOutputEnv = {
 } as const;
 
 /**
- * Runtime
+ * This field has been deprecated, runtime should be used in its place.
  */
 export type WebServiceDetailsOutputEnv = (typeof WebServiceDetailsOutputEnv)[keyof typeof WebServiceDetailsOutputEnv];
 
@@ -757,3 +805,19 @@ export const WebServiceDetailsOutputRegion = {
  * Defaults to "oregon"
  */
 export type WebServiceDetailsOutputRegion = (typeof WebServiceDetailsOutputRegion)[keyof typeof WebServiceDetailsOutputRegion];
+
+export const WebServiceDetailsOutputRuntime = {
+    Docker: "docker",
+    Elixir: "elixir",
+    Go: "go",
+    Node: "node",
+    Python: "python",
+    Ruby: "ruby",
+    Rust: "rust",
+    Image: "image",
+} as const;
+
+/**
+ * Runtime
+ */
+export type WebServiceDetailsOutputRuntime = (typeof WebServiceDetailsOutputRuntime)[keyof typeof WebServiceDetailsOutputRuntime];

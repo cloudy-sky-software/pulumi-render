@@ -15,7 +15,7 @@ namespace Pulumi.Render.Services.Outputs
     {
         public readonly Pulumi.Render.Services.CronJobDetailsOutputBuildPlan BuildPlan;
         /// <summary>
-        /// Runtime
+        /// This field has been deprecated, runtime should be used in its place.
         /// </summary>
         public readonly Pulumi.Render.Services.CronJobDetailsOutputEnv Env;
         public readonly Outputs.EnvSpecificDetails EnvSpecificDetails;
@@ -28,6 +28,10 @@ namespace Pulumi.Render.Services.Outputs
         /// Defaults to "oregon"
         /// </summary>
         public readonly Pulumi.Render.Services.CronJobDetailsOutputRegion Region;
+        /// <summary>
+        /// Runtime
+        /// </summary>
+        public readonly Pulumi.Render.Services.CronJobDetailsOutputRuntime Runtime;
         public readonly string Schedule;
 
         [OutputConstructor]
@@ -44,6 +48,8 @@ namespace Pulumi.Render.Services.Outputs
 
             Pulumi.Render.Services.CronJobDetailsOutputRegion region,
 
+            Pulumi.Render.Services.CronJobDetailsOutputRuntime runtime,
+
             string schedule)
         {
             BuildPlan = buildPlan;
@@ -52,6 +58,7 @@ namespace Pulumi.Render.Services.Outputs
             LastSuccessfulRunAt = lastSuccessfulRunAt;
             Plan = plan;
             Region = region;
+            Runtime = runtime;
             Schedule = schedule;
         }
     }

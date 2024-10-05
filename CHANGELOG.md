@@ -1,3 +1,7 @@
+## 0.3.12
+
+Update to the latest Render OpenAPI spec. (Fixes #367.)
+
 ## 0.3.11
 
 Upgrade pulumi-provider-framework to the latest to fix import issue caused by a leading '/'.

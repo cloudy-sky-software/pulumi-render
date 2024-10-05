@@ -11,16 +11,16 @@ namespace Pulumi.Render.Postgres.Outputs
 {
 
     [OutputType]
-    public sealed class ListPostgresItemProperties
+    public sealed class PostgresWithCursor
     {
-        public readonly string? Cursor;
-        public readonly Outputs.Postgres? Postgres;
+        public readonly string Cursor;
+        public readonly Outputs.Postgres Postgres;
 
         [OutputConstructor]
-        private ListPostgresItemProperties(
-            string? cursor,
+        private PostgresWithCursor(
+            string cursor,
 
-            Outputs.Postgres? postgres)
+            Outputs.Postgres postgres)
         {
             Cursor = cursor;
             Postgres = postgres;

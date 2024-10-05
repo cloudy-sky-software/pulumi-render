@@ -15,6 +15,7 @@ __all__ = [
     'BackgroundWorkerDetailsOutputPlan',
     'BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled',
     'BackgroundWorkerDetailsOutputRegion',
+    'BackgroundWorkerDetailsOutputRuntime',
     'CancelJobStatus',
     'ClearCache',
     'CronJobDetailsCreateEnv',
@@ -25,6 +26,7 @@ __all__ = [
     'CronJobDetailsOutputEnv',
     'CronJobDetailsOutputPlan',
     'CronJobDetailsOutputRegion',
+    'CronJobDetailsOutputRuntime',
     'CustomDomainDomainType',
     'CustomDomainVerificationStatus',
     'DeployStatus',
@@ -43,6 +45,7 @@ __all__ = [
     'PrivateServiceDetailsOutputPlan',
     'PrivateServiceDetailsOutputPullRequestPreviewsEnabled',
     'PrivateServiceDetailsOutputRegion',
+    'PrivateServiceDetailsOutputRuntime',
     'RegistryCredentialRegistry',
     'RouteCreateType',
     'RouteType',
@@ -68,6 +71,7 @@ __all__ = [
     'WebServiceDetailsOutputPlan',
     'WebServiceDetailsOutputPullRequestPreviewsEnabled',
     'WebServiceDetailsOutputRegion',
+    'WebServiceDetailsOutputRuntime',
 ]
 
 
@@ -137,7 +141,7 @@ class BackgroundWorkerDetailsOutputBuildPlan(str, Enum):
 
 class BackgroundWorkerDetailsOutputEnv(str, Enum):
     """
-    Runtime
+    This field has been deprecated, runtime should be used in its place.
     """
     DOCKER = "docker"
     ELIXIR = "elixir"
@@ -182,6 +186,20 @@ class BackgroundWorkerDetailsOutputRegion(str, Enum):
     OHIO = "ohio"
     SINGAPORE = "singapore"
     VIRGINIA = "virginia"
+
+
+class BackgroundWorkerDetailsOutputRuntime(str, Enum):
+    """
+    Runtime
+    """
+    DOCKER = "docker"
+    ELIXIR = "elixir"
+    GO = "go"
+    NODE = "node"
+    PYTHON = "python"
+    RUBY = "ruby"
+    RUST = "rust"
+    IMAGE = "image"
 
 
 class CancelJobStatus(str, Enum):
@@ -256,7 +274,7 @@ class CronJobDetailsOutputBuildPlan(str, Enum):
 
 class CronJobDetailsOutputEnv(str, Enum):
     """
-    Runtime
+    This field has been deprecated, runtime should be used in its place.
     """
     DOCKER = "docker"
     ELIXIR = "elixir"
@@ -293,6 +311,20 @@ class CronJobDetailsOutputRegion(str, Enum):
     OHIO = "ohio"
     SINGAPORE = "singapore"
     VIRGINIA = "virginia"
+
+
+class CronJobDetailsOutputRuntime(str, Enum):
+    """
+    Runtime
+    """
+    DOCKER = "docker"
+    ELIXIR = "elixir"
+    GO = "go"
+    NODE = "node"
+    PYTHON = "python"
+    RUBY = "ruby"
+    RUST = "rust"
+    IMAGE = "image"
 
 
 class CustomDomainDomainType(str, Enum):
@@ -434,7 +466,7 @@ class PrivateServiceDetailsOutputBuildPlan(str, Enum):
 
 class PrivateServiceDetailsOutputEnv(str, Enum):
     """
-    Runtime
+    This field has been deprecated, runtime should be used in its place.
     """
     DOCKER = "docker"
     ELIXIR = "elixir"
@@ -479,6 +511,20 @@ class PrivateServiceDetailsOutputRegion(str, Enum):
     OHIO = "ohio"
     SINGAPORE = "singapore"
     VIRGINIA = "virginia"
+
+
+class PrivateServiceDetailsOutputRuntime(str, Enum):
+    """
+    Runtime
+    """
+    DOCKER = "docker"
+    ELIXIR = "elixir"
+    GO = "go"
+    NODE = "node"
+    PYTHON = "python"
+    RUBY = "ruby"
+    RUST = "rust"
+    IMAGE = "image"
 
 
 class RegistryCredentialRegistry(str, Enum):
@@ -654,7 +700,7 @@ class WebServiceDetailsOutputBuildPlan(str, Enum):
 
 class WebServiceDetailsOutputEnv(str, Enum):
     """
-    Runtime
+    This field has been deprecated, runtime should be used in its place.
     """
     DOCKER = "docker"
     ELIXIR = "elixir"
@@ -699,3 +745,17 @@ class WebServiceDetailsOutputRegion(str, Enum):
     OHIO = "ohio"
     SINGAPORE = "singapore"
     VIRGINIA = "virginia"
+
+
+class WebServiceDetailsOutputRuntime(str, Enum):
+    """
+    Runtime
+    """
+    DOCKER = "docker"
+    ELIXIR = "elixir"
+    GO = "go"
+    NODE = "node"
+    PYTHON = "python"
+    RUBY = "ruby"
+    RUST = "rust"
+    IMAGE = "image"

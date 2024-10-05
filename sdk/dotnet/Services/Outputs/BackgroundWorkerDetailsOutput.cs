@@ -17,7 +17,7 @@ namespace Pulumi.Render.Services.Outputs
         public readonly Pulumi.Render.Services.BackgroundWorkerDetailsOutputBuildPlan BuildPlan;
         public readonly Outputs.WebServiceDetailspropertiesdisk? Disk;
         /// <summary>
-        /// Runtime
+        /// This field has been deprecated, runtime should be used in its place.
         /// </summary>
         public readonly Pulumi.Render.Services.BackgroundWorkerDetailsOutputEnv Env;
         public readonly Outputs.EnvSpecificDetails EnvSpecificDetails;
@@ -43,6 +43,14 @@ namespace Pulumi.Render.Services.Outputs
         /// Defaults to "oregon"
         /// </summary>
         public readonly Pulumi.Render.Services.BackgroundWorkerDetailsOutputRegion Region;
+        /// <summary>
+        /// Runtime
+        /// </summary>
+        public readonly Pulumi.Render.Services.BackgroundWorkerDetailsOutputRuntime Runtime;
+        /// <summary>
+        /// The SSH address for the service. Only present for services that have SSH enabled.
+        /// </summary>
+        public readonly string? SshAddress;
 
         [OutputConstructor]
         private BackgroundWorkerDetailsOutput(
@@ -68,7 +76,11 @@ namespace Pulumi.Render.Services.Outputs
 
             Pulumi.Render.Services.BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled? pullRequestPreviewsEnabled,
 
-            Pulumi.Render.Services.BackgroundWorkerDetailsOutputRegion region)
+            Pulumi.Render.Services.BackgroundWorkerDetailsOutputRegion region,
+
+            Pulumi.Render.Services.BackgroundWorkerDetailsOutputRuntime runtime,
+
+            string? sshAddress)
         {
             Autoscaling = autoscaling;
             BuildPlan = buildPlan;
@@ -82,6 +94,8 @@ namespace Pulumi.Render.Services.Outputs
             Previews = previews;
             PullRequestPreviewsEnabled = pullRequestPreviewsEnabled;
             Region = region;
+            Runtime = runtime;
+            SshAddress = sshAddress;
         }
     }
 }

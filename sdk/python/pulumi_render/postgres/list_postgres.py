@@ -32,7 +32,7 @@ class ListPostgresResult:
 
     @property
     @pulumi.getter
-    def items(self) -> Sequence['outputs.ListPostgresItemProperties']:
+    def items(self) -> Sequence['outputs.PostgresWithCursor']:
         return pulumi.get(self, "items")
 
 

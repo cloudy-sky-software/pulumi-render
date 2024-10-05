@@ -31,10 +31,10 @@ namespace Pulumi.Render.Postgres
     [OutputType]
     public sealed class ListPostgresResult
     {
-        public readonly ImmutableArray<Outputs.ListPostgresItemProperties> Items;
+        public readonly ImmutableArray<Outputs.PostgresWithCursor> Items;
 
         [OutputConstructor]
-        private ListPostgresResult(ImmutableArray<Outputs.ListPostgresItemProperties> items)
+        private ListPostgresResult(ImmutableArray<Outputs.PostgresWithCursor> items)
         {
             Items = items;
         }

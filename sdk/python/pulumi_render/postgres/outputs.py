@@ -19,9 +19,9 @@ from ._enums import *
 __all__ = [
     'CidrBlockAndDescription',
     'ListPostgresBackupItemProperties',
-    'ListPostgresItemProperties',
     'Owner',
     'Postgres',
+    'PostgresWithCursor',
     'ReadReplica',
     'RedisDetailpropertiesmaintenance',
 ]
@@ -99,27 +99,6 @@ class ListPostgresBackupItemProperties(dict):
         URL to download the Postgres backup
         """
         return pulumi.get(self, "url")
-
-
-@pulumi.output_type
-class ListPostgresItemProperties(dict):
-    def __init__(__self__, *,
-                 cursor: Optional[str] = None,
-                 postgres: Optional['outputs.Postgres'] = None):
-        if cursor is not None:
-            pulumi.set(__self__, "cursor", cursor)
-        if postgres is not None:
-            pulumi.set(__self__, "postgres", postgres)
-
-    @property
-    @pulumi.getter
-    def cursor(self) -> Optional[str]:
-        return pulumi.get(self, "cursor")
-
-    @property
-    @pulumi.getter
-    def postgres(self) -> Optional['outputs.Postgres']:
-        return pulumi.get(self, "postgres")
 
 
 @pulumi.output_type
@@ -367,6 +346,25 @@ class Postgres(dict):
     @pulumi.getter(name="primaryPostgresID")
     def primary_postgres_id(self) -> Optional[str]:
         return pulumi.get(self, "primary_postgres_id")
+
+
+@pulumi.output_type
+class PostgresWithCursor(dict):
+    def __init__(__self__, *,
+                 cursor: str,
+                 postgres: 'outputs.Postgres'):
+        pulumi.set(__self__, "cursor", cursor)
+        pulumi.set(__self__, "postgres", postgres)
+
+    @property
+    @pulumi.getter
+    def cursor(self) -> str:
+        return pulumi.get(self, "cursor")
+
+    @property
+    @pulumi.getter
+    def postgres(self) -> 'outputs.Postgres':
+        return pulumi.get(self, "postgres")
 
 
 @pulumi.output_type

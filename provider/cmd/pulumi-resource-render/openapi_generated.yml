@@ -60,7 +60,8 @@ components:
             schema:
                 type: string
         envParam:
-            description: Filter for environments (runtimes) of services
+            deprecated: true
+            description: Filter for environments (runtimes) of services (deprecated; use `runtime` instead)
             explode: false
             in: query
             name: env
@@ -205,6 +206,17 @@ components:
                 items:
                     type: string
                 type: array
+        runtimeParam:
+            deprecated: true
+            description: Filter for environments (runtimes) of services
+            explode: false
+            in: query
+            name: env
+            schema:
+                items:
+                    $ref: '#/components/schemas/serviceRuntime'
+                type: array
+            style: form
         secretFileNameParam:
             description: The name of the secret file
             in: path
@@ -450,7 +462,7 @@ components:
                 disk:
                     $ref: '#/components/schemas/webServiceDetails/properties/disk'
                 env:
-                    $ref: '#/components/schemas/serviceRuntime'
+                    $ref: '#/components/schemas/serviceEnv'
                 envSpecificDetails:
                     $ref: '#/components/schemas/envSpecificDetails'
                 maxShutdownDelaySeconds:
@@ -468,8 +480,13 @@ components:
                     $ref: '#/components/schemas/pullRequestPreviewsEnabled'
                 region:
                     $ref: '#/components/schemas/region'
+                runtime:
+                    $ref: '#/components/schemas/serviceRuntime'
+                sshAddress:
+                    $ref: '#/components/schemas/sshAddress'
             required:
                 - env
+                - runtime
                 - envSpecificDetails
                 - plan
                 - region
@@ -485,7 +502,7 @@ components:
                 disk:
                     $ref: '#/components/schemas/webServiceDetails/properties/disk'
                 env:
-                    $ref: '#/components/schemas/serviceRuntime'
+                    $ref: '#/components/schemas/serviceEnv'
                 envSpecificDetails:
                     $ref: '#/components/schemas/envSpecificDetails'
                 maxShutdownDelaySeconds:
@@ -503,8 +520,13 @@ components:
                     $ref: '#/components/schemas/pullRequestPreviewsEnabled'
                 region:
                     $ref: '#/components/schemas/region'
+                runtime:
+                    $ref: '#/components/schemas/serviceRuntime'
+                sshAddress:
+                    $ref: '#/components/schemas/sshAddress'
             required:
                 - env
+                - runtime
                 - envSpecificDetails
                 - plan
                 - region
@@ -663,7 +685,7 @@ components:
                 buildPlan:
                     $ref: '#/components/schemas/buildPlan'
                 env:
-                    $ref: '#/components/schemas/serviceRuntime'
+                    $ref: '#/components/schemas/serviceEnv'
                 envSpecificDetails:
                     $ref: '#/components/schemas/envSpecificDetails'
                 lastSuccessfulRunAt:
@@ -673,10 +695,13 @@ components:
                     $ref: '#/components/schemas/plan'
                 region:
                     $ref: '#/components/schemas/region'
+                runtime:
+                    $ref: '#/components/schemas/serviceRuntime'
                 schedule:
                     type: string
             required:
                 - env
+                - runtime
                 - envSpecificDetails
                 - plan
                 - region
@@ -688,7 +713,7 @@ components:
                 buildPlan:
                     $ref: '#/components/schemas/buildPlan'
                 env:
-                    $ref: '#/components/schemas/serviceRuntime'
+                    $ref: '#/components/schemas/serviceEnv'
                 envSpecificDetails:
                     $ref: '#/components/schemas/envSpecificDetails'
                 lastSuccessfulRunAt:
@@ -698,10 +723,13 @@ components:
                     $ref: '#/components/schemas/plan'
                 region:
                     $ref: '#/components/schemas/region'
+                runtime:
+                    $ref: '#/components/schemas/serviceRuntime'
                 schedule:
                     type: string
             required:
                 - env
+                - runtime
                 - envSpecificDetails
                 - plan
                 - region
@@ -1727,6 +1755,16 @@ components:
                 - "15"
                 - "16"
             type: string
+        postgresWithCursor:
+            properties:
+                cursor:
+                    $ref: '#/components/schemas/cursor'
+                postgres:
+                    $ref: '#/components/schemas/postgres'
+            required:
+                - postgres
+                - cursor
+            type: object
         previewInput:
             properties:
                 imagePath:
@@ -1773,7 +1811,7 @@ components:
                 disk:
                     $ref: '#/components/schemas/webServiceDetails/properties/disk'
                 env:
-                    $ref: '#/components/schemas/serviceRuntime'
+                    $ref: '#/components/schemas/serviceEnv'
                 envSpecificDetails:
                     $ref: '#/components/schemas/envSpecificDetails'
                 maxShutdownDelaySeconds:
@@ -1795,10 +1833,15 @@ components:
                     $ref: '#/components/schemas/pullRequestPreviewsEnabled'
                 region:
                     $ref: '#/components/schemas/region'
+                runtime:
+                    $ref: '#/components/schemas/serviceRuntime'
+                sshAddress:
+                    $ref: '#/components/schemas/sshAddress'
                 url:
                     type: string
             required:
                 - env
+                - runtime
                 - envSpecificDetails
                 - plan
                 - region
@@ -1816,7 +1859,7 @@ components:
                 disk:
                     $ref: '#/components/schemas/webServiceDetails/properties/disk'
                 env:
-                    $ref: '#/components/schemas/serviceRuntime'
+                    $ref: '#/components/schemas/serviceEnv'
                 envSpecificDetails:
                     $ref: '#/components/schemas/envSpecificDetails'
                 maxShutdownDelaySeconds:
@@ -1838,10 +1881,15 @@ components:
                     $ref: '#/components/schemas/pullRequestPreviewsEnabled'
                 region:
                     $ref: '#/components/schemas/region'
+                runtime:
+                    $ref: '#/components/schemas/serviceRuntime'
+                sshAddress:
+                    $ref: '#/components/schemas/sshAddress'
                 url:
                     type: string
             required:
                 - env
+                - runtime
                 - envSpecificDetails
                 - plan
                 - region
@@ -2805,11 +2853,7 @@ components:
                                     reason:
                                         $ref: '#/components/schemas/serviceEventWithCursor/properties/event/properties/details/oneOf/9/properties/reason'
                                     status:
-                                        enum:
-                                            - succeeded
-                                            - failed
-                                            - canceled
-                                        type: string
+                                        $ref: '#/paths/~1services~1%7BserviceId%7D~1jobs/post/responses/200/content/application~1json/schema/properties/status'
                                   required:
                                     - jobId
                                     - status
@@ -3063,6 +3107,9 @@ components:
             required:
                 - snapshotKey
             type: object
+        sshAddress:
+            description: The SSH address for the service. Only present for services that have SSH enabled.
+            type: string
         staticSite:
             allOf:
                 - $ref: '#/components/schemas/servicePOST'
@@ -3290,7 +3337,7 @@ components:
                         - mountPath
                     type: object
                 env:
-                    $ref: '#/components/schemas/serviceRuntime'
+                    $ref: '#/components/schemas/serviceEnv'
                 envSpecificDetails:
                     $ref: '#/components/schemas/envSpecificDetails'
                 healthCheckPath:
@@ -3316,10 +3363,15 @@ components:
                     $ref: '#/components/schemas/pullRequestPreviewsEnabled'
                 region:
                     $ref: '#/components/schemas/region'
+                runtime:
+                    $ref: '#/components/schemas/serviceRuntime'
+                sshAddress:
+                    $ref: '#/components/schemas/sshAddress'
                 url:
                     type: string
             required:
                 - env
+                - runtime
                 - envSpecificDetails
                 - plan
                 - region
@@ -3388,7 +3440,7 @@ components:
                         - mountPath
                     type: object
                 env:
-                    $ref: '#/components/schemas/serviceRuntime'
+                    $ref: '#/components/schemas/serviceEnv'
                 envSpecificDetails:
                     $ref: '#/components/schemas/envSpecificDetails'
                 healthCheckPath:
@@ -3414,10 +3466,15 @@ components:
                     $ref: '#/components/schemas/pullRequestPreviewsEnabled'
                 region:
                     $ref: '#/components/schemas/region'
+                runtime:
+                    $ref: '#/components/schemas/serviceRuntime'
+                sshAddress:
+                    $ref: '#/components/schemas/sshAddress'
                 url:
                     type: string
             required:
                 - env
+                - runtime
                 - envSpecificDetails
                 - plan
                 - region
@@ -6404,12 +6461,7 @@ paths:
                         application/json:
                             schema:
                                 items:
-                                    properties:
-                                        cursor:
-                                            $ref: '#/components/schemas/cursor'
-                                        postgres:
-                                            $ref: '#/components/schemas/postgres'
-                                    type: object
+                                    $ref: '#/components/schemas/postgresWithCursor'
                                 type: array
                     description: OK
                 "400":

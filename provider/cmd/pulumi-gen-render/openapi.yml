@@ -4905,12 +4905,7 @@ paths:
               schema:
                 type: array
                 items:
-                  type: object
-                  properties:
-                    postgres:
-                      $ref: '#/components/schemas/postgres'
-                    cursor:
-                      $ref: '#/components/schemas/cursor'
+                  $ref: '#/components/schemas/postgresWithCursor'
         '400':
           $ref: '#/components/responses/400BadRequest'
         '401':
@@ -6655,6 +6650,21 @@ components:
       style: form
       explode: false
       required: false
+      deprecated: true
+      description: >-
+        Filter for environments (runtimes) of services (deprecated; use
+        `runtime` instead)
+    runtimeParam:
+      name: env
+      in: query
+      schema:
+        type: array
+        items:
+          $ref: '#/components/schemas/serviceRuntime'
+      style: form
+      explode: false
+      required: false
+      deprecated: true
       description: Filter for environments (runtimes) of services
     regionParam:
       name: region
@@ -7079,6 +7089,7 @@ components:
       type: object
       required:
         - env
+        - runtime
         - envSpecificDetails
         - plan
         - region
@@ -7147,7 +7158,7 @@ components:
             mountPath:
               type: string
         env:
-          $ref: '#/components/schemas/serviceRuntime'
+          $ref: '#/components/schemas/serviceEnv'
         envSpecificDetails:
           $ref: '#/components/schemas/envSpecificDetails'
         healthCheckPath:
@@ -7174,6 +7185,10 @@ components:
           $ref: '#/components/schemas/previews'
         region:
           $ref: '#/components/schemas/region'
+        runtime:
+          $ref: '#/components/schemas/serviceRuntime'
+        sshAddress:
+          $ref: '#/components/schemas/sshAddress'
         url:
           type: string
         buildPlan:
@@ -7206,6 +7221,7 @@ components:
       type: object
       required:
         - env
+        - runtime
         - envSpecificDetails
         - plan
         - region
@@ -7219,7 +7235,7 @@ components:
         disk:
           $ref: '#/components/schemas/webServiceDetails/properties/disk'
         env:
-          $ref: '#/components/schemas/serviceRuntime'
+          $ref: '#/components/schemas/serviceEnv'
         envSpecificDetails:
           $ref: '#/components/schemas/envSpecificDetails'
         numInstances:
@@ -7242,6 +7258,10 @@ components:
           $ref: '#/components/schemas/previews'
         region:
           $ref: '#/components/schemas/region'
+        runtime:
+          $ref: '#/components/schemas/serviceRuntime'
+        sshAddress:
+          $ref: '#/components/schemas/sshAddress'
         url:
           type: string
         buildPlan:
@@ -7325,6 +7345,7 @@ components:
       type: object
       required:
         - env
+        - runtime
         - envSpecificDetails
         - plan
         - region
@@ -7336,7 +7357,7 @@ components:
         disk:
           $ref: '#/components/schemas/webServiceDetails/properties/disk'
         env:
-          $ref: '#/components/schemas/serviceRuntime'
+          $ref: '#/components/schemas/serviceEnv'
         envSpecificDetails:
           $ref: '#/components/schemas/envSpecificDetails'
         numInstances:
@@ -7355,6 +7376,10 @@ components:
           $ref: '#/components/schemas/previews'
         region:
           $ref: '#/components/schemas/region'
+        runtime:
+          $ref: '#/components/schemas/serviceRuntime'
+        sshAddress:
+          $ref: '#/components/schemas/sshAddress'
         buildPlan:
           $ref: '#/components/schemas/buildPlan'
         maxShutdownDelaySeconds:
@@ -7362,6 +7387,7 @@ components:
     cronJobDetails:
       required:
         - env
+        - runtime
         - envSpecificDetails
         - plan
         - region
@@ -7370,7 +7396,7 @@ components:
       type: object
       properties:
         env:
-          $ref: '#/components/schemas/serviceRuntime'
+          $ref: '#/components/schemas/serviceEnv'
         envSpecificDetails:
           $ref: '#/components/schemas/envSpecificDetails'
         lastSuccessfulRunAt:
@@ -7380,6 +7406,8 @@ components:
           $ref: '#/components/schemas/plan'
         region:
           $ref: '#/components/schemas/region'
+        runtime:
+          $ref: '#/components/schemas/serviceRuntime'
         schedule:
           type: string
         buildPlan:
@@ -8037,6 +8065,11 @@ components:
         - image
       deprecated: true
       description: 'This field has been deprecated, runtime should be used in its place.'
+    sshAddress:
+      type: string
+      description: >-
+        The SSH address for the service. Only present for services that have SSH
+        enabled.
     region:
       type: string
       enum:
@@ -8882,6 +8915,16 @@ components:
         psqlCommand:
           type: string
           format: password
+    postgresWithCursor:
+      type: object
+      required:
+        - postgres
+        - cursor
+      properties:
+        postgres:
+          $ref: '#/components/schemas/postgres'
+        cursor:
+          $ref: '#/components/schemas/cursor'
     postgres:
       type: object
       required:
@@ -9523,11 +9566,8 @@ components:
                       $ref: >-
                         #/paths/~1services~1%7BserviceId%7D~1jobs~1%7BjobId%7D/parameters/1/schema
                     status:
-                      type: string
-                      enum:
-                        - succeeded
-                        - failed
-                        - canceled
+                      $ref: >-
+                        #/paths/~1services~1%7BserviceId%7D~1jobs/post/responses/200/content/application~1json/schema/properties/status
                     reason:
                       $ref: >-
                         #/components/schemas/serviceEventWithCursor/properties/event/properties/details/oneOf/9/properties/reason

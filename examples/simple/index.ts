@@ -3,13 +3,12 @@ import * as render from "@cloudyskysoftware/pulumi-render";
 
 import type { services as servicesInputs } from "@cloudyskysoftware/pulumi-render/types/input";
 
-const ownerId = pulumi
-    .output(render.owners.listOwners())
+const ownerId = render.owners
+    .listOwnersOutput()
     .apply(
         (result) =>
-            result.items.filter(
-                (i) => i.owner?.email === "pl@cloudysky.software"
-            )[0].owner?.id || ""
+            result.items.filter((i) => i.owner?.email === "OWNER_EMAIL")[0]
+                .owner?.id || ""
     );
 
 const staticSiteDetails: servicesInputs.StaticSiteDetailsCreateArgs = {

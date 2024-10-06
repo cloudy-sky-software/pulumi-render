@@ -9,6 +9,15 @@
 ```typescript
 import * as render from "@cloudyskysoftware/render";
 
+const ownerId = render.owners
+    .listOwnersOutput()
+    .apply(
+        (result) =>
+            result.items.filter(
+                (i) => i.owner?.email === "OWNER_EMAIL"
+            )[0].owner?.id || ""
+    );
+
 const staticSite = new render.services.StaticSite("staticsite", {
     name: "My custom static site",
     ownerId,

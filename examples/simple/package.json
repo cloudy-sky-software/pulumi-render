@@ -1,7 +1,7 @@
 {
   "name": "render-ts",
   "devDependencies": {
-    "@types/node": "^14"
+    "@types/node": "^20"
   },
   "dependencies": {
     "@cloudyskysoftware/pulumi-render": "latest",

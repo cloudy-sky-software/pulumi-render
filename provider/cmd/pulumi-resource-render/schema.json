@@ -9550,7 +9550,7 @@
             }
         },
         "render:services:StaticSite": {
-            "description": "\n\n{{% examples %}}\n\n## Example Usage\n\n{{% example %}}\n\n### Create a service\n\n```typescript\nimport * as render from \"@cloudyskysoftware/render\";\n\n// TODO: Fill me in!\nconst service = new render.services.StaticSite(\"staticSite\", {});\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
+            "description": "\n\n{{% examples %}}\n\n## Example Usage\n\n{{% example %}}\n\n### Create a StaticSite service\n\n```typescript\nimport * as render from \"@cloudyskysoftware/render\";\n\nconst staticSite = new render.services.StaticSite(\"staticsite\", {\n    name: \"My custom static site\",\n    ownerId,\n    repo: \"https://github.com/cloudy-sky-software/test-static-site\",\n    autoDeploy: \"no\",\n    branch: \"main\",\n    serviceDetails: {\n    publishPath: \"public\",\n    },\n    type: \"static_site\",\n});\n\nexport const url = staticSite.serviceDetails.apply((s) =\u003e s?.url);\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
             "properties": {
                 "autoDeploy": {
                     "$ref": "#/types/render:services:ServiceAutoDeploy",

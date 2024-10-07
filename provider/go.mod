@@ -3,9 +3,9 @@ module github.com/cloudy-sky-software/pulumi-render/provider
 go 1.21
 
 require (
-	github.com/cloudy-sky-software/pulschema v0.0.0-20241004145349-3714771852d8
-	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20241005013332-601f0e193cc0
-	github.com/getkin/kin-openapi v0.127.0
+	github.com/cloudy-sky-software/pulschema v0.0.0-20241007003752-c98a28f00975
+	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20241007050810-a057eff23bfe
+	github.com/getkin/kin-openapi v0.128.0
 	github.com/pulumi/pulumi/pkg/v3 v3.135.1
 	github.com/pulumi/pulumi/sdk/v3 v3.135.1
 )
@@ -180,7 +180,7 @@ require (
 	golang.org/x/sync v0.8.0 // indirect
 	golang.org/x/sys v0.24.0 // indirect
 	golang.org/x/term v0.23.0 // indirect
-	golang.org/x/text v0.18.0 // indirect
+	golang.org/x/text v0.19.0 // indirect
 	golang.org/x/time v0.5.0 // indirect
 	golang.org/x/tools v0.22.0 // indirect
 	golang.org/x/xerrors v0.0.0-20231012003039-104605ab7028 // indirect

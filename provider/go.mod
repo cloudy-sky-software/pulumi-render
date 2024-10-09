@@ -3,11 +3,11 @@ module github.com/cloudy-sky-software/pulumi-render/provider
 go 1.21
 
 require (
-	github.com/cloudy-sky-software/pulschema v0.0.0-20241007003752-c98a28f00975
-	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20241007050810-a057eff23bfe
+	github.com/cloudy-sky-software/pulschema v0.0.0-20241009000052-894e5286e42b
+	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20241009035001-a100584c2e84
 	github.com/getkin/kin-openapi v0.128.0
-	github.com/pulumi/pulumi/pkg/v3 v3.135.1
-	github.com/pulumi/pulumi/sdk/v3 v3.135.1
+	github.com/pulumi/pulumi/pkg/v3 v3.136.1
+	github.com/pulumi/pulumi/sdk/v3 v3.136.1
 )
 
 require github.com/stretchr/testify v1.9.0
@@ -189,7 +189,7 @@ require (
 	google.golang.org/genproto/googleapis/api v0.0.0-20240814211410-ddb44dafa142 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20240814211410-ddb44dafa142 // indirect
 	google.golang.org/grpc v1.67.1 // indirect
-	google.golang.org/protobuf v1.34.2 // indirect
+	google.golang.org/protobuf v1.35.1 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 	lukechampine.com/frand v1.4.2 // indirect
 )

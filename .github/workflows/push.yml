@@ -69,7 +69,7 @@ jobs:
           python-version: 3.11
 
       - name: Install pulumictl
-        uses: jaxxstorm/action-install-gh-release@v1.12.0
+        uses: jaxxstorm/action-install-gh-release@v1.13.0
         with:
           repo: pulumi/pulumictl
           tag: "latest"

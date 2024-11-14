@@ -98,8 +98,8 @@ github.com/cloudflare/circl v1.3.7 h1:qlCDlTPz2n9fu58M0Nh1J/JzcFpfgkFHHX3O35r5vc
 github.com/cloudflare/circl v1.3.7/go.mod h1:sRTcRWXGLrKw6yIGJ+l7amYJFfAXbZG0kBSc8r4zxgA=
 github.com/cloudy-sky-software/pulschema v0.0.0-20241107154739-31453977e59e h1:NwAI0wuKsaSHCqM2uHK/4dnLXgb6SUNQEAsX03dgw4k=
 github.com/cloudy-sky-software/pulschema v0.0.0-20241107154739-31453977e59e/go.mod h1:5Ipqw8Mmj9hpx83P3zE2/URS3WFOcuEEiDbMz54SfPE=
-github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20241108122556-94c216d694e9 h1:VumkNgIUEu9p2HlsE9sAjVqW/xJzcioKFgfgxewYmf0=
-github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20241108122556-94c216d694e9/go.mod h1:Tq4ULob4PO92xuUR4ShR4iOl5aPNE7nMMp2jRZOwt9Q=
+github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20241114161733-bd436ad78cf0 h1:kleDAIYplm7ZX/PkfnJeIEVBJ8qYbWHkQWXYjo9yPK8=
+github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20241114161733-bd436ad78cf0/go.mod h1:bSrVWrkc6yDiv8/4UhBpuO2qy+xq0Klxks56VUb+lKI=
 github.com/containerd/console v1.0.4 h1:F2g4+oChYvBTsASRTz8NP6iIAi97J3TtSAsLbIFn4ro=
 github.com/containerd/console v1.0.4/go.mod h1:YynlIjWYF8myEu6sdkwKIvGQq+cOckRm6So2avqoYAk=
 github.com/cpuguy83/go-md2man/v2 v2.0.3/go.mod h1:tgQtvFlXSQOSOSIRvRPT7W67SCa46tRHOmNcaadrF8o=
@@ -496,8 +496,8 @@ google.golang.org/genproto/googleapis/rpc v0.0.0-20240903143218-8af14fe29dc1 h1:
 google.golang.org/genproto/googleapis/rpc v0.0.0-20240903143218-8af14fe29dc1/go.mod h1:UqMtugtsSgubUsoxbuAoiCXvqvErP7Gf0so0mK9tHxU=
 google.golang.org/grpc v1.68.0 h1:aHQeeJbo8zAkAa3pRzrVjZlbz6uSfeOXlJNQM0RAbz0=
 google.golang.org/grpc v1.68.0/go.mod h1:fmSPC5AsjSBCK54MyHRx48kpOti1/jRfOlwEWywNjWA=
-google.golang.org/protobuf v1.35.1 h1:m3LfL6/Ca+fqnjnlqQXNpFPABW1UD7mjh8KO2mKFytA=
-google.golang.org/protobuf v1.35.1/go.mod h1:9fA7Ob0pmnwhb644+1+CVWFRbNajQ6iRojtC/QF5bRE=
+google.golang.org/protobuf v1.35.2 h1:8Ar7bF+apOIoThw1EdZl0p1oWvMqTHmpA2fRTyZO8io=
+google.golang.org/protobuf v1.35.2/go.mod h1:9fA7Ob0pmnwhb644+1+CVWFRbNajQ6iRojtC/QF5bRE=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/check.v1 v1.0.0-20190902080502-41f04d3bba15/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c h1:Hei/4ADfdWqJk1ZMxUNpqntNwaWcugrBjAiHlqqRiVk=

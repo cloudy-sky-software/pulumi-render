@@ -20,7 +20,7 @@ export interface GetDiskArgs {
      */
     diskId: string;
 }
-export function getDiskOutput(args: GetDiskOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.disks.DiskWithCursorpropertiesdisk> {
+export function getDiskOutput(args: GetDiskOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.disks.DiskWithCursorpropertiesdisk> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:disks:getDisk", {
         "diskId": args.diskId,

@@ -20,7 +20,7 @@ export interface ListNotificationOverridesArgs {
 export interface ListNotificationOverridesResult {
     readonly items: outputs.notificationsettings.NotificationOverrideWithCursor[];
 }
-export function listNotificationOverridesOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListNotificationOverridesResult> {
+export function listNotificationOverridesOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListNotificationOverridesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:notification-settings:listNotificationOverrides", {
     }, opts);

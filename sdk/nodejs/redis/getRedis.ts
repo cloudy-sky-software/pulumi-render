@@ -17,7 +17,7 @@ export function getRedis(args: GetRedisArgs, opts?: pulumi.InvokeOptions): Promi
 export interface GetRedisArgs {
     redisId: string;
 }
-export function getRedisOutput(args: GetRedisOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.redis.RedisDetail> {
+export function getRedisOutput(args: GetRedisOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.redis.RedisDetail> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:redis:getRedis", {
         "redisId": args.redisId,

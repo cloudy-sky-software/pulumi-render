@@ -60,7 +60,7 @@ def list_custom_domains(service_id: Optional[str] = None,
     return AwaitableListCustomDomainsResult(
         items=pulumi.get(__ret__, 'items'))
 def list_custom_domains_output(service_id: Optional[pulumi.Input[str]] = None,
-                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListCustomDomainsResult]:
+                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListCustomDomainsResult]:
     """
     Use this data source to access information about an existing resource.
 
@@ -68,7 +68,7 @@ def list_custom_domains_output(service_id: Optional[pulumi.Input[str]] = None,
     """
     __args__ = dict()
     __args__['serviceId'] = service_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:services:listCustomDomains', __args__, opts=opts, typ=ListCustomDomainsResult)
     return __ret__.apply(lambda __response__: ListCustomDomainsResult(
         items=pulumi.get(__response__, 'items')))

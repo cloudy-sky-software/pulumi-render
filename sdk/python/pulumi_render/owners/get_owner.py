@@ -102,7 +102,7 @@ def get_owner(owner_id: Optional[str] = None,
         two_factor_auth_enabled=pulumi.get(__ret__, 'two_factor_auth_enabled'),
         type=pulumi.get(__ret__, 'type'))
 def get_owner_output(owner_id: Optional[pulumi.Input[str]] = None,
-                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[Owner]:
+                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[Owner]:
     """
     Use this data source to access information about an existing resource.
 
@@ -110,7 +110,7 @@ def get_owner_output(owner_id: Optional[pulumi.Input[str]] = None,
     """
     __args__ = dict()
     __args__['ownerId'] = owner_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:owners:getOwner', __args__, opts=opts, typ=Owner)
     return __ret__.apply(lambda __response__: Owner(
         email=pulumi.get(__response__, 'email'),

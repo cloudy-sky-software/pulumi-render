@@ -25,7 +25,7 @@ export interface GetDeployArgs {
      */
     serviceId: string;
 }
-export function getDeployOutput(args: GetDeployOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.services.Deploy> {
+export function getDeployOutput(args: GetDeployOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.services.Deploy> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:services:getDeploy", {
         "deployId": args.deployId,

@@ -20,7 +20,7 @@ export interface GetOwnerLogStreamArgs {
      */
     ownerId: string;
 }
-export function getOwnerLogStreamOutput(args: GetOwnerLogStreamOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.logs.GetOwnerLogStreamProperties> {
+export function getOwnerLogStreamOutput(args: GetOwnerLogStreamOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.logs.GetOwnerLogStreamProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:logs:getOwnerLogStream", {
         "ownerId": args.ownerId,

@@ -25,7 +25,7 @@ export interface GetEnvGroupEnvVarArgs {
      */
     envVarKey: string;
 }
-export function getEnvGroupEnvVarOutput(args: GetEnvGroupEnvVarOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.envgroups.EnvVar> {
+export function getEnvGroupEnvVarOutput(args: GetEnvGroupEnvVarOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.envgroups.EnvVar> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:env-groups:getEnvGroupEnvVar", {
         "envGroupId": args.envGroupId,

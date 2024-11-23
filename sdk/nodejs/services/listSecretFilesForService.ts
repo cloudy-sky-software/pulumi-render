@@ -24,7 +24,7 @@ export interface ListSecretFilesForServiceArgs {
 export interface ListSecretFilesForServiceResult {
     readonly items: outputs.services.SecretFileWithCursor[];
 }
-export function listSecretFilesForServiceOutput(args: ListSecretFilesForServiceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListSecretFilesForServiceResult> {
+export function listSecretFilesForServiceOutput(args: ListSecretFilesForServiceOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListSecretFilesForServiceResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:services:listSecretFilesForService", {
         "serviceId": args.serviceId,

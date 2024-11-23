@@ -20,7 +20,7 @@ export interface GetOwnerArgs {
      */
     ownerId: string;
 }
-export function getOwnerOutput(args: GetOwnerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.owners.Owner> {
+export function getOwnerOutput(args: GetOwnerOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.owners.Owner> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:owners:getOwner", {
         "ownerId": args.ownerId,

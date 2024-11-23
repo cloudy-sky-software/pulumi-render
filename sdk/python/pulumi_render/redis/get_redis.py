@@ -208,13 +208,13 @@ def get_redis(redis_id: Optional[str] = None,
         updated_at=pulumi.get(__ret__, 'updated_at'),
         version=pulumi.get(__ret__, 'version'))
 def get_redis_output(redis_id: Optional[pulumi.Input[str]] = None,
-                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[RedisDetail]:
+                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[RedisDetail]:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['redisId'] = redis_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:redis:getRedis', __args__, opts=opts, typ=RedisDetail)
     return __ret__.apply(lambda __response__: RedisDetail(
         created_at=pulumi.get(__response__, 'created_at'),

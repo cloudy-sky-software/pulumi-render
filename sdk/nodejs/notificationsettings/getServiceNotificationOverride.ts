@@ -20,7 +20,7 @@ export interface GetServiceNotificationOverrideArgs {
      */
     serviceId: string;
 }
-export function getServiceNotificationOverrideOutput(args: GetServiceNotificationOverrideOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.notificationsettings.GetServiceNotificationOverrideProperties> {
+export function getServiceNotificationOverrideOutput(args: GetServiceNotificationOverrideOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.notificationsettings.GetServiceNotificationOverrideProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:notification-settings:getServiceNotificationOverride", {
         "serviceId": args.serviceId,

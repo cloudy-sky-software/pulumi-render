@@ -25,7 +25,7 @@ export interface GetJobArgs {
      */
     serviceId: string;
 }
-export function getJobOutput(args: GetJobOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.services.Job> {
+export function getJobOutput(args: GetJobOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.services.Job> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:services:getJob", {
         "jobId": args.jobId,

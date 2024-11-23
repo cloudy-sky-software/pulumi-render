@@ -17,7 +17,7 @@ export function getPostgresConnectionInfo(args: GetPostgresConnectionInfoArgs, o
 export interface GetPostgresConnectionInfoArgs {
     postgresId: string;
 }
-export function getPostgresConnectionInfoOutput(args: GetPostgresConnectionInfoOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.postgres.PostgresConnectionInfo> {
+export function getPostgresConnectionInfoOutput(args: GetPostgresConnectionInfoOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.postgres.PostgresConnectionInfo> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:postgres:getPostgresConnectionInfo", {
         "postgresId": args.postgresId,

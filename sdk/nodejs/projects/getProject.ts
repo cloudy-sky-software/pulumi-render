@@ -17,7 +17,7 @@ export function getProject(args: GetProjectArgs, opts?: pulumi.InvokeOptions): P
 export interface GetProjectArgs {
     projectId: string;
 }
-export function getProjectOutput(args: GetProjectOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.projects.Project> {
+export function getProjectOutput(args: GetProjectOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.projects.Project> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:projects:getProject", {
         "projectId": args.projectId,

@@ -59,7 +59,7 @@ def list_headers(service_id: Optional[str] = None,
     return AwaitableListHeadersResult(
         items=pulumi.get(__ret__, 'items'))
 def list_headers_output(service_id: Optional[pulumi.Input[str]] = None,
-                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListHeadersResult]:
+                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListHeadersResult]:
     """
     Use this data source to access information about an existing resource.
 
@@ -67,7 +67,7 @@ def list_headers_output(service_id: Optional[pulumi.Input[str]] = None,
     """
     __args__ = dict()
     __args__['serviceId'] = service_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:services:listHeaders', __args__, opts=opts, typ=ListHeadersResult)
     return __ret__.apply(lambda __response__: ListHeadersResult(
         items=pulumi.get(__response__, 'items')))

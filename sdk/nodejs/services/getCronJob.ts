@@ -20,7 +20,7 @@ export interface GetCronJobArgs {
      */
     serviceId: string;
 }
-export function getCronJobOutput(args: GetCronJobOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.services.GetCronJob> {
+export function getCronJobOutput(args: GetCronJobOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.services.GetCronJob> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:services:getCronJob", {
         "serviceId": args.serviceId,

@@ -17,7 +17,7 @@ export function getPostgres(args: GetPostgresArgs, opts?: pulumi.InvokeOptions):
 export interface GetPostgresArgs {
     postgresId: string;
 }
-export function getPostgresOutput(args: GetPostgresOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.postgres.PostgresDetail> {
+export function getPostgresOutput(args: GetPostgresOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.postgres.PostgresDetail> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:postgres:getPostgres", {
         "postgresId": args.postgresId,

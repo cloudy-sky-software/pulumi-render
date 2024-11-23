@@ -20,7 +20,7 @@ export interface ListRedisArgs {
 export interface ListRedisResult {
     readonly items: outputs.redis.ListRedisItemProperties[];
 }
-export function listRedisOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListRedisResult> {
+export function listRedisOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListRedisResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:redis:listRedis", {
     }, opts);

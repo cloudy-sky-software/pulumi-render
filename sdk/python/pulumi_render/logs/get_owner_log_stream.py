@@ -91,7 +91,7 @@ def get_owner_log_stream(owner_id: Optional[str] = None,
         owner_id=pulumi.get(__ret__, 'owner_id'),
         preview=pulumi.get(__ret__, 'preview'))
 def get_owner_log_stream_output(owner_id: Optional[pulumi.Input[str]] = None,
-                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOwnerLogStreamProperties]:
+                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOwnerLogStreamProperties]:
     """
     Use this data source to access information about an existing resource.
 
@@ -99,7 +99,7 @@ def get_owner_log_stream_output(owner_id: Optional[pulumi.Input[str]] = None,
     """
     __args__ = dict()
     __args__['ownerId'] = owner_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:logs:getOwnerLogStream', __args__, opts=opts, typ=GetOwnerLogStreamProperties)
     return __ret__.apply(lambda __response__: GetOwnerLogStreamProperties(
         endpoint=pulumi.get(__response__, 'endpoint'),

@@ -130,13 +130,13 @@ def get_environment(environment_id: Optional[str] = None,
         redis_ids=pulumi.get(__ret__, 'redis_ids'),
         service_ids=pulumi.get(__ret__, 'service_ids'))
 def get_environment_output(environment_id: Optional[pulumi.Input[str]] = None,
-                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[Environment]:
+                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[Environment]:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['environmentId'] = environment_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:environments:getEnvironment', __args__, opts=opts, typ=Environment)
     return __ret__.apply(lambda __response__: Environment(
         databases_ids=pulumi.get(__response__, 'databases_ids'),

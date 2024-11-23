@@ -72,7 +72,7 @@ def get_secret_file(secret_file_name: Optional[str] = None,
         name=pulumi.get(__ret__, 'name'))
 def get_secret_file_output(secret_file_name: Optional[pulumi.Input[str]] = None,
                            service_id: Optional[pulumi.Input[str]] = None,
-                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[SecretFile]:
+                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[SecretFile]:
     """
     Use this data source to access information about an existing resource.
 
@@ -82,7 +82,7 @@ def get_secret_file_output(secret_file_name: Optional[pulumi.Input[str]] = None,
     __args__ = dict()
     __args__['secretFileName'] = secret_file_name
     __args__['serviceId'] = service_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:services:getSecretFile', __args__, opts=opts, typ=SecretFile)
     return __ret__.apply(lambda __response__: SecretFile(
         content=pulumi.get(__response__, 'content'),

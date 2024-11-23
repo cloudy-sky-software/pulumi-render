@@ -20,7 +20,7 @@ export interface ListBlueprintsArgs {
 export interface ListBlueprintsResult {
     readonly items: outputs.blueprints.BlueprintWithCursor[];
 }
-export function listBlueprintsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListBlueprintsResult> {
+export function listBlueprintsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListBlueprintsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:blueprints:listBlueprints", {
     }, opts);

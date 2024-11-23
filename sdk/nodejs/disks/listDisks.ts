@@ -20,7 +20,7 @@ export interface ListDisksArgs {
 export interface ListDisksResult {
     readonly items: outputs.disks.DiskWithCursor[];
 }
-export function listDisksOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListDisksResult> {
+export function listDisksOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListDisksResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:disks:listDisks", {
     }, opts);

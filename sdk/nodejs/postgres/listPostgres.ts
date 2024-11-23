@@ -20,7 +20,7 @@ export interface ListPostgresArgs {
 export interface ListPostgresResult {
     readonly items: outputs.postgres.PostgresWithCursor[];
 }
-export function listPostgresOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListPostgresResult> {
+export function listPostgresOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListPostgresResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:postgres:listPostgres", {
     }, opts);

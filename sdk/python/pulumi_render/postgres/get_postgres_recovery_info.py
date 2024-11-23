@@ -70,13 +70,13 @@ def get_postgres_recovery_info(postgres_id: Optional[str] = None,
         recovery_status=pulumi.get(__ret__, 'recovery_status'),
         starts_at=pulumi.get(__ret__, 'starts_at'))
 def get_postgres_recovery_info_output(postgres_id: Optional[pulumi.Input[str]] = None,
-                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPostgresRecoveryInfoProperties]:
+                                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPostgresRecoveryInfoProperties]:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['postgresId'] = postgres_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:postgres:getPostgresRecoveryInfo', __args__, opts=opts, typ=GetPostgresRecoveryInfoProperties)
     return __ret__.apply(lambda __response__: GetPostgresRecoveryInfoProperties(
         recovery_status=pulumi.get(__response__, 'recovery_status'),

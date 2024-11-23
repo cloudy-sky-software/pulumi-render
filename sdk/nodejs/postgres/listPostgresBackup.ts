@@ -21,7 +21,7 @@ export interface ListPostgresBackupArgs {
 export interface ListPostgresBackupResult {
     readonly items: outputs.postgres.ListPostgresBackupItemProperties[];
 }
-export function listPostgresBackupOutput(args: ListPostgresBackupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListPostgresBackupResult> {
+export function listPostgresBackupOutput(args: ListPostgresBackupOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListPostgresBackupResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:postgres:listPostgresBackup", {
         "postgresId": args.postgresId,

@@ -24,7 +24,7 @@ export interface ListBlueprintSyncsArgs {
 export interface ListBlueprintSyncsResult {
     readonly items: outputs.blueprints.SyncWithCursor[];
 }
-export function listBlueprintSyncsOutput(args: ListBlueprintSyncsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListBlueprintSyncsResult> {
+export function listBlueprintSyncsOutput(args: ListBlueprintSyncsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListBlueprintSyncsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:blueprints:listBlueprintSyncs", {
         "blueprintId": args.blueprintId,

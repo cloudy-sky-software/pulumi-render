@@ -24,7 +24,7 @@ export interface ListHeadersArgs {
 export interface ListHeadersResult {
     readonly items: outputs.services.HeaderWithCursor[];
 }
-export function listHeadersOutput(args: ListHeadersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListHeadersResult> {
+export function listHeadersOutput(args: ListHeadersOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListHeadersResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:services:listHeaders", {
         "serviceId": args.serviceId,

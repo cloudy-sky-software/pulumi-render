@@ -17,7 +17,7 @@ export function getRedisConnectionInfo(args: GetRedisConnectionInfoArgs, opts?: 
 export interface GetRedisConnectionInfoArgs {
     redisId: string;
 }
-export function getRedisConnectionInfoOutput(args: GetRedisConnectionInfoOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.redis.RedisConnectionInfo> {
+export function getRedisConnectionInfoOutput(args: GetRedisConnectionInfoOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.redis.RedisConnectionInfo> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:redis:getRedisConnectionInfo", {
         "redisId": args.redisId,

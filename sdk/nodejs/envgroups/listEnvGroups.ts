@@ -20,7 +20,7 @@ export interface ListEnvGroupsArgs {
 export interface ListEnvGroupsResult {
     readonly items: outputs.envgroups.EnvGroupMeta[];
 }
-export function listEnvGroupsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListEnvGroupsResult> {
+export function listEnvGroupsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListEnvGroupsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:env-groups:listEnvGroups", {
     }, opts);

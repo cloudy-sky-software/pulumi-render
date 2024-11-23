@@ -20,7 +20,7 @@ export interface GetBackgroundWorkerArgs {
      */
     serviceId: string;
 }
-export function getBackgroundWorkerOutput(args: GetBackgroundWorkerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.services.GetBackgroundWorker> {
+export function getBackgroundWorkerOutput(args: GetBackgroundWorkerOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.services.GetBackgroundWorker> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:services:getBackgroundWorker", {
         "serviceId": args.serviceId,

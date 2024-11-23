@@ -20,7 +20,7 @@ export interface ListProjectsArgs {
 export interface ListProjectsResult {
     readonly items: outputs.projects.ProjectWithCursor[];
 }
-export function listProjectsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListProjectsResult> {
+export function listProjectsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListProjectsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:projects:listProjects", {
     }, opts);

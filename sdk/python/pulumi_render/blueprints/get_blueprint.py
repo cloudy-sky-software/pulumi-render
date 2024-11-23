@@ -133,7 +133,7 @@ def get_blueprint(blueprint_id: Optional[str] = None,
         resources=pulumi.get(__ret__, 'resources'),
         status=pulumi.get(__ret__, 'status'))
 def get_blueprint_output(blueprint_id: Optional[pulumi.Input[str]] = None,
-                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBlueprintProperties]:
+                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBlueprintProperties]:
     """
     Use this data source to access information about an existing resource.
 
@@ -141,7 +141,7 @@ def get_blueprint_output(blueprint_id: Optional[pulumi.Input[str]] = None,
     """
     __args__ = dict()
     __args__['blueprintId'] = blueprint_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:blueprints:getBlueprint', __args__, opts=opts, typ=GetBlueprintProperties)
     return __ret__.apply(lambda __response__: GetBlueprintProperties(
         auto_sync=pulumi.get(__response__, 'auto_sync'),

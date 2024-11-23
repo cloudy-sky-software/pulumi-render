@@ -72,7 +72,7 @@ def get_env_group_env_var(env_group_id: Optional[str] = None,
         value=pulumi.get(__ret__, 'value'))
 def get_env_group_env_var_output(env_group_id: Optional[pulumi.Input[str]] = None,
                                  env_var_key: Optional[pulumi.Input[str]] = None,
-                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[EnvVar]:
+                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[EnvVar]:
     """
     Use this data source to access information about an existing resource.
 
@@ -82,7 +82,7 @@ def get_env_group_env_var_output(env_group_id: Optional[pulumi.Input[str]] = Non
     __args__ = dict()
     __args__['envGroupId'] = env_group_id
     __args__['envVarKey'] = env_var_key
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:env-groups:getEnvGroupEnvVar', __args__, opts=opts, typ=EnvVar)
     return __ret__.apply(lambda __response__: EnvVar(
         key=pulumi.get(__response__, 'key'),

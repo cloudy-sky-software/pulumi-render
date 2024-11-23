@@ -25,7 +25,7 @@ export interface GetSecretFileArgs {
      */
     serviceId: string;
 }
-export function getSecretFileOutput(args: GetSecretFileOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.services.SecretFile> {
+export function getSecretFileOutput(args: GetSecretFileOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.services.SecretFile> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:services:getSecretFile", {
         "secretFileName": args.secretFileName,

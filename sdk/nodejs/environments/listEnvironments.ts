@@ -20,7 +20,7 @@ export interface ListEnvironmentsArgs {
 export interface ListEnvironmentsResult {
     readonly items: outputs.environments.EnvironmentWithCursor[];
 }
-export function listEnvironmentsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListEnvironmentsResult> {
+export function listEnvironmentsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListEnvironmentsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:environments:listEnvironments", {
     }, opts);

@@ -60,7 +60,7 @@ def list_deploys(service_id: Optional[str] = None,
     return AwaitableListDeploysResult(
         items=pulumi.get(__ret__, 'items'))
 def list_deploys_output(service_id: Optional[pulumi.Input[str]] = None,
-                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListDeploysResult]:
+                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListDeploysResult]:
     """
     Use this data source to access information about an existing resource.
 
@@ -68,7 +68,7 @@ def list_deploys_output(service_id: Optional[pulumi.Input[str]] = None,
     """
     __args__ = dict()
     __args__['serviceId'] = service_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:services:listDeploys', __args__, opts=opts, typ=ListDeploysResult)
     return __ret__.apply(lambda __response__: ListDeploysResult(
         items=pulumi.get(__response__, 'items')))

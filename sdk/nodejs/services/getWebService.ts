@@ -20,7 +20,7 @@ export interface GetWebServiceArgs {
      */
     serviceId: string;
 }
-export function getWebServiceOutput(args: GetWebServiceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.services.GetWebService> {
+export function getWebServiceOutput(args: GetWebServiceOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.services.GetWebService> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:services:getWebService", {
         "serviceId": args.serviceId,

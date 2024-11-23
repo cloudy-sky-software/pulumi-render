@@ -25,7 +25,7 @@ export interface GetCustomDomainArgs {
      */
     serviceId: string;
 }
-export function getCustomDomainOutput(args: GetCustomDomainOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.services.CustomDomain> {
+export function getCustomDomainOutput(args: GetCustomDomainOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.services.CustomDomain> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:services:getCustomDomain", {
         "customDomainIdOrName": args.customDomainIdOrName,

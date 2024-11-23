@@ -20,7 +20,7 @@ export interface ListActiveConnectionsArgs {
 export interface ListActiveConnectionsResult {
     readonly items: outputs.metrics.ListActiveConnectionsItemProperties[];
 }
-export function listActiveConnectionsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListActiveConnectionsResult> {
+export function listActiveConnectionsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListActiveConnectionsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:metrics:listActiveConnections", {
     }, opts);

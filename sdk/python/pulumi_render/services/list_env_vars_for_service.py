@@ -59,7 +59,7 @@ def list_env_vars_for_service(service_id: Optional[str] = None,
     return AwaitableListEnvVarsForServiceResult(
         items=pulumi.get(__ret__, 'items'))
 def list_env_vars_for_service_output(service_id: Optional[pulumi.Input[str]] = None,
-                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListEnvVarsForServiceResult]:
+                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListEnvVarsForServiceResult]:
     """
     Use this data source to access information about an existing resource.
 
@@ -67,7 +67,7 @@ def list_env_vars_for_service_output(service_id: Optional[pulumi.Input[str]] = N
     """
     __args__ = dict()
     __args__['serviceId'] = service_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:services:listEnvVarsForService', __args__, opts=opts, typ=ListEnvVarsForServiceResult)
     return __ret__.apply(lambda __response__: ListEnvVarsForServiceResult(
         items=pulumi.get(__response__, 'items')))

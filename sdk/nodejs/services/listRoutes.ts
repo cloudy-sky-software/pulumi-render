@@ -24,7 +24,7 @@ export interface ListRoutesArgs {
 export interface ListRoutesResult {
     readonly items: outputs.services.RouteWithCursor[];
 }
-export function listRoutesOutput(args: ListRoutesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListRoutesResult> {
+export function listRoutesOutput(args: ListRoutesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListRoutesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:services:listRoutes", {
         "serviceId": args.serviceId,

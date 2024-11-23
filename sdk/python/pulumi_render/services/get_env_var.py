@@ -72,7 +72,7 @@ def get_env_var(env_var_key: Optional[str] = None,
         value=pulumi.get(__ret__, 'value'))
 def get_env_var_output(env_var_key: Optional[pulumi.Input[str]] = None,
                        service_id: Optional[pulumi.Input[str]] = None,
-                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[EnvVar]:
+                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[EnvVar]:
     """
     Use this data source to access information about an existing resource.
 
@@ -82,7 +82,7 @@ def get_env_var_output(env_var_key: Optional[pulumi.Input[str]] = None,
     __args__ = dict()
     __args__['envVarKey'] = env_var_key
     __args__['serviceId'] = service_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:services:getEnvVar', __args__, opts=opts, typ=EnvVar)
     return __ret__.apply(lambda __response__: EnvVar(
         key=pulumi.get(__response__, 'key'),

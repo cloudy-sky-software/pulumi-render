@@ -20,7 +20,7 @@ export interface ListOwnersArgs {
 export interface ListOwnersResult {
     readonly items: outputs.owners.OwnerWithCursor[];
 }
-export function listOwnersOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListOwnersResult> {
+export function listOwnersOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListOwnersResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:owners:listOwners", {
     }, opts);

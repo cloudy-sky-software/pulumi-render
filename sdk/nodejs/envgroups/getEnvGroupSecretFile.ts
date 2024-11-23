@@ -25,7 +25,7 @@ export interface GetEnvGroupSecretFileArgs {
      */
     secretFileName: string;
 }
-export function getEnvGroupSecretFileOutput(args: GetEnvGroupSecretFileOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.envgroups.SecretFile> {
+export function getEnvGroupSecretFileOutput(args: GetEnvGroupSecretFileOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.envgroups.SecretFile> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:env-groups:getEnvGroupSecretFile", {
         "envGroupId": args.envGroupId,

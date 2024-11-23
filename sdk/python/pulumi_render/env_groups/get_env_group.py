@@ -143,7 +143,7 @@ def get_env_group(env_group_id: Optional[str] = None,
         service_links=pulumi.get(__ret__, 'service_links'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
 def get_env_group_output(env_group_id: Optional[pulumi.Input[str]] = None,
-                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[EnvGroup]:
+                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[EnvGroup]:
     """
     Use this data source to access information about an existing resource.
 
@@ -151,7 +151,7 @@ def get_env_group_output(env_group_id: Optional[pulumi.Input[str]] = None,
     """
     __args__ = dict()
     __args__['envGroupId'] = env_group_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:env-groups:getEnvGroup', __args__, opts=opts, typ=EnvGroup)
     return __ret__.apply(lambda __response__: EnvGroup(
         created_at=pulumi.get(__response__, 'created_at'),

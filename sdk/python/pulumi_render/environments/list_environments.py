@@ -55,12 +55,12 @@ def list_environments(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableL
 
     return AwaitableListEnvironmentsResult(
         items=pulumi.get(__ret__, 'items'))
-def list_environments_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListEnvironmentsResult]:
+def list_environments_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListEnvironmentsResult]:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:environments:listEnvironments', __args__, opts=opts, typ=ListEnvironmentsResult)
     return __ret__.apply(lambda __response__: ListEnvironmentsResult(
         items=pulumi.get(__response__, 'items')))

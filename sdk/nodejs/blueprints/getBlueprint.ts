@@ -20,7 +20,7 @@ export interface GetBlueprintArgs {
      */
     blueprintId: string;
 }
-export function getBlueprintOutput(args: GetBlueprintOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.blueprints.GetBlueprintProperties> {
+export function getBlueprintOutput(args: GetBlueprintOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.blueprints.GetBlueprintProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:blueprints:getBlueprint", {
         "blueprintId": args.blueprintId,

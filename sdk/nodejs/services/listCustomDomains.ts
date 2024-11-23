@@ -24,7 +24,7 @@ export interface ListCustomDomainsArgs {
 export interface ListCustomDomainsResult {
     readonly items: outputs.services.CustomDomainWithCursor[];
 }
-export function listCustomDomainsOutput(args: ListCustomDomainsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListCustomDomainsResult> {
+export function listCustomDomainsOutput(args: ListCustomDomainsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListCustomDomainsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:services:listCustomDomains", {
         "serviceId": args.serviceId,

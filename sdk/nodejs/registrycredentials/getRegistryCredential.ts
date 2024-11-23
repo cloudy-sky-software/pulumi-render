@@ -20,7 +20,7 @@ export interface GetRegistryCredentialArgs {
      */
     registryCredentialId: string;
 }
-export function getRegistryCredentialOutput(args: GetRegistryCredentialOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.registrycredentials.RegistryCredential> {
+export function getRegistryCredentialOutput(args: GetRegistryCredentialOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.registrycredentials.RegistryCredential> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:registrycredentials:getRegistryCredential", {
         "registryCredentialId": args.registryCredentialId,

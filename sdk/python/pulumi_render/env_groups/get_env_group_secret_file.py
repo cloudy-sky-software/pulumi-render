@@ -72,7 +72,7 @@ def get_env_group_secret_file(env_group_id: Optional[str] = None,
         name=pulumi.get(__ret__, 'name'))
 def get_env_group_secret_file_output(env_group_id: Optional[pulumi.Input[str]] = None,
                                      secret_file_name: Optional[pulumi.Input[str]] = None,
-                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[SecretFile]:
+                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[SecretFile]:
     """
     Use this data source to access information about an existing resource.
 
@@ -82,7 +82,7 @@ def get_env_group_secret_file_output(env_group_id: Optional[pulumi.Input[str]] =
     __args__ = dict()
     __args__['envGroupId'] = env_group_id
     __args__['secretFileName'] = secret_file_name
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:env-groups:getEnvGroupSecretFile', __args__, opts=opts, typ=SecretFile)
     return __ret__.apply(lambda __response__: SecretFile(
         content=pulumi.get(__response__, 'content'),

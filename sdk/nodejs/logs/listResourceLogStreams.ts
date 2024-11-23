@@ -20,7 +20,7 @@ export interface ListResourceLogStreamsArgs {
 export interface ListResourceLogStreamsResult {
     readonly items: outputs.logs.Paths1logs1streams1resource17BresourceId7Dgetresponses200contentapplication1jsonschema[];
 }
-export function listResourceLogStreamsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListResourceLogStreamsResult> {
+export function listResourceLogStreamsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListResourceLogStreamsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:logs:listResourceLogStreams", {
     }, opts);

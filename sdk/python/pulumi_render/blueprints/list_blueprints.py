@@ -55,12 +55,12 @@ def list_blueprints(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableLis
 
     return AwaitableListBlueprintsResult(
         items=pulumi.get(__ret__, 'items'))
-def list_blueprints_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListBlueprintsResult]:
+def list_blueprints_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListBlueprintsResult]:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:blueprints:listBlueprints', __args__, opts=opts, typ=ListBlueprintsResult)
     return __ret__.apply(lambda __response__: ListBlueprintsResult(
         items=pulumi.get(__response__, 'items')))

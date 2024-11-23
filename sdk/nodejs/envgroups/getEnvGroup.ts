@@ -20,7 +20,7 @@ export interface GetEnvGroupArgs {
      */
     envGroupId: string;
 }
-export function getEnvGroupOutput(args: GetEnvGroupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.envgroups.EnvGroup> {
+export function getEnvGroupOutput(args: GetEnvGroupOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.envgroups.EnvGroup> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:env-groups:getEnvGroup", {
         "envGroupId": args.envGroupId,

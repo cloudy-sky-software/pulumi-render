@@ -20,7 +20,7 @@ export interface ListServicesArgs {
 export interface ListServicesResult {
     readonly items: outputs.services.ListServicesResponse[];
 }
-export function listServicesOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListServicesResult> {
+export function listServicesOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListServicesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:services:listServices", {
     }, opts);

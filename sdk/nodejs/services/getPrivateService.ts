@@ -20,7 +20,7 @@ export interface GetPrivateServiceArgs {
      */
     serviceId: string;
 }
-export function getPrivateServiceOutput(args: GetPrivateServiceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.services.GetPrivateService> {
+export function getPrivateServiceOutput(args: GetPrivateServiceOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.services.GetPrivateService> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:services:getPrivateService", {
         "serviceId": args.serviceId,

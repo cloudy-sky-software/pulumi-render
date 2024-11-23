@@ -20,7 +20,7 @@ export interface GetResourceLogStreamArgs {
      */
     resourceId: string;
 }
-export function getResourceLogStreamOutput(args: GetResourceLogStreamOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.logs.GetResourceLogStreamProperties> {
+export function getResourceLogStreamOutput(args: GetResourceLogStreamOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.logs.GetResourceLogStreamProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:logs:getResourceLogStream", {
         "resourceId": args.resourceId,

@@ -20,7 +20,7 @@ export interface GetStaticSiteArgs {
      */
     serviceId: string;
 }
-export function getStaticSiteOutput(args: GetStaticSiteOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.services.GetStaticSite> {
+export function getStaticSiteOutput(args: GetStaticSiteOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.services.GetStaticSite> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:services:getStaticSite", {
         "serviceId": args.serviceId,

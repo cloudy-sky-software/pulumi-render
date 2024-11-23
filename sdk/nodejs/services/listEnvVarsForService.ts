@@ -24,7 +24,7 @@ export interface ListEnvVarsForServiceArgs {
 export interface ListEnvVarsForServiceResult {
     readonly items: outputs.services.EnvVarWithCursor[];
 }
-export function listEnvVarsForServiceOutput(args: ListEnvVarsForServiceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListEnvVarsForServiceResult> {
+export function listEnvVarsForServiceOutput(args: ListEnvVarsForServiceOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListEnvVarsForServiceResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:services:listEnvVarsForService", {
         "serviceId": args.serviceId,

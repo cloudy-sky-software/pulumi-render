@@ -25,7 +25,7 @@ export interface GetEnvVarArgs {
      */
     serviceId: string;
 }
-export function getEnvVarOutput(args: GetEnvVarOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.services.EnvVar> {
+export function getEnvVarOutput(args: GetEnvVarOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.services.EnvVar> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:services:getEnvVar", {
         "envVarKey": args.envVarKey,

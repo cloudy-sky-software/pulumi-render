@@ -59,7 +59,7 @@ def list_secret_files_for_service(service_id: Optional[str] = None,
     return AwaitableListSecretFilesForServiceResult(
         items=pulumi.get(__ret__, 'items'))
 def list_secret_files_for_service_output(service_id: Optional[pulumi.Input[str]] = None,
-                                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListSecretFilesForServiceResult]:
+                                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListSecretFilesForServiceResult]:
     """
     Use this data source to access information about an existing resource.
 
@@ -67,7 +67,7 @@ def list_secret_files_for_service_output(service_id: Optional[pulumi.Input[str]]
     """
     __args__ = dict()
     __args__['serviceId'] = service_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:services:listSecretFilesForService', __args__, opts=opts, typ=ListSecretFilesForServiceResult)
     return __ret__.apply(lambda __response__: ListSecretFilesForServiceResult(
         items=pulumi.get(__response__, 'items')))

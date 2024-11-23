@@ -137,7 +137,7 @@ def get_deploy(deploy_id: Optional[str] = None,
         updated_at=pulumi.get(__ret__, 'updated_at'))
 def get_deploy_output(deploy_id: Optional[pulumi.Input[str]] = None,
                       service_id: Optional[pulumi.Input[str]] = None,
-                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[Deploy]:
+                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[Deploy]:
     """
     Use this data source to access information about an existing resource.
 
@@ -147,7 +147,7 @@ def get_deploy_output(deploy_id: Optional[pulumi.Input[str]] = None,
     __args__ = dict()
     __args__['deployId'] = deploy_id
     __args__['serviceId'] = service_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:services:getDeploy', __args__, opts=opts, typ=Deploy)
     return __ret__.apply(lambda __response__: Deploy(
         commit=pulumi.get(__response__, 'commit'),

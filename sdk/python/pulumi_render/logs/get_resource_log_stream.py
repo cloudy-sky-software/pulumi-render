@@ -91,7 +91,7 @@ def get_resource_log_stream(resource_id: Optional[str] = None,
         resource_id=pulumi.get(__ret__, 'resource_id'),
         setting=pulumi.get(__ret__, 'setting'))
 def get_resource_log_stream_output(resource_id: Optional[pulumi.Input[str]] = None,
-                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetResourceLogStreamProperties]:
+                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetResourceLogStreamProperties]:
     """
     Use this data source to access information about an existing resource.
 
@@ -99,7 +99,7 @@ def get_resource_log_stream_output(resource_id: Optional[pulumi.Input[str]] = No
     """
     __args__ = dict()
     __args__['resourceId'] = resource_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:logs:getResourceLogStream', __args__, opts=opts, typ=GetResourceLogStreamProperties)
     return __ret__.apply(lambda __response__: GetResourceLogStreamProperties(
         endpoint=pulumi.get(__response__, 'endpoint'),

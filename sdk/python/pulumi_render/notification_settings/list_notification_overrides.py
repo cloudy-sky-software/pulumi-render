@@ -55,12 +55,12 @@ def list_notification_overrides(opts: Optional[pulumi.InvokeOptions] = None) -> 
 
     return AwaitableListNotificationOverridesResult(
         items=pulumi.get(__ret__, 'items'))
-def list_notification_overrides_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListNotificationOverridesResult]:
+def list_notification_overrides_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListNotificationOverridesResult]:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:notification-settings:listNotificationOverrides', __args__, opts=opts, typ=ListNotificationOverridesResult)
     return __ret__.apply(lambda __response__: ListNotificationOverridesResult(
         items=pulumi.get(__response__, 'items')))

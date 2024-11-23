@@ -20,7 +20,7 @@ export interface GetOwnerNotificationSettingArgs {
      */
     ownerId: string;
 }
-export function getOwnerNotificationSettingOutput(args: GetOwnerNotificationSettingOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.notificationsettings.GetOwnerNotificationSettingProperties> {
+export function getOwnerNotificationSettingOutput(args: GetOwnerNotificationSettingOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.notificationsettings.GetOwnerNotificationSettingProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:notification-settings:getOwnerNotificationSetting", {
         "ownerId": args.ownerId,

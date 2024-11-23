@@ -24,7 +24,7 @@ export interface ListJobArgs {
 export interface ListJobResult {
     readonly items: outputs.services.ListJobItemProperties[];
 }
-export function listJobOutput(args: ListJobOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListJobResult> {
+export function listJobOutput(args: ListJobOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListJobResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:services:listJob", {
         "serviceId": args.serviceId,

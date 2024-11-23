@@ -99,7 +99,7 @@ def get_owner_notification_setting(owner_id: Optional[str] = None,
         preview_notifications_enabled=pulumi.get(__ret__, 'preview_notifications_enabled'),
         slack_enabled=pulumi.get(__ret__, 'slack_enabled'))
 def get_owner_notification_setting_output(owner_id: Optional[pulumi.Input[str]] = None,
-                                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOwnerNotificationSettingProperties]:
+                                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOwnerNotificationSettingProperties]:
     """
     Use this data source to access information about an existing resource.
 
@@ -107,7 +107,7 @@ def get_owner_notification_setting_output(owner_id: Optional[pulumi.Input[str]] 
     """
     __args__ = dict()
     __args__['ownerId'] = owner_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:notification-settings:getOwnerNotificationSetting', __args__, opts=opts, typ=GetOwnerNotificationSettingProperties)
     return __ret__.apply(lambda __response__: GetOwnerNotificationSettingProperties(
         email_enabled=pulumi.get(__response__, 'email_enabled'),

@@ -17,7 +17,7 @@ export function getPostgresRecoveryInfo(args: GetPostgresRecoveryInfoArgs, opts?
 export interface GetPostgresRecoveryInfoArgs {
     postgresId: string;
 }
-export function getPostgresRecoveryInfoOutput(args: GetPostgresRecoveryInfoOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.postgres.GetPostgresRecoveryInfoProperties> {
+export function getPostgresRecoveryInfoOutput(args: GetPostgresRecoveryInfoOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.postgres.GetPostgresRecoveryInfoProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:postgres:getPostgresRecoveryInfo", {
         "postgresId": args.postgresId,

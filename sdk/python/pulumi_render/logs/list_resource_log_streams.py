@@ -55,12 +55,12 @@ def list_resource_log_streams(opts: Optional[pulumi.InvokeOptions] = None) -> Aw
 
     return AwaitableListResourceLogStreamsResult(
         items=pulumi.get(__ret__, 'items'))
-def list_resource_log_streams_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListResourceLogStreamsResult]:
+def list_resource_log_streams_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListResourceLogStreamsResult]:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:logs:listResourceLogStreams', __args__, opts=opts, typ=ListResourceLogStreamsResult)
     return __ret__.apply(lambda __response__: ListResourceLogStreamsResult(
         items=pulumi.get(__response__, 'items')))

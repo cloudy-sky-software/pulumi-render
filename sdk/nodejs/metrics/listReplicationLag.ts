@@ -20,7 +20,7 @@ export interface ListReplicationLagArgs {
 export interface ListReplicationLagResult {
     readonly items: outputs.metrics.ListReplicationLagItemProperties[];
 }
-export function listReplicationLagOutput(opts?: pulumi.InvokeOptions): pulumi.Output<ListReplicationLagResult> {
+export function listReplicationLagOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListReplicationLagResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:metrics:listReplicationLag", {
     }, opts);

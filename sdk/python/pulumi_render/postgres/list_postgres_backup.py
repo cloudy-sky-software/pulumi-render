@@ -57,13 +57,13 @@ def list_postgres_backup(postgres_id: Optional[str] = None,
     return AwaitableListPostgresBackupResult(
         items=pulumi.get(__ret__, 'items'))
 def list_postgres_backup_output(postgres_id: Optional[pulumi.Input[str]] = None,
-                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListPostgresBackupResult]:
+                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListPostgresBackupResult]:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['postgresId'] = postgres_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:postgres:listPostgresBackup', __args__, opts=opts, typ=ListPostgresBackupResult)
     return __ret__.apply(lambda __response__: ListPostgresBackupResult(
         items=pulumi.get(__response__, 'items')))

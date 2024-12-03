@@ -16,14 +16,14 @@ from .. import _utilities
 from ._enums import *
 
 __all__ = [
-    'Job',
-    'AwaitableJob',
+    'JobWithCursorpropertiesjob',
+    'AwaitableJobWithCursorpropertiesjob',
     'get_job',
     'get_job_output',
 ]
 
 @pulumi.output_type
-class Job:
+class JobWithCursorpropertiesjob:
     def __init__(__self__, created_at=None, finished_at=None, id=None, plan_id=None, service_id=None, start_command=None, started_at=None, status=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
@@ -87,16 +87,16 @@ class Job:
 
     @property
     @pulumi.getter
-    def status(self) -> Optional['JobStatus']:
+    def status(self) -> Optional['JobWithCursorpropertiesjobStatus']:
         return pulumi.get(self, "status")
 
 
-class AwaitableJob(Job):
+class AwaitableJobWithCursorpropertiesjob(JobWithCursorpropertiesjob):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return Job(
+        return JobWithCursorpropertiesjob(
             created_at=self.created_at,
             finished_at=self.finished_at,
             id=self.id,
@@ -109,7 +109,7 @@ class AwaitableJob(Job):
 
 def get_job(job_id: Optional[str] = None,
             service_id: Optional[str] = None,
-            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableJob:
+            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableJobWithCursorpropertiesjob:
     """
     Use this data source to access information about an existing resource.
 
@@ -120,9 +120,9 @@ def get_job(job_id: Optional[str] = None,
     __args__['jobId'] = job_id
     __args__['serviceId'] = service_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('render:services:getJob', __args__, opts=opts, typ=Job).value
+    __ret__ = pulumi.runtime.invoke('render:services:getJob', __args__, opts=opts, typ=JobWithCursorpropertiesjob).value
 
-    return AwaitableJob(
+    return AwaitableJobWithCursorpropertiesjob(
         created_at=pulumi.get(__ret__, 'created_at'),
         finished_at=pulumi.get(__ret__, 'finished_at'),
         id=pulumi.get(__ret__, 'id'),
@@ -133,7 +133,7 @@ def get_job(job_id: Optional[str] = None,
         status=pulumi.get(__ret__, 'status'))
 def get_job_output(job_id: Optional[pulumi.Input[str]] = None,
                    service_id: Optional[pulumi.Input[str]] = None,
-                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[Job]:
+                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[JobWithCursorpropertiesjob]:
     """
     Use this data source to access information about an existing resource.
 
@@ -144,8 +144,8 @@ def get_job_output(job_id: Optional[pulumi.Input[str]] = None,
     __args__['jobId'] = job_id
     __args__['serviceId'] = service_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('render:services:getJob', __args__, opts=opts, typ=Job)
-    return __ret__.apply(lambda __response__: Job(
+    __ret__ = pulumi.runtime.invoke_output('render:services:getJob', __args__, opts=opts, typ=JobWithCursorpropertiesjob)
+    return __ret__.apply(lambda __response__: JobWithCursorpropertiesjob(
         created_at=pulumi.get(__response__, 'created_at'),
         finished_at=pulumi.get(__response__, 'finished_at'),
         id=pulumi.get(__response__, 'id'),

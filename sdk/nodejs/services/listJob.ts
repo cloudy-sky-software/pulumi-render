@@ -22,7 +22,7 @@ export interface ListJobArgs {
 }
 
 export interface ListJobResult {
-    readonly items: outputs.services.ListJobItemProperties[];
+    readonly items: outputs.services.JobWithCursor[];
 }
 export function listJobOutput(args: ListJobOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListJobResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

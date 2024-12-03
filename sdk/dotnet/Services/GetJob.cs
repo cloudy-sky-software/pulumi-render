@@ -11,11 +11,11 @@ namespace Pulumi.Render.Services
 {
     public static class GetJob
     {
-        public static Task<Outputs.Job> InvokeAsync(GetJobArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<Outputs.Job>("render:services:getJob", args ?? new GetJobArgs(), options.WithDefaults());
+        public static Task<Outputs.JobWithCursorpropertiesjob> InvokeAsync(GetJobArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<Outputs.JobWithCursorpropertiesjob>("render:services:getJob", args ?? new GetJobArgs(), options.WithDefaults());
 
-        public static Output<Outputs.Job> Invoke(GetJobInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<Outputs.Job>("render:services:getJob", args ?? new GetJobInvokeArgs(), options.WithDefaults());
+        public static Output<Outputs.JobWithCursorpropertiesjob> Invoke(GetJobInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.JobWithCursorpropertiesjob>("render:services:getJob", args ?? new GetJobInvokeArgs(), options.WithDefaults());
     }
 
 

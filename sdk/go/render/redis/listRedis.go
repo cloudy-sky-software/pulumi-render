@@ -25,7 +25,7 @@ type ListRedisArgs struct {
 }
 
 type ListRedisResult struct {
-	Items []ListRedisItemProperties `pulumi:"items"`
+	Items []RedisWithCursor `pulumi:"items"`
 }
 
 func ListRedisOutput(ctx *pulumi.Context, args ListRedisOutputArgs, opts ...pulumi.InvokeOption) ListRedisResultOutput {
@@ -68,8 +68,8 @@ func (o ListRedisResultOutput) ToListRedisResultOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o ListRedisResultOutput) Items() ListRedisItemPropertiesArrayOutput {
-	return o.ApplyT(func(v ListRedisResult) []ListRedisItemProperties { return v.Items }).(ListRedisItemPropertiesArrayOutput)
+func (o ListRedisResultOutput) Items() RedisWithCursorArrayOutput {
+	return o.ApplyT(func(v ListRedisResult) []RedisWithCursor { return v.Items }).(RedisWithCursorArrayOutput)
 }
 
 func init() {

@@ -536,3 +536,6 @@ export namespace services {
     }
 
 }
+
+export namespace users {
+}

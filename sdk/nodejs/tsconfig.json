@@ -136,6 +136,8 @@
         "types/index.ts",
         "types/input.ts",
         "types/output.ts",
+        "users/getUser.ts",
+        "users/index.ts",
         "utilities.ts"
     ]
 }

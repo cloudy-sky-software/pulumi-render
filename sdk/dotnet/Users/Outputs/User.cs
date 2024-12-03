@@ -7,23 +7,23 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Render.Services.Outputs
+namespace Pulumi.Render.Users.Outputs
 {
 
     [OutputType]
-    public sealed class ListServicesResponse
+    public sealed class User
     {
-        public readonly string Cursor;
-        public readonly object Service;
+        public readonly string Email;
+        public readonly string Name;
 
         [OutputConstructor]
-        private ListServicesResponse(
-            string cursor,
+        private User(
+            string email,
 
-            object service)
+            string name)
         {
-            Cursor = cursor;
-            Service = service;
+            Email = email;
+            Name = name;
         }
     }
 }

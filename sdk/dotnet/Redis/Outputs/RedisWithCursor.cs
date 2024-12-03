@@ -7,23 +7,26 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Render.Services.Outputs
+namespace Pulumi.Render.Redis.Outputs
 {
 
     [OutputType]
-    public sealed class ListServicesResponse
+    public sealed class RedisWithCursor
     {
         public readonly string Cursor;
-        public readonly object Service;
+        /// <summary>
+        /// A Redis instance
+        /// </summary>
+        public readonly Outputs.Redis Redis;
 
         [OutputConstructor]
-        private ListServicesResponse(
+        private RedisWithCursor(
             string cursor,
 
-            object service)
+            Outputs.Redis redis)
         {
             Cursor = cursor;
-            Service = service;
+            Redis = redis;
         }
     }
 }

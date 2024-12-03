@@ -3349,89 +3349,180 @@ func (o JobStatusPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pu
 	}).(pulumi.StringPtrOutput)
 }
 
-type Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus string
+type JobWithCursorJobPropertiesStatus string
 
 const (
-	Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusSucceeded = Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus("succeeded")
-	Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusFailed    = Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus("failed")
-	Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusCanceled  = Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus("canceled")
+	JobWithCursorJobPropertiesStatusSucceeded = JobWithCursorJobPropertiesStatus("succeeded")
+	JobWithCursorJobPropertiesStatusFailed    = JobWithCursorJobPropertiesStatus("failed")
+	JobWithCursorJobPropertiesStatusCanceled  = JobWithCursorJobPropertiesStatus("canceled")
 )
 
-type Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusOutput struct{ *pulumi.OutputState }
+type JobWithCursorJobPropertiesStatusOutput struct{ *pulumi.OutputState }
 
-func (Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus)(nil)).Elem()
+func (JobWithCursorJobPropertiesStatusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobWithCursorJobPropertiesStatus)(nil)).Elem()
 }
 
-func (o Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusOutput) ToPaths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusOutput() Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusOutput {
+func (o JobWithCursorJobPropertiesStatusOutput) ToJobWithCursorJobPropertiesStatusOutput() JobWithCursorJobPropertiesStatusOutput {
 	return o
 }
 
-func (o Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusOutput) ToPaths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusOutputWithContext(ctx context.Context) Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusOutput {
+func (o JobWithCursorJobPropertiesStatusOutput) ToJobWithCursorJobPropertiesStatusOutputWithContext(ctx context.Context) JobWithCursorJobPropertiesStatusOutput {
 	return o
 }
 
-func (o Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusOutput) ToPaths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusPtrOutput() Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusPtrOutput {
-	return o.ToPaths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusPtrOutputWithContext(context.Background())
+func (o JobWithCursorJobPropertiesStatusOutput) ToJobWithCursorJobPropertiesStatusPtrOutput() JobWithCursorJobPropertiesStatusPtrOutput {
+	return o.ToJobWithCursorJobPropertiesStatusPtrOutputWithContext(context.Background())
 }
 
-func (o Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusOutput) ToPaths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusPtrOutputWithContext(ctx context.Context) Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus) *Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus {
+func (o JobWithCursorJobPropertiesStatusOutput) ToJobWithCursorJobPropertiesStatusPtrOutputWithContext(ctx context.Context) JobWithCursorJobPropertiesStatusPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v JobWithCursorJobPropertiesStatus) *JobWithCursorJobPropertiesStatus {
 		return &v
-	}).(Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusPtrOutput)
+	}).(JobWithCursorJobPropertiesStatusPtrOutput)
 }
 
-func (o Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusOutput) ToStringOutput() pulumi.StringOutput {
+func (o JobWithCursorJobPropertiesStatusOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
 
-func (o Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus) string {
+func (o JobWithCursorJobPropertiesStatusOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e JobWithCursorJobPropertiesStatus) string {
 		return string(e)
 	}).(pulumi.StringOutput)
 }
 
-func (o Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o JobWithCursorJobPropertiesStatusOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus) *string {
+func (o JobWithCursorJobPropertiesStatusOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e JobWithCursorJobPropertiesStatus) *string {
 		v := string(e)
 		return &v
 	}).(pulumi.StringPtrOutput)
 }
 
-type Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusPtrOutput struct{ *pulumi.OutputState }
+type JobWithCursorJobPropertiesStatusPtrOutput struct{ *pulumi.OutputState }
 
-func (Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus)(nil)).Elem()
+func (JobWithCursorJobPropertiesStatusPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**JobWithCursorJobPropertiesStatus)(nil)).Elem()
 }
 
-func (o Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusPtrOutput) ToPaths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusPtrOutput() Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusPtrOutput {
+func (o JobWithCursorJobPropertiesStatusPtrOutput) ToJobWithCursorJobPropertiesStatusPtrOutput() JobWithCursorJobPropertiesStatusPtrOutput {
 	return o
 }
 
-func (o Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusPtrOutput) ToPaths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusPtrOutputWithContext(ctx context.Context) Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusPtrOutput {
+func (o JobWithCursorJobPropertiesStatusPtrOutput) ToJobWithCursorJobPropertiesStatusPtrOutputWithContext(ctx context.Context) JobWithCursorJobPropertiesStatusPtrOutput {
 	return o
 }
 
-func (o Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusPtrOutput) Elem() Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusOutput {
-	return o.ApplyT(func(v *Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus) Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus {
+func (o JobWithCursorJobPropertiesStatusPtrOutput) Elem() JobWithCursorJobPropertiesStatusOutput {
+	return o.ApplyT(func(v *JobWithCursorJobPropertiesStatus) JobWithCursorJobPropertiesStatus {
 		if v != nil {
 			return *v
 		}
-		var ret Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus
+		var ret JobWithCursorJobPropertiesStatus
 		return ret
-	}).(Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusOutput)
+	}).(JobWithCursorJobPropertiesStatusOutput)
 }
 
-func (o Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o JobWithCursorJobPropertiesStatusPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e *Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus) *string {
+func (o JobWithCursorJobPropertiesStatusPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *JobWithCursorJobPropertiesStatus) *string {
+		if e == nil {
+			return nil
+		}
+		v := string(*e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+type JobWithCursorpropertiesjobStatus string
+
+const (
+	JobWithCursorpropertiesjobStatusSucceeded = JobWithCursorpropertiesjobStatus("succeeded")
+	JobWithCursorpropertiesjobStatusFailed    = JobWithCursorpropertiesjobStatus("failed")
+	JobWithCursorpropertiesjobStatusCanceled  = JobWithCursorpropertiesjobStatus("canceled")
+)
+
+type JobWithCursorpropertiesjobStatusOutput struct{ *pulumi.OutputState }
+
+func (JobWithCursorpropertiesjobStatusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobWithCursorpropertiesjobStatus)(nil)).Elem()
+}
+
+func (o JobWithCursorpropertiesjobStatusOutput) ToJobWithCursorpropertiesjobStatusOutput() JobWithCursorpropertiesjobStatusOutput {
+	return o
+}
+
+func (o JobWithCursorpropertiesjobStatusOutput) ToJobWithCursorpropertiesjobStatusOutputWithContext(ctx context.Context) JobWithCursorpropertiesjobStatusOutput {
+	return o
+}
+
+func (o JobWithCursorpropertiesjobStatusOutput) ToJobWithCursorpropertiesjobStatusPtrOutput() JobWithCursorpropertiesjobStatusPtrOutput {
+	return o.ToJobWithCursorpropertiesjobStatusPtrOutputWithContext(context.Background())
+}
+
+func (o JobWithCursorpropertiesjobStatusOutput) ToJobWithCursorpropertiesjobStatusPtrOutputWithContext(ctx context.Context) JobWithCursorpropertiesjobStatusPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v JobWithCursorpropertiesjobStatus) *JobWithCursorpropertiesjobStatus {
+		return &v
+	}).(JobWithCursorpropertiesjobStatusPtrOutput)
+}
+
+func (o JobWithCursorpropertiesjobStatusOutput) ToStringOutput() pulumi.StringOutput {
+	return o.ToStringOutputWithContext(context.Background())
+}
+
+func (o JobWithCursorpropertiesjobStatusOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e JobWithCursorpropertiesjobStatus) string {
+		return string(e)
+	}).(pulumi.StringOutput)
+}
+
+func (o JobWithCursorpropertiesjobStatusOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o JobWithCursorpropertiesjobStatusOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e JobWithCursorpropertiesjobStatus) *string {
+		v := string(e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+type JobWithCursorpropertiesjobStatusPtrOutput struct{ *pulumi.OutputState }
+
+func (JobWithCursorpropertiesjobStatusPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**JobWithCursorpropertiesjobStatus)(nil)).Elem()
+}
+
+func (o JobWithCursorpropertiesjobStatusPtrOutput) ToJobWithCursorpropertiesjobStatusPtrOutput() JobWithCursorpropertiesjobStatusPtrOutput {
+	return o
+}
+
+func (o JobWithCursorpropertiesjobStatusPtrOutput) ToJobWithCursorpropertiesjobStatusPtrOutputWithContext(ctx context.Context) JobWithCursorpropertiesjobStatusPtrOutput {
+	return o
+}
+
+func (o JobWithCursorpropertiesjobStatusPtrOutput) Elem() JobWithCursorpropertiesjobStatusOutput {
+	return o.ApplyT(func(v *JobWithCursorpropertiesjobStatus) JobWithCursorpropertiesjobStatus {
+		if v != nil {
+			return *v
+		}
+		var ret JobWithCursorpropertiesjobStatus
+		return ret
+	}).(JobWithCursorpropertiesjobStatusOutput)
+}
+
+func (o JobWithCursorpropertiesjobStatusPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o JobWithCursorpropertiesjobStatusPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *JobWithCursorpropertiesjobStatus) *string {
 		if e == nil {
 			return nil
 		}
@@ -8545,8 +8636,10 @@ func init() {
 	pulumi.RegisterOutputType(DeployTriggerPtrOutput{})
 	pulumi.RegisterOutputType(JobStatusOutput{})
 	pulumi.RegisterOutputType(JobStatusPtrOutput{})
-	pulumi.RegisterOutputType(Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusOutput{})
-	pulumi.RegisterOutputType(Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatusPtrOutput{})
+	pulumi.RegisterOutputType(JobWithCursorJobPropertiesStatusOutput{})
+	pulumi.RegisterOutputType(JobWithCursorJobPropertiesStatusPtrOutput{})
+	pulumi.RegisterOutputType(JobWithCursorpropertiesjobStatusOutput{})
+	pulumi.RegisterOutputType(JobWithCursorpropertiesjobStatusPtrOutput{})
 	pulumi.RegisterOutputType(PlanOutput{})
 	pulumi.RegisterOutputType(PlanPtrOutput{})
 	pulumi.RegisterOutputType(PreviewsGenerationOutput{})

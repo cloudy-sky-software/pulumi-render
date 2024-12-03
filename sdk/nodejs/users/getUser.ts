@@ -7,22 +7,18 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function listRedis(args?: ListRedisArgs, opts?: pulumi.InvokeOptions): Promise<ListRedisResult> {
+export function getUser(args?: GetUserArgs, opts?: pulumi.InvokeOptions): Promise<outputs.users.User> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invoke("render:redis:listRedis", {
+    return pulumi.runtime.invoke("render:users:getUser", {
     }, opts);
 }
 
-export interface ListRedisArgs {
+export interface GetUserArgs {
 }
-
-export interface ListRedisResult {
-    readonly items: outputs.redis.RedisWithCursor[];
-}
-export function listRedisOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListRedisResult> {
+export function getUserOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.users.User> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invokeOutput("render:redis:listRedis", {
+    return pulumi.runtime.invokeOutput("render:users:getUser", {
     }, opts);
 }
 

@@ -27,7 +27,7 @@ type ListJobArgs struct {
 }
 
 type ListJobResult struct {
-	Items []ListJobItemProperties `pulumi:"items"`
+	Items []JobWithCursor `pulumi:"items"`
 }
 
 func ListJobOutput(ctx *pulumi.Context, args ListJobOutputArgs, opts ...pulumi.InvokeOption) ListJobResultOutput {
@@ -72,8 +72,8 @@ func (o ListJobResultOutput) ToListJobResultOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o ListJobResultOutput) Items() ListJobItemPropertiesArrayOutput {
-	return o.ApplyT(func(v ListJobResult) []ListJobItemProperties { return v.Items }).(ListJobItemPropertiesArrayOutput)
+func (o ListJobResultOutput) Items() JobWithCursorArrayOutput {
+	return o.ApplyT(func(v ListJobResult) []JobWithCursor { return v.Items }).(JobWithCursorArrayOutput)
 }
 
 func init() {

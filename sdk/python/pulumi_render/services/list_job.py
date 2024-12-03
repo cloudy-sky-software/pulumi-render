@@ -32,7 +32,7 @@ class ListJobResult:
 
     @property
     @pulumi.getter
-    def items(self) -> Sequence['outputs.ListJobItemProperties']:
+    def items(self) -> Sequence['outputs.JobWithCursor']:
         return pulumi.get(self, "items")
 
 

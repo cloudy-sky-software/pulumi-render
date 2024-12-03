@@ -28,6 +28,7 @@ import * as redis from "./redis";
 import * as registrycredentials from "./registrycredentials";
 import * as services from "./services";
 import * as types from "./types";
+import * as users from "./users";
 
 export {
     blueprints,
@@ -46,6 +47,7 @@ export {
     registrycredentials,
     services,
     types,
+    users,
 };
 pulumi.runtime.registerResourcePackage("render", {
     version: utilities.getVersion(),

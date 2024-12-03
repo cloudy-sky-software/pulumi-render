@@ -32,7 +32,7 @@ class ListRedisResult:
 
     @property
     @pulumi.getter
-    def items(self) -> Sequence['outputs.ListRedisItemProperties']:
+    def items(self) -> Sequence['outputs.RedisWithCursor']:
         return pulumi.get(self, "items")
 
 

@@ -923,27 +923,56 @@ namespace Pulumi.Render.Services
     }
 
     [EnumType]
-    public readonly struct Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus : IEquatable<Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus>
+    public readonly struct JobWithCursorJobPropertiesStatus : IEquatable<JobWithCursorJobPropertiesStatus>
     {
         private readonly string _value;
 
-        private Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus(string value)
+        private JobWithCursorJobPropertiesStatus(string value)
         {
             _value = value ?? throw new ArgumentNullException(nameof(value));
         }
 
-        public static Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus Succeeded { get; } = new Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus("succeeded");
-        public static Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus Failed { get; } = new Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus("failed");
-        public static Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus Canceled { get; } = new Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus("canceled");
+        public static JobWithCursorJobPropertiesStatus Succeeded { get; } = new JobWithCursorJobPropertiesStatus("succeeded");
+        public static JobWithCursorJobPropertiesStatus Failed { get; } = new JobWithCursorJobPropertiesStatus("failed");
+        public static JobWithCursorJobPropertiesStatus Canceled { get; } = new JobWithCursorJobPropertiesStatus("canceled");
 
-        public static bool operator ==(Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus left, Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus right) => left.Equals(right);
-        public static bool operator !=(Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus left, Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus right) => !left.Equals(right);
+        public static bool operator ==(JobWithCursorJobPropertiesStatus left, JobWithCursorJobPropertiesStatus right) => left.Equals(right);
+        public static bool operator !=(JobWithCursorJobPropertiesStatus left, JobWithCursorJobPropertiesStatus right) => !left.Equals(right);
 
-        public static explicit operator string(Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus value) => value._value;
+        public static explicit operator string(JobWithCursorJobPropertiesStatus value) => value._value;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus other && Equals(other);
-        public bool Equals(Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+        public override bool Equals(object? obj) => obj is JobWithCursorJobPropertiesStatus other && Equals(other);
+        public bool Equals(JobWithCursorJobPropertiesStatus other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    [EnumType]
+    public readonly struct JobWithCursorpropertiesjobStatus : IEquatable<JobWithCursorpropertiesjobStatus>
+    {
+        private readonly string _value;
+
+        private JobWithCursorpropertiesjobStatus(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static JobWithCursorpropertiesjobStatus Succeeded { get; } = new JobWithCursorpropertiesjobStatus("succeeded");
+        public static JobWithCursorpropertiesjobStatus Failed { get; } = new JobWithCursorpropertiesjobStatus("failed");
+        public static JobWithCursorpropertiesjobStatus Canceled { get; } = new JobWithCursorpropertiesjobStatus("canceled");
+
+        public static bool operator ==(JobWithCursorpropertiesjobStatus left, JobWithCursorpropertiesjobStatus right) => left.Equals(right);
+        public static bool operator !=(JobWithCursorpropertiesjobStatus left, JobWithCursorpropertiesjobStatus right) => !left.Equals(right);
+
+        public static explicit operator string(JobWithCursorpropertiesjobStatus value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is JobWithCursorpropertiesjobStatus other && Equals(other);
+        public bool Equals(JobWithCursorpropertiesjobStatus other) => string.Equals(_value, other._value, StringComparison.Ordinal);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => _value?.GetHashCode() ?? 0;

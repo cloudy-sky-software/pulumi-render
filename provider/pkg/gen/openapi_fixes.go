@@ -365,24 +365,6 @@ func fixDeleteServiceEndpoint(openAPIDoc *openapi3.T) {
 	}
 }
 
-// Fix `GET /services/{serviceId}/jobs/{jobId}` response body schema
-// so that it refers to a separate schema type rather than pointing to
-// the response body schema for `POST /services/{serviceId}/jobs`
-func fixListJobsEndpoint(openAPIDoc *openapi3.T) {
-	pathItem := openAPIDoc.Paths.Find("/services/{serviceId}/jobs")
-	contract.Assertf(pathItem != nil, "path /services/{serviceId}/jobs not found")
-
-	jobSchema := pathItem.Post.Responses.Status(200).Value.Content.Get(jsonMimeType).Schema
-	openAPIDoc.Components.Schemas["Job"] = openapi3.NewSchemaRef("", jobSchema.Value)
-	pathItem.Post.Responses.Status(200).Value.Content.Get(jsonMimeType).Schema.Value = jobSchema.Value
-	pathItem.Post.Responses.Status(200).Value.Content.Get(jsonMimeType).Schema.Ref = "#/components/schemas/Job"
-
-	pathItem = openAPIDoc.Paths.Find("/services/{serviceId}/jobs/{jobId}")
-	contract.Assertf(pathItem != nil, "path /services/{serviceId}/jobs/{jobId} not found")
-	pathItem.Get.Responses.Status(200).Value.Content.Get(jsonMimeType).Schema.Ref = "#/components/schemas/Job"
-	pathItem.Get.Responses.Status(200).Value.Content.Get(jsonMimeType).Schema.Value = jobSchema.Value
-}
-
 func fixPostgresResponseInvalidRequiredProp(openAPIDoc *openapi3.T) {
 	postgresDetail, ok := openAPIDoc.Components.Schemas["postgresDetail"]
 	contract.Assertf(ok, "type postgresDetail not found")
@@ -430,7 +412,6 @@ func FixOpenAPIDoc(openAPIDoc *openapi3.T) error {
 
 	fixListServicesEndpoint(openAPIDoc)
 	fixDeleteServiceEndpoint(openAPIDoc)
-	fixListJobsEndpoint((openAPIDoc))
 	fixPostgresResponseInvalidRequiredProp(openAPIDoc)
 	// Convert envSpecificDetails|PATCH|POST schema types from oneOf to allOf.
 	convertFromOneOfToAllOf(openAPIDoc, []string{"envSpecificDetails", "envSpecificDetailsPATCH", "envSpecificDetailsPOST"})

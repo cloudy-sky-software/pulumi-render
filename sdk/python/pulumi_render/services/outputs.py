@@ -40,7 +40,8 @@ __all__ = [
     'HeaderWithCursor',
     'Image',
     'ImageProperties',
-    'ListJobItemProperties',
+    'JobWithCursor',
+    'JobWithCursorJobProperties',
     'ListServicesResponse',
     'MaintenanceMode',
     'Previews',
@@ -69,7 +70,6 @@ __all__ = [
     'WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpu',
     'WebServiceDetailspropertiesdisk',
     'WebServiceOutput',
-    'Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema',
 ]
 
 @pulumi.output_type
@@ -1438,44 +1438,104 @@ class ImageProperties(dict):
 
 
 @pulumi.output_type
-class ListJobItemProperties(dict):
+class JobWithCursor(dict):
     def __init__(__self__, *,
-                 cursor: Optional[str] = None,
-                 job: Optional['outputs.Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema'] = None):
-        if cursor is not None:
-            pulumi.set(__self__, "cursor", cursor)
-        if job is not None:
-            pulumi.set(__self__, "job", job)
+                 cursor: str,
+                 job: 'outputs.JobWithCursorJobProperties'):
+        pulumi.set(__self__, "cursor", cursor)
+        pulumi.set(__self__, "job", job)
 
     @property
     @pulumi.getter
-    def cursor(self) -> Optional[str]:
+    def cursor(self) -> str:
         return pulumi.get(self, "cursor")
 
     @property
     @pulumi.getter
-    def job(self) -> Optional['outputs.Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema']:
+    def job(self) -> 'outputs.JobWithCursorJobProperties':
         return pulumi.get(self, "job")
+
+
+@pulumi.output_type
+class JobWithCursorJobProperties(dict):
+    def __init__(__self__, *,
+                 created_at: str,
+                 id: str,
+                 plan_id: str,
+                 service_id: str,
+                 start_command: str,
+                 finished_at: Optional[str] = None,
+                 started_at: Optional[str] = None,
+                 status: Optional['JobWithCursorJobPropertiesStatus'] = None):
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "plan_id", plan_id)
+        pulumi.set(__self__, "service_id", service_id)
+        pulumi.set(__self__, "start_command", start_command)
+        if finished_at is not None:
+            pulumi.set(__self__, "finished_at", finished_at)
+        if started_at is not None:
+            pulumi.set(__self__, "started_at", started_at)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="planId")
+    def plan_id(self) -> str:
+        return pulumi.get(self, "plan_id")
+
+    @property
+    @pulumi.getter(name="serviceId")
+    def service_id(self) -> str:
+        return pulumi.get(self, "service_id")
+
+    @property
+    @pulumi.getter(name="startCommand")
+    def start_command(self) -> str:
+        return pulumi.get(self, "start_command")
+
+    @property
+    @pulumi.getter(name="finishedAt")
+    def finished_at(self) -> Optional[str]:
+        return pulumi.get(self, "finished_at")
+
+    @property
+    @pulumi.getter(name="startedAt")
+    def started_at(self) -> Optional[str]:
+        return pulumi.get(self, "started_at")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional['JobWithCursorJobPropertiesStatus']:
+        return pulumi.get(self, "status")
 
 
 @pulumi.output_type
 class ListServicesResponse(dict):
     def __init__(__self__, *,
-                 cursor: Optional[str] = None,
-                 service: Optional[Any] = None):
-        if cursor is not None:
-            pulumi.set(__self__, "cursor", cursor)
-        if service is not None:
-            pulumi.set(__self__, "service", service)
+                 cursor: str,
+                 service: Any):
+        pulumi.set(__self__, "cursor", cursor)
+        pulumi.set(__self__, "service", service)
 
     @property
     @pulumi.getter
-    def cursor(self) -> Optional[str]:
+    def cursor(self) -> str:
         return pulumi.get(self, "cursor")
 
     @property
     @pulumi.getter
-    def service(self) -> Optional[Any]:
+    def service(self) -> Any:
         return pulumi.get(self, "service")
 
 
@@ -3270,69 +3330,5 @@ class WebServiceOutput(dict):
     @pulumi.getter
     def type(self) -> Optional[str]:
         return pulumi.get(self, "type")
-
-
-@pulumi.output_type
-class Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema(dict):
-    def __init__(__self__, *,
-                 created_at: str,
-                 id: str,
-                 plan_id: str,
-                 service_id: str,
-                 start_command: str,
-                 finished_at: Optional[str] = None,
-                 started_at: Optional[str] = None,
-                 status: Optional['Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus'] = None):
-        pulumi.set(__self__, "created_at", created_at)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "plan_id", plan_id)
-        pulumi.set(__self__, "service_id", service_id)
-        pulumi.set(__self__, "start_command", start_command)
-        if finished_at is not None:
-            pulumi.set(__self__, "finished_at", finished_at)
-        if started_at is not None:
-            pulumi.set(__self__, "started_at", started_at)
-        if status is not None:
-            pulumi.set(__self__, "status", status)
-
-    @property
-    @pulumi.getter(name="createdAt")
-    def created_at(self) -> str:
-        return pulumi.get(self, "created_at")
-
-    @property
-    @pulumi.getter
-    def id(self) -> str:
-        return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter(name="planId")
-    def plan_id(self) -> str:
-        return pulumi.get(self, "plan_id")
-
-    @property
-    @pulumi.getter(name="serviceId")
-    def service_id(self) -> str:
-        return pulumi.get(self, "service_id")
-
-    @property
-    @pulumi.getter(name="startCommand")
-    def start_command(self) -> str:
-        return pulumi.get(self, "start_command")
-
-    @property
-    @pulumi.getter(name="finishedAt")
-    def finished_at(self) -> Optional[str]:
-        return pulumi.get(self, "finished_at")
-
-    @property
-    @pulumi.getter(name="startedAt")
-    def started_at(self) -> Optional[str]:
-        return pulumi.get(self, "started_at")
-
-    @property
-    @pulumi.getter
-    def status(self) -> Optional['Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus']:
-        return pulumi.get(self, "status")
 
 

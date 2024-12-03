@@ -117,6 +117,10 @@ tags:
       Add Redirect or Rewrite Rules to modify requests to your site without
       writing code. You can use URL parameters to capture path segments, and
       wildcards to redirect everything under a given path.
+  - name: Users
+    description: >
+      The `User` endpoints allow you to retrieve information about the
+      authenticated user
 paths:
   /blueprints:
     get:
@@ -686,6 +690,31 @@ paths:
           $ref: '#/components/responses/406NotAcceptable'
         '410':
           $ref: '#/components/responses/410Gone'
+        '429':
+          $ref: '#/components/responses/429RateLimit'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+  /users:
+    get:
+      summary: Get the authenticated user
+      description: |
+        Retrieve the user associated with the provided API key.
+      operationId: get-user
+      tags:
+        - Users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '406':
+          $ref: '#/components/responses/406NotAcceptable'
         '429':
           $ref: '#/components/responses/429RateLimit'
         '500':
@@ -1271,6 +1300,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/nameParam'
         - $ref: '#/components/parameters/serviceTypeParam'
+        - $ref: '#/components/parameters/environmentIdParam'
         - $ref: '#/components/parameters/envParam'
         - $ref: '#/components/parameters/regionParam'
         - $ref: '#/components/parameters/suspendedParam'
@@ -1279,6 +1309,7 @@ paths:
         - $ref: '#/components/parameters/updatedBeforeParam'
         - $ref: '#/components/parameters/updatedAfterParam'
         - $ref: '#/components/parameters/ownerIdParam'
+        - $ref: '#/components/parameters/includePreviewsParam'
         - $ref: '#/components/parameters/cursorParam'
         - $ref: '#/components/parameters/limitParam'
       responses:
@@ -3188,13 +3219,7 @@ paths:
               schema:
                 type: array
                 items:
-                  type: object
-                  properties:
-                    job:
-                      $ref: >-
-                        #/paths/~1services~1%7BserviceId%7D~1jobs/post/responses/200/content/application~1json/schema
-                    cursor:
-                      $ref: '#/components/schemas/cursor'
+                  $ref: '#/components/schemas/jobWithCursor'
         '400':
           $ref: '#/components/responses/400BadRequest'
         '401':
@@ -3229,49 +3254,12 @@ paths:
       tags:
         - One-Off Jobs
       responses:
-        '200':
+        '201':
           description: OK
           content:
             application/json:
               schema:
-                type: object
-                required:
-                  - id
-                  - serviceId
-                  - startCommand
-                  - planId
-                  - createdAt
-                properties:
-                  id:
-                    $ref: >-
-                      #/paths/~1services~1%7BserviceId%7D~1jobs~1%7BjobId%7D/parameters/1/schema
-                  serviceId:
-                    type: string
-                    example: srv-xxxxx
-                  startCommand:
-                    type: string
-                    example: echo 'hello world'
-                  planId:
-                    type: string
-                    example: plan-srv-004
-                  status:
-                    type: string
-                    enum:
-                      - succeeded
-                      - failed
-                      - canceled
-                  createdAt:
-                    type: string
-                    format: date-time
-                    example: '2021-07-15T07:20:05.777035-07:00'
-                  startedAt:
-                    type: string
-                    format: date-time
-                    example: '2021-07-15T07:20:05.777035-07:00'
-                  finishedAt:
-                    type: string
-                    format: date-time
-                    example: '2021-07-15T07:20:05.777035-07:00'
+                $ref: '#/components/schemas/jobWithCursor/properties/job'
         '400':
           $ref: '#/components/responses/400BadRequest'
         '401':
@@ -3309,8 +3297,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: >-
-                  #/paths/~1services~1%7BserviceId%7D~1jobs/post/responses/200/content/application~1json/schema
+                $ref: '#/components/schemas/jobWithCursor/properties/job'
         '400':
           $ref: '#/components/responses/400BadRequest'
         '401':
@@ -3340,8 +3327,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: >-
-                  #/paths/~1services~1%7BserviceId%7D~1jobs/post/responses/200/content/application~1json/schema
+                $ref: '#/components/schemas/jobWithCursor/properties/job'
         '400':
           $ref: '#/components/responses/400BadRequest'
         '401':
@@ -4688,12 +4674,7 @@ paths:
               schema:
                 type: array
                 items:
-                  type: object
-                  properties:
-                    redis:
-                      $ref: '#/components/schemas/redis'
-                    cursor:
-                      $ref: '#/components/schemas/cursor'
+                  $ref: '#/components/schemas/redisWithCursor'
         '400':
           $ref: '#/components/responses/400BadRequest'
         '401':
@@ -6757,6 +6738,14 @@ components:
       explode: false
       required: false
       description: Filter for resources that belong to an environment
+    includePreviewsParam:
+      name: includePreviews
+      in: query
+      schema:
+        type: boolean
+        default: true
+      required: false
+      description: Include previews in the response
     includeReplicasParam:
       name: includeReplicas
       in: query
@@ -7418,6 +7407,9 @@ components:
         $ref: '#/components/schemas/serviceWithCursor'
     serviceWithCursor:
       type: object
+      required:
+        - service
+        - cursor
       properties:
         service:
           $ref: '#/components/schemas/service'
@@ -8389,6 +8381,16 @@ components:
         dashboardUrl:
           type: string
           description: The URL to view the Redis instance in the Render Dashboard
+    redisWithCursor:
+      type: object
+      required:
+        - redis
+        - cursor
+      properties:
+        redis:
+          $ref: '#/components/schemas/redis'
+        cursor:
+          $ref: '#/components/schemas/cursor'
     redisDetail:
       type: object
       description: A Redis instance
@@ -9566,11 +9568,8 @@ components:
                       $ref: >-
                         #/paths/~1services~1%7BserviceId%7D~1jobs~1%7BjobId%7D/parameters/1/schema
                     status:
-                      type: string
-                      enum:
-                        - succeeded
-                        - failed
-                        - canceled
+                      $ref: >-
+                        #/components/schemas/jobWithCursor/properties/job/properties/status
                     reason:
                       $ref: >-
                         #/components/schemas/serviceEventWithCursor/properties/event/properties/details/oneOf/9/properties/reason
@@ -9685,6 +9684,63 @@ components:
                   properties:
                     trigger:
                       type: string
+    jobWithCursor:
+      type: object
+      required:
+        - job
+        - cursor
+      properties:
+        job:
+          type: object
+          required:
+            - id
+            - serviceId
+            - startCommand
+            - planId
+            - createdAt
+          properties:
+            id:
+              $ref: >-
+                #/paths/~1services~1%7BserviceId%7D~1jobs~1%7BjobId%7D/parameters/1/schema
+            serviceId:
+              type: string
+              example: srv-xxxxx
+            startCommand:
+              type: string
+              example: echo 'hello world'
+            planId:
+              type: string
+              example: plan-srv-004
+            status:
+              type: string
+              enum:
+                - succeeded
+                - failed
+                - canceled
+            createdAt:
+              type: string
+              format: date-time
+              example: '2021-07-15T07:20:05.777035-07:00'
+            startedAt:
+              type: string
+              format: date-time
+              example: '2021-07-15T07:20:05.777035-07:00'
+            finishedAt:
+              type: string
+              format: date-time
+              example: '2021-07-15T07:20:05.777035-07:00'
+        cursor:
+          $ref: '#/components/schemas/cursor'
+    user:
+      type: object
+      required:
+        - email
+        - name
+      properties:
+        email:
+          type: string
+        name:
+          type: string
   responses:
     400BadRequest:
       description: The request could not be understood by the server.

@@ -133,6 +133,13 @@ components:
                         - zero_downtime_redeploy_ended
                         - zero_downtime_redeploy_started
                       type: string
+        includePreviewsParam:
+            description: Include previews in the response
+            in: query
+            name: includePreviews
+            schema:
+                default: true
+                type: boolean
         includeReplicasParam:
             description: Include replicas in the response
             in: query
@@ -393,44 +400,6 @@ components:
                         type: array
             description: An array of possible values for a log label
     schemas:
-        Job:
-            properties:
-                createdAt:
-                    example: "2021-07-15T07:20:05.777035-07:00"
-                    format: date-time
-                    type: string
-                finishedAt:
-                    example: "2021-07-15T07:20:05.777035-07:00"
-                    format: date-time
-                    type: string
-                id:
-                    $ref: '#/paths/~1services~1%7BserviceId%7D~1jobs~1%7BjobId%7D/parameters/1/schema'
-                planId:
-                    example: plan-srv-004
-                    type: string
-                serviceId:
-                    example: srv-xxxxx
-                    type: string
-                startCommand:
-                    example: echo 'hello world'
-                    type: string
-                startedAt:
-                    example: "2021-07-15T07:20:05.777035-07:00"
-                    format: date-time
-                    type: string
-                status:
-                    enum:
-                        - succeeded
-                        - failed
-                        - canceled
-                    type: string
-            required:
-                - id
-                - serviceId
-                - startCommand
-                - planId
-                - createdAt
-            type: object
         addUpdateEnvVarInput:
             oneOf:
                 - $ref: '#/components/schemas/envVarValue'
@@ -1335,6 +1304,52 @@ components:
         instanceId:
             description: When a service with a disk is scaled, the instanceId is used to identify the instance that the disk is attached to. Each instance's disks get their own snapshots, and can be restored separately.
             type: string
+        jobWithCursor:
+            properties:
+                cursor:
+                    $ref: '#/components/schemas/cursor'
+                job:
+                    properties:
+                        createdAt:
+                            example: "2021-07-15T07:20:05.777035-07:00"
+                            format: date-time
+                            type: string
+                        finishedAt:
+                            example: "2021-07-15T07:20:05.777035-07:00"
+                            format: date-time
+                            type: string
+                        id:
+                            $ref: '#/paths/~1services~1%7BserviceId%7D~1jobs~1%7BjobId%7D/parameters/1/schema'
+                        planId:
+                            example: plan-srv-004
+                            type: string
+                        serviceId:
+                            example: srv-xxxxx
+                            type: string
+                        startCommand:
+                            example: echo 'hello world'
+                            type: string
+                        startedAt:
+                            example: "2021-07-15T07:20:05.777035-07:00"
+                            format: date-time
+                            type: string
+                        status:
+                            enum:
+                                - succeeded
+                                - failed
+                                - canceled
+                            type: string
+                    required:
+                        - id
+                        - serviceId
+                        - startCommand
+                        - planId
+                        - createdAt
+                    type: object
+            required:
+                - job
+                - cursor
+            type: object
         listServices:
             $ref: '#/components/schemas/serviceList'
         listServicesResponse:
@@ -2288,6 +2303,16 @@ components:
                 - pro_plus
                 - custom
             type: string
+        redisWithCursor:
+            properties:
+                cursor:
+                    $ref: '#/components/schemas/cursor'
+                redis:
+                    $ref: '#/components/schemas/redis'
+            required:
+                - redis
+                - cursor
+            type: object
         region:
             default: oregon
             description: Defaults to "oregon"
@@ -2853,11 +2878,7 @@ components:
                                     reason:
                                         $ref: '#/components/schemas/serviceEventWithCursor/properties/event/properties/details/oneOf/9/properties/reason'
                                     status:
-                                        enum:
-                                            - succeeded
-                                            - failed
-                                            - canceled
-                                        type: string
+                                        $ref: '#/components/schemas/jobWithCursor/properties/job/properties/status'
                                   required:
                                     - jobId
                                     - status
@@ -3101,6 +3122,9 @@ components:
                         - $ref: '#/components/schemas/privateServiceOutput'
                         - $ref: '#/components/schemas/staticSiteOutput'
                         - $ref: '#/components/schemas/webServiceOutput'
+            required:
+                - service
+                - cursor
             type: object
         snapshotRestorePOST:
             properties:
@@ -3270,6 +3294,16 @@ components:
             required:
                 - sync
                 - cursor
+            type: object
+        user:
+            properties:
+                email:
+                    type: string
+                name:
+                    type: string
+            required:
+                - email
+                - name
             type: object
         webService:
             allOf:
@@ -7171,12 +7205,7 @@ paths:
                         application/json:
                             schema:
                                 items:
-                                    properties:
-                                        cursor:
-                                            $ref: '#/components/schemas/cursor'
-                                        redis:
-                                            $ref: '#/components/schemas/redis'
-                                    type: object
+                                    $ref: '#/components/schemas/redisWithCursor'
                                 type: array
                     description: OK
                 "400":
@@ -7625,6 +7654,7 @@ paths:
             parameters:
                 - $ref: '#/components/parameters/nameParam'
                 - $ref: '#/components/parameters/serviceTypeParam'
+                - $ref: '#/components/parameters/environmentIdParam'
                 - $ref: '#/components/parameters/envParam'
                 - $ref: '#/components/parameters/regionParam'
                 - $ref: '#/components/parameters/suspendedParam'
@@ -7633,6 +7663,7 @@ paths:
                 - $ref: '#/components/parameters/updatedBeforeParam'
                 - $ref: '#/components/parameters/updatedAfterParam'
                 - $ref: '#/components/parameters/ownerIdParam'
+                - $ref: '#/components/parameters/includePreviewsParam'
                 - $ref: '#/components/parameters/cursorParam'
                 - $ref: '#/components/parameters/limitParam'
             responses:
@@ -8847,12 +8878,7 @@ paths:
                         application/json:
                             schema:
                                 items:
-                                    properties:
-                                        cursor:
-                                            $ref: '#/components/schemas/cursor'
-                                        job:
-                                            $ref: '#/paths/~1services~1%7BserviceId%7D~1jobs/post/responses/200/content/application~1json/schema'
-                                    type: object
+                                    $ref: '#/components/schemas/jobWithCursor'
                                 type: array
                     description: OK
                 "400":
@@ -8890,11 +8916,11 @@ paths:
                             type: object
                 required: true
             responses:
-                "200":
+                "201":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Job'
+                                $ref: '#/components/schemas/jobWithCursor/properties/job'
                     description: OK
                 "400":
                     $ref: '#/components/responses/400BadRequest'
@@ -8921,7 +8947,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Job'
+                                $ref: '#/components/schemas/jobWithCursor/properties/job'
                     description: OK
                 "400":
                     $ref: '#/components/responses/400BadRequest'
@@ -8961,7 +8987,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/paths/~1services~1%7BserviceId%7D~1jobs/post/responses/200/content/application~1json/schema'
+                                $ref: '#/components/schemas/jobWithCursor/properties/job'
                     description: OK
                 "400":
                     $ref: '#/components/responses/400BadRequest'
@@ -9633,6 +9659,31 @@ paths:
             summary: Suspend service
             tags:
                 - Services
+    /users:
+        get:
+            description: |
+                Retrieve the user associated with the provided API key.
+            operationId: get-user
+            responses:
+                "200":
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/user'
+                    description: OK
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "406":
+                    $ref: '#/components/responses/406NotAcceptable'
+                "429":
+                    $ref: '#/components/responses/429RateLimit'
+                "500":
+                    $ref: '#/components/responses/500InternalServerError'
+                "503":
+                    $ref: '#/components/responses/503ServiceUnavailable'
+            summary: Get the authenticated user
+            tags:
+                - Users
 security:
     - BearerAuth: []
 servers:
@@ -9697,3 +9748,6 @@ tags:
       name: Services - Headers
     - description: Add Redirect or Rewrite Rules to modify requests to your site without writing code. You can use URL parameters to capture path segments, and wildcards to redirect everything under a given path.
       name: Services - Routes
+    - description: |
+        The `User` endpoints allow you to retrieve information about the authenticated user
+      name: Users

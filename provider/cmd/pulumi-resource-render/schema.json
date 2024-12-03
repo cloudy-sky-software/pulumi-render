@@ -31,7 +31,8 @@
                 "redis": "Redis",
                 "registrycredentials": "RegistryCredentials",
                 "render": "Render",
-                "services": "Services"
+                "services": "Services",
+                "users": "Users"
             },
             "packageReferences": {
                 "Pulumi": "3.*"
@@ -2614,18 +2615,6 @@
                 "description"
             ]
         },
-        "render:redis:ListRedisItemProperties": {
-            "properties": {
-                "cursor": {
-                    "type": "string"
-                },
-                "redis": {
-                    "$ref": "#/types/render:redis:Redis",
-                    "description": "A Redis instance"
-                }
-            },
-            "type": "object"
-        },
         "render:redis:MaintenanceProperties": {
             "properties": {
                 "id": {
@@ -3227,6 +3216,22 @@
                     "name": "UpdatingInstance",
                     "value": "updating_instance"
                 }
+            ]
+        },
+        "render:redis:RedisWithCursor": {
+            "properties": {
+                "cursor": {
+                    "type": "string"
+                },
+                "redis": {
+                    "$ref": "#/types/render:redis:Redis",
+                    "description": "A Redis instance"
+                }
+            },
+            "type": "object",
+            "required": [
+                "cursor",
+                "redis"
             ]
         },
         "render:redis:Region": {
@@ -5345,7 +5350,39 @@
             },
             "type": "object"
         },
-        "render:services:Job": {
+        "render:services:JobStatus": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Succeeded",
+                    "value": "succeeded"
+                },
+                {
+                    "name": "Failed",
+                    "value": "failed"
+                },
+                {
+                    "name": "Canceled",
+                    "value": "canceled"
+                }
+            ]
+        },
+        "render:services:JobWithCursor": {
+            "properties": {
+                "cursor": {
+                    "type": "string"
+                },
+                "job": {
+                    "$ref": "#/types/render:services:JobWithCursorJobProperties"
+                }
+            },
+            "type": "object",
+            "required": [
+                "cursor",
+                "job"
+            ]
+        },
+        "render:services:JobWithCursorJobProperties": {
             "properties": {
                 "createdAt": {
                     "type": "string"
@@ -5369,7 +5406,7 @@
                     "type": "string"
                 },
                 "status": {
-                    "$ref": "#/types/render:services:JobStatus"
+                    "$ref": "#/types/render:services:JobWithCursorJobPropertiesStatus"
                 }
             },
             "type": "object",
@@ -5381,7 +5418,7 @@
                 "startCommand"
             ]
         },
-        "render:services:JobStatus": {
+        "render:services:JobWithCursorJobPropertiesStatus": {
             "type": "string",
             "enum": [
                 {
@@ -5398,16 +5435,58 @@
                 }
             ]
         },
-        "render:services:ListJobItemProperties": {
+        "render:services:JobWithCursorpropertiesjob": {
             "properties": {
-                "cursor": {
+                "createdAt": {
                     "type": "string"
                 },
-                "job": {
-                    "$ref": "#/types/render:services:paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema"
+                "finishedAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "planId": {
+                    "type": "string"
+                },
+                "serviceId": {
+                    "type": "string"
+                },
+                "startCommand": {
+                    "type": "string"
+                },
+                "startedAt": {
+                    "type": "string"
+                },
+                "status": {
+                    "$ref": "#/types/render:services:JobWithCursorpropertiesjobStatus"
                 }
             },
-            "type": "object"
+            "type": "object",
+            "required": [
+                "createdAt",
+                "id",
+                "planId",
+                "serviceId",
+                "startCommand"
+            ]
+        },
+        "render:services:JobWithCursorpropertiesjobStatus": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Succeeded",
+                    "value": "succeeded"
+                },
+                {
+                    "name": "Failed",
+                    "value": "failed"
+                },
+                {
+                    "name": "Canceled",
+                    "value": "canceled"
+                }
+            ]
         },
         "render:services:ListServicesResponse": {
             "properties": {
@@ -5444,7 +5523,11 @@
                     }
                 }
             },
-            "type": "object"
+            "type": "object",
+            "required": [
+                "cursor",
+                "service"
+            ]
         },
         "render:services:MaintenanceMode": {
             "properties": {
@@ -5460,23 +5543,6 @@
             "required": [
                 "enabled",
                 "uri"
-            ]
-        },
-        "render:services:Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Succeeded",
-                    "value": "succeeded"
-                },
-                {
-                    "name": "Failed",
-                    "value": "failed"
-                },
-                {
-                    "name": "Canceled",
-                    "value": "canceled"
-                }
             ]
         },
         "render:services:Plan": {
@@ -7553,40 +7619,19 @@
                 "updatedAt"
             ]
         },
-        "render:services:paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema": {
+        "render:users:User": {
             "properties": {
-                "createdAt": {
+                "email": {
                     "type": "string"
                 },
-                "finishedAt": {
+                "name": {
                     "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "planId": {
-                    "type": "string"
-                },
-                "serviceId": {
-                    "type": "string"
-                },
-                "startCommand": {
-                    "type": "string"
-                },
-                "startedAt": {
-                    "type": "string"
-                },
-                "status": {
-                    "$ref": "#/types/render:services:Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus"
                 }
             },
             "type": "object",
             "required": [
-                "createdAt",
-                "id",
-                "planId",
-                "serviceId",
-                "startCommand"
+                "email",
+                "name"
             ]
         }
     },
@@ -10339,7 +10384,7 @@
                 "properties": {
                     "items": {
                         "items": {
-                            "$ref": "#/types/render:redis:ListRedisItemProperties"
+                            "$ref": "#/types/render:redis:RedisWithCursor"
                         },
                         "type": "array"
                     }
@@ -10494,7 +10539,7 @@
                 ]
             },
             "outputs": {
-                "$ref": "#/types/render:services:Job"
+                "$ref": "#/types/render:services:JobWithCursorpropertiesjob"
             }
         },
         "render:services:getPrivateService": {
@@ -10686,7 +10731,7 @@
                 "properties": {
                     "items": {
                         "items": {
-                            "$ref": "#/types/render:services:ListJobItemProperties"
+                            "$ref": "#/types/render:services:JobWithCursor"
                         },
                         "type": "array"
                     }
@@ -10762,6 +10807,12 @@
                 "required": [
                     "items"
                 ]
+            }
+        },
+        "render:users:getUser": {
+            "inputs": {},
+            "outputs": {
+                "$ref": "#/types/render:users:User"
             }
         }
     }

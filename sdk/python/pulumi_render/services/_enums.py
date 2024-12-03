@@ -32,7 +32,8 @@ __all__ = [
     'DeployStatus',
     'DeployTrigger',
     'JobStatus',
-    'Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus',
+    'JobWithCursorJobPropertiesStatus',
+    'JobWithCursorpropertiesjobStatus',
     'Plan',
     'PreviewsGeneration',
     'PrivateServiceDetailsCreateEnv',
@@ -369,7 +370,13 @@ class JobStatus(str, Enum):
     CANCELED = "canceled"
 
 
-class Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus(str, Enum):
+class JobWithCursorJobPropertiesStatus(str, Enum):
+    SUCCEEDED = "succeeded"
+    FAILED = "failed"
+    CANCELED = "canceled"
+
+
+class JobWithCursorpropertiesjobStatus(str, Enum):
     SUCCEEDED = "succeeded"
     FAILED = "failed"
     CANCELED = "canceled"

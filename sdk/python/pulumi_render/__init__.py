@@ -39,6 +39,8 @@ if typing.TYPE_CHECKING:
     registrycredentials = __registrycredentials
     import pulumi_render.services as __services
     services = __services
+    import pulumi_render.users as __users
+    users = __users
 else:
     blueprints = _utilities.lazy_import('pulumi_render.blueprints')
     config = _utilities.lazy_import('pulumi_render.config')
@@ -55,6 +57,7 @@ else:
     redis = _utilities.lazy_import('pulumi_render.redis')
     registrycredentials = _utilities.lazy_import('pulumi_render.registrycredentials')
     services = _utilities.lazy_import('pulumi_render.services')
+    users = _utilities.lazy_import('pulumi_render.users')
 
 _utilities.register(
     resource_modules="""

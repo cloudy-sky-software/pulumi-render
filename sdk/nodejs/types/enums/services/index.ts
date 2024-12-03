@@ -350,13 +350,21 @@ export const JobStatus = {
 
 export type JobStatus = (typeof JobStatus)[keyof typeof JobStatus];
 
-export const Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus = {
+export const JobWithCursorJobPropertiesStatus = {
     Succeeded: "succeeded",
     Failed: "failed",
     Canceled: "canceled",
 } as const;
 
-export type Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus = (typeof Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus)[keyof typeof Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus];
+export type JobWithCursorJobPropertiesStatus = (typeof JobWithCursorJobPropertiesStatus)[keyof typeof JobWithCursorJobPropertiesStatus];
+
+export const JobWithCursorpropertiesjobStatus = {
+    Succeeded: "succeeded",
+    Failed: "failed",
+    Canceled: "canceled",
+} as const;
+
+export type JobWithCursorpropertiesjobStatus = (typeof JobWithCursorpropertiesjobStatus)[keyof typeof JobWithCursorpropertiesjobStatus];
 
 export const Plan = {
     Starter: "starter",

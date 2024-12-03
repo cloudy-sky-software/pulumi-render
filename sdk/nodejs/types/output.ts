@@ -579,23 +579,6 @@ export namespace redis {
         description: string;
     }
 
-    export interface ListRedisItemProperties {
-        cursor?: string;
-        /**
-         * A Redis instance
-         */
-        redis?: outputs.redis.Redis;
-    }
-    /**
-     * listRedisItemPropertiesProvideDefaults sets the appropriate defaults for ListRedisItemProperties
-     */
-    export function listRedisItemPropertiesProvideDefaults(val: ListRedisItemProperties): ListRedisItemProperties {
-        return {
-            ...val,
-            redis: (val.redis ? outputs.redis.redisProvideDefaults(val.redis) : undefined),
-        };
-    }
-
     export interface MaintenanceProperties {
         id: string;
         /**
@@ -765,6 +748,23 @@ export namespace redis {
      */
     export interface RedisOptions {
         maxmemoryPolicy?: string;
+    }
+
+    export interface RedisWithCursor {
+        cursor: string;
+        /**
+         * A Redis instance
+         */
+        redis: outputs.redis.Redis;
+    }
+    /**
+     * redisWithCursorProvideDefaults sets the appropriate defaults for RedisWithCursor
+     */
+    export function redisWithCursorProvideDefaults(val: RedisWithCursor): RedisWithCursor {
+        return {
+            ...val,
+            redis: outputs.redis.redisProvideDefaults(val.redis),
+        };
     }
 
 }
@@ -1321,7 +1321,12 @@ export namespace services {
         sha?: string;
     }
 
-    export interface Job {
+    export interface JobWithCursor {
+        cursor: string;
+        job: outputs.services.JobWithCursorJobProperties;
+    }
+
+    export interface JobWithCursorJobProperties {
         createdAt: string;
         finishedAt?: string;
         id: string;
@@ -1329,17 +1334,23 @@ export namespace services {
         serviceId: string;
         startCommand: string;
         startedAt?: string;
-        status?: enums.services.JobStatus;
+        status?: enums.services.JobWithCursorJobPropertiesStatus;
     }
 
-    export interface ListJobItemProperties {
-        cursor?: string;
-        job?: outputs.services.Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema;
+    export interface JobWithCursorpropertiesjob {
+        createdAt: string;
+        finishedAt?: string;
+        id: string;
+        planId: string;
+        serviceId: string;
+        startCommand: string;
+        startedAt?: string;
+        status?: enums.services.JobWithCursorpropertiesjobStatus;
     }
 
     export interface ListServicesResponse {
-        cursor?: string;
-        service?: outputs.services.BackgroundWorkerOutput | outputs.services.CronJobOutput | outputs.services.PrivateServiceOutput | outputs.services.StaticSiteOutput | outputs.services.WebServiceOutput;
+        cursor: string;
+        service: outputs.services.BackgroundWorkerOutput | outputs.services.CronJobOutput | outputs.services.PrivateServiceOutput | outputs.services.StaticSiteOutput | outputs.services.WebServiceOutput;
     }
 
     export interface MaintenanceMode {
@@ -1348,17 +1359,6 @@ export namespace services {
          * The page to be served when [maintenance mode](https://docs.render.com/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
          */
         uri: string;
-    }
-
-    export interface Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschema {
-        createdAt: string;
-        finishedAt?: string;
-        id: string;
-        planId: string;
-        serviceId: string;
-        startCommand: string;
-        startedAt?: string;
-        status?: enums.services.Paths1services17BserviceId7D1jobscreateresponses200contentapplication1jsonschemaStatus;
     }
 
     export interface Previews {
@@ -1869,6 +1869,14 @@ export namespace services {
             serviceDetails: (val.serviceDetails ? outputs.services.webServiceDetailsOutputProvideDefaults(val.serviceDetails) : undefined),
             type: (val.type) ?? "web_service",
         };
+    }
+
+}
+
+export namespace users {
+    export interface User {
+        email: string;
+        name: string;
     }
 
 }

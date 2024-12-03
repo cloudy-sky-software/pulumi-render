@@ -29,14 +29,14 @@ type LookupJobArgs struct {
 }
 
 type LookupJobResult struct {
-	CreatedAt    string     `pulumi:"createdAt"`
-	FinishedAt   *string    `pulumi:"finishedAt"`
-	Id           string     `pulumi:"id"`
-	PlanId       string     `pulumi:"planId"`
-	ServiceId    string     `pulumi:"serviceId"`
-	StartCommand string     `pulumi:"startCommand"`
-	StartedAt    *string    `pulumi:"startedAt"`
-	Status       *JobStatus `pulumi:"status"`
+	CreatedAt    string                            `pulumi:"createdAt"`
+	FinishedAt   *string                           `pulumi:"finishedAt"`
+	Id           string                            `pulumi:"id"`
+	PlanId       string                            `pulumi:"planId"`
+	ServiceId    string                            `pulumi:"serviceId"`
+	StartCommand string                            `pulumi:"startCommand"`
+	StartedAt    *string                           `pulumi:"startedAt"`
+	Status       *JobWithCursorpropertiesjobStatus `pulumi:"status"`
 }
 
 func LookupJobOutput(ctx *pulumi.Context, args LookupJobOutputArgs, opts ...pulumi.InvokeOption) LookupJobResultOutput {
@@ -111,8 +111,8 @@ func (o LookupJobResultOutput) StartedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupJobResult) *string { return v.StartedAt }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupJobResultOutput) Status() JobStatusPtrOutput {
-	return o.ApplyT(func(v LookupJobResult) *JobStatus { return v.Status }).(JobStatusPtrOutput)
+func (o LookupJobResultOutput) Status() JobWithCursorpropertiesjobStatusPtrOutput {
+	return o.ApplyT(func(v LookupJobResult) *JobWithCursorpropertiesjobStatus { return v.Status }).(JobWithCursorpropertiesjobStatusPtrOutput)
 }
 
 func init() {

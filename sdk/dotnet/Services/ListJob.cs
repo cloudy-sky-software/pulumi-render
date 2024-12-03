@@ -51,10 +51,10 @@ namespace Pulumi.Render.Services
     [OutputType]
     public sealed class ListJobResult
     {
-        public readonly ImmutableArray<Outputs.ListJobItemProperties> Items;
+        public readonly ImmutableArray<Outputs.JobWithCursor> Items;
 
         [OutputConstructor]
-        private ListJobResult(ImmutableArray<Outputs.ListJobItemProperties> items)
+        private ListJobResult(ImmutableArray<Outputs.JobWithCursor> items)
         {
             Items = items;
         }

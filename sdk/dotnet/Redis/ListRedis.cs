@@ -31,10 +31,10 @@ namespace Pulumi.Render.Redis
     [OutputType]
     public sealed class ListRedisResult
     {
-        public readonly ImmutableArray<Outputs.ListRedisItemProperties> Items;
+        public readonly ImmutableArray<Outputs.RedisWithCursor> Items;
 
         [OutputConstructor]
-        private ListRedisResult(ImmutableArray<Outputs.ListRedisItemProperties> items)
+        private ListRedisResult(ImmutableArray<Outputs.RedisWithCursor> items)
         {
             Items = items;
         }

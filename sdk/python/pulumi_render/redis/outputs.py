@@ -18,12 +18,12 @@ from ._enums import *
 
 __all__ = [
     'CidrBlockAndDescription',
-    'ListRedisItemProperties',
     'MaintenanceProperties',
     'Owner',
     'Redis',
     'RedisDetailMaintenanceProperties',
     'RedisOptions',
+    'RedisWithCursor',
 ]
 
 @pulumi.output_type
@@ -66,33 +66,6 @@ class CidrBlockAndDescription(dict):
         User-provided description of the CIDR block
         """
         return pulumi.get(self, "description")
-
-
-@pulumi.output_type
-class ListRedisItemProperties(dict):
-    def __init__(__self__, *,
-                 cursor: Optional[str] = None,
-                 redis: Optional['outputs.Redis'] = None):
-        """
-        :param 'Redis' redis: A Redis instance
-        """
-        if cursor is not None:
-            pulumi.set(__self__, "cursor", cursor)
-        if redis is not None:
-            pulumi.set(__self__, "redis", redis)
-
-    @property
-    @pulumi.getter
-    def cursor(self) -> Optional[str]:
-        return pulumi.get(self, "cursor")
-
-    @property
-    @pulumi.getter
-    def redis(self) -> Optional['outputs.Redis']:
-        """
-        A Redis instance
-        """
-        return pulumi.get(self, "redis")
 
 
 @pulumi.output_type
@@ -451,5 +424,30 @@ class RedisOptions(dict):
     @pulumi.getter(name="maxmemoryPolicy")
     def maxmemory_policy(self) -> Optional[str]:
         return pulumi.get(self, "maxmemory_policy")
+
+
+@pulumi.output_type
+class RedisWithCursor(dict):
+    def __init__(__self__, *,
+                 cursor: str,
+                 redis: 'outputs.Redis'):
+        """
+        :param 'Redis' redis: A Redis instance
+        """
+        pulumi.set(__self__, "cursor", cursor)
+        pulumi.set(__self__, "redis", redis)
+
+    @property
+    @pulumi.getter
+    def cursor(self) -> str:
+        return pulumi.get(self, "cursor")
+
+    @property
+    @pulumi.getter
+    def redis(self) -> 'outputs.Redis':
+        """
+        A Redis instance
+        """
+        return pulumi.get(self, "redis")
 
 

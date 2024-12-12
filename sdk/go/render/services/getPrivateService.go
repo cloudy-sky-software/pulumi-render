@@ -67,23 +67,12 @@ func (val *LookupPrivateServiceResult) Defaults() *LookupPrivateServiceResult {
 	}
 	return &tmp
 }
-
 func LookupPrivateServiceOutput(ctx *pulumi.Context, args LookupPrivateServiceOutputArgs, opts ...pulumi.InvokeOption) LookupPrivateServiceResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupPrivateServiceResultOutput, error) {
 			args := v.(LookupPrivateServiceArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupPrivateServiceResult
-			secret, err := ctx.InvokePackageRaw("render:services:getPrivateService", args, &rv, "", opts...)
-			if err != nil {
-				return LookupPrivateServiceResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupPrivateServiceResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupPrivateServiceResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("render:services:getPrivateService", args, LookupPrivateServiceResultOutput{}, options).(LookupPrivateServiceResultOutput), nil
 		}).(LookupPrivateServiceResultOutput)
 }
 

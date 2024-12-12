@@ -29,21 +29,11 @@ type ListResourceLogStreamsResult struct {
 }
 
 func ListResourceLogStreamsOutput(ctx *pulumi.Context, args ListResourceLogStreamsOutputArgs, opts ...pulumi.InvokeOption) ListResourceLogStreamsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (ListResourceLogStreamsResultOutput, error) {
 			args := v.(ListResourceLogStreamsArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv ListResourceLogStreamsResult
-			secret, err := ctx.InvokePackageRaw("render:logs:listResourceLogStreams", args, &rv, "", opts...)
-			if err != nil {
-				return ListResourceLogStreamsResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(ListResourceLogStreamsResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(ListResourceLogStreamsResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("render:logs:listResourceLogStreams", args, ListResourceLogStreamsResultOutput{}, options).(ListResourceLogStreamsResultOutput), nil
 		}).(ListResourceLogStreamsResultOutput)
 }
 

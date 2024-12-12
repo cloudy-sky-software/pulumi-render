@@ -16,6 +16,9 @@ namespace Pulumi.Render.Metrics
 
         public static Output<ListActiveConnectionsResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ListActiveConnectionsResult>("render:metrics:listActiveConnections", InvokeArgs.Empty, options.WithDefaults());
+
+        public static Output<ListActiveConnectionsResult> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<ListActiveConnectionsResult>("render:metrics:listActiveConnections", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

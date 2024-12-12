@@ -29,21 +29,11 @@ type ListActiveConnectionsResult struct {
 }
 
 func ListActiveConnectionsOutput(ctx *pulumi.Context, args ListActiveConnectionsOutputArgs, opts ...pulumi.InvokeOption) ListActiveConnectionsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (ListActiveConnectionsResultOutput, error) {
 			args := v.(ListActiveConnectionsArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv ListActiveConnectionsResult
-			secret, err := ctx.InvokePackageRaw("render:metrics:listActiveConnections", args, &rv, "", opts...)
-			if err != nil {
-				return ListActiveConnectionsResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(ListActiveConnectionsResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(ListActiveConnectionsResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("render:metrics:listActiveConnections", args, ListActiveConnectionsResultOutput{}, options).(ListActiveConnectionsResultOutput), nil
 		}).(ListActiveConnectionsResultOutput)
 }
 

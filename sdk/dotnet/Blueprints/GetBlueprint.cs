@@ -16,6 +16,9 @@ namespace Pulumi.Render.Blueprints
 
         public static Output<Outputs.GetBlueprintProperties> Invoke(GetBlueprintInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetBlueprintProperties>("render:blueprints:getBlueprint", args ?? new GetBlueprintInvokeArgs(), options.WithDefaults());
+
+        public static Output<Outputs.GetBlueprintProperties> Invoke(GetBlueprintInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetBlueprintProperties>("render:blueprints:getBlueprint", args ?? new GetBlueprintInvokeArgs(), options.WithDefaults());
     }
 
 

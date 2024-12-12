@@ -16,6 +16,9 @@ namespace Pulumi.Render.Services
 
         public static Output<ListEnvVarsForServiceResult> Invoke(ListEnvVarsForServiceInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ListEnvVarsForServiceResult>("render:services:listEnvVarsForService", args ?? new ListEnvVarsForServiceInvokeArgs(), options.WithDefaults());
+
+        public static Output<ListEnvVarsForServiceResult> Invoke(ListEnvVarsForServiceInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<ListEnvVarsForServiceResult>("render:services:listEnvVarsForService", args ?? new ListEnvVarsForServiceInvokeArgs(), options.WithDefaults());
     }
 
 

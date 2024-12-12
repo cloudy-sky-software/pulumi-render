@@ -29,21 +29,11 @@ type ListDisksResult struct {
 }
 
 func ListDisksOutput(ctx *pulumi.Context, args ListDisksOutputArgs, opts ...pulumi.InvokeOption) ListDisksResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (ListDisksResultOutput, error) {
 			args := v.(ListDisksArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv ListDisksResult
-			secret, err := ctx.InvokePackageRaw("render:disks:listDisks", args, &rv, "", opts...)
-			if err != nil {
-				return ListDisksResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(ListDisksResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(ListDisksResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("render:disks:listDisks", args, ListDisksResultOutput{}, options).(ListDisksResultOutput), nil
 		}).(ListDisksResultOutput)
 }
 

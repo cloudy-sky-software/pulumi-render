@@ -16,6 +16,9 @@ namespace Pulumi.Render.Environments
 
         public static Output<ListEnvironmentsResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ListEnvironmentsResult>("render:environments:listEnvironments", InvokeArgs.Empty, options.WithDefaults());
+
+        public static Output<ListEnvironmentsResult> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<ListEnvironmentsResult>("render:environments:listEnvironments", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

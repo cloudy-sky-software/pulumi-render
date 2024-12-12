@@ -29,21 +29,11 @@ type ListRedisResult struct {
 }
 
 func ListRedisOutput(ctx *pulumi.Context, args ListRedisOutputArgs, opts ...pulumi.InvokeOption) ListRedisResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (ListRedisResultOutput, error) {
 			args := v.(ListRedisArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv ListRedisResult
-			secret, err := ctx.InvokePackageRaw("render:redis:listRedis", args, &rv, "", opts...)
-			if err != nil {
-				return ListRedisResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(ListRedisResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(ListRedisResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("render:redis:listRedis", args, ListRedisResultOutput{}, options).(ListRedisResultOutput), nil
 		}).(ListRedisResultOutput)
 }
 

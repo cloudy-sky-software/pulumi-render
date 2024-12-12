@@ -16,6 +16,9 @@ namespace Pulumi.Render.Services
 
         public static Output<Outputs.GetWebService> Invoke(GetWebServiceInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetWebService>("render:services:getWebService", args ?? new GetWebServiceInvokeArgs(), options.WithDefaults());
+
+        public static Output<Outputs.GetWebService> Invoke(GetWebServiceInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetWebService>("render:services:getWebService", args ?? new GetWebServiceInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -16,6 +16,9 @@ namespace Pulumi.Render.Postgres
 
         public static Output<ListPostgresResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ListPostgresResult>("render:postgres:listPostgres", InvokeArgs.Empty, options.WithDefaults());
+
+        public static Output<ListPostgresResult> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<ListPostgresResult>("render:postgres:listPostgres", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

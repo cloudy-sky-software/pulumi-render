@@ -16,6 +16,9 @@ namespace Pulumi.Render.Services
 
         public static Output<ListHeadersResult> Invoke(ListHeadersInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ListHeadersResult>("render:services:listHeaders", args ?? new ListHeadersInvokeArgs(), options.WithDefaults());
+
+        public static Output<ListHeadersResult> Invoke(ListHeadersInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<ListHeadersResult>("render:services:listHeaders", args ?? new ListHeadersInvokeArgs(), options.WithDefaults());
     }
 
 

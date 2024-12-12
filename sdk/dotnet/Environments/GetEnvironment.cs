@@ -16,6 +16,9 @@ namespace Pulumi.Render.Environments
 
         public static Output<Outputs.Environment> Invoke(GetEnvironmentInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.Environment>("render:environments:getEnvironment", args ?? new GetEnvironmentInvokeArgs(), options.WithDefaults());
+
+        public static Output<Outputs.Environment> Invoke(GetEnvironmentInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.Environment>("render:environments:getEnvironment", args ?? new GetEnvironmentInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -66,23 +66,12 @@ func (val *LookupPostgresResult) Defaults() *LookupPostgresResult {
 	}
 	return &tmp
 }
-
 func LookupPostgresOutput(ctx *pulumi.Context, args LookupPostgresOutputArgs, opts ...pulumi.InvokeOption) LookupPostgresResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupPostgresResultOutput, error) {
 			args := v.(LookupPostgresArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupPostgresResult
-			secret, err := ctx.InvokePackageRaw("render:postgres:getPostgres", args, &rv, "", opts...)
-			if err != nil {
-				return LookupPostgresResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupPostgresResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupPostgresResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("render:postgres:getPostgres", args, LookupPostgresResultOutput{}, options).(LookupPostgresResultOutput), nil
 		}).(LookupPostgresResultOutput)
 }
 

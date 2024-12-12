@@ -16,6 +16,9 @@ namespace Pulumi.Render.Services
 
         public static Output<Outputs.GetCronJob> Invoke(GetCronJobInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetCronJob>("render:services:getCronJob", args ?? new GetCronJobInvokeArgs(), options.WithDefaults());
+
+        public static Output<Outputs.GetCronJob> Invoke(GetCronJobInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetCronJob>("render:services:getCronJob", args ?? new GetCronJobInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -16,6 +16,9 @@ namespace Pulumi.Render.Services
 
         public static Output<Outputs.GetBackgroundWorker> Invoke(GetBackgroundWorkerInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetBackgroundWorker>("render:services:getBackgroundWorker", args ?? new GetBackgroundWorkerInvokeArgs(), options.WithDefaults());
+
+        public static Output<Outputs.GetBackgroundWorker> Invoke(GetBackgroundWorkerInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetBackgroundWorker>("render:services:getBackgroundWorker", args ?? new GetBackgroundWorkerInvokeArgs(), options.WithDefaults());
     }
 
 

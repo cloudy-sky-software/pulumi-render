@@ -16,6 +16,9 @@ namespace Pulumi.Render.Postgres
 
         public static Output<Outputs.GetPostgresRecoveryInfoProperties> Invoke(GetPostgresRecoveryInfoInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetPostgresRecoveryInfoProperties>("render:postgres:getPostgresRecoveryInfo", args ?? new GetPostgresRecoveryInfoInvokeArgs(), options.WithDefaults());
+
+        public static Output<Outputs.GetPostgresRecoveryInfoProperties> Invoke(GetPostgresRecoveryInfoInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetPostgresRecoveryInfoProperties>("render:postgres:getPostgresRecoveryInfo", args ?? new GetPostgresRecoveryInfoInvokeArgs(), options.WithDefaults());
     }
 
 

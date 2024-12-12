@@ -37,21 +37,11 @@ type GetOwnerLogStreamResult struct {
 }
 
 func GetOwnerLogStreamOutput(ctx *pulumi.Context, args GetOwnerLogStreamOutputArgs, opts ...pulumi.InvokeOption) GetOwnerLogStreamResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetOwnerLogStreamResultOutput, error) {
 			args := v.(GetOwnerLogStreamArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetOwnerLogStreamResult
-			secret, err := ctx.InvokePackageRaw("render:logs:getOwnerLogStream", args, &rv, "", opts...)
-			if err != nil {
-				return GetOwnerLogStreamResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetOwnerLogStreamResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetOwnerLogStreamResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("render:logs:getOwnerLogStream", args, GetOwnerLogStreamResultOutput{}, options).(GetOwnerLogStreamResultOutput), nil
 		}).(GetOwnerLogStreamResultOutput)
 }
 

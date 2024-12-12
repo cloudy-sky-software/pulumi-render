@@ -16,6 +16,9 @@ namespace Pulumi.Render.Logs
 
         public static Output<Outputs.GetResourceLogStreamProperties> Invoke(GetResourceLogStreamInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetResourceLogStreamProperties>("render:logs:getResourceLogStream", args ?? new GetResourceLogStreamInvokeArgs(), options.WithDefaults());
+
+        public static Output<Outputs.GetResourceLogStreamProperties> Invoke(GetResourceLogStreamInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetResourceLogStreamProperties>("render:logs:getResourceLogStream", args ?? new GetResourceLogStreamInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -29,21 +29,11 @@ type ListBlueprintsResult struct {
 }
 
 func ListBlueprintsOutput(ctx *pulumi.Context, args ListBlueprintsOutputArgs, opts ...pulumi.InvokeOption) ListBlueprintsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (ListBlueprintsResultOutput, error) {
 			args := v.(ListBlueprintsArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv ListBlueprintsResult
-			secret, err := ctx.InvokePackageRaw("render:blueprints:listBlueprints", args, &rv, "", opts...)
-			if err != nil {
-				return ListBlueprintsResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(ListBlueprintsResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(ListBlueprintsResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("render:blueprints:listBlueprints", args, ListBlueprintsResultOutput{}, options).(ListBlueprintsResultOutput), nil
 		}).(ListBlueprintsResultOutput)
 }
 

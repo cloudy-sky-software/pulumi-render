@@ -16,6 +16,9 @@ namespace Pulumi.Render.Services
 
         public static Output<Outputs.GetPrivateService> Invoke(GetPrivateServiceInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetPrivateService>("render:services:getPrivateService", args ?? new GetPrivateServiceInvokeArgs(), options.WithDefaults());
+
+        public static Output<Outputs.GetPrivateService> Invoke(GetPrivateServiceInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetPrivateService>("render:services:getPrivateService", args ?? new GetPrivateServiceInvokeArgs(), options.WithDefaults());
     }
 
 

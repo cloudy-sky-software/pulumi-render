@@ -16,6 +16,9 @@ namespace Pulumi.Render.Postgres
 
         public static Output<ListPostgresBackupResult> Invoke(ListPostgresBackupInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ListPostgresBackupResult>("render:postgres:listPostgresBackup", args ?? new ListPostgresBackupInvokeArgs(), options.WithDefaults());
+
+        public static Output<ListPostgresBackupResult> Invoke(ListPostgresBackupInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<ListPostgresBackupResult>("render:postgres:listPostgresBackup", args ?? new ListPostgresBackupInvokeArgs(), options.WithDefaults());
     }
 
 

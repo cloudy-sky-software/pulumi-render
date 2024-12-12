@@ -34,21 +34,11 @@ type GetEnvVarResult struct {
 }
 
 func GetEnvVarOutput(ctx *pulumi.Context, args GetEnvVarOutputArgs, opts ...pulumi.InvokeOption) GetEnvVarResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetEnvVarResultOutput, error) {
 			args := v.(GetEnvVarArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetEnvVarResult
-			secret, err := ctx.InvokePackageRaw("render:services:getEnvVar", args, &rv, "", opts...)
-			if err != nil {
-				return GetEnvVarResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetEnvVarResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetEnvVarResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("render:services:getEnvVar", args, GetEnvVarResultOutput{}, options).(GetEnvVarResultOutput), nil
 		}).(GetEnvVarResultOutput)
 }
 

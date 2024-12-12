@@ -16,6 +16,9 @@ namespace Pulumi.Render.Users
 
         public static Output<Outputs.User> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.User>("render:users:getUser", InvokeArgs.Empty, options.WithDefaults());
+
+        public static Output<Outputs.User> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.User>("render:users:getUser", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

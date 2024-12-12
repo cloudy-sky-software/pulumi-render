@@ -41,21 +41,11 @@ type LookupDeployResult struct {
 }
 
 func LookupDeployOutput(ctx *pulumi.Context, args LookupDeployOutputArgs, opts ...pulumi.InvokeOption) LookupDeployResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupDeployResultOutput, error) {
 			args := v.(LookupDeployArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupDeployResult
-			secret, err := ctx.InvokePackageRaw("render:services:getDeploy", args, &rv, "", opts...)
-			if err != nil {
-				return LookupDeployResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupDeployResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupDeployResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("render:services:getDeploy", args, LookupDeployResultOutput{}, options).(LookupDeployResultOutput), nil
 		}).(LookupDeployResultOutput)
 }
 

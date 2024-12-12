@@ -16,6 +16,9 @@ namespace Pulumi.Render.Blueprints
 
         public static Output<ListBlueprintsResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ListBlueprintsResult>("render:blueprints:listBlueprints", InvokeArgs.Empty, options.WithDefaults());
+
+        public static Output<ListBlueprintsResult> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<ListBlueprintsResult>("render:blueprints:listBlueprints", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

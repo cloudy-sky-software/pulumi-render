@@ -16,6 +16,9 @@ namespace Pulumi.Render.Services
 
         public static Output<ListSecretFilesForServiceResult> Invoke(ListSecretFilesForServiceInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ListSecretFilesForServiceResult>("render:services:listSecretFilesForService", args ?? new ListSecretFilesForServiceInvokeArgs(), options.WithDefaults());
+
+        public static Output<ListSecretFilesForServiceResult> Invoke(ListSecretFilesForServiceInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<ListSecretFilesForServiceResult>("render:services:listSecretFilesForService", args ?? new ListSecretFilesForServiceInvokeArgs(), options.WithDefaults());
     }
 
 

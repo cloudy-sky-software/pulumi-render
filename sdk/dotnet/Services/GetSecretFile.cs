@@ -16,6 +16,9 @@ namespace Pulumi.Render.Services
 
         public static Output<Outputs.SecretFile> Invoke(GetSecretFileInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.SecretFile>("render:services:getSecretFile", args ?? new GetSecretFileInvokeArgs(), options.WithDefaults());
+
+        public static Output<Outputs.SecretFile> Invoke(GetSecretFileInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.SecretFile>("render:services:getSecretFile", args ?? new GetSecretFileInvokeArgs(), options.WithDefaults());
     }
 
 

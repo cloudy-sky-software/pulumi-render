@@ -16,6 +16,9 @@ namespace Pulumi.Render.EnvGroups
 
         public static Output<Outputs.EnvGroup> Invoke(GetEnvGroupInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.EnvGroup>("render:env-groups:getEnvGroup", args ?? new GetEnvGroupInvokeArgs(), options.WithDefaults());
+
+        public static Output<Outputs.EnvGroup> Invoke(GetEnvGroupInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.EnvGroup>("render:env-groups:getEnvGroup", args ?? new GetEnvGroupInvokeArgs(), options.WithDefaults());
     }
 
 

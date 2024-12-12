@@ -16,6 +16,9 @@ namespace Pulumi.Render.Disks
 
         public static Output<Outputs.DiskWithCursorpropertiesdisk> Invoke(GetDiskInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.DiskWithCursorpropertiesdisk>("render:disks:getDisk", args ?? new GetDiskInvokeArgs(), options.WithDefaults());
+
+        public static Output<Outputs.DiskWithCursorpropertiesdisk> Invoke(GetDiskInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.DiskWithCursorpropertiesdisk>("render:disks:getDisk", args ?? new GetDiskInvokeArgs(), options.WithDefaults());
     }
 
 

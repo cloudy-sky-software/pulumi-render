@@ -16,6 +16,9 @@ namespace Pulumi.Render.Projects
 
         public static Output<ListProjectsResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ListProjectsResult>("render:projects:listProjects", InvokeArgs.Empty, options.WithDefaults());
+
+        public static Output<ListProjectsResult> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<ListProjectsResult>("render:projects:listProjects", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

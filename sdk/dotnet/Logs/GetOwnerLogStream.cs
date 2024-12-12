@@ -16,6 +16,9 @@ namespace Pulumi.Render.Logs
 
         public static Output<Outputs.GetOwnerLogStreamProperties> Invoke(GetOwnerLogStreamInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetOwnerLogStreamProperties>("render:logs:getOwnerLogStream", args ?? new GetOwnerLogStreamInvokeArgs(), options.WithDefaults());
+
+        public static Output<Outputs.GetOwnerLogStreamProperties> Invoke(GetOwnerLogStreamInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetOwnerLogStreamProperties>("render:logs:getOwnerLogStream", args ?? new GetOwnerLogStreamInvokeArgs(), options.WithDefaults());
     }
 
 

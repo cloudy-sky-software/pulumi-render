@@ -16,6 +16,9 @@ namespace Pulumi.Render.Projects
 
         public static Output<Outputs.Project> Invoke(GetProjectInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.Project>("render:projects:getProject", args ?? new GetProjectInvokeArgs(), options.WithDefaults());
+
+        public static Output<Outputs.Project> Invoke(GetProjectInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.Project>("render:projects:getProject", args ?? new GetProjectInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -16,6 +16,9 @@ namespace Pulumi.Render.Services
 
         public static Output<Outputs.Deploy> Invoke(GetDeployInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.Deploy>("render:services:getDeploy", args ?? new GetDeployInvokeArgs(), options.WithDefaults());
+
+        public static Output<Outputs.Deploy> Invoke(GetDeployInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.Deploy>("render:services:getDeploy", args ?? new GetDeployInvokeArgs(), options.WithDefaults());
     }
 
 

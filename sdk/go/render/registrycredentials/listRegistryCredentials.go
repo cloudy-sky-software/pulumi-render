@@ -29,21 +29,11 @@ type ListRegistryCredentialsResult struct {
 }
 
 func ListRegistryCredentialsOutput(ctx *pulumi.Context, args ListRegistryCredentialsOutputArgs, opts ...pulumi.InvokeOption) ListRegistryCredentialsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (ListRegistryCredentialsResultOutput, error) {
 			args := v.(ListRegistryCredentialsArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv ListRegistryCredentialsResult
-			secret, err := ctx.InvokePackageRaw("render:registrycredentials:listRegistryCredentials", args, &rv, "", opts...)
-			if err != nil {
-				return ListRegistryCredentialsResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(ListRegistryCredentialsResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(ListRegistryCredentialsResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("render:registrycredentials:listRegistryCredentials", args, ListRegistryCredentialsResultOutput{}, options).(ListRegistryCredentialsResultOutput), nil
 		}).(ListRegistryCredentialsResultOutput)
 }
 

@@ -16,6 +16,9 @@ namespace Pulumi.Render.Services
 
         public static Output<ListJobResult> Invoke(ListJobInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ListJobResult>("render:services:listJob", args ?? new ListJobInvokeArgs(), options.WithDefaults());
+
+        public static Output<ListJobResult> Invoke(ListJobInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<ListJobResult>("render:services:listJob", args ?? new ListJobInvokeArgs(), options.WithDefaults());
     }
 
 

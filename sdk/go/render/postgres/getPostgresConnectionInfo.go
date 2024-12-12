@@ -33,21 +33,11 @@ type GetPostgresConnectionInfoResult struct {
 }
 
 func GetPostgresConnectionInfoOutput(ctx *pulumi.Context, args GetPostgresConnectionInfoOutputArgs, opts ...pulumi.InvokeOption) GetPostgresConnectionInfoResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetPostgresConnectionInfoResultOutput, error) {
 			args := v.(GetPostgresConnectionInfoArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetPostgresConnectionInfoResult
-			secret, err := ctx.InvokePackageRaw("render:postgres:getPostgresConnectionInfo", args, &rv, "", opts...)
-			if err != nil {
-				return GetPostgresConnectionInfoResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetPostgresConnectionInfoResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetPostgresConnectionInfoResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("render:postgres:getPostgresConnectionInfo", args, GetPostgresConnectionInfoResultOutput{}, options).(GetPostgresConnectionInfoResultOutput), nil
 		}).(GetPostgresConnectionInfoResultOutput)
 }
 

@@ -16,6 +16,9 @@ namespace Pulumi.Render.NotificationSettings
 
         public static Output<ListNotificationOverridesResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ListNotificationOverridesResult>("render:notification-settings:listNotificationOverrides", InvokeArgs.Empty, options.WithDefaults());
+
+        public static Output<ListNotificationOverridesResult> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<ListNotificationOverridesResult>("render:notification-settings:listNotificationOverrides", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

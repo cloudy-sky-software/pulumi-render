@@ -16,6 +16,9 @@ namespace Pulumi.Render.NotificationSettings
 
         public static Output<Outputs.GetServiceNotificationOverrideProperties> Invoke(GetServiceNotificationOverrideInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetServiceNotificationOverrideProperties>("render:notification-settings:getServiceNotificationOverride", args ?? new GetServiceNotificationOverrideInvokeArgs(), options.WithDefaults());
+
+        public static Output<Outputs.GetServiceNotificationOverrideProperties> Invoke(GetServiceNotificationOverrideInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetServiceNotificationOverrideProperties>("render:notification-settings:getServiceNotificationOverride", args ?? new GetServiceNotificationOverrideInvokeArgs(), options.WithDefaults());
     }
 
 

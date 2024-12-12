@@ -39,21 +39,11 @@ type GetBlueprintResult struct {
 }
 
 func GetBlueprintOutput(ctx *pulumi.Context, args GetBlueprintOutputArgs, opts ...pulumi.InvokeOption) GetBlueprintResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetBlueprintResultOutput, error) {
 			args := v.(GetBlueprintArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetBlueprintResult
-			secret, err := ctx.InvokePackageRaw("render:blueprints:getBlueprint", args, &rv, "", opts...)
-			if err != nil {
-				return GetBlueprintResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetBlueprintResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetBlueprintResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("render:blueprints:getBlueprint", args, GetBlueprintResultOutput{}, options).(GetBlueprintResultOutput), nil
 		}).(GetBlueprintResultOutput)
 }
 

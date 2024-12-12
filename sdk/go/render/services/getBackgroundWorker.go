@@ -67,23 +67,12 @@ func (val *LookupBackgroundWorkerResult) Defaults() *LookupBackgroundWorkerResul
 	}
 	return &tmp
 }
-
 func LookupBackgroundWorkerOutput(ctx *pulumi.Context, args LookupBackgroundWorkerOutputArgs, opts ...pulumi.InvokeOption) LookupBackgroundWorkerResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupBackgroundWorkerResultOutput, error) {
 			args := v.(LookupBackgroundWorkerArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupBackgroundWorkerResult
-			secret, err := ctx.InvokePackageRaw("render:services:getBackgroundWorker", args, &rv, "", opts...)
-			if err != nil {
-				return LookupBackgroundWorkerResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupBackgroundWorkerResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupBackgroundWorkerResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("render:services:getBackgroundWorker", args, LookupBackgroundWorkerResultOutput{}, options).(LookupBackgroundWorkerResultOutput), nil
 		}).(LookupBackgroundWorkerResultOutput)
 }
 

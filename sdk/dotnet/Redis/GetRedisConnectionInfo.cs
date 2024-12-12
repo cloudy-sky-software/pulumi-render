@@ -16,6 +16,9 @@ namespace Pulumi.Render.Redis
 
         public static Output<Outputs.RedisConnectionInfo> Invoke(GetRedisConnectionInfoInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.RedisConnectionInfo>("render:redis:getRedisConnectionInfo", args ?? new GetRedisConnectionInfoInvokeArgs(), options.WithDefaults());
+
+        public static Output<Outputs.RedisConnectionInfo> Invoke(GetRedisConnectionInfoInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.RedisConnectionInfo>("render:redis:getRedisConnectionInfo", args ?? new GetRedisConnectionInfoInvokeArgs(), options.WithDefaults());
     }
 
 

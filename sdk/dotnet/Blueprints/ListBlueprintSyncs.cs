@@ -16,6 +16,9 @@ namespace Pulumi.Render.Blueprints
 
         public static Output<ListBlueprintSyncsResult> Invoke(ListBlueprintSyncsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ListBlueprintSyncsResult>("render:blueprints:listBlueprintSyncs", args ?? new ListBlueprintSyncsInvokeArgs(), options.WithDefaults());
+
+        public static Output<ListBlueprintSyncsResult> Invoke(ListBlueprintSyncsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<ListBlueprintSyncsResult>("render:blueprints:listBlueprintSyncs", args ?? new ListBlueprintSyncsInvokeArgs(), options.WithDefaults());
     }
 
 

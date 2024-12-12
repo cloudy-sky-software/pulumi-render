@@ -16,6 +16,9 @@ namespace Pulumi.Render.Disks
 
         public static Output<ListDisksResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ListDisksResult>("render:disks:listDisks", InvokeArgs.Empty, options.WithDefaults());
+
+        public static Output<ListDisksResult> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<ListDisksResult>("render:disks:listDisks", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

@@ -31,21 +31,11 @@ type ListDeploysResult struct {
 }
 
 func ListDeploysOutput(ctx *pulumi.Context, args ListDeploysOutputArgs, opts ...pulumi.InvokeOption) ListDeploysResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (ListDeploysResultOutput, error) {
 			args := v.(ListDeploysArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv ListDeploysResult
-			secret, err := ctx.InvokePackageRaw("render:services:listDeploys", args, &rv, "", opts...)
-			if err != nil {
-				return ListDeploysResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(ListDeploysResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(ListDeploysResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("render:services:listDeploys", args, ListDeploysResultOutput{}, options).(ListDeploysResultOutput), nil
 		}).(ListDeploysResultOutput)
 }
 

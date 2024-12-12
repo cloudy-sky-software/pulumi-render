@@ -36,21 +36,11 @@ type GetOwnerResult struct {
 }
 
 func GetOwnerOutput(ctx *pulumi.Context, args GetOwnerOutputArgs, opts ...pulumi.InvokeOption) GetOwnerResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetOwnerResultOutput, error) {
 			args := v.(GetOwnerArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetOwnerResult
-			secret, err := ctx.InvokePackageRaw("render:owners:getOwner", args, &rv, "", opts...)
-			if err != nil {
-				return GetOwnerResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetOwnerResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetOwnerResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("render:owners:getOwner", args, GetOwnerResultOutput{}, options).(GetOwnerResultOutput), nil
 		}).(GetOwnerResultOutput)
 }
 

@@ -16,6 +16,9 @@ namespace Pulumi.Render.Services
 
         public static Output<ListRoutesResult> Invoke(ListRoutesInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ListRoutesResult>("render:services:listRoutes", args ?? new ListRoutesInvokeArgs(), options.WithDefaults());
+
+        public static Output<ListRoutesResult> Invoke(ListRoutesInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<ListRoutesResult>("render:services:listRoutes", args ?? new ListRoutesInvokeArgs(), options.WithDefaults());
     }
 
 

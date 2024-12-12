@@ -16,6 +16,9 @@ namespace Pulumi.Render.Services
 
         public static Output<Outputs.GetStaticSite> Invoke(GetStaticSiteInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetStaticSite>("render:services:getStaticSite", args ?? new GetStaticSiteInvokeArgs(), options.WithDefaults());
+
+        public static Output<Outputs.GetStaticSite> Invoke(GetStaticSiteInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetStaticSite>("render:services:getStaticSite", args ?? new GetStaticSiteInvokeArgs(), options.WithDefaults());
     }
 
 

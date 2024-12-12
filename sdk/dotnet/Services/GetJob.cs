@@ -16,6 +16,9 @@ namespace Pulumi.Render.Services
 
         public static Output<Outputs.JobWithCursorpropertiesjob> Invoke(GetJobInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.JobWithCursorpropertiesjob>("render:services:getJob", args ?? new GetJobInvokeArgs(), options.WithDefaults());
+
+        public static Output<Outputs.JobWithCursorpropertiesjob> Invoke(GetJobInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.JobWithCursorpropertiesjob>("render:services:getJob", args ?? new GetJobInvokeArgs(), options.WithDefaults());
     }
 
 

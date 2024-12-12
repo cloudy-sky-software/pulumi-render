@@ -29,21 +29,11 @@ type ListReplicationLagResult struct {
 }
 
 func ListReplicationLagOutput(ctx *pulumi.Context, args ListReplicationLagOutputArgs, opts ...pulumi.InvokeOption) ListReplicationLagResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (ListReplicationLagResultOutput, error) {
 			args := v.(ListReplicationLagArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv ListReplicationLagResult
-			secret, err := ctx.InvokePackageRaw("render:metrics:listReplicationLag", args, &rv, "", opts...)
-			if err != nil {
-				return ListReplicationLagResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(ListReplicationLagResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(ListReplicationLagResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("render:metrics:listReplicationLag", args, ListReplicationLagResultOutput{}, options).(ListReplicationLagResultOutput), nil
 		}).(ListReplicationLagResultOutput)
 }
 

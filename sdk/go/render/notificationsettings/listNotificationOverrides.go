@@ -29,21 +29,11 @@ type ListNotificationOverridesResult struct {
 }
 
 func ListNotificationOverridesOutput(ctx *pulumi.Context, args ListNotificationOverridesOutputArgs, opts ...pulumi.InvokeOption) ListNotificationOverridesResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (ListNotificationOverridesResultOutput, error) {
 			args := v.(ListNotificationOverridesArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv ListNotificationOverridesResult
-			secret, err := ctx.InvokePackageRaw("render:notification-settings:listNotificationOverrides", args, &rv, "", opts...)
-			if err != nil {
-				return ListNotificationOverridesResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(ListNotificationOverridesResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(ListNotificationOverridesResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("render:notification-settings:listNotificationOverrides", args, ListNotificationOverridesResultOutput{}, options).(ListNotificationOverridesResultOutput), nil
 		}).(ListNotificationOverridesResultOutput)
 }
 

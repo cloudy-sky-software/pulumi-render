@@ -67,23 +67,12 @@ func (val *LookupCronJobResult) Defaults() *LookupCronJobResult {
 	}
 	return &tmp
 }
-
 func LookupCronJobOutput(ctx *pulumi.Context, args LookupCronJobOutputArgs, opts ...pulumi.InvokeOption) LookupCronJobResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupCronJobResultOutput, error) {
 			args := v.(LookupCronJobArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupCronJobResult
-			secret, err := ctx.InvokePackageRaw("render:services:getCronJob", args, &rv, "", opts...)
-			if err != nil {
-				return LookupCronJobResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupCronJobResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupCronJobResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("render:services:getCronJob", args, LookupCronJobResultOutput{}, options).(LookupCronJobResultOutput), nil
 		}).(LookupCronJobResultOutput)
 }
 

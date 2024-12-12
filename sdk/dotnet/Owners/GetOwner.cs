@@ -16,6 +16,9 @@ namespace Pulumi.Render.Owners
 
         public static Output<Outputs.Owner> Invoke(GetOwnerInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.Owner>("render:owners:getOwner", args ?? new GetOwnerInvokeArgs(), options.WithDefaults());
+
+        public static Output<Outputs.Owner> Invoke(GetOwnerInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.Owner>("render:owners:getOwner", args ?? new GetOwnerInvokeArgs(), options.WithDefaults());
     }
 
 

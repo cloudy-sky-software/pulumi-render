@@ -16,6 +16,9 @@ namespace Pulumi.Render.Services
 
         public static Output<ListCustomDomainsResult> Invoke(ListCustomDomainsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ListCustomDomainsResult>("render:services:listCustomDomains", args ?? new ListCustomDomainsInvokeArgs(), options.WithDefaults());
+
+        public static Output<ListCustomDomainsResult> Invoke(ListCustomDomainsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<ListCustomDomainsResult>("render:services:listCustomDomains", args ?? new ListCustomDomainsInvokeArgs(), options.WithDefaults());
     }
 
 

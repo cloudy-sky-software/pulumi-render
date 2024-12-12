@@ -16,6 +16,9 @@ namespace Pulumi.Render.RegistryCredentials
 
         public static Output<ListRegistryCredentialsResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ListRegistryCredentialsResult>("render:registrycredentials:listRegistryCredentials", InvokeArgs.Empty, options.WithDefaults());
+
+        public static Output<ListRegistryCredentialsResult> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<ListRegistryCredentialsResult>("render:registrycredentials:listRegistryCredentials", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

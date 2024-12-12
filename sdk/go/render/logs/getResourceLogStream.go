@@ -37,21 +37,11 @@ type GetResourceLogStreamResult struct {
 }
 
 func GetResourceLogStreamOutput(ctx *pulumi.Context, args GetResourceLogStreamOutputArgs, opts ...pulumi.InvokeOption) GetResourceLogStreamResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetResourceLogStreamResultOutput, error) {
 			args := v.(GetResourceLogStreamArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetResourceLogStreamResult
-			secret, err := ctx.InvokePackageRaw("render:logs:getResourceLogStream", args, &rv, "", opts...)
-			if err != nil {
-				return GetResourceLogStreamResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetResourceLogStreamResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetResourceLogStreamResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("render:logs:getResourceLogStream", args, GetResourceLogStreamResultOutput{}, options).(GetResourceLogStreamResultOutput), nil
 		}).(GetResourceLogStreamResultOutput)
 }
 

@@ -31,21 +31,11 @@ type ListHeadersResult struct {
 }
 
 func ListHeadersOutput(ctx *pulumi.Context, args ListHeadersOutputArgs, opts ...pulumi.InvokeOption) ListHeadersResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (ListHeadersResultOutput, error) {
 			args := v.(ListHeadersArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv ListHeadersResult
-			secret, err := ctx.InvokePackageRaw("render:services:listHeaders", args, &rv, "", opts...)
-			if err != nil {
-				return ListHeadersResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(ListHeadersResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(ListHeadersResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("render:services:listHeaders", args, ListHeadersResultOutput{}, options).(ListHeadersResultOutput), nil
 		}).(ListHeadersResultOutput)
 }
 

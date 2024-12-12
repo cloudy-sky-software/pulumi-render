@@ -16,6 +16,9 @@ namespace Pulumi.Render.Services
 
         public static Output<ListServicesResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ListServicesResult>("render:services:listServices", InvokeArgs.Empty, options.WithDefaults());
+
+        public static Output<ListServicesResult> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<ListServicesResult>("render:services:listServices", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

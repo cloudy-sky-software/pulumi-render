@@ -62,23 +62,12 @@ func (val *LookupRedisResult) Defaults() *LookupRedisResult {
 	}
 	return &tmp
 }
-
 func LookupRedisOutput(ctx *pulumi.Context, args LookupRedisOutputArgs, opts ...pulumi.InvokeOption) LookupRedisResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupRedisResultOutput, error) {
 			args := v.(LookupRedisArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupRedisResult
-			secret, err := ctx.InvokePackageRaw("render:redis:getRedis", args, &rv, "", opts...)
-			if err != nil {
-				return LookupRedisResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupRedisResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupRedisResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("render:redis:getRedis", args, LookupRedisResultOutput{}, options).(LookupRedisResultOutput), nil
 		}).(LookupRedisResultOutput)
 }
 

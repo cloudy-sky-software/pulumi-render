@@ -16,6 +16,9 @@ namespace Pulumi.Render.Postgres
 
         public static Output<Outputs.PostgresDetail> Invoke(GetPostgresInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.PostgresDetail>("render:postgres:getPostgres", args ?? new GetPostgresInvokeArgs(), options.WithDefaults());
+
+        public static Output<Outputs.PostgresDetail> Invoke(GetPostgresInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.PostgresDetail>("render:postgres:getPostgres", args ?? new GetPostgresInvokeArgs(), options.WithDefaults());
     }
 
 

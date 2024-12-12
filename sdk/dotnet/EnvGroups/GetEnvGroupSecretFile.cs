@@ -16,6 +16,9 @@ namespace Pulumi.Render.EnvGroups
 
         public static Output<Outputs.SecretFile> Invoke(GetEnvGroupSecretFileInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.SecretFile>("render:env-groups:getEnvGroupSecretFile", args ?? new GetEnvGroupSecretFileInvokeArgs(), options.WithDefaults());
+
+        public static Output<Outputs.SecretFile> Invoke(GetEnvGroupSecretFileInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.SecretFile>("render:env-groups:getEnvGroupSecretFile", args ?? new GetEnvGroupSecretFileInvokeArgs(), options.WithDefaults());
     }
 
 

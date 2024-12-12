@@ -29,21 +29,11 @@ type ListEnvGroupsResult struct {
 }
 
 func ListEnvGroupsOutput(ctx *pulumi.Context, args ListEnvGroupsOutputArgs, opts ...pulumi.InvokeOption) ListEnvGroupsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (ListEnvGroupsResultOutput, error) {
 			args := v.(ListEnvGroupsArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv ListEnvGroupsResult
-			secret, err := ctx.InvokePackageRaw("render:env-groups:listEnvGroups", args, &rv, "", opts...)
-			if err != nil {
-				return ListEnvGroupsResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(ListEnvGroupsResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(ListEnvGroupsResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("render:env-groups:listEnvGroups", args, ListEnvGroupsResultOutput{}, options).(ListEnvGroupsResultOutput), nil
 		}).(ListEnvGroupsResultOutput)
 }
 

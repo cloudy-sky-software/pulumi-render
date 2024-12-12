@@ -34,21 +34,11 @@ type GetEnvGroupSecretFileResult struct {
 }
 
 func GetEnvGroupSecretFileOutput(ctx *pulumi.Context, args GetEnvGroupSecretFileOutputArgs, opts ...pulumi.InvokeOption) GetEnvGroupSecretFileResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetEnvGroupSecretFileResultOutput, error) {
 			args := v.(GetEnvGroupSecretFileArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetEnvGroupSecretFileResult
-			secret, err := ctx.InvokePackageRaw("render:env-groups:getEnvGroupSecretFile", args, &rv, "", opts...)
-			if err != nil {
-				return GetEnvGroupSecretFileResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetEnvGroupSecretFileResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetEnvGroupSecretFileResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("render:env-groups:getEnvGroupSecretFile", args, GetEnvGroupSecretFileResultOutput{}, options).(GetEnvGroupSecretFileResultOutput), nil
 		}).(GetEnvGroupSecretFileResultOutput)
 }
 

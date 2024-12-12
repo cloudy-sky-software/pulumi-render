@@ -16,6 +16,9 @@ namespace Pulumi.Render.NotificationSettings
 
         public static Output<Outputs.GetOwnerNotificationSettingProperties> Invoke(GetOwnerNotificationSettingInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetOwnerNotificationSettingProperties>("render:notification-settings:getOwnerNotificationSetting", args ?? new GetOwnerNotificationSettingInvokeArgs(), options.WithDefaults());
+
+        public static Output<Outputs.GetOwnerNotificationSettingProperties> Invoke(GetOwnerNotificationSettingInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.GetOwnerNotificationSettingProperties>("render:notification-settings:getOwnerNotificationSetting", args ?? new GetOwnerNotificationSettingInvokeArgs(), options.WithDefaults());
     }
 
 

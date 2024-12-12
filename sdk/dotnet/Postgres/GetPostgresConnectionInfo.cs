@@ -16,6 +16,9 @@ namespace Pulumi.Render.Postgres
 
         public static Output<Outputs.PostgresConnectionInfo> Invoke(GetPostgresConnectionInfoInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.PostgresConnectionInfo>("render:postgres:getPostgresConnectionInfo", args ?? new GetPostgresConnectionInfoInvokeArgs(), options.WithDefaults());
+
+        public static Output<Outputs.PostgresConnectionInfo> Invoke(GetPostgresConnectionInfoInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.PostgresConnectionInfo>("render:postgres:getPostgresConnectionInfo", args ?? new GetPostgresConnectionInfoInvokeArgs(), options.WithDefaults());
     }
 
 

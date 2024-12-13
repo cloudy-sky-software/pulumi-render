@@ -5,8 +5,8 @@ go 1.22.7
 toolchain go1.23.4
 
 require (
-	github.com/cloudy-sky-software/pulschema v0.0.0-20241129051016-28ed2ced4255
-	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20241204204111-8bf026b6280b
+	github.com/cloudy-sky-software/pulschema v0.0.0-20241212174421-8a6d25d9e674
+	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20241212205738-316e9ecbb36e
 	github.com/getkin/kin-openapi v0.128.0
 	github.com/pulumi/pulumi/pkg/v3 v3.143.0
 	github.com/pulumi/pulumi/sdk/v3 v3.143.0
@@ -107,14 +107,14 @@ require (
 	golang.org/x/crypto v0.31.0 // indirect
 	golang.org/x/exp v0.0.0-20240604190554-fc45aab8b7f8 // indirect
 	golang.org/x/mod v0.18.0 // indirect
-	golang.org/x/net v0.29.0 // indirect
+	golang.org/x/net v0.30.0 // indirect
 	golang.org/x/sync v0.10.0 // indirect
 	golang.org/x/sys v0.28.0 // indirect
 	golang.org/x/term v0.27.0 // indirect
 	golang.org/x/text v0.21.0 // indirect
 	golang.org/x/tools v0.22.0 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20240903143218-8af14fe29dc1 // indirect
-	google.golang.org/grpc v1.68.1 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20241015192408-796eee8c2d53 // indirect
+	google.golang.org/grpc v1.69.0 // indirect
 	google.golang.org/protobuf v1.35.2 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 	lukechampine.com/frand v1.4.2 // indirect

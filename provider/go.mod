@@ -5,11 +5,11 @@ go 1.22.7
 toolchain go1.23.4
 
 require (
-	github.com/cloudy-sky-software/pulschema v0.0.0-20241212174421-8a6d25d9e674
-	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20241218190849-22d6984c9759
+	github.com/cloudy-sky-software/pulschema v0.0.0-20241221004512-6c1fd903e067
+	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20241225024024-5e4ee71f62a8
 	github.com/getkin/kin-openapi v0.128.0
-	github.com/pulumi/pulumi/pkg/v3 v3.143.0
-	github.com/pulumi/pulumi/sdk/v3 v3.143.0
+	github.com/pulumi/pulumi/pkg/v3 v3.144.1
+	github.com/pulumi/pulumi/sdk/v3 v3.144.1
 )
 
 require github.com/stretchr/testify v1.10.0
@@ -107,7 +107,7 @@ require (
 	golang.org/x/crypto v0.31.0 // indirect
 	golang.org/x/exp v0.0.0-20240604190554-fc45aab8b7f8 // indirect
 	golang.org/x/mod v0.18.0 // indirect
-	golang.org/x/net v0.30.0 // indirect
+	golang.org/x/net v0.33.0 // indirect
 	golang.org/x/sync v0.10.0 // indirect
 	golang.org/x/sys v0.28.0 // indirect
 	golang.org/x/term v0.27.0 // indirect
@@ -115,7 +115,7 @@ require (
 	golang.org/x/tools v0.22.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20241015192408-796eee8c2d53 // indirect
 	google.golang.org/grpc v1.69.2 // indirect
-	google.golang.org/protobuf v1.36.0 // indirect
+	google.golang.org/protobuf v1.36.1 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 	lukechampine.com/frand v1.4.2 // indirect
 )

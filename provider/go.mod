@@ -6,7 +6,7 @@ toolchain go1.23.4
 
 require (
 	github.com/cloudy-sky-software/pulschema v0.0.0-20250106164432-1bbd342b7647
-	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20250106183410-b1af52abf185
+	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20250108154840-ebaaae04ec17
 	github.com/getkin/kin-openapi v0.128.0
 	github.com/pulumi/pulumi/pkg/v3 v3.144.1
 	github.com/pulumi/pulumi/sdk/v3 v3.144.1
@@ -23,7 +23,7 @@ require (
 	dario.cat/mergo v1.0.0 // indirect
 	github.com/BurntSushi/toml v1.2.1 // indirect
 	github.com/Microsoft/go-winio v0.6.1 // indirect
-	github.com/ProtonMail/go-crypto v1.0.0 // indirect
+	github.com/ProtonMail/go-crypto v1.1.3 // indirect
 	github.com/aead/chacha20 v0.0.0-20180709150244-8b13a72661da // indirect
 	github.com/agext/levenshtein v1.2.3 // indirect
 	github.com/apparentlymart/go-textseg/v15 v15.0.0 // indirect
@@ -36,15 +36,15 @@ require (
 	github.com/cheggaaa/pb v1.0.29 // indirect
 	github.com/cloudflare/circl v1.3.7 // indirect
 	github.com/containerd/console v1.0.4 // indirect
-	github.com/cyphar/filepath-securejoin v0.2.4 // indirect
+	github.com/cyphar/filepath-securejoin v0.2.5 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/deckarep/golang-set/v2 v2.6.0 // indirect
 	github.com/djherbis/times v1.6.0 // indirect
 	github.com/edsrzf/mmap-go v1.1.0 // indirect
 	github.com/emirpasic/gods v1.18.1 // indirect
 	github.com/go-git/gcfg v1.5.1-0.20230307220236-3a3c6141e376 // indirect
-	github.com/go-git/go-billy/v5 v5.5.0 // indirect
-	github.com/go-git/go-git/v5 v5.12.0 // indirect
+	github.com/go-git/go-billy/v5 v5.6.0 // indirect
+	github.com/go-git/go-git/v5 v5.13.0 // indirect
 	github.com/go-openapi/jsonpointer v0.21.0 // indirect
 	github.com/go-openapi/swag v0.23.0 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
@@ -94,7 +94,7 @@ require (
 	github.com/segmentio/asm v1.2.0 // indirect
 	github.com/segmentio/encoding v0.4.0 // indirect
 	github.com/sergi/go-diff v1.3.2-0.20230802210424-5b0b94c5c0d3 // indirect
-	github.com/skeema/knownhosts v1.2.2 // indirect
+	github.com/skeema/knownhosts v1.3.0 // indirect
 	github.com/spf13/afero v1.11.0 // indirect
 	github.com/spf13/cobra v1.8.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
@@ -105,17 +105,17 @@ require (
 	github.com/zclconf/go-cty v1.14.2 // indirect
 	go.uber.org/atomic v1.11.0 // indirect
 	golang.org/x/crypto v0.31.0 // indirect
-	golang.org/x/exp v0.0.0-20240604190554-fc45aab8b7f8 // indirect
-	golang.org/x/mod v0.18.0 // indirect
+	golang.org/x/exp v0.0.0-20240719175910-8a7402abbf56 // indirect
+	golang.org/x/mod v0.19.0 // indirect
 	golang.org/x/net v0.33.0 // indirect
 	golang.org/x/sync v0.10.0 // indirect
 	golang.org/x/sys v0.28.0 // indirect
 	golang.org/x/term v0.27.0 // indirect
 	golang.org/x/text v0.21.0 // indirect
-	golang.org/x/tools v0.22.0 // indirect
+	golang.org/x/tools v0.23.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20241015192408-796eee8c2d53 // indirect
 	google.golang.org/grpc v1.69.2 // indirect
-	google.golang.org/protobuf v1.36.1 // indirect
+	google.golang.org/protobuf v1.36.2 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 	lukechampine.com/frand v1.4.2 // indirect
 )

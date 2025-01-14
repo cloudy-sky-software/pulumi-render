@@ -5,8 +5,8 @@ go 1.22.7
 toolchain go1.23.4
 
 require (
-	github.com/cloudy-sky-software/pulschema v0.0.0-20250109001002-c781ec8ce31a
-	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20250113170417-69727661c1dd
+	github.com/cloudy-sky-software/pulschema v0.0.0-20250114165554-f8bfeb1b95f8
+	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20250114175614-6c227aaaaccf
 	github.com/getkin/kin-openapi v0.128.0
 	github.com/pulumi/pulumi/pkg/v3 v3.145.0
 	github.com/pulumi/pulumi/sdk/v3 v3.145.0
@@ -48,7 +48,7 @@ require (
 	github.com/go-openapi/jsonpointer v0.21.0 // indirect
 	github.com/go-openapi/swag v0.23.0 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
-	github.com/golang/glog v1.2.3 // indirect
+	github.com/golang/glog v1.2.4 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/golang/protobuf v1.5.4 // indirect
 	github.com/google/uuid v1.6.0 // indirect

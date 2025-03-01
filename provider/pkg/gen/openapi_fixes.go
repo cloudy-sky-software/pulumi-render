@@ -233,6 +233,7 @@ func changeOperationSchemas(openAPIDoc *openapi3.T, path, operation string, sche
 }
 
 type operationAndSuffx struct {
+	path string
 	// The HTTP method.
 	operation             string
 	baseServiceSchemaName string
@@ -248,77 +249,71 @@ type operationAndSuffx struct {
 }
 
 func fixServiceSchemas(openAPIDoc *openapi3.T) error {
-	pathsAndOperations := map[string][]operationAndSuffx{
-		// Ordering is important here. We should process the
-		// `/services/{serviceId}` endpoint first and its GET
-		// operation first so that we can rename the non-suffixed
-		// schemas to be "output" schemas that will be used as
-		// response body schemas for the mutating endpoints.
-		// Otherwise, we lose that detail when the POST
-		// operation is processed and overwrite the
-		// non-suffixed schemas with that of the
-		// POST request body's.
-		"/services/{serviceId}": {
-			operationAndSuffx{operation: http.MethodGet, newServiceSchemaSuffix: "Output", schemasSuffixedWithOperation: false, baseServiceSchemaName: "service"},
-			operationAndSuffx{operation: http.MethodPatch, newServiceSchemaSuffix: "Patch", schemasSuffixedWithOperation: true, baseServiceSchemaName: "servicePATCH"},
-		},
-		"/services": {
-			// We'll fix the GET /services endpoint separately.
-			operationAndSuffx{operation: http.MethodPost, newServiceSchemaSuffix: "", schemasSuffixedWithOperation: true, baseServiceSchemaName: "servicePOST"},
-		},
+	// Ordering is important here. We should process the
+	// `/services/{serviceId}` endpoint first and its GET
+	// operation first so that we can rename the non-suffixed
+	// schemas to be "output" schemas that will be used as
+	// response body schemas for the mutating endpoints.
+	// Otherwise, we lose that detail when the POST
+	// operation is processed and overwrite the
+	// non-suffixed schemas with that of the
+	// POST request body's.
+	operations := []operationAndSuffx{
+		{path: "/services/{serviceId}", operation: http.MethodGet, newServiceSchemaSuffix: "Output", schemasSuffixedWithOperation: false, baseServiceSchemaName: "service"},
+		{path: "/services/{serviceId}", operation: http.MethodPatch, newServiceSchemaSuffix: "Patch", schemasSuffixedWithOperation: true, baseServiceSchemaName: "servicePATCH"},
+		// We'll fix the GET /services endpoint separately.
+		{path: "/services", operation: http.MethodPost, newServiceSchemaSuffix: "", schemasSuffixedWithOperation: true, baseServiceSchemaName: "servicePOST"},
 	}
 
-	for path, operationAndSuffixes := range pathsAndOperations {
+	for _, o := range operations {
+		operation := o.operation
+		newServiceSchemaSuffix := o.newServiceSchemaSuffix
+		schemasSuffixedWithOperation := o.schemasSuffixedWithOperation
+		baseServiceSchemaName := o.baseServiceSchemaName
 
-		for _, operationAndSuffix := range operationAndSuffixes {
-			operation := operationAndSuffix.operation
-			newServiceSchemaSuffix := operationAndSuffix.newServiceSchemaSuffix
-			schemasSuffixedWithOperation := operationAndSuffix.schemasSuffixedWithOperation
-			baseServiceSchemaName := operationAndSuffix.baseServiceSchemaName
+		baseServiceSchema, ok := openAPIDoc.Components.Schemas[baseServiceSchemaName]
+		contract.Assertf(ok, "%s not found", baseServiceSchemaName)
+		// Delete the `serviceDetails` and `type` properties from the base
+		// service schema for this operation.
+		delete(baseServiceSchema.Value.Properties, "serviceDetails")
+		delete(baseServiceSchema.Value.Properties, "type")
 
-			baseServiceSchema, ok := openAPIDoc.Components.Schemas[baseServiceSchemaName]
-			contract.Assertf(ok, "%s not found", baseServiceSchemaName)
-			// Delete the `serviceDetails` and `type` properties from the base
-			// service schema for this operation.
-			delete(baseServiceSchema.Value.Properties, "serviceDetails")
-			delete(baseServiceSchema.Value.Properties, "type")
+		operationSchemas := make(openapi3.SchemaRefs, 0, len(services))
 
-			operationSchemas := make(openapi3.SchemaRefs, 0, len(services))
-
-			for _, discriminatorValue := range sortedDiscriminatorValues {
-				service := services[discriminatorValue]
-				serviceDetailsSchemaName := service + "Details" + strings.ToUpper(operation)
-				if !schemasSuffixedWithOperation {
-					serviceDetailsSchemaName = service + "Details"
-				}
-				serviceDetailsSchema := openAPIDoc.Components.Schemas[serviceDetailsSchemaName]
-				contract.Assertf(serviceDetailsSchema != nil, "schema %s not found", serviceDetailsSchemaName)
-
-				serviceSchema := openapi3.NewAllOfSchema()
-				serviceSchema.Title = pulschema_pkg.ToPascalCase(service)
-
-				inlineSchema := openapi3.NewSchemaRef("", openapi3.NewSchema())
-				inlineSchema.Value.Type = &openapi3.Types{openapi3.TypeObject}
-				inlineSchema.Value.Properties = make(openapi3.Schemas)
-				// Service details object should also use the same suffix
-				// as the parent service schema object, if it's not empty.
-				if newServiceSchemaSuffix != "" && !schemasSuffixedWithOperation {
-					openAPIDoc.Components.Schemas[serviceDetailsSchemaName+newServiceSchemaSuffix] = serviceDetailsSchema
-					addPropertyWithRef(inlineSchema, "serviceDetails", serviceDetailsSchemaName+newServiceSchemaSuffix, serviceDetailsSchema.Value)
-				} else {
-					addPropertyWithRef(inlineSchema, "serviceDetails", serviceDetailsSchemaName, serviceDetailsSchema.Value)
-				}
-				addDefaultProperty(inlineSchema, "type", discriminatorValue)
-
-				serviceSchema.AllOf = append(serviceSchema.AllOf, openapi3.NewSchemaRef(schemasRefPrefix+baseServiceSchemaName, baseServiceSchema.Value), inlineSchema)
-
-				openAPIDoc.Components.Schemas[service+newServiceSchemaSuffix] = openapi3.NewSchemaRef("", serviceSchema)
-
-				operationSchemas = append(operationSchemas, openapi3.NewSchemaRef(schemasRefPrefix+service+newServiceSchemaSuffix, serviceSchema))
+		for _, discriminatorValue := range sortedDiscriminatorValues {
+			service := services[discriminatorValue]
+			serviceDetailsSchemaName := service + "Details" + strings.ToUpper(operation)
+			if !schemasSuffixedWithOperation {
+				serviceDetailsSchemaName = service + "Details"
 			}
+			serviceDetailsSchema := openAPIDoc.Components.Schemas[serviceDetailsSchemaName]
+			contract.Assertf(serviceDetailsSchema != nil, "schema %s not found", serviceDetailsSchemaName)
 
-			changeOperationSchemas(openAPIDoc, path, operation, newServiceSchemaSuffix, operationSchemas)
+			serviceSchema := openapi3.NewAllOfSchema()
+			serviceSchema.Title = pulschema_pkg.ToPascalCase(service)
+
+			inlineSchema := openapi3.NewSchemaRef("", openapi3.NewSchema())
+			inlineSchema.Value.Type = &openapi3.Types{openapi3.TypeObject}
+			inlineSchema.Value.Properties = make(openapi3.Schemas)
+			// Service details object should also use the same suffix
+			// as the parent service schema object, if it's not empty.
+			if newServiceSchemaSuffix != "" && !schemasSuffixedWithOperation {
+				openAPIDoc.Components.Schemas[serviceDetailsSchemaName+newServiceSchemaSuffix] = serviceDetailsSchema
+				addPropertyWithRef(inlineSchema, "serviceDetails", serviceDetailsSchemaName+newServiceSchemaSuffix, serviceDetailsSchema.Value)
+			} else {
+				addPropertyWithRef(inlineSchema, "serviceDetails", serviceDetailsSchemaName, serviceDetailsSchema.Value)
+			}
+			addDefaultProperty(inlineSchema, "type", discriminatorValue)
+
+			serviceSchema.AllOf = append(serviceSchema.AllOf, openapi3.NewSchemaRef(schemasRefPrefix+baseServiceSchemaName, baseServiceSchema.Value), inlineSchema)
+
+			openAPIDoc.Components.Schemas[service+newServiceSchemaSuffix] = openapi3.NewSchemaRef("", serviceSchema)
+
+			operationSchemas = append(operationSchemas, openapi3.NewSchemaRef(schemasRefPrefix+service+newServiceSchemaSuffix, serviceSchema))
 		}
+
+		path := o.path
+		changeOperationSchemas(openAPIDoc, path, operation, newServiceSchemaSuffix, operationSchemas)
 	}
 
 	return nil

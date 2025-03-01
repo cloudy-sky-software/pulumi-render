@@ -12,7 +12,7 @@ on:
       - "CHANGELOG.md"
 
 env:
-  GOLANG_CI_LINT_VERSION: v1.61.0
+  GOLANG_CI_LINT_VERSION: v1.64.5
   PROVIDER: "render"
 
 jobs:
@@ -28,7 +28,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v5
         with:
-          go-version: 1.21.x
+          go-version: 1.24.x
 
       - name: Lint
         run: |
@@ -51,12 +51,12 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v5
         with:
-          go-version: 1.21.x
+          go-version: 1.24.x
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20.x
+          node-version: 22.x
 
       - name: Setup DotNet
         uses: actions/setup-dotnet@v4
@@ -66,7 +66,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: 3.11
+          python-version: 3.12
 
       - name: Install pulumictl
         uses: jaxxstorm/action-install-gh-release@v1.14.0

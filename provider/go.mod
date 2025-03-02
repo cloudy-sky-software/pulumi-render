@@ -5,7 +5,7 @@ go 1.23.1
 toolchain go1.24.0
 
 require (
-	github.com/cloudy-sky-software/pulschema v0.0.0-20250301155050-c9c534cf0078
+	github.com/cloudy-sky-software/pulschema v0.0.0-20250301211305-8fcbf676801d
 	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20250301194338-7fe3d6ba8ffa
 	github.com/getkin/kin-openapi v0.129.0
 	github.com/pulumi/pulumi/pkg/v3 v3.153.1
@@ -24,7 +24,6 @@ require (
 	github.com/BurntSushi/toml v1.4.0 // indirect
 	github.com/Microsoft/go-winio v0.6.2 // indirect
 	github.com/ProtonMail/go-crypto v1.1.6 // indirect
-	github.com/aead/chacha20 v0.0.0-20180709150244-8b13a72661da // indirect
 	github.com/agext/levenshtein v1.2.3 // indirect
 	github.com/apparentlymart/go-textseg/v15 v15.0.0 // indirect
 	github.com/atotto/clipboard v0.1.4 // indirect
@@ -37,7 +36,6 @@ require (
 	github.com/charmbracelet/x/term v0.2.1 // indirect
 	github.com/cheggaaa/pb v1.0.29 // indirect
 	github.com/cloudflare/circl v1.6.0 // indirect
-	github.com/containerd/console v1.0.4 // indirect
 	github.com/cyphar/filepath-securejoin v0.4.1 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/deckarep/golang-set/v2 v2.7.0 // indirect
@@ -62,7 +60,6 @@ require (
 	github.com/hashicorp/hcl/v2 v2.23.0 // indirect
 	github.com/iancoleman/strcase v0.3.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
-	github.com/invopop/yaml v0.3.1 // indirect
 	github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/kevinburke/ssh_config v1.2.0 // indirect
@@ -76,9 +73,10 @@ require (
 	github.com/mohae/deepcopy v0.0.0-20170929034955-c48cc78d4826 // indirect
 	github.com/muesli/ansi v0.0.0-20230316100256-276c6243b2f6 // indirect
 	github.com/muesli/cancelreader v0.2.2 // indirect
-	github.com/muesli/reflow v0.3.0 // indirect
 	github.com/muesli/termenv v0.16.0 // indirect
 	github.com/natefinch/atomic v1.0.1 // indirect
+	github.com/oasdiff/yaml v0.0.0-20241214135536-5f7845c759c8 // indirect
+	github.com/oasdiff/yaml3 v0.0.0-20241214160948-977117996672 // indirect
 	github.com/opentracing/basictracer-go v1.1.0 // indirect
 	github.com/opentracing/opentracing-go v1.2.0 // indirect
 	github.com/perimeterx/marshmallow v1.1.5 // indirect

@@ -2,7 +2,7 @@ module github.com/cloudy-sky-software/pulumi-render/provider
 
 go 1.23.1
 
-toolchain go1.24.0
+toolchain go1.24.1
 
 require (
 	github.com/cloudy-sky-software/pulschema v0.0.0-20250304221357-d18576c42e98

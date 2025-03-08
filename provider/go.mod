@@ -9,7 +9,7 @@ require (
 	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20250305171013-143a3d4966bb
 	github.com/getkin/kin-openapi v0.129.0
 	github.com/pulumi/pulumi/pkg/v3 v3.153.1
-	github.com/pulumi/pulumi/sdk/v3 v3.153.1
+	github.com/pulumi/pulumi/sdk/v3 v3.154.0
 )
 
 require github.com/stretchr/testify v1.10.0

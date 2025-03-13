@@ -114,8 +114,8 @@ github.com/cloudflare/circl v1.6.0 h1:cr5JKic4HI+LkINy2lg3W2jF8sHCVTBncJr5gIIq7q
 github.com/cloudflare/circl v1.6.0/go.mod h1:uddAzsPgqdMAYatqJ0lsjX1oECcQLIlRpzZh3pJrofs=
 github.com/cloudy-sky-software/pulschema v0.0.0-20250313151450-60aa34a2b6ad h1:0CL/IWvQUJrXGvhdSs8idX2DrepZW6VGKY9/tQQPjsc=
 github.com/cloudy-sky-software/pulschema v0.0.0-20250313151450-60aa34a2b6ad/go.mod h1:9vvxqdMt6jOH/9XEcIZ39GFYqy7662jYnFFAmjZprxM=
-github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20250313174300-0c777bc995f8 h1:LDG8KtGxjJlzbqozYYavqMzr4WrA0o88DNL2VDf1vOw=
-github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20250313174300-0c777bc995f8/go.mod h1:oh4OykiDjNER2ya3EOhPz/imTvBq+1R2YnEf5oavyWU=
+github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20250313202356-b879f810ab05 h1:Z/S6L/Jx1+iuKZ01iUiwqHNX0UVsdiNkJSR5T/Ni2iU=
+github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20250313202356-b879f810ab05/go.mod h1:RJxvAVTymYRS0mFtZVtubTskYBuwcUI/cvBmVzYhDrY=
 github.com/cncf/xds/go v0.0.0-20241223141626-cff3c89139a3 h1:boJj011Hh+874zpIySeApCX4GeOjPl9qhRF3QuIZq+Q=
 github.com/cncf/xds/go v0.0.0-20241223141626-cff3c89139a3/go.mod h1:W+zGtBO5Y1IgJhy4+A9GOqVhqLpfZi+vwmdNXUehLA8=
 github.com/cpuguy83/go-md2man/v2 v2.0.6/go.mod h1:oOW0eioCTA6cOiMLiUPZOpcVxMig6NIQQ7OS05n1F4g=
@@ -438,8 +438,8 @@ golang.org/x/net v0.0.0-20200226121028-0de0cce0169b/go.mod h1:z5CRVTTTmAJ677TzLL
 golang.org/x/net v0.0.0-20200421231249-e086a090c8fd/go.mod h1:qpuaurCH72eLCgpAm/N6yyVIVM9cpaDIP3A8BGJEC5A=
 golang.org/x/net v0.0.0-20201021035429-f5854403a974/go.mod h1:sp8m0HH+o8qH0wwXwYZr8TS3Oi6o0r6Gce1SSxlDquU=
 golang.org/x/net v0.0.0-20211112202133-69e39bad7dc2/go.mod h1:9nx3DQGgdP8bBQD5qxJ1jj9UTztislL4KSBs9R2vV5Y=
-golang.org/x/net v0.35.0 h1:T5GQRQb2y08kTAByq9L4/bz8cipCdA8FbRTXewonqY8=
-golang.org/x/net v0.35.0/go.mod h1:EglIi67kWsHKlRzzVMUD93VMSWGFOMSZgxFjparz1Qk=
+golang.org/x/net v0.36.0 h1:vWF2fRbw4qslQsQzgFqZff+BItCvGFQqKzKIzx1rmoA=
+golang.org/x/net v0.36.0/go.mod h1:bFmbeoIPfrw4sMHNhb4J9f6+tPziuGjq7Jk/38fxi1I=
 golang.org/x/oauth2 v0.25.0 h1:CY4y7XT9v0cRI9oupztF8AgiIu99L/ksR/Xp/6jrZ70=
 golang.org/x/oauth2 v0.25.0/go.mod h1:XYTD2NtWslqkgxebSiOHnXEap4TF09sJSc7H1sXbhtI=
 golang.org/x/sync v0.0.0-20190423024810-112230192c58/go.mod h1:RxMgew5VJxzue5/jJTE5uejpjVlOe/izrB70Jof72aM=

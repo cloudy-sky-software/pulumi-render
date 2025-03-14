@@ -5,9 +5,9 @@ go 1.23.1
 toolchain go1.24.1
 
 require (
-	github.com/cloudy-sky-software/pulschema v0.0.0-20250313151450-60aa34a2b6ad
-	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20250313202356-b879f810ab05
-	github.com/getkin/kin-openapi v0.129.0
+	github.com/cloudy-sky-software/pulschema v0.0.0-20250314164119-4017df51fc18
+	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20250314202453-2aa53e33d2bd
+	github.com/getkin/kin-openapi v0.130.0
 	github.com/pulumi/pulumi/pkg/v3 v3.156.0
 	github.com/pulumi/pulumi/sdk/v3 v3.156.0
 )
@@ -75,8 +75,8 @@ require (
 	github.com/muesli/cancelreader v0.2.2 // indirect
 	github.com/muesli/termenv v0.16.0 // indirect
 	github.com/natefinch/atomic v1.0.1 // indirect
-	github.com/oasdiff/yaml v0.0.0-20241214135536-5f7845c759c8 // indirect
-	github.com/oasdiff/yaml3 v0.0.0-20241214160948-977117996672 // indirect
+	github.com/oasdiff/yaml v0.0.0-20250309154309-f31be36b4037 // indirect
+	github.com/oasdiff/yaml3 v0.0.0-20250309153720-d2182401db90 // indirect
 	github.com/opentracing/basictracer-go v1.1.0 // indirect
 	github.com/opentracing/opentracing-go v1.2.0 // indirect
 	github.com/perimeterx/marshmallow v1.1.5 // indirect

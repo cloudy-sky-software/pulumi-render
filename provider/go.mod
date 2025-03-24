@@ -6,7 +6,7 @@ toolchain go1.24.1
 
 require (
 	github.com/cloudy-sky-software/pulschema v0.0.0-20250319155652-bce95758c130
-	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20250319232126-0807b6638053
+	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20250324152944-e91f145c3e1e
 	github.com/getkin/kin-openapi v0.131.0
 	github.com/pulumi/pulumi/pkg/v3 v3.157.0
 	github.com/pulumi/pulumi/sdk/v3 v3.157.0
@@ -116,7 +116,7 @@ require (
 	golang.org/x/tools v0.30.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20250227231956-55c901821b1e // indirect
 	google.golang.org/grpc v1.71.0 // indirect
-	google.golang.org/protobuf v1.36.5 // indirect
+	google.golang.org/protobuf v1.36.6 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 	lukechampine.com/frand v1.5.1 // indirect
 )

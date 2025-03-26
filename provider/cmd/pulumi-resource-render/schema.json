@@ -46,6 +46,7 @@
             "moduleToPackage": {
                 "cron-jobs": "cronJobs",
                 "env-groups": "envGroups",
+                "key-value": "keyValue",
                 "notification-settings": "notificationSettings"
             }
         },
@@ -54,6 +55,7 @@
             "moduleToPackage": {
                 "cron-jobs": "cronjobs",
                 "env-groups": "envgroups",
+                "key-value": "keyvalue",
                 "notification-settings": "notificationsettings"
             }
         },

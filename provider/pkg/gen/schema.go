@@ -167,6 +167,7 @@ func PulumiSchema(openAPIDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 		ModuleToPackage: map[string]string{
 			"cron-jobs":             "cronJobs",
 			"env-groups":            "envGroups",
+			"key-value":             "keyValue",
 			"notification-settings": "notificationSettings",
 		},
 	})
@@ -175,6 +176,7 @@ func PulumiSchema(openAPIDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 		ModuleToPackage: map[string]string{
 			"cron-jobs":             "cronjobs",
 			"env-groups":            "envgroups",
+			"key-value":             "keyvalue",
 			"notification-settings": "notificationsettings",
 		},
 	})

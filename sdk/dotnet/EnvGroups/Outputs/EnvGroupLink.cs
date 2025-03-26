@@ -11,19 +11,19 @@ namespace Pulumi.Render.EnvGroups.Outputs
 {
 
     [OutputType]
-    public sealed class ServiceLink
+    public sealed class EnvGroupLink
     {
         public readonly string Id;
         public readonly string Name;
-        public readonly Pulumi.Render.EnvGroups.ServiceLinkType Type;
+        public readonly Pulumi.Render.EnvGroups.EnvGroupLinkType Type;
 
         [OutputConstructor]
-        private ServiceLink(
+        private EnvGroupLink(
             string id,
 
             string name,
 
-            Pulumi.Render.EnvGroups.ServiceLinkType type)
+            Pulumi.Render.EnvGroups.EnvGroupLinkType type)
         {
             Id = id;
             Name = name;

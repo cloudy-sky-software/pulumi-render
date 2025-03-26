@@ -52,7 +52,7 @@ tags:
   - name: Logs
     description: >
       [Logs](https://docs.render.com/logging) allow you to retrieve logs for
-      your services, PostgreSQL databases, and redis instances.
+      your services, Postgres databases, and redis instances.
 
       You can query for logs or subscribe to logs in real-time via a websocket.
   - name: Maintenance
@@ -63,7 +63,7 @@ tags:
   - name: Metrics
     description: >-
       The `Metrics` endpoints allow you to retrieve metrics for your services,
-      PostgreSQL databases, and redis instances.
+      Postgres databases, and redis instances.
   - name: Notification Settings
     description: >
       [Notification Settings](https://docs.render.com/notifications) allow you
@@ -79,16 +79,20 @@ tags:
     description: >-
       The `Owners` endpoints supply more information about the users and teams
       that your API key has access to.
-  - name: PostgreSQL
+  - name: Postgres
     description: >
-      [PostgreSQL](https://docs.render.com/databases) endpoints enable you to
-      interact with your Render PostgreSQL databases.
+      [Postgres](https://docs.render.com/databases) endpoints enable you to
+      interact with your Render Postgres databases.
 
-      You can manage databases, backups, recoveries, and failovers.
+      You can manage databases, exports, recoveries, and failovers.
   - name: Projects & Environments
     description: >-
       Collections of services and other resources organized by environment
       (staging, production, etc.)
+  - name: Key Value
+    description: >
+      [Key Value](https://docs.render.com/key-value) allows you to interact with
+      your Render Key Value instances.
   - name: Redis
     description: >
       [Redis](https://docs.render.com/redis) allows you to interact with your
@@ -121,6 +125,15 @@ tags:
     description: >
       The `User` endpoints allow you to retrieve information about the
       authenticated user
+  - name: Service Links
+    description: |
+      Service links connect compute services to databases.
+  - name: Events
+    description: 'View events for a service, postgres or key value'
+  - name: Webhooks
+    description: >
+      [Webhooks](https://docs.render.com/webhooks) allows you to manage your
+      Render webhook configuration.
 paths:
   /blueprints:
     get:
@@ -239,6 +252,7 @@ paths:
                             - background_worker
                             - cron_job
                             - redis
+                            - key_value
                             - postgres
                             - environment_group
         '401':
@@ -1478,6 +1492,14 @@ paths:
       tags:
         - Deploys
       parameters:
+        - name: status
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/deployStatus'
+          required: false
+          description: Filter for deploys with the specified statuses
         - name: createdBefore
           in: query
           schema:
@@ -3385,6 +3407,688 @@ paths:
           $ref: '#/components/responses/500InternalServerError'
         '503':
           $ref: '#/components/responses/503ServiceUnavailable'
+  '/events/{eventId}':
+    parameters:
+      - name: eventId
+        in: path
+        description: The ID of the event
+        schema:
+          type: string
+          pattern: '^evt-[0-9a-z]{20}$'
+          example: evt-cph1rs3idesc73a2b2mg
+        required: true
+    get:
+      summary: Retrieve event
+      description: |
+        Retrieve the details of a particular event
+      operationId: retrieve-event
+      tags:
+        - Events
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - id
+                  - timestamp
+                  - serviceId
+                  - type
+                  - details
+                properties:
+                  id:
+                    $ref: '#/paths/~1events~1%7BeventId%7D/parameters/0/schema'
+                  timestamp:
+                    type: string
+                    format: date-time
+                  serviceId:
+                    type: string
+                  type:
+                    type: string
+                    enum:
+                      - autoscaling_config_changed
+                      - autoscaling_ended
+                      - autoscaling_started
+                      - branch_deleted
+                      - build_ended
+                      - build_started
+                      - commit_ignored
+                      - cron_job_run_ended
+                      - cron_job_run_started
+                      - deploy_ended
+                      - deploy_started
+                      - disk_created
+                      - disk_updated
+                      - disk_deleted
+                      - image_pull_failed
+                      - instance_count_changed
+                      - job_run_ended
+                      - maintenance_mode_enabled
+                      - maintenance_mode_uri_updated
+                      - maintenance_ended
+                      - maintenance_started
+                      - plan_changed
+                      - pre_deploy_ended
+                      - pre_deploy_started
+                      - server_available
+                      - server_failed
+                      - server_hardware_failure
+                      - server_restarted
+                      - server_unhealthy
+                      - service_resumed
+                      - service_suspended
+                      - zero_downtime_redeploy_ended
+                      - zero_downtime_redeploy_started
+                      - postgres_available
+                      - postgres_backup_completed
+                      - postgres_backup_started
+                      - postgres_cluster_leader_changed
+                      - postgres_created
+                      - postgres_disk_size_changed
+                      - postgres_ha_status_changed
+                      - postgres_restarted
+                      - postgres_unavailable
+                      - postgres_upgrade_failed
+                      - postgres_upgrade_started
+                      - postgres_upgrade_succeeded
+                      - postgres_read_replicas_changed
+                      - key_value_available
+                      - key_value_config_restart
+                      - key_value_unhealthy
+                  details:
+                    oneOf:
+                      - title: Service Event Details
+                        oneOf:
+                          - title: Autoscaling Config Changed
+                            type: object
+                            required:
+                              - toConfig
+                            properties:
+                              fromConfig:
+                                $ref: >-
+                                  #/components/schemas/webServiceDetails/properties/autoscaling
+                              toConfig:
+                                $ref: >-
+                                  #/components/schemas/webServiceDetails/properties/autoscaling
+                          - title: Autoscaling Ended
+                            type: object
+                            required:
+                              - fromInstances
+                              - toInstances
+                            properties:
+                              fromInstances:
+                                type: integer
+                              toInstances:
+                                type: integer
+                          - title: Autoscaling Started
+                            type: object
+                            required:
+                              - fromInstances
+                              - toInstances
+                            properties:
+                              fromInstances:
+                                type: integer
+                              toInstances:
+                                type: integer
+                              currentCPU:
+                                type: integer
+                                x-go-type: int64
+                              targetCPU:
+                                type: integer
+                                x-go-type: int64
+                              currentMemory:
+                                type: integer
+                                x-go-type: int64
+                              targetMemory:
+                                type: integer
+                                x-go-type: int64
+                          - title: Branch Deleted
+                            type: object
+                            required:
+                              - deletedBranch
+                              - newBranch
+                            properties:
+                              deletedBranch:
+                                type: string
+                              newBranch:
+                                type: string
+                          - title: Build Ended
+                            type: object
+                            required:
+                              - buildId
+                              - status
+                              - reason
+                              - buildStatus
+                            properties:
+                              buildId:
+                                type: string
+                              buildStatus:
+                                type: string
+                                enum:
+                                  - succeeded
+                                  - failed
+                                  - canceled
+                              reason:
+                                type: object
+                                properties:
+                                  buildFailed:
+                                    $ref: >-
+                                      #/paths/~1events~1%7BeventId%7D/get/responses/200/content/application~1json/schema/properties/details/oneOf/0/oneOf/4/properties/reason/properties/newBuild
+                                  newBuild:
+                                    type: object
+                                    required:
+                                      - id
+                                    properties:
+                                      id:
+                                        type: string
+                                  newDeploy:
+                                    $ref: >-
+                                      #/paths/~1events~1%7BeventId%7D/get/responses/200/content/application~1json/schema/properties/details/oneOf/0/oneOf/4/properties/reason/properties/newBuild
+                                  failure:
+                                    $ref: >-
+                                      #/paths/~1events~1%7BeventId%7D/get/responses/200/content/application~1json/schema/properties/details/oneOf/0/oneOf/7/properties/reason
+                              status:
+                                deprecated: true
+                                type: integer
+                          - title: Build Started
+                            type: object
+                            required:
+                              - buildId
+                              - trigger
+                            properties:
+                              buildId:
+                                type: string
+                              trigger:
+                                type: object
+                                required:
+                                  - firstBuild
+                                  - envUpdated
+                                  - manual
+                                  - deployedByRender
+                                  - clearCache
+                                  - rollback
+                                properties:
+                                  firstBuild:
+                                    description: Deploy was triggered by service creation
+                                    type: boolean
+                                  envUpdated:
+                                    description: >-
+                                      Deploy was triggered by an environment
+                                      update
+                                    type: boolean
+                                  manual:
+                                    description: >-
+                                      Deploy was triggered manually from the
+                                      dashboard
+                                    type: boolean
+                                  user:
+                                    $ref: >-
+                                      #/paths/~1events~1%7BeventId%7D/get/responses/200/content/application~1json/schema/properties/details/oneOf/0/oneOf/7/properties/user
+                                  updatedProperty:
+                                    description: Updated property that triggered the deploy
+                                    type: string
+                                  newCommit:
+                                    description: Commit that triggered the deploy
+                                    type: string
+                                  deployedByRender:
+                                    description: Deploy was triggered by Render
+                                    type: boolean
+                                  clearCache:
+                                    description: >-
+                                      Whether the cache was cleared for the
+                                      deploy
+                                    type: boolean
+                                  rollback:
+                                    description: >-
+                                      Whether the deploy was triggered by a
+                                      rollback
+                                    type: boolean
+                                  rollbackTargetDeployId:
+                                    description: Deploy ID that was rolled back to
+                                    type: string
+                          - title: Commit Ignored
+                            type: object
+                            required:
+                              - id
+                              - url
+                            properties:
+                              id:
+                                description: the commit id
+                                type: string
+                              url:
+                                description: the commit url
+                                type: string
+                          - title: Cron Job Run Ended
+                            type: object
+                            required:
+                              - cronJobRunId
+                              - status
+                            properties:
+                              cronJobRunId:
+                                type: string
+                              status:
+                                type: string
+                                enum:
+                                  - canceled
+                                  - pending
+                                  - successful
+                                  - unsuccessful
+                              reason:
+                                type: object
+                                required:
+                                  - evicted
+                                properties:
+                                  evicted:
+                                    type: boolean
+                                  nonZeroExit:
+                                    type: integer
+                                  oomKilled:
+                                    type: object
+                                    required:
+                                      - memoryLimit
+                                    properties:
+                                      memoryLimit:
+                                        type: string
+                                  timedOutSeconds:
+                                    type: integer
+                                    format: int64
+                                  unhealthy:
+                                    type: string
+                                  timedOutReason:
+                                    type: string
+                              user:
+                                type: object
+                                description: User who triggered the action
+                                required:
+                                  - id
+                                  - email
+                                properties:
+                                  id:
+                                    type: string
+                                  email:
+                                    type: string
+                          - title: Cron Job Run Started
+                            type: object
+                            required:
+                              - cronJobRunId
+                            properties:
+                              cronJobRunId:
+                                type: string
+                          - title: Deploy Ended
+                            type: object
+                            required:
+                              - deployId
+                              - reason
+                              - status
+                              - deployStatus
+                            properties:
+                              deployId:
+                                type: string
+                              reason:
+                                $ref: >-
+                                  #/paths/~1events~1%7BeventId%7D/get/responses/200/content/application~1json/schema/properties/details/oneOf/0/oneOf/4/properties/reason
+                              deployStatus:
+                                $ref: >-
+                                  #/paths/~1events~1%7BeventId%7D/get/responses/200/content/application~1json/schema/properties/details/oneOf/0/oneOf/4/properties/buildStatus
+                              status:
+                                deprecated: true
+                                type: integer
+                          - title: Deploy Started
+                            type: object
+                            required:
+                              - deployId
+                              - trigger
+                            properties:
+                              deployId:
+                                type: string
+                              trigger:
+                                $ref: >-
+                                  #/paths/~1events~1%7BeventId%7D/get/responses/200/content/application~1json/schema/properties/details/oneOf/0/oneOf/5/properties/trigger
+                          - title: Disk Created
+                            type: object
+                            required:
+                              - diskId
+                              - sizeGB
+                            properties:
+                              diskId:
+                                $ref: >-
+                                  #/paths/~1disks~1%7BdiskId%7D/parameters/0/schema
+                              sizeGB:
+                                type: integer
+                          - title: Disk Updated
+                            type: object
+                            required:
+                              - diskId
+                              - fromSizeGB
+                              - toSizeGB
+                            properties:
+                              diskId:
+                                $ref: >-
+                                  #/paths/~1disks~1%7BdiskId%7D/parameters/0/schema
+                              fromSizeGB:
+                                type: integer
+                              toSizeGB:
+                                type: integer
+                          - title: Disk Deleted
+                            type: object
+                            required:
+                              - diskId
+                            properties:
+                              diskId:
+                                $ref: >-
+                                  #/paths/~1disks~1%7BdiskId%7D/parameters/0/schema
+                          - title: Image Pull Failed
+                            type: object
+                            required:
+                              - message
+                              - imageURL
+                            properties:
+                              message:
+                                type: string
+                              imageURL:
+                                type: string
+                          - title: Initial Deploy Hook Started
+                            type: object
+                            required:
+                              - deployId
+                            properties:
+                              deployId:
+                                type: string
+                          - title: Initial Deploy Hook Ended
+                            type: object
+                            required:
+                              - deployId
+                            properties:
+                              deployId:
+                                type: string
+                          - title: Instance Count Changed
+                            type: object
+                            required:
+                              - fromInstances
+                              - toInstances
+                            properties:
+                              fromInstances:
+                                type: integer
+                              toInstances:
+                                type: integer
+                          - title: Job Run Ended
+                            type: object
+                            required:
+                              - jobId
+                              - status
+                            properties:
+                              jobId:
+                                $ref: >-
+                                  #/paths/~1services~1%7BserviceId%7D~1jobs~1%7BjobId%7D/parameters/1/schema
+                              status:
+                                $ref: >-
+                                  #/components/schemas/jobWithCursor/properties/job/properties/status
+                              reason:
+                                $ref: >-
+                                  #/paths/~1events~1%7BeventId%7D/get/responses/200/content/application~1json/schema/properties/details/oneOf/0/oneOf/7/properties/reason
+                          - title: Maintenance Mode Enabled
+                            type: object
+                            required:
+                              - enabled
+                            properties:
+                              enabled:
+                                type: boolean
+                          - title: Maintenance Mode URI Updated
+                            type: object
+                            required:
+                              - fromURI
+                              - toURI
+                            properties:
+                              fromURI:
+                                type: string
+                              toURI:
+                                type: string
+                          - title: Maintenance Ended
+                            type: object
+                          - title: Maintenance Started
+                            type: object
+                            required:
+                              - trigger
+                            properties:
+                              trigger:
+                                type: object
+                                required:
+                                  - manual
+                                  - startedByRender
+                                properties:
+                                  user:
+                                    $ref: >-
+                                      #/paths/~1events~1%7BeventId%7D/get/responses/200/content/application~1json/schema/properties/details/oneOf/0/oneOf/7/properties/user
+                                  manual:
+                                    description: Maintenance was triggered manually
+                                    type: boolean
+                                  startedByRender:
+                                    description: Maintenance was triggered by Render
+                                    type: boolean
+                          - title: Instance Type Changed
+                            type: object
+                            required:
+                              - from
+                              - to
+                            properties:
+                              from:
+                                type: string
+                              to:
+                                type: string
+                          - title: Pre Deploy Ended
+                            type: object
+                            required:
+                              - deployCommandExecutionId
+                              - deployId
+                              - status
+                              - preDeployStatus
+                              - reason
+                            properties:
+                              deployCommandExecutionId:
+                                type: string
+                              deployId:
+                                type: string
+                              preDeployStatus:
+                                $ref: >-
+                                  #/paths/~1events~1%7BeventId%7D/get/responses/200/content/application~1json/schema/properties/details/oneOf/0/oneOf/4/properties/buildStatus
+                              reason:
+                                $ref: >-
+                                  #/paths/~1events~1%7BeventId%7D/get/responses/200/content/application~1json/schema/properties/details/oneOf/0/oneOf/4/properties/reason
+                              status:
+                                deprecated: true
+                                type: integer
+                          - title: Pre Deploy Started
+                            type: object
+                            required:
+                              - deployCommandExecutionId
+                              - deployId
+                            properties:
+                              deployCommandExecutionId:
+                                type: string
+                              deployId:
+                                type: string
+                          - title: Server Available
+                            type: object
+                          - title: Server Failed
+                            type: object
+                            properties:
+                              reason:
+                                $ref: >-
+                                  #/paths/~1events~1%7BeventId%7D/get/responses/200/content/application~1json/schema/properties/details/oneOf/0/oneOf/7/properties/reason
+                          - title: Server Hardware Failure
+                            type: object
+                          - title: Server Restarted
+                            type: object
+                            required:
+                              - triggeredByUser
+                            properties:
+                              triggeredByUser:
+                                type: string
+                                nullable: true
+                          - title: Server Unhealthy
+                            type: object
+                          - title: Service Resumed
+                            type: object
+                          - title: Service Suspended
+                            type: object
+                          - title: Suspender Added
+                            type: object
+                            required:
+                              - actor
+                            properties:
+                              actor:
+                                type: string
+                              suspendedByUser:
+                                $ref: >-
+                                  #/paths/~1events~1%7BeventId%7D/get/responses/200/content/application~1json/schema/properties/details/oneOf/0/oneOf/7/properties/user
+                          - title: Suspender Removed
+                            type: object
+                            required:
+                              - actor
+                            properties:
+                              actor:
+                                type: string
+                              resumedByUser:
+                                $ref: >-
+                                  #/paths/~1events~1%7BeventId%7D/get/responses/200/content/application~1json/schema/properties/details/oneOf/0/oneOf/7/properties/user
+                          - title: Zero Downtime Redeploy Ended
+                            type: object
+                          - title: Zero Downtime Redeploy Started
+                            type: object
+                            required:
+                              - trigger
+                            properties:
+                              trigger:
+                                type: string
+                      - title: Postgres Event Details
+                        oneOf:
+                          - title: Postgres Available
+                            type: object
+                          - title: Postgres Backup Completed
+                            type: object
+                          - title: Postgres Backup Started
+                            type: object
+                          - title: Postgres Cluster Leader Changed
+                            type: object
+                            properties:
+                              leaderId:
+                                type: string
+                          - title: Postgres Created
+                            type: object
+                            properties:
+                              user:
+                                $ref: >-
+                                  #/paths/~1events~1%7BeventId%7D/get/responses/200/content/application~1json/schema/properties/details/oneOf/0/oneOf/7/properties/user
+                          - title: Postgres Disk Size Changed
+                            type: object
+                            required:
+                              - fromDiskSize
+                              - toDiskSize
+                            properties:
+                              user:
+                                $ref: >-
+                                  #/paths/~1events~1%7BeventId%7D/get/responses/200/content/application~1json/schema/properties/details/oneOf/0/oneOf/7/properties/user
+                              fromDiskSize:
+                                type: integer
+                              toDiskSize:
+                                type: integer
+                          - title: Postgres HA Status Changed
+                            type: object
+                            required:
+                              - fromStatus
+                              - toStatus
+                            properties:
+                              fromStatus:
+                                type: string
+                              toStatus:
+                                type: string
+                          - title: Postgres Read Replicas Changed
+                            type: object
+                            required:
+                              - fromReplicas
+                              - toReplicas
+                            properties:
+                              fromReplicas:
+                                type: integer
+                              toReplicas:
+                                type: integer
+                          - title: Postgres Restarted
+                            type: object
+                            properties:
+                              user:
+                                $ref: >-
+                                  #/paths/~1events~1%7BeventId%7D/get/responses/200/content/application~1json/schema/properties/details/oneOf/0/oneOf/7/properties/user
+                          - title: Postgres Unavailable
+                            type: object
+                          - title: Postgres Upgrade Failed
+                            type: object
+                            required:
+                              - fromVersion
+                              - toVersion
+                            properties:
+                              fromVersion:
+                                type: string
+                              toVersion:
+                                type: string
+                          - title: Postgres Upgrade Started
+                            type: object
+                            required:
+                              - fromVersion
+                              - toVersion
+                            properties:
+                              user:
+                                $ref: >-
+                                  #/paths/~1events~1%7BeventId%7D/get/responses/200/content/application~1json/schema/properties/details/oneOf/0/oneOf/7/properties/user
+                              fromVersion:
+                                type: string
+                              toVersion:
+                                type: string
+                          - title: Postgres Upgrade Succeeded
+                            type: object
+                            required:
+                              - fromVersion
+                              - toVersion
+                            properties:
+                              fromVersion:
+                                type: string
+                              toVersion:
+                                type: string
+                      - title: Key Value Event Details
+                        oneOf:
+                          - title: Key Value Available
+                            type: object
+                          - title: Key Value Config Restart
+                            type: object
+                            required:
+                              - reason
+                              - message
+                            properties:
+                              reason:
+                                type: string
+                              message:
+                                type: string
+                          - title: Key Value Unhealthy
+                            type: object
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '406':
+          $ref: '#/components/responses/406NotAcceptable'
+        '410':
+          $ref: '#/components/responses/410Gone'
+        '429':
+          $ref: '#/components/responses/429RateLimit'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
   /logs:
     get:
       summary: List logs
@@ -4069,6 +4773,104 @@ paths:
           $ref: '#/components/responses/500InternalServerError'
         '503':
           $ref: '#/components/responses/503ServiceUnavailable'
+  '/metrics-stream/{ownerId}':
+    parameters:
+      - name: ownerId
+        in: path
+        required: true
+        description: The ID of the owner
+        schema:
+          type: string
+    get:
+      summary: Get the metrics stream for an owner
+      description: Get the metrics stream for an owner
+      operationId: getOwnerMetricsStream
+      tags:
+        - Metrics
+      responses:
+        '200':
+          description: The metrics stream integration for the owner
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/paths/~1metrics-stream~1%7BownerId%7D/put/responses/200/content/application~1json/schema
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '404':
+          description: metrics stream not found
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+    put:
+      summary: Create or update the metrics stream an owner
+      description: Create or update the metrics stream for an owner
+      operationId: upsertOwnerMetricsStream
+      tags:
+        - Metrics
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Input for creating or updating a metrics stream
+              properties:
+                provider:
+                  type: string
+                  description: Provider to send metrics to
+                  enum:
+                    - BETTER_STACK
+                    - GRAFANA
+                    - DATADOG
+                    - NEW_RELIC
+                    - HONEYCOMB
+                    - CUSTOM
+                url:
+                  description: The endpoint URL to stream metrics to
+                  type: string
+                token:
+                  description: Authentication token for the metrics stream
+                  type: string
+      responses:
+        '200':
+          description: metrics stream successfully updated
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - ownerId
+                  - provider
+                  - url
+                properties:
+                  ownerId:
+                    description: The ID of the owner
+                    type: string
+                  provider:
+                    $ref: >-
+                      #/paths/~1metrics-stream~1%7BownerId%7D/put/requestBody/content/application~1json/schema/properties/provider
+                  url:
+                    description: The endpoint URL to stream metrics to
+                    type: string
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+    delete:
+      summary: Delete the metrics stream for an owner
+      description: Delete the metrics stream for an owner
+      operationId: deleteOwnerMetricsStream
+      tags:
+        - Metrics
+      responses:
+        '204':
+          description: metrics stream integration deleted successfully
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '404':
+          description: metrics stream not found
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
   /metrics/cpu:
     parameters:
       - $ref: '#/components/parameters/startTimeParam'
@@ -4480,8 +5282,8 @@ paths:
     get:
       summary: Get active connection count
       description: >
-        Get the number of active connections for one or more PostgreSQL
-        databases or Redis instances.
+        Get the number of active connections for one or more Postgres databases
+        or Redis instances.
       operationId: get-active-connections
       tags:
         - Metrics
@@ -4508,7 +5310,7 @@ paths:
     get:
       summary: Get replica lag
       description: |
-        Get milliseconds of replica lag of a PostgreSQL replica.
+        Get milliseconds of replica lag of a Postgres replica.
       operationId: get-replication-lag
       tags:
         - Metrics
@@ -4646,6 +5448,216 @@ paths:
           $ref: '#/components/responses/400BadRequest'
         '500':
           $ref: '#/components/responses/500InternalServerError'
+  /key-value:
+    get:
+      tags:
+        - Key Value
+      summary: List Key Value instances
+      description: >
+        List Key Value instances matching the provided filters. If no filters
+        are provided, all Key Value instances are returned.
+      operationId: list-key-value
+      parameters:
+        - $ref: '#/components/parameters/nameParam'
+        - $ref: '#/components/parameters/regionParam'
+        - $ref: '#/components/parameters/createdBeforeParam'
+        - $ref: '#/components/parameters/createdAfterParam'
+        - $ref: '#/components/parameters/updatedBeforeParam'
+        - $ref: '#/components/parameters/updatedAfterParam'
+        - $ref: '#/components/parameters/ownerIdParam'
+        - $ref: '#/components/parameters/environmentIdParam'
+        - $ref: '#/components/parameters/cursorParam'
+        - $ref: '#/components/parameters/limitParam'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/keyValueWithCursor'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '409':
+          $ref: '#/components/responses/409Conflict'
+        '429':
+          $ref: '#/components/responses/429RateLimit'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+    post:
+      tags:
+        - Key Value
+      summary: Create Key Value instance
+      description: |
+        Create a new Key Value instance.
+      operationId: create-key-value
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/keyValuePOSTInput'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/keyValueDetail'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '429':
+          $ref: '#/components/responses/429RateLimit'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+  '/key-value/{keyValueId}':
+    get:
+      tags:
+        - Key Value
+      summary: Retrieve Key Value instance
+      description: |
+        Retrieve a Key Value instance by ID.
+      operationId: retrieve-key-value
+      parameters:
+        - in: path
+          name: keyValueId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/keyValueDetail'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '429':
+          $ref: '#/components/responses/429RateLimit'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+    patch:
+      tags:
+        - Key Value
+      summary: Update Key Value instance
+      description: |
+        Update a Key Value instance by ID.
+      operationId: update-key-value
+      parameters:
+        - in: path
+          name: keyValueId
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/keyValuePATCHInput'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/keyValueDetail'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '409':
+          $ref: '#/components/responses/409Conflict'
+        '429':
+          $ref: '#/components/responses/429RateLimit'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+    delete:
+      tags:
+        - Key Value
+      summary: Delete Key Value instance
+      description: |
+        Delete a Key Value instance by ID.
+      operationId: delete-key-value
+      parameters:
+        - in: path
+          name: keyValueId
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Key Value instance deleted
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '429':
+          $ref: '#/components/responses/429RateLimit'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+  '/key-value/{keyValueId}/connection-info':
+    get:
+      tags:
+        - Key Value
+      summary: Retrieve Key Value connection info
+      description: >
+        Retrieve connection info for a Key Value instance by ID. Connection info
+        includes sensitive information.
+      operationId: retrieve-key-value-connection-info
+      parameters:
+        - in: path
+          name: keyValueId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/keyValueConnectionInfo'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '429':
+          $ref: '#/components/responses/429RateLimit'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
   /redis:
     get:
       tags:
@@ -4859,11 +5871,11 @@ paths:
   /postgres:
     get:
       tags:
-        - PostgreSQL
-      summary: List PostgreSQL instances
+        - Postgres
+      summary: List Postgres instances
       description: >
-        List PostgreSQL instances matching the provided filters. If no filters
-        are provided, all PostgreSQL instances are returned.
+        List Postgres instances matching the provided filters. If no filters are
+        provided, all Postgres instances are returned.
       operationId: list-postgres
       parameters:
         - $ref: '#/components/parameters/nameParam'
@@ -4903,10 +5915,10 @@ paths:
           $ref: '#/components/responses/503ServiceUnavailable'
     post:
       tags:
-        - PostgreSQL
-      summary: Create PostgreSQL instance
+        - Postgres
+      summary: Create Postgres instance
       description: |
-        Create a new PostgreSQL instance.
+        Create a new Postgres instance.
       operationId: create-postgres
       requestBody:
         required: true
@@ -4936,10 +5948,10 @@ paths:
   '/postgres/{postgresId}':
     get:
       tags:
-        - PostgreSQL
-      summary: Retrieve PostgreSQL instance
+        - Postgres
+      summary: Retrieve Postgres instance
       description: |
-        Retrieve a PostgreSQL instance by ID.
+        Retrieve a Postgres instance by ID.
       operationId: retrieve-postgres
       parameters:
         - in: path
@@ -4968,10 +5980,10 @@ paths:
           $ref: '#/components/responses/503ServiceUnavailable'
     patch:
       tags:
-        - PostgreSQL
-      summary: Update PostgreSQL instance
+        - Postgres
+      summary: Update Postgres instance
       description: |
-        Update a PostgreSQL instance by ID.
+        Update a Postgres instance by ID.
       operationId: update-postgres
       parameters:
         - in: path
@@ -5008,10 +6020,10 @@ paths:
           $ref: '#/components/responses/503ServiceUnavailable'
     delete:
       tags:
-        - PostgreSQL
-      summary: Delete PostgreSQL instance
+        - Postgres
+      summary: Delete Postgres instance
       description: |
-        Delete a PostgreSQL instance by ID. This operation is irreversible, and
+        Delete a Postgres instance by ID. This operation is irreversible, and
         all data will be lost.
       operationId: delete-postgres
       parameters:
@@ -5022,7 +6034,7 @@ paths:
             type: string
       responses:
         '204':
-          description: PostgreSQL instance deleted
+          description: Postgres instance deleted
         '400':
           $ref: '#/components/responses/400BadRequest'
         '401':
@@ -5038,11 +6050,11 @@ paths:
   '/postgres/{postgresId}/connection-info':
     get:
       tags:
-        - PostgreSQL
-      summary: Retrieve PostgreSQL connection info
+        - Postgres
+      summary: Retrieve Postgres connection info
       description: >
-        Retrieve connection info for a PostgreSQL instance by ID. Connection
-        info includes sensitive information.
+        Retrieve connection info for a Postgres instance by ID. Connection info
+        includes sensitive information.
       operationId: retrieve-postgres-connection-info
       parameters:
         - in: path
@@ -5072,11 +6084,11 @@ paths:
   '/postgres/{postgresId}/recovery':
     get:
       tags:
-        - PostgreSQL
+        - Postgres
       summary: Retrieve point-in-time recovery status
       description: >
-        Retrieve information on the availability of PostgreSQL point-in-time
-        recovery for a PostgreSQL instance by ID.
+        Retrieve information on the availability of Postgres point-in-time
+        recovery for a Postgres instance by ID.
       operationId: retrieve-postgres-recovery-info
       parameters:
         - in: path
@@ -5118,12 +6130,12 @@ paths:
           $ref: '#/components/responses/503ServiceUnavailable'
     post:
       tags:
-        - PostgreSQL
+        - Postgres
       summary: Trigger point-in-time recovery
       description: >
         Trigger [point-in-time
         recovery](https://docs.render.com/postgresql-backups#point-in-time-recovery)
-        on the PostgreSQL instance with the provided ID.
+        on the Postgres instance with the provided ID.
       operationId: recover-postgres
       parameters:
         - in: path
@@ -5200,12 +6212,12 @@ paths:
         schema:
           type: string
     post:
-      summary: Suspend PostgreSQL instance
+      summary: Suspend Postgres instance
       description: |
-        Suspend a PostgreSQL instance by ID.
+        Suspend a Postgres instance by ID.
       operationId: suspend-postgres
       tags:
-        - PostgreSQL
+        - Postgres
       responses:
         '202':
           description: Service suspended successfully
@@ -5235,12 +6247,12 @@ paths:
         schema:
           type: string
     post:
-      summary: Resume PostgreSQL instance
+      summary: Resume Postgres instance
       description: |
-        Resume a PostgreSQL instance by ID.
+        Resume a Postgres instance by ID.
       operationId: resume-postgres
       tags:
-        - PostgreSQL
+        - Postgres
       responses:
         '202':
           description: Service resumed successfully
@@ -5270,12 +6282,12 @@ paths:
         schema:
           type: string
     post:
-      summary: Restart PostgreSQL instance
+      summary: Restart Postgres instance
       description: |
-        Restart a PostgreSQL instance by ID.
+        Restart a Postgres instance by ID.
       operationId: restart-postgres
       tags:
-        - PostgreSQL
+        - Postgres
       responses:
         '202':
           description: Service restarted successfully
@@ -5305,14 +6317,14 @@ paths:
         schema:
           type: string
     post:
-      summary: Failover PostgreSQL instance
+      summary: Failover Postgres instance
       description: >
         Failover a [highly available
-        PostgreSQL](https://docs.render.com/postgresql-high-availability)
+        Postgres](https://docs.render.com/postgresql-high-availability)
         instance.
       operationId: failover-postgres
       tags:
-        - PostgreSQL
+        - Postgres
       responses:
         '202':
           description: Service failed over successfully
@@ -5334,7 +6346,7 @@ paths:
           $ref: '#/components/responses/500InternalServerError'
         '503':
           $ref: '#/components/responses/503ServiceUnavailable'
-  '/postgres/{postgresId}/backup':
+  '/postgres/{postgresId}/export':
     parameters:
       - in: path
         name: postgresId
@@ -5342,14 +6354,14 @@ paths:
         schema:
           type: string
     get:
-      summary: List PostgreSQL backups
+      summary: List Postgres exports
       description: >
         List
-        [backups](https://docs.render.com/postgresql-backups#standard-backups)
-        for a PostgreSQL instance by ID. Returns a URL to download the backup.
-      operationId: list-postgres-backup
+        [exports](https://docs.render.com/postgresql-backups#logical-backups)
+        for a Postgres instance by ID. Returns a URL to download the export.
+      operationId: list-postgres-export
       tags:
-        - PostgreSQL
+        - Postgres
       responses:
         '200':
           description: OK
@@ -5370,7 +6382,7 @@ paths:
                       format: date-time
                     url:
                       type: string
-                      description: URL to download the Postgres backup
+                      description: URL to download the Postgres export
         '400':
           $ref: '#/components/responses/400BadRequest'
         '401':
@@ -5384,17 +6396,17 @@ paths:
         '503':
           $ref: '#/components/responses/503ServiceUnavailable'
     post:
-      summary: Create PostgreSQL backup
+      summary: Create Postgres export
       description: >
-        Create a
-        [backup](https://docs.render.com/postgresql-backups#standard-backups) of
-        a PostgreSQL instance by ID.
-      operationId: create-postgres-backup
+        Create an
+        [export](https://docs.render.com/postgresql-backups#logical-backups) of
+        a Postgres instance by ID.
+      operationId: create-postgres-export
       tags:
-        - PostgreSQL
+        - Postgres
       responses:
         '202':
-          description: Backup started successfully
+          description: Export started successfully
         '400':
           $ref: '#/components/responses/400BadRequest'
         '401':
@@ -5825,7 +6837,7 @@ paths:
             items:
               type: string
               description: >-
-                The ID of an env group, a service, a PostgreSQL database, or a
+                The ID of an env group, a service, a Postgres database, or a
                 Redis instance
       tags:
         - Projects & Environments
@@ -6479,6 +7491,244 @@ paths:
           $ref: '#/components/responses/500InternalServerError'
         '503':
           $ref: '#/components/responses/503ServiceUnavailable'
+  /webhooks:
+    post:
+      summary: Create a webhook
+      description: |
+        Create a new webhook.
+      operationId: create-webhook
+      tags:
+        - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - ownerId
+                - name
+                - url
+                - enabled
+                - eventFilter
+              properties:
+                ownerId:
+                  type: string
+                  description: >-
+                    The ID of the owner (team or personal user) whose resources
+                    should be returned
+                url:
+                  type: string
+                name:
+                  type: string
+                enabled:
+                  type: boolean
+                eventFilter:
+                  type: array
+                  description: >-
+                    The event types that will trigger the webhook. An empty list
+                    means all event types will trigger the webhook.
+                  items:
+                    $ref: >-
+                      #/paths/~1events~1%7BeventId%7D/get/responses/200/content/application~1json/schema/properties/type
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/webhookWithCursor/properties/webhook'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '429':
+          $ref: '#/components/responses/429RateLimit'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+    get:
+      summary: List webhooks
+      description: List webhooks
+      operationId: list-webhooks
+      tags:
+        - Webhooks
+      parameters:
+        - $ref: '#/components/parameters/cursorParam'
+        - $ref: '#/components/parameters/limitParam'
+        - $ref: '#/components/parameters/ownerIdParam'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/webhookWithCursor'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '429':
+          $ref: '#/components/responses/429RateLimit'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+  '/webhooks/{webhookId}':
+    parameters:
+      - name: webhookId
+        in: path
+        required: true
+        description: Unique identifier for the webhook
+        schema:
+          type: string
+    get:
+      summary: Retrieve a webhook
+      description: Retrieve the webhook with the provided ID
+      operationId: retrieve-webhook
+      tags:
+        - Webhooks
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/webhookWithCursor/properties/webhook'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '429':
+          $ref: '#/components/responses/429RateLimit'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+    patch:
+      summary: Update a webhook
+      description: |
+        Update the webhook with the provided ID.
+      operationId: update-webhook
+      tags:
+        - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                url:
+                  type: string
+                enabled:
+                  type: boolean
+                eventFilter:
+                  $ref: >-
+                    #/paths/~1webhooks/post/requestBody/content/application~1json/schema/properties/eventFilter
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/webhookWithCursor/properties/webhook'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '429':
+          $ref: '#/components/responses/429RateLimit'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+    delete:
+      summary: Delete a webhook
+      description: |
+        Delete the webhook with the provided ID.
+      operationId: delete-webhook
+      tags:
+        - Webhooks
+      responses:
+        '204':
+          description: Webhook deleted
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '429':
+          $ref: '#/components/responses/429RateLimit'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+  '/webhooks/{webhookId}/events':
+    parameters:
+      - $ref: '#/paths/~1webhooks~1%7BwebhookId%7D/parameters/0'
+    get:
+      summary: List webhook events
+      description: >
+        Retrieve a list of events that have been sent to this webhook, with
+        optional filtering by timestamp.
+      operationId: list-webhook-events
+      tags:
+        - Webhooks
+      parameters:
+        - name: sentBefore
+          in: query
+          schema:
+            type: string
+            format: date-time
+          required: false
+          description: >-
+            Filter events sent before this time (specified as an ISO 8601
+            timestamp)
+          example: '2021-06-17T08:15:30Z'
+        - name: sentAfter
+          in: query
+          schema:
+            type: string
+            format: date-time
+          required: false
+          description: >-
+            Filter for resources sent after a certain time (specified as an ISO
+            8601 timestamp)
+          example: '2021-02-17T08:15:30Z'
+        - $ref: '#/components/parameters/limitParam'
+        - $ref: '#/components/parameters/cursorParam'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/webhookEventWithCursor'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '429':
+          $ref: '#/components/responses/429RateLimit'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
 components:
   securitySchemes:
     BearerAuth:
@@ -6586,8 +7836,8 @@ components:
         example: '2021-06-17T08:15:30Z'
       required: false
       description: >-
-        Epoch/Unix timestamp of end of time range to return. Defaults to `now()
-        - 1 hour`.
+        Epoch/Unix timestamp of start of time range to return. Defaults to
+        `now() - 1 hour`.
     endTimeParam:
       name: endTime
       in: query
@@ -6738,6 +7988,28 @@ components:
       explode: false
       required: false
       description: Filter for resources that belong to an environment
+    linkSourceParam:
+      name: linkSourceId
+      in: query
+      schema:
+        type: array
+        items:
+          type: string
+      style: form
+      explode: false
+      required: false
+      description: Filter for resources that are the source of a service link
+    linkDestinationParam:
+      name: linkDestinationId
+      in: query
+      schema:
+        type: array
+        items:
+          type: string
+      style: form
+      explode: false
+      required: false
+      description: Filter for resources that are the destination of a service link
     includePreviewsParam:
       name: includePreviews
       in: query
@@ -6789,7 +8061,6 @@ components:
               - autoscaling_started
               - branch_deleted
               - build_ended
-              - build_plan_changed
               - build_started
               - commit_ignored
               - cron_job_run_ended
@@ -8086,6 +9357,19 @@ components:
         - user
         - parent_service
         - unknown
+    deployStatus:
+      type: string
+      enum:
+        - created
+        - build_in_progress
+        - update_in_progress
+        - live
+        - deactivated
+        - build_failed
+        - update_failed
+        - canceled
+        - pre_deploy_in_progress
+        - pre_deploy_failed
     deploy:
       type: object
       required:
@@ -8121,18 +9405,7 @@ components:
               description: 'Name of credential used to pull the image, if provided'
               type: string
         status:
-          type: string
-          enum:
-            - created
-            - build_in_progress
-            - update_in_progress
-            - live
-            - deactivated
-            - build_failed
-            - update_failed
-            - canceled
-            - pre_deploy_in_progress
-            - pre_deploy_failed
+          $ref: '#/components/schemas/deployStatus'
         trigger:
           type: string
           enum:
@@ -8272,6 +9545,225 @@ components:
         - starter
         - performance
       default: starter
+    keyValuePOSTInput:
+      type: object
+      description: Input type for creating a Key Value instance
+      required:
+        - name
+        - ownerId
+        - plan
+      properties:
+        name:
+          type: string
+          description: The name of the Key Value instance
+        ownerId:
+          type: string
+          description: The ID of the owner of the Key Value instance
+        plan:
+          $ref: '#/components/schemas/keyValuePlan'
+        region:
+          type: string
+          description: The region where the Key Value instance is located
+        environmentId:
+          type: string
+        maxmemoryPolicy:
+          $ref: '#/components/schemas/maxmemoryPolicy'
+        ipAllowList:
+          type: array
+          items:
+            $ref: '#/components/schemas/cidrBlockAndDescription'
+    keyValuePATCHInput:
+      type: object
+      description: Input type for updating a Key Value instance
+      properties:
+        name:
+          type: string
+          description: The name of the Key Value instance
+        plan:
+          $ref: '#/components/schemas/keyValuePlan'
+        maxmemoryPolicy:
+          $ref: '#/components/schemas/maxmemoryPolicy'
+        ipAllowList:
+          type: array
+          items:
+            $ref: '#/components/schemas/cidrBlockAndDescription'
+    maxmemoryPolicy:
+      type: string
+      description: The eviction policy for the Key Value instance
+      enum:
+        - noeviction
+        - allkeys_lfu
+        - allkeys_lru
+        - allkeys_random
+        - volatile_lfu
+        - volatile_lru
+        - volatile_random
+        - volatile_ttl
+    keyValue:
+      type: object
+      description: A Key Value instance
+      required:
+        - id
+        - createdAt
+        - updatedAt
+        - status
+        - region
+        - plan
+        - name
+        - owner
+        - options
+        - ipAllowList
+        - version
+        - dashboardUrl
+      properties:
+        id:
+          description: The ID of the Key Value instance
+          type: string
+        createdAt:
+          description: The creation time of the Key Value instance
+          type: string
+          format: date-time
+        updatedAt:
+          description: The last updated time of the Key Value instance
+          type: string
+          format: date-time
+        status:
+          $ref: '#/components/schemas/databaseStatus'
+        region:
+          $ref: '#/components/schemas/region'
+        plan:
+          $ref: '#/components/schemas/keyValuePlan'
+        name:
+          description: The name of the Key Value instance
+          type: string
+        owner:
+          $ref: '#/components/schemas/owner'
+        options:
+          $ref: '#/components/schemas/keyValueOptions'
+        ipAllowList:
+          description: The IP allow list for the Key Value instance
+          type: array
+          items:
+            $ref: '#/components/schemas/cidrBlockAndDescription'
+        environmentId:
+          description: The ID of the environment the Key Value instance is associated with
+          type: string
+        version:
+          description: The version of Key Value
+          type: string
+        dashboardUrl:
+          type: string
+          description: The URL to view the Key Value instance in the Render Dashboard
+    keyValueWithCursor:
+      type: object
+      required:
+        - keyValue
+        - cursor
+      properties:
+        keyValue:
+          $ref: '#/components/schemas/keyValue'
+        cursor:
+          $ref: '#/components/schemas/cursor'
+    keyValueDetail:
+      type: object
+      description: A Key Value instance
+      required:
+        - id
+        - createdAt
+        - updatedAt
+        - status
+        - region
+        - plan
+        - name
+        - owner
+        - options
+        - ipAllowList
+        - version
+      properties:
+        id:
+          description: The ID of the Key Value instance
+          type: string
+        createdAt:
+          description: The creation time of the Key Value instance
+          type: string
+          format: date-time
+        updatedAt:
+          description: The last updated time of the Key Value instance
+          type: string
+          format: date-time
+        status:
+          $ref: '#/components/schemas/databaseStatus'
+        region:
+          $ref: '#/components/schemas/region'
+        plan:
+          $ref: '#/components/schemas/keyValuePlan'
+        name:
+          description: The name of the Key Value instance
+          type: string
+        owner:
+          $ref: '#/components/schemas/owner'
+        options:
+          $ref: '#/components/schemas/keyValueOptions'
+        ipAllowList:
+          description: The IP allow list for the Key Value instance
+          type: array
+          items:
+            $ref: '#/components/schemas/cidrBlockAndDescription'
+        environmentId:
+          description: The ID of the environment the Key Value instance is associated with
+          type: string
+        version:
+          description: The version of Key Value
+          type: string
+        maintenance:
+          $ref: '#/components/schemas/redisDetail/properties/maintenance'
+    keyValueConnectionInfo:
+      type: object
+      description: A Key Value instance
+      required:
+        - internalConnectionString
+        - externalConnectionString
+        - cliCommand
+      properties:
+        internalConnectionString:
+          description: The connection string to use from within Render
+          type: string
+        externalConnectionString:
+          description: The connection string to use from outside Render
+          type: string
+          format: password
+        cliCommand:
+          description: >-
+            The CLI (redis-cli or valkey-cli) command to connect to the Key
+            Value instance
+          type: string
+          format: password
+    keyValueOptions:
+      description: Options for a Key Value instance
+      type: object
+      properties:
+        maxmemoryPolicy:
+          type: string
+    cidrBlockAndDescription:
+      type: object
+      required:
+        - cidrBlock
+        - description
+      properties:
+        cidrBlock:
+          type: string
+        description:
+          description: User-provided description of the CIDR block
+          type: string
+    keyValuePlan:
+      type: string
+      enum:
+        - free
+        - starter
+        - standard
+        - pro
+        - pro_plus
+        - custom
     redisPOSTInput:
       type: object
       description: Input type for creating a Redis instance
@@ -8314,18 +9806,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/cidrBlockAndDescription'
-    maxmemoryPolicy:
-      type: string
-      description: The eviction policy for the Redis instance
-      enum:
-        - noeviction
-        - allkeys_lfu
-        - allkeys_lru
-        - allkeys_random
-        - volatile_lfu
-        - volatile_lru
-        - volatile_random
-        - volatile_ttl
     redis:
       type: object
       description: A Redis instance
@@ -8491,17 +9971,6 @@ components:
       properties:
         maxmemoryPolicy:
           type: string
-    cidrBlockAndDescription:
-      type: object
-      required:
-        - cidrBlock
-        - description
-      properties:
-        cidrBlock:
-          type: string
-        description:
-          description: User-provided description of the CIDR block
-          type: string
     redisPlan:
       type: string
       enum:
@@ -8511,6 +9980,13 @@ components:
         - pro
         - pro_plus
         - custom
+      x-enum-varnames:
+        - RedisPlanFree
+        - RedisPlanStarter
+        - RedisPlanStandard
+        - RedisPlanPro
+        - RedisPlanPro_plus
+        - RedisPlanCustom
     databaseStatus:
       type: string
       enum:
@@ -8599,6 +10075,8 @@ components:
           type: string
         protectedStatus:
           $ref: '#/components/schemas/protectedStatus'
+        networkIsolationEnabled:
+          $ref: '#/components/schemas/networkIsolationEnabled'
     environmentPOSTInput:
       type: object
       required:
@@ -8611,6 +10089,8 @@ components:
           type: string
         protectedStatus:
           $ref: '#/components/schemas/protectedStatus'
+        networkIsolationEnabled:
+          $ref: '#/components/schemas/networkIsolationEnabled'
     environmentResourcesPOSTInput:
       type: object
       required:
@@ -8621,13 +10101,15 @@ components:
           items:
             type: string
             description: >-
-              The ID of an env group, a service, a PostgreSQL database, or a
-              Redis instance
+              The ID of an env group, a service, a Postgres database, or a Redis
+              instance
     environmentPATCHInput:
       type: object
       properties:
         name:
           type: string
+        networkIsolationEnabled:
+          $ref: '#/components/schemas/networkIsolationEnabled'
         protectedStatus:
           $ref: '#/components/schemas/protectedStatus'
     environment:
@@ -8641,6 +10123,7 @@ components:
         - serviceIds
         - envGroupIds
         - protectedStatus
+        - networkIsolationEnabled
       properties:
         id:
           type: string
@@ -8666,6 +10149,8 @@ components:
             type: string
         protectedStatus:
           $ref: '#/components/schemas/protectedStatus'
+        networkIsolationEnabled:
+          $ref: '#/components/schemas/networkIsolationEnabled'
     environmentWithCursor:
       type: object
       description: An environment with a cursor
@@ -8685,6 +10170,9 @@ components:
       enum:
         - unprotected
         - protected
+    networkIsolationEnabled:
+      type: boolean
+      description: Indicates whether network connections across environments are allowed.
     envGroupPOSTInput:
       type: object
       required:
@@ -8768,7 +10256,7 @@ components:
           description: List of serviceIds linked to the envGroup
           type: array
           items:
-            $ref: '#/components/schemas/serviceLink'
+            $ref: '#/components/schemas/envGroupLink'
         environmentId:
           type: string
     secretFile:
@@ -8791,7 +10279,7 @@ components:
           $ref: '#/components/schemas/secretFile'
         cursor:
           $ref: '#/components/schemas/cursor'
-    serviceLink:
+    envGroupLink:
       type: object
       required:
         - id
@@ -9035,7 +10523,7 @@ components:
             $ref: '#/components/schemas/suspenderType'
         dashboardUrl:
           type: string
-          description: The URL to view the PostgreSQL instance in the Render Dashboard
+          description: The URL to view the Postgres instance in the Render Dashboard
     postgresDetail:
       type: object
       required:
@@ -9079,7 +10567,7 @@ components:
           format: date-time
         dashboardUrl:
           type: string
-          description: The URL to view the PostgreSQL instance in the Render Dashboard
+          description: The URL to view the Postgres instance in the Render Dashboard
         databaseName:
           type: string
         databaseUser:
@@ -9270,7 +10758,7 @@ components:
             - details
           properties:
             id:
-              type: string
+              $ref: '#/paths/~1events~1%7BeventId%7D/parameters/0/schema'
             timestamp:
               type: string
               format: date-time
@@ -9279,411 +10767,8 @@ components:
             type:
               $ref: '#/components/parameters/eventTypeParam/schema/anyOf/0'
             details:
-              oneOf:
-                - type: object
-                  required:
-                    - deployId
-                  properties:
-                    deployId:
-                      type: string
-                - type: object
-                  required:
-                    - toConfig
-                  properties:
-                    fromConfig:
-                      $ref: >-
-                        #/components/schemas/webServiceDetails/properties/autoscaling
-                    toConfig:
-                      $ref: >-
-                        #/components/schemas/webServiceDetails/properties/autoscaling
-                - type: object
-                  required:
-                    - fromInstances
-                    - toInstances
-                  properties:
-                    fromInstances:
-                      type: integer
-                    toInstances:
-                      type: integer
-                - type: object
-                  required:
-                    - fromInstances
-                    - toInstances
-                  properties:
-                    fromInstances:
-                      type: integer
-                    toInstances:
-                      type: integer
-                    currentCPU:
-                      type: integer
-                      x-go-type: int64
-                    targetCPU:
-                      type: integer
-                      x-go-type: int64
-                    currentMemory:
-                      type: integer
-                      x-go-type: int64
-                    targetMemory:
-                      type: integer
-                      x-go-type: int64
-                - type: object
-                  required:
-                    - deletedBranch
-                    - newBranch
-                  properties:
-                    deletedBranch:
-                      type: string
-                    newBranch:
-                      type: string
-                - type: object
-                  required:
-                    - buildId
-                    - status
-                    - reason
-                  properties:
-                    buildId:
-                      type: string
-                    status:
-                      type: integer
-                    reason:
-                      type: object
-                      properties:
-                        buildFailed:
-                          $ref: >-
-                            #/components/schemas/serviceEventWithCursor/properties/event/properties/details/oneOf/5/properties/reason/properties/newBuild
-                        newBuild:
-                          type: object
-                          required:
-                            - id
-                          properties:
-                            id:
-                              type: string
-                        newDeploy:
-                          $ref: >-
-                            #/components/schemas/serviceEventWithCursor/properties/event/properties/details/oneOf/5/properties/reason/properties/newBuild
-                        failure:
-                          $ref: >-
-                            #/components/schemas/serviceEventWithCursor/properties/event/properties/details/oneOf/9/properties/reason
-                - type: object
-                  required:
-                    - from
-                    - to
-                  properties:
-                    from:
-                      type: string
-                    to:
-                      type: string
-                - type: object
-                  required:
-                    - buildId
-                    - trigger
-                  properties:
-                    buildId:
-                      type: string
-                    trigger:
-                      type: object
-                      required:
-                        - firstBuild
-                        - envUpdated
-                        - manual
-                        - deployedByRender
-                        - clearCache
-                        - rollback
-                      properties:
-                        firstBuild:
-                          description: Deploy was triggered by service creation
-                          type: boolean
-                        envUpdated:
-                          description: Deploy was triggered by an environment update
-                          type: boolean
-                        manual:
-                          description: Deploy was triggered manually from the dashboard
-                          type: boolean
-                        user:
-                          $ref: >-
-                            #/components/schemas/serviceEventWithCursor/properties/event/properties/details/oneOf/9/properties/user
-                        updatedProperty:
-                          description: Updated property that triggered the deploy
-                          type: string
-                        newCommit:
-                          description: Commit that triggered the deploy
-                          type: string
-                        deployedByRender:
-                          description: Deploy was triggered by Render
-                          type: boolean
-                        clearCache:
-                          description: Whether the cache was cleared for the deploy
-                          type: boolean
-                        rollback:
-                          description: Whether the deploy was triggered by a rollback
-                          type: boolean
-                        rollbackTargetDeployId:
-                          description: Deploy ID that was rolled back to
-                          type: string
-                - type: object
-                  required:
-                    - id
-                    - url
-                  properties:
-                    id:
-                      description: the commit id
-                      type: string
-                    url:
-                      description: the commit url
-                      type: string
-                - type: object
-                  required:
-                    - cronJobRunId
-                    - status
-                  properties:
-                    cronJobRunId:
-                      type: string
-                    status:
-                      type: string
-                      enum:
-                        - canceled
-                        - pending
-                        - successful
-                        - unsuccessful
-                    reason:
-                      type: object
-                      required:
-                        - evicted
-                      properties:
-                        evicted:
-                          type: boolean
-                        nonZeroExit:
-                          type: integer
-                        oomKilled:
-                          type: object
-                          required:
-                            - memoryLimit
-                          properties:
-                            memoryLimit:
-                              type: string
-                        timedOutSeconds:
-                          type: integer
-                          format: int64
-                        unhealthy:
-                          type: string
-                        timedOutReason:
-                          type: string
-                    user:
-                      type: object
-                      description: User who triggered the action
-                      required:
-                        - id
-                        - email
-                      properties:
-                        id:
-                          type: string
-                        email:
-                          type: string
-                - type: object
-                  required:
-                    - cronJobRunId
-                  properties:
-                    cronJobRunId:
-                      type: string
-                - type: object
-                  required:
-                    - deployId
-                    - reason
-                    - status
-                  properties:
-                    deployId:
-                      type: string
-                    reason:
-                      $ref: >-
-                        #/components/schemas/serviceEventWithCursor/properties/event/properties/details/oneOf/5/properties/reason
-                    status:
-                      type: integer
-                - type: object
-                  required:
-                    - deployId
-                    - trigger
-                  properties:
-                    deployId:
-                      type: string
-                    trigger:
-                      $ref: >-
-                        #/components/schemas/serviceEventWithCursor/properties/event/properties/details/oneOf/7/properties/trigger
-                - type: object
-                  required:
-                    - diskId
-                    - sizeGB
-                  properties:
-                    diskId:
-                      $ref: '#/paths/~1disks~1%7BdiskId%7D/parameters/0/schema'
-                    sizeGB:
-                      type: integer
-                - type: object
-                  required:
-                    - diskId
-                    - fromSizeGB
-                    - toSizeGB
-                  properties:
-                    diskId:
-                      $ref: '#/paths/~1disks~1%7BdiskId%7D/parameters/0/schema'
-                    fromSizeGB:
-                      type: integer
-                    toSizeGB:
-                      type: integer
-                - type: object
-                  required:
-                    - diskId
-                  properties:
-                    diskId:
-                      $ref: '#/paths/~1disks~1%7BdiskId%7D/parameters/0/schema'
-                - type: object
-                  required:
-                    - message
-                    - imageURL
-                  properties:
-                    message:
-                      type: string
-                    imageURL:
-                      type: string
-                - type: object
-                  required:
-                    - deployId
-                  properties:
-                    deployId:
-                      type: string
-                - type: object
-                  required:
-                    - fromInstances
-                    - toInstances
-                  properties:
-                    fromInstances:
-                      type: integer
-                    toInstances:
-                      type: integer
-                - type: object
-                  required:
-                    - jobId
-                    - status
-                  properties:
-                    jobId:
-                      $ref: >-
-                        #/paths/~1services~1%7BserviceId%7D~1jobs~1%7BjobId%7D/parameters/1/schema
-                    status:
-                      $ref: >-
-                        #/components/schemas/jobWithCursor/properties/job/properties/status
-                    reason:
-                      $ref: >-
-                        #/components/schemas/serviceEventWithCursor/properties/event/properties/details/oneOf/9/properties/reason
-                - type: object
-                  required:
-                    - enabled
-                  properties:
-                    enabled:
-                      type: boolean
-                - type: object
-                  required:
-                    - fromURI
-                    - toURI
-                  properties:
-                    fromURI:
-                      type: string
-                    toURI:
-                      type: string
-                - type: object
-                - type: object
-                  required:
-                    - trigger
-                  properties:
-                    trigger:
-                      type: object
-                      required:
-                        - manual
-                        - startedByRender
-                      properties:
-                        user:
-                          $ref: >-
-                            #/components/schemas/serviceEventWithCursor/properties/event/properties/details/oneOf/9/properties/user
-                        manual:
-                          description: Maintenance was triggered manually
-                          type: boolean
-                        startedByRender:
-                          description: Maintenance was triggered by Render
-                          type: boolean
-                - type: object
-                  required:
-                    - from
-                    - to
-                  properties:
-                    from:
-                      type: string
-                    to:
-                      type: string
-                - type: object
-                  required:
-                    - deployCommandExecutionId
-                    - deployId
-                    - status
-                    - reason
-                  properties:
-                    deployCommandExecutionId:
-                      type: string
-                    deployId:
-                      type: string
-                    status:
-                      type: integer
-                    reason:
-                      $ref: >-
-                        #/components/schemas/serviceEventWithCursor/properties/event/properties/details/oneOf/5/properties/reason
-                - type: object
-                  required:
-                    - deployCommandExecutionId
-                    - deployId
-                  properties:
-                    deployCommandExecutionId:
-                      type: string
-                    deployId:
-                      type: string
-                - type: object
-                - type: object
-                  properties:
-                    reason:
-                      $ref: >-
-                        #/components/schemas/serviceEventWithCursor/properties/event/properties/details/oneOf/9/properties/reason
-                - type: object
-                - type: object
-                  required:
-                    - triggeredByUser
-                  properties:
-                    triggeredByUser:
-                      type: string
-                      nullable: true
-                - type: object
-                - type: object
-                - type: object
-                - type: object
-                  required:
-                    - actor
-                  properties:
-                    actor:
-                      type: string
-                    suspendedByUser:
-                      $ref: >-
-                        #/components/schemas/serviceEventWithCursor/properties/event/properties/details/oneOf/9/properties/user
-                - type: object
-                  required:
-                    - actor
-                  properties:
-                    actor:
-                      type: string
-                    resumedByUser:
-                      $ref: >-
-                        #/components/schemas/serviceEventWithCursor/properties/event/properties/details/oneOf/9/properties/user
-                - type: object
-                - type: object
-                  required:
-                    - trigger
-                  properties:
-                    trigger:
-                      type: string
+              $ref: >-
+                #/paths/~1events~1%7BeventId%7D/get/responses/200/content/application~1json/schema/properties/details/oneOf/0
     jobWithCursor:
       type: object
       required:
@@ -9741,6 +10826,178 @@ components:
           type: string
         name:
           type: string
+    serviceLink:
+      type: object
+      description: A link between a service and a database or Redis instance.
+      required:
+        - id
+        - source
+        - destination
+        - envVars
+      properties:
+        id:
+          type: string
+        source:
+          $ref: '#/components/schemas/serviceLinkSource'
+        destination:
+          $ref: '#/components/schemas/serviceLinkDestination'
+        envVars:
+          type: array
+          items:
+            $ref: '#/components/schemas/serviceLinkEnvVar'
+    serviceLinkWithCursor:
+      type: object
+      required:
+        - serviceLink
+        - cursor
+      properties:
+        serviceLink:
+          $ref: '#/components/schemas/serviceLink'
+        cursor:
+          $ref: '#/components/schemas/cursor'
+    serviceLinkPOSTInput:
+      type: object
+      required:
+        - sourceId
+        - destinationId
+        - envVars
+      properties:
+        sourceId:
+          type: string
+        destinationId:
+          type: string
+        envVars:
+          type: array
+          items:
+            $ref: '#/components/schemas/serviceLinkEnvVarKey'
+    serviceLinkPATCHInput:
+      type: object
+      required:
+        - envVars
+      properties:
+        envVars:
+          type: array
+          items:
+            $ref: '#/components/schemas/serviceLinkEnvVarKey'
+    serviceLinkEnvVarKey:
+      type: object
+      required:
+        - keyType
+        - key
+      properties:
+        keyType:
+          type: string
+          enum:
+            - CONNECTION_STRING_KEY
+        key:
+          type: string
+    serviceLinkSource:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - service
+        resourceId:
+          type: string
+      required:
+        - type
+        - resourceId
+    serviceLinkDestination:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - database
+            - redis
+        resourceId:
+          type: string
+      required:
+        - type
+        - resourceId
+    serviceLinkEnvVar:
+      type: object
+      required:
+        - keyType
+        - key
+      properties:
+        keyType:
+          type: string
+          enum:
+            - CONNECTION_STRING_KEY
+        key:
+          type: string
+        value:
+          type: string
+    webhookWithCursor:
+      type: object
+      required:
+        - webhook
+        - cursor
+      properties:
+        webhook:
+          type: object
+          required:
+            - id
+            - name
+            - url
+            - secret
+            - enabled
+            - eventFilter
+          properties:
+            id:
+              type: string
+            url:
+              type: string
+            name:
+              type: string
+            secret:
+              type: string
+            enabled:
+              type: boolean
+            eventFilter:
+              $ref: >-
+                #/paths/~1webhooks/post/requestBody/content/application~1json/schema/properties/eventFilter
+        cursor:
+          $ref: '#/components/schemas/cursor'
+    webhookEventWithCursor:
+      type: object
+      required:
+        - webhookEvent
+        - cursor
+      properties:
+        webhookEvent:
+          type: object
+          required:
+            - id
+            - eventId
+            - eventType
+            - sentAt
+          properties:
+            id:
+              type: string
+              description: the id of the webhook event
+            eventId:
+              type: string
+              description: the id of the event that triggered the webhook
+            eventType:
+              $ref: >-
+                #/paths/~1events~1%7BeventId%7D/get/responses/200/content/application~1json/schema/properties/type
+            sentAt:
+              type: string
+              format: date-time
+            statusCode:
+              type: integer
+            responseBody:
+              type: string
+            error:
+              type: string
+              description: >-
+                error is populated when an error occurs without a response such
+                as a timeout
+        cursor:
+          $ref: '#/components/schemas/cursor'
   responses:
     400BadRequest:
       description: The request could not be understood by the server.

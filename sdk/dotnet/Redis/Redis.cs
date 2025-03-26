@@ -37,7 +37,7 @@ namespace Pulumi.Render.Redis
         public Output<Outputs.MaintenanceProperties?> Maintenance { get; private set; } = null!;
 
         /// <summary>
-        /// The eviction policy for the Redis instance
+        /// The eviction policy for the Key Value instance
         /// </summary>
         [Output("maxmemoryPolicy")]
         public Output<Pulumi.Render.Redis.MaxmemoryPolicy?> MaxmemoryPolicy { get; private set; } = null!;
@@ -145,7 +145,7 @@ namespace Pulumi.Render.Redis
         }
 
         /// <summary>
-        /// The eviction policy for the Redis instance
+        /// The eviction policy for the Key Value instance
         /// </summary>
         [Input("maxmemoryPolicy")]
         public Input<Pulumi.Render.Redis.MaxmemoryPolicy>? MaxmemoryPolicy { get; set; }

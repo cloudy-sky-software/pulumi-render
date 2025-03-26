@@ -113,6 +113,7 @@ func PulumiSchema(openAPIDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 			// has an invalid "201 Created" response code despite
 			// the endpoint being a list endpoint to list all snapshots.
 			"/disks/{diskId}/snapshots",
+			"/events/{eventId}",
 			"/maintenance",
 			"/maintenance/{maintenanceRunParam}",
 			"/maintenance/{maintenanceRunParam}/trigger",
@@ -131,6 +132,7 @@ func PulumiSchema(openAPIDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 			"/metrics/filters/application",
 			"/metrics/filters/http",
 			"/metrics/filters/path",
+			"/metrics-stream/{ownerId}",
 		},
 	}
 
@@ -165,6 +167,7 @@ func PulumiSchema(openAPIDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 		ModuleToPackage: map[string]string{
 			"cron-jobs":             "cronJobs",
 			"env-groups":            "envGroups",
+			"key-value":             "keyValue",
 			"notification-settings": "notificationSettings",
 		},
 	})
@@ -173,6 +176,7 @@ func PulumiSchema(openAPIDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 		ModuleToPackage: map[string]string{
 			"cron-jobs":             "cronjobs",
 			"env-groups":            "envgroups",
+			"key-value":             "keyvalue",
 			"notification-settings": "notificationsettings",
 		},
 	})

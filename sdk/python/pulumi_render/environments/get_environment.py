@@ -24,7 +24,7 @@ __all__ = [
 
 @pulumi.output_type
 class Environment:
-    def __init__(__self__, databases_ids=None, env_group_ids=None, id=None, name=None, project_id=None, protected_status=None, redis_ids=None, service_ids=None):
+    def __init__(__self__, databases_ids=None, env_group_ids=None, id=None, name=None, network_isolation_enabled=None, project_id=None, protected_status=None, redis_ids=None, service_ids=None):
         if databases_ids and not isinstance(databases_ids, list):
             raise TypeError("Expected argument 'databases_ids' to be a list")
         pulumi.set(__self__, "databases_ids", databases_ids)
@@ -37,6 +37,9 @@ class Environment:
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
+        if network_isolation_enabled and not isinstance(network_isolation_enabled, bool):
+            raise TypeError("Expected argument 'network_isolation_enabled' to be a bool")
+        pulumi.set(__self__, "network_isolation_enabled", network_isolation_enabled)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
@@ -69,6 +72,14 @@ class Environment:
     @pulumi.getter
     def name(self) -> str:
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="networkIsolationEnabled")
+    def network_isolation_enabled(self) -> bool:
+        """
+        Indicates whether network connections across environments are allowed.
+        """
+        return pulumi.get(self, "network_isolation_enabled")
 
     @property
     @pulumi.getter(name="projectId")
@@ -104,6 +115,7 @@ class AwaitableEnvironment(Environment):
             env_group_ids=self.env_group_ids,
             id=self.id,
             name=self.name,
+            network_isolation_enabled=self.network_isolation_enabled,
             project_id=self.project_id,
             protected_status=self.protected_status,
             redis_ids=self.redis_ids,
@@ -125,6 +137,7 @@ def get_environment(environment_id: Optional[str] = None,
         env_group_ids=pulumi.get(__ret__, 'env_group_ids'),
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
+        network_isolation_enabled=pulumi.get(__ret__, 'network_isolation_enabled'),
         project_id=pulumi.get(__ret__, 'project_id'),
         protected_status=pulumi.get(__ret__, 'protected_status'),
         redis_ids=pulumi.get(__ret__, 'redis_ids'),
@@ -143,6 +156,7 @@ def get_environment_output(environment_id: Optional[pulumi.Input[str]] = None,
         env_group_ids=pulumi.get(__response__, 'env_group_ids'),
         id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),
+        network_isolation_enabled=pulumi.get(__response__, 'network_isolation_enabled'),
         project_id=pulumi.get(__response__, 'project_id'),
         protected_status=pulumi.get(__response__, 'protected_status'),
         redis_ids=pulumi.get(__response__, 'redis_ids'),

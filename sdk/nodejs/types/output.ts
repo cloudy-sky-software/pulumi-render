@@ -115,8 +115,14 @@ export namespace envgroups {
         /**
          * List of serviceIds linked to the envGroup
          */
-        serviceLinks: outputs.envgroups.ServiceLink[];
+        serviceLinks: outputs.envgroups.EnvGroupLink[];
         updatedAt: string;
+    }
+
+    export interface EnvGroupLink {
+        id: string;
+        name: string;
+        type: enums.envgroups.EnvGroupLinkType;
     }
 
     export interface EnvGroupMeta {
@@ -128,7 +134,7 @@ export namespace envgroups {
         /**
          * List of serviceIds linked to the envGroup
          */
-        serviceLinks: outputs.envgroups.ServiceLink[];
+        serviceLinks: outputs.envgroups.EnvGroupLink[];
         updatedAt: string;
     }
 
@@ -142,12 +148,6 @@ export namespace envgroups {
         name: string;
     }
 
-    export interface ServiceLink {
-        id: string;
-        name: string;
-        type: enums.envgroups.ServiceLinkType;
-    }
-
 }
 
 export namespace environments {
@@ -156,6 +156,10 @@ export namespace environments {
         envGroupIds: string[];
         id: string;
         name: string;
+        /**
+         * Indicates whether network connections across environments are allowed.
+         */
+        networkIsolationEnabled: boolean;
         projectId: string;
         /**
          * Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
@@ -171,6 +175,194 @@ export namespace environments {
     export interface EnvironmentWithCursor {
         cursor: string;
         environment: outputs.environments.Environment;
+    }
+
+}
+
+export namespace keyvalue {
+    export interface CidrBlockAndDescription {
+        cidrBlock: string;
+        /**
+         * User-provided description of the CIDR block
+         */
+        description: string;
+    }
+
+    /**
+     * A Key Value instance
+     */
+    export interface KeyValue {
+        /**
+         * The creation time of the Key Value instance
+         */
+        createdAt: string;
+        /**
+         * The URL to view the Key Value instance in the Render Dashboard
+         */
+        dashboardUrl: string;
+        /**
+         * The ID of the environment the Key Value instance is associated with
+         */
+        environmentId?: string;
+        /**
+         * The ID of the Key Value instance
+         */
+        id: string;
+        /**
+         * The IP allow list for the Key Value instance
+         */
+        ipAllowList: outputs.keyvalue.CidrBlockAndDescription[];
+        /**
+         * The name of the Key Value instance
+         */
+        name: string;
+        /**
+         * Options for a Key Value instance
+         */
+        options: outputs.keyvalue.KeyValueOptions;
+        owner: outputs.keyvalue.Owner;
+        plan: enums.keyvalue.KeyValuePlan;
+        /**
+         * Defaults to "oregon"
+         */
+        region: enums.keyvalue.KeyValueRegion;
+        status: enums.keyvalue.KeyValueStatus;
+        /**
+         * The last updated time of the Key Value instance
+         */
+        updatedAt: string;
+        /**
+         * The version of Key Value
+         */
+        version: string;
+    }
+    /**
+     * keyValueProvideDefaults sets the appropriate defaults for KeyValue
+     */
+    export function keyValueProvideDefaults(val: KeyValue): KeyValue {
+        return {
+            ...val,
+            region: (val.region) ?? "oregon",
+        };
+    }
+
+    /**
+     * A Key Value instance
+     */
+    export interface KeyValueConnectionInfo {
+        /**
+         * The CLI (redis-cli or valkey-cli) command to connect to the Key Value instance
+         */
+        cliCommand: string;
+        /**
+         * The connection string to use from outside Render
+         */
+        externalConnectionString: string;
+        /**
+         * The connection string to use from within Render
+         */
+        internalConnectionString: string;
+    }
+
+    /**
+     * A Key Value instance
+     */
+    export interface KeyValueDetail {
+        /**
+         * The creation time of the Key Value instance
+         */
+        createdAt: string;
+        /**
+         * The ID of the environment the Key Value instance is associated with
+         */
+        environmentId?: string;
+        /**
+         * The ID of the Key Value instance
+         */
+        id: string;
+        /**
+         * The IP allow list for the Key Value instance
+         */
+        ipAllowList: outputs.keyvalue.CidrBlockAndDescription[];
+        maintenance?: outputs.keyvalue.RedisDetailpropertiesmaintenance;
+        /**
+         * The name of the Key Value instance
+         */
+        name: string;
+        /**
+         * Options for a Key Value instance
+         */
+        options: outputs.keyvalue.KeyValueOptions;
+        owner: outputs.keyvalue.Owner;
+        plan: enums.keyvalue.KeyValueDetailPlan;
+        /**
+         * Defaults to "oregon"
+         */
+        region: enums.keyvalue.KeyValueDetailRegion;
+        status: enums.keyvalue.KeyValueDetailStatus;
+        /**
+         * The last updated time of the Key Value instance
+         */
+        updatedAt: string;
+        /**
+         * The version of Key Value
+         */
+        version: string;
+    }
+    /**
+     * keyValueDetailProvideDefaults sets the appropriate defaults for KeyValueDetail
+     */
+    export function keyValueDetailProvideDefaults(val: KeyValueDetail): KeyValueDetail {
+        return {
+            ...val,
+            region: (val.region) ?? "oregon",
+        };
+    }
+
+    /**
+     * Options for a Key Value instance
+     */
+    export interface KeyValueOptions {
+        maxmemoryPolicy?: string;
+    }
+
+    export interface KeyValueWithCursor {
+        cursor: string;
+        /**
+         * A Key Value instance
+         */
+        keyValue: outputs.keyvalue.KeyValue;
+    }
+    /**
+     * keyValueWithCursorProvideDefaults sets the appropriate defaults for KeyValueWithCursor
+     */
+    export function keyValueWithCursorProvideDefaults(val: KeyValueWithCursor): KeyValueWithCursor {
+        return {
+            ...val,
+            keyValue: outputs.keyvalue.keyValueProvideDefaults(val.keyValue),
+        };
+    }
+
+    export interface Owner {
+        email: string;
+        id: string;
+        name: string;
+        /**
+         * Whether two-factor authentication is enabled for the owner. Only present for user owners.
+         */
+        twoFactorAuthEnabled?: boolean;
+        type: enums.keyvalue.OwnerType;
+    }
+
+    export interface RedisDetailpropertiesmaintenance {
+        id: string;
+        /**
+         * If present, the maintenance run cannot be scheduled for later than this date-time.
+         */
+        pendingMaintenanceBy?: string;
+        scheduledAt: string;
+        state: enums.keyvalue.RedisDetailpropertiesmaintenanceState;
+        type: string;
     }
 
 }
@@ -361,11 +553,11 @@ export namespace postgres {
         startsAt?: string;
     }
 
-    export interface ListPostgresBackupItemProperties {
+    export interface ListPostgresExportItemProperties {
         createdAt: string;
         id: string;
         /**
-         * URL to download the Postgres backup
+         * URL to download the Postgres export
          */
         url?: string;
     }
@@ -384,7 +576,7 @@ export namespace postgres {
     export interface Postgres {
         createdAt: string;
         /**
-         * The URL to view the PostgreSQL instance in the Render Dashboard
+         * The URL to view the Postgres instance in the Render Dashboard
          */
         dashboardUrl: string;
         databaseName: string;
@@ -437,7 +629,7 @@ export namespace postgres {
     export interface PostgresDetail {
         createdAt: string;
         /**
-         * The URL to view the PostgreSQL instance in the Render Dashboard
+         * The URL to view the Postgres instance in the Render Dashboard
          */
         dashboardUrl: string;
         databaseName: string;
@@ -554,6 +746,10 @@ export namespace projects {
 
     export interface ProjectCreateEnvironmentInput {
         name: string;
+        /**
+         * Indicates whether network connections across environments are allowed.
+         */
+        networkIsolationEnabled?: boolean;
         /**
          * Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
          */
@@ -1877,6 +2073,62 @@ export namespace users {
     export interface User {
         email: string;
         name: string;
+    }
+
+}
+
+export namespace webhooks {
+    export interface WebhookEventWithCursor {
+        cursor: string;
+        webhookEvent: outputs.webhooks.WebhookEventWithCursorWebhookEventProperties;
+    }
+
+    export interface WebhookEventWithCursorWebhookEventProperties {
+        /**
+         * error is populated when an error occurs without a response such as a timeout
+         */
+        error?: string;
+        /**
+         * the id of the event that triggered the webhook
+         */
+        eventId: string;
+        eventType: enums.webhooks.WebhookEventWithCursorWebhookEventPropertiesEventType;
+        /**
+         * the id of the webhook event
+         */
+        id: string;
+        responseBody?: string;
+        sentAt: string;
+        statusCode?: number;
+    }
+
+    export interface WebhookWithCursor {
+        cursor: string;
+        webhook: outputs.webhooks.WebhookWithCursorWebhookProperties;
+    }
+
+    export interface WebhookWithCursorWebhookProperties {
+        enabled: boolean;
+        /**
+         * The event types that will trigger the webhook. An empty list means all event types will trigger the webhook.
+         */
+        eventFilter: enums.webhooks.WebhookWithCursorWebhookPropertiesEventFilterItem[];
+        id: string;
+        name: string;
+        secret: string;
+        url: string;
+    }
+
+    export interface WebhookWithCursorpropertieswebhook {
+        enabled: boolean;
+        /**
+         * The event types that will trigger the webhook. An empty list means all event types will trigger the webhook.
+         */
+        eventFilter: enums.webhooks.WebhookWithCursorpropertieswebhookEventFilterItem[];
+        id: string;
+        name: string;
+        secret: string;
+        url: string;
     }
 
 }

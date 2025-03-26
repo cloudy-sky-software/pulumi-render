@@ -6,6 +6,7 @@ import * as blueprints from "./blueprints";
 import * as cronjobs from "./cronjobs";
 import * as envgroups from "./envgroups";
 import * as environments from "./environments";
+import * as keyvalue from "./keyvalue";
 import * as logs from "./logs";
 import * as notificationsettings from "./notificationsettings";
 import * as owners from "./owners";
@@ -14,12 +15,14 @@ import * as projects from "./projects";
 import * as redis from "./redis";
 import * as registrycredentials from "./registrycredentials";
 import * as services from "./services";
+import * as webhooks from "./webhooks";
 
 export {
     blueprints,
     cronjobs,
     envgroups,
     environments,
+    keyvalue,
     logs,
     notificationsettings,
     owners,
@@ -28,4 +31,5 @@ export {
     redis,
     registrycredentials,
     services,
+    webhooks,
 };

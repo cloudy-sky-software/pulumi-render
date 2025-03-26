@@ -21,8 +21,8 @@ type LinkServiceToEnvGroup struct {
 	OwnerId       pulumi.StringPtrOutput `pulumi:"ownerId"`
 	SecretFiles   SecretFileArrayOutput  `pulumi:"secretFiles"`
 	// List of serviceIds linked to the envGroup
-	ServiceLinks ServiceLinkArrayOutput `pulumi:"serviceLinks"`
-	UpdatedAt    pulumi.StringPtrOutput `pulumi:"updatedAt"`
+	ServiceLinks EnvGroupLinkArrayOutput `pulumi:"serviceLinks"`
+	UpdatedAt    pulumi.StringPtrOutput  `pulumi:"updatedAt"`
 }
 
 // NewLinkServiceToEnvGroup registers a new resource with the given unique name, arguments, and options.
@@ -141,8 +141,8 @@ func (o LinkServiceToEnvGroupOutput) SecretFiles() SecretFileArrayOutput {
 }
 
 // List of serviceIds linked to the envGroup
-func (o LinkServiceToEnvGroupOutput) ServiceLinks() ServiceLinkArrayOutput {
-	return o.ApplyT(func(v *LinkServiceToEnvGroup) ServiceLinkArrayOutput { return v.ServiceLinks }).(ServiceLinkArrayOutput)
+func (o LinkServiceToEnvGroupOutput) ServiceLinks() EnvGroupLinkArrayOutput {
+	return o.ApplyT(func(v *LinkServiceToEnvGroup) EnvGroupLinkArrayOutput { return v.ServiceLinks }).(EnvGroupLinkArrayOutput)
 }
 
 func (o LinkServiceToEnvGroupOutput) UpdatedAt() pulumi.StringPtrOutput {

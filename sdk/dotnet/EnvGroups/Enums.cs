@@ -8,29 +8,29 @@ using Pulumi;
 namespace Pulumi.Render.EnvGroups
 {
     [EnumType]
-    public readonly struct ServiceLinkType : IEquatable<ServiceLinkType>
+    public readonly struct EnvGroupLinkType : IEquatable<EnvGroupLinkType>
     {
         private readonly string _value;
 
-        private ServiceLinkType(string value)
+        private EnvGroupLinkType(string value)
         {
             _value = value ?? throw new ArgumentNullException(nameof(value));
         }
 
-        public static ServiceLinkType Static { get; } = new ServiceLinkType("static");
-        public static ServiceLinkType Web { get; } = new ServiceLinkType("web");
-        public static ServiceLinkType Pserv { get; } = new ServiceLinkType("pserv");
-        public static ServiceLinkType Worker { get; } = new ServiceLinkType("worker");
-        public static ServiceLinkType Cron { get; } = new ServiceLinkType("cron");
+        public static EnvGroupLinkType Static { get; } = new EnvGroupLinkType("static");
+        public static EnvGroupLinkType Web { get; } = new EnvGroupLinkType("web");
+        public static EnvGroupLinkType Pserv { get; } = new EnvGroupLinkType("pserv");
+        public static EnvGroupLinkType Worker { get; } = new EnvGroupLinkType("worker");
+        public static EnvGroupLinkType Cron { get; } = new EnvGroupLinkType("cron");
 
-        public static bool operator ==(ServiceLinkType left, ServiceLinkType right) => left.Equals(right);
-        public static bool operator !=(ServiceLinkType left, ServiceLinkType right) => !left.Equals(right);
+        public static bool operator ==(EnvGroupLinkType left, EnvGroupLinkType right) => left.Equals(right);
+        public static bool operator !=(EnvGroupLinkType left, EnvGroupLinkType right) => !left.Equals(right);
 
-        public static explicit operator string(ServiceLinkType value) => value._value;
+        public static explicit operator string(EnvGroupLinkType value) => value._value;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is ServiceLinkType other && Equals(other);
-        public bool Equals(ServiceLinkType other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+        public override bool Equals(object? obj) => obj is EnvGroupLinkType other && Equals(other);
+        public bool Equals(EnvGroupLinkType other) => string.Equals(_value, other._value, StringComparison.Ordinal);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => _value?.GetHashCode() ?? 0;

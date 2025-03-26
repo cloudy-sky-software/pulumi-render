@@ -30,6 +30,7 @@ class GetBlueprintPropertiesResourcesItemPropertiesType(str, Enum):
     BACKGROUND_WORKER = "background_worker"
     CRON_JOB = "cron_job"
     REDIS = "redis"
+    KEY_VALUE = "key_value"
     POSTGRES = "postgres"
     ENVIRONMENT_GROUP = "environment_group"
 

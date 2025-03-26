@@ -37,6 +37,10 @@ export class ResourcesToEnvironment extends pulumi.CustomResource {
     public /*out*/ readonly databasesIds!: pulumi.Output<string[]>;
     public /*out*/ readonly envGroupIds!: pulumi.Output<string[]>;
     public /*out*/ readonly name!: pulumi.Output<string>;
+    /**
+     * Indicates whether network connections across environments are allowed.
+     */
+    public /*out*/ readonly networkIsolationEnabled!: pulumi.Output<boolean>;
     public /*out*/ readonly projectId!: pulumi.Output<string>;
     /**
      * Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
@@ -65,6 +69,7 @@ export class ResourcesToEnvironment extends pulumi.CustomResource {
             resourceInputs["databasesIds"] = undefined /*out*/;
             resourceInputs["envGroupIds"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;
+            resourceInputs["networkIsolationEnabled"] = undefined /*out*/;
             resourceInputs["projectId"] = undefined /*out*/;
             resourceInputs["protectedStatus"] = undefined /*out*/;
             resourceInputs["redisIds"] = undefined /*out*/;
@@ -73,6 +78,7 @@ export class ResourcesToEnvironment extends pulumi.CustomResource {
             resourceInputs["databasesIds"] = undefined /*out*/;
             resourceInputs["envGroupIds"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;
+            resourceInputs["networkIsolationEnabled"] = undefined /*out*/;
             resourceInputs["projectId"] = undefined /*out*/;
             resourceInputs["protectedStatus"] = undefined /*out*/;
             resourceInputs["redisIds"] = undefined /*out*/;

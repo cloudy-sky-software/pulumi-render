@@ -14,16 +14,17 @@ else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
+from ._enums import *
 
 __all__ = [
-    'ListPostgresBackupResult',
-    'AwaitableListPostgresBackupResult',
-    'list_postgres_backup',
-    'list_postgres_backup_output',
+    'ListWebhookEventsResult',
+    'AwaitableListWebhookEventsResult',
+    'list_webhook_events',
+    'list_webhook_events_output',
 ]
 
 @pulumi.output_type
-class ListPostgresBackupResult:
+class ListWebhookEventsResult:
     def __init__(__self__, items=None):
         if items and not isinstance(items, list):
             raise TypeError("Expected argument 'items' to be a list")
@@ -31,39 +32,43 @@ class ListPostgresBackupResult:
 
     @property
     @pulumi.getter
-    def items(self) -> Sequence['outputs.ListPostgresBackupItemProperties']:
+    def items(self) -> Sequence['outputs.WebhookEventWithCursor']:
         return pulumi.get(self, "items")
 
 
-class AwaitableListPostgresBackupResult(ListPostgresBackupResult):
+class AwaitableListWebhookEventsResult(ListWebhookEventsResult):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return ListPostgresBackupResult(
+        return ListWebhookEventsResult(
             items=self.items)
 
 
-def list_postgres_backup(postgres_id: Optional[str] = None,
-                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListPostgresBackupResult:
+def list_webhook_events(webhook_id: Optional[str] = None,
+                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListWebhookEventsResult:
     """
     Use this data source to access information about an existing resource.
-    """
-    __args__ = dict()
-    __args__['postgresId'] = postgres_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('render:postgres:listPostgresBackup', __args__, opts=opts, typ=ListPostgresBackupResult).value
 
-    return AwaitableListPostgresBackupResult(
-        items=pulumi.get(__ret__, 'items'))
-def list_postgres_backup_output(postgres_id: Optional[pulumi.Input[str]] = None,
-                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListPostgresBackupResult]:
-    """
-    Use this data source to access information about an existing resource.
+    :param str webhook_id: Unique identifier for the webhook
     """
     __args__ = dict()
-    __args__['postgresId'] = postgres_id
+    __args__['webhookId'] = webhook_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke('render:webhooks:listWebhookEvents', __args__, opts=opts, typ=ListWebhookEventsResult).value
+
+    return AwaitableListWebhookEventsResult(
+        items=pulumi.get(__ret__, 'items'))
+def list_webhook_events_output(webhook_id: Optional[pulumi.Input[str]] = None,
+                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListWebhookEventsResult]:
+    """
+    Use this data source to access information about an existing resource.
+
+    :param str webhook_id: Unique identifier for the webhook
+    """
+    __args__ = dict()
+    __args__['webhookId'] = webhook_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('render:postgres:listPostgresBackup', __args__, opts=opts, typ=ListPostgresBackupResult)
-    return __ret__.apply(lambda __response__: ListPostgresBackupResult(
+    __ret__ = pulumi.runtime.invoke_output('render:webhooks:listWebhookEvents', __args__, opts=opts, typ=ListWebhookEventsResult)
+    return __ret__.apply(lambda __response__: ListWebhookEventsResult(
         items=pulumi.get(__response__, 'items')))

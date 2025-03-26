@@ -1,6 +1,6 @@
 module github.com/cloudy-sky-software/pulumi-render/provider
 
-go 1.23.1
+go 1.24.1
 
 toolchain go1.24.1
 

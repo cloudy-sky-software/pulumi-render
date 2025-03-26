@@ -181,7 +181,7 @@ class LinkServiceToEnvGroup(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="serviceLinks")
-    def service_links(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceLink']]]:
+    def service_links(self) -> pulumi.Output[Optional[Sequence['outputs.EnvGroupLink']]]:
         """
         List of serviceIds linked to the envGroup
         """

@@ -18,7 +18,9 @@ type EnvironmentType struct {
 	EnvGroupIds  []string `pulumi:"envGroupIds"`
 	Id           string   `pulumi:"id"`
 	Name         string   `pulumi:"name"`
-	ProjectId    string   `pulumi:"projectId"`
+	// Indicates whether network connections across environments are allowed.
+	NetworkIsolationEnabled bool   `pulumi:"networkIsolationEnabled"`
+	ProjectId               string `pulumi:"projectId"`
 	// Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
 	ProtectedStatus EnvironmentProtectedStatus `pulumi:"protectedStatus"`
 	RedisIds        []string                   `pulumi:"redisIds"`
@@ -53,6 +55,11 @@ func (o EnvironmentTypeOutput) Id() pulumi.StringOutput {
 
 func (o EnvironmentTypeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v EnvironmentType) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Indicates whether network connections across environments are allowed.
+func (o EnvironmentTypeOutput) NetworkIsolationEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v EnvironmentType) bool { return v.NetworkIsolationEnabled }).(pulumi.BoolOutput)
 }
 
 func (o EnvironmentTypeOutput) ProjectId() pulumi.StringOutput {

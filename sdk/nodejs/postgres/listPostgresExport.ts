@@ -7,27 +7,27 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function listPostgresBackup(args: ListPostgresBackupArgs, opts?: pulumi.InvokeOptions): Promise<ListPostgresBackupResult> {
+export function listPostgresExport(args: ListPostgresExportArgs, opts?: pulumi.InvokeOptions): Promise<ListPostgresExportResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invoke("render:postgres:listPostgresBackup", {
+    return pulumi.runtime.invoke("render:postgres:listPostgresExport", {
         "postgresId": args.postgresId,
     }, opts);
 }
 
-export interface ListPostgresBackupArgs {
+export interface ListPostgresExportArgs {
     postgresId: string;
 }
 
-export interface ListPostgresBackupResult {
-    readonly items: outputs.postgres.ListPostgresBackupItemProperties[];
+export interface ListPostgresExportResult {
+    readonly items: outputs.postgres.ListPostgresExportItemProperties[];
 }
-export function listPostgresBackupOutput(args: ListPostgresBackupOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListPostgresBackupResult> {
+export function listPostgresExportOutput(args: ListPostgresExportOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListPostgresExportResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invokeOutput("render:postgres:listPostgresBackup", {
+    return pulumi.runtime.invokeOutput("render:postgres:listPostgresExport", {
         "postgresId": args.postgresId,
     }, opts);
 }
 
-export interface ListPostgresBackupOutputArgs {
+export interface ListPostgresExportOutputArgs {
     postgresId: pulumi.Input<string>;
 }

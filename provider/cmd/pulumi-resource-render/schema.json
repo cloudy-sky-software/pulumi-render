@@ -22,6 +22,7 @@
                 "disks": "Disks",
                 "env-groups": "EnvGroups",
                 "environments": "Environments",
+                "key-value": "KeyValue",
                 "logs": "Logs",
                 "metrics": "Metrics",
                 "notification-settings": "NotificationSettings",
@@ -32,7 +33,8 @@
                 "registrycredentials": "RegistryCredentials",
                 "render": "Render",
                 "services": "Services",
-                "users": "Users"
+                "users": "Users",
+                "webhooks": "Webhooks"
             },
             "packageReferences": {
                 "Pulumi": "3.*"
@@ -44,6 +46,7 @@
             "moduleToPackage": {
                 "cron-jobs": "cronJobs",
                 "env-groups": "envGroups",
+                "key-value": "keyValue",
                 "notification-settings": "notificationSettings"
             }
         },
@@ -52,6 +55,7 @@
             "moduleToPackage": {
                 "cron-jobs": "cronjobs",
                 "env-groups": "envgroups",
+                "key-value": "keyvalue",
                 "notification-settings": "notificationsettings"
             }
         },
@@ -254,6 +258,10 @@
                 {
                     "name": "Redis",
                     "value": "redis"
+                },
+                {
+                    "name": "KeyValue",
+                    "value": "key_value"
                 },
                 {
                     "name": "Postgres",
@@ -503,7 +511,7 @@
                 "serviceLinks": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/render:env-groups:ServiceLink"
+                        "$ref": "#/types/render:env-groups:EnvGroupLink"
                     },
                     "description": "List of serviceIds linked to the envGroup"
                 },
@@ -521,6 +529,50 @@
                 "secretFiles",
                 "serviceLinks",
                 "updatedAt"
+            ]
+        },
+        "render:env-groups:EnvGroupLink": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "$ref": "#/types/render:env-groups:EnvGroupLinkType"
+                }
+            },
+            "type": "object",
+            "required": [
+                "id",
+                "name",
+                "type"
+            ]
+        },
+        "render:env-groups:EnvGroupLinkType": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Static",
+                    "value": "static"
+                },
+                {
+                    "name": "Web",
+                    "value": "web"
+                },
+                {
+                    "name": "Pserv",
+                    "value": "pserv"
+                },
+                {
+                    "name": "Worker",
+                    "value": "worker"
+                },
+                {
+                    "name": "Cron",
+                    "value": "cron"
+                }
             ]
         },
         "render:env-groups:EnvGroupMeta": {
@@ -543,7 +595,7 @@
                 "serviceLinks": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/render:env-groups:ServiceLink"
+                        "$ref": "#/types/render:env-groups:EnvGroupLink"
                     },
                     "description": "List of serviceIds linked to the envGroup"
                 },
@@ -620,50 +672,6 @@
                 "name"
             ]
         },
-        "render:env-groups:ServiceLink": {
-            "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "type": {
-                    "$ref": "#/types/render:env-groups:ServiceLinkType"
-                }
-            },
-            "type": "object",
-            "required": [
-                "id",
-                "name",
-                "type"
-            ]
-        },
-        "render:env-groups:ServiceLinkType": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Static",
-                    "value": "static"
-                },
-                {
-                    "name": "Web",
-                    "value": "web"
-                },
-                {
-                    "name": "Pserv",
-                    "value": "pserv"
-                },
-                {
-                    "name": "Worker",
-                    "value": "worker"
-                },
-                {
-                    "name": "Cron",
-                    "value": "cron"
-                }
-            ]
-        },
         "render:environments:Environment": {
             "properties": {
                 "databasesIds": {
@@ -683,6 +691,10 @@
                 },
                 "name": {
                     "type": "string"
+                },
+                "networkIsolationEnabled": {
+                    "type": "boolean",
+                    "description": "Indicates whether network connections across environments are allowed."
                 },
                 "projectId": {
                     "type": "string"
@@ -710,6 +722,7 @@
                 "envGroupIds",
                 "id",
                 "name",
+                "networkIsolationEnabled",
                 "projectId",
                 "protectedStatus",
                 "redisIds",
@@ -757,6 +770,660 @@
                 {
                     "name": "Protected",
                     "value": "protected"
+                }
+            ]
+        },
+        "render:key-value:CidrBlockAndDescription": {
+            "properties": {
+                "cidrBlock": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "User-provided description of the CIDR block"
+                }
+            },
+            "type": "object",
+            "required": [
+                "cidrBlock",
+                "description"
+            ]
+        },
+        "render:key-value:KeyValue": {
+            "description": "A Key Value instance",
+            "properties": {
+                "createdAt": {
+                    "type": "string",
+                    "description": "The creation time of the Key Value instance"
+                },
+                "dashboardUrl": {
+                    "type": "string",
+                    "description": "The URL to view the Key Value instance in the Render Dashboard"
+                },
+                "environmentId": {
+                    "type": "string",
+                    "description": "The ID of the environment the Key Value instance is associated with"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The ID of the Key Value instance"
+                },
+                "ipAllowList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:key-value:CidrBlockAndDescription"
+                    },
+                    "description": "The IP allow list for the Key Value instance"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the Key Value instance"
+                },
+                "options": {
+                    "$ref": "#/types/render:key-value:KeyValueOptions",
+                    "description": "Options for a Key Value instance"
+                },
+                "owner": {
+                    "$ref": "#/types/render:key-value:Owner"
+                },
+                "plan": {
+                    "$ref": "#/types/render:key-value:KeyValuePlan"
+                },
+                "region": {
+                    "$ref": "#/types/render:key-value:KeyValueRegion",
+                    "description": "Defaults to \"oregon\"",
+                    "default": "oregon"
+                },
+                "status": {
+                    "$ref": "#/types/render:key-value:KeyValueStatus"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "The last updated time of the Key Value instance"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "The version of Key Value"
+                }
+            },
+            "type": "object",
+            "required": [
+                "createdAt",
+                "dashboardUrl",
+                "id",
+                "ipAllowList",
+                "name",
+                "options",
+                "owner",
+                "plan",
+                "region",
+                "status",
+                "updatedAt",
+                "version"
+            ]
+        },
+        "render:key-value:KeyValueConnectionInfo": {
+            "description": "A Key Value instance",
+            "properties": {
+                "cliCommand": {
+                    "type": "string",
+                    "description": "The CLI (redis-cli or valkey-cli) command to connect to the Key Value instance"
+                },
+                "externalConnectionString": {
+                    "type": "string",
+                    "description": "The connection string to use from outside Render"
+                },
+                "internalConnectionString": {
+                    "type": "string",
+                    "description": "The connection string to use from within Render"
+                }
+            },
+            "type": "object",
+            "required": [
+                "cliCommand",
+                "externalConnectionString",
+                "internalConnectionString"
+            ]
+        },
+        "render:key-value:KeyValueDetail": {
+            "description": "A Key Value instance",
+            "properties": {
+                "createdAt": {
+                    "type": "string",
+                    "description": "The creation time of the Key Value instance"
+                },
+                "environmentId": {
+                    "type": "string",
+                    "description": "The ID of the environment the Key Value instance is associated with"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The ID of the Key Value instance"
+                },
+                "ipAllowList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:key-value:CidrBlockAndDescription"
+                    },
+                    "description": "The IP allow list for the Key Value instance"
+                },
+                "maintenance": {
+                    "$ref": "#/types/render:key-value:RedisDetailpropertiesmaintenance"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the Key Value instance"
+                },
+                "options": {
+                    "$ref": "#/types/render:key-value:KeyValueOptions",
+                    "description": "Options for a Key Value instance"
+                },
+                "owner": {
+                    "$ref": "#/types/render:key-value:Owner"
+                },
+                "plan": {
+                    "$ref": "#/types/render:key-value:KeyValueDetailPlan"
+                },
+                "region": {
+                    "$ref": "#/types/render:key-value:KeyValueDetailRegion",
+                    "description": "Defaults to \"oregon\"",
+                    "default": "oregon"
+                },
+                "status": {
+                    "$ref": "#/types/render:key-value:KeyValueDetailStatus"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "The last updated time of the Key Value instance"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "The version of Key Value"
+                }
+            },
+            "type": "object",
+            "required": [
+                "createdAt",
+                "id",
+                "ipAllowList",
+                "name",
+                "options",
+                "owner",
+                "plan",
+                "region",
+                "status",
+                "updatedAt",
+                "version"
+            ]
+        },
+        "render:key-value:KeyValueDetailPlan": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Free",
+                    "value": "free"
+                },
+                {
+                    "name": "Starter",
+                    "value": "starter"
+                },
+                {
+                    "name": "Standard",
+                    "value": "standard"
+                },
+                {
+                    "name": "Pro",
+                    "value": "pro"
+                },
+                {
+                    "name": "ProPlus",
+                    "value": "pro_plus"
+                },
+                {
+                    "name": "Custom",
+                    "value": "custom"
+                }
+            ]
+        },
+        "render:key-value:KeyValueDetailRegion": {
+            "description": "Defaults to \"oregon\"",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Frankfurt",
+                    "value": "frankfurt"
+                },
+                {
+                    "name": "Oregon",
+                    "value": "oregon"
+                },
+                {
+                    "name": "Ohio",
+                    "value": "ohio"
+                },
+                {
+                    "name": "Singapore",
+                    "value": "singapore"
+                },
+                {
+                    "name": "Virginia",
+                    "value": "virginia"
+                }
+            ]
+        },
+        "render:key-value:KeyValueDetailStatus": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Creating",
+                    "value": "creating"
+                },
+                {
+                    "name": "Available",
+                    "value": "available"
+                },
+                {
+                    "name": "Unavailable",
+                    "value": "unavailable"
+                },
+                {
+                    "name": "ConfigRestart",
+                    "value": "config_restart"
+                },
+                {
+                    "name": "Suspended",
+                    "value": "suspended"
+                },
+                {
+                    "name": "MaintenanceScheduled",
+                    "value": "maintenance_scheduled"
+                },
+                {
+                    "name": "MaintenanceInProgress",
+                    "value": "maintenance_in_progress"
+                },
+                {
+                    "name": "RecoveryFailed",
+                    "value": "recovery_failed"
+                },
+                {
+                    "name": "RecoveryInProgress",
+                    "value": "recovery_in_progress"
+                },
+                {
+                    "name": "Unknown",
+                    "value": "unknown"
+                },
+                {
+                    "name": "UpdatingInstance",
+                    "value": "updating_instance"
+                }
+            ]
+        },
+        "render:key-value:KeyValueOptions": {
+            "description": "Options for a Key Value instance",
+            "properties": {
+                "maxmemoryPolicy": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "render:key-value:KeyValuePlan": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Free",
+                    "value": "free"
+                },
+                {
+                    "name": "Starter",
+                    "value": "starter"
+                },
+                {
+                    "name": "Standard",
+                    "value": "standard"
+                },
+                {
+                    "name": "Pro",
+                    "value": "pro"
+                },
+                {
+                    "name": "ProPlus",
+                    "value": "pro_plus"
+                },
+                {
+                    "name": "Custom",
+                    "value": "custom"
+                }
+            ]
+        },
+        "render:key-value:KeyValueRegion": {
+            "description": "Defaults to \"oregon\"",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Frankfurt",
+                    "value": "frankfurt"
+                },
+                {
+                    "name": "Oregon",
+                    "value": "oregon"
+                },
+                {
+                    "name": "Ohio",
+                    "value": "ohio"
+                },
+                {
+                    "name": "Singapore",
+                    "value": "singapore"
+                },
+                {
+                    "name": "Virginia",
+                    "value": "virginia"
+                }
+            ]
+        },
+        "render:key-value:KeyValueStatus": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Creating",
+                    "value": "creating"
+                },
+                {
+                    "name": "Available",
+                    "value": "available"
+                },
+                {
+                    "name": "Unavailable",
+                    "value": "unavailable"
+                },
+                {
+                    "name": "ConfigRestart",
+                    "value": "config_restart"
+                },
+                {
+                    "name": "Suspended",
+                    "value": "suspended"
+                },
+                {
+                    "name": "MaintenanceScheduled",
+                    "value": "maintenance_scheduled"
+                },
+                {
+                    "name": "MaintenanceInProgress",
+                    "value": "maintenance_in_progress"
+                },
+                {
+                    "name": "RecoveryFailed",
+                    "value": "recovery_failed"
+                },
+                {
+                    "name": "RecoveryInProgress",
+                    "value": "recovery_in_progress"
+                },
+                {
+                    "name": "Unknown",
+                    "value": "unknown"
+                },
+                {
+                    "name": "UpdatingInstance",
+                    "value": "updating_instance"
+                }
+            ]
+        },
+        "render:key-value:KeyValueWithCursor": {
+            "properties": {
+                "cursor": {
+                    "type": "string"
+                },
+                "keyValue": {
+                    "$ref": "#/types/render:key-value:KeyValue",
+                    "description": "A Key Value instance"
+                }
+            },
+            "type": "object",
+            "required": [
+                "cursor",
+                "keyValue"
+            ]
+        },
+        "render:key-value:MaxmemoryPolicy": {
+            "description": "The eviction policy for the Key Value instance",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Noeviction",
+                    "value": "noeviction"
+                },
+                {
+                    "name": "AllkeysLfu",
+                    "value": "allkeys_lfu"
+                },
+                {
+                    "name": "AllkeysLru",
+                    "value": "allkeys_lru"
+                },
+                {
+                    "name": "AllkeysRandom",
+                    "value": "allkeys_random"
+                },
+                {
+                    "name": "VolatileLfu",
+                    "value": "volatile_lfu"
+                },
+                {
+                    "name": "VolatileLru",
+                    "value": "volatile_lru"
+                },
+                {
+                    "name": "VolatileRandom",
+                    "value": "volatile_random"
+                },
+                {
+                    "name": "VolatileTtl",
+                    "value": "volatile_ttl"
+                }
+            ]
+        },
+        "render:key-value:Owner": {
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "twoFactorAuthEnabled": {
+                    "type": "boolean",
+                    "description": "Whether two-factor authentication is enabled for the owner. Only present for user owners."
+                },
+                "type": {
+                    "$ref": "#/types/render:key-value:OwnerType"
+                }
+            },
+            "type": "object",
+            "required": [
+                "email",
+                "id",
+                "name",
+                "type"
+            ]
+        },
+        "render:key-value:OwnerType": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "User",
+                    "value": "user"
+                },
+                {
+                    "name": "Team",
+                    "value": "team"
+                }
+            ]
+        },
+        "render:key-value:Plan": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Free",
+                    "value": "free"
+                },
+                {
+                    "name": "Starter",
+                    "value": "starter"
+                },
+                {
+                    "name": "Standard",
+                    "value": "standard"
+                },
+                {
+                    "name": "Pro",
+                    "value": "pro"
+                },
+                {
+                    "name": "ProPlus",
+                    "value": "pro_plus"
+                },
+                {
+                    "name": "Custom",
+                    "value": "custom"
+                }
+            ]
+        },
+        "render:key-value:RedisDetailpropertiesmaintenance": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "pendingMaintenanceBy": {
+                    "type": "string",
+                    "description": "If present, the maintenance run cannot be scheduled for later than this date-time."
+                },
+                "scheduledAt": {
+                    "type": "string"
+                },
+                "state": {
+                    "$ref": "#/types/render:key-value:RedisDetailpropertiesmaintenanceState"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "id",
+                "scheduledAt",
+                "state",
+                "type"
+            ]
+        },
+        "render:key-value:RedisDetailpropertiesmaintenanceState": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Scheduled",
+                    "value": "scheduled"
+                },
+                {
+                    "name": "InProgress",
+                    "value": "in_progress"
+                },
+                {
+                    "name": "UserFixRequired",
+                    "value": "user_fix_required"
+                },
+                {
+                    "name": "Cancelled",
+                    "value": "cancelled"
+                },
+                {
+                    "name": "Succeeded",
+                    "value": "succeeded"
+                },
+                {
+                    "name": "Failed",
+                    "value": "failed"
+                }
+            ]
+        },
+        "render:key-value:Region": {
+            "description": "Defaults to \"oregon\"",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Frankfurt",
+                    "value": "frankfurt"
+                },
+                {
+                    "name": "Oregon",
+                    "value": "oregon"
+                },
+                {
+                    "name": "Ohio",
+                    "value": "ohio"
+                },
+                {
+                    "name": "Singapore",
+                    "value": "singapore"
+                },
+                {
+                    "name": "Virginia",
+                    "value": "virginia"
+                }
+            ]
+        },
+        "render:key-value:Status": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Creating",
+                    "value": "creating"
+                },
+                {
+                    "name": "Available",
+                    "value": "available"
+                },
+                {
+                    "name": "Unavailable",
+                    "value": "unavailable"
+                },
+                {
+                    "name": "ConfigRestart",
+                    "value": "config_restart"
+                },
+                {
+                    "name": "Suspended",
+                    "value": "suspended"
+                },
+                {
+                    "name": "MaintenanceScheduled",
+                    "value": "maintenance_scheduled"
+                },
+                {
+                    "name": "MaintenanceInProgress",
+                    "value": "maintenance_in_progress"
+                },
+                {
+                    "name": "RecoveryFailed",
+                    "value": "recovery_failed"
+                },
+                {
+                    "name": "RecoveryInProgress",
+                    "value": "recovery_in_progress"
+                },
+                {
+                    "name": "Unknown",
+                    "value": "unknown"
+                },
+                {
+                    "name": "UpdatingInstance",
+                    "value": "updating_instance"
                 }
             ]
         },
@@ -1249,7 +1916,7 @@
                 }
             ]
         },
-        "render:postgres:ListPostgresBackupItemProperties": {
+        "render:postgres:ListPostgresExportItemProperties": {
             "properties": {
                 "createdAt": {
                     "type": "string"
@@ -1259,7 +1926,7 @@
                 },
                 "url": {
                     "type": "string",
-                    "description": "URL to download the Postgres backup"
+                    "description": "URL to download the Postgres export"
                 }
             },
             "type": "object",
@@ -1432,7 +2099,7 @@
                 },
                 "dashboardUrl": {
                     "type": "string",
-                    "description": "The URL to view the PostgreSQL instance in the Render Dashboard"
+                    "description": "The URL to view the Postgres instance in the Render Dashboard"
                 },
                 "databaseName": {
                     "type": "string"
@@ -1560,7 +2227,7 @@
                 },
                 "dashboardUrl": {
                     "type": "string",
-                    "description": "The URL to view the PostgreSQL instance in the Render Dashboard"
+                    "description": "The URL to view the Postgres instance in the Render Dashboard"
                 },
                 "databaseName": {
                     "type": "string"
@@ -2559,6 +3226,10 @@
                 "name": {
                     "type": "string"
                 },
+                "networkIsolationEnabled": {
+                    "type": "boolean",
+                    "description": "Indicates whether network connections across environments are allowed."
+                },
                 "protectedStatus": {
                     "$ref": "#/types/render:projects:ProjectCreateEnvironmentInputProtectedStatus",
                     "description": "Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments."
@@ -2672,7 +3343,7 @@
             ]
         },
         "render:redis:MaxmemoryPolicy": {
-            "description": "The eviction policy for the Redis instance",
+            "description": "The eviction policy for the Key Value instance",
             "type": "string",
             "enum": [
                 {
@@ -7633,6 +8304,945 @@
                 "email",
                 "name"
             ]
+        },
+        "render:webhooks:EventFilterItem": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "AutoscalingConfigChanged",
+                    "value": "autoscaling_config_changed"
+                },
+                {
+                    "name": "AutoscalingEnded",
+                    "value": "autoscaling_ended"
+                },
+                {
+                    "name": "AutoscalingStarted",
+                    "value": "autoscaling_started"
+                },
+                {
+                    "name": "BranchDeleted",
+                    "value": "branch_deleted"
+                },
+                {
+                    "name": "BuildEnded",
+                    "value": "build_ended"
+                },
+                {
+                    "name": "BuildStarted",
+                    "value": "build_started"
+                },
+                {
+                    "name": "CommitIgnored",
+                    "value": "commit_ignored"
+                },
+                {
+                    "name": "CronJobRunEnded",
+                    "value": "cron_job_run_ended"
+                },
+                {
+                    "name": "CronJobRunStarted",
+                    "value": "cron_job_run_started"
+                },
+                {
+                    "name": "DeployEnded",
+                    "value": "deploy_ended"
+                },
+                {
+                    "name": "DeployStarted",
+                    "value": "deploy_started"
+                },
+                {
+                    "name": "DiskCreated",
+                    "value": "disk_created"
+                },
+                {
+                    "name": "DiskUpdated",
+                    "value": "disk_updated"
+                },
+                {
+                    "name": "DiskDeleted",
+                    "value": "disk_deleted"
+                },
+                {
+                    "name": "ImagePullFailed",
+                    "value": "image_pull_failed"
+                },
+                {
+                    "name": "InstanceCountChanged",
+                    "value": "instance_count_changed"
+                },
+                {
+                    "name": "JobRunEnded",
+                    "value": "job_run_ended"
+                },
+                {
+                    "name": "MaintenanceModeEnabled",
+                    "value": "maintenance_mode_enabled"
+                },
+                {
+                    "name": "MaintenanceModeUriUpdated",
+                    "value": "maintenance_mode_uri_updated"
+                },
+                {
+                    "name": "MaintenanceEnded",
+                    "value": "maintenance_ended"
+                },
+                {
+                    "name": "MaintenanceStarted",
+                    "value": "maintenance_started"
+                },
+                {
+                    "name": "PlanChanged",
+                    "value": "plan_changed"
+                },
+                {
+                    "name": "PreDeployEnded",
+                    "value": "pre_deploy_ended"
+                },
+                {
+                    "name": "PreDeployStarted",
+                    "value": "pre_deploy_started"
+                },
+                {
+                    "name": "ServerAvailable",
+                    "value": "server_available"
+                },
+                {
+                    "name": "ServerFailed",
+                    "value": "server_failed"
+                },
+                {
+                    "name": "ServerHardwareFailure",
+                    "value": "server_hardware_failure"
+                },
+                {
+                    "name": "ServerRestarted",
+                    "value": "server_restarted"
+                },
+                {
+                    "name": "ServerUnhealthy",
+                    "value": "server_unhealthy"
+                },
+                {
+                    "name": "ServiceResumed",
+                    "value": "service_resumed"
+                },
+                {
+                    "name": "ServiceSuspended",
+                    "value": "service_suspended"
+                },
+                {
+                    "name": "ZeroDowntimeRedeployEnded",
+                    "value": "zero_downtime_redeploy_ended"
+                },
+                {
+                    "name": "ZeroDowntimeRedeployStarted",
+                    "value": "zero_downtime_redeploy_started"
+                },
+                {
+                    "name": "PostgresAvailable",
+                    "value": "postgres_available"
+                },
+                {
+                    "name": "PostgresBackupCompleted",
+                    "value": "postgres_backup_completed"
+                },
+                {
+                    "name": "PostgresBackupStarted",
+                    "value": "postgres_backup_started"
+                },
+                {
+                    "name": "PostgresClusterLeaderChanged",
+                    "value": "postgres_cluster_leader_changed"
+                },
+                {
+                    "name": "PostgresCreated",
+                    "value": "postgres_created"
+                },
+                {
+                    "name": "PostgresDiskSizeChanged",
+                    "value": "postgres_disk_size_changed"
+                },
+                {
+                    "name": "PostgresHaStatusChanged",
+                    "value": "postgres_ha_status_changed"
+                },
+                {
+                    "name": "PostgresRestarted",
+                    "value": "postgres_restarted"
+                },
+                {
+                    "name": "PostgresUnavailable",
+                    "value": "postgres_unavailable"
+                },
+                {
+                    "name": "PostgresUpgradeFailed",
+                    "value": "postgres_upgrade_failed"
+                },
+                {
+                    "name": "PostgresUpgradeStarted",
+                    "value": "postgres_upgrade_started"
+                },
+                {
+                    "name": "PostgresUpgradeSucceeded",
+                    "value": "postgres_upgrade_succeeded"
+                },
+                {
+                    "name": "PostgresReadReplicasChanged",
+                    "value": "postgres_read_replicas_changed"
+                },
+                {
+                    "name": "KeyValueAvailable",
+                    "value": "key_value_available"
+                },
+                {
+                    "name": "KeyValueConfigRestart",
+                    "value": "key_value_config_restart"
+                },
+                {
+                    "name": "KeyValueUnhealthy",
+                    "value": "key_value_unhealthy"
+                }
+            ]
+        },
+        "render:webhooks:WebhookEventWithCursor": {
+            "properties": {
+                "cursor": {
+                    "type": "string"
+                },
+                "webhookEvent": {
+                    "$ref": "#/types/render:webhooks:WebhookEventWithCursorWebhookEventProperties"
+                }
+            },
+            "type": "object",
+            "required": [
+                "cursor",
+                "webhookEvent"
+            ]
+        },
+        "render:webhooks:WebhookEventWithCursorWebhookEventProperties": {
+            "properties": {
+                "error": {
+                    "type": "string",
+                    "description": "error is populated when an error occurs without a response such as a timeout"
+                },
+                "eventId": {
+                    "type": "string",
+                    "description": "the id of the event that triggered the webhook"
+                },
+                "eventType": {
+                    "$ref": "#/types/render:webhooks:WebhookEventWithCursorWebhookEventPropertiesEventType"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "the id of the webhook event"
+                },
+                "responseBody": {
+                    "type": "string"
+                },
+                "sentAt": {
+                    "type": "string"
+                },
+                "statusCode": {
+                    "type": "integer"
+                }
+            },
+            "type": "object",
+            "required": [
+                "eventId",
+                "eventType",
+                "id",
+                "sentAt"
+            ]
+        },
+        "render:webhooks:WebhookEventWithCursorWebhookEventPropertiesEventType": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "AutoscalingConfigChanged",
+                    "value": "autoscaling_config_changed"
+                },
+                {
+                    "name": "AutoscalingEnded",
+                    "value": "autoscaling_ended"
+                },
+                {
+                    "name": "AutoscalingStarted",
+                    "value": "autoscaling_started"
+                },
+                {
+                    "name": "BranchDeleted",
+                    "value": "branch_deleted"
+                },
+                {
+                    "name": "BuildEnded",
+                    "value": "build_ended"
+                },
+                {
+                    "name": "BuildStarted",
+                    "value": "build_started"
+                },
+                {
+                    "name": "CommitIgnored",
+                    "value": "commit_ignored"
+                },
+                {
+                    "name": "CronJobRunEnded",
+                    "value": "cron_job_run_ended"
+                },
+                {
+                    "name": "CronJobRunStarted",
+                    "value": "cron_job_run_started"
+                },
+                {
+                    "name": "DeployEnded",
+                    "value": "deploy_ended"
+                },
+                {
+                    "name": "DeployStarted",
+                    "value": "deploy_started"
+                },
+                {
+                    "name": "DiskCreated",
+                    "value": "disk_created"
+                },
+                {
+                    "name": "DiskUpdated",
+                    "value": "disk_updated"
+                },
+                {
+                    "name": "DiskDeleted",
+                    "value": "disk_deleted"
+                },
+                {
+                    "name": "ImagePullFailed",
+                    "value": "image_pull_failed"
+                },
+                {
+                    "name": "InstanceCountChanged",
+                    "value": "instance_count_changed"
+                },
+                {
+                    "name": "JobRunEnded",
+                    "value": "job_run_ended"
+                },
+                {
+                    "name": "MaintenanceModeEnabled",
+                    "value": "maintenance_mode_enabled"
+                },
+                {
+                    "name": "MaintenanceModeUriUpdated",
+                    "value": "maintenance_mode_uri_updated"
+                },
+                {
+                    "name": "MaintenanceEnded",
+                    "value": "maintenance_ended"
+                },
+                {
+                    "name": "MaintenanceStarted",
+                    "value": "maintenance_started"
+                },
+                {
+                    "name": "PlanChanged",
+                    "value": "plan_changed"
+                },
+                {
+                    "name": "PreDeployEnded",
+                    "value": "pre_deploy_ended"
+                },
+                {
+                    "name": "PreDeployStarted",
+                    "value": "pre_deploy_started"
+                },
+                {
+                    "name": "ServerAvailable",
+                    "value": "server_available"
+                },
+                {
+                    "name": "ServerFailed",
+                    "value": "server_failed"
+                },
+                {
+                    "name": "ServerHardwareFailure",
+                    "value": "server_hardware_failure"
+                },
+                {
+                    "name": "ServerRestarted",
+                    "value": "server_restarted"
+                },
+                {
+                    "name": "ServerUnhealthy",
+                    "value": "server_unhealthy"
+                },
+                {
+                    "name": "ServiceResumed",
+                    "value": "service_resumed"
+                },
+                {
+                    "name": "ServiceSuspended",
+                    "value": "service_suspended"
+                },
+                {
+                    "name": "ZeroDowntimeRedeployEnded",
+                    "value": "zero_downtime_redeploy_ended"
+                },
+                {
+                    "name": "ZeroDowntimeRedeployStarted",
+                    "value": "zero_downtime_redeploy_started"
+                },
+                {
+                    "name": "PostgresAvailable",
+                    "value": "postgres_available"
+                },
+                {
+                    "name": "PostgresBackupCompleted",
+                    "value": "postgres_backup_completed"
+                },
+                {
+                    "name": "PostgresBackupStarted",
+                    "value": "postgres_backup_started"
+                },
+                {
+                    "name": "PostgresClusterLeaderChanged",
+                    "value": "postgres_cluster_leader_changed"
+                },
+                {
+                    "name": "PostgresCreated",
+                    "value": "postgres_created"
+                },
+                {
+                    "name": "PostgresDiskSizeChanged",
+                    "value": "postgres_disk_size_changed"
+                },
+                {
+                    "name": "PostgresHaStatusChanged",
+                    "value": "postgres_ha_status_changed"
+                },
+                {
+                    "name": "PostgresRestarted",
+                    "value": "postgres_restarted"
+                },
+                {
+                    "name": "PostgresUnavailable",
+                    "value": "postgres_unavailable"
+                },
+                {
+                    "name": "PostgresUpgradeFailed",
+                    "value": "postgres_upgrade_failed"
+                },
+                {
+                    "name": "PostgresUpgradeStarted",
+                    "value": "postgres_upgrade_started"
+                },
+                {
+                    "name": "PostgresUpgradeSucceeded",
+                    "value": "postgres_upgrade_succeeded"
+                },
+                {
+                    "name": "PostgresReadReplicasChanged",
+                    "value": "postgres_read_replicas_changed"
+                },
+                {
+                    "name": "KeyValueAvailable",
+                    "value": "key_value_available"
+                },
+                {
+                    "name": "KeyValueConfigRestart",
+                    "value": "key_value_config_restart"
+                },
+                {
+                    "name": "KeyValueUnhealthy",
+                    "value": "key_value_unhealthy"
+                }
+            ]
+        },
+        "render:webhooks:WebhookWithCursor": {
+            "properties": {
+                "cursor": {
+                    "type": "string"
+                },
+                "webhook": {
+                    "$ref": "#/types/render:webhooks:WebhookWithCursorWebhookProperties"
+                }
+            },
+            "type": "object",
+            "required": [
+                "cursor",
+                "webhook"
+            ]
+        },
+        "render:webhooks:WebhookWithCursorWebhookProperties": {
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "eventFilter": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:webhooks:WebhookWithCursorWebhookPropertiesEventFilterItem"
+                    },
+                    "description": "The event types that will trigger the webhook. An empty list means all event types will trigger the webhook."
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "secret": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "enabled",
+                "eventFilter",
+                "id",
+                "name",
+                "secret",
+                "url"
+            ]
+        },
+        "render:webhooks:WebhookWithCursorWebhookPropertiesEventFilterItem": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "AutoscalingConfigChanged",
+                    "value": "autoscaling_config_changed"
+                },
+                {
+                    "name": "AutoscalingEnded",
+                    "value": "autoscaling_ended"
+                },
+                {
+                    "name": "AutoscalingStarted",
+                    "value": "autoscaling_started"
+                },
+                {
+                    "name": "BranchDeleted",
+                    "value": "branch_deleted"
+                },
+                {
+                    "name": "BuildEnded",
+                    "value": "build_ended"
+                },
+                {
+                    "name": "BuildStarted",
+                    "value": "build_started"
+                },
+                {
+                    "name": "CommitIgnored",
+                    "value": "commit_ignored"
+                },
+                {
+                    "name": "CronJobRunEnded",
+                    "value": "cron_job_run_ended"
+                },
+                {
+                    "name": "CronJobRunStarted",
+                    "value": "cron_job_run_started"
+                },
+                {
+                    "name": "DeployEnded",
+                    "value": "deploy_ended"
+                },
+                {
+                    "name": "DeployStarted",
+                    "value": "deploy_started"
+                },
+                {
+                    "name": "DiskCreated",
+                    "value": "disk_created"
+                },
+                {
+                    "name": "DiskUpdated",
+                    "value": "disk_updated"
+                },
+                {
+                    "name": "DiskDeleted",
+                    "value": "disk_deleted"
+                },
+                {
+                    "name": "ImagePullFailed",
+                    "value": "image_pull_failed"
+                },
+                {
+                    "name": "InstanceCountChanged",
+                    "value": "instance_count_changed"
+                },
+                {
+                    "name": "JobRunEnded",
+                    "value": "job_run_ended"
+                },
+                {
+                    "name": "MaintenanceModeEnabled",
+                    "value": "maintenance_mode_enabled"
+                },
+                {
+                    "name": "MaintenanceModeUriUpdated",
+                    "value": "maintenance_mode_uri_updated"
+                },
+                {
+                    "name": "MaintenanceEnded",
+                    "value": "maintenance_ended"
+                },
+                {
+                    "name": "MaintenanceStarted",
+                    "value": "maintenance_started"
+                },
+                {
+                    "name": "PlanChanged",
+                    "value": "plan_changed"
+                },
+                {
+                    "name": "PreDeployEnded",
+                    "value": "pre_deploy_ended"
+                },
+                {
+                    "name": "PreDeployStarted",
+                    "value": "pre_deploy_started"
+                },
+                {
+                    "name": "ServerAvailable",
+                    "value": "server_available"
+                },
+                {
+                    "name": "ServerFailed",
+                    "value": "server_failed"
+                },
+                {
+                    "name": "ServerHardwareFailure",
+                    "value": "server_hardware_failure"
+                },
+                {
+                    "name": "ServerRestarted",
+                    "value": "server_restarted"
+                },
+                {
+                    "name": "ServerUnhealthy",
+                    "value": "server_unhealthy"
+                },
+                {
+                    "name": "ServiceResumed",
+                    "value": "service_resumed"
+                },
+                {
+                    "name": "ServiceSuspended",
+                    "value": "service_suspended"
+                },
+                {
+                    "name": "ZeroDowntimeRedeployEnded",
+                    "value": "zero_downtime_redeploy_ended"
+                },
+                {
+                    "name": "ZeroDowntimeRedeployStarted",
+                    "value": "zero_downtime_redeploy_started"
+                },
+                {
+                    "name": "PostgresAvailable",
+                    "value": "postgres_available"
+                },
+                {
+                    "name": "PostgresBackupCompleted",
+                    "value": "postgres_backup_completed"
+                },
+                {
+                    "name": "PostgresBackupStarted",
+                    "value": "postgres_backup_started"
+                },
+                {
+                    "name": "PostgresClusterLeaderChanged",
+                    "value": "postgres_cluster_leader_changed"
+                },
+                {
+                    "name": "PostgresCreated",
+                    "value": "postgres_created"
+                },
+                {
+                    "name": "PostgresDiskSizeChanged",
+                    "value": "postgres_disk_size_changed"
+                },
+                {
+                    "name": "PostgresHaStatusChanged",
+                    "value": "postgres_ha_status_changed"
+                },
+                {
+                    "name": "PostgresRestarted",
+                    "value": "postgres_restarted"
+                },
+                {
+                    "name": "PostgresUnavailable",
+                    "value": "postgres_unavailable"
+                },
+                {
+                    "name": "PostgresUpgradeFailed",
+                    "value": "postgres_upgrade_failed"
+                },
+                {
+                    "name": "PostgresUpgradeStarted",
+                    "value": "postgres_upgrade_started"
+                },
+                {
+                    "name": "PostgresUpgradeSucceeded",
+                    "value": "postgres_upgrade_succeeded"
+                },
+                {
+                    "name": "PostgresReadReplicasChanged",
+                    "value": "postgres_read_replicas_changed"
+                },
+                {
+                    "name": "KeyValueAvailable",
+                    "value": "key_value_available"
+                },
+                {
+                    "name": "KeyValueConfigRestart",
+                    "value": "key_value_config_restart"
+                },
+                {
+                    "name": "KeyValueUnhealthy",
+                    "value": "key_value_unhealthy"
+                }
+            ]
+        },
+        "render:webhooks:WebhookWithCursorpropertieswebhook": {
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "eventFilter": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:webhooks:WebhookWithCursorpropertieswebhookEventFilterItem"
+                    },
+                    "description": "The event types that will trigger the webhook. An empty list means all event types will trigger the webhook."
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "secret": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "enabled",
+                "eventFilter",
+                "id",
+                "name",
+                "secret",
+                "url"
+            ]
+        },
+        "render:webhooks:WebhookWithCursorpropertieswebhookEventFilterItem": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "AutoscalingConfigChanged",
+                    "value": "autoscaling_config_changed"
+                },
+                {
+                    "name": "AutoscalingEnded",
+                    "value": "autoscaling_ended"
+                },
+                {
+                    "name": "AutoscalingStarted",
+                    "value": "autoscaling_started"
+                },
+                {
+                    "name": "BranchDeleted",
+                    "value": "branch_deleted"
+                },
+                {
+                    "name": "BuildEnded",
+                    "value": "build_ended"
+                },
+                {
+                    "name": "BuildStarted",
+                    "value": "build_started"
+                },
+                {
+                    "name": "CommitIgnored",
+                    "value": "commit_ignored"
+                },
+                {
+                    "name": "CronJobRunEnded",
+                    "value": "cron_job_run_ended"
+                },
+                {
+                    "name": "CronJobRunStarted",
+                    "value": "cron_job_run_started"
+                },
+                {
+                    "name": "DeployEnded",
+                    "value": "deploy_ended"
+                },
+                {
+                    "name": "DeployStarted",
+                    "value": "deploy_started"
+                },
+                {
+                    "name": "DiskCreated",
+                    "value": "disk_created"
+                },
+                {
+                    "name": "DiskUpdated",
+                    "value": "disk_updated"
+                },
+                {
+                    "name": "DiskDeleted",
+                    "value": "disk_deleted"
+                },
+                {
+                    "name": "ImagePullFailed",
+                    "value": "image_pull_failed"
+                },
+                {
+                    "name": "InstanceCountChanged",
+                    "value": "instance_count_changed"
+                },
+                {
+                    "name": "JobRunEnded",
+                    "value": "job_run_ended"
+                },
+                {
+                    "name": "MaintenanceModeEnabled",
+                    "value": "maintenance_mode_enabled"
+                },
+                {
+                    "name": "MaintenanceModeUriUpdated",
+                    "value": "maintenance_mode_uri_updated"
+                },
+                {
+                    "name": "MaintenanceEnded",
+                    "value": "maintenance_ended"
+                },
+                {
+                    "name": "MaintenanceStarted",
+                    "value": "maintenance_started"
+                },
+                {
+                    "name": "PlanChanged",
+                    "value": "plan_changed"
+                },
+                {
+                    "name": "PreDeployEnded",
+                    "value": "pre_deploy_ended"
+                },
+                {
+                    "name": "PreDeployStarted",
+                    "value": "pre_deploy_started"
+                },
+                {
+                    "name": "ServerAvailable",
+                    "value": "server_available"
+                },
+                {
+                    "name": "ServerFailed",
+                    "value": "server_failed"
+                },
+                {
+                    "name": "ServerHardwareFailure",
+                    "value": "server_hardware_failure"
+                },
+                {
+                    "name": "ServerRestarted",
+                    "value": "server_restarted"
+                },
+                {
+                    "name": "ServerUnhealthy",
+                    "value": "server_unhealthy"
+                },
+                {
+                    "name": "ServiceResumed",
+                    "value": "service_resumed"
+                },
+                {
+                    "name": "ServiceSuspended",
+                    "value": "service_suspended"
+                },
+                {
+                    "name": "ZeroDowntimeRedeployEnded",
+                    "value": "zero_downtime_redeploy_ended"
+                },
+                {
+                    "name": "ZeroDowntimeRedeployStarted",
+                    "value": "zero_downtime_redeploy_started"
+                },
+                {
+                    "name": "PostgresAvailable",
+                    "value": "postgres_available"
+                },
+                {
+                    "name": "PostgresBackupCompleted",
+                    "value": "postgres_backup_completed"
+                },
+                {
+                    "name": "PostgresBackupStarted",
+                    "value": "postgres_backup_started"
+                },
+                {
+                    "name": "PostgresClusterLeaderChanged",
+                    "value": "postgres_cluster_leader_changed"
+                },
+                {
+                    "name": "PostgresCreated",
+                    "value": "postgres_created"
+                },
+                {
+                    "name": "PostgresDiskSizeChanged",
+                    "value": "postgres_disk_size_changed"
+                },
+                {
+                    "name": "PostgresHaStatusChanged",
+                    "value": "postgres_ha_status_changed"
+                },
+                {
+                    "name": "PostgresRestarted",
+                    "value": "postgres_restarted"
+                },
+                {
+                    "name": "PostgresUnavailable",
+                    "value": "postgres_unavailable"
+                },
+                {
+                    "name": "PostgresUpgradeFailed",
+                    "value": "postgres_upgrade_failed"
+                },
+                {
+                    "name": "PostgresUpgradeStarted",
+                    "value": "postgres_upgrade_started"
+                },
+                {
+                    "name": "PostgresUpgradeSucceeded",
+                    "value": "postgres_upgrade_succeeded"
+                },
+                {
+                    "name": "PostgresReadReplicasChanged",
+                    "value": "postgres_read_replicas_changed"
+                },
+                {
+                    "name": "KeyValueAvailable",
+                    "value": "key_value_available"
+                },
+                {
+                    "name": "KeyValueConfigRestart",
+                    "value": "key_value_config_restart"
+                },
+                {
+                    "name": "KeyValueUnhealthy",
+                    "value": "key_value_unhealthy"
+                }
+            ]
         }
     },
     "provider": {
@@ -7827,7 +9437,7 @@
                 "serviceLinks": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/render:env-groups:ServiceLink"
+                        "$ref": "#/types/render:env-groups:EnvGroupLink"
                     },
                     "description": "List of serviceIds linked to the envGroup"
                 },
@@ -7904,7 +9514,7 @@
                 "serviceLinks": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/render:env-groups:ServiceLink"
+                        "$ref": "#/types/render:env-groups:EnvGroupLink"
                     },
                     "description": "List of serviceIds linked to the envGroup"
                 },
@@ -7941,6 +9551,10 @@
                 "name": {
                     "type": "string"
                 },
+                "networkIsolationEnabled": {
+                    "type": "boolean",
+                    "description": "Indicates whether network connections across environments are allowed."
+                },
                 "projectId": {
                     "type": "string"
                 },
@@ -7966,6 +9580,7 @@
                 "databasesIds",
                 "envGroupIds",
                 "name",
+                "networkIsolationEnabled",
                 "projectId",
                 "protectedStatus",
                 "redisIds",
@@ -7974,6 +9589,10 @@
             "inputProperties": {
                 "name": {
                     "type": "string"
+                },
+                "networkIsolationEnabled": {
+                    "type": "boolean",
+                    "description": "Indicates whether network connections across environments are allowed."
                 },
                 "projectId": {
                     "type": "string"
@@ -8004,6 +9623,10 @@
                 "name": {
                     "type": "string"
                 },
+                "networkIsolationEnabled": {
+                    "type": "boolean",
+                    "description": "Indicates whether network connections across environments are allowed."
+                },
                 "projectId": {
                     "type": "string"
                 },
@@ -8035,6 +9658,7 @@
                 "databasesIds",
                 "envGroupIds",
                 "name",
+                "networkIsolationEnabled",
                 "projectId",
                 "protectedStatus",
                 "redisIds",
@@ -8056,6 +9680,115 @@
                 "resourceIds"
             ]
         },
+        "render:key-value:KeyValue": {
+            "description": "Input type for creating a Key Value instance",
+            "properties": {
+                "createdAt": {
+                    "type": "string",
+                    "description": "The creation time of the Key Value instance"
+                },
+                "environmentId": {
+                    "type": "string",
+                    "description": "The ID of the environment the Key Value instance is associated with"
+                },
+                "ipAllowList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:key-value:CidrBlockAndDescription"
+                    },
+                    "description": "The IP allow list for the Key Value instance"
+                },
+                "maintenance": {
+                    "$ref": "#/types/render:key-value:RedisDetailpropertiesmaintenance"
+                },
+                "maxmemoryPolicy": {
+                    "$ref": "#/types/render:key-value:MaxmemoryPolicy",
+                    "description": "The eviction policy for the Key Value instance"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the Key Value instance"
+                },
+                "options": {
+                    "$ref": "#/types/render:key-value:KeyValueOptions",
+                    "description": "Options for a Key Value instance"
+                },
+                "owner": {
+                    "$ref": "#/types/render:key-value:Owner"
+                },
+                "ownerId": {
+                    "type": "string",
+                    "description": "The ID of the owner of the Key Value instance"
+                },
+                "plan": {
+                    "$ref": "#/types/render:key-value:Plan"
+                },
+                "region": {
+                    "$ref": "#/types/render:key-value:Region",
+                    "description": "Defaults to \"oregon\"",
+                    "default": "oregon"
+                },
+                "status": {
+                    "$ref": "#/types/render:key-value:Status"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "The last updated time of the Key Value instance"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "The version of Key Value"
+                }
+            },
+            "type": "object",
+            "required": [
+                "createdAt",
+                "ipAllowList",
+                "name",
+                "options",
+                "owner",
+                "ownerId",
+                "plan",
+                "region",
+                "status",
+                "updatedAt",
+                "version"
+            ],
+            "inputProperties": {
+                "environmentId": {
+                    "type": "string"
+                },
+                "ipAllowList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:key-value:CidrBlockAndDescription"
+                    }
+                },
+                "maxmemoryPolicy": {
+                    "$ref": "#/types/render:key-value:MaxmemoryPolicy",
+                    "description": "The eviction policy for the Key Value instance"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the Key Value instance"
+                },
+                "ownerId": {
+                    "type": "string",
+                    "description": "The ID of the owner of the Key Value instance"
+                },
+                "plan": {
+                    "$ref": "#/types/render:key-value:Plan"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region where the Key Value instance is located"
+                }
+            },
+            "requiredInputs": [
+                "ownerId",
+                "plan"
+            ]
+        },
         "render:postgres:FailoverPostgres": {
             "type": "object",
             "inputProperties": {
@@ -8072,7 +9805,7 @@
                 },
                 "dashboardUrl": {
                     "type": "string",
-                    "description": "The URL to view the PostgreSQL instance in the Render Dashboard"
+                    "description": "The URL to view the Postgres instance in the Render Dashboard"
                 },
                 "databaseName": {
                     "type": "string"
@@ -8240,7 +9973,7 @@
                 "version"
             ]
         },
-        "render:postgres:PostgresBackup": {
+        "render:postgres:PostgresExport": {
             "type": "object",
             "inputProperties": {
                 "postgresId": {
@@ -8255,7 +9988,7 @@
                 },
                 "dashboardUrl": {
                     "type": "string",
-                    "description": "The URL to view the PostgreSQL instance in the Render Dashboard"
+                    "description": "The URL to view the Postgres instance in the Render Dashboard"
                 },
                 "databaseName": {
                     "type": "string"
@@ -8506,7 +10239,7 @@
                 },
                 "maxmemoryPolicy": {
                     "$ref": "#/types/render:redis:MaxmemoryPolicy",
-                    "description": "The eviction policy for the Redis instance"
+                    "description": "The eviction policy for the Key Value instance"
                 },
                 "name": {
                     "type": "string",
@@ -8569,7 +10302,7 @@
                 },
                 "maxmemoryPolicy": {
                     "$ref": "#/types/render:redis:MaxmemoryPolicy",
-                    "description": "The eviction policy for the Redis instance"
+                    "description": "The eviction policy for the Key Value instance"
                 },
                 "name": {
                     "type": "string",
@@ -9873,6 +11606,70 @@
                 "name",
                 "ownerId"
             ]
+        },
+        "render:webhooks:Webhook": {
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "eventFilter": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:webhooks:EventFilterItem"
+                    },
+                    "description": "The event types that will trigger the webhook. An empty list means all event types will trigger the webhook."
+                },
+                "name": {
+                    "type": "string"
+                },
+                "ownerId": {
+                    "type": "string",
+                    "description": "The ID of the owner (team or personal user) whose resources should be returned"
+                },
+                "secret": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "enabled",
+                "eventFilter",
+                "name",
+                "ownerId",
+                "secret",
+                "url"
+            ],
+            "inputProperties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "eventFilter": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:webhooks:EventFilterItem"
+                    },
+                    "description": "The event types that will trigger the webhook. An empty list means all event types will trigger the webhook."
+                },
+                "name": {
+                    "type": "string"
+                },
+                "ownerId": {
+                    "type": "string",
+                    "description": "The ID of the owner (team or personal user) whose resources should be returned"
+                },
+                "url": {
+                    "type": "string"
+                }
+            },
+            "requiredInputs": [
+                "enabled",
+                "eventFilter",
+                "ownerId",
+                "url"
+            ]
         }
     },
     "functions": {
@@ -10062,6 +11859,52 @@
                     "items": {
                         "items": {
                             "$ref": "#/types/render:environments:EnvironmentWithCursor"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "items"
+                ]
+            }
+        },
+        "render:key-value:getKeyValue": {
+            "inputs": {
+                "properties": {
+                    "keyValueId": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "keyValueId"
+                ]
+            },
+            "outputs": {
+                "$ref": "#/types/render:key-value:KeyValueDetail"
+            }
+        },
+        "render:key-value:getKeyValueConnectionInfo": {
+            "inputs": {
+                "properties": {
+                    "keyValueId": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "keyValueId"
+                ]
+            },
+            "outputs": {
+                "$ref": "#/types/render:key-value:KeyValueConnectionInfo"
+            }
+        },
+        "render:key-value:listKeyValue": {
+            "inputs": {},
+            "outputs": {
+                "properties": {
+                    "items": {
+                        "items": {
+                            "$ref": "#/types/render:key-value:KeyValueWithCursor"
                         },
                         "type": "array"
                     }
@@ -10292,7 +12135,7 @@
                 ]
             }
         },
-        "render:postgres:listPostgresBackup": {
+        "render:postgres:listPostgresExport": {
             "inputs": {
                 "properties": {
                     "postgresId": {
@@ -10307,7 +12150,7 @@
                 "properties": {
                     "items": {
                         "items": {
-                            "$ref": "#/types/render:postgres:ListPostgresBackupItemProperties"
+                            "$ref": "#/types/render:postgres:ListPostgresExportItemProperties"
                         },
                         "type": "array"
                     }
@@ -10813,6 +12656,64 @@
             "inputs": {},
             "outputs": {
                 "$ref": "#/types/render:users:User"
+            }
+        },
+        "render:webhooks:getWebhook": {
+            "inputs": {
+                "properties": {
+                    "webhookId": {
+                        "type": "string",
+                        "description": "Unique identifier for the webhook"
+                    }
+                },
+                "required": [
+                    "webhookId"
+                ]
+            },
+            "outputs": {
+                "$ref": "#/types/render:webhooks:WebhookWithCursorpropertieswebhook"
+            }
+        },
+        "render:webhooks:listWebhookEvents": {
+            "inputs": {
+                "properties": {
+                    "webhookId": {
+                        "type": "string",
+                        "description": "Unique identifier for the webhook"
+                    }
+                },
+                "required": [
+                    "webhookId"
+                ]
+            },
+            "outputs": {
+                "properties": {
+                    "items": {
+                        "items": {
+                            "$ref": "#/types/render:webhooks:WebhookEventWithCursor"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "items"
+                ]
+            }
+        },
+        "render:webhooks:listWebhooks": {
+            "inputs": {},
+            "outputs": {
+                "properties": {
+                    "items": {
+                        "items": {
+                            "$ref": "#/types/render:webhooks:WebhookWithCursor"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "items"
+                ]
             }
         }
     }

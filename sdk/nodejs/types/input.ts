@@ -25,10 +25,20 @@ export namespace envgroups {
         content: pulumi.Input<string>;
         name: pulumi.Input<string>;
     }
-
 }
 
 export namespace environments {
+}
+
+export namespace keyvalue {
+    export interface CidrBlockAndDescriptionArgs {
+        cidrBlock: pulumi.Input<string>;
+        /**
+         * User-provided description of the CIDR block
+         */
+        description: pulumi.Input<string>;
+    }
+
 }
 
 export namespace logs {
@@ -64,6 +74,10 @@ export namespace postgres {
 export namespace projects {
     export interface ProjectCreateEnvironmentInputArgs {
         name: pulumi.Input<string>;
+        /**
+         * Indicates whether network connections across environments are allowed.
+         */
+        networkIsolationEnabled?: pulumi.Input<boolean>;
         /**
          * Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
          */
@@ -538,4 +552,7 @@ export namespace services {
 }
 
 export namespace users {
+}
+
+export namespace webhooks {
 }

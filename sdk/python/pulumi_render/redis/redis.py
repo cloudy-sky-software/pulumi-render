@@ -32,7 +32,7 @@ class RedisArgs:
         """
         The set of arguments for constructing a Redis resource.
         :param pulumi.Input[str] owner_id: The ID of the owner of the Redis instance
-        :param pulumi.Input['MaxmemoryPolicy'] maxmemory_policy: The eviction policy for the Redis instance
+        :param pulumi.Input['MaxmemoryPolicy'] maxmemory_policy: The eviction policy for the Key Value instance
         :param pulumi.Input[str] name: The name of the Redis instance
         :param pulumi.Input[str] region: The region where the Redis instance is located
         """
@@ -92,7 +92,7 @@ class RedisArgs:
     @pulumi.getter(name="maxmemoryPolicy")
     def maxmemory_policy(self) -> Optional[pulumi.Input['MaxmemoryPolicy']]:
         """
-        The eviction policy for the Redis instance
+        The eviction policy for the Key Value instance
         """
         return pulumi.get(self, "maxmemory_policy")
 
@@ -143,7 +143,7 @@ class Redis(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input['MaxmemoryPolicy'] maxmemory_policy: The eviction policy for the Redis instance
+        :param pulumi.Input['MaxmemoryPolicy'] maxmemory_policy: The eviction policy for the Key Value instance
         :param pulumi.Input[str] name: The name of the Redis instance
         :param pulumi.Input[str] owner_id: The ID of the owner of the Redis instance
         :param pulumi.Input[str] region: The region where the Redis instance is located
@@ -277,7 +277,7 @@ class Redis(pulumi.CustomResource):
     @pulumi.getter(name="maxmemoryPolicy")
     def maxmemory_policy(self) -> pulumi.Output[Optional['MaxmemoryPolicy']]:
         """
-        The eviction policy for the Redis instance
+        The eviction policy for the Key Value instance
         """
         return pulumi.get(self, "maxmemory_policy")
 

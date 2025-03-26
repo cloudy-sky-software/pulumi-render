@@ -11,17 +11,17 @@ namespace Pulumi.Render.Postgres.Outputs
 {
 
     [OutputType]
-    public sealed class ListPostgresBackupItemProperties
+    public sealed class ListPostgresExportItemProperties
     {
         public readonly string CreatedAt;
         public readonly string Id;
         /// <summary>
-        /// URL to download the Postgres backup
+        /// URL to download the Postgres export
         /// </summary>
         public readonly string? Url;
 
         [OutputConstructor]
-        private ListPostgresBackupItemProperties(
+        private ListPostgresExportItemProperties(
             string createdAt,
 
             string id,

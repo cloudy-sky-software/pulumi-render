@@ -18,7 +18,9 @@ type Environment struct {
 	DatabasesIds pulumi.StringArrayOutput `pulumi:"databasesIds"`
 	EnvGroupIds  pulumi.StringArrayOutput `pulumi:"envGroupIds"`
 	Name         pulumi.StringOutput      `pulumi:"name"`
-	ProjectId    pulumi.StringOutput      `pulumi:"projectId"`
+	// Indicates whether network connections across environments are allowed.
+	NetworkIsolationEnabled pulumi.BoolOutput   `pulumi:"networkIsolationEnabled"`
+	ProjectId               pulumi.StringOutput `pulumi:"projectId"`
 	// Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
 	ProtectedStatus ProtectedStatusOutput    `pulumi:"protectedStatus"`
 	RedisIds        pulumi.StringArrayOutput `pulumi:"redisIds"`
@@ -68,16 +70,20 @@ func (EnvironmentState) ElementType() reflect.Type {
 }
 
 type environmentArgs struct {
-	Name      *string `pulumi:"name"`
-	ProjectId string  `pulumi:"projectId"`
+	Name *string `pulumi:"name"`
+	// Indicates whether network connections across environments are allowed.
+	NetworkIsolationEnabled *bool  `pulumi:"networkIsolationEnabled"`
+	ProjectId               string `pulumi:"projectId"`
 	// Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
 	ProtectedStatus *ProtectedStatus `pulumi:"protectedStatus"`
 }
 
 // The set of arguments for constructing a Environment resource.
 type EnvironmentArgs struct {
-	Name      pulumi.StringPtrInput
-	ProjectId pulumi.StringInput
+	Name pulumi.StringPtrInput
+	// Indicates whether network connections across environments are allowed.
+	NetworkIsolationEnabled pulumi.BoolPtrInput
+	ProjectId               pulumi.StringInput
 	// Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
 	ProtectedStatus ProtectedStatusPtrInput
 }
@@ -129,6 +135,11 @@ func (o EnvironmentOutput) EnvGroupIds() pulumi.StringArrayOutput {
 
 func (o EnvironmentOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Environment) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Indicates whether network connections across environments are allowed.
+func (o EnvironmentOutput) NetworkIsolationEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Environment) pulumi.BoolOutput { return v.NetworkIsolationEnabled }).(pulumi.BoolOutput)
 }
 
 func (o EnvironmentOutput) ProjectId() pulumi.StringOutput {

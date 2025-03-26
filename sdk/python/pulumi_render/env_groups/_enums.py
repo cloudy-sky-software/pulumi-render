@@ -5,11 +5,11 @@
 from enum import Enum
 
 __all__ = [
-    'ServiceLinkType',
+    'EnvGroupLinkType',
 ]
 
 
-class ServiceLinkType(str, Enum):
+class EnvGroupLinkType(str, Enum):
     STATIC = "static"
     WEB = "web"
     PSERV = "pserv"

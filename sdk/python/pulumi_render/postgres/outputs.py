@@ -18,7 +18,7 @@ from ._enums import *
 
 __all__ = [
     'CidrBlockAndDescription',
-    'ListPostgresBackupItemProperties',
+    'ListPostgresExportItemProperties',
     'Owner',
     'Postgres',
     'PostgresWithCursor',
@@ -69,13 +69,13 @@ class CidrBlockAndDescription(dict):
 
 
 @pulumi.output_type
-class ListPostgresBackupItemProperties(dict):
+class ListPostgresExportItemProperties(dict):
     def __init__(__self__, *,
                  created_at: str,
                  id: str,
                  url: Optional[str] = None):
         """
-        :param str url: URL to download the Postgres backup
+        :param str url: URL to download the Postgres export
         """
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "id", id)
@@ -96,7 +96,7 @@ class ListPostgresBackupItemProperties(dict):
     @pulumi.getter
     def url(self) -> Optional[str]:
         """
-        URL to download the Postgres backup
+        URL to download the Postgres export
         """
         return pulumi.get(self, "url")
 
@@ -191,7 +191,7 @@ class Postgres(dict):
                  expires_at: Optional[str] = None,
                  primary_postgres_id: Optional[str] = None):
         """
-        :param str dashboard_url: The URL to view the PostgreSQL instance in the Render Dashboard
+        :param str dashboard_url: The URL to view the Postgres instance in the Render Dashboard
         :param 'PostgresRegion' region: Defaults to "oregon"
         :param 'PostgresVersion' version: The PostgreSQL version
         :param str expires_at: The time at which the database will be expire. Applies to free tier databases only.
@@ -234,7 +234,7 @@ class Postgres(dict):
     @pulumi.getter(name="dashboardUrl")
     def dashboard_url(self) -> str:
         """
-        The URL to view the PostgreSQL instance in the Render Dashboard
+        The URL to view the Postgres instance in the Render Dashboard
         """
         return pulumi.get(self, "dashboard_url")
 

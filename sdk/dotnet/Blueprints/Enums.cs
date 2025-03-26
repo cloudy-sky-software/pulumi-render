@@ -57,6 +57,7 @@ namespace Pulumi.Render.Blueprints
         public static GetBlueprintPropertiesResourcesItemPropertiesType BackgroundWorker { get; } = new GetBlueprintPropertiesResourcesItemPropertiesType("background_worker");
         public static GetBlueprintPropertiesResourcesItemPropertiesType CronJob { get; } = new GetBlueprintPropertiesResourcesItemPropertiesType("cron_job");
         public static GetBlueprintPropertiesResourcesItemPropertiesType Redis { get; } = new GetBlueprintPropertiesResourcesItemPropertiesType("redis");
+        public static GetBlueprintPropertiesResourcesItemPropertiesType KeyValue { get; } = new GetBlueprintPropertiesResourcesItemPropertiesType("key_value");
         public static GetBlueprintPropertiesResourcesItemPropertiesType Postgres { get; } = new GetBlueprintPropertiesResourcesItemPropertiesType("postgres");
         public static GetBlueprintPropertiesResourcesItemPropertiesType EnvironmentGroup { get; } = new GetBlueprintPropertiesResourcesItemPropertiesType("environment_group");
 

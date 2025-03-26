@@ -91,7 +91,7 @@ class EnvGroup:
 
     @property
     @pulumi.getter(name="serviceLinks")
-    def service_links(self) -> Sequence['outputs.ServiceLink']:
+    def service_links(self) -> Sequence['outputs.EnvGroupLink']:
         """
         List of serviceIds linked to the envGroup
         """

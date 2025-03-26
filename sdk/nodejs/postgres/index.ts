@@ -30,20 +30,20 @@ export const listPostgres: typeof import("./listPostgres").listPostgres = null a
 export const listPostgresOutput: typeof import("./listPostgres").listPostgresOutput = null as any;
 utilities.lazyLoad(exports, ["listPostgres","listPostgresOutput"], () => require("./listPostgres"));
 
-export { ListPostgresBackupArgs, ListPostgresBackupResult, ListPostgresBackupOutputArgs } from "./listPostgresBackup";
-export const listPostgresBackup: typeof import("./listPostgresBackup").listPostgresBackup = null as any;
-export const listPostgresBackupOutput: typeof import("./listPostgresBackup").listPostgresBackupOutput = null as any;
-utilities.lazyLoad(exports, ["listPostgresBackup","listPostgresBackupOutput"], () => require("./listPostgresBackup"));
+export { ListPostgresExportArgs, ListPostgresExportResult, ListPostgresExportOutputArgs } from "./listPostgresExport";
+export const listPostgresExport: typeof import("./listPostgresExport").listPostgresExport = null as any;
+export const listPostgresExportOutput: typeof import("./listPostgresExport").listPostgresExportOutput = null as any;
+utilities.lazyLoad(exports, ["listPostgresExport","listPostgresExportOutput"], () => require("./listPostgresExport"));
 
 export { PostgresArgs } from "./postgres";
 export type Postgres = import("./postgres").Postgres;
 export const Postgres: typeof import("./postgres").Postgres = null as any;
 utilities.lazyLoad(exports, ["Postgres"], () => require("./postgres"));
 
-export { PostgresBackupArgs } from "./postgresBackup";
-export type PostgresBackup = import("./postgresBackup").PostgresBackup;
-export const PostgresBackup: typeof import("./postgresBackup").PostgresBackup = null as any;
-utilities.lazyLoad(exports, ["PostgresBackup"], () => require("./postgresBackup"));
+export { PostgresExportArgs } from "./postgresExport";
+export type PostgresExport = import("./postgresExport").PostgresExport;
+export const PostgresExport: typeof import("./postgresExport").PostgresExport = null as any;
+utilities.lazyLoad(exports, ["PostgresExport"], () => require("./postgresExport"));
 
 export { RecoverPostgresArgs } from "./recoverPostgres";
 export type RecoverPostgres = import("./recoverPostgres").RecoverPostgres;
@@ -77,8 +77,8 @@ const _module = {
                 return new FailoverPostgres(name, <any>undefined, { urn })
             case "render:postgres:Postgres":
                 return new Postgres(name, <any>undefined, { urn })
-            case "render:postgres:PostgresBackup":
-                return new PostgresBackup(name, <any>undefined, { urn })
+            case "render:postgres:PostgresExport":
+                return new PostgresExport(name, <any>undefined, { urn })
             case "render:postgres:RecoverPostgres":
                 return new RecoverPostgres(name, <any>undefined, { urn })
             case "render:postgres:RestartPostgres":

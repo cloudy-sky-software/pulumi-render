@@ -35,8 +35,8 @@ type LookupEnvGroupResult struct {
 	OwnerId       string       `pulumi:"ownerId"`
 	SecretFiles   []SecretFile `pulumi:"secretFiles"`
 	// List of serviceIds linked to the envGroup
-	ServiceLinks []ServiceLink `pulumi:"serviceLinks"`
-	UpdatedAt    string        `pulumi:"updatedAt"`
+	ServiceLinks []EnvGroupLink `pulumi:"serviceLinks"`
+	UpdatedAt    string         `pulumi:"updatedAt"`
 }
 
 func LookupEnvGroupOutput(ctx *pulumi.Context, args LookupEnvGroupOutputArgs, opts ...pulumi.InvokeOption) LookupEnvGroupResultOutput {
@@ -100,8 +100,8 @@ func (o LookupEnvGroupResultOutput) SecretFiles() SecretFileArrayOutput {
 }
 
 // List of serviceIds linked to the envGroup
-func (o LookupEnvGroupResultOutput) ServiceLinks() ServiceLinkArrayOutput {
-	return o.ApplyT(func(v LookupEnvGroupResult) []ServiceLink { return v.ServiceLinks }).(ServiceLinkArrayOutput)
+func (o LookupEnvGroupResultOutput) ServiceLinks() EnvGroupLinkArrayOutput {
+	return o.ApplyT(func(v LookupEnvGroupResult) []EnvGroupLink { return v.ServiceLinks }).(EnvGroupLinkArrayOutput)
 }
 
 func (o LookupEnvGroupResultOutput) UpdatedAt() pulumi.StringOutput {

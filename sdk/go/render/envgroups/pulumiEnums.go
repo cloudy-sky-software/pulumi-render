@@ -10,91 +10,91 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-type ServiceLinkType string
+type EnvGroupLinkType string
 
 const (
-	ServiceLinkTypeStatic = ServiceLinkType("static")
-	ServiceLinkTypeWeb    = ServiceLinkType("web")
-	ServiceLinkTypePserv  = ServiceLinkType("pserv")
-	ServiceLinkTypeWorker = ServiceLinkType("worker")
-	ServiceLinkTypeCron   = ServiceLinkType("cron")
+	EnvGroupLinkTypeStatic = EnvGroupLinkType("static")
+	EnvGroupLinkTypeWeb    = EnvGroupLinkType("web")
+	EnvGroupLinkTypePserv  = EnvGroupLinkType("pserv")
+	EnvGroupLinkTypeWorker = EnvGroupLinkType("worker")
+	EnvGroupLinkTypeCron   = EnvGroupLinkType("cron")
 )
 
-type ServiceLinkTypeOutput struct{ *pulumi.OutputState }
+type EnvGroupLinkTypeOutput struct{ *pulumi.OutputState }
 
-func (ServiceLinkTypeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceLinkType)(nil)).Elem()
+func (EnvGroupLinkTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvGroupLinkType)(nil)).Elem()
 }
 
-func (o ServiceLinkTypeOutput) ToServiceLinkTypeOutput() ServiceLinkTypeOutput {
+func (o EnvGroupLinkTypeOutput) ToEnvGroupLinkTypeOutput() EnvGroupLinkTypeOutput {
 	return o
 }
 
-func (o ServiceLinkTypeOutput) ToServiceLinkTypeOutputWithContext(ctx context.Context) ServiceLinkTypeOutput {
+func (o EnvGroupLinkTypeOutput) ToEnvGroupLinkTypeOutputWithContext(ctx context.Context) EnvGroupLinkTypeOutput {
 	return o
 }
 
-func (o ServiceLinkTypeOutput) ToServiceLinkTypePtrOutput() ServiceLinkTypePtrOutput {
-	return o.ToServiceLinkTypePtrOutputWithContext(context.Background())
+func (o EnvGroupLinkTypeOutput) ToEnvGroupLinkTypePtrOutput() EnvGroupLinkTypePtrOutput {
+	return o.ToEnvGroupLinkTypePtrOutputWithContext(context.Background())
 }
 
-func (o ServiceLinkTypeOutput) ToServiceLinkTypePtrOutputWithContext(ctx context.Context) ServiceLinkTypePtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v ServiceLinkType) *ServiceLinkType {
+func (o EnvGroupLinkTypeOutput) ToEnvGroupLinkTypePtrOutputWithContext(ctx context.Context) EnvGroupLinkTypePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EnvGroupLinkType) *EnvGroupLinkType {
 		return &v
-	}).(ServiceLinkTypePtrOutput)
+	}).(EnvGroupLinkTypePtrOutput)
 }
 
-func (o ServiceLinkTypeOutput) ToStringOutput() pulumi.StringOutput {
+func (o EnvGroupLinkTypeOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
 
-func (o ServiceLinkTypeOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e ServiceLinkType) string {
+func (o EnvGroupLinkTypeOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e EnvGroupLinkType) string {
 		return string(e)
 	}).(pulumi.StringOutput)
 }
 
-func (o ServiceLinkTypeOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o EnvGroupLinkTypeOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o ServiceLinkTypeOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e ServiceLinkType) *string {
+func (o EnvGroupLinkTypeOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e EnvGroupLinkType) *string {
 		v := string(e)
 		return &v
 	}).(pulumi.StringPtrOutput)
 }
 
-type ServiceLinkTypePtrOutput struct{ *pulumi.OutputState }
+type EnvGroupLinkTypePtrOutput struct{ *pulumi.OutputState }
 
-func (ServiceLinkTypePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ServiceLinkType)(nil)).Elem()
+func (EnvGroupLinkTypePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvGroupLinkType)(nil)).Elem()
 }
 
-func (o ServiceLinkTypePtrOutput) ToServiceLinkTypePtrOutput() ServiceLinkTypePtrOutput {
+func (o EnvGroupLinkTypePtrOutput) ToEnvGroupLinkTypePtrOutput() EnvGroupLinkTypePtrOutput {
 	return o
 }
 
-func (o ServiceLinkTypePtrOutput) ToServiceLinkTypePtrOutputWithContext(ctx context.Context) ServiceLinkTypePtrOutput {
+func (o EnvGroupLinkTypePtrOutput) ToEnvGroupLinkTypePtrOutputWithContext(ctx context.Context) EnvGroupLinkTypePtrOutput {
 	return o
 }
 
-func (o ServiceLinkTypePtrOutput) Elem() ServiceLinkTypeOutput {
-	return o.ApplyT(func(v *ServiceLinkType) ServiceLinkType {
+func (o EnvGroupLinkTypePtrOutput) Elem() EnvGroupLinkTypeOutput {
+	return o.ApplyT(func(v *EnvGroupLinkType) EnvGroupLinkType {
 		if v != nil {
 			return *v
 		}
-		var ret ServiceLinkType
+		var ret EnvGroupLinkType
 		return ret
-	}).(ServiceLinkTypeOutput)
+	}).(EnvGroupLinkTypeOutput)
 }
 
-func (o ServiceLinkTypePtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+func (o EnvGroupLinkTypePtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
 	return o.ToStringPtrOutputWithContext(context.Background())
 }
 
-func (o ServiceLinkTypePtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, e *ServiceLinkType) *string {
+func (o EnvGroupLinkTypePtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *EnvGroupLinkType) *string {
 		if e == nil {
 			return nil
 		}
@@ -104,6 +104,6 @@ func (o ServiceLinkTypePtrOutput) ToStringPtrOutputWithContext(ctx context.Conte
 }
 
 func init() {
-	pulumi.RegisterOutputType(ServiceLinkTypeOutput{})
-	pulumi.RegisterOutputType(ServiceLinkTypePtrOutput{})
+	pulumi.RegisterOutputType(EnvGroupLinkTypeOutput{})
+	pulumi.RegisterOutputType(EnvGroupLinkTypePtrOutput{})
 }

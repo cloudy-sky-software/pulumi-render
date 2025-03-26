@@ -11,9 +11,9 @@ from .get_postgres import *
 from .get_postgres_connection_info import *
 from .get_postgres_recovery_info import *
 from .list_postgres import *
-from .list_postgres_backup import *
+from .list_postgres_export import *
 from .postgres import *
-from .postgres_backup import *
+from .postgres_export import *
 from .recover_postgres import *
 from .restart_postgres import *
 from .resume_postgres import *

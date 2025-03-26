@@ -40,7 +40,7 @@ namespace Pulumi.Render.Redis
     }
 
     /// <summary>
-    /// The eviction policy for the Redis instance
+    /// The eviction policy for the Key Value instance
     /// </summary>
     [EnumType]
     public readonly struct MaxmemoryPolicy : IEquatable<MaxmemoryPolicy>

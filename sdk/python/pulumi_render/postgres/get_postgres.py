@@ -105,7 +105,7 @@ class PostgresDetail:
     @pulumi.getter(name="dashboardUrl")
     def dashboard_url(self) -> str:
         """
-        The URL to view the PostgreSQL instance in the Render Dashboard
+        The URL to view the Postgres instance in the Render Dashboard
         """
         return pulumi.get(self, "dashboard_url")
 

@@ -37,6 +37,10 @@ export class Environment extends pulumi.CustomResource {
     public /*out*/ readonly databasesIds!: pulumi.Output<string[]>;
     public /*out*/ readonly envGroupIds!: pulumi.Output<string[]>;
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Indicates whether network connections across environments are allowed.
+     */
+    public readonly networkIsolationEnabled!: pulumi.Output<boolean>;
     public readonly projectId!: pulumi.Output<string>;
     /**
      * Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
@@ -60,6 +64,7 @@ export class Environment extends pulumi.CustomResource {
                 throw new Error("Missing required property 'projectId'");
             }
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["networkIsolationEnabled"] = args ? args.networkIsolationEnabled : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["protectedStatus"] = args ? args.protectedStatus : undefined;
             resourceInputs["databasesIds"] = undefined /*out*/;
@@ -70,6 +75,7 @@ export class Environment extends pulumi.CustomResource {
             resourceInputs["databasesIds"] = undefined /*out*/;
             resourceInputs["envGroupIds"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;
+            resourceInputs["networkIsolationEnabled"] = undefined /*out*/;
             resourceInputs["projectId"] = undefined /*out*/;
             resourceInputs["protectedStatus"] = undefined /*out*/;
             resourceInputs["redisIds"] = undefined /*out*/;
@@ -85,6 +91,10 @@ export class Environment extends pulumi.CustomResource {
  */
 export interface EnvironmentArgs {
     name?: pulumi.Input<string>;
+    /**
+     * Indicates whether network connections across environments are allowed.
+     */
+    networkIsolationEnabled?: pulumi.Input<boolean>;
     projectId: pulumi.Input<string>;
     /**
      * Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.

@@ -147,58 +147,58 @@ func (o GetPostgresRecoveryInfoPropertiesOutput) StartsAt() pulumi.StringPtrOutp
 	return o.ApplyT(func(v GetPostgresRecoveryInfoProperties) *string { return v.StartsAt }).(pulumi.StringPtrOutput)
 }
 
-type ListPostgresBackupItemProperties struct {
+type ListPostgresExportItemProperties struct {
 	CreatedAt string `pulumi:"createdAt"`
 	Id        string `pulumi:"id"`
-	// URL to download the Postgres backup
+	// URL to download the Postgres export
 	Url *string `pulumi:"url"`
 }
 
-type ListPostgresBackupItemPropertiesOutput struct{ *pulumi.OutputState }
+type ListPostgresExportItemPropertiesOutput struct{ *pulumi.OutputState }
 
-func (ListPostgresBackupItemPropertiesOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ListPostgresBackupItemProperties)(nil)).Elem()
+func (ListPostgresExportItemPropertiesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListPostgresExportItemProperties)(nil)).Elem()
 }
 
-func (o ListPostgresBackupItemPropertiesOutput) ToListPostgresBackupItemPropertiesOutput() ListPostgresBackupItemPropertiesOutput {
+func (o ListPostgresExportItemPropertiesOutput) ToListPostgresExportItemPropertiesOutput() ListPostgresExportItemPropertiesOutput {
 	return o
 }
 
-func (o ListPostgresBackupItemPropertiesOutput) ToListPostgresBackupItemPropertiesOutputWithContext(ctx context.Context) ListPostgresBackupItemPropertiesOutput {
+func (o ListPostgresExportItemPropertiesOutput) ToListPostgresExportItemPropertiesOutputWithContext(ctx context.Context) ListPostgresExportItemPropertiesOutput {
 	return o
 }
 
-func (o ListPostgresBackupItemPropertiesOutput) CreatedAt() pulumi.StringOutput {
-	return o.ApplyT(func(v ListPostgresBackupItemProperties) string { return v.CreatedAt }).(pulumi.StringOutput)
+func (o ListPostgresExportItemPropertiesOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v ListPostgresExportItemProperties) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-func (o ListPostgresBackupItemPropertiesOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v ListPostgresBackupItemProperties) string { return v.Id }).(pulumi.StringOutput)
+func (o ListPostgresExportItemPropertiesOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v ListPostgresExportItemProperties) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// URL to download the Postgres backup
-func (o ListPostgresBackupItemPropertiesOutput) Url() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ListPostgresBackupItemProperties) *string { return v.Url }).(pulumi.StringPtrOutput)
+// URL to download the Postgres export
+func (o ListPostgresExportItemPropertiesOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListPostgresExportItemProperties) *string { return v.Url }).(pulumi.StringPtrOutput)
 }
 
-type ListPostgresBackupItemPropertiesArrayOutput struct{ *pulumi.OutputState }
+type ListPostgresExportItemPropertiesArrayOutput struct{ *pulumi.OutputState }
 
-func (ListPostgresBackupItemPropertiesArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ListPostgresBackupItemProperties)(nil)).Elem()
+func (ListPostgresExportItemPropertiesArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListPostgresExportItemProperties)(nil)).Elem()
 }
 
-func (o ListPostgresBackupItemPropertiesArrayOutput) ToListPostgresBackupItemPropertiesArrayOutput() ListPostgresBackupItemPropertiesArrayOutput {
+func (o ListPostgresExportItemPropertiesArrayOutput) ToListPostgresExportItemPropertiesArrayOutput() ListPostgresExportItemPropertiesArrayOutput {
 	return o
 }
 
-func (o ListPostgresBackupItemPropertiesArrayOutput) ToListPostgresBackupItemPropertiesArrayOutputWithContext(ctx context.Context) ListPostgresBackupItemPropertiesArrayOutput {
+func (o ListPostgresExportItemPropertiesArrayOutput) ToListPostgresExportItemPropertiesArrayOutputWithContext(ctx context.Context) ListPostgresExportItemPropertiesArrayOutput {
 	return o
 }
 
-func (o ListPostgresBackupItemPropertiesArrayOutput) Index(i pulumi.IntInput) ListPostgresBackupItemPropertiesOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListPostgresBackupItemProperties {
-		return vs[0].([]ListPostgresBackupItemProperties)[vs[1].(int)]
-	}).(ListPostgresBackupItemPropertiesOutput)
+func (o ListPostgresExportItemPropertiesArrayOutput) Index(i pulumi.IntInput) ListPostgresExportItemPropertiesOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListPostgresExportItemProperties {
+		return vs[0].([]ListPostgresExportItemProperties)[vs[1].(int)]
+	}).(ListPostgresExportItemPropertiesOutput)
 }
 
 type Owner struct {
@@ -247,7 +247,7 @@ func (o OwnerOutput) Type() OwnerTypeOutput {
 
 type PostgresType struct {
 	CreatedAt string `pulumi:"createdAt"`
-	// The URL to view the PostgreSQL instance in the Render Dashboard
+	// The URL to view the Postgres instance in the Render Dashboard
 	DashboardUrl  string  `pulumi:"dashboardUrl"`
 	DatabaseName  string  `pulumi:"databaseName"`
 	DatabaseUser  string  `pulumi:"databaseUser"`
@@ -304,7 +304,7 @@ func (o PostgresTypeOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v PostgresType) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The URL to view the PostgreSQL instance in the Render Dashboard
+// The URL to view the Postgres instance in the Render Dashboard
 func (o PostgresTypeOutput) DashboardUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v PostgresType) string { return v.DashboardUrl }).(pulumi.StringOutput)
 }
@@ -431,7 +431,7 @@ func (o PostgresConnectionInfoOutput) PsqlCommand() pulumi.StringOutput {
 
 type PostgresDetail struct {
 	CreatedAt string `pulumi:"createdAt"`
-	// The URL to view the PostgreSQL instance in the Render Dashboard
+	// The URL to view the Postgres instance in the Render Dashboard
 	DashboardUrl  string  `pulumi:"dashboardUrl"`
 	DatabaseName  string  `pulumi:"databaseName"`
 	DatabaseUser  string  `pulumi:"databaseUser"`
@@ -489,7 +489,7 @@ func (o PostgresDetailOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v PostgresDetail) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The URL to view the PostgreSQL instance in the Render Dashboard
+// The URL to view the Postgres instance in the Render Dashboard
 func (o PostgresDetailOutput) DashboardUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v PostgresDetail) string { return v.DashboardUrl }).(pulumi.StringOutput)
 }
@@ -909,8 +909,8 @@ func init() {
 	pulumi.RegisterOutputType(CidrBlockAndDescriptionOutput{})
 	pulumi.RegisterOutputType(CidrBlockAndDescriptionArrayOutput{})
 	pulumi.RegisterOutputType(GetPostgresRecoveryInfoPropertiesOutput{})
-	pulumi.RegisterOutputType(ListPostgresBackupItemPropertiesOutput{})
-	pulumi.RegisterOutputType(ListPostgresBackupItemPropertiesArrayOutput{})
+	pulumi.RegisterOutputType(ListPostgresExportItemPropertiesOutput{})
+	pulumi.RegisterOutputType(ListPostgresExportItemPropertiesArrayOutput{})
 	pulumi.RegisterOutputType(OwnerOutput{})
 	pulumi.RegisterOutputType(PostgresTypeOutput{})
 	pulumi.RegisterOutputType(PostgresConnectionInfoOutput{})

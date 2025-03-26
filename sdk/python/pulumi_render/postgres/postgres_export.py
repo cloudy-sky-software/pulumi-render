@@ -14,14 +14,14 @@ else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
-__all__ = ['PostgresBackupArgs', 'PostgresBackup']
+__all__ = ['PostgresExportArgs', 'PostgresExport']
 
 @pulumi.input_type
-class PostgresBackupArgs:
+class PostgresExportArgs:
     def __init__(__self__, *,
                  postgres_id: Optional[pulumi.Input[str]] = None):
         """
-        The set of arguments for constructing a PostgresBackup resource.
+        The set of arguments for constructing a PostgresExport resource.
         """
         if postgres_id is not None:
             pulumi.set(__self__, "postgres_id", postgres_id)
@@ -36,7 +36,7 @@ class PostgresBackupArgs:
         pulumi.set(self, "postgres_id", value)
 
 
-class PostgresBackup(pulumi.CustomResource):
+class PostgresExport(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -44,7 +44,7 @@ class PostgresBackup(pulumi.CustomResource):
                  postgres_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a PostgresBackup resource with the given unique name, props, and options.
+        Create a PostgresExport resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -52,17 +52,17 @@ class PostgresBackup(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: Optional[PostgresBackupArgs] = None,
+                 args: Optional[PostgresExportArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a PostgresBackup resource with the given unique name, props, and options.
+        Create a PostgresExport resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
-        :param PostgresBackupArgs args: The arguments to use to populate this resource's properties.
+        :param PostgresExportArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(PostgresBackupArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(PostgresExportArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -79,11 +79,11 @@ class PostgresBackup(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = PostgresBackupArgs.__new__(PostgresBackupArgs)
+            __props__ = PostgresExportArgs.__new__(PostgresExportArgs)
 
             __props__.__dict__["postgres_id"] = postgres_id
-        super(PostgresBackup, __self__).__init__(
-            'render:postgres:PostgresBackup',
+        super(PostgresExport, __self__).__init__(
+            'render:postgres:PostgresExport',
             resource_name,
             __props__,
             opts)
@@ -91,9 +91,9 @@ class PostgresBackup(pulumi.CustomResource):
     @staticmethod
     def get(resource_name: str,
             id: pulumi.Input[str],
-            opts: Optional[pulumi.ResourceOptions] = None) -> 'PostgresBackup':
+            opts: Optional[pulumi.ResourceOptions] = None) -> 'PostgresExport':
         """
-        Get an existing PostgresBackup resource's state with the given name, id, and optional extra
+        Get an existing PostgresExport resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -102,7 +102,7 @@ class PostgresBackup(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = PostgresBackupArgs.__new__(PostgresBackupArgs)
+        __props__ = PostgresExportArgs.__new__(PostgresExportArgs)
 
-        return PostgresBackup(resource_name, opts=opts, __props__=__props__)
+        return PostgresExport(resource_name, opts=opts, __props__=__props__)
 

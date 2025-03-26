@@ -25,6 +25,10 @@ MYPY = False
 if not MYPY:
     class ProjectCreateEnvironmentInputArgsDict(TypedDict):
         name: pulumi.Input[str]
+        network_isolation_enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Indicates whether network connections across environments are allowed.
+        """
         protected_status: NotRequired[pulumi.Input['ProjectCreateEnvironmentInputProtectedStatus']]
         """
         Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
@@ -36,11 +40,15 @@ elif False:
 class ProjectCreateEnvironmentInputArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
+                 network_isolation_enabled: Optional[pulumi.Input[bool]] = None,
                  protected_status: Optional[pulumi.Input['ProjectCreateEnvironmentInputProtectedStatus']] = None):
         """
+        :param pulumi.Input[bool] network_isolation_enabled: Indicates whether network connections across environments are allowed.
         :param pulumi.Input['ProjectCreateEnvironmentInputProtectedStatus'] protected_status: Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
         """
         pulumi.set(__self__, "name", name)
+        if network_isolation_enabled is not None:
+            pulumi.set(__self__, "network_isolation_enabled", network_isolation_enabled)
         if protected_status is not None:
             pulumi.set(__self__, "protected_status", protected_status)
 
@@ -52,6 +60,18 @@ class ProjectCreateEnvironmentInputArgs:
     @name.setter
     def name(self, value: pulumi.Input[str]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="networkIsolationEnabled")
+    def network_isolation_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Indicates whether network connections across environments are allowed.
+        """
+        return pulumi.get(self, "network_isolation_enabled")
+
+    @network_isolation_enabled.setter
+    def network_isolation_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "network_isolation_enabled", value)
 
     @property
     @pulumi.getter(name="protectedStatus")

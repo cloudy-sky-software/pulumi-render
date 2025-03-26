@@ -21,6 +21,8 @@ if typing.TYPE_CHECKING:
     env_groups = __env_groups
     import pulumi_render.environments as __environments
     environments = __environments
+    import pulumi_render.key_value as __key_value
+    key_value = __key_value
     import pulumi_render.logs as __logs
     logs = __logs
     import pulumi_render.metrics as __metrics
@@ -41,6 +43,8 @@ if typing.TYPE_CHECKING:
     services = __services
     import pulumi_render.users as __users
     users = __users
+    import pulumi_render.webhooks as __webhooks
+    webhooks = __webhooks
 else:
     blueprints = _utilities.lazy_import('pulumi_render.blueprints')
     config = _utilities.lazy_import('pulumi_render.config')
@@ -48,6 +52,7 @@ else:
     disks = _utilities.lazy_import('pulumi_render.disks')
     env_groups = _utilities.lazy_import('pulumi_render.env_groups')
     environments = _utilities.lazy_import('pulumi_render.environments')
+    key_value = _utilities.lazy_import('pulumi_render.key_value')
     logs = _utilities.lazy_import('pulumi_render.logs')
     metrics = _utilities.lazy_import('pulumi_render.metrics')
     notification_settings = _utilities.lazy_import('pulumi_render.notification_settings')
@@ -58,6 +63,7 @@ else:
     registrycredentials = _utilities.lazy_import('pulumi_render.registrycredentials')
     services = _utilities.lazy_import('pulumi_render.services')
     users = _utilities.lazy_import('pulumi_render.users')
+    webhooks = _utilities.lazy_import('pulumi_render.webhooks')
 
 _utilities.register(
     resource_modules="""
@@ -99,12 +105,20 @@ _utilities.register(
  },
  {
   "pkg": "render",
+  "mod": "key-value",
+  "fqn": "pulumi_render.key_value",
+  "classes": {
+   "render:key-value:KeyValue": "KeyValue"
+  }
+ },
+ {
+  "pkg": "render",
   "mod": "postgres",
   "fqn": "pulumi_render.postgres",
   "classes": {
    "render:postgres:FailoverPostgres": "FailoverPostgres",
    "render:postgres:Postgres": "Postgres",
-   "render:postgres:PostgresBackup": "PostgresBackup",
+   "render:postgres:PostgresExport": "PostgresExport",
    "render:postgres:RecoverPostgres": "RecoverPostgres",
    "render:postgres:RestartPostgres": "RestartPostgres",
    "render:postgres:ResumePostgres": "ResumePostgres",
@@ -161,6 +175,14 @@ _utilities.register(
    "render:services:StaticSite": "StaticSite",
    "render:services:SuspendService": "SuspendService",
    "render:services:WebService": "WebService"
+  }
+ },
+ {
+  "pkg": "render",
+  "mod": "webhooks",
+  "fqn": "pulumi_render.webhooks",
+  "classes": {
+   "render:webhooks:Webhook": "Webhook"
   }
  }
 ]

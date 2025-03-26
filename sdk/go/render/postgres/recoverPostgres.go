@@ -16,7 +16,7 @@ type RecoverPostgres struct {
 	pulumi.CustomResourceState
 
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// The URL to view the PostgreSQL instance in the Render Dashboard
+	// The URL to view the Postgres instance in the Render Dashboard
 	DashboardUrl pulumi.StringOutput `pulumi:"dashboardUrl"`
 	DatabaseName pulumi.StringOutput `pulumi:"databaseName"`
 	DatabaseUser pulumi.StringOutput `pulumi:"databaseUser"`
@@ -161,7 +161,7 @@ func (o RecoverPostgresOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *RecoverPostgres) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The URL to view the PostgreSQL instance in the Render Dashboard
+// The URL to view the Postgres instance in the Render Dashboard
 func (o RecoverPostgresOutput) DashboardUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v *RecoverPostgres) pulumi.StringOutput { return v.DashboardUrl }).(pulumi.StringOutput)
 }

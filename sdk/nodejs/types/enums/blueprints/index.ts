@@ -19,6 +19,7 @@ export const GetBlueprintPropertiesResourcesItemPropertiesType = {
     BackgroundWorker: "background_worker",
     CronJob: "cron_job",
     Redis: "redis",
+    KeyValue: "key_value",
     Postgres: "postgres",
     EnvironmentGroup: "environment_group",
 } as const;

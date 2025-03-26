@@ -27,7 +27,7 @@ type LookupPostgresArgs struct {
 
 type LookupPostgresResult struct {
 	CreatedAt string `pulumi:"createdAt"`
-	// The URL to view the PostgreSQL instance in the Render Dashboard
+	// The URL to view the Postgres instance in the Render Dashboard
 	DashboardUrl  string  `pulumi:"dashboardUrl"`
 	DatabaseName  string  `pulumi:"databaseName"`
 	DatabaseUser  string  `pulumi:"databaseUser"`
@@ -101,7 +101,7 @@ func (o LookupPostgresResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPostgresResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The URL to view the PostgreSQL instance in the Render Dashboard
+// The URL to view the Postgres instance in the Render Dashboard
 func (o LookupPostgresResultOutput) DashboardUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPostgresResult) string { return v.DashboardUrl }).(pulumi.StringOutput)
 }

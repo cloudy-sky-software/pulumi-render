@@ -9,23 +9,23 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Render.Postgres
 {
-    [RenderResourceType("render:postgres:PostgresBackup")]
-    public partial class PostgresBackup : global::Pulumi.CustomResource
+    [RenderResourceType("render:postgres:PostgresExport")]
+    public partial class PostgresExport : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Create a PostgresBackup resource with the given unique name, arguments, and options.
+        /// Create a PostgresExport resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public PostgresBackup(string name, PostgresBackupArgs? args = null, CustomResourceOptions? options = null)
-            : base("render:postgres:PostgresBackup", name, args ?? new PostgresBackupArgs(), MakeResourceOptions(options, ""))
+        public PostgresExport(string name, PostgresExportArgs? args = null, CustomResourceOptions? options = null)
+            : base("render:postgres:PostgresExport", name, args ?? new PostgresExportArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private PostgresBackup(string name, Input<string> id, CustomResourceOptions? options = null)
-            : base("render:postgres:PostgresBackup", name, null, MakeResourceOptions(options, id))
+        private PostgresExport(string name, Input<string> id, CustomResourceOptions? options = null)
+            : base("render:postgres:PostgresExport", name, null, MakeResourceOptions(options, id))
         {
         }
 
@@ -42,27 +42,27 @@ namespace Pulumi.Render.Postgres
             return merged;
         }
         /// <summary>
-        /// Get an existing PostgresBackup resource's state with the given name, ID, and optional extra
+        /// Get an existing PostgresExport resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resulting resource.</param>
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static PostgresBackup Get(string name, Input<string> id, CustomResourceOptions? options = null)
+        public static PostgresExport Get(string name, Input<string> id, CustomResourceOptions? options = null)
         {
-            return new PostgresBackup(name, id, options);
+            return new PostgresExport(name, id, options);
         }
     }
 
-    public sealed class PostgresBackupArgs : global::Pulumi.ResourceArgs
+    public sealed class PostgresExportArgs : global::Pulumi.ResourceArgs
     {
         [Input("postgresId")]
         public Input<string>? PostgresId { get; set; }
 
-        public PostgresBackupArgs()
+        public PostgresExportArgs()
         {
         }
-        public static new PostgresBackupArgs Empty => new PostgresBackupArgs();
+        public static new PostgresExportArgs Empty => new PostgresExportArgs();
     }
 }

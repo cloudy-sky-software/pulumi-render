@@ -22,8 +22,8 @@ type EnvGroupType struct {
 	OwnerId       string       `pulumi:"ownerId"`
 	SecretFiles   []SecretFile `pulumi:"secretFiles"`
 	// List of serviceIds linked to the envGroup
-	ServiceLinks []ServiceLink `pulumi:"serviceLinks"`
-	UpdatedAt    string        `pulumi:"updatedAt"`
+	ServiceLinks []EnvGroupLink `pulumi:"serviceLinks"`
+	UpdatedAt    string         `pulumi:"updatedAt"`
 }
 
 type EnvGroupTypeOutput struct{ *pulumi.OutputState }
@@ -69,12 +69,64 @@ func (o EnvGroupTypeOutput) SecretFiles() SecretFileArrayOutput {
 }
 
 // List of serviceIds linked to the envGroup
-func (o EnvGroupTypeOutput) ServiceLinks() ServiceLinkArrayOutput {
-	return o.ApplyT(func(v EnvGroupType) []ServiceLink { return v.ServiceLinks }).(ServiceLinkArrayOutput)
+func (o EnvGroupTypeOutput) ServiceLinks() EnvGroupLinkArrayOutput {
+	return o.ApplyT(func(v EnvGroupType) []EnvGroupLink { return v.ServiceLinks }).(EnvGroupLinkArrayOutput)
 }
 
 func (o EnvGroupTypeOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v EnvGroupType) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+type EnvGroupLink struct {
+	Id   string           `pulumi:"id"`
+	Name string           `pulumi:"name"`
+	Type EnvGroupLinkType `pulumi:"type"`
+}
+
+type EnvGroupLinkOutput struct{ *pulumi.OutputState }
+
+func (EnvGroupLinkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvGroupLink)(nil)).Elem()
+}
+
+func (o EnvGroupLinkOutput) ToEnvGroupLinkOutput() EnvGroupLinkOutput {
+	return o
+}
+
+func (o EnvGroupLinkOutput) ToEnvGroupLinkOutputWithContext(ctx context.Context) EnvGroupLinkOutput {
+	return o
+}
+
+func (o EnvGroupLinkOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v EnvGroupLink) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o EnvGroupLinkOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v EnvGroupLink) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o EnvGroupLinkOutput) Type() EnvGroupLinkTypeOutput {
+	return o.ApplyT(func(v EnvGroupLink) EnvGroupLinkType { return v.Type }).(EnvGroupLinkTypeOutput)
+}
+
+type EnvGroupLinkArrayOutput struct{ *pulumi.OutputState }
+
+func (EnvGroupLinkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EnvGroupLink)(nil)).Elem()
+}
+
+func (o EnvGroupLinkArrayOutput) ToEnvGroupLinkArrayOutput() EnvGroupLinkArrayOutput {
+	return o
+}
+
+func (o EnvGroupLinkArrayOutput) ToEnvGroupLinkArrayOutputWithContext(ctx context.Context) EnvGroupLinkArrayOutput {
+	return o
+}
+
+func (o EnvGroupLinkArrayOutput) Index(i pulumi.IntInput) EnvGroupLinkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EnvGroupLink {
+		return vs[0].([]EnvGroupLink)[vs[1].(int)]
+	}).(EnvGroupLinkOutput)
 }
 
 type EnvGroupMeta struct {
@@ -84,8 +136,8 @@ type EnvGroupMeta struct {
 	Name          string  `pulumi:"name"`
 	OwnerId       string  `pulumi:"ownerId"`
 	// List of serviceIds linked to the envGroup
-	ServiceLinks []ServiceLink `pulumi:"serviceLinks"`
-	UpdatedAt    string        `pulumi:"updatedAt"`
+	ServiceLinks []EnvGroupLink `pulumi:"serviceLinks"`
+	UpdatedAt    string         `pulumi:"updatedAt"`
 }
 
 type EnvGroupMetaOutput struct{ *pulumi.OutputState }
@@ -123,8 +175,8 @@ func (o EnvGroupMetaOutput) OwnerId() pulumi.StringOutput {
 }
 
 // List of serviceIds linked to the envGroup
-func (o EnvGroupMetaOutput) ServiceLinks() ServiceLinkArrayOutput {
-	return o.ApplyT(func(v EnvGroupMeta) []ServiceLink { return v.ServiceLinks }).(ServiceLinkArrayOutput)
+func (o EnvGroupMetaOutput) ServiceLinks() EnvGroupLinkArrayOutput {
+	return o.ApplyT(func(v EnvGroupMeta) []EnvGroupLink { return v.ServiceLinks }).(EnvGroupLinkArrayOutput)
 }
 
 func (o EnvGroupMetaOutput) UpdatedAt() pulumi.StringOutput {
@@ -451,64 +503,14 @@ func (o SecretFileInputTypeArrayOutput) Index(i pulumi.IntInput) SecretFileInput
 	}).(SecretFileInputTypeOutput)
 }
 
-type ServiceLink struct {
-	Id   string          `pulumi:"id"`
-	Name string          `pulumi:"name"`
-	Type ServiceLinkType `pulumi:"type"`
-}
-
-type ServiceLinkOutput struct{ *pulumi.OutputState }
-
-func (ServiceLinkOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceLink)(nil)).Elem()
-}
-
-func (o ServiceLinkOutput) ToServiceLinkOutput() ServiceLinkOutput {
-	return o
-}
-
-func (o ServiceLinkOutput) ToServiceLinkOutputWithContext(ctx context.Context) ServiceLinkOutput {
-	return o
-}
-
-func (o ServiceLinkOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v ServiceLink) string { return v.Id }).(pulumi.StringOutput)
-}
-
-func (o ServiceLinkOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v ServiceLink) string { return v.Name }).(pulumi.StringOutput)
-}
-
-func (o ServiceLinkOutput) Type() ServiceLinkTypeOutput {
-	return o.ApplyT(func(v ServiceLink) ServiceLinkType { return v.Type }).(ServiceLinkTypeOutput)
-}
-
-type ServiceLinkArrayOutput struct{ *pulumi.OutputState }
-
-func (ServiceLinkArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ServiceLink)(nil)).Elem()
-}
-
-func (o ServiceLinkArrayOutput) ToServiceLinkArrayOutput() ServiceLinkArrayOutput {
-	return o
-}
-
-func (o ServiceLinkArrayOutput) ToServiceLinkArrayOutputWithContext(ctx context.Context) ServiceLinkArrayOutput {
-	return o
-}
-
-func (o ServiceLinkArrayOutput) Index(i pulumi.IntInput) ServiceLinkOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceLink {
-		return vs[0].([]ServiceLink)[vs[1].(int)]
-	}).(ServiceLinkOutput)
-}
-
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*EnvVarInputTypeInput)(nil)).Elem(), EnvVarInputTypeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EnvVarInputTypeArrayInput)(nil)).Elem(), EnvVarInputTypeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretFileInputTypeInput)(nil)).Elem(), SecretFileInputTypeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretFileInputTypeArrayInput)(nil)).Elem(), SecretFileInputTypeArray{})
 	pulumi.RegisterOutputType(EnvGroupTypeOutput{})
+	pulumi.RegisterOutputType(EnvGroupLinkOutput{})
+	pulumi.RegisterOutputType(EnvGroupLinkArrayOutput{})
 	pulumi.RegisterOutputType(EnvGroupMetaOutput{})
 	pulumi.RegisterOutputType(EnvGroupMetaArrayOutput{})
 	pulumi.RegisterOutputType(EnvVarOutput{})
@@ -519,6 +521,4 @@ func init() {
 	pulumi.RegisterOutputType(SecretFileArrayOutput{})
 	pulumi.RegisterOutputType(SecretFileInputTypeOutput{})
 	pulumi.RegisterOutputType(SecretFileInputTypeArrayOutput{})
-	pulumi.RegisterOutputType(ServiceLinkOutput{})
-	pulumi.RegisterOutputType(ServiceLinkArrayOutput{})
 }

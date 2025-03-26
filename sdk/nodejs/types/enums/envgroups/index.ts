@@ -2,7 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 
-export const ServiceLinkType = {
+export const EnvGroupLinkType = {
     Static: "static",
     Web: "web",
     Pserv: "pserv",
@@ -10,4 +10,4 @@ export const ServiceLinkType = {
     Cron: "cron",
 } as const;
 
-export type ServiceLinkType = (typeof ServiceLinkType)[keyof typeof ServiceLinkType];
+export type EnvGroupLinkType = (typeof EnvGroupLinkType)[keyof typeof EnvGroupLinkType];

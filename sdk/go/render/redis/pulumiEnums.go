@@ -104,7 +104,7 @@ func (o MaintenancePropertiesStatePtrOutput) ToStringPtrOutputWithContext(ctx co
 	}).(pulumi.StringPtrOutput)
 }
 
-// The eviction policy for the Redis instance
+// The eviction policy for the Key Value instance
 type MaxmemoryPolicy string
 
 const (

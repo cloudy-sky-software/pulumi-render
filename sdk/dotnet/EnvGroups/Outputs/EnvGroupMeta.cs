@@ -21,7 +21,7 @@ namespace Pulumi.Render.EnvGroups.Outputs
         /// <summary>
         /// List of serviceIds linked to the envGroup
         /// </summary>
-        public readonly ImmutableArray<Outputs.ServiceLink> ServiceLinks;
+        public readonly ImmutableArray<Outputs.EnvGroupLink> ServiceLinks;
         public readonly string UpdatedAt;
 
         [OutputConstructor]
@@ -36,7 +36,7 @@ namespace Pulumi.Render.EnvGroups.Outputs
 
             string ownerId,
 
-            ImmutableArray<Outputs.ServiceLink> serviceLinks,
+            ImmutableArray<Outputs.EnvGroupLink> serviceLinks,
 
             string updatedAt)
         {

@@ -32,7 +32,7 @@ class MaintenancePropertiesState(str, Enum):
 
 class MaxmemoryPolicy(str, Enum):
     """
-    The eviction policy for the Redis instance
+    The eviction policy for the Key Value instance
     """
     NOEVICTION = "noeviction"
     ALLKEYS_LFU = "allkeys_lfu"

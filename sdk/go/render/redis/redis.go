@@ -23,7 +23,7 @@ type Redis struct {
 	// The IP allow list for the Redis instance
 	IpAllowList CidrBlockAndDescriptionArrayOutput `pulumi:"ipAllowList"`
 	Maintenance MaintenancePropertiesPtrOutput     `pulumi:"maintenance"`
-	// The eviction policy for the Redis instance
+	// The eviction policy for the Key Value instance
 	MaxmemoryPolicy MaxmemoryPolicyPtrOutput `pulumi:"maxmemoryPolicy"`
 	// The name of the Redis instance
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -90,7 +90,7 @@ func (RedisState) ElementType() reflect.Type {
 type redisArgs struct {
 	EnvironmentId *string                   `pulumi:"environmentId"`
 	IpAllowList   []CidrBlockAndDescription `pulumi:"ipAllowList"`
-	// The eviction policy for the Redis instance
+	// The eviction policy for the Key Value instance
 	MaxmemoryPolicy *MaxmemoryPolicy `pulumi:"maxmemoryPolicy"`
 	// The name of the Redis instance
 	Name *string `pulumi:"name"`
@@ -105,7 +105,7 @@ type redisArgs struct {
 type RedisArgs struct {
 	EnvironmentId pulumi.StringPtrInput
 	IpAllowList   CidrBlockAndDescriptionArrayInput
-	// The eviction policy for the Redis instance
+	// The eviction policy for the Key Value instance
 	MaxmemoryPolicy MaxmemoryPolicyPtrInput
 	// The name of the Redis instance
 	Name pulumi.StringPtrInput
@@ -172,7 +172,7 @@ func (o RedisOutput) Maintenance() MaintenancePropertiesPtrOutput {
 	return o.ApplyT(func(v *Redis) MaintenancePropertiesPtrOutput { return v.Maintenance }).(MaintenancePropertiesPtrOutput)
 }
 
-// The eviction policy for the Redis instance
+// The eviction policy for the Key Value instance
 func (o RedisOutput) MaxmemoryPolicy() MaxmemoryPolicyPtrOutput {
 	return o.ApplyT(func(v *Redis) MaxmemoryPolicyPtrOutput { return v.MaxmemoryPolicy }).(MaxmemoryPolicyPtrOutput)
 }

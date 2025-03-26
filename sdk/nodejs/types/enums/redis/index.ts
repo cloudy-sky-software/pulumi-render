@@ -25,7 +25,7 @@ export const MaxmemoryPolicy = {
 } as const;
 
 /**
- * The eviction policy for the Redis instance
+ * The eviction policy for the Key Value instance
  */
 export type MaxmemoryPolicy = (typeof MaxmemoryPolicy)[keyof typeof MaxmemoryPolicy];
 

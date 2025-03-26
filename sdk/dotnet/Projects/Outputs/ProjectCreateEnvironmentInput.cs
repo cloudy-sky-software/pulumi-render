@@ -15,6 +15,10 @@ namespace Pulumi.Render.Projects.Outputs
     {
         public readonly string Name;
         /// <summary>
+        /// Indicates whether network connections across environments are allowed.
+        /// </summary>
+        public readonly bool? NetworkIsolationEnabled;
+        /// <summary>
         /// Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
         /// </summary>
         public readonly Pulumi.Render.Projects.ProjectCreateEnvironmentInputProtectedStatus? ProtectedStatus;
@@ -23,9 +27,12 @@ namespace Pulumi.Render.Projects.Outputs
         private ProjectCreateEnvironmentInput(
             string name,
 
+            bool? networkIsolationEnabled,
+
             Pulumi.Render.Projects.ProjectCreateEnvironmentInputProtectedStatus? protectedStatus)
         {
             Name = name;
+            NetworkIsolationEnabled = networkIsolationEnabled;
             ProtectedStatus = protectedStatus;
         }
     }

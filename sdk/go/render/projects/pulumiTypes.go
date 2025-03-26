@@ -114,6 +114,8 @@ func (o ProjectTypeOutput) UpdatedAt() pulumi.StringOutput {
 
 type ProjectCreateEnvironmentInput struct {
 	Name string `pulumi:"name"`
+	// Indicates whether network connections across environments are allowed.
+	NetworkIsolationEnabled *bool `pulumi:"networkIsolationEnabled"`
 	// Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
 	ProtectedStatus *ProjectCreateEnvironmentInputProtectedStatus `pulumi:"protectedStatus"`
 }
@@ -131,6 +133,8 @@ type ProjectCreateEnvironmentInputInput interface {
 
 type ProjectCreateEnvironmentInputArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
+	// Indicates whether network connections across environments are allowed.
+	NetworkIsolationEnabled pulumi.BoolPtrInput `pulumi:"networkIsolationEnabled"`
 	// Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
 	ProtectedStatus ProjectCreateEnvironmentInputProtectedStatusPtrInput `pulumi:"protectedStatus"`
 }
@@ -188,6 +192,11 @@ func (o ProjectCreateEnvironmentInputOutput) ToProjectCreateEnvironmentInputOutp
 
 func (o ProjectCreateEnvironmentInputOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ProjectCreateEnvironmentInput) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Indicates whether network connections across environments are allowed.
+func (o ProjectCreateEnvironmentInputOutput) NetworkIsolationEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ProjectCreateEnvironmentInput) *bool { return v.NetworkIsolationEnabled }).(pulumi.BoolPtrOutput)
 }
 
 // Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.

@@ -44,7 +44,7 @@ export class EnvGroup extends pulumi.CustomResource {
     /**
      * List of serviceIds linked to the envGroup
      */
-    public /*out*/ readonly serviceLinks!: pulumi.Output<outputs.envgroups.ServiceLink[] | undefined>;
+    public /*out*/ readonly serviceLinks!: pulumi.Output<outputs.envgroups.EnvGroupLink[] | undefined>;
     public /*out*/ readonly updatedAt!: pulumi.Output<string | undefined>;
 
     /**

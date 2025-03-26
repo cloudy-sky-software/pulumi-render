@@ -22,14 +22,18 @@ class EnvironmentArgs:
     def __init__(__self__, *,
                  project_id: pulumi.Input[str],
                  name: Optional[pulumi.Input[str]] = None,
+                 network_isolation_enabled: Optional[pulumi.Input[bool]] = None,
                  protected_status: Optional[pulumi.Input['ProtectedStatus']] = None):
         """
         The set of arguments for constructing a Environment resource.
+        :param pulumi.Input[bool] network_isolation_enabled: Indicates whether network connections across environments are allowed.
         :param pulumi.Input['ProtectedStatus'] protected_status: Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
         """
         pulumi.set(__self__, "project_id", project_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if network_isolation_enabled is not None:
+            pulumi.set(__self__, "network_isolation_enabled", network_isolation_enabled)
         if protected_status is not None:
             pulumi.set(__self__, "protected_status", protected_status)
 
@@ -52,6 +56,18 @@ class EnvironmentArgs:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter(name="networkIsolationEnabled")
+    def network_isolation_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Indicates whether network connections across environments are allowed.
+        """
+        return pulumi.get(self, "network_isolation_enabled")
+
+    @network_isolation_enabled.setter
+    def network_isolation_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "network_isolation_enabled", value)
+
+    @property
     @pulumi.getter(name="protectedStatus")
     def protected_status(self) -> Optional[pulumi.Input['ProtectedStatus']]:
         """
@@ -70,6 +86,7 @@ class Environment(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 network_isolation_enabled: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  protected_status: Optional[pulumi.Input['ProtectedStatus']] = None,
                  __props__=None):
@@ -77,6 +94,7 @@ class Environment(pulumi.CustomResource):
         Create a Environment resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] network_isolation_enabled: Indicates whether network connections across environments are allowed.
         :param pulumi.Input['ProtectedStatus'] protected_status: Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
         """
         ...
@@ -103,6 +121,7 @@ class Environment(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 network_isolation_enabled: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  protected_status: Optional[pulumi.Input['ProtectedStatus']] = None,
                  __props__=None):
@@ -115,6 +134,7 @@ class Environment(pulumi.CustomResource):
             __props__ = EnvironmentArgs.__new__(EnvironmentArgs)
 
             __props__.__dict__["name"] = name
+            __props__.__dict__["network_isolation_enabled"] = network_isolation_enabled
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
@@ -148,6 +168,7 @@ class Environment(pulumi.CustomResource):
         __props__.__dict__["databases_ids"] = None
         __props__.__dict__["env_group_ids"] = None
         __props__.__dict__["name"] = None
+        __props__.__dict__["network_isolation_enabled"] = None
         __props__.__dict__["project_id"] = None
         __props__.__dict__["protected_status"] = None
         __props__.__dict__["redis_ids"] = None
@@ -168,6 +189,14 @@ class Environment(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="networkIsolationEnabled")
+    def network_isolation_enabled(self) -> pulumi.Output[bool]:
+        """
+        Indicates whether network connections across environments are allowed.
+        """
+        return pulumi.get(self, "network_isolation_enabled")
 
     @property
     @pulumi.getter(name="projectId")

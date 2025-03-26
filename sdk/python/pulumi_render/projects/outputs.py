@@ -157,7 +157,9 @@ class ProjectCreateEnvironmentInput(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "protectedStatus":
+        if key == "networkIsolationEnabled":
+            suggest = "network_isolation_enabled"
+        elif key == "protectedStatus":
             suggest = "protected_status"
 
         if suggest:
@@ -173,11 +175,15 @@ class ProjectCreateEnvironmentInput(dict):
 
     def __init__(__self__, *,
                  name: str,
+                 network_isolation_enabled: Optional[bool] = None,
                  protected_status: Optional['ProjectCreateEnvironmentInputProtectedStatus'] = None):
         """
+        :param bool network_isolation_enabled: Indicates whether network connections across environments are allowed.
         :param 'ProjectCreateEnvironmentInputProtectedStatus' protected_status: Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
         """
         pulumi.set(__self__, "name", name)
+        if network_isolation_enabled is not None:
+            pulumi.set(__self__, "network_isolation_enabled", network_isolation_enabled)
         if protected_status is not None:
             pulumi.set(__self__, "protected_status", protected_status)
 
@@ -185,6 +191,14 @@ class ProjectCreateEnvironmentInput(dict):
     @pulumi.getter
     def name(self) -> str:
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="networkIsolationEnabled")
+    def network_isolation_enabled(self) -> Optional[bool]:
+        """
+        Indicates whether network connections across environments are allowed.
+        """
+        return pulumi.get(self, "network_isolation_enabled")
 
     @property
     @pulumi.getter(name="protectedStatus")

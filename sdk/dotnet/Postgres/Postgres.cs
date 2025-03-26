@@ -19,7 +19,7 @@ namespace Pulumi.Render.Postgres
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The URL to view the PostgreSQL instance in the Render Dashboard
+        /// The URL to view the Postgres instance in the Render Dashboard
         /// </summary>
         [Output("dashboardUrl")]
         public Output<string> DashboardUrl { get; private set; } = null!;

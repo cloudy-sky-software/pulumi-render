@@ -37,7 +37,7 @@ namespace Pulumi.Render.EnvGroups
         /// List of serviceIds linked to the envGroup
         /// </summary>
         [Output("serviceLinks")]
-        public Output<ImmutableArray<Outputs.ServiceLink>> ServiceLinks { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.EnvGroupLink>> ServiceLinks { get; private set; } = null!;
 
         [Output("updatedAt")]
         public Output<string?> UpdatedAt { get; private set; } = null!;

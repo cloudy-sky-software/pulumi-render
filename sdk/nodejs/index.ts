@@ -18,6 +18,7 @@ import * as cronjobs from "./cronjobs";
 import * as disks from "./disks";
 import * as envgroups from "./envgroups";
 import * as environments from "./environments";
+import * as keyvalue from "./keyvalue";
 import * as logs from "./logs";
 import * as metrics from "./metrics";
 import * as notificationsettings from "./notificationsettings";
@@ -29,6 +30,7 @@ import * as registrycredentials from "./registrycredentials";
 import * as services from "./services";
 import * as types from "./types";
 import * as users from "./users";
+import * as webhooks from "./webhooks";
 
 export {
     blueprints,
@@ -37,6 +39,7 @@ export {
     disks,
     envgroups,
     environments,
+    keyvalue,
     logs,
     metrics,
     notificationsettings,
@@ -48,6 +51,7 @@ export {
     services,
     types,
     users,
+    webhooks,
 };
 pulumi.runtime.registerResourcePackage("render", {
     version: utilities.getVersion(),

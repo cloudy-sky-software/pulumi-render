@@ -28,17 +28,20 @@ class Environment(dict):
                  env_group_ids: Sequence[str],
                  id: str,
                  name: str,
+                 network_isolation_enabled: bool,
                  project_id: str,
                  protected_status: 'EnvironmentProtectedStatus',
                  redis_ids: Sequence[str],
                  service_ids: Sequence[str]):
         """
+        :param bool network_isolation_enabled: Indicates whether network connections across environments are allowed.
         :param 'EnvironmentProtectedStatus' protected_status: Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
         """
         pulumi.set(__self__, "databases_ids", databases_ids)
         pulumi.set(__self__, "env_group_ids", env_group_ids)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "network_isolation_enabled", network_isolation_enabled)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "protected_status", protected_status)
         pulumi.set(__self__, "redis_ids", redis_ids)
@@ -63,6 +66,14 @@ class Environment(dict):
     @pulumi.getter
     def name(self) -> str:
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="networkIsolationEnabled")
+    def network_isolation_enabled(self) -> bool:
+        """
+        Indicates whether network connections across environments are allowed.
+        """
+        return pulumi.get(self, "network_isolation_enabled")
 
     @property
     @pulumi.getter(name="projectId")

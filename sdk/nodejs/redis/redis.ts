@@ -51,7 +51,7 @@ export class Redis extends pulumi.CustomResource {
     public readonly ipAllowList!: pulumi.Output<outputs.redis.CidrBlockAndDescription[]>;
     public /*out*/ readonly maintenance!: pulumi.Output<outputs.redis.MaintenanceProperties | undefined>;
     /**
-     * The eviction policy for the Redis instance
+     * The eviction policy for the Key Value instance
      */
     public readonly maxmemoryPolicy!: pulumi.Output<enums.redis.MaxmemoryPolicy | undefined>;
     /**
@@ -141,7 +141,7 @@ export interface RedisArgs {
     environmentId?: pulumi.Input<string>;
     ipAllowList?: pulumi.Input<pulumi.Input<inputs.redis.CidrBlockAndDescriptionArgs>[]>;
     /**
-     * The eviction policy for the Redis instance
+     * The eviction policy for the Key Value instance
      */
     maxmemoryPolicy?: pulumi.Input<enums.redis.MaxmemoryPolicy>;
     /**

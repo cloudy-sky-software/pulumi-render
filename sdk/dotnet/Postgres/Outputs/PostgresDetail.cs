@@ -15,7 +15,7 @@ namespace Pulumi.Render.Postgres.Outputs
     {
         public readonly string CreatedAt;
         /// <summary>
-        /// The URL to view the PostgreSQL instance in the Render Dashboard
+        /// The URL to view the Postgres instance in the Render Dashboard
         /// </summary>
         public readonly string DashboardUrl;
         public readonly string DatabaseName;

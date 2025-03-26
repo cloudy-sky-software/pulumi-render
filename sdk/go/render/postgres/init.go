@@ -25,8 +25,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &FailoverPostgres{}
 	case "render:postgres:Postgres":
 		r = &Postgres{}
-	case "render:postgres:PostgresBackup":
-		r = &PostgresBackup{}
+	case "render:postgres:PostgresExport":
+		r = &PostgresExport{}
 	case "render:postgres:RecoverPostgres":
 		r = &RecoverPostgres{}
 	case "render:postgres:RestartPostgres":

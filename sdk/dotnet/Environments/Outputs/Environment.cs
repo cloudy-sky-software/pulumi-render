@@ -17,6 +17,10 @@ namespace Pulumi.Render.Environments.Outputs
         public readonly ImmutableArray<string> EnvGroupIds;
         public readonly string Id;
         public readonly string Name;
+        /// <summary>
+        /// Indicates whether network connections across environments are allowed.
+        /// </summary>
+        public readonly bool NetworkIsolationEnabled;
         public readonly string ProjectId;
         /// <summary>
         /// Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
@@ -35,6 +39,8 @@ namespace Pulumi.Render.Environments.Outputs
 
             string name,
 
+            bool networkIsolationEnabled,
+
             string projectId,
 
             Pulumi.Render.Environments.EnvironmentProtectedStatus protectedStatus,
@@ -47,6 +53,7 @@ namespace Pulumi.Render.Environments.Outputs
             EnvGroupIds = envGroupIds;
             Id = id;
             Name = name;
+            NetworkIsolationEnabled = networkIsolationEnabled;
             ProjectId = projectId;
             ProtectedStatus = protectedStatus;
             RedisIds = redisIds;

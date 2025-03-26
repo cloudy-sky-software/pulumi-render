@@ -102,6 +102,7 @@ class ResourcesToEnvironment(pulumi.CustomResource):
             __props__.__dict__["databases_ids"] = None
             __props__.__dict__["env_group_ids"] = None
             __props__.__dict__["name"] = None
+            __props__.__dict__["network_isolation_enabled"] = None
             __props__.__dict__["project_id"] = None
             __props__.__dict__["protected_status"] = None
             __props__.__dict__["redis_ids"] = None
@@ -131,6 +132,7 @@ class ResourcesToEnvironment(pulumi.CustomResource):
         __props__.__dict__["databases_ids"] = None
         __props__.__dict__["env_group_ids"] = None
         __props__.__dict__["name"] = None
+        __props__.__dict__["network_isolation_enabled"] = None
         __props__.__dict__["project_id"] = None
         __props__.__dict__["protected_status"] = None
         __props__.__dict__["redis_ids"] = None
@@ -152,6 +154,14 @@ class ResourcesToEnvironment(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="networkIsolationEnabled")
+    def network_isolation_enabled(self) -> pulumi.Output[bool]:
+        """
+        Indicates whether network connections across environments are allowed.
+        """
+        return pulumi.get(self, "network_isolation_enabled")
 
     @property
     @pulumi.getter(name="projectId")

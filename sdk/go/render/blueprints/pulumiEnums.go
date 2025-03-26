@@ -113,6 +113,7 @@ const (
 	GetBlueprintPropertiesResourcesItemPropertiesTypeBackgroundWorker = GetBlueprintPropertiesResourcesItemPropertiesType("background_worker")
 	GetBlueprintPropertiesResourcesItemPropertiesTypeCronJob          = GetBlueprintPropertiesResourcesItemPropertiesType("cron_job")
 	GetBlueprintPropertiesResourcesItemPropertiesTypeRedis            = GetBlueprintPropertiesResourcesItemPropertiesType("redis")
+	GetBlueprintPropertiesResourcesItemPropertiesTypeKeyValue         = GetBlueprintPropertiesResourcesItemPropertiesType("key_value")
 	GetBlueprintPropertiesResourcesItemPropertiesTypePostgres         = GetBlueprintPropertiesResourcesItemPropertiesType("postgres")
 	GetBlueprintPropertiesResourcesItemPropertiesTypeEnvironmentGroup = GetBlueprintPropertiesResourcesItemPropertiesType("environment_group")
 )

@@ -39,7 +39,7 @@ export class Postgres extends pulumi.CustomResource {
 
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * The URL to view the PostgreSQL instance in the Render Dashboard
+     * The URL to view the Postgres instance in the Render Dashboard
      */
     public /*out*/ readonly dashboardUrl!: pulumi.Output<string>;
     public readonly databaseName!: pulumi.Output<string>;

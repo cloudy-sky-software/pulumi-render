@@ -21,6 +21,12 @@ namespace Pulumi.Render.Environments
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Indicates whether network connections across environments are allowed.
+        /// </summary>
+        [Output("networkIsolationEnabled")]
+        public Output<bool> NetworkIsolationEnabled { get; private set; } = null!;
+
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
@@ -84,6 +90,12 @@ namespace Pulumi.Render.Environments
     {
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// Indicates whether network connections across environments are allowed.
+        /// </summary>
+        [Input("networkIsolationEnabled")]
+        public Input<bool>? NetworkIsolationEnabled { get; set; }
 
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;

@@ -1345,48 +1345,52 @@ components:
         instanceId:
             description: When a service with a disk is scaled, the instanceId is used to identify the instance that the disk is attached to. Each instance's disks get their own snapshots, and can be restored separately.
             type: string
+        job:
+            properties:
+                createdAt:
+                    example: "2021-07-15T07:20:05.777035-07:00"
+                    format: date-time
+                    type: string
+                finishedAt:
+                    example: "2021-07-15T07:20:05.777035-07:00"
+                    format: date-time
+                    type: string
+                id:
+                    example: job-cph1rs3idesc73a2b2mg
+                    pattern: ^job-[0-9a-z]{20}$
+                    type: string
+                planId:
+                    example: plan-srv-004
+                    type: string
+                serviceId:
+                    example: srv-xxxxx
+                    type: string
+                startCommand:
+                    example: echo 'hello world'
+                    type: string
+                startedAt:
+                    example: "2021-07-15T07:20:05.777035-07:00"
+                    format: date-time
+                    type: string
+                status:
+                    enum:
+                        - succeeded
+                        - failed
+                        - canceled
+                    type: string
+            required:
+                - id
+                - serviceId
+                - startCommand
+                - planId
+                - createdAt
+            type: object
         jobWithCursor:
             properties:
                 cursor:
                     $ref: '#/components/schemas/cursor'
                 job:
-                    properties:
-                        createdAt:
-                            example: "2021-07-15T07:20:05.777035-07:00"
-                            format: date-time
-                            type: string
-                        finishedAt:
-                            example: "2021-07-15T07:20:05.777035-07:00"
-                            format: date-time
-                            type: string
-                        id:
-                            $ref: '#/paths/~1services~1%7BserviceId%7D~1jobs~1%7BjobId%7D/parameters/1/schema'
-                        planId:
-                            example: plan-srv-004
-                            type: string
-                        serviceId:
-                            example: srv-xxxxx
-                            type: string
-                        startCommand:
-                            example: echo 'hello world'
-                            type: string
-                        startedAt:
-                            example: "2021-07-15T07:20:05.777035-07:00"
-                            format: date-time
-                            type: string
-                        status:
-                            enum:
-                                - succeeded
-                                - failed
-                                - canceled
-                            type: string
-                    required:
-                        - id
-                        - serviceId
-                        - startCommand
-                        - planId
-                        - createdAt
-                    type: object
+                    $ref: '#/components/schemas/job'
             required:
                 - job
                 - cursor
@@ -9895,7 +9899,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/jobWithCursor/properties/job'
+                                $ref: '#/components/schemas/job'
                     description: OK
                 "400":
                     $ref: '#/components/responses/400BadRequest'
@@ -9922,7 +9926,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/jobWithCursor/properties/job'
+                                $ref: '#/components/schemas/job'
                     description: OK
                 "400":
                     $ref: '#/components/responses/400BadRequest'
@@ -9962,7 +9966,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/jobWithCursor/properties/job'
+                                $ref: '#/components/schemas/job'
                     description: OK
                 "400":
                     $ref: '#/components/responses/400BadRequest'

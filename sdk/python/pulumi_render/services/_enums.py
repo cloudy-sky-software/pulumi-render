@@ -32,8 +32,6 @@ __all__ = [
     'DeployStatus',
     'DeployTrigger',
     'JobStatus',
-    'JobWithCursorJobPropertiesStatus',
-    'JobWithCursorpropertiesjobStatus',
     'Plan',
     'PreviewsGeneration',
     'PrivateServiceDetailsCreateEnv',
@@ -365,18 +363,6 @@ class DeployTrigger(str, Enum):
 
 
 class JobStatus(str, Enum):
-    SUCCEEDED = "succeeded"
-    FAILED = "failed"
-    CANCELED = "canceled"
-
-
-class JobWithCursorJobPropertiesStatus(str, Enum):
-    SUCCEEDED = "succeeded"
-    FAILED = "failed"
-    CANCELED = "canceled"
-
-
-class JobWithCursorpropertiesjobStatus(str, Enum):
     SUCCEEDED = "succeeded"
     FAILED = "failed"
     CANCELED = "canceled"

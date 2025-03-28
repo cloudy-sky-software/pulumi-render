@@ -6,65 +6,12 @@ from enum import Enum
 
 __all__ = [
     'EventFilterItem',
-    'WebhookEventWithCursorWebhookEventPropertiesEventType',
     'WebhookWithCursorWebhookPropertiesEventFilterItem',
     'WebhookWithCursorpropertieswebhookEventFilterItem',
 ]
 
 
 class EventFilterItem(str, Enum):
-    AUTOSCALING_CONFIG_CHANGED = "autoscaling_config_changed"
-    AUTOSCALING_ENDED = "autoscaling_ended"
-    AUTOSCALING_STARTED = "autoscaling_started"
-    BRANCH_DELETED = "branch_deleted"
-    BUILD_ENDED = "build_ended"
-    BUILD_STARTED = "build_started"
-    COMMIT_IGNORED = "commit_ignored"
-    CRON_JOB_RUN_ENDED = "cron_job_run_ended"
-    CRON_JOB_RUN_STARTED = "cron_job_run_started"
-    DEPLOY_ENDED = "deploy_ended"
-    DEPLOY_STARTED = "deploy_started"
-    DISK_CREATED = "disk_created"
-    DISK_UPDATED = "disk_updated"
-    DISK_DELETED = "disk_deleted"
-    IMAGE_PULL_FAILED = "image_pull_failed"
-    INSTANCE_COUNT_CHANGED = "instance_count_changed"
-    JOB_RUN_ENDED = "job_run_ended"
-    MAINTENANCE_MODE_ENABLED = "maintenance_mode_enabled"
-    MAINTENANCE_MODE_URI_UPDATED = "maintenance_mode_uri_updated"
-    MAINTENANCE_ENDED = "maintenance_ended"
-    MAINTENANCE_STARTED = "maintenance_started"
-    PLAN_CHANGED = "plan_changed"
-    PRE_DEPLOY_ENDED = "pre_deploy_ended"
-    PRE_DEPLOY_STARTED = "pre_deploy_started"
-    SERVER_AVAILABLE = "server_available"
-    SERVER_FAILED = "server_failed"
-    SERVER_HARDWARE_FAILURE = "server_hardware_failure"
-    SERVER_RESTARTED = "server_restarted"
-    SERVER_UNHEALTHY = "server_unhealthy"
-    SERVICE_RESUMED = "service_resumed"
-    SERVICE_SUSPENDED = "service_suspended"
-    ZERO_DOWNTIME_REDEPLOY_ENDED = "zero_downtime_redeploy_ended"
-    ZERO_DOWNTIME_REDEPLOY_STARTED = "zero_downtime_redeploy_started"
-    POSTGRES_AVAILABLE = "postgres_available"
-    POSTGRES_BACKUP_COMPLETED = "postgres_backup_completed"
-    POSTGRES_BACKUP_STARTED = "postgres_backup_started"
-    POSTGRES_CLUSTER_LEADER_CHANGED = "postgres_cluster_leader_changed"
-    POSTGRES_CREATED = "postgres_created"
-    POSTGRES_DISK_SIZE_CHANGED = "postgres_disk_size_changed"
-    POSTGRES_HA_STATUS_CHANGED = "postgres_ha_status_changed"
-    POSTGRES_RESTARTED = "postgres_restarted"
-    POSTGRES_UNAVAILABLE = "postgres_unavailable"
-    POSTGRES_UPGRADE_FAILED = "postgres_upgrade_failed"
-    POSTGRES_UPGRADE_STARTED = "postgres_upgrade_started"
-    POSTGRES_UPGRADE_SUCCEEDED = "postgres_upgrade_succeeded"
-    POSTGRES_READ_REPLICAS_CHANGED = "postgres_read_replicas_changed"
-    KEY_VALUE_AVAILABLE = "key_value_available"
-    KEY_VALUE_CONFIG_RESTART = "key_value_config_restart"
-    KEY_VALUE_UNHEALTHY = "key_value_unhealthy"
-
-
-class WebhookEventWithCursorWebhookEventPropertiesEventType(str, Enum):
     AUTOSCALING_CONFIG_CHANGED = "autoscaling_config_changed"
     AUTOSCALING_ENDED = "autoscaling_ended"
     AUTOSCALING_STARTED = "autoscaling_started"

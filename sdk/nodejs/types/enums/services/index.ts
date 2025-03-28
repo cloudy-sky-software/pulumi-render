@@ -350,22 +350,6 @@ export const JobStatus = {
 
 export type JobStatus = (typeof JobStatus)[keyof typeof JobStatus];
 
-export const JobWithCursorJobPropertiesStatus = {
-    Succeeded: "succeeded",
-    Failed: "failed",
-    Canceled: "canceled",
-} as const;
-
-export type JobWithCursorJobPropertiesStatus = (typeof JobWithCursorJobPropertiesStatus)[keyof typeof JobWithCursorJobPropertiesStatus];
-
-export const JobWithCursorpropertiesjobStatus = {
-    Succeeded: "succeeded",
-    Failed: "failed",
-    Canceled: "canceled",
-} as const;
-
-export type JobWithCursorpropertiesjobStatus = (typeof JobWithCursorpropertiesjobStatus)[keyof typeof JobWithCursorpropertiesjobStatus];
-
 export const Plan = {
     Starter: "starter",
     StarterPlus: "starter_plus",

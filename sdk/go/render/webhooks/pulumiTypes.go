@@ -13,113 +13,6 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
-type WebhookEventWithCursor struct {
-	Cursor       string                                       `pulumi:"cursor"`
-	WebhookEvent WebhookEventWithCursorWebhookEventProperties `pulumi:"webhookEvent"`
-}
-
-type WebhookEventWithCursorOutput struct{ *pulumi.OutputState }
-
-func (WebhookEventWithCursorOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebhookEventWithCursor)(nil)).Elem()
-}
-
-func (o WebhookEventWithCursorOutput) ToWebhookEventWithCursorOutput() WebhookEventWithCursorOutput {
-	return o
-}
-
-func (o WebhookEventWithCursorOutput) ToWebhookEventWithCursorOutputWithContext(ctx context.Context) WebhookEventWithCursorOutput {
-	return o
-}
-
-func (o WebhookEventWithCursorOutput) Cursor() pulumi.StringOutput {
-	return o.ApplyT(func(v WebhookEventWithCursor) string { return v.Cursor }).(pulumi.StringOutput)
-}
-
-func (o WebhookEventWithCursorOutput) WebhookEvent() WebhookEventWithCursorWebhookEventPropertiesOutput {
-	return o.ApplyT(func(v WebhookEventWithCursor) WebhookEventWithCursorWebhookEventProperties { return v.WebhookEvent }).(WebhookEventWithCursorWebhookEventPropertiesOutput)
-}
-
-type WebhookEventWithCursorArrayOutput struct{ *pulumi.OutputState }
-
-func (WebhookEventWithCursorArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WebhookEventWithCursor)(nil)).Elem()
-}
-
-func (o WebhookEventWithCursorArrayOutput) ToWebhookEventWithCursorArrayOutput() WebhookEventWithCursorArrayOutput {
-	return o
-}
-
-func (o WebhookEventWithCursorArrayOutput) ToWebhookEventWithCursorArrayOutputWithContext(ctx context.Context) WebhookEventWithCursorArrayOutput {
-	return o
-}
-
-func (o WebhookEventWithCursorArrayOutput) Index(i pulumi.IntInput) WebhookEventWithCursorOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WebhookEventWithCursor {
-		return vs[0].([]WebhookEventWithCursor)[vs[1].(int)]
-	}).(WebhookEventWithCursorOutput)
-}
-
-type WebhookEventWithCursorWebhookEventProperties struct {
-	// error is populated when an error occurs without a response such as a timeout
-	Error *string `pulumi:"error"`
-	// the id of the event that triggered the webhook
-	EventId   string                                                `pulumi:"eventId"`
-	EventType WebhookEventWithCursorWebhookEventPropertiesEventType `pulumi:"eventType"`
-	// the id of the webhook event
-	Id           string  `pulumi:"id"`
-	ResponseBody *string `pulumi:"responseBody"`
-	SentAt       string  `pulumi:"sentAt"`
-	StatusCode   *int    `pulumi:"statusCode"`
-}
-
-type WebhookEventWithCursorWebhookEventPropertiesOutput struct{ *pulumi.OutputState }
-
-func (WebhookEventWithCursorWebhookEventPropertiesOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebhookEventWithCursorWebhookEventProperties)(nil)).Elem()
-}
-
-func (o WebhookEventWithCursorWebhookEventPropertiesOutput) ToWebhookEventWithCursorWebhookEventPropertiesOutput() WebhookEventWithCursorWebhookEventPropertiesOutput {
-	return o
-}
-
-func (o WebhookEventWithCursorWebhookEventPropertiesOutput) ToWebhookEventWithCursorWebhookEventPropertiesOutputWithContext(ctx context.Context) WebhookEventWithCursorWebhookEventPropertiesOutput {
-	return o
-}
-
-// error is populated when an error occurs without a response such as a timeout
-func (o WebhookEventWithCursorWebhookEventPropertiesOutput) Error() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v WebhookEventWithCursorWebhookEventProperties) *string { return v.Error }).(pulumi.StringPtrOutput)
-}
-
-// the id of the event that triggered the webhook
-func (o WebhookEventWithCursorWebhookEventPropertiesOutput) EventId() pulumi.StringOutput {
-	return o.ApplyT(func(v WebhookEventWithCursorWebhookEventProperties) string { return v.EventId }).(pulumi.StringOutput)
-}
-
-func (o WebhookEventWithCursorWebhookEventPropertiesOutput) EventType() WebhookEventWithCursorWebhookEventPropertiesEventTypeOutput {
-	return o.ApplyT(func(v WebhookEventWithCursorWebhookEventProperties) WebhookEventWithCursorWebhookEventPropertiesEventType {
-		return v.EventType
-	}).(WebhookEventWithCursorWebhookEventPropertiesEventTypeOutput)
-}
-
-// the id of the webhook event
-func (o WebhookEventWithCursorWebhookEventPropertiesOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v WebhookEventWithCursorWebhookEventProperties) string { return v.Id }).(pulumi.StringOutput)
-}
-
-func (o WebhookEventWithCursorWebhookEventPropertiesOutput) ResponseBody() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v WebhookEventWithCursorWebhookEventProperties) *string { return v.ResponseBody }).(pulumi.StringPtrOutput)
-}
-
-func (o WebhookEventWithCursorWebhookEventPropertiesOutput) SentAt() pulumi.StringOutput {
-	return o.ApplyT(func(v WebhookEventWithCursorWebhookEventProperties) string { return v.SentAt }).(pulumi.StringOutput)
-}
-
-func (o WebhookEventWithCursorWebhookEventPropertiesOutput) StatusCode() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v WebhookEventWithCursorWebhookEventProperties) *int { return v.StatusCode }).(pulumi.IntPtrOutput)
-}
-
 type WebhookWithCursor struct {
 	Cursor  string                             `pulumi:"cursor"`
 	Webhook WebhookWithCursorWebhookProperties `pulumi:"webhook"`
@@ -270,9 +163,6 @@ func (o WebhookWithCursorpropertieswebhookOutput) Url() pulumi.StringOutput {
 }
 
 func init() {
-	pulumi.RegisterOutputType(WebhookEventWithCursorOutput{})
-	pulumi.RegisterOutputType(WebhookEventWithCursorArrayOutput{})
-	pulumi.RegisterOutputType(WebhookEventWithCursorWebhookEventPropertiesOutput{})
 	pulumi.RegisterOutputType(WebhookWithCursorOutput{})
 	pulumi.RegisterOutputType(WebhookWithCursorArrayOutput{})
 	pulumi.RegisterOutputType(WebhookWithCursorWebhookPropertiesOutput{})

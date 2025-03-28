@@ -388,6 +388,30 @@ func convertFromOneOfToAllOf(openAPIDoc *openapi3.T, types []string) {
 	}
 }
 
+func fixJobWithCursorSchema(openAPIDoc *openapi3.T) {
+	jobWithCursor, ok := openAPIDoc.Components.Schemas["jobWithCursor"]
+	contract.Assertf(ok, "type jobWithCursor not found")
+
+	job := jobWithCursor.Value.Properties["job"].Value
+	contract.Assertf(job != nil, "Property job not found in jobWithCursor type")
+
+	// Fix the ID property.
+	job.Properties["id"].Ref = ""
+	job.Properties["id"].Value.Type = &openapi3.Types{openapi3.TypeString}
+
+	// Define the Job schema as its own type
+	// instead of an inline schema.
+	openAPIDoc.Components.Schemas["job"] = openapi3.NewSchemaRef("", job)
+
+	// Change the jobWithCursor's job property to use
+	// the newly-created schema type for job.
+	jobWithCursor.Value.Properties["job"] = openapi3.NewSchemaRef("#/components/schemas/job", job)
+
+	openAPIDoc.Paths.Find("/services/{serviceId}/jobs").Post.Responses.Status(201).Value.Content.Get(jsonMimeType).Schema = openapi3.NewSchemaRef("#/components/schemas/job", job)
+	openAPIDoc.Paths.Find("/services/{serviceId}/jobs/{jobId}").Get.Responses.Status(200).Value.Content.Get(jsonMimeType).Schema = openapi3.NewSchemaRef("#/components/schemas/job", job)
+	openAPIDoc.Paths.Find("/services/{serviceId}/jobs/{jobId}/cancel").Post.Responses.Status(200).Value.Content.Get(jsonMimeType).Schema = openapi3.NewSchemaRef("#/components/schemas/job", job)
+}
+
 func FixOpenAPIDoc(openAPIDoc *openapi3.T) error {
 	if err := ensureOperationID(openAPIDoc); err != nil {
 		return err
@@ -408,6 +432,7 @@ func FixOpenAPIDoc(openAPIDoc *openapi3.T) error {
 	fixListServicesEndpoint(openAPIDoc)
 	fixDeleteServiceEndpoint(openAPIDoc)
 	fixPostgresResponseInvalidRequiredProp(openAPIDoc)
+	fixJobWithCursorSchema(openAPIDoc)
 	// Convert envSpecificDetails|PATCH|POST schema types from oneOf to allOf.
 	convertFromOneOfToAllOf(openAPIDoc, []string{"envSpecificDetails", "envSpecificDetailsPATCH", "envSpecificDetailsPOST"})
 	// Convert envVarInput from oneOf to allOf.

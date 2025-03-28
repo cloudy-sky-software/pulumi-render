@@ -10,11 +10,6 @@ export const getWebhook: typeof import("./getWebhook").getWebhook = null as any;
 export const getWebhookOutput: typeof import("./getWebhook").getWebhookOutput = null as any;
 utilities.lazyLoad(exports, ["getWebhook","getWebhookOutput"], () => require("./getWebhook"));
 
-export { ListWebhookEventsArgs, ListWebhookEventsResult, ListWebhookEventsOutputArgs } from "./listWebhookEvents";
-export const listWebhookEvents: typeof import("./listWebhookEvents").listWebhookEvents = null as any;
-export const listWebhookEventsOutput: typeof import("./listWebhookEvents").listWebhookEventsOutput = null as any;
-utilities.lazyLoad(exports, ["listWebhookEvents","listWebhookEventsOutput"], () => require("./listWebhookEvents"));
-
 export { ListWebhooksArgs, ListWebhooksResult } from "./listWebhooks";
 export const listWebhooks: typeof import("./listWebhooks").listWebhooks = null as any;
 export const listWebhooksOutput: typeof import("./listWebhooks").listWebhooksOutput = null as any;

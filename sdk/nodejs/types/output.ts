@@ -1517,31 +1517,20 @@ export namespace services {
         sha?: string;
     }
 
+    export interface Job {
+        createdAt: string;
+        finishedAt?: string;
+        id: string;
+        planId: string;
+        serviceId: string;
+        startCommand: string;
+        startedAt?: string;
+        status?: enums.services.JobStatus;
+    }
+
     export interface JobWithCursor {
         cursor: string;
-        job: outputs.services.JobWithCursorJobProperties;
-    }
-
-    export interface JobWithCursorJobProperties {
-        createdAt: string;
-        finishedAt?: string;
-        id: string;
-        planId: string;
-        serviceId: string;
-        startCommand: string;
-        startedAt?: string;
-        status?: enums.services.JobWithCursorJobPropertiesStatus;
-    }
-
-    export interface JobWithCursorpropertiesjob {
-        createdAt: string;
-        finishedAt?: string;
-        id: string;
-        planId: string;
-        serviceId: string;
-        startCommand: string;
-        startedAt?: string;
-        status?: enums.services.JobWithCursorpropertiesjobStatus;
+        job: outputs.services.Job;
     }
 
     export interface ListServicesResponse {
@@ -2078,30 +2067,6 @@ export namespace users {
 }
 
 export namespace webhooks {
-    export interface WebhookEventWithCursor {
-        cursor: string;
-        webhookEvent: outputs.webhooks.WebhookEventWithCursorWebhookEventProperties;
-    }
-
-    export interface WebhookEventWithCursorWebhookEventProperties {
-        /**
-         * error is populated when an error occurs without a response such as a timeout
-         */
-        error?: string;
-        /**
-         * the id of the event that triggered the webhook
-         */
-        eventId: string;
-        eventType: enums.webhooks.WebhookEventWithCursorWebhookEventPropertiesEventType;
-        /**
-         * the id of the webhook event
-         */
-        id: string;
-        responseBody?: string;
-        sentAt: string;
-        statusCode?: number;
-    }
-
     export interface WebhookWithCursor {
         cursor: string;
         webhook: outputs.webhooks.WebhookWithCursorWebhookProperties;

@@ -14,13 +14,13 @@ namespace Pulumi.Render.Services.Outputs
     public sealed class JobWithCursor
     {
         public readonly string Cursor;
-        public readonly Outputs.JobWithCursorJobProperties Job;
+        public readonly Outputs.Job Job;
 
         [OutputConstructor]
         private JobWithCursor(
             string cursor,
 
-            Outputs.JobWithCursorJobProperties job)
+            Outputs.Job job)
         {
             Cursor = cursor;
             Job = job;

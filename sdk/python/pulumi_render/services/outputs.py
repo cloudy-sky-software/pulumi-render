@@ -40,8 +40,8 @@ __all__ = [
     'HeaderWithCursor',
     'Image',
     'ImageProperties',
+    'Job',
     'JobWithCursor',
-    'JobWithCursorJobProperties',
     'ListServicesResponse',
     'MaintenanceMode',
     'Previews',
@@ -1438,26 +1438,7 @@ class ImageProperties(dict):
 
 
 @pulumi.output_type
-class JobWithCursor(dict):
-    def __init__(__self__, *,
-                 cursor: str,
-                 job: 'outputs.JobWithCursorJobProperties'):
-        pulumi.set(__self__, "cursor", cursor)
-        pulumi.set(__self__, "job", job)
-
-    @property
-    @pulumi.getter
-    def cursor(self) -> str:
-        return pulumi.get(self, "cursor")
-
-    @property
-    @pulumi.getter
-    def job(self) -> 'outputs.JobWithCursorJobProperties':
-        return pulumi.get(self, "job")
-
-
-@pulumi.output_type
-class JobWithCursorJobProperties(dict):
+class Job(dict):
     def __init__(__self__, *,
                  created_at: str,
                  id: str,
@@ -1466,7 +1447,7 @@ class JobWithCursorJobProperties(dict):
                  start_command: str,
                  finished_at: Optional[str] = None,
                  started_at: Optional[str] = None,
-                 status: Optional['JobWithCursorJobPropertiesStatus'] = None):
+                 status: Optional['JobStatus'] = None):
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "plan_id", plan_id)
@@ -1516,8 +1497,27 @@ class JobWithCursorJobProperties(dict):
 
     @property
     @pulumi.getter
-    def status(self) -> Optional['JobWithCursorJobPropertiesStatus']:
+    def status(self) -> Optional['JobStatus']:
         return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class JobWithCursor(dict):
+    def __init__(__self__, *,
+                 cursor: str,
+                 job: 'outputs.Job'):
+        pulumi.set(__self__, "cursor", cursor)
+        pulumi.set(__self__, "job", job)
+
+    @property
+    @pulumi.getter
+    def cursor(self) -> str:
+        return pulumi.get(self, "cursor")
+
+    @property
+    @pulumi.getter
+    def job(self) -> 'outputs.Job':
+        return pulumi.get(self, "job")
 
 
 @pulumi.output_type

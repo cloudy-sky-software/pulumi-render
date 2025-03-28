@@ -11,7 +11,7 @@ namespace Pulumi.Render.Services.Outputs
 {
 
     [OutputType]
-    public sealed class JobWithCursorpropertiesjob
+    public sealed class Job
     {
         public readonly string CreatedAt;
         public readonly string? FinishedAt;
@@ -20,10 +20,10 @@ namespace Pulumi.Render.Services.Outputs
         public readonly string ServiceId;
         public readonly string StartCommand;
         public readonly string? StartedAt;
-        public readonly Pulumi.Render.Services.JobWithCursorpropertiesjobStatus? Status;
+        public readonly Pulumi.Render.Services.JobStatus? Status;
 
         [OutputConstructor]
-        private JobWithCursorpropertiesjob(
+        private Job(
             string createdAt,
 
             string? finishedAt,
@@ -38,7 +38,7 @@ namespace Pulumi.Render.Services.Outputs
 
             string? startedAt,
 
-            Pulumi.Render.Services.JobWithCursorpropertiesjobStatus? status)
+            Pulumi.Render.Services.JobStatus? status)
         {
             CreatedAt = createdAt;
             FinishedAt = finishedAt;

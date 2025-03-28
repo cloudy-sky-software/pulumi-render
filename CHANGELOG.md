@@ -1,3 +1,12 @@
+## 0.4.0
+
+Update to the latest Render OpenAPI spec.
+
+New resource `KeyValue` supports Render's
+managed [key-value store backed by Valkey](https://render.com/docs/key-value).
+
+**Note**: See [[MIGRATION.md]] for migrating from 0.3.x to 0.4.x.
+
 ## 0.3.12
 
 Update to the latest Render OpenAPI spec. (Fixes #367.)

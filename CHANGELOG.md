@@ -1,3 +1,12 @@
+## 0.4.2
+
+Fix a regression introduced in 0.4.0/0.4.1. (#453)
+
+Other changes:
+
+- Exclude some more `/logs` endpoints.
+- New individual resources for adding a single SecretFile, EnvVar and EnvGroup for a service.
+
 ## 0.4.0, 0.4.1
 
 Update to the latest Render OpenAPI spec.

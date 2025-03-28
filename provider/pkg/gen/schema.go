@@ -133,6 +133,7 @@ func PulumiSchema(openAPIDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 			"/metrics/filters/http",
 			"/metrics/filters/path",
 			"/metrics-stream/{ownerId}",
+			"/webhooks/{webhookId}/events",
 		},
 	}
 

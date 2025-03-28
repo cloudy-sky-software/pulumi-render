@@ -6021,6 +6021,42 @@
             },
             "type": "object"
         },
+        "render:services:Job": {
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "finishedAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "planId": {
+                    "type": "string"
+                },
+                "serviceId": {
+                    "type": "string"
+                },
+                "startCommand": {
+                    "type": "string"
+                },
+                "startedAt": {
+                    "type": "string"
+                },
+                "status": {
+                    "$ref": "#/types/render:services:JobStatus"
+                }
+            },
+            "type": "object",
+            "required": [
+                "createdAt",
+                "id",
+                "planId",
+                "serviceId",
+                "startCommand"
+            ]
+        },
         "render:services:JobStatus": {
             "type": "string",
             "enum": [
@@ -6044,119 +6080,13 @@
                     "type": "string"
                 },
                 "job": {
-                    "$ref": "#/types/render:services:JobWithCursorJobProperties"
+                    "$ref": "#/types/render:services:Job"
                 }
             },
             "type": "object",
             "required": [
                 "cursor",
                 "job"
-            ]
-        },
-        "render:services:JobWithCursorJobProperties": {
-            "properties": {
-                "createdAt": {
-                    "type": "string"
-                },
-                "finishedAt": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "planId": {
-                    "type": "string"
-                },
-                "serviceId": {
-                    "type": "string"
-                },
-                "startCommand": {
-                    "type": "string"
-                },
-                "startedAt": {
-                    "type": "string"
-                },
-                "status": {
-                    "$ref": "#/types/render:services:JobWithCursorJobPropertiesStatus"
-                }
-            },
-            "type": "object",
-            "required": [
-                "createdAt",
-                "id",
-                "planId",
-                "serviceId",
-                "startCommand"
-            ]
-        },
-        "render:services:JobWithCursorJobPropertiesStatus": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Succeeded",
-                    "value": "succeeded"
-                },
-                {
-                    "name": "Failed",
-                    "value": "failed"
-                },
-                {
-                    "name": "Canceled",
-                    "value": "canceled"
-                }
-            ]
-        },
-        "render:services:JobWithCursorpropertiesjob": {
-            "properties": {
-                "createdAt": {
-                    "type": "string"
-                },
-                "finishedAt": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "planId": {
-                    "type": "string"
-                },
-                "serviceId": {
-                    "type": "string"
-                },
-                "startCommand": {
-                    "type": "string"
-                },
-                "startedAt": {
-                    "type": "string"
-                },
-                "status": {
-                    "$ref": "#/types/render:services:JobWithCursorpropertiesjobStatus"
-                }
-            },
-            "type": "object",
-            "required": [
-                "createdAt",
-                "id",
-                "planId",
-                "serviceId",
-                "startCommand"
-            ]
-        },
-        "render:services:JobWithCursorpropertiesjobStatus": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "Succeeded",
-                    "value": "succeeded"
-                },
-                {
-                    "name": "Failed",
-                    "value": "failed"
-                },
-                {
-                    "name": "Canceled",
-                    "value": "canceled"
-                }
             ]
         },
         "render:services:ListServicesResponse": {
@@ -8306,257 +8236,6 @@
             ]
         },
         "render:webhooks:EventFilterItem": {
-            "type": "string",
-            "enum": [
-                {
-                    "name": "AutoscalingConfigChanged",
-                    "value": "autoscaling_config_changed"
-                },
-                {
-                    "name": "AutoscalingEnded",
-                    "value": "autoscaling_ended"
-                },
-                {
-                    "name": "AutoscalingStarted",
-                    "value": "autoscaling_started"
-                },
-                {
-                    "name": "BranchDeleted",
-                    "value": "branch_deleted"
-                },
-                {
-                    "name": "BuildEnded",
-                    "value": "build_ended"
-                },
-                {
-                    "name": "BuildStarted",
-                    "value": "build_started"
-                },
-                {
-                    "name": "CommitIgnored",
-                    "value": "commit_ignored"
-                },
-                {
-                    "name": "CronJobRunEnded",
-                    "value": "cron_job_run_ended"
-                },
-                {
-                    "name": "CronJobRunStarted",
-                    "value": "cron_job_run_started"
-                },
-                {
-                    "name": "DeployEnded",
-                    "value": "deploy_ended"
-                },
-                {
-                    "name": "DeployStarted",
-                    "value": "deploy_started"
-                },
-                {
-                    "name": "DiskCreated",
-                    "value": "disk_created"
-                },
-                {
-                    "name": "DiskUpdated",
-                    "value": "disk_updated"
-                },
-                {
-                    "name": "DiskDeleted",
-                    "value": "disk_deleted"
-                },
-                {
-                    "name": "ImagePullFailed",
-                    "value": "image_pull_failed"
-                },
-                {
-                    "name": "InstanceCountChanged",
-                    "value": "instance_count_changed"
-                },
-                {
-                    "name": "JobRunEnded",
-                    "value": "job_run_ended"
-                },
-                {
-                    "name": "MaintenanceModeEnabled",
-                    "value": "maintenance_mode_enabled"
-                },
-                {
-                    "name": "MaintenanceModeUriUpdated",
-                    "value": "maintenance_mode_uri_updated"
-                },
-                {
-                    "name": "MaintenanceEnded",
-                    "value": "maintenance_ended"
-                },
-                {
-                    "name": "MaintenanceStarted",
-                    "value": "maintenance_started"
-                },
-                {
-                    "name": "PlanChanged",
-                    "value": "plan_changed"
-                },
-                {
-                    "name": "PreDeployEnded",
-                    "value": "pre_deploy_ended"
-                },
-                {
-                    "name": "PreDeployStarted",
-                    "value": "pre_deploy_started"
-                },
-                {
-                    "name": "ServerAvailable",
-                    "value": "server_available"
-                },
-                {
-                    "name": "ServerFailed",
-                    "value": "server_failed"
-                },
-                {
-                    "name": "ServerHardwareFailure",
-                    "value": "server_hardware_failure"
-                },
-                {
-                    "name": "ServerRestarted",
-                    "value": "server_restarted"
-                },
-                {
-                    "name": "ServerUnhealthy",
-                    "value": "server_unhealthy"
-                },
-                {
-                    "name": "ServiceResumed",
-                    "value": "service_resumed"
-                },
-                {
-                    "name": "ServiceSuspended",
-                    "value": "service_suspended"
-                },
-                {
-                    "name": "ZeroDowntimeRedeployEnded",
-                    "value": "zero_downtime_redeploy_ended"
-                },
-                {
-                    "name": "ZeroDowntimeRedeployStarted",
-                    "value": "zero_downtime_redeploy_started"
-                },
-                {
-                    "name": "PostgresAvailable",
-                    "value": "postgres_available"
-                },
-                {
-                    "name": "PostgresBackupCompleted",
-                    "value": "postgres_backup_completed"
-                },
-                {
-                    "name": "PostgresBackupStarted",
-                    "value": "postgres_backup_started"
-                },
-                {
-                    "name": "PostgresClusterLeaderChanged",
-                    "value": "postgres_cluster_leader_changed"
-                },
-                {
-                    "name": "PostgresCreated",
-                    "value": "postgres_created"
-                },
-                {
-                    "name": "PostgresDiskSizeChanged",
-                    "value": "postgres_disk_size_changed"
-                },
-                {
-                    "name": "PostgresHaStatusChanged",
-                    "value": "postgres_ha_status_changed"
-                },
-                {
-                    "name": "PostgresRestarted",
-                    "value": "postgres_restarted"
-                },
-                {
-                    "name": "PostgresUnavailable",
-                    "value": "postgres_unavailable"
-                },
-                {
-                    "name": "PostgresUpgradeFailed",
-                    "value": "postgres_upgrade_failed"
-                },
-                {
-                    "name": "PostgresUpgradeStarted",
-                    "value": "postgres_upgrade_started"
-                },
-                {
-                    "name": "PostgresUpgradeSucceeded",
-                    "value": "postgres_upgrade_succeeded"
-                },
-                {
-                    "name": "PostgresReadReplicasChanged",
-                    "value": "postgres_read_replicas_changed"
-                },
-                {
-                    "name": "KeyValueAvailable",
-                    "value": "key_value_available"
-                },
-                {
-                    "name": "KeyValueConfigRestart",
-                    "value": "key_value_config_restart"
-                },
-                {
-                    "name": "KeyValueUnhealthy",
-                    "value": "key_value_unhealthy"
-                }
-            ]
-        },
-        "render:webhooks:WebhookEventWithCursor": {
-            "properties": {
-                "cursor": {
-                    "type": "string"
-                },
-                "webhookEvent": {
-                    "$ref": "#/types/render:webhooks:WebhookEventWithCursorWebhookEventProperties"
-                }
-            },
-            "type": "object",
-            "required": [
-                "cursor",
-                "webhookEvent"
-            ]
-        },
-        "render:webhooks:WebhookEventWithCursorWebhookEventProperties": {
-            "properties": {
-                "error": {
-                    "type": "string",
-                    "description": "error is populated when an error occurs without a response such as a timeout"
-                },
-                "eventId": {
-                    "type": "string",
-                    "description": "the id of the event that triggered the webhook"
-                },
-                "eventType": {
-                    "$ref": "#/types/render:webhooks:WebhookEventWithCursorWebhookEventPropertiesEventType"
-                },
-                "id": {
-                    "type": "string",
-                    "description": "the id of the webhook event"
-                },
-                "responseBody": {
-                    "type": "string"
-                },
-                "sentAt": {
-                    "type": "string"
-                },
-                "statusCode": {
-                    "type": "integer"
-                }
-            },
-            "type": "object",
-            "required": [
-                "eventId",
-                "eventType",
-                "id",
-                "sentAt"
-            ]
-        },
-        "render:webhooks:WebhookEventWithCursorWebhookEventPropertiesEventType": {
             "type": "string",
             "enum": [
                 {
@@ -12382,7 +12061,7 @@
                 ]
             },
             "outputs": {
-                "$ref": "#/types/render:services:JobWithCursorpropertiesjob"
+                "$ref": "#/types/render:services:Job"
             }
         },
         "render:services:getPrivateService": {
@@ -12672,32 +12351,6 @@
             },
             "outputs": {
                 "$ref": "#/types/render:webhooks:WebhookWithCursorpropertieswebhook"
-            }
-        },
-        "render:webhooks:listWebhookEvents": {
-            "inputs": {
-                "properties": {
-                    "webhookId": {
-                        "type": "string",
-                        "description": "Unique identifier for the webhook"
-                    }
-                },
-                "required": [
-                    "webhookId"
-                ]
-            },
-            "outputs": {
-                "properties": {
-                    "items": {
-                        "items": {
-                            "$ref": "#/types/render:webhooks:WebhookEventWithCursor"
-                        },
-                        "type": "array"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
             }
         },
         "render:webhooks:listWebhooks": {

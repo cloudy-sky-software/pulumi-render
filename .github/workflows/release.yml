@@ -5,7 +5,7 @@ on:
       - v*.*.*
       - "!v*.*.*-**"
 env:
-  GOLANG_CI_LINT_VERSION: v1.61.0
+  GOLANG_CI_LINT_VERSION: v1.64.8
   PROVIDER: "render"
   NPM_TOKEN: ${{ secrets.NPM_AUTOMATION_TOKEN }}
   PUBLISH_NPM: true

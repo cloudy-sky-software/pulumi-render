@@ -12,7 +12,7 @@ on:
       - "CHANGELOG.md"
 
 env:
-  GOLANG_CI_LINT_VERSION: v1.64.5
+  GOLANG_CI_LINT_VERSION: v1.64.8
   PROVIDER: "render"
 
 jobs:

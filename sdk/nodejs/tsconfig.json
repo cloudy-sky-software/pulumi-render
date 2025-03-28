@@ -148,7 +148,6 @@
         "utilities.ts",
         "webhooks/getWebhook.ts",
         "webhooks/index.ts",
-        "webhooks/listWebhookEvents.ts",
         "webhooks/listWebhooks.ts",
         "webhooks/webhook.ts"
     ]

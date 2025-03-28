@@ -4170,9 +4170,66 @@ func (o ImagePropertiesPtrOutput) Sha() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type JobType struct {
+	CreatedAt    string     `pulumi:"createdAt"`
+	FinishedAt   *string    `pulumi:"finishedAt"`
+	Id           string     `pulumi:"id"`
+	PlanId       string     `pulumi:"planId"`
+	ServiceId    string     `pulumi:"serviceId"`
+	StartCommand string     `pulumi:"startCommand"`
+	StartedAt    *string    `pulumi:"startedAt"`
+	Status       *JobStatus `pulumi:"status"`
+}
+
+type JobTypeOutput struct{ *pulumi.OutputState }
+
+func (JobTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobType)(nil)).Elem()
+}
+
+func (o JobTypeOutput) ToJobTypeOutput() JobTypeOutput {
+	return o
+}
+
+func (o JobTypeOutput) ToJobTypeOutputWithContext(ctx context.Context) JobTypeOutput {
+	return o
+}
+
+func (o JobTypeOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v JobType) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+func (o JobTypeOutput) FinishedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v JobType) *string { return v.FinishedAt }).(pulumi.StringPtrOutput)
+}
+
+func (o JobTypeOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v JobType) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o JobTypeOutput) PlanId() pulumi.StringOutput {
+	return o.ApplyT(func(v JobType) string { return v.PlanId }).(pulumi.StringOutput)
+}
+
+func (o JobTypeOutput) ServiceId() pulumi.StringOutput {
+	return o.ApplyT(func(v JobType) string { return v.ServiceId }).(pulumi.StringOutput)
+}
+
+func (o JobTypeOutput) StartCommand() pulumi.StringOutput {
+	return o.ApplyT(func(v JobType) string { return v.StartCommand }).(pulumi.StringOutput)
+}
+
+func (o JobTypeOutput) StartedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v JobType) *string { return v.StartedAt }).(pulumi.StringPtrOutput)
+}
+
+func (o JobTypeOutput) Status() JobStatusPtrOutput {
+	return o.ApplyT(func(v JobType) *JobStatus { return v.Status }).(JobStatusPtrOutput)
+}
+
 type JobWithCursor struct {
-	Cursor string                     `pulumi:"cursor"`
-	Job    JobWithCursorJobProperties `pulumi:"job"`
+	Cursor string  `pulumi:"cursor"`
+	Job    JobType `pulumi:"job"`
 }
 
 type JobWithCursorOutput struct{ *pulumi.OutputState }
@@ -4193,8 +4250,8 @@ func (o JobWithCursorOutput) Cursor() pulumi.StringOutput {
 	return o.ApplyT(func(v JobWithCursor) string { return v.Cursor }).(pulumi.StringOutput)
 }
 
-func (o JobWithCursorOutput) Job() JobWithCursorJobPropertiesOutput {
-	return o.ApplyT(func(v JobWithCursor) JobWithCursorJobProperties { return v.Job }).(JobWithCursorJobPropertiesOutput)
+func (o JobWithCursorOutput) Job() JobTypeOutput {
+	return o.ApplyT(func(v JobWithCursor) JobType { return v.Job }).(JobTypeOutput)
 }
 
 type JobWithCursorArrayOutput struct{ *pulumi.OutputState }
@@ -4215,120 +4272,6 @@ func (o JobWithCursorArrayOutput) Index(i pulumi.IntInput) JobWithCursorOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) JobWithCursor {
 		return vs[0].([]JobWithCursor)[vs[1].(int)]
 	}).(JobWithCursorOutput)
-}
-
-type JobWithCursorJobProperties struct {
-	CreatedAt    string                            `pulumi:"createdAt"`
-	FinishedAt   *string                           `pulumi:"finishedAt"`
-	Id           string                            `pulumi:"id"`
-	PlanId       string                            `pulumi:"planId"`
-	ServiceId    string                            `pulumi:"serviceId"`
-	StartCommand string                            `pulumi:"startCommand"`
-	StartedAt    *string                           `pulumi:"startedAt"`
-	Status       *JobWithCursorJobPropertiesStatus `pulumi:"status"`
-}
-
-type JobWithCursorJobPropertiesOutput struct{ *pulumi.OutputState }
-
-func (JobWithCursorJobPropertiesOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*JobWithCursorJobProperties)(nil)).Elem()
-}
-
-func (o JobWithCursorJobPropertiesOutput) ToJobWithCursorJobPropertiesOutput() JobWithCursorJobPropertiesOutput {
-	return o
-}
-
-func (o JobWithCursorJobPropertiesOutput) ToJobWithCursorJobPropertiesOutputWithContext(ctx context.Context) JobWithCursorJobPropertiesOutput {
-	return o
-}
-
-func (o JobWithCursorJobPropertiesOutput) CreatedAt() pulumi.StringOutput {
-	return o.ApplyT(func(v JobWithCursorJobProperties) string { return v.CreatedAt }).(pulumi.StringOutput)
-}
-
-func (o JobWithCursorJobPropertiesOutput) FinishedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v JobWithCursorJobProperties) *string { return v.FinishedAt }).(pulumi.StringPtrOutput)
-}
-
-func (o JobWithCursorJobPropertiesOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v JobWithCursorJobProperties) string { return v.Id }).(pulumi.StringOutput)
-}
-
-func (o JobWithCursorJobPropertiesOutput) PlanId() pulumi.StringOutput {
-	return o.ApplyT(func(v JobWithCursorJobProperties) string { return v.PlanId }).(pulumi.StringOutput)
-}
-
-func (o JobWithCursorJobPropertiesOutput) ServiceId() pulumi.StringOutput {
-	return o.ApplyT(func(v JobWithCursorJobProperties) string { return v.ServiceId }).(pulumi.StringOutput)
-}
-
-func (o JobWithCursorJobPropertiesOutput) StartCommand() pulumi.StringOutput {
-	return o.ApplyT(func(v JobWithCursorJobProperties) string { return v.StartCommand }).(pulumi.StringOutput)
-}
-
-func (o JobWithCursorJobPropertiesOutput) StartedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v JobWithCursorJobProperties) *string { return v.StartedAt }).(pulumi.StringPtrOutput)
-}
-
-func (o JobWithCursorJobPropertiesOutput) Status() JobWithCursorJobPropertiesStatusPtrOutput {
-	return o.ApplyT(func(v JobWithCursorJobProperties) *JobWithCursorJobPropertiesStatus { return v.Status }).(JobWithCursorJobPropertiesStatusPtrOutput)
-}
-
-type JobWithCursorpropertiesjob struct {
-	CreatedAt    string                            `pulumi:"createdAt"`
-	FinishedAt   *string                           `pulumi:"finishedAt"`
-	Id           string                            `pulumi:"id"`
-	PlanId       string                            `pulumi:"planId"`
-	ServiceId    string                            `pulumi:"serviceId"`
-	StartCommand string                            `pulumi:"startCommand"`
-	StartedAt    *string                           `pulumi:"startedAt"`
-	Status       *JobWithCursorpropertiesjobStatus `pulumi:"status"`
-}
-
-type JobWithCursorpropertiesjobOutput struct{ *pulumi.OutputState }
-
-func (JobWithCursorpropertiesjobOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*JobWithCursorpropertiesjob)(nil)).Elem()
-}
-
-func (o JobWithCursorpropertiesjobOutput) ToJobWithCursorpropertiesjobOutput() JobWithCursorpropertiesjobOutput {
-	return o
-}
-
-func (o JobWithCursorpropertiesjobOutput) ToJobWithCursorpropertiesjobOutputWithContext(ctx context.Context) JobWithCursorpropertiesjobOutput {
-	return o
-}
-
-func (o JobWithCursorpropertiesjobOutput) CreatedAt() pulumi.StringOutput {
-	return o.ApplyT(func(v JobWithCursorpropertiesjob) string { return v.CreatedAt }).(pulumi.StringOutput)
-}
-
-func (o JobWithCursorpropertiesjobOutput) FinishedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v JobWithCursorpropertiesjob) *string { return v.FinishedAt }).(pulumi.StringPtrOutput)
-}
-
-func (o JobWithCursorpropertiesjobOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v JobWithCursorpropertiesjob) string { return v.Id }).(pulumi.StringOutput)
-}
-
-func (o JobWithCursorpropertiesjobOutput) PlanId() pulumi.StringOutput {
-	return o.ApplyT(func(v JobWithCursorpropertiesjob) string { return v.PlanId }).(pulumi.StringOutput)
-}
-
-func (o JobWithCursorpropertiesjobOutput) ServiceId() pulumi.StringOutput {
-	return o.ApplyT(func(v JobWithCursorpropertiesjob) string { return v.ServiceId }).(pulumi.StringOutput)
-}
-
-func (o JobWithCursorpropertiesjobOutput) StartCommand() pulumi.StringOutput {
-	return o.ApplyT(func(v JobWithCursorpropertiesjob) string { return v.StartCommand }).(pulumi.StringOutput)
-}
-
-func (o JobWithCursorpropertiesjobOutput) StartedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v JobWithCursorpropertiesjob) *string { return v.StartedAt }).(pulumi.StringPtrOutput)
-}
-
-func (o JobWithCursorpropertiesjobOutput) Status() JobWithCursorpropertiesjobStatusPtrOutput {
-	return o.ApplyT(func(v JobWithCursorpropertiesjob) *JobWithCursorpropertiesjobStatus { return v.Status }).(JobWithCursorpropertiesjobStatusPtrOutput)
 }
 
 type ListServicesResponse struct {
@@ -9544,10 +9487,9 @@ func init() {
 	pulumi.RegisterOutputType(ImagePtrOutput{})
 	pulumi.RegisterOutputType(ImagePropertiesOutput{})
 	pulumi.RegisterOutputType(ImagePropertiesPtrOutput{})
+	pulumi.RegisterOutputType(JobTypeOutput{})
 	pulumi.RegisterOutputType(JobWithCursorOutput{})
 	pulumi.RegisterOutputType(JobWithCursorArrayOutput{})
-	pulumi.RegisterOutputType(JobWithCursorJobPropertiesOutput{})
-	pulumi.RegisterOutputType(JobWithCursorpropertiesjobOutput{})
 	pulumi.RegisterOutputType(ListServicesResponseOutput{})
 	pulumi.RegisterOutputType(ListServicesResponseArrayOutput{})
 	pulumi.RegisterOutputType(MaintenanceModeOutput{})

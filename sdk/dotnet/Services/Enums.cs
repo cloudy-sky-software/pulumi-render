@@ -922,64 +922,6 @@ namespace Pulumi.Render.Services
         public override string ToString() => _value;
     }
 
-    [EnumType]
-    public readonly struct JobWithCursorJobPropertiesStatus : IEquatable<JobWithCursorJobPropertiesStatus>
-    {
-        private readonly string _value;
-
-        private JobWithCursorJobPropertiesStatus(string value)
-        {
-            _value = value ?? throw new ArgumentNullException(nameof(value));
-        }
-
-        public static JobWithCursorJobPropertiesStatus Succeeded { get; } = new JobWithCursorJobPropertiesStatus("succeeded");
-        public static JobWithCursorJobPropertiesStatus Failed { get; } = new JobWithCursorJobPropertiesStatus("failed");
-        public static JobWithCursorJobPropertiesStatus Canceled { get; } = new JobWithCursorJobPropertiesStatus("canceled");
-
-        public static bool operator ==(JobWithCursorJobPropertiesStatus left, JobWithCursorJobPropertiesStatus right) => left.Equals(right);
-        public static bool operator !=(JobWithCursorJobPropertiesStatus left, JobWithCursorJobPropertiesStatus right) => !left.Equals(right);
-
-        public static explicit operator string(JobWithCursorJobPropertiesStatus value) => value._value;
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is JobWithCursorJobPropertiesStatus other && Equals(other);
-        public bool Equals(JobWithCursorJobPropertiesStatus other) => string.Equals(_value, other._value, StringComparison.Ordinal);
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
-
-        public override string ToString() => _value;
-    }
-
-    [EnumType]
-    public readonly struct JobWithCursorpropertiesjobStatus : IEquatable<JobWithCursorpropertiesjobStatus>
-    {
-        private readonly string _value;
-
-        private JobWithCursorpropertiesjobStatus(string value)
-        {
-            _value = value ?? throw new ArgumentNullException(nameof(value));
-        }
-
-        public static JobWithCursorpropertiesjobStatus Succeeded { get; } = new JobWithCursorpropertiesjobStatus("succeeded");
-        public static JobWithCursorpropertiesjobStatus Failed { get; } = new JobWithCursorpropertiesjobStatus("failed");
-        public static JobWithCursorpropertiesjobStatus Canceled { get; } = new JobWithCursorpropertiesjobStatus("canceled");
-
-        public static bool operator ==(JobWithCursorpropertiesjobStatus left, JobWithCursorpropertiesjobStatus right) => left.Equals(right);
-        public static bool operator !=(JobWithCursorpropertiesjobStatus left, JobWithCursorpropertiesjobStatus right) => !left.Equals(right);
-
-        public static explicit operator string(JobWithCursorpropertiesjobStatus value) => value._value;
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object? obj) => obj is JobWithCursorpropertiesjobStatus other && Equals(other);
-        public bool Equals(JobWithCursorpropertiesjobStatus other) => string.Equals(_value, other._value, StringComparison.Ordinal);
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
-
-        public override string ToString() => _value;
-    }
-
     /// <summary>
     /// The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
     /// </summary>

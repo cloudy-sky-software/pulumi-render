@@ -7,7 +7,6 @@ import * as cronjobs from "./cronjobs";
 import * as envgroups from "./envgroups";
 import * as environments from "./environments";
 import * as keyvalue from "./keyvalue";
-import * as logs from "./logs";
 import * as notificationsettings from "./notificationsettings";
 import * as owners from "./owners";
 import * as postgres from "./postgres";
@@ -23,7 +22,6 @@ export {
     envgroups,
     environments,
     keyvalue,
-    logs,
     notificationsettings,
     owners,
     postgres,

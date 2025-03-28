@@ -23,8 +23,6 @@ if typing.TYPE_CHECKING:
     environments = __environments
     import pulumi_render.key_value as __key_value
     key_value = __key_value
-    import pulumi_render.logs as __logs
-    logs = __logs
     import pulumi_render.metrics as __metrics
     metrics = __metrics
     import pulumi_render.notification_settings as __notification_settings
@@ -53,7 +51,6 @@ else:
     env_groups = _utilities.lazy_import('pulumi_render.env_groups')
     environments = _utilities.lazy_import('pulumi_render.environments')
     key_value = _utilities.lazy_import('pulumi_render.key_value')
-    logs = _utilities.lazy_import('pulumi_render.logs')
     metrics = _utilities.lazy_import('pulumi_render.metrics')
     notification_settings = _utilities.lazy_import('pulumi_render.notification_settings')
     owners = _utilities.lazy_import('pulumi_render.owners')
@@ -91,6 +88,8 @@ _utilities.register(
   "fqn": "pulumi_render.env_groups",
   "classes": {
    "render:env-groups:EnvGroup": "EnvGroup",
+   "render:env-groups:EnvGroupEnvVar": "EnvGroupEnvVar",
+   "render:env-groups:EnvGroupSecretFile": "EnvGroupSecretFile",
    "render:env-groups:LinkServiceToEnvGroup": "LinkServiceToEnvGroup"
   }
  },
@@ -161,6 +160,7 @@ _utilities.register(
    "render:services:CronJob": "CronJob",
    "render:services:CustomDomain": "CustomDomain",
    "render:services:Deploy": "Deploy",
+   "render:services:EnvVar": "EnvVar",
    "render:services:EnvVarsForService": "EnvVarsForService",
    "render:services:Header": "Header",
    "render:services:Job": "Job",
@@ -171,6 +171,7 @@ _utilities.register(
    "render:services:RollbackDeploy": "RollbackDeploy",
    "render:services:Route": "Route",
    "render:services:ScaleService": "ScaleService",
+   "render:services:SecretFile": "SecretFile",
    "render:services:SecretFilesForService": "SecretFilesForService",
    "render:services:StaticSite": "StaticSite",
    "render:services:SuspendService": "SuspendService",

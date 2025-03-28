@@ -11,9 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-func GetEnvVar(ctx *pulumi.Context, args *GetEnvVarArgs, opts ...pulumi.InvokeOption) (*GetEnvVarResult, error) {
+func LookupEnvVar(ctx *pulumi.Context, args *LookupEnvVarArgs, opts ...pulumi.InvokeOption) (*LookupEnvVarResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv GetEnvVarResult
+	var rv LookupEnvVarResult
 	err := ctx.Invoke("render:services:getEnvVar", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -21,60 +21,60 @@ func GetEnvVar(ctx *pulumi.Context, args *GetEnvVarArgs, opts ...pulumi.InvokeOp
 	return &rv, nil
 }
 
-type GetEnvVarArgs struct {
+type LookupEnvVarArgs struct {
 	// The name of the environment variable
 	EnvVarKey string `pulumi:"envVarKey"`
 	// The ID of the service
 	ServiceId string `pulumi:"serviceId"`
 }
 
-type GetEnvVarResult struct {
+type LookupEnvVarResult struct {
 	Key   string `pulumi:"key"`
 	Value string `pulumi:"value"`
 }
 
-func GetEnvVarOutput(ctx *pulumi.Context, args GetEnvVarOutputArgs, opts ...pulumi.InvokeOption) GetEnvVarResultOutput {
+func LookupEnvVarOutput(ctx *pulumi.Context, args LookupEnvVarOutputArgs, opts ...pulumi.InvokeOption) LookupEnvVarResultOutput {
 	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetEnvVarResultOutput, error) {
-			args := v.(GetEnvVarArgs)
+		ApplyT(func(v interface{}) (LookupEnvVarResultOutput, error) {
+			args := v.(LookupEnvVarArgs)
 			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("render:services:getEnvVar", args, GetEnvVarResultOutput{}, options).(GetEnvVarResultOutput), nil
-		}).(GetEnvVarResultOutput)
+			return ctx.InvokeOutput("render:services:getEnvVar", args, LookupEnvVarResultOutput{}, options).(LookupEnvVarResultOutput), nil
+		}).(LookupEnvVarResultOutput)
 }
 
-type GetEnvVarOutputArgs struct {
+type LookupEnvVarOutputArgs struct {
 	// The name of the environment variable
 	EnvVarKey pulumi.StringInput `pulumi:"envVarKey"`
 	// The ID of the service
 	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }
 
-func (GetEnvVarOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetEnvVarArgs)(nil)).Elem()
+func (LookupEnvVarOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupEnvVarArgs)(nil)).Elem()
 }
 
-type GetEnvVarResultOutput struct{ *pulumi.OutputState }
+type LookupEnvVarResultOutput struct{ *pulumi.OutputState }
 
-func (GetEnvVarResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetEnvVarResult)(nil)).Elem()
+func (LookupEnvVarResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupEnvVarResult)(nil)).Elem()
 }
 
-func (o GetEnvVarResultOutput) ToGetEnvVarResultOutput() GetEnvVarResultOutput {
+func (o LookupEnvVarResultOutput) ToLookupEnvVarResultOutput() LookupEnvVarResultOutput {
 	return o
 }
 
-func (o GetEnvVarResultOutput) ToGetEnvVarResultOutputWithContext(ctx context.Context) GetEnvVarResultOutput {
+func (o LookupEnvVarResultOutput) ToLookupEnvVarResultOutputWithContext(ctx context.Context) LookupEnvVarResultOutput {
 	return o
 }
 
-func (o GetEnvVarResultOutput) Key() pulumi.StringOutput {
-	return o.ApplyT(func(v GetEnvVarResult) string { return v.Key }).(pulumi.StringOutput)
+func (o LookupEnvVarResultOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupEnvVarResult) string { return v.Key }).(pulumi.StringOutput)
 }
 
-func (o GetEnvVarResultOutput) Value() pulumi.StringOutput {
-	return o.ApplyT(func(v GetEnvVarResult) string { return v.Value }).(pulumi.StringOutput)
+func (o LookupEnvVarResultOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupEnvVarResult) string { return v.Value }).(pulumi.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(GetEnvVarResultOutput{})
+	pulumi.RegisterOutputType(LookupEnvVarResultOutput{})
 }

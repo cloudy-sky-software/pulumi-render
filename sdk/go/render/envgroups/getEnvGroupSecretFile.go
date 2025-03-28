@@ -11,9 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-func GetEnvGroupSecretFile(ctx *pulumi.Context, args *GetEnvGroupSecretFileArgs, opts ...pulumi.InvokeOption) (*GetEnvGroupSecretFileResult, error) {
+func LookupEnvGroupSecretFile(ctx *pulumi.Context, args *LookupEnvGroupSecretFileArgs, opts ...pulumi.InvokeOption) (*LookupEnvGroupSecretFileResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv GetEnvGroupSecretFileResult
+	var rv LookupEnvGroupSecretFileResult
 	err := ctx.Invoke("render:env-groups:getEnvGroupSecretFile", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -21,80 +21,80 @@ func GetEnvGroupSecretFile(ctx *pulumi.Context, args *GetEnvGroupSecretFileArgs,
 	return &rv, nil
 }
 
-type GetEnvGroupSecretFileArgs struct {
+type LookupEnvGroupSecretFileArgs struct {
 	// Filter for resources that belong to an environment group
 	EnvGroupId string `pulumi:"envGroupId"`
 	// The name of the secret file
 	SecretFileName string `pulumi:"secretFileName"`
 }
 
-type GetEnvGroupSecretFileResult struct {
+type LookupEnvGroupSecretFileResult struct {
 	Content string `pulumi:"content"`
 	Name    string `pulumi:"name"`
 }
 
-func GetEnvGroupSecretFileOutput(ctx *pulumi.Context, args GetEnvGroupSecretFileOutputArgs, opts ...pulumi.InvokeOption) GetEnvGroupSecretFileResultOutput {
+func LookupEnvGroupSecretFileOutput(ctx *pulumi.Context, args LookupEnvGroupSecretFileOutputArgs, opts ...pulumi.InvokeOption) LookupEnvGroupSecretFileResultOutput {
 	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetEnvGroupSecretFileResultOutput, error) {
-			args := v.(GetEnvGroupSecretFileArgs)
+		ApplyT(func(v interface{}) (LookupEnvGroupSecretFileResultOutput, error) {
+			args := v.(LookupEnvGroupSecretFileArgs)
 			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("render:env-groups:getEnvGroupSecretFile", args, GetEnvGroupSecretFileResultOutput{}, options).(GetEnvGroupSecretFileResultOutput), nil
-		}).(GetEnvGroupSecretFileResultOutput)
+			return ctx.InvokeOutput("render:env-groups:getEnvGroupSecretFile", args, LookupEnvGroupSecretFileResultOutput{}, options).(LookupEnvGroupSecretFileResultOutput), nil
+		}).(LookupEnvGroupSecretFileResultOutput)
 }
 
-type GetEnvGroupSecretFileOutputArgs struct {
+type LookupEnvGroupSecretFileOutputArgs struct {
 	// Filter for resources that belong to an environment group
 	EnvGroupId pulumi.StringInput `pulumi:"envGroupId"`
 	// The name of the secret file
 	SecretFileName pulumi.StringInput `pulumi:"secretFileName"`
 }
 
-func (GetEnvGroupSecretFileOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetEnvGroupSecretFileArgs)(nil)).Elem()
+func (LookupEnvGroupSecretFileOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupEnvGroupSecretFileArgs)(nil)).Elem()
 }
 
-type GetEnvGroupSecretFileResultOutput struct{ *pulumi.OutputState }
+type LookupEnvGroupSecretFileResultOutput struct{ *pulumi.OutputState }
 
-func (GetEnvGroupSecretFileResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetEnvGroupSecretFileResult)(nil)).Elem()
+func (LookupEnvGroupSecretFileResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupEnvGroupSecretFileResult)(nil)).Elem()
 }
 
-func (o GetEnvGroupSecretFileResultOutput) ToGetEnvGroupSecretFileResultOutput() GetEnvGroupSecretFileResultOutput {
+func (o LookupEnvGroupSecretFileResultOutput) ToLookupEnvGroupSecretFileResultOutput() LookupEnvGroupSecretFileResultOutput {
 	return o
 }
 
-func (o GetEnvGroupSecretFileResultOutput) ToGetEnvGroupSecretFileResultOutputWithContext(ctx context.Context) GetEnvGroupSecretFileResultOutput {
+func (o LookupEnvGroupSecretFileResultOutput) ToLookupEnvGroupSecretFileResultOutputWithContext(ctx context.Context) LookupEnvGroupSecretFileResultOutput {
 	return o
 }
 
-func (o GetEnvGroupSecretFileResultOutput) Content() pulumi.StringOutput {
-	return o.ApplyT(func(v GetEnvGroupSecretFileResult) string { return v.Content }).(pulumi.StringOutput)
+func (o LookupEnvGroupSecretFileResultOutput) Content() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupEnvGroupSecretFileResult) string { return v.Content }).(pulumi.StringOutput)
 }
 
-func (o GetEnvGroupSecretFileResultOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetEnvGroupSecretFileResult) string { return v.Name }).(pulumi.StringOutput)
+func (o LookupEnvGroupSecretFileResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupEnvGroupSecretFileResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-type GetEnvGroupSecretFileResultArrayOutput struct{ *pulumi.OutputState }
+type LookupEnvGroupSecretFileResultArrayOutput struct{ *pulumi.OutputState }
 
-func (GetEnvGroupSecretFileResultArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetEnvGroupSecretFileResult)(nil)).Elem()
+func (LookupEnvGroupSecretFileResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LookupEnvGroupSecretFileResult)(nil)).Elem()
 }
 
-func (o GetEnvGroupSecretFileResultArrayOutput) ToGetEnvGroupSecretFileResultArrayOutput() GetEnvGroupSecretFileResultArrayOutput {
+func (o LookupEnvGroupSecretFileResultArrayOutput) ToLookupEnvGroupSecretFileResultArrayOutput() LookupEnvGroupSecretFileResultArrayOutput {
 	return o
 }
 
-func (o GetEnvGroupSecretFileResultArrayOutput) ToGetEnvGroupSecretFileResultArrayOutputWithContext(ctx context.Context) GetEnvGroupSecretFileResultArrayOutput {
+func (o LookupEnvGroupSecretFileResultArrayOutput) ToLookupEnvGroupSecretFileResultArrayOutputWithContext(ctx context.Context) LookupEnvGroupSecretFileResultArrayOutput {
 	return o
 }
 
-func (o GetEnvGroupSecretFileResultArrayOutput) Index(i pulumi.IntInput) GetEnvGroupSecretFileResultOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEnvGroupSecretFileResult {
-		return vs[0].([]GetEnvGroupSecretFileResult)[vs[1].(int)]
-	}).(GetEnvGroupSecretFileResultOutput)
+func (o LookupEnvGroupSecretFileResultArrayOutput) Index(i pulumi.IntInput) LookupEnvGroupSecretFileResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LookupEnvGroupSecretFileResult {
+		return vs[0].([]LookupEnvGroupSecretFileResult)[vs[1].(int)]
+	}).(LookupEnvGroupSecretFileResultOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(GetEnvGroupSecretFileResultOutput{})
+	pulumi.RegisterOutputType(LookupEnvGroupSecretFileResultOutput{})
 }

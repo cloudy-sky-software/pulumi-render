@@ -2777,31 +2777,31 @@ func (o EnvSpecificDetailsCreatePtrOutput) StartCommand() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-type EnvVar struct {
+type EnvVarType struct {
 	Key   string `pulumi:"key"`
 	Value string `pulumi:"value"`
 }
 
-type EnvVarOutput struct{ *pulumi.OutputState }
+type EnvVarTypeOutput struct{ *pulumi.OutputState }
 
-func (EnvVarOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EnvVar)(nil)).Elem()
+func (EnvVarTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvVarType)(nil)).Elem()
 }
 
-func (o EnvVarOutput) ToEnvVarOutput() EnvVarOutput {
+func (o EnvVarTypeOutput) ToEnvVarTypeOutput() EnvVarTypeOutput {
 	return o
 }
 
-func (o EnvVarOutput) ToEnvVarOutputWithContext(ctx context.Context) EnvVarOutput {
+func (o EnvVarTypeOutput) ToEnvVarTypeOutputWithContext(ctx context.Context) EnvVarTypeOutput {
 	return o
 }
 
-func (o EnvVarOutput) Key() pulumi.StringOutput {
-	return o.ApplyT(func(v EnvVar) string { return v.Key }).(pulumi.StringOutput)
+func (o EnvVarTypeOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v EnvVarType) string { return v.Key }).(pulumi.StringOutput)
 }
 
-func (o EnvVarOutput) Value() pulumi.StringOutput {
-	return o.ApplyT(func(v EnvVar) string { return v.Value }).(pulumi.StringOutput)
+func (o EnvVarTypeOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v EnvVarType) string { return v.Value }).(pulumi.StringOutput)
 }
 
 type EnvVarInputType struct {
@@ -2911,8 +2911,8 @@ func (o EnvVarInputTypeArrayOutput) Index(i pulumi.IntInput) EnvVarInputTypeOutp
 }
 
 type EnvVarWithCursor struct {
-	Cursor string `pulumi:"cursor"`
-	EnvVar EnvVar `pulumi:"envVar"`
+	Cursor string     `pulumi:"cursor"`
+	EnvVar EnvVarType `pulumi:"envVar"`
 }
 
 type EnvVarWithCursorOutput struct{ *pulumi.OutputState }
@@ -2933,8 +2933,8 @@ func (o EnvVarWithCursorOutput) Cursor() pulumi.StringOutput {
 	return o.ApplyT(func(v EnvVarWithCursor) string { return v.Cursor }).(pulumi.StringOutput)
 }
 
-func (o EnvVarWithCursorOutput) EnvVar() EnvVarOutput {
-	return o.ApplyT(func(v EnvVarWithCursor) EnvVar { return v.EnvVar }).(EnvVarOutput)
+func (o EnvVarWithCursorOutput) EnvVar() EnvVarTypeOutput {
+	return o.ApplyT(func(v EnvVarWithCursor) EnvVarType { return v.EnvVar }).(EnvVarTypeOutput)
 }
 
 type EnvVarWithCursorArrayOutput struct{ *pulumi.OutputState }
@@ -6032,31 +6032,31 @@ func (o RouteWithCursorArrayOutput) Index(i pulumi.IntInput) RouteWithCursorOutp
 	}).(RouteWithCursorOutput)
 }
 
-type SecretFile struct {
+type SecretFileType struct {
 	Content string `pulumi:"content"`
 	Name    string `pulumi:"name"`
 }
 
-type SecretFileOutput struct{ *pulumi.OutputState }
+type SecretFileTypeOutput struct{ *pulumi.OutputState }
 
-func (SecretFileOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretFile)(nil)).Elem()
+func (SecretFileTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretFileType)(nil)).Elem()
 }
 
-func (o SecretFileOutput) ToSecretFileOutput() SecretFileOutput {
+func (o SecretFileTypeOutput) ToSecretFileTypeOutput() SecretFileTypeOutput {
 	return o
 }
 
-func (o SecretFileOutput) ToSecretFileOutputWithContext(ctx context.Context) SecretFileOutput {
+func (o SecretFileTypeOutput) ToSecretFileTypeOutputWithContext(ctx context.Context) SecretFileTypeOutput {
 	return o
 }
 
-func (o SecretFileOutput) Content() pulumi.StringOutput {
-	return o.ApplyT(func(v SecretFile) string { return v.Content }).(pulumi.StringOutput)
+func (o SecretFileTypeOutput) Content() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretFileType) string { return v.Content }).(pulumi.StringOutput)
 }
 
-func (o SecretFileOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v SecretFile) string { return v.Name }).(pulumi.StringOutput)
+func (o SecretFileTypeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretFileType) string { return v.Name }).(pulumi.StringOutput)
 }
 
 type SecretFileInputType struct {
@@ -6160,8 +6160,8 @@ func (o SecretFileInputTypeArrayOutput) Index(i pulumi.IntInput) SecretFileInput
 }
 
 type SecretFileWithCursor struct {
-	Cursor     string     `pulumi:"cursor"`
-	SecretFile SecretFile `pulumi:"secretFile"`
+	Cursor     string         `pulumi:"cursor"`
+	SecretFile SecretFileType `pulumi:"secretFile"`
 }
 
 type SecretFileWithCursorOutput struct{ *pulumi.OutputState }
@@ -6182,8 +6182,8 @@ func (o SecretFileWithCursorOutput) Cursor() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretFileWithCursor) string { return v.Cursor }).(pulumi.StringOutput)
 }
 
-func (o SecretFileWithCursorOutput) SecretFile() SecretFileOutput {
-	return o.ApplyT(func(v SecretFileWithCursor) SecretFile { return v.SecretFile }).(SecretFileOutput)
+func (o SecretFileWithCursorOutput) SecretFile() SecretFileTypeOutput {
+	return o.ApplyT(func(v SecretFileWithCursor) SecretFileType { return v.SecretFile }).(SecretFileTypeOutput)
 }
 
 type SecretFileWithCursorArrayOutput struct{ *pulumi.OutputState }
@@ -9467,7 +9467,7 @@ func init() {
 	pulumi.RegisterOutputType(EnvSpecificDetailsPtrOutput{})
 	pulumi.RegisterOutputType(EnvSpecificDetailsCreateOutput{})
 	pulumi.RegisterOutputType(EnvSpecificDetailsCreatePtrOutput{})
-	pulumi.RegisterOutputType(EnvVarOutput{})
+	pulumi.RegisterOutputType(EnvVarTypeOutput{})
 	pulumi.RegisterOutputType(EnvVarInputTypeOutput{})
 	pulumi.RegisterOutputType(EnvVarInputTypeArrayOutput{})
 	pulumi.RegisterOutputType(EnvVarWithCursorOutput{})
@@ -9512,7 +9512,7 @@ func init() {
 	pulumi.RegisterOutputType(RouteCreateArrayOutput{})
 	pulumi.RegisterOutputType(RouteWithCursorOutput{})
 	pulumi.RegisterOutputType(RouteWithCursorArrayOutput{})
-	pulumi.RegisterOutputType(SecretFileOutput{})
+	pulumi.RegisterOutputType(SecretFileTypeOutput{})
 	pulumi.RegisterOutputType(SecretFileInputTypeOutput{})
 	pulumi.RegisterOutputType(SecretFileInputTypeArrayOutput{})
 	pulumi.RegisterOutputType(SecretFileWithCursorOutput{})

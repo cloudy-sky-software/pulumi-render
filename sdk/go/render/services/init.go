@@ -35,6 +35,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &CustomDomain{}
 	case "render:services:Deploy":
 		r = &Deploy{}
+	case "render:services:EnvVar":
+		r = &EnvVar{}
 	case "render:services:EnvVarsForService":
 		r = &EnvVarsForService{}
 	case "render:services:Header":
@@ -55,6 +57,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Route{}
 	case "render:services:ScaleService":
 		r = &ScaleService{}
+	case "render:services:SecretFile":
+		r = &SecretFile{}
 	case "render:services:SecretFilesForService":
 		r = &SecretFilesForService{}
 	case "render:services:StaticSite":

@@ -367,63 +367,6 @@ export namespace keyvalue {
 
 }
 
-export namespace logs {
-    /**
-     * Owner log stream settings
-     */
-    export interface GetOwnerLogStreamProperties {
-        /**
-         * The endpoint to stream logs to.
-         */
-        endpoint?: string;
-        /**
-         * The ID of the owner.
-         */
-        ownerId?: string;
-        /**
-         * Whether to send logs or drop them.
-         */
-        preview?: enums.logs.GetOwnerLogStreamPropertiesPreview;
-    }
-
-    /**
-     * Resource log stream overrides
-     */
-    export interface GetResourceLogStreamProperties {
-        /**
-         * The endpoint to stream logs to. Must be present if setting is send. Cannot be present if setting is drop.
-         */
-        endpoint?: string;
-        /**
-         * The ID of the resource.
-         */
-        resourceId?: string;
-        /**
-         * Whether to send logs or drop them.
-         */
-        setting?: enums.logs.GetResourceLogStreamPropertiesSetting;
-    }
-
-    /**
-     * Resource log stream overrides
-     */
-    export interface Paths1logs1streams1resource17BresourceId7Dgetresponses200contentapplication1jsonschema {
-        /**
-         * The endpoint to stream logs to. Must be present if setting is send. Cannot be present if setting is drop.
-         */
-        endpoint?: string;
-        /**
-         * The ID of the resource.
-         */
-        resourceId?: string;
-        /**
-         * Whether to send logs or drop them.
-         */
-        setting?: enums.logs.Paths1logs1streams1resource17BresourceId7Dgetresponses200contentapplication1jsonschemaSetting;
-    }
-
-}
-
 export namespace metrics {
     /**
      * A time series data point

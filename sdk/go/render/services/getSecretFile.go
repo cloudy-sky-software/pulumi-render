@@ -11,9 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-func GetSecretFile(ctx *pulumi.Context, args *GetSecretFileArgs, opts ...pulumi.InvokeOption) (*GetSecretFileResult, error) {
+func LookupSecretFile(ctx *pulumi.Context, args *LookupSecretFileArgs, opts ...pulumi.InvokeOption) (*LookupSecretFileResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv GetSecretFileResult
+	var rv LookupSecretFileResult
 	err := ctx.Invoke("render:services:getSecretFile", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -21,60 +21,60 @@ func GetSecretFile(ctx *pulumi.Context, args *GetSecretFileArgs, opts ...pulumi.
 	return &rv, nil
 }
 
-type GetSecretFileArgs struct {
+type LookupSecretFileArgs struct {
 	// The file name of the secret file
 	SecretFileName string `pulumi:"secretFileName"`
 	// The ID of the service
 	ServiceId string `pulumi:"serviceId"`
 }
 
-type GetSecretFileResult struct {
+type LookupSecretFileResult struct {
 	Content string `pulumi:"content"`
 	Name    string `pulumi:"name"`
 }
 
-func GetSecretFileOutput(ctx *pulumi.Context, args GetSecretFileOutputArgs, opts ...pulumi.InvokeOption) GetSecretFileResultOutput {
+func LookupSecretFileOutput(ctx *pulumi.Context, args LookupSecretFileOutputArgs, opts ...pulumi.InvokeOption) LookupSecretFileResultOutput {
 	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetSecretFileResultOutput, error) {
-			args := v.(GetSecretFileArgs)
+		ApplyT(func(v interface{}) (LookupSecretFileResultOutput, error) {
+			args := v.(LookupSecretFileArgs)
 			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("render:services:getSecretFile", args, GetSecretFileResultOutput{}, options).(GetSecretFileResultOutput), nil
-		}).(GetSecretFileResultOutput)
+			return ctx.InvokeOutput("render:services:getSecretFile", args, LookupSecretFileResultOutput{}, options).(LookupSecretFileResultOutput), nil
+		}).(LookupSecretFileResultOutput)
 }
 
-type GetSecretFileOutputArgs struct {
+type LookupSecretFileOutputArgs struct {
 	// The file name of the secret file
 	SecretFileName pulumi.StringInput `pulumi:"secretFileName"`
 	// The ID of the service
 	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }
 
-func (GetSecretFileOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetSecretFileArgs)(nil)).Elem()
+func (LookupSecretFileOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSecretFileArgs)(nil)).Elem()
 }
 
-type GetSecretFileResultOutput struct{ *pulumi.OutputState }
+type LookupSecretFileResultOutput struct{ *pulumi.OutputState }
 
-func (GetSecretFileResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetSecretFileResult)(nil)).Elem()
+func (LookupSecretFileResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSecretFileResult)(nil)).Elem()
 }
 
-func (o GetSecretFileResultOutput) ToGetSecretFileResultOutput() GetSecretFileResultOutput {
+func (o LookupSecretFileResultOutput) ToLookupSecretFileResultOutput() LookupSecretFileResultOutput {
 	return o
 }
 
-func (o GetSecretFileResultOutput) ToGetSecretFileResultOutputWithContext(ctx context.Context) GetSecretFileResultOutput {
+func (o LookupSecretFileResultOutput) ToLookupSecretFileResultOutputWithContext(ctx context.Context) LookupSecretFileResultOutput {
 	return o
 }
 
-func (o GetSecretFileResultOutput) Content() pulumi.StringOutput {
-	return o.ApplyT(func(v GetSecretFileResult) string { return v.Content }).(pulumi.StringOutput)
+func (o LookupSecretFileResultOutput) Content() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSecretFileResult) string { return v.Content }).(pulumi.StringOutput)
 }
 
-func (o GetSecretFileResultOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetSecretFileResult) string { return v.Name }).(pulumi.StringOutput)
+func (o LookupSecretFileResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSecretFileResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(GetSecretFileResultOutput{})
+	pulumi.RegisterOutputType(LookupSecretFileResultOutput{})
 }

@@ -23,6 +23,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "render:env-groups:EnvGroup":
 		r = &EnvGroup{}
+	case "render:env-groups:EnvGroupEnvVar":
+		r = &EnvGroupEnvVar{}
+	case "render:env-groups:EnvGroupSecretFile":
+		r = &EnvGroupSecretFile{}
 	case "render:env-groups:LinkServiceToEnvGroup":
 		r = &LinkServiceToEnvGroup{}
 	default:

@@ -40,6 +40,11 @@ export type Deploy = import("./deploy").Deploy;
 export const Deploy: typeof import("./deploy").Deploy = null as any;
 utilities.lazyLoad(exports, ["Deploy"], () => require("./deploy"));
 
+export { EnvVarArgs } from "./envVar";
+export type EnvVar = import("./envVar").EnvVar;
+export const EnvVar: typeof import("./envVar").EnvVar = null as any;
+utilities.lazyLoad(exports, ["EnvVar"], () => require("./envVar"));
+
 export { EnvVarsForServiceArgs } from "./envVarsForService";
 export type EnvVarsForService = import("./envVarsForService").EnvVarsForService;
 export const EnvVarsForService: typeof import("./envVarsForService").EnvVarsForService = null as any;
@@ -180,6 +185,11 @@ export type ScaleService = import("./scaleService").ScaleService;
 export const ScaleService: typeof import("./scaleService").ScaleService = null as any;
 utilities.lazyLoad(exports, ["ScaleService"], () => require("./scaleService"));
 
+export { SecretFileArgs } from "./secretFile";
+export type SecretFile = import("./secretFile").SecretFile;
+export const SecretFile: typeof import("./secretFile").SecretFile = null as any;
+utilities.lazyLoad(exports, ["SecretFile"], () => require("./secretFile"));
+
 export { SecretFilesForServiceArgs } from "./secretFilesForService";
 export type SecretFilesForService = import("./secretFilesForService").SecretFilesForService;
 export const SecretFilesForService: typeof import("./secretFilesForService").SecretFilesForService = null as any;
@@ -222,6 +232,8 @@ const _module = {
                 return new CustomDomain(name, <any>undefined, { urn })
             case "render:services:Deploy":
                 return new Deploy(name, <any>undefined, { urn })
+            case "render:services:EnvVar":
+                return new EnvVar(name, <any>undefined, { urn })
             case "render:services:EnvVarsForService":
                 return new EnvVarsForService(name, <any>undefined, { urn })
             case "render:services:Header":
@@ -242,6 +254,8 @@ const _module = {
                 return new Route(name, <any>undefined, { urn })
             case "render:services:ScaleService":
                 return new ScaleService(name, <any>undefined, { urn })
+            case "render:services:SecretFile":
+                return new SecretFile(name, <any>undefined, { urn })
             case "render:services:SecretFilesForService":
                 return new SecretFilesForService(name, <any>undefined, { urn })
             case "render:services:StaticSite":

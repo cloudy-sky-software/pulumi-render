@@ -13,6 +13,7 @@ from .cancel_job import *
 from .cron_job import *
 from .custom_domain import *
 from .deploy import *
+from .env_var import *
 from .env_vars_for_service import *
 from .get_background_worker import *
 from .get_cron_job import *
@@ -41,6 +42,7 @@ from .restart_service import *
 from .rollback_deploy import *
 from .route import *
 from .scale_service import *
+from .secret_file import *
 from .secret_files_for_service import *
 from .static_site import *
 from .suspend_service import *

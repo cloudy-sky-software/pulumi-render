@@ -1149,8 +1149,6 @@ components:
             properties:
                 generateValue:
                     type: boolean
-            required:
-                - generateValue
             type: object
         envVarInput:
             allOf:
@@ -1179,8 +1177,6 @@ components:
             properties:
                 value:
                     type: string
-            required:
-                - value
             type: object
         envVarWithCursor:
             properties:

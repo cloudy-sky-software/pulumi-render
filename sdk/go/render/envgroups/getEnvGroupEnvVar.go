@@ -11,9 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-func GetEnvGroupEnvVar(ctx *pulumi.Context, args *GetEnvGroupEnvVarArgs, opts ...pulumi.InvokeOption) (*GetEnvGroupEnvVarResult, error) {
+func LookupEnvGroupEnvVar(ctx *pulumi.Context, args *LookupEnvGroupEnvVarArgs, opts ...pulumi.InvokeOption) (*LookupEnvGroupEnvVarResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv GetEnvGroupEnvVarResult
+	var rv LookupEnvGroupEnvVarResult
 	err := ctx.Invoke("render:env-groups:getEnvGroupEnvVar", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -21,80 +21,80 @@ func GetEnvGroupEnvVar(ctx *pulumi.Context, args *GetEnvGroupEnvVarArgs, opts ..
 	return &rv, nil
 }
 
-type GetEnvGroupEnvVarArgs struct {
+type LookupEnvGroupEnvVarArgs struct {
 	// Filter for resources that belong to an environment group
 	EnvGroupId string `pulumi:"envGroupId"`
 	// The name of the environment variable
 	EnvVarKey string `pulumi:"envVarKey"`
 }
 
-type GetEnvGroupEnvVarResult struct {
+type LookupEnvGroupEnvVarResult struct {
 	Key   string `pulumi:"key"`
 	Value string `pulumi:"value"`
 }
 
-func GetEnvGroupEnvVarOutput(ctx *pulumi.Context, args GetEnvGroupEnvVarOutputArgs, opts ...pulumi.InvokeOption) GetEnvGroupEnvVarResultOutput {
+func LookupEnvGroupEnvVarOutput(ctx *pulumi.Context, args LookupEnvGroupEnvVarOutputArgs, opts ...pulumi.InvokeOption) LookupEnvGroupEnvVarResultOutput {
 	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetEnvGroupEnvVarResultOutput, error) {
-			args := v.(GetEnvGroupEnvVarArgs)
+		ApplyT(func(v interface{}) (LookupEnvGroupEnvVarResultOutput, error) {
+			args := v.(LookupEnvGroupEnvVarArgs)
 			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("render:env-groups:getEnvGroupEnvVar", args, GetEnvGroupEnvVarResultOutput{}, options).(GetEnvGroupEnvVarResultOutput), nil
-		}).(GetEnvGroupEnvVarResultOutput)
+			return ctx.InvokeOutput("render:env-groups:getEnvGroupEnvVar", args, LookupEnvGroupEnvVarResultOutput{}, options).(LookupEnvGroupEnvVarResultOutput), nil
+		}).(LookupEnvGroupEnvVarResultOutput)
 }
 
-type GetEnvGroupEnvVarOutputArgs struct {
+type LookupEnvGroupEnvVarOutputArgs struct {
 	// Filter for resources that belong to an environment group
 	EnvGroupId pulumi.StringInput `pulumi:"envGroupId"`
 	// The name of the environment variable
 	EnvVarKey pulumi.StringInput `pulumi:"envVarKey"`
 }
 
-func (GetEnvGroupEnvVarOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetEnvGroupEnvVarArgs)(nil)).Elem()
+func (LookupEnvGroupEnvVarOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupEnvGroupEnvVarArgs)(nil)).Elem()
 }
 
-type GetEnvGroupEnvVarResultOutput struct{ *pulumi.OutputState }
+type LookupEnvGroupEnvVarResultOutput struct{ *pulumi.OutputState }
 
-func (GetEnvGroupEnvVarResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetEnvGroupEnvVarResult)(nil)).Elem()
+func (LookupEnvGroupEnvVarResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupEnvGroupEnvVarResult)(nil)).Elem()
 }
 
-func (o GetEnvGroupEnvVarResultOutput) ToGetEnvGroupEnvVarResultOutput() GetEnvGroupEnvVarResultOutput {
+func (o LookupEnvGroupEnvVarResultOutput) ToLookupEnvGroupEnvVarResultOutput() LookupEnvGroupEnvVarResultOutput {
 	return o
 }
 
-func (o GetEnvGroupEnvVarResultOutput) ToGetEnvGroupEnvVarResultOutputWithContext(ctx context.Context) GetEnvGroupEnvVarResultOutput {
+func (o LookupEnvGroupEnvVarResultOutput) ToLookupEnvGroupEnvVarResultOutputWithContext(ctx context.Context) LookupEnvGroupEnvVarResultOutput {
 	return o
 }
 
-func (o GetEnvGroupEnvVarResultOutput) Key() pulumi.StringOutput {
-	return o.ApplyT(func(v GetEnvGroupEnvVarResult) string { return v.Key }).(pulumi.StringOutput)
+func (o LookupEnvGroupEnvVarResultOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupEnvGroupEnvVarResult) string { return v.Key }).(pulumi.StringOutput)
 }
 
-func (o GetEnvGroupEnvVarResultOutput) Value() pulumi.StringOutput {
-	return o.ApplyT(func(v GetEnvGroupEnvVarResult) string { return v.Value }).(pulumi.StringOutput)
+func (o LookupEnvGroupEnvVarResultOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupEnvGroupEnvVarResult) string { return v.Value }).(pulumi.StringOutput)
 }
 
-type GetEnvGroupEnvVarResultArrayOutput struct{ *pulumi.OutputState }
+type LookupEnvGroupEnvVarResultArrayOutput struct{ *pulumi.OutputState }
 
-func (GetEnvGroupEnvVarResultArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetEnvGroupEnvVarResult)(nil)).Elem()
+func (LookupEnvGroupEnvVarResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LookupEnvGroupEnvVarResult)(nil)).Elem()
 }
 
-func (o GetEnvGroupEnvVarResultArrayOutput) ToGetEnvGroupEnvVarResultArrayOutput() GetEnvGroupEnvVarResultArrayOutput {
+func (o LookupEnvGroupEnvVarResultArrayOutput) ToLookupEnvGroupEnvVarResultArrayOutput() LookupEnvGroupEnvVarResultArrayOutput {
 	return o
 }
 
-func (o GetEnvGroupEnvVarResultArrayOutput) ToGetEnvGroupEnvVarResultArrayOutputWithContext(ctx context.Context) GetEnvGroupEnvVarResultArrayOutput {
+func (o LookupEnvGroupEnvVarResultArrayOutput) ToLookupEnvGroupEnvVarResultArrayOutputWithContext(ctx context.Context) LookupEnvGroupEnvVarResultArrayOutput {
 	return o
 }
 
-func (o GetEnvGroupEnvVarResultArrayOutput) Index(i pulumi.IntInput) GetEnvGroupEnvVarResultOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEnvGroupEnvVarResult {
-		return vs[0].([]GetEnvGroupEnvVarResult)[vs[1].(int)]
-	}).(GetEnvGroupEnvVarResultOutput)
+func (o LookupEnvGroupEnvVarResultArrayOutput) Index(i pulumi.IntInput) LookupEnvGroupEnvVarResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LookupEnvGroupEnvVarResult {
+		return vs[0].([]LookupEnvGroupEnvVarResult)[vs[1].(int)]
+	}).(LookupEnvGroupEnvVarResultOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(GetEnvGroupEnvVarResultOutput{})
+	pulumi.RegisterOutputType(LookupEnvGroupEnvVarResultOutput{})
 }

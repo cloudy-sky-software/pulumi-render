@@ -41,9 +41,6 @@ export namespace keyvalue {
 
 }
 
-export namespace logs {
-}
-
 export namespace metrics {
 }
 

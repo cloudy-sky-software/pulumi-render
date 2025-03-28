@@ -10,6 +10,16 @@ export type EnvGroup = import("./envGroup").EnvGroup;
 export const EnvGroup: typeof import("./envGroup").EnvGroup = null as any;
 utilities.lazyLoad(exports, ["EnvGroup"], () => require("./envGroup"));
 
+export { EnvGroupEnvVarArgs } from "./envGroupEnvVar";
+export type EnvGroupEnvVar = import("./envGroupEnvVar").EnvGroupEnvVar;
+export const EnvGroupEnvVar: typeof import("./envGroupEnvVar").EnvGroupEnvVar = null as any;
+utilities.lazyLoad(exports, ["EnvGroupEnvVar"], () => require("./envGroupEnvVar"));
+
+export { EnvGroupSecretFileArgs } from "./envGroupSecretFile";
+export type EnvGroupSecretFile = import("./envGroupSecretFile").EnvGroupSecretFile;
+export const EnvGroupSecretFile: typeof import("./envGroupSecretFile").EnvGroupSecretFile = null as any;
+utilities.lazyLoad(exports, ["EnvGroupSecretFile"], () => require("./envGroupSecretFile"));
+
 export { GetEnvGroupArgs, GetEnvGroupOutputArgs } from "./getEnvGroup";
 export const getEnvGroup: typeof import("./getEnvGroup").getEnvGroup = null as any;
 export const getEnvGroupOutput: typeof import("./getEnvGroup").getEnvGroupOutput = null as any;
@@ -45,6 +55,10 @@ const _module = {
         switch (type) {
             case "render:env-groups:EnvGroup":
                 return new EnvGroup(name, <any>undefined, { urn })
+            case "render:env-groups:EnvGroupEnvVar":
+                return new EnvGroupEnvVar(name, <any>undefined, { urn })
+            case "render:env-groups:EnvGroupSecretFile":
+                return new EnvGroupSecretFile(name, <any>undefined, { urn })
             case "render:env-groups:LinkServiceToEnvGroup":
                 return new LinkServiceToEnvGroup(name, <any>undefined, { urn })
             default:

@@ -7,6 +7,8 @@ import typing
 # Export this package's modules as members:
 from ._enums import *
 from .env_group import *
+from .env_group_env_var import *
+from .env_group_secret_file import *
 from .get_env_group import *
 from .get_env_group_env_var import *
 from .get_env_group_secret_file import *

@@ -1,3 +1,7 @@
+## 0.4.3
+
+Upgrade `pulumi-provider-framework` to `v0.0.0-20250403053300-d893597c4dc5`.
+
 ## 0.4.2
 
 Fix a regression introduced in 0.4.0/0.4.1. (#453)

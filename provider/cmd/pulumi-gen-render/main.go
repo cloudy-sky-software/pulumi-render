@@ -43,8 +43,8 @@ const (
 
 func main() {
 	flag.Usage = func() {
-		const usageFormat = "Usage: %s <schema-file>"
-		_, err := fmt.Fprintf(flag.CommandLine.Output(), usageFormat, os.Args[0])
+		const usageFormat = "Usage: <language>"
+		_, err := fmt.Fprint(flag.CommandLine.Output(), usageFormat, os.Args[0])
 		contract.IgnoreError(err)
 		flag.PrintDefaults()
 	}

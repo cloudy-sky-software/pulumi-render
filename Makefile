@@ -61,7 +61,8 @@ nodejs_sdk::
 		yarn install && \
 		yarn run build && \
 		cp ../../README.md ../../LICENSE package.json yarn.lock bin/ && \
-		sed -i.bak 's/$${NODEJS_VERSION}/$(VERSION)/g' bin/package.json
+		sed -i.bak 's/$${VERSION}/v$(NODEJS_VERSION)/g' bin/package.json && \
+		rm ./bin/package.json.bak
 
 python_sdk:: PYPI_VERSION := $(shell pulumictl convert-version --language generic --version "$(VERSION)")
 python_sdk::

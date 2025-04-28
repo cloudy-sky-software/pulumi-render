@@ -1,3 +1,5 @@
+version: 2
+
 archives:
   - id: archive
     name_template: "{{ .Binary }}-{{ .Tag }}-{{ .Os }}-{{ .Arch }}"
@@ -29,4 +31,4 @@ release:
   header: |
     See [CHANGELOG.md](https://github.com/cloudy-sky-software/pulumi-render/blob/main/CHANGELOG.md)
 snapshot:
-  name_template: "{{ .Tag }}-SNAPSHOT"
+  version_template: "{{ .Tag }}-SNAPSHOT"

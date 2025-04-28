@@ -1,4 +1,4 @@
-## 0.4.6
+## 0.4.7
 
 Upgrade `pulumi-provider-framework` to `v0.0.0-20250428021316-0a5ad29dff6f`.
 

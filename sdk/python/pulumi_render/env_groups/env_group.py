@@ -98,10 +98,8 @@ class EnvGroupArgs:
         pulumi.set(self, "service_ids", value)
 
 
+@pulumi.type_token("render:env-groups:EnvGroup")
 class EnvGroup(pulumi.CustomResource):
-
-    pulumi_type = "render:env-groups:EnvGroup"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

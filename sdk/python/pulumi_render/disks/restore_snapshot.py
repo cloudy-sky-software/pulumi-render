@@ -68,10 +68,8 @@ class RestoreSnapshotArgs:
         pulumi.set(self, "instance_id", value)
 
 
+@pulumi.type_token("render:disks:RestoreSnapshot")
 class RestoreSnapshot(pulumi.CustomResource):
-
-    pulumi_type = "render:disks:RestoreSnapshot"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

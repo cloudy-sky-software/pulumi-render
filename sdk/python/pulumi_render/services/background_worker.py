@@ -182,10 +182,8 @@ class BackgroundWorkerArgs:
         pulumi.set(self, "type", value)
 
 
+@pulumi.type_token("render:services:BackgroundWorker")
 class BackgroundWorker(pulumi.CustomResource):
-
-    pulumi_type = "render:services:BackgroundWorker"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

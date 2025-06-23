@@ -69,10 +69,8 @@ class SecretFileArgs:
         pulumi.set(self, "service_id", value)
 
 
+@pulumi.type_token("render:services:SecretFile")
 class SecretFile(pulumi.CustomResource):
-
-    pulumi_type = "render:services:SecretFile"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

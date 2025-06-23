@@ -63,10 +63,8 @@ class EnvGroupSecretFileArgs:
         pulumi.set(self, "secret_file_name", value)
 
 
+@pulumi.type_token("render:env-groups:EnvGroupSecretFile")
 class EnvGroupSecretFile(pulumi.CustomResource):
-
-    pulumi_type = "render:env-groups:EnvGroupSecretFile"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

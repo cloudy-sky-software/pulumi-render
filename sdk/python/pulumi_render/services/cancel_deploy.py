@@ -59,10 +59,8 @@ class CancelDeployArgs:
         pulumi.set(self, "service_id", value)
 
 
+@pulumi.type_token("render:services:CancelDeploy")
 class CancelDeploy(pulumi.CustomResource):
-
-    pulumi_type = "render:services:CancelDeploy"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

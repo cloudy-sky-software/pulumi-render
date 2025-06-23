@@ -58,10 +58,8 @@ class RollbackDeployArgs:
         pulumi.set(self, "service_id", value)
 
 
+@pulumi.type_token("render:services:RollbackDeploy")
 class RollbackDeploy(pulumi.CustomResource):
-
-    pulumi_type = "render:services:RollbackDeploy"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -126,10 +126,8 @@ class KeyValueArgs:
         pulumi.set(self, "region", value)
 
 
+@pulumi.type_token("render:key-value:KeyValue")
 class KeyValue(pulumi.CustomResource):
-
-    pulumi_type = "render:key-value:KeyValue"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

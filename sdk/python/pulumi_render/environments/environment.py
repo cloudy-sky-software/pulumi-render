@@ -81,10 +81,8 @@ class EnvironmentArgs:
         pulumi.set(self, "protected_status", value)
 
 
+@pulumi.type_token("render:environments:Environment")
 class Environment(pulumi.CustomResource):
-
-    pulumi_type = "render:environments:Environment"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

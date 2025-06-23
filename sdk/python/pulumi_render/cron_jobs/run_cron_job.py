@@ -42,10 +42,8 @@ class RunCronJobArgs:
         pulumi.set(self, "cron_job_id", value)
 
 
+@pulumi.type_token("render:cron-jobs:RunCronJob")
 class RunCronJob(pulumi.CustomResource):
-
-    pulumi_type = "render:cron-jobs:RunCronJob"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

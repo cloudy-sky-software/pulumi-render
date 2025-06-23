@@ -182,10 +182,8 @@ class PrivateServiceArgs:
         pulumi.set(self, "type", value)
 
 
+@pulumi.type_token("render:services:PrivateService")
 class PrivateService(pulumi.CustomResource):
-
-    pulumi_type = "render:services:PrivateService"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

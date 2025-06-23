@@ -65,10 +65,8 @@ class JobArgs:
         pulumi.set(self, "service_id", value)
 
 
+@pulumi.type_token("render:services:Job")
 class Job(pulumi.CustomResource):
-
-    pulumi_type = "render:services:Job"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

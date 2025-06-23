@@ -43,10 +43,8 @@ class ProviderArgs:
         pulumi.set(self, "api_key", value)
 
 
+@pulumi.type_token("pulumi:providers:render")
 class Provider(pulumi.ProviderResource):
-
-    pulumi_type = "pulumi:providers:render"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

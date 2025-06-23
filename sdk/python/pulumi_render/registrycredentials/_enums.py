@@ -3,7 +3,7 @@
 # *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import builtins
-import builtins
+import pulumi
 from enum import Enum
 
 __all__ = [
@@ -12,6 +12,7 @@ __all__ = [
 ]
 
 
+@pulumi.type_token("render:registrycredentials:Registry")
 class Registry(builtins.str, Enum):
     """
     The registry to use this credential with
@@ -23,6 +24,7 @@ class Registry(builtins.str, Enum):
     AWS_ECR = "AWS_ECR"
 
 
+@pulumi.type_token("render:registrycredentials:RegistryCredentialRegistry")
 class RegistryCredentialRegistry(builtins.str, Enum):
     """
     The registry to use this credential with

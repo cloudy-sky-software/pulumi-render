@@ -3,7 +3,7 @@
 # *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import builtins
-import builtins
+import pulumi
 from enum import Enum
 
 __all__ = [
@@ -76,6 +76,7 @@ __all__ = [
 ]
 
 
+@pulumi.type_token("render:services:BackgroundWorkerDetailsCreateEnv")
 class BackgroundWorkerDetailsCreateEnv(builtins.str, Enum):
     """
     This field has been deprecated, runtime should be used in its place.
@@ -90,6 +91,7 @@ class BackgroundWorkerDetailsCreateEnv(builtins.str, Enum):
     IMAGE = "image"
 
 
+@pulumi.type_token("render:services:BackgroundWorkerDetailsCreatePlan")
 class BackgroundWorkerDetailsCreatePlan(builtins.str, Enum):
     """
     Defaults to "starter"
@@ -102,6 +104,7 @@ class BackgroundWorkerDetailsCreatePlan(builtins.str, Enum):
     PRO_ULTRA = "pro_ultra"
 
 
+@pulumi.type_token("render:services:BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled")
 class BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled(builtins.str, Enum):
     """
     This field has been deprecated. previews.generation should be used in its place.
@@ -110,6 +113,7 @@ class BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled(builtins.str, Enum
     NO = "no"
 
 
+@pulumi.type_token("render:services:BackgroundWorkerDetailsCreateRegion")
 class BackgroundWorkerDetailsCreateRegion(builtins.str, Enum):
     """
     Defaults to "oregon"
@@ -121,6 +125,7 @@ class BackgroundWorkerDetailsCreateRegion(builtins.str, Enum):
     VIRGINIA = "virginia"
 
 
+@pulumi.type_token("render:services:BackgroundWorkerDetailsCreateRuntime")
 class BackgroundWorkerDetailsCreateRuntime(builtins.str, Enum):
     """
     Runtime
@@ -135,11 +140,13 @@ class BackgroundWorkerDetailsCreateRuntime(builtins.str, Enum):
     IMAGE = "image"
 
 
+@pulumi.type_token("render:services:BackgroundWorkerDetailsOutputBuildPlan")
 class BackgroundWorkerDetailsOutputBuildPlan(builtins.str, Enum):
     STARTER = "starter"
     PERFORMANCE = "performance"
 
 
+@pulumi.type_token("render:services:BackgroundWorkerDetailsOutputEnv")
 class BackgroundWorkerDetailsOutputEnv(builtins.str, Enum):
     """
     This field has been deprecated, runtime should be used in its place.
@@ -154,6 +161,7 @@ class BackgroundWorkerDetailsOutputEnv(builtins.str, Enum):
     IMAGE = "image"
 
 
+@pulumi.type_token("render:services:BackgroundWorkerDetailsOutputPlan")
 class BackgroundWorkerDetailsOutputPlan(builtins.str, Enum):
     """
     The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
@@ -170,6 +178,7 @@ class BackgroundWorkerDetailsOutputPlan(builtins.str, Enum):
     CUSTOM = "custom"
 
 
+@pulumi.type_token("render:services:BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled")
 class BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled(builtins.str, Enum):
     """
     This field has been deprecated. previews.generation should be used in its place.
@@ -178,6 +187,7 @@ class BackgroundWorkerDetailsOutputPullRequestPreviewsEnabled(builtins.str, Enum
     NO = "no"
 
 
+@pulumi.type_token("render:services:BackgroundWorkerDetailsOutputRegion")
 class BackgroundWorkerDetailsOutputRegion(builtins.str, Enum):
     """
     Defaults to "oregon"
@@ -189,6 +199,7 @@ class BackgroundWorkerDetailsOutputRegion(builtins.str, Enum):
     VIRGINIA = "virginia"
 
 
+@pulumi.type_token("render:services:BackgroundWorkerDetailsOutputRuntime")
 class BackgroundWorkerDetailsOutputRuntime(builtins.str, Enum):
     """
     Runtime
@@ -203,12 +214,14 @@ class BackgroundWorkerDetailsOutputRuntime(builtins.str, Enum):
     IMAGE = "image"
 
 
+@pulumi.type_token("render:services:CancelJobStatus")
 class CancelJobStatus(builtins.str, Enum):
     SUCCEEDED = "succeeded"
     FAILED = "failed"
     CANCELED = "canceled"
 
 
+@pulumi.type_token("render:services:ClearCache")
 class ClearCache(builtins.str, Enum):
     """
     If `clear`, Render clears the service's build cache before deploying. This can be useful if you're experiencing issues with your build.
@@ -217,6 +230,7 @@ class ClearCache(builtins.str, Enum):
     DO_NOT_CLEAR = "do_not_clear"
 
 
+@pulumi.type_token("render:services:CronJobDetailsCreateEnv")
 class CronJobDetailsCreateEnv(builtins.str, Enum):
     """
     This field has been deprecated, runtime should be used in its place.
@@ -231,6 +245,7 @@ class CronJobDetailsCreateEnv(builtins.str, Enum):
     IMAGE = "image"
 
 
+@pulumi.type_token("render:services:CronJobDetailsCreatePlan")
 class CronJobDetailsCreatePlan(builtins.str, Enum):
     """
     Defaults to "starter"
@@ -243,6 +258,7 @@ class CronJobDetailsCreatePlan(builtins.str, Enum):
     PRO_ULTRA = "pro_ultra"
 
 
+@pulumi.type_token("render:services:CronJobDetailsCreateRegion")
 class CronJobDetailsCreateRegion(builtins.str, Enum):
     """
     Defaults to "oregon"
@@ -254,6 +270,7 @@ class CronJobDetailsCreateRegion(builtins.str, Enum):
     VIRGINIA = "virginia"
 
 
+@pulumi.type_token("render:services:CronJobDetailsCreateRuntime")
 class CronJobDetailsCreateRuntime(builtins.str, Enum):
     """
     Runtime
@@ -268,11 +285,13 @@ class CronJobDetailsCreateRuntime(builtins.str, Enum):
     IMAGE = "image"
 
 
+@pulumi.type_token("render:services:CronJobDetailsOutputBuildPlan")
 class CronJobDetailsOutputBuildPlan(builtins.str, Enum):
     STARTER = "starter"
     PERFORMANCE = "performance"
 
 
+@pulumi.type_token("render:services:CronJobDetailsOutputEnv")
 class CronJobDetailsOutputEnv(builtins.str, Enum):
     """
     This field has been deprecated, runtime should be used in its place.
@@ -287,6 +306,7 @@ class CronJobDetailsOutputEnv(builtins.str, Enum):
     IMAGE = "image"
 
 
+@pulumi.type_token("render:services:CronJobDetailsOutputPlan")
 class CronJobDetailsOutputPlan(builtins.str, Enum):
     """
     The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
@@ -303,6 +323,7 @@ class CronJobDetailsOutputPlan(builtins.str, Enum):
     CUSTOM = "custom"
 
 
+@pulumi.type_token("render:services:CronJobDetailsOutputRegion")
 class CronJobDetailsOutputRegion(builtins.str, Enum):
     """
     Defaults to "oregon"
@@ -314,6 +335,7 @@ class CronJobDetailsOutputRegion(builtins.str, Enum):
     VIRGINIA = "virginia"
 
 
+@pulumi.type_token("render:services:CronJobDetailsOutputRuntime")
 class CronJobDetailsOutputRuntime(builtins.str, Enum):
     """
     Runtime
@@ -328,16 +350,19 @@ class CronJobDetailsOutputRuntime(builtins.str, Enum):
     IMAGE = "image"
 
 
+@pulumi.type_token("render:services:CustomDomainDomainType")
 class CustomDomainDomainType(builtins.str, Enum):
     APEX = "apex"
     SUBDOMAIN = "subdomain"
 
 
+@pulumi.type_token("render:services:CustomDomainVerificationStatus")
 class CustomDomainVerificationStatus(builtins.str, Enum):
     VERIFIED = "verified"
     UNVERIFIED = "unverified"
 
 
+@pulumi.type_token("render:services:DeployStatus")
 class DeployStatus(builtins.str, Enum):
     CREATED = "created"
     BUILD_IN_PROGRESS = "build_in_progress"
@@ -351,6 +376,7 @@ class DeployStatus(builtins.str, Enum):
     PRE_DEPLOY_FAILED = "pre_deploy_failed"
 
 
+@pulumi.type_token("render:services:DeployTrigger")
 class DeployTrigger(builtins.str, Enum):
     API = "api"
     BLUEPRINT_SYNC = "blueprint_sync"
@@ -364,12 +390,14 @@ class DeployTrigger(builtins.str, Enum):
     SERVICE_UPDATED = "service_updated"
 
 
+@pulumi.type_token("render:services:JobStatus")
 class JobStatus(builtins.str, Enum):
     SUCCEEDED = "succeeded"
     FAILED = "failed"
     CANCELED = "canceled"
 
 
+@pulumi.type_token("render:services:Plan")
 class Plan(builtins.str, Enum):
     """
     The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
@@ -386,6 +414,7 @@ class Plan(builtins.str, Enum):
     CUSTOM = "custom"
 
 
+@pulumi.type_token("render:services:PreviewsGeneration")
 class PreviewsGeneration(builtins.str, Enum):
     """
     Defaults to "off"
@@ -395,6 +424,7 @@ class PreviewsGeneration(builtins.str, Enum):
     AUTOMATIC = "automatic"
 
 
+@pulumi.type_token("render:services:PrivateServiceDetailsCreateEnv")
 class PrivateServiceDetailsCreateEnv(builtins.str, Enum):
     """
     This field has been deprecated, runtime should be used in its place.
@@ -409,6 +439,7 @@ class PrivateServiceDetailsCreateEnv(builtins.str, Enum):
     IMAGE = "image"
 
 
+@pulumi.type_token("render:services:PrivateServiceDetailsCreatePlan")
 class PrivateServiceDetailsCreatePlan(builtins.str, Enum):
     """
     Defaults to "starter"
@@ -421,6 +452,7 @@ class PrivateServiceDetailsCreatePlan(builtins.str, Enum):
     PRO_ULTRA = "pro_ultra"
 
 
+@pulumi.type_token("render:services:PrivateServiceDetailsCreatePullRequestPreviewsEnabled")
 class PrivateServiceDetailsCreatePullRequestPreviewsEnabled(builtins.str, Enum):
     """
     This field has been deprecated. previews.generation should be used in its place.
@@ -429,6 +461,7 @@ class PrivateServiceDetailsCreatePullRequestPreviewsEnabled(builtins.str, Enum):
     NO = "no"
 
 
+@pulumi.type_token("render:services:PrivateServiceDetailsCreateRegion")
 class PrivateServiceDetailsCreateRegion(builtins.str, Enum):
     """
     Defaults to "oregon"
@@ -440,6 +473,7 @@ class PrivateServiceDetailsCreateRegion(builtins.str, Enum):
     VIRGINIA = "virginia"
 
 
+@pulumi.type_token("render:services:PrivateServiceDetailsCreateRuntime")
 class PrivateServiceDetailsCreateRuntime(builtins.str, Enum):
     """
     Runtime
@@ -454,11 +488,13 @@ class PrivateServiceDetailsCreateRuntime(builtins.str, Enum):
     IMAGE = "image"
 
 
+@pulumi.type_token("render:services:PrivateServiceDetailsOutputBuildPlan")
 class PrivateServiceDetailsOutputBuildPlan(builtins.str, Enum):
     STARTER = "starter"
     PERFORMANCE = "performance"
 
 
+@pulumi.type_token("render:services:PrivateServiceDetailsOutputEnv")
 class PrivateServiceDetailsOutputEnv(builtins.str, Enum):
     """
     This field has been deprecated, runtime should be used in its place.
@@ -473,6 +509,7 @@ class PrivateServiceDetailsOutputEnv(builtins.str, Enum):
     IMAGE = "image"
 
 
+@pulumi.type_token("render:services:PrivateServiceDetailsOutputPlan")
 class PrivateServiceDetailsOutputPlan(builtins.str, Enum):
     """
     The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
@@ -489,6 +526,7 @@ class PrivateServiceDetailsOutputPlan(builtins.str, Enum):
     CUSTOM = "custom"
 
 
+@pulumi.type_token("render:services:PrivateServiceDetailsOutputPullRequestPreviewsEnabled")
 class PrivateServiceDetailsOutputPullRequestPreviewsEnabled(builtins.str, Enum):
     """
     This field has been deprecated. previews.generation should be used in its place.
@@ -497,6 +535,7 @@ class PrivateServiceDetailsOutputPullRequestPreviewsEnabled(builtins.str, Enum):
     NO = "no"
 
 
+@pulumi.type_token("render:services:PrivateServiceDetailsOutputRegion")
 class PrivateServiceDetailsOutputRegion(builtins.str, Enum):
     """
     Defaults to "oregon"
@@ -508,6 +547,7 @@ class PrivateServiceDetailsOutputRegion(builtins.str, Enum):
     VIRGINIA = "virginia"
 
 
+@pulumi.type_token("render:services:PrivateServiceDetailsOutputRuntime")
 class PrivateServiceDetailsOutputRuntime(builtins.str, Enum):
     """
     Runtime
@@ -522,6 +562,7 @@ class PrivateServiceDetailsOutputRuntime(builtins.str, Enum):
     IMAGE = "image"
 
 
+@pulumi.type_token("render:services:RegistryCredentialRegistry")
 class RegistryCredentialRegistry(builtins.str, Enum):
     """
     The registry to use this credential with
@@ -533,42 +574,50 @@ class RegistryCredentialRegistry(builtins.str, Enum):
     AWS_ECR = "AWS_ECR"
 
 
+@pulumi.type_token("render:services:RouteCreateType")
 class RouteCreateType(builtins.str, Enum):
     REDIRECT = "redirect"
     REWRITE = "rewrite"
 
 
+@pulumi.type_token("render:services:RouteType")
 class RouteType(builtins.str, Enum):
     REDIRECT = "redirect"
     REWRITE = "rewrite"
 
 
+@pulumi.type_token("render:services:ServerPortProtocol")
 class ServerPortProtocol(builtins.str, Enum):
     TCP = "TCP"
     UDP = "UDP"
 
 
+@pulumi.type_token("render:services:ServiceAutoDeploy")
 class ServiceAutoDeploy(builtins.str, Enum):
     YES = "yes"
     NO = "no"
 
 
+@pulumi.type_token("render:services:ServiceCreateAutoDeploy")
 class ServiceCreateAutoDeploy(builtins.str, Enum):
     YES = "yes"
     NO = "no"
 
 
+@pulumi.type_token("render:services:ServiceNotifyOnFail")
 class ServiceNotifyOnFail(builtins.str, Enum):
     DEFAULT = "default"
     NOTIFY = "notify"
     IGNORE = "ignore"
 
 
+@pulumi.type_token("render:services:ServiceSuspended")
 class ServiceSuspended(builtins.str, Enum):
     SUSPENDED = "suspended"
     NOT_SUSPENDED = "not_suspended"
 
 
+@pulumi.type_token("render:services:ServiceSuspendersItem")
 class ServiceSuspendersItem(builtins.str, Enum):
     ADMIN = "admin"
     BILLING = "billing"
@@ -577,6 +626,7 @@ class ServiceSuspendersItem(builtins.str, Enum):
     UNKNOWN = "unknown"
 
 
+@pulumi.type_token("render:services:StaticSiteDetailsCreatePullRequestPreviewsEnabled")
 class StaticSiteDetailsCreatePullRequestPreviewsEnabled(builtins.str, Enum):
     """
     This field has been deprecated. previews.generation should be used in its place.
@@ -585,11 +635,13 @@ class StaticSiteDetailsCreatePullRequestPreviewsEnabled(builtins.str, Enum):
     NO = "no"
 
 
+@pulumi.type_token("render:services:StaticSiteDetailsOutputBuildPlan")
 class StaticSiteDetailsOutputBuildPlan(builtins.str, Enum):
     STARTER = "starter"
     PERFORMANCE = "performance"
 
 
+@pulumi.type_token("render:services:StaticSiteDetailsOutputPullRequestPreviewsEnabled")
 class StaticSiteDetailsOutputPullRequestPreviewsEnabled(builtins.str, Enum):
     """
     This field has been deprecated. previews.generation should be used in its place.
@@ -598,6 +650,7 @@ class StaticSiteDetailsOutputPullRequestPreviewsEnabled(builtins.str, Enum):
     NO = "no"
 
 
+@pulumi.type_token("render:services:Status")
 class Status(builtins.str, Enum):
     CREATED = "created"
     BUILD_IN_PROGRESS = "build_in_progress"
@@ -611,6 +664,7 @@ class Status(builtins.str, Enum):
     PRE_DEPLOY_FAILED = "pre_deploy_failed"
 
 
+@pulumi.type_token("render:services:Trigger")
 class Trigger(builtins.str, Enum):
     API = "api"
     BLUEPRINT_SYNC = "blueprint_sync"
@@ -624,11 +678,13 @@ class Trigger(builtins.str, Enum):
     SERVICE_UPDATED = "service_updated"
 
 
+@pulumi.type_token("render:services:Type")
 class Type(builtins.str, Enum):
     REDIRECT = "redirect"
     REWRITE = "rewrite"
 
 
+@pulumi.type_token("render:services:WebServiceDetailsCreateEnv")
 class WebServiceDetailsCreateEnv(builtins.str, Enum):
     """
     This field has been deprecated, runtime should be used in its place.
@@ -643,6 +699,7 @@ class WebServiceDetailsCreateEnv(builtins.str, Enum):
     IMAGE = "image"
 
 
+@pulumi.type_token("render:services:WebServiceDetailsCreatePlan")
 class WebServiceDetailsCreatePlan(builtins.str, Enum):
     """
     Defaults to "starter"
@@ -655,6 +712,7 @@ class WebServiceDetailsCreatePlan(builtins.str, Enum):
     PRO_ULTRA = "pro_ultra"
 
 
+@pulumi.type_token("render:services:WebServiceDetailsCreatePullRequestPreviewsEnabled")
 class WebServiceDetailsCreatePullRequestPreviewsEnabled(builtins.str, Enum):
     """
     This field has been deprecated. previews.generation should be used in its place.
@@ -663,6 +721,7 @@ class WebServiceDetailsCreatePullRequestPreviewsEnabled(builtins.str, Enum):
     NO = "no"
 
 
+@pulumi.type_token("render:services:WebServiceDetailsCreateRegion")
 class WebServiceDetailsCreateRegion(builtins.str, Enum):
     """
     Defaults to "oregon"
@@ -674,6 +733,7 @@ class WebServiceDetailsCreateRegion(builtins.str, Enum):
     VIRGINIA = "virginia"
 
 
+@pulumi.type_token("render:services:WebServiceDetailsCreateRuntime")
 class WebServiceDetailsCreateRuntime(builtins.str, Enum):
     """
     Runtime
@@ -688,11 +748,13 @@ class WebServiceDetailsCreateRuntime(builtins.str, Enum):
     IMAGE = "image"
 
 
+@pulumi.type_token("render:services:WebServiceDetailsOutputBuildPlan")
 class WebServiceDetailsOutputBuildPlan(builtins.str, Enum):
     STARTER = "starter"
     PERFORMANCE = "performance"
 
 
+@pulumi.type_token("render:services:WebServiceDetailsOutputEnv")
 class WebServiceDetailsOutputEnv(builtins.str, Enum):
     """
     This field has been deprecated, runtime should be used in its place.
@@ -707,6 +769,7 @@ class WebServiceDetailsOutputEnv(builtins.str, Enum):
     IMAGE = "image"
 
 
+@pulumi.type_token("render:services:WebServiceDetailsOutputPlan")
 class WebServiceDetailsOutputPlan(builtins.str, Enum):
     """
     The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
@@ -723,6 +786,7 @@ class WebServiceDetailsOutputPlan(builtins.str, Enum):
     CUSTOM = "custom"
 
 
+@pulumi.type_token("render:services:WebServiceDetailsOutputPullRequestPreviewsEnabled")
 class WebServiceDetailsOutputPullRequestPreviewsEnabled(builtins.str, Enum):
     """
     This field has been deprecated. previews.generation should be used in its place.
@@ -731,6 +795,7 @@ class WebServiceDetailsOutputPullRequestPreviewsEnabled(builtins.str, Enum):
     NO = "no"
 
 
+@pulumi.type_token("render:services:WebServiceDetailsOutputRegion")
 class WebServiceDetailsOutputRegion(builtins.str, Enum):
     """
     Defaults to "oregon"
@@ -742,6 +807,7 @@ class WebServiceDetailsOutputRegion(builtins.str, Enum):
     VIRGINIA = "virginia"
 
 
+@pulumi.type_token("render:services:WebServiceDetailsOutputRuntime")
 class WebServiceDetailsOutputRuntime(builtins.str, Enum):
     """
     Runtime

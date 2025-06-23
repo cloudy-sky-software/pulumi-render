@@ -182,10 +182,8 @@ class StaticSiteArgs:
         pulumi.set(self, "type", value)
 
 
+@pulumi.type_token("render:services:StaticSite")
 class StaticSite(pulumi.CustomResource):
-
-    pulumi_type = "render:services:StaticSite"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

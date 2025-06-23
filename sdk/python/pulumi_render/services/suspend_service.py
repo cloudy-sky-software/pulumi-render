@@ -41,10 +41,8 @@ class SuspendServiceArgs:
         pulumi.set(self, "service_id", value)
 
 
+@pulumi.type_token("render:services:SuspendService")
 class SuspendService(pulumi.CustomResource):
-
-    pulumi_type = "render:services:SuspendService"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

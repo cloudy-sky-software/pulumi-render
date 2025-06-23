@@ -37,10 +37,8 @@ class ResumePostgresArgs:
         pulumi.set(self, "postgres_id", value)
 
 
+@pulumi.type_token("render:postgres:ResumePostgres")
 class ResumePostgres(pulumi.CustomResource):
-
-    pulumi_type = "render:postgres:ResumePostgres"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

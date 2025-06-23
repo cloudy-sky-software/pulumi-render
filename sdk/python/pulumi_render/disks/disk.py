@@ -70,10 +70,8 @@ class DiskArgs:
         pulumi.set(self, "name", value)
 
 
+@pulumi.type_token("render:disks:Disk")
 class Disk(pulumi.CustomResource):
-
-    pulumi_type = "render:disks:Disk"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

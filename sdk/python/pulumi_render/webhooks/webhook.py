@@ -90,10 +90,8 @@ class WebhookArgs:
         pulumi.set(self, "name", value)
 
 
+@pulumi.type_token("render:webhooks:Webhook")
 class Webhook(pulumi.CustomResource):
-
-    pulumi_type = "render:webhooks:Webhook"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

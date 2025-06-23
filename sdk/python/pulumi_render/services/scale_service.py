@@ -52,10 +52,8 @@ class ScaleServiceArgs:
         pulumi.set(self, "service_id", value)
 
 
+@pulumi.type_token("render:services:ScaleService")
 class ScaleService(pulumi.CustomResource):
-
-    pulumi_type = "render:services:ScaleService"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

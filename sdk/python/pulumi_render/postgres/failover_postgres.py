@@ -37,10 +37,8 @@ class FailoverPostgresArgs:
         pulumi.set(self, "postgres_id", value)
 
 
+@pulumi.type_token("render:postgres:FailoverPostgres")
 class FailoverPostgres(pulumi.CustomResource):
-
-    pulumi_type = "render:postgres:FailoverPostgres"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

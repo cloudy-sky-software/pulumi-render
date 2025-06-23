@@ -3,7 +3,7 @@
 # *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import builtins
-import builtins
+import pulumi
 from enum import Enum
 
 __all__ = [
@@ -22,6 +22,7 @@ __all__ = [
 ]
 
 
+@pulumi.type_token("render:key-value:KeyValueDetailPlan")
 class KeyValueDetailPlan(builtins.str, Enum):
     FREE = "free"
     STARTER = "starter"
@@ -31,6 +32,7 @@ class KeyValueDetailPlan(builtins.str, Enum):
     CUSTOM = "custom"
 
 
+@pulumi.type_token("render:key-value:KeyValueDetailRegion")
 class KeyValueDetailRegion(builtins.str, Enum):
     """
     Defaults to "oregon"
@@ -42,6 +44,7 @@ class KeyValueDetailRegion(builtins.str, Enum):
     VIRGINIA = "virginia"
 
 
+@pulumi.type_token("render:key-value:KeyValueDetailStatus")
 class KeyValueDetailStatus(builtins.str, Enum):
     CREATING = "creating"
     AVAILABLE = "available"
@@ -56,6 +59,7 @@ class KeyValueDetailStatus(builtins.str, Enum):
     UPDATING_INSTANCE = "updating_instance"
 
 
+@pulumi.type_token("render:key-value:KeyValuePlan")
 class KeyValuePlan(builtins.str, Enum):
     FREE = "free"
     STARTER = "starter"
@@ -65,6 +69,7 @@ class KeyValuePlan(builtins.str, Enum):
     CUSTOM = "custom"
 
 
+@pulumi.type_token("render:key-value:KeyValueRegion")
 class KeyValueRegion(builtins.str, Enum):
     """
     Defaults to "oregon"
@@ -76,6 +81,7 @@ class KeyValueRegion(builtins.str, Enum):
     VIRGINIA = "virginia"
 
 
+@pulumi.type_token("render:key-value:KeyValueStatus")
 class KeyValueStatus(builtins.str, Enum):
     CREATING = "creating"
     AVAILABLE = "available"
@@ -90,6 +96,7 @@ class KeyValueStatus(builtins.str, Enum):
     UPDATING_INSTANCE = "updating_instance"
 
 
+@pulumi.type_token("render:key-value:MaxmemoryPolicy")
 class MaxmemoryPolicy(builtins.str, Enum):
     """
     The eviction policy for the Key Value instance
@@ -104,11 +111,13 @@ class MaxmemoryPolicy(builtins.str, Enum):
     VOLATILE_TTL = "volatile_ttl"
 
 
+@pulumi.type_token("render:key-value:OwnerType")
 class OwnerType(builtins.str, Enum):
     USER = "user"
     TEAM = "team"
 
 
+@pulumi.type_token("render:key-value:Plan")
 class Plan(builtins.str, Enum):
     FREE = "free"
     STARTER = "starter"
@@ -118,6 +127,7 @@ class Plan(builtins.str, Enum):
     CUSTOM = "custom"
 
 
+@pulumi.type_token("render:key-value:RedisDetailpropertiesmaintenanceState")
 class RedisDetailpropertiesmaintenanceState(builtins.str, Enum):
     SCHEDULED = "scheduled"
     IN_PROGRESS = "in_progress"
@@ -127,6 +137,7 @@ class RedisDetailpropertiesmaintenanceState(builtins.str, Enum):
     FAILED = "failed"
 
 
+@pulumi.type_token("render:key-value:Region")
 class Region(builtins.str, Enum):
     """
     Defaults to "oregon"
@@ -138,6 +149,7 @@ class Region(builtins.str, Enum):
     VIRGINIA = "virginia"
 
 
+@pulumi.type_token("render:key-value:Status")
 class Status(builtins.str, Enum):
     CREATING = "creating"
     AVAILABLE = "available"

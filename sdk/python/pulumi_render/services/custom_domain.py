@@ -53,10 +53,8 @@ class CustomDomainArgs:
         pulumi.set(self, "service_id", value)
 
 
+@pulumi.type_token("render:services:CustomDomain")
 class CustomDomain(pulumi.CustomResource):
-
-    pulumi_type = "render:services:CustomDomain"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

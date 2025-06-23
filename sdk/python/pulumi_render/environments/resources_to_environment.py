@@ -49,10 +49,8 @@ class ResourcesToEnvironmentArgs:
         pulumi.set(self, "environment_id", value)
 
 
+@pulumi.type_token("render:environments:ResourcesToEnvironment")
 class ResourcesToEnvironment(pulumi.CustomResource):
-
-    pulumi_type = "render:environments:ResourcesToEnvironment"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

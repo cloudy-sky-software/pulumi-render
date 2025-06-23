@@ -81,10 +81,8 @@ class EnvVarArgs:
         pulumi.set(self, "value", value)
 
 
+@pulumi.type_token("render:services:EnvVar")
 class EnvVar(pulumi.CustomResource):
-
-    pulumi_type = "render:services:EnvVar"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

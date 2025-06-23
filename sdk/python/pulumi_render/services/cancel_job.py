@@ -58,10 +58,8 @@ class CancelJobArgs:
         pulumi.set(self, "service_id", value)
 
 
+@pulumi.type_token("render:services:CancelJob")
 class CancelJob(pulumi.CustomResource):
-
-    pulumi_type = "render:services:CancelJob"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

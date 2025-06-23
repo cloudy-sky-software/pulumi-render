@@ -3,7 +3,7 @@
 # *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import builtins
-import builtins
+import pulumi
 from enum import Enum
 
 __all__ = [
@@ -13,6 +13,7 @@ __all__ = [
 ]
 
 
+@pulumi.type_token("render:webhooks:EventFilterItem")
 class EventFilterItem(builtins.str, Enum):
     AUTOSCALING_CONFIG_CHANGED = "autoscaling_config_changed"
     AUTOSCALING_ENDED = "autoscaling_ended"
@@ -65,6 +66,7 @@ class EventFilterItem(builtins.str, Enum):
     KEY_VALUE_UNHEALTHY = "key_value_unhealthy"
 
 
+@pulumi.type_token("render:webhooks:WebhookWithCursorWebhookPropertiesEventFilterItem")
 class WebhookWithCursorWebhookPropertiesEventFilterItem(builtins.str, Enum):
     AUTOSCALING_CONFIG_CHANGED = "autoscaling_config_changed"
     AUTOSCALING_ENDED = "autoscaling_ended"
@@ -117,6 +119,7 @@ class WebhookWithCursorWebhookPropertiesEventFilterItem(builtins.str, Enum):
     KEY_VALUE_UNHEALTHY = "key_value_unhealthy"
 
 
+@pulumi.type_token("render:webhooks:WebhookWithCursorpropertieswebhookEventFilterItem")
 class WebhookWithCursorpropertieswebhookEventFilterItem(builtins.str, Enum):
     AUTOSCALING_CONFIG_CHANGED = "autoscaling_config_changed"
     AUTOSCALING_ENDED = "autoscaling_ended"

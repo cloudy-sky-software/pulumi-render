@@ -37,10 +37,8 @@ class PostgresExportArgs:
         pulumi.set(self, "postgres_id", value)
 
 
+@pulumi.type_token("render:postgres:PostgresExport")
 class PostgresExport(pulumi.CustomResource):
-
-    pulumi_type = "render:postgres:PostgresExport"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

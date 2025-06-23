@@ -90,10 +90,8 @@ class PreviewServiceArgs:
         pulumi.set(self, "service_id", value)
 
 
+@pulumi.type_token("render:services:PreviewService")
 class PreviewService(pulumi.CustomResource):
-
-    pulumi_type = "render:services:PreviewService"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

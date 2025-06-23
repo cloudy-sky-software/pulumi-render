@@ -3,7 +3,7 @@
 # *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import builtins
-import builtins
+import pulumi
 from enum import Enum
 
 __all__ = [
@@ -35,6 +35,7 @@ __all__ = [
 ]
 
 
+@pulumi.type_token("render:postgres:GetPostgresRecoveryInfoPropertiesRecoveryStatus")
 class GetPostgresRecoveryInfoPropertiesRecoveryStatus(builtins.str, Enum):
     """
     Availability of point-in-time recovery.
@@ -44,11 +45,13 @@ class GetPostgresRecoveryInfoPropertiesRecoveryStatus(builtins.str, Enum):
     NOT_AVAILABLE = "NOT_AVAILABLE"
 
 
+@pulumi.type_token("render:postgres:OwnerType")
 class OwnerType(builtins.str, Enum):
     USER = "user"
     TEAM = "team"
 
 
+@pulumi.type_token("render:postgres:Plan")
 class Plan(builtins.str, Enum):
     FREE = "free"
     STARTER = "starter"
@@ -80,6 +83,7 @@ class Plan(builtins.str, Enum):
     ACCELERATED1024GB = "accelerated_1024gb"
 
 
+@pulumi.type_token("render:postgres:PostgresDetailPlan")
 class PostgresDetailPlan(builtins.str, Enum):
     FREE = "free"
     STARTER = "starter"
@@ -111,6 +115,7 @@ class PostgresDetailPlan(builtins.str, Enum):
     ACCELERATED1024GB = "accelerated_1024gb"
 
 
+@pulumi.type_token("render:postgres:PostgresDetailRegion")
 class PostgresDetailRegion(builtins.str, Enum):
     """
     Defaults to "oregon"
@@ -122,11 +127,13 @@ class PostgresDetailRegion(builtins.str, Enum):
     VIRGINIA = "virginia"
 
 
+@pulumi.type_token("render:postgres:PostgresDetailRole")
 class PostgresDetailRole(builtins.str, Enum):
     PRIMARY = "primary"
     REPLICA = "replica"
 
 
+@pulumi.type_token("render:postgres:PostgresDetailStatus")
 class PostgresDetailStatus(builtins.str, Enum):
     CREATING = "creating"
     AVAILABLE = "available"
@@ -141,11 +148,13 @@ class PostgresDetailStatus(builtins.str, Enum):
     UPDATING_INSTANCE = "updating_instance"
 
 
+@pulumi.type_token("render:postgres:PostgresDetailSuspended")
 class PostgresDetailSuspended(builtins.str, Enum):
     SUSPENDED = "suspended"
     NOT_SUSPENDED = "not_suspended"
 
 
+@pulumi.type_token("render:postgres:PostgresDetailSuspendersItem")
 class PostgresDetailSuspendersItem(builtins.str, Enum):
     ADMIN = "admin"
     BILLING = "billing"
@@ -154,6 +163,7 @@ class PostgresDetailSuspendersItem(builtins.str, Enum):
     UNKNOWN = "unknown"
 
 
+@pulumi.type_token("render:postgres:PostgresDetailVersion")
 class PostgresDetailVersion(builtins.str, Enum):
     """
     The PostgreSQL version
@@ -166,6 +176,7 @@ class PostgresDetailVersion(builtins.str, Enum):
     POSTGRES_DETAIL_VERSION_16 = "16"
 
 
+@pulumi.type_token("render:postgres:PostgresPlan")
 class PostgresPlan(builtins.str, Enum):
     FREE = "free"
     STARTER = "starter"
@@ -197,6 +208,7 @@ class PostgresPlan(builtins.str, Enum):
     ACCELERATED1024GB = "accelerated_1024gb"
 
 
+@pulumi.type_token("render:postgres:PostgresRegion")
 class PostgresRegion(builtins.str, Enum):
     """
     Defaults to "oregon"
@@ -208,11 +220,13 @@ class PostgresRegion(builtins.str, Enum):
     VIRGINIA = "virginia"
 
 
+@pulumi.type_token("render:postgres:PostgresRole")
 class PostgresRole(builtins.str, Enum):
     PRIMARY = "primary"
     REPLICA = "replica"
 
 
+@pulumi.type_token("render:postgres:PostgresStatus")
 class PostgresStatus(builtins.str, Enum):
     CREATING = "creating"
     AVAILABLE = "available"
@@ -227,11 +241,13 @@ class PostgresStatus(builtins.str, Enum):
     UPDATING_INSTANCE = "updating_instance"
 
 
+@pulumi.type_token("render:postgres:PostgresSuspended")
 class PostgresSuspended(builtins.str, Enum):
     SUSPENDED = "suspended"
     NOT_SUSPENDED = "not_suspended"
 
 
+@pulumi.type_token("render:postgres:PostgresSuspendersItem")
 class PostgresSuspendersItem(builtins.str, Enum):
     ADMIN = "admin"
     BILLING = "billing"
@@ -240,6 +256,7 @@ class PostgresSuspendersItem(builtins.str, Enum):
     UNKNOWN = "unknown"
 
 
+@pulumi.type_token("render:postgres:PostgresVersion")
 class PostgresVersion(builtins.str, Enum):
     """
     The PostgreSQL version
@@ -252,11 +269,13 @@ class PostgresVersion(builtins.str, Enum):
     POSTGRES_VERSION_16 = "16"
 
 
+@pulumi.type_token("render:postgres:RecoverPostgresSuspended")
 class RecoverPostgresSuspended(builtins.str, Enum):
     SUSPENDED = "suspended"
     NOT_SUSPENDED = "not_suspended"
 
 
+@pulumi.type_token("render:postgres:RedisDetailpropertiesmaintenanceState")
 class RedisDetailpropertiesmaintenanceState(builtins.str, Enum):
     SCHEDULED = "scheduled"
     IN_PROGRESS = "in_progress"
@@ -266,6 +285,7 @@ class RedisDetailpropertiesmaintenanceState(builtins.str, Enum):
     FAILED = "failed"
 
 
+@pulumi.type_token("render:postgres:Region")
 class Region(builtins.str, Enum):
     """
     Defaults to "oregon"
@@ -277,11 +297,13 @@ class Region(builtins.str, Enum):
     VIRGINIA = "virginia"
 
 
+@pulumi.type_token("render:postgres:Role")
 class Role(builtins.str, Enum):
     PRIMARY = "primary"
     REPLICA = "replica"
 
 
+@pulumi.type_token("render:postgres:Status")
 class Status(builtins.str, Enum):
     CREATING = "creating"
     AVAILABLE = "available"
@@ -296,11 +318,13 @@ class Status(builtins.str, Enum):
     UPDATING_INSTANCE = "updating_instance"
 
 
+@pulumi.type_token("render:postgres:Suspended")
 class Suspended(builtins.str, Enum):
     SUSPENDED_ = "suspended"
     NOT_SUSPENDED = "not_suspended"
 
 
+@pulumi.type_token("render:postgres:SuspendersItem")
 class SuspendersItem(builtins.str, Enum):
     ADMIN = "admin"
     BILLING = "billing"
@@ -309,6 +333,7 @@ class SuspendersItem(builtins.str, Enum):
     UNKNOWN = "unknown"
 
 
+@pulumi.type_token("render:postgres:Version")
 class Version(builtins.str, Enum):
     """
     The PostgreSQL version

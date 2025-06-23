@@ -97,10 +97,8 @@ class AutoscaleServiceArgs:
         pulumi.set(self, "service_id", value)
 
 
+@pulumi.type_token("render:services:AutoscaleService")
 class AutoscaleService(pulumi.CustomResource):
-
-    pulumi_type = "render:services:AutoscaleService"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

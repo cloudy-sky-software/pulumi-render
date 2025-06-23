@@ -57,10 +57,8 @@ class RefreshCustomDomainArgs:
         pulumi.set(self, "service_id", value)
 
 
+@pulumi.type_token("render:services:RefreshCustomDomain")
 class RefreshCustomDomain(pulumi.CustomResource):
-
-    pulumi_type = "render:services:RefreshCustomDomain"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

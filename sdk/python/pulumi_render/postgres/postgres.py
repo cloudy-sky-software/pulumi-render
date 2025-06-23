@@ -203,10 +203,8 @@ class PostgresArgs:
         pulumi.set(self, "region", value)
 
 
+@pulumi.type_token("render:postgres:Postgres")
 class Postgres(pulumi.CustomResource):
-
-    pulumi_type = "render:postgres:Postgres"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

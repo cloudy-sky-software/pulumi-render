@@ -37,10 +37,8 @@ class RestartPostgresArgs:
         pulumi.set(self, "postgres_id", value)
 
 
+@pulumi.type_token("render:postgres:RestartPostgres")
 class RestartPostgres(pulumi.CustomResource):
-
-    pulumi_type = "render:postgres:RestartPostgres"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

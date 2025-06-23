@@ -3,7 +3,7 @@
 # *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import builtins
-import builtins
+import pulumi
 from enum import Enum
 
 __all__ = [
@@ -12,11 +12,13 @@ __all__ = [
 ]
 
 
+@pulumi.type_token("render:projects:OwnerType")
 class OwnerType(builtins.str, Enum):
     USER = "user"
     TEAM = "team"
 
 
+@pulumi.type_token("render:projects:ProjectCreateEnvironmentInputProtectedStatus")
 class ProjectCreateEnvironmentInputProtectedStatus(builtins.str, Enum):
     """
     Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.

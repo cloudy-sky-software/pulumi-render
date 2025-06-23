@@ -86,10 +86,8 @@ class RegistryCredentialArgs:
         pulumi.set(self, "name", value)
 
 
+@pulumi.type_token("render:registrycredentials:RegistryCredential")
 class RegistryCredential(pulumi.CustomResource):
-
-    pulumi_type = "render:registrycredentials:RegistryCredential"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

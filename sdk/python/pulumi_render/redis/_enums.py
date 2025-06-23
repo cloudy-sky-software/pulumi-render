@@ -3,7 +3,7 @@
 # *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import builtins
-import builtins
+import pulumi
 from enum import Enum
 
 __all__ = [
@@ -23,6 +23,7 @@ __all__ = [
 ]
 
 
+@pulumi.type_token("render:redis:MaintenancePropertiesState")
 class MaintenancePropertiesState(builtins.str, Enum):
     SCHEDULED = "scheduled"
     IN_PROGRESS = "in_progress"
@@ -32,6 +33,7 @@ class MaintenancePropertiesState(builtins.str, Enum):
     FAILED = "failed"
 
 
+@pulumi.type_token("render:redis:MaxmemoryPolicy")
 class MaxmemoryPolicy(builtins.str, Enum):
     """
     The eviction policy for the Key Value instance
@@ -46,11 +48,13 @@ class MaxmemoryPolicy(builtins.str, Enum):
     VOLATILE_TTL = "volatile_ttl"
 
 
+@pulumi.type_token("render:redis:OwnerType")
 class OwnerType(builtins.str, Enum):
     USER = "user"
     TEAM = "team"
 
 
+@pulumi.type_token("render:redis:Plan")
 class Plan(builtins.str, Enum):
     FREE = "free"
     STARTER = "starter"
@@ -60,6 +64,7 @@ class Plan(builtins.str, Enum):
     CUSTOM = "custom"
 
 
+@pulumi.type_token("render:redis:RedisDetailMaintenancePropertiesState")
 class RedisDetailMaintenancePropertiesState(builtins.str, Enum):
     SCHEDULED = "scheduled"
     IN_PROGRESS = "in_progress"
@@ -69,6 +74,7 @@ class RedisDetailMaintenancePropertiesState(builtins.str, Enum):
     FAILED = "failed"
 
 
+@pulumi.type_token("render:redis:RedisDetailPlan")
 class RedisDetailPlan(builtins.str, Enum):
     FREE = "free"
     STARTER = "starter"
@@ -78,6 +84,7 @@ class RedisDetailPlan(builtins.str, Enum):
     CUSTOM = "custom"
 
 
+@pulumi.type_token("render:redis:RedisDetailRegion")
 class RedisDetailRegion(builtins.str, Enum):
     """
     Defaults to "oregon"
@@ -89,6 +96,7 @@ class RedisDetailRegion(builtins.str, Enum):
     VIRGINIA = "virginia"
 
 
+@pulumi.type_token("render:redis:RedisDetailStatus")
 class RedisDetailStatus(builtins.str, Enum):
     CREATING = "creating"
     AVAILABLE = "available"
@@ -103,6 +111,7 @@ class RedisDetailStatus(builtins.str, Enum):
     UPDATING_INSTANCE = "updating_instance"
 
 
+@pulumi.type_token("render:redis:RedisPlan")
 class RedisPlan(builtins.str, Enum):
     FREE = "free"
     STARTER = "starter"
@@ -112,6 +121,7 @@ class RedisPlan(builtins.str, Enum):
     CUSTOM = "custom"
 
 
+@pulumi.type_token("render:redis:RedisRegion")
 class RedisRegion(builtins.str, Enum):
     """
     Defaults to "oregon"
@@ -123,6 +133,7 @@ class RedisRegion(builtins.str, Enum):
     VIRGINIA = "virginia"
 
 
+@pulumi.type_token("render:redis:RedisStatus")
 class RedisStatus(builtins.str, Enum):
     CREATING = "creating"
     AVAILABLE = "available"
@@ -137,6 +148,7 @@ class RedisStatus(builtins.str, Enum):
     UPDATING_INSTANCE = "updating_instance"
 
 
+@pulumi.type_token("render:redis:Region")
 class Region(builtins.str, Enum):
     """
     Defaults to "oregon"
@@ -148,6 +160,7 @@ class Region(builtins.str, Enum):
     VIRGINIA = "virginia"
 
 
+@pulumi.type_token("render:redis:Status")
 class Status(builtins.str, Enum):
     CREATING = "creating"
     AVAILABLE = "available"

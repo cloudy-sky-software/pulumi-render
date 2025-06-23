@@ -182,10 +182,8 @@ class WebServiceArgs:
         pulumi.set(self, "type", value)
 
 
+@pulumi.type_token("render:services:WebService")
 class WebService(pulumi.CustomResource):
-
-    pulumi_type = "render:services:WebService"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

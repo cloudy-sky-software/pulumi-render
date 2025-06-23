@@ -118,10 +118,8 @@ class RecoverPostgresArgs:
         pulumi.set(self, "restore_name", value)
 
 
+@pulumi.type_token("render:postgres:RecoverPostgres")
 class RecoverPostgres(pulumi.CustomResource):
-
-    pulumi_type = "render:postgres:RecoverPostgres"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

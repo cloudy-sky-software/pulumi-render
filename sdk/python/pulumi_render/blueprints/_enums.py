@@ -3,7 +3,7 @@
 # *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import builtins
-import builtins
+import pulumi
 from enum import Enum
 
 __all__ = [
@@ -14,6 +14,7 @@ __all__ = [
 ]
 
 
+@pulumi.type_token("render:blueprints:BlueprintWithCursorBlueprintPropertiesStatus")
 class BlueprintWithCursorBlueprintPropertiesStatus(builtins.str, Enum):
     CREATED = "created"
     PAUSED = "paused"
@@ -22,6 +23,7 @@ class BlueprintWithCursorBlueprintPropertiesStatus(builtins.str, Enum):
     ERROR = "error"
 
 
+@pulumi.type_token("render:blueprints:GetBlueprintPropertiesResourcesItemPropertiesType")
 class GetBlueprintPropertiesResourcesItemPropertiesType(builtins.str, Enum):
     """
     type of the resource (ex. web_service or postgres)
@@ -37,6 +39,7 @@ class GetBlueprintPropertiesResourcesItemPropertiesType(builtins.str, Enum):
     ENVIRONMENT_GROUP = "environment_group"
 
 
+@pulumi.type_token("render:blueprints:GetBlueprintPropertiesStatus")
 class GetBlueprintPropertiesStatus(builtins.str, Enum):
     CREATED = "created"
     PAUSED = "paused"
@@ -45,6 +48,7 @@ class GetBlueprintPropertiesStatus(builtins.str, Enum):
     ERROR = "error"
 
 
+@pulumi.type_token("render:blueprints:SyncWithCursorSyncPropertiesState")
 class SyncWithCursorSyncPropertiesState(builtins.str, Enum):
     CREATED = "created"
     PENDING = "pending"

@@ -59,10 +59,8 @@ class LinkServiceToEnvGroupArgs:
         pulumi.set(self, "service_id", value)
 
 
+@pulumi.type_token("render:env-groups:LinkServiceToEnvGroup")
 class LinkServiceToEnvGroup(pulumi.CustomResource):
-
-    pulumi_type = "render:env-groups:LinkServiceToEnvGroup"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

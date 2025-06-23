@@ -74,10 +74,8 @@ class ProjectArgs:
         pulumi.set(self, "name", value)
 
 
+@pulumi.type_token("render:projects:Project")
 class Project(pulumi.CustomResource):
-
-    pulumi_type = "render:projects:Project"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

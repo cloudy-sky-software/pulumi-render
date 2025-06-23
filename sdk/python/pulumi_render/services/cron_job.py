@@ -182,10 +182,8 @@ class CronJobArgs:
         pulumi.set(self, "type", value)
 
 
+@pulumi.type_token("render:services:CronJob")
 class CronJob(pulumi.CustomResource):
-
-    pulumi_type = "render:services:CronJob"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

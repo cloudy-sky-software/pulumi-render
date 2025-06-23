@@ -41,10 +41,8 @@ class RestartServiceArgs:
         pulumi.set(self, "service_id", value)
 
 
+@pulumi.type_token("render:services:RestartService")
 class RestartService(pulumi.CustomResource):
-
-    pulumi_type = "render:services:RestartService"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

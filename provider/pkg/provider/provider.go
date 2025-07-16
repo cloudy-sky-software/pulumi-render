@@ -28,6 +28,8 @@ import (
 )
 
 type renderProvider struct {
+	fwCallback.UnimplementedProviderCallback
+
 	name    string
 	version string
 

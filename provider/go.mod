@@ -3,11 +3,11 @@ module github.com/cloudy-sky-software/pulumi-render/provider
 go 1.24.1
 
 require (
-	github.com/cloudy-sky-software/pulschema v0.0.0-20250807012335-11ffc663f4d5
-	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20250807175738-100f050e09a5
+	github.com/cloudy-sky-software/pulschema v0.0.0-20250807175928-aa988f36fc7c
+	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20250807223330-2b207080e00e
 	github.com/getkin/kin-openapi v0.132.0
-	github.com/pulumi/pulumi/pkg/v3 v3.187.0
-	github.com/pulumi/pulumi/sdk/v3 v3.187.0
+	github.com/pulumi/pulumi/pkg/v3 v3.188.0
+	github.com/pulumi/pulumi/sdk/v3 v3.188.0
 )
 
 require github.com/stretchr/testify v1.10.0
@@ -86,7 +86,7 @@ require (
 	github.com/pkg/term v1.1.0 // indirect
 	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 // indirect
 	github.com/pulumi/appdash v0.0.0-20231130102222-75f619a67231 // indirect
-	github.com/pulumi/esc v0.14.3 // indirect
+	github.com/pulumi/esc v0.17.0 // indirect
 	github.com/pulumi/inflector v0.2.1 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
 	github.com/rogpeppe/go-internal v1.14.1 // indirect

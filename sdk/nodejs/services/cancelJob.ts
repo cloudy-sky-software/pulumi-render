@@ -53,8 +53,8 @@ export class CancelJob extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            resourceInputs["jobId"] = args ? args.jobId : undefined;
-            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
+            resourceInputs["jobId"] = args?.jobId;
+            resourceInputs["serviceId"] = args?.serviceId;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["finishedAt"] = undefined /*out*/;
             resourceInputs["planId"] = undefined /*out*/;

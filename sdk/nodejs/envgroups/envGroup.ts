@@ -58,18 +58,18 @@ export class EnvGroup extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.envVars === undefined) && !opts.urn) {
+            if (args?.envVars === undefined && !opts.urn) {
                 throw new Error("Missing required property 'envVars'");
             }
-            if ((!args || args.ownerId === undefined) && !opts.urn) {
+            if (args?.ownerId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'ownerId'");
             }
-            resourceInputs["envVars"] = args ? args.envVars : undefined;
-            resourceInputs["environmentId"] = args ? args.environmentId : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["ownerId"] = args ? args.ownerId : undefined;
-            resourceInputs["secretFiles"] = args ? args.secretFiles : undefined;
-            resourceInputs["serviceIds"] = args ? args.serviceIds : undefined;
+            resourceInputs["envVars"] = args?.envVars;
+            resourceInputs["environmentId"] = args?.environmentId;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["ownerId"] = args?.ownerId;
+            resourceInputs["secretFiles"] = args?.secretFiles;
+            resourceInputs["serviceIds"] = args?.serviceIds;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["serviceLinks"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;

@@ -58,9 +58,9 @@ export class EnvGroupSecretFile extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            resourceInputs["content"] = args ? args.content : undefined;
-            resourceInputs["envGroupId"] = args ? args.envGroupId : undefined;
-            resourceInputs["secretFileName"] = args ? args.secretFileName : undefined;
+            resourceInputs["content"] = args?.content;
+            resourceInputs["envGroupId"] = args?.envGroupId;
+            resourceInputs["secretFileName"] = args?.secretFileName;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["envVars"] = undefined /*out*/;
             resourceInputs["environmentId"] = undefined /*out*/;

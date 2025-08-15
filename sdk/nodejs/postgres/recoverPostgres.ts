@@ -92,15 +92,15 @@ export class RecoverPostgres extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.restoreTime === undefined) && !opts.urn) {
+            if (args?.restoreTime === undefined && !opts.urn) {
                 throw new Error("Missing required property 'restoreTime'");
             }
-            resourceInputs["datadogApiKey"] = args ? args.datadogApiKey : undefined;
-            resourceInputs["environmentId"] = args ? args.environmentId : undefined;
-            resourceInputs["plan"] = args ? args.plan : undefined;
-            resourceInputs["postgresId"] = args ? args.postgresId : undefined;
-            resourceInputs["restoreName"] = args ? args.restoreName : undefined;
-            resourceInputs["restoreTime"] = args ? args.restoreTime : undefined;
+            resourceInputs["datadogApiKey"] = args?.datadogApiKey;
+            resourceInputs["environmentId"] = args?.environmentId;
+            resourceInputs["plan"] = args?.plan;
+            resourceInputs["postgresId"] = args?.postgresId;
+            resourceInputs["restoreName"] = args?.restoreName;
+            resourceInputs["restoreTime"] = args?.restoreTime;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["dashboardUrl"] = undefined /*out*/;
             resourceInputs["databaseName"] = undefined /*out*/;

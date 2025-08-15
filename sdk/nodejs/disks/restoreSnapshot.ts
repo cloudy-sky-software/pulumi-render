@@ -54,12 +54,12 @@ export class RestoreSnapshot extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.snapshotKey === undefined) && !opts.urn) {
+            if (args?.snapshotKey === undefined && !opts.urn) {
                 throw new Error("Missing required property 'snapshotKey'");
             }
-            resourceInputs["diskId"] = args ? args.diskId : undefined;
-            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
-            resourceInputs["snapshotKey"] = args ? args.snapshotKey : undefined;
+            resourceInputs["diskId"] = args?.diskId;
+            resourceInputs["instanceId"] = args?.instanceId;
+            resourceInputs["snapshotKey"] = args?.snapshotKey;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["mountPath"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;

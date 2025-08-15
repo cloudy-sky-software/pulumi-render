@@ -60,13 +60,13 @@ export class Environment extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["networkIsolationEnabled"] = args ? args.networkIsolationEnabled : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["protectedStatus"] = args ? args.protectedStatus : undefined;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["networkIsolationEnabled"] = args?.networkIsolationEnabled;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["protectedStatus"] = args?.protectedStatus;
             resourceInputs["databasesIds"] = undefined /*out*/;
             resourceInputs["envGroupIds"] = undefined /*out*/;
             resourceInputs["redisIds"] = undefined /*out*/;

@@ -59,10 +59,10 @@ export class EnvGroupEnvVar extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            resourceInputs["envGroupId"] = args ? args.envGroupId : undefined;
-            resourceInputs["envVarKey"] = args ? args.envVarKey : undefined;
-            resourceInputs["generateValue"] = args ? args.generateValue : undefined;
-            resourceInputs["value"] = args ? args.value : undefined;
+            resourceInputs["envGroupId"] = args?.envGroupId;
+            resourceInputs["envVarKey"] = args?.envVarKey;
+            resourceInputs["generateValue"] = args?.generateValue;
+            resourceInputs["value"] = args?.value;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["envVars"] = undefined /*out*/;
             resourceInputs["environmentId"] = undefined /*out*/;

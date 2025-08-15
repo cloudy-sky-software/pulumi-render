@@ -64,23 +64,23 @@ export class RegistryCredential extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.authToken === undefined) && !opts.urn) {
+            if (args?.authToken === undefined && !opts.urn) {
                 throw new Error("Missing required property 'authToken'");
             }
-            if ((!args || args.ownerId === undefined) && !opts.urn) {
+            if (args?.ownerId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'ownerId'");
             }
-            if ((!args || args.registry === undefined) && !opts.urn) {
+            if (args?.registry === undefined && !opts.urn) {
                 throw new Error("Missing required property 'registry'");
             }
-            if ((!args || args.username === undefined) && !opts.urn) {
+            if (args?.username === undefined && !opts.urn) {
                 throw new Error("Missing required property 'username'");
             }
-            resourceInputs["authToken"] = args ? args.authToken : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["ownerId"] = args ? args.ownerId : undefined;
-            resourceInputs["registry"] = args ? args.registry : undefined;
-            resourceInputs["username"] = args ? args.username : undefined;
+            resourceInputs["authToken"] = args?.authToken;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["ownerId"] = args?.ownerId;
+            resourceInputs["registry"] = args?.registry;
+            resourceInputs["username"] = args?.username;
             resourceInputs["updatedAt"] = undefined /*out*/;
         } else {
             resourceInputs["authToken"] = undefined /*out*/;

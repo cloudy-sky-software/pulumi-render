@@ -47,8 +47,8 @@ export class EnvVarsForService extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            resourceInputs["envVars"] = args ? args.envVars : undefined;
-            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
+            resourceInputs["envVars"] = args?.envVars;
+            resourceInputs["serviceId"] = args?.serviceId;
         } else {
             resourceInputs["envVars"] = undefined /*out*/;
         }

@@ -47,8 +47,8 @@ export class SecretFilesForService extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            resourceInputs["secretFiles"] = args ? args.secretFiles : undefined;
-            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
+            resourceInputs["secretFiles"] = args?.secretFiles;
+            resourceInputs["serviceId"] = args?.serviceId;
         } else {
             resourceInputs["secretFiles"] = undefined /*out*/;
         }

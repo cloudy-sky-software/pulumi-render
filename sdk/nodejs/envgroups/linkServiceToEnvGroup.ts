@@ -57,8 +57,8 @@ export class LinkServiceToEnvGroup extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            resourceInputs["envGroupId"] = args ? args.envGroupId : undefined;
-            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
+            resourceInputs["envGroupId"] = args?.envGroupId;
+            resourceInputs["serviceId"] = args?.serviceId;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["envVars"] = undefined /*out*/;
             resourceInputs["environmentId"] = undefined /*out*/;

@@ -53,12 +53,12 @@ export class Job extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.startCommand === undefined) && !opts.urn) {
+            if (args?.startCommand === undefined && !opts.urn) {
                 throw new Error("Missing required property 'startCommand'");
             }
-            resourceInputs["planId"] = args ? args.planId : undefined;
-            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
-            resourceInputs["startCommand"] = args ? args.startCommand : undefined;
+            resourceInputs["planId"] = args?.planId;
+            resourceInputs["serviceId"] = args?.serviceId;
+            resourceInputs["startCommand"] = args?.startCommand;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["finishedAt"] = undefined /*out*/;
             resourceInputs["startedAt"] = undefined /*out*/;

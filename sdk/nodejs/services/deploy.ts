@@ -76,10 +76,10 @@ export class Deploy extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            resourceInputs["clearCache"] = (args ? args.clearCache : undefined) ?? "do_not_clear";
-            resourceInputs["commitId"] = args ? args.commitId : undefined;
-            resourceInputs["imageUrl"] = args ? args.imageUrl : undefined;
-            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
+            resourceInputs["clearCache"] = (args?.clearCache) ?? "do_not_clear";
+            resourceInputs["commitId"] = args?.commitId;
+            resourceInputs["imageUrl"] = args?.imageUrl;
+            resourceInputs["serviceId"] = args?.serviceId;
             resourceInputs["commit"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["finishedAt"] = undefined /*out*/;

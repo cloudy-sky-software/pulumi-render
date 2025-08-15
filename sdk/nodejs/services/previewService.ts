@@ -60,13 +60,13 @@ export class PreviewService extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.imagePath === undefined) && !opts.urn) {
+            if (args?.imagePath === undefined && !opts.urn) {
                 throw new Error("Missing required property 'imagePath'");
             }
-            resourceInputs["imagePath"] = args ? args.imagePath : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["plan"] = args ? args.plan : undefined;
-            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
+            resourceInputs["imagePath"] = args?.imagePath;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["plan"] = args?.plan;
+            resourceInputs["serviceId"] = args?.serviceId;
             resourceInputs["deployId"] = undefined /*out*/;
             resourceInputs["service"] = undefined /*out*/;
         } else {

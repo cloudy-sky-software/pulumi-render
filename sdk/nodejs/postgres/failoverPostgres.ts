@@ -43,7 +43,7 @@ export class FailoverPostgres extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            resourceInputs["postgresId"] = args ? args.postgresId : undefined;
+            resourceInputs["postgresId"] = args?.postgresId;
         } else {
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

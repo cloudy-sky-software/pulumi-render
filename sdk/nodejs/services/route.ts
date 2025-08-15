@@ -53,20 +53,20 @@ export class Route extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.destination === undefined) && !opts.urn) {
+            if (args?.destination === undefined && !opts.urn) {
                 throw new Error("Missing required property 'destination'");
             }
-            if ((!args || args.source === undefined) && !opts.urn) {
+            if (args?.source === undefined && !opts.urn) {
                 throw new Error("Missing required property 'source'");
             }
-            if ((!args || args.type === undefined) && !opts.urn) {
+            if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            resourceInputs["destination"] = args ? args.destination : undefined;
-            resourceInputs["priority"] = args ? args.priority : undefined;
-            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
-            resourceInputs["source"] = args ? args.source : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["destination"] = args?.destination;
+            resourceInputs["priority"] = args?.priority;
+            resourceInputs["serviceId"] = args?.serviceId;
+            resourceInputs["source"] = args?.source;
+            resourceInputs["type"] = args?.type;
         } else {
             resourceInputs["destination"] = undefined /*out*/;
             resourceInputs["priority"] = undefined /*out*/;

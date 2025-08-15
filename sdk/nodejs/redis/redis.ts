@@ -93,19 +93,19 @@ export class Redis extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.ownerId === undefined) && !opts.urn) {
+            if (args?.ownerId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'ownerId'");
             }
-            if ((!args || args.plan === undefined) && !opts.urn) {
+            if (args?.plan === undefined && !opts.urn) {
                 throw new Error("Missing required property 'plan'");
             }
-            resourceInputs["environmentId"] = args ? args.environmentId : undefined;
-            resourceInputs["ipAllowList"] = args ? args.ipAllowList : undefined;
-            resourceInputs["maxmemoryPolicy"] = args ? args.maxmemoryPolicy : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["ownerId"] = args ? args.ownerId : undefined;
-            resourceInputs["plan"] = args ? args.plan : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["environmentId"] = args?.environmentId;
+            resourceInputs["ipAllowList"] = args?.ipAllowList;
+            resourceInputs["maxmemoryPolicy"] = args?.maxmemoryPolicy;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["ownerId"] = args?.ownerId;
+            resourceInputs["plan"] = args?.plan;
+            resourceInputs["region"] = args?.region;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["maintenance"] = undefined /*out*/;
             resourceInputs["options"] = undefined /*out*/;

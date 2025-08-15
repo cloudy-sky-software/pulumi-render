@@ -58,23 +58,23 @@ export class Webhook extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.enabled === undefined) && !opts.urn) {
+            if (args?.enabled === undefined && !opts.urn) {
                 throw new Error("Missing required property 'enabled'");
             }
-            if ((!args || args.eventFilter === undefined) && !opts.urn) {
+            if (args?.eventFilter === undefined && !opts.urn) {
                 throw new Error("Missing required property 'eventFilter'");
             }
-            if ((!args || args.ownerId === undefined) && !opts.urn) {
+            if (args?.ownerId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'ownerId'");
             }
-            if ((!args || args.url === undefined) && !opts.urn) {
+            if (args?.url === undefined && !opts.urn) {
                 throw new Error("Missing required property 'url'");
             }
-            resourceInputs["enabled"] = args ? args.enabled : undefined;
-            resourceInputs["eventFilter"] = args ? args.eventFilter : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["ownerId"] = args ? args.ownerId : undefined;
-            resourceInputs["url"] = args ? args.url : undefined;
+            resourceInputs["enabled"] = args?.enabled;
+            resourceInputs["eventFilter"] = args?.eventFilter;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["ownerId"] = args?.ownerId;
+            resourceInputs["url"] = args?.url;
             resourceInputs["secret"] = undefined /*out*/;
         } else {
             resourceInputs["enabled"] = undefined /*out*/;

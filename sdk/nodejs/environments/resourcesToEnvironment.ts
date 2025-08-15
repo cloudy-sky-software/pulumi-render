@@ -61,11 +61,11 @@ export class ResourcesToEnvironment extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.resourceIds === undefined) && !opts.urn) {
+            if (args?.resourceIds === undefined && !opts.urn) {
                 throw new Error("Missing required property 'resourceIds'");
             }
-            resourceInputs["environmentId"] = args ? args.environmentId : undefined;
-            resourceInputs["resourceIds"] = args ? args.resourceIds : undefined;
+            resourceInputs["environmentId"] = args?.environmentId;
+            resourceInputs["resourceIds"] = args?.resourceIds;
             resourceInputs["databasesIds"] = undefined /*out*/;
             resourceInputs["envGroupIds"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;

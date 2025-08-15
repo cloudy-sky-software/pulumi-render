@@ -89,28 +89,28 @@ export class Postgres extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.ownerId === undefined) && !opts.urn) {
+            if (args?.ownerId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'ownerId'");
             }
-            if ((!args || args.plan === undefined) && !opts.urn) {
+            if (args?.plan === undefined && !opts.urn) {
                 throw new Error("Missing required property 'plan'");
             }
-            if ((!args || args.version === undefined) && !opts.urn) {
+            if (args?.version === undefined && !opts.urn) {
                 throw new Error("Missing required property 'version'");
             }
-            resourceInputs["databaseName"] = (args ? args.databaseName : undefined) ?? "randomly generated";
-            resourceInputs["databaseUser"] = (args ? args.databaseUser : undefined) ?? "randomly generated";
-            resourceInputs["datadogAPIKey"] = args ? args.datadogAPIKey : undefined;
-            resourceInputs["diskSizeGB"] = args ? args.diskSizeGB : undefined;
-            resourceInputs["enableHighAvailability"] = (args ? args.enableHighAvailability : undefined) ?? false;
-            resourceInputs["environmentId"] = args ? args.environmentId : undefined;
-            resourceInputs["ipAllowList"] = args ? args.ipAllowList : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["ownerId"] = args ? args.ownerId : undefined;
-            resourceInputs["plan"] = args ? args.plan : undefined;
-            resourceInputs["readReplicas"] = args ? args.readReplicas : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["version"] = args ? args.version : undefined;
+            resourceInputs["databaseName"] = (args?.databaseName) ?? "randomly generated";
+            resourceInputs["databaseUser"] = (args?.databaseUser) ?? "randomly generated";
+            resourceInputs["datadogAPIKey"] = args?.datadogAPIKey;
+            resourceInputs["diskSizeGB"] = args?.diskSizeGB;
+            resourceInputs["enableHighAvailability"] = (args?.enableHighAvailability) ?? false;
+            resourceInputs["environmentId"] = args?.environmentId;
+            resourceInputs["ipAllowList"] = args?.ipAllowList;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["ownerId"] = args?.ownerId;
+            resourceInputs["plan"] = args?.plan;
+            resourceInputs["readReplicas"] = args?.readReplicas;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["version"] = args?.version;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["dashboardUrl"] = undefined /*out*/;
             resourceInputs["expiresAt"] = undefined /*out*/;

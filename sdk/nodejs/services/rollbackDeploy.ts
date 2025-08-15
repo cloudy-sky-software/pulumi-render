@@ -60,11 +60,11 @@ export class RollbackDeploy extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.deployId === undefined) && !opts.urn) {
+            if (args?.deployId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'deployId'");
             }
-            resourceInputs["deployId"] = args ? args.deployId : undefined;
-            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
+            resourceInputs["deployId"] = args?.deployId;
+            resourceInputs["serviceId"] = args?.serviceId;
             resourceInputs["commit"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["finishedAt"] = undefined /*out*/;

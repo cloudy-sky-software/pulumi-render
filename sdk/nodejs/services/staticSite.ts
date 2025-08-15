@@ -103,24 +103,24 @@ export class StaticSite extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.name === undefined) && !opts.urn) {
+            if (args?.name === undefined && !opts.urn) {
                 throw new Error("Missing required property 'name'");
             }
-            if ((!args || args.ownerId === undefined) && !opts.urn) {
+            if (args?.ownerId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'ownerId'");
             }
-            resourceInputs["autoDeploy"] = (args ? args.autoDeploy : undefined) ?? "yes";
-            resourceInputs["branch"] = args ? args.branch : undefined;
-            resourceInputs["buildFilter"] = args ? args.buildFilter : undefined;
-            resourceInputs["envVars"] = args ? args.envVars : undefined;
-            resourceInputs["image"] = args ? args.image : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["ownerId"] = args ? args.ownerId : undefined;
-            resourceInputs["repo"] = args ? args.repo : undefined;
-            resourceInputs["rootDir"] = args ? args.rootDir : undefined;
-            resourceInputs["secretFiles"] = args ? args.secretFiles : undefined;
+            resourceInputs["autoDeploy"] = (args?.autoDeploy) ?? "yes";
+            resourceInputs["branch"] = args?.branch;
+            resourceInputs["buildFilter"] = args?.buildFilter;
+            resourceInputs["envVars"] = args?.envVars;
+            resourceInputs["image"] = args?.image;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["ownerId"] = args?.ownerId;
+            resourceInputs["repo"] = args?.repo;
+            resourceInputs["rootDir"] = args?.rootDir;
+            resourceInputs["secretFiles"] = args?.secretFiles;
             resourceInputs["serviceDetails"] = args ? (args.serviceDetails ? pulumi.output(args.serviceDetails).apply(inputs.services.staticSiteDetailsCreateArgsProvideDefaults) : undefined) : undefined;
-            resourceInputs["type"] = (args ? args.type : undefined) ?? "static_site";
+            resourceInputs["type"] = (args?.type) ?? "static_site";
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["dashboardUrl"] = undefined /*out*/;
             resourceInputs["environmentId"] = undefined /*out*/;

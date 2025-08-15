@@ -57,7 +57,7 @@ export class RunCronJob extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            resourceInputs["cronJobId"] = args ? args.cronJobId : undefined;
+            resourceInputs["cronJobId"] = args?.cronJobId;
             resourceInputs["canceledBy"] = undefined /*out*/;
             resourceInputs["finishedAt"] = undefined /*out*/;
             resourceInputs["startedAt"] = undefined /*out*/;

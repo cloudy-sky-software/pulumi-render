@@ -44,8 +44,8 @@ export class CustomDomain extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["serviceId"] = args?.serviceId;
         } else {
             resourceInputs["name"] = undefined /*out*/;
         }

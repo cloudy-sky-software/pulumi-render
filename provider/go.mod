@@ -5,7 +5,7 @@ go 1.24.1
 require (
 	github.com/cloudy-sky-software/pulschema v0.0.0-20250814170500-c35c76db6afc
 	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20250814210024-220d3873a4e7
-	github.com/getkin/kin-openapi v0.132.0
+	github.com/getkin/kin-openapi v0.133.0
 	github.com/pulumi/pulumi/pkg/v3 v3.189.0
 	github.com/pulumi/pulumi/sdk/v3 v3.189.0
 )
@@ -102,6 +102,7 @@ require (
 	github.com/texttheater/golang-levenshtein v1.0.1 // indirect
 	github.com/uber/jaeger-client-go v2.30.0+incompatible // indirect
 	github.com/uber/jaeger-lib v2.4.1+incompatible // indirect
+	github.com/woodsbury/decimal128 v1.3.0 // indirect
 	github.com/xanzy/ssh-agent v0.3.3 // indirect
 	github.com/xo/terminfo v0.0.0-20220910002029-abceb7e1c41e // indirect
 	github.com/zclconf/go-cty v1.16.2 // indirect

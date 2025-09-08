@@ -34,18 +34,18 @@ export class EnvGroup extends pulumi.CustomResource {
         return obj['__pulumiType'] === EnvGroup.__pulumiType;
     }
 
-    public /*out*/ readonly createdAt!: pulumi.Output<string | undefined>;
-    public readonly envVars!: pulumi.Output<outputs.envgroups.EnvVar[]>;
-    public readonly environmentId!: pulumi.Output<string | undefined>;
-    public readonly name!: pulumi.Output<string>;
-    public readonly ownerId!: pulumi.Output<string>;
-    public readonly secretFiles!: pulumi.Output<outputs.envgroups.SecretFile[] | undefined>;
-    public readonly serviceIds!: pulumi.Output<string[] | undefined>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string | undefined>;
+    declare public readonly envVars: pulumi.Output<outputs.envgroups.EnvVar[]>;
+    declare public readonly environmentId: pulumi.Output<string | undefined>;
+    declare public readonly name: pulumi.Output<string>;
+    declare public readonly ownerId: pulumi.Output<string>;
+    declare public readonly secretFiles: pulumi.Output<outputs.envgroups.SecretFile[] | undefined>;
+    declare public readonly serviceIds: pulumi.Output<string[] | undefined>;
     /**
      * List of serviceIds linked to the envGroup
      */
-    public /*out*/ readonly serviceLinks!: pulumi.Output<outputs.envgroups.EnvGroupLink[] | undefined>;
-    public /*out*/ readonly updatedAt!: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly serviceLinks: pulumi.Output<outputs.envgroups.EnvGroupLink[] | undefined>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string | undefined>;
 
     /**
      * Create a EnvGroup resource with the given unique name, arguments, and options.

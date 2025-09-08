@@ -34,13 +34,13 @@ export class Route extends pulumi.CustomResource {
         return obj['__pulumiType'] === Route.__pulumiType;
     }
 
-    public readonly destination!: pulumi.Output<string>;
+    declare public readonly destination: pulumi.Output<string>;
     /**
      * Redirect and Rewrite Rules are applied in priority order starting at 0
      */
-    public readonly priority!: pulumi.Output<number>;
-    public readonly source!: pulumi.Output<string>;
-    public readonly type!: pulumi.Output<enums.services.Type>;
+    declare public readonly priority: pulumi.Output<number>;
+    declare public readonly source: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<enums.services.Type>;
 
     /**
      * Create a Route resource with the given unique name, arguments, and options.

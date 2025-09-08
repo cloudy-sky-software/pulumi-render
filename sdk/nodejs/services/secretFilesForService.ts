@@ -34,7 +34,7 @@ export class SecretFilesForService extends pulumi.CustomResource {
         return obj['__pulumiType'] === SecretFilesForService.__pulumiType;
     }
 
-    public readonly secretFiles!: pulumi.Output<outputs.services.SecretFileInput[] | undefined>;
+    declare public readonly secretFiles: pulumi.Output<outputs.services.SecretFileInput[] | undefined>;
 
     /**
      * Create a SecretFilesForService resource with the given unique name, arguments, and options.

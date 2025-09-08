@@ -34,20 +34,20 @@ export class Environment extends pulumi.CustomResource {
         return obj['__pulumiType'] === Environment.__pulumiType;
     }
 
-    public /*out*/ readonly databasesIds!: pulumi.Output<string[]>;
-    public /*out*/ readonly envGroupIds!: pulumi.Output<string[]>;
-    public readonly name!: pulumi.Output<string>;
+    declare public /*out*/ readonly databasesIds: pulumi.Output<string[]>;
+    declare public /*out*/ readonly envGroupIds: pulumi.Output<string[]>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Indicates whether network connections across environments are allowed.
      */
-    public readonly networkIsolationEnabled!: pulumi.Output<boolean>;
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly networkIsolationEnabled: pulumi.Output<boolean>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
      */
-    public readonly protectedStatus!: pulumi.Output<enums.environments.ProtectedStatus>;
-    public /*out*/ readonly redisIds!: pulumi.Output<string[]>;
-    public /*out*/ readonly serviceIds!: pulumi.Output<string[]>;
+    declare public readonly protectedStatus: pulumi.Output<enums.environments.ProtectedStatus>;
+    declare public /*out*/ readonly redisIds: pulumi.Output<string[]>;
+    declare public /*out*/ readonly serviceIds: pulumi.Output<string[]>;
 
     /**
      * Create a Environment resource with the given unique name, arguments, and options.

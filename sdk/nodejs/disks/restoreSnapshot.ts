@@ -31,17 +31,17 @@ export class RestoreSnapshot extends pulumi.CustomResource {
         return obj['__pulumiType'] === RestoreSnapshot.__pulumiType;
     }
 
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * When a service with a disk is scaled, the instanceId is used to identify the instance that the disk is attached to. Each instance's disks get their own snapshots, and can be restored separately.
      */
-    public readonly instanceId!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly mountPath!: pulumi.Output<string>;
-    public /*out*/ readonly name!: pulumi.Output<string>;
-    public /*out*/ readonly serviceId!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly sizeGB!: pulumi.Output<number>;
-    public readonly snapshotKey!: pulumi.Output<string>;
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public readonly instanceId: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly mountPath: pulumi.Output<string>;
+    declare public /*out*/ readonly name: pulumi.Output<string>;
+    declare public /*out*/ readonly serviceId: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly sizeGB: pulumi.Output<number>;
+    declare public readonly snapshotKey: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
 
     /**
      * Create a RestoreSnapshot resource with the given unique name, arguments, and options.

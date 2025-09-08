@@ -37,46 +37,46 @@ export class Postgres extends pulumi.CustomResource {
         return obj['__pulumiType'] === Postgres.__pulumiType;
     }
 
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * The URL to view the Postgres instance in the Render Dashboard
      */
-    public /*out*/ readonly dashboardUrl!: pulumi.Output<string>;
-    public readonly databaseName!: pulumi.Output<string>;
-    public readonly databaseUser!: pulumi.Output<string>;
-    public readonly datadogAPIKey!: pulumi.Output<string | undefined>;
-    public readonly diskSizeGB!: pulumi.Output<number | undefined>;
-    public readonly enableHighAvailability!: pulumi.Output<boolean | undefined>;
-    public readonly environmentId!: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly dashboardUrl: pulumi.Output<string>;
+    declare public readonly databaseName: pulumi.Output<string>;
+    declare public readonly databaseUser: pulumi.Output<string>;
+    declare public readonly datadogAPIKey: pulumi.Output<string | undefined>;
+    declare public readonly diskSizeGB: pulumi.Output<number | undefined>;
+    declare public readonly enableHighAvailability: pulumi.Output<boolean | undefined>;
+    declare public readonly environmentId: pulumi.Output<string | undefined>;
     /**
      * The time at which the database will be expire. Applies to free tier databases only.
      */
-    public /*out*/ readonly expiresAt!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly highAvailabilityEnabled!: pulumi.Output<boolean>;
-    public readonly ipAllowList!: pulumi.Output<outputs.postgres.CidrBlockAndDescription[]>;
-    public /*out*/ readonly maintenance!: pulumi.Output<outputs.postgres.RedisDetailpropertiesmaintenance | undefined>;
-    public readonly name!: pulumi.Output<string>;
-    public /*out*/ readonly owner!: pulumi.Output<outputs.postgres.Owner>;
+    declare public /*out*/ readonly expiresAt: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly highAvailabilityEnabled: pulumi.Output<boolean>;
+    declare public readonly ipAllowList: pulumi.Output<outputs.postgres.CidrBlockAndDescription[]>;
+    declare public /*out*/ readonly maintenance: pulumi.Output<outputs.postgres.RedisDetailpropertiesmaintenance | undefined>;
+    declare public readonly name: pulumi.Output<string>;
+    declare public /*out*/ readonly owner: pulumi.Output<outputs.postgres.Owner>;
     /**
      * The ID of the owner (team or personal user) whose resources should be returned
      */
-    public readonly ownerId!: pulumi.Output<string>;
-    public readonly plan!: pulumi.Output<enums.postgres.Plan>;
-    public /*out*/ readonly primaryPostgresID!: pulumi.Output<string | undefined>;
-    public readonly readReplicas!: pulumi.Output<outputs.postgres.ReadReplica[]>;
+    declare public readonly ownerId: pulumi.Output<string>;
+    declare public readonly plan: pulumi.Output<enums.postgres.Plan>;
+    declare public /*out*/ readonly primaryPostgresID: pulumi.Output<string | undefined>;
+    declare public readonly readReplicas: pulumi.Output<outputs.postgres.ReadReplica[]>;
     /**
      * Defaults to "oregon"
      */
-    public readonly region!: pulumi.Output<enums.postgres.Region>;
-    public /*out*/ readonly role!: pulumi.Output<enums.postgres.Role>;
-    public /*out*/ readonly status!: pulumi.Output<enums.postgres.Status>;
-    public /*out*/ readonly suspended!: pulumi.Output<enums.postgres.Suspended>;
-    public /*out*/ readonly suspenders!: pulumi.Output<enums.postgres.SuspendersItem[]>;
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<enums.postgres.Region>;
+    declare public /*out*/ readonly role: pulumi.Output<enums.postgres.Role>;
+    declare public /*out*/ readonly status: pulumi.Output<enums.postgres.Status>;
+    declare public /*out*/ readonly suspended: pulumi.Output<enums.postgres.Suspended>;
+    declare public /*out*/ readonly suspenders: pulumi.Output<enums.postgres.SuspendersItem[]>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
      * The PostgreSQL version
      */
-    public readonly version!: pulumi.Output<enums.postgres.Version>;
+    declare public readonly version: pulumi.Output<enums.postgres.Version>;
 
     /**
      * Create a Postgres resource with the given unique name, arguments, and options.

@@ -34,18 +34,18 @@ export class Webhook extends pulumi.CustomResource {
         return obj['__pulumiType'] === Webhook.__pulumiType;
     }
 
-    public readonly enabled!: pulumi.Output<boolean>;
+    declare public readonly enabled: pulumi.Output<boolean>;
     /**
      * The event types that will trigger the webhook. An empty list means all event types will trigger the webhook.
      */
-    public readonly eventFilter!: pulumi.Output<enums.webhooks.EventFilterItem[]>;
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly eventFilter: pulumi.Output<enums.webhooks.EventFilterItem[]>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The ID of the owner (team or personal user) whose resources should be returned
      */
-    public readonly ownerId!: pulumi.Output<string>;
-    public /*out*/ readonly secret!: pulumi.Output<string>;
-    public readonly url!: pulumi.Output<string>;
+    declare public readonly ownerId: pulumi.Output<string>;
+    declare public /*out*/ readonly secret: pulumi.Output<string>;
+    declare public readonly url: pulumi.Output<string>;
 
     /**
      * Create a Webhook resource with the given unique name, arguments, and options.

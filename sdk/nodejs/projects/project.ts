@@ -34,25 +34,25 @@ export class Project extends pulumi.CustomResource {
         return obj['__pulumiType'] === Project.__pulumiType;
     }
 
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * The environments associated with the project
      */
-    public /*out*/ readonly environmentIds!: pulumi.Output<string[]>;
+    declare public /*out*/ readonly environmentIds: pulumi.Output<string[]>;
     /**
      * The environments to create when creating the project
      */
-    public readonly environments!: pulumi.Output<outputs.projects.ProjectCreateEnvironmentInput[]>;
+    declare public readonly environments: pulumi.Output<outputs.projects.ProjectCreateEnvironmentInput[]>;
     /**
      * The name of the project
      */
-    public readonly name!: pulumi.Output<string>;
-    public /*out*/ readonly owner!: pulumi.Output<outputs.projects.Owner>;
+    declare public readonly name: pulumi.Output<string>;
+    declare public /*out*/ readonly owner: pulumi.Output<outputs.projects.Owner>;
     /**
      * The ID of the owner that the project belongs to
      */
-    public readonly ownerId!: pulumi.Output<string>;
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public readonly ownerId: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
 
     /**
      * Create a Project resource with the given unique name, arguments, and options.

@@ -34,19 +34,19 @@ export class Header extends pulumi.CustomResource {
         return obj['__pulumiType'] === Header.__pulumiType;
     }
 
-    public /*out*/ readonly headers!: pulumi.Output<outputs.services.Header | undefined>;
+    declare public /*out*/ readonly headers: pulumi.Output<outputs.services.Header | undefined>;
     /**
      * Header name
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The request path to add the header to. Wildcards will cause headers to be applied to all matching paths.
      */
-    public readonly path!: pulumi.Output<string>;
+    declare public readonly path: pulumi.Output<string>;
     /**
      * Header value
      */
-    public readonly value!: pulumi.Output<string>;
+    declare public readonly value: pulumi.Output<string>;
 
     /**
      * Create a Header resource with the given unique name, arguments, and options.

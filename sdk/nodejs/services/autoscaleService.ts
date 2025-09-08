@@ -34,16 +34,16 @@ export class AutoscaleService extends pulumi.CustomResource {
         return obj['__pulumiType'] === AutoscaleService.__pulumiType;
     }
 
-    public readonly criteria!: pulumi.Output<outputs.services.CriteriaProperties>;
-    public readonly enabled!: pulumi.Output<boolean>;
+    declare public readonly criteria: pulumi.Output<outputs.services.CriteriaProperties>;
+    declare public readonly enabled: pulumi.Output<boolean>;
     /**
      * The maximum number of instances for the service
      */
-    public readonly max!: pulumi.Output<number>;
+    declare public readonly max: pulumi.Output<number>;
     /**
      * The minimum number of instances for the service
      */
-    public readonly min!: pulumi.Output<number>;
+    declare public readonly min: pulumi.Output<number>;
 
     /**
      * Create a AutoscaleService resource with the given unique name, arguments, and options.

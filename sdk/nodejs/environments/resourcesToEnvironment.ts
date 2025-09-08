@@ -34,21 +34,21 @@ export class ResourcesToEnvironment extends pulumi.CustomResource {
         return obj['__pulumiType'] === ResourcesToEnvironment.__pulumiType;
     }
 
-    public /*out*/ readonly databasesIds!: pulumi.Output<string[]>;
-    public /*out*/ readonly envGroupIds!: pulumi.Output<string[]>;
-    public /*out*/ readonly name!: pulumi.Output<string>;
+    declare public /*out*/ readonly databasesIds: pulumi.Output<string[]>;
+    declare public /*out*/ readonly envGroupIds: pulumi.Output<string[]>;
+    declare public /*out*/ readonly name: pulumi.Output<string>;
     /**
      * Indicates whether network connections across environments are allowed.
      */
-    public /*out*/ readonly networkIsolationEnabled!: pulumi.Output<boolean>;
-    public /*out*/ readonly projectId!: pulumi.Output<string>;
+    declare public /*out*/ readonly networkIsolationEnabled: pulumi.Output<boolean>;
+    declare public /*out*/ readonly projectId: pulumi.Output<string>;
     /**
      * Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
      */
-    public /*out*/ readonly protectedStatus!: pulumi.Output<enums.environments.ProtectedStatus>;
-    public /*out*/ readonly redisIds!: pulumi.Output<string[]>;
-    public readonly resourceIds!: pulumi.Output<string[]>;
-    public /*out*/ readonly serviceIds!: pulumi.Output<string[]>;
+    declare public /*out*/ readonly protectedStatus: pulumi.Output<enums.environments.ProtectedStatus>;
+    declare public /*out*/ readonly redisIds: pulumi.Output<string[]>;
+    declare public readonly resourceIds: pulumi.Output<string[]>;
+    declare public /*out*/ readonly serviceIds: pulumi.Output<string[]>;
 
     /**
      * Create a ResourcesToEnvironment resource with the given unique name, arguments, and options.

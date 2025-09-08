@@ -40,47 +40,47 @@ export class Redis extends pulumi.CustomResource {
     /**
      * The creation time of the Redis instance
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * The ID of the environment the Redis instance is associated with
      */
-    public readonly environmentId!: pulumi.Output<string | undefined>;
+    declare public readonly environmentId: pulumi.Output<string | undefined>;
     /**
      * The IP allow list for the Redis instance
      */
-    public readonly ipAllowList!: pulumi.Output<outputs.redis.CidrBlockAndDescription[]>;
-    public /*out*/ readonly maintenance!: pulumi.Output<outputs.redis.MaintenanceProperties | undefined>;
+    declare public readonly ipAllowList: pulumi.Output<outputs.redis.CidrBlockAndDescription[]>;
+    declare public /*out*/ readonly maintenance: pulumi.Output<outputs.redis.MaintenanceProperties | undefined>;
     /**
      * The eviction policy for the Key Value instance
      */
-    public readonly maxmemoryPolicy!: pulumi.Output<enums.redis.MaxmemoryPolicy | undefined>;
+    declare public readonly maxmemoryPolicy: pulumi.Output<enums.redis.MaxmemoryPolicy | undefined>;
     /**
      * The name of the Redis instance
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Options for a Redis instance
      */
-    public /*out*/ readonly options!: pulumi.Output<outputs.redis.RedisOptions>;
-    public /*out*/ readonly owner!: pulumi.Output<outputs.redis.Owner>;
+    declare public /*out*/ readonly options: pulumi.Output<outputs.redis.RedisOptions>;
+    declare public /*out*/ readonly owner: pulumi.Output<outputs.redis.Owner>;
     /**
      * The ID of the owner of the Redis instance
      */
-    public readonly ownerId!: pulumi.Output<string>;
-    public readonly plan!: pulumi.Output<enums.redis.Plan>;
+    declare public readonly ownerId: pulumi.Output<string>;
+    declare public readonly plan: pulumi.Output<enums.redis.Plan>;
     /**
      * Defaults to "oregon"
      */
-    public readonly region!: pulumi.Output<enums.redis.Region>;
-    public /*out*/ readonly status!: pulumi.Output<enums.redis.Status>;
+    declare public readonly region: pulumi.Output<enums.redis.Region>;
+    declare public /*out*/ readonly status: pulumi.Output<enums.redis.Status>;
     /**
      * The last updated time of the Redis instance
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
      * The version of Redis
      */
-    public /*out*/ readonly version!: pulumi.Output<string>;
+    declare public /*out*/ readonly version: pulumi.Output<string>;
 
     /**
      * Create a Redis resource with the given unique name, arguments, and options.

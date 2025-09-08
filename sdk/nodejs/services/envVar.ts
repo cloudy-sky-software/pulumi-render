@@ -31,9 +31,9 @@ export class EnvVar extends pulumi.CustomResource {
         return obj['__pulumiType'] === EnvVar.__pulumiType;
     }
 
-    public readonly generateValue!: pulumi.Output<boolean | undefined>;
-    public /*out*/ readonly key!: pulumi.Output<string>;
-    public readonly value!: pulumi.Output<string>;
+    declare public readonly generateValue: pulumi.Output<boolean | undefined>;
+    declare public /*out*/ readonly key: pulumi.Output<string>;
+    declare public readonly value: pulumi.Output<string>;
 
     /**
      * Create a EnvVar resource with the given unique name, arguments, and options.

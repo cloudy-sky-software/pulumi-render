@@ -31,8 +31,8 @@ export class SecretFile extends pulumi.CustomResource {
         return obj['__pulumiType'] === SecretFile.__pulumiType;
     }
 
-    public readonly content!: pulumi.Output<string>;
-    public /*out*/ readonly name!: pulumi.Output<string>;
+    declare public readonly content: pulumi.Output<string>;
+    declare public /*out*/ readonly name: pulumi.Output<string>;
 
     /**
      * Create a SecretFile resource with the given unique name, arguments, and options.

@@ -37,14 +37,14 @@ export class RunCronJob extends pulumi.CustomResource {
     /**
      * user who cancelled the cron job run
      */
-    public /*out*/ readonly canceledBy!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly finishedAt!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly startedAt!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly status!: pulumi.Output<enums.cronjobs.Status>;
+    declare public /*out*/ readonly canceledBy: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly finishedAt: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly startedAt: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly status: pulumi.Output<enums.cronjobs.Status>;
     /**
      * user who triggered the cron job run
      */
-    public /*out*/ readonly triggeredBy!: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly triggeredBy: pulumi.Output<string | undefined>;
 
     /**
      * Create a RunCronJob resource with the given unique name, arguments, and options.

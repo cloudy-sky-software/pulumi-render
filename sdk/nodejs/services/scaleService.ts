@@ -31,7 +31,7 @@ export class ScaleService extends pulumi.CustomResource {
         return obj['__pulumiType'] === ScaleService.__pulumiType;
     }
 
-    public readonly numInstances!: pulumi.Output<number>;
+    declare public readonly numInstances: pulumi.Output<number>;
 
     /**
      * Create a ScaleService resource with the given unique name, arguments, and options.

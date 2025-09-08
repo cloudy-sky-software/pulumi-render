@@ -34,7 +34,7 @@ export class EnvVarsForService extends pulumi.CustomResource {
         return obj['__pulumiType'] === EnvVarsForService.__pulumiType;
     }
 
-    public readonly envVars!: pulumi.Output<outputs.services.EnvVarInput[] | undefined>;
+    declare public readonly envVars: pulumi.Output<outputs.services.EnvVarInput[] | undefined>;
 
     /**
      * Create a EnvVarsForService resource with the given unique name, arguments, and options.

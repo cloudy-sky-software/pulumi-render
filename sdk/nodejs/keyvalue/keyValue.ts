@@ -40,47 +40,47 @@ export class KeyValue extends pulumi.CustomResource {
     /**
      * The creation time of the Key Value instance
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * The ID of the environment the Key Value instance is associated with
      */
-    public readonly environmentId!: pulumi.Output<string | undefined>;
+    declare public readonly environmentId: pulumi.Output<string | undefined>;
     /**
      * The IP allow list for the Key Value instance
      */
-    public readonly ipAllowList!: pulumi.Output<outputs.keyvalue.CidrBlockAndDescription[]>;
-    public /*out*/ readonly maintenance!: pulumi.Output<outputs.keyvalue.RedisDetailpropertiesmaintenance | undefined>;
+    declare public readonly ipAllowList: pulumi.Output<outputs.keyvalue.CidrBlockAndDescription[]>;
+    declare public /*out*/ readonly maintenance: pulumi.Output<outputs.keyvalue.RedisDetailpropertiesmaintenance | undefined>;
     /**
      * The eviction policy for the Key Value instance
      */
-    public readonly maxmemoryPolicy!: pulumi.Output<enums.keyvalue.MaxmemoryPolicy | undefined>;
+    declare public readonly maxmemoryPolicy: pulumi.Output<enums.keyvalue.MaxmemoryPolicy | undefined>;
     /**
      * The name of the Key Value instance
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Options for a Key Value instance
      */
-    public /*out*/ readonly options!: pulumi.Output<outputs.keyvalue.KeyValueOptions>;
-    public /*out*/ readonly owner!: pulumi.Output<outputs.keyvalue.Owner>;
+    declare public /*out*/ readonly options: pulumi.Output<outputs.keyvalue.KeyValueOptions>;
+    declare public /*out*/ readonly owner: pulumi.Output<outputs.keyvalue.Owner>;
     /**
      * The ID of the owner of the Key Value instance
      */
-    public readonly ownerId!: pulumi.Output<string>;
-    public readonly plan!: pulumi.Output<enums.keyvalue.Plan>;
+    declare public readonly ownerId: pulumi.Output<string>;
+    declare public readonly plan: pulumi.Output<enums.keyvalue.Plan>;
     /**
      * Defaults to "oregon"
      */
-    public readonly region!: pulumi.Output<enums.keyvalue.Region>;
-    public /*out*/ readonly status!: pulumi.Output<enums.keyvalue.Status>;
+    declare public readonly region: pulumi.Output<enums.keyvalue.Region>;
+    declare public /*out*/ readonly status: pulumi.Output<enums.keyvalue.Status>;
     /**
      * The last updated time of the Key Value instance
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
      * The version of Key Value
      */
-    public /*out*/ readonly version!: pulumi.Output<string>;
+    declare public /*out*/ readonly version: pulumi.Output<string>;
 
     /**
      * Create a KeyValue resource with the given unique name, arguments, and options.

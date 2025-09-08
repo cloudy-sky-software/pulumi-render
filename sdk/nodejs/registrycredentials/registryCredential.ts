@@ -34,24 +34,24 @@ export class RegistryCredential extends pulumi.CustomResource {
         return obj['__pulumiType'] === RegistryCredential.__pulumiType;
     }
 
-    public readonly authToken!: pulumi.Output<string>;
+    declare public readonly authToken: pulumi.Output<string>;
     /**
      * Descriptive name for this credential
      */
-    public readonly name!: pulumi.Output<string>;
-    public readonly ownerId!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
+    declare public readonly ownerId: pulumi.Output<string>;
     /**
      * The registry to use this credential with
      */
-    public readonly registry!: pulumi.Output<enums.registrycredentials.Registry>;
+    declare public readonly registry: pulumi.Output<enums.registrycredentials.Registry>;
     /**
      * Last updated time for the credential
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
      * The username associated with the credential
      */
-    public readonly username!: pulumi.Output<string>;
+    declare public readonly username: pulumi.Output<string>;
 
     /**
      * Create a RegistryCredential resource with the given unique name, arguments, and options.

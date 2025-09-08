@@ -34,20 +34,20 @@ export class PreviewService extends pulumi.CustomResource {
         return obj['__pulumiType'] === PreviewService.__pulumiType;
     }
 
-    public /*out*/ readonly deployId!: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly deployId: pulumi.Output<string | undefined>;
     /**
      * Must be either a full URL or the relative path to an image. If a relative path, Render uses the base service's image URL as its root. For example, if the base service's image URL is `docker.io/library/nginx:latest`, then valid values are: `docker.io/library/nginx:<any tag or SHA>`, `library/nginx:<any tag or SHA>`, or `nginx:<any tag or SHA>`. Note that the path must match (only the tag or SHA can vary).
      */
-    public readonly imagePath!: pulumi.Output<string>;
+    declare public readonly imagePath: pulumi.Output<string>;
     /**
      * A name for the service preview instance. If not specified, Render generates the name using the base service's name and the specified tag or SHA.
      */
-    public readonly name!: pulumi.Output<string | undefined>;
+    declare public readonly name: pulumi.Output<string | undefined>;
     /**
      * The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
      */
-    public readonly plan!: pulumi.Output<enums.services.Plan | undefined>;
-    public /*out*/ readonly service!: pulumi.Output<outputs.services.Service | undefined>;
+    declare public readonly plan: pulumi.Output<enums.services.Plan | undefined>;
+    declare public /*out*/ readonly service: pulumi.Output<outputs.services.Service | undefined>;
 
     /**
      * Create a PreviewService resource with the given unique name, arguments, and options.

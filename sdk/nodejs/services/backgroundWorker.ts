@@ -34,31 +34,31 @@ export class BackgroundWorker extends pulumi.CustomResource {
         return obj['__pulumiType'] === BackgroundWorker.__pulumiType;
     }
 
-    public readonly autoDeploy!: pulumi.Output<enums.services.ServiceAutoDeploy | undefined>;
-    public readonly branch!: pulumi.Output<string | undefined>;
-    public readonly buildFilter!: pulumi.Output<outputs.services.BuildFilter | undefined>;
-    public /*out*/ readonly createdAt!: pulumi.Output<string | undefined>;
+    declare public readonly autoDeploy: pulumi.Output<enums.services.ServiceAutoDeploy | undefined>;
+    declare public readonly branch: pulumi.Output<string | undefined>;
+    declare public readonly buildFilter: pulumi.Output<outputs.services.BuildFilter | undefined>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string | undefined>;
     /**
      * The URL to view the service in the Render Dashboard
      */
-    public /*out*/ readonly dashboardUrl!: pulumi.Output<string | undefined>;
-    public readonly envVars!: pulumi.Output<outputs.services.EnvVarInput[] | undefined>;
-    public /*out*/ readonly environmentId!: pulumi.Output<string | undefined>;
-    public readonly image!: pulumi.Output<outputs.services.Image | undefined>;
-    public /*out*/ readonly imagePath!: pulumi.Output<string | undefined>;
-    public readonly name!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly notifyOnFail!: pulumi.Output<enums.services.ServiceNotifyOnFail | undefined>;
-    public readonly ownerId!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly registryCredential!: pulumi.Output<outputs.services.RegistryCredentialSummary | undefined>;
-    public readonly repo!: pulumi.Output<string | undefined>;
-    public readonly rootDir!: pulumi.Output<string | undefined>;
-    public readonly secretFiles!: pulumi.Output<outputs.services.SecretFileInput[] | undefined>;
-    public readonly serviceDetails!: pulumi.Output<outputs.services.BackgroundWorkerDetailsOutput | undefined>;
-    public /*out*/ readonly slug!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly suspended!: pulumi.Output<enums.services.ServiceSuspended | undefined>;
-    public /*out*/ readonly suspenders!: pulumi.Output<enums.services.ServiceSuspendersItem[] | undefined>;
-    public readonly type!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly updatedAt!: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly dashboardUrl: pulumi.Output<string | undefined>;
+    declare public readonly envVars: pulumi.Output<outputs.services.EnvVarInput[] | undefined>;
+    declare public /*out*/ readonly environmentId: pulumi.Output<string | undefined>;
+    declare public readonly image: pulumi.Output<outputs.services.Image | undefined>;
+    declare public /*out*/ readonly imagePath: pulumi.Output<string | undefined>;
+    declare public readonly name: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly notifyOnFail: pulumi.Output<enums.services.ServiceNotifyOnFail | undefined>;
+    declare public readonly ownerId: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly registryCredential: pulumi.Output<outputs.services.RegistryCredentialSummary | undefined>;
+    declare public readonly repo: pulumi.Output<string | undefined>;
+    declare public readonly rootDir: pulumi.Output<string | undefined>;
+    declare public readonly secretFiles: pulumi.Output<outputs.services.SecretFileInput[] | undefined>;
+    declare public readonly serviceDetails: pulumi.Output<outputs.services.BackgroundWorkerDetailsOutput | undefined>;
+    declare public /*out*/ readonly slug: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly suspended: pulumi.Output<enums.services.ServiceSuspended | undefined>;
+    declare public /*out*/ readonly suspenders: pulumi.Output<enums.services.ServiceSuspendersItem[] | undefined>;
+    declare public readonly type: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string | undefined>;
 
     /**
      * Create a BackgroundWorker resource with the given unique name, arguments, and options.

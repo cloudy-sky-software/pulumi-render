@@ -31,12 +31,12 @@ export class Disk extends pulumi.CustomResource {
         return obj['__pulumiType'] === Disk.__pulumiType;
     }
 
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
-    public readonly mountPath!: pulumi.Output<string>;
-    public readonly name!: pulumi.Output<string>;
-    public readonly serviceId!: pulumi.Output<string>;
-    public readonly sizeGB!: pulumi.Output<number>;
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
+    declare public readonly mountPath: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
+    declare public readonly serviceId: pulumi.Output<string>;
+    declare public readonly sizeGB: pulumi.Output<number>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
 
     /**
      * Create a Disk resource with the given unique name, arguments, and options.

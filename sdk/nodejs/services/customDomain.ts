@@ -31,7 +31,7 @@ export class CustomDomain extends pulumi.CustomResource {
         return obj['__pulumiType'] === CustomDomain.__pulumiType;
     }
 
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
 
     /**
      * Create a CustomDomain resource with the given unique name, arguments, and options.

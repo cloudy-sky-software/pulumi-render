@@ -34,13 +34,13 @@ export class CancelJob extends pulumi.CustomResource {
         return obj['__pulumiType'] === CancelJob.__pulumiType;
     }
 
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
-    public /*out*/ readonly finishedAt!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly planId!: pulumi.Output<string>;
-    public readonly serviceId!: pulumi.Output<string>;
-    public /*out*/ readonly startCommand!: pulumi.Output<string>;
-    public /*out*/ readonly startedAt!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly status!: pulumi.Output<enums.services.CancelJobStatus | undefined>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
+    declare public /*out*/ readonly finishedAt: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly planId: pulumi.Output<string>;
+    declare public readonly serviceId: pulumi.Output<string>;
+    declare public /*out*/ readonly startCommand: pulumi.Output<string>;
+    declare public /*out*/ readonly startedAt: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly status: pulumi.Output<enums.services.CancelJobStatus | undefined>;
 
     /**
      * Create a CancelJob resource with the given unique name, arguments, and options.

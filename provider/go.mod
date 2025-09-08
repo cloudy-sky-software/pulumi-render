@@ -3,14 +3,14 @@ module github.com/cloudy-sky-software/pulumi-render/provider
 go 1.24.1
 
 require (
-	github.com/cloudy-sky-software/pulschema v0.0.0-20250814170500-c35c76db6afc
-	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20250814210024-220d3873a4e7
-	github.com/getkin/kin-openapi v0.132.0
-	github.com/pulumi/pulumi/pkg/v3 v3.189.0
-	github.com/pulumi/pulumi/sdk/v3 v3.189.0
+	github.com/cloudy-sky-software/pulschema v0.0.0-20250904202625-e9c5d3d0fa78
+	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20250905053522-90348ad5b100
+	github.com/getkin/kin-openapi v0.133.0
+	github.com/pulumi/pulumi/pkg/v3 v3.193.0
+	github.com/pulumi/pulumi/sdk/v3 v3.193.0
 )
 
-require github.com/stretchr/testify v1.10.0
+require github.com/stretchr/testify v1.11.1
 
 require (
 	github.com/pkg/errors v0.9.1
@@ -102,6 +102,7 @@ require (
 	github.com/texttheater/golang-levenshtein v1.0.1 // indirect
 	github.com/uber/jaeger-client-go v2.30.0+incompatible // indirect
 	github.com/uber/jaeger-lib v2.4.1+incompatible // indirect
+	github.com/woodsbury/decimal128 v1.3.0 // indirect
 	github.com/xanzy/ssh-agent v0.3.3 // indirect
 	github.com/xo/terminfo v0.0.0-20220910002029-abceb7e1c41e // indirect
 	github.com/zclconf/go-cty v1.16.2 // indirect
@@ -115,9 +116,9 @@ require (
 	golang.org/x/term v0.33.0 // indirect
 	golang.org/x/text v0.28.0 // indirect
 	golang.org/x/tools v0.35.0 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20250528174236-200df99c418a // indirect
-	google.golang.org/grpc v1.74.2 // indirect
-	google.golang.org/protobuf v1.36.7 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20250707201910-8d1bb00bc6a7 // indirect
+	google.golang.org/grpc v1.75.0 // indirect
+	google.golang.org/protobuf v1.36.8 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 	lukechampine.com/frand v1.5.1 // indirect
 )

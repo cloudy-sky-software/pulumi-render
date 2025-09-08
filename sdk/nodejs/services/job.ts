@@ -34,13 +34,13 @@ export class Job extends pulumi.CustomResource {
         return obj['__pulumiType'] === Job.__pulumiType;
     }
 
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
-    public /*out*/ readonly finishedAt!: pulumi.Output<string | undefined>;
-    public readonly planId!: pulumi.Output<string>;
-    public readonly serviceId!: pulumi.Output<string>;
-    public readonly startCommand!: pulumi.Output<string>;
-    public /*out*/ readonly startedAt!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly status!: pulumi.Output<enums.services.JobStatus | undefined>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
+    declare public /*out*/ readonly finishedAt: pulumi.Output<string | undefined>;
+    declare public readonly planId: pulumi.Output<string>;
+    declare public readonly serviceId: pulumi.Output<string>;
+    declare public readonly startCommand: pulumi.Output<string>;
+    declare public /*out*/ readonly startedAt: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly status: pulumi.Output<enums.services.JobStatus | undefined>;
 
     /**
      * Create a Job resource with the given unique name, arguments, and options.

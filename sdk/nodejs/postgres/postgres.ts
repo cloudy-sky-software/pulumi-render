@@ -37,46 +37,53 @@ export class Postgres extends pulumi.CustomResource {
         return obj['__pulumiType'] === Postgres.__pulumiType;
     }
 
-    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
+    public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
      * The URL to view the Postgres instance in the Render Dashboard
      */
-    declare public /*out*/ readonly dashboardUrl: pulumi.Output<string>;
-    declare public readonly databaseName: pulumi.Output<string>;
-    declare public readonly databaseUser: pulumi.Output<string>;
-    declare public readonly datadogAPIKey: pulumi.Output<string | undefined>;
-    declare public readonly diskSizeGB: pulumi.Output<number | undefined>;
-    declare public readonly enableHighAvailability: pulumi.Output<boolean | undefined>;
-    declare public readonly environmentId: pulumi.Output<string | undefined>;
+    public /*out*/ readonly dashboardUrl!: pulumi.Output<string>;
+    public readonly databaseName!: pulumi.Output<string>;
+    public readonly databaseUser!: pulumi.Output<string>;
+    /**
+     * The Datadog API key for the Datadog agent to monitor the new database.
+     */
+    public readonly datadogAPIKey!: pulumi.Output<string | undefined>;
+    /**
+     * Datadog region to use for monitoring the new database. Defaults to 'US1'.
+     */
+    public readonly datadogSite!: pulumi.Output<string | undefined>;
+    public readonly diskSizeGB!: pulumi.Output<number | undefined>;
+    public readonly enableHighAvailability!: pulumi.Output<boolean | undefined>;
+    public readonly environmentId!: pulumi.Output<string | undefined>;
     /**
      * The time at which the database will be expire. Applies to free tier databases only.
      */
-    declare public /*out*/ readonly expiresAt: pulumi.Output<string | undefined>;
-    declare public /*out*/ readonly highAvailabilityEnabled: pulumi.Output<boolean>;
-    declare public readonly ipAllowList: pulumi.Output<outputs.postgres.CidrBlockAndDescription[]>;
-    declare public /*out*/ readonly maintenance: pulumi.Output<outputs.postgres.RedisDetailpropertiesmaintenance | undefined>;
-    declare public readonly name: pulumi.Output<string>;
-    declare public /*out*/ readonly owner: pulumi.Output<outputs.postgres.Owner>;
+    public /*out*/ readonly expiresAt!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly highAvailabilityEnabled!: pulumi.Output<boolean>;
+    public readonly ipAllowList!: pulumi.Output<outputs.postgres.CidrBlockAndDescription[]>;
+    public /*out*/ readonly maintenance!: pulumi.Output<outputs.postgres.RedisDetailpropertiesmaintenance | undefined>;
+    public readonly name!: pulumi.Output<string>;
+    public /*out*/ readonly owner!: pulumi.Output<outputs.postgres.Owner>;
     /**
-     * The ID of the owner (team or personal user) whose resources should be returned
+     * The ID of the workspace to create the database for
      */
-    declare public readonly ownerId: pulumi.Output<string>;
-    declare public readonly plan: pulumi.Output<enums.postgres.Plan>;
-    declare public /*out*/ readonly primaryPostgresID: pulumi.Output<string | undefined>;
-    declare public readonly readReplicas: pulumi.Output<outputs.postgres.ReadReplica[]>;
+    public readonly ownerId!: pulumi.Output<string>;
+    public readonly plan!: pulumi.Output<enums.postgres.Plan>;
+    public /*out*/ readonly primaryPostgresID!: pulumi.Output<string | undefined>;
+    public readonly readReplicas!: pulumi.Output<outputs.postgres.ReadReplica[]>;
     /**
      * Defaults to "oregon"
      */
-    declare public readonly region: pulumi.Output<enums.postgres.Region>;
-    declare public /*out*/ readonly role: pulumi.Output<enums.postgres.Role>;
-    declare public /*out*/ readonly status: pulumi.Output<enums.postgres.Status>;
-    declare public /*out*/ readonly suspended: pulumi.Output<enums.postgres.Suspended>;
-    declare public /*out*/ readonly suspenders: pulumi.Output<enums.postgres.SuspendersItem[]>;
-    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
+    public readonly region!: pulumi.Output<enums.postgres.Region>;
+    public /*out*/ readonly role!: pulumi.Output<enums.postgres.Role>;
+    public /*out*/ readonly status!: pulumi.Output<enums.postgres.Status>;
+    public /*out*/ readonly suspended!: pulumi.Output<enums.postgres.Suspended>;
+    public /*out*/ readonly suspenders!: pulumi.Output<enums.postgres.SuspendersItem[]>;
+    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
     /**
      * The PostgreSQL version
      */
-    declare public readonly version: pulumi.Output<enums.postgres.Version>;
+    public readonly version!: pulumi.Output<enums.postgres.Version>;
 
     /**
      * Create a Postgres resource with the given unique name, arguments, and options.
@@ -89,28 +96,29 @@ export class Postgres extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if (args?.ownerId === undefined && !opts.urn) {
+            if ((!args || args.ownerId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'ownerId'");
             }
-            if (args?.plan === undefined && !opts.urn) {
+            if ((!args || args.plan === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'plan'");
             }
-            if (args?.version === undefined && !opts.urn) {
+            if ((!args || args.version === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'version'");
             }
-            resourceInputs["databaseName"] = (args?.databaseName) ?? "randomly generated";
-            resourceInputs["databaseUser"] = (args?.databaseUser) ?? "randomly generated";
-            resourceInputs["datadogAPIKey"] = args?.datadogAPIKey;
-            resourceInputs["diskSizeGB"] = args?.diskSizeGB;
-            resourceInputs["enableHighAvailability"] = (args?.enableHighAvailability) ?? false;
-            resourceInputs["environmentId"] = args?.environmentId;
-            resourceInputs["ipAllowList"] = args?.ipAllowList;
-            resourceInputs["name"] = args?.name;
-            resourceInputs["ownerId"] = args?.ownerId;
-            resourceInputs["plan"] = args?.plan;
-            resourceInputs["readReplicas"] = args?.readReplicas;
-            resourceInputs["region"] = args?.region;
-            resourceInputs["version"] = args?.version;
+            resourceInputs["databaseName"] = (args ? args.databaseName : undefined) ?? "randomly generated";
+            resourceInputs["databaseUser"] = (args ? args.databaseUser : undefined) ?? "randomly generated";
+            resourceInputs["datadogAPIKey"] = args ? args.datadogAPIKey : undefined;
+            resourceInputs["datadogSite"] = args ? args.datadogSite : undefined;
+            resourceInputs["diskSizeGB"] = args ? args.diskSizeGB : undefined;
+            resourceInputs["enableHighAvailability"] = (args ? args.enableHighAvailability : undefined) ?? false;
+            resourceInputs["environmentId"] = args ? args.environmentId : undefined;
+            resourceInputs["ipAllowList"] = args ? args.ipAllowList : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["ownerId"] = args ? args.ownerId : undefined;
+            resourceInputs["plan"] = args ? args.plan : undefined;
+            resourceInputs["readReplicas"] = args ? args.readReplicas : undefined;
+            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["version"] = args ? args.version : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["dashboardUrl"] = undefined /*out*/;
             resourceInputs["expiresAt"] = undefined /*out*/;
@@ -129,6 +137,7 @@ export class Postgres extends pulumi.CustomResource {
             resourceInputs["databaseName"] = undefined /*out*/;
             resourceInputs["databaseUser"] = undefined /*out*/;
             resourceInputs["datadogAPIKey"] = undefined /*out*/;
+            resourceInputs["datadogSite"] = undefined /*out*/;
             resourceInputs["diskSizeGB"] = undefined /*out*/;
             resourceInputs["enableHighAvailability"] = undefined /*out*/;
             resourceInputs["environmentId"] = undefined /*out*/;
@@ -161,7 +170,14 @@ export class Postgres extends pulumi.CustomResource {
 export interface PostgresArgs {
     databaseName?: pulumi.Input<string>;
     databaseUser?: pulumi.Input<string>;
+    /**
+     * The Datadog API key for the Datadog agent to monitor the new database.
+     */
     datadogAPIKey?: pulumi.Input<string>;
+    /**
+     * Datadog region to use for monitoring the new database. Defaults to 'US1'.
+     */
+    datadogSite?: pulumi.Input<string>;
     /**
      * The number of gigabytes of disk space to allocate for the database
      */
@@ -174,7 +190,7 @@ export interface PostgresArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The ID of the owner (team or personal user) whose resources should be returned
+     * The ID of the workspace to create the database for
      */
     ownerId: pulumi.Input<string>;
     plan: pulumi.Input<enums.postgres.Plan>;

@@ -134,6 +134,8 @@ export const PostgresDetailSuspendersItem = {
     Billing: "billing",
     User: "user",
     ParentService: "parent_service",
+    StuckCrashlooping: "stuck_crashlooping",
+    HipaaEnablement: "hipaa_enablement",
     Unknown: "unknown",
 } as const;
 
@@ -146,6 +148,7 @@ export const PostgresDetailVersion = {
     PostgresDetailVersion_14: "14",
     PostgresDetailVersion_15: "15",
     PostgresDetailVersion_16: "16",
+    PostgresDetailVersion_17: "17",
 } as const;
 
 /**
@@ -234,6 +237,8 @@ export const PostgresSuspendersItem = {
     Billing: "billing",
     User: "user",
     ParentService: "parent_service",
+    StuckCrashlooping: "stuck_crashlooping",
+    HipaaEnablement: "hipaa_enablement",
     Unknown: "unknown",
 } as const;
 
@@ -246,6 +251,7 @@ export const PostgresVersion = {
     PostgresVersion_14: "14",
     PostgresVersion_15: "15",
     PostgresVersion_16: "16",
+    PostgresVersion_17: "17",
 } as const;
 
 /**
@@ -319,6 +325,8 @@ export const SuspendersItem = {
     Billing: "billing",
     User: "user",
     ParentService: "parent_service",
+    StuckCrashlooping: "stuck_crashlooping",
+    HipaaEnablement: "hipaa_enablement",
     Unknown: "unknown",
 } as const;
 
@@ -331,6 +339,7 @@ export const Version = {
     Version_14: "14",
     Version_15: "15",
     Version_16: "16",
+    Version_17: "17",
 } as const;
 
 /**

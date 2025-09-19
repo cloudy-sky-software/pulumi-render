@@ -70,6 +70,12 @@ namespace Pulumi.Render.Services.Inputs
         public Input<Pulumi.Render.Services.WebServiceDetailsCreateRegion>? Region { get; set; }
 
         /// <summary>
+        /// Controls whether render.com subdomains are available for the service
+        /// </summary>
+        [Input("renderSubdomainPolicy")]
+        public Input<Pulumi.Render.Services.WebServiceDetailsCreateRenderSubdomainPolicy>? RenderSubdomainPolicy { get; set; }
+
+        /// <summary>
         /// Runtime
         /// </summary>
         [Input("runtime", required: true)]

@@ -16,7 +16,7 @@ export function listBlueprintSyncs(args: ListBlueprintSyncsArgs, opts?: pulumi.I
 
 export interface ListBlueprintSyncsArgs {
     /**
-     * The ID of the blueprint
+     * The ID of the Blueprint
      */
     blueprintId: string;
 }
@@ -33,7 +33,7 @@ export function listBlueprintSyncsOutput(args: ListBlueprintSyncsOutputArgs, opt
 
 export interface ListBlueprintSyncsOutputArgs {
     /**
-     * The ID of the blueprint
+     * The ID of the Blueprint
      */
     blueprintId: pulumi.Input<string>;
 }

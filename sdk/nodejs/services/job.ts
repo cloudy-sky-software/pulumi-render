@@ -34,13 +34,13 @@ export class Job extends pulumi.CustomResource {
         return obj['__pulumiType'] === Job.__pulumiType;
     }
 
-    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
-    declare public /*out*/ readonly finishedAt: pulumi.Output<string | undefined>;
-    declare public readonly planId: pulumi.Output<string>;
-    declare public readonly serviceId: pulumi.Output<string>;
-    declare public readonly startCommand: pulumi.Output<string>;
-    declare public /*out*/ readonly startedAt: pulumi.Output<string | undefined>;
-    declare public /*out*/ readonly status: pulumi.Output<enums.services.JobStatus | undefined>;
+    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    public /*out*/ readonly finishedAt!: pulumi.Output<string | undefined>;
+    public readonly planId!: pulumi.Output<string>;
+    public readonly serviceId!: pulumi.Output<string>;
+    public readonly startCommand!: pulumi.Output<string>;
+    public /*out*/ readonly startedAt!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly status!: pulumi.Output<enums.services.JobStatus | undefined>;
 
     /**
      * Create a Job resource with the given unique name, arguments, and options.
@@ -53,12 +53,12 @@ export class Job extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if (args?.startCommand === undefined && !opts.urn) {
+            if ((!args || args.startCommand === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'startCommand'");
             }
-            resourceInputs["planId"] = args?.planId;
-            resourceInputs["serviceId"] = args?.serviceId;
-            resourceInputs["startCommand"] = args?.startCommand;
+            resourceInputs["planId"] = args ? args.planId : undefined;
+            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
+            resourceInputs["startCommand"] = args ? args.startCommand : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["finishedAt"] = undefined /*out*/;
             resourceInputs["startedAt"] = undefined /*out*/;

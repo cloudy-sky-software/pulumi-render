@@ -35,6 +35,7 @@ type LookupDeployResult struct {
 	Id         string                  `pulumi:"id"`
 	// Image information used when creating the deploy. Not present for Git-backed deploys
 	Image     *DeployImageProperties `pulumi:"image"`
+	StartedAt *string                `pulumi:"startedAt"`
 	Status    *DeployStatus          `pulumi:"status"`
 	Trigger   *DeployTrigger         `pulumi:"trigger"`
 	UpdatedAt *string                `pulumi:"updatedAt"`
@@ -93,6 +94,10 @@ func (o LookupDeployResultOutput) Id() pulumi.StringOutput {
 // Image information used when creating the deploy. Not present for Git-backed deploys
 func (o LookupDeployResultOutput) Image() DeployImagePropertiesPtrOutput {
 	return o.ApplyT(func(v LookupDeployResult) *DeployImageProperties { return v.Image }).(DeployImagePropertiesPtrOutput)
+}
+
+func (o LookupDeployResultOutput) StartedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupDeployResult) *string { return v.StartedAt }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupDeployResultOutput) Status() DeployStatusPtrOutput {

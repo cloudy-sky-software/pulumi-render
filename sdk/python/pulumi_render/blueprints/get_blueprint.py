@@ -116,7 +116,7 @@ def get_blueprint(blueprint_id: Optional[_builtins.str] = None,
     """
     Use this data source to access information about an existing resource.
 
-    :param _builtins.str blueprint_id: The ID of the blueprint
+    :param _builtins.str blueprint_id: The ID of the Blueprint
     """
     __args__ = dict()
     __args__['blueprintId'] = blueprint_id
@@ -137,7 +137,7 @@ def get_blueprint_output(blueprint_id: Optional[pulumi.Input[_builtins.str]] = N
     """
     Use this data source to access information about an existing resource.
 
-    :param _builtins.str blueprint_id: The ID of the blueprint
+    :param _builtins.str blueprint_id: The ID of the Blueprint
     """
     __args__ = dict()
     __args__['blueprintId'] = blueprint_id

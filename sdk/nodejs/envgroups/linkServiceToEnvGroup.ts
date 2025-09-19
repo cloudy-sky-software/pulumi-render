@@ -34,17 +34,17 @@ export class LinkServiceToEnvGroup extends pulumi.CustomResource {
         return obj['__pulumiType'] === LinkServiceToEnvGroup.__pulumiType;
     }
 
-    declare public /*out*/ readonly createdAt: pulumi.Output<string | undefined>;
-    declare public /*out*/ readonly envVars: pulumi.Output<outputs.envgroups.EnvVar[] | undefined>;
-    declare public /*out*/ readonly environmentId: pulumi.Output<string | undefined>;
-    declare public /*out*/ readonly name: pulumi.Output<string | undefined>;
-    declare public /*out*/ readonly ownerId: pulumi.Output<string | undefined>;
-    declare public /*out*/ readonly secretFiles: pulumi.Output<outputs.envgroups.SecretFile[] | undefined>;
+    public /*out*/ readonly createdAt!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly envVars!: pulumi.Output<outputs.envgroups.EnvVar[] | undefined>;
+    public /*out*/ readonly environmentId!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly name!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly ownerId!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly secretFiles!: pulumi.Output<outputs.envgroups.SecretFile[] | undefined>;
     /**
      * List of serviceIds linked to the envGroup
      */
-    declare public /*out*/ readonly serviceLinks: pulumi.Output<outputs.envgroups.EnvGroupLink[] | undefined>;
-    declare public /*out*/ readonly updatedAt: pulumi.Output<string | undefined>;
+    public /*out*/ readonly serviceLinks!: pulumi.Output<outputs.envgroups.EnvGroupLink[] | undefined>;
+    public /*out*/ readonly updatedAt!: pulumi.Output<string | undefined>;
 
     /**
      * Create a LinkServiceToEnvGroup resource with the given unique name, arguments, and options.
@@ -57,8 +57,8 @@ export class LinkServiceToEnvGroup extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            resourceInputs["envGroupId"] = args?.envGroupId;
-            resourceInputs["serviceId"] = args?.serviceId;
+            resourceInputs["envGroupId"] = args ? args.envGroupId : undefined;
+            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["envVars"] = undefined /*out*/;
             resourceInputs["environmentId"] = undefined /*out*/;

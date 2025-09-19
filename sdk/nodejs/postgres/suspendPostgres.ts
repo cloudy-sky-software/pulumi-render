@@ -43,7 +43,7 @@ export class SuspendPostgres extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            resourceInputs["postgresId"] = args?.postgresId;
+            resourceInputs["postgresId"] = args ? args.postgresId : undefined;
         } else {
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

@@ -33,6 +33,12 @@ namespace Pulumi.Render.Postgres
         [Output("datadogApiKey")]
         public Output<string?> DatadogApiKey { get; private set; } = null!;
 
+        /// <summary>
+        /// Datadog region code to use for monitoring the new database. Defaults to the region code of the original database. Use an empty string to prevent copying of the region code to the new database.
+        /// </summary>
+        [Output("datadogSite")]
+        public Output<string?> DatadogSite { get; private set; } = null!;
+
         [Output("diskSizeGB")]
         public Output<int?> DiskSizeGB { get; private set; } = null!;
 
@@ -159,6 +165,12 @@ namespace Pulumi.Render.Postgres
         /// </summary>
         [Input("datadogApiKey")]
         public Input<string>? DatadogApiKey { get; set; }
+
+        /// <summary>
+        /// Datadog region code to use for monitoring the new database. Defaults to the region code of the original database. Use an empty string to prevent copying of the region code to the new database.
+        /// </summary>
+        [Input("datadogSite")]
+        public Input<string>? DatadogSite { get; set; }
 
         /// <summary>
         /// The environment to create the new database in. Defaults to the environment of the original database.

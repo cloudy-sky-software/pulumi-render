@@ -40,47 +40,47 @@ export class KeyValue extends pulumi.CustomResource {
     /**
      * The creation time of the Key Value instance
      */
-    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
+    public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
      * The ID of the environment the Key Value instance is associated with
      */
-    declare public readonly environmentId: pulumi.Output<string | undefined>;
+    public readonly environmentId!: pulumi.Output<string | undefined>;
     /**
      * The IP allow list for the Key Value instance
      */
-    declare public readonly ipAllowList: pulumi.Output<outputs.keyvalue.CidrBlockAndDescription[]>;
-    declare public /*out*/ readonly maintenance: pulumi.Output<outputs.keyvalue.RedisDetailpropertiesmaintenance | undefined>;
+    public readonly ipAllowList!: pulumi.Output<outputs.keyvalue.CidrBlockAndDescription[]>;
+    public /*out*/ readonly maintenance!: pulumi.Output<outputs.keyvalue.RedisDetailpropertiesmaintenance | undefined>;
     /**
      * The eviction policy for the Key Value instance
      */
-    declare public readonly maxmemoryPolicy: pulumi.Output<enums.keyvalue.MaxmemoryPolicy | undefined>;
+    public readonly maxmemoryPolicy!: pulumi.Output<enums.keyvalue.MaxmemoryPolicy | undefined>;
     /**
      * The name of the Key Value instance
      */
-    declare public readonly name: pulumi.Output<string>;
+    public readonly name!: pulumi.Output<string>;
     /**
      * Options for a Key Value instance
      */
-    declare public /*out*/ readonly options: pulumi.Output<outputs.keyvalue.KeyValueOptions>;
-    declare public /*out*/ readonly owner: pulumi.Output<outputs.keyvalue.Owner>;
+    public /*out*/ readonly options!: pulumi.Output<outputs.keyvalue.KeyValueOptions>;
+    public /*out*/ readonly owner!: pulumi.Output<outputs.keyvalue.Owner>;
     /**
      * The ID of the owner of the Key Value instance
      */
-    declare public readonly ownerId: pulumi.Output<string>;
-    declare public readonly plan: pulumi.Output<enums.keyvalue.Plan>;
+    public readonly ownerId!: pulumi.Output<string>;
+    public readonly plan!: pulumi.Output<enums.keyvalue.Plan>;
     /**
      * Defaults to "oregon"
      */
-    declare public readonly region: pulumi.Output<enums.keyvalue.Region>;
-    declare public /*out*/ readonly status: pulumi.Output<enums.keyvalue.Status>;
+    public readonly region!: pulumi.Output<enums.keyvalue.Region>;
+    public /*out*/ readonly status!: pulumi.Output<enums.keyvalue.Status>;
     /**
      * The last updated time of the Key Value instance
      */
-    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
+    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
     /**
      * The version of Key Value
      */
-    declare public /*out*/ readonly version: pulumi.Output<string>;
+    public /*out*/ readonly version!: pulumi.Output<string>;
 
     /**
      * Create a KeyValue resource with the given unique name, arguments, and options.
@@ -93,19 +93,19 @@ export class KeyValue extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if (args?.ownerId === undefined && !opts.urn) {
+            if ((!args || args.ownerId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'ownerId'");
             }
-            if (args?.plan === undefined && !opts.urn) {
+            if ((!args || args.plan === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'plan'");
             }
-            resourceInputs["environmentId"] = args?.environmentId;
-            resourceInputs["ipAllowList"] = args?.ipAllowList;
-            resourceInputs["maxmemoryPolicy"] = args?.maxmemoryPolicy;
-            resourceInputs["name"] = args?.name;
-            resourceInputs["ownerId"] = args?.ownerId;
-            resourceInputs["plan"] = args?.plan;
-            resourceInputs["region"] = args?.region;
+            resourceInputs["environmentId"] = args ? args.environmentId : undefined;
+            resourceInputs["ipAllowList"] = args ? args.ipAllowList : undefined;
+            resourceInputs["maxmemoryPolicy"] = args ? args.maxmemoryPolicy : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["ownerId"] = args ? args.ownerId : undefined;
+            resourceInputs["plan"] = args ? args.plan : undefined;
+            resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["maintenance"] = undefined /*out*/;
             resourceInputs["options"] = undefined /*out*/;

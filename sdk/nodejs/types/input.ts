@@ -278,7 +278,7 @@ export namespace services {
     export interface MaintenanceModeArgs {
         enabled: pulumi.Input<boolean>;
         /**
-         * The page to be served when [maintenance mode](https://docs.render.com/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
+         * The page to be served when [maintenance mode](https://render.com/docs/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
          */
         uri: pulumi.Input<string>;
     }
@@ -409,6 +409,10 @@ export namespace services {
          * This field has been deprecated. previews.generation should be used in its place.
          */
         pullRequestPreviewsEnabled?: pulumi.Input<enums.services.StaticSiteDetailsCreatePullRequestPreviewsEnabled>;
+        /**
+         * Controls whether render.com subdomains are available for the service
+         */
+        renderSubdomainPolicy?: pulumi.Input<enums.services.StaticSiteDetailsCreateRenderSubdomainPolicy>;
         routes?: pulumi.Input<pulumi.Input<inputs.services.RouteCreateArgs>[]>;
     }
     /**
@@ -454,6 +458,10 @@ export namespace services {
          * Defaults to "oregon"
          */
         region?: pulumi.Input<enums.services.WebServiceDetailsCreateRegion>;
+        /**
+         * Controls whether render.com subdomains are available for the service
+         */
+        renderSubdomainPolicy?: pulumi.Input<enums.services.WebServiceDetailsCreateRenderSubdomainPolicy>;
         /**
          * Runtime
          */

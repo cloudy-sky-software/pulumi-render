@@ -50,7 +50,7 @@ def list_blueprint_syncs(blueprint_id: Optional[_builtins.str] = None,
     """
     Use this data source to access information about an existing resource.
 
-    :param _builtins.str blueprint_id: The ID of the blueprint
+    :param _builtins.str blueprint_id: The ID of the Blueprint
     """
     __args__ = dict()
     __args__['blueprintId'] = blueprint_id
@@ -64,7 +64,7 @@ def list_blueprint_syncs_output(blueprint_id: Optional[pulumi.Input[_builtins.st
     """
     Use this data source to access information about an existing resource.
 
-    :param _builtins.str blueprint_id: The ID of the blueprint
+    :param _builtins.str blueprint_id: The ID of the Blueprint
     """
     __args__ = dict()
     __args__['blueprintId'] = blueprint_id

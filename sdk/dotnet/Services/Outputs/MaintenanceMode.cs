@@ -15,7 +15,7 @@ namespace Pulumi.Render.Services.Outputs
     {
         public readonly bool Enabled;
         /// <summary>
-        /// The page to be served when [maintenance mode](https://docs.render.com/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
+        /// The page to be served when [maintenance mode](https://render.com/docs/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
         /// </summary>
         public readonly string Uri;
 

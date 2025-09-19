@@ -17,7 +17,7 @@ type Owner struct {
 	Email string `pulumi:"email"`
 	Id    string `pulumi:"id"`
 	Name  string `pulumi:"name"`
-	// Whether two-factor authentication is enabled for the owner. Only present for user owners.
+	// Whether two-factor authentication is enabled for the owner. Only present if `type` is `user`.
 	TwoFactorAuthEnabled *bool     `pulumi:"twoFactorAuthEnabled"`
 	Type                 OwnerType `pulumi:"type"`
 }
@@ -48,7 +48,7 @@ func (o OwnerOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Owner) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Whether two-factor authentication is enabled for the owner. Only present for user owners.
+// Whether two-factor authentication is enabled for the owner. Only present if `type` is `user`.
 func (o OwnerOutput) TwoFactorAuthEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v Owner) *bool { return v.TwoFactorAuthEnabled }).(pulumi.BoolPtrOutput)
 }
@@ -108,7 +108,7 @@ func (o OwnerPtrOutput) Name() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Whether two-factor authentication is enabled for the owner. Only present for user owners.
+// Whether two-factor authentication is enabled for the owner. Only present if `type` is `user`.
 func (o OwnerPtrOutput) TwoFactorAuthEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Owner) *bool {
 		if v == nil {
@@ -174,9 +174,78 @@ func (o OwnerWithCursorArrayOutput) Index(i pulumi.IntInput) OwnerWithCursorOutp
 	}).(OwnerWithCursorOutput)
 }
 
+type TeamMember struct {
+	Email      string           `pulumi:"email"`
+	MfaEnabled bool             `pulumi:"mfaEnabled"`
+	Name       string           `pulumi:"name"`
+	Role       string           `pulumi:"role"`
+	Status     TeamMemberStatus `pulumi:"status"`
+	UserId     string           `pulumi:"userId"`
+}
+
+type TeamMemberOutput struct{ *pulumi.OutputState }
+
+func (TeamMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TeamMember)(nil)).Elem()
+}
+
+func (o TeamMemberOutput) ToTeamMemberOutput() TeamMemberOutput {
+	return o
+}
+
+func (o TeamMemberOutput) ToTeamMemberOutputWithContext(ctx context.Context) TeamMemberOutput {
+	return o
+}
+
+func (o TeamMemberOutput) Email() pulumi.StringOutput {
+	return o.ApplyT(func(v TeamMember) string { return v.Email }).(pulumi.StringOutput)
+}
+
+func (o TeamMemberOutput) MfaEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v TeamMember) bool { return v.MfaEnabled }).(pulumi.BoolOutput)
+}
+
+func (o TeamMemberOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v TeamMember) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o TeamMemberOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v TeamMember) string { return v.Role }).(pulumi.StringOutput)
+}
+
+func (o TeamMemberOutput) Status() TeamMemberStatusOutput {
+	return o.ApplyT(func(v TeamMember) TeamMemberStatus { return v.Status }).(TeamMemberStatusOutput)
+}
+
+func (o TeamMemberOutput) UserId() pulumi.StringOutput {
+	return o.ApplyT(func(v TeamMember) string { return v.UserId }).(pulumi.StringOutput)
+}
+
+type TeamMemberArrayOutput struct{ *pulumi.OutputState }
+
+func (TeamMemberArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TeamMember)(nil)).Elem()
+}
+
+func (o TeamMemberArrayOutput) ToTeamMemberArrayOutput() TeamMemberArrayOutput {
+	return o
+}
+
+func (o TeamMemberArrayOutput) ToTeamMemberArrayOutputWithContext(ctx context.Context) TeamMemberArrayOutput {
+	return o
+}
+
+func (o TeamMemberArrayOutput) Index(i pulumi.IntInput) TeamMemberOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TeamMember {
+		return vs[0].([]TeamMember)[vs[1].(int)]
+	}).(TeamMemberOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(OwnerOutput{})
 	pulumi.RegisterOutputType(OwnerPtrOutput{})
 	pulumi.RegisterOutputType(OwnerWithCursorOutput{})
 	pulumi.RegisterOutputType(OwnerWithCursorArrayOutput{})
+	pulumi.RegisterOutputType(TeamMemberOutput{})
+	pulumi.RegisterOutputType(TeamMemberArrayOutput{})
 }

@@ -11,7 +11,7 @@ namespace Pulumi.Render.Blueprints.Outputs
 {
 
     /// <summary>
-    /// A blueprint sync with a cursor
+    /// A Blueprint sync with a cursor
     /// </summary>
     [OutputType]
     public sealed class SyncWithCursor

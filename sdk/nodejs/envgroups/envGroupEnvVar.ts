@@ -34,19 +34,19 @@ export class EnvGroupEnvVar extends pulumi.CustomResource {
         return obj['__pulumiType'] === EnvGroupEnvVar.__pulumiType;
     }
 
-    declare public /*out*/ readonly createdAt: pulumi.Output<string | undefined>;
-    declare public /*out*/ readonly envVars: pulumi.Output<outputs.envgroups.EnvVar[] | undefined>;
-    declare public /*out*/ readonly environmentId: pulumi.Output<string | undefined>;
-    declare public readonly generateValue: pulumi.Output<boolean | undefined>;
-    declare public /*out*/ readonly name: pulumi.Output<string | undefined>;
-    declare public /*out*/ readonly ownerId: pulumi.Output<string | undefined>;
-    declare public /*out*/ readonly secretFiles: pulumi.Output<outputs.envgroups.SecretFile[] | undefined>;
+    public /*out*/ readonly createdAt!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly envVars!: pulumi.Output<outputs.envgroups.EnvVar[] | undefined>;
+    public /*out*/ readonly environmentId!: pulumi.Output<string | undefined>;
+    public readonly generateValue!: pulumi.Output<boolean | undefined>;
+    public /*out*/ readonly name!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly ownerId!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly secretFiles!: pulumi.Output<outputs.envgroups.SecretFile[] | undefined>;
     /**
      * List of serviceIds linked to the envGroup
      */
-    declare public /*out*/ readonly serviceLinks: pulumi.Output<outputs.envgroups.EnvGroupLink[] | undefined>;
-    declare public /*out*/ readonly updatedAt: pulumi.Output<string | undefined>;
-    declare public readonly value: pulumi.Output<string | undefined>;
+    public /*out*/ readonly serviceLinks!: pulumi.Output<outputs.envgroups.EnvGroupLink[] | undefined>;
+    public /*out*/ readonly updatedAt!: pulumi.Output<string | undefined>;
+    public readonly value!: pulumi.Output<string | undefined>;
 
     /**
      * Create a EnvGroupEnvVar resource with the given unique name, arguments, and options.
@@ -59,10 +59,10 @@ export class EnvGroupEnvVar extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            resourceInputs["envGroupId"] = args?.envGroupId;
-            resourceInputs["envVarKey"] = args?.envVarKey;
-            resourceInputs["generateValue"] = args?.generateValue;
-            resourceInputs["value"] = args?.value;
+            resourceInputs["envGroupId"] = args ? args.envGroupId : undefined;
+            resourceInputs["envVarKey"] = args ? args.envVarKey : undefined;
+            resourceInputs["generateValue"] = args ? args.generateValue : undefined;
+            resourceInputs["value"] = args ? args.value : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["envVars"] = undefined /*out*/;
             resourceInputs["environmentId"] = undefined /*out*/;

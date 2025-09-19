@@ -23,6 +23,7 @@ class RecoverPostgresArgs:
     def __init__(__self__, *,
                  restore_time: pulumi.Input[_builtins.str],
                  datadog_api_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 datadog_site: Optional[pulumi.Input[_builtins.str]] = None,
                  environment_id: Optional[pulumi.Input[_builtins.str]] = None,
                  plan: Optional[pulumi.Input[_builtins.str]] = None,
                  postgres_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -31,6 +32,7 @@ class RecoverPostgresArgs:
         The set of arguments for constructing a RecoverPostgres resource.
         :param pulumi.Input[_builtins.str] restore_time: The point in time to restore the database to. See `/recovery-info` for restore availability
         :param pulumi.Input[_builtins.str] datadog_api_key: Datadog API key to use for monitoring the new database. Defaults to the API key of the original database. Use an empty string to prevent copying of the API key to the new database.
+        :param pulumi.Input[_builtins.str] datadog_site: Datadog region code to use for monitoring the new database. Defaults to the region code of the original database. Use an empty string to prevent copying of the region code to the new database.
         :param pulumi.Input[_builtins.str] environment_id: The environment to create the new database in. Defaults to the environment of the original database.
         :param pulumi.Input[_builtins.str] plan: The plan to use for the new database. Defaults to the same plan as the original database. Cannot be a lower tier plan than the original database.
         :param pulumi.Input[_builtins.str] restore_name: Name of the new database.
@@ -38,6 +40,8 @@ class RecoverPostgresArgs:
         pulumi.set(__self__, "restore_time", restore_time)
         if datadog_api_key is not None:
             pulumi.set(__self__, "datadog_api_key", datadog_api_key)
+        if datadog_site is not None:
+            pulumi.set(__self__, "datadog_site", datadog_site)
         if environment_id is not None:
             pulumi.set(__self__, "environment_id", environment_id)
         if plan is not None:
@@ -70,6 +74,18 @@ class RecoverPostgresArgs:
     @datadog_api_key.setter
     def datadog_api_key(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "datadog_api_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="datadogSite")
+    def datadog_site(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Datadog region code to use for monitoring the new database. Defaults to the region code of the original database. Use an empty string to prevent copying of the region code to the new database.
+        """
+        return pulumi.get(self, "datadog_site")
+
+    @datadog_site.setter
+    def datadog_site(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "datadog_site", value)
 
     @_builtins.property
     @pulumi.getter(name="environmentId")
@@ -124,6 +140,7 @@ class RecoverPostgres(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  datadog_api_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 datadog_site: Optional[pulumi.Input[_builtins.str]] = None,
                  environment_id: Optional[pulumi.Input[_builtins.str]] = None,
                  plan: Optional[pulumi.Input[_builtins.str]] = None,
                  postgres_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -135,6 +152,7 @@ class RecoverPostgres(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] datadog_api_key: Datadog API key to use for monitoring the new database. Defaults to the API key of the original database. Use an empty string to prevent copying of the API key to the new database.
+        :param pulumi.Input[_builtins.str] datadog_site: Datadog region code to use for monitoring the new database. Defaults to the region code of the original database. Use an empty string to prevent copying of the region code to the new database.
         :param pulumi.Input[_builtins.str] environment_id: The environment to create the new database in. Defaults to the environment of the original database.
         :param pulumi.Input[_builtins.str] plan: The plan to use for the new database. Defaults to the same plan as the original database. Cannot be a lower tier plan than the original database.
         :param pulumi.Input[_builtins.str] restore_name: Name of the new database.
@@ -164,6 +182,7 @@ class RecoverPostgres(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  datadog_api_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 datadog_site: Optional[pulumi.Input[_builtins.str]] = None,
                  environment_id: Optional[pulumi.Input[_builtins.str]] = None,
                  plan: Optional[pulumi.Input[_builtins.str]] = None,
                  postgres_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -179,6 +198,7 @@ class RecoverPostgres(pulumi.CustomResource):
             __props__ = RecoverPostgresArgs.__new__(RecoverPostgresArgs)
 
             __props__.__dict__["datadog_api_key"] = datadog_api_key
+            __props__.__dict__["datadog_site"] = datadog_site
             __props__.__dict__["environment_id"] = environment_id
             __props__.__dict__["plan"] = plan
             __props__.__dict__["postgres_id"] = postgres_id
@@ -233,6 +253,7 @@ class RecoverPostgres(pulumi.CustomResource):
         __props__.__dict__["database_name"] = None
         __props__.__dict__["database_user"] = None
         __props__.__dict__["datadog_api_key"] = None
+        __props__.__dict__["datadog_site"] = None
         __props__.__dict__["disk_size_gb"] = None
         __props__.__dict__["environment_id"] = None
         __props__.__dict__["expires_at"] = None
@@ -285,6 +306,14 @@ class RecoverPostgres(pulumi.CustomResource):
         Datadog API key to use for monitoring the new database. Defaults to the API key of the original database. Use an empty string to prevent copying of the API key to the new database.
         """
         return pulumi.get(self, "datadog_api_key")
+
+    @_builtins.property
+    @pulumi.getter(name="datadogSite")
+    def datadog_site(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Datadog region code to use for monitoring the new database. Defaults to the region code of the original database. Use an empty string to prevent copying of the region code to the new database.
+        """
+        return pulumi.get(self, "datadog_site")
 
     @_builtins.property
     @pulumi.getter(name="diskSizeGB")

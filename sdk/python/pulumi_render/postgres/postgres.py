@@ -28,6 +28,7 @@ class PostgresArgs:
                  database_name: Optional[pulumi.Input[_builtins.str]] = None,
                  database_user: Optional[pulumi.Input[_builtins.str]] = None,
                  datadog_api_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 datadog_site: Optional[pulumi.Input[_builtins.str]] = None,
                  disk_size_gb: Optional[pulumi.Input[_builtins.int]] = None,
                  enable_high_availability: Optional[pulumi.Input[_builtins.bool]] = None,
                  environment_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -37,8 +38,10 @@ class PostgresArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Postgres resource.
-        :param pulumi.Input[_builtins.str] owner_id: The ID of the owner (team or personal user) whose resources should be returned
+        :param pulumi.Input[_builtins.str] owner_id: The ID of the workspace to create the database for
         :param pulumi.Input['Version'] version: The PostgreSQL version
+        :param pulumi.Input[_builtins.str] datadog_api_key: The Datadog API key for the Datadog agent to monitor the new database.
+        :param pulumi.Input[_builtins.str] datadog_site: Datadog region to use for monitoring the new database. Defaults to 'US1'.
         :param pulumi.Input[_builtins.int] disk_size_gb: The number of gigabytes of disk space to allocate for the database
         :param pulumi.Input[_builtins.str] name: The name of the database as it will appear in the Render Dashboard
         """
@@ -55,6 +58,8 @@ class PostgresArgs:
             pulumi.set(__self__, "database_user", database_user)
         if datadog_api_key is not None:
             pulumi.set(__self__, "datadog_api_key", datadog_api_key)
+        if datadog_site is not None:
+            pulumi.set(__self__, "datadog_site", datadog_site)
         if disk_size_gb is not None:
             pulumi.set(__self__, "disk_size_gb", disk_size_gb)
         if enable_high_availability is None:
@@ -76,7 +81,7 @@ class PostgresArgs:
     @pulumi.getter(name="ownerId")
     def owner_id(self) -> pulumi.Input[_builtins.str]:
         """
-        The ID of the owner (team or personal user) whose resources should be returned
+        The ID of the workspace to create the database for
         """
         return pulumi.get(self, "owner_id")
 
@@ -126,11 +131,26 @@ class PostgresArgs:
     @_builtins.property
     @pulumi.getter(name="datadogAPIKey")
     def datadog_api_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The Datadog API key for the Datadog agent to monitor the new database.
+        """
         return pulumi.get(self, "datadog_api_key")
 
     @datadog_api_key.setter
     def datadog_api_key(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "datadog_api_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="datadogSite")
+    def datadog_site(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Datadog region to use for monitoring the new database. Defaults to 'US1'.
+        """
+        return pulumi.get(self, "datadog_site")
+
+    @datadog_site.setter
+    def datadog_site(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "datadog_site", value)
 
     @_builtins.property
     @pulumi.getter(name="diskSizeGB")
@@ -211,6 +231,7 @@ class Postgres(pulumi.CustomResource):
                  database_name: Optional[pulumi.Input[_builtins.str]] = None,
                  database_user: Optional[pulumi.Input[_builtins.str]] = None,
                  datadog_api_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 datadog_site: Optional[pulumi.Input[_builtins.str]] = None,
                  disk_size_gb: Optional[pulumi.Input[_builtins.int]] = None,
                  enable_high_availability: Optional[pulumi.Input[_builtins.bool]] = None,
                  environment_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -227,9 +248,11 @@ class Postgres(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] datadog_api_key: The Datadog API key for the Datadog agent to monitor the new database.
+        :param pulumi.Input[_builtins.str] datadog_site: Datadog region to use for monitoring the new database. Defaults to 'US1'.
         :param pulumi.Input[_builtins.int] disk_size_gb: The number of gigabytes of disk space to allocate for the database
         :param pulumi.Input[_builtins.str] name: The name of the database as it will appear in the Render Dashboard
-        :param pulumi.Input[_builtins.str] owner_id: The ID of the owner (team or personal user) whose resources should be returned
+        :param pulumi.Input[_builtins.str] owner_id: The ID of the workspace to create the database for
         :param pulumi.Input['Version'] version: The PostgreSQL version
         """
         ...
@@ -259,6 +282,7 @@ class Postgres(pulumi.CustomResource):
                  database_name: Optional[pulumi.Input[_builtins.str]] = None,
                  database_user: Optional[pulumi.Input[_builtins.str]] = None,
                  datadog_api_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 datadog_site: Optional[pulumi.Input[_builtins.str]] = None,
                  disk_size_gb: Optional[pulumi.Input[_builtins.int]] = None,
                  enable_high_availability: Optional[pulumi.Input[_builtins.bool]] = None,
                  environment_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -285,6 +309,7 @@ class Postgres(pulumi.CustomResource):
                 database_user = 'randomly generated'
             __props__.__dict__["database_user"] = database_user
             __props__.__dict__["datadog_api_key"] = datadog_api_key
+            __props__.__dict__["datadog_site"] = datadog_site
             __props__.__dict__["disk_size_gb"] = disk_size_gb
             if enable_high_availability is None:
                 enable_high_availability = False
@@ -342,6 +367,7 @@ class Postgres(pulumi.CustomResource):
         __props__.__dict__["database_name"] = None
         __props__.__dict__["database_user"] = None
         __props__.__dict__["datadog_api_key"] = None
+        __props__.__dict__["datadog_site"] = None
         __props__.__dict__["disk_size_gb"] = None
         __props__.__dict__["enable_high_availability"] = None
         __props__.__dict__["environment_id"] = None
@@ -390,7 +416,18 @@ class Postgres(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="datadogAPIKey")
     def datadog_api_key(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The Datadog API key for the Datadog agent to monitor the new database.
+        """
         return pulumi.get(self, "datadog_api_key")
+
+    @_builtins.property
+    @pulumi.getter(name="datadogSite")
+    def datadog_site(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Datadog region to use for monitoring the new database. Defaults to 'US1'.
+        """
+        return pulumi.get(self, "datadog_site")
 
     @_builtins.property
     @pulumi.getter(name="diskSizeGB")
@@ -444,7 +481,7 @@ class Postgres(pulumi.CustomResource):
     @pulumi.getter(name="ownerId")
     def owner_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The ID of the owner (team or personal user) whose resources should be returned
+        The ID of the workspace to create the database for
         """
         return pulumi.get(self, "owner_id")
 

@@ -26,7 +26,7 @@ export interface GetOwnerResult {
     readonly id: string;
     readonly name: string;
     /**
-     * Whether two-factor authentication is enabled for the owner. Only present for user owners.
+     * Whether two-factor authentication is enabled for the owner. Only present if `type` is `user`.
      */
     readonly twoFactorAuthEnabled?: boolean;
     readonly type: enums.owners.OwnerType;

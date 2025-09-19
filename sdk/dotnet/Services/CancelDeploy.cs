@@ -27,6 +27,9 @@ namespace Pulumi.Render.Services
         [Output("image")]
         public Output<Outputs.ImageProperties?> Image { get; private set; } = null!;
 
+        [Output("startedAt")]
+        public Output<string?> StartedAt { get; private set; } = null!;
+
         [Output("status")]
         public Output<Pulumi.Render.Services.Status?> Status { get; private set; } = null!;
 

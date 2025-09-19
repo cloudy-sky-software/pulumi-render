@@ -32,6 +32,7 @@ from .list_custom_domains import *
 from .list_deploys import *
 from .list_env_vars_for_service import *
 from .list_headers import *
+from .list_instances import *
 from .list_job import *
 from .list_routes import *
 from .list_secret_files_for_service import *

@@ -34,13 +34,13 @@ export class CancelJob extends pulumi.CustomResource {
         return obj['__pulumiType'] === CancelJob.__pulumiType;
     }
 
-    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
-    declare public /*out*/ readonly finishedAt: pulumi.Output<string | undefined>;
-    declare public /*out*/ readonly planId: pulumi.Output<string>;
-    declare public readonly serviceId: pulumi.Output<string>;
-    declare public /*out*/ readonly startCommand: pulumi.Output<string>;
-    declare public /*out*/ readonly startedAt: pulumi.Output<string | undefined>;
-    declare public /*out*/ readonly status: pulumi.Output<enums.services.CancelJobStatus | undefined>;
+    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    public /*out*/ readonly finishedAt!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly planId!: pulumi.Output<string>;
+    public readonly serviceId!: pulumi.Output<string>;
+    public /*out*/ readonly startCommand!: pulumi.Output<string>;
+    public /*out*/ readonly startedAt!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly status!: pulumi.Output<enums.services.CancelJobStatus | undefined>;
 
     /**
      * Create a CancelJob resource with the given unique name, arguments, and options.
@@ -53,8 +53,8 @@ export class CancelJob extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            resourceInputs["jobId"] = args?.jobId;
-            resourceInputs["serviceId"] = args?.serviceId;
+            resourceInputs["jobId"] = args ? args.jobId : undefined;
+            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["finishedAt"] = undefined /*out*/;
             resourceInputs["planId"] = undefined /*out*/;

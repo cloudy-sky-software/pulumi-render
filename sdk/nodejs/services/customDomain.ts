@@ -31,7 +31,7 @@ export class CustomDomain extends pulumi.CustomResource {
         return obj['__pulumiType'] === CustomDomain.__pulumiType;
     }
 
-    declare public readonly name: pulumi.Output<string>;
+    public readonly name!: pulumi.Output<string>;
 
     /**
      * Create a CustomDomain resource with the given unique name, arguments, and options.
@@ -44,8 +44,8 @@ export class CustomDomain extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            resourceInputs["name"] = args?.name;
-            resourceInputs["serviceId"] = args?.serviceId;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
         } else {
             resourceInputs["name"] = undefined /*out*/;
         }

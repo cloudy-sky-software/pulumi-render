@@ -40,47 +40,47 @@ export class Redis extends pulumi.CustomResource {
     /**
      * The creation time of the Redis instance
      */
-    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
+    public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
      * The ID of the environment the Redis instance is associated with
      */
-    declare public readonly environmentId: pulumi.Output<string | undefined>;
+    public readonly environmentId!: pulumi.Output<string | undefined>;
     /**
      * The IP allow list for the Redis instance
      */
-    declare public readonly ipAllowList: pulumi.Output<outputs.redis.CidrBlockAndDescription[]>;
-    declare public /*out*/ readonly maintenance: pulumi.Output<outputs.redis.MaintenanceProperties | undefined>;
+    public readonly ipAllowList!: pulumi.Output<outputs.redis.CidrBlockAndDescription[]>;
+    public /*out*/ readonly maintenance!: pulumi.Output<outputs.redis.MaintenanceProperties | undefined>;
     /**
      * The eviction policy for the Key Value instance
      */
-    declare public readonly maxmemoryPolicy: pulumi.Output<enums.redis.MaxmemoryPolicy | undefined>;
+    public readonly maxmemoryPolicy!: pulumi.Output<enums.redis.MaxmemoryPolicy | undefined>;
     /**
      * The name of the Redis instance
      */
-    declare public readonly name: pulumi.Output<string>;
+    public readonly name!: pulumi.Output<string>;
     /**
      * Options for a Redis instance
      */
-    declare public /*out*/ readonly options: pulumi.Output<outputs.redis.RedisOptions>;
-    declare public /*out*/ readonly owner: pulumi.Output<outputs.redis.Owner>;
+    public /*out*/ readonly options!: pulumi.Output<outputs.redis.RedisOptions>;
+    public /*out*/ readonly owner!: pulumi.Output<outputs.redis.Owner>;
     /**
      * The ID of the owner of the Redis instance
      */
-    declare public readonly ownerId: pulumi.Output<string>;
-    declare public readonly plan: pulumi.Output<enums.redis.Plan>;
+    public readonly ownerId!: pulumi.Output<string>;
+    public readonly plan!: pulumi.Output<enums.redis.Plan>;
     /**
      * Defaults to "oregon"
      */
-    declare public readonly region: pulumi.Output<enums.redis.Region>;
-    declare public /*out*/ readonly status: pulumi.Output<enums.redis.Status>;
+    public readonly region!: pulumi.Output<enums.redis.Region>;
+    public /*out*/ readonly status!: pulumi.Output<enums.redis.Status>;
     /**
      * The last updated time of the Redis instance
      */
-    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
+    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
     /**
      * The version of Redis
      */
-    declare public /*out*/ readonly version: pulumi.Output<string>;
+    public /*out*/ readonly version!: pulumi.Output<string>;
 
     /**
      * Create a Redis resource with the given unique name, arguments, and options.
@@ -93,19 +93,19 @@ export class Redis extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if (args?.ownerId === undefined && !opts.urn) {
+            if ((!args || args.ownerId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'ownerId'");
             }
-            if (args?.plan === undefined && !opts.urn) {
+            if ((!args || args.plan === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'plan'");
             }
-            resourceInputs["environmentId"] = args?.environmentId;
-            resourceInputs["ipAllowList"] = args?.ipAllowList;
-            resourceInputs["maxmemoryPolicy"] = args?.maxmemoryPolicy;
-            resourceInputs["name"] = args?.name;
-            resourceInputs["ownerId"] = args?.ownerId;
-            resourceInputs["plan"] = args?.plan;
-            resourceInputs["region"] = args?.region;
+            resourceInputs["environmentId"] = args ? args.environmentId : undefined;
+            resourceInputs["ipAllowList"] = args ? args.ipAllowList : undefined;
+            resourceInputs["maxmemoryPolicy"] = args ? args.maxmemoryPolicy : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["ownerId"] = args ? args.ownerId : undefined;
+            resourceInputs["plan"] = args ? args.plan : undefined;
+            resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["maintenance"] = undefined /*out*/;
             resourceInputs["options"] = undefined /*out*/;

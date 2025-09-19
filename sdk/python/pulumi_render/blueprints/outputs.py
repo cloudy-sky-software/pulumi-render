@@ -28,13 +28,13 @@ __all__ = [
 @pulumi.output_type
 class BlueprintWithCursor(dict):
     """
-    A blueprint with a cursor
+    A Blueprint with a cursor
     """
     def __init__(__self__, *,
                  blueprint: 'outputs.BlueprintWithCursorBlueprintProperties',
                  cursor: _builtins.str):
         """
-        A blueprint with a cursor
+        A Blueprint with a cursor
         """
         pulumi.set(__self__, "blueprint", blueprint)
         pulumi.set(__self__, "cursor", cursor)
@@ -146,13 +146,13 @@ class GetBlueprintPropertiesResourcesItemProperties(dict):
 @pulumi.output_type
 class SyncWithCursor(dict):
     """
-    A blueprint sync with a cursor
+    A Blueprint sync with a cursor
     """
     def __init__(__self__, *,
                  cursor: _builtins.str,
                  sync: 'outputs.SyncWithCursorSyncProperties'):
         """
-        A blueprint sync with a cursor
+        A Blueprint sync with a cursor
         """
         pulumi.set(__self__, "cursor", cursor)
         pulumi.set(__self__, "sync", sync)

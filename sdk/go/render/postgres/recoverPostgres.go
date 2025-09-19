@@ -22,6 +22,8 @@ type RecoverPostgres struct {
 	DatabaseUser pulumi.StringOutput `pulumi:"databaseUser"`
 	// Datadog API key to use for monitoring the new database. Defaults to the API key of the original database. Use an empty string to prevent copying of the API key to the new database.
 	DatadogApiKey pulumi.StringPtrOutput `pulumi:"datadogApiKey"`
+	// Datadog region code to use for monitoring the new database. Defaults to the region code of the original database. Use an empty string to prevent copying of the region code to the new database.
+	DatadogSite   pulumi.StringPtrOutput `pulumi:"datadogSite"`
 	DiskSizeGB    pulumi.IntPtrOutput    `pulumi:"diskSizeGB"`
 	EnvironmentId pulumi.StringPtrOutput `pulumi:"environmentId"`
 	// The time at which the database will be expire. Applies to free tier databases only.
@@ -94,6 +96,8 @@ func (RecoverPostgresState) ElementType() reflect.Type {
 type recoverPostgresArgs struct {
 	// Datadog API key to use for monitoring the new database. Defaults to the API key of the original database. Use an empty string to prevent copying of the API key to the new database.
 	DatadogApiKey *string `pulumi:"datadogApiKey"`
+	// Datadog region code to use for monitoring the new database. Defaults to the region code of the original database. Use an empty string to prevent copying of the region code to the new database.
+	DatadogSite *string `pulumi:"datadogSite"`
 	// The environment to create the new database in. Defaults to the environment of the original database.
 	EnvironmentId *string `pulumi:"environmentId"`
 	// The plan to use for the new database. Defaults to the same plan as the original database. Cannot be a lower tier plan than the original database.
@@ -109,6 +113,8 @@ type recoverPostgresArgs struct {
 type RecoverPostgresArgs struct {
 	// Datadog API key to use for monitoring the new database. Defaults to the API key of the original database. Use an empty string to prevent copying of the API key to the new database.
 	DatadogApiKey pulumi.StringPtrInput
+	// Datadog region code to use for monitoring the new database. Defaults to the region code of the original database. Use an empty string to prevent copying of the region code to the new database.
+	DatadogSite pulumi.StringPtrInput
 	// The environment to create the new database in. Defaults to the environment of the original database.
 	EnvironmentId pulumi.StringPtrInput
 	// The plan to use for the new database. Defaults to the same plan as the original database. Cannot be a lower tier plan than the original database.
@@ -177,6 +183,11 @@ func (o RecoverPostgresOutput) DatabaseUser() pulumi.StringOutput {
 // Datadog API key to use for monitoring the new database. Defaults to the API key of the original database. Use an empty string to prevent copying of the API key to the new database.
 func (o RecoverPostgresOutput) DatadogApiKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RecoverPostgres) pulumi.StringPtrOutput { return v.DatadogApiKey }).(pulumi.StringPtrOutput)
+}
+
+// Datadog region code to use for monitoring the new database. Defaults to the region code of the original database. Use an empty string to prevent copying of the region code to the new database.
+func (o RecoverPostgresOutput) DatadogSite() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RecoverPostgres) pulumi.StringPtrOutput { return v.DatadogSite }).(pulumi.StringPtrOutput)
 }
 
 func (o RecoverPostgresOutput) DiskSizeGB() pulumi.IntPtrOutput {

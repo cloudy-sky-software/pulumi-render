@@ -14,8 +14,12 @@ else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
+from ._enums import *
 
 __all__ = [
+    'GetBandwidthSourcePropertiesDataItemProperties',
+    'GetBandwidthSourcePropertiesDataItemPropertiesLabelsProperties',
+    'GetBandwidthSourcePropertiesDataItemPropertiesValuesItemProperties',
     'ListActiveConnectionsItemProperties',
     'ListActiveConnectionsItemPropertiesLabelsItemProperties',
     'ListActiveConnectionsItemPropertiesValuesItemProperties',
@@ -23,6 +27,69 @@ __all__ = [
     'ListReplicationLagItemPropertiesLabelsItemProperties',
     'ListReplicationLagItemPropertiesValuesItemProperties',
 ]
+
+@pulumi.output_type
+class GetBandwidthSourcePropertiesDataItemProperties(dict):
+    def __init__(__self__, *,
+                 labels: Optional['outputs.GetBandwidthSourcePropertiesDataItemPropertiesLabelsProperties'] = None,
+                 values: Optional[Sequence['outputs.GetBandwidthSourcePropertiesDataItemPropertiesValuesItemProperties']] = None):
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def labels(self) -> Optional['outputs.GetBandwidthSourcePropertiesDataItemPropertiesLabelsProperties']:
+        return pulumi.get(self, "labels")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Optional[Sequence['outputs.GetBandwidthSourcePropertiesDataItemPropertiesValuesItemProperties']]:
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetBandwidthSourcePropertiesDataItemPropertiesLabelsProperties(dict):
+    def __init__(__self__, *,
+                 resource: Optional[_builtins.str] = None,
+                 traffic_source: Optional['GetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesTrafficSource'] = None):
+        if resource is not None:
+            pulumi.set(__self__, "resource", resource)
+        if traffic_source is not None:
+            pulumi.set(__self__, "traffic_source", traffic_source)
+
+    @_builtins.property
+    @pulumi.getter
+    def resource(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "resource")
+
+    @_builtins.property
+    @pulumi.getter(name="trafficSource")
+    def traffic_source(self) -> Optional['GetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesTrafficSource']:
+        return pulumi.get(self, "traffic_source")
+
+
+@pulumi.output_type
+class GetBandwidthSourcePropertiesDataItemPropertiesValuesItemProperties(dict):
+    def __init__(__self__, *,
+                 timestamp: Optional[_builtins.int] = None,
+                 value: Optional[_builtins.float] = None):
+        if timestamp is not None:
+            pulumi.set(__self__, "timestamp", timestamp)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def timestamp(self) -> Optional[_builtins.int]:
+        return pulumi.get(self, "timestamp")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[_builtins.float]:
+        return pulumi.get(self, "value")
+
 
 @pulumi.output_type
 class ListActiveConnectionsItemProperties(dict):

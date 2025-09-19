@@ -22,7 +22,7 @@ func ListBlueprintSyncs(ctx *pulumi.Context, args *ListBlueprintSyncsArgs, opts 
 }
 
 type ListBlueprintSyncsArgs struct {
-	// The ID of the blueprint
+	// The ID of the Blueprint
 	BlueprintId string `pulumi:"blueprintId"`
 }
 
@@ -40,7 +40,7 @@ func ListBlueprintSyncsOutput(ctx *pulumi.Context, args ListBlueprintSyncsOutput
 }
 
 type ListBlueprintSyncsOutputArgs struct {
-	// The ID of the blueprint
+	// The ID of the Blueprint
 	BlueprintId pulumi.StringInput `pulumi:"blueprintId"`
 }
 

@@ -25,7 +25,7 @@ namespace Pulumi.Render.NotificationSettings
     public sealed class GetOwnerNotificationSettingArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The ID of the owner (team or personal user) whose resources should be returned
+        /// The ID of the workspace to return resources for
         /// </summary>
         [Input("ownerId", required: true)]
         public string OwnerId { get; set; } = null!;
@@ -39,7 +39,7 @@ namespace Pulumi.Render.NotificationSettings
     public sealed class GetOwnerNotificationSettingInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The ID of the owner (team or personal user) whose resources should be returned
+        /// The ID of the workspace to return resources for
         /// </summary>
         [Input("ownerId", required: true)]
         public Input<string> OwnerId { get; set; } = null!;

@@ -8,3 +8,10 @@ export const OwnerType = {
 } as const;
 
 export type OwnerType = (typeof OwnerType)[keyof typeof OwnerType];
+
+export const TeamMemberStatus = {
+    Active: "active",
+    Inactive: "inactive",
+} as const;
+
+export type TeamMemberStatus = (typeof TeamMemberStatus)[keyof typeof TeamMemberStatus];

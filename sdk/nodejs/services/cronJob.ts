@@ -34,31 +34,31 @@ export class CronJob extends pulumi.CustomResource {
         return obj['__pulumiType'] === CronJob.__pulumiType;
     }
 
-    declare public readonly autoDeploy: pulumi.Output<enums.services.ServiceAutoDeploy | undefined>;
-    declare public readonly branch: pulumi.Output<string | undefined>;
-    declare public readonly buildFilter: pulumi.Output<outputs.services.BuildFilter | undefined>;
-    declare public /*out*/ readonly createdAt: pulumi.Output<string | undefined>;
+    public readonly autoDeploy!: pulumi.Output<enums.services.ServiceAutoDeploy | undefined>;
+    public readonly branch!: pulumi.Output<string | undefined>;
+    public readonly buildFilter!: pulumi.Output<outputs.services.BuildFilter | undefined>;
+    public /*out*/ readonly createdAt!: pulumi.Output<string | undefined>;
     /**
      * The URL to view the service in the Render Dashboard
      */
-    declare public /*out*/ readonly dashboardUrl: pulumi.Output<string | undefined>;
-    declare public readonly envVars: pulumi.Output<outputs.services.EnvVarInput[] | undefined>;
-    declare public /*out*/ readonly environmentId: pulumi.Output<string | undefined>;
-    declare public readonly image: pulumi.Output<outputs.services.Image | undefined>;
-    declare public /*out*/ readonly imagePath: pulumi.Output<string | undefined>;
-    declare public readonly name: pulumi.Output<string | undefined>;
-    declare public /*out*/ readonly notifyOnFail: pulumi.Output<enums.services.ServiceNotifyOnFail | undefined>;
-    declare public readonly ownerId: pulumi.Output<string | undefined>;
-    declare public /*out*/ readonly registryCredential: pulumi.Output<outputs.services.RegistryCredentialSummary | undefined>;
-    declare public readonly repo: pulumi.Output<string | undefined>;
-    declare public readonly rootDir: pulumi.Output<string | undefined>;
-    declare public readonly secretFiles: pulumi.Output<outputs.services.SecretFileInput[] | undefined>;
-    declare public readonly serviceDetails: pulumi.Output<outputs.services.CronJobDetailsOutput | undefined>;
-    declare public /*out*/ readonly slug: pulumi.Output<string | undefined>;
-    declare public /*out*/ readonly suspended: pulumi.Output<enums.services.ServiceSuspended | undefined>;
-    declare public /*out*/ readonly suspenders: pulumi.Output<enums.services.ServiceSuspendersItem[] | undefined>;
-    declare public readonly type: pulumi.Output<string | undefined>;
-    declare public /*out*/ readonly updatedAt: pulumi.Output<string | undefined>;
+    public /*out*/ readonly dashboardUrl!: pulumi.Output<string | undefined>;
+    public readonly envVars!: pulumi.Output<outputs.services.EnvVarInput[] | undefined>;
+    public readonly environmentId!: pulumi.Output<string | undefined>;
+    public readonly image!: pulumi.Output<outputs.services.Image | undefined>;
+    public /*out*/ readonly imagePath!: pulumi.Output<string | undefined>;
+    public readonly name!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly notifyOnFail!: pulumi.Output<enums.services.ServiceNotifyOnFail | undefined>;
+    public readonly ownerId!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly registryCredential!: pulumi.Output<outputs.services.RegistryCredentialSummary | undefined>;
+    public readonly repo!: pulumi.Output<string | undefined>;
+    public readonly rootDir!: pulumi.Output<string | undefined>;
+    public readonly secretFiles!: pulumi.Output<outputs.services.SecretFileInput[] | undefined>;
+    public readonly serviceDetails!: pulumi.Output<outputs.services.CronJobDetailsOutput | undefined>;
+    public /*out*/ readonly slug!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly suspended!: pulumi.Output<enums.services.ServiceSuspended | undefined>;
+    public /*out*/ readonly suspenders!: pulumi.Output<enums.services.ServiceSuspendersItem[] | undefined>;
+    public readonly type!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly updatedAt!: pulumi.Output<string | undefined>;
 
     /**
      * Create a CronJob resource with the given unique name, arguments, and options.
@@ -71,27 +71,27 @@ export class CronJob extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if (args?.name === undefined && !opts.urn) {
+            if ((!args || args.name === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'name'");
             }
-            if (args?.ownerId === undefined && !opts.urn) {
+            if ((!args || args.ownerId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'ownerId'");
             }
-            resourceInputs["autoDeploy"] = (args?.autoDeploy) ?? "yes";
-            resourceInputs["branch"] = args?.branch;
-            resourceInputs["buildFilter"] = args?.buildFilter;
-            resourceInputs["envVars"] = args?.envVars;
-            resourceInputs["image"] = args?.image;
-            resourceInputs["name"] = args?.name;
-            resourceInputs["ownerId"] = args?.ownerId;
-            resourceInputs["repo"] = args?.repo;
-            resourceInputs["rootDir"] = args?.rootDir;
-            resourceInputs["secretFiles"] = args?.secretFiles;
+            resourceInputs["autoDeploy"] = (args ? args.autoDeploy : undefined) ?? "yes";
+            resourceInputs["branch"] = args ? args.branch : undefined;
+            resourceInputs["buildFilter"] = args ? args.buildFilter : undefined;
+            resourceInputs["envVars"] = args ? args.envVars : undefined;
+            resourceInputs["environmentId"] = args ? args.environmentId : undefined;
+            resourceInputs["image"] = args ? args.image : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["ownerId"] = args ? args.ownerId : undefined;
+            resourceInputs["repo"] = args ? args.repo : undefined;
+            resourceInputs["rootDir"] = args ? args.rootDir : undefined;
+            resourceInputs["secretFiles"] = args ? args.secretFiles : undefined;
             resourceInputs["serviceDetails"] = args ? (args.serviceDetails ? pulumi.output(args.serviceDetails).apply(inputs.services.cronJobDetailsCreateArgsProvideDefaults) : undefined) : undefined;
-            resourceInputs["type"] = (args?.type) ?? "cron_job";
+            resourceInputs["type"] = (args ? args.type : undefined) ?? "cron_job";
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["dashboardUrl"] = undefined /*out*/;
-            resourceInputs["environmentId"] = undefined /*out*/;
             resourceInputs["imagePath"] = undefined /*out*/;
             resourceInputs["notifyOnFail"] = undefined /*out*/;
             resourceInputs["registryCredential"] = undefined /*out*/;
@@ -139,6 +139,10 @@ export interface CronJobArgs {
     branch?: pulumi.Input<string>;
     buildFilter?: pulumi.Input<inputs.services.BuildFilterArgs>;
     envVars?: pulumi.Input<pulumi.Input<inputs.services.EnvVarInputArgs>[]>;
+    /**
+     * The ID of the environment the service is associated with
+     */
+    environmentId?: pulumi.Input<string>;
     image?: pulumi.Input<inputs.services.ImageArgs>;
     name: pulumi.Input<string>;
     ownerId: pulumi.Input<string>;

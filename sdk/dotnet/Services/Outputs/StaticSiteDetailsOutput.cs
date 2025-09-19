@@ -22,6 +22,10 @@ namespace Pulumi.Render.Services.Outputs
         /// This field has been deprecated. previews.generation should be used in its place.
         /// </summary>
         public readonly Pulumi.Render.Services.StaticSiteDetailsOutputPullRequestPreviewsEnabled? PullRequestPreviewsEnabled;
+        /// <summary>
+        /// Controls whether render.com subdomains are available for the service
+        /// </summary>
+        public readonly Pulumi.Render.Services.StaticSiteDetailsOutputRenderSubdomainPolicy? RenderSubdomainPolicy;
         public readonly string Url;
 
         [OutputConstructor]
@@ -38,6 +42,8 @@ namespace Pulumi.Render.Services.Outputs
 
             Pulumi.Render.Services.StaticSiteDetailsOutputPullRequestPreviewsEnabled? pullRequestPreviewsEnabled,
 
+            Pulumi.Render.Services.StaticSiteDetailsOutputRenderSubdomainPolicy? renderSubdomainPolicy,
+
             string url)
         {
             BuildCommand = buildCommand;
@@ -46,6 +52,7 @@ namespace Pulumi.Render.Services.Outputs
             Previews = previews;
             PublishPath = publishPath;
             PullRequestPreviewsEnabled = pullRequestPreviewsEnabled;
+            RenderSubdomainPolicy = renderSubdomainPolicy;
             Url = url;
         }
     }

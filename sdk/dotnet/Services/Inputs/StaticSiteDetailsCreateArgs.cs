@@ -38,6 +38,12 @@ namespace Pulumi.Render.Services.Inputs
         [Input("pullRequestPreviewsEnabled")]
         public Input<Pulumi.Render.Services.StaticSiteDetailsCreatePullRequestPreviewsEnabled>? PullRequestPreviewsEnabled { get; set; }
 
+        /// <summary>
+        /// Controls whether render.com subdomains are available for the service
+        /// </summary>
+        [Input("renderSubdomainPolicy")]
+        public Input<Pulumi.Render.Services.StaticSiteDetailsCreateRenderSubdomainPolicy>? RenderSubdomainPolicy { get; set; }
+
         [Input("routes")]
         private InputList<Inputs.RouteCreateArgs>? _routes;
         public InputList<Inputs.RouteCreateArgs> Routes

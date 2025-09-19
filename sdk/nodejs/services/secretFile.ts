@@ -31,8 +31,8 @@ export class SecretFile extends pulumi.CustomResource {
         return obj['__pulumiType'] === SecretFile.__pulumiType;
     }
 
-    declare public readonly content: pulumi.Output<string>;
-    declare public /*out*/ readonly name: pulumi.Output<string>;
+    public readonly content!: pulumi.Output<string>;
+    public /*out*/ readonly name!: pulumi.Output<string>;
 
     /**
      * Create a SecretFile resource with the given unique name, arguments, and options.
@@ -45,9 +45,9 @@ export class SecretFile extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            resourceInputs["content"] = args?.content;
-            resourceInputs["secretFileName"] = args?.secretFileName;
-            resourceInputs["serviceId"] = args?.serviceId;
+            resourceInputs["content"] = args ? args.content : undefined;
+            resourceInputs["secretFileName"] = args ? args.secretFileName : undefined;
+            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
             resourceInputs["name"] = undefined /*out*/;
         } else {
             resourceInputs["content"] = undefined /*out*/;

@@ -8,6 +8,7 @@ from enum import Enum
 
 __all__ = [
     'OwnerType',
+    'TeamMemberStatus',
 ]
 
 
@@ -15,3 +16,9 @@ __all__ = [
 class OwnerType(_builtins.str, Enum):
     USER = "user"
     TEAM = "team"
+
+
+@pulumi.type_token("render:owners:TeamMemberStatus")
+class TeamMemberStatus(_builtins.str, Enum):
+    ACTIVE = "active"
+    INACTIVE = "inactive"

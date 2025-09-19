@@ -31,9 +31,9 @@ export class EnvVar extends pulumi.CustomResource {
         return obj['__pulumiType'] === EnvVar.__pulumiType;
     }
 
-    declare public readonly generateValue: pulumi.Output<boolean | undefined>;
-    declare public /*out*/ readonly key: pulumi.Output<string>;
-    declare public readonly value: pulumi.Output<string>;
+    public readonly generateValue!: pulumi.Output<boolean | undefined>;
+    public /*out*/ readonly key!: pulumi.Output<string>;
+    public readonly value!: pulumi.Output<string>;
 
     /**
      * Create a EnvVar resource with the given unique name, arguments, and options.
@@ -46,10 +46,10 @@ export class EnvVar extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            resourceInputs["envVarKey"] = args?.envVarKey;
-            resourceInputs["generateValue"] = args?.generateValue;
-            resourceInputs["serviceId"] = args?.serviceId;
-            resourceInputs["value"] = args?.value;
+            resourceInputs["envVarKey"] = args ? args.envVarKey : undefined;
+            resourceInputs["generateValue"] = args ? args.generateValue : undefined;
+            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
+            resourceInputs["value"] = args ? args.value : undefined;
             resourceInputs["key"] = undefined /*out*/;
         } else {
             resourceInputs["generateValue"] = undefined /*out*/;

@@ -397,6 +397,8 @@ namespace Pulumi.Render.Services
             _value = value ?? throw new ArgumentNullException(nameof(value));
         }
 
+        public static CancelJobStatus Pending { get; } = new CancelJobStatus("pending");
+        public static CancelJobStatus Running { get; } = new CancelJobStatus("running");
         public static CancelJobStatus Succeeded { get; } = new CancelJobStatus("succeeded");
         public static CancelJobStatus Failed { get; } = new CancelJobStatus("failed");
         public static CancelJobStatus Canceled { get; } = new CancelJobStatus("canceled");
@@ -832,6 +834,7 @@ namespace Pulumi.Render.Services
         }
 
         public static DeployStatus Created { get; } = new DeployStatus("created");
+        public static DeployStatus Queued { get; } = new DeployStatus("queued");
         public static DeployStatus BuildInProgress { get; } = new DeployStatus("build_in_progress");
         public static DeployStatus UpdateInProgress { get; } = new DeployStatus("update_in_progress");
         public static DeployStatus Live { get; } = new DeployStatus("live");
@@ -903,6 +906,8 @@ namespace Pulumi.Render.Services
             _value = value ?? throw new ArgumentNullException(nameof(value));
         }
 
+        public static JobStatus Pending { get; } = new JobStatus("pending");
+        public static JobStatus Running { get; } = new JobStatus("running");
         public static JobStatus Succeeded { get; } = new JobStatus("succeeded");
         public static JobStatus Failed { get; } = new JobStatus("failed");
         public static JobStatus Canceled { get; } = new JobStatus("canceled");
@@ -1618,6 +1623,8 @@ namespace Pulumi.Render.Services
         public static ServiceSuspendersItem Billing { get; } = new ServiceSuspendersItem("billing");
         public static ServiceSuspendersItem User { get; } = new ServiceSuspendersItem("user");
         public static ServiceSuspendersItem ParentService { get; } = new ServiceSuspendersItem("parent_service");
+        public static ServiceSuspendersItem StuckCrashlooping { get; } = new ServiceSuspendersItem("stuck_crashlooping");
+        public static ServiceSuspendersItem HipaaEnablement { get; } = new ServiceSuspendersItem("hipaa_enablement");
         public static ServiceSuspendersItem Unknown { get; } = new ServiceSuspendersItem("unknown");
 
         public static bool operator ==(ServiceSuspendersItem left, ServiceSuspendersItem right) => left.Equals(right);
@@ -1659,6 +1666,37 @@ namespace Pulumi.Render.Services
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool Equals(object? obj) => obj is StaticSiteDetailsCreatePullRequestPreviewsEnabled other && Equals(other);
         public bool Equals(StaticSiteDetailsCreatePullRequestPreviewsEnabled other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    /// <summary>
+    /// Controls whether render.com subdomains are available for the service
+    /// </summary>
+    [EnumType]
+    public readonly struct StaticSiteDetailsCreateRenderSubdomainPolicy : IEquatable<StaticSiteDetailsCreateRenderSubdomainPolicy>
+    {
+        private readonly string _value;
+
+        private StaticSiteDetailsCreateRenderSubdomainPolicy(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static StaticSiteDetailsCreateRenderSubdomainPolicy Enabled { get; } = new StaticSiteDetailsCreateRenderSubdomainPolicy("enabled");
+        public static StaticSiteDetailsCreateRenderSubdomainPolicy Disabled { get; } = new StaticSiteDetailsCreateRenderSubdomainPolicy("disabled");
+
+        public static bool operator ==(StaticSiteDetailsCreateRenderSubdomainPolicy left, StaticSiteDetailsCreateRenderSubdomainPolicy right) => left.Equals(right);
+        public static bool operator !=(StaticSiteDetailsCreateRenderSubdomainPolicy left, StaticSiteDetailsCreateRenderSubdomainPolicy right) => !left.Equals(right);
+
+        public static explicit operator string(StaticSiteDetailsCreateRenderSubdomainPolicy value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is StaticSiteDetailsCreateRenderSubdomainPolicy other && Equals(other);
+        public bool Equals(StaticSiteDetailsCreateRenderSubdomainPolicy other) => string.Equals(_value, other._value, StringComparison.Ordinal);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => _value?.GetHashCode() ?? 0;
@@ -1725,6 +1763,37 @@ namespace Pulumi.Render.Services
         public override string ToString() => _value;
     }
 
+    /// <summary>
+    /// Controls whether render.com subdomains are available for the service
+    /// </summary>
+    [EnumType]
+    public readonly struct StaticSiteDetailsOutputRenderSubdomainPolicy : IEquatable<StaticSiteDetailsOutputRenderSubdomainPolicy>
+    {
+        private readonly string _value;
+
+        private StaticSiteDetailsOutputRenderSubdomainPolicy(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static StaticSiteDetailsOutputRenderSubdomainPolicy Enabled { get; } = new StaticSiteDetailsOutputRenderSubdomainPolicy("enabled");
+        public static StaticSiteDetailsOutputRenderSubdomainPolicy Disabled { get; } = new StaticSiteDetailsOutputRenderSubdomainPolicy("disabled");
+
+        public static bool operator ==(StaticSiteDetailsOutputRenderSubdomainPolicy left, StaticSiteDetailsOutputRenderSubdomainPolicy right) => left.Equals(right);
+        public static bool operator !=(StaticSiteDetailsOutputRenderSubdomainPolicy left, StaticSiteDetailsOutputRenderSubdomainPolicy right) => !left.Equals(right);
+
+        public static explicit operator string(StaticSiteDetailsOutputRenderSubdomainPolicy value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is StaticSiteDetailsOutputRenderSubdomainPolicy other && Equals(other);
+        public bool Equals(StaticSiteDetailsOutputRenderSubdomainPolicy other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
     [EnumType]
     public readonly struct Status : IEquatable<Status>
     {
@@ -1736,6 +1805,7 @@ namespace Pulumi.Render.Services
         }
 
         public static Status Created { get; } = new Status("created");
+        public static Status Queued { get; } = new Status("queued");
         public static Status BuildInProgress { get; } = new Status("build_in_progress");
         public static Status UpdateInProgress { get; } = new Status("update_in_progress");
         public static Status Live { get; } = new Status("live");
@@ -1963,6 +2033,37 @@ namespace Pulumi.Render.Services
     }
 
     /// <summary>
+    /// Controls whether render.com subdomains are available for the service
+    /// </summary>
+    [EnumType]
+    public readonly struct WebServiceDetailsCreateRenderSubdomainPolicy : IEquatable<WebServiceDetailsCreateRenderSubdomainPolicy>
+    {
+        private readonly string _value;
+
+        private WebServiceDetailsCreateRenderSubdomainPolicy(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static WebServiceDetailsCreateRenderSubdomainPolicy Enabled { get; } = new WebServiceDetailsCreateRenderSubdomainPolicy("enabled");
+        public static WebServiceDetailsCreateRenderSubdomainPolicy Disabled { get; } = new WebServiceDetailsCreateRenderSubdomainPolicy("disabled");
+
+        public static bool operator ==(WebServiceDetailsCreateRenderSubdomainPolicy left, WebServiceDetailsCreateRenderSubdomainPolicy right) => left.Equals(right);
+        public static bool operator !=(WebServiceDetailsCreateRenderSubdomainPolicy left, WebServiceDetailsCreateRenderSubdomainPolicy right) => !left.Equals(right);
+
+        public static explicit operator string(WebServiceDetailsCreateRenderSubdomainPolicy value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is WebServiceDetailsCreateRenderSubdomainPolicy other && Equals(other);
+        public bool Equals(WebServiceDetailsCreateRenderSubdomainPolicy other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    /// <summary>
     /// Runtime
     /// </summary>
     [EnumType]
@@ -2161,6 +2262,37 @@ namespace Pulumi.Render.Services
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool Equals(object? obj) => obj is WebServiceDetailsOutputRegion other && Equals(other);
         public bool Equals(WebServiceDetailsOutputRegion other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    /// <summary>
+    /// Controls whether render.com subdomains are available for the service
+    /// </summary>
+    [EnumType]
+    public readonly struct WebServiceDetailsOutputRenderSubdomainPolicy : IEquatable<WebServiceDetailsOutputRenderSubdomainPolicy>
+    {
+        private readonly string _value;
+
+        private WebServiceDetailsOutputRenderSubdomainPolicy(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static WebServiceDetailsOutputRenderSubdomainPolicy Enabled { get; } = new WebServiceDetailsOutputRenderSubdomainPolicy("enabled");
+        public static WebServiceDetailsOutputRenderSubdomainPolicy Disabled { get; } = new WebServiceDetailsOutputRenderSubdomainPolicy("disabled");
+
+        public static bool operator ==(WebServiceDetailsOutputRenderSubdomainPolicy left, WebServiceDetailsOutputRenderSubdomainPolicy right) => left.Equals(right);
+        public static bool operator !=(WebServiceDetailsOutputRenderSubdomainPolicy left, WebServiceDetailsOutputRenderSubdomainPolicy right) => !left.Equals(right);
+
+        public static explicit operator string(WebServiceDetailsOutputRenderSubdomainPolicy value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is WebServiceDetailsOutputRenderSubdomainPolicy other && Equals(other);
+        public bool Equals(WebServiceDetailsOutputRenderSubdomainPolicy other) => string.Equals(_value, other._value, StringComparison.Ordinal);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => _value?.GetHashCode() ?? 0;

@@ -20,6 +20,7 @@ __all__ = [
     'BackgroundWorkerDetailsOutput',
     'BackgroundWorkerOutput',
     'BuildFilter',
+    'Cache',
     'CommitProperties',
     'CriteriaProperties',
     'CriteriaPropertiesCpuProperties',
@@ -57,6 +58,7 @@ __all__ = [
     'SecretFileWithCursor',
     'ServerPort',
     'Service',
+    'ServiceInstance',
     'StaticSiteDetailsOutput',
     'StaticSiteOutput',
     'WebServiceDetailsOutput',
@@ -450,6 +452,18 @@ class BuildFilter(dict):
     @pulumi.getter
     def paths(self) -> Sequence[_builtins.str]:
         return pulumi.get(self, "paths")
+
+
+@pulumi.output_type
+class Cache(dict):
+    def __init__(__self__, *,
+                 profile: _builtins.str):
+        pulumi.set(__self__, "profile", profile)
+
+    @_builtins.property
+    @pulumi.getter
+    def profile(self) -> _builtins.str:
+        return pulumi.get(self, "profile")
 
 
 @pulumi.output_type
@@ -922,6 +936,7 @@ class Deploy(dict):
                  created_at: Optional[_builtins.str] = None,
                  finished_at: Optional[_builtins.str] = None,
                  image: Optional['outputs.DeployImageProperties'] = None,
+                 started_at: Optional[_builtins.str] = None,
                  status: Optional['DeployStatus'] = None,
                  trigger: Optional['DeployTrigger'] = None,
                  updated_at: Optional[_builtins.str] = None):
@@ -937,6 +952,8 @@ class Deploy(dict):
             pulumi.set(__self__, "finished_at", finished_at)
         if image is not None:
             pulumi.set(__self__, "image", image)
+        if started_at is not None:
+            pulumi.set(__self__, "started_at", started_at)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if trigger is not None:
@@ -971,6 +988,11 @@ class Deploy(dict):
         Image information used when creating the deploy. Not present for Git-backed deploys
         """
         return pulumi.get(self, "image")
+
+    @_builtins.property
+    @pulumi.getter(name="startedAt")
+    def started_at(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "started_at")
 
     @_builtins.property
     @pulumi.getter
@@ -1545,7 +1567,7 @@ class MaintenanceMode(dict):
                  enabled: _builtins.bool,
                  uri: _builtins.str):
         """
-        :param _builtins.str uri: The page to be served when [maintenance mode](https://docs.render.com/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
+        :param _builtins.str uri: The page to be served when [maintenance mode](https://render.com/docs/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
         """
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "uri", uri)
@@ -1559,7 +1581,7 @@ class MaintenanceMode(dict):
     @pulumi.getter
     def uri(self) -> _builtins.str:
         """
-        The page to be served when [maintenance mode](https://docs.render.com/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
+        The page to be served when [maintenance mode](https://render.com/docs/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
         """
         return pulumi.get(self, "uri")
 
@@ -2386,6 +2408,25 @@ class Service(dict):
 
 
 @pulumi.output_type
+class ServiceInstance(dict):
+    def __init__(__self__, *,
+                 created_at: _builtins.str,
+                 id: _builtins.str):
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "id", id)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
 class StaticSiteDetailsOutput(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -2400,6 +2441,8 @@ class StaticSiteDetailsOutput(dict):
             suggest = "parent_server"
         elif key == "pullRequestPreviewsEnabled":
             suggest = "pull_request_previews_enabled"
+        elif key == "renderSubdomainPolicy":
+            suggest = "render_subdomain_policy"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in StaticSiteDetailsOutput. Access the value via the '{suggest}' property getter instead.")
@@ -2419,9 +2462,11 @@ class StaticSiteDetailsOutput(dict):
                  url: _builtins.str,
                  parent_server: Optional['outputs.Resource'] = None,
                  previews: Optional['outputs.Previews'] = None,
-                 pull_request_previews_enabled: Optional['StaticSiteDetailsOutputPullRequestPreviewsEnabled'] = None):
+                 pull_request_previews_enabled: Optional['StaticSiteDetailsOutputPullRequestPreviewsEnabled'] = None,
+                 render_subdomain_policy: Optional['StaticSiteDetailsOutputRenderSubdomainPolicy'] = None):
         """
         :param 'StaticSiteDetailsOutputPullRequestPreviewsEnabled' pull_request_previews_enabled: This field has been deprecated. previews.generation should be used in its place.
+        :param 'StaticSiteDetailsOutputRenderSubdomainPolicy' render_subdomain_policy: Controls whether render.com subdomains are available for the service
         """
         pulumi.set(__self__, "build_command", build_command)
         if build_plan is None:
@@ -2437,6 +2482,8 @@ class StaticSiteDetailsOutput(dict):
             pull_request_previews_enabled = 'no'
         if pull_request_previews_enabled is not None:
             pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
+        if render_subdomain_policy is not None:
+            pulumi.set(__self__, "render_subdomain_policy", render_subdomain_policy)
 
     @_builtins.property
     @pulumi.getter(name="buildCommand")
@@ -2475,6 +2522,14 @@ class StaticSiteDetailsOutput(dict):
         This field has been deprecated. previews.generation should be used in its place.
         """
         return pulumi.get(self, "pull_request_previews_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="renderSubdomainPolicy")
+    def render_subdomain_policy(self) -> Optional['StaticSiteDetailsOutputRenderSubdomainPolicy']:
+        """
+        Controls whether render.com subdomains are available for the service
+        """
+        return pulumi.get(self, "render_subdomain_policy")
 
 
 @pulumi.output_type
@@ -2663,6 +2718,8 @@ class WebServiceDetailsOutput(dict):
             suggest = "parent_server"
         elif key == "pullRequestPreviewsEnabled":
             suggest = "pull_request_previews_enabled"
+        elif key == "renderSubdomainPolicy":
+            suggest = "render_subdomain_policy"
         elif key == "sshAddress":
             suggest = "ssh_address"
 
@@ -2689,12 +2746,14 @@ class WebServiceDetailsOutput(dict):
                  runtime: 'WebServiceDetailsOutputRuntime',
                  url: _builtins.str,
                  autoscaling: Optional['outputs.WebServiceDetailsOutputAutoscalingProperties'] = None,
+                 cache: Optional['outputs.Cache'] = None,
                  disk: Optional['outputs.WebServiceDetailsOutputDiskProperties'] = None,
                  maintenance_mode: Optional['outputs.MaintenanceMode'] = None,
                  max_shutdown_delay_seconds: Optional[_builtins.int] = None,
                  parent_server: Optional['outputs.Resource'] = None,
                  previews: Optional['outputs.Previews'] = None,
                  pull_request_previews_enabled: Optional['WebServiceDetailsOutputPullRequestPreviewsEnabled'] = None,
+                 render_subdomain_policy: Optional['WebServiceDetailsOutputRenderSubdomainPolicy'] = None,
                  ssh_address: Optional[_builtins.str] = None):
         """
         :param 'WebServiceDetailsOutputEnv' env: This field has been deprecated, runtime should be used in its place.
@@ -2704,6 +2763,7 @@ class WebServiceDetailsOutput(dict):
         :param 'WebServiceDetailsOutputRuntime' runtime: Runtime
         :param _builtins.int max_shutdown_delay_seconds: The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
         :param 'WebServiceDetailsOutputPullRequestPreviewsEnabled' pull_request_previews_enabled: This field has been deprecated. previews.generation should be used in its place.
+        :param 'WebServiceDetailsOutputRenderSubdomainPolicy' render_subdomain_policy: Controls whether render.com subdomains are available for the service
         :param _builtins.str ssh_address: The SSH address for the service. Only present for services that have SSH enabled.
         """
         if build_plan is None:
@@ -2722,6 +2782,8 @@ class WebServiceDetailsOutput(dict):
         pulumi.set(__self__, "url", url)
         if autoscaling is not None:
             pulumi.set(__self__, "autoscaling", autoscaling)
+        if cache is not None:
+            pulumi.set(__self__, "cache", cache)
         if disk is not None:
             pulumi.set(__self__, "disk", disk)
         if maintenance_mode is not None:
@@ -2738,6 +2800,8 @@ class WebServiceDetailsOutput(dict):
             pull_request_previews_enabled = 'no'
         if pull_request_previews_enabled is not None:
             pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
+        if render_subdomain_policy is not None:
+            pulumi.set(__self__, "render_subdomain_policy", render_subdomain_policy)
         if ssh_address is not None:
             pulumi.set(__self__, "ssh_address", ssh_address)
 
@@ -2813,6 +2877,11 @@ class WebServiceDetailsOutput(dict):
 
     @_builtins.property
     @pulumi.getter
+    def cache(self) -> Optional['outputs.Cache']:
+        return pulumi.get(self, "cache")
+
+    @_builtins.property
+    @pulumi.getter
     def disk(self) -> Optional['outputs.WebServiceDetailsOutputDiskProperties']:
         return pulumi.get(self, "disk")
 
@@ -2846,6 +2915,14 @@ class WebServiceDetailsOutput(dict):
         This field has been deprecated. previews.generation should be used in its place.
         """
         return pulumi.get(self, "pull_request_previews_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="renderSubdomainPolicy")
+    def render_subdomain_policy(self) -> Optional['WebServiceDetailsOutputRenderSubdomainPolicy']:
+        """
+        Controls whether render.com subdomains are available for the service
+        """
+        return pulumi.get(self, "render_subdomain_policy")
 
     @_builtins.property
     @pulumi.getter(name="sshAddress")

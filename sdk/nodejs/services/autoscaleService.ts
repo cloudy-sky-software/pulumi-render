@@ -34,16 +34,16 @@ export class AutoscaleService extends pulumi.CustomResource {
         return obj['__pulumiType'] === AutoscaleService.__pulumiType;
     }
 
-    declare public readonly criteria: pulumi.Output<outputs.services.CriteriaProperties>;
-    declare public readonly enabled: pulumi.Output<boolean>;
+    public readonly criteria!: pulumi.Output<outputs.services.CriteriaProperties>;
+    public readonly enabled!: pulumi.Output<boolean>;
     /**
      * The maximum number of instances for the service
      */
-    declare public readonly max: pulumi.Output<number>;
+    public readonly max!: pulumi.Output<number>;
     /**
      * The minimum number of instances for the service
      */
-    declare public readonly min: pulumi.Output<number>;
+    public readonly min!: pulumi.Output<number>;
 
     /**
      * Create a AutoscaleService resource with the given unique name, arguments, and options.
@@ -56,23 +56,23 @@ export class AutoscaleService extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if (args?.criteria === undefined && !opts.urn) {
+            if ((!args || args.criteria === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'criteria'");
             }
-            if (args?.enabled === undefined && !opts.urn) {
+            if ((!args || args.enabled === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'enabled'");
             }
-            if (args?.max === undefined && !opts.urn) {
+            if ((!args || args.max === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'max'");
             }
-            if (args?.min === undefined && !opts.urn) {
+            if ((!args || args.min === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'min'");
             }
             resourceInputs["criteria"] = args ? (args.criteria ? pulumi.output(args.criteria).apply(inputs.services.criteriaPropertiesArgsProvideDefaults) : undefined) : undefined;
-            resourceInputs["enabled"] = (args?.enabled) ?? false;
-            resourceInputs["max"] = args?.max;
-            resourceInputs["min"] = args?.min;
-            resourceInputs["serviceId"] = args?.serviceId;
+            resourceInputs["enabled"] = (args ? args.enabled : undefined) ?? false;
+            resourceInputs["max"] = args ? args.max : undefined;
+            resourceInputs["min"] = args ? args.min : undefined;
+            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
         } else {
             resourceInputs["criteria"] = undefined /*out*/;
             resourceInputs["enabled"] = undefined /*out*/;

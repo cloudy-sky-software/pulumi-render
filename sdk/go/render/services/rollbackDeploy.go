@@ -22,6 +22,7 @@ type RollbackDeploy struct {
 	FinishedAt pulumi.StringPtrOutput `pulumi:"finishedAt"`
 	// Image information used when creating the deploy. Not present for Git-backed deploys
 	Image     ImagePropertiesPtrOutput `pulumi:"image"`
+	StartedAt pulumi.StringPtrOutput   `pulumi:"startedAt"`
 	Status    StatusPtrOutput          `pulumi:"status"`
 	Trigger   TriggerPtrOutput         `pulumi:"trigger"`
 	UpdatedAt pulumi.StringPtrOutput   `pulumi:"updatedAt"`
@@ -141,6 +142,10 @@ func (o RollbackDeployOutput) FinishedAt() pulumi.StringPtrOutput {
 // Image information used when creating the deploy. Not present for Git-backed deploys
 func (o RollbackDeployOutput) Image() ImagePropertiesPtrOutput {
 	return o.ApplyT(func(v *RollbackDeploy) ImagePropertiesPtrOutput { return v.Image }).(ImagePropertiesPtrOutput)
+}
+
+func (o RollbackDeployOutput) StartedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RollbackDeploy) pulumi.StringPtrOutput { return v.StartedAt }).(pulumi.StringPtrOutput)
 }
 
 func (o RollbackDeployOutput) Status() StatusPtrOutput {

@@ -316,6 +316,8 @@ namespace Pulumi.Render.Postgres
         public static PostgresDetailSuspendersItem Billing { get; } = new PostgresDetailSuspendersItem("billing");
         public static PostgresDetailSuspendersItem User { get; } = new PostgresDetailSuspendersItem("user");
         public static PostgresDetailSuspendersItem ParentService { get; } = new PostgresDetailSuspendersItem("parent_service");
+        public static PostgresDetailSuspendersItem StuckCrashlooping { get; } = new PostgresDetailSuspendersItem("stuck_crashlooping");
+        public static PostgresDetailSuspendersItem HipaaEnablement { get; } = new PostgresDetailSuspendersItem("hipaa_enablement");
         public static PostgresDetailSuspendersItem Unknown { get; } = new PostgresDetailSuspendersItem("unknown");
 
         public static bool operator ==(PostgresDetailSuspendersItem left, PostgresDetailSuspendersItem right) => left.Equals(right);
@@ -352,6 +354,7 @@ namespace Pulumi.Render.Postgres
         public static PostgresDetailVersion PostgresDetailVersion_14 { get; } = new PostgresDetailVersion("14");
         public static PostgresDetailVersion PostgresDetailVersion_15 { get; } = new PostgresDetailVersion("15");
         public static PostgresDetailVersion PostgresDetailVersion_16 { get; } = new PostgresDetailVersion("16");
+        public static PostgresDetailVersion PostgresDetailVersion_17 { get; } = new PostgresDetailVersion("17");
 
         public static bool operator ==(PostgresDetailVersion left, PostgresDetailVersion right) => left.Equals(right);
         public static bool operator !=(PostgresDetailVersion left, PostgresDetailVersion right) => !left.Equals(right);
@@ -563,6 +566,8 @@ namespace Pulumi.Render.Postgres
         public static PostgresSuspendersItem Billing { get; } = new PostgresSuspendersItem("billing");
         public static PostgresSuspendersItem User { get; } = new PostgresSuspendersItem("user");
         public static PostgresSuspendersItem ParentService { get; } = new PostgresSuspendersItem("parent_service");
+        public static PostgresSuspendersItem StuckCrashlooping { get; } = new PostgresSuspendersItem("stuck_crashlooping");
+        public static PostgresSuspendersItem HipaaEnablement { get; } = new PostgresSuspendersItem("hipaa_enablement");
         public static PostgresSuspendersItem Unknown { get; } = new PostgresSuspendersItem("unknown");
 
         public static bool operator ==(PostgresSuspendersItem left, PostgresSuspendersItem right) => left.Equals(right);
@@ -599,6 +604,7 @@ namespace Pulumi.Render.Postgres
         public static PostgresVersion PostgresVersion_14 { get; } = new PostgresVersion("14");
         public static PostgresVersion PostgresVersion_15 { get; } = new PostgresVersion("15");
         public static PostgresVersion PostgresVersion_16 { get; } = new PostgresVersion("16");
+        public static PostgresVersion PostgresVersion_17 { get; } = new PostgresVersion("17");
 
         public static bool operator ==(PostgresVersion left, PostgresVersion right) => left.Equals(right);
         public static bool operator !=(PostgresVersion left, PostgresVersion right) => !left.Equals(right);
@@ -816,6 +822,8 @@ namespace Pulumi.Render.Postgres
         public static SuspendersItem Billing { get; } = new SuspendersItem("billing");
         public static SuspendersItem User { get; } = new SuspendersItem("user");
         public static SuspendersItem ParentService { get; } = new SuspendersItem("parent_service");
+        public static SuspendersItem StuckCrashlooping { get; } = new SuspendersItem("stuck_crashlooping");
+        public static SuspendersItem HipaaEnablement { get; } = new SuspendersItem("hipaa_enablement");
         public static SuspendersItem Unknown { get; } = new SuspendersItem("unknown");
 
         public static bool operator ==(SuspendersItem left, SuspendersItem right) => left.Equals(right);
@@ -852,6 +860,7 @@ namespace Pulumi.Render.Postgres
         public static Version Version_14 { get; } = new Version("14");
         public static Version Version_15 { get; } = new Version("15");
         public static Version Version_16 { get; } = new Version("16");
+        public static Version Version_17 { get; } = new Version("17");
 
         public static bool operator ==(Version left, Version right) => left.Equals(right);
         public static bool operator !=(Version left, Version right) => !left.Equals(right);

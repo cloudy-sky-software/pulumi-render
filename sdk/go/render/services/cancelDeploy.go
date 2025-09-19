@@ -19,6 +19,7 @@ type CancelDeploy struct {
 	FinishedAt pulumi.StringPtrOutput    `pulumi:"finishedAt"`
 	// Image information used when creating the deploy. Not present for Git-backed deploys
 	Image     ImagePropertiesPtrOutput `pulumi:"image"`
+	StartedAt pulumi.StringPtrOutput   `pulumi:"startedAt"`
 	Status    StatusPtrOutput          `pulumi:"status"`
 	Trigger   TriggerPtrOutput         `pulumi:"trigger"`
 	UpdatedAt pulumi.StringPtrOutput   `pulumi:"updatedAt"`
@@ -130,6 +131,10 @@ func (o CancelDeployOutput) FinishedAt() pulumi.StringPtrOutput {
 // Image information used when creating the deploy. Not present for Git-backed deploys
 func (o CancelDeployOutput) Image() ImagePropertiesPtrOutput {
 	return o.ApplyT(func(v *CancelDeploy) ImagePropertiesPtrOutput { return v.Image }).(ImagePropertiesPtrOutput)
+}
+
+func (o CancelDeployOutput) StartedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CancelDeploy) pulumi.StringPtrOutput { return v.StartedAt }).(pulumi.StringPtrOutput)
 }
 
 func (o CancelDeployOutput) Status() StatusPtrOutput {

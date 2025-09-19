@@ -34,18 +34,18 @@ export class EnvGroup extends pulumi.CustomResource {
         return obj['__pulumiType'] === EnvGroup.__pulumiType;
     }
 
-    declare public /*out*/ readonly createdAt: pulumi.Output<string | undefined>;
-    declare public readonly envVars: pulumi.Output<outputs.envgroups.EnvVar[]>;
-    declare public readonly environmentId: pulumi.Output<string | undefined>;
-    declare public readonly name: pulumi.Output<string>;
-    declare public readonly ownerId: pulumi.Output<string>;
-    declare public readonly secretFiles: pulumi.Output<outputs.envgroups.SecretFile[] | undefined>;
-    declare public readonly serviceIds: pulumi.Output<string[] | undefined>;
+    public /*out*/ readonly createdAt!: pulumi.Output<string | undefined>;
+    public readonly envVars!: pulumi.Output<outputs.envgroups.EnvVar[]>;
+    public readonly environmentId!: pulumi.Output<string | undefined>;
+    public readonly name!: pulumi.Output<string>;
+    public readonly ownerId!: pulumi.Output<string>;
+    public readonly secretFiles!: pulumi.Output<outputs.envgroups.SecretFile[] | undefined>;
+    public readonly serviceIds!: pulumi.Output<string[] | undefined>;
     /**
      * List of serviceIds linked to the envGroup
      */
-    declare public /*out*/ readonly serviceLinks: pulumi.Output<outputs.envgroups.EnvGroupLink[] | undefined>;
-    declare public /*out*/ readonly updatedAt: pulumi.Output<string | undefined>;
+    public /*out*/ readonly serviceLinks!: pulumi.Output<outputs.envgroups.EnvGroupLink[] | undefined>;
+    public /*out*/ readonly updatedAt!: pulumi.Output<string | undefined>;
 
     /**
      * Create a EnvGroup resource with the given unique name, arguments, and options.
@@ -58,18 +58,18 @@ export class EnvGroup extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if (args?.envVars === undefined && !opts.urn) {
+            if ((!args || args.envVars === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'envVars'");
             }
-            if (args?.ownerId === undefined && !opts.urn) {
+            if ((!args || args.ownerId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'ownerId'");
             }
-            resourceInputs["envVars"] = args?.envVars;
-            resourceInputs["environmentId"] = args?.environmentId;
-            resourceInputs["name"] = args?.name;
-            resourceInputs["ownerId"] = args?.ownerId;
-            resourceInputs["secretFiles"] = args?.secretFiles;
-            resourceInputs["serviceIds"] = args?.serviceIds;
+            resourceInputs["envVars"] = args ? args.envVars : undefined;
+            resourceInputs["environmentId"] = args ? args.environmentId : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["ownerId"] = args ? args.ownerId : undefined;
+            resourceInputs["secretFiles"] = args ? args.secretFiles : undefined;
+            resourceInputs["serviceIds"] = args ? args.serviceIds : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["serviceLinks"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;

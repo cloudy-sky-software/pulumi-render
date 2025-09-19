@@ -30,8 +30,17 @@ namespace Pulumi.Render.Postgres
         [Output("databaseUser")]
         public Output<string> DatabaseUser { get; private set; } = null!;
 
+        /// <summary>
+        /// The Datadog API key for the Datadog agent to monitor the new database.
+        /// </summary>
         [Output("datadogAPIKey")]
         public Output<string?> DatadogAPIKey { get; private set; } = null!;
+
+        /// <summary>
+        /// Datadog region to use for monitoring the new database. Defaults to 'US1'.
+        /// </summary>
+        [Output("datadogSite")]
+        public Output<string?> DatadogSite { get; private set; } = null!;
 
         [Output("diskSizeGB")]
         public Output<int?> DiskSizeGB { get; private set; } = null!;
@@ -64,7 +73,7 @@ namespace Pulumi.Render.Postgres
         public Output<Outputs.Owner> Owner { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the owner (team or personal user) whose resources should be returned
+        /// The ID of the workspace to create the database for
         /// </summary>
         [Output("ownerId")]
         public Output<string> OwnerId { get; private set; } = null!;
@@ -157,8 +166,17 @@ namespace Pulumi.Render.Postgres
         [Input("databaseUser")]
         public Input<string>? DatabaseUser { get; set; }
 
+        /// <summary>
+        /// The Datadog API key for the Datadog agent to monitor the new database.
+        /// </summary>
         [Input("datadogAPIKey")]
         public Input<string>? DatadogAPIKey { get; set; }
+
+        /// <summary>
+        /// Datadog region to use for monitoring the new database. Defaults to 'US1'.
+        /// </summary>
+        [Input("datadogSite")]
+        public Input<string>? DatadogSite { get; set; }
 
         /// <summary>
         /// The number of gigabytes of disk space to allocate for the database
@@ -187,7 +205,7 @@ namespace Pulumi.Render.Postgres
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The ID of the owner (team or personal user) whose resources should be returned
+        /// The ID of the workspace to create the database for
         /// </summary>
         [Input("ownerId", required: true)]
         public Input<string> OwnerId { get; set; } = null!;

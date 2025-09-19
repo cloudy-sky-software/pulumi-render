@@ -25,7 +25,7 @@ __all__ = [
 
 @pulumi.output_type
 class GetDeployResult:
-    def __init__(__self__, commit=None, created_at=None, finished_at=None, id=None, image=None, status=None, trigger=None, updated_at=None):
+    def __init__(__self__, commit=None, created_at=None, finished_at=None, id=None, image=None, started_at=None, status=None, trigger=None, updated_at=None):
         if commit and not isinstance(commit, dict):
             raise TypeError("Expected argument 'commit' to be a dict")
         pulumi.set(__self__, "commit", commit)
@@ -41,6 +41,9 @@ class GetDeployResult:
         if image and not isinstance(image, dict):
             raise TypeError("Expected argument 'image' to be a dict")
         pulumi.set(__self__, "image", image)
+        if started_at and not isinstance(started_at, str):
+            raise TypeError("Expected argument 'started_at' to be a str")
+        pulumi.set(__self__, "started_at", started_at)
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
@@ -80,6 +83,11 @@ class GetDeployResult:
         return pulumi.get(self, "image")
 
     @_builtins.property
+    @pulumi.getter(name="startedAt")
+    def started_at(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "started_at")
+
+    @_builtins.property
     @pulumi.getter
     def status(self) -> Optional['DeployStatus']:
         return pulumi.get(self, "status")
@@ -106,6 +114,7 @@ class AwaitableGetDeployResult(GetDeployResult):
             finished_at=self.finished_at,
             id=self.id,
             image=self.image,
+            started_at=self.started_at,
             status=self.status,
             trigger=self.trigger,
             updated_at=self.updated_at)
@@ -132,6 +141,7 @@ def get_deploy(deploy_id: Optional[_builtins.str] = None,
         finished_at=pulumi.get(__ret__, 'finished_at'),
         id=pulumi.get(__ret__, 'id'),
         image=pulumi.get(__ret__, 'image'),
+        started_at=pulumi.get(__ret__, 'started_at'),
         status=pulumi.get(__ret__, 'status'),
         trigger=pulumi.get(__ret__, 'trigger'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
@@ -155,6 +165,7 @@ def get_deploy_output(deploy_id: Optional[pulumi.Input[_builtins.str]] = None,
         finished_at=pulumi.get(__response__, 'finished_at'),
         id=pulumi.get(__response__, 'id'),
         image=pulumi.get(__response__, 'image'),
+        started_at=pulumi.get(__response__, 'started_at'),
         status=pulumi.get(__response__, 'status'),
         trigger=pulumi.get(__response__, 'trigger'),
         updated_at=pulumi.get(__response__, 'updated_at')))

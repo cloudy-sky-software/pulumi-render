@@ -58,7 +58,7 @@ namespace Pulumi.Render.Owners
         public readonly string Id;
         public readonly string Name;
         /// <summary>
-        /// Whether two-factor authentication is enabled for the owner. Only present for user owners.
+        /// Whether two-factor authentication is enabled for the owner. Only present if `type` is `user`.
         /// </summary>
         public readonly bool? TwoFactorAuthEnabled;
         public readonly Pulumi.Render.Owners.OwnerType Type;

@@ -916,7 +916,7 @@ if not MYPY:
         enabled: pulumi.Input[_builtins.bool]
         uri: pulumi.Input[_builtins.str]
         """
-        The page to be served when [maintenance mode](https://docs.render.com/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
+        The page to be served when [maintenance mode](https://render.com/docs/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
         """
 elif False:
     MaintenanceModeArgsDict: TypeAlias = Mapping[str, Any]
@@ -927,7 +927,7 @@ class MaintenanceModeArgs:
                  enabled: pulumi.Input[_builtins.bool],
                  uri: pulumi.Input[_builtins.str]):
         """
-        :param pulumi.Input[_builtins.str] uri: The page to be served when [maintenance mode](https://docs.render.com/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
+        :param pulumi.Input[_builtins.str] uri: The page to be served when [maintenance mode](https://render.com/docs/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
         """
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "uri", uri)
@@ -945,7 +945,7 @@ class MaintenanceModeArgs:
     @pulumi.getter
     def uri(self) -> pulumi.Input[_builtins.str]:
         """
-        The page to be served when [maintenance mode](https://docs.render.com/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
+        The page to be served when [maintenance mode](https://render.com/docs/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
         """
         return pulumi.get(self, "uri")
 
@@ -1492,6 +1492,10 @@ if not MYPY:
         """
         This field has been deprecated. previews.generation should be used in its place.
         """
+        render_subdomain_policy: NotRequired[pulumi.Input['StaticSiteDetailsCreateRenderSubdomainPolicy']]
+        """
+        Controls whether render.com subdomains are available for the service
+        """
         routes: NotRequired[pulumi.Input[Sequence[pulumi.Input['RouteCreateArgsDict']]]]
 elif False:
     StaticSiteDetailsCreateArgsDict: TypeAlias = Mapping[str, Any]
@@ -1504,10 +1508,12 @@ class StaticSiteDetailsCreateArgs:
                  previews: Optional[pulumi.Input['PreviewsArgs']] = None,
                  publish_path: Optional[pulumi.Input[_builtins.str]] = None,
                  pull_request_previews_enabled: Optional[pulumi.Input['StaticSiteDetailsCreatePullRequestPreviewsEnabled']] = None,
+                 render_subdomain_policy: Optional[pulumi.Input['StaticSiteDetailsCreateRenderSubdomainPolicy']] = None,
                  routes: Optional[pulumi.Input[Sequence[pulumi.Input['RouteCreateArgs']]]] = None):
         """
         :param pulumi.Input[_builtins.str] publish_path: Defaults to "public"
         :param pulumi.Input['StaticSiteDetailsCreatePullRequestPreviewsEnabled'] pull_request_previews_enabled: This field has been deprecated. previews.generation should be used in its place.
+        :param pulumi.Input['StaticSiteDetailsCreateRenderSubdomainPolicy'] render_subdomain_policy: Controls whether render.com subdomains are available for the service
         """
         if build_command is not None:
             pulumi.set(__self__, "build_command", build_command)
@@ -1521,6 +1527,8 @@ class StaticSiteDetailsCreateArgs:
             pull_request_previews_enabled = 'no'
         if pull_request_previews_enabled is not None:
             pulumi.set(__self__, "pull_request_previews_enabled", pull_request_previews_enabled)
+        if render_subdomain_policy is not None:
+            pulumi.set(__self__, "render_subdomain_policy", render_subdomain_policy)
         if routes is not None:
             pulumi.set(__self__, "routes", routes)
 
@@ -1576,6 +1584,18 @@ class StaticSiteDetailsCreateArgs:
         pulumi.set(self, "pull_request_previews_enabled", value)
 
     @_builtins.property
+    @pulumi.getter(name="renderSubdomainPolicy")
+    def render_subdomain_policy(self) -> Optional[pulumi.Input['StaticSiteDetailsCreateRenderSubdomainPolicy']]:
+        """
+        Controls whether render.com subdomains are available for the service
+        """
+        return pulumi.get(self, "render_subdomain_policy")
+
+    @render_subdomain_policy.setter
+    def render_subdomain_policy(self, value: Optional[pulumi.Input['StaticSiteDetailsCreateRenderSubdomainPolicy']]):
+        pulumi.set(self, "render_subdomain_policy", value)
+
+    @_builtins.property
     @pulumi.getter
     def routes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RouteCreateArgs']]]]:
         return pulumi.get(self, "routes")
@@ -1622,6 +1642,10 @@ if not MYPY:
         """
         Defaults to "oregon"
         """
+        render_subdomain_policy: NotRequired[pulumi.Input['WebServiceDetailsCreateRenderSubdomainPolicy']]
+        """
+        Controls whether render.com subdomains are available for the service
+        """
 elif False:
     WebServiceDetailsCreateArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -1641,7 +1665,8 @@ class WebServiceDetailsCreateArgs:
                  pre_deploy_command: Optional[pulumi.Input[_builtins.str]] = None,
                  previews: Optional[pulumi.Input['PreviewsArgs']] = None,
                  pull_request_previews_enabled: Optional[pulumi.Input['WebServiceDetailsCreatePullRequestPreviewsEnabled']] = None,
-                 region: Optional[pulumi.Input['WebServiceDetailsCreateRegion']] = None):
+                 region: Optional[pulumi.Input['WebServiceDetailsCreateRegion']] = None,
+                 render_subdomain_policy: Optional[pulumi.Input['WebServiceDetailsCreateRenderSubdomainPolicy']] = None):
         """
         :param pulumi.Input['WebServiceDetailsCreateRuntime'] runtime: Runtime
         :param pulumi.Input['WebServiceDetailsCreateEnv'] env: This field has been deprecated, runtime should be used in its place.
@@ -1650,6 +1675,7 @@ class WebServiceDetailsCreateArgs:
         :param pulumi.Input['WebServiceDetailsCreatePlan'] plan: Defaults to "starter"
         :param pulumi.Input['WebServiceDetailsCreatePullRequestPreviewsEnabled'] pull_request_previews_enabled: This field has been deprecated. previews.generation should be used in its place.
         :param pulumi.Input['WebServiceDetailsCreateRegion'] region: Defaults to "oregon"
+        :param pulumi.Input['WebServiceDetailsCreateRenderSubdomainPolicy'] render_subdomain_policy: Controls whether render.com subdomains are available for the service
         """
         pulumi.set(__self__, "runtime", runtime)
         if autoscaling is not None:
@@ -1686,6 +1712,8 @@ class WebServiceDetailsCreateArgs:
             region = 'oregon'
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if render_subdomain_policy is not None:
+            pulumi.set(__self__, "render_subdomain_policy", render_subdomain_policy)
 
     @_builtins.property
     @pulumi.getter
@@ -1833,6 +1861,18 @@ class WebServiceDetailsCreateArgs:
     @region.setter
     def region(self, value: Optional[pulumi.Input['WebServiceDetailsCreateRegion']]):
         pulumi.set(self, "region", value)
+
+    @_builtins.property
+    @pulumi.getter(name="renderSubdomainPolicy")
+    def render_subdomain_policy(self) -> Optional[pulumi.Input['WebServiceDetailsCreateRenderSubdomainPolicy']]:
+        """
+        Controls whether render.com subdomains are available for the service
+        """
+        return pulumi.get(self, "render_subdomain_policy")
+
+    @render_subdomain_policy.setter
+    def render_subdomain_policy(self, value: Optional[pulumi.Input['WebServiceDetailsCreateRenderSubdomainPolicy']]):
+        pulumi.set(self, "render_subdomain_policy", value)
 
 
 if not MYPY:

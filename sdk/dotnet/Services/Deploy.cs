@@ -53,6 +53,9 @@ namespace Pulumi.Render.Services
         [Output("imageUrl")]
         public Output<string?> ImageUrl { get; private set; } = null!;
 
+        [Output("startedAt")]
+        public Output<string?> StartedAt { get; private set; } = null!;
+
         [Output("status")]
         public Output<Pulumi.Render.Services.Status?> Status { get; private set; } = null!;
 

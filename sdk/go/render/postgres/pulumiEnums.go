@@ -901,11 +901,13 @@ func (o PostgresDetailSuspendedPtrOutput) ToStringPtrOutputWithContext(ctx conte
 type PostgresDetailSuspendersItem string
 
 const (
-	PostgresDetailSuspendersItemAdmin         = PostgresDetailSuspendersItem("admin")
-	PostgresDetailSuspendersItemBilling       = PostgresDetailSuspendersItem("billing")
-	PostgresDetailSuspendersItemUser          = PostgresDetailSuspendersItem("user")
-	PostgresDetailSuspendersItemParentService = PostgresDetailSuspendersItem("parent_service")
-	PostgresDetailSuspendersItemUnknown       = PostgresDetailSuspendersItem("unknown")
+	PostgresDetailSuspendersItemAdmin             = PostgresDetailSuspendersItem("admin")
+	PostgresDetailSuspendersItemBilling           = PostgresDetailSuspendersItem("billing")
+	PostgresDetailSuspendersItemUser              = PostgresDetailSuspendersItem("user")
+	PostgresDetailSuspendersItemParentService     = PostgresDetailSuspendersItem("parent_service")
+	PostgresDetailSuspendersItemStuckCrashlooping = PostgresDetailSuspendersItem("stuck_crashlooping")
+	PostgresDetailSuspendersItemHipaaEnablement   = PostgresDetailSuspendersItem("hipaa_enablement")
+	PostgresDetailSuspendersItemUnknown           = PostgresDetailSuspendersItem("unknown")
 )
 
 type PostgresDetailSuspendersItemOutput struct{ *pulumi.OutputState }
@@ -1021,6 +1023,7 @@ const (
 	PostgresDetailVersion_14 = PostgresDetailVersion("14")
 	PostgresDetailVersion_15 = PostgresDetailVersion("15")
 	PostgresDetailVersion_16 = PostgresDetailVersion("16")
+	PostgresDetailVersion_17 = PostgresDetailVersion("17")
 )
 
 type PostgresDetailVersionOutput struct{ *pulumi.OutputState }
@@ -1598,11 +1601,13 @@ func (o PostgresSuspendedPtrOutput) ToStringPtrOutputWithContext(ctx context.Con
 type PostgresSuspendersItem string
 
 const (
-	PostgresSuspendersItemAdmin         = PostgresSuspendersItem("admin")
-	PostgresSuspendersItemBilling       = PostgresSuspendersItem("billing")
-	PostgresSuspendersItemUser          = PostgresSuspendersItem("user")
-	PostgresSuspendersItemParentService = PostgresSuspendersItem("parent_service")
-	PostgresSuspendersItemUnknown       = PostgresSuspendersItem("unknown")
+	PostgresSuspendersItemAdmin             = PostgresSuspendersItem("admin")
+	PostgresSuspendersItemBilling           = PostgresSuspendersItem("billing")
+	PostgresSuspendersItemUser              = PostgresSuspendersItem("user")
+	PostgresSuspendersItemParentService     = PostgresSuspendersItem("parent_service")
+	PostgresSuspendersItemStuckCrashlooping = PostgresSuspendersItem("stuck_crashlooping")
+	PostgresSuspendersItemHipaaEnablement   = PostgresSuspendersItem("hipaa_enablement")
+	PostgresSuspendersItemUnknown           = PostgresSuspendersItem("unknown")
 )
 
 type PostgresSuspendersItemOutput struct{ *pulumi.OutputState }
@@ -1718,6 +1723,7 @@ const (
 	PostgresVersion_14 = PostgresVersion("14")
 	PostgresVersion_15 = PostgresVersion("15")
 	PostgresVersion_16 = PostgresVersion("16")
+	PostgresVersion_17 = PostgresVersion("17")
 )
 
 type PostgresVersionOutput struct{ *pulumi.OutputState }
@@ -2363,11 +2369,13 @@ func (o SuspendedPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pu
 type SuspendersItem string
 
 const (
-	SuspendersItemAdmin         = SuspendersItem("admin")
-	SuspendersItemBilling       = SuspendersItem("billing")
-	SuspendersItemUser          = SuspendersItem("user")
-	SuspendersItemParentService = SuspendersItem("parent_service")
-	SuspendersItemUnknown       = SuspendersItem("unknown")
+	SuspendersItemAdmin             = SuspendersItem("admin")
+	SuspendersItemBilling           = SuspendersItem("billing")
+	SuspendersItemUser              = SuspendersItem("user")
+	SuspendersItemParentService     = SuspendersItem("parent_service")
+	SuspendersItemStuckCrashlooping = SuspendersItem("stuck_crashlooping")
+	SuspendersItemHipaaEnablement   = SuspendersItem("hipaa_enablement")
+	SuspendersItemUnknown           = SuspendersItem("unknown")
 )
 
 type SuspendersItemOutput struct{ *pulumi.OutputState }
@@ -2483,6 +2491,7 @@ const (
 	Version_14 = Version("14")
 	Version_15 = Version("15")
 	Version_16 = Version("16")
+	Version_17 = Version("17")
 )
 
 func (Version) ElementType() reflect.Type {
@@ -2613,6 +2622,7 @@ func (o VersionPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulu
 //	Version_14
 //	Version_15
 //	Version_16
+//	Version_17
 type VersionInput interface {
 	pulumi.Input
 

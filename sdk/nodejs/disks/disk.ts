@@ -31,12 +31,12 @@ export class Disk extends pulumi.CustomResource {
         return obj['__pulumiType'] === Disk.__pulumiType;
     }
 
-    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
-    declare public readonly mountPath: pulumi.Output<string>;
-    declare public readonly name: pulumi.Output<string>;
-    declare public readonly serviceId: pulumi.Output<string>;
-    declare public readonly sizeGB: pulumi.Output<number>;
-    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
+    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    public readonly mountPath!: pulumi.Output<string>;
+    public readonly name!: pulumi.Output<string>;
+    public readonly serviceId!: pulumi.Output<string>;
+    public readonly sizeGB!: pulumi.Output<number>;
+    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
 
     /**
      * Create a Disk resource with the given unique name, arguments, and options.
@@ -49,19 +49,19 @@ export class Disk extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if (args?.mountPath === undefined && !opts.urn) {
+            if ((!args || args.mountPath === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'mountPath'");
             }
-            if (args?.serviceId === undefined && !opts.urn) {
+            if ((!args || args.serviceId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'serviceId'");
             }
-            if (args?.sizeGB === undefined && !opts.urn) {
+            if ((!args || args.sizeGB === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'sizeGB'");
             }
-            resourceInputs["mountPath"] = args?.mountPath;
-            resourceInputs["name"] = args?.name;
-            resourceInputs["serviceId"] = args?.serviceId;
-            resourceInputs["sizeGB"] = args?.sizeGB;
+            resourceInputs["mountPath"] = args ? args.mountPath : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
+            resourceInputs["sizeGB"] = args ? args.sizeGB : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         } else {

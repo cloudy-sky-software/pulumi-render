@@ -16,7 +16,7 @@ export function getBlueprint(args: GetBlueprintArgs, opts?: pulumi.InvokeOptions
 
 export interface GetBlueprintArgs {
     /**
-     * The ID of the blueprint
+     * The ID of the Blueprint
      */
     blueprintId: string;
 }
@@ -43,7 +43,7 @@ export function getBlueprintOutput(args: GetBlueprintOutputArgs, opts?: pulumi.I
 
 export interface GetBlueprintOutputArgs {
     /**
-     * The ID of the blueprint
+     * The ID of the Blueprint
      */
     blueprintId: pulumi.Input<string>;
 }

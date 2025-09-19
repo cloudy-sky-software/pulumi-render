@@ -34,21 +34,21 @@ export class ResourcesToEnvironment extends pulumi.CustomResource {
         return obj['__pulumiType'] === ResourcesToEnvironment.__pulumiType;
     }
 
-    declare public /*out*/ readonly databasesIds: pulumi.Output<string[]>;
-    declare public /*out*/ readonly envGroupIds: pulumi.Output<string[]>;
-    declare public /*out*/ readonly name: pulumi.Output<string>;
+    public /*out*/ readonly databasesIds!: pulumi.Output<string[]>;
+    public /*out*/ readonly envGroupIds!: pulumi.Output<string[]>;
+    public /*out*/ readonly name!: pulumi.Output<string>;
     /**
      * Indicates whether network connections across environments are allowed.
      */
-    declare public /*out*/ readonly networkIsolationEnabled: pulumi.Output<boolean>;
-    declare public /*out*/ readonly projectId: pulumi.Output<string>;
+    public /*out*/ readonly networkIsolationEnabled!: pulumi.Output<boolean>;
+    public /*out*/ readonly projectId!: pulumi.Output<string>;
     /**
      * Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
      */
-    declare public /*out*/ readonly protectedStatus: pulumi.Output<enums.environments.ProtectedStatus>;
-    declare public /*out*/ readonly redisIds: pulumi.Output<string[]>;
-    declare public readonly resourceIds: pulumi.Output<string[]>;
-    declare public /*out*/ readonly serviceIds: pulumi.Output<string[]>;
+    public /*out*/ readonly protectedStatus!: pulumi.Output<enums.environments.ProtectedStatus>;
+    public /*out*/ readonly redisIds!: pulumi.Output<string[]>;
+    public readonly resourceIds!: pulumi.Output<string[]>;
+    public /*out*/ readonly serviceIds!: pulumi.Output<string[]>;
 
     /**
      * Create a ResourcesToEnvironment resource with the given unique name, arguments, and options.
@@ -61,11 +61,11 @@ export class ResourcesToEnvironment extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if (args?.resourceIds === undefined && !opts.urn) {
+            if ((!args || args.resourceIds === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'resourceIds'");
             }
-            resourceInputs["environmentId"] = args?.environmentId;
-            resourceInputs["resourceIds"] = args?.resourceIds;
+            resourceInputs["environmentId"] = args ? args.environmentId : undefined;
+            resourceInputs["resourceIds"] = args ? args.resourceIds : undefined;
             resourceInputs["databasesIds"] = undefined /*out*/;
             resourceInputs["envGroupIds"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;

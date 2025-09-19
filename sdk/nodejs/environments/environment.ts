@@ -34,20 +34,20 @@ export class Environment extends pulumi.CustomResource {
         return obj['__pulumiType'] === Environment.__pulumiType;
     }
 
-    declare public /*out*/ readonly databasesIds: pulumi.Output<string[]>;
-    declare public /*out*/ readonly envGroupIds: pulumi.Output<string[]>;
-    declare public readonly name: pulumi.Output<string>;
+    public /*out*/ readonly databasesIds!: pulumi.Output<string[]>;
+    public /*out*/ readonly envGroupIds!: pulumi.Output<string[]>;
+    public readonly name!: pulumi.Output<string>;
     /**
      * Indicates whether network connections across environments are allowed.
      */
-    declare public readonly networkIsolationEnabled: pulumi.Output<boolean>;
-    declare public readonly projectId: pulumi.Output<string>;
+    public readonly networkIsolationEnabled!: pulumi.Output<boolean>;
+    public readonly projectId!: pulumi.Output<string>;
     /**
      * Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
      */
-    declare public readonly protectedStatus: pulumi.Output<enums.environments.ProtectedStatus>;
-    declare public /*out*/ readonly redisIds: pulumi.Output<string[]>;
-    declare public /*out*/ readonly serviceIds: pulumi.Output<string[]>;
+    public readonly protectedStatus!: pulumi.Output<enums.environments.ProtectedStatus>;
+    public /*out*/ readonly redisIds!: pulumi.Output<string[]>;
+    public /*out*/ readonly serviceIds!: pulumi.Output<string[]>;
 
     /**
      * Create a Environment resource with the given unique name, arguments, and options.
@@ -60,13 +60,13 @@ export class Environment extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if (args?.projectId === undefined && !opts.urn) {
+            if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            resourceInputs["name"] = args?.name;
-            resourceInputs["networkIsolationEnabled"] = args?.networkIsolationEnabled;
-            resourceInputs["projectId"] = args?.projectId;
-            resourceInputs["protectedStatus"] = args?.protectedStatus;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["networkIsolationEnabled"] = args ? args.networkIsolationEnabled : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["protectedStatus"] = args ? args.protectedStatus : undefined;
             resourceInputs["databasesIds"] = undefined /*out*/;
             resourceInputs["envGroupIds"] = undefined /*out*/;
             resourceInputs["redisIds"] = undefined /*out*/;

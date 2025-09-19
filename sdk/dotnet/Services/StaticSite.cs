@@ -150,6 +150,12 @@ namespace Pulumi.Render.Services
             set => _envVars = value;
         }
 
+        /// <summary>
+        /// The ID of the environment the service is associated with
+        /// </summary>
+        [Input("environmentId")]
+        public Input<string>? EnvironmentId { get; set; }
+
         [Input("image")]
         public Input<Inputs.ImageArgs>? Image { get; set; }
 

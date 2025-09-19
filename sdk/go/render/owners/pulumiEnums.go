@@ -100,7 +100,99 @@ func (o OwnerTypePtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pu
 	}).(pulumi.StringPtrOutput)
 }
 
+type TeamMemberStatus string
+
+const (
+	TeamMemberStatusActive   = TeamMemberStatus("active")
+	TeamMemberStatusInactive = TeamMemberStatus("inactive")
+)
+
+type TeamMemberStatusOutput struct{ *pulumi.OutputState }
+
+func (TeamMemberStatusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TeamMemberStatus)(nil)).Elem()
+}
+
+func (o TeamMemberStatusOutput) ToTeamMemberStatusOutput() TeamMemberStatusOutput {
+	return o
+}
+
+func (o TeamMemberStatusOutput) ToTeamMemberStatusOutputWithContext(ctx context.Context) TeamMemberStatusOutput {
+	return o
+}
+
+func (o TeamMemberStatusOutput) ToTeamMemberStatusPtrOutput() TeamMemberStatusPtrOutput {
+	return o.ToTeamMemberStatusPtrOutputWithContext(context.Background())
+}
+
+func (o TeamMemberStatusOutput) ToTeamMemberStatusPtrOutputWithContext(ctx context.Context) TeamMemberStatusPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TeamMemberStatus) *TeamMemberStatus {
+		return &v
+	}).(TeamMemberStatusPtrOutput)
+}
+
+func (o TeamMemberStatusOutput) ToStringOutput() pulumi.StringOutput {
+	return o.ToStringOutputWithContext(context.Background())
+}
+
+func (o TeamMemberStatusOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e TeamMemberStatus) string {
+		return string(e)
+	}).(pulumi.StringOutput)
+}
+
+func (o TeamMemberStatusOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o TeamMemberStatusOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e TeamMemberStatus) *string {
+		v := string(e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+type TeamMemberStatusPtrOutput struct{ *pulumi.OutputState }
+
+func (TeamMemberStatusPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TeamMemberStatus)(nil)).Elem()
+}
+
+func (o TeamMemberStatusPtrOutput) ToTeamMemberStatusPtrOutput() TeamMemberStatusPtrOutput {
+	return o
+}
+
+func (o TeamMemberStatusPtrOutput) ToTeamMemberStatusPtrOutputWithContext(ctx context.Context) TeamMemberStatusPtrOutput {
+	return o
+}
+
+func (o TeamMemberStatusPtrOutput) Elem() TeamMemberStatusOutput {
+	return o.ApplyT(func(v *TeamMemberStatus) TeamMemberStatus {
+		if v != nil {
+			return *v
+		}
+		var ret TeamMemberStatus
+		return ret
+	}).(TeamMemberStatusOutput)
+}
+
+func (o TeamMemberStatusPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o TeamMemberStatusPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *TeamMemberStatus) *string {
+		if e == nil {
+			return nil
+		}
+		v := string(*e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(OwnerTypeOutput{})
 	pulumi.RegisterOutputType(OwnerTypePtrOutput{})
+	pulumi.RegisterOutputType(TeamMemberStatusOutput{})
+	pulumi.RegisterOutputType(TeamMemberStatusPtrOutput{})
 }

@@ -4,6 +4,11 @@
 import * as utilities from "../utilities";
 
 // Export members:
+export { GetBandwidthSourceArgs, GetBandwidthSourceResult } from "./getBandwidthSource";
+export const getBandwidthSource: typeof import("./getBandwidthSource").getBandwidthSource = null as any;
+export const getBandwidthSourceOutput: typeof import("./getBandwidthSource").getBandwidthSourceOutput = null as any;
+utilities.lazyLoad(exports, ["getBandwidthSource","getBandwidthSourceOutput"], () => require("./getBandwidthSource"));
+
 export { ListActiveConnectionsArgs, ListActiveConnectionsResult } from "./listActiveConnections";
 export const listActiveConnections: typeof import("./listActiveConnections").listActiveConnections = null as any;
 export const listActiveConnectionsOutput: typeof import("./listActiveConnections").listActiveConnectionsOutput = null as any;
@@ -14,3 +19,6 @@ export const listReplicationLag: typeof import("./listReplicationLag").listRepli
 export const listReplicationLagOutput: typeof import("./listReplicationLag").listReplicationLagOutput = null as any;
 utilities.lazyLoad(exports, ["listReplicationLag","listReplicationLagOutput"], () => require("./listReplicationLag"));
 
+
+// Export enums:
+export * from "../types/enums/metrics";

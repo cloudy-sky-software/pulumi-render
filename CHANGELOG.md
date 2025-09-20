@@ -1,4 +1,4 @@
-## 0.5.0
+## 0.5.0, 0.5.1
 
 Update the OpenAPI spec to the latest as of 9/19/2025.
 

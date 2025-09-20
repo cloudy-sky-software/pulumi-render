@@ -6,6 +6,10 @@ on:
       - "!v*.*.*-**"
 env:
   GOLANG_CI_LINT_VERSION: v1.64.8
+  DOTNET_VERSION: 8.0.x
+  GO_VERSION: 1.24.x
+  NODE_VERSION: 22.x
+  PYTHON_VERSION: 3.11
   PROVIDER: "render"
   NPM_TOKEN: ${{ secrets.NPM_AUTOMATION_TOKEN }}
   PUBLISH_NPM: true
@@ -29,7 +33,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v6
         with:
-          go-version: 1.24.x
+          go-version: ${{ env.GO_VERSION }}
 
       - name: Lint
         run: |
@@ -58,7 +62,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v6
         with:
-          go-version: 1.24.x
+          go-version: ${{ env.GO_VERSION }}
 
       - name: Install Pulumi CLI
         uses: pulumi/actions@v6
@@ -183,15 +187,15 @@ jobs:
       fail-fast: true
       matrix:
         dotnetversion:
-          - 6.0.x
+          - ${{ env.DOTNET_VERSION }}
         goversion:
-          - 1.21.x
+          - ${{ env.GO_VERSION }}
         language:
           - nodejs
           - python
           - dotnet
           - go
         nodeversion:
-          - 20.x
+          - ${{ env.NODE_VERSION }}
         pythonversion:
-          - "3.11"
+          - ${{ env.PYTHON_VERSION }}

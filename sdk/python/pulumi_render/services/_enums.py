@@ -57,8 +57,10 @@ __all__ = [
     'ServiceSuspended',
     'ServiceSuspendersItem',
     'StaticSiteDetailsCreatePullRequestPreviewsEnabled',
+    'StaticSiteDetailsCreateRenderSubdomainPolicy',
     'StaticSiteDetailsOutputBuildPlan',
     'StaticSiteDetailsOutputPullRequestPreviewsEnabled',
+    'StaticSiteDetailsOutputRenderSubdomainPolicy',
     'Status',
     'Trigger',
     'Type',
@@ -66,12 +68,14 @@ __all__ = [
     'WebServiceDetailsCreatePlan',
     'WebServiceDetailsCreatePullRequestPreviewsEnabled',
     'WebServiceDetailsCreateRegion',
+    'WebServiceDetailsCreateRenderSubdomainPolicy',
     'WebServiceDetailsCreateRuntime',
     'WebServiceDetailsOutputBuildPlan',
     'WebServiceDetailsOutputEnv',
     'WebServiceDetailsOutputPlan',
     'WebServiceDetailsOutputPullRequestPreviewsEnabled',
     'WebServiceDetailsOutputRegion',
+    'WebServiceDetailsOutputRenderSubdomainPolicy',
     'WebServiceDetailsOutputRuntime',
 ]
 
@@ -216,6 +220,8 @@ class BackgroundWorkerDetailsOutputRuntime(_builtins.str, Enum):
 
 @pulumi.type_token("render:services:CancelJobStatus")
 class CancelJobStatus(_builtins.str, Enum):
+    PENDING = "pending"
+    RUNNING = "running"
     SUCCEEDED = "succeeded"
     FAILED = "failed"
     CANCELED = "canceled"
@@ -365,6 +371,7 @@ class CustomDomainVerificationStatus(_builtins.str, Enum):
 @pulumi.type_token("render:services:DeployStatus")
 class DeployStatus(_builtins.str, Enum):
     CREATED = "created"
+    QUEUED = "queued"
     BUILD_IN_PROGRESS = "build_in_progress"
     UPDATE_IN_PROGRESS = "update_in_progress"
     LIVE = "live"
@@ -392,6 +399,8 @@ class DeployTrigger(_builtins.str, Enum):
 
 @pulumi.type_token("render:services:JobStatus")
 class JobStatus(_builtins.str, Enum):
+    PENDING = "pending"
+    RUNNING = "running"
     SUCCEEDED = "succeeded"
     FAILED = "failed"
     CANCELED = "canceled"
@@ -623,6 +632,8 @@ class ServiceSuspendersItem(_builtins.str, Enum):
     BILLING = "billing"
     USER = "user"
     PARENT_SERVICE = "parent_service"
+    STUCK_CRASHLOOPING = "stuck_crashlooping"
+    HIPAA_ENABLEMENT = "hipaa_enablement"
     UNKNOWN = "unknown"
 
 
@@ -633,6 +644,15 @@ class StaticSiteDetailsCreatePullRequestPreviewsEnabled(_builtins.str, Enum):
     """
     YES = "yes"
     NO = "no"
+
+
+@pulumi.type_token("render:services:StaticSiteDetailsCreateRenderSubdomainPolicy")
+class StaticSiteDetailsCreateRenderSubdomainPolicy(_builtins.str, Enum):
+    """
+    Controls whether render.com subdomains are available for the service
+    """
+    ENABLED = "enabled"
+    DISABLED = "disabled"
 
 
 @pulumi.type_token("render:services:StaticSiteDetailsOutputBuildPlan")
@@ -650,9 +670,19 @@ class StaticSiteDetailsOutputPullRequestPreviewsEnabled(_builtins.str, Enum):
     NO = "no"
 
 
+@pulumi.type_token("render:services:StaticSiteDetailsOutputRenderSubdomainPolicy")
+class StaticSiteDetailsOutputRenderSubdomainPolicy(_builtins.str, Enum):
+    """
+    Controls whether render.com subdomains are available for the service
+    """
+    ENABLED = "enabled"
+    DISABLED = "disabled"
+
+
 @pulumi.type_token("render:services:Status")
 class Status(_builtins.str, Enum):
     CREATED = "created"
+    QUEUED = "queued"
     BUILD_IN_PROGRESS = "build_in_progress"
     UPDATE_IN_PROGRESS = "update_in_progress"
     LIVE = "live"
@@ -733,6 +763,15 @@ class WebServiceDetailsCreateRegion(_builtins.str, Enum):
     VIRGINIA = "virginia"
 
 
+@pulumi.type_token("render:services:WebServiceDetailsCreateRenderSubdomainPolicy")
+class WebServiceDetailsCreateRenderSubdomainPolicy(_builtins.str, Enum):
+    """
+    Controls whether render.com subdomains are available for the service
+    """
+    ENABLED = "enabled"
+    DISABLED = "disabled"
+
+
 @pulumi.type_token("render:services:WebServiceDetailsCreateRuntime")
 class WebServiceDetailsCreateRuntime(_builtins.str, Enum):
     """
@@ -805,6 +844,15 @@ class WebServiceDetailsOutputRegion(_builtins.str, Enum):
     OHIO = "ohio"
     SINGAPORE = "singapore"
     VIRGINIA = "virginia"
+
+
+@pulumi.type_token("render:services:WebServiceDetailsOutputRenderSubdomainPolicy")
+class WebServiceDetailsOutputRenderSubdomainPolicy(_builtins.str, Enum):
+    """
+    Controls whether render.com subdomains are available for the service
+    """
+    ENABLED = "enabled"
+    DISABLED = "disabled"
 
 
 @pulumi.type_token("render:services:WebServiceDetailsOutputRuntime")

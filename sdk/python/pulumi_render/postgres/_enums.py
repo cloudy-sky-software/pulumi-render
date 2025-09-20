@@ -160,6 +160,8 @@ class PostgresDetailSuspendersItem(_builtins.str, Enum):
     BILLING = "billing"
     USER = "user"
     PARENT_SERVICE = "parent_service"
+    STUCK_CRASHLOOPING = "stuck_crashlooping"
+    HIPAA_ENABLEMENT = "hipaa_enablement"
     UNKNOWN = "unknown"
 
 
@@ -174,6 +176,7 @@ class PostgresDetailVersion(_builtins.str, Enum):
     POSTGRES_DETAIL_VERSION_14 = "14"
     POSTGRES_DETAIL_VERSION_15 = "15"
     POSTGRES_DETAIL_VERSION_16 = "16"
+    POSTGRES_DETAIL_VERSION_17 = "17"
 
 
 @pulumi.type_token("render:postgres:PostgresPlan")
@@ -253,6 +256,8 @@ class PostgresSuspendersItem(_builtins.str, Enum):
     BILLING = "billing"
     USER = "user"
     PARENT_SERVICE = "parent_service"
+    STUCK_CRASHLOOPING = "stuck_crashlooping"
+    HIPAA_ENABLEMENT = "hipaa_enablement"
     UNKNOWN = "unknown"
 
 
@@ -267,6 +272,7 @@ class PostgresVersion(_builtins.str, Enum):
     POSTGRES_VERSION_14 = "14"
     POSTGRES_VERSION_15 = "15"
     POSTGRES_VERSION_16 = "16"
+    POSTGRES_VERSION_17 = "17"
 
 
 @pulumi.type_token("render:postgres:RecoverPostgresSuspended")
@@ -330,6 +336,8 @@ class SuspendersItem(_builtins.str, Enum):
     BILLING = "billing"
     USER = "user"
     PARENT_SERVICE = "parent_service"
+    STUCK_CRASHLOOPING = "stuck_crashlooping"
+    HIPAA_ENABLEMENT = "hipaa_enablement"
     UNKNOWN = "unknown"
 
 
@@ -344,3 +352,4 @@ class Version(_builtins.str, Enum):
     VERSION_14 = "14"
     VERSION_15 = "15"
     VERSION_16 = "16"
+    VERSION_17 = "17"

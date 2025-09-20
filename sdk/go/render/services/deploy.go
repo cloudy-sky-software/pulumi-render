@@ -33,6 +33,7 @@ type Deploy struct {
 	//
 	// The host, repository, and image name all must match the currently configured image for the service.
 	ImageUrl  pulumi.StringPtrOutput `pulumi:"imageUrl"`
+	StartedAt pulumi.StringPtrOutput `pulumi:"startedAt"`
 	Status    StatusPtrOutput        `pulumi:"status"`
 	Trigger   TriggerPtrOutput       `pulumi:"trigger"`
 	UpdatedAt pulumi.StringPtrOutput `pulumi:"updatedAt"`
@@ -194,6 +195,10 @@ func (o DeployOutput) Image() ImagePropertiesPtrOutput {
 // The host, repository, and image name all must match the currently configured image for the service.
 func (o DeployOutput) ImageUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Deploy) pulumi.StringPtrOutput { return v.ImageUrl }).(pulumi.StringPtrOutput)
+}
+
+func (o DeployOutput) StartedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Deploy) pulumi.StringPtrOutput { return v.StartedAt }).(pulumi.StringPtrOutput)
 }
 
 func (o DeployOutput) Status() StatusPtrOutput {

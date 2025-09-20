@@ -114,6 +114,7 @@ class CancelDeploy(pulumi.CustomResource):
             __props__.__dict__["created_at"] = None
             __props__.__dict__["finished_at"] = None
             __props__.__dict__["image"] = None
+            __props__.__dict__["started_at"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["trigger"] = None
             __props__.__dict__["updated_at"] = None
@@ -143,6 +144,7 @@ class CancelDeploy(pulumi.CustomResource):
         __props__.__dict__["created_at"] = None
         __props__.__dict__["finished_at"] = None
         __props__.__dict__["image"] = None
+        __props__.__dict__["started_at"] = None
         __props__.__dict__["status"] = None
         __props__.__dict__["trigger"] = None
         __props__.__dict__["updated_at"] = None
@@ -170,6 +172,11 @@ class CancelDeploy(pulumi.CustomResource):
         Image information used when creating the deploy. Not present for Git-backed deploys
         """
         return pulumi.get(self, "image")
+
+    @_builtins.property
+    @pulumi.getter(name="startedAt")
+    def started_at(self) -> pulumi.Output[Optional[_builtins.str]]:
+        return pulumi.get(self, "started_at")
 
     @_builtins.property
     @pulumi.getter

@@ -25,7 +25,7 @@ namespace Pulumi.Render.Blueprints
     public sealed class ListBlueprintSyncsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The ID of the blueprint
+        /// The ID of the Blueprint
         /// </summary>
         [Input("blueprintId", required: true)]
         public string BlueprintId { get; set; } = null!;
@@ -39,7 +39,7 @@ namespace Pulumi.Render.Blueprints
     public sealed class ListBlueprintSyncsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The ID of the blueprint
+        /// The ID of the Blueprint
         /// </summary>
         [Input("blueprintId", required: true)]
         public Input<string> BlueprintId { get; set; } = null!;

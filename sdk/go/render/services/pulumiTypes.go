@@ -974,6 +974,61 @@ func (o BuildFilterPtrOutput) Paths() pulumi.StringArrayOutput {
 	}).(pulumi.StringArrayOutput)
 }
 
+type Cache struct {
+	Profile string `pulumi:"profile"`
+}
+
+type CacheOutput struct{ *pulumi.OutputState }
+
+func (CacheOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Cache)(nil)).Elem()
+}
+
+func (o CacheOutput) ToCacheOutput() CacheOutput {
+	return o
+}
+
+func (o CacheOutput) ToCacheOutputWithContext(ctx context.Context) CacheOutput {
+	return o
+}
+
+func (o CacheOutput) Profile() pulumi.StringOutput {
+	return o.ApplyT(func(v Cache) string { return v.Profile }).(pulumi.StringOutput)
+}
+
+type CachePtrOutput struct{ *pulumi.OutputState }
+
+func (CachePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Cache)(nil)).Elem()
+}
+
+func (o CachePtrOutput) ToCachePtrOutput() CachePtrOutput {
+	return o
+}
+
+func (o CachePtrOutput) ToCachePtrOutputWithContext(ctx context.Context) CachePtrOutput {
+	return o
+}
+
+func (o CachePtrOutput) Elem() CacheOutput {
+	return o.ApplyT(func(v *Cache) Cache {
+		if v != nil {
+			return *v
+		}
+		var ret Cache
+		return ret
+	}).(CacheOutput)
+}
+
+func (o CachePtrOutput) Profile() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Cache) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Profile
+	}).(pulumi.StringPtrOutput)
+}
+
 type CommitProperties struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	Id        *string `pulumi:"id"`
@@ -1969,6 +2024,7 @@ type DeployType struct {
 	Id         string                  `pulumi:"id"`
 	// Image information used when creating the deploy. Not present for Git-backed deploys
 	Image     *DeployImageProperties `pulumi:"image"`
+	StartedAt *string                `pulumi:"startedAt"`
 	Status    *DeployStatus          `pulumi:"status"`
 	Trigger   *DeployTrigger         `pulumi:"trigger"`
 	UpdatedAt *string                `pulumi:"updatedAt"`
@@ -2007,6 +2063,10 @@ func (o DeployTypeOutput) Id() pulumi.StringOutput {
 // Image information used when creating the deploy. Not present for Git-backed deploys
 func (o DeployTypeOutput) Image() DeployImagePropertiesPtrOutput {
 	return o.ApplyT(func(v DeployType) *DeployImageProperties { return v.Image }).(DeployImagePropertiesPtrOutput)
+}
+
+func (o DeployTypeOutput) StartedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeployType) *string { return v.StartedAt }).(pulumi.StringPtrOutput)
 }
 
 func (o DeployTypeOutput) Status() DeployStatusPtrOutput {
@@ -2089,6 +2149,15 @@ func (o DeployTypePtrOutput) Image() DeployImagePropertiesPtrOutput {
 		}
 		return v.Image
 	}).(DeployImagePropertiesPtrOutput)
+}
+
+func (o DeployTypePtrOutput) StartedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeployType) *string {
+		if v == nil {
+			return nil
+		}
+		return v.StartedAt
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o DeployTypePtrOutput) Status() DeployStatusPtrOutput {
@@ -3848,7 +3917,7 @@ func (o ListServicesResponseArrayOutput) Index(i pulumi.IntInput) ListServicesRe
 
 type MaintenanceMode struct {
 	Enabled bool `pulumi:"enabled"`
-	// The page to be served when [maintenance mode](https://docs.render.com/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
+	// The page to be served when [maintenance mode](https://render.com/docs/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
 	Uri string `pulumi:"uri"`
 }
 
@@ -3865,7 +3934,7 @@ type MaintenanceModeInput interface {
 
 type MaintenanceModeArgs struct {
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
-	// The page to be served when [maintenance mode](https://docs.render.com/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
+	// The page to be served when [maintenance mode](https://render.com/docs/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
 	Uri pulumi.StringInput `pulumi:"uri"`
 }
 
@@ -3950,7 +4019,7 @@ func (o MaintenanceModeOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v MaintenanceMode) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
-// The page to be served when [maintenance mode](https://docs.render.com/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
+// The page to be served when [maintenance mode](https://render.com/docs/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
 func (o MaintenanceModeOutput) Uri() pulumi.StringOutput {
 	return o.ApplyT(func(v MaintenanceMode) string { return v.Uri }).(pulumi.StringOutput)
 }
@@ -3988,7 +4057,7 @@ func (o MaintenanceModePtrOutput) Enabled() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// The page to be served when [maintenance mode](https://docs.render.com/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
+// The page to be served when [maintenance mode](https://render.com/docs/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
 func (o MaintenanceModePtrOutput) Uri() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MaintenanceMode) *string {
 		if v == nil {
@@ -6253,6 +6322,53 @@ func (o ServiceDiskPtrOutput) SizeGB() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+type ServiceInstance struct {
+	CreatedAt string `pulumi:"createdAt"`
+	Id        string `pulumi:"id"`
+}
+
+type ServiceInstanceOutput struct{ *pulumi.OutputState }
+
+func (ServiceInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceInstance)(nil)).Elem()
+}
+
+func (o ServiceInstanceOutput) ToServiceInstanceOutput() ServiceInstanceOutput {
+	return o
+}
+
+func (o ServiceInstanceOutput) ToServiceInstanceOutputWithContext(ctx context.Context) ServiceInstanceOutput {
+	return o
+}
+
+func (o ServiceInstanceOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceInstance) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+func (o ServiceInstanceOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceInstance) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type ServiceInstanceArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceInstanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceInstance)(nil)).Elem()
+}
+
+func (o ServiceInstanceArrayOutput) ToServiceInstanceArrayOutput() ServiceInstanceArrayOutput {
+	return o
+}
+
+func (o ServiceInstanceArrayOutput) ToServiceInstanceArrayOutputWithContext(ctx context.Context) ServiceInstanceArrayOutput {
+	return o
+}
+
+func (o ServiceInstanceArrayOutput) Index(i pulumi.IntInput) ServiceInstanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceInstance {
+		return vs[0].([]ServiceInstance)[vs[1].(int)]
+	}).(ServiceInstanceOutput)
+}
+
 type StaticSiteDetailsCreate struct {
 	BuildCommand *string           `pulumi:"buildCommand"`
 	Headers      []HeaderInputType `pulumi:"headers"`
@@ -6261,7 +6377,9 @@ type StaticSiteDetailsCreate struct {
 	PublishPath *string `pulumi:"publishPath"`
 	// This field has been deprecated. previews.generation should be used in its place.
 	PullRequestPreviewsEnabled *StaticSiteDetailsCreatePullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
-	Routes                     []RouteCreate                                      `pulumi:"routes"`
+	// Controls whether render.com subdomains are available for the service
+	RenderSubdomainPolicy *StaticSiteDetailsCreateRenderSubdomainPolicy `pulumi:"renderSubdomainPolicy"`
+	Routes                []RouteCreate                                 `pulumi:"routes"`
 }
 
 // Defaults sets the appropriate defaults for StaticSiteDetailsCreate
@@ -6298,7 +6416,9 @@ type StaticSiteDetailsCreateArgs struct {
 	PublishPath pulumi.StringPtrInput `pulumi:"publishPath"`
 	// This field has been deprecated. previews.generation should be used in its place.
 	PullRequestPreviewsEnabled StaticSiteDetailsCreatePullRequestPreviewsEnabledPtrInput `pulumi:"pullRequestPreviewsEnabled"`
-	Routes                     RouteCreateArrayInput                                     `pulumi:"routes"`
+	// Controls whether render.com subdomains are available for the service
+	RenderSubdomainPolicy StaticSiteDetailsCreateRenderSubdomainPolicyPtrInput `pulumi:"renderSubdomainPolicy"`
+	Routes                RouteCreateArrayInput                                `pulumi:"routes"`
 }
 
 // Defaults sets the appropriate defaults for StaticSiteDetailsCreateArgs
@@ -6414,6 +6534,13 @@ func (o StaticSiteDetailsCreateOutput) PullRequestPreviewsEnabled() StaticSiteDe
 	}).(StaticSiteDetailsCreatePullRequestPreviewsEnabledPtrOutput)
 }
 
+// Controls whether render.com subdomains are available for the service
+func (o StaticSiteDetailsCreateOutput) RenderSubdomainPolicy() StaticSiteDetailsCreateRenderSubdomainPolicyPtrOutput {
+	return o.ApplyT(func(v StaticSiteDetailsCreate) *StaticSiteDetailsCreateRenderSubdomainPolicy {
+		return v.RenderSubdomainPolicy
+	}).(StaticSiteDetailsCreateRenderSubdomainPolicyPtrOutput)
+}
+
 func (o StaticSiteDetailsCreateOutput) Routes() RouteCreateArrayOutput {
 	return o.ApplyT(func(v StaticSiteDetailsCreate) []RouteCreate { return v.Routes }).(RouteCreateArrayOutput)
 }
@@ -6489,6 +6616,16 @@ func (o StaticSiteDetailsCreatePtrOutput) PullRequestPreviewsEnabled() StaticSit
 	}).(StaticSiteDetailsCreatePullRequestPreviewsEnabledPtrOutput)
 }
 
+// Controls whether render.com subdomains are available for the service
+func (o StaticSiteDetailsCreatePtrOutput) RenderSubdomainPolicy() StaticSiteDetailsCreateRenderSubdomainPolicyPtrOutput {
+	return o.ApplyT(func(v *StaticSiteDetailsCreate) *StaticSiteDetailsCreateRenderSubdomainPolicy {
+		if v == nil {
+			return nil
+		}
+		return v.RenderSubdomainPolicy
+	}).(StaticSiteDetailsCreateRenderSubdomainPolicyPtrOutput)
+}
+
 func (o StaticSiteDetailsCreatePtrOutput) Routes() RouteCreateArrayOutput {
 	return o.ApplyT(func(v *StaticSiteDetailsCreate) []RouteCreate {
 		if v == nil {
@@ -6506,7 +6643,9 @@ type StaticSiteDetailsOutput struct {
 	PublishPath  string                           `pulumi:"publishPath"`
 	// This field has been deprecated. previews.generation should be used in its place.
 	PullRequestPreviewsEnabled *StaticSiteDetailsOutputPullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
-	Url                        string                                             `pulumi:"url"`
+	// Controls whether render.com subdomains are available for the service
+	RenderSubdomainPolicy *StaticSiteDetailsOutputRenderSubdomainPolicy `pulumi:"renderSubdomainPolicy"`
+	Url                   string                                        `pulumi:"url"`
 }
 
 // Defaults sets the appropriate defaults for StaticSiteDetailsOutput
@@ -6566,6 +6705,13 @@ func (o StaticSiteDetailsOutputOutput) PullRequestPreviewsEnabled() StaticSiteDe
 	return o.ApplyT(func(v StaticSiteDetailsOutput) *StaticSiteDetailsOutputPullRequestPreviewsEnabled {
 		return v.PullRequestPreviewsEnabled
 	}).(StaticSiteDetailsOutputPullRequestPreviewsEnabledPtrOutput)
+}
+
+// Controls whether render.com subdomains are available for the service
+func (o StaticSiteDetailsOutputOutput) RenderSubdomainPolicy() StaticSiteDetailsOutputRenderSubdomainPolicyPtrOutput {
+	return o.ApplyT(func(v StaticSiteDetailsOutput) *StaticSiteDetailsOutputRenderSubdomainPolicy {
+		return v.RenderSubdomainPolicy
+	}).(StaticSiteDetailsOutputRenderSubdomainPolicyPtrOutput)
 }
 
 func (o StaticSiteDetailsOutputOutput) Url() pulumi.StringOutput {
@@ -6649,6 +6795,16 @@ func (o StaticSiteDetailsOutputPtrOutput) PullRequestPreviewsEnabled() StaticSit
 		}
 		return v.PullRequestPreviewsEnabled
 	}).(StaticSiteDetailsOutputPullRequestPreviewsEnabledPtrOutput)
+}
+
+// Controls whether render.com subdomains are available for the service
+func (o StaticSiteDetailsOutputPtrOutput) RenderSubdomainPolicy() StaticSiteDetailsOutputRenderSubdomainPolicyPtrOutput {
+	return o.ApplyT(func(v *StaticSiteDetailsOutput) *StaticSiteDetailsOutputRenderSubdomainPolicy {
+		if v == nil {
+			return nil
+		}
+		return v.RenderSubdomainPolicy
+	}).(StaticSiteDetailsOutputRenderSubdomainPolicyPtrOutput)
 }
 
 func (o StaticSiteDetailsOutputPtrOutput) Url() pulumi.StringPtrOutput {
@@ -6817,6 +6973,8 @@ type WebServiceDetailsCreate struct {
 	PullRequestPreviewsEnabled *WebServiceDetailsCreatePullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
 	// Defaults to "oregon"
 	Region *WebServiceDetailsCreateRegion `pulumi:"region"`
+	// Controls whether render.com subdomains are available for the service
+	RenderSubdomainPolicy *WebServiceDetailsCreateRenderSubdomainPolicy `pulumi:"renderSubdomainPolicy"`
 	// Runtime
 	Runtime WebServiceDetailsCreateRuntime `pulumi:"runtime"`
 }
@@ -6881,6 +7039,8 @@ type WebServiceDetailsCreateArgs struct {
 	PullRequestPreviewsEnabled WebServiceDetailsCreatePullRequestPreviewsEnabledPtrInput `pulumi:"pullRequestPreviewsEnabled"`
 	// Defaults to "oregon"
 	Region WebServiceDetailsCreateRegionPtrInput `pulumi:"region"`
+	// Controls whether render.com subdomains are available for the service
+	RenderSubdomainPolicy WebServiceDetailsCreateRenderSubdomainPolicyPtrInput `pulumi:"renderSubdomainPolicy"`
 	// Runtime
 	Runtime WebServiceDetailsCreateRuntimeInput `pulumi:"runtime"`
 }
@@ -7044,6 +7204,13 @@ func (o WebServiceDetailsCreateOutput) Region() WebServiceDetailsCreateRegionPtr
 	return o.ApplyT(func(v WebServiceDetailsCreate) *WebServiceDetailsCreateRegion { return v.Region }).(WebServiceDetailsCreateRegionPtrOutput)
 }
 
+// Controls whether render.com subdomains are available for the service
+func (o WebServiceDetailsCreateOutput) RenderSubdomainPolicy() WebServiceDetailsCreateRenderSubdomainPolicyPtrOutput {
+	return o.ApplyT(func(v WebServiceDetailsCreate) *WebServiceDetailsCreateRenderSubdomainPolicy {
+		return v.RenderSubdomainPolicy
+	}).(WebServiceDetailsCreateRenderSubdomainPolicyPtrOutput)
+}
+
 // Runtime
 func (o WebServiceDetailsCreateOutput) Runtime() WebServiceDetailsCreateRuntimeOutput {
 	return o.ApplyT(func(v WebServiceDetailsCreate) WebServiceDetailsCreateRuntime { return v.Runtime }).(WebServiceDetailsCreateRuntimeOutput)
@@ -7196,6 +7363,16 @@ func (o WebServiceDetailsCreatePtrOutput) Region() WebServiceDetailsCreateRegion
 	}).(WebServiceDetailsCreateRegionPtrOutput)
 }
 
+// Controls whether render.com subdomains are available for the service
+func (o WebServiceDetailsCreatePtrOutput) RenderSubdomainPolicy() WebServiceDetailsCreateRenderSubdomainPolicyPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailsCreate) *WebServiceDetailsCreateRenderSubdomainPolicy {
+		if v == nil {
+			return nil
+		}
+		return v.RenderSubdomainPolicy
+	}).(WebServiceDetailsCreateRenderSubdomainPolicyPtrOutput)
+}
+
 // Runtime
 func (o WebServiceDetailsCreatePtrOutput) Runtime() WebServiceDetailsCreateRuntimePtrOutput {
 	return o.ApplyT(func(v *WebServiceDetailsCreate) *WebServiceDetailsCreateRuntime {
@@ -7209,6 +7386,7 @@ func (o WebServiceDetailsCreatePtrOutput) Runtime() WebServiceDetailsCreateRunti
 type WebServiceDetailsOutput struct {
 	Autoscaling *WebServiceDetailsOutputAutoscalingProperties `pulumi:"autoscaling"`
 	BuildPlan   WebServiceDetailsOutputBuildPlan              `pulumi:"buildPlan"`
+	Cache       *Cache                                        `pulumi:"cache"`
 	Disk        *WebServiceDetailsOutputDiskProperties        `pulumi:"disk"`
 	// This field has been deprecated, runtime should be used in its place.
 	Env                WebServiceDetailsOutputEnv `pulumi:"env"`
@@ -7228,6 +7406,8 @@ type WebServiceDetailsOutput struct {
 	PullRequestPreviewsEnabled *WebServiceDetailsOutputPullRequestPreviewsEnabled `pulumi:"pullRequestPreviewsEnabled"`
 	// Defaults to "oregon"
 	Region WebServiceDetailsOutputRegion `pulumi:"region"`
+	// Controls whether render.com subdomains are available for the service
+	RenderSubdomainPolicy *WebServiceDetailsOutputRenderSubdomainPolicy `pulumi:"renderSubdomainPolicy"`
 	// Runtime
 	Runtime WebServiceDetailsOutputRuntime `pulumi:"runtime"`
 	// The SSH address for the service. Only present for services that have SSH enabled.
@@ -7282,6 +7462,10 @@ func (o WebServiceDetailsOutputOutput) Autoscaling() WebServiceDetailsOutputAuto
 
 func (o WebServiceDetailsOutputOutput) BuildPlan() WebServiceDetailsOutputBuildPlanOutput {
 	return o.ApplyT(func(v WebServiceDetailsOutput) WebServiceDetailsOutputBuildPlan { return v.BuildPlan }).(WebServiceDetailsOutputBuildPlanOutput)
+}
+
+func (o WebServiceDetailsOutputOutput) Cache() CachePtrOutput {
+	return o.ApplyT(func(v WebServiceDetailsOutput) *Cache { return v.Cache }).(CachePtrOutput)
 }
 
 func (o WebServiceDetailsOutputOutput) Disk() WebServiceDetailsOutputDiskPropertiesPtrOutput {
@@ -7344,6 +7528,13 @@ func (o WebServiceDetailsOutputOutput) Region() WebServiceDetailsOutputRegionOut
 	return o.ApplyT(func(v WebServiceDetailsOutput) WebServiceDetailsOutputRegion { return v.Region }).(WebServiceDetailsOutputRegionOutput)
 }
 
+// Controls whether render.com subdomains are available for the service
+func (o WebServiceDetailsOutputOutput) RenderSubdomainPolicy() WebServiceDetailsOutputRenderSubdomainPolicyPtrOutput {
+	return o.ApplyT(func(v WebServiceDetailsOutput) *WebServiceDetailsOutputRenderSubdomainPolicy {
+		return v.RenderSubdomainPolicy
+	}).(WebServiceDetailsOutputRenderSubdomainPolicyPtrOutput)
+}
+
 // Runtime
 func (o WebServiceDetailsOutputOutput) Runtime() WebServiceDetailsOutputRuntimeOutput {
 	return o.ApplyT(func(v WebServiceDetailsOutput) WebServiceDetailsOutputRuntime { return v.Runtime }).(WebServiceDetailsOutputRuntimeOutput)
@@ -7398,6 +7589,15 @@ func (o WebServiceDetailsOutputPtrOutput) BuildPlan() WebServiceDetailsOutputBui
 		}
 		return &v.BuildPlan
 	}).(WebServiceDetailsOutputBuildPlanPtrOutput)
+}
+
+func (o WebServiceDetailsOutputPtrOutput) Cache() CachePtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailsOutput) *Cache {
+		if v == nil {
+			return nil
+		}
+		return v.Cache
+	}).(CachePtrOutput)
 }
 
 func (o WebServiceDetailsOutputPtrOutput) Disk() WebServiceDetailsOutputDiskPropertiesPtrOutput {
@@ -7521,6 +7721,16 @@ func (o WebServiceDetailsOutputPtrOutput) Region() WebServiceDetailsOutputRegion
 		}
 		return &v.Region
 	}).(WebServiceDetailsOutputRegionPtrOutput)
+}
+
+// Controls whether render.com subdomains are available for the service
+func (o WebServiceDetailsOutputPtrOutput) RenderSubdomainPolicy() WebServiceDetailsOutputRenderSubdomainPolicyPtrOutput {
+	return o.ApplyT(func(v *WebServiceDetailsOutput) *WebServiceDetailsOutputRenderSubdomainPolicy {
+		if v == nil {
+			return nil
+		}
+		return v.RenderSubdomainPolicy
+	}).(WebServiceDetailsOutputRenderSubdomainPolicyPtrOutput)
 }
 
 // Runtime
@@ -8966,6 +9176,8 @@ func init() {
 	pulumi.RegisterOutputType(BackgroundWorkerOutputTypeOutput{})
 	pulumi.RegisterOutputType(BuildFilterOutput{})
 	pulumi.RegisterOutputType(BuildFilterPtrOutput{})
+	pulumi.RegisterOutputType(CacheOutput{})
+	pulumi.RegisterOutputType(CachePtrOutput{})
 	pulumi.RegisterOutputType(CommitPropertiesOutput{})
 	pulumi.RegisterOutputType(CommitPropertiesPtrOutput{})
 	pulumi.RegisterOutputType(CriteriaPropertiesOutput{})
@@ -9043,6 +9255,8 @@ func init() {
 	pulumi.RegisterOutputType(ServicePtrOutput{})
 	pulumi.RegisterOutputType(ServiceDiskOutput{})
 	pulumi.RegisterOutputType(ServiceDiskPtrOutput{})
+	pulumi.RegisterOutputType(ServiceInstanceOutput{})
+	pulumi.RegisterOutputType(ServiceInstanceArrayOutput{})
 	pulumi.RegisterOutputType(StaticSiteDetailsCreateOutput{})
 	pulumi.RegisterOutputType(StaticSiteDetailsCreatePtrOutput{})
 	pulumi.RegisterOutputType(StaticSiteDetailsOutputOutput{})

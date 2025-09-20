@@ -44,7 +44,14 @@ export class Postgres extends pulumi.CustomResource {
     declare public /*out*/ readonly dashboardUrl: pulumi.Output<string>;
     declare public readonly databaseName: pulumi.Output<string>;
     declare public readonly databaseUser: pulumi.Output<string>;
+    /**
+     * The Datadog API key for the Datadog agent to monitor the new database.
+     */
     declare public readonly datadogAPIKey: pulumi.Output<string | undefined>;
+    /**
+     * Datadog region to use for monitoring the new database. Defaults to 'US1'.
+     */
+    declare public readonly datadogSite: pulumi.Output<string | undefined>;
     declare public readonly diskSizeGB: pulumi.Output<number | undefined>;
     declare public readonly enableHighAvailability: pulumi.Output<boolean | undefined>;
     declare public readonly environmentId: pulumi.Output<string | undefined>;
@@ -58,7 +65,7 @@ export class Postgres extends pulumi.CustomResource {
     declare public readonly name: pulumi.Output<string>;
     declare public /*out*/ readonly owner: pulumi.Output<outputs.postgres.Owner>;
     /**
-     * The ID of the owner (team or personal user) whose resources should be returned
+     * The ID of the workspace to create the database for
      */
     declare public readonly ownerId: pulumi.Output<string>;
     declare public readonly plan: pulumi.Output<enums.postgres.Plan>;
@@ -101,6 +108,7 @@ export class Postgres extends pulumi.CustomResource {
             resourceInputs["databaseName"] = (args?.databaseName) ?? "randomly generated";
             resourceInputs["databaseUser"] = (args?.databaseUser) ?? "randomly generated";
             resourceInputs["datadogAPIKey"] = args?.datadogAPIKey;
+            resourceInputs["datadogSite"] = args?.datadogSite;
             resourceInputs["diskSizeGB"] = args?.diskSizeGB;
             resourceInputs["enableHighAvailability"] = (args?.enableHighAvailability) ?? false;
             resourceInputs["environmentId"] = args?.environmentId;
@@ -129,6 +137,7 @@ export class Postgres extends pulumi.CustomResource {
             resourceInputs["databaseName"] = undefined /*out*/;
             resourceInputs["databaseUser"] = undefined /*out*/;
             resourceInputs["datadogAPIKey"] = undefined /*out*/;
+            resourceInputs["datadogSite"] = undefined /*out*/;
             resourceInputs["diskSizeGB"] = undefined /*out*/;
             resourceInputs["enableHighAvailability"] = undefined /*out*/;
             resourceInputs["environmentId"] = undefined /*out*/;
@@ -161,7 +170,14 @@ export class Postgres extends pulumi.CustomResource {
 export interface PostgresArgs {
     databaseName?: pulumi.Input<string>;
     databaseUser?: pulumi.Input<string>;
+    /**
+     * The Datadog API key for the Datadog agent to monitor the new database.
+     */
     datadogAPIKey?: pulumi.Input<string>;
+    /**
+     * Datadog region to use for monitoring the new database. Defaults to 'US1'.
+     */
+    datadogSite?: pulumi.Input<string>;
     /**
      * The number of gigabytes of disk space to allocate for the database
      */
@@ -174,7 +190,7 @@ export interface PostgresArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The ID of the owner (team or personal user) whose resources should be returned
+     * The ID of the workspace to create the database for
      */
     ownerId: pulumi.Input<string>;
     plan: pulumi.Input<enums.postgres.Plan>;

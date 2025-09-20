@@ -13,6 +13,179 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type GetBandwidthSourceProperties struct {
+	Data []GetBandwidthSourcePropertiesDataItemProperties `pulumi:"data"`
+}
+
+type GetBandwidthSourcePropertiesDataItemProperties struct {
+	Labels *GetBandwidthSourcePropertiesDataItemPropertiesLabelsProperties      `pulumi:"labels"`
+	Values []GetBandwidthSourcePropertiesDataItemPropertiesValuesItemProperties `pulumi:"values"`
+}
+
+type GetBandwidthSourcePropertiesDataItemPropertiesOutput struct{ *pulumi.OutputState }
+
+func (GetBandwidthSourcePropertiesDataItemPropertiesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBandwidthSourcePropertiesDataItemProperties)(nil)).Elem()
+}
+
+func (o GetBandwidthSourcePropertiesDataItemPropertiesOutput) ToGetBandwidthSourcePropertiesDataItemPropertiesOutput() GetBandwidthSourcePropertiesDataItemPropertiesOutput {
+	return o
+}
+
+func (o GetBandwidthSourcePropertiesDataItemPropertiesOutput) ToGetBandwidthSourcePropertiesDataItemPropertiesOutputWithContext(ctx context.Context) GetBandwidthSourcePropertiesDataItemPropertiesOutput {
+	return o
+}
+
+func (o GetBandwidthSourcePropertiesDataItemPropertiesOutput) Labels() GetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesPtrOutput {
+	return o.ApplyT(func(v GetBandwidthSourcePropertiesDataItemProperties) *GetBandwidthSourcePropertiesDataItemPropertiesLabelsProperties {
+		return v.Labels
+	}).(GetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesPtrOutput)
+}
+
+func (o GetBandwidthSourcePropertiesDataItemPropertiesOutput) Values() GetBandwidthSourcePropertiesDataItemPropertiesValuesItemPropertiesArrayOutput {
+	return o.ApplyT(func(v GetBandwidthSourcePropertiesDataItemProperties) []GetBandwidthSourcePropertiesDataItemPropertiesValuesItemProperties {
+		return v.Values
+	}).(GetBandwidthSourcePropertiesDataItemPropertiesValuesItemPropertiesArrayOutput)
+}
+
+type GetBandwidthSourcePropertiesDataItemPropertiesArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBandwidthSourcePropertiesDataItemPropertiesArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBandwidthSourcePropertiesDataItemProperties)(nil)).Elem()
+}
+
+func (o GetBandwidthSourcePropertiesDataItemPropertiesArrayOutput) ToGetBandwidthSourcePropertiesDataItemPropertiesArrayOutput() GetBandwidthSourcePropertiesDataItemPropertiesArrayOutput {
+	return o
+}
+
+func (o GetBandwidthSourcePropertiesDataItemPropertiesArrayOutput) ToGetBandwidthSourcePropertiesDataItemPropertiesArrayOutputWithContext(ctx context.Context) GetBandwidthSourcePropertiesDataItemPropertiesArrayOutput {
+	return o
+}
+
+func (o GetBandwidthSourcePropertiesDataItemPropertiesArrayOutput) Index(i pulumi.IntInput) GetBandwidthSourcePropertiesDataItemPropertiesOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBandwidthSourcePropertiesDataItemProperties {
+		return vs[0].([]GetBandwidthSourcePropertiesDataItemProperties)[vs[1].(int)]
+	}).(GetBandwidthSourcePropertiesDataItemPropertiesOutput)
+}
+
+type GetBandwidthSourcePropertiesDataItemPropertiesLabelsProperties struct {
+	Resource      *string                                                                      `pulumi:"resource"`
+	TrafficSource *GetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesTrafficSource `pulumi:"trafficSource"`
+}
+
+type GetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesOutput struct{ *pulumi.OutputState }
+
+func (GetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBandwidthSourcePropertiesDataItemPropertiesLabelsProperties)(nil)).Elem()
+}
+
+func (o GetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesOutput) ToGetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesOutput() GetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesOutput {
+	return o
+}
+
+func (o GetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesOutput) ToGetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesOutputWithContext(ctx context.Context) GetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesOutput {
+	return o
+}
+
+func (o GetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesOutput) Resource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetBandwidthSourcePropertiesDataItemPropertiesLabelsProperties) *string { return v.Resource }).(pulumi.StringPtrOutput)
+}
+
+func (o GetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesOutput) TrafficSource() GetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesTrafficSourcePtrOutput {
+	return o.ApplyT(func(v GetBandwidthSourcePropertiesDataItemPropertiesLabelsProperties) *GetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesTrafficSource {
+		return v.TrafficSource
+	}).(GetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesTrafficSourcePtrOutput)
+}
+
+type GetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesPtrOutput struct{ *pulumi.OutputState }
+
+func (GetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetBandwidthSourcePropertiesDataItemPropertiesLabelsProperties)(nil)).Elem()
+}
+
+func (o GetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesPtrOutput) ToGetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesPtrOutput() GetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesPtrOutput {
+	return o
+}
+
+func (o GetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesPtrOutput) ToGetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesPtrOutputWithContext(ctx context.Context) GetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesPtrOutput {
+	return o
+}
+
+func (o GetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesPtrOutput) Elem() GetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesOutput {
+	return o.ApplyT(func(v *GetBandwidthSourcePropertiesDataItemPropertiesLabelsProperties) GetBandwidthSourcePropertiesDataItemPropertiesLabelsProperties {
+		if v != nil {
+			return *v
+		}
+		var ret GetBandwidthSourcePropertiesDataItemPropertiesLabelsProperties
+		return ret
+	}).(GetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesOutput)
+}
+
+func (o GetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesPtrOutput) Resource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetBandwidthSourcePropertiesDataItemPropertiesLabelsProperties) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Resource
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o GetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesPtrOutput) TrafficSource() GetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesTrafficSourcePtrOutput {
+	return o.ApplyT(func(v *GetBandwidthSourcePropertiesDataItemPropertiesLabelsProperties) *GetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesTrafficSource {
+		if v == nil {
+			return nil
+		}
+		return v.TrafficSource
+	}).(GetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesTrafficSourcePtrOutput)
+}
+
+type GetBandwidthSourcePropertiesDataItemPropertiesValuesItemProperties struct {
+	Timestamp *int     `pulumi:"timestamp"`
+	Value     *float64 `pulumi:"value"`
+}
+
+type GetBandwidthSourcePropertiesDataItemPropertiesValuesItemPropertiesOutput struct{ *pulumi.OutputState }
+
+func (GetBandwidthSourcePropertiesDataItemPropertiesValuesItemPropertiesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBandwidthSourcePropertiesDataItemPropertiesValuesItemProperties)(nil)).Elem()
+}
+
+func (o GetBandwidthSourcePropertiesDataItemPropertiesValuesItemPropertiesOutput) ToGetBandwidthSourcePropertiesDataItemPropertiesValuesItemPropertiesOutput() GetBandwidthSourcePropertiesDataItemPropertiesValuesItemPropertiesOutput {
+	return o
+}
+
+func (o GetBandwidthSourcePropertiesDataItemPropertiesValuesItemPropertiesOutput) ToGetBandwidthSourcePropertiesDataItemPropertiesValuesItemPropertiesOutputWithContext(ctx context.Context) GetBandwidthSourcePropertiesDataItemPropertiesValuesItemPropertiesOutput {
+	return o
+}
+
+func (o GetBandwidthSourcePropertiesDataItemPropertiesValuesItemPropertiesOutput) Timestamp() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetBandwidthSourcePropertiesDataItemPropertiesValuesItemProperties) *int { return v.Timestamp }).(pulumi.IntPtrOutput)
+}
+
+func (o GetBandwidthSourcePropertiesDataItemPropertiesValuesItemPropertiesOutput) Value() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v GetBandwidthSourcePropertiesDataItemPropertiesValuesItemProperties) *float64 { return v.Value }).(pulumi.Float64PtrOutput)
+}
+
+type GetBandwidthSourcePropertiesDataItemPropertiesValuesItemPropertiesArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBandwidthSourcePropertiesDataItemPropertiesValuesItemPropertiesArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBandwidthSourcePropertiesDataItemPropertiesValuesItemProperties)(nil)).Elem()
+}
+
+func (o GetBandwidthSourcePropertiesDataItemPropertiesValuesItemPropertiesArrayOutput) ToGetBandwidthSourcePropertiesDataItemPropertiesValuesItemPropertiesArrayOutput() GetBandwidthSourcePropertiesDataItemPropertiesValuesItemPropertiesArrayOutput {
+	return o
+}
+
+func (o GetBandwidthSourcePropertiesDataItemPropertiesValuesItemPropertiesArrayOutput) ToGetBandwidthSourcePropertiesDataItemPropertiesValuesItemPropertiesArrayOutputWithContext(ctx context.Context) GetBandwidthSourcePropertiesDataItemPropertiesValuesItemPropertiesArrayOutput {
+	return o
+}
+
+func (o GetBandwidthSourcePropertiesDataItemPropertiesValuesItemPropertiesArrayOutput) Index(i pulumi.IntInput) GetBandwidthSourcePropertiesDataItemPropertiesValuesItemPropertiesOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBandwidthSourcePropertiesDataItemPropertiesValuesItemProperties {
+		return vs[0].([]GetBandwidthSourcePropertiesDataItemPropertiesValuesItemProperties)[vs[1].(int)]
+	}).(GetBandwidthSourcePropertiesDataItemPropertiesValuesItemPropertiesOutput)
+}
+
 // A time series data point
 type ListActiveConnectionsItemProperties struct {
 	// List of labels describing the time series
@@ -334,6 +507,12 @@ func (o ListReplicationLagItemPropertiesValuesItemPropertiesArrayOutput) Index(i
 }
 
 func init() {
+	pulumi.RegisterOutputType(GetBandwidthSourcePropertiesDataItemPropertiesOutput{})
+	pulumi.RegisterOutputType(GetBandwidthSourcePropertiesDataItemPropertiesArrayOutput{})
+	pulumi.RegisterOutputType(GetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesOutput{})
+	pulumi.RegisterOutputType(GetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesPtrOutput{})
+	pulumi.RegisterOutputType(GetBandwidthSourcePropertiesDataItemPropertiesValuesItemPropertiesOutput{})
+	pulumi.RegisterOutputType(GetBandwidthSourcePropertiesDataItemPropertiesValuesItemPropertiesArrayOutput{})
 	pulumi.RegisterOutputType(ListActiveConnectionsItemPropertiesOutput{})
 	pulumi.RegisterOutputType(ListActiveConnectionsItemPropertiesArrayOutput{})
 	pulumi.RegisterOutputType(ListActiveConnectionsItemPropertiesLabelsItemPropertiesOutput{})

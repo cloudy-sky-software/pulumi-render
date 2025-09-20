@@ -13,13 +13,13 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
-// A blueprint with a cursor
+// A Blueprint with a cursor
 type BlueprintWithCursor struct {
 	Blueprint BlueprintWithCursorBlueprintProperties `pulumi:"blueprint"`
 	Cursor    string                                 `pulumi:"cursor"`
 }
 
-// A blueprint with a cursor
+// A Blueprint with a cursor
 type BlueprintWithCursorOutput struct{ *pulumi.OutputState }
 
 func (BlueprintWithCursorOutput) ElementType() reflect.Type {
@@ -186,13 +186,13 @@ func (o GetBlueprintPropertiesResourcesItemPropertiesArrayOutput) Index(i pulumi
 	}).(GetBlueprintPropertiesResourcesItemPropertiesOutput)
 }
 
-// A blueprint sync with a cursor
+// A Blueprint sync with a cursor
 type SyncWithCursor struct {
 	Cursor string                       `pulumi:"cursor"`
 	Sync   SyncWithCursorSyncProperties `pulumi:"sync"`
 }
 
-// A blueprint sync with a cursor
+// A Blueprint sync with a cursor
 type SyncWithCursorOutput struct{ *pulumi.OutputState }
 
 func (SyncWithCursorOutput) ElementType() reflect.Type {

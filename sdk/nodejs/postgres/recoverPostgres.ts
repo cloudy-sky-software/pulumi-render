@@ -45,6 +45,10 @@ export class RecoverPostgres extends pulumi.CustomResource {
      * Datadog API key to use for monitoring the new database. Defaults to the API key of the original database. Use an empty string to prevent copying of the API key to the new database.
      */
     declare public readonly datadogApiKey: pulumi.Output<string | undefined>;
+    /**
+     * Datadog region code to use for monitoring the new database. Defaults to the region code of the original database. Use an empty string to prevent copying of the region code to the new database.
+     */
+    declare public readonly datadogSite: pulumi.Output<string | undefined>;
     declare public /*out*/ readonly diskSizeGB: pulumi.Output<number | undefined>;
     declare public readonly environmentId: pulumi.Output<string | undefined>;
     /**
@@ -96,6 +100,7 @@ export class RecoverPostgres extends pulumi.CustomResource {
                 throw new Error("Missing required property 'restoreTime'");
             }
             resourceInputs["datadogApiKey"] = args?.datadogApiKey;
+            resourceInputs["datadogSite"] = args?.datadogSite;
             resourceInputs["environmentId"] = args?.environmentId;
             resourceInputs["plan"] = args?.plan;
             resourceInputs["postgresId"] = args?.postgresId;
@@ -127,6 +132,7 @@ export class RecoverPostgres extends pulumi.CustomResource {
             resourceInputs["databaseName"] = undefined /*out*/;
             resourceInputs["databaseUser"] = undefined /*out*/;
             resourceInputs["datadogApiKey"] = undefined /*out*/;
+            resourceInputs["datadogSite"] = undefined /*out*/;
             resourceInputs["diskSizeGB"] = undefined /*out*/;
             resourceInputs["environmentId"] = undefined /*out*/;
             resourceInputs["expiresAt"] = undefined /*out*/;
@@ -161,6 +167,10 @@ export interface RecoverPostgresArgs {
      * Datadog API key to use for monitoring the new database. Defaults to the API key of the original database. Use an empty string to prevent copying of the API key to the new database.
      */
     datadogApiKey?: pulumi.Input<string>;
+    /**
+     * Datadog region code to use for monitoring the new database. Defaults to the region code of the original database. Use an empty string to prevent copying of the region code to the new database.
+     */
+    datadogSite?: pulumi.Input<string>;
     /**
      * The environment to create the new database in. Defaults to the environment of the original database.
      */

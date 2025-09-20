@@ -15,6 +15,7 @@ namespace Pulumi.Render.Services.Outputs
     {
         public readonly Outputs.WebServiceDetailsOutputAutoscalingProperties? Autoscaling;
         public readonly Pulumi.Render.Services.WebServiceDetailsOutputBuildPlan BuildPlan;
+        public readonly Outputs.Cache? Cache;
         public readonly Outputs.WebServiceDetailsOutputDiskProperties? Disk;
         /// <summary>
         /// This field has been deprecated, runtime should be used in its place.
@@ -47,6 +48,10 @@ namespace Pulumi.Render.Services.Outputs
         /// </summary>
         public readonly Pulumi.Render.Services.WebServiceDetailsOutputRegion Region;
         /// <summary>
+        /// Controls whether render.com subdomains are available for the service
+        /// </summary>
+        public readonly Pulumi.Render.Services.WebServiceDetailsOutputRenderSubdomainPolicy? RenderSubdomainPolicy;
+        /// <summary>
         /// Runtime
         /// </summary>
         public readonly Pulumi.Render.Services.WebServiceDetailsOutputRuntime Runtime;
@@ -61,6 +66,8 @@ namespace Pulumi.Render.Services.Outputs
             Outputs.WebServiceDetailsOutputAutoscalingProperties? autoscaling,
 
             Pulumi.Render.Services.WebServiceDetailsOutputBuildPlan buildPlan,
+
+            Outputs.Cache? cache,
 
             Outputs.WebServiceDetailsOutputDiskProperties? disk,
 
@@ -88,6 +95,8 @@ namespace Pulumi.Render.Services.Outputs
 
             Pulumi.Render.Services.WebServiceDetailsOutputRegion region,
 
+            Pulumi.Render.Services.WebServiceDetailsOutputRenderSubdomainPolicy? renderSubdomainPolicy,
+
             Pulumi.Render.Services.WebServiceDetailsOutputRuntime runtime,
 
             string? sshAddress,
@@ -96,6 +105,7 @@ namespace Pulumi.Render.Services.Outputs
         {
             Autoscaling = autoscaling;
             BuildPlan = buildPlan;
+            Cache = cache;
             Disk = disk;
             Env = env;
             EnvSpecificDetails = envSpecificDetails;
@@ -109,6 +119,7 @@ namespace Pulumi.Render.Services.Outputs
             Previews = previews;
             PullRequestPreviewsEnabled = pullRequestPreviewsEnabled;
             Region = region;
+            RenderSubdomainPolicy = renderSubdomainPolicy;
             Runtime = runtime;
             SshAddress = sshAddress;
             Url = url;

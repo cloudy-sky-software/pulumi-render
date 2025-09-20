@@ -100,9 +100,11 @@ type backgroundWorkerArgs struct {
 	Branch      *string           `pulumi:"branch"`
 	BuildFilter *BuildFilter      `pulumi:"buildFilter"`
 	EnvVars     []EnvVarInputType `pulumi:"envVars"`
-	Image       *Image            `pulumi:"image"`
-	Name        string            `pulumi:"name"`
-	OwnerId     string            `pulumi:"ownerId"`
+	// The ID of the environment the service is associated with
+	EnvironmentId *string `pulumi:"environmentId"`
+	Image         *Image  `pulumi:"image"`
+	Name          string  `pulumi:"name"`
+	OwnerId       string  `pulumi:"ownerId"`
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
 	Repo           *string                        `pulumi:"repo"`
 	RootDir        *string                        `pulumi:"rootDir"`
@@ -118,9 +120,11 @@ type BackgroundWorkerArgs struct {
 	Branch      pulumi.StringPtrInput
 	BuildFilter BuildFilterPtrInput
 	EnvVars     EnvVarInputTypeArrayInput
-	Image       ImagePtrInput
-	Name        pulumi.StringInput
-	OwnerId     pulumi.StringInput
+	// The ID of the environment the service is associated with
+	EnvironmentId pulumi.StringPtrInput
+	Image         ImagePtrInput
+	Name          pulumi.StringInput
+	OwnerId       pulumi.StringInput
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
 	Repo           pulumi.StringPtrInput
 	RootDir        pulumi.StringPtrInput

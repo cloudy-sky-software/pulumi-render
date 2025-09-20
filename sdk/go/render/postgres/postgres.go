@@ -18,10 +18,13 @@ type Postgres struct {
 
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The URL to view the Postgres instance in the Render Dashboard
-	DashboardUrl           pulumi.StringOutput    `pulumi:"dashboardUrl"`
-	DatabaseName           pulumi.StringOutput    `pulumi:"databaseName"`
-	DatabaseUser           pulumi.StringOutput    `pulumi:"databaseUser"`
-	DatadogAPIKey          pulumi.StringPtrOutput `pulumi:"datadogAPIKey"`
+	DashboardUrl pulumi.StringOutput `pulumi:"dashboardUrl"`
+	DatabaseName pulumi.StringOutput `pulumi:"databaseName"`
+	DatabaseUser pulumi.StringOutput `pulumi:"databaseUser"`
+	// The Datadog API key for the Datadog agent to monitor the new database.
+	DatadogAPIKey pulumi.StringPtrOutput `pulumi:"datadogAPIKey"`
+	// Datadog region to use for monitoring the new database. Defaults to 'US1'.
+	DatadogSite            pulumi.StringPtrOutput `pulumi:"datadogSite"`
 	DiskSizeGB             pulumi.IntPtrOutput    `pulumi:"diskSizeGB"`
 	EnableHighAvailability pulumi.BoolPtrOutput   `pulumi:"enableHighAvailability"`
 	EnvironmentId          pulumi.StringPtrOutput `pulumi:"environmentId"`
@@ -32,7 +35,7 @@ type Postgres struct {
 	Maintenance             RedisDetailpropertiesmaintenancePtrOutput `pulumi:"maintenance"`
 	Name                    pulumi.StringOutput                       `pulumi:"name"`
 	Owner                   OwnerOutput                               `pulumi:"owner"`
-	// The ID of the owner (team or personal user) whose resources should be returned
+	// The ID of the workspace to create the database for
 	OwnerId           pulumi.StringOutput    `pulumi:"ownerId"`
 	Plan              PlanOutput             `pulumi:"plan"`
 	PrimaryPostgresID pulumi.StringPtrOutput `pulumi:"primaryPostgresID"`
@@ -106,9 +109,12 @@ func (PostgresState) ElementType() reflect.Type {
 }
 
 type postgresArgs struct {
-	DatabaseName  *string `pulumi:"databaseName"`
-	DatabaseUser  *string `pulumi:"databaseUser"`
+	DatabaseName *string `pulumi:"databaseName"`
+	DatabaseUser *string `pulumi:"databaseUser"`
+	// The Datadog API key for the Datadog agent to monitor the new database.
 	DatadogAPIKey *string `pulumi:"datadogAPIKey"`
+	// Datadog region to use for monitoring the new database. Defaults to 'US1'.
+	DatadogSite *string `pulumi:"datadogSite"`
 	// The number of gigabytes of disk space to allocate for the database
 	DiskSizeGB             *int                      `pulumi:"diskSizeGB"`
 	EnableHighAvailability *bool                     `pulumi:"enableHighAvailability"`
@@ -116,7 +122,7 @@ type postgresArgs struct {
 	IpAllowList            []CidrBlockAndDescription `pulumi:"ipAllowList"`
 	// The name of the database as it will appear in the Render Dashboard
 	Name *string `pulumi:"name"`
-	// The ID of the owner (team or personal user) whose resources should be returned
+	// The ID of the workspace to create the database for
 	OwnerId      string                 `pulumi:"ownerId"`
 	Plan         Plan                   `pulumi:"plan"`
 	ReadReplicas []ReadReplicaInputType `pulumi:"readReplicas"`
@@ -127,9 +133,12 @@ type postgresArgs struct {
 
 // The set of arguments for constructing a Postgres resource.
 type PostgresArgs struct {
-	DatabaseName  pulumi.StringPtrInput
-	DatabaseUser  pulumi.StringPtrInput
+	DatabaseName pulumi.StringPtrInput
+	DatabaseUser pulumi.StringPtrInput
+	// The Datadog API key for the Datadog agent to monitor the new database.
 	DatadogAPIKey pulumi.StringPtrInput
+	// Datadog region to use for monitoring the new database. Defaults to 'US1'.
+	DatadogSite pulumi.StringPtrInput
 	// The number of gigabytes of disk space to allocate for the database
 	DiskSizeGB             pulumi.IntPtrInput
 	EnableHighAvailability pulumi.BoolPtrInput
@@ -137,7 +146,7 @@ type PostgresArgs struct {
 	IpAllowList            CidrBlockAndDescriptionArrayInput
 	// The name of the database as it will appear in the Render Dashboard
 	Name pulumi.StringPtrInput
-	// The ID of the owner (team or personal user) whose resources should be returned
+	// The ID of the workspace to create the database for
 	OwnerId      pulumi.StringInput
 	Plan         PlanInput
 	ReadReplicas ReadReplicaInputTypeArrayInput
@@ -200,8 +209,14 @@ func (o PostgresOutput) DatabaseUser() pulumi.StringOutput {
 	return o.ApplyT(func(v *Postgres) pulumi.StringOutput { return v.DatabaseUser }).(pulumi.StringOutput)
 }
 
+// The Datadog API key for the Datadog agent to monitor the new database.
 func (o PostgresOutput) DatadogAPIKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Postgres) pulumi.StringPtrOutput { return v.DatadogAPIKey }).(pulumi.StringPtrOutput)
+}
+
+// Datadog region to use for monitoring the new database. Defaults to 'US1'.
+func (o PostgresOutput) DatadogSite() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Postgres) pulumi.StringPtrOutput { return v.DatadogSite }).(pulumi.StringPtrOutput)
 }
 
 func (o PostgresOutput) DiskSizeGB() pulumi.IntPtrOutput {
@@ -241,7 +256,7 @@ func (o PostgresOutput) Owner() OwnerOutput {
 	return o.ApplyT(func(v *Postgres) OwnerOutput { return v.Owner }).(OwnerOutput)
 }
 
-// The ID of the owner (team or personal user) whose resources should be returned
+// The ID of the workspace to create the database for
 func (o PostgresOutput) OwnerId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Postgres) pulumi.StringOutput { return v.OwnerId }).(pulumi.StringOutput)
 }

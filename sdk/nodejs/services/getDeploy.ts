@@ -35,6 +35,7 @@ export interface GetDeployResult {
      * Image information used when creating the deploy. Not present for Git-backed deploys
      */
     readonly image?: outputs.services.DeployImageProperties;
+    readonly startedAt?: string;
     readonly status?: enums.services.DeployStatus;
     readonly trigger?: enums.services.DeployTrigger;
     readonly updatedAt?: string;

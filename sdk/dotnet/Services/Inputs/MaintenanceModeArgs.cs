@@ -16,7 +16,7 @@ namespace Pulumi.Render.Services.Inputs
         public Input<bool> Enabled { get; set; } = null!;
 
         /// <summary>
-        /// The page to be served when [maintenance mode](https://docs.render.com/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
+        /// The page to be served when [maintenance mode](https://render.com/docs/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
         /// </summary>
         [Input("uri", required: true)]
         public Input<string> Uri { get; set; } = null!;

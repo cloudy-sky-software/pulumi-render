@@ -106,6 +106,7 @@ func PulumiSchema(openAPIDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 			"/services/{serviceId}/resume",
 			"/services/{serviceId}/custom-domains/{id}/verify",
 			"/services/{serviceId}/events",
+			"/services/{serviceId}/cache/purge",
 			"/logs",
 			"/logs/subscribe",
 			"/logs/values",

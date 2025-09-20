@@ -22,7 +22,7 @@ func GetOwnerNotificationSetting(ctx *pulumi.Context, args *GetOwnerNotification
 }
 
 type GetOwnerNotificationSettingArgs struct {
-	// The ID of the owner (team or personal user) whose resources should be returned
+	// The ID of the workspace to return resources for
 	OwnerId string `pulumi:"ownerId"`
 }
 
@@ -44,7 +44,7 @@ func GetOwnerNotificationSettingOutput(ctx *pulumi.Context, args GetOwnerNotific
 }
 
 type GetOwnerNotificationSettingOutputArgs struct {
-	// The ID of the owner (team or personal user) whose resources should be returned
+	// The ID of the workspace to return resources for
 	OwnerId pulumi.StringInput `pulumi:"ownerId"`
 }
 

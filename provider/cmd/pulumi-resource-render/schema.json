@@ -93,7 +93,7 @@
     },
     "types": {
         "render:blueprints:BlueprintWithCursor": {
-            "description": "A blueprint with a cursor",
+            "description": "A Blueprint with a cursor",
             "properties": {
                 "blueprint": {
                     "$ref": "#/types/render:blueprints:BlueprintWithCursorBlueprintProperties"
@@ -298,7 +298,7 @@
             ]
         },
         "render:blueprints:SyncWithCursor": {
-            "description": "A blueprint sync with a cursor",
+            "description": "A Blueprint sync with a cursor",
             "properties": {
                 "cursor": {
                     "type": "string"
@@ -1239,7 +1239,7 @@
                 },
                 "twoFactorAuthEnabled": {
                     "type": "boolean",
-                    "description": "Whether two-factor authentication is enabled for the owner. Only present for user owners."
+                    "description": "Whether two-factor authentication is enabled for the owner. Only present if `type` is `user`."
                 },
                 "type": {
                     "$ref": "#/types/render:key-value:OwnerType"
@@ -1425,6 +1425,78 @@
                     "value": "updating_instance"
                 }
             ]
+        },
+        "render:metrics:GetBandwidthSourceProperties": {
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:metrics:GetBandwidthSourcePropertiesDataItemProperties"
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "render:metrics:GetBandwidthSourcePropertiesDataItemProperties": {
+            "properties": {
+                "labels": {
+                    "$ref": "#/types/render:metrics:GetBandwidthSourcePropertiesDataItemPropertiesLabelsProperties"
+                },
+                "values": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/render:metrics:GetBandwidthSourcePropertiesDataItemPropertiesValuesItemProperties"
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "render:metrics:GetBandwidthSourcePropertiesDataItemPropertiesLabelsProperties": {
+            "properties": {
+                "resource": {
+                    "type": "string"
+                },
+                "trafficSource": {
+                    "$ref": "#/types/render:metrics:GetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesTrafficSource"
+                }
+            },
+            "type": "object"
+        },
+        "render:metrics:GetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesTrafficSource": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Total",
+                    "value": "total"
+                },
+                {
+                    "name": "Http",
+                    "value": "http"
+                },
+                {
+                    "name": "Websocket",
+                    "value": "websocket"
+                },
+                {
+                    "name": "Nat",
+                    "value": "nat"
+                },
+                {
+                    "name": "Privatelink",
+                    "value": "privatelink"
+                }
+            ]
+        },
+        "render:metrics:GetBandwidthSourcePropertiesDataItemPropertiesValuesItemProperties": {
+            "properties": {
+                "timestamp": {
+                    "type": "integer"
+                },
+                "value": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
         },
         "render:metrics:ListActiveConnectionsItemProperties": {
             "description": "A time series data point",
@@ -1732,7 +1804,7 @@
                 },
                 "twoFactorAuthEnabled": {
                     "type": "boolean",
-                    "description": "Whether two-factor authentication is enabled for the owner. Only present for user owners."
+                    "description": "Whether two-factor authentication is enabled for the owner. Only present if `type` is `user`."
                 },
                 "type": {
                     "$ref": "#/types/render:owners:OwnerType"
@@ -1769,6 +1841,50 @@
                 }
             },
             "type": "object"
+        },
+        "render:owners:TeamMember": {
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "mfaEnabled": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "role": {
+                    "type": "string"
+                },
+                "status": {
+                    "$ref": "#/types/render:owners:TeamMemberStatus"
+                },
+                "userId": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "email",
+                "mfaEnabled",
+                "name",
+                "role",
+                "status",
+                "userId"
+            ]
+        },
+        "render:owners:TeamMemberStatus": {
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Active",
+                    "value": "active"
+                },
+                {
+                    "name": "Inactive",
+                    "value": "inactive"
+                }
+            ]
         },
         "render:postgres:CidrBlockAndDescription": {
             "properties": {
@@ -1851,7 +1967,7 @@
                 },
                 "twoFactorAuthEnabled": {
                     "type": "boolean",
-                    "description": "Whether two-factor authentication is enabled for the owner. Only present for user owners."
+                    "description": "Whether two-factor authentication is enabled for the owner. Only present if `type` is `user`."
                 },
                 "type": {
                     "$ref": "#/types/render:postgres:OwnerType"
@@ -2469,6 +2585,14 @@
                     "value": "parent_service"
                 },
                 {
+                    "name": "StuckCrashlooping",
+                    "value": "stuck_crashlooping"
+                },
+                {
+                    "name": "HipaaEnablement",
+                    "value": "hipaa_enablement"
+                },
+                {
                     "name": "Unknown",
                     "value": "unknown"
                 }
@@ -2501,6 +2625,10 @@
                 {
                     "name": "16",
                     "value": "16"
+                },
+                {
+                    "name": "17",
+                    "value": "17"
                 }
             ]
         },
@@ -2742,6 +2870,14 @@
                     "value": "parent_service"
                 },
                 {
+                    "name": "StuckCrashlooping",
+                    "value": "stuck_crashlooping"
+                },
+                {
+                    "name": "HipaaEnablement",
+                    "value": "hipaa_enablement"
+                },
+                {
                     "name": "Unknown",
                     "value": "unknown"
                 }
@@ -2774,6 +2910,10 @@
                 {
                     "name": "16",
                     "value": "16"
+                },
+                {
+                    "name": "17",
+                    "value": "17"
                 }
             ]
         },
@@ -3011,6 +3151,14 @@
                     "value": "parent_service"
                 },
                 {
+                    "name": "StuckCrashlooping",
+                    "value": "stuck_crashlooping"
+                },
+                {
+                    "name": "HipaaEnablement",
+                    "value": "hipaa_enablement"
+                },
+                {
                     "name": "Unknown",
                     "value": "unknown"
                 }
@@ -3043,6 +3191,10 @@
                 {
                     "name": "16",
                     "value": "16"
+                },
+                {
+                    "name": "17",
+                    "value": "17"
                 }
             ]
         },
@@ -3059,7 +3211,7 @@
                 },
                 "twoFactorAuthEnabled": {
                     "type": "boolean",
-                    "description": "Whether two-factor authentication is enabled for the owner. Only present for user owners."
+                    "description": "Whether two-factor authentication is enabled for the owner. Only present if `type` is `user`."
                 },
                 "type": {
                     "$ref": "#/types/render:projects:OwnerType"
@@ -3296,7 +3448,7 @@
                 },
                 "twoFactorAuthEnabled": {
                     "type": "boolean",
-                    "description": "Whether two-factor authentication is enabled for the owner. Only present for user owners."
+                    "description": "Whether two-factor authentication is enabled for the owner. Only present if `type` is `user`."
                 },
                 "type": {
                     "$ref": "#/types/render:redis:OwnerType"
@@ -4518,9 +4670,28 @@
                 "paths"
             ]
         },
+        "render:services:Cache": {
+            "properties": {
+                "profile": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "profile"
+            ]
+        },
         "render:services:CancelJobStatus": {
             "type": "string",
             "enum": [
+                {
+                    "name": "Pending",
+                    "value": "pending"
+                },
+                {
+                    "name": "Running",
+                    "value": "running"
+                },
                 {
                     "name": "Succeeded",
                     "value": "succeeded"
@@ -5158,6 +5329,9 @@
                     "$ref": "#/types/render:services:DeployImageProperties",
                     "description": "Image information used when creating the deploy. Not present for Git-backed deploys"
                 },
+                "startedAt": {
+                    "type": "string"
+                },
                 "status": {
                     "$ref": "#/types/render:services:DeployStatus"
                 },
@@ -5211,6 +5385,10 @@
                 {
                     "name": "Created",
                     "value": "created"
+                },
+                {
+                    "name": "Queued",
+                    "value": "queued"
                 },
                 {
                     "name": "BuildInProgress",
@@ -5964,6 +6142,14 @@
             "type": "string",
             "enum": [
                 {
+                    "name": "Pending",
+                    "value": "pending"
+                },
+                {
+                    "name": "Running",
+                    "value": "running"
+                },
+                {
                     "name": "Succeeded",
                     "value": "succeeded"
                 },
@@ -6040,7 +6226,7 @@
                 },
                 "uri": {
                     "type": "string",
-                    "description": "The page to be served when [maintenance mode](https://docs.render.com/maintenance-mode) is enabled. When empty, the default maintenance mode page is served."
+                    "description": "The page to be served when [maintenance mode](https://render.com/docs/maintenance-mode) is enabled. When empty, the default maintenance mode page is served."
                 }
             },
             "type": "object",
@@ -7040,6 +7226,21 @@
                 "name"
             ]
         },
+        "render:services:ServiceInstance": {
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "createdAt",
+                "id"
+            ]
+        },
         "render:services:ServiceNotifyOnFail": {
             "type": "string",
             "enum": [
@@ -7090,6 +7291,14 @@
                     "value": "parent_service"
                 },
                 {
+                    "name": "StuckCrashlooping",
+                    "value": "stuck_crashlooping"
+                },
+                {
+                    "name": "HipaaEnablement",
+                    "value": "hipaa_enablement"
+                },
+                {
                     "name": "Unknown",
                     "value": "unknown"
                 }
@@ -7118,6 +7327,10 @@
                     "description": "This field has been deprecated. previews.generation should be used in its place.",
                     "default": "no"
                 },
+                "renderSubdomainPolicy": {
+                    "$ref": "#/types/render:services:StaticSiteDetailsCreateRenderSubdomainPolicy",
+                    "description": "Controls whether render.com subdomains are available for the service"
+                },
                 "routes": {
                     "type": "array",
                     "items": {
@@ -7138,6 +7351,20 @@
                 {
                     "name": "No",
                     "value": "no"
+                }
+            ]
+        },
+        "render:services:StaticSiteDetailsCreateRenderSubdomainPolicy": {
+            "description": "Controls whether render.com subdomains are available for the service",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Enabled",
+                    "value": "enabled"
+                },
+                {
+                    "name": "Disabled",
+                    "value": "disabled"
                 }
             ]
         },
@@ -7163,6 +7390,10 @@
                     "$ref": "#/types/render:services:StaticSiteDetailsOutputPullRequestPreviewsEnabled",
                     "description": "This field has been deprecated. previews.generation should be used in its place.",
                     "default": "no"
+                },
+                "renderSubdomainPolicy": {
+                    "$ref": "#/types/render:services:StaticSiteDetailsOutputRenderSubdomainPolicy",
+                    "description": "Controls whether render.com subdomains are available for the service"
                 },
                 "url": {
                     "type": "string"
@@ -7200,6 +7431,20 @@
                 {
                     "name": "No",
                     "value": "no"
+                }
+            ]
+        },
+        "render:services:StaticSiteDetailsOutputRenderSubdomainPolicy": {
+            "description": "Controls whether render.com subdomains are available for the service",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Enabled",
+                    "value": "enabled"
+                },
+                {
+                    "name": "Disabled",
+                    "value": "disabled"
                 }
             ]
         },
@@ -7294,6 +7539,10 @@
                 {
                     "name": "Created",
                     "value": "created"
+                },
+                {
+                    "name": "Queued",
+                    "value": "queued"
                 },
                 {
                     "name": "BuildInProgress",
@@ -7442,6 +7691,10 @@
                     "description": "Defaults to \"oregon\"",
                     "default": "oregon"
                 },
+                "renderSubdomainPolicy": {
+                    "$ref": "#/types/render:services:WebServiceDetailsCreateRenderSubdomainPolicy",
+                    "description": "Controls whether render.com subdomains are available for the service"
+                },
                 "runtime": {
                     "$ref": "#/types/render:services:WebServiceDetailsCreateRuntime",
                     "description": "Runtime"
@@ -7560,6 +7813,20 @@
                 }
             ]
         },
+        "render:services:WebServiceDetailsCreateRenderSubdomainPolicy": {
+            "description": "Controls whether render.com subdomains are available for the service",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Enabled",
+                    "value": "enabled"
+                },
+                {
+                    "name": "Disabled",
+                    "value": "disabled"
+                }
+            ]
+        },
         "render:services:WebServiceDetailsCreateRuntime": {
             "description": "Runtime",
             "type": "string",
@@ -7606,6 +7873,9 @@
                 "buildPlan": {
                     "$ref": "#/types/render:services:WebServiceDetailsOutputBuildPlan",
                     "default": "starter"
+                },
+                "cache": {
+                    "$ref": "#/types/render:services:Cache"
                 },
                 "disk": {
                     "$ref": "#/types/render:services:WebServiceDetailsOutputDiskProperties"
@@ -7657,6 +7927,10 @@
                     "$ref": "#/types/render:services:WebServiceDetailsOutputRegion",
                     "description": "Defaults to \"oregon\"",
                     "default": "oregon"
+                },
+                "renderSubdomainPolicy": {
+                    "$ref": "#/types/render:services:WebServiceDetailsOutputRenderSubdomainPolicy",
+                    "description": "Controls whether render.com subdomains are available for the service"
                 },
                 "runtime": {
                     "$ref": "#/types/render:services:WebServiceDetailsOutputRuntime",
@@ -7899,6 +8173,20 @@
                 {
                     "name": "Virginia",
                     "value": "virginia"
+                }
+            ]
+        },
+        "render:services:WebServiceDetailsOutputRenderSubdomainPolicy": {
+            "description": "Controls whether render.com subdomains are available for the service",
+            "type": "string",
+            "enum": [
+                {
+                    "name": "Enabled",
+                    "value": "enabled"
+                },
+                {
+                    "name": "Disabled",
+                    "value": "disabled"
                 }
             ]
         },
@@ -8226,6 +8514,10 @@
                     "value": "maintenance_started"
                 },
                 {
+                    "name": "PipelineMinutesExhausted",
+                    "value": "pipeline_minutes_exhausted"
+                },
+                {
                     "name": "PlanChanged",
                     "value": "plan_changed"
                 },
@@ -8274,12 +8566,28 @@
                     "value": "zero_downtime_redeploy_started"
                 },
                 {
+                    "name": "EdgeCacheEnabled",
+                    "value": "edge_cache_enabled"
+                },
+                {
+                    "name": "EdgeCacheDisabled",
+                    "value": "edge_cache_disabled"
+                },
+                {
+                    "name": "EdgeCachePurged",
+                    "value": "edge_cache_purged"
+                },
+                {
                     "name": "PostgresAvailable",
                     "value": "postgres_available"
                 },
                 {
                     "name": "PostgresBackupCompleted",
                     "value": "postgres_backup_completed"
+                },
+                {
+                    "name": "PostgresBackupFailed",
+                    "value": "postgres_backup_failed"
                 },
                 {
                     "name": "PostgresBackupStarted",
@@ -8322,8 +8630,36 @@
                     "value": "postgres_upgrade_succeeded"
                 },
                 {
+                    "name": "PostgresRestoreFailed",
+                    "value": "postgres_restore_failed"
+                },
+                {
+                    "name": "PostgresRestoreSucceeded",
+                    "value": "postgres_restore_succeeded"
+                },
+                {
                     "name": "PostgresReadReplicasChanged",
                     "value": "postgres_read_replicas_changed"
+                },
+                {
+                    "name": "PostgresPitrCheckpointStarted",
+                    "value": "postgres_pitr_checkpoint_started"
+                },
+                {
+                    "name": "PostgresPitrCheckpointFailed",
+                    "value": "postgres_pitr_checkpoint_failed"
+                },
+                {
+                    "name": "PostgresPitrCheckpointCompleted",
+                    "value": "postgres_pitr_checkpoint_completed"
+                },
+                {
+                    "name": "PostgresReadReplicaStale",
+                    "value": "postgres_read_replica_stale"
+                },
+                {
+                    "name": "PostgresWalArchiveFailed",
+                    "value": "postgres_wal_archive_failed"
                 },
                 {
                     "name": "KeyValueAvailable",
@@ -8477,6 +8813,10 @@
                     "value": "maintenance_started"
                 },
                 {
+                    "name": "PipelineMinutesExhausted",
+                    "value": "pipeline_minutes_exhausted"
+                },
+                {
                     "name": "PlanChanged",
                     "value": "plan_changed"
                 },
@@ -8525,12 +8865,28 @@
                     "value": "zero_downtime_redeploy_started"
                 },
                 {
+                    "name": "EdgeCacheEnabled",
+                    "value": "edge_cache_enabled"
+                },
+                {
+                    "name": "EdgeCacheDisabled",
+                    "value": "edge_cache_disabled"
+                },
+                {
+                    "name": "EdgeCachePurged",
+                    "value": "edge_cache_purged"
+                },
+                {
                     "name": "PostgresAvailable",
                     "value": "postgres_available"
                 },
                 {
                     "name": "PostgresBackupCompleted",
                     "value": "postgres_backup_completed"
+                },
+                {
+                    "name": "PostgresBackupFailed",
+                    "value": "postgres_backup_failed"
                 },
                 {
                     "name": "PostgresBackupStarted",
@@ -8573,8 +8929,36 @@
                     "value": "postgres_upgrade_succeeded"
                 },
                 {
+                    "name": "PostgresRestoreFailed",
+                    "value": "postgres_restore_failed"
+                },
+                {
+                    "name": "PostgresRestoreSucceeded",
+                    "value": "postgres_restore_succeeded"
+                },
+                {
                     "name": "PostgresReadReplicasChanged",
                     "value": "postgres_read_replicas_changed"
+                },
+                {
+                    "name": "PostgresPitrCheckpointStarted",
+                    "value": "postgres_pitr_checkpoint_started"
+                },
+                {
+                    "name": "PostgresPitrCheckpointFailed",
+                    "value": "postgres_pitr_checkpoint_failed"
+                },
+                {
+                    "name": "PostgresPitrCheckpointCompleted",
+                    "value": "postgres_pitr_checkpoint_completed"
+                },
+                {
+                    "name": "PostgresReadReplicaStale",
+                    "value": "postgres_read_replica_stale"
+                },
+                {
+                    "name": "PostgresWalArchiveFailed",
+                    "value": "postgres_wal_archive_failed"
                 },
                 {
                     "name": "KeyValueAvailable",
@@ -8713,6 +9097,10 @@
                     "value": "maintenance_started"
                 },
                 {
+                    "name": "PipelineMinutesExhausted",
+                    "value": "pipeline_minutes_exhausted"
+                },
+                {
                     "name": "PlanChanged",
                     "value": "plan_changed"
                 },
@@ -8761,12 +9149,28 @@
                     "value": "zero_downtime_redeploy_started"
                 },
                 {
+                    "name": "EdgeCacheEnabled",
+                    "value": "edge_cache_enabled"
+                },
+                {
+                    "name": "EdgeCacheDisabled",
+                    "value": "edge_cache_disabled"
+                },
+                {
+                    "name": "EdgeCachePurged",
+                    "value": "edge_cache_purged"
+                },
+                {
                     "name": "PostgresAvailable",
                     "value": "postgres_available"
                 },
                 {
                     "name": "PostgresBackupCompleted",
                     "value": "postgres_backup_completed"
+                },
+                {
+                    "name": "PostgresBackupFailed",
+                    "value": "postgres_backup_failed"
                 },
                 {
                     "name": "PostgresBackupStarted",
@@ -8809,8 +9213,36 @@
                     "value": "postgres_upgrade_succeeded"
                 },
                 {
+                    "name": "PostgresRestoreFailed",
+                    "value": "postgres_restore_failed"
+                },
+                {
+                    "name": "PostgresRestoreSucceeded",
+                    "value": "postgres_restore_succeeded"
+                },
+                {
                     "name": "PostgresReadReplicasChanged",
                     "value": "postgres_read_replicas_changed"
+                },
+                {
+                    "name": "PostgresPitrCheckpointStarted",
+                    "value": "postgres_pitr_checkpoint_started"
+                },
+                {
+                    "name": "PostgresPitrCheckpointFailed",
+                    "value": "postgres_pitr_checkpoint_failed"
+                },
+                {
+                    "name": "PostgresPitrCheckpointCompleted",
+                    "value": "postgres_pitr_checkpoint_completed"
+                },
+                {
+                    "name": "PostgresReadReplicaStale",
+                    "value": "postgres_read_replica_stale"
+                },
+                {
+                    "name": "PostgresWalArchiveFailed",
+                    "value": "postgres_wal_archive_failed"
                 },
                 {
                     "name": "KeyValueAvailable",
@@ -9510,7 +9942,12 @@
                     "type": "string"
                 },
                 "datadogAPIKey": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The Datadog API key for the Datadog agent to monitor the new database."
+                },
+                "datadogSite": {
+                    "type": "string",
+                    "description": "Datadog region to use for monitoring the new database. Defaults to 'US1'."
                 },
                 "diskSizeGB": {
                     "type": "integer"
@@ -9546,7 +9983,7 @@
                 },
                 "ownerId": {
                     "type": "string",
-                    "description": "The ID of the owner (team or personal user) whose resources should be returned"
+                    "description": "The ID of the workspace to create the database for"
                 },
                 "plan": {
                     "$ref": "#/types/render:postgres:Plan"
@@ -9619,7 +10056,12 @@
                     "default": "randomly generated"
                 },
                 "datadogAPIKey": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The Datadog API key for the Datadog agent to monitor the new database."
+                },
+                "datadogSite": {
+                    "type": "string",
+                    "description": "Datadog region to use for monitoring the new database. Defaults to 'US1'."
                 },
                 "diskSizeGB": {
                     "type": "integer",
@@ -9644,7 +10086,7 @@
                 },
                 "ownerId": {
                     "type": "string",
-                    "description": "The ID of the owner (team or personal user) whose resources should be returned"
+                    "description": "The ID of the workspace to create the database for"
                 },
                 "plan": {
                     "$ref": "#/types/render:postgres:Plan"
@@ -9695,6 +10137,10 @@
                 "datadogApiKey": {
                     "type": "string",
                     "description": "Datadog API key to use for monitoring the new database. Defaults to the API key of the original database. Use an empty string to prevent copying of the API key to the new database."
+                },
+                "datadogSite": {
+                    "type": "string",
+                    "description": "Datadog region code to use for monitoring the new database. Defaults to the region code of the original database. Use an empty string to prevent copying of the region code to the new database."
                 },
                 "diskSizeGB": {
                     "type": "integer"
@@ -9797,6 +10243,10 @@
                 "datadogApiKey": {
                     "type": "string",
                     "description": "Datadog API key to use for monitoring the new database. Defaults to the API key of the original database. Use an empty string to prevent copying of the API key to the new database."
+                },
+                "datadogSite": {
+                    "type": "string",
+                    "description": "Datadog region code to use for monitoring the new database. Defaults to the region code of the original database. Use an empty string to prevent copying of the region code to the new database."
                 },
                 "environmentId": {
                     "type": "string",
@@ -10233,6 +10683,10 @@
                         "$ref": "#/types/render:services:EnvVarInput"
                     }
                 },
+                "environmentId": {
+                    "type": "string",
+                    "description": "The ID of the environment the service is associated with"
+                },
                 "image": {
                     "$ref": "#/types/render:services:Image"
                 },
@@ -10282,6 +10736,9 @@
                 "image": {
                     "$ref": "#/types/render:services:ImageProperties",
                     "description": "Image information used when creating the deploy. Not present for Git-backed deploys"
+                },
+                "startedAt": {
+                    "type": "string"
                 },
                 "status": {
                     "$ref": "#/types/render:services:Status"
@@ -10447,6 +10904,10 @@
                         "$ref": "#/types/render:services:EnvVarInput"
                     }
                 },
+                "environmentId": {
+                    "type": "string",
+                    "description": "The ID of the environment the service is associated with"
+                },
                 "image": {
                     "$ref": "#/types/render:services:Image"
                 },
@@ -10529,6 +10990,9 @@
                 "imageUrl": {
                     "type": "string",
                     "description": "The URL of the image to deploy for an image-backed service.\n\nThe host, repository, and image name all must match the currently configured image for the service.\n"
+                },
+                "startedAt": {
+                    "type": "string"
                 },
                 "status": {
                     "$ref": "#/types/render:services:Status"
@@ -10859,6 +11323,10 @@
                         "$ref": "#/types/render:services:EnvVarInput"
                     }
                 },
+                "environmentId": {
+                    "type": "string",
+                    "description": "The ID of the environment the service is associated with"
+                },
                 "image": {
                     "$ref": "#/types/render:services:Image"
                 },
@@ -10934,6 +11402,9 @@
                 "image": {
                     "$ref": "#/types/render:services:ImageProperties",
                     "description": "Image information used when creating the deploy. Not present for Git-backed deploys"
+                },
+                "startedAt": {
+                    "type": "string"
                 },
                 "status": {
                     "$ref": "#/types/render:services:Status"
@@ -11186,6 +11657,10 @@
                         "$ref": "#/types/render:services:EnvVarInput"
                     }
                 },
+                "environmentId": {
+                    "type": "string",
+                    "description": "The ID of the environment the service is associated with"
+                },
                 "image": {
                     "$ref": "#/types/render:services:Image"
                 },
@@ -11330,6 +11805,10 @@
                         "$ref": "#/types/render:services:EnvVarInput"
                     }
                 },
+                "environmentId": {
+                    "type": "string",
+                    "description": "The ID of the environment the service is associated with"
+                },
                 "image": {
                     "$ref": "#/types/render:services:Image"
                 },
@@ -11436,7 +11915,7 @@
                 "properties": {
                     "blueprintId": {
                         "type": "string",
-                        "description": "The ID of the blueprint"
+                        "description": "The ID of the Blueprint"
                     }
                 },
                 "required": [
@@ -11452,7 +11931,7 @@
                 "properties": {
                     "blueprintId": {
                         "type": "string",
-                        "description": "The ID of the blueprint"
+                        "description": "The ID of the Blueprint"
                     }
                 },
                 "required": [
@@ -11672,6 +12151,12 @@
                 ]
             }
         },
+        "render:metrics:getBandwidthSource": {
+            "inputs": {},
+            "outputs": {
+                "$ref": "#/types/render:metrics:GetBandwidthSourceProperties"
+            }
+        },
         "render:metrics:listActiveConnections": {
             "inputs": {},
             "outputs": {
@@ -11709,7 +12194,7 @@
                 "properties": {
                     "ownerId": {
                         "type": "string",
-                        "description": "The ID of the owner (team or personal user) whose resources should be returned"
+                        "description": "The ID of the workspace to return resources for"
                     }
                 },
                 "required": [
@@ -11766,6 +12251,32 @@
             },
             "outputs": {
                 "$ref": "#/types/render:owners:Owner"
+            }
+        },
+        "render:owners:listOwnerMembers": {
+            "inputs": {
+                "properties": {
+                    "ownerId": {
+                        "type": "string",
+                        "description": "The ID of the team"
+                    }
+                },
+                "required": [
+                    "ownerId"
+                ]
+            },
+            "outputs": {
+                "properties": {
+                    "items": {
+                        "items": {
+                            "$ref": "#/types/render:owners:TeamMember"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "items"
+                ]
             }
         },
         "render:owners:listOwners": {
@@ -12259,6 +12770,32 @@
                     "items": {
                         "items": {
                             "$ref": "#/types/render:services:HeaderWithCursor"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "items"
+                ]
+            }
+        },
+        "render:services:listInstances": {
+            "inputs": {
+                "properties": {
+                    "serviceId": {
+                        "type": "string",
+                        "description": "The ID of the service"
+                    }
+                },
+                "required": [
+                    "serviceId"
+                ]
+            },
+            "outputs": {
+                "properties": {
+                    "items": {
+                        "items": {
+                            "$ref": "#/types/render:services:ServiceInstance"
                         },
                         "type": "array"
                     }

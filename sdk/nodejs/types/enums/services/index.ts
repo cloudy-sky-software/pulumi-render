@@ -152,6 +152,8 @@ export const BackgroundWorkerDetailsOutputRuntime = {
 export type BackgroundWorkerDetailsOutputRuntime = (typeof BackgroundWorkerDetailsOutputRuntime)[keyof typeof BackgroundWorkerDetailsOutputRuntime];
 
 export const CancelJobStatus = {
+    Pending: "pending",
+    Running: "running",
     Succeeded: "succeeded",
     Failed: "failed",
     Canceled: "canceled",
@@ -314,6 +316,7 @@ export type CustomDomainVerificationStatus = (typeof CustomDomainVerificationSta
 
 export const DeployStatus = {
     Created: "created",
+    Queued: "queued",
     BuildInProgress: "build_in_progress",
     UpdateInProgress: "update_in_progress",
     Live: "live",
@@ -343,6 +346,8 @@ export const DeployTrigger = {
 export type DeployTrigger = (typeof DeployTrigger)[keyof typeof DeployTrigger];
 
 export const JobStatus = {
+    Pending: "pending",
+    Running: "running",
     Succeeded: "succeeded",
     Failed: "failed",
     Canceled: "canceled",
@@ -596,6 +601,8 @@ export const ServiceSuspendersItem = {
     Billing: "billing",
     User: "user",
     ParentService: "parent_service",
+    StuckCrashlooping: "stuck_crashlooping",
+    HipaaEnablement: "hipaa_enablement",
     Unknown: "unknown",
 } as const;
 
@@ -610,6 +617,16 @@ export const StaticSiteDetailsCreatePullRequestPreviewsEnabled = {
  * This field has been deprecated. previews.generation should be used in its place.
  */
 export type StaticSiteDetailsCreatePullRequestPreviewsEnabled = (typeof StaticSiteDetailsCreatePullRequestPreviewsEnabled)[keyof typeof StaticSiteDetailsCreatePullRequestPreviewsEnabled];
+
+export const StaticSiteDetailsCreateRenderSubdomainPolicy = {
+    Enabled: "enabled",
+    Disabled: "disabled",
+} as const;
+
+/**
+ * Controls whether render.com subdomains are available for the service
+ */
+export type StaticSiteDetailsCreateRenderSubdomainPolicy = (typeof StaticSiteDetailsCreateRenderSubdomainPolicy)[keyof typeof StaticSiteDetailsCreateRenderSubdomainPolicy];
 
 export const StaticSiteDetailsOutputBuildPlan = {
     Starter: "starter",
@@ -628,8 +645,19 @@ export const StaticSiteDetailsOutputPullRequestPreviewsEnabled = {
  */
 export type StaticSiteDetailsOutputPullRequestPreviewsEnabled = (typeof StaticSiteDetailsOutputPullRequestPreviewsEnabled)[keyof typeof StaticSiteDetailsOutputPullRequestPreviewsEnabled];
 
+export const StaticSiteDetailsOutputRenderSubdomainPolicy = {
+    Enabled: "enabled",
+    Disabled: "disabled",
+} as const;
+
+/**
+ * Controls whether render.com subdomains are available for the service
+ */
+export type StaticSiteDetailsOutputRenderSubdomainPolicy = (typeof StaticSiteDetailsOutputRenderSubdomainPolicy)[keyof typeof StaticSiteDetailsOutputRenderSubdomainPolicy];
+
 export const Status = {
     Created: "created",
+    Queued: "queued",
     BuildInProgress: "build_in_progress",
     UpdateInProgress: "update_in_progress",
     Live: "live",
@@ -718,6 +746,16 @@ export const WebServiceDetailsCreateRegion = {
  */
 export type WebServiceDetailsCreateRegion = (typeof WebServiceDetailsCreateRegion)[keyof typeof WebServiceDetailsCreateRegion];
 
+export const WebServiceDetailsCreateRenderSubdomainPolicy = {
+    Enabled: "enabled",
+    Disabled: "disabled",
+} as const;
+
+/**
+ * Controls whether render.com subdomains are available for the service
+ */
+export type WebServiceDetailsCreateRenderSubdomainPolicy = (typeof WebServiceDetailsCreateRenderSubdomainPolicy)[keyof typeof WebServiceDetailsCreateRenderSubdomainPolicy];
+
 export const WebServiceDetailsCreateRuntime = {
     Docker: "docker",
     Elixir: "elixir",
@@ -797,6 +835,16 @@ export const WebServiceDetailsOutputRegion = {
  * Defaults to "oregon"
  */
 export type WebServiceDetailsOutputRegion = (typeof WebServiceDetailsOutputRegion)[keyof typeof WebServiceDetailsOutputRegion];
+
+export const WebServiceDetailsOutputRenderSubdomainPolicy = {
+    Enabled: "enabled",
+    Disabled: "disabled",
+} as const;
+
+/**
+ * Controls whether render.com subdomains are available for the service
+ */
+export type WebServiceDetailsOutputRenderSubdomainPolicy = (typeof WebServiceDetailsOutputRenderSubdomainPolicy)[keyof typeof WebServiceDetailsOutputRenderSubdomainPolicy];
 
 export const WebServiceDetailsOutputRuntime = {
     Docker: "docker",

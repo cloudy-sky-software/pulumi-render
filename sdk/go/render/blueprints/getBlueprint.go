@@ -22,7 +22,7 @@ func GetBlueprint(ctx *pulumi.Context, args *GetBlueprintArgs, opts ...pulumi.In
 }
 
 type GetBlueprintArgs struct {
-	// The ID of the blueprint
+	// The ID of the Blueprint
 	BlueprintId string `pulumi:"blueprintId"`
 }
 
@@ -48,7 +48,7 @@ func GetBlueprintOutput(ctx *pulumi.Context, args GetBlueprintOutputArgs, opts .
 }
 
 type GetBlueprintOutputArgs struct {
-	// The ID of the blueprint
+	// The ID of the Blueprint
 	BlueprintId pulumi.StringInput `pulumi:"blueprintId"`
 }
 

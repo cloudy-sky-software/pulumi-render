@@ -127,7 +127,7 @@ class Owner(dict):
                  type: 'OwnerType',
                  two_factor_auth_enabled: Optional[_builtins.bool] = None):
         """
-        :param _builtins.bool two_factor_auth_enabled: Whether two-factor authentication is enabled for the owner. Only present for user owners.
+        :param _builtins.bool two_factor_auth_enabled: Whether two-factor authentication is enabled for the owner. Only present if `type` is `user`.
         """
         pulumi.set(__self__, "email", email)
         pulumi.set(__self__, "id", id)
@@ -160,7 +160,7 @@ class Owner(dict):
     @pulumi.getter(name="twoFactorAuthEnabled")
     def two_factor_auth_enabled(self) -> Optional[_builtins.bool]:
         """
-        Whether two-factor authentication is enabled for the owner. Only present for user owners.
+        Whether two-factor authentication is enabled for the owner. Only present if `type` is `user`.
         """
         return pulumi.get(self, "two_factor_auth_enabled")
 

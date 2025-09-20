@@ -16,7 +16,7 @@ export function getOwnerNotificationSetting(args: GetOwnerNotificationSettingArg
 
 export interface GetOwnerNotificationSettingArgs {
     /**
-     * The ID of the owner (team or personal user) whose resources should be returned
+     * The ID of the workspace to return resources for
      */
     ownerId: string;
 }
@@ -37,7 +37,7 @@ export function getOwnerNotificationSettingOutput(args: GetOwnerNotificationSett
 
 export interface GetOwnerNotificationSettingOutputArgs {
     /**
-     * The ID of the owner (team or personal user) whose resources should be returned
+     * The ID of the workspace to return resources for
      */
     ownerId: pulumi.Input<string>;
 }

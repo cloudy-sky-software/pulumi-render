@@ -6,6 +6,8 @@ import builtins as _builtins
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from ._enums import *
+from .get_bandwidth_source import *
 from .list_active_connections import *
 from .list_replication_lag import *
 from . import outputs

@@ -30,7 +30,7 @@ type GetOwnerResult struct {
 	Email string `pulumi:"email"`
 	Id    string `pulumi:"id"`
 	Name  string `pulumi:"name"`
-	// Whether two-factor authentication is enabled for the owner. Only present for user owners.
+	// Whether two-factor authentication is enabled for the owner. Only present if `type` is `user`.
 	TwoFactorAuthEnabled *bool     `pulumi:"twoFactorAuthEnabled"`
 	Type                 OwnerType `pulumi:"type"`
 }
@@ -79,7 +79,7 @@ func (o GetOwnerResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOwnerResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Whether two-factor authentication is enabled for the owner. Only present for user owners.
+// Whether two-factor authentication is enabled for the owner. Only present if `type` is `user`.
 func (o GetOwnerResultOutput) TwoFactorAuthEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GetOwnerResult) *bool { return v.TwoFactorAuthEnabled }).(pulumi.BoolPtrOutput)
 }

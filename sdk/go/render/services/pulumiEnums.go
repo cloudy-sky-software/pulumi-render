@@ -1449,6 +1449,8 @@ func (o BackgroundWorkerDetailsOutputRuntimePtrOutput) ToStringPtrOutputWithCont
 type CancelJobStatus string
 
 const (
+	CancelJobStatusPending   = CancelJobStatus("pending")
+	CancelJobStatusRunning   = CancelJobStatus("running")
 	CancelJobStatusSucceeded = CancelJobStatus("succeeded")
 	CancelJobStatusFailed    = CancelJobStatus("failed")
 	CancelJobStatusCanceled  = CancelJobStatus("canceled")
@@ -3066,6 +3068,7 @@ type DeployStatus string
 
 const (
 	DeployStatusCreated             = DeployStatus("created")
+	DeployStatusQueued              = DeployStatus("queued")
 	DeployStatusBuildInProgress     = DeployStatus("build_in_progress")
 	DeployStatusUpdateInProgress    = DeployStatus("update_in_progress")
 	DeployStatusLive                = DeployStatus("live")
@@ -3261,6 +3264,8 @@ func (o DeployTriggerPtrOutput) ToStringPtrOutputWithContext(ctx context.Context
 type JobStatus string
 
 const (
+	JobStatusPending   = JobStatus("pending")
+	JobStatusRunning   = JobStatus("running")
 	JobStatusSucceeded = JobStatus("succeeded")
 	JobStatusFailed    = JobStatus("failed")
 	JobStatusCanceled  = JobStatus("canceled")
@@ -6091,11 +6096,13 @@ func (o ServiceSuspendedPtrOutput) ToStringPtrOutputWithContext(ctx context.Cont
 type ServiceSuspendersItem string
 
 const (
-	ServiceSuspendersItemAdmin         = ServiceSuspendersItem("admin")
-	ServiceSuspendersItemBilling       = ServiceSuspendersItem("billing")
-	ServiceSuspendersItemUser          = ServiceSuspendersItem("user")
-	ServiceSuspendersItemParentService = ServiceSuspendersItem("parent_service")
-	ServiceSuspendersItemUnknown       = ServiceSuspendersItem("unknown")
+	ServiceSuspendersItemAdmin             = ServiceSuspendersItem("admin")
+	ServiceSuspendersItemBilling           = ServiceSuspendersItem("billing")
+	ServiceSuspendersItemUser              = ServiceSuspendersItem("user")
+	ServiceSuspendersItemParentService     = ServiceSuspendersItem("parent_service")
+	ServiceSuspendersItemStuckCrashlooping = ServiceSuspendersItem("stuck_crashlooping")
+	ServiceSuspendersItemHipaaEnablement   = ServiceSuspendersItem("hipaa_enablement")
+	ServiceSuspendersItemUnknown           = ServiceSuspendersItem("unknown")
 )
 
 type ServiceSuspendersItemOutput struct{ *pulumi.OutputState }
@@ -6367,6 +6374,172 @@ func (in *staticSiteDetailsCreatePullRequestPreviewsEnabledPtr) ToStaticSiteDeta
 	return pulumi.ToOutputWithContext(ctx, in).(StaticSiteDetailsCreatePullRequestPreviewsEnabledPtrOutput)
 }
 
+// Controls whether render.com subdomains are available for the service
+type StaticSiteDetailsCreateRenderSubdomainPolicy string
+
+const (
+	StaticSiteDetailsCreateRenderSubdomainPolicyEnabled  = StaticSiteDetailsCreateRenderSubdomainPolicy("enabled")
+	StaticSiteDetailsCreateRenderSubdomainPolicyDisabled = StaticSiteDetailsCreateRenderSubdomainPolicy("disabled")
+)
+
+func (StaticSiteDetailsCreateRenderSubdomainPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*StaticSiteDetailsCreateRenderSubdomainPolicy)(nil)).Elem()
+}
+
+func (e StaticSiteDetailsCreateRenderSubdomainPolicy) ToStaticSiteDetailsCreateRenderSubdomainPolicyOutput() StaticSiteDetailsCreateRenderSubdomainPolicyOutput {
+	return pulumi.ToOutput(e).(StaticSiteDetailsCreateRenderSubdomainPolicyOutput)
+}
+
+func (e StaticSiteDetailsCreateRenderSubdomainPolicy) ToStaticSiteDetailsCreateRenderSubdomainPolicyOutputWithContext(ctx context.Context) StaticSiteDetailsCreateRenderSubdomainPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, e).(StaticSiteDetailsCreateRenderSubdomainPolicyOutput)
+}
+
+func (e StaticSiteDetailsCreateRenderSubdomainPolicy) ToStaticSiteDetailsCreateRenderSubdomainPolicyPtrOutput() StaticSiteDetailsCreateRenderSubdomainPolicyPtrOutput {
+	return e.ToStaticSiteDetailsCreateRenderSubdomainPolicyPtrOutputWithContext(context.Background())
+}
+
+func (e StaticSiteDetailsCreateRenderSubdomainPolicy) ToStaticSiteDetailsCreateRenderSubdomainPolicyPtrOutputWithContext(ctx context.Context) StaticSiteDetailsCreateRenderSubdomainPolicyPtrOutput {
+	return StaticSiteDetailsCreateRenderSubdomainPolicy(e).ToStaticSiteDetailsCreateRenderSubdomainPolicyOutputWithContext(ctx).ToStaticSiteDetailsCreateRenderSubdomainPolicyPtrOutputWithContext(ctx)
+}
+
+func (e StaticSiteDetailsCreateRenderSubdomainPolicy) ToStringOutput() pulumi.StringOutput {
+	return pulumi.ToOutput(pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e StaticSiteDetailsCreateRenderSubdomainPolicy) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return pulumi.ToOutputWithContext(ctx, pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e StaticSiteDetailsCreateRenderSubdomainPolicy) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringPtrOutputWithContext(context.Background())
+}
+
+func (e StaticSiteDetailsCreateRenderSubdomainPolicy) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
+}
+
+type StaticSiteDetailsCreateRenderSubdomainPolicyOutput struct{ *pulumi.OutputState }
+
+func (StaticSiteDetailsCreateRenderSubdomainPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StaticSiteDetailsCreateRenderSubdomainPolicy)(nil)).Elem()
+}
+
+func (o StaticSiteDetailsCreateRenderSubdomainPolicyOutput) ToStaticSiteDetailsCreateRenderSubdomainPolicyOutput() StaticSiteDetailsCreateRenderSubdomainPolicyOutput {
+	return o
+}
+
+func (o StaticSiteDetailsCreateRenderSubdomainPolicyOutput) ToStaticSiteDetailsCreateRenderSubdomainPolicyOutputWithContext(ctx context.Context) StaticSiteDetailsCreateRenderSubdomainPolicyOutput {
+	return o
+}
+
+func (o StaticSiteDetailsCreateRenderSubdomainPolicyOutput) ToStaticSiteDetailsCreateRenderSubdomainPolicyPtrOutput() StaticSiteDetailsCreateRenderSubdomainPolicyPtrOutput {
+	return o.ToStaticSiteDetailsCreateRenderSubdomainPolicyPtrOutputWithContext(context.Background())
+}
+
+func (o StaticSiteDetailsCreateRenderSubdomainPolicyOutput) ToStaticSiteDetailsCreateRenderSubdomainPolicyPtrOutputWithContext(ctx context.Context) StaticSiteDetailsCreateRenderSubdomainPolicyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StaticSiteDetailsCreateRenderSubdomainPolicy) *StaticSiteDetailsCreateRenderSubdomainPolicy {
+		return &v
+	}).(StaticSiteDetailsCreateRenderSubdomainPolicyPtrOutput)
+}
+
+func (o StaticSiteDetailsCreateRenderSubdomainPolicyOutput) ToStringOutput() pulumi.StringOutput {
+	return o.ToStringOutputWithContext(context.Background())
+}
+
+func (o StaticSiteDetailsCreateRenderSubdomainPolicyOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e StaticSiteDetailsCreateRenderSubdomainPolicy) string {
+		return string(e)
+	}).(pulumi.StringOutput)
+}
+
+func (o StaticSiteDetailsCreateRenderSubdomainPolicyOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o StaticSiteDetailsCreateRenderSubdomainPolicyOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e StaticSiteDetailsCreateRenderSubdomainPolicy) *string {
+		v := string(e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+type StaticSiteDetailsCreateRenderSubdomainPolicyPtrOutput struct{ *pulumi.OutputState }
+
+func (StaticSiteDetailsCreateRenderSubdomainPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StaticSiteDetailsCreateRenderSubdomainPolicy)(nil)).Elem()
+}
+
+func (o StaticSiteDetailsCreateRenderSubdomainPolicyPtrOutput) ToStaticSiteDetailsCreateRenderSubdomainPolicyPtrOutput() StaticSiteDetailsCreateRenderSubdomainPolicyPtrOutput {
+	return o
+}
+
+func (o StaticSiteDetailsCreateRenderSubdomainPolicyPtrOutput) ToStaticSiteDetailsCreateRenderSubdomainPolicyPtrOutputWithContext(ctx context.Context) StaticSiteDetailsCreateRenderSubdomainPolicyPtrOutput {
+	return o
+}
+
+func (o StaticSiteDetailsCreateRenderSubdomainPolicyPtrOutput) Elem() StaticSiteDetailsCreateRenderSubdomainPolicyOutput {
+	return o.ApplyT(func(v *StaticSiteDetailsCreateRenderSubdomainPolicy) StaticSiteDetailsCreateRenderSubdomainPolicy {
+		if v != nil {
+			return *v
+		}
+		var ret StaticSiteDetailsCreateRenderSubdomainPolicy
+		return ret
+	}).(StaticSiteDetailsCreateRenderSubdomainPolicyOutput)
+}
+
+func (o StaticSiteDetailsCreateRenderSubdomainPolicyPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o StaticSiteDetailsCreateRenderSubdomainPolicyPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *StaticSiteDetailsCreateRenderSubdomainPolicy) *string {
+		if e == nil {
+			return nil
+		}
+		v := string(*e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+// StaticSiteDetailsCreateRenderSubdomainPolicyInput is an input type that accepts values of the StaticSiteDetailsCreateRenderSubdomainPolicy enum
+// A concrete instance of `StaticSiteDetailsCreateRenderSubdomainPolicyInput` can be one of the following:
+//
+//	StaticSiteDetailsCreateRenderSubdomainPolicyEnabled
+//	StaticSiteDetailsCreateRenderSubdomainPolicyDisabled
+type StaticSiteDetailsCreateRenderSubdomainPolicyInput interface {
+	pulumi.Input
+
+	ToStaticSiteDetailsCreateRenderSubdomainPolicyOutput() StaticSiteDetailsCreateRenderSubdomainPolicyOutput
+	ToStaticSiteDetailsCreateRenderSubdomainPolicyOutputWithContext(context.Context) StaticSiteDetailsCreateRenderSubdomainPolicyOutput
+}
+
+var staticSiteDetailsCreateRenderSubdomainPolicyPtrType = reflect.TypeOf((**StaticSiteDetailsCreateRenderSubdomainPolicy)(nil)).Elem()
+
+type StaticSiteDetailsCreateRenderSubdomainPolicyPtrInput interface {
+	pulumi.Input
+
+	ToStaticSiteDetailsCreateRenderSubdomainPolicyPtrOutput() StaticSiteDetailsCreateRenderSubdomainPolicyPtrOutput
+	ToStaticSiteDetailsCreateRenderSubdomainPolicyPtrOutputWithContext(context.Context) StaticSiteDetailsCreateRenderSubdomainPolicyPtrOutput
+}
+
+type staticSiteDetailsCreateRenderSubdomainPolicyPtr string
+
+func StaticSiteDetailsCreateRenderSubdomainPolicyPtr(v string) StaticSiteDetailsCreateRenderSubdomainPolicyPtrInput {
+	return (*staticSiteDetailsCreateRenderSubdomainPolicyPtr)(&v)
+}
+
+func (*staticSiteDetailsCreateRenderSubdomainPolicyPtr) ElementType() reflect.Type {
+	return staticSiteDetailsCreateRenderSubdomainPolicyPtrType
+}
+
+func (in *staticSiteDetailsCreateRenderSubdomainPolicyPtr) ToStaticSiteDetailsCreateRenderSubdomainPolicyPtrOutput() StaticSiteDetailsCreateRenderSubdomainPolicyPtrOutput {
+	return pulumi.ToOutput(in).(StaticSiteDetailsCreateRenderSubdomainPolicyPtrOutput)
+}
+
+func (in *staticSiteDetailsCreateRenderSubdomainPolicyPtr) ToStaticSiteDetailsCreateRenderSubdomainPolicyPtrOutputWithContext(ctx context.Context) StaticSiteDetailsCreateRenderSubdomainPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, in).(StaticSiteDetailsCreateRenderSubdomainPolicyPtrOutput)
+}
+
 type StaticSiteDetailsOutputBuildPlan string
 
 const (
@@ -6548,10 +6721,102 @@ func (o StaticSiteDetailsOutputPullRequestPreviewsEnabledPtrOutput) ToStringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
+// Controls whether render.com subdomains are available for the service
+type StaticSiteDetailsOutputRenderSubdomainPolicy string
+
+const (
+	StaticSiteDetailsOutputRenderSubdomainPolicyEnabled  = StaticSiteDetailsOutputRenderSubdomainPolicy("enabled")
+	StaticSiteDetailsOutputRenderSubdomainPolicyDisabled = StaticSiteDetailsOutputRenderSubdomainPolicy("disabled")
+)
+
+type StaticSiteDetailsOutputRenderSubdomainPolicyOutput struct{ *pulumi.OutputState }
+
+func (StaticSiteDetailsOutputRenderSubdomainPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StaticSiteDetailsOutputRenderSubdomainPolicy)(nil)).Elem()
+}
+
+func (o StaticSiteDetailsOutputRenderSubdomainPolicyOutput) ToStaticSiteDetailsOutputRenderSubdomainPolicyOutput() StaticSiteDetailsOutputRenderSubdomainPolicyOutput {
+	return o
+}
+
+func (o StaticSiteDetailsOutputRenderSubdomainPolicyOutput) ToStaticSiteDetailsOutputRenderSubdomainPolicyOutputWithContext(ctx context.Context) StaticSiteDetailsOutputRenderSubdomainPolicyOutput {
+	return o
+}
+
+func (o StaticSiteDetailsOutputRenderSubdomainPolicyOutput) ToStaticSiteDetailsOutputRenderSubdomainPolicyPtrOutput() StaticSiteDetailsOutputRenderSubdomainPolicyPtrOutput {
+	return o.ToStaticSiteDetailsOutputRenderSubdomainPolicyPtrOutputWithContext(context.Background())
+}
+
+func (o StaticSiteDetailsOutputRenderSubdomainPolicyOutput) ToStaticSiteDetailsOutputRenderSubdomainPolicyPtrOutputWithContext(ctx context.Context) StaticSiteDetailsOutputRenderSubdomainPolicyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StaticSiteDetailsOutputRenderSubdomainPolicy) *StaticSiteDetailsOutputRenderSubdomainPolicy {
+		return &v
+	}).(StaticSiteDetailsOutputRenderSubdomainPolicyPtrOutput)
+}
+
+func (o StaticSiteDetailsOutputRenderSubdomainPolicyOutput) ToStringOutput() pulumi.StringOutput {
+	return o.ToStringOutputWithContext(context.Background())
+}
+
+func (o StaticSiteDetailsOutputRenderSubdomainPolicyOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e StaticSiteDetailsOutputRenderSubdomainPolicy) string {
+		return string(e)
+	}).(pulumi.StringOutput)
+}
+
+func (o StaticSiteDetailsOutputRenderSubdomainPolicyOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o StaticSiteDetailsOutputRenderSubdomainPolicyOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e StaticSiteDetailsOutputRenderSubdomainPolicy) *string {
+		v := string(e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+type StaticSiteDetailsOutputRenderSubdomainPolicyPtrOutput struct{ *pulumi.OutputState }
+
+func (StaticSiteDetailsOutputRenderSubdomainPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StaticSiteDetailsOutputRenderSubdomainPolicy)(nil)).Elem()
+}
+
+func (o StaticSiteDetailsOutputRenderSubdomainPolicyPtrOutput) ToStaticSiteDetailsOutputRenderSubdomainPolicyPtrOutput() StaticSiteDetailsOutputRenderSubdomainPolicyPtrOutput {
+	return o
+}
+
+func (o StaticSiteDetailsOutputRenderSubdomainPolicyPtrOutput) ToStaticSiteDetailsOutputRenderSubdomainPolicyPtrOutputWithContext(ctx context.Context) StaticSiteDetailsOutputRenderSubdomainPolicyPtrOutput {
+	return o
+}
+
+func (o StaticSiteDetailsOutputRenderSubdomainPolicyPtrOutput) Elem() StaticSiteDetailsOutputRenderSubdomainPolicyOutput {
+	return o.ApplyT(func(v *StaticSiteDetailsOutputRenderSubdomainPolicy) StaticSiteDetailsOutputRenderSubdomainPolicy {
+		if v != nil {
+			return *v
+		}
+		var ret StaticSiteDetailsOutputRenderSubdomainPolicy
+		return ret
+	}).(StaticSiteDetailsOutputRenderSubdomainPolicyOutput)
+}
+
+func (o StaticSiteDetailsOutputRenderSubdomainPolicyPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o StaticSiteDetailsOutputRenderSubdomainPolicyPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *StaticSiteDetailsOutputRenderSubdomainPolicy) *string {
+		if e == nil {
+			return nil
+		}
+		v := string(*e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
 type Status string
 
 const (
 	StatusCreated             = Status("created")
+	StatusQueued              = Status("queued")
 	StatusBuildInProgress     = Status("build_in_progress")
 	StatusUpdateInProgress    = Status("update_in_progress")
 	StatusLive                = Status("live")
@@ -7599,6 +7864,172 @@ func (in *webServiceDetailsCreateRegionPtr) ToWebServiceDetailsCreateRegionPtrOu
 	return pulumi.ToOutputWithContext(ctx, in).(WebServiceDetailsCreateRegionPtrOutput)
 }
 
+// Controls whether render.com subdomains are available for the service
+type WebServiceDetailsCreateRenderSubdomainPolicy string
+
+const (
+	WebServiceDetailsCreateRenderSubdomainPolicyEnabled  = WebServiceDetailsCreateRenderSubdomainPolicy("enabled")
+	WebServiceDetailsCreateRenderSubdomainPolicyDisabled = WebServiceDetailsCreateRenderSubdomainPolicy("disabled")
+)
+
+func (WebServiceDetailsCreateRenderSubdomainPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceDetailsCreateRenderSubdomainPolicy)(nil)).Elem()
+}
+
+func (e WebServiceDetailsCreateRenderSubdomainPolicy) ToWebServiceDetailsCreateRenderSubdomainPolicyOutput() WebServiceDetailsCreateRenderSubdomainPolicyOutput {
+	return pulumi.ToOutput(e).(WebServiceDetailsCreateRenderSubdomainPolicyOutput)
+}
+
+func (e WebServiceDetailsCreateRenderSubdomainPolicy) ToWebServiceDetailsCreateRenderSubdomainPolicyOutputWithContext(ctx context.Context) WebServiceDetailsCreateRenderSubdomainPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, e).(WebServiceDetailsCreateRenderSubdomainPolicyOutput)
+}
+
+func (e WebServiceDetailsCreateRenderSubdomainPolicy) ToWebServiceDetailsCreateRenderSubdomainPolicyPtrOutput() WebServiceDetailsCreateRenderSubdomainPolicyPtrOutput {
+	return e.ToWebServiceDetailsCreateRenderSubdomainPolicyPtrOutputWithContext(context.Background())
+}
+
+func (e WebServiceDetailsCreateRenderSubdomainPolicy) ToWebServiceDetailsCreateRenderSubdomainPolicyPtrOutputWithContext(ctx context.Context) WebServiceDetailsCreateRenderSubdomainPolicyPtrOutput {
+	return WebServiceDetailsCreateRenderSubdomainPolicy(e).ToWebServiceDetailsCreateRenderSubdomainPolicyOutputWithContext(ctx).ToWebServiceDetailsCreateRenderSubdomainPolicyPtrOutputWithContext(ctx)
+}
+
+func (e WebServiceDetailsCreateRenderSubdomainPolicy) ToStringOutput() pulumi.StringOutput {
+	return pulumi.ToOutput(pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e WebServiceDetailsCreateRenderSubdomainPolicy) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return pulumi.ToOutputWithContext(ctx, pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e WebServiceDetailsCreateRenderSubdomainPolicy) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringPtrOutputWithContext(context.Background())
+}
+
+func (e WebServiceDetailsCreateRenderSubdomainPolicy) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
+}
+
+type WebServiceDetailsCreateRenderSubdomainPolicyOutput struct{ *pulumi.OutputState }
+
+func (WebServiceDetailsCreateRenderSubdomainPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceDetailsCreateRenderSubdomainPolicy)(nil)).Elem()
+}
+
+func (o WebServiceDetailsCreateRenderSubdomainPolicyOutput) ToWebServiceDetailsCreateRenderSubdomainPolicyOutput() WebServiceDetailsCreateRenderSubdomainPolicyOutput {
+	return o
+}
+
+func (o WebServiceDetailsCreateRenderSubdomainPolicyOutput) ToWebServiceDetailsCreateRenderSubdomainPolicyOutputWithContext(ctx context.Context) WebServiceDetailsCreateRenderSubdomainPolicyOutput {
+	return o
+}
+
+func (o WebServiceDetailsCreateRenderSubdomainPolicyOutput) ToWebServiceDetailsCreateRenderSubdomainPolicyPtrOutput() WebServiceDetailsCreateRenderSubdomainPolicyPtrOutput {
+	return o.ToWebServiceDetailsCreateRenderSubdomainPolicyPtrOutputWithContext(context.Background())
+}
+
+func (o WebServiceDetailsCreateRenderSubdomainPolicyOutput) ToWebServiceDetailsCreateRenderSubdomainPolicyPtrOutputWithContext(ctx context.Context) WebServiceDetailsCreateRenderSubdomainPolicyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebServiceDetailsCreateRenderSubdomainPolicy) *WebServiceDetailsCreateRenderSubdomainPolicy {
+		return &v
+	}).(WebServiceDetailsCreateRenderSubdomainPolicyPtrOutput)
+}
+
+func (o WebServiceDetailsCreateRenderSubdomainPolicyOutput) ToStringOutput() pulumi.StringOutput {
+	return o.ToStringOutputWithContext(context.Background())
+}
+
+func (o WebServiceDetailsCreateRenderSubdomainPolicyOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e WebServiceDetailsCreateRenderSubdomainPolicy) string {
+		return string(e)
+	}).(pulumi.StringOutput)
+}
+
+func (o WebServiceDetailsCreateRenderSubdomainPolicyOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o WebServiceDetailsCreateRenderSubdomainPolicyOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e WebServiceDetailsCreateRenderSubdomainPolicy) *string {
+		v := string(e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+type WebServiceDetailsCreateRenderSubdomainPolicyPtrOutput struct{ *pulumi.OutputState }
+
+func (WebServiceDetailsCreateRenderSubdomainPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebServiceDetailsCreateRenderSubdomainPolicy)(nil)).Elem()
+}
+
+func (o WebServiceDetailsCreateRenderSubdomainPolicyPtrOutput) ToWebServiceDetailsCreateRenderSubdomainPolicyPtrOutput() WebServiceDetailsCreateRenderSubdomainPolicyPtrOutput {
+	return o
+}
+
+func (o WebServiceDetailsCreateRenderSubdomainPolicyPtrOutput) ToWebServiceDetailsCreateRenderSubdomainPolicyPtrOutputWithContext(ctx context.Context) WebServiceDetailsCreateRenderSubdomainPolicyPtrOutput {
+	return o
+}
+
+func (o WebServiceDetailsCreateRenderSubdomainPolicyPtrOutput) Elem() WebServiceDetailsCreateRenderSubdomainPolicyOutput {
+	return o.ApplyT(func(v *WebServiceDetailsCreateRenderSubdomainPolicy) WebServiceDetailsCreateRenderSubdomainPolicy {
+		if v != nil {
+			return *v
+		}
+		var ret WebServiceDetailsCreateRenderSubdomainPolicy
+		return ret
+	}).(WebServiceDetailsCreateRenderSubdomainPolicyOutput)
+}
+
+func (o WebServiceDetailsCreateRenderSubdomainPolicyPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o WebServiceDetailsCreateRenderSubdomainPolicyPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *WebServiceDetailsCreateRenderSubdomainPolicy) *string {
+		if e == nil {
+			return nil
+		}
+		v := string(*e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+// WebServiceDetailsCreateRenderSubdomainPolicyInput is an input type that accepts values of the WebServiceDetailsCreateRenderSubdomainPolicy enum
+// A concrete instance of `WebServiceDetailsCreateRenderSubdomainPolicyInput` can be one of the following:
+//
+//	WebServiceDetailsCreateRenderSubdomainPolicyEnabled
+//	WebServiceDetailsCreateRenderSubdomainPolicyDisabled
+type WebServiceDetailsCreateRenderSubdomainPolicyInput interface {
+	pulumi.Input
+
+	ToWebServiceDetailsCreateRenderSubdomainPolicyOutput() WebServiceDetailsCreateRenderSubdomainPolicyOutput
+	ToWebServiceDetailsCreateRenderSubdomainPolicyOutputWithContext(context.Context) WebServiceDetailsCreateRenderSubdomainPolicyOutput
+}
+
+var webServiceDetailsCreateRenderSubdomainPolicyPtrType = reflect.TypeOf((**WebServiceDetailsCreateRenderSubdomainPolicy)(nil)).Elem()
+
+type WebServiceDetailsCreateRenderSubdomainPolicyPtrInput interface {
+	pulumi.Input
+
+	ToWebServiceDetailsCreateRenderSubdomainPolicyPtrOutput() WebServiceDetailsCreateRenderSubdomainPolicyPtrOutput
+	ToWebServiceDetailsCreateRenderSubdomainPolicyPtrOutputWithContext(context.Context) WebServiceDetailsCreateRenderSubdomainPolicyPtrOutput
+}
+
+type webServiceDetailsCreateRenderSubdomainPolicyPtr string
+
+func WebServiceDetailsCreateRenderSubdomainPolicyPtr(v string) WebServiceDetailsCreateRenderSubdomainPolicyPtrInput {
+	return (*webServiceDetailsCreateRenderSubdomainPolicyPtr)(&v)
+}
+
+func (*webServiceDetailsCreateRenderSubdomainPolicyPtr) ElementType() reflect.Type {
+	return webServiceDetailsCreateRenderSubdomainPolicyPtrType
+}
+
+func (in *webServiceDetailsCreateRenderSubdomainPolicyPtr) ToWebServiceDetailsCreateRenderSubdomainPolicyPtrOutput() WebServiceDetailsCreateRenderSubdomainPolicyPtrOutput {
+	return pulumi.ToOutput(in).(WebServiceDetailsCreateRenderSubdomainPolicyPtrOutput)
+}
+
+func (in *webServiceDetailsCreateRenderSubdomainPolicyPtr) ToWebServiceDetailsCreateRenderSubdomainPolicyPtrOutputWithContext(ctx context.Context) WebServiceDetailsCreateRenderSubdomainPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, in).(WebServiceDetailsCreateRenderSubdomainPolicyPtrOutput)
+}
+
 // Runtime
 type WebServiceDetailsCreateRuntime string
 
@@ -8248,6 +8679,97 @@ func (o WebServiceDetailsOutputRegionPtrOutput) ToStringPtrOutputWithContext(ctx
 	}).(pulumi.StringPtrOutput)
 }
 
+// Controls whether render.com subdomains are available for the service
+type WebServiceDetailsOutputRenderSubdomainPolicy string
+
+const (
+	WebServiceDetailsOutputRenderSubdomainPolicyEnabled  = WebServiceDetailsOutputRenderSubdomainPolicy("enabled")
+	WebServiceDetailsOutputRenderSubdomainPolicyDisabled = WebServiceDetailsOutputRenderSubdomainPolicy("disabled")
+)
+
+type WebServiceDetailsOutputRenderSubdomainPolicyOutput struct{ *pulumi.OutputState }
+
+func (WebServiceDetailsOutputRenderSubdomainPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceDetailsOutputRenderSubdomainPolicy)(nil)).Elem()
+}
+
+func (o WebServiceDetailsOutputRenderSubdomainPolicyOutput) ToWebServiceDetailsOutputRenderSubdomainPolicyOutput() WebServiceDetailsOutputRenderSubdomainPolicyOutput {
+	return o
+}
+
+func (o WebServiceDetailsOutputRenderSubdomainPolicyOutput) ToWebServiceDetailsOutputRenderSubdomainPolicyOutputWithContext(ctx context.Context) WebServiceDetailsOutputRenderSubdomainPolicyOutput {
+	return o
+}
+
+func (o WebServiceDetailsOutputRenderSubdomainPolicyOutput) ToWebServiceDetailsOutputRenderSubdomainPolicyPtrOutput() WebServiceDetailsOutputRenderSubdomainPolicyPtrOutput {
+	return o.ToWebServiceDetailsOutputRenderSubdomainPolicyPtrOutputWithContext(context.Background())
+}
+
+func (o WebServiceDetailsOutputRenderSubdomainPolicyOutput) ToWebServiceDetailsOutputRenderSubdomainPolicyPtrOutputWithContext(ctx context.Context) WebServiceDetailsOutputRenderSubdomainPolicyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebServiceDetailsOutputRenderSubdomainPolicy) *WebServiceDetailsOutputRenderSubdomainPolicy {
+		return &v
+	}).(WebServiceDetailsOutputRenderSubdomainPolicyPtrOutput)
+}
+
+func (o WebServiceDetailsOutputRenderSubdomainPolicyOutput) ToStringOutput() pulumi.StringOutput {
+	return o.ToStringOutputWithContext(context.Background())
+}
+
+func (o WebServiceDetailsOutputRenderSubdomainPolicyOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e WebServiceDetailsOutputRenderSubdomainPolicy) string {
+		return string(e)
+	}).(pulumi.StringOutput)
+}
+
+func (o WebServiceDetailsOutputRenderSubdomainPolicyOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o WebServiceDetailsOutputRenderSubdomainPolicyOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e WebServiceDetailsOutputRenderSubdomainPolicy) *string {
+		v := string(e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+type WebServiceDetailsOutputRenderSubdomainPolicyPtrOutput struct{ *pulumi.OutputState }
+
+func (WebServiceDetailsOutputRenderSubdomainPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebServiceDetailsOutputRenderSubdomainPolicy)(nil)).Elem()
+}
+
+func (o WebServiceDetailsOutputRenderSubdomainPolicyPtrOutput) ToWebServiceDetailsOutputRenderSubdomainPolicyPtrOutput() WebServiceDetailsOutputRenderSubdomainPolicyPtrOutput {
+	return o
+}
+
+func (o WebServiceDetailsOutputRenderSubdomainPolicyPtrOutput) ToWebServiceDetailsOutputRenderSubdomainPolicyPtrOutputWithContext(ctx context.Context) WebServiceDetailsOutputRenderSubdomainPolicyPtrOutput {
+	return o
+}
+
+func (o WebServiceDetailsOutputRenderSubdomainPolicyPtrOutput) Elem() WebServiceDetailsOutputRenderSubdomainPolicyOutput {
+	return o.ApplyT(func(v *WebServiceDetailsOutputRenderSubdomainPolicy) WebServiceDetailsOutputRenderSubdomainPolicy {
+		if v != nil {
+			return *v
+		}
+		var ret WebServiceDetailsOutputRenderSubdomainPolicy
+		return ret
+	}).(WebServiceDetailsOutputRenderSubdomainPolicyOutput)
+}
+
+func (o WebServiceDetailsOutputRenderSubdomainPolicyPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o WebServiceDetailsOutputRenderSubdomainPolicyPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *WebServiceDetailsOutputRenderSubdomainPolicy) *string {
+		if e == nil {
+			return nil
+		}
+		v := string(*e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
 // Runtime
 type WebServiceDetailsOutputRuntime string
 
@@ -8388,6 +8910,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceCreateAutoDeployPtrInput)(nil)).Elem(), ServiceCreateAutoDeploy("yes"))
 	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteDetailsCreatePullRequestPreviewsEnabledInput)(nil)).Elem(), StaticSiteDetailsCreatePullRequestPreviewsEnabled("yes"))
 	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteDetailsCreatePullRequestPreviewsEnabledPtrInput)(nil)).Elem(), StaticSiteDetailsCreatePullRequestPreviewsEnabled("yes"))
+	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteDetailsCreateRenderSubdomainPolicyInput)(nil)).Elem(), StaticSiteDetailsCreateRenderSubdomainPolicy("enabled"))
+	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteDetailsCreateRenderSubdomainPolicyPtrInput)(nil)).Elem(), StaticSiteDetailsCreateRenderSubdomainPolicy("enabled"))
 	pulumi.RegisterInputType(reflect.TypeOf((*TypeInput)(nil)).Elem(), Type("redirect"))
 	pulumi.RegisterInputType(reflect.TypeOf((*TypePtrInput)(nil)).Elem(), Type("redirect"))
 	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceDetailsCreateEnvInput)(nil)).Elem(), WebServiceDetailsCreateEnv("docker"))
@@ -8398,6 +8922,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceDetailsCreatePullRequestPreviewsEnabledPtrInput)(nil)).Elem(), WebServiceDetailsCreatePullRequestPreviewsEnabled("yes"))
 	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceDetailsCreateRegionInput)(nil)).Elem(), WebServiceDetailsCreateRegion("frankfurt"))
 	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceDetailsCreateRegionPtrInput)(nil)).Elem(), WebServiceDetailsCreateRegion("frankfurt"))
+	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceDetailsCreateRenderSubdomainPolicyInput)(nil)).Elem(), WebServiceDetailsCreateRenderSubdomainPolicy("enabled"))
+	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceDetailsCreateRenderSubdomainPolicyPtrInput)(nil)).Elem(), WebServiceDetailsCreateRenderSubdomainPolicy("enabled"))
 	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceDetailsCreateRuntimeInput)(nil)).Elem(), WebServiceDetailsCreateRuntime("docker"))
 	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceDetailsCreateRuntimePtrInput)(nil)).Elem(), WebServiceDetailsCreateRuntime("docker"))
 	pulumi.RegisterOutputType(BackgroundWorkerDetailsCreateEnvOutput{})
@@ -8501,10 +9027,14 @@ func init() {
 	pulumi.RegisterOutputType(ServiceSuspendersItemArrayOutput{})
 	pulumi.RegisterOutputType(StaticSiteDetailsCreatePullRequestPreviewsEnabledOutput{})
 	pulumi.RegisterOutputType(StaticSiteDetailsCreatePullRequestPreviewsEnabledPtrOutput{})
+	pulumi.RegisterOutputType(StaticSiteDetailsCreateRenderSubdomainPolicyOutput{})
+	pulumi.RegisterOutputType(StaticSiteDetailsCreateRenderSubdomainPolicyPtrOutput{})
 	pulumi.RegisterOutputType(StaticSiteDetailsOutputBuildPlanOutput{})
 	pulumi.RegisterOutputType(StaticSiteDetailsOutputBuildPlanPtrOutput{})
 	pulumi.RegisterOutputType(StaticSiteDetailsOutputPullRequestPreviewsEnabledOutput{})
 	pulumi.RegisterOutputType(StaticSiteDetailsOutputPullRequestPreviewsEnabledPtrOutput{})
+	pulumi.RegisterOutputType(StaticSiteDetailsOutputRenderSubdomainPolicyOutput{})
+	pulumi.RegisterOutputType(StaticSiteDetailsOutputRenderSubdomainPolicyPtrOutput{})
 	pulumi.RegisterOutputType(StatusOutput{})
 	pulumi.RegisterOutputType(StatusPtrOutput{})
 	pulumi.RegisterOutputType(TriggerOutput{})
@@ -8519,6 +9049,8 @@ func init() {
 	pulumi.RegisterOutputType(WebServiceDetailsCreatePullRequestPreviewsEnabledPtrOutput{})
 	pulumi.RegisterOutputType(WebServiceDetailsCreateRegionOutput{})
 	pulumi.RegisterOutputType(WebServiceDetailsCreateRegionPtrOutput{})
+	pulumi.RegisterOutputType(WebServiceDetailsCreateRenderSubdomainPolicyOutput{})
+	pulumi.RegisterOutputType(WebServiceDetailsCreateRenderSubdomainPolicyPtrOutput{})
 	pulumi.RegisterOutputType(WebServiceDetailsCreateRuntimeOutput{})
 	pulumi.RegisterOutputType(WebServiceDetailsCreateRuntimePtrOutput{})
 	pulumi.RegisterOutputType(WebServiceDetailsOutputBuildPlanOutput{})
@@ -8531,6 +9063,8 @@ func init() {
 	pulumi.RegisterOutputType(WebServiceDetailsOutputPullRequestPreviewsEnabledPtrOutput{})
 	pulumi.RegisterOutputType(WebServiceDetailsOutputRegionOutput{})
 	pulumi.RegisterOutputType(WebServiceDetailsOutputRegionPtrOutput{})
+	pulumi.RegisterOutputType(WebServiceDetailsOutputRenderSubdomainPolicyOutput{})
+	pulumi.RegisterOutputType(WebServiceDetailsOutputRenderSubdomainPolicyPtrOutput{})
 	pulumi.RegisterOutputType(WebServiceDetailsOutputRuntimeOutput{})
 	pulumi.RegisterOutputType(WebServiceDetailsOutputRuntimePtrOutput{})
 }

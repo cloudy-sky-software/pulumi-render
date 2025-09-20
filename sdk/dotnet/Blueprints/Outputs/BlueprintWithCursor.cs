@@ -11,7 +11,7 @@ namespace Pulumi.Render.Blueprints.Outputs
 {
 
     /// <summary>
-    /// A blueprint with a cursor
+    /// A Blueprint with a cursor
     /// </summary>
     [OutputType]
     public sealed class BlueprintWithCursor

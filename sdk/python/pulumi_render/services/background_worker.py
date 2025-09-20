@@ -28,6 +28,7 @@ class BackgroundWorkerArgs:
                  branch: Optional[pulumi.Input[_builtins.str]] = None,
                  build_filter: Optional[pulumi.Input['BuildFilterArgs']] = None,
                  env_vars: Optional[pulumi.Input[Sequence[pulumi.Input['EnvVarInputArgs']]]] = None,
+                 environment_id: Optional[pulumi.Input[_builtins.str]] = None,
                  image: Optional[pulumi.Input['ImageArgs']] = None,
                  repo: Optional[pulumi.Input[_builtins.str]] = None,
                  root_dir: Optional[pulumi.Input[_builtins.str]] = None,
@@ -37,6 +38,7 @@ class BackgroundWorkerArgs:
         """
         The set of arguments for constructing a BackgroundWorker resource.
         :param pulumi.Input[_builtins.str] branch: If left empty, this will fall back to the default branch of the repository
+        :param pulumi.Input[_builtins.str] environment_id: The ID of the environment the service is associated with
         :param pulumi.Input[_builtins.str] repo: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
         """
         pulumi.set(__self__, "name", name)
@@ -51,6 +53,8 @@ class BackgroundWorkerArgs:
             pulumi.set(__self__, "build_filter", build_filter)
         if env_vars is not None:
             pulumi.set(__self__, "env_vars", env_vars)
+        if environment_id is not None:
+            pulumi.set(__self__, "environment_id", environment_id)
         if image is not None:
             pulumi.set(__self__, "image", image)
         if repo is not None:
@@ -124,6 +128,18 @@ class BackgroundWorkerArgs:
         pulumi.set(self, "env_vars", value)
 
     @_builtins.property
+    @pulumi.getter(name="environmentId")
+    def environment_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The ID of the environment the service is associated with
+        """
+        return pulumi.get(self, "environment_id")
+
+    @environment_id.setter
+    def environment_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "environment_id", value)
+
+    @_builtins.property
     @pulumi.getter
     def image(self) -> Optional[pulumi.Input['ImageArgs']]:
         return pulumi.get(self, "image")
@@ -191,6 +207,7 @@ class BackgroundWorker(pulumi.CustomResource):
                  branch: Optional[pulumi.Input[_builtins.str]] = None,
                  build_filter: Optional[pulumi.Input[Union['BuildFilterArgs', 'BuildFilterArgsDict']]] = None,
                  env_vars: Optional[pulumi.Input[Sequence[pulumi.Input[Union['EnvVarInputArgs', 'EnvVarInputArgsDict']]]]] = None,
+                 environment_id: Optional[pulumi.Input[_builtins.str]] = None,
                  image: Optional[pulumi.Input[Union['ImageArgs', 'ImageArgsDict']]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  owner_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -205,6 +222,7 @@ class BackgroundWorker(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] branch: If left empty, this will fall back to the default branch of the repository
+        :param pulumi.Input[_builtins.str] environment_id: The ID of the environment the service is associated with
         :param pulumi.Input[_builtins.str] repo: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
         """
         ...
@@ -234,6 +252,7 @@ class BackgroundWorker(pulumi.CustomResource):
                  branch: Optional[pulumi.Input[_builtins.str]] = None,
                  build_filter: Optional[pulumi.Input[Union['BuildFilterArgs', 'BuildFilterArgsDict']]] = None,
                  env_vars: Optional[pulumi.Input[Sequence[pulumi.Input[Union['EnvVarInputArgs', 'EnvVarInputArgsDict']]]]] = None,
+                 environment_id: Optional[pulumi.Input[_builtins.str]] = None,
                  image: Optional[pulumi.Input[Union['ImageArgs', 'ImageArgsDict']]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  owner_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -257,6 +276,7 @@ class BackgroundWorker(pulumi.CustomResource):
             __props__.__dict__["branch"] = branch
             __props__.__dict__["build_filter"] = build_filter
             __props__.__dict__["env_vars"] = env_vars
+            __props__.__dict__["environment_id"] = environment_id
             __props__.__dict__["image"] = image
             if name is None and not opts.urn:
                 raise TypeError("Missing required property 'name'")
@@ -273,7 +293,6 @@ class BackgroundWorker(pulumi.CustomResource):
             __props__.__dict__["type"] = type
             __props__.__dict__["created_at"] = None
             __props__.__dict__["dashboard_url"] = None
-            __props__.__dict__["environment_id"] = None
             __props__.__dict__["image_path"] = None
             __props__.__dict__["notify_on_fail"] = None
             __props__.__dict__["registry_credential"] = None

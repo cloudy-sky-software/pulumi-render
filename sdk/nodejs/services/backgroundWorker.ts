@@ -43,7 +43,7 @@ export class BackgroundWorker extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly dashboardUrl: pulumi.Output<string | undefined>;
     declare public readonly envVars: pulumi.Output<outputs.services.EnvVarInput[] | undefined>;
-    declare public /*out*/ readonly environmentId: pulumi.Output<string | undefined>;
+    declare public readonly environmentId: pulumi.Output<string | undefined>;
     declare public readonly image: pulumi.Output<outputs.services.Image | undefined>;
     declare public /*out*/ readonly imagePath: pulumi.Output<string | undefined>;
     declare public readonly name: pulumi.Output<string | undefined>;
@@ -81,6 +81,7 @@ export class BackgroundWorker extends pulumi.CustomResource {
             resourceInputs["branch"] = args?.branch;
             resourceInputs["buildFilter"] = args?.buildFilter;
             resourceInputs["envVars"] = args?.envVars;
+            resourceInputs["environmentId"] = args?.environmentId;
             resourceInputs["image"] = args?.image;
             resourceInputs["name"] = args?.name;
             resourceInputs["ownerId"] = args?.ownerId;
@@ -91,7 +92,6 @@ export class BackgroundWorker extends pulumi.CustomResource {
             resourceInputs["type"] = (args?.type) ?? "background_worker";
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["dashboardUrl"] = undefined /*out*/;
-            resourceInputs["environmentId"] = undefined /*out*/;
             resourceInputs["imagePath"] = undefined /*out*/;
             resourceInputs["notifyOnFail"] = undefined /*out*/;
             resourceInputs["registryCredential"] = undefined /*out*/;
@@ -139,6 +139,10 @@ export interface BackgroundWorkerArgs {
     branch?: pulumi.Input<string>;
     buildFilter?: pulumi.Input<inputs.services.BuildFilterArgs>;
     envVars?: pulumi.Input<pulumi.Input<inputs.services.EnvVarInputArgs>[]>;
+    /**
+     * The ID of the environment the service is associated with
+     */
+    environmentId?: pulumi.Input<string>;
     image?: pulumi.Input<inputs.services.ImageArgs>;
     name: pulumi.Input<string>;
     ownerId: pulumi.Input<string>;

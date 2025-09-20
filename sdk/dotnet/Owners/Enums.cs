@@ -34,4 +34,32 @@ namespace Pulumi.Render.Owners
 
         public override string ToString() => _value;
     }
+
+    [EnumType]
+    public readonly struct TeamMemberStatus : IEquatable<TeamMemberStatus>
+    {
+        private readonly string _value;
+
+        private TeamMemberStatus(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static TeamMemberStatus Active { get; } = new TeamMemberStatus("active");
+        public static TeamMemberStatus Inactive { get; } = new TeamMemberStatus("inactive");
+
+        public static bool operator ==(TeamMemberStatus left, TeamMemberStatus right) => left.Equals(right);
+        public static bool operator !=(TeamMemberStatus left, TeamMemberStatus right) => !left.Equals(right);
+
+        public static explicit operator string(TeamMemberStatus value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is TeamMemberStatus other && Equals(other);
+        public bool Equals(TeamMemberStatus other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
 }

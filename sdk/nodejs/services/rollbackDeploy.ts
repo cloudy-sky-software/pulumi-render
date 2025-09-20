@@ -45,6 +45,7 @@ export class RollbackDeploy extends pulumi.CustomResource {
      * Image information used when creating the deploy. Not present for Git-backed deploys
      */
     declare public /*out*/ readonly image: pulumi.Output<outputs.services.ImageProperties | undefined>;
+    declare public /*out*/ readonly startedAt: pulumi.Output<string | undefined>;
     declare public /*out*/ readonly status: pulumi.Output<enums.services.Status | undefined>;
     declare public /*out*/ readonly trigger: pulumi.Output<enums.services.Trigger | undefined>;
     declare public /*out*/ readonly updatedAt: pulumi.Output<string | undefined>;
@@ -69,6 +70,7 @@ export class RollbackDeploy extends pulumi.CustomResource {
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["finishedAt"] = undefined /*out*/;
             resourceInputs["image"] = undefined /*out*/;
+            resourceInputs["startedAt"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["trigger"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
@@ -78,6 +80,7 @@ export class RollbackDeploy extends pulumi.CustomResource {
             resourceInputs["deployId"] = undefined /*out*/;
             resourceInputs["finishedAt"] = undefined /*out*/;
             resourceInputs["image"] = undefined /*out*/;
+            resourceInputs["startedAt"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["trigger"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;

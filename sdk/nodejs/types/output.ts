@@ -10,7 +10,7 @@ import * as utilities from "../utilities";
 
 export namespace blueprints {
     /**
-     * A blueprint with a cursor
+     * A Blueprint with a cursor
      */
     export interface BlueprintWithCursor {
         blueprint: outputs.blueprints.BlueprintWithCursorBlueprintProperties;
@@ -40,7 +40,7 @@ export namespace blueprints {
     }
 
     /**
-     * A blueprint sync with a cursor
+     * A Blueprint sync with a cursor
      */
     export interface SyncWithCursor {
         cursor: string;
@@ -236,7 +236,7 @@ export namespace keyvalue {
         id: string;
         name: string;
         /**
-         * Whether two-factor authentication is enabled for the owner. Only present for user owners.
+         * Whether two-factor authentication is enabled for the owner. Only present if `type` is `user`.
          */
         twoFactorAuthEnabled?: boolean;
         type: enums.keyvalue.OwnerType;
@@ -256,6 +256,21 @@ export namespace keyvalue {
 }
 
 export namespace metrics {
+    export interface GetBandwidthSourcePropertiesDataItemProperties {
+        labels?: outputs.metrics.GetBandwidthSourcePropertiesDataItemPropertiesLabelsProperties;
+        values?: outputs.metrics.GetBandwidthSourcePropertiesDataItemPropertiesValuesItemProperties[];
+    }
+
+    export interface GetBandwidthSourcePropertiesDataItemPropertiesLabelsProperties {
+        resource?: string;
+        trafficSource?: enums.metrics.GetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesTrafficSource;
+    }
+
+    export interface GetBandwidthSourcePropertiesDataItemPropertiesValuesItemProperties {
+        timestamp?: number;
+        value?: number;
+    }
+
     /**
      * A time series data point
      */
@@ -340,7 +355,7 @@ export namespace owners {
         id: string;
         name: string;
         /**
-         * Whether two-factor authentication is enabled for the owner. Only present for user owners.
+         * Whether two-factor authentication is enabled for the owner. Only present if `type` is `user`.
          */
         twoFactorAuthEnabled?: boolean;
         type: enums.owners.OwnerType;
@@ -349,6 +364,15 @@ export namespace owners {
     export interface OwnerWithCursor {
         cursor?: string;
         owner?: outputs.owners.Owner;
+    }
+
+    export interface TeamMember {
+        email: string;
+        mfaEnabled: boolean;
+        name: string;
+        role: string;
+        status: enums.owners.TeamMemberStatus;
+        userId: string;
     }
 
 }
@@ -376,7 +400,7 @@ export namespace postgres {
         id: string;
         name: string;
         /**
-         * Whether two-factor authentication is enabled for the owner. Only present for user owners.
+         * Whether two-factor authentication is enabled for the owner. Only present if `type` is `user`.
          */
         twoFactorAuthEnabled?: boolean;
         type: enums.postgres.OwnerType;
@@ -472,7 +496,7 @@ export namespace projects {
         id: string;
         name: string;
         /**
-         * Whether two-factor authentication is enabled for the owner. Only present for user owners.
+         * Whether two-factor authentication is enabled for the owner. Only present if `type` is `user`.
          */
         twoFactorAuthEnabled?: boolean;
         type: enums.projects.OwnerType;
@@ -546,7 +570,7 @@ export namespace redis {
         id: string;
         name: string;
         /**
-         * Whether two-factor authentication is enabled for the owner. Only present for user owners.
+         * Whether two-factor authentication is enabled for the owner. Only present if `type` is `user`.
          */
         twoFactorAuthEnabled?: boolean;
         type: enums.redis.OwnerType;
@@ -771,6 +795,10 @@ export namespace services {
         paths: string[];
     }
 
+    export interface Cache {
+        profile: string;
+    }
+
     export interface CommitProperties {
         createdAt?: string;
         id?: string;
@@ -909,6 +937,7 @@ export namespace services {
          * Image information used when creating the deploy. Not present for Git-backed deploys
          */
         image?: outputs.services.DeployImageProperties;
+        startedAt?: string;
         status?: enums.services.DeployStatus;
         trigger?: enums.services.DeployTrigger;
         updatedAt?: string;
@@ -1038,7 +1067,7 @@ export namespace services {
     export interface MaintenanceMode {
         enabled: boolean;
         /**
-         * The page to be served when [maintenance mode](https://docs.render.com/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
+         * The page to be served when [maintenance mode](https://render.com/docs/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
          */
         uri: string;
     }
@@ -1255,6 +1284,11 @@ export namespace services {
         };
     }
 
+    export interface ServiceInstance {
+        createdAt: string;
+        id: string;
+    }
+
     export interface StaticSiteDetailsOutput {
         buildCommand: string;
         buildPlan: enums.services.StaticSiteDetailsOutputBuildPlan;
@@ -1265,6 +1299,10 @@ export namespace services {
          * This field has been deprecated. previews.generation should be used in its place.
          */
         pullRequestPreviewsEnabled?: enums.services.StaticSiteDetailsOutputPullRequestPreviewsEnabled;
+        /**
+         * Controls whether render.com subdomains are available for the service
+         */
+        renderSubdomainPolicy?: enums.services.StaticSiteDetailsOutputRenderSubdomainPolicy;
         url: string;
     }
     /**
@@ -1319,6 +1357,7 @@ export namespace services {
     export interface WebServiceDetailsOutput {
         autoscaling?: outputs.services.WebServiceDetailsOutputAutoscalingProperties;
         buildPlan: enums.services.WebServiceDetailsOutputBuildPlan;
+        cache?: outputs.services.Cache;
         disk?: outputs.services.WebServiceDetailsOutputDiskProperties;
         /**
          * This field has been deprecated, runtime should be used in its place.
@@ -1350,6 +1389,10 @@ export namespace services {
          * Defaults to "oregon"
          */
         region: enums.services.WebServiceDetailsOutputRegion;
+        /**
+         * Controls whether render.com subdomains are available for the service
+         */
+        renderSubdomainPolicy?: enums.services.WebServiceDetailsOutputRenderSubdomainPolicy;
         /**
          * Runtime
          */

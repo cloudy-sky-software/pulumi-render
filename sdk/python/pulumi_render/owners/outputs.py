@@ -19,6 +19,7 @@ from ._enums import *
 __all__ = [
     'Owner',
     'OwnerWithCursor',
+    'TeamMember',
 ]
 
 @pulumi.output_type
@@ -30,7 +31,7 @@ class Owner(dict):
                  type: 'OwnerType',
                  two_factor_auth_enabled: Optional[_builtins.bool] = None):
         """
-        :param _builtins.bool two_factor_auth_enabled: Whether two-factor authentication is enabled for the owner. Only present for user owners.
+        :param _builtins.bool two_factor_auth_enabled: Whether two-factor authentication is enabled for the owner. Only present if `type` is `user`.
         """
         pulumi.set(__self__, "email", email)
         pulumi.set(__self__, "id", id)
@@ -63,7 +64,7 @@ class Owner(dict):
     @pulumi.getter(name="twoFactorAuthEnabled")
     def two_factor_auth_enabled(self) -> Optional[_builtins.bool]:
         """
-        Whether two-factor authentication is enabled for the owner. Only present for user owners.
+        Whether two-factor authentication is enabled for the owner. Only present if `type` is `user`.
         """
         return pulumi.get(self, "two_factor_auth_enabled")
 
@@ -87,5 +88,52 @@ class OwnerWithCursor(dict):
     @pulumi.getter
     def owner(self) -> Optional['outputs.Owner']:
         return pulumi.get(self, "owner")
+
+
+@pulumi.output_type
+class TeamMember(dict):
+    def __init__(__self__, *,
+                 email: _builtins.str,
+                 mfa_enabled: _builtins.bool,
+                 name: _builtins.str,
+                 role: _builtins.str,
+                 status: 'TeamMemberStatus',
+                 user_id: _builtins.str):
+        pulumi.set(__self__, "email", email)
+        pulumi.set(__self__, "mfa_enabled", mfa_enabled)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "role", role)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "user_id", user_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def email(self) -> _builtins.str:
+        return pulumi.get(self, "email")
+
+    @_builtins.property
+    @pulumi.getter(name="mfaEnabled")
+    def mfa_enabled(self) -> _builtins.bool:
+        return pulumi.get(self, "mfa_enabled")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def role(self) -> _builtins.str:
+        return pulumi.get(self, "role")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> 'TeamMemberStatus':
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> _builtins.str:
+        return pulumi.get(self, "user_id")
 
 

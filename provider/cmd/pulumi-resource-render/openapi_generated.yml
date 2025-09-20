@@ -90,7 +90,7 @@ components:
         eventTypeParam:
             description: The type of event to filter to
             in: query
-            name: eventType
+            name: type
             schema:
                 anyOf:
                     - enum:
@@ -117,6 +117,7 @@ components:
                         - maintenance_mode_uri_updated
                         - maintenance_ended
                         - maintenance_started
+                        - pipeline_minutes_exhausted
                         - plan_changed
                         - pre_deploy_ended
                         - pre_deploy_started
@@ -156,26 +157,6 @@ components:
                 maximum: 100
                 minimum: 1
                 type: integer
-        linkDestinationParam:
-            description: Filter for resources that are the destination of a service link
-            explode: false
-            in: query
-            name: linkDestinationId
-            schema:
-                items:
-                    type: string
-                type: array
-            style: form
-        linkSourceParam:
-            description: Filter for resources that are the source of a service link
-            explode: false
-            in: query
-            name: linkSourceId
-            schema:
-                items:
-                    type: string
-                type: array
-            style: form
         nameParam:
             description: Filter by name
             explode: false
@@ -187,7 +168,7 @@ components:
                 type: array
             style: form
         ownerIdParam:
-            description: The ID of the owner (team or personal user) whose resources should be returned
+            description: The ID of the workspaces to return resources for
             explode: false
             in: query
             name: ownerId
@@ -197,7 +178,7 @@ components:
                 type: array
             style: form
         ownerIdPathParam:
-            description: The ID of the owner (team or personal user) whose resources should be returned
+            description: The ID of the workspace to return resources for
             in: path
             name: ownerId
             required: true
@@ -313,6 +294,16 @@ components:
             schema:
                 format: date-time
                 type: string
+        workflowIdParam:
+            description: The IDs of the workflows to return resources for
+            explode: false
+            in: query
+            name: workflowID
+            schema:
+                items:
+                    type: string
+                type: array
+            style: form
     responses:
         400BadRequest:
             content:
@@ -429,6 +420,13 @@ components:
             enum:
                 - "yes"
                 - "no"
+            type: string
+        autoDeployTrigger:
+            description: Controls autodeploy behavior. commit deploys when a commit is pushed to a branch. checksPass waits for the branch to be green.
+            enum:
+                - commit
+                - "off"
+                - checksPass
             type: string
         backgroundWorker:
             allOf:
@@ -593,7 +591,7 @@ components:
                   type: object
             title: BackgroundWorker
         blueprintWithCursor:
-            description: A blueprint with a cursor
+            description: A Blueprint with a cursor
             properties:
                 blueprint:
                     properties:
@@ -646,6 +644,13 @@ components:
                 - starter
                 - performance
             type: string
+        cache:
+            properties:
+                profile:
+                    type: string
+            required:
+                - profile
+            type: object
         cidrBlockAndDescription:
             properties:
                 cidrBlock:
@@ -909,6 +914,9 @@ components:
                             description: SHA that the image reference was resolved to when creating the deploy
                             type: string
                     type: object
+                startedAt:
+                    format: date-time
+                    type: string
                 status:
                     $ref: '#/components/schemas/deployStatus'
                 trigger:
@@ -937,6 +945,7 @@ components:
         deployStatus:
             enum:
                 - created
+                - queued
                 - build_in_progress
                 - update_in_progress
                 - live
@@ -1369,11 +1378,7 @@ components:
                     format: date-time
                     type: string
                 status:
-                    enum:
-                        - succeeded
-                        - failed
-                        - canceled
-                    type: string
+                    $ref: '#/paths/~1services~1%7BserviceId%7D~1jobs/get/parameters/2/schema/items'
             required:
                 - id
                 - serviceId
@@ -1594,7 +1599,7 @@ components:
                 enabled:
                     type: boolean
                 uri:
-                    description: The page to be served when [maintenance mode](https://docs.render.com/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
+                    description: The page to be served when [maintenance mode](https://render.com/docs/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
                     type: string
             required:
                 - enabled
@@ -1682,7 +1687,7 @@ components:
                 name:
                     type: string
                 twoFactorAuthEnabled:
-                    description: Whether two-factor authentication is enabled for the owner. Only present for user owners.
+                    description: Whether two-factor authentication is enabled for the owner. Only present if `type` is `user`.
                     type: boolean
                 type:
                     enum:
@@ -1938,6 +1943,11 @@ components:
         postgresPATCHInput:
             properties:
                 datadogAPIKey:
+                    description: The Datadog API key for the Datadog agent to monitor the database. Pass empty string to remove. Restarts Postgres on change.
+                    type: string
+                datadogSite:
+                    description: Datadog region to use for monitoring the new database. Defaults to 'US1'.
+                    example: US1
                     type: string
                 diskSizeGB:
                     description: The number of gigabytes of disk space to allocate for the database
@@ -1965,6 +1975,11 @@ components:
                     default: randomly generated
                     type: string
                 datadogAPIKey:
+                    description: The Datadog API key for the Datadog agent to monitor the new database.
+                    type: string
+                datadogSite:
+                    description: Datadog region to use for monitoring the new database. Defaults to 'US1'.
+                    example: US1
                     type: string
                 diskSizeGB:
                     description: The number of gigabytes of disk space to allocate for the database
@@ -1982,7 +1997,7 @@ components:
                     description: The name of the database as it will appear in the Render Dashboard
                     type: string
                 ownerId:
-                    description: The ID of the owner (team or personal user) whose resources should be returned
+                    description: The ID of the workspace to create the database for
                     type: string
                 plan:
                     $ref: '#/components/schemas/postgres/properties/plan'
@@ -2007,6 +2022,7 @@ components:
                 - "14"
                 - "15"
                 - "16"
+                - "17"
             type: string
         postgresWithCursor:
             properties:
@@ -2613,6 +2629,12 @@ components:
                 - id
                 - name
             type: object
+        renderSubdomainPolicy:
+            description: Controls whether render.com subdomains are available for the service
+            enum:
+                - enabled
+                - disabled
+            type: string
         resource:
             properties:
                 id:
@@ -2868,109 +2890,16 @@ components:
                 - event
                 - cursor
             type: object
-        serviceLink:
-            description: A link between a service and a database or Redis instance.
+        serviceInstance:
             properties:
-                destination:
-                    $ref: '#/components/schemas/serviceLinkDestination'
-                envVars:
-                    items:
-                        $ref: '#/components/schemas/serviceLinkEnvVar'
-                    type: array
+                createdAt:
+                    format: date-time
+                    type: string
                 id:
                     type: string
-                source:
-                    $ref: '#/components/schemas/serviceLinkSource'
             required:
                 - id
-                - source
-                - destination
-                - envVars
-            type: object
-        serviceLinkDestination:
-            properties:
-                resourceId:
-                    type: string
-                type:
-                    enum:
-                        - database
-                        - redis
-                    type: string
-            required:
-                - type
-                - resourceId
-            type: object
-        serviceLinkEnvVar:
-            properties:
-                key:
-                    type: string
-                keyType:
-                    enum:
-                        - CONNECTION_STRING_KEY
-                    type: string
-                value:
-                    type: string
-            required:
-                - keyType
-                - key
-            type: object
-        serviceLinkEnvVarKey:
-            properties:
-                key:
-                    type: string
-                keyType:
-                    enum:
-                        - CONNECTION_STRING_KEY
-                    type: string
-            required:
-                - keyType
-                - key
-            type: object
-        serviceLinkPATCHInput:
-            properties:
-                envVars:
-                    items:
-                        $ref: '#/components/schemas/serviceLinkEnvVarKey'
-                    type: array
-            required:
-                - envVars
-            type: object
-        serviceLinkPOSTInput:
-            properties:
-                destinationId:
-                    type: string
-                envVars:
-                    items:
-                        $ref: '#/components/schemas/serviceLinkEnvVarKey'
-                    type: array
-                sourceId:
-                    type: string
-            required:
-                - sourceId
-                - destinationId
-                - envVars
-            type: object
-        serviceLinkSource:
-            properties:
-                resourceId:
-                    type: string
-                type:
-                    enum:
-                        - service
-                    type: string
-            required:
-                - type
-                - resourceId
-            type: object
-        serviceLinkWithCursor:
-            properties:
-                cursor:
-                    $ref: '#/components/schemas/cursor'
-                serviceLink:
-                    $ref: '#/components/schemas/serviceLink'
-            required:
-                - serviceLink
-                - cursor
+                - createdAt
             type: object
         serviceList:
             items:
@@ -3004,6 +2933,9 @@ components:
                     $ref: '#/components/schemas/buildFilter'
                 envVars:
                     $ref: '#/components/schemas/envVarInputArray'
+                environmentId:
+                    description: The ID of the environment the service is associated with
+                    type: string
                 image:
                     $ref: '#/components/schemas/image'
                 name:
@@ -3113,6 +3045,8 @@ components:
                     type: string
                 pullRequestPreviewsEnabled:
                     $ref: '#/components/schemas/pullRequestPreviewsEnabled'
+                renderSubdomainPolicy:
+                    $ref: '#/components/schemas/renderSubdomainPolicy'
                 url:
                     type: string
             required:
@@ -3135,6 +3069,8 @@ components:
                     type: string
                 pullRequestPreviewsEnabled:
                     $ref: '#/components/schemas/pullRequestPreviewsEnabled'
+                renderSubdomainPolicy:
+                    $ref: '#/components/schemas/renderSubdomainPolicy'
                 url:
                     type: string
             required:
@@ -3153,6 +3089,8 @@ components:
                     type: string
                 pullRequestPreviewsEnabled:
                     $ref: '#/components/schemas/pullRequestPreviewsEnabled'
+                renderSubdomainPolicy:
+                    $ref: '#/components/schemas/renderSubdomainPolicy'
             type: object
         staticSiteDetailsPOST:
             properties:
@@ -3169,6 +3107,8 @@ components:
                     type: string
                 pullRequestPreviewsEnabled:
                     $ref: '#/components/schemas/pullRequestPreviewsEnabled'
+                renderSubdomainPolicy:
+                    $ref: '#/components/schemas/renderSubdomainPolicy'
                 routes:
                     items:
                         $ref: '#/components/schemas/routePost'
@@ -3202,10 +3142,12 @@ components:
                 - billing
                 - user
                 - parent_service
+                - stuck_crashlooping
+                - hipaa_enablement
                 - unknown
             type: string
         syncWithCursor:
-            description: A blueprint sync with a cursor
+            description: A Blueprint sync with a cursor
             properties:
                 cursor:
                     $ref: '#/components/schemas/cursor'
@@ -3245,6 +3187,35 @@ components:
                 - sync
                 - cursor
             type: object
+        teamMember:
+            properties:
+                email:
+                    type: string
+                mfaEnabled:
+                    type: boolean
+                name:
+                    type: string
+                role:
+                    type: string
+                status:
+                    enum:
+                        - active
+                        - inactive
+                    type: string
+                userId:
+                    type: string
+            required:
+                - userId
+                - name
+                - email
+                - status
+                - role
+                - mfaEnabled
+            type: object
+        teamMembers:
+            items:
+                $ref: '#/components/schemas/teamMember'
+            type: array
         user:
             properties:
                 email:
@@ -3308,6 +3279,8 @@ components:
                     type: object
                 buildPlan:
                     $ref: '#/components/schemas/buildPlan'
+                cache:
+                    $ref: '#/components/schemas/cache'
                 disk:
                     properties:
                         id:
@@ -3351,6 +3324,8 @@ components:
                     $ref: '#/components/schemas/pullRequestPreviewsEnabled'
                 region:
                     $ref: '#/components/schemas/region'
+                renderSubdomainPolicy:
+                    $ref: '#/components/schemas/renderSubdomainPolicy'
                 runtime:
                     $ref: '#/components/schemas/serviceRuntime'
                 sshAddress:
@@ -3411,6 +3386,8 @@ components:
                     type: object
                 buildPlan:
                     $ref: '#/components/schemas/buildPlan'
+                cache:
+                    $ref: '#/components/schemas/cache'
                 disk:
                     properties:
                         id:
@@ -3454,6 +3431,8 @@ components:
                     $ref: '#/components/schemas/pullRequestPreviewsEnabled'
                 region:
                     $ref: '#/components/schemas/region'
+                renderSubdomainPolicy:
+                    $ref: '#/components/schemas/renderSubdomainPolicy'
                 runtime:
                     $ref: '#/components/schemas/serviceRuntime'
                 sshAddress:
@@ -3474,6 +3453,8 @@ components:
             type: object
         webServiceDetailsPATCH:
             properties:
+                cache:
+                    $ref: '#/components/schemas/cache'
                 envSpecificDetails:
                     $ref: '#/components/schemas/envSpecificDetailsPATCH'
                 healthCheckPath:
@@ -3490,6 +3471,8 @@ components:
                     $ref: '#/components/schemas/previews'
                 pullRequestPreviewsEnabled:
                     $ref: '#/components/schemas/pullRequestPreviewsEnabled'
+                renderSubdomainPolicy:
+                    $ref: '#/components/schemas/renderSubdomainPolicy'
                 runtime:
                     $ref: '#/components/schemas/serviceRuntime'
             type: object
@@ -3523,6 +3506,8 @@ components:
                     $ref: '#/components/schemas/pullRequestPreviewsEnabled'
                 region:
                     $ref: '#/components/schemas/region'
+                renderSubdomainPolicy:
+                    $ref: '#/components/schemas/renderSubdomainPolicy'
                 runtime:
                     $ref: '#/components/schemas/serviceRuntime'
             required:
@@ -3595,7 +3580,7 @@ components:
                         eventFilter:
                             $ref: '#/paths/~1webhooks/post/requestBody/content/application~1json/schema/properties/eventFilter'
                         id:
-                            type: string
+                            $ref: '#/paths/~1webhooks~1%7BwebhookId%7D/parameters/0/schema'
                         name:
                             type: string
                         secret:
@@ -3630,7 +3615,7 @@ paths:
     /blueprints:
         get:
             description: |
-                List blueprints for the provided owners. If no owners are provided, returns all blueprints you have permissions to view.
+                List Blueprints for the specified workspaces. If no workspaces are provided, returns all Blueprints the API key has access to.
             operationId: list-blueprints
             parameters:
                 - $ref: '#/components/parameters/ownerIdParam'
@@ -3661,15 +3646,15 @@ paths:
                     $ref: '#/components/responses/500InternalServerError'
                 "503":
                     $ref: '#/components/responses/503ServiceUnavailable'
-            summary: List blueprints
+            summary: List Blueprints
             tags:
                 - Blueprints
     /blueprints/{blueprintId}:
         delete:
             description: |
-                Disconnect the blueprint with the provided ID.
+                Disconnect the Blueprint with the provided ID.
 
-                Disconnecting a blueprint stops automatic resource syncing via the associated `render.yaml` file. It does not _delete_ any services or other resources that were managed by the blueprint.
+                Disconnecting a Blueprint stops automatic resource syncing via the associated `render.yaml` file. It does not _delete_ any services or other resources that were managed by the blueprint.
             operationId: disconnect-blueprint
             responses:
                 "204":
@@ -3690,12 +3675,12 @@ paths:
                     $ref: '#/components/responses/500InternalServerError'
                 "503":
                     $ref: '#/components/responses/503ServiceUnavailable'
-            summary: Disconnect blueprint
+            summary: Disconnect Blueprint
             tags:
                 - Blueprints
         get:
             description: |
-                Retrieve the blueprint with the provided ID.
+                Retrieve the Blueprint with the provided ID.
             operationId: retrieve-blueprint
             responses:
                 "200":
@@ -3776,11 +3761,11 @@ paths:
                     $ref: '#/components/responses/500InternalServerError'
                 "503":
                     $ref: '#/components/responses/503ServiceUnavailable'
-            summary: Retrieve blueprint
+            summary: Retrieve Blueprint
             tags:
                 - Blueprints
         parameters:
-            - description: The ID of the blueprint
+            - description: The ID of the Blueprint
               in: path
               name: blueprintId
               required: true
@@ -3790,7 +3775,7 @@ paths:
                 type: string
         patch:
             description: |
-                Update the blueprint with the provided ID.
+                Update the Blueprint with the provided ID.
             operationId: update-blueprint
             requestBody:
                 content:
@@ -3827,13 +3812,13 @@ paths:
                     $ref: '#/components/responses/500InternalServerError'
                 "503":
                     $ref: '#/components/responses/503ServiceUnavailable'
-            summary: Update blueprint
+            summary: Update Blueprint
             tags:
                 - Blueprints
     /blueprints/{blueprintId}/syncs:
         get:
             description: |
-                List syncs for the blueprint with the provided ID.
+                List syncs for the Blueprint with the provided ID.
             operationId: list-blueprint-syncs
             responses:
                 "200":
@@ -3860,7 +3845,7 @@ paths:
                     $ref: '#/components/responses/500InternalServerError'
                 "503":
                     $ref: '#/components/responses/503ServiceUnavailable'
-            summary: List blueprint syncs
+            summary: List Blueprint syncs
             tags:
                 - Blueprints
         parameters:
@@ -5061,9 +5046,13 @@ paths:
                                                         type: string
                                                     reason:
                                                         properties:
+                                                            earlyExit:
+                                                                description: If true, the application exited early. Services besides cron jobs should not exit unless receiving a `SIGTERM` signal from Render.
+                                                                type: boolean
                                                             evicted:
                                                                 type: boolean
                                                             nonZeroExit:
+                                                                description: If present, the application exited with the specified non-zero status.
                                                                 type: integer
                                                             oomKilled:
                                                                 properties:
@@ -5209,7 +5198,7 @@ paths:
                                                     reason:
                                                         $ref: '#/paths/~1events~1%7BeventId%7D/get/responses/200/content/application~1json/schema/properties/details/oneOf/0/oneOf/7/properties/reason'
                                                     status:
-                                                        $ref: '#/components/schemas/jobWithCursor/properties/job/properties/status'
+                                                        $ref: '#/paths/~1services~1%7BserviceId%7D~1jobs/get/parameters/2/schema/items'
                                                   required:
                                                     - jobId
                                                     - status
@@ -5254,6 +5243,16 @@ paths:
                                                   title: Maintenance Started
                                                   type: object
                                                 - properties:
+                                                    buildId:
+                                                        type: string
+                                                    trigger:
+                                                        $ref: '#/paths/~1events~1%7BeventId%7D/get/responses/200/content/application~1json/schema/properties/details/oneOf/0/oneOf/5/properties/trigger'
+                                                  required:
+                                                    - buildId
+                                                    - trigger
+                                                  title: Pipeline Minutes Exhausted
+                                                  type: object
+                                                - properties:
                                                     from:
                                                         type: string
                                                     to:
@@ -5296,6 +5295,10 @@ paths:
                                                 - title: Server Available
                                                   type: object
                                                 - properties:
+                                                    instanceID:
+                                                        example: srv-d0cjkelq67qs70c2pugg-sbpkm
+                                                        pattern: ^srv-[0-9a-z]{20}-[0-9a-z]{5}$
+                                                        type: string
                                                     reason:
                                                         $ref: '#/paths/~1events~1%7BeventId%7D/get/responses/200/content/application~1json/schema/properties/details/oneOf/0/oneOf/7/properties/reason'
                                                   title: Server Failed
@@ -5310,7 +5313,10 @@ paths:
                                                     - triggeredByUser
                                                   title: Server Restarted
                                                   type: object
-                                                - title: Server Unhealthy
+                                                - properties:
+                                                    instanceID:
+                                                        $ref: '#/paths/~1events~1%7BeventId%7D/get/responses/200/content/application~1json/schema/properties/details/oneOf/0/oneOf/28/properties/instanceID'
+                                                  title: Server Unhealthy
                                                   type: object
                                                 - title: Service Resumed
                                                   type: object
@@ -5343,11 +5349,45 @@ paths:
                                                     - trigger
                                                   title: Zero Downtime Redeploy Started
                                                   type: object
+                                                - properties:
+                                                    trigger:
+                                                        properties:
+                                                            manual:
+                                                                description: Edge Cache change was triggered manually from the dashboard
+                                                                type: boolean
+                                                            system:
+                                                                description: Edge Cache Change was triggered by Render
+                                                                type: boolean
+                                                            user:
+                                                                $ref: '#/paths/~1events~1%7BeventId%7D/get/responses/200/content/application~1json/schema/properties/details/oneOf/0/oneOf/7/properties/user'
+                                                        required:
+                                                            - manual
+                                                            - system
+                                                        type: object
+                                                  required:
+                                                    - trigger
+                                                  title: Edge Cache Disabled
+                                                  type: object
+                                                - properties:
+                                                    trigger:
+                                                        $ref: '#/paths/~1events~1%7BeventId%7D/get/responses/200/content/application~1json/schema/properties/details/oneOf/0/oneOf/38/properties/trigger'
+                                                  required:
+                                                    - trigger
+                                                  title: Edge Cache Enabled
+                                                  type: object
+                                                - properties:
+                                                    trigger:
+                                                        $ref: '#/paths/~1events~1%7BeventId%7D/get/responses/200/content/application~1json/schema/properties/details/oneOf/0/oneOf/38/properties/trigger'
+                                                  required:
+                                                    - trigger
+                                                  title: Edge Cache Purged
                                               title: Service Event Details
                                             - oneOf:
                                                 - title: Postgres Available
                                                   type: object
                                                 - title: Postgres Backup Completed
+                                                  type: object
+                                                - title: Postgres Backup Failed
                                                   type: object
                                                 - title: Postgres Backup Started
                                                   type: object
@@ -5432,6 +5472,14 @@ paths:
                                                     - toVersion
                                                   title: Postgres Upgrade Succeeded
                                                   type: object
+                                                - title: Postgres PITR Checkpoint Started
+                                                  type: object
+                                                - title: Postgres PITR Checkpoint Failed
+                                                  type: object
+                                                - title: Postgres PITR Checkpoint Completed
+                                                  type: object
+                                                - title: Postgres Read Replica Stale
+                                                  type: object
                                               title: Postgres Event Details
                                             - oneOf:
                                                 - title: Key Value Available
@@ -5479,6 +5527,7 @@ paths:
                                             - maintenance_mode_uri_updated
                                             - maintenance_ended
                                             - maintenance_started
+                                            - pipeline_minutes_exhausted
                                             - plan_changed
                                             - pre_deploy_ended
                                             - pre_deploy_started
@@ -5491,8 +5540,12 @@ paths:
                                             - service_suspended
                                             - zero_downtime_redeploy_ended
                                             - zero_downtime_redeploy_started
+                                            - edge_cache_enabled
+                                            - edge_cache_disabled
+                                            - edge_cache_purged
                                             - postgres_available
                                             - postgres_backup_completed
+                                            - postgres_backup_failed
                                             - postgres_backup_started
                                             - postgres_cluster_leader_changed
                                             - postgres_created
@@ -5503,7 +5556,14 @@ paths:
                                             - postgres_upgrade_failed
                                             - postgres_upgrade_started
                                             - postgres_upgrade_succeeded
+                                            - postgres_restore_failed
+                                            - postgres_restore_succeeded
                                             - postgres_read_replicas_changed
+                                            - postgres_pitr_checkpoint_started
+                                            - postgres_pitr_checkpoint_failed
+                                            - postgres_pitr_checkpoint_completed
+                                            - postgres_read_replica_stale
+                                            - postgres_wal_archive_failed
                                             - key_value_available
                                             - key_value_config_restart
                                             - key_value_unhealthy
@@ -5764,7 +5824,7 @@ paths:
                 You can query for logs across multiple resources, but all resources must be in the same region and belong to the same owner.
             operationId: list-logs
             parameters:
-                - description: The ID of the owner (team or personal user) whose resources should be returned
+                - description: The ID of the workspace to return logs for
                   in: query
                   name: ownerId
                   required: true
@@ -5798,28 +5858,56 @@ paths:
                     items:
                         type: string
                     type: array
-                - description: Filter request logs by their host. [Wildcards and regex](https://docs.render.com/logging#wildcards-and-regular-expressions) are supported.
+                - description: Filter request logs by their host. [Wildcards and regex](https://render.com/docs/logging#wildcards-and-regular-expressions) are supported.
                   in: query
                   name: host
                   schema:
                     items:
                         type: string
                     type: array
-                - description: Filter request logs by their status code. [Wildcards and regex](https://docs.render.com/logging#wildcards-and-regular-expressions) are supported.
+                - description: Filter request logs by their status code. [Wildcards and regex](https://render.com/docs/logging#wildcards-and-regular-expressions) are supported.
                   in: query
                   name: statusCode
                   schema:
                     items:
                         type: string
                     type: array
-                - description: Filter request logs by their requests method. [Wildcards and regex](https://docs.render.com/logging#wildcards-and-regular-expressions) are supported.
+                - description: Filter request logs by their requests method. [Wildcards and regex](https://render.com/docs/logging#wildcards-and-regular-expressions) are supported.
                   in: query
                   name: method
                   schema:
                     items:
                         type: string
                     type: array
-                - description: Filter logs by their severity level. [Wildcards and regex](https://docs.render.com/logging#wildcards-and-regular-expressions) are supported.
+                - description: Filter logs by their workflow service(s)
+                  in: query
+                  name: workflowService
+                  schema:
+                    items:
+                        type: string
+                    type: array
+                - description: Filter logs by their workflow version(s)
+                  in: query
+                  name: workflowVersion
+                  schema:
+                    items:
+                        type: string
+                    type: array
+                - description: Filter logs by their task(s)
+                  in: query
+                  name: task
+                  schema:
+                    items:
+                        type: string
+                    type: array
+                - description: Filter logs by their task run id(s)
+                  in: query
+                  name: taskRun
+                  schema:
+                    items:
+                        type: string
+                    type: array
+                - description: Filter logs by their severity level. [Wildcards and regex](https://render.com/docs/logging#wildcards-and-regular-expressions) are supported.
                   in: query
                   name: level
                   schema:
@@ -5833,14 +5921,14 @@ paths:
                     items:
                         type: string
                     type: array
-                - description: Filter by the text of the logs. [Wildcards and regex](https://docs.render.com/logging#wildcards-and-regular-expressions) are supported.
+                - description: Filter by the text of the logs. [Wildcards and regex](https://render.com/docs/logging#wildcards-and-regular-expressions) are supported.
                   in: query
                   name: text
                   schema:
                     items:
                         type: string
                     type: array
-                - description: Filter request logs by their path. [Wildcards and regex](https://docs.render.com/logging#wildcards-and-regular-expressions) are supported.
+                - description: Filter request logs by their path. [Wildcards and regex](https://render.com/docs/logging#wildcards-and-regular-expressions) are supported.
                   in: query
                   name: path
                   schema:
@@ -5874,10 +5962,10 @@ paths:
                 - Logs
     /logs/streams/owner/{ownerId}:
         delete:
-            description: Remove the log stream information for the provided owner.
+            description: Removes the log stream for the specified workspace.
             operationId: delete-owner-log-stream
             parameters:
-                - description: The ID of the owner (team or personal user) whose log streams should be returned
+                - description: The ID of the workspace to delete the log stream for
                   in: path
                   name: ownerId
                   required: true
@@ -5898,14 +5986,14 @@ paths:
                     $ref: '#/components/responses/500InternalServerError'
                 "503":
                     $ref: '#/components/responses/503ServiceUnavailable'
-            summary: Delete owner log stream
+            summary: Delete log stream
             tags:
                 - Logs
         get:
-            description: Get log stream information for the provided owner.
+            description: Returns log stream information for the specified workspace.
             operationId: get-owner-log-stream
             parameters:
-                - description: The ID of the owner (team or personal user) whose log streams should be returned
+                - description: The ID of the workspace to return log stream information for
                   in: path
                   name: ownerId
                   required: true
@@ -5946,14 +6034,14 @@ paths:
                     $ref: '#/components/responses/500InternalServerError'
                 "503":
                     $ref: '#/components/responses/503ServiceUnavailable'
-            summary: Get owner log stream
+            summary: Retrieve log stream
             tags:
                 - Logs
         put:
-            description: Update default log stream information for the provided owner. All logs for resources owned by this owner will be sent to this log stream unless overridden by a resource log stream.
+            description: Updates log stream information for the specified workspace. All logs for resources owned by this workspace will be sent to this log stream unless overridden by individual resources.
             operationId: update-owner-log-stream
             parameters:
-                - description: The ID of the owner (team or personal user) whose log streams should be returned
+                - description: The ID of the workspace to update log stream information for
                   in: path
                   name: ownerId
                   required: true
@@ -6001,12 +6089,12 @@ paths:
                     $ref: '#/components/responses/500InternalServerError'
                 "503":
                     $ref: '#/components/responses/503ServiceUnavailable'
-            summary: Update owner log stream
+            summary: Update log stream
             tags:
                 - Logs
     /logs/streams/resource:
         get:
-            description: List resource log stream overrides for the provided filters. These overrides take precedence over any existing owner log streams.
+            description: Lists log stream overrides for the provided workspace that match the provided filters. These overrides take precedence over the workspace's default log stream.
             operationId: list-resource-log-streams
             parameters:
                 - $ref: '#/components/parameters/ownerIdParam'
@@ -6058,12 +6146,12 @@ paths:
                     $ref: '#/components/responses/500InternalServerError'
                 "503":
                     $ref: '#/components/responses/503ServiceUnavailable'
-            summary: List resource log stream overrides
+            summary: List log stream overrides
             tags:
                 - Logs
     /logs/streams/resource/{resourceId}:
         delete:
-            description: Remove the resource log stream override for the provided resource. This resource will now use the owner log stream if it exists.
+            description: Removes the log stream override for the specified resource. After deletion, the resource will use the workspace's default log stream setting.
             operationId: delete-resource-log-stream
             parameters:
                 - description: The ID of the resource (server, cron job, postgres, or redis) whose log streams should be returned
@@ -6087,14 +6175,14 @@ paths:
                     $ref: '#/components/responses/500InternalServerError'
                 "503":
                     $ref: '#/components/responses/503ServiceUnavailable'
-            summary: Delete resource log stream override
+            summary: Delete log stream override
             tags:
                 - Logs
         get:
-            description: Get resource log stream override information for the provided resource. A resource log stream override takes precedence over a owner log stream if it exists.
+            description: Returns log stream override information for the specified resource. A log stream override takes precedence over a workspace's default log stream.
             operationId: get-resource-log-stream
             parameters:
-                - description: The ID of the resource (server, cron job, postgres, or redis) whose log streams should be returned
+                - description: The ID of the resource (server, cron job, postgres, or redis) to return log stream override information for
                   in: path
                   name: resourceId
                   required: true
@@ -6135,14 +6223,14 @@ paths:
                     $ref: '#/components/responses/500InternalServerError'
                 "503":
                     $ref: '#/components/responses/503ServiceUnavailable'
-            summary: Get resource log stream override
+            summary: Retrieve log stream override
             tags:
                 - Logs
         put:
-            description: Update resource log stream override information for the provided resource. A resource log stream override takes precedence over a owner log stream if it exists.
+            description: Updates log stream override information for the specified resource. A log stream override takes precedence over a workspace's default log stream.
             operationId: update-resource-log-stream
             parameters:
-                - description: The ID of the resource (server, cron job, postgres, or redis) whose log streams should be returned
+                - description: The ID of the resource (server, cron job, postgres, or redis) to update log stream override information for
                   in: path
                   name: resourceId
                   required: true
@@ -6184,7 +6272,7 @@ paths:
                     $ref: '#/components/responses/500InternalServerError'
                 "503":
                     $ref: '#/components/responses/503ServiceUnavailable'
-            summary: Update resource log stream override
+            summary: Update log stream override
             tags:
                 - Logs
     /logs/subscribe:
@@ -6195,7 +6283,7 @@ paths:
                 You can query for logs across multiple resources, but all resources must be in the same region and belong to the same owner.
             operationId: subscribe-logs
             parameters:
-                - description: The ID of the owner (team or personal user) whose resources should be returned
+                - description: The ID of the workspace to return logs for
                   in: query
                   name: ownerId
                   required: true
@@ -6213,6 +6301,10 @@ paths:
                 - $ref: '#/paths/~1logs/get/parameters/10'
                 - $ref: '#/paths/~1logs/get/parameters/11'
                 - $ref: '#/paths/~1logs/get/parameters/12'
+                - $ref: '#/paths/~1logs/get/parameters/13'
+                - $ref: '#/paths/~1logs/get/parameters/14'
+                - $ref: '#/paths/~1logs/get/parameters/15'
+                - $ref: '#/paths/~1logs/get/parameters/16'
                 - $ref: '#/components/parameters/limitParam'
             responses:
                 "101":
@@ -6237,9 +6329,14 @@ paths:
                                                         - statusCode
                                                         - method
                                                         - level
+                                                        - workflowService
+                                                        - workflowVeresion
+                                                        - task
+                                                        - taskRun
                                                         - type
                                                         - text
                                                         - path
+                                                        - blocked
                                                     type: string
                                                 value:
                                                     description: The value of the log label
@@ -6289,7 +6386,7 @@ paths:
             description: List all values for a given log label in the logs matching the provided filters.
             operationId: list-logs-values
             parameters:
-                - description: The ID of the owner (team or personal user) whose resources should be returned
+                - description: The ID of the workspace to return log label values for
                   in: query
                   name: ownerId
                   required: true
@@ -6320,6 +6417,10 @@ paths:
                 - $ref: '#/paths/~1logs/get/parameters/10'
                 - $ref: '#/paths/~1logs/get/parameters/11'
                 - $ref: '#/paths/~1logs/get/parameters/12'
+                - $ref: '#/paths/~1logs/get/parameters/13'
+                - $ref: '#/paths/~1logs/get/parameters/14'
+                - $ref: '#/paths/~1logs/get/parameters/15'
+                - $ref: '#/paths/~1logs/get/parameters/16'
                 - $ref: '#/components/parameters/limitParam'
             responses:
                 "200":
@@ -6522,7 +6623,7 @@ paths:
                 - Maintenance
     /metrics-stream/{ownerId}:
         delete:
-            description: Delete the metrics stream for an owner
+            description: Deletes the metrics stream for the specified workspace.
             operationId: deleteOwnerMetricsStream
             responses:
                 "204":
@@ -6533,11 +6634,11 @@ paths:
                     description: metrics stream not found
                 "500":
                     $ref: '#/components/responses/500InternalServerError'
-            summary: Delete the metrics stream for an owner
+            summary: Delete metrics stream
             tags:
                 - Metrics
         get:
-            description: Get the metrics stream for an owner
+            description: Returns metrics stream information for the specified workspace.
             operationId: getOwnerMetricsStream
             responses:
                 "200":
@@ -6552,18 +6653,18 @@ paths:
                     description: metrics stream not found
                 "500":
                     $ref: '#/components/responses/500InternalServerError'
-            summary: Get the metrics stream for an owner
+            summary: Retrieve metrics stream
             tags:
                 - Metrics
         parameters:
-            - description: The ID of the owner
+            - description: The ID of the workspace to return metrics stream information for
               in: path
               name: ownerId
               required: true
               schema:
                 type: string
         put:
-            description: Create or update the metrics stream for an owner
+            description: Creates or updates the metrics stream for the specified workspace.
             operationId: upsertOwnerMetricsStream
             requestBody:
                 content:
@@ -6613,7 +6714,7 @@ paths:
                     $ref: '#/components/responses/400BadRequest'
                 "500":
                     $ref: '#/components/responses/500InternalServerError'
-            summary: Create or update the metrics stream an owner
+            summary: Create or update metrics stream
             tags:
                 - Metrics
     /metrics/active-connections:
@@ -6665,6 +6766,99 @@ paths:
               schema:
                 example: srv-xxxxx
                 type: string
+            - $ref: '#/paths/~1metrics~1cpu/parameters/4'
+    /metrics/bandwidth-sources:
+        get:
+            description: |
+                Get bandwidth usage for one or more resources broken down by traffic source (HTTP, WebSocket, NAT, PrivateLink).
+
+                Returns hourly data points with traffic source breakdown. Traffic source data is available from March 9, 2025 onwards.
+                Queries for earlier dates will return a 400 Bad Request error.
+            operationId: get-bandwidth-sources
+            responses:
+                "200":
+                    content:
+                        application/json:
+                            example:
+                                data:
+                                    - labels:
+                                        resource: srv-abc123
+                                        trafficSource: total
+                                      values:
+                                        - timestamp: 1.709856e+09
+                                          value: 125.5
+                                        - timestamp: 1.7098596e+09
+                                          value: 98.2
+                                    - labels:
+                                        resource: srv-abc123
+                                        trafficSource: http
+                                      values:
+                                        - timestamp: 1.709856e+09
+                                          value: 100
+                                        - timestamp: 1.7098596e+09
+                                          value: 75.8
+                                    - labels:
+                                        resource: srv-abc123
+                                        trafficSource: websocket
+                                      values:
+                                        - timestamp: 1.709856e+09
+                                          value: 25.5
+                                        - timestamp: 1.7098596e+09
+                                          value: 22.4
+                            schema:
+                                properties:
+                                    data:
+                                        items:
+                                            properties:
+                                                labels:
+                                                    properties:
+                                                        resource:
+                                                            example: srv-abc123
+                                                            type: string
+                                                        trafficSource:
+                                                            enum:
+                                                                - total
+                                                                - http
+                                                                - websocket
+                                                                - nat
+                                                                - privatelink
+                                                            example: http
+                                                            type: string
+                                                    type: object
+                                                values:
+                                                    items:
+                                                        properties:
+                                                            timestamp:
+                                                                example: 1.709856e+09
+                                                                type: integer
+                                                            value:
+                                                                example: 100
+                                                                type: number
+                                                        type: object
+                                                    type: array
+                                            type: object
+                                        type: array
+                                type: object
+                    description: A successful response with traffic source breakdown
+                "400":
+                    content:
+                        application/json:
+                            schema:
+                                properties:
+                                    error:
+                                        example: bandwidth sources data is only available after 2025-03-09
+                                        type: string
+                                type: object
+                    description: Bad request - invalid date range
+                "500":
+                    $ref: '#/components/responses/500InternalServerError'
+            summary: Get bandwidth usage breakdown by traffic source
+            tags:
+                - Metrics
+        parameters:
+            - $ref: '#/components/parameters/startTimeParam'
+            - $ref: '#/components/parameters/endTimeParam'
+            - $ref: '#/paths/~1metrics~1bandwidth/parameters/2'
             - $ref: '#/paths/~1metrics~1cpu/parameters/4'
     /metrics/cpu:
         get:
@@ -7140,7 +7334,7 @@ paths:
     /metrics/replication-lag:
         get:
             description: |
-                Get milliseconds of replica lag of a Postgres replica.
+                Get seconds of replica lag of a Postgres replica.
             operationId: get-replication-lag
             responses:
                 "200":
@@ -7165,7 +7359,7 @@ paths:
     /notification-settings/overrides:
         get:
             description: |
-                List notification overrides matching the provided filters. If no filters are provided, returns all notification overrides for all teams the user belongs to.
+                List notification overrides matching the provided filters. If no filters are provided, returns all notification overrides for all workspaces the user belongs to.
             operationId: list-notification-overrides
             parameters:
                 - $ref: '#/components/parameters/ownerIdParam'
@@ -7368,16 +7562,18 @@ paths:
     /owners:
         get:
             description: |
-                List the users and teams matching the provided filters. If no filters are provided, return all users and teams you have permissions to view.
+                List the workspaces that your API key has access to, optionally filtered by name or owner email address.
             operationId: list-owners
             parameters:
-                - in: query
+                - description: Only return workspaces with one of the provided names. Only exact matches are returned.
+                  in: query
                   name: name
                   schema:
                     items:
                         type: string
                     type: array
-                - in: query
+                - description: Only return workspaces owned by one of the provided email addresses.
+                  in: query
                   name: email
                   schema:
                     items:
@@ -7404,13 +7600,15 @@ paths:
                     $ref: '#/components/responses/500InternalServerError'
                 "503":
                     $ref: '#/components/responses/503ServiceUnavailable'
-            summary: List authorized users and teams
+            summary: List workspaces
             tags:
-                - Owners
+                - Workspaces
     /owners/{ownerId}:
         get:
             description: |
-                Retrieve a user or team given the user or team id.
+                Retrieve the workspace with the provided ID.
+
+                Workspace IDs start with `tea-`. If you provide a user ID (starts with `own-`), this endpoint returns the user's default workspace.
             operationId: retrieve-owner
             responses:
                 "200":
@@ -7433,11 +7631,47 @@ paths:
                     $ref: '#/components/responses/500InternalServerError'
                 "503":
                     $ref: '#/components/responses/503ServiceUnavailable'
-            summary: Retrieve user or team
+            summary: Retrieve workspace
             tags:
-                - Owners
+                - Workspaces
         parameters:
             - description: The ID of the user or team
+              in: path
+              name: ownerId
+              required: true
+              schema:
+                type: string
+    /owners/{ownerId}/members:
+        get:
+            description: |
+                Retrieves the list of users belonging to the workspace with the provided ID.
+            operationId: retrieve-owner-members
+            responses:
+                "200":
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/teamMembers'
+                    description: OK
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+                "406":
+                    $ref: '#/components/responses/406NotAcceptable'
+                "410":
+                    $ref: '#/components/responses/410Gone'
+                "429":
+                    $ref: '#/components/responses/429RateLimit'
+                "500":
+                    $ref: '#/components/responses/500InternalServerError'
+                "503":
+                    $ref: '#/components/responses/503ServiceUnavailable'
+            summary: List workspace members
+            tags:
+                - Workspaces
+        parameters:
+            - description: The ID of the team
               in: path
               name: ownerId
               required: true
@@ -7657,7 +7891,7 @@ paths:
     /postgres/{postgresId}/export:
         get:
             description: |
-                List [exports](https://docs.render.com/postgresql-backups#logical-backups) for a Postgres instance by ID. Returns a URL to download the export.
+                List [exports](https://render.com/docs/postgresql-backups#logical-backups) for a Postgres instance by ID. Returns a URL to download the export.
             operationId: list-postgres-export
             responses:
                 "200":
@@ -7703,7 +7937,7 @@ paths:
                 type: string
         post:
             description: |
-                Create an [export](https://docs.render.com/postgresql-backups#logical-backups) of a Postgres instance by ID.
+                Create an [export](https://render.com/docs/postgresql-backups#logical-backups) of a Postgres instance by ID.
             operationId: create-postgres-export
             responses:
                 "202":
@@ -7738,7 +7972,7 @@ paths:
                 type: string
         post:
             description: |
-                Failover a [highly available Postgres](https://docs.render.com/postgresql-high-availability) instance.
+                Failover a [highly available Postgres](https://render.com/docs/postgresql-high-availability) instance.
             operationId: failover-postgres
             responses:
                 "202":
@@ -7812,7 +8046,7 @@ paths:
                 - Postgres
         post:
             description: |
-                Trigger [point-in-time recovery](https://docs.render.com/postgresql-backups#point-in-time-recovery) on the Postgres instance with the provided ID.
+                Trigger [point-in-time recovery](https://render.com/docs/postgresql-backups) on the Postgres instance with the provided ID.
             operationId: recover-postgres
             parameters:
                 - in: path
@@ -7827,6 +8061,9 @@ paths:
                             properties:
                                 datadogApiKey:
                                     description: Datadog API key to use for monitoring the new database. Defaults to the API key of the original database. Use an empty string to prevent copying of the API key to the new database.
+                                    type: string
+                                datadogSite:
+                                    description: Datadog region code to use for monitoring the new database. Defaults to the region code of the original database. Use an empty string to prevent copying of the region code to the new database.
                                     type: string
                                 environmentId:
                                     description: The environment to create the new database in. Defaults to the environment of the original database.
@@ -8153,8 +8390,10 @@ paths:
                 - Projects & Environments
     /redis:
         get:
+            deprecated: true
             description: |
                 List Redis instances matching the provided filters. If no filters are provided, all Redis instances are returned.
+                This API is deprecated in favor of the Key Value API.
             operationId: list-redis
             parameters:
                 - $ref: '#/components/parameters/nameParam'
@@ -8194,8 +8433,9 @@ paths:
             tags:
                 - Redis
         post:
+            deprecated: true
             description: |
-                Create a new Redis instance.
+                Create a new Redis instance. This API is deprecated in favor of the Key Value API.
             operationId: create-redis
             requestBody:
                 content:
@@ -8227,8 +8467,9 @@ paths:
                 - Redis
     /redis/{redisId}:
         delete:
+            deprecated: true
             description: |
-                Delete a Redis instance by ID.
+                Delete a Redis instance by ID. This API is deprecated in favor of the Key Value API.
             operationId: delete-redis
             parameters:
                 - in: path
@@ -8255,8 +8496,9 @@ paths:
             tags:
                 - Redis
         get:
+            deprecated: true
             description: |
-                Retrieve a Redis instance by ID.
+                Retrieve a Redis instance by ID. This API is deprecated in favor of the Key Value API.
             operationId: retrieve-redis
             parameters:
                 - in: path
@@ -8287,8 +8529,9 @@ paths:
             tags:
                 - Redis
         patch:
+            deprecated: true
             description: |
-                Update a Redis instance by ID.
+                Update a Redis instance by ID. This API is deprecated in favor of the Key Value API.
             operationId: update-redis
             parameters:
                 - in: path
@@ -8328,8 +8571,10 @@ paths:
                 - Redis
     /redis/{redisId}/connection-info:
         get:
+            deprecated: true
             description: |
                 Retrieve connection info for a Redis instance by ID. Connection info includes sensitive information.
+                This API is deprecated in favor of the Key Value API.
             operationId: retrieve-redis-connection-info
             parameters:
                 - in: path
@@ -8905,7 +9150,7 @@ paths:
             - $ref: '#/components/parameters/serviceIdParam'
         put:
             description: |
-                Update the [autoscaling](https://docs.render.com/scaling#autoscaling) config for the service with the provided ID.
+                Update the [autoscaling](https://render.com/docs/scaling#autoscaling) config for the service with the provided ID.
             operationId: autoscale-service
             requestBody:
                 content:
@@ -8939,6 +9184,39 @@ paths:
                 "503":
                     $ref: '#/components/responses/503ServiceUnavailable'
             summary: Update autoscaling config
+            tags:
+                - Services
+    /services/{serviceId}/cache/purge:
+        parameters:
+            - $ref: '#/components/parameters/serviceIdParam'
+        post:
+            description: |
+                Trigger cache purge for the web service if caching is enabled.
+            operationId: purge-cache
+            requestBody:
+                content: {}
+            responses:
+                "202":
+                    description: Cache purge request accepted
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+                "406":
+                    $ref: '#/components/responses/406NotAcceptable'
+                "409":
+                    $ref: '#/components/responses/409Conflict'
+                "410":
+                    $ref: '#/components/responses/410Gone'
+                "429":
+                    $ref: '#/components/responses/429RateLimit'
+                "500":
+                    $ref: '#/components/responses/500InternalServerError'
+                "503":
+                    $ref: '#/components/responses/503ServiceUnavailable'
+            summary: Purge Web Service Cache
             tags:
                 - Services
     /services/{serviceId}/custom-domains:
@@ -9291,6 +9569,8 @@ paths:
                             schema:
                                 $ref: '#/components/schemas/deploy'
                     description: Created
+                "202":
+                    description: Queued
                 "400":
                     $ref: '#/components/responses/400BadRequest'
                 "401":
@@ -9783,6 +10063,34 @@ paths:
               required: true
               schema:
                 type: string
+    /services/{serviceId}/instances:
+        get:
+            description: List instances for the provided service.
+            operationId: list-instances
+            responses:
+                "200":
+                    content:
+                        application/json:
+                            schema:
+                                items:
+                                    $ref: '#/components/schemas/serviceInstance'
+                                type: array
+                    description: OK
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+                "429":
+                    $ref: '#/components/responses/429RateLimit'
+                "500":
+                    $ref: '#/components/responses/500InternalServerError'
+                "503":
+                    $ref: '#/components/responses/503ServiceUnavailable'
+            summary: List instances
+            tags:
+                - Services
+        parameters:
+            - $ref: '#/components/parameters/serviceIdParam'
     /services/{serviceId}/jobs:
         get:
             description: |
@@ -9791,7 +10099,7 @@ paths:
             parameters:
                 - $ref: '#/components/parameters/cursorParam'
                 - $ref: '#/components/parameters/limitParam'
-                - description: Filter for the status of the job (`pending`, `running`, `succeeded`, or `failed`)
+                - description: Filter for the status of the job (`pending`, `running`, `succeeded`, `failed`, or `canceled`)
                   explode: false
                   in: query
                   name: status
@@ -9802,6 +10110,7 @@ paths:
                             - running
                             - succeeded
                             - failed
+                            - canceled
                         type: string
                     type: array
                   style: form
@@ -9875,7 +10184,7 @@ paths:
             - $ref: '#/components/parameters/serviceIdParam'
         post:
             description: |
-                Create a one-off job using the provided service. For details, see [One-Off Jobs](https://docs.render.com/jobs).
+                Create a one-off job using the provided service. For details, see [One-Off Jobs](https://render.com/docs/one-off-jobs).
             operationId: post-job
             requestBody:
                 content:
@@ -10366,7 +10675,7 @@ paths:
             - $ref: '#/components/parameters/serviceIdParam'
         post:
             description: |
-                [Scale](https://docs.render.com/scaling#manual-scaling) the service with the provided ID to a fixed number of instances.
+                [Scale](https://render.com/docs/scaling#manual-scaling) the service with the provided ID to a fixed number of instances.
 
                 Render ignores this value as long as autoscaling is enabled for the service.
             operationId: scale-service
@@ -10794,6 +11103,8 @@ paths:
               name: webhookId
               required: true
               schema:
+                example: whk-d04m9b1r0fns73ckp94f
+                pattern: ^whk-[0-9a-z]{20}$
                 type: string
         patch:
             description: |
@@ -10890,14 +11201,14 @@ servers:
     - url: https://api.render.com/v1
 tags:
     - description: |
-        [Blueprints](https://docs.render.com/infrastructure-as-code) allow you to define your resources in a `render.yaml` file and automatically sync changes to your Render services.
-        The API gives control over how your blueprints are used to create and manage resources.
+        [Blueprints](https://render.com/docs/infrastructure-as-code) allow you to define your resources in a `render.yaml` file and automatically sync changes to your Render services.
+        The API gives control over how your Blueprints are used to create and manage resources.
       name: Blueprints
     - description: |
-        [Custom Domains](https://docs.render.com/custom-domains) allow you to associate domain names with your Render services.
+        [Custom Domains](https://render.com/docs/custom-domains) allow you to associate domain names with your Render services.
       name: Custom Domains
     - description: |
-        [Deploys](https://docs.render.com/deploys) are the process of updating your service with new code or configuration.
+        [Deploys](https://render.com/docs/deploys) are the process of updating your service with new code or configuration.
         These endpoints allow you to retrieve data on the deploys of your services
         as well as trigger new deploys and rollbacks. Most changes to your service
         will require a new deploy to take effect.
@@ -10905,12 +11216,12 @@ tags:
         To create and manage services, use the `Services` endpoints.
       name: Deploys
     - description: |
-        [Disks](https://docs.render.com/disks) allow you to attach persistent storage to your services.
+        [Disks](https://render.com/docs/disks) allow you to attach persistent storage to your services.
       name: Disks
     - description: Collections of environment variables and secret files that can be shared between multiple services
       name: Environment Groups
     - description: |
-        [Logs](https://docs.render.com/logging) allow you to retrieve logs for your services, Postgres databases, and redis instances.
+        [Logs](https://render.com/docs/logging) allow you to retrieve logs for your services, Postgres databases, and redis instances.
         You can query for logs or subscribe to logs in real-time via a websocket.
       name: Logs
     - description: The `Maintenance` endpoints allow you to retrieve the latest maintenance runs for your Render services. You can also reschedule maintenance or trigger it to start immediately.
@@ -10918,34 +11229,34 @@ tags:
     - description: The `Metrics` endpoints allow you to retrieve metrics for your services, Postgres databases, and redis instances.
       name: Metrics
     - description: |
-        [Notification Settings](https://docs.render.com/notifications) allow you to configure which notifications you want to recieve, and
+        [Notification Settings](https://render.com/docs/notifications) allow you to configure which notifications you want to recieve, and
         where you will receive them.
       name: Notification Settings
     - description: |
-        [One-off jobs](https://docs.render.com/jobs) are standalone tasks that run to completion using the most recent successful build of an existing service.
+        [One-off jobs](https://render.com/docs/one-off-jobs) are standalone tasks that run to completion using the most recent successful build of an existing service.
       name: One-Off Jobs
-    - description: The `Owners` endpoints supply more information about the users and teams that your API key has access to.
-      name: Owners
+    - description: The `Workspaces` endpoints supply more information about the workspaces that your API key has access to. This category was previously called `Owners`, as reflected by endpoint paths.
+      name: Workspaces
     - description: |
-        [Postgres](https://docs.render.com/databases) endpoints enable you to interact with your Render Postgres databases.
+        [Postgres](https://render.com/docs/postgresql) endpoints enable you to interact with your Render Postgres databases.
         You can manage databases, exports, recoveries, and failovers.
       name: Postgres
     - description: Collections of services and other resources organized by environment (staging, production, etc.)
       name: Projects & Environments
     - description: |
-        [Key Value](https://docs.render.com/key-value) allows you to interact with your Render Key Value instances.
+        [Key Value](https://render.com/docs/key-value) allows you to interact with your Render Key Value instances.
       name: Key Value
     - description: |
-        [Redis](https://docs.render.com/redis) allows you to interact with your Render Redis instances.
+        [Redis](https://render.com/docs/redis) allows you to interact with your Render Redis instances.
       name: Redis
     - description: |
-        [Registry Credentials](https://docs.render.com/deploy-an-image#credentials-for-private-images) allows you to manage credentials for private Docker images.
+        [Registry Credentials](https://render.com/docs/deploying-an-image#credentials-for-private-images) allows you to manage credentials for private Docker images.
       name: Registry Credentials
     - description: |
-        [Services](https://docs.render.com/services) allow you to manage your web services, private services, background workers, cron jobs, and static sites.
+        [Services](https://render.com/docs/service-types) allow you to manage your web services, private services, background workers, cron jobs, and static sites.
       name: Services
     - description: |
-        [Cron Jobs](https://docs.render.com/cronjobs) allow you to interact with runs of your cron jobs.
+        [Cron Jobs](https://render.com/docs/cronjobs) allow you to interact with runs of your cron jobs.
       name: Services - Cron Jobs
     - description: Use HTTP headers to inject response headers in static site responses. You can also use wildcards like /path/* to add headers to responses for all matching request paths.
       name: Services - Headers
@@ -10954,11 +11265,11 @@ tags:
     - description: |
         The `User` endpoints allow you to retrieve information about the authenticated user
       name: Users
-    - description: |
-        Service links connect compute services to databases.
-      name: Service Links
     - description: View events for a service, postgres or key value
       name: Events
     - description: |
-        [Webhooks](https://docs.render.com/webhooks) allows you to manage your Render webhook configuration.
+        [Webhooks](https://render.com/docs/webhooks) allows you to manage your Render webhook configuration.
       name: Webhooks
+    - description: |
+        [Workflows](https://render.com/docs/workflows) allows you to manage your Render workflows.
+      name: Workflows

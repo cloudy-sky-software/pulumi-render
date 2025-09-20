@@ -8,8 +8,10 @@ import (
 
 	"github.com/getkin/kin-openapi/openapi3"
 
+	dotnetgen "github.com/pulumi/pulumi/pkg/v3/codegen/dotnet"
 	gogen "github.com/pulumi/pulumi/pkg/v3/codegen/go"
 	nodejsgen "github.com/pulumi/pulumi/pkg/v3/codegen/nodejs"
+	pythongen "github.com/pulumi/pulumi/pkg/v3/codegen/python"
 	pschema "github.com/pulumi/pulumi/pkg/v3/codegen/schema"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
@@ -157,14 +159,12 @@ func PulumiSchema(openAPIDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 	// Override the namespace for registrycredentials.
 	csharpNamespaces["registrycredentials"] = "RegistryCredentials"
 
-	pkg.Language["csharp"] = rawMessage(map[string]interface{}{
-		"rootNamespace": "Pulumi",
-		"packageReferences": map[string]string{
+	pkg.Language["csharp"] = rawMessage(dotnetgen.CSharpPackageInfo{
+		Namespaces: csharpNamespaces,
+		PackageReferences: map[string]string{
 			"Pulumi": "3.*",
 		},
-		"namespaces": csharpNamespaces,
-		// TODO: What does this enable?
-		// "dictionaryConstructors": true,
+		RootNamespace: "Pulumi",
 	})
 
 	pkg.Language["go"] = rawMessage(gogen.GoPackageInfo{
@@ -185,14 +185,14 @@ func PulumiSchema(openAPIDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 			"notification-settings": "notificationsettings",
 		},
 	})
-	pkg.Language["python"] = rawMessage(map[string]interface{}{
-		"packageName": "pulumi_render",
-		"requires": map[string]string{
+	pkg.Language["python"] = rawMessage(pythongen.PackageInfo{
+		PackageName: "pulumi_render",
+		Requires: map[string]string{
 			"pulumi": ">=3.0.0,<4.0.0",
 		},
-		"pyproject": map[string]bool{
-			"enabled": true,
-		},
+		PyProject: struct {
+			Enabled bool `json:"enabled,omitempty"`
+		}{Enabled: true},
 	})
 
 	// The EnvVars resource's GET operation looks like a list method,

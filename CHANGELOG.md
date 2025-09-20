@@ -1,3 +1,10 @@
+## 0.5.3
+
+The Python SDK failed to publish in 0.5.2.
+This version was created just to fix that.
+
+No provider changes were made in this verison.
+
 ## 0.5.2
 
 Update the OpenAPI spec to the latest as of 9/19/2025.

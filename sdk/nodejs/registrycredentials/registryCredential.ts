@@ -34,24 +34,24 @@ export class RegistryCredential extends pulumi.CustomResource {
         return obj['__pulumiType'] === RegistryCredential.__pulumiType;
     }
 
-    public readonly authToken!: pulumi.Output<string>;
+    declare public readonly authToken: pulumi.Output<string>;
     /**
      * Descriptive name for this credential
      */
-    public readonly name!: pulumi.Output<string>;
-    public readonly ownerId!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
+    declare public readonly ownerId: pulumi.Output<string>;
     /**
      * The registry to use this credential with
      */
-    public readonly registry!: pulumi.Output<enums.registrycredentials.Registry>;
+    declare public readonly registry: pulumi.Output<enums.registrycredentials.Registry>;
     /**
      * Last updated time for the credential
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
      * The username associated with the credential
      */
-    public readonly username!: pulumi.Output<string>;
+    declare public readonly username: pulumi.Output<string>;
 
     /**
      * Create a RegistryCredential resource with the given unique name, arguments, and options.
@@ -64,23 +64,23 @@ export class RegistryCredential extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.authToken === undefined) && !opts.urn) {
+            if (args?.authToken === undefined && !opts.urn) {
                 throw new Error("Missing required property 'authToken'");
             }
-            if ((!args || args.ownerId === undefined) && !opts.urn) {
+            if (args?.ownerId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'ownerId'");
             }
-            if ((!args || args.registry === undefined) && !opts.urn) {
+            if (args?.registry === undefined && !opts.urn) {
                 throw new Error("Missing required property 'registry'");
             }
-            if ((!args || args.username === undefined) && !opts.urn) {
+            if (args?.username === undefined && !opts.urn) {
                 throw new Error("Missing required property 'username'");
             }
-            resourceInputs["authToken"] = args ? args.authToken : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["ownerId"] = args ? args.ownerId : undefined;
-            resourceInputs["registry"] = args ? args.registry : undefined;
-            resourceInputs["username"] = args ? args.username : undefined;
+            resourceInputs["authToken"] = args?.authToken;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["ownerId"] = args?.ownerId;
+            resourceInputs["registry"] = args?.registry;
+            resourceInputs["username"] = args?.username;
             resourceInputs["updatedAt"] = undefined /*out*/;
         } else {
             resourceInputs["authToken"] = undefined /*out*/;

@@ -31,17 +31,17 @@ export class RestoreSnapshot extends pulumi.CustomResource {
         return obj['__pulumiType'] === RestoreSnapshot.__pulumiType;
     }
 
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * When a service with a disk is scaled, the instanceId is used to identify the instance that the disk is attached to. Each instance's disks get their own snapshots, and can be restored separately.
      */
-    public readonly instanceId!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly mountPath!: pulumi.Output<string>;
-    public /*out*/ readonly name!: pulumi.Output<string>;
-    public /*out*/ readonly serviceId!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly sizeGB!: pulumi.Output<number>;
-    public readonly snapshotKey!: pulumi.Output<string>;
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public readonly instanceId: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly mountPath: pulumi.Output<string>;
+    declare public /*out*/ readonly name: pulumi.Output<string>;
+    declare public /*out*/ readonly serviceId: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly sizeGB: pulumi.Output<number>;
+    declare public readonly snapshotKey: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
 
     /**
      * Create a RestoreSnapshot resource with the given unique name, arguments, and options.
@@ -54,12 +54,12 @@ export class RestoreSnapshot extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.snapshotKey === undefined) && !opts.urn) {
+            if (args?.snapshotKey === undefined && !opts.urn) {
                 throw new Error("Missing required property 'snapshotKey'");
             }
-            resourceInputs["diskId"] = args ? args.diskId : undefined;
-            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
-            resourceInputs["snapshotKey"] = args ? args.snapshotKey : undefined;
+            resourceInputs["diskId"] = args?.diskId;
+            resourceInputs["instanceId"] = args?.instanceId;
+            resourceInputs["snapshotKey"] = args?.snapshotKey;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["mountPath"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;

@@ -34,21 +34,21 @@ export class RollbackDeploy extends pulumi.CustomResource {
         return obj['__pulumiType'] === RollbackDeploy.__pulumiType;
     }
 
-    public /*out*/ readonly commit!: pulumi.Output<outputs.services.CommitProperties | undefined>;
-    public /*out*/ readonly createdAt!: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly commit: pulumi.Output<outputs.services.CommitProperties | undefined>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string | undefined>;
     /**
      * The ID of the deploy to roll back to
      */
-    public readonly deployId!: pulumi.Output<string>;
-    public /*out*/ readonly finishedAt!: pulumi.Output<string | undefined>;
+    declare public readonly deployId: pulumi.Output<string>;
+    declare public /*out*/ readonly finishedAt: pulumi.Output<string | undefined>;
     /**
      * Image information used when creating the deploy. Not present for Git-backed deploys
      */
-    public /*out*/ readonly image!: pulumi.Output<outputs.services.ImageProperties | undefined>;
-    public /*out*/ readonly startedAt!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly status!: pulumi.Output<enums.services.Status | undefined>;
-    public /*out*/ readonly trigger!: pulumi.Output<enums.services.Trigger | undefined>;
-    public /*out*/ readonly updatedAt!: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly image: pulumi.Output<outputs.services.ImageProperties | undefined>;
+    declare public /*out*/ readonly startedAt: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly status: pulumi.Output<enums.services.Status | undefined>;
+    declare public /*out*/ readonly trigger: pulumi.Output<enums.services.Trigger | undefined>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string | undefined>;
 
     /**
      * Create a RollbackDeploy resource with the given unique name, arguments, and options.
@@ -61,11 +61,11 @@ export class RollbackDeploy extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.deployId === undefined) && !opts.urn) {
+            if (args?.deployId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'deployId'");
             }
-            resourceInputs["deployId"] = args ? args.deployId : undefined;
-            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
+            resourceInputs["deployId"] = args?.deployId;
+            resourceInputs["serviceId"] = args?.serviceId;
             resourceInputs["commit"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["finishedAt"] = undefined /*out*/;

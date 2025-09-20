@@ -34,13 +34,13 @@ export class Route extends pulumi.CustomResource {
         return obj['__pulumiType'] === Route.__pulumiType;
     }
 
-    public readonly destination!: pulumi.Output<string>;
+    declare public readonly destination: pulumi.Output<string>;
     /**
      * Redirect and Rewrite Rules are applied in priority order starting at 0
      */
-    public readonly priority!: pulumi.Output<number>;
-    public readonly source!: pulumi.Output<string>;
-    public readonly type!: pulumi.Output<enums.services.Type>;
+    declare public readonly priority: pulumi.Output<number>;
+    declare public readonly source: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<enums.services.Type>;
 
     /**
      * Create a Route resource with the given unique name, arguments, and options.
@@ -53,20 +53,20 @@ export class Route extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.destination === undefined) && !opts.urn) {
+            if (args?.destination === undefined && !opts.urn) {
                 throw new Error("Missing required property 'destination'");
             }
-            if ((!args || args.source === undefined) && !opts.urn) {
+            if (args?.source === undefined && !opts.urn) {
                 throw new Error("Missing required property 'source'");
             }
-            if ((!args || args.type === undefined) && !opts.urn) {
+            if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            resourceInputs["destination"] = args ? args.destination : undefined;
-            resourceInputs["priority"] = args ? args.priority : undefined;
-            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
-            resourceInputs["source"] = args ? args.source : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["destination"] = args?.destination;
+            resourceInputs["priority"] = args?.priority;
+            resourceInputs["serviceId"] = args?.serviceId;
+            resourceInputs["source"] = args?.source;
+            resourceInputs["type"] = args?.type;
         } else {
             resourceInputs["destination"] = undefined /*out*/;
             resourceInputs["priority"] = undefined /*out*/;

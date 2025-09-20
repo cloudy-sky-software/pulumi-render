@@ -37,8 +37,8 @@ export class Deploy extends pulumi.CustomResource {
     /**
      * If `clear`, Render clears the service's build cache before deploying. This can be useful if you're experiencing issues with your build.
      */
-    public readonly clearCache!: pulumi.Output<enums.services.ClearCache | undefined>;
-    public /*out*/ readonly commit!: pulumi.Output<outputs.services.CommitProperties | undefined>;
+    declare public readonly clearCache: pulumi.Output<enums.services.ClearCache | undefined>;
+    declare public /*out*/ readonly commit: pulumi.Output<outputs.services.CommitProperties | undefined>;
     /**
      * The SHA of a specific Git commit to deploy for a service. Defaults to the latest commit on the service's connected branch.
      *
@@ -48,23 +48,23 @@ export class Deploy extends pulumi.CustomResource {
      *
      * Not supported for cron jobs.
      */
-    public readonly commitId!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly createdAt!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly finishedAt!: pulumi.Output<string | undefined>;
+    declare public readonly commitId: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly finishedAt: pulumi.Output<string | undefined>;
     /**
      * Image information used when creating the deploy. Not present for Git-backed deploys
      */
-    public /*out*/ readonly image!: pulumi.Output<outputs.services.ImageProperties | undefined>;
+    declare public /*out*/ readonly image: pulumi.Output<outputs.services.ImageProperties | undefined>;
     /**
      * The URL of the image to deploy for an image-backed service.
      *
      * The host, repository, and image name all must match the currently configured image for the service.
      */
-    public readonly imageUrl!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly startedAt!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly status!: pulumi.Output<enums.services.Status | undefined>;
-    public /*out*/ readonly trigger!: pulumi.Output<enums.services.Trigger | undefined>;
-    public /*out*/ readonly updatedAt!: pulumi.Output<string | undefined>;
+    declare public readonly imageUrl: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly startedAt: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly status: pulumi.Output<enums.services.Status | undefined>;
+    declare public /*out*/ readonly trigger: pulumi.Output<enums.services.Trigger | undefined>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string | undefined>;
 
     /**
      * Create a Deploy resource with the given unique name, arguments, and options.
@@ -77,10 +77,10 @@ export class Deploy extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            resourceInputs["clearCache"] = (args ? args.clearCache : undefined) ?? "do_not_clear";
-            resourceInputs["commitId"] = args ? args.commitId : undefined;
-            resourceInputs["imageUrl"] = args ? args.imageUrl : undefined;
-            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
+            resourceInputs["clearCache"] = (args?.clearCache) ?? "do_not_clear";
+            resourceInputs["commitId"] = args?.commitId;
+            resourceInputs["imageUrl"] = args?.imageUrl;
+            resourceInputs["serviceId"] = args?.serviceId;
             resourceInputs["commit"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["finishedAt"] = undefined /*out*/;

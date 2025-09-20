@@ -34,19 +34,19 @@ export class Header extends pulumi.CustomResource {
         return obj['__pulumiType'] === Header.__pulumiType;
     }
 
-    public /*out*/ readonly headers!: pulumi.Output<outputs.services.Header | undefined>;
+    declare public /*out*/ readonly headers: pulumi.Output<outputs.services.Header | undefined>;
     /**
      * Header name
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The request path to add the header to. Wildcards will cause headers to be applied to all matching paths.
      */
-    public readonly path!: pulumi.Output<string>;
+    declare public readonly path: pulumi.Output<string>;
     /**
      * Header value
      */
-    public readonly value!: pulumi.Output<string>;
+    declare public readonly value: pulumi.Output<string>;
 
     /**
      * Create a Header resource with the given unique name, arguments, and options.
@@ -59,16 +59,16 @@ export class Header extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.path === undefined) && !opts.urn) {
+            if (args?.path === undefined && !opts.urn) {
                 throw new Error("Missing required property 'path'");
             }
-            if ((!args || args.value === undefined) && !opts.urn) {
+            if (args?.value === undefined && !opts.urn) {
                 throw new Error("Missing required property 'value'");
             }
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["path"] = args ? args.path : undefined;
-            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
-            resourceInputs["value"] = args ? args.value : undefined;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["path"] = args?.path;
+            resourceInputs["serviceId"] = args?.serviceId;
+            resourceInputs["value"] = args?.value;
             resourceInputs["headers"] = undefined /*out*/;
         } else {
             resourceInputs["headers"] = undefined /*out*/;

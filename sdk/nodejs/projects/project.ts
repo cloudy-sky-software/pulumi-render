@@ -34,25 +34,25 @@ export class Project extends pulumi.CustomResource {
         return obj['__pulumiType'] === Project.__pulumiType;
     }
 
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * The environments associated with the project
      */
-    public /*out*/ readonly environmentIds!: pulumi.Output<string[]>;
+    declare public /*out*/ readonly environmentIds: pulumi.Output<string[]>;
     /**
      * The environments to create when creating the project
      */
-    public readonly environments!: pulumi.Output<outputs.projects.ProjectCreateEnvironmentInput[]>;
+    declare public readonly environments: pulumi.Output<outputs.projects.ProjectCreateEnvironmentInput[]>;
     /**
      * The name of the project
      */
-    public readonly name!: pulumi.Output<string>;
-    public /*out*/ readonly owner!: pulumi.Output<outputs.projects.Owner>;
+    declare public readonly name: pulumi.Output<string>;
+    declare public /*out*/ readonly owner: pulumi.Output<outputs.projects.Owner>;
     /**
      * The ID of the owner that the project belongs to
      */
-    public readonly ownerId!: pulumi.Output<string>;
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public readonly ownerId: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
 
     /**
      * Create a Project resource with the given unique name, arguments, and options.
@@ -65,15 +65,15 @@ export class Project extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.environments === undefined) && !opts.urn) {
+            if (args?.environments === undefined && !opts.urn) {
                 throw new Error("Missing required property 'environments'");
             }
-            if ((!args || args.ownerId === undefined) && !opts.urn) {
+            if (args?.ownerId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'ownerId'");
             }
-            resourceInputs["environments"] = args ? args.environments : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["ownerId"] = args ? args.ownerId : undefined;
+            resourceInputs["environments"] = args?.environments;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["ownerId"] = args?.ownerId;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["environmentIds"] = undefined /*out*/;
             resourceInputs["owner"] = undefined /*out*/;

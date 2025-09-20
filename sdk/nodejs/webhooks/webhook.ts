@@ -34,18 +34,18 @@ export class Webhook extends pulumi.CustomResource {
         return obj['__pulumiType'] === Webhook.__pulumiType;
     }
 
-    public readonly enabled!: pulumi.Output<boolean>;
+    declare public readonly enabled: pulumi.Output<boolean>;
     /**
      * The event types that will trigger the webhook. An empty list means all event types will trigger the webhook.
      */
-    public readonly eventFilter!: pulumi.Output<enums.webhooks.EventFilterItem[]>;
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly eventFilter: pulumi.Output<enums.webhooks.EventFilterItem[]>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The ID of the owner (team or personal user) whose resources should be returned
      */
-    public readonly ownerId!: pulumi.Output<string>;
-    public /*out*/ readonly secret!: pulumi.Output<string>;
-    public readonly url!: pulumi.Output<string>;
+    declare public readonly ownerId: pulumi.Output<string>;
+    declare public /*out*/ readonly secret: pulumi.Output<string>;
+    declare public readonly url: pulumi.Output<string>;
 
     /**
      * Create a Webhook resource with the given unique name, arguments, and options.
@@ -58,23 +58,23 @@ export class Webhook extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.enabled === undefined) && !opts.urn) {
+            if (args?.enabled === undefined && !opts.urn) {
                 throw new Error("Missing required property 'enabled'");
             }
-            if ((!args || args.eventFilter === undefined) && !opts.urn) {
+            if (args?.eventFilter === undefined && !opts.urn) {
                 throw new Error("Missing required property 'eventFilter'");
             }
-            if ((!args || args.ownerId === undefined) && !opts.urn) {
+            if (args?.ownerId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'ownerId'");
             }
-            if ((!args || args.url === undefined) && !opts.urn) {
+            if (args?.url === undefined && !opts.urn) {
                 throw new Error("Missing required property 'url'");
             }
-            resourceInputs["enabled"] = args ? args.enabled : undefined;
-            resourceInputs["eventFilter"] = args ? args.eventFilter : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["ownerId"] = args ? args.ownerId : undefined;
-            resourceInputs["url"] = args ? args.url : undefined;
+            resourceInputs["enabled"] = args?.enabled;
+            resourceInputs["eventFilter"] = args?.eventFilter;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["ownerId"] = args?.ownerId;
+            resourceInputs["url"] = args?.url;
             resourceInputs["secret"] = undefined /*out*/;
         } else {
             resourceInputs["enabled"] = undefined /*out*/;

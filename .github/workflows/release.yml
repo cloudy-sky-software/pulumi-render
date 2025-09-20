@@ -6,10 +6,6 @@ on:
       - "!v*.*.*-**"
 env:
   GOLANG_CI_LINT_VERSION: v1.64.8
-  DOTNET_VERSION: 8.0.x
-  GO_VERSION: 1.24.x
-  NODE_VERSION: 22.x
-  PYTHON_VERSION: 3.11
   PROVIDER: "render"
   NPM_TOKEN: ${{ secrets.NPM_AUTOMATION_TOKEN }}
   PUBLISH_NPM: true
@@ -29,6 +25,8 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v5
+
+      - run: source ./.github/scripts/lang-runtime-versions.sh
 
       - name: Install Go
         uses: actions/setup-go@v6
@@ -51,13 +49,10 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v5
 
-      - run: |
-          git config --global url."https://praneetloke:${GH_REPO_PAT}@github.com/".insteadOf "https://github.com/"
-        env:
-          GH_REPO_PAT: ${{ secrets.GH_REPO_PAT }}
-
       - name: Unshallow clone for tags
         run: git fetch --prune --unshallow --tags
+
+      - run: source ./.github/scripts/lang-runtime-versions.sh
 
       - name: Install Go
         uses: actions/setup-go@v6
@@ -107,10 +102,12 @@ jobs:
       - name: Unshallow clone for tags
         run: git fetch --prune --unshallow --tags
 
+      - run: source ./.github/scripts/lang-runtime-versions.sh
+
       - name: Install Go
         uses: actions/setup-go@v6
         with:
-          go-version: ${{ matrix.goversion }}
+          go-version: ${{ env.GO_VERSION }}
 
       - name: Install pulumictl
         uses: jaxxstorm/action-install-gh-release@v2.1.0
@@ -128,18 +125,18 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v5
         with:
-          node-version: ${{matrix.nodeversion}}
-          registry-url: ${{env.NPM_REGISTRY_URL}}
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: ${{ env.NPM_REGISTRY_URL }}
 
       - name: Setup DotNet
         uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: ${{matrix.dotnetversion}}
+          dotnet-version: ${{ env.DOTNET_VERSION }}
 
       - name: Setup Python
         uses: actions/setup-python@v6
         with:
-          python-version: ${{matrix.pythonversion}}
+          python-version: ${{ env.PYTHON_VERSION }}
 
       - name: Generate SDK
         run: make gen ${{ matrix.language }}_sdk
@@ -186,16 +183,8 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        dotnetversion:
-          - ${{ env.DOTNET_VERSION }}
-        goversion:
-          - ${{ env.GO_VERSION }}
         language:
           - nodejs
           - python
           - dotnet
           - go
-        nodeversion:
-          - ${{ env.NODE_VERSION }}
-        pythonversion:
-          - ${{ env.PYTHON_VERSION }}

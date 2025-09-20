@@ -1,3 +1,11 @@
+## 0.5.0
+
+Update the OpenAPI spec to the latest as of 9/19/2025.
+
+- You can now set subdomain policy on static sites and web services which controls whether render.com subdomains are available for the service.
+This is useful when you want your service to only be reachable via a custom domain.
+- Upgrade `pulumi-provider-framework` to `v0.0.0-20250918170230-bcf556a34f30`.
+
 ## 0.4.7
 
 Upgrade `pulumi-provider-framework` to `v0.0.0-20250428021316-0a5ad29dff6f`.

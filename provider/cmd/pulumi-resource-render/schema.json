@@ -15,6 +15,9 @@
     "publisher": "Cloudy Sky Software",
     "language": {
         "csharp": {
+            "packageReferences": {
+                "Pulumi": "3.*"
+            },
             "namespaces": {
                 "": "Provider",
                 "blueprints": "Blueprints",
@@ -34,9 +37,6 @@
                 "services": "Services",
                 "users": "Users",
                 "webhooks": "Webhooks"
-            },
-            "packageReferences": {
-                "Pulumi": "3.*"
             },
             "rootNamespace": "Pulumi"
         },
@@ -60,11 +60,11 @@
         },
         "python": {
             "packageName": "pulumi_render",
-            "pyproject": {
-                "enabled": true
-            },
             "requires": {
                 "pulumi": "\u003e=3.0.0,\u003c4.0.0"
+            },
+            "pyproject": {
+                "enabled": true
             }
         }
     },

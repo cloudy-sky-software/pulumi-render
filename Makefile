@@ -72,6 +72,8 @@ python_sdk::
 	cp README.md ${PACKDIR}/python/
 	cd ${PACKDIR}/python/ && \
 		rm -rf ./bin/ ../python.bin/ && cp -R . ../python.bin && mv ../python.bin ./bin && \
+		sed -i.bak 's/0.0.0/$(PYPI_VERSION)/g' bin/pyproject.toml && \
+		rm ./bin/pyproject.toml.bak && \
 		python3 -m venv venv && \
 		./venv/bin/python -m pip install build && \
 		cd ./bin && \

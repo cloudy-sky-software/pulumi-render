@@ -151,7 +151,8 @@ jobs:
               exit 1
           fi
 
-      - name: Compress SDK folder
+      - name: Compress SDK folder (except Go)
+        if: ${{ matrix.language != 'go' }}
         run: tar -zcf sdk/${{ matrix.language }}.tar.gz -C sdk/${{ matrix.language }}/bin .
 
       - name: Upload artifacts

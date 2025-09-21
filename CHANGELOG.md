@@ -1,3 +1,7 @@
+## 0.5.5
+
+Fix Node.js SDK plugin version.
+
 ## 0.5.4
 
 Upgrade `pulumi-provider-framework` to `v0.0.0-20250921172906-3a69a2d6634e`.

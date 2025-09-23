@@ -101,8 +101,8 @@ github.com/cloudflare/circl v1.6.1 h1:zqIqSPIndyBh1bjLVVDHMPpVKqp8Su/V+6MeDzzQBQ
 github.com/cloudflare/circl v1.6.1/go.mod h1:uddAzsPgqdMAYatqJ0lsjX1oECcQLIlRpzZh3pJrofs=
 github.com/cloudy-sky-software/pulschema v0.0.0-20250918043628-edad2ca98a26 h1:QA6zs/iuBS/Ifw99W4hGBWQ3v32R/U3gzvgtTUyvgEM=
 github.com/cloudy-sky-software/pulschema v0.0.0-20250918043628-edad2ca98a26/go.mod h1:4+fT+yvZDLnTXcwbSBBE/9Gi7pEdv8J3YaPZ2bxNW6c=
-github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20250921204826-1a1779cbae7f h1:Usy9rSON7GovgvNkG1P49ZrXnwheBKx8418qSP1xb/o=
-github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20250921204826-1a1779cbae7f/go.mod h1:fle8oqrQvEDM0w1tyYLzsgPtFZkaTxBW0UDdrRXyhyc=
+github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20250923005101-cdf0983a41fa h1:TyiMm8FiOh6XRClRTsRju6NJIseogUXd/AAd72zAyQo=
+github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20250923005101-cdf0983a41fa/go.mod h1:fle8oqrQvEDM0w1tyYLzsgPtFZkaTxBW0UDdrRXyhyc=
 github.com/cpuguy83/go-md2man/v2 v2.0.6/go.mod h1:oOW0eioCTA6cOiMLiUPZOpcVxMig6NIQQ7OS05n1F4g=
 github.com/cyphar/filepath-securejoin v0.4.1 h1:JyxxyPEaktOD+GAnqIqTf9A8tHyAG22rowi7HkoSU1s=
 github.com/cyphar/filepath-securejoin v0.4.1/go.mod h1:Sdj7gXlvMcPZsbhwhQ33GguGLDGQL7h7bg04C/+u9jI=

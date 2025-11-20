@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - run: source ./.github/scripts/lang-runtime-versions.sh
 
@@ -47,7 +47,7 @@ jobs:
     needs: lint
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Unshallow clone for tags
         run: git fetch --prune --unshallow --tags
@@ -97,7 +97,7 @@ jobs:
     needs: publish-binary
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Unshallow clone for tags
         run: git fetch --prune --unshallow --tags

@@ -199,9 +199,9 @@ func (p *renderProvider) OnPostCreate(_ context.Context, req *pulumirpc.CreateRe
 			return nil, errors.Wrap(err, "unmarshal input properties as propertymap")
 		}
 
-		custDomResp := outputs.([]interface{})
+		customResp := outputs.([]interface{})
 
-		for _, c := range custDomResp {
+		for _, c := range customResp {
 			cMap := c.(map[string]interface{})
 			if cMap["name"] == inputs["name"].StringValue() {
 				outputsMap = cMap
@@ -236,6 +236,25 @@ func (p *renderProvider) OnPostRead(_ context.Context, req *pulumirpc.ReadReques
 		// Re-use the previously-generated id from ReadRequest.
 		outputsMap["id"] = req.Id
 		return outputsMap, nil
+	}
+
+	if len(jsonReq.Schema.Value.OneOf) == 0 {
+		return nil, nil
+	}
+
+	var allOfSchemaRefs openapi3.SchemaRefs
+	// Taking a shortcut to handle service type-specific updates.
+	switch resourceTypeToken {
+	case "render:services:BackgroundWorker":
+		allOfSchemaRefs = handler.GetOpenAPIDoc().Components.Schemas["backgroundWorkerOutput"].Value.AllOf
+	case "render:services:CronJob":
+		allOfSchemaRefs = handler.GetOpenAPIDoc().Components.Schemas["cronJobOutput"].Value.AllOf
+	case "render:services:PrivateService":
+		allOfSchemaRefs = handler.GetOpenAPIDoc().Components.Schemas["privateServiceOutput"].Value.AllOf
+	case "render:services:StaticSite":
+		allOfSchemaRefs = handler.GetOpenAPIDoc().Components.Schemas["staticSiteOutput"].Value.AllOf
+	case "render:services:WebService":
+		allOfSchemaRefs = handler.GetOpenAPIDoc().Components.Schemas["webServiceOutput"].Value.AllOf
 	}
 
 	return outputs.(map[string]interface{}), nil

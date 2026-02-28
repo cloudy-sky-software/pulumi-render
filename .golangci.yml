@@ -1,25 +1,38 @@
-issues:
-  exclude-files:
-    - pulumi-resource-render/schema.go
-    # Ignore the generated config.go file temporarily because it contains
-    # an unused import that the linter will complain about.
-    - go/render/config/config.go
-
+version: "2"
 linters:
-  enable-all: false
   enable:
-    - errcheck
     - goconst
-    - gofmt
     - gosec
-    - gosimple
-    - govet
-    - ineffassign
     - misspell
     - nakedret
     - revive
     - unconvert
-    - unused
   disable:
     - lll
     - staticcheck
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    paths:
+      - pulumi-resource-render/schema.go
+      - go/render/config/config.go
+      - third_party$
+      - builtin$
+      - examples$
+formatters:
+  enable:
+    - gofmt
+  exclusions:
+    generated: lax
+    paths:
+      # Ignore the generated config.go file temporarily because it contains
+      # an unused import that the linter will complain about.
+      - pulumi-resource-render/schema.go
+      - go/render/config/config.go
+      - third_party$
+      - builtin$
+      - examples$

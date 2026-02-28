@@ -27,6 +27,7 @@ class EnvGroupEnvVarArgs:
                  value: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a EnvGroupEnvVar resource.
+
         :param pulumi.Input[_builtins.str] env_group_id: Filter for resources that belong to an environment group
         :param pulumi.Input[_builtins.str] env_var_key: The name of the environment variable
         """
@@ -95,6 +96,7 @@ class EnvGroupEnvVar(pulumi.CustomResource):
                  __props__=None):
         """
         Create a EnvGroupEnvVar resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] env_group_id: Filter for resources that belong to an environment group
@@ -108,6 +110,7 @@ class EnvGroupEnvVar(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a EnvGroupEnvVar resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param EnvGroupEnvVarArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

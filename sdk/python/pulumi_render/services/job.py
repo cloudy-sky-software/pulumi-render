@@ -25,6 +25,7 @@ class JobArgs:
                  service_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Job resource.
+
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
         """
         pulumi.set(__self__, "start_command", start_command)
@@ -76,6 +77,7 @@ class Job(pulumi.CustomResource):
                  __props__=None):
         """
         Create a Job resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
@@ -88,6 +90,7 @@ class Job(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a Job resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param JobArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

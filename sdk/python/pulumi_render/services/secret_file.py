@@ -24,6 +24,7 @@ class SecretFileArgs:
                  service_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretFile resource.
+
         :param pulumi.Input[_builtins.str] secret_file_name: The file name of the secret file
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
         """
@@ -80,6 +81,7 @@ class SecretFile(pulumi.CustomResource):
                  __props__=None):
         """
         Create a SecretFile resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] secret_file_name: The file name of the secret file
@@ -93,6 +95,7 @@ class SecretFile(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a SecretFile resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param SecretFileArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

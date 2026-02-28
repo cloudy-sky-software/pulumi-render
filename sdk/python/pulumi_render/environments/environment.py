@@ -26,6 +26,7 @@ class EnvironmentArgs:
                  protected_status: Optional[pulumi.Input['ProtectedStatus']] = None):
         """
         The set of arguments for constructing a Environment resource.
+
         :param pulumi.Input[_builtins.bool] network_isolation_enabled: Indicates whether network connections across environments are allowed.
         :param pulumi.Input['ProtectedStatus'] protected_status: Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
         """
@@ -93,6 +94,7 @@ class Environment(pulumi.CustomResource):
                  __props__=None):
         """
         Create a Environment resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] network_isolation_enabled: Indicates whether network connections across environments are allowed.
@@ -106,6 +108,7 @@ class Environment(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a Environment resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param EnvironmentArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

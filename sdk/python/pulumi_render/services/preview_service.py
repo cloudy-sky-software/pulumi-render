@@ -27,6 +27,7 @@ class PreviewServiceArgs:
                  service_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PreviewService resource.
+
         :param pulumi.Input[_builtins.str] image_path: Must be either a full URL or the relative path to an image. If a relative path, Render uses the base service's image URL as its root. For example, if the base service's image URL is `docker.io/library/nginx:latest`, then valid values are: `docker.io/library/nginx:<any tag or SHA>`, `library/nginx:<any tag or SHA>`, or `nginx:<any tag or SHA>`. Note that the path must match (only the tag or SHA can vary).
         :param pulumi.Input[_builtins.str] name: A name for the service preview instance. If not specified, Render generates the name using the base service's name and the specified tag or SHA.
         :param pulumi.Input['Plan'] plan: The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
@@ -102,6 +103,7 @@ class PreviewService(pulumi.CustomResource):
                  __props__=None):
         """
         Create a PreviewService resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] image_path: Must be either a full URL or the relative path to an image. If a relative path, Render uses the base service's image URL as its root. For example, if the base service's image URL is `docker.io/library/nginx:latest`, then valid values are: `docker.io/library/nginx:<any tag or SHA>`, `library/nginx:<any tag or SHA>`, or `nginx:<any tag or SHA>`. Note that the path must match (only the tag or SHA can vary).
@@ -117,6 +119,7 @@ class PreviewService(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a PreviewService resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param PreviewServiceArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -24,6 +24,7 @@ class RestoreSnapshotArgs:
                  instance_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RestoreSnapshot resource.
+
         :param pulumi.Input[_builtins.str] disk_id: The ID of the disk
         :param pulumi.Input[_builtins.str] instance_id: When a service with a disk is scaled, the instanceId is used to identify the instance that the disk is attached to. Each instance's disks get their own snapshots, and can be restored separately.
         """
@@ -79,6 +80,7 @@ class RestoreSnapshot(pulumi.CustomResource):
                  __props__=None):
         """
         Create a RestoreSnapshot resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] disk_id: The ID of the disk
@@ -92,6 +94,7 @@ class RestoreSnapshot(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a RestoreSnapshot resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param RestoreSnapshotArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

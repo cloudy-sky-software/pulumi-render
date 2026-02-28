@@ -27,6 +27,7 @@ class WebhookArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Webhook resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['EventFilterItem']]] event_filter: The event types that will trigger the webhook. An empty list means all event types will trigger the webhook.
         :param pulumi.Input[_builtins.str] owner_id: The ID of the owner (team or personal user) whose resources should be returned
         """
@@ -103,6 +104,7 @@ class Webhook(pulumi.CustomResource):
                  __props__=None):
         """
         Create a Webhook resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input['EventFilterItem']]] event_filter: The event types that will trigger the webhook. An empty list means all event types will trigger the webhook.
@@ -116,6 +118,7 @@ class Webhook(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a Webhook resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param WebhookArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

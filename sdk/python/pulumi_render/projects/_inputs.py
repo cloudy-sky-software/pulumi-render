@@ -20,21 +20,16 @@ __all__ = [
     'ProjectCreateEnvironmentInputArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class ProjectCreateEnvironmentInputArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        network_isolation_enabled: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Indicates whether network connections across environments are allowed.
-        """
-        protected_status: NotRequired[pulumi.Input['ProjectCreateEnvironmentInputProtectedStatus']]
-        """
-        Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
-        """
-elif False:
-    ProjectCreateEnvironmentInputArgsDict: TypeAlias = Mapping[str, Any]
+class ProjectCreateEnvironmentInputArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    network_isolation_enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Indicates whether network connections across environments are allowed.
+    """
+    protected_status: NotRequired[pulumi.Input['ProjectCreateEnvironmentInputProtectedStatus']]
+    """
+    Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
+    """
 
 @pulumi.input_type
 class ProjectCreateEnvironmentInputArgs:

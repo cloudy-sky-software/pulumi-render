@@ -101,6 +101,7 @@ class Project(dict):
                  updated_at: _builtins.str):
         """
         A project is a collection of environments
+
         :param Sequence[_builtins.str] environment_ids: The environments associated with the project
         :param _builtins.str id: The ID of the project
         :param _builtins.str name: The name of the project

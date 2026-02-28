@@ -27,6 +27,7 @@ class ProjectArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Project resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['ProjectCreateEnvironmentInputArgs']]] environments: The environments to create when creating the project
         :param pulumi.Input[_builtins.str] owner_id: The ID of the owner that the project belongs to
         :param pulumi.Input[_builtins.str] name: The name of the project
@@ -85,6 +86,7 @@ class Project(pulumi.CustomResource):
                  __props__=None):
         """
         Create a Project resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ProjectCreateEnvironmentInputArgs', 'ProjectCreateEnvironmentInputArgsDict']]]] environments: The environments to create when creating the project
@@ -99,6 +101,7 @@ class Project(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a Project resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param ProjectArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

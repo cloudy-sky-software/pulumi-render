@@ -23,6 +23,7 @@ class RunCronJobArgs:
                  cron_job_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RunCronJob resource.
+
         :param pulumi.Input[_builtins.str] cron_job_id: The ID of the cron job
         """
         if cron_job_id is not None:
@@ -51,6 +52,7 @@ class RunCronJob(pulumi.CustomResource):
                  __props__=None):
         """
         Create a RunCronJob resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cron_job_id: The ID of the cron job
@@ -63,6 +65,7 @@ class RunCronJob(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a RunCronJob resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param RunCronJobArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -23,6 +23,7 @@ class ScaleServiceArgs:
                  service_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ScaleService resource.
+
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
         """
         pulumi.set(__self__, "num_instances", num_instances)
@@ -62,6 +63,7 @@ class ScaleService(pulumi.CustomResource):
                  __props__=None):
         """
         Create a ScaleService resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
@@ -74,6 +76,7 @@ class ScaleService(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a ScaleService resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param ScaleServiceArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

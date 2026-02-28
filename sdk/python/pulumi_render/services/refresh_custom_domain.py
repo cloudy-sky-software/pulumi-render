@@ -23,6 +23,7 @@ class RefreshCustomDomainArgs:
                  service_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RefreshCustomDomain resource.
+
         :param pulumi.Input[_builtins.str] custom_domain_id_or_name: The ID or name of the custom domain
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
         """
@@ -67,6 +68,7 @@ class RefreshCustomDomain(pulumi.CustomResource):
                  __props__=None):
         """
         Create a RefreshCustomDomain resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] custom_domain_id_or_name: The ID or name of the custom domain
@@ -80,6 +82,7 @@ class RefreshCustomDomain(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a RefreshCustomDomain resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param RefreshCustomDomainArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -1050,6 +1050,7 @@ class DeployImageProperties(dict):
                  sha: Optional[_builtins.str] = None):
         """
         Image information used when creating the deploy. Not present for Git-backed deploys
+
         :param _builtins.str ref: Image reference used when creating the deploy
         :param _builtins.str registry_credential: Name of credential used to pull the image, if provided
         :param _builtins.str sha: SHA that the image reference was resolved to when creating the deploy
@@ -1423,6 +1424,7 @@ class ImageProperties(dict):
                  sha: Optional[_builtins.str] = None):
         """
         Image information used when creating the deploy. Not present for Git-backed deploys
+
         :param _builtins.str ref: Image reference used when creating the deploy
         :param _builtins.str registry_credential: Name of credential used to pull the image, if provided
         :param _builtins.str sha: SHA that the image reference was resolved to when creating the deploy

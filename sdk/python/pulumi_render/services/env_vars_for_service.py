@@ -25,6 +25,7 @@ class EnvVarsForServiceArgs:
                  service_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a EnvVarsForService resource.
+
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
         """
         if env_vars is not None:
@@ -65,6 +66,7 @@ class EnvVarsForService(pulumi.CustomResource):
                  __props__=None):
         """
         Create a EnvVarsForService resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
@@ -77,6 +79,7 @@ class EnvVarsForService(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a EnvVarsForService resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param EnvVarsForServiceArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

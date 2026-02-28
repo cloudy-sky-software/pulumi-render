@@ -18,7 +18,7 @@ linters:
       - legacy
       - std-error-handling
     paths:
-      - cmd/pulumi-resource-render/schema.go
+      - provider/cmd/pulumi-resource-render/schema.go
       - third_party$
       - builtin$
       - examples$
@@ -28,7 +28,7 @@ formatters:
   exclusions:
     generated: lax
     paths:
-      - cmd/pulumi-resource-render/schema.go
+      - provider/cmd/pulumi-resource-render/schema.go
       - third_party$
       - builtin$
       - examples$

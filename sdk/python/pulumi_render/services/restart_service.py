@@ -22,6 +22,7 @@ class RestartServiceArgs:
                  service_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RestartService resource.
+
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
         """
         if service_id is not None:
@@ -50,6 +51,7 @@ class RestartService(pulumi.CustomResource):
                  __props__=None):
         """
         Create a RestartService resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
@@ -62,6 +64,7 @@ class RestartService(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a RestartService resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param RestartServiceArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

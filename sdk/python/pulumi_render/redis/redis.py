@@ -31,6 +31,7 @@ class RedisArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Redis resource.
+
         :param pulumi.Input[_builtins.str] owner_id: The ID of the owner of the Redis instance
         :param pulumi.Input['MaxmemoryPolicy'] maxmemory_policy: The eviction policy for the Key Value instance
         :param pulumi.Input[_builtins.str] name: The name of the Redis instance
@@ -142,6 +143,7 @@ class Redis(pulumi.CustomResource):
         """
         Input type for creating a Redis instance
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input['MaxmemoryPolicy'] maxmemory_policy: The eviction policy for the Key Value instance
@@ -157,6 +159,7 @@ class Redis(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Input type for creating a Redis instance
+
 
         :param str resource_name: The name of the resource.
         :param RedisArgs args: The arguments to use to populate this resource's properties.

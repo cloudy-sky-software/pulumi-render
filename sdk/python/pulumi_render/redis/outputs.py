@@ -219,6 +219,7 @@ class Redis(dict):
                  environment_id: Optional[_builtins.str] = None):
         """
         A Redis instance
+
         :param _builtins.str created_at: The creation time of the Redis instance
         :param _builtins.str dashboard_url: The URL to view the Redis instance in the Render Dashboard
         :param _builtins.str id: The ID of the Redis instance

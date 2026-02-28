@@ -30,6 +30,7 @@ class RecoverPostgresArgs:
                  restore_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RecoverPostgres resource.
+
         :param pulumi.Input[_builtins.str] restore_time: The point in time to restore the database to. See `/recovery-info` for restore availability
         :param pulumi.Input[_builtins.str] datadog_api_key: Datadog API key to use for monitoring the new database. Defaults to the API key of the original database. Use an empty string to prevent copying of the API key to the new database.
         :param pulumi.Input[_builtins.str] datadog_site: Datadog region code to use for monitoring the new database. Defaults to the region code of the original database. Use an empty string to prevent copying of the region code to the new database.
@@ -149,6 +150,7 @@ class RecoverPostgres(pulumi.CustomResource):
                  __props__=None):
         """
         Create a RecoverPostgres resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] datadog_api_key: Datadog API key to use for monitoring the new database. Defaults to the API key of the original database. Use an empty string to prevent copying of the API key to the new database.
@@ -166,6 +168,7 @@ class RecoverPostgres(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a RecoverPostgres resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param RecoverPostgresArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

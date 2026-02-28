@@ -20,17 +20,12 @@ __all__ = [
     'CidrBlockAndDescriptionArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class CidrBlockAndDescriptionArgsDict(TypedDict):
-        cidr_block: pulumi.Input[_builtins.str]
-        description: pulumi.Input[_builtins.str]
-        """
-        User-provided description of the CIDR block
-        """
-elif False:
-    CidrBlockAndDescriptionArgsDict: TypeAlias = Mapping[str, Any]
+class CidrBlockAndDescriptionArgsDict(TypedDict):
+    cidr_block: pulumi.Input[_builtins.str]
+    description: pulumi.Input[_builtins.str]
+    """
+    User-provided description of the CIDR block
+    """
 
 @pulumi.input_type
 class CidrBlockAndDescriptionArgs:

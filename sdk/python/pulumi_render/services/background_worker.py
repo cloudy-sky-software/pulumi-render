@@ -37,6 +37,7 @@ class BackgroundWorkerArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a BackgroundWorker resource.
+
         :param pulumi.Input[_builtins.str] branch: If left empty, this will fall back to the default branch of the repository
         :param pulumi.Input[_builtins.str] environment_id: The ID of the environment the service is associated with
         :param pulumi.Input[_builtins.str] repo: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
@@ -219,6 +220,7 @@ class BackgroundWorker(pulumi.CustomResource):
                  __props__=None):
         """
         Create a BackgroundWorker resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] branch: If left empty, this will fall back to the default branch of the repository
@@ -233,6 +235,7 @@ class BackgroundWorker(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a BackgroundWorker resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param BackgroundWorkerArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

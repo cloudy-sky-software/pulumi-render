@@ -37,6 +37,7 @@ class StaticSiteArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a StaticSite resource.
+
         :param pulumi.Input[_builtins.str] branch: If left empty, this will fall back to the default branch of the repository
         :param pulumi.Input[_builtins.str] environment_id: The ID of the environment the service is associated with
         :param pulumi.Input[_builtins.str] repo: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
@@ -220,6 +221,7 @@ class StaticSite(pulumi.CustomResource):
         """
         ## Example Usage
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] branch: If left empty, this will fall back to the default branch of the repository
@@ -234,6 +236,7 @@ class StaticSite(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Example Usage
+
 
         :param str resource_name: The name of the resource.
         :param StaticSiteArgs args: The arguments to use to populate this resource's properties.

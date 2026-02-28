@@ -64,45 +64,40 @@ __all__ = [
     'WebServiceDetailspropertiesautoscalingArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class BackgroundWorkerDetailsCreateArgsDict(TypedDict):
-        runtime: pulumi.Input['BackgroundWorkerDetailsCreateRuntime']
-        """
-        Runtime
-        """
-        autoscaling: NotRequired[pulumi.Input['WebServiceDetailspropertiesautoscalingArgsDict']]
-        disk: NotRequired[pulumi.Input['ServiceDiskArgsDict']]
-        env: NotRequired[pulumi.Input['BackgroundWorkerDetailsCreateEnv']]
-        """
-        This field has been deprecated, runtime should be used in its place.
-        """
-        env_specific_details: NotRequired[pulumi.Input['EnvSpecificDetailsCreateArgsDict']]
-        max_shutdown_delay_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
-        """
-        num_instances: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Defaults to 1
-        """
-        plan: NotRequired[pulumi.Input['BackgroundWorkerDetailsCreatePlan']]
-        """
-        Defaults to "starter"
-        """
-        pre_deploy_command: NotRequired[pulumi.Input[_builtins.str]]
-        previews: NotRequired[pulumi.Input['PreviewsArgsDict']]
-        pull_request_previews_enabled: NotRequired[pulumi.Input['BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled']]
-        """
-        This field has been deprecated. previews.generation should be used in its place.
-        """
-        region: NotRequired[pulumi.Input['BackgroundWorkerDetailsCreateRegion']]
-        """
-        Defaults to "oregon"
-        """
-elif False:
-    BackgroundWorkerDetailsCreateArgsDict: TypeAlias = Mapping[str, Any]
+class BackgroundWorkerDetailsCreateArgsDict(TypedDict):
+    runtime: pulumi.Input['BackgroundWorkerDetailsCreateRuntime']
+    """
+    Runtime
+    """
+    autoscaling: NotRequired[pulumi.Input['WebServiceDetailspropertiesautoscalingArgsDict']]
+    disk: NotRequired[pulumi.Input['ServiceDiskArgsDict']]
+    env: NotRequired[pulumi.Input['BackgroundWorkerDetailsCreateEnv']]
+    """
+    This field has been deprecated, runtime should be used in its place.
+    """
+    env_specific_details: NotRequired[pulumi.Input['EnvSpecificDetailsCreateArgsDict']]
+    max_shutdown_delay_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
+    """
+    num_instances: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Defaults to 1
+    """
+    plan: NotRequired[pulumi.Input['BackgroundWorkerDetailsCreatePlan']]
+    """
+    Defaults to "starter"
+    """
+    pre_deploy_command: NotRequired[pulumi.Input[_builtins.str]]
+    previews: NotRequired[pulumi.Input['PreviewsArgsDict']]
+    pull_request_previews_enabled: NotRequired[pulumi.Input['BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled']]
+    """
+    This field has been deprecated. previews.generation should be used in its place.
+    """
+    region: NotRequired[pulumi.Input['BackgroundWorkerDetailsCreateRegion']]
+    """
+    Defaults to "oregon"
+    """
 
 @pulumi.input_type
 class BackgroundWorkerDetailsCreateArgs:
@@ -292,12 +287,9 @@ class BackgroundWorkerDetailsCreateArgs:
         pulumi.set(self, "region", value)
 
 
-if not MYPY:
-    class BuildFilterArgsDict(TypedDict):
-        ignored_paths: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        paths: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-elif False:
-    BuildFilterArgsDict: TypeAlias = Mapping[str, Any]
+class BuildFilterArgsDict(TypedDict):
+    ignored_paths: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    paths: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
 
 @pulumi.input_type
 class BuildFilterArgs:
@@ -326,15 +318,12 @@ class BuildFilterArgs:
         pulumi.set(self, "paths", value)
 
 
-if not MYPY:
-    class CriteriaPropertiesCpuPropertiesArgsDict(TypedDict):
-        enabled: pulumi.Input[_builtins.bool]
-        percentage: pulumi.Input[_builtins.int]
-        """
-        Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
-        """
-elif False:
-    CriteriaPropertiesCpuPropertiesArgsDict: TypeAlias = Mapping[str, Any]
+class CriteriaPropertiesCpuPropertiesArgsDict(TypedDict):
+    enabled: pulumi.Input[_builtins.bool]
+    percentage: pulumi.Input[_builtins.int]
+    """
+    Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+    """
 
 @pulumi.input_type
 class CriteriaPropertiesCpuPropertiesArgs:
@@ -371,12 +360,9 @@ class CriteriaPropertiesCpuPropertiesArgs:
         pulumi.set(self, "percentage", value)
 
 
-if not MYPY:
-    class CriteriaPropertiesArgsDict(TypedDict):
-        cpu: pulumi.Input['CriteriaPropertiesCpuPropertiesArgsDict']
-        memory: pulumi.Input['WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgsDict']
-elif False:
-    CriteriaPropertiesArgsDict: TypeAlias = Mapping[str, Any]
+class CriteriaPropertiesArgsDict(TypedDict):
+    cpu: pulumi.Input['CriteriaPropertiesCpuPropertiesArgsDict']
+    memory: pulumi.Input['WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgsDict']
 
 @pulumi.input_type
 class CriteriaPropertiesArgs:
@@ -405,28 +391,25 @@ class CriteriaPropertiesArgs:
         pulumi.set(self, "memory", value)
 
 
-if not MYPY:
-    class CronJobDetailsCreateArgsDict(TypedDict):
-        runtime: pulumi.Input['CronJobDetailsCreateRuntime']
-        """
-        Runtime
-        """
-        schedule: pulumi.Input[_builtins.str]
-        env: NotRequired[pulumi.Input['CronJobDetailsCreateEnv']]
-        """
-        This field has been deprecated, runtime should be used in its place.
-        """
-        env_specific_details: NotRequired[pulumi.Input['EnvSpecificDetailsArgsDict']]
-        plan: NotRequired[pulumi.Input['CronJobDetailsCreatePlan']]
-        """
-        Defaults to "starter"
-        """
-        region: NotRequired[pulumi.Input['CronJobDetailsCreateRegion']]
-        """
-        Defaults to "oregon"
-        """
-elif False:
-    CronJobDetailsCreateArgsDict: TypeAlias = Mapping[str, Any]
+class CronJobDetailsCreateArgsDict(TypedDict):
+    runtime: pulumi.Input['CronJobDetailsCreateRuntime']
+    """
+    Runtime
+    """
+    schedule: pulumi.Input[_builtins.str]
+    env: NotRequired[pulumi.Input['CronJobDetailsCreateEnv']]
+    """
+    This field has been deprecated, runtime should be used in its place.
+    """
+    env_specific_details: NotRequired[pulumi.Input['EnvSpecificDetailsArgsDict']]
+    plan: NotRequired[pulumi.Input['CronJobDetailsCreatePlan']]
+    """
+    Defaults to "starter"
+    """
+    region: NotRequired[pulumi.Input['CronJobDetailsCreateRegion']]
+    """
+    Defaults to "oregon"
+    """
 
 @pulumi.input_type
 class CronJobDetailsCreateArgs:
@@ -525,19 +508,16 @@ class CronJobDetailsCreateArgs:
         pulumi.set(self, "region", value)
 
 
-if not MYPY:
-    class EnvSpecificDetailsCreateArgsDict(TypedDict):
-        build_command: NotRequired[pulumi.Input[_builtins.str]]
-        docker_command: NotRequired[pulumi.Input[_builtins.str]]
-        docker_context: NotRequired[pulumi.Input[_builtins.str]]
-        dockerfile_path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Defaults to "./Dockerfile"
-        """
-        registry_credential_id: NotRequired[pulumi.Input[_builtins.str]]
-        start_command: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    EnvSpecificDetailsCreateArgsDict: TypeAlias = Mapping[str, Any]
+class EnvSpecificDetailsCreateArgsDict(TypedDict):
+    build_command: NotRequired[pulumi.Input[_builtins.str]]
+    docker_command: NotRequired[pulumi.Input[_builtins.str]]
+    docker_context: NotRequired[pulumi.Input[_builtins.str]]
+    dockerfile_path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Defaults to "./Dockerfile"
+    """
+    registry_credential_id: NotRequired[pulumi.Input[_builtins.str]]
+    start_command: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class EnvSpecificDetailsCreateArgs:
@@ -622,17 +602,14 @@ class EnvSpecificDetailsCreateArgs:
         pulumi.set(self, "start_command", value)
 
 
-if not MYPY:
-    class EnvSpecificDetailsArgsDict(TypedDict):
-        build_command: NotRequired[pulumi.Input[_builtins.str]]
-        docker_command: NotRequired[pulumi.Input[_builtins.str]]
-        docker_context: NotRequired[pulumi.Input[_builtins.str]]
-        dockerfile_path: NotRequired[pulumi.Input[_builtins.str]]
-        pre_deploy_command: NotRequired[pulumi.Input[_builtins.str]]
-        registry_credential: NotRequired[pulumi.Input['RegistryCredentialArgsDict']]
-        start_command: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    EnvSpecificDetailsArgsDict: TypeAlias = Mapping[str, Any]
+class EnvSpecificDetailsArgsDict(TypedDict):
+    build_command: NotRequired[pulumi.Input[_builtins.str]]
+    docker_command: NotRequired[pulumi.Input[_builtins.str]]
+    docker_context: NotRequired[pulumi.Input[_builtins.str]]
+    dockerfile_path: NotRequired[pulumi.Input[_builtins.str]]
+    pre_deploy_command: NotRequired[pulumi.Input[_builtins.str]]
+    registry_credential: NotRequired[pulumi.Input['RegistryCredentialArgsDict']]
+    start_command: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class EnvSpecificDetailsArgs:
@@ -723,13 +700,10 @@ class EnvSpecificDetailsArgs:
         pulumi.set(self, "start_command", value)
 
 
-if not MYPY:
-    class EnvVarInputArgsDict(TypedDict):
-        generate_value: NotRequired[pulumi.Input[_builtins.bool]]
-        key: NotRequired[pulumi.Input[_builtins.str]]
-        value: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    EnvVarInputArgsDict: TypeAlias = Mapping[str, Any]
+class EnvVarInputArgsDict(TypedDict):
+    generate_value: NotRequired[pulumi.Input[_builtins.bool]]
+    key: NotRequired[pulumi.Input[_builtins.str]]
+    value: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class EnvVarInputArgs:
@@ -772,22 +746,19 @@ class EnvVarInputArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class HeaderInputArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Header name
-        """
-        path: pulumi.Input[_builtins.str]
-        """
-        The request path to add the header to. Wildcards will cause headers to be applied to all matching paths.
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        Header value
-        """
-elif False:
-    HeaderInputArgsDict: TypeAlias = Mapping[str, Any]
+class HeaderInputArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Header name
+    """
+    path: pulumi.Input[_builtins.str]
+    """
+    The request path to add the header to. Wildcards will cause headers to be applied to all matching paths.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Header value
+    """
 
 @pulumi.input_type
 class HeaderInputArgs:
@@ -841,22 +812,19 @@ class HeaderInputArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class ImageArgsDict(TypedDict):
-        image_path: pulumi.Input[_builtins.str]
-        """
-        Path to the image used for this server (e.g docker.io/library/nginx:latest).
-        """
-        owner_id: pulumi.Input[_builtins.str]
-        """
-        The ID of the owner for this image. This should match the owner of the service as well as the owner of any specified registry credential.
-        """
-        registry_credential_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Optional reference to the registry credential passed to the image repository to retrieve this image.
-        """
-elif False:
-    ImageArgsDict: TypeAlias = Mapping[str, Any]
+class ImageArgsDict(TypedDict):
+    image_path: pulumi.Input[_builtins.str]
+    """
+    Path to the image used for this server (e.g docker.io/library/nginx:latest).
+    """
+    owner_id: pulumi.Input[_builtins.str]
+    """
+    The ID of the owner for this image. This should match the owner of the service as well as the owner of any specified registry credential.
+    """
+    registry_credential_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Optional reference to the registry credential passed to the image repository to retrieve this image.
+    """
 
 @pulumi.input_type
 class ImageArgs:
@@ -911,15 +879,12 @@ class ImageArgs:
         pulumi.set(self, "registry_credential_id", value)
 
 
-if not MYPY:
-    class MaintenanceModeArgsDict(TypedDict):
-        enabled: pulumi.Input[_builtins.bool]
-        uri: pulumi.Input[_builtins.str]
-        """
-        The page to be served when [maintenance mode](https://render.com/docs/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
-        """
-elif False:
-    MaintenanceModeArgsDict: TypeAlias = Mapping[str, Any]
+class MaintenanceModeArgsDict(TypedDict):
+    enabled: pulumi.Input[_builtins.bool]
+    uri: pulumi.Input[_builtins.str]
+    """
+    The page to be served when [maintenance mode](https://render.com/docs/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
+    """
 
 @pulumi.input_type
 class MaintenanceModeArgs:
@@ -954,14 +919,11 @@ class MaintenanceModeArgs:
         pulumi.set(self, "uri", value)
 
 
-if not MYPY:
-    class PreviewsArgsDict(TypedDict):
-        generation: NotRequired[pulumi.Input['PreviewsGeneration']]
-        """
-        Defaults to "off"
-        """
-elif False:
-    PreviewsArgsDict: TypeAlias = Mapping[str, Any]
+class PreviewsArgsDict(TypedDict):
+    generation: NotRequired[pulumi.Input['PreviewsGeneration']]
+    """
+    Defaults to "off"
+    """
 
 @pulumi.input_type
 class PreviewsArgs:
@@ -988,43 +950,40 @@ class PreviewsArgs:
         pulumi.set(self, "generation", value)
 
 
-if not MYPY:
-    class PrivateServiceDetailsCreateArgsDict(TypedDict):
-        runtime: pulumi.Input['PrivateServiceDetailsCreateRuntime']
-        """
-        Runtime
-        """
-        autoscaling: NotRequired[pulumi.Input['WebServiceDetailspropertiesautoscalingArgsDict']]
-        disk: NotRequired[pulumi.Input['ServiceDiskArgsDict']]
-        env: NotRequired[pulumi.Input['PrivateServiceDetailsCreateEnv']]
-        """
-        This field has been deprecated, runtime should be used in its place.
-        """
-        env_specific_details: NotRequired[pulumi.Input['EnvSpecificDetailsCreateArgsDict']]
-        max_shutdown_delay_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
-        """
-        num_instances: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Defaults to 1
-        """
-        plan: NotRequired[pulumi.Input['PrivateServiceDetailsCreatePlan']]
-        """
-        Defaults to "starter"
-        """
-        pre_deploy_command: NotRequired[pulumi.Input[_builtins.str]]
-        previews: NotRequired[pulumi.Input['PreviewsArgsDict']]
-        pull_request_previews_enabled: NotRequired[pulumi.Input['PrivateServiceDetailsCreatePullRequestPreviewsEnabled']]
-        """
-        This field has been deprecated. previews.generation should be used in its place.
-        """
-        region: NotRequired[pulumi.Input['PrivateServiceDetailsCreateRegion']]
-        """
-        Defaults to "oregon"
-        """
-elif False:
-    PrivateServiceDetailsCreateArgsDict: TypeAlias = Mapping[str, Any]
+class PrivateServiceDetailsCreateArgsDict(TypedDict):
+    runtime: pulumi.Input['PrivateServiceDetailsCreateRuntime']
+    """
+    Runtime
+    """
+    autoscaling: NotRequired[pulumi.Input['WebServiceDetailspropertiesautoscalingArgsDict']]
+    disk: NotRequired[pulumi.Input['ServiceDiskArgsDict']]
+    env: NotRequired[pulumi.Input['PrivateServiceDetailsCreateEnv']]
+    """
+    This field has been deprecated, runtime should be used in its place.
+    """
+    env_specific_details: NotRequired[pulumi.Input['EnvSpecificDetailsCreateArgsDict']]
+    max_shutdown_delay_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
+    """
+    num_instances: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Defaults to 1
+    """
+    plan: NotRequired[pulumi.Input['PrivateServiceDetailsCreatePlan']]
+    """
+    Defaults to "starter"
+    """
+    pre_deploy_command: NotRequired[pulumi.Input[_builtins.str]]
+    previews: NotRequired[pulumi.Input['PreviewsArgsDict']]
+    pull_request_previews_enabled: NotRequired[pulumi.Input['PrivateServiceDetailsCreatePullRequestPreviewsEnabled']]
+    """
+    This field has been deprecated. previews.generation should be used in its place.
+    """
+    region: NotRequired[pulumi.Input['PrivateServiceDetailsCreateRegion']]
+    """
+    Defaults to "oregon"
+    """
 
 @pulumi.input_type
 class PrivateServiceDetailsCreateArgs:
@@ -1214,30 +1173,27 @@ class PrivateServiceDetailsCreateArgs:
         pulumi.set(self, "region", value)
 
 
-if not MYPY:
-    class RegistryCredentialArgsDict(TypedDict):
-        id: pulumi.Input[_builtins.str]
-        """
-        Unique identifier for this credential
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Descriptive name for this credential
-        """
-        registry: pulumi.Input['RegistryCredentialRegistry']
-        """
-        The registry to use this credential with
-        """
-        updated_at: pulumi.Input[_builtins.str]
-        """
-        Last updated time for the credential
-        """
-        username: pulumi.Input[_builtins.str]
-        """
-        The username associated with the credential
-        """
-elif False:
-    RegistryCredentialArgsDict: TypeAlias = Mapping[str, Any]
+class RegistryCredentialArgsDict(TypedDict):
+    id: pulumi.Input[_builtins.str]
+    """
+    Unique identifier for this credential
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Descriptive name for this credential
+    """
+    registry: pulumi.Input['RegistryCredentialRegistry']
+    """
+    The registry to use this credential with
+    """
+    updated_at: pulumi.Input[_builtins.str]
+    """
+    Last updated time for the credential
+    """
+    username: pulumi.Input[_builtins.str]
+    """
+    The username associated with the credential
+    """
 
 @pulumi.input_type
 class RegistryCredentialArgs:
@@ -1321,17 +1277,14 @@ class RegistryCredentialArgs:
         pulumi.set(self, "username", value)
 
 
-if not MYPY:
-    class RouteCreateArgsDict(TypedDict):
-        destination: pulumi.Input[_builtins.str]
-        source: pulumi.Input[_builtins.str]
-        type: pulumi.Input['RouteCreateType']
-        priority: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Redirect and Rewrite Rules are applied in priority order starting at 0. Defaults to last in the priority list.
-        """
-elif False:
-    RouteCreateArgsDict: TypeAlias = Mapping[str, Any]
+class RouteCreateArgsDict(TypedDict):
+    destination: pulumi.Input[_builtins.str]
+    source: pulumi.Input[_builtins.str]
+    type: pulumi.Input['RouteCreateType']
+    priority: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Redirect and Rewrite Rules are applied in priority order starting at 0. Defaults to last in the priority list.
+    """
 
 @pulumi.input_type
 class RouteCreateArgs:
@@ -1389,12 +1342,9 @@ class RouteCreateArgs:
         pulumi.set(self, "priority", value)
 
 
-if not MYPY:
-    class SecretFileInputArgsDict(TypedDict):
-        content: pulumi.Input[_builtins.str]
-        name: pulumi.Input[_builtins.str]
-elif False:
-    SecretFileInputArgsDict: TypeAlias = Mapping[str, Any]
+class SecretFileInputArgsDict(TypedDict):
+    content: pulumi.Input[_builtins.str]
+    name: pulumi.Input[_builtins.str]
 
 @pulumi.input_type
 class SecretFileInputArgs:
@@ -1423,16 +1373,13 @@ class SecretFileInputArgs:
         pulumi.set(self, "name", value)
 
 
-if not MYPY:
-    class ServiceDiskArgsDict(TypedDict):
-        mount_path: pulumi.Input[_builtins.str]
-        name: pulumi.Input[_builtins.str]
-        size_gb: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Defaults to 1
-        """
-elif False:
-    ServiceDiskArgsDict: TypeAlias = Mapping[str, Any]
+class ServiceDiskArgsDict(TypedDict):
+    mount_path: pulumi.Input[_builtins.str]
+    name: pulumi.Input[_builtins.str]
+    size_gb: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Defaults to 1
+    """
 
 @pulumi.input_type
 class ServiceDiskArgs:
@@ -1479,26 +1426,23 @@ class ServiceDiskArgs:
         pulumi.set(self, "size_gb", value)
 
 
-if not MYPY:
-    class StaticSiteDetailsCreateArgsDict(TypedDict):
-        build_command: NotRequired[pulumi.Input[_builtins.str]]
-        headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['HeaderInputArgsDict']]]]
-        previews: NotRequired[pulumi.Input['PreviewsArgsDict']]
-        publish_path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Defaults to "public"
-        """
-        pull_request_previews_enabled: NotRequired[pulumi.Input['StaticSiteDetailsCreatePullRequestPreviewsEnabled']]
-        """
-        This field has been deprecated. previews.generation should be used in its place.
-        """
-        render_subdomain_policy: NotRequired[pulumi.Input['StaticSiteDetailsCreateRenderSubdomainPolicy']]
-        """
-        Controls whether render.com subdomains are available for the service
-        """
-        routes: NotRequired[pulumi.Input[Sequence[pulumi.Input['RouteCreateArgsDict']]]]
-elif False:
-    StaticSiteDetailsCreateArgsDict: TypeAlias = Mapping[str, Any]
+class StaticSiteDetailsCreateArgsDict(TypedDict):
+    build_command: NotRequired[pulumi.Input[_builtins.str]]
+    headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['HeaderInputArgsDict']]]]
+    previews: NotRequired[pulumi.Input['PreviewsArgsDict']]
+    publish_path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Defaults to "public"
+    """
+    pull_request_previews_enabled: NotRequired[pulumi.Input['StaticSiteDetailsCreatePullRequestPreviewsEnabled']]
+    """
+    This field has been deprecated. previews.generation should be used in its place.
+    """
+    render_subdomain_policy: NotRequired[pulumi.Input['StaticSiteDetailsCreateRenderSubdomainPolicy']]
+    """
+    Controls whether render.com subdomains are available for the service
+    """
+    routes: NotRequired[pulumi.Input[Sequence[pulumi.Input['RouteCreateArgsDict']]]]
 
 @pulumi.input_type
 class StaticSiteDetailsCreateArgs:
@@ -1605,49 +1549,46 @@ class StaticSiteDetailsCreateArgs:
         pulumi.set(self, "routes", value)
 
 
-if not MYPY:
-    class WebServiceDetailsCreateArgsDict(TypedDict):
-        runtime: pulumi.Input['WebServiceDetailsCreateRuntime']
-        """
-        Runtime
-        """
-        autoscaling: NotRequired[pulumi.Input['WebServiceDetailspropertiesautoscalingArgsDict']]
-        disk: NotRequired[pulumi.Input['ServiceDiskArgsDict']]
-        env: NotRequired[pulumi.Input['WebServiceDetailsCreateEnv']]
-        """
-        This field has been deprecated, runtime should be used in its place.
-        """
-        env_specific_details: NotRequired[pulumi.Input['EnvSpecificDetailsCreateArgsDict']]
-        health_check_path: NotRequired[pulumi.Input[_builtins.str]]
-        maintenance_mode: NotRequired[pulumi.Input['MaintenanceModeArgsDict']]
-        max_shutdown_delay_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
-        """
-        num_instances: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Defaults to 1
-        """
-        plan: NotRequired[pulumi.Input['WebServiceDetailsCreatePlan']]
-        """
-        Defaults to "starter"
-        """
-        pre_deploy_command: NotRequired[pulumi.Input[_builtins.str]]
-        previews: NotRequired[pulumi.Input['PreviewsArgsDict']]
-        pull_request_previews_enabled: NotRequired[pulumi.Input['WebServiceDetailsCreatePullRequestPreviewsEnabled']]
-        """
-        This field has been deprecated. previews.generation should be used in its place.
-        """
-        region: NotRequired[pulumi.Input['WebServiceDetailsCreateRegion']]
-        """
-        Defaults to "oregon"
-        """
-        render_subdomain_policy: NotRequired[pulumi.Input['WebServiceDetailsCreateRenderSubdomainPolicy']]
-        """
-        Controls whether render.com subdomains are available for the service
-        """
-elif False:
-    WebServiceDetailsCreateArgsDict: TypeAlias = Mapping[str, Any]
+class WebServiceDetailsCreateArgsDict(TypedDict):
+    runtime: pulumi.Input['WebServiceDetailsCreateRuntime']
+    """
+    Runtime
+    """
+    autoscaling: NotRequired[pulumi.Input['WebServiceDetailspropertiesautoscalingArgsDict']]
+    disk: NotRequired[pulumi.Input['ServiceDiskArgsDict']]
+    env: NotRequired[pulumi.Input['WebServiceDetailsCreateEnv']]
+    """
+    This field has been deprecated, runtime should be used in its place.
+    """
+    env_specific_details: NotRequired[pulumi.Input['EnvSpecificDetailsCreateArgsDict']]
+    health_check_path: NotRequired[pulumi.Input[_builtins.str]]
+    maintenance_mode: NotRequired[pulumi.Input['MaintenanceModeArgsDict']]
+    max_shutdown_delay_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
+    """
+    num_instances: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Defaults to 1
+    """
+    plan: NotRequired[pulumi.Input['WebServiceDetailsCreatePlan']]
+    """
+    Defaults to "starter"
+    """
+    pre_deploy_command: NotRequired[pulumi.Input[_builtins.str]]
+    previews: NotRequired[pulumi.Input['PreviewsArgsDict']]
+    pull_request_previews_enabled: NotRequired[pulumi.Input['WebServiceDetailsCreatePullRequestPreviewsEnabled']]
+    """
+    This field has been deprecated. previews.generation should be used in its place.
+    """
+    region: NotRequired[pulumi.Input['WebServiceDetailsCreateRegion']]
+    """
+    Defaults to "oregon"
+    """
+    render_subdomain_policy: NotRequired[pulumi.Input['WebServiceDetailsCreateRenderSubdomainPolicy']]
+    """
+    Controls whether render.com subdomains are available for the service
+    """
 
 @pulumi.input_type
 class WebServiceDetailsCreateArgs:
@@ -1875,15 +1816,12 @@ class WebServiceDetailsCreateArgs:
         pulumi.set(self, "render_subdomain_policy", value)
 
 
-if not MYPY:
-    class WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgsDict(TypedDict):
-        enabled: pulumi.Input[_builtins.bool]
-        percentage: pulumi.Input[_builtins.int]
-        """
-        Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
-        """
-elif False:
-    WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgsDict: TypeAlias = Mapping[str, Any]
+class WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgsDict(TypedDict):
+    enabled: pulumi.Input[_builtins.bool]
+    percentage: pulumi.Input[_builtins.int]
+    """
+    Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+    """
 
 @pulumi.input_type
 class WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs:
@@ -1920,12 +1858,9 @@ class WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs:
         pulumi.set(self, "percentage", value)
 
 
-if not MYPY:
-    class WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgsDict(TypedDict):
-        cpu: pulumi.Input['WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgsDict']
-        memory: pulumi.Input['WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgsDict']
-elif False:
-    WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgsDict: TypeAlias = Mapping[str, Any]
+class WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgsDict(TypedDict):
+    cpu: pulumi.Input['WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgsDict']
+    memory: pulumi.Input['WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgsDict']
 
 @pulumi.input_type
 class WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgs:
@@ -1954,15 +1889,12 @@ class WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgs:
         pulumi.set(self, "memory", value)
 
 
-if not MYPY:
-    class WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgsDict(TypedDict):
-        enabled: pulumi.Input[_builtins.bool]
-        percentage: pulumi.Input[_builtins.int]
-        """
-        Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
-        """
-elif False:
-    WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgsDict: TypeAlias = Mapping[str, Any]
+class WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgsDict(TypedDict):
+    enabled: pulumi.Input[_builtins.bool]
+    percentage: pulumi.Input[_builtins.int]
+    """
+    Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+    """
 
 @pulumi.input_type
 class WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs:
@@ -1999,20 +1931,17 @@ class WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs:
         pulumi.set(self, "percentage", value)
 
 
-if not MYPY:
-    class WebServiceDetailspropertiesautoscalingArgsDict(TypedDict):
-        criteria: pulumi.Input['WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgsDict']
-        enabled: pulumi.Input[_builtins.bool]
-        max: pulumi.Input[_builtins.int]
-        """
-        The maximum number of instances for the service
-        """
-        min: pulumi.Input[_builtins.int]
-        """
-        The minimum number of instances for the service
-        """
-elif False:
-    WebServiceDetailspropertiesautoscalingArgsDict: TypeAlias = Mapping[str, Any]
+class WebServiceDetailspropertiesautoscalingArgsDict(TypedDict):
+    criteria: pulumi.Input['WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgsDict']
+    enabled: pulumi.Input[_builtins.bool]
+    max: pulumi.Input[_builtins.int]
+    """
+    The maximum number of instances for the service
+    """
+    min: pulumi.Input[_builtins.int]
+    """
+    The minimum number of instances for the service
+    """
 
 @pulumi.input_type
 class WebServiceDetailspropertiesautoscalingArgs:

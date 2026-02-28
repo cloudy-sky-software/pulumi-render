@@ -102,6 +102,7 @@ class ListActiveConnectionsItemProperties(dict):
                  values: Sequence['outputs.ListActiveConnectionsItemPropertiesValuesItemProperties']):
         """
         A time series data point
+
         :param Sequence['ListActiveConnectionsItemPropertiesLabelsItemProperties'] labels: List of labels describing the time series
         :param Sequence['ListActiveConnectionsItemPropertiesValuesItemProperties'] values: The values of the time series
         """
@@ -192,6 +193,7 @@ class ListReplicationLagItemProperties(dict):
                  values: Sequence['outputs.ListReplicationLagItemPropertiesValuesItemProperties']):
         """
         A time series data point
+
         :param Sequence['ListReplicationLagItemPropertiesLabelsItemProperties'] labels: List of labels describing the time series
         :param Sequence['ListReplicationLagItemPropertiesValuesItemProperties'] values: The values of the time series
         """

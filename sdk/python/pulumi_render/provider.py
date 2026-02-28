@@ -22,6 +22,7 @@ class ProviderArgs:
                  api_key: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Provider resource.
+
         :param pulumi.Input[_builtins.str] api_key: The Render API key.
         """
         if api_key is None:
@@ -53,6 +54,7 @@ class Provider(pulumi.ProviderResource):
         """
         The provider type for the render package.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] api_key: The Render API key.
@@ -65,6 +67,7 @@ class Provider(pulumi.ProviderResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         The provider type for the render package.
+
 
         :param str resource_name: The name of the resource.
         :param ProviderArgs args: The arguments to use to populate this resource's properties.

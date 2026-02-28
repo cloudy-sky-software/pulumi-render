@@ -22,17 +22,12 @@ __all__ = [
     'ReadReplicaInputArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class CidrBlockAndDescriptionArgsDict(TypedDict):
-        cidr_block: pulumi.Input[_builtins.str]
-        description: pulumi.Input[_builtins.str]
-        """
-        User-provided description of the CIDR block
-        """
-elif False:
-    CidrBlockAndDescriptionArgsDict: TypeAlias = Mapping[str, Any]
+class CidrBlockAndDescriptionArgsDict(TypedDict):
+    cidr_block: pulumi.Input[_builtins.str]
+    description: pulumi.Input[_builtins.str]
+    """
+    User-provided description of the CIDR block
+    """
 
 @pulumi.input_type
 class CidrBlockAndDescriptionArgs:
@@ -67,14 +62,11 @@ class CidrBlockAndDescriptionArgs:
         pulumi.set(self, "description", value)
 
 
-if not MYPY:
-    class ReadReplicaInputArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        The display name of the replica instance.
-        """
-elif False:
-    ReadReplicaInputArgsDict: TypeAlias = Mapping[str, Any]
+class ReadReplicaInputArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    The display name of the replica instance.
+    """
 
 @pulumi.input_type
 class ReadReplicaInputArgs:

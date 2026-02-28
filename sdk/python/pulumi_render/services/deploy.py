@@ -27,6 +27,7 @@ class DeployArgs:
                  service_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Deploy resource.
+
         :param pulumi.Input['ClearCache'] clear_cache: If `clear`, Render clears the service's build cache before deploying. This can be useful if you're experiencing issues with your build.
         :param pulumi.Input[_builtins.str] commit_id: The SHA of a specific Git commit to deploy for a service. Defaults to the latest commit on the service's connected branch.
                
@@ -121,6 +122,7 @@ class Deploy(pulumi.CustomResource):
                  __props__=None):
         """
         Create a Deploy resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input['ClearCache'] clear_cache: If `clear`, Render clears the service's build cache before deploying. This can be useful if you're experiencing issues with your build.
@@ -144,6 +146,7 @@ class Deploy(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a Deploy resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param DeployArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

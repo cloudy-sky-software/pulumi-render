@@ -28,6 +28,7 @@ class AutoscaleServiceArgs:
                  service_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AutoscaleService resource.
+
         :param pulumi.Input[_builtins.int] max: The maximum number of instances for the service
         :param pulumi.Input[_builtins.int] min: The minimum number of instances for the service
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
@@ -110,6 +111,7 @@ class AutoscaleService(pulumi.CustomResource):
                  __props__=None):
         """
         Create a AutoscaleService resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] max: The maximum number of instances for the service
@@ -124,6 +126,7 @@ class AutoscaleService(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a AutoscaleService resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param AutoscaleServiceArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

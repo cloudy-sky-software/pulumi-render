@@ -23,6 +23,7 @@ class CustomDomainArgs:
                  service_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a CustomDomain resource.
+
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
         """
         if name is not None:
@@ -63,6 +64,7 @@ class CustomDomain(pulumi.CustomResource):
                  __props__=None):
         """
         Create a CustomDomain resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
@@ -75,6 +77,7 @@ class CustomDomain(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a CustomDomain resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param CustomDomainArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

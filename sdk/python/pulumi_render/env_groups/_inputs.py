@@ -22,15 +22,10 @@ __all__ = [
     'SecretFileInputArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class EnvVarInputArgsDict(TypedDict):
-        generate_value: NotRequired[pulumi.Input[_builtins.bool]]
-        key: NotRequired[pulumi.Input[_builtins.str]]
-        value: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    EnvVarInputArgsDict: TypeAlias = Mapping[str, Any]
+class EnvVarInputArgsDict(TypedDict):
+    generate_value: NotRequired[pulumi.Input[_builtins.bool]]
+    key: NotRequired[pulumi.Input[_builtins.str]]
+    value: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class EnvVarInputArgs:
@@ -73,12 +68,9 @@ class EnvVarInputArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class SecretFileInputArgsDict(TypedDict):
-        content: pulumi.Input[_builtins.str]
-        name: pulumi.Input[_builtins.str]
-elif False:
-    SecretFileInputArgsDict: TypeAlias = Mapping[str, Any]
+class SecretFileInputArgsDict(TypedDict):
+    content: pulumi.Input[_builtins.str]
+    name: pulumi.Input[_builtins.str]
 
 @pulumi.input_type
 class SecretFileInputArgs:

@@ -44,6 +44,7 @@ const (
 func main() {
 	flag.Usage = func() {
 		const usageFormat = "Usage: <language>"
+		// nolint: gosec
 		_, err := fmt.Fprint(flag.CommandLine.Output(), usageFormat, os.Args[0])
 		contract.IgnoreError(err)
 		flag.PrintDefaults()

@@ -162,14 +162,14 @@ jobs:
 
       - if: ${{ matrix.language == 'python' && env.PUBLISH_PYPI == 'true' }}
         name: Publish package to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
+        uses: pypa/gh-action-pypi-publish@cef221092ed1bacb1cc03d23a2d87d1d172e277b
         with:
           user: ${{ env.PYPI_USERNAME }}
           password: ${{ env.PYPI_PASSWORD }}
           packages-dir: ${{github.workspace}}/sdk/python/bin/dist
 
       - if: ${{ matrix.language == 'nodejs' && env.PUBLISH_NPM == 'true' }}
-        uses: JS-DevTools/npm-publish@v4
+        uses: JS-DevTools/npm-publish@acc94d5b28923014f07f02af31ecf09db8921c4f
         with:
           access: "public"
           token: ${{ env.NPM_TOKEN }}

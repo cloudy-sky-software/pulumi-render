@@ -169,7 +169,7 @@ jobs:
           packages-dir: ${{github.workspace}}/sdk/python/bin/dist
 
       - if: ${{ matrix.language == 'nodejs' && env.PUBLISH_NPM == 'true' }}
-        uses: JS-DevTools/npm-publish@acc94d5b28923014f07f02af31ecf09db8921c4f
+        uses: JS-DevTools/npm-publish@c4e381f155a91d401de91613040dd5fbca20c015
         with:
           access: "public"
           token: ${{ env.NPM_TOKEN }}

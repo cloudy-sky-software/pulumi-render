@@ -64,7 +64,7 @@ jobs:
           pulumi-version: latest
 
       - name: Install pulumictl
-        uses: jaxxstorm/action-install-gh-release@0591a75036154a375b4fea771cabfbe05e4423f7
+        uses: jaxxstorm/action-install-gh-release@25e24d2d23ae098373794ef1d6faecb48ee52da8
         with:
           repo: pulumi/pulumictl
           tag: "latest"
@@ -109,7 +109,7 @@ jobs:
           go-version: ${{ env.GO_VERSION }}
 
       - name: Install pulumictl
-        uses: jaxxstorm/action-install-gh-release@0591a75036154a375b4fea771cabfbe05e4423f7
+        uses: jaxxstorm/action-install-gh-release@25e24d2d23ae098373794ef1d6faecb48ee52da8
         with:
           repo: pulumi/pulumictl
           tag: "latest"

@@ -94,6 +94,9 @@ lint::
 install:: install_nodejs_sdk install_dotnet_sdk
 	cp $(WORKING_DIR)/bin/${PROVIDER} ${GOPATH}/bin
 
+install_provider:: provider
+	cp $(WORKING_DIR)/bin/${PROVIDER} ${GOPATH}/bin
+
 
 GO_TEST 	 := go test -v -count=1 -cover -timeout 2h -parallel ${TESTPARALLELISM}
 

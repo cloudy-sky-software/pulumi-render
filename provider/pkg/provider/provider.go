@@ -142,7 +142,7 @@ func (p *renderProvider) OnDiff(_ context.Context, _ *pulumirpc.DiffRequest, res
 
 	replaces, diffs = p.determineDiffsAndReplacements(diff, allProps)
 
-	logging.V(3).Infof("Diff response: replaces: %v; diffs: %v", replaces, diffs)
+	logging.V(3).Infof("OVERRIDE Diff response from provider callback: replaces: %v; diffs: %v", replaces, diffs)
 
 	return &pulumirpc.DiffResponse{
 		Changes:  changes,
@@ -199,9 +199,9 @@ func (p *renderProvider) OnPostCreate(_ context.Context, req *pulumirpc.CreateRe
 			return nil, errors.Wrap(err, "unmarshal input properties as propertymap")
 		}
 
-		custDomResp := outputs.([]interface{})
+		customResp := outputs.([]interface{})
 
-		for _, c := range custDomResp {
+		for _, c := range customResp {
 			cMap := c.(map[string]interface{})
 			if cMap["name"] == inputs["name"].StringValue() {
 				outputsMap = cMap

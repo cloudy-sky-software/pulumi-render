@@ -180,7 +180,7 @@ func addPropertyWithRef(typ *openapi3.SchemaRef, propName, ref string, schema *o
 
 func getServiceDiscriminator(openAPIDoc *openapi3.T, suffix string) (*openapi3.Discriminator, openapi3.SchemaRefs) {
 	refs := make(openapi3.SchemaRefs, 0, len(sortedDiscriminatorValues))
-	mapping := make(map[string]string)
+	mapping := make(map[string]openapi3.MappingRef)
 	for _, discriminatorValue := range sortedDiscriminatorValues {
 		serviceSchemaName := services[discriminatorValue] + suffix
 		serviceSchema, ok := openAPIDoc.Components.Schemas[serviceSchemaName]
@@ -189,7 +189,9 @@ func getServiceDiscriminator(openAPIDoc *openapi3.T, suffix string) (*openapi3.D
 		}
 
 		ref := schemasRefPrefix + serviceSchemaName
-		mapping[discriminatorValue] = ref
+		mapping[discriminatorValue] = openapi3.MappingRef{
+			Ref: ref,
+		}
 		refs = append(refs, openapi3.NewSchemaRef(ref, serviceSchema.Value))
 	}
 

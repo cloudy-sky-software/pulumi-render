@@ -5,7 +5,7 @@ go 1.26
 require (
 	github.com/cloudy-sky-software/pulschema v0.0.0-20260425162045-4f93ef0f7fdc
 	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20260425164420-ac1778da4c41
-	github.com/getkin/kin-openapi v0.136.0
+	github.com/getkin/kin-openapi v0.137.0
 	github.com/pulumi/pulumi/pkg/v3 v3.230.0
 	github.com/pulumi/pulumi/sdk/v3 v3.230.0
 )

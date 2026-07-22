@@ -143,7 +143,6 @@ class KeyValue(pulumi.CustomResource):
         """
         Input type for creating a Key Value instance
 
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input['MaxmemoryPolicy'] maxmemory_policy: The eviction policy for the Key Value instance
@@ -159,7 +158,6 @@ class KeyValue(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Input type for creating a Key Value instance
-
 
         :param str resource_name: The name of the resource.
         :param KeyValueArgs args: The arguments to use to populate this resource's properties.

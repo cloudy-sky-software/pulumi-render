@@ -247,7 +247,6 @@ class Postgres(pulumi.CustomResource):
         """
         Input for creating a database
 
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] datadog_api_key: The Datadog API key for the Datadog agent to monitor the new database.
@@ -265,7 +264,6 @@ class Postgres(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Input for creating a database
-
 
         :param str resource_name: The name of the resource.
         :param PostgresArgs args: The arguments to use to populate this resource's properties.

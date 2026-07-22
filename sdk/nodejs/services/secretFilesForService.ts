@@ -61,9 +61,9 @@ export class SecretFilesForService extends pulumi.CustomResource {
  * The set of arguments for constructing a SecretFilesForService resource.
  */
 export interface SecretFilesForServiceArgs {
-    secretFiles?: pulumi.Input<pulumi.Input<inputs.services.SecretFileInputArgs>[]>;
+    secretFiles?: pulumi.Input<pulumi.Input<inputs.services.SecretFileInputArgs>[] | undefined>;
     /**
      * The ID of the service
      */
-    serviceId?: pulumi.Input<string>;
+    serviceId?: pulumi.Input<string | undefined>;
 }

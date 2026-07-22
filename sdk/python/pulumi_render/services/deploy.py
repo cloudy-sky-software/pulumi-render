@@ -21,10 +21,10 @@ __all__ = ['DeployArgs', 'Deploy']
 @pulumi.input_type
 class DeployArgs:
     def __init__(__self__, *,
-                 clear_cache: Optional[pulumi.Input['ClearCache']] = None,
-                 commit_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 image_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 clear_cache: pulumi.Input[Optional['ClearCache']] = None,
+                 commit_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 image_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Deploy resource.
 
@@ -54,19 +54,19 @@ class DeployArgs:
 
     @_builtins.property
     @pulumi.getter(name="clearCache")
-    def clear_cache(self) -> Optional[pulumi.Input['ClearCache']]:
+    def clear_cache(self) -> pulumi.Input[Optional['ClearCache']]:
         """
         If `clear`, Render clears the service's build cache before deploying. This can be useful if you're experiencing issues with your build.
         """
         return pulumi.get(self, "clear_cache")
 
     @clear_cache.setter
-    def clear_cache(self, value: Optional[pulumi.Input['ClearCache']]):
+    def clear_cache(self, value: pulumi.Input[Optional['ClearCache']]):
         pulumi.set(self, "clear_cache", value)
 
     @_builtins.property
     @pulumi.getter(name="commitId")
-    def commit_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def commit_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The SHA of a specific Git commit to deploy for a service. Defaults to the latest commit on the service's connected branch.
 
@@ -79,12 +79,12 @@ class DeployArgs:
         return pulumi.get(self, "commit_id")
 
     @commit_id.setter
-    def commit_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def commit_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "commit_id", value)
 
     @_builtins.property
     @pulumi.getter(name="imageUrl")
-    def image_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def image_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The URL of the image to deploy for an image-backed service.
 
@@ -93,19 +93,19 @@ class DeployArgs:
         return pulumi.get(self, "image_url")
 
     @image_url.setter
-    def image_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def image_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "image_url", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceId")
-    def service_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the service
         """
         return pulumi.get(self, "service_id")
 
     @service_id.setter
-    def service_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_id", value)
 
 
@@ -115,10 +115,10 @@ class Deploy(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 clear_cache: Optional[pulumi.Input['ClearCache']] = None,
-                 commit_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 image_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 clear_cache: pulumi.Input[Optional['ClearCache']] = None,
+                 commit_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 image_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Create a Deploy resource with the given unique name, props, and options.
@@ -162,10 +162,10 @@ class Deploy(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 clear_cache: Optional[pulumi.Input['ClearCache']] = None,
-                 commit_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 image_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 clear_cache: pulumi.Input[Optional['ClearCache']] = None,
+                 commit_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 image_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):

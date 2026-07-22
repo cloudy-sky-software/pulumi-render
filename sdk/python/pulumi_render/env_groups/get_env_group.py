@@ -142,7 +142,7 @@ def get_env_group(env_group_id: Optional[_builtins.str] = None,
         secret_files=pulumi.get(__ret__, 'secret_files'),
         service_links=pulumi.get(__ret__, 'service_links'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
-def get_env_group_output(env_group_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_env_group_output(env_group_id: pulumi.Input[Optional[_builtins.str]] = None,
                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetEnvGroupResult]:
     """
     Use this data source to access information about an existing resource.

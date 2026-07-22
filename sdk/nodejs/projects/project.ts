@@ -103,7 +103,7 @@ export interface ProjectArgs {
     /**
      * The name of the project
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the owner that the project belongs to
      */

@@ -85,7 +85,7 @@ def get_postgres_connection_info(postgres_id: Optional[_builtins.str] = None,
         internal_connection_string=pulumi.get(__ret__, 'internal_connection_string'),
         password=pulumi.get(__ret__, 'password'),
         psql_command=pulumi.get(__ret__, 'psql_command'))
-def get_postgres_connection_info_output(postgres_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_postgres_connection_info_output(postgres_id: pulumi.Input[Optional[_builtins.str]] = None,
                                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPostgresConnectionInfoResult]:
     """
     Use this data source to access information about an existing resource.

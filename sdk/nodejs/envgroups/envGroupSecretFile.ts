@@ -89,7 +89,7 @@ export class EnvGroupSecretFile extends pulumi.CustomResource {
  * The set of arguments for constructing a EnvGroupSecretFile resource.
  */
 export interface EnvGroupSecretFileArgs {
-    content?: pulumi.Input<string>;
-    envGroupId?: pulumi.Input<string>;
-    secretFileName?: pulumi.Input<string>;
+    content?: pulumi.Input<string | undefined>;
+    envGroupId?: pulumi.Input<string | undefined>;
+    secretFileName?: pulumi.Input<string | undefined>;
 }

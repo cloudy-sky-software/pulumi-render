@@ -20,7 +20,7 @@ __all__ = ['RunCronJobArgs', 'RunCronJob']
 @pulumi.input_type
 class RunCronJobArgs:
     def __init__(__self__, *,
-                 cron_job_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 cron_job_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a RunCronJob resource.
 
@@ -31,14 +31,14 @@ class RunCronJobArgs:
 
     @_builtins.property
     @pulumi.getter(name="cronJobId")
-    def cron_job_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cron_job_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the cron job
         """
         return pulumi.get(self, "cron_job_id")
 
     @cron_job_id.setter
-    def cron_job_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cron_job_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cron_job_id", value)
 
 
@@ -48,7 +48,7 @@ class RunCronJob(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cron_job_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 cron_job_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Create a RunCronJob resource with the given unique name, props, and options.
@@ -81,7 +81,7 @@ class RunCronJob(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cron_job_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 cron_job_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):

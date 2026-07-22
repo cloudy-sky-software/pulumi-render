@@ -100,7 +100,7 @@ export class RegistryCredential extends pulumi.CustomResource {
  */
 export interface RegistryCredentialArgs {
     authToken: pulumi.Input<string>;
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     ownerId: pulumi.Input<string>;
     /**
      * The registry to use this credential with

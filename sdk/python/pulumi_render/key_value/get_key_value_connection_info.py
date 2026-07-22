@@ -87,7 +87,7 @@ def get_key_value_connection_info(key_value_id: Optional[_builtins.str] = None,
         cli_command=pulumi.get(__ret__, 'cli_command'),
         external_connection_string=pulumi.get(__ret__, 'external_connection_string'),
         internal_connection_string=pulumi.get(__ret__, 'internal_connection_string'))
-def get_key_value_connection_info_output(key_value_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_key_value_connection_info_output(key_value_id: pulumi.Input[Optional[_builtins.str]] = None,
                                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetKeyValueConnectionInfoResult]:
     """
     Use this data source to access information about an existing resource.

@@ -69,7 +69,7 @@ def get_postgres_recovery_info(postgres_id: Optional[_builtins.str] = None,
     return AwaitableGetPostgresRecoveryInfoResult(
         recovery_status=pulumi.get(__ret__, 'recovery_status'),
         starts_at=pulumi.get(__ret__, 'starts_at'))
-def get_postgres_recovery_info_output(postgres_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_postgres_recovery_info_output(postgres_id: pulumi.Input[Optional[_builtins.str]] = None,
                                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPostgresRecoveryInfoResult]:
     """
     Use this data source to access information about an existing resource.

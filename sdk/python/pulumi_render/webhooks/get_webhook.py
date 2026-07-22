@@ -111,7 +111,7 @@ def get_webhook(webhook_id: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         secret=pulumi.get(__ret__, 'secret'),
         url=pulumi.get(__ret__, 'url'))
-def get_webhook_output(webhook_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_webhook_output(webhook_id: pulumi.Input[Optional[_builtins.str]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetWebhookResult]:
     """
     Use this data source to access information about an existing resource.

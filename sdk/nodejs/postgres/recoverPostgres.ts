@@ -166,24 +166,24 @@ export interface RecoverPostgresArgs {
     /**
      * Datadog API key to use for monitoring the new database. Defaults to the API key of the original database. Use an empty string to prevent copying of the API key to the new database.
      */
-    datadogApiKey?: pulumi.Input<string>;
+    datadogApiKey?: pulumi.Input<string | undefined>;
     /**
      * Datadog region code to use for monitoring the new database. Defaults to the region code of the original database. Use an empty string to prevent copying of the region code to the new database.
      */
-    datadogSite?: pulumi.Input<string>;
+    datadogSite?: pulumi.Input<string | undefined>;
     /**
      * The environment to create the new database in. Defaults to the environment of the original database.
      */
-    environmentId?: pulumi.Input<string>;
+    environmentId?: pulumi.Input<string | undefined>;
     /**
      * The plan to use for the new database. Defaults to the same plan as the original database. Cannot be a lower tier plan than the original database.
      */
-    plan?: pulumi.Input<string>;
-    postgresId?: pulumi.Input<string>;
+    plan?: pulumi.Input<string | undefined>;
+    postgresId?: pulumi.Input<string | undefined>;
     /**
      * Name of the new database.
      */
-    restoreName?: pulumi.Input<string>;
+    restoreName?: pulumi.Input<string | undefined>;
     /**
      * The point in time to restore the database to. See `/recovery-info` for restore availability
      */

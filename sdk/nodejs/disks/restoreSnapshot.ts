@@ -88,10 +88,10 @@ export interface RestoreSnapshotArgs {
     /**
      * The ID of the disk
      */
-    diskId?: pulumi.Input<string>;
+    diskId?: pulumi.Input<string | undefined>;
     /**
      * When a service with a disk is scaled, the instanceId is used to identify the instance that the disk is attached to. Each instance's disks get their own snapshots, and can be restored separately.
      */
-    instanceId?: pulumi.Input<string>;
+    instanceId?: pulumi.Input<string | undefined>;
     snapshotKey: pulumi.Input<string>;
 }

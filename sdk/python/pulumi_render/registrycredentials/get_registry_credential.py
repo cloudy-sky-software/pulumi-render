@@ -113,7 +113,7 @@ def get_registry_credential(registry_credential_id: Optional[_builtins.str] = No
         registry=pulumi.get(__ret__, 'registry'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         username=pulumi.get(__ret__, 'username'))
-def get_registry_credential_output(registry_credential_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_registry_credential_output(registry_credential_id: pulumi.Input[Optional[_builtins.str]] = None,
                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRegistryCredentialResult]:
     """
     Use this data source to access information about an existing resource.

@@ -92,13 +92,13 @@ export interface PreviewServiceArgs {
     /**
      * A name for the service preview instance. If not specified, Render generates the name using the base service's name and the specified tag or SHA.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
      */
-    plan?: pulumi.Input<enums.services.Plan>;
+    plan?: pulumi.Input<enums.services.Plan | undefined>;
     /**
      * The ID of the service
      */
-    serviceId?: pulumi.Input<string>;
+    serviceId?: pulumi.Input<string | undefined>;
 }

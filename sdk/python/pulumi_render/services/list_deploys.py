@@ -59,7 +59,7 @@ def list_deploys(service_id: Optional[_builtins.str] = None,
 
     return AwaitableListDeploysResult(
         items=pulumi.get(__ret__, 'items'))
-def list_deploys_output(service_id: Optional[pulumi.Input[_builtins.str]] = None,
+def list_deploys_output(service_id: pulumi.Input[Optional[_builtins.str]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListDeploysResult]:
     """
     Use this data source to access information about an existing resource.

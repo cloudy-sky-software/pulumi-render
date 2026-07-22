@@ -207,7 +207,7 @@ def get_redis(redis_id: Optional[_builtins.str] = None,
         status=pulumi.get(__ret__, 'status'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         version=pulumi.get(__ret__, 'version'))
-def get_redis_output(redis_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_redis_output(redis_id: pulumi.Input[Optional[_builtins.str]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRedisResult]:
     """
     Use this data source to access information about an existing resource.

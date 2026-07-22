@@ -98,7 +98,7 @@ export interface WebhookArgs {
      * The event types that will trigger the webhook. An empty list means all event types will trigger the webhook.
      */
     eventFilter: pulumi.Input<pulumi.Input<enums.webhooks.EventFilterItem>[]>;
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the owner (team or personal user) whose resources should be returned
      */

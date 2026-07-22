@@ -89,9 +89,9 @@ export interface LinkServiceToEnvGroupArgs {
     /**
      * Filter for resources that belong to an environment group
      */
-    envGroupId?: pulumi.Input<string>;
+    envGroupId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the service
      */
-    serviceId?: pulumi.Input<string>;
+    serviceId?: pulumi.Input<string | undefined>;
 }

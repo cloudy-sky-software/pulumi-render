@@ -21,10 +21,10 @@ __all__ = ['EnvGroupEnvVarArgs', 'EnvGroupEnvVar']
 @pulumi.input_type
 class EnvGroupEnvVarArgs:
     def __init__(__self__, *,
-                 env_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 env_var_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 generate_value: Optional[pulumi.Input[_builtins.bool]] = None,
-                 value: Optional[pulumi.Input[_builtins.str]] = None):
+                 env_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 env_var_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 generate_value: pulumi.Input[Optional[_builtins.bool]] = None,
+                 value: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a EnvGroupEnvVar resource.
 
@@ -42,44 +42,44 @@ class EnvGroupEnvVarArgs:
 
     @_builtins.property
     @pulumi.getter(name="envGroupId")
-    def env_group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def env_group_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Filter for resources that belong to an environment group
         """
         return pulumi.get(self, "env_group_id")
 
     @env_group_id.setter
-    def env_group_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def env_group_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "env_group_id", value)
 
     @_builtins.property
     @pulumi.getter(name="envVarKey")
-    def env_var_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def env_var_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the environment variable
         """
         return pulumi.get(self, "env_var_key")
 
     @env_var_key.setter
-    def env_var_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def env_var_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "env_var_key", value)
 
     @_builtins.property
     @pulumi.getter(name="generateValue")
-    def generate_value(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def generate_value(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "generate_value")
 
     @generate_value.setter
-    def generate_value(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def generate_value(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "generate_value", value)
 
     @_builtins.property
     @pulumi.getter
-    def value(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def value(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "value")
 
     @value.setter
-    def value(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def value(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "value", value)
 
 
@@ -89,10 +89,10 @@ class EnvGroupEnvVar(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 env_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 env_var_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 generate_value: Optional[pulumi.Input[_builtins.bool]] = None,
-                 value: Optional[pulumi.Input[_builtins.str]] = None,
+                 env_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 env_var_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 generate_value: pulumi.Input[Optional[_builtins.bool]] = None,
+                 value: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Create a EnvGroupEnvVar resource with the given unique name, props, and options.
@@ -126,10 +126,10 @@ class EnvGroupEnvVar(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 env_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 env_var_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 generate_value: Optional[pulumi.Input[_builtins.bool]] = None,
-                 value: Optional[pulumi.Input[_builtins.str]] = None,
+                 env_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 env_var_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 generate_value: pulumi.Input[Optional[_builtins.bool]] = None,
+                 value: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):

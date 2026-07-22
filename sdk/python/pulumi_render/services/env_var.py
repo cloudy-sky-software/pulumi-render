@@ -19,10 +19,10 @@ __all__ = ['EnvVarArgs', 'EnvVar']
 @pulumi.input_type
 class EnvVarArgs:
     def __init__(__self__, *,
-                 env_var_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 generate_value: Optional[pulumi.Input[_builtins.bool]] = None,
-                 service_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 value: Optional[pulumi.Input[_builtins.str]] = None):
+                 env_var_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 generate_value: pulumi.Input[Optional[_builtins.bool]] = None,
+                 service_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 value: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a EnvVar resource.
 
@@ -40,44 +40,44 @@ class EnvVarArgs:
 
     @_builtins.property
     @pulumi.getter(name="envVarKey")
-    def env_var_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def env_var_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the environment variable
         """
         return pulumi.get(self, "env_var_key")
 
     @env_var_key.setter
-    def env_var_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def env_var_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "env_var_key", value)
 
     @_builtins.property
     @pulumi.getter(name="generateValue")
-    def generate_value(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def generate_value(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "generate_value")
 
     @generate_value.setter
-    def generate_value(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def generate_value(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "generate_value", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceId")
-    def service_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the service
         """
         return pulumi.get(self, "service_id")
 
     @service_id.setter
-    def service_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def value(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def value(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "value")
 
     @value.setter
-    def value(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def value(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "value", value)
 
 
@@ -87,10 +87,10 @@ class EnvVar(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 env_var_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 generate_value: Optional[pulumi.Input[_builtins.bool]] = None,
-                 service_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 value: Optional[pulumi.Input[_builtins.str]] = None,
+                 env_var_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 generate_value: pulumi.Input[Optional[_builtins.bool]] = None,
+                 service_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 value: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Create a EnvVar resource with the given unique name, props, and options.
@@ -124,10 +124,10 @@ class EnvVar(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 env_var_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 generate_value: Optional[pulumi.Input[_builtins.bool]] = None,
-                 service_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 value: Optional[pulumi.Input[_builtins.str]] = None,
+                 env_var_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 generate_value: pulumi.Input[Optional[_builtins.bool]] = None,
+                 service_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 value: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):

@@ -120,7 +120,7 @@ export class StaticSite extends pulumi.CustomResource {
             resourceInputs["repo"] = args?.repo;
             resourceInputs["rootDir"] = args?.rootDir;
             resourceInputs["secretFiles"] = args?.secretFiles;
-            resourceInputs["serviceDetails"] = args ? (args.serviceDetails ? pulumi.output(args.serviceDetails).apply(inputs.services.staticSiteDetailsCreateArgsProvideDefaults) : undefined) : undefined;
+            resourceInputs["serviceDetails"] = args ? pulumi.output(args.serviceDetails).apply(v => v === undefined ? undefined : inputs.services.staticSiteDetailsCreateArgsProvideDefaults(v)) : undefined;
             resourceInputs["type"] = (args?.type) ?? "static_site";
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["dashboardUrl"] = undefined /*out*/;
@@ -164,26 +164,26 @@ export class StaticSite extends pulumi.CustomResource {
  * The set of arguments for constructing a StaticSite resource.
  */
 export interface StaticSiteArgs {
-    autoDeploy?: pulumi.Input<enums.services.ServiceCreateAutoDeploy>;
+    autoDeploy?: pulumi.Input<enums.services.ServiceCreateAutoDeploy | undefined>;
     /**
      * If left empty, this will fall back to the default branch of the repository
      */
-    branch?: pulumi.Input<string>;
-    buildFilter?: pulumi.Input<inputs.services.BuildFilterArgs>;
-    envVars?: pulumi.Input<pulumi.Input<inputs.services.EnvVarInputArgs>[]>;
+    branch?: pulumi.Input<string | undefined>;
+    buildFilter?: pulumi.Input<inputs.services.BuildFilterArgs | undefined>;
+    envVars?: pulumi.Input<pulumi.Input<inputs.services.EnvVarInputArgs>[] | undefined>;
     /**
      * The ID of the environment the service is associated with
      */
-    environmentId?: pulumi.Input<string>;
-    image?: pulumi.Input<inputs.services.ImageArgs>;
+    environmentId?: pulumi.Input<string | undefined>;
+    image?: pulumi.Input<inputs.services.ImageArgs | undefined>;
     name: pulumi.Input<string>;
     ownerId: pulumi.Input<string>;
     /**
      * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
      */
-    repo?: pulumi.Input<string>;
-    rootDir?: pulumi.Input<string>;
-    secretFiles?: pulumi.Input<pulumi.Input<inputs.services.SecretFileInputArgs>[]>;
-    serviceDetails?: pulumi.Input<inputs.services.StaticSiteDetailsCreateArgs>;
-    type?: pulumi.Input<string>;
+    repo?: pulumi.Input<string | undefined>;
+    rootDir?: pulumi.Input<string | undefined>;
+    secretFiles?: pulumi.Input<pulumi.Input<inputs.services.SecretFileInputArgs>[] | undefined>;
+    serviceDetails?: pulumi.Input<inputs.services.StaticSiteDetailsCreateArgs | undefined>;
+    type?: pulumi.Input<string | undefined>;
 }

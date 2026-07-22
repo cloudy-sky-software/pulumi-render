@@ -61,9 +61,9 @@ export class EnvVarsForService extends pulumi.CustomResource {
  * The set of arguments for constructing a EnvVarsForService resource.
  */
 export interface EnvVarsForServiceArgs {
-    envVars?: pulumi.Input<pulumi.Input<inputs.services.EnvVarInputArgs>[]>;
+    envVars?: pulumi.Input<pulumi.Input<inputs.services.EnvVarInputArgs>[] | undefined>;
     /**
      * The ID of the service
      */
-    serviceId?: pulumi.Input<string>;
+    serviceId?: pulumi.Input<string | undefined>;
 }

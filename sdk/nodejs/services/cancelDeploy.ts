@@ -89,9 +89,9 @@ export interface CancelDeployArgs {
     /**
      * The ID of the deploy
      */
-    deployId?: pulumi.Input<string>;
+    deployId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the service
      */
-    serviceId?: pulumi.Input<string>;
+    serviceId?: pulumi.Input<string | undefined>;
 }

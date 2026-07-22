@@ -87,7 +87,7 @@ def get_redis_connection_info(redis_id: Optional[_builtins.str] = None,
         external_connection_string=pulumi.get(__ret__, 'external_connection_string'),
         internal_connection_string=pulumi.get(__ret__, 'internal_connection_string'),
         redis_cli_command=pulumi.get(__ret__, 'redis_cli_command'))
-def get_redis_connection_info_output(redis_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_redis_connection_info_output(redis_id: pulumi.Input[Optional[_builtins.str]] = None,
                                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRedisConnectionInfoResult]:
     """
     Use this data source to access information about an existing resource.

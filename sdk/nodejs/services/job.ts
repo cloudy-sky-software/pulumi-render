@@ -81,10 +81,10 @@ export class Job extends pulumi.CustomResource {
  * The set of arguments for constructing a Job resource.
  */
 export interface JobArgs {
-    planId?: pulumi.Input<string>;
+    planId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the service
      */
-    serviceId?: pulumi.Input<string>;
+    serviceId?: pulumi.Input<string | undefined>;
     startCommand: pulumi.Input<string>;
 }

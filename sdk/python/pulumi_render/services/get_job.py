@@ -131,8 +131,8 @@ def get_job(job_id: Optional[_builtins.str] = None,
         start_command=pulumi.get(__ret__, 'start_command'),
         started_at=pulumi.get(__ret__, 'started_at'),
         status=pulumi.get(__ret__, 'status'))
-def get_job_output(job_id: Optional[pulumi.Input[_builtins.str]] = None,
-                   service_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_job_output(job_id: pulumi.Input[Optional[_builtins.str]] = None,
+                   service_id: pulumi.Input[Optional[_builtins.str]] = None,
                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetJobResult]:
     """
     Use this data source to access information about an existing resource.

@@ -24,7 +24,7 @@ class ProjectArgs:
     def __init__(__self__, *,
                  environments: pulumi.Input[Sequence[pulumi.Input['ProjectCreateEnvironmentInputArgs']]],
                  owner_id: pulumi.Input[_builtins.str],
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Project resource.
 
@@ -63,14 +63,14 @@ class ProjectArgs:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the project
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
@@ -80,9 +80,9 @@ class Project(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 environments: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProjectCreateEnvironmentInputArgs', 'ProjectCreateEnvironmentInputArgsDict']]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 owner_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 environments: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectCreateEnvironmentInputArgs', 'ProjectCreateEnvironmentInputArgsDict']]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 owner_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Create a Project resource with the given unique name, props, and options.
@@ -117,9 +117,9 @@ class Project(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 environments: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProjectCreateEnvironmentInputArgs', 'ProjectCreateEnvironmentInputArgsDict']]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 owner_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 environments: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectCreateEnvironmentInputArgs', 'ProjectCreateEnvironmentInputArgsDict']]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 owner_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):

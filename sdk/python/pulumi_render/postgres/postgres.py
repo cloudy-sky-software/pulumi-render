@@ -25,17 +25,17 @@ class PostgresArgs:
                  owner_id: pulumi.Input[_builtins.str],
                  plan: pulumi.Input['Plan'],
                  version: pulumi.Input['Version'],
-                 database_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 database_user: Optional[pulumi.Input[_builtins.str]] = None,
-                 datadog_api_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 datadog_site: Optional[pulumi.Input[_builtins.str]] = None,
-                 disk_size_gb: Optional[pulumi.Input[_builtins.int]] = None,
-                 enable_high_availability: Optional[pulumi.Input[_builtins.bool]] = None,
-                 environment_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_allow_list: Optional[pulumi.Input[Sequence[pulumi.Input['CidrBlockAndDescriptionArgs']]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 read_replicas: Optional[pulumi.Input[Sequence[pulumi.Input['ReadReplicaInputArgs']]]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None):
+                 database_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 database_user: pulumi.Input[Optional[_builtins.str]] = None,
+                 datadog_api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 datadog_site: pulumi.Input[Optional[_builtins.str]] = None,
+                 disk_size_gb: pulumi.Input[Optional[_builtins.int]] = None,
+                 enable_high_availability: pulumi.Input[Optional[_builtins.bool]] = None,
+                 environment_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_allow_list: pulumi.Input[Optional[Sequence[pulumi.Input['CidrBlockAndDescriptionArgs']]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 read_replicas: pulumi.Input[Optional[Sequence[pulumi.Input['ReadReplicaInputArgs']]]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Postgres resource.
 
@@ -113,113 +113,113 @@ class PostgresArgs:
 
     @_builtins.property
     @pulumi.getter(name="databaseName")
-    def database_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def database_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "database_name")
 
     @database_name.setter
-    def database_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def database_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "database_name", value)
 
     @_builtins.property
     @pulumi.getter(name="databaseUser")
-    def database_user(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def database_user(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "database_user")
 
     @database_user.setter
-    def database_user(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def database_user(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "database_user", value)
 
     @_builtins.property
     @pulumi.getter(name="datadogAPIKey")
-    def datadog_api_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def datadog_api_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Datadog API key for the Datadog agent to monitor the new database.
         """
         return pulumi.get(self, "datadog_api_key")
 
     @datadog_api_key.setter
-    def datadog_api_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def datadog_api_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "datadog_api_key", value)
 
     @_builtins.property
     @pulumi.getter(name="datadogSite")
-    def datadog_site(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def datadog_site(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Datadog region to use for monitoring the new database. Defaults to 'US1'.
         """
         return pulumi.get(self, "datadog_site")
 
     @datadog_site.setter
-    def datadog_site(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def datadog_site(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "datadog_site", value)
 
     @_builtins.property
     @pulumi.getter(name="diskSizeGB")
-    def disk_size_gb(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def disk_size_gb(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of gigabytes of disk space to allocate for the database
         """
         return pulumi.get(self, "disk_size_gb")
 
     @disk_size_gb.setter
-    def disk_size_gb(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def disk_size_gb(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "disk_size_gb", value)
 
     @_builtins.property
     @pulumi.getter(name="enableHighAvailability")
-    def enable_high_availability(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_high_availability(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "enable_high_availability")
 
     @enable_high_availability.setter
-    def enable_high_availability(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_high_availability(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_high_availability", value)
 
     @_builtins.property
     @pulumi.getter(name="environmentId")
-    def environment_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def environment_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "environment_id")
 
     @environment_id.setter
-    def environment_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def environment_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "environment_id", value)
 
     @_builtins.property
     @pulumi.getter(name="ipAllowList")
-    def ip_allow_list(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CidrBlockAndDescriptionArgs']]]]:
+    def ip_allow_list(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['CidrBlockAndDescriptionArgs']]]]:
         return pulumi.get(self, "ip_allow_list")
 
     @ip_allow_list.setter
-    def ip_allow_list(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CidrBlockAndDescriptionArgs']]]]):
+    def ip_allow_list(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['CidrBlockAndDescriptionArgs']]]]):
         pulumi.set(self, "ip_allow_list", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the database as it will appear in the Render Dashboard
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="readReplicas")
-    def read_replicas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ReadReplicaInputArgs']]]]:
+    def read_replicas(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ReadReplicaInputArgs']]]]:
         return pulumi.get(self, "read_replicas")
 
     @read_replicas.setter
-    def read_replicas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ReadReplicaInputArgs']]]]):
+    def read_replicas(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ReadReplicaInputArgs']]]]):
         pulumi.set(self, "read_replicas", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
 
@@ -229,20 +229,20 @@ class Postgres(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 database_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 database_user: Optional[pulumi.Input[_builtins.str]] = None,
-                 datadog_api_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 datadog_site: Optional[pulumi.Input[_builtins.str]] = None,
-                 disk_size_gb: Optional[pulumi.Input[_builtins.int]] = None,
-                 enable_high_availability: Optional[pulumi.Input[_builtins.bool]] = None,
-                 environment_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_allow_list: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CidrBlockAndDescriptionArgs', 'CidrBlockAndDescriptionArgsDict']]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 owner_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 plan: Optional[pulumi.Input['Plan']] = None,
-                 read_replicas: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ReadReplicaInputArgs', 'ReadReplicaInputArgsDict']]]]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 version: Optional[pulumi.Input['Version']] = None,
+                 database_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 database_user: pulumi.Input[Optional[_builtins.str]] = None,
+                 datadog_api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 datadog_site: pulumi.Input[Optional[_builtins.str]] = None,
+                 disk_size_gb: pulumi.Input[Optional[_builtins.int]] = None,
+                 enable_high_availability: pulumi.Input[Optional[_builtins.bool]] = None,
+                 environment_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_allow_list: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CidrBlockAndDescriptionArgs', 'CidrBlockAndDescriptionArgsDict']]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 owner_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 plan: pulumi.Input[Optional['Plan']] = None,
+                 read_replicas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ReadReplicaInputArgs', 'ReadReplicaInputArgsDict']]]]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 version: pulumi.Input[Optional['Version']] = None,
                  __props__=None):
         """
         Input for creating a database
@@ -282,20 +282,20 @@ class Postgres(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 database_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 database_user: Optional[pulumi.Input[_builtins.str]] = None,
-                 datadog_api_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 datadog_site: Optional[pulumi.Input[_builtins.str]] = None,
-                 disk_size_gb: Optional[pulumi.Input[_builtins.int]] = None,
-                 enable_high_availability: Optional[pulumi.Input[_builtins.bool]] = None,
-                 environment_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_allow_list: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CidrBlockAndDescriptionArgs', 'CidrBlockAndDescriptionArgsDict']]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 owner_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 plan: Optional[pulumi.Input['Plan']] = None,
-                 read_replicas: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ReadReplicaInputArgs', 'ReadReplicaInputArgsDict']]]]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 version: Optional[pulumi.Input['Version']] = None,
+                 database_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 database_user: pulumi.Input[Optional[_builtins.str]] = None,
+                 datadog_api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 datadog_site: pulumi.Input[Optional[_builtins.str]] = None,
+                 disk_size_gb: pulumi.Input[Optional[_builtins.int]] = None,
+                 enable_high_availability: pulumi.Input[Optional[_builtins.bool]] = None,
+                 environment_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_allow_list: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CidrBlockAndDescriptionArgs', 'CidrBlockAndDescriptionArgsDict']]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 owner_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 plan: pulumi.Input[Optional['Plan']] = None,
+                 read_replicas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ReadReplicaInputArgs', 'ReadReplicaInputArgsDict']]]]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 version: pulumi.Input[Optional['Version']] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):

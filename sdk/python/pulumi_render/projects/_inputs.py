@@ -22,11 +22,11 @@ __all__ = [
 
 class ProjectCreateEnvironmentInputArgsDict(TypedDict):
     name: pulumi.Input[_builtins.str]
-    network_isolation_enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    network_isolation_enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Indicates whether network connections across environments are allowed.
     """
-    protected_status: NotRequired[pulumi.Input['ProjectCreateEnvironmentInputProtectedStatus']]
+    protected_status: NotRequired[pulumi.Input[Optional['ProjectCreateEnvironmentInputProtectedStatus']]]
     """
     Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
     """
@@ -35,8 +35,8 @@ class ProjectCreateEnvironmentInputArgsDict(TypedDict):
 class ProjectCreateEnvironmentInputArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
-                 network_isolation_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 protected_status: Optional[pulumi.Input['ProjectCreateEnvironmentInputProtectedStatus']] = None):
+                 network_isolation_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 protected_status: pulumi.Input[Optional['ProjectCreateEnvironmentInputProtectedStatus']] = None):
         """
         :param pulumi.Input[_builtins.bool] network_isolation_enabled: Indicates whether network connections across environments are allowed.
         :param pulumi.Input['ProjectCreateEnvironmentInputProtectedStatus'] protected_status: Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
@@ -58,26 +58,26 @@ class ProjectCreateEnvironmentInputArgs:
 
     @_builtins.property
     @pulumi.getter(name="networkIsolationEnabled")
-    def network_isolation_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def network_isolation_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates whether network connections across environments are allowed.
         """
         return pulumi.get(self, "network_isolation_enabled")
 
     @network_isolation_enabled.setter
-    def network_isolation_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def network_isolation_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "network_isolation_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="protectedStatus")
-    def protected_status(self) -> Optional[pulumi.Input['ProjectCreateEnvironmentInputProtectedStatus']]:
+    def protected_status(self) -> pulumi.Input[Optional['ProjectCreateEnvironmentInputProtectedStatus']]:
         """
         Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
         """
         return pulumi.get(self, "protected_status")
 
     @protected_status.setter
-    def protected_status(self, value: Optional[pulumi.Input['ProjectCreateEnvironmentInputProtectedStatus']]):
+    def protected_status(self, value: pulumi.Input[Optional['ProjectCreateEnvironmentInputProtectedStatus']]):
         pulumi.set(self, "protected_status", value)
 
 

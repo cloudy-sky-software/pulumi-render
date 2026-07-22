@@ -21,8 +21,8 @@ __all__ = ['CancelDeployArgs', 'CancelDeploy']
 @pulumi.input_type
 class CancelDeployArgs:
     def __init__(__self__, *,
-                 deploy_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 deploy_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a CancelDeploy resource.
 
@@ -36,26 +36,26 @@ class CancelDeployArgs:
 
     @_builtins.property
     @pulumi.getter(name="deployId")
-    def deploy_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def deploy_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the deploy
         """
         return pulumi.get(self, "deploy_id")
 
     @deploy_id.setter
-    def deploy_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def deploy_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "deploy_id", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceId")
-    def service_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the service
         """
         return pulumi.get(self, "service_id")
 
     @service_id.setter
-    def service_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_id", value)
 
 
@@ -65,8 +65,8 @@ class CancelDeploy(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 deploy_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 deploy_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Create a CancelDeploy resource with the given unique name, props, and options.
@@ -100,8 +100,8 @@ class CancelDeploy(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 deploy_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 deploy_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):

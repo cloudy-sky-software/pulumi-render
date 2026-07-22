@@ -252,7 +252,7 @@ def get_static_site(service_id: Optional[_builtins.str] = None,
         suspenders=pulumi.get(__ret__, 'suspenders'),
         type=pulumi.get(__ret__, 'type'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
-def get_static_site_output(service_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_static_site_output(service_id: pulumi.Input[Optional[_builtins.str]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetStaticSiteResult]:
     """
     Use this data source to access information about an existing resource.

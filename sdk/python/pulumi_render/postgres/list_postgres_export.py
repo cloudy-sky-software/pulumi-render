@@ -56,7 +56,7 @@ def list_postgres_export(postgres_id: Optional[_builtins.str] = None,
 
     return AwaitableListPostgresExportResult(
         items=pulumi.get(__ret__, 'items'))
-def list_postgres_export_output(postgres_id: Optional[pulumi.Input[_builtins.str]] = None,
+def list_postgres_export_output(postgres_id: pulumi.Input[Optional[_builtins.str]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListPostgresExportResult]:
     """
     Use this data source to access information about an existing resource.

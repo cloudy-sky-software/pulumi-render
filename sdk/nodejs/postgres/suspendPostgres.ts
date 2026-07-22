@@ -55,5 +55,5 @@ export class SuspendPostgres extends pulumi.CustomResource {
  * The set of arguments for constructing a SuspendPostgres resource.
  */
 export interface SuspendPostgresArgs {
-    postgresId?: pulumi.Input<string>;
+    postgresId?: pulumi.Input<string | undefined>;
 }

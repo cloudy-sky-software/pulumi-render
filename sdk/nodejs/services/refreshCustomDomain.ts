@@ -59,9 +59,9 @@ export interface RefreshCustomDomainArgs {
     /**
      * The ID or name of the custom domain
      */
-    customDomainIdOrName?: pulumi.Input<string>;
+    customDomainIdOrName?: pulumi.Input<string | undefined>;
     /**
      * The ID of the service
      */
-    serviceId?: pulumi.Input<string>;
+    serviceId?: pulumi.Input<string | undefined>;
 }

@@ -68,7 +68,7 @@ export class AutoscaleService extends pulumi.CustomResource {
             if (args?.min === undefined && !opts.urn) {
                 throw new Error("Missing required property 'min'");
             }
-            resourceInputs["criteria"] = args ? (args.criteria ? pulumi.output(args.criteria).apply(inputs.services.criteriaPropertiesArgsProvideDefaults) : undefined) : undefined;
+            resourceInputs["criteria"] = args ? pulumi.output(args.criteria).apply(inputs.services.criteriaPropertiesArgsProvideDefaults) : undefined;
             resourceInputs["enabled"] = (args?.enabled) ?? false;
             resourceInputs["max"] = args?.max;
             resourceInputs["min"] = args?.min;
@@ -101,5 +101,5 @@ export interface AutoscaleServiceArgs {
     /**
      * The ID of the service
      */
-    serviceId?: pulumi.Input<string>;
+    serviceId?: pulumi.Input<string | undefined>;
 }

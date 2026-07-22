@@ -21,9 +21,9 @@ __all__ = ['EnvGroupSecretFileArgs', 'EnvGroupSecretFile']
 @pulumi.input_type
 class EnvGroupSecretFileArgs:
     def __init__(__self__, *,
-                 content: Optional[pulumi.Input[_builtins.str]] = None,
-                 env_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_file_name: Optional[pulumi.Input[_builtins.str]] = None):
+                 content: pulumi.Input[Optional[_builtins.str]] = None,
+                 env_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_file_name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a EnvGroupSecretFile resource.
         """
@@ -36,29 +36,29 @@ class EnvGroupSecretFileArgs:
 
     @_builtins.property
     @pulumi.getter
-    def content(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def content(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "content")
 
     @content.setter
-    def content(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def content(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "content", value)
 
     @_builtins.property
     @pulumi.getter(name="envGroupId")
-    def env_group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def env_group_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "env_group_id")
 
     @env_group_id.setter
-    def env_group_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def env_group_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "env_group_id", value)
 
     @_builtins.property
     @pulumi.getter(name="secretFileName")
-    def secret_file_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_file_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "secret_file_name")
 
     @secret_file_name.setter
-    def secret_file_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_file_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_file_name", value)
 
 
@@ -68,9 +68,9 @@ class EnvGroupSecretFile(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 content: Optional[pulumi.Input[_builtins.str]] = None,
-                 env_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_file_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 content: pulumi.Input[Optional[_builtins.str]] = None,
+                 env_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_file_name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Create a EnvGroupSecretFile resource with the given unique name, props, and options.
@@ -102,9 +102,9 @@ class EnvGroupSecretFile(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 content: Optional[pulumi.Input[_builtins.str]] = None,
-                 env_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_file_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 content: pulumi.Input[Optional[_builtins.str]] = None,
+                 env_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_file_name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):

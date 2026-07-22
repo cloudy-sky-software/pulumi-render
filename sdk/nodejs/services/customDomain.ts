@@ -58,9 +58,9 @@ export class CustomDomain extends pulumi.CustomResource {
  * The set of arguments for constructing a CustomDomain resource.
  */
 export interface CustomDomainArgs {
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the service
      */
-    serviceId?: pulumi.Input<string>;
+    serviceId?: pulumi.Input<string | undefined>;
 }

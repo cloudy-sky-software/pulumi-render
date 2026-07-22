@@ -24,11 +24,11 @@ class KeyValueArgs:
     def __init__(__self__, *,
                  owner_id: pulumi.Input[_builtins.str],
                  plan: pulumi.Input['Plan'],
-                 environment_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_allow_list: Optional[pulumi.Input[Sequence[pulumi.Input['CidrBlockAndDescriptionArgs']]]] = None,
-                 maxmemory_policy: Optional[pulumi.Input['MaxmemoryPolicy']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None):
+                 environment_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_allow_list: pulumi.Input[Optional[Sequence[pulumi.Input['CidrBlockAndDescriptionArgs']]]] = None,
+                 maxmemory_policy: pulumi.Input[Optional['MaxmemoryPolicy']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a KeyValue resource.
 
@@ -73,56 +73,56 @@ class KeyValueArgs:
 
     @_builtins.property
     @pulumi.getter(name="environmentId")
-    def environment_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def environment_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "environment_id")
 
     @environment_id.setter
-    def environment_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def environment_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "environment_id", value)
 
     @_builtins.property
     @pulumi.getter(name="ipAllowList")
-    def ip_allow_list(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CidrBlockAndDescriptionArgs']]]]:
+    def ip_allow_list(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['CidrBlockAndDescriptionArgs']]]]:
         return pulumi.get(self, "ip_allow_list")
 
     @ip_allow_list.setter
-    def ip_allow_list(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CidrBlockAndDescriptionArgs']]]]):
+    def ip_allow_list(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['CidrBlockAndDescriptionArgs']]]]):
         pulumi.set(self, "ip_allow_list", value)
 
     @_builtins.property
     @pulumi.getter(name="maxmemoryPolicy")
-    def maxmemory_policy(self) -> Optional[pulumi.Input['MaxmemoryPolicy']]:
+    def maxmemory_policy(self) -> pulumi.Input[Optional['MaxmemoryPolicy']]:
         """
         The eviction policy for the Key Value instance
         """
         return pulumi.get(self, "maxmemory_policy")
 
     @maxmemory_policy.setter
-    def maxmemory_policy(self, value: Optional[pulumi.Input['MaxmemoryPolicy']]):
+    def maxmemory_policy(self, value: pulumi.Input[Optional['MaxmemoryPolicy']]):
         pulumi.set(self, "maxmemory_policy", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the Key Value instance
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The region where the Key Value instance is located
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
 
@@ -132,13 +132,13 @@ class KeyValue(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 environment_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_allow_list: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CidrBlockAndDescriptionArgs', 'CidrBlockAndDescriptionArgsDict']]]]] = None,
-                 maxmemory_policy: Optional[pulumi.Input['MaxmemoryPolicy']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 owner_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 plan: Optional[pulumi.Input['Plan']] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
+                 environment_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_allow_list: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CidrBlockAndDescriptionArgs', 'CidrBlockAndDescriptionArgsDict']]]]] = None,
+                 maxmemory_policy: pulumi.Input[Optional['MaxmemoryPolicy']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 owner_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 plan: pulumi.Input[Optional['Plan']] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Input type for creating a Key Value instance
@@ -176,13 +176,13 @@ class KeyValue(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 environment_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_allow_list: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CidrBlockAndDescriptionArgs', 'CidrBlockAndDescriptionArgsDict']]]]] = None,
-                 maxmemory_policy: Optional[pulumi.Input['MaxmemoryPolicy']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 owner_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 plan: Optional[pulumi.Input['Plan']] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
+                 environment_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_allow_list: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CidrBlockAndDescriptionArgs', 'CidrBlockAndDescriptionArgsDict']]]]] = None,
+                 maxmemory_policy: pulumi.Input[Optional['MaxmemoryPolicy']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 owner_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 plan: pulumi.Input[Optional['Plan']] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):

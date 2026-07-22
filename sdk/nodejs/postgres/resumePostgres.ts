@@ -55,5 +55,5 @@ export class ResumePostgres extends pulumi.CustomResource {
  * The set of arguments for constructing a ResumePostgres resource.
  */
 export interface ResumePostgresArgs {
-    postgresId?: pulumi.Input<string>;
+    postgresId?: pulumi.Input<string | undefined>;
 }

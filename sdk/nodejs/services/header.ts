@@ -88,7 +88,7 @@ export interface HeaderArgs {
     /**
      * Header name
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The request path to add the header to. Wildcards will cause headers to be applied to all matching paths.
      */
@@ -96,7 +96,7 @@ export interface HeaderArgs {
     /**
      * The ID of the service
      */
-    serviceId?: pulumi.Input<string>;
+    serviceId?: pulumi.Input<string | undefined>;
     /**
      * Header value
      */

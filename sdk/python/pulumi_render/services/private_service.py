@@ -24,17 +24,17 @@ class PrivateServiceArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
                  owner_id: pulumi.Input[_builtins.str],
-                 auto_deploy: Optional[pulumi.Input['ServiceCreateAutoDeploy']] = None,
-                 branch: Optional[pulumi.Input[_builtins.str]] = None,
-                 build_filter: Optional[pulumi.Input['BuildFilterArgs']] = None,
-                 env_vars: Optional[pulumi.Input[Sequence[pulumi.Input['EnvVarInputArgs']]]] = None,
-                 environment_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 image: Optional[pulumi.Input['ImageArgs']] = None,
-                 repo: Optional[pulumi.Input[_builtins.str]] = None,
-                 root_dir: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_files: Optional[pulumi.Input[Sequence[pulumi.Input['SecretFileInputArgs']]]] = None,
-                 service_details: Optional[pulumi.Input['PrivateServiceDetailsCreateArgs']] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 auto_deploy: pulumi.Input[Optional['ServiceCreateAutoDeploy']] = None,
+                 branch: pulumi.Input[Optional[_builtins.str]] = None,
+                 build_filter: pulumi.Input[Optional['BuildFilterArgs']] = None,
+                 env_vars: pulumi.Input[Optional[Sequence[pulumi.Input['EnvVarInputArgs']]]] = None,
+                 environment_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 image: pulumi.Input[Optional['ImageArgs']] = None,
+                 repo: pulumi.Input[Optional[_builtins.str]] = None,
+                 root_dir: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_files: pulumi.Input[Optional[Sequence[pulumi.Input['SecretFileInputArgs']]]] = None,
+                 service_details: pulumi.Input[Optional['PrivateServiceDetailsCreateArgs']] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a PrivateService resource.
 
@@ -91,110 +91,110 @@ class PrivateServiceArgs:
 
     @_builtins.property
     @pulumi.getter(name="autoDeploy")
-    def auto_deploy(self) -> Optional[pulumi.Input['ServiceCreateAutoDeploy']]:
+    def auto_deploy(self) -> pulumi.Input[Optional['ServiceCreateAutoDeploy']]:
         return pulumi.get(self, "auto_deploy")
 
     @auto_deploy.setter
-    def auto_deploy(self, value: Optional[pulumi.Input['ServiceCreateAutoDeploy']]):
+    def auto_deploy(self, value: pulumi.Input[Optional['ServiceCreateAutoDeploy']]):
         pulumi.set(self, "auto_deploy", value)
 
     @_builtins.property
     @pulumi.getter
-    def branch(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def branch(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         If left empty, this will fall back to the default branch of the repository
         """
         return pulumi.get(self, "branch")
 
     @branch.setter
-    def branch(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def branch(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "branch", value)
 
     @_builtins.property
     @pulumi.getter(name="buildFilter")
-    def build_filter(self) -> Optional[pulumi.Input['BuildFilterArgs']]:
+    def build_filter(self) -> pulumi.Input[Optional['BuildFilterArgs']]:
         return pulumi.get(self, "build_filter")
 
     @build_filter.setter
-    def build_filter(self, value: Optional[pulumi.Input['BuildFilterArgs']]):
+    def build_filter(self, value: pulumi.Input[Optional['BuildFilterArgs']]):
         pulumi.set(self, "build_filter", value)
 
     @_builtins.property
     @pulumi.getter(name="envVars")
-    def env_vars(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['EnvVarInputArgs']]]]:
+    def env_vars(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['EnvVarInputArgs']]]]:
         return pulumi.get(self, "env_vars")
 
     @env_vars.setter
-    def env_vars(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['EnvVarInputArgs']]]]):
+    def env_vars(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['EnvVarInputArgs']]]]):
         pulumi.set(self, "env_vars", value)
 
     @_builtins.property
     @pulumi.getter(name="environmentId")
-    def environment_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def environment_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the environment the service is associated with
         """
         return pulumi.get(self, "environment_id")
 
     @environment_id.setter
-    def environment_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def environment_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "environment_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def image(self) -> Optional[pulumi.Input['ImageArgs']]:
+    def image(self) -> pulumi.Input[Optional['ImageArgs']]:
         return pulumi.get(self, "image")
 
     @image.setter
-    def image(self, value: Optional[pulumi.Input['ImageArgs']]):
+    def image(self, value: pulumi.Input[Optional['ImageArgs']]):
         pulumi.set(self, "image", value)
 
     @_builtins.property
     @pulumi.getter
-    def repo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def repo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
         """
         return pulumi.get(self, "repo")
 
     @repo.setter
-    def repo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def repo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "repo", value)
 
     @_builtins.property
     @pulumi.getter(name="rootDir")
-    def root_dir(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def root_dir(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "root_dir")
 
     @root_dir.setter
-    def root_dir(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def root_dir(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "root_dir", value)
 
     @_builtins.property
     @pulumi.getter(name="secretFiles")
-    def secret_files(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretFileInputArgs']]]]:
+    def secret_files(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['SecretFileInputArgs']]]]:
         return pulumi.get(self, "secret_files")
 
     @secret_files.setter
-    def secret_files(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecretFileInputArgs']]]]):
+    def secret_files(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['SecretFileInputArgs']]]]):
         pulumi.set(self, "secret_files", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceDetails")
-    def service_details(self) -> Optional[pulumi.Input['PrivateServiceDetailsCreateArgs']]:
+    def service_details(self) -> pulumi.Input[Optional['PrivateServiceDetailsCreateArgs']]:
         return pulumi.get(self, "service_details")
 
     @service_details.setter
-    def service_details(self, value: Optional[pulumi.Input['PrivateServiceDetailsCreateArgs']]):
+    def service_details(self, value: pulumi.Input[Optional['PrivateServiceDetailsCreateArgs']]):
         pulumi.set(self, "service_details", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
@@ -204,19 +204,19 @@ class PrivateService(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 auto_deploy: Optional[pulumi.Input['ServiceCreateAutoDeploy']] = None,
-                 branch: Optional[pulumi.Input[_builtins.str]] = None,
-                 build_filter: Optional[pulumi.Input[Union['BuildFilterArgs', 'BuildFilterArgsDict']]] = None,
-                 env_vars: Optional[pulumi.Input[Sequence[pulumi.Input[Union['EnvVarInputArgs', 'EnvVarInputArgsDict']]]]] = None,
-                 environment_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 image: Optional[pulumi.Input[Union['ImageArgs', 'ImageArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 owner_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 repo: Optional[pulumi.Input[_builtins.str]] = None,
-                 root_dir: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_files: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretFileInputArgs', 'SecretFileInputArgsDict']]]]] = None,
-                 service_details: Optional[pulumi.Input[Union['PrivateServiceDetailsCreateArgs', 'PrivateServiceDetailsCreateArgsDict']]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 auto_deploy: pulumi.Input[Optional['ServiceCreateAutoDeploy']] = None,
+                 branch: pulumi.Input[Optional[_builtins.str]] = None,
+                 build_filter: pulumi.Input[Optional[Union['BuildFilterArgs', 'BuildFilterArgsDict']]] = None,
+                 env_vars: pulumi.Input[Optional[Sequence[pulumi.Input[Union['EnvVarInputArgs', 'EnvVarInputArgsDict']]]]] = None,
+                 environment_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 image: pulumi.Input[Optional[Union['ImageArgs', 'ImageArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 owner_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 repo: pulumi.Input[Optional[_builtins.str]] = None,
+                 root_dir: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_files: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretFileInputArgs', 'SecretFileInputArgsDict']]]]] = None,
+                 service_details: pulumi.Input[Optional[Union['PrivateServiceDetailsCreateArgs', 'PrivateServiceDetailsCreateArgsDict']]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Create a PrivateService resource with the given unique name, props, and options.
@@ -251,19 +251,19 @@ class PrivateService(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 auto_deploy: Optional[pulumi.Input['ServiceCreateAutoDeploy']] = None,
-                 branch: Optional[pulumi.Input[_builtins.str]] = None,
-                 build_filter: Optional[pulumi.Input[Union['BuildFilterArgs', 'BuildFilterArgsDict']]] = None,
-                 env_vars: Optional[pulumi.Input[Sequence[pulumi.Input[Union['EnvVarInputArgs', 'EnvVarInputArgsDict']]]]] = None,
-                 environment_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 image: Optional[pulumi.Input[Union['ImageArgs', 'ImageArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 owner_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 repo: Optional[pulumi.Input[_builtins.str]] = None,
-                 root_dir: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_files: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretFileInputArgs', 'SecretFileInputArgsDict']]]]] = None,
-                 service_details: Optional[pulumi.Input[Union['PrivateServiceDetailsCreateArgs', 'PrivateServiceDetailsCreateArgsDict']]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 auto_deploy: pulumi.Input[Optional['ServiceCreateAutoDeploy']] = None,
+                 branch: pulumi.Input[Optional[_builtins.str]] = None,
+                 build_filter: pulumi.Input[Optional[Union['BuildFilterArgs', 'BuildFilterArgsDict']]] = None,
+                 env_vars: pulumi.Input[Optional[Sequence[pulumi.Input[Union['EnvVarInputArgs', 'EnvVarInputArgsDict']]]]] = None,
+                 environment_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 image: pulumi.Input[Optional[Union['ImageArgs', 'ImageArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 owner_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 repo: pulumi.Input[Optional[_builtins.str]] = None,
+                 root_dir: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_files: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretFileInputArgs', 'SecretFileInputArgsDict']]]]] = None,
+                 service_details: pulumi.Input[Optional[Union['PrivateServiceDetailsCreateArgs', 'PrivateServiceDetailsCreateArgsDict']]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):

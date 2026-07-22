@@ -59,7 +59,7 @@ def list_blueprint_syncs(blueprint_id: Optional[_builtins.str] = None,
 
     return AwaitableListBlueprintSyncsResult(
         items=pulumi.get(__ret__, 'items'))
-def list_blueprint_syncs_output(blueprint_id: Optional[pulumi.Input[_builtins.str]] = None,
+def list_blueprint_syncs_output(blueprint_id: pulumi.Input[Optional[_builtins.str]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListBlueprintSyncsResult]:
     """
     Use this data source to access information about an existing resource.

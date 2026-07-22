@@ -58,5 +58,5 @@ export interface SuspendServiceArgs {
     /**
      * The ID of the service
      */
-    serviceId?: pulumi.Input<string>;
+    serviceId?: pulumi.Input<string | undefined>;
 }

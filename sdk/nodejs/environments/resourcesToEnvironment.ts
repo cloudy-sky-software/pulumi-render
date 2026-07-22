@@ -94,6 +94,6 @@ export class ResourcesToEnvironment extends pulumi.CustomResource {
  * The set of arguments for constructing a ResourcesToEnvironment resource.
  */
 export interface ResourcesToEnvironmentArgs {
-    environmentId?: pulumi.Input<string>;
+    environmentId?: pulumi.Input<string | undefined>;
     resourceIds: pulumi.Input<pulumi.Input<string>[]>;
 }

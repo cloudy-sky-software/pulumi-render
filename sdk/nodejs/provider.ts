@@ -48,5 +48,5 @@ export interface ProviderArgs {
     /**
      * The Render API key.
      */
-    apiKey?: pulumi.Input<string>;
+    apiKey?: pulumi.Input<string | undefined>;
 }

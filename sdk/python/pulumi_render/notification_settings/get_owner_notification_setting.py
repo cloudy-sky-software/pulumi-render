@@ -98,7 +98,7 @@ def get_owner_notification_setting(owner_id: Optional[_builtins.str] = None,
         owner_id=pulumi.get(__ret__, 'owner_id'),
         preview_notifications_enabled=pulumi.get(__ret__, 'preview_notifications_enabled'),
         slack_enabled=pulumi.get(__ret__, 'slack_enabled'))
-def get_owner_notification_setting_output(owner_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_owner_notification_setting_output(owner_id: pulumi.Input[Optional[_builtins.str]] = None,
                                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOwnerNotificationSettingResult]:
     """
     Use this data source to access information about an existing resource.

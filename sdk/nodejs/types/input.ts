@@ -16,9 +16,9 @@ export namespace disks {
 
 export namespace envgroups {
     export interface EnvVarInputArgs {
-        generateValue?: pulumi.Input<boolean>;
-        key?: pulumi.Input<string>;
-        value?: pulumi.Input<string>;
+        generateValue?: pulumi.Input<boolean | undefined>;
+        key?: pulumi.Input<string | undefined>;
+        value?: pulumi.Input<string | undefined>;
     }
 
     export interface SecretFileInputArgs {
@@ -74,11 +74,11 @@ export namespace projects {
         /**
          * Indicates whether network connections across environments are allowed.
          */
-        networkIsolationEnabled?: pulumi.Input<boolean>;
+        networkIsolationEnabled?: pulumi.Input<boolean | undefined>;
         /**
          * Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
          */
-        protectedStatus?: pulumi.Input<enums.projects.ProjectCreateEnvironmentInputProtectedStatus>;
+        protectedStatus?: pulumi.Input<enums.projects.ProjectCreateEnvironmentInputProtectedStatus | undefined>;
     }
 
 }
@@ -99,35 +99,35 @@ export namespace registrycredentials {
 
 export namespace services {
     export interface BackgroundWorkerDetailsCreateArgs {
-        autoscaling?: pulumi.Input<inputs.services.WebServiceDetailspropertiesautoscalingArgs>;
-        disk?: pulumi.Input<inputs.services.ServiceDiskArgs>;
+        autoscaling?: pulumi.Input<inputs.services.WebServiceDetailspropertiesautoscalingArgs | undefined>;
+        disk?: pulumi.Input<inputs.services.ServiceDiskArgs | undefined>;
         /**
          * This field has been deprecated, runtime should be used in its place.
          */
-        env?: pulumi.Input<enums.services.BackgroundWorkerDetailsCreateEnv>;
-        envSpecificDetails?: pulumi.Input<inputs.services.EnvSpecificDetailsCreateArgs>;
+        env?: pulumi.Input<enums.services.BackgroundWorkerDetailsCreateEnv | undefined>;
+        envSpecificDetails?: pulumi.Input<inputs.services.EnvSpecificDetailsCreateArgs | undefined>;
         /**
          * The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
          */
-        maxShutdownDelaySeconds?: pulumi.Input<number>;
+        maxShutdownDelaySeconds?: pulumi.Input<number | undefined>;
         /**
          * Defaults to 1
          */
-        numInstances?: pulumi.Input<number>;
+        numInstances?: pulumi.Input<number | undefined>;
         /**
          * Defaults to "starter"
          */
-        plan?: pulumi.Input<enums.services.BackgroundWorkerDetailsCreatePlan>;
-        preDeployCommand?: pulumi.Input<string>;
-        previews?: pulumi.Input<inputs.services.PreviewsArgs>;
+        plan?: pulumi.Input<enums.services.BackgroundWorkerDetailsCreatePlan | undefined>;
+        preDeployCommand?: pulumi.Input<string | undefined>;
+        previews?: pulumi.Input<inputs.services.PreviewsArgs | undefined>;
         /**
          * This field has been deprecated. previews.generation should be used in its place.
          */
-        pullRequestPreviewsEnabled?: pulumi.Input<enums.services.BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled>;
+        pullRequestPreviewsEnabled?: pulumi.Input<enums.services.BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled | undefined>;
         /**
          * Defaults to "oregon"
          */
-        region?: pulumi.Input<enums.services.BackgroundWorkerDetailsCreateRegion>;
+        region?: pulumi.Input<enums.services.BackgroundWorkerDetailsCreateRegion | undefined>;
         /**
          * Runtime
          */
@@ -139,11 +139,11 @@ export namespace services {
     export function backgroundWorkerDetailsCreateArgsProvideDefaults(val: BackgroundWorkerDetailsCreateArgs): BackgroundWorkerDetailsCreateArgs {
         return {
             ...val,
-            autoscaling: (val.autoscaling ? pulumi.output(val.autoscaling).apply(inputs.services.webServiceDetailspropertiesautoscalingArgsProvideDefaults) : undefined),
+            autoscaling: pulumi.output(val.autoscaling).apply(v => v === undefined ? undefined : inputs.services.webServiceDetailspropertiesautoscalingArgsProvideDefaults(v)),
             maxShutdownDelaySeconds: (val.maxShutdownDelaySeconds) ?? 30,
             numInstances: (val.numInstances) ?? 1,
             plan: (val.plan) ?? "starter",
-            previews: (val.previews ? pulumi.output(val.previews).apply(inputs.services.previewsArgsProvideDefaults) : undefined),
+            previews: pulumi.output(val.previews).apply(v => v === undefined ? undefined : inputs.services.previewsArgsProvideDefaults(v)),
             pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
             region: (val.region) ?? "oregon",
         };
@@ -190,16 +190,16 @@ export namespace services {
         /**
          * This field has been deprecated, runtime should be used in its place.
          */
-        env?: pulumi.Input<enums.services.CronJobDetailsCreateEnv>;
-        envSpecificDetails?: pulumi.Input<inputs.services.EnvSpecificDetailsArgs>;
+        env?: pulumi.Input<enums.services.CronJobDetailsCreateEnv | undefined>;
+        envSpecificDetails?: pulumi.Input<inputs.services.EnvSpecificDetailsArgs | undefined>;
         /**
          * Defaults to "starter"
          */
-        plan?: pulumi.Input<enums.services.CronJobDetailsCreatePlan>;
+        plan?: pulumi.Input<enums.services.CronJobDetailsCreatePlan | undefined>;
         /**
          * Defaults to "oregon"
          */
-        region?: pulumi.Input<enums.services.CronJobDetailsCreateRegion>;
+        region?: pulumi.Input<enums.services.CronJobDetailsCreateRegion | undefined>;
         /**
          * Runtime
          */
@@ -218,31 +218,31 @@ export namespace services {
     }
 
     export interface EnvSpecificDetailsArgs {
-        buildCommand?: pulumi.Input<string>;
-        dockerCommand?: pulumi.Input<string>;
-        dockerContext?: pulumi.Input<string>;
-        dockerfilePath?: pulumi.Input<string>;
-        preDeployCommand?: pulumi.Input<string>;
-        registryCredential?: pulumi.Input<inputs.services.RegistryCredentialArgs>;
-        startCommand?: pulumi.Input<string>;
+        buildCommand?: pulumi.Input<string | undefined>;
+        dockerCommand?: pulumi.Input<string | undefined>;
+        dockerContext?: pulumi.Input<string | undefined>;
+        dockerfilePath?: pulumi.Input<string | undefined>;
+        preDeployCommand?: pulumi.Input<string | undefined>;
+        registryCredential?: pulumi.Input<inputs.services.RegistryCredentialArgs | undefined>;
+        startCommand?: pulumi.Input<string | undefined>;
     }
 
     export interface EnvSpecificDetailsCreateArgs {
-        buildCommand?: pulumi.Input<string>;
-        dockerCommand?: pulumi.Input<string>;
-        dockerContext?: pulumi.Input<string>;
+        buildCommand?: pulumi.Input<string | undefined>;
+        dockerCommand?: pulumi.Input<string | undefined>;
+        dockerContext?: pulumi.Input<string | undefined>;
         /**
          * Defaults to "./Dockerfile"
          */
-        dockerfilePath?: pulumi.Input<string>;
-        registryCredentialId?: pulumi.Input<string>;
-        startCommand?: pulumi.Input<string>;
+        dockerfilePath?: pulumi.Input<string | undefined>;
+        registryCredentialId?: pulumi.Input<string | undefined>;
+        startCommand?: pulumi.Input<string | undefined>;
     }
 
     export interface EnvVarInputArgs {
-        generateValue?: pulumi.Input<boolean>;
-        key?: pulumi.Input<string>;
-        value?: pulumi.Input<string>;
+        generateValue?: pulumi.Input<boolean | undefined>;
+        key?: pulumi.Input<string | undefined>;
+        value?: pulumi.Input<string | undefined>;
     }
 
     export interface HeaderInputArgs {
@@ -272,7 +272,7 @@ export namespace services {
         /**
          * Optional reference to the registry credential passed to the image repository to retrieve this image.
          */
-        registryCredentialId?: pulumi.Input<string>;
+        registryCredentialId?: pulumi.Input<string | undefined>;
     }
 
     export interface MaintenanceModeArgs {
@@ -287,7 +287,7 @@ export namespace services {
         /**
          * Defaults to "off"
          */
-        generation?: pulumi.Input<enums.services.PreviewsGeneration>;
+        generation?: pulumi.Input<enums.services.PreviewsGeneration | undefined>;
     }
     /**
      * previewsArgsProvideDefaults sets the appropriate defaults for PreviewsArgs
@@ -300,35 +300,35 @@ export namespace services {
     }
 
     export interface PrivateServiceDetailsCreateArgs {
-        autoscaling?: pulumi.Input<inputs.services.WebServiceDetailspropertiesautoscalingArgs>;
-        disk?: pulumi.Input<inputs.services.ServiceDiskArgs>;
+        autoscaling?: pulumi.Input<inputs.services.WebServiceDetailspropertiesautoscalingArgs | undefined>;
+        disk?: pulumi.Input<inputs.services.ServiceDiskArgs | undefined>;
         /**
          * This field has been deprecated, runtime should be used in its place.
          */
-        env?: pulumi.Input<enums.services.PrivateServiceDetailsCreateEnv>;
-        envSpecificDetails?: pulumi.Input<inputs.services.EnvSpecificDetailsCreateArgs>;
+        env?: pulumi.Input<enums.services.PrivateServiceDetailsCreateEnv | undefined>;
+        envSpecificDetails?: pulumi.Input<inputs.services.EnvSpecificDetailsCreateArgs | undefined>;
         /**
          * The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
          */
-        maxShutdownDelaySeconds?: pulumi.Input<number>;
+        maxShutdownDelaySeconds?: pulumi.Input<number | undefined>;
         /**
          * Defaults to 1
          */
-        numInstances?: pulumi.Input<number>;
+        numInstances?: pulumi.Input<number | undefined>;
         /**
          * Defaults to "starter"
          */
-        plan?: pulumi.Input<enums.services.PrivateServiceDetailsCreatePlan>;
-        preDeployCommand?: pulumi.Input<string>;
-        previews?: pulumi.Input<inputs.services.PreviewsArgs>;
+        plan?: pulumi.Input<enums.services.PrivateServiceDetailsCreatePlan | undefined>;
+        preDeployCommand?: pulumi.Input<string | undefined>;
+        previews?: pulumi.Input<inputs.services.PreviewsArgs | undefined>;
         /**
          * This field has been deprecated. previews.generation should be used in its place.
          */
-        pullRequestPreviewsEnabled?: pulumi.Input<enums.services.PrivateServiceDetailsCreatePullRequestPreviewsEnabled>;
+        pullRequestPreviewsEnabled?: pulumi.Input<enums.services.PrivateServiceDetailsCreatePullRequestPreviewsEnabled | undefined>;
         /**
          * Defaults to "oregon"
          */
-        region?: pulumi.Input<enums.services.PrivateServiceDetailsCreateRegion>;
+        region?: pulumi.Input<enums.services.PrivateServiceDetailsCreateRegion | undefined>;
         /**
          * Runtime
          */
@@ -340,11 +340,11 @@ export namespace services {
     export function privateServiceDetailsCreateArgsProvideDefaults(val: PrivateServiceDetailsCreateArgs): PrivateServiceDetailsCreateArgs {
         return {
             ...val,
-            autoscaling: (val.autoscaling ? pulumi.output(val.autoscaling).apply(inputs.services.webServiceDetailspropertiesautoscalingArgsProvideDefaults) : undefined),
+            autoscaling: pulumi.output(val.autoscaling).apply(v => v === undefined ? undefined : inputs.services.webServiceDetailspropertiesautoscalingArgsProvideDefaults(v)),
             maxShutdownDelaySeconds: (val.maxShutdownDelaySeconds) ?? 30,
             numInstances: (val.numInstances) ?? 1,
             plan: (val.plan) ?? "starter",
-            previews: (val.previews ? pulumi.output(val.previews).apply(inputs.services.previewsArgsProvideDefaults) : undefined),
+            previews: pulumi.output(val.previews).apply(v => v === undefined ? undefined : inputs.services.previewsArgsProvideDefaults(v)),
             pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
             region: (val.region) ?? "oregon",
         };
@@ -378,7 +378,7 @@ export namespace services {
         /**
          * Redirect and Rewrite Rules are applied in priority order starting at 0. Defaults to last in the priority list.
          */
-        priority?: pulumi.Input<number>;
+        priority?: pulumi.Input<number | undefined>;
         source: pulumi.Input<string>;
         type: pulumi.Input<enums.services.RouteCreateType>;
     }
@@ -394,26 +394,26 @@ export namespace services {
         /**
          * Defaults to 1
          */
-        sizeGB?: pulumi.Input<number>;
+        sizeGB?: pulumi.Input<number | undefined>;
     }
 
     export interface StaticSiteDetailsCreateArgs {
-        buildCommand?: pulumi.Input<string>;
-        headers?: pulumi.Input<pulumi.Input<inputs.services.HeaderInputArgs>[]>;
-        previews?: pulumi.Input<inputs.services.PreviewsArgs>;
+        buildCommand?: pulumi.Input<string | undefined>;
+        headers?: pulumi.Input<pulumi.Input<inputs.services.HeaderInputArgs>[] | undefined>;
+        previews?: pulumi.Input<inputs.services.PreviewsArgs | undefined>;
         /**
          * Defaults to "public"
          */
-        publishPath?: pulumi.Input<string>;
+        publishPath?: pulumi.Input<string | undefined>;
         /**
          * This field has been deprecated. previews.generation should be used in its place.
          */
-        pullRequestPreviewsEnabled?: pulumi.Input<enums.services.StaticSiteDetailsCreatePullRequestPreviewsEnabled>;
+        pullRequestPreviewsEnabled?: pulumi.Input<enums.services.StaticSiteDetailsCreatePullRequestPreviewsEnabled | undefined>;
         /**
          * Controls whether render.com subdomains are available for the service
          */
-        renderSubdomainPolicy?: pulumi.Input<enums.services.StaticSiteDetailsCreateRenderSubdomainPolicy>;
-        routes?: pulumi.Input<pulumi.Input<inputs.services.RouteCreateArgs>[]>;
+        renderSubdomainPolicy?: pulumi.Input<enums.services.StaticSiteDetailsCreateRenderSubdomainPolicy | undefined>;
+        routes?: pulumi.Input<pulumi.Input<inputs.services.RouteCreateArgs>[] | undefined>;
     }
     /**
      * staticSiteDetailsCreateArgsProvideDefaults sets the appropriate defaults for StaticSiteDetailsCreateArgs
@@ -421,47 +421,47 @@ export namespace services {
     export function staticSiteDetailsCreateArgsProvideDefaults(val: StaticSiteDetailsCreateArgs): StaticSiteDetailsCreateArgs {
         return {
             ...val,
-            previews: (val.previews ? pulumi.output(val.previews).apply(inputs.services.previewsArgsProvideDefaults) : undefined),
+            previews: pulumi.output(val.previews).apply(v => v === undefined ? undefined : inputs.services.previewsArgsProvideDefaults(v)),
             pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
         };
     }
 
     export interface WebServiceDetailsCreateArgs {
-        autoscaling?: pulumi.Input<inputs.services.WebServiceDetailspropertiesautoscalingArgs>;
-        disk?: pulumi.Input<inputs.services.ServiceDiskArgs>;
+        autoscaling?: pulumi.Input<inputs.services.WebServiceDetailspropertiesautoscalingArgs | undefined>;
+        disk?: pulumi.Input<inputs.services.ServiceDiskArgs | undefined>;
         /**
          * This field has been deprecated, runtime should be used in its place.
          */
-        env?: pulumi.Input<enums.services.WebServiceDetailsCreateEnv>;
-        envSpecificDetails?: pulumi.Input<inputs.services.EnvSpecificDetailsCreateArgs>;
-        healthCheckPath?: pulumi.Input<string>;
-        maintenanceMode?: pulumi.Input<inputs.services.MaintenanceModeArgs>;
+        env?: pulumi.Input<enums.services.WebServiceDetailsCreateEnv | undefined>;
+        envSpecificDetails?: pulumi.Input<inputs.services.EnvSpecificDetailsCreateArgs | undefined>;
+        healthCheckPath?: pulumi.Input<string | undefined>;
+        maintenanceMode?: pulumi.Input<inputs.services.MaintenanceModeArgs | undefined>;
         /**
          * The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
          */
-        maxShutdownDelaySeconds?: pulumi.Input<number>;
+        maxShutdownDelaySeconds?: pulumi.Input<number | undefined>;
         /**
          * Defaults to 1
          */
-        numInstances?: pulumi.Input<number>;
+        numInstances?: pulumi.Input<number | undefined>;
         /**
          * Defaults to "starter"
          */
-        plan?: pulumi.Input<enums.services.WebServiceDetailsCreatePlan>;
-        preDeployCommand?: pulumi.Input<string>;
-        previews?: pulumi.Input<inputs.services.PreviewsArgs>;
+        plan?: pulumi.Input<enums.services.WebServiceDetailsCreatePlan | undefined>;
+        preDeployCommand?: pulumi.Input<string | undefined>;
+        previews?: pulumi.Input<inputs.services.PreviewsArgs | undefined>;
         /**
          * This field has been deprecated. previews.generation should be used in its place.
          */
-        pullRequestPreviewsEnabled?: pulumi.Input<enums.services.WebServiceDetailsCreatePullRequestPreviewsEnabled>;
+        pullRequestPreviewsEnabled?: pulumi.Input<enums.services.WebServiceDetailsCreatePullRequestPreviewsEnabled | undefined>;
         /**
          * Defaults to "oregon"
          */
-        region?: pulumi.Input<enums.services.WebServiceDetailsCreateRegion>;
+        region?: pulumi.Input<enums.services.WebServiceDetailsCreateRegion | undefined>;
         /**
          * Controls whether render.com subdomains are available for the service
          */
-        renderSubdomainPolicy?: pulumi.Input<enums.services.WebServiceDetailsCreateRenderSubdomainPolicy>;
+        renderSubdomainPolicy?: pulumi.Input<enums.services.WebServiceDetailsCreateRenderSubdomainPolicy | undefined>;
         /**
          * Runtime
          */
@@ -473,10 +473,10 @@ export namespace services {
     export function webServiceDetailsCreateArgsProvideDefaults(val: WebServiceDetailsCreateArgs): WebServiceDetailsCreateArgs {
         return {
             ...val,
-            autoscaling: (val.autoscaling ? pulumi.output(val.autoscaling).apply(inputs.services.webServiceDetailspropertiesautoscalingArgsProvideDefaults) : undefined),
+            autoscaling: pulumi.output(val.autoscaling).apply(v => v === undefined ? undefined : inputs.services.webServiceDetailspropertiesautoscalingArgsProvideDefaults(v)),
             maxShutdownDelaySeconds: (val.maxShutdownDelaySeconds) ?? 30,
             plan: (val.plan) ?? "starter",
-            previews: (val.previews ? pulumi.output(val.previews).apply(inputs.services.previewsArgsProvideDefaults) : undefined),
+            previews: pulumi.output(val.previews).apply(v => v === undefined ? undefined : inputs.services.previewsArgsProvideDefaults(v)),
             pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
             region: (val.region) ?? "oregon",
         };

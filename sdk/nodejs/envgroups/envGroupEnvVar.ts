@@ -95,11 +95,11 @@ export interface EnvGroupEnvVarArgs {
     /**
      * Filter for resources that belong to an environment group
      */
-    envGroupId?: pulumi.Input<string>;
+    envGroupId?: pulumi.Input<string | undefined>;
     /**
      * The name of the environment variable
      */
-    envVarKey?: pulumi.Input<string>;
-    generateValue?: pulumi.Input<boolean>;
-    value?: pulumi.Input<string>;
+    envVarKey?: pulumi.Input<string | undefined>;
+    generateValue?: pulumi.Input<boolean | undefined>;
+    value?: pulumi.Input<string | undefined>;
 }

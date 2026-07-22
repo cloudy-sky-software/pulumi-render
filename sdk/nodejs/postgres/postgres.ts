@@ -168,34 +168,34 @@ export class Postgres extends pulumi.CustomResource {
  * The set of arguments for constructing a Postgres resource.
  */
 export interface PostgresArgs {
-    databaseName?: pulumi.Input<string>;
-    databaseUser?: pulumi.Input<string>;
+    databaseName?: pulumi.Input<string | undefined>;
+    databaseUser?: pulumi.Input<string | undefined>;
     /**
      * The Datadog API key for the Datadog agent to monitor the new database.
      */
-    datadogAPIKey?: pulumi.Input<string>;
+    datadogAPIKey?: pulumi.Input<string | undefined>;
     /**
      * Datadog region to use for monitoring the new database. Defaults to 'US1'.
      */
-    datadogSite?: pulumi.Input<string>;
+    datadogSite?: pulumi.Input<string | undefined>;
     /**
      * The number of gigabytes of disk space to allocate for the database
      */
-    diskSizeGB?: pulumi.Input<number>;
-    enableHighAvailability?: pulumi.Input<boolean>;
-    environmentId?: pulumi.Input<string>;
-    ipAllowList?: pulumi.Input<pulumi.Input<inputs.postgres.CidrBlockAndDescriptionArgs>[]>;
+    diskSizeGB?: pulumi.Input<number | undefined>;
+    enableHighAvailability?: pulumi.Input<boolean | undefined>;
+    environmentId?: pulumi.Input<string | undefined>;
+    ipAllowList?: pulumi.Input<pulumi.Input<inputs.postgres.CidrBlockAndDescriptionArgs>[] | undefined>;
     /**
      * The name of the database as it will appear in the Render Dashboard
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the workspace to create the database for
      */
     ownerId: pulumi.Input<string>;
     plan: pulumi.Input<enums.postgres.Plan>;
-    readReplicas?: pulumi.Input<pulumi.Input<inputs.postgres.ReadReplicaInputArgs>[]>;
-    region?: pulumi.Input<string>;
+    readReplicas?: pulumi.Input<pulumi.Input<inputs.postgres.ReadReplicaInputArgs>[] | undefined>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The PostgreSQL version
      */

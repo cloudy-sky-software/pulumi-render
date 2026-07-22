@@ -82,9 +82,9 @@ export interface CancelJobArgs {
     /**
      * The ID of the job
      */
-    jobId?: pulumi.Input<string>;
+    jobId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the service
      */
-    serviceId?: pulumi.Input<string>;
+    serviceId?: pulumi.Input<string | undefined>;
 }

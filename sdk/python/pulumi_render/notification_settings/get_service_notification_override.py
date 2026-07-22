@@ -78,7 +78,7 @@ def get_service_notification_override(service_id: Optional[_builtins.str] = None
         notifications_to_send=pulumi.get(__ret__, 'notifications_to_send'),
         preview_notifications_enabled=pulumi.get(__ret__, 'preview_notifications_enabled'),
         service_id=pulumi.get(__ret__, 'service_id'))
-def get_service_notification_override_output(service_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_service_notification_override_output(service_id: pulumi.Input[Optional[_builtins.str]] = None,
                                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetServiceNotificationOverrideResult]:
     """
     Use this data source to access information about an existing resource.

@@ -20,16 +20,16 @@ __all__ = [
     'BackgroundWorkerDetailsCreateArgsDict',
     'BuildFilterArgs',
     'BuildFilterArgsDict',
-    'CriteriaPropertiesCpuPropertiesArgs',
-    'CriteriaPropertiesCpuPropertiesArgsDict',
     'CriteriaPropertiesArgs',
     'CriteriaPropertiesArgsDict',
+    'CriteriaPropertiesCpuPropertiesArgs',
+    'CriteriaPropertiesCpuPropertiesArgsDict',
     'CronJobDetailsCreateArgs',
     'CronJobDetailsCreateArgsDict',
-    'EnvSpecificDetailsCreateArgs',
-    'EnvSpecificDetailsCreateArgsDict',
     'EnvSpecificDetailsArgs',
     'EnvSpecificDetailsArgsDict',
+    'EnvSpecificDetailsCreateArgs',
+    'EnvSpecificDetailsCreateArgsDict',
     'EnvVarInputArgs',
     'EnvVarInputArgsDict',
     'HeaderInputArgs',
@@ -54,14 +54,14 @@ __all__ = [
     'StaticSiteDetailsCreateArgsDict',
     'WebServiceDetailsCreateArgs',
     'WebServiceDetailsCreateArgsDict',
-    'WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs',
-    'WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgsDict',
-    'WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgs',
-    'WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgsDict',
-    'WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs',
-    'WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgsDict',
     'WebServiceDetailspropertiesautoscalingArgs',
     'WebServiceDetailspropertiesautoscalingArgsDict',
+    'WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgs',
+    'WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgsDict',
+    'WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs',
+    'WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgsDict',
+    'WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs',
+    'WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgsDict',
 ]
 
 class BackgroundWorkerDetailsCreateArgsDict(TypedDict):
@@ -69,32 +69,32 @@ class BackgroundWorkerDetailsCreateArgsDict(TypedDict):
     """
     Runtime
     """
-    autoscaling: NotRequired[pulumi.Input['WebServiceDetailspropertiesautoscalingArgsDict']]
-    disk: NotRequired[pulumi.Input['ServiceDiskArgsDict']]
-    env: NotRequired[pulumi.Input['BackgroundWorkerDetailsCreateEnv']]
+    autoscaling: NotRequired[pulumi.Input[Optional['WebServiceDetailspropertiesautoscalingArgsDict']]]
+    disk: NotRequired[pulumi.Input[Optional['ServiceDiskArgsDict']]]
+    env: NotRequired[pulumi.Input[Optional['BackgroundWorkerDetailsCreateEnv']]]
     """
     This field has been deprecated, runtime should be used in its place.
     """
-    env_specific_details: NotRequired[pulumi.Input['EnvSpecificDetailsCreateArgsDict']]
-    max_shutdown_delay_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    env_specific_details: NotRequired[pulumi.Input[Optional['EnvSpecificDetailsCreateArgsDict']]]
+    max_shutdown_delay_seconds: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
     """
-    num_instances: NotRequired[pulumi.Input[_builtins.int]]
+    num_instances: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Defaults to 1
     """
-    plan: NotRequired[pulumi.Input['BackgroundWorkerDetailsCreatePlan']]
+    plan: NotRequired[pulumi.Input[Optional['BackgroundWorkerDetailsCreatePlan']]]
     """
     Defaults to "starter"
     """
-    pre_deploy_command: NotRequired[pulumi.Input[_builtins.str]]
-    previews: NotRequired[pulumi.Input['PreviewsArgsDict']]
-    pull_request_previews_enabled: NotRequired[pulumi.Input['BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled']]
+    pre_deploy_command: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    previews: NotRequired[pulumi.Input[Optional['PreviewsArgsDict']]]
+    pull_request_previews_enabled: NotRequired[pulumi.Input[Optional['BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled']]]
     """
     This field has been deprecated. previews.generation should be used in its place.
     """
-    region: NotRequired[pulumi.Input['BackgroundWorkerDetailsCreateRegion']]
+    region: NotRequired[pulumi.Input[Optional['BackgroundWorkerDetailsCreateRegion']]]
     """
     Defaults to "oregon"
     """
@@ -103,17 +103,17 @@ class BackgroundWorkerDetailsCreateArgsDict(TypedDict):
 class BackgroundWorkerDetailsCreateArgs:
     def __init__(__self__, *,
                  runtime: pulumi.Input['BackgroundWorkerDetailsCreateRuntime'],
-                 autoscaling: Optional[pulumi.Input['WebServiceDetailspropertiesautoscalingArgs']] = None,
-                 disk: Optional[pulumi.Input['ServiceDiskArgs']] = None,
-                 env: Optional[pulumi.Input['BackgroundWorkerDetailsCreateEnv']] = None,
-                 env_specific_details: Optional[pulumi.Input['EnvSpecificDetailsCreateArgs']] = None,
-                 max_shutdown_delay_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 num_instances: Optional[pulumi.Input[_builtins.int]] = None,
-                 plan: Optional[pulumi.Input['BackgroundWorkerDetailsCreatePlan']] = None,
-                 pre_deploy_command: Optional[pulumi.Input[_builtins.str]] = None,
-                 previews: Optional[pulumi.Input['PreviewsArgs']] = None,
-                 pull_request_previews_enabled: Optional[pulumi.Input['BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled']] = None,
-                 region: Optional[pulumi.Input['BackgroundWorkerDetailsCreateRegion']] = None):
+                 autoscaling: pulumi.Input[Optional['WebServiceDetailspropertiesautoscalingArgs']] = None,
+                 disk: pulumi.Input[Optional['ServiceDiskArgs']] = None,
+                 env: pulumi.Input[Optional['BackgroundWorkerDetailsCreateEnv']] = None,
+                 env_specific_details: pulumi.Input[Optional['EnvSpecificDetailsCreateArgs']] = None,
+                 max_shutdown_delay_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 num_instances: pulumi.Input[Optional[_builtins.int]] = None,
+                 plan: pulumi.Input[Optional['BackgroundWorkerDetailsCreatePlan']] = None,
+                 pre_deploy_command: pulumi.Input[Optional[_builtins.str]] = None,
+                 previews: pulumi.Input[Optional['PreviewsArgs']] = None,
+                 pull_request_previews_enabled: pulumi.Input[Optional['BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled']] = None,
+                 region: pulumi.Input[Optional['BackgroundWorkerDetailsCreateRegion']] = None):
         """
         :param pulumi.Input['BackgroundWorkerDetailsCreateRuntime'] runtime: Runtime
         :param pulumi.Input['BackgroundWorkerDetailsCreateEnv'] env: This field has been deprecated, runtime should be used in its place.
@@ -171,119 +171,119 @@ class BackgroundWorkerDetailsCreateArgs:
 
     @_builtins.property
     @pulumi.getter
-    def autoscaling(self) -> Optional[pulumi.Input['WebServiceDetailspropertiesautoscalingArgs']]:
+    def autoscaling(self) -> pulumi.Input[Optional['WebServiceDetailspropertiesautoscalingArgs']]:
         return pulumi.get(self, "autoscaling")
 
     @autoscaling.setter
-    def autoscaling(self, value: Optional[pulumi.Input['WebServiceDetailspropertiesautoscalingArgs']]):
+    def autoscaling(self, value: pulumi.Input[Optional['WebServiceDetailspropertiesautoscalingArgs']]):
         pulumi.set(self, "autoscaling", value)
 
     @_builtins.property
     @pulumi.getter
-    def disk(self) -> Optional[pulumi.Input['ServiceDiskArgs']]:
+    def disk(self) -> pulumi.Input[Optional['ServiceDiskArgs']]:
         return pulumi.get(self, "disk")
 
     @disk.setter
-    def disk(self, value: Optional[pulumi.Input['ServiceDiskArgs']]):
+    def disk(self, value: pulumi.Input[Optional['ServiceDiskArgs']]):
         pulumi.set(self, "disk", value)
 
     @_builtins.property
     @pulumi.getter
-    def env(self) -> Optional[pulumi.Input['BackgroundWorkerDetailsCreateEnv']]:
+    def env(self) -> pulumi.Input[Optional['BackgroundWorkerDetailsCreateEnv']]:
         """
         This field has been deprecated, runtime should be used in its place.
         """
         return pulumi.get(self, "env")
 
     @env.setter
-    def env(self, value: Optional[pulumi.Input['BackgroundWorkerDetailsCreateEnv']]):
+    def env(self, value: pulumi.Input[Optional['BackgroundWorkerDetailsCreateEnv']]):
         pulumi.set(self, "env", value)
 
     @_builtins.property
     @pulumi.getter(name="envSpecificDetails")
-    def env_specific_details(self) -> Optional[pulumi.Input['EnvSpecificDetailsCreateArgs']]:
+    def env_specific_details(self) -> pulumi.Input[Optional['EnvSpecificDetailsCreateArgs']]:
         return pulumi.get(self, "env_specific_details")
 
     @env_specific_details.setter
-    def env_specific_details(self, value: Optional[pulumi.Input['EnvSpecificDetailsCreateArgs']]):
+    def env_specific_details(self, value: pulumi.Input[Optional['EnvSpecificDetailsCreateArgs']]):
         pulumi.set(self, "env_specific_details", value)
 
     @_builtins.property
     @pulumi.getter(name="maxShutdownDelaySeconds")
-    def max_shutdown_delay_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_shutdown_delay_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
         """
         return pulumi.get(self, "max_shutdown_delay_seconds")
 
     @max_shutdown_delay_seconds.setter
-    def max_shutdown_delay_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_shutdown_delay_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_shutdown_delay_seconds", value)
 
     @_builtins.property
     @pulumi.getter(name="numInstances")
-    def num_instances(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def num_instances(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Defaults to 1
         """
         return pulumi.get(self, "num_instances")
 
     @num_instances.setter
-    def num_instances(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def num_instances(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "num_instances", value)
 
     @_builtins.property
     @pulumi.getter
-    def plan(self) -> Optional[pulumi.Input['BackgroundWorkerDetailsCreatePlan']]:
+    def plan(self) -> pulumi.Input[Optional['BackgroundWorkerDetailsCreatePlan']]:
         """
         Defaults to "starter"
         """
         return pulumi.get(self, "plan")
 
     @plan.setter
-    def plan(self, value: Optional[pulumi.Input['BackgroundWorkerDetailsCreatePlan']]):
+    def plan(self, value: pulumi.Input[Optional['BackgroundWorkerDetailsCreatePlan']]):
         pulumi.set(self, "plan", value)
 
     @_builtins.property
     @pulumi.getter(name="preDeployCommand")
-    def pre_deploy_command(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pre_deploy_command(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "pre_deploy_command")
 
     @pre_deploy_command.setter
-    def pre_deploy_command(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pre_deploy_command(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pre_deploy_command", value)
 
     @_builtins.property
     @pulumi.getter
-    def previews(self) -> Optional[pulumi.Input['PreviewsArgs']]:
+    def previews(self) -> pulumi.Input[Optional['PreviewsArgs']]:
         return pulumi.get(self, "previews")
 
     @previews.setter
-    def previews(self, value: Optional[pulumi.Input['PreviewsArgs']]):
+    def previews(self, value: pulumi.Input[Optional['PreviewsArgs']]):
         pulumi.set(self, "previews", value)
 
     @_builtins.property
     @pulumi.getter(name="pullRequestPreviewsEnabled")
-    def pull_request_previews_enabled(self) -> Optional[pulumi.Input['BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled']]:
+    def pull_request_previews_enabled(self) -> pulumi.Input[Optional['BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled']]:
         """
         This field has been deprecated. previews.generation should be used in its place.
         """
         return pulumi.get(self, "pull_request_previews_enabled")
 
     @pull_request_previews_enabled.setter
-    def pull_request_previews_enabled(self, value: Optional[pulumi.Input['BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled']]):
+    def pull_request_previews_enabled(self, value: pulumi.Input[Optional['BackgroundWorkerDetailsCreatePullRequestPreviewsEnabled']]):
         pulumi.set(self, "pull_request_previews_enabled", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input['BackgroundWorkerDetailsCreateRegion']]:
+    def region(self) -> pulumi.Input[Optional['BackgroundWorkerDetailsCreateRegion']]:
         """
         Defaults to "oregon"
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input['BackgroundWorkerDetailsCreateRegion']]):
+    def region(self, value: pulumi.Input[Optional['BackgroundWorkerDetailsCreateRegion']]):
         pulumi.set(self, "region", value)
 
 
@@ -318,48 +318,6 @@ class BuildFilterArgs:
         pulumi.set(self, "paths", value)
 
 
-class CriteriaPropertiesCpuPropertiesArgsDict(TypedDict):
-    enabled: pulumi.Input[_builtins.bool]
-    percentage: pulumi.Input[_builtins.int]
-    """
-    Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
-    """
-
-@pulumi.input_type
-class CriteriaPropertiesCpuPropertiesArgs:
-    def __init__(__self__, *,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 percentage: pulumi.Input[_builtins.int]):
-        """
-        :param pulumi.Input[_builtins.int] percentage: Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
-        """
-        if enabled is None:
-            enabled = False
-        pulumi.set(__self__, "enabled", enabled)
-        pulumi.set(__self__, "percentage", percentage)
-
-    @_builtins.property
-    @pulumi.getter
-    def enabled(self) -> pulumi.Input[_builtins.bool]:
-        return pulumi.get(self, "enabled")
-
-    @enabled.setter
-    def enabled(self, value: pulumi.Input[_builtins.bool]):
-        pulumi.set(self, "enabled", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def percentage(self) -> pulumi.Input[_builtins.int]:
-        """
-        Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
-        """
-        return pulumi.get(self, "percentage")
-
-    @percentage.setter
-    def percentage(self, value: pulumi.Input[_builtins.int]):
-        pulumi.set(self, "percentage", value)
-
-
 class CriteriaPropertiesArgsDict(TypedDict):
     cpu: pulumi.Input['CriteriaPropertiesCpuPropertiesArgsDict']
     memory: pulumi.Input['WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgsDict']
@@ -391,22 +349,64 @@ class CriteriaPropertiesArgs:
         pulumi.set(self, "memory", value)
 
 
+class CriteriaPropertiesCpuPropertiesArgsDict(TypedDict):
+    enabled: pulumi.Input[_builtins.bool]
+    percentage: pulumi.Input[_builtins.int]
+    """
+    Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+    """
+
+@pulumi.input_type
+class CriteriaPropertiesCpuPropertiesArgs:
+    def __init__(__self__, *,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 percentage: pulumi.Input[_builtins.int]):
+        """
+        :param pulumi.Input[_builtins.int] percentage: Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+        """
+        if enabled is None:
+            enabled = False
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "percentage", percentage)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[_builtins.bool]:
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[_builtins.bool]):
+        pulumi.set(self, "enabled", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def percentage(self) -> pulumi.Input[_builtins.int]:
+        """
+        Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+        """
+        return pulumi.get(self, "percentage")
+
+    @percentage.setter
+    def percentage(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "percentage", value)
+
+
 class CronJobDetailsCreateArgsDict(TypedDict):
     runtime: pulumi.Input['CronJobDetailsCreateRuntime']
     """
     Runtime
     """
     schedule: pulumi.Input[_builtins.str]
-    env: NotRequired[pulumi.Input['CronJobDetailsCreateEnv']]
+    env: NotRequired[pulumi.Input[Optional['CronJobDetailsCreateEnv']]]
     """
     This field has been deprecated, runtime should be used in its place.
     """
-    env_specific_details: NotRequired[pulumi.Input['EnvSpecificDetailsArgsDict']]
-    plan: NotRequired[pulumi.Input['CronJobDetailsCreatePlan']]
+    env_specific_details: NotRequired[pulumi.Input[Optional['EnvSpecificDetailsArgsDict']]]
+    plan: NotRequired[pulumi.Input[Optional['CronJobDetailsCreatePlan']]]
     """
     Defaults to "starter"
     """
-    region: NotRequired[pulumi.Input['CronJobDetailsCreateRegion']]
+    region: NotRequired[pulumi.Input[Optional['CronJobDetailsCreateRegion']]]
     """
     Defaults to "oregon"
     """
@@ -416,10 +416,10 @@ class CronJobDetailsCreateArgs:
     def __init__(__self__, *,
                  runtime: pulumi.Input['CronJobDetailsCreateRuntime'],
                  schedule: pulumi.Input[_builtins.str],
-                 env: Optional[pulumi.Input['CronJobDetailsCreateEnv']] = None,
-                 env_specific_details: Optional[pulumi.Input['EnvSpecificDetailsArgs']] = None,
-                 plan: Optional[pulumi.Input['CronJobDetailsCreatePlan']] = None,
-                 region: Optional[pulumi.Input['CronJobDetailsCreateRegion']] = None):
+                 env: pulumi.Input[Optional['CronJobDetailsCreateEnv']] = None,
+                 env_specific_details: pulumi.Input[Optional['EnvSpecificDetailsArgs']] = None,
+                 plan: pulumi.Input[Optional['CronJobDetailsCreatePlan']] = None,
+                 region: pulumi.Input[Optional['CronJobDetailsCreateRegion']] = None):
         """
         :param pulumi.Input['CronJobDetailsCreateRuntime'] runtime: Runtime
         :param pulumi.Input['CronJobDetailsCreateEnv'] env: This field has been deprecated, runtime should be used in its place.
@@ -464,70 +464,168 @@ class CronJobDetailsCreateArgs:
 
     @_builtins.property
     @pulumi.getter
-    def env(self) -> Optional[pulumi.Input['CronJobDetailsCreateEnv']]:
+    def env(self) -> pulumi.Input[Optional['CronJobDetailsCreateEnv']]:
         """
         This field has been deprecated, runtime should be used in its place.
         """
         return pulumi.get(self, "env")
 
     @env.setter
-    def env(self, value: Optional[pulumi.Input['CronJobDetailsCreateEnv']]):
+    def env(self, value: pulumi.Input[Optional['CronJobDetailsCreateEnv']]):
         pulumi.set(self, "env", value)
 
     @_builtins.property
     @pulumi.getter(name="envSpecificDetails")
-    def env_specific_details(self) -> Optional[pulumi.Input['EnvSpecificDetailsArgs']]:
+    def env_specific_details(self) -> pulumi.Input[Optional['EnvSpecificDetailsArgs']]:
         return pulumi.get(self, "env_specific_details")
 
     @env_specific_details.setter
-    def env_specific_details(self, value: Optional[pulumi.Input['EnvSpecificDetailsArgs']]):
+    def env_specific_details(self, value: pulumi.Input[Optional['EnvSpecificDetailsArgs']]):
         pulumi.set(self, "env_specific_details", value)
 
     @_builtins.property
     @pulumi.getter
-    def plan(self) -> Optional[pulumi.Input['CronJobDetailsCreatePlan']]:
+    def plan(self) -> pulumi.Input[Optional['CronJobDetailsCreatePlan']]:
         """
         Defaults to "starter"
         """
         return pulumi.get(self, "plan")
 
     @plan.setter
-    def plan(self, value: Optional[pulumi.Input['CronJobDetailsCreatePlan']]):
+    def plan(self, value: pulumi.Input[Optional['CronJobDetailsCreatePlan']]):
         pulumi.set(self, "plan", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input['CronJobDetailsCreateRegion']]:
+    def region(self) -> pulumi.Input[Optional['CronJobDetailsCreateRegion']]:
         """
         Defaults to "oregon"
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input['CronJobDetailsCreateRegion']]):
+    def region(self, value: pulumi.Input[Optional['CronJobDetailsCreateRegion']]):
         pulumi.set(self, "region", value)
 
 
+class EnvSpecificDetailsArgsDict(TypedDict):
+    build_command: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    docker_command: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    docker_context: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    dockerfile_path: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    pre_deploy_command: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    registry_credential: NotRequired[pulumi.Input[Optional['RegistryCredentialArgsDict']]]
+    start_command: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class EnvSpecificDetailsArgs:
+    def __init__(__self__, *,
+                 build_command: pulumi.Input[Optional[_builtins.str]] = None,
+                 docker_command: pulumi.Input[Optional[_builtins.str]] = None,
+                 docker_context: pulumi.Input[Optional[_builtins.str]] = None,
+                 dockerfile_path: pulumi.Input[Optional[_builtins.str]] = None,
+                 pre_deploy_command: pulumi.Input[Optional[_builtins.str]] = None,
+                 registry_credential: pulumi.Input[Optional['RegistryCredentialArgs']] = None,
+                 start_command: pulumi.Input[Optional[_builtins.str]] = None):
+        if build_command is not None:
+            pulumi.set(__self__, "build_command", build_command)
+        if docker_command is not None:
+            pulumi.set(__self__, "docker_command", docker_command)
+        if docker_context is not None:
+            pulumi.set(__self__, "docker_context", docker_context)
+        if dockerfile_path is not None:
+            pulumi.set(__self__, "dockerfile_path", dockerfile_path)
+        if pre_deploy_command is not None:
+            pulumi.set(__self__, "pre_deploy_command", pre_deploy_command)
+        if registry_credential is not None:
+            pulumi.set(__self__, "registry_credential", registry_credential)
+        if start_command is not None:
+            pulumi.set(__self__, "start_command", start_command)
+
+    @_builtins.property
+    @pulumi.getter(name="buildCommand")
+    def build_command(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "build_command")
+
+    @build_command.setter
+    def build_command(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "build_command", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dockerCommand")
+    def docker_command(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "docker_command")
+
+    @docker_command.setter
+    def docker_command(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "docker_command", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dockerContext")
+    def docker_context(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "docker_context")
+
+    @docker_context.setter
+    def docker_context(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "docker_context", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dockerfilePath")
+    def dockerfile_path(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "dockerfile_path")
+
+    @dockerfile_path.setter
+    def dockerfile_path(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "dockerfile_path", value)
+
+    @_builtins.property
+    @pulumi.getter(name="preDeployCommand")
+    def pre_deploy_command(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "pre_deploy_command")
+
+    @pre_deploy_command.setter
+    def pre_deploy_command(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "pre_deploy_command", value)
+
+    @_builtins.property
+    @pulumi.getter(name="registryCredential")
+    def registry_credential(self) -> pulumi.Input[Optional['RegistryCredentialArgs']]:
+        return pulumi.get(self, "registry_credential")
+
+    @registry_credential.setter
+    def registry_credential(self, value: pulumi.Input[Optional['RegistryCredentialArgs']]):
+        pulumi.set(self, "registry_credential", value)
+
+    @_builtins.property
+    @pulumi.getter(name="startCommand")
+    def start_command(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "start_command")
+
+    @start_command.setter
+    def start_command(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "start_command", value)
+
+
 class EnvSpecificDetailsCreateArgsDict(TypedDict):
-    build_command: NotRequired[pulumi.Input[_builtins.str]]
-    docker_command: NotRequired[pulumi.Input[_builtins.str]]
-    docker_context: NotRequired[pulumi.Input[_builtins.str]]
-    dockerfile_path: NotRequired[pulumi.Input[_builtins.str]]
+    build_command: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    docker_command: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    docker_context: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    dockerfile_path: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Defaults to "./Dockerfile"
     """
-    registry_credential_id: NotRequired[pulumi.Input[_builtins.str]]
-    start_command: NotRequired[pulumi.Input[_builtins.str]]
+    registry_credential_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    start_command: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class EnvSpecificDetailsCreateArgs:
     def __init__(__self__, *,
-                 build_command: Optional[pulumi.Input[_builtins.str]] = None,
-                 docker_command: Optional[pulumi.Input[_builtins.str]] = None,
-                 docker_context: Optional[pulumi.Input[_builtins.str]] = None,
-                 dockerfile_path: Optional[pulumi.Input[_builtins.str]] = None,
-                 registry_credential_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 start_command: Optional[pulumi.Input[_builtins.str]] = None):
+                 build_command: pulumi.Input[Optional[_builtins.str]] = None,
+                 docker_command: pulumi.Input[Optional[_builtins.str]] = None,
+                 docker_context: pulumi.Input[Optional[_builtins.str]] = None,
+                 dockerfile_path: pulumi.Input[Optional[_builtins.str]] = None,
+                 registry_credential_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 start_command: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] dockerfile_path: Defaults to "./Dockerfile"
         """
@@ -546,171 +644,73 @@ class EnvSpecificDetailsCreateArgs:
 
     @_builtins.property
     @pulumi.getter(name="buildCommand")
-    def build_command(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def build_command(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "build_command")
 
     @build_command.setter
-    def build_command(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def build_command(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "build_command", value)
 
     @_builtins.property
     @pulumi.getter(name="dockerCommand")
-    def docker_command(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def docker_command(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "docker_command")
 
     @docker_command.setter
-    def docker_command(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def docker_command(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "docker_command", value)
 
     @_builtins.property
     @pulumi.getter(name="dockerContext")
-    def docker_context(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def docker_context(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "docker_context")
 
     @docker_context.setter
-    def docker_context(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def docker_context(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "docker_context", value)
 
     @_builtins.property
     @pulumi.getter(name="dockerfilePath")
-    def dockerfile_path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dockerfile_path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Defaults to "./Dockerfile"
         """
         return pulumi.get(self, "dockerfile_path")
 
     @dockerfile_path.setter
-    def dockerfile_path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dockerfile_path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dockerfile_path", value)
 
     @_builtins.property
     @pulumi.getter(name="registryCredentialId")
-    def registry_credential_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def registry_credential_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "registry_credential_id")
 
     @registry_credential_id.setter
-    def registry_credential_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def registry_credential_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "registry_credential_id", value)
 
     @_builtins.property
     @pulumi.getter(name="startCommand")
-    def start_command(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def start_command(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "start_command")
 
     @start_command.setter
-    def start_command(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "start_command", value)
-
-
-class EnvSpecificDetailsArgsDict(TypedDict):
-    build_command: NotRequired[pulumi.Input[_builtins.str]]
-    docker_command: NotRequired[pulumi.Input[_builtins.str]]
-    docker_context: NotRequired[pulumi.Input[_builtins.str]]
-    dockerfile_path: NotRequired[pulumi.Input[_builtins.str]]
-    pre_deploy_command: NotRequired[pulumi.Input[_builtins.str]]
-    registry_credential: NotRequired[pulumi.Input['RegistryCredentialArgsDict']]
-    start_command: NotRequired[pulumi.Input[_builtins.str]]
-
-@pulumi.input_type
-class EnvSpecificDetailsArgs:
-    def __init__(__self__, *,
-                 build_command: Optional[pulumi.Input[_builtins.str]] = None,
-                 docker_command: Optional[pulumi.Input[_builtins.str]] = None,
-                 docker_context: Optional[pulumi.Input[_builtins.str]] = None,
-                 dockerfile_path: Optional[pulumi.Input[_builtins.str]] = None,
-                 pre_deploy_command: Optional[pulumi.Input[_builtins.str]] = None,
-                 registry_credential: Optional[pulumi.Input['RegistryCredentialArgs']] = None,
-                 start_command: Optional[pulumi.Input[_builtins.str]] = None):
-        if build_command is not None:
-            pulumi.set(__self__, "build_command", build_command)
-        if docker_command is not None:
-            pulumi.set(__self__, "docker_command", docker_command)
-        if docker_context is not None:
-            pulumi.set(__self__, "docker_context", docker_context)
-        if dockerfile_path is not None:
-            pulumi.set(__self__, "dockerfile_path", dockerfile_path)
-        if pre_deploy_command is not None:
-            pulumi.set(__self__, "pre_deploy_command", pre_deploy_command)
-        if registry_credential is not None:
-            pulumi.set(__self__, "registry_credential", registry_credential)
-        if start_command is not None:
-            pulumi.set(__self__, "start_command", start_command)
-
-    @_builtins.property
-    @pulumi.getter(name="buildCommand")
-    def build_command(self) -> Optional[pulumi.Input[_builtins.str]]:
-        return pulumi.get(self, "build_command")
-
-    @build_command.setter
-    def build_command(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "build_command", value)
-
-    @_builtins.property
-    @pulumi.getter(name="dockerCommand")
-    def docker_command(self) -> Optional[pulumi.Input[_builtins.str]]:
-        return pulumi.get(self, "docker_command")
-
-    @docker_command.setter
-    def docker_command(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "docker_command", value)
-
-    @_builtins.property
-    @pulumi.getter(name="dockerContext")
-    def docker_context(self) -> Optional[pulumi.Input[_builtins.str]]:
-        return pulumi.get(self, "docker_context")
-
-    @docker_context.setter
-    def docker_context(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "docker_context", value)
-
-    @_builtins.property
-    @pulumi.getter(name="dockerfilePath")
-    def dockerfile_path(self) -> Optional[pulumi.Input[_builtins.str]]:
-        return pulumi.get(self, "dockerfile_path")
-
-    @dockerfile_path.setter
-    def dockerfile_path(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "dockerfile_path", value)
-
-    @_builtins.property
-    @pulumi.getter(name="preDeployCommand")
-    def pre_deploy_command(self) -> Optional[pulumi.Input[_builtins.str]]:
-        return pulumi.get(self, "pre_deploy_command")
-
-    @pre_deploy_command.setter
-    def pre_deploy_command(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "pre_deploy_command", value)
-
-    @_builtins.property
-    @pulumi.getter(name="registryCredential")
-    def registry_credential(self) -> Optional[pulumi.Input['RegistryCredentialArgs']]:
-        return pulumi.get(self, "registry_credential")
-
-    @registry_credential.setter
-    def registry_credential(self, value: Optional[pulumi.Input['RegistryCredentialArgs']]):
-        pulumi.set(self, "registry_credential", value)
-
-    @_builtins.property
-    @pulumi.getter(name="startCommand")
-    def start_command(self) -> Optional[pulumi.Input[_builtins.str]]:
-        return pulumi.get(self, "start_command")
-
-    @start_command.setter
-    def start_command(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def start_command(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "start_command", value)
 
 
 class EnvVarInputArgsDict(TypedDict):
-    generate_value: NotRequired[pulumi.Input[_builtins.bool]]
-    key: NotRequired[pulumi.Input[_builtins.str]]
-    value: NotRequired[pulumi.Input[_builtins.str]]
+    generate_value: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    value: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class EnvVarInputArgs:
     def __init__(__self__, *,
-                 generate_value: Optional[pulumi.Input[_builtins.bool]] = None,
-                 key: Optional[pulumi.Input[_builtins.str]] = None,
-                 value: Optional[pulumi.Input[_builtins.str]] = None):
+                 generate_value: pulumi.Input[Optional[_builtins.bool]] = None,
+                 key: pulumi.Input[Optional[_builtins.str]] = None,
+                 value: pulumi.Input[Optional[_builtins.str]] = None):
         if generate_value is not None:
             pulumi.set(__self__, "generate_value", generate_value)
         if key is not None:
@@ -720,29 +720,29 @@ class EnvVarInputArgs:
 
     @_builtins.property
     @pulumi.getter(name="generateValue")
-    def generate_value(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def generate_value(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "generate_value")
 
     @generate_value.setter
-    def generate_value(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def generate_value(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "generate_value", value)
 
     @_builtins.property
     @pulumi.getter
-    def key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "key")
 
     @key.setter
-    def key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key", value)
 
     @_builtins.property
     @pulumi.getter
-    def value(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def value(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "value")
 
     @value.setter
-    def value(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def value(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "value", value)
 
 
@@ -821,7 +821,7 @@ class ImageArgsDict(TypedDict):
     """
     The ID of the owner for this image. This should match the owner of the service as well as the owner of any specified registry credential.
     """
-    registry_credential_id: NotRequired[pulumi.Input[_builtins.str]]
+    registry_credential_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Optional reference to the registry credential passed to the image repository to retrieve this image.
     """
@@ -831,7 +831,7 @@ class ImageArgs:
     def __init__(__self__, *,
                  image_path: pulumi.Input[_builtins.str],
                  owner_id: pulumi.Input[_builtins.str],
-                 registry_credential_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 registry_credential_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] image_path: Path to the image used for this server (e.g docker.io/library/nginx:latest).
         :param pulumi.Input[_builtins.str] owner_id: The ID of the owner for this image. This should match the owner of the service as well as the owner of any specified registry credential.
@@ -868,14 +868,14 @@ class ImageArgs:
 
     @_builtins.property
     @pulumi.getter(name="registryCredentialId")
-    def registry_credential_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def registry_credential_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Optional reference to the registry credential passed to the image repository to retrieve this image.
         """
         return pulumi.get(self, "registry_credential_id")
 
     @registry_credential_id.setter
-    def registry_credential_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def registry_credential_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "registry_credential_id", value)
 
 
@@ -920,7 +920,7 @@ class MaintenanceModeArgs:
 
 
 class PreviewsArgsDict(TypedDict):
-    generation: NotRequired[pulumi.Input['PreviewsGeneration']]
+    generation: NotRequired[pulumi.Input[Optional['PreviewsGeneration']]]
     """
     Defaults to "off"
     """
@@ -928,7 +928,7 @@ class PreviewsArgsDict(TypedDict):
 @pulumi.input_type
 class PreviewsArgs:
     def __init__(__self__, *,
-                 generation: Optional[pulumi.Input['PreviewsGeneration']] = None):
+                 generation: pulumi.Input[Optional['PreviewsGeneration']] = None):
         """
         :param pulumi.Input['PreviewsGeneration'] generation: Defaults to "off"
         """
@@ -939,14 +939,14 @@ class PreviewsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def generation(self) -> Optional[pulumi.Input['PreviewsGeneration']]:
+    def generation(self) -> pulumi.Input[Optional['PreviewsGeneration']]:
         """
         Defaults to "off"
         """
         return pulumi.get(self, "generation")
 
     @generation.setter
-    def generation(self, value: Optional[pulumi.Input['PreviewsGeneration']]):
+    def generation(self, value: pulumi.Input[Optional['PreviewsGeneration']]):
         pulumi.set(self, "generation", value)
 
 
@@ -955,32 +955,32 @@ class PrivateServiceDetailsCreateArgsDict(TypedDict):
     """
     Runtime
     """
-    autoscaling: NotRequired[pulumi.Input['WebServiceDetailspropertiesautoscalingArgsDict']]
-    disk: NotRequired[pulumi.Input['ServiceDiskArgsDict']]
-    env: NotRequired[pulumi.Input['PrivateServiceDetailsCreateEnv']]
+    autoscaling: NotRequired[pulumi.Input[Optional['WebServiceDetailspropertiesautoscalingArgsDict']]]
+    disk: NotRequired[pulumi.Input[Optional['ServiceDiskArgsDict']]]
+    env: NotRequired[pulumi.Input[Optional['PrivateServiceDetailsCreateEnv']]]
     """
     This field has been deprecated, runtime should be used in its place.
     """
-    env_specific_details: NotRequired[pulumi.Input['EnvSpecificDetailsCreateArgsDict']]
-    max_shutdown_delay_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    env_specific_details: NotRequired[pulumi.Input[Optional['EnvSpecificDetailsCreateArgsDict']]]
+    max_shutdown_delay_seconds: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
     """
-    num_instances: NotRequired[pulumi.Input[_builtins.int]]
+    num_instances: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Defaults to 1
     """
-    plan: NotRequired[pulumi.Input['PrivateServiceDetailsCreatePlan']]
+    plan: NotRequired[pulumi.Input[Optional['PrivateServiceDetailsCreatePlan']]]
     """
     Defaults to "starter"
     """
-    pre_deploy_command: NotRequired[pulumi.Input[_builtins.str]]
-    previews: NotRequired[pulumi.Input['PreviewsArgsDict']]
-    pull_request_previews_enabled: NotRequired[pulumi.Input['PrivateServiceDetailsCreatePullRequestPreviewsEnabled']]
+    pre_deploy_command: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    previews: NotRequired[pulumi.Input[Optional['PreviewsArgsDict']]]
+    pull_request_previews_enabled: NotRequired[pulumi.Input[Optional['PrivateServiceDetailsCreatePullRequestPreviewsEnabled']]]
     """
     This field has been deprecated. previews.generation should be used in its place.
     """
-    region: NotRequired[pulumi.Input['PrivateServiceDetailsCreateRegion']]
+    region: NotRequired[pulumi.Input[Optional['PrivateServiceDetailsCreateRegion']]]
     """
     Defaults to "oregon"
     """
@@ -989,17 +989,17 @@ class PrivateServiceDetailsCreateArgsDict(TypedDict):
 class PrivateServiceDetailsCreateArgs:
     def __init__(__self__, *,
                  runtime: pulumi.Input['PrivateServiceDetailsCreateRuntime'],
-                 autoscaling: Optional[pulumi.Input['WebServiceDetailspropertiesautoscalingArgs']] = None,
-                 disk: Optional[pulumi.Input['ServiceDiskArgs']] = None,
-                 env: Optional[pulumi.Input['PrivateServiceDetailsCreateEnv']] = None,
-                 env_specific_details: Optional[pulumi.Input['EnvSpecificDetailsCreateArgs']] = None,
-                 max_shutdown_delay_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 num_instances: Optional[pulumi.Input[_builtins.int]] = None,
-                 plan: Optional[pulumi.Input['PrivateServiceDetailsCreatePlan']] = None,
-                 pre_deploy_command: Optional[pulumi.Input[_builtins.str]] = None,
-                 previews: Optional[pulumi.Input['PreviewsArgs']] = None,
-                 pull_request_previews_enabled: Optional[pulumi.Input['PrivateServiceDetailsCreatePullRequestPreviewsEnabled']] = None,
-                 region: Optional[pulumi.Input['PrivateServiceDetailsCreateRegion']] = None):
+                 autoscaling: pulumi.Input[Optional['WebServiceDetailspropertiesautoscalingArgs']] = None,
+                 disk: pulumi.Input[Optional['ServiceDiskArgs']] = None,
+                 env: pulumi.Input[Optional['PrivateServiceDetailsCreateEnv']] = None,
+                 env_specific_details: pulumi.Input[Optional['EnvSpecificDetailsCreateArgs']] = None,
+                 max_shutdown_delay_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 num_instances: pulumi.Input[Optional[_builtins.int]] = None,
+                 plan: pulumi.Input[Optional['PrivateServiceDetailsCreatePlan']] = None,
+                 pre_deploy_command: pulumi.Input[Optional[_builtins.str]] = None,
+                 previews: pulumi.Input[Optional['PreviewsArgs']] = None,
+                 pull_request_previews_enabled: pulumi.Input[Optional['PrivateServiceDetailsCreatePullRequestPreviewsEnabled']] = None,
+                 region: pulumi.Input[Optional['PrivateServiceDetailsCreateRegion']] = None):
         """
         :param pulumi.Input['PrivateServiceDetailsCreateRuntime'] runtime: Runtime
         :param pulumi.Input['PrivateServiceDetailsCreateEnv'] env: This field has been deprecated, runtime should be used in its place.
@@ -1057,119 +1057,119 @@ class PrivateServiceDetailsCreateArgs:
 
     @_builtins.property
     @pulumi.getter
-    def autoscaling(self) -> Optional[pulumi.Input['WebServiceDetailspropertiesautoscalingArgs']]:
+    def autoscaling(self) -> pulumi.Input[Optional['WebServiceDetailspropertiesautoscalingArgs']]:
         return pulumi.get(self, "autoscaling")
 
     @autoscaling.setter
-    def autoscaling(self, value: Optional[pulumi.Input['WebServiceDetailspropertiesautoscalingArgs']]):
+    def autoscaling(self, value: pulumi.Input[Optional['WebServiceDetailspropertiesautoscalingArgs']]):
         pulumi.set(self, "autoscaling", value)
 
     @_builtins.property
     @pulumi.getter
-    def disk(self) -> Optional[pulumi.Input['ServiceDiskArgs']]:
+    def disk(self) -> pulumi.Input[Optional['ServiceDiskArgs']]:
         return pulumi.get(self, "disk")
 
     @disk.setter
-    def disk(self, value: Optional[pulumi.Input['ServiceDiskArgs']]):
+    def disk(self, value: pulumi.Input[Optional['ServiceDiskArgs']]):
         pulumi.set(self, "disk", value)
 
     @_builtins.property
     @pulumi.getter
-    def env(self) -> Optional[pulumi.Input['PrivateServiceDetailsCreateEnv']]:
+    def env(self) -> pulumi.Input[Optional['PrivateServiceDetailsCreateEnv']]:
         """
         This field has been deprecated, runtime should be used in its place.
         """
         return pulumi.get(self, "env")
 
     @env.setter
-    def env(self, value: Optional[pulumi.Input['PrivateServiceDetailsCreateEnv']]):
+    def env(self, value: pulumi.Input[Optional['PrivateServiceDetailsCreateEnv']]):
         pulumi.set(self, "env", value)
 
     @_builtins.property
     @pulumi.getter(name="envSpecificDetails")
-    def env_specific_details(self) -> Optional[pulumi.Input['EnvSpecificDetailsCreateArgs']]:
+    def env_specific_details(self) -> pulumi.Input[Optional['EnvSpecificDetailsCreateArgs']]:
         return pulumi.get(self, "env_specific_details")
 
     @env_specific_details.setter
-    def env_specific_details(self, value: Optional[pulumi.Input['EnvSpecificDetailsCreateArgs']]):
+    def env_specific_details(self, value: pulumi.Input[Optional['EnvSpecificDetailsCreateArgs']]):
         pulumi.set(self, "env_specific_details", value)
 
     @_builtins.property
     @pulumi.getter(name="maxShutdownDelaySeconds")
-    def max_shutdown_delay_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_shutdown_delay_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
         """
         return pulumi.get(self, "max_shutdown_delay_seconds")
 
     @max_shutdown_delay_seconds.setter
-    def max_shutdown_delay_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_shutdown_delay_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_shutdown_delay_seconds", value)
 
     @_builtins.property
     @pulumi.getter(name="numInstances")
-    def num_instances(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def num_instances(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Defaults to 1
         """
         return pulumi.get(self, "num_instances")
 
     @num_instances.setter
-    def num_instances(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def num_instances(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "num_instances", value)
 
     @_builtins.property
     @pulumi.getter
-    def plan(self) -> Optional[pulumi.Input['PrivateServiceDetailsCreatePlan']]:
+    def plan(self) -> pulumi.Input[Optional['PrivateServiceDetailsCreatePlan']]:
         """
         Defaults to "starter"
         """
         return pulumi.get(self, "plan")
 
     @plan.setter
-    def plan(self, value: Optional[pulumi.Input['PrivateServiceDetailsCreatePlan']]):
+    def plan(self, value: pulumi.Input[Optional['PrivateServiceDetailsCreatePlan']]):
         pulumi.set(self, "plan", value)
 
     @_builtins.property
     @pulumi.getter(name="preDeployCommand")
-    def pre_deploy_command(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pre_deploy_command(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "pre_deploy_command")
 
     @pre_deploy_command.setter
-    def pre_deploy_command(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pre_deploy_command(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pre_deploy_command", value)
 
     @_builtins.property
     @pulumi.getter
-    def previews(self) -> Optional[pulumi.Input['PreviewsArgs']]:
+    def previews(self) -> pulumi.Input[Optional['PreviewsArgs']]:
         return pulumi.get(self, "previews")
 
     @previews.setter
-    def previews(self, value: Optional[pulumi.Input['PreviewsArgs']]):
+    def previews(self, value: pulumi.Input[Optional['PreviewsArgs']]):
         pulumi.set(self, "previews", value)
 
     @_builtins.property
     @pulumi.getter(name="pullRequestPreviewsEnabled")
-    def pull_request_previews_enabled(self) -> Optional[pulumi.Input['PrivateServiceDetailsCreatePullRequestPreviewsEnabled']]:
+    def pull_request_previews_enabled(self) -> pulumi.Input[Optional['PrivateServiceDetailsCreatePullRequestPreviewsEnabled']]:
         """
         This field has been deprecated. previews.generation should be used in its place.
         """
         return pulumi.get(self, "pull_request_previews_enabled")
 
     @pull_request_previews_enabled.setter
-    def pull_request_previews_enabled(self, value: Optional[pulumi.Input['PrivateServiceDetailsCreatePullRequestPreviewsEnabled']]):
+    def pull_request_previews_enabled(self, value: pulumi.Input[Optional['PrivateServiceDetailsCreatePullRequestPreviewsEnabled']]):
         pulumi.set(self, "pull_request_previews_enabled", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input['PrivateServiceDetailsCreateRegion']]:
+    def region(self) -> pulumi.Input[Optional['PrivateServiceDetailsCreateRegion']]:
         """
         Defaults to "oregon"
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input['PrivateServiceDetailsCreateRegion']]):
+    def region(self, value: pulumi.Input[Optional['PrivateServiceDetailsCreateRegion']]):
         pulumi.set(self, "region", value)
 
 
@@ -1281,7 +1281,7 @@ class RouteCreateArgsDict(TypedDict):
     destination: pulumi.Input[_builtins.str]
     source: pulumi.Input[_builtins.str]
     type: pulumi.Input['RouteCreateType']
-    priority: NotRequired[pulumi.Input[_builtins.int]]
+    priority: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Redirect and Rewrite Rules are applied in priority order starting at 0. Defaults to last in the priority list.
     """
@@ -1292,7 +1292,7 @@ class RouteCreateArgs:
                  destination: pulumi.Input[_builtins.str],
                  source: pulumi.Input[_builtins.str],
                  type: pulumi.Input['RouteCreateType'],
-                 priority: Optional[pulumi.Input[_builtins.int]] = None):
+                 priority: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.int] priority: Redirect and Rewrite Rules are applied in priority order starting at 0. Defaults to last in the priority list.
         """
@@ -1331,14 +1331,14 @@ class RouteCreateArgs:
 
     @_builtins.property
     @pulumi.getter
-    def priority(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def priority(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Redirect and Rewrite Rules are applied in priority order starting at 0. Defaults to last in the priority list.
         """
         return pulumi.get(self, "priority")
 
     @priority.setter
-    def priority(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def priority(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "priority", value)
 
 
@@ -1376,7 +1376,7 @@ class SecretFileInputArgs:
 class ServiceDiskArgsDict(TypedDict):
     mount_path: pulumi.Input[_builtins.str]
     name: pulumi.Input[_builtins.str]
-    size_gb: NotRequired[pulumi.Input[_builtins.int]]
+    size_gb: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Defaults to 1
     """
@@ -1386,7 +1386,7 @@ class ServiceDiskArgs:
     def __init__(__self__, *,
                  mount_path: pulumi.Input[_builtins.str],
                  name: pulumi.Input[_builtins.str],
-                 size_gb: Optional[pulumi.Input[_builtins.int]] = None):
+                 size_gb: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.int] size_gb: Defaults to 1
         """
@@ -1415,45 +1415,45 @@ class ServiceDiskArgs:
 
     @_builtins.property
     @pulumi.getter(name="sizeGB")
-    def size_gb(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def size_gb(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Defaults to 1
         """
         return pulumi.get(self, "size_gb")
 
     @size_gb.setter
-    def size_gb(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def size_gb(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "size_gb", value)
 
 
 class StaticSiteDetailsCreateArgsDict(TypedDict):
-    build_command: NotRequired[pulumi.Input[_builtins.str]]
-    headers: NotRequired[pulumi.Input[Sequence[pulumi.Input['HeaderInputArgsDict']]]]
-    previews: NotRequired[pulumi.Input['PreviewsArgsDict']]
-    publish_path: NotRequired[pulumi.Input[_builtins.str]]
+    build_command: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    headers: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['HeaderInputArgsDict']]]]]
+    previews: NotRequired[pulumi.Input[Optional['PreviewsArgsDict']]]
+    publish_path: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Defaults to "public"
     """
-    pull_request_previews_enabled: NotRequired[pulumi.Input['StaticSiteDetailsCreatePullRequestPreviewsEnabled']]
+    pull_request_previews_enabled: NotRequired[pulumi.Input[Optional['StaticSiteDetailsCreatePullRequestPreviewsEnabled']]]
     """
     This field has been deprecated. previews.generation should be used in its place.
     """
-    render_subdomain_policy: NotRequired[pulumi.Input['StaticSiteDetailsCreateRenderSubdomainPolicy']]
+    render_subdomain_policy: NotRequired[pulumi.Input[Optional['StaticSiteDetailsCreateRenderSubdomainPolicy']]]
     """
     Controls whether render.com subdomains are available for the service
     """
-    routes: NotRequired[pulumi.Input[Sequence[pulumi.Input['RouteCreateArgsDict']]]]
+    routes: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['RouteCreateArgsDict']]]]]
 
 @pulumi.input_type
 class StaticSiteDetailsCreateArgs:
     def __init__(__self__, *,
-                 build_command: Optional[pulumi.Input[_builtins.str]] = None,
-                 headers: Optional[pulumi.Input[Sequence[pulumi.Input['HeaderInputArgs']]]] = None,
-                 previews: Optional[pulumi.Input['PreviewsArgs']] = None,
-                 publish_path: Optional[pulumi.Input[_builtins.str]] = None,
-                 pull_request_previews_enabled: Optional[pulumi.Input['StaticSiteDetailsCreatePullRequestPreviewsEnabled']] = None,
-                 render_subdomain_policy: Optional[pulumi.Input['StaticSiteDetailsCreateRenderSubdomainPolicy']] = None,
-                 routes: Optional[pulumi.Input[Sequence[pulumi.Input['RouteCreateArgs']]]] = None):
+                 build_command: pulumi.Input[Optional[_builtins.str]] = None,
+                 headers: pulumi.Input[Optional[Sequence[pulumi.Input['HeaderInputArgs']]]] = None,
+                 previews: pulumi.Input[Optional['PreviewsArgs']] = None,
+                 publish_path: pulumi.Input[Optional[_builtins.str]] = None,
+                 pull_request_previews_enabled: pulumi.Input[Optional['StaticSiteDetailsCreatePullRequestPreviewsEnabled']] = None,
+                 render_subdomain_policy: pulumi.Input[Optional['StaticSiteDetailsCreateRenderSubdomainPolicy']] = None,
+                 routes: pulumi.Input[Optional[Sequence[pulumi.Input['RouteCreateArgs']]]] = None):
         """
         :param pulumi.Input[_builtins.str] publish_path: Defaults to "public"
         :param pulumi.Input['StaticSiteDetailsCreatePullRequestPreviewsEnabled'] pull_request_previews_enabled: This field has been deprecated. previews.generation should be used in its place.
@@ -1478,74 +1478,74 @@ class StaticSiteDetailsCreateArgs:
 
     @_builtins.property
     @pulumi.getter(name="buildCommand")
-    def build_command(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def build_command(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "build_command")
 
     @build_command.setter
-    def build_command(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def build_command(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "build_command", value)
 
     @_builtins.property
     @pulumi.getter
-    def headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['HeaderInputArgs']]]]:
+    def headers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['HeaderInputArgs']]]]:
         return pulumi.get(self, "headers")
 
     @headers.setter
-    def headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['HeaderInputArgs']]]]):
+    def headers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['HeaderInputArgs']]]]):
         pulumi.set(self, "headers", value)
 
     @_builtins.property
     @pulumi.getter
-    def previews(self) -> Optional[pulumi.Input['PreviewsArgs']]:
+    def previews(self) -> pulumi.Input[Optional['PreviewsArgs']]:
         return pulumi.get(self, "previews")
 
     @previews.setter
-    def previews(self, value: Optional[pulumi.Input['PreviewsArgs']]):
+    def previews(self, value: pulumi.Input[Optional['PreviewsArgs']]):
         pulumi.set(self, "previews", value)
 
     @_builtins.property
     @pulumi.getter(name="publishPath")
-    def publish_path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def publish_path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Defaults to "public"
         """
         return pulumi.get(self, "publish_path")
 
     @publish_path.setter
-    def publish_path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def publish_path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "publish_path", value)
 
     @_builtins.property
     @pulumi.getter(name="pullRequestPreviewsEnabled")
-    def pull_request_previews_enabled(self) -> Optional[pulumi.Input['StaticSiteDetailsCreatePullRequestPreviewsEnabled']]:
+    def pull_request_previews_enabled(self) -> pulumi.Input[Optional['StaticSiteDetailsCreatePullRequestPreviewsEnabled']]:
         """
         This field has been deprecated. previews.generation should be used in its place.
         """
         return pulumi.get(self, "pull_request_previews_enabled")
 
     @pull_request_previews_enabled.setter
-    def pull_request_previews_enabled(self, value: Optional[pulumi.Input['StaticSiteDetailsCreatePullRequestPreviewsEnabled']]):
+    def pull_request_previews_enabled(self, value: pulumi.Input[Optional['StaticSiteDetailsCreatePullRequestPreviewsEnabled']]):
         pulumi.set(self, "pull_request_previews_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="renderSubdomainPolicy")
-    def render_subdomain_policy(self) -> Optional[pulumi.Input['StaticSiteDetailsCreateRenderSubdomainPolicy']]:
+    def render_subdomain_policy(self) -> pulumi.Input[Optional['StaticSiteDetailsCreateRenderSubdomainPolicy']]:
         """
         Controls whether render.com subdomains are available for the service
         """
         return pulumi.get(self, "render_subdomain_policy")
 
     @render_subdomain_policy.setter
-    def render_subdomain_policy(self, value: Optional[pulumi.Input['StaticSiteDetailsCreateRenderSubdomainPolicy']]):
+    def render_subdomain_policy(self, value: pulumi.Input[Optional['StaticSiteDetailsCreateRenderSubdomainPolicy']]):
         pulumi.set(self, "render_subdomain_policy", value)
 
     @_builtins.property
     @pulumi.getter
-    def routes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RouteCreateArgs']]]]:
+    def routes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['RouteCreateArgs']]]]:
         return pulumi.get(self, "routes")
 
     @routes.setter
-    def routes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RouteCreateArgs']]]]):
+    def routes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['RouteCreateArgs']]]]):
         pulumi.set(self, "routes", value)
 
 
@@ -1554,38 +1554,38 @@ class WebServiceDetailsCreateArgsDict(TypedDict):
     """
     Runtime
     """
-    autoscaling: NotRequired[pulumi.Input['WebServiceDetailspropertiesautoscalingArgsDict']]
-    disk: NotRequired[pulumi.Input['ServiceDiskArgsDict']]
-    env: NotRequired[pulumi.Input['WebServiceDetailsCreateEnv']]
+    autoscaling: NotRequired[pulumi.Input[Optional['WebServiceDetailspropertiesautoscalingArgsDict']]]
+    disk: NotRequired[pulumi.Input[Optional['ServiceDiskArgsDict']]]
+    env: NotRequired[pulumi.Input[Optional['WebServiceDetailsCreateEnv']]]
     """
     This field has been deprecated, runtime should be used in its place.
     """
-    env_specific_details: NotRequired[pulumi.Input['EnvSpecificDetailsCreateArgsDict']]
-    health_check_path: NotRequired[pulumi.Input[_builtins.str]]
-    maintenance_mode: NotRequired[pulumi.Input['MaintenanceModeArgsDict']]
-    max_shutdown_delay_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    env_specific_details: NotRequired[pulumi.Input[Optional['EnvSpecificDetailsCreateArgsDict']]]
+    health_check_path: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    maintenance_mode: NotRequired[pulumi.Input[Optional['MaintenanceModeArgsDict']]]
+    max_shutdown_delay_seconds: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
     """
-    num_instances: NotRequired[pulumi.Input[_builtins.int]]
+    num_instances: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Defaults to 1
     """
-    plan: NotRequired[pulumi.Input['WebServiceDetailsCreatePlan']]
+    plan: NotRequired[pulumi.Input[Optional['WebServiceDetailsCreatePlan']]]
     """
     Defaults to "starter"
     """
-    pre_deploy_command: NotRequired[pulumi.Input[_builtins.str]]
-    previews: NotRequired[pulumi.Input['PreviewsArgsDict']]
-    pull_request_previews_enabled: NotRequired[pulumi.Input['WebServiceDetailsCreatePullRequestPreviewsEnabled']]
+    pre_deploy_command: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    previews: NotRequired[pulumi.Input[Optional['PreviewsArgsDict']]]
+    pull_request_previews_enabled: NotRequired[pulumi.Input[Optional['WebServiceDetailsCreatePullRequestPreviewsEnabled']]]
     """
     This field has been deprecated. previews.generation should be used in its place.
     """
-    region: NotRequired[pulumi.Input['WebServiceDetailsCreateRegion']]
+    region: NotRequired[pulumi.Input[Optional['WebServiceDetailsCreateRegion']]]
     """
     Defaults to "oregon"
     """
-    render_subdomain_policy: NotRequired[pulumi.Input['WebServiceDetailsCreateRenderSubdomainPolicy']]
+    render_subdomain_policy: NotRequired[pulumi.Input[Optional['WebServiceDetailsCreateRenderSubdomainPolicy']]]
     """
     Controls whether render.com subdomains are available for the service
     """
@@ -1594,20 +1594,20 @@ class WebServiceDetailsCreateArgsDict(TypedDict):
 class WebServiceDetailsCreateArgs:
     def __init__(__self__, *,
                  runtime: pulumi.Input['WebServiceDetailsCreateRuntime'],
-                 autoscaling: Optional[pulumi.Input['WebServiceDetailspropertiesautoscalingArgs']] = None,
-                 disk: Optional[pulumi.Input['ServiceDiskArgs']] = None,
-                 env: Optional[pulumi.Input['WebServiceDetailsCreateEnv']] = None,
-                 env_specific_details: Optional[pulumi.Input['EnvSpecificDetailsCreateArgs']] = None,
-                 health_check_path: Optional[pulumi.Input[_builtins.str]] = None,
-                 maintenance_mode: Optional[pulumi.Input['MaintenanceModeArgs']] = None,
-                 max_shutdown_delay_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 num_instances: Optional[pulumi.Input[_builtins.int]] = None,
-                 plan: Optional[pulumi.Input['WebServiceDetailsCreatePlan']] = None,
-                 pre_deploy_command: Optional[pulumi.Input[_builtins.str]] = None,
-                 previews: Optional[pulumi.Input['PreviewsArgs']] = None,
-                 pull_request_previews_enabled: Optional[pulumi.Input['WebServiceDetailsCreatePullRequestPreviewsEnabled']] = None,
-                 region: Optional[pulumi.Input['WebServiceDetailsCreateRegion']] = None,
-                 render_subdomain_policy: Optional[pulumi.Input['WebServiceDetailsCreateRenderSubdomainPolicy']] = None):
+                 autoscaling: pulumi.Input[Optional['WebServiceDetailspropertiesautoscalingArgs']] = None,
+                 disk: pulumi.Input[Optional['ServiceDiskArgs']] = None,
+                 env: pulumi.Input[Optional['WebServiceDetailsCreateEnv']] = None,
+                 env_specific_details: pulumi.Input[Optional['EnvSpecificDetailsCreateArgs']] = None,
+                 health_check_path: pulumi.Input[Optional[_builtins.str]] = None,
+                 maintenance_mode: pulumi.Input[Optional['MaintenanceModeArgs']] = None,
+                 max_shutdown_delay_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 num_instances: pulumi.Input[Optional[_builtins.int]] = None,
+                 plan: pulumi.Input[Optional['WebServiceDetailsCreatePlan']] = None,
+                 pre_deploy_command: pulumi.Input[Optional[_builtins.str]] = None,
+                 previews: pulumi.Input[Optional['PreviewsArgs']] = None,
+                 pull_request_previews_enabled: pulumi.Input[Optional['WebServiceDetailsCreatePullRequestPreviewsEnabled']] = None,
+                 region: pulumi.Input[Optional['WebServiceDetailsCreateRegion']] = None,
+                 render_subdomain_policy: pulumi.Input[Optional['WebServiceDetailsCreateRenderSubdomainPolicy']] = None):
         """
         :param pulumi.Input['WebServiceDetailsCreateRuntime'] runtime: Runtime
         :param pulumi.Input['WebServiceDetailsCreateEnv'] env: This field has been deprecated, runtime should be used in its place.
@@ -1670,265 +1670,150 @@ class WebServiceDetailsCreateArgs:
 
     @_builtins.property
     @pulumi.getter
-    def autoscaling(self) -> Optional[pulumi.Input['WebServiceDetailspropertiesautoscalingArgs']]:
+    def autoscaling(self) -> pulumi.Input[Optional['WebServiceDetailspropertiesautoscalingArgs']]:
         return pulumi.get(self, "autoscaling")
 
     @autoscaling.setter
-    def autoscaling(self, value: Optional[pulumi.Input['WebServiceDetailspropertiesautoscalingArgs']]):
+    def autoscaling(self, value: pulumi.Input[Optional['WebServiceDetailspropertiesautoscalingArgs']]):
         pulumi.set(self, "autoscaling", value)
 
     @_builtins.property
     @pulumi.getter
-    def disk(self) -> Optional[pulumi.Input['ServiceDiskArgs']]:
+    def disk(self) -> pulumi.Input[Optional['ServiceDiskArgs']]:
         return pulumi.get(self, "disk")
 
     @disk.setter
-    def disk(self, value: Optional[pulumi.Input['ServiceDiskArgs']]):
+    def disk(self, value: pulumi.Input[Optional['ServiceDiskArgs']]):
         pulumi.set(self, "disk", value)
 
     @_builtins.property
     @pulumi.getter
-    def env(self) -> Optional[pulumi.Input['WebServiceDetailsCreateEnv']]:
+    def env(self) -> pulumi.Input[Optional['WebServiceDetailsCreateEnv']]:
         """
         This field has been deprecated, runtime should be used in its place.
         """
         return pulumi.get(self, "env")
 
     @env.setter
-    def env(self, value: Optional[pulumi.Input['WebServiceDetailsCreateEnv']]):
+    def env(self, value: pulumi.Input[Optional['WebServiceDetailsCreateEnv']]):
         pulumi.set(self, "env", value)
 
     @_builtins.property
     @pulumi.getter(name="envSpecificDetails")
-    def env_specific_details(self) -> Optional[pulumi.Input['EnvSpecificDetailsCreateArgs']]:
+    def env_specific_details(self) -> pulumi.Input[Optional['EnvSpecificDetailsCreateArgs']]:
         return pulumi.get(self, "env_specific_details")
 
     @env_specific_details.setter
-    def env_specific_details(self, value: Optional[pulumi.Input['EnvSpecificDetailsCreateArgs']]):
+    def env_specific_details(self, value: pulumi.Input[Optional['EnvSpecificDetailsCreateArgs']]):
         pulumi.set(self, "env_specific_details", value)
 
     @_builtins.property
     @pulumi.getter(name="healthCheckPath")
-    def health_check_path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def health_check_path(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "health_check_path")
 
     @health_check_path.setter
-    def health_check_path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def health_check_path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "health_check_path", value)
 
     @_builtins.property
     @pulumi.getter(name="maintenanceMode")
-    def maintenance_mode(self) -> Optional[pulumi.Input['MaintenanceModeArgs']]:
+    def maintenance_mode(self) -> pulumi.Input[Optional['MaintenanceModeArgs']]:
         return pulumi.get(self, "maintenance_mode")
 
     @maintenance_mode.setter
-    def maintenance_mode(self, value: Optional[pulumi.Input['MaintenanceModeArgs']]):
+    def maintenance_mode(self, value: pulumi.Input[Optional['MaintenanceModeArgs']]):
         pulumi.set(self, "maintenance_mode", value)
 
     @_builtins.property
     @pulumi.getter(name="maxShutdownDelaySeconds")
-    def max_shutdown_delay_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_shutdown_delay_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum amount of time (in seconds) that Render waits for your application process to exit gracefully after sending it a SIGTERM signal.
         """
         return pulumi.get(self, "max_shutdown_delay_seconds")
 
     @max_shutdown_delay_seconds.setter
-    def max_shutdown_delay_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_shutdown_delay_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_shutdown_delay_seconds", value)
 
     @_builtins.property
     @pulumi.getter(name="numInstances")
-    def num_instances(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def num_instances(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Defaults to 1
         """
         return pulumi.get(self, "num_instances")
 
     @num_instances.setter
-    def num_instances(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def num_instances(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "num_instances", value)
 
     @_builtins.property
     @pulumi.getter
-    def plan(self) -> Optional[pulumi.Input['WebServiceDetailsCreatePlan']]:
+    def plan(self) -> pulumi.Input[Optional['WebServiceDetailsCreatePlan']]:
         """
         Defaults to "starter"
         """
         return pulumi.get(self, "plan")
 
     @plan.setter
-    def plan(self, value: Optional[pulumi.Input['WebServiceDetailsCreatePlan']]):
+    def plan(self, value: pulumi.Input[Optional['WebServiceDetailsCreatePlan']]):
         pulumi.set(self, "plan", value)
 
     @_builtins.property
     @pulumi.getter(name="preDeployCommand")
-    def pre_deploy_command(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pre_deploy_command(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "pre_deploy_command")
 
     @pre_deploy_command.setter
-    def pre_deploy_command(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pre_deploy_command(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pre_deploy_command", value)
 
     @_builtins.property
     @pulumi.getter
-    def previews(self) -> Optional[pulumi.Input['PreviewsArgs']]:
+    def previews(self) -> pulumi.Input[Optional['PreviewsArgs']]:
         return pulumi.get(self, "previews")
 
     @previews.setter
-    def previews(self, value: Optional[pulumi.Input['PreviewsArgs']]):
+    def previews(self, value: pulumi.Input[Optional['PreviewsArgs']]):
         pulumi.set(self, "previews", value)
 
     @_builtins.property
     @pulumi.getter(name="pullRequestPreviewsEnabled")
-    def pull_request_previews_enabled(self) -> Optional[pulumi.Input['WebServiceDetailsCreatePullRequestPreviewsEnabled']]:
+    def pull_request_previews_enabled(self) -> pulumi.Input[Optional['WebServiceDetailsCreatePullRequestPreviewsEnabled']]:
         """
         This field has been deprecated. previews.generation should be used in its place.
         """
         return pulumi.get(self, "pull_request_previews_enabled")
 
     @pull_request_previews_enabled.setter
-    def pull_request_previews_enabled(self, value: Optional[pulumi.Input['WebServiceDetailsCreatePullRequestPreviewsEnabled']]):
+    def pull_request_previews_enabled(self, value: pulumi.Input[Optional['WebServiceDetailsCreatePullRequestPreviewsEnabled']]):
         pulumi.set(self, "pull_request_previews_enabled", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input['WebServiceDetailsCreateRegion']]:
+    def region(self) -> pulumi.Input[Optional['WebServiceDetailsCreateRegion']]:
         """
         Defaults to "oregon"
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input['WebServiceDetailsCreateRegion']]):
+    def region(self, value: pulumi.Input[Optional['WebServiceDetailsCreateRegion']]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="renderSubdomainPolicy")
-    def render_subdomain_policy(self) -> Optional[pulumi.Input['WebServiceDetailsCreateRenderSubdomainPolicy']]:
+    def render_subdomain_policy(self) -> pulumi.Input[Optional['WebServiceDetailsCreateRenderSubdomainPolicy']]:
         """
         Controls whether render.com subdomains are available for the service
         """
         return pulumi.get(self, "render_subdomain_policy")
 
     @render_subdomain_policy.setter
-    def render_subdomain_policy(self, value: Optional[pulumi.Input['WebServiceDetailsCreateRenderSubdomainPolicy']]):
+    def render_subdomain_policy(self, value: pulumi.Input[Optional['WebServiceDetailsCreateRenderSubdomainPolicy']]):
         pulumi.set(self, "render_subdomain_policy", value)
-
-
-class WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgsDict(TypedDict):
-    enabled: pulumi.Input[_builtins.bool]
-    percentage: pulumi.Input[_builtins.int]
-    """
-    Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
-    """
-
-@pulumi.input_type
-class WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs:
-    def __init__(__self__, *,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 percentage: pulumi.Input[_builtins.int]):
-        """
-        :param pulumi.Input[_builtins.int] percentage: Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
-        """
-        if enabled is None:
-            enabled = False
-        pulumi.set(__self__, "enabled", enabled)
-        pulumi.set(__self__, "percentage", percentage)
-
-    @_builtins.property
-    @pulumi.getter
-    def enabled(self) -> pulumi.Input[_builtins.bool]:
-        return pulumi.get(self, "enabled")
-
-    @enabled.setter
-    def enabled(self, value: pulumi.Input[_builtins.bool]):
-        pulumi.set(self, "enabled", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def percentage(self) -> pulumi.Input[_builtins.int]:
-        """
-        Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
-        """
-        return pulumi.get(self, "percentage")
-
-    @percentage.setter
-    def percentage(self, value: pulumi.Input[_builtins.int]):
-        pulumi.set(self, "percentage", value)
-
-
-class WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgsDict(TypedDict):
-    cpu: pulumi.Input['WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgsDict']
-    memory: pulumi.Input['WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgsDict']
-
-@pulumi.input_type
-class WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgs:
-    def __init__(__self__, *,
-                 cpu: pulumi.Input['WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs'],
-                 memory: pulumi.Input['WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs']):
-        pulumi.set(__self__, "cpu", cpu)
-        pulumi.set(__self__, "memory", memory)
-
-    @_builtins.property
-    @pulumi.getter
-    def cpu(self) -> pulumi.Input['WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs']:
-        return pulumi.get(self, "cpu")
-
-    @cpu.setter
-    def cpu(self, value: pulumi.Input['WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs']):
-        pulumi.set(self, "cpu", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def memory(self) -> pulumi.Input['WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs']:
-        return pulumi.get(self, "memory")
-
-    @memory.setter
-    def memory(self, value: pulumi.Input['WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs']):
-        pulumi.set(self, "memory", value)
-
-
-class WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgsDict(TypedDict):
-    enabled: pulumi.Input[_builtins.bool]
-    percentage: pulumi.Input[_builtins.int]
-    """
-    Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
-    """
-
-@pulumi.input_type
-class WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs:
-    def __init__(__self__, *,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 percentage: pulumi.Input[_builtins.int]):
-        """
-        :param pulumi.Input[_builtins.int] percentage: Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
-        """
-        if enabled is None:
-            enabled = False
-        pulumi.set(__self__, "enabled", enabled)
-        pulumi.set(__self__, "percentage", percentage)
-
-    @_builtins.property
-    @pulumi.getter
-    def enabled(self) -> pulumi.Input[_builtins.bool]:
-        return pulumi.get(self, "enabled")
-
-    @enabled.setter
-    def enabled(self, value: pulumi.Input[_builtins.bool]):
-        pulumi.set(self, "enabled", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def percentage(self) -> pulumi.Input[_builtins.int]:
-        """
-        Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
-        """
-        return pulumi.get(self, "percentage")
-
-    @percentage.setter
-    def percentage(self, value: pulumi.Input[_builtins.int]):
-        pulumi.set(self, "percentage", value)
 
 
 class WebServiceDetailspropertiesautoscalingArgsDict(TypedDict):
@@ -1947,7 +1832,7 @@ class WebServiceDetailspropertiesautoscalingArgsDict(TypedDict):
 class WebServiceDetailspropertiesautoscalingArgs:
     def __init__(__self__, *,
                  criteria: pulumi.Input['WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgs'],
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  max: pulumi.Input[_builtins.int],
                  min: pulumi.Input[_builtins.int]):
         """
@@ -2002,5 +1887,120 @@ class WebServiceDetailspropertiesautoscalingArgs:
     @min.setter
     def min(self, value: pulumi.Input[_builtins.int]):
         pulumi.set(self, "min", value)
+
+
+class WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgsDict(TypedDict):
+    cpu: pulumi.Input['WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgsDict']
+    memory: pulumi.Input['WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgsDict']
+
+@pulumi.input_type
+class WebServiceDetailspropertiesautoscalingCriteriaPropertiesArgs:
+    def __init__(__self__, *,
+                 cpu: pulumi.Input['WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs'],
+                 memory: pulumi.Input['WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs']):
+        pulumi.set(__self__, "cpu", cpu)
+        pulumi.set(__self__, "memory", memory)
+
+    @_builtins.property
+    @pulumi.getter
+    def cpu(self) -> pulumi.Input['WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs']:
+        return pulumi.get(self, "cpu")
+
+    @cpu.setter
+    def cpu(self, value: pulumi.Input['WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs']):
+        pulumi.set(self, "cpu", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def memory(self) -> pulumi.Input['WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs']:
+        return pulumi.get(self, "memory")
+
+    @memory.setter
+    def memory(self, value: pulumi.Input['WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs']):
+        pulumi.set(self, "memory", value)
+
+
+class WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgsDict(TypedDict):
+    enabled: pulumi.Input[_builtins.bool]
+    percentage: pulumi.Input[_builtins.int]
+    """
+    Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+    """
+
+@pulumi.input_type
+class WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs:
+    def __init__(__self__, *,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 percentage: pulumi.Input[_builtins.int]):
+        """
+        :param pulumi.Input[_builtins.int] percentage: Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+        """
+        if enabled is None:
+            enabled = False
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "percentage", percentage)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[_builtins.bool]:
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[_builtins.bool]):
+        pulumi.set(self, "enabled", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def percentage(self) -> pulumi.Input[_builtins.int]:
+        """
+        Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+        """
+        return pulumi.get(self, "percentage")
+
+    @percentage.setter
+    def percentage(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "percentage", value)
+
+
+class WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgsDict(TypedDict):
+    enabled: pulumi.Input[_builtins.bool]
+    percentage: pulumi.Input[_builtins.int]
+    """
+    Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+    """
+
+@pulumi.input_type
+class WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs:
+    def __init__(__self__, *,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 percentage: pulumi.Input[_builtins.int]):
+        """
+        :param pulumi.Input[_builtins.int] percentage: Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+        """
+        if enabled is None:
+            enabled = False
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "percentage", percentage)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[_builtins.bool]:
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[_builtins.bool]):
+        pulumi.set(self, "enabled", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def percentage(self) -> pulumi.Input[_builtins.int]:
+        """
+        Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
+        """
+        return pulumi.get(self, "percentage")
+
+    @percentage.setter
+    def percentage(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "percentage", value)
 
 

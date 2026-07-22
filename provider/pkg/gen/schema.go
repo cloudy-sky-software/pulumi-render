@@ -64,7 +64,7 @@ func PulumiSchema(openAPIDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 			},
 		},
 
-		Provider: pschema.ResourceSpec{
+		Provider: &pschema.ResourceSpec{
 			ObjectTypeSpec: pschema.ObjectTypeSpec{
 				Description: "The provider type for the render package.",
 				Type:        "object",

@@ -114,7 +114,7 @@ export interface DeployArgs {
     /**
      * If `clear`, Render clears the service's build cache before deploying. This can be useful if you're experiencing issues with your build.
      */
-    clearCache?: pulumi.Input<enums.services.ClearCache>;
+    clearCache?: pulumi.Input<enums.services.ClearCache | undefined>;
     /**
      * The SHA of a specific Git commit to deploy for a service. Defaults to the latest commit on the service's connected branch.
      *
@@ -124,15 +124,15 @@ export interface DeployArgs {
      *
      * Not supported for cron jobs.
      */
-    commitId?: pulumi.Input<string>;
+    commitId?: pulumi.Input<string | undefined>;
     /**
      * The URL of the image to deploy for an image-backed service.
      *
      * The host, repository, and image name all must match the currently configured image for the service.
      */
-    imageUrl?: pulumi.Input<string>;
+    imageUrl?: pulumi.Input<string | undefined>;
     /**
      * The ID of the service
      */
-    serviceId?: pulumi.Input<string>;
+    serviceId?: pulumi.Input<string | undefined>;
 }

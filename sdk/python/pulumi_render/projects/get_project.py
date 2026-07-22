@@ -119,7 +119,7 @@ def get_project(project_id: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         owner=pulumi.get(__ret__, 'owner'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
-def get_project_output(project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_project_output(project_id: pulumi.Input[Optional[_builtins.str]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProjectResult]:
     """
     Use this data source to access information about an existing resource.

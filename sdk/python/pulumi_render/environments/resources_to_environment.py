@@ -21,7 +21,7 @@ __all__ = ['ResourcesToEnvironmentArgs', 'ResourcesToEnvironment']
 class ResourcesToEnvironmentArgs:
     def __init__(__self__, *,
                  resource_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
-                 environment_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 environment_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a ResourcesToEnvironment resource.
         """
@@ -40,11 +40,11 @@ class ResourcesToEnvironmentArgs:
 
     @_builtins.property
     @pulumi.getter(name="environmentId")
-    def environment_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def environment_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "environment_id")
 
     @environment_id.setter
-    def environment_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def environment_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "environment_id", value)
 
 
@@ -54,8 +54,8 @@ class ResourcesToEnvironment(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 environment_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 resource_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 environment_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 resource_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         Create a ResourcesToEnvironment resource with the given unique name, props, and options.
@@ -87,8 +87,8 @@ class ResourcesToEnvironment(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 environment_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 resource_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 environment_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 resource_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):

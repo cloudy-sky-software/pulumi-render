@@ -117,7 +117,7 @@ def get_disk(disk_id: Optional[_builtins.str] = None,
         service_id=pulumi.get(__ret__, 'service_id'),
         size_gb=pulumi.get(__ret__, 'size_gb'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
-def get_disk_output(disk_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_disk_output(disk_id: pulumi.Input[Optional[_builtins.str]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDiskResult]:
     """
     Use this data source to access information about an existing resource.

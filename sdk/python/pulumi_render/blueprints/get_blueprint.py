@@ -132,7 +132,7 @@ def get_blueprint(blueprint_id: Optional[_builtins.str] = None,
         repo=pulumi.get(__ret__, 'repo'),
         resources=pulumi.get(__ret__, 'resources'),
         status=pulumi.get(__ret__, 'status'))
-def get_blueprint_output(blueprint_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_blueprint_output(blueprint_id: pulumi.Input[Optional[_builtins.str]] = None,
                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBlueprintResult]:
     """
     Use this data source to access information about an existing resource.

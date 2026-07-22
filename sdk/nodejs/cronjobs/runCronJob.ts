@@ -82,5 +82,5 @@ export interface RunCronJobArgs {
     /**
      * The ID of the cron job
      */
-    cronJobId?: pulumi.Input<string>;
+    cronJobId?: pulumi.Input<string | undefined>;
 }

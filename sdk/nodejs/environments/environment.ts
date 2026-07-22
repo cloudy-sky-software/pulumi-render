@@ -90,14 +90,14 @@ export class Environment extends pulumi.CustomResource {
  * The set of arguments for constructing a Environment resource.
  */
 export interface EnvironmentArgs {
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Indicates whether network connections across environments are allowed.
      */
-    networkIsolationEnabled?: pulumi.Input<boolean>;
+    networkIsolationEnabled?: pulumi.Input<boolean | undefined>;
     projectId: pulumi.Input<string>;
     /**
      * Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
      */
-    protectedStatus?: pulumi.Input<enums.environments.ProtectedStatus>;
+    protectedStatus?: pulumi.Input<enums.environments.ProtectedStatus | undefined>;
 }

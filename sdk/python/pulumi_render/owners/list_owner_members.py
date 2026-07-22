@@ -59,7 +59,7 @@ def list_owner_members(owner_id: Optional[_builtins.str] = None,
 
     return AwaitableListOwnerMembersResult(
         items=pulumi.get(__ret__, 'items'))
-def list_owner_members_output(owner_id: Optional[pulumi.Input[_builtins.str]] = None,
+def list_owner_members_output(owner_id: pulumi.Input[Optional[_builtins.str]] = None,
                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListOwnerMembersResult]:
     """
     Use this data source to access information about an existing resource.

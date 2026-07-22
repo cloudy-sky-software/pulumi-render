@@ -132,8 +132,8 @@ def get_custom_domain(custom_domain_id_or_name: Optional[_builtins.str] = None,
         redirect_for_name=pulumi.get(__ret__, 'redirect_for_name'),
         server=pulumi.get(__ret__, 'server'),
         verification_status=pulumi.get(__ret__, 'verification_status'))
-def get_custom_domain_output(custom_domain_id_or_name: Optional[pulumi.Input[_builtins.str]] = None,
-                             service_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_custom_domain_output(custom_domain_id_or_name: pulumi.Input[Optional[_builtins.str]] = None,
+                             service_id: pulumi.Input[Optional[_builtins.str]] = None,
                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCustomDomainResult]:
     """
     Use this data source to access information about an existing resource.

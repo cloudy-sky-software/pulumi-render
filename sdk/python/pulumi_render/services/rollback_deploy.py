@@ -22,7 +22,7 @@ __all__ = ['RollbackDeployArgs', 'RollbackDeploy']
 class RollbackDeployArgs:
     def __init__(__self__, *,
                  deploy_id: pulumi.Input[_builtins.str],
-                 service_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 service_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a RollbackDeploy resource.
 
@@ -47,14 +47,14 @@ class RollbackDeployArgs:
 
     @_builtins.property
     @pulumi.getter(name="serviceId")
-    def service_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the service
         """
         return pulumi.get(self, "service_id")
 
     @service_id.setter
-    def service_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_id", value)
 
 
@@ -64,8 +64,8 @@ class RollbackDeploy(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 deploy_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 deploy_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Create a RollbackDeploy resource with the given unique name, props, and options.
@@ -99,8 +99,8 @@ class RollbackDeploy(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 deploy_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 deploy_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):

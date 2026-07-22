@@ -21,8 +21,8 @@ __all__ = ['LinkServiceToEnvGroupArgs', 'LinkServiceToEnvGroup']
 @pulumi.input_type
 class LinkServiceToEnvGroupArgs:
     def __init__(__self__, *,
-                 env_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 env_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a LinkServiceToEnvGroup resource.
 
@@ -36,26 +36,26 @@ class LinkServiceToEnvGroupArgs:
 
     @_builtins.property
     @pulumi.getter(name="envGroupId")
-    def env_group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def env_group_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Filter for resources that belong to an environment group
         """
         return pulumi.get(self, "env_group_id")
 
     @env_group_id.setter
-    def env_group_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def env_group_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "env_group_id", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceId")
-    def service_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the service
         """
         return pulumi.get(self, "service_id")
 
     @service_id.setter
-    def service_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_id", value)
 
 
@@ -65,8 +65,8 @@ class LinkServiceToEnvGroup(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 env_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 env_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Create a LinkServiceToEnvGroup resource with the given unique name, props, and options.
@@ -100,8 +100,8 @@ class LinkServiceToEnvGroup(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 env_group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 env_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):

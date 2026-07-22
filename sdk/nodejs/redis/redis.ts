@@ -138,16 +138,16 @@ export class Redis extends pulumi.CustomResource {
  * The set of arguments for constructing a Redis resource.
  */
 export interface RedisArgs {
-    environmentId?: pulumi.Input<string>;
-    ipAllowList?: pulumi.Input<pulumi.Input<inputs.redis.CidrBlockAndDescriptionArgs>[]>;
+    environmentId?: pulumi.Input<string | undefined>;
+    ipAllowList?: pulumi.Input<pulumi.Input<inputs.redis.CidrBlockAndDescriptionArgs>[] | undefined>;
     /**
      * The eviction policy for the Key Value instance
      */
-    maxmemoryPolicy?: pulumi.Input<enums.redis.MaxmemoryPolicy>;
+    maxmemoryPolicy?: pulumi.Input<enums.redis.MaxmemoryPolicy | undefined>;
     /**
      * The name of the Redis instance
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the owner of the Redis instance
      */
@@ -156,5 +156,5 @@ export interface RedisArgs {
     /**
      * The region where the Redis instance is located
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }

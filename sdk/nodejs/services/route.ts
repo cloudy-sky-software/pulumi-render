@@ -86,11 +86,11 @@ export interface RouteArgs {
     /**
      * Redirect and Rewrite Rules are applied in priority order starting at 0. Defaults to last in the priority list.
      */
-    priority?: pulumi.Input<number>;
+    priority?: pulumi.Input<number | undefined>;
     /**
      * The ID of the service
      */
-    serviceId?: pulumi.Input<string>;
+    serviceId?: pulumi.Input<string | undefined>;
     source: pulumi.Input<string>;
     type: pulumi.Input<enums.services.Type>;
 }

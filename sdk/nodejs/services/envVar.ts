@@ -68,11 +68,11 @@ export interface EnvVarArgs {
     /**
      * The name of the environment variable
      */
-    envVarKey?: pulumi.Input<string>;
-    generateValue?: pulumi.Input<boolean>;
+    envVarKey?: pulumi.Input<string | undefined>;
+    generateValue?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the service
      */
-    serviceId?: pulumi.Input<string>;
-    value?: pulumi.Input<string>;
+    serviceId?: pulumi.Input<string | undefined>;
+    value?: pulumi.Input<string | undefined>;
 }

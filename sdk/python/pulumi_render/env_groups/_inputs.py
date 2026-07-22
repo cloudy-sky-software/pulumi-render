@@ -23,16 +23,16 @@ __all__ = [
 ]
 
 class EnvVarInputArgsDict(TypedDict):
-    generate_value: NotRequired[pulumi.Input[_builtins.bool]]
-    key: NotRequired[pulumi.Input[_builtins.str]]
-    value: NotRequired[pulumi.Input[_builtins.str]]
+    generate_value: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    value: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class EnvVarInputArgs:
     def __init__(__self__, *,
-                 generate_value: Optional[pulumi.Input[_builtins.bool]] = None,
-                 key: Optional[pulumi.Input[_builtins.str]] = None,
-                 value: Optional[pulumi.Input[_builtins.str]] = None):
+                 generate_value: pulumi.Input[Optional[_builtins.bool]] = None,
+                 key: pulumi.Input[Optional[_builtins.str]] = None,
+                 value: pulumi.Input[Optional[_builtins.str]] = None):
         if generate_value is not None:
             pulumi.set(__self__, "generate_value", generate_value)
         if key is not None:
@@ -42,29 +42,29 @@ class EnvVarInputArgs:
 
     @_builtins.property
     @pulumi.getter(name="generateValue")
-    def generate_value(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def generate_value(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "generate_value")
 
     @generate_value.setter
-    def generate_value(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def generate_value(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "generate_value", value)
 
     @_builtins.property
     @pulumi.getter
-    def key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "key")
 
     @key.setter
-    def key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key", value)
 
     @_builtins.property
     @pulumi.getter
-    def value(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def value(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "value")
 
     @value.setter
-    def value(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def value(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "value", value)
 
 

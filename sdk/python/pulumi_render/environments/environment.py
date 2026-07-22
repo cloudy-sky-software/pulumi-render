@@ -21,9 +21,9 @@ __all__ = ['EnvironmentArgs', 'Environment']
 class EnvironmentArgs:
     def __init__(__self__, *,
                  project_id: pulumi.Input[_builtins.str],
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 network_isolation_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 protected_status: Optional[pulumi.Input['ProtectedStatus']] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 network_isolation_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 protected_status: pulumi.Input[Optional['ProtectedStatus']] = None):
         """
         The set of arguments for constructing a Environment resource.
 
@@ -49,35 +49,35 @@ class EnvironmentArgs:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="networkIsolationEnabled")
-    def network_isolation_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def network_isolation_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates whether network connections across environments are allowed.
         """
         return pulumi.get(self, "network_isolation_enabled")
 
     @network_isolation_enabled.setter
-    def network_isolation_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def network_isolation_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "network_isolation_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="protectedStatus")
-    def protected_status(self) -> Optional[pulumi.Input['ProtectedStatus']]:
+    def protected_status(self) -> pulumi.Input[Optional['ProtectedStatus']]:
         """
         Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
         """
         return pulumi.get(self, "protected_status")
 
     @protected_status.setter
-    def protected_status(self, value: Optional[pulumi.Input['ProtectedStatus']]):
+    def protected_status(self, value: pulumi.Input[Optional['ProtectedStatus']]):
         pulumi.set(self, "protected_status", value)
 
 
@@ -87,10 +87,10 @@ class Environment(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 network_isolation_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 protected_status: Optional[pulumi.Input['ProtectedStatus']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 network_isolation_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 protected_status: pulumi.Input[Optional['ProtectedStatus']] = None,
                  __props__=None):
         """
         Create a Environment resource with the given unique name, props, and options.
@@ -124,10 +124,10 @@ class Environment(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 network_isolation_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 protected_status: Optional[pulumi.Input['ProtectedStatus']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 network_isolation_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 protected_status: pulumi.Input[Optional['ProtectedStatus']] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):

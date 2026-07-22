@@ -94,9 +94,9 @@ export class EnvGroup extends pulumi.CustomResource {
  */
 export interface EnvGroupArgs {
     envVars: pulumi.Input<pulumi.Input<inputs.envgroups.EnvVarInputArgs>[]>;
-    environmentId?: pulumi.Input<string>;
-    name?: pulumi.Input<string>;
+    environmentId?: pulumi.Input<string | undefined>;
+    name?: pulumi.Input<string | undefined>;
     ownerId: pulumi.Input<string>;
-    secretFiles?: pulumi.Input<pulumi.Input<inputs.envgroups.SecretFileInputArgs>[]>;
-    serviceIds?: pulumi.Input<pulumi.Input<string>[]>;
+    secretFiles?: pulumi.Input<pulumi.Input<inputs.envgroups.SecretFileInputArgs>[] | undefined>;
+    serviceIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

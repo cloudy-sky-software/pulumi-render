@@ -82,7 +82,7 @@ export class Disk extends pulumi.CustomResource {
  */
 export interface DiskArgs {
     mountPath: pulumi.Input<string>;
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     serviceId: pulumi.Input<string>;
     sizeGB: pulumi.Input<number>;
 }

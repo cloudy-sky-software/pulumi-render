@@ -19,7 +19,7 @@ __all__ = ['RestartPostgresArgs', 'RestartPostgres']
 @pulumi.input_type
 class RestartPostgresArgs:
     def __init__(__self__, *,
-                 postgres_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 postgres_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a RestartPostgres resource.
         """
@@ -28,11 +28,11 @@ class RestartPostgresArgs:
 
     @_builtins.property
     @pulumi.getter(name="postgresId")
-    def postgres_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def postgres_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "postgres_id")
 
     @postgres_id.setter
-    def postgres_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def postgres_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "postgres_id", value)
 
 
@@ -42,7 +42,7 @@ class RestartPostgres(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 postgres_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 postgres_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Create a RestartPostgres resource with the given unique name, props, and options.
@@ -74,7 +74,7 @@ class RestartPostgres(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 postgres_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 postgres_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):

@@ -59,7 +59,7 @@ def list_job(service_id: Optional[_builtins.str] = None,
 
     return AwaitableListJobResult(
         items=pulumi.get(__ret__, 'items'))
-def list_job_output(service_id: Optional[pulumi.Input[_builtins.str]] = None,
+def list_job_output(service_id: pulumi.Input[Optional[_builtins.str]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListJobResult]:
     """
     Use this data source to access information about an existing resource.

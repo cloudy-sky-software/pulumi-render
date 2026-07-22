@@ -70,8 +70,8 @@ def get_secret_file(secret_file_name: Optional[_builtins.str] = None,
     return AwaitableGetSecretFileResult(
         content=pulumi.get(__ret__, 'content'),
         name=pulumi.get(__ret__, 'name'))
-def get_secret_file_output(secret_file_name: Optional[pulumi.Input[_builtins.str]] = None,
-                           service_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_secret_file_output(secret_file_name: pulumi.Input[Optional[_builtins.str]] = None,
+                           service_id: pulumi.Input[Optional[_builtins.str]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSecretFileResult]:
     """
     Use this data source to access information about an existing resource.

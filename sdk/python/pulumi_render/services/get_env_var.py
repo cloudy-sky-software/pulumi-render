@@ -70,8 +70,8 @@ def get_env_var(env_var_key: Optional[_builtins.str] = None,
     return AwaitableGetEnvVarResult(
         key=pulumi.get(__ret__, 'key'),
         value=pulumi.get(__ret__, 'value'))
-def get_env_var_output(env_var_key: Optional[pulumi.Input[_builtins.str]] = None,
-                       service_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_env_var_output(env_var_key: pulumi.Input[Optional[_builtins.str]] = None,
+                       service_id: pulumi.Input[Optional[_builtins.str]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetEnvVarResult]:
     """
     Use this data source to access information about an existing resource.

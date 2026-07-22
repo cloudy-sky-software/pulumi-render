@@ -55,5 +55,5 @@ export class FailoverPostgres extends pulumi.CustomResource {
  * The set of arguments for constructing a FailoverPostgres resource.
  */
 export interface FailoverPostgresArgs {
-    postgresId?: pulumi.Input<string>;
+    postgresId?: pulumi.Input<string | undefined>;
 }

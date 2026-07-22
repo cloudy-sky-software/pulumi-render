@@ -55,5 +55,5 @@ export class PostgresExport extends pulumi.CustomResource {
  * The set of arguments for constructing a PostgresExport resource.
  */
 export interface PostgresExportArgs {
-    postgresId?: pulumi.Input<string>;
+    postgresId?: pulumi.Input<string | undefined>;
 }

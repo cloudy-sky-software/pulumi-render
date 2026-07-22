@@ -101,7 +101,7 @@ def get_owner(owner_id: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         two_factor_auth_enabled=pulumi.get(__ret__, 'two_factor_auth_enabled'),
         type=pulumi.get(__ret__, 'type'))
-def get_owner_output(owner_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_owner_output(owner_id: pulumi.Input[Optional[_builtins.str]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOwnerResult]:
     """
     Use this data source to access information about an existing resource.

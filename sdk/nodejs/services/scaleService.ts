@@ -65,5 +65,5 @@ export interface ScaleServiceArgs {
     /**
      * The ID of the service
      */
-    serviceId?: pulumi.Input<string>;
+    serviceId?: pulumi.Input<string | undefined>;
 }

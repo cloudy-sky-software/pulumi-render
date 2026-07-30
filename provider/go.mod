@@ -4,7 +4,7 @@ go 1.26
 
 require (
 	github.com/cloudy-sky-software/pulschema v0.0.0-20260725200122-974dc4916037
-	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20260726013126-bc4fa431c897
+	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20260730153753-4fa50b5b2d1e
 	github.com/getkin/kin-openapi v0.145.0
 	github.com/pulumi/pulumi/pkg/v3 v3.253.0
 	github.com/pulumi/pulumi/sdk/v3 v3.253.0
@@ -138,7 +138,7 @@ require (
 	golang.org/x/tools v0.47.0 // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20260713224248-f5fc221cf8c4 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20260713224248-f5fc221cf8c4 // indirect
-	google.golang.org/grpc v1.82.1 // indirect
+	google.golang.org/grpc v1.83.0 // indirect
 	google.golang.org/protobuf v1.36.11 // indirect
 	lukechampine.com/frand v1.5.1 // indirect
 )

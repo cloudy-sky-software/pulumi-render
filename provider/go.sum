@@ -128,10 +128,10 @@ github.com/clipperhouse/uax29/v2 v2.7.0 h1:+gs4oBZ2gPfVrKPthwbMzWZDaAFPGYK72F0NJ
 github.com/clipperhouse/uax29/v2 v2.7.0/go.mod h1:EFJ2TJMRUaplDxHKj1qAEhCtQPW2tJSwu5BF98AuoVM=
 github.com/cloudflare/circl v1.6.3 h1:9GPOhQGF9MCYUeXyMYlqTR6a5gTrgR/fBLXvUgtVcg8=
 github.com/cloudflare/circl v1.6.3/go.mod h1:2eXP6Qfat4O/Yhh8BznvKnJ+uzEoTQ6jVKJRn81BiS4=
-github.com/cloudy-sky-software/pulschema v0.0.0-20260810002112-e230b9f71b06 h1:ZKCLdOwfCmaPYRcg9Xn+BlkR0QtzQxtDChS2Ui2W5hY=
-github.com/cloudy-sky-software/pulschema v0.0.0-20260810002112-e230b9f71b06/go.mod h1:Hq2ph+9kBmbCZt8bGsQw62HqDNSGyt+exsvMHSB1LbU=
-github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20260810142000-a7b9a9f8b755 h1:jnoYvRGz1+rvx2LDielYaAJYT6Ae2GqHH0Jnbt7RLGs=
-github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20260810142000-a7b9a9f8b755/go.mod h1:riwLIBY+YpqMcqMsGQFwNoHlhNX3XhNYAJSexRT788c=
+github.com/cloudy-sky-software/pulschema v0.0.0-20260810141725-aba9cd208501 h1:gtvYs1V1/3aHjkJwWTDYEfYYFnxB9v44K+QOS1s+qww=
+github.com/cloudy-sky-software/pulschema v0.0.0-20260810141725-aba9cd208501/go.mod h1:1o8lo4Ms4ZQM5+LQx8tTk4FvpnibJvZude3vrDeQJc8=
+github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20260810191139-9473d007d19b h1:IX75zbQaVsufZR7yybttqSHcLjOOl262aoN4cgWxt78=
+github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20260810191139-9473d007d19b/go.mod h1:GPZsfLNxCH7RFsFZOKe/o8TYI5a8qGtBPRFgNB/el+Q=
 github.com/cncf/xds/go v0.0.0-20260202195803-dba9d589def2 h1:aBangftG7EVZoUb69Os8IaYg++6uMOdKK83QtkkvJik=
 github.com/cncf/xds/go v0.0.0-20260202195803-dba9d589def2/go.mod h1:qwXFYgsP6T7XnJtbKlf1HP8AjxZZyzxMmc+Lq5GjlU4=
 github.com/cpuguy83/go-md2man/v2 v2.0.6/go.mod h1:oOW0eioCTA6cOiMLiUPZOpcVxMig6NIQQ7OS05n1F4g=
@@ -349,8 +349,8 @@ github.com/pulumi/appdash v0.0.0-20231130102222-75f619a67231 h1:vkHw5I/plNdTr435
 github.com/pulumi/appdash v0.0.0-20231130102222-75f619a67231/go.mod h1:murToZ2N9hNJzewjHBgfFdXhZKjY3z5cYC1VXk+lbFE=
 github.com/pulumi/inflector v0.2.1 h1:bqyiish3tq//vLeLiEstSFE5K7RNjy/ce47ed4QATu8=
 github.com/pulumi/inflector v0.2.1/go.mod h1:HUFCjcPTz96YtTuUlwG3i3EZG4WlniBvR9bd+iJxCUY=
-github.com/pulumi/pulumi-dotnet/pulumi-language-dotnet/v3 v3.110.0 h1:3ZVrcJAP3ho1YSYT2n/UqlKBEjGY4ePfmjknjHXAXi0=
-github.com/pulumi/pulumi-dotnet/pulumi-language-dotnet/v3 v3.110.0/go.mod h1:sZ26/AWTq2jYFcc26sTFK+1mKiGsOETeFltYqpBN7E4=
+github.com/pulumi/pulumi-dotnet/pulumi-language-dotnet/v3 v3.111.0 h1:WisZ3KxurIjT3CzZ0XfDoxVRKN4rKFofc7Nk/pgY5Mo=
+github.com/pulumi/pulumi-dotnet/pulumi-language-dotnet/v3 v3.111.0/go.mod h1:l4SvcCEwJ1TqIIAgaXFRW9l013uU142c9bBK/wAIXGM=
 github.com/pulumi/pulumi/pkg/v3 v3.256.0 h1:uXTo11w2S5scowuuv6Z5yMzxz9NmpYnogNBCeCUziWc=
 github.com/pulumi/pulumi/pkg/v3 v3.256.0/go.mod h1:FdxtC8Mia2ZjO80xPOTNKusgF8Ae16GQe2LqhXv8pNw=
 github.com/pulumi/pulumi/sdk/v3 v3.256.0 h1:OrkIu7Iw3HUcMtoEy2uzpD21C32B5EYBLBgBoh/uQPM=
@@ -543,8 +543,8 @@ google.golang.org/genproto/googleapis/rpc v0.0.0-20260803160001-6ac0973c030d h1:
 google.golang.org/genproto/googleapis/rpc v0.0.0-20260803160001-6ac0973c030d/go.mod h1:4Hqkh8ycfw05ld/3BWL7rJOSfebL2Q+DVDeRgYgxUU8=
 google.golang.org/grpc v1.83.0 h1:JeNZEKJFbQxArAMl+hiytHauacDNqJUllNfmIMmpqnQ=
 google.golang.org/grpc v1.83.0/go.mod h1:kDyl6SKsiHKt0uylY5gtn5cEjkrIOhQOGDgIc4JGwzQ=
-google.golang.org/protobuf v1.36.11 h1:fV6ZwhNocDyBLK0dj+fg8ektcVegBBuEolpbTQyBNVE=
-google.golang.org/protobuf v1.36.11/go.mod h1:HTf+CrKn2C3g5S8VImy6tdcUvCska2kB7j23XfzDpco=
+google.golang.org/protobuf v1.36.12 h1:pJOKDDOyeXErUroCihFAd5LQuwXBSpVnKGrj5o/fwxc=
+google.golang.org/protobuf v1.36.12/go.mod h1:HTf+CrKn2C3g5S8VImy6tdcUvCska2kB7j23XfzDpco=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/check.v1 v1.0.0-20190902080502-41f04d3bba15/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c h1:Hei/4ADfdWqJk1ZMxUNpqntNwaWcugrBjAiHlqqRiVk=

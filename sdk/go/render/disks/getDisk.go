@@ -37,12 +37,8 @@ type LookupDiskResult struct {
 }
 
 func LookupDiskOutput(ctx *pulumi.Context, args LookupDiskOutputArgs, opts ...pulumi.InvokeOption) LookupDiskResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupDiskResultOutput, error) {
-			args := v.(LookupDiskArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("render:disks:getDisk", args, LookupDiskResultOutput{}, options).(LookupDiskResultOutput), nil
-		}).(LookupDiskResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("render:disks:getDisk", args, LookupDiskResultOutput{}, options).(LookupDiskResultOutput)
 }
 
 type LookupDiskOutputArgs struct {

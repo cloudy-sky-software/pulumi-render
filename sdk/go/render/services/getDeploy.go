@@ -42,12 +42,8 @@ type LookupDeployResult struct {
 }
 
 func LookupDeployOutput(ctx *pulumi.Context, args LookupDeployOutputArgs, opts ...pulumi.InvokeOption) LookupDeployResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupDeployResultOutput, error) {
-			args := v.(LookupDeployArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("render:services:getDeploy", args, LookupDeployResultOutput{}, options).(LookupDeployResultOutput), nil
-		}).(LookupDeployResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("render:services:getDeploy", args, LookupDeployResultOutput{}, options).(LookupDeployResultOutput)
 }
 
 type LookupDeployOutputArgs struct {

@@ -29,12 +29,8 @@ type GetBandwidthSourceResult struct {
 }
 
 func GetBandwidthSourceOutput(ctx *pulumi.Context, args GetBandwidthSourceOutputArgs, opts ...pulumi.InvokeOption) GetBandwidthSourceResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetBandwidthSourceResultOutput, error) {
-			args := v.(GetBandwidthSourceArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("render:metrics:getBandwidthSource", args, GetBandwidthSourceResultOutput{}, options).(GetBandwidthSourceResultOutput), nil
-		}).(GetBandwidthSourceResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("render:metrics:getBandwidthSource", args, GetBandwidthSourceResultOutput{}, options).(GetBandwidthSourceResultOutput)
 }
 
 type GetBandwidthSourceOutputArgs struct {

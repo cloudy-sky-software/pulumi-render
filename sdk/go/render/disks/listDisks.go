@@ -29,12 +29,8 @@ type ListDisksResult struct {
 }
 
 func ListDisksOutput(ctx *pulumi.Context, args ListDisksOutputArgs, opts ...pulumi.InvokeOption) ListDisksResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (ListDisksResultOutput, error) {
-			args := v.(ListDisksArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("render:disks:listDisks", args, ListDisksResultOutput{}, options).(ListDisksResultOutput), nil
-		}).(ListDisksResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("render:disks:listDisks", args, ListDisksResultOutput{}, options).(ListDisksResultOutput)
 }
 
 type ListDisksOutputArgs struct {

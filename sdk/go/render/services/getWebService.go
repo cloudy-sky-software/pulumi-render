@@ -68,12 +68,8 @@ func (val *LookupWebServiceResult) Defaults() *LookupWebServiceResult {
 	return &tmp
 }
 func LookupWebServiceOutput(ctx *pulumi.Context, args LookupWebServiceOutputArgs, opts ...pulumi.InvokeOption) LookupWebServiceResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupWebServiceResultOutput, error) {
-			args := v.(LookupWebServiceArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("render:services:getWebService", args, LookupWebServiceResultOutput{}, options).(LookupWebServiceResultOutput), nil
-		}).(LookupWebServiceResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("render:services:getWebService", args, LookupWebServiceResultOutput{}, options).(LookupWebServiceResultOutput)
 }
 
 type LookupWebServiceOutputArgs struct {

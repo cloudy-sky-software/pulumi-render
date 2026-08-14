@@ -1,5 +1,8 @@
 on: issue_comment
 
+permissions:
+ pull-requests: write
+
 jobs:
   call-workflow:
     if: github.event.issue.pull_request

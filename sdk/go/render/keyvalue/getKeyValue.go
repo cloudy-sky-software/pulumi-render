@@ -63,12 +63,8 @@ func (val *LookupKeyValueResult) Defaults() *LookupKeyValueResult {
 	return &tmp
 }
 func LookupKeyValueOutput(ctx *pulumi.Context, args LookupKeyValueOutputArgs, opts ...pulumi.InvokeOption) LookupKeyValueResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupKeyValueResultOutput, error) {
-			args := v.(LookupKeyValueArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("render:key-value:getKeyValue", args, LookupKeyValueResultOutput{}, options).(LookupKeyValueResultOutput), nil
-		}).(LookupKeyValueResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("render:key-value:getKeyValue", args, LookupKeyValueResultOutput{}, options).(LookupKeyValueResultOutput)
 }
 
 type LookupKeyValueOutputArgs struct {

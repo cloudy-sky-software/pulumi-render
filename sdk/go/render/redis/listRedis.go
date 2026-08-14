@@ -29,12 +29,8 @@ type ListRedisResult struct {
 }
 
 func ListRedisOutput(ctx *pulumi.Context, args ListRedisOutputArgs, opts ...pulumi.InvokeOption) ListRedisResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (ListRedisResultOutput, error) {
-			args := v.(ListRedisArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("render:redis:listRedis", args, ListRedisResultOutput{}, options).(ListRedisResultOutput), nil
-		}).(ListRedisResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("render:redis:listRedis", args, ListRedisResultOutput{}, options).(ListRedisResultOutput)
 }
 
 type ListRedisOutputArgs struct {

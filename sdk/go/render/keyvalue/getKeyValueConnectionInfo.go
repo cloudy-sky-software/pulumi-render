@@ -36,12 +36,8 @@ type GetKeyValueConnectionInfoResult struct {
 }
 
 func GetKeyValueConnectionInfoOutput(ctx *pulumi.Context, args GetKeyValueConnectionInfoOutputArgs, opts ...pulumi.InvokeOption) GetKeyValueConnectionInfoResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetKeyValueConnectionInfoResultOutput, error) {
-			args := v.(GetKeyValueConnectionInfoArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("render:key-value:getKeyValueConnectionInfo", args, GetKeyValueConnectionInfoResultOutput{}, options).(GetKeyValueConnectionInfoResultOutput), nil
-		}).(GetKeyValueConnectionInfoResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("render:key-value:getKeyValueConnectionInfo", args, GetKeyValueConnectionInfoResultOutput{}, options).(GetKeyValueConnectionInfoResultOutput)
 }
 
 type GetKeyValueConnectionInfoOutputArgs struct {

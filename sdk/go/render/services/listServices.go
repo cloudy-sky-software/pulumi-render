@@ -29,12 +29,8 @@ type ListServicesResult struct {
 }
 
 func ListServicesOutput(ctx *pulumi.Context, args ListServicesOutputArgs, opts ...pulumi.InvokeOption) ListServicesResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (ListServicesResultOutput, error) {
-			args := v.(ListServicesArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("render:services:listServices", args, ListServicesResultOutput{}, options).(ListServicesResultOutput), nil
-		}).(ListServicesResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("render:services:listServices", args, ListServicesResultOutput{}, options).(ListServicesResultOutput)
 }
 
 type ListServicesOutputArgs struct {

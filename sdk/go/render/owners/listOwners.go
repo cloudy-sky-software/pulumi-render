@@ -29,12 +29,8 @@ type ListOwnersResult struct {
 }
 
 func ListOwnersOutput(ctx *pulumi.Context, args ListOwnersOutputArgs, opts ...pulumi.InvokeOption) ListOwnersResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (ListOwnersResultOutput, error) {
-			args := v.(ListOwnersArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("render:owners:listOwners", args, ListOwnersResultOutput{}, options).(ListOwnersResultOutput), nil
-		}).(ListOwnersResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("render:owners:listOwners", args, ListOwnersResultOutput{}, options).(ListOwnersResultOutput)
 }
 
 type ListOwnersOutputArgs struct {

@@ -34,12 +34,8 @@ type LookupEnvGroupEnvVarResult struct {
 }
 
 func LookupEnvGroupEnvVarOutput(ctx *pulumi.Context, args LookupEnvGroupEnvVarOutputArgs, opts ...pulumi.InvokeOption) LookupEnvGroupEnvVarResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupEnvGroupEnvVarResultOutput, error) {
-			args := v.(LookupEnvGroupEnvVarArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("render:env-groups:getEnvGroupEnvVar", args, LookupEnvGroupEnvVarResultOutput{}, options).(LookupEnvGroupEnvVarResultOutput), nil
-		}).(LookupEnvGroupEnvVarResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("render:env-groups:getEnvGroupEnvVar", args, LookupEnvGroupEnvVarResultOutput{}, options).(LookupEnvGroupEnvVarResultOutput)
 }
 
 type LookupEnvGroupEnvVarOutputArgs struct {

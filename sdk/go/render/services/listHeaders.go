@@ -31,12 +31,8 @@ type ListHeadersResult struct {
 }
 
 func ListHeadersOutput(ctx *pulumi.Context, args ListHeadersOutputArgs, opts ...pulumi.InvokeOption) ListHeadersResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (ListHeadersResultOutput, error) {
-			args := v.(ListHeadersArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("render:services:listHeaders", args, ListHeadersResultOutput{}, options).(ListHeadersResultOutput), nil
-		}).(ListHeadersResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("render:services:listHeaders", args, ListHeadersResultOutput{}, options).(ListHeadersResultOutput)
 }
 
 type ListHeadersOutputArgs struct {

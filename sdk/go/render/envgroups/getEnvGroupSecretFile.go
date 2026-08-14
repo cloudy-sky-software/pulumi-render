@@ -34,12 +34,8 @@ type LookupEnvGroupSecretFileResult struct {
 }
 
 func LookupEnvGroupSecretFileOutput(ctx *pulumi.Context, args LookupEnvGroupSecretFileOutputArgs, opts ...pulumi.InvokeOption) LookupEnvGroupSecretFileResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupEnvGroupSecretFileResultOutput, error) {
-			args := v.(LookupEnvGroupSecretFileArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("render:env-groups:getEnvGroupSecretFile", args, LookupEnvGroupSecretFileResultOutput{}, options).(LookupEnvGroupSecretFileResultOutput), nil
-		}).(LookupEnvGroupSecretFileResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("render:env-groups:getEnvGroupSecretFile", args, LookupEnvGroupSecretFileResultOutput{}, options).(LookupEnvGroupSecretFileResultOutput)
 }
 
 type LookupEnvGroupSecretFileOutputArgs struct {

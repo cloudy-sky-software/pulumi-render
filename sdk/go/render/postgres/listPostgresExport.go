@@ -30,12 +30,8 @@ type ListPostgresExportResult struct {
 }
 
 func ListPostgresExportOutput(ctx *pulumi.Context, args ListPostgresExportOutputArgs, opts ...pulumi.InvokeOption) ListPostgresExportResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (ListPostgresExportResultOutput, error) {
-			args := v.(ListPostgresExportArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("render:postgres:listPostgresExport", args, ListPostgresExportResultOutput{}, options).(ListPostgresExportResultOutput), nil
-		}).(ListPostgresExportResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("render:postgres:listPostgresExport", args, ListPostgresExportResultOutput{}, options).(ListPostgresExportResultOutput)
 }
 
 type ListPostgresExportOutputArgs struct {

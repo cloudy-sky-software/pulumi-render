@@ -35,12 +35,8 @@ type GetOwnerNotificationSettingResult struct {
 }
 
 func GetOwnerNotificationSettingOutput(ctx *pulumi.Context, args GetOwnerNotificationSettingOutputArgs, opts ...pulumi.InvokeOption) GetOwnerNotificationSettingResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetOwnerNotificationSettingResultOutput, error) {
-			args := v.(GetOwnerNotificationSettingArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("render:notification-settings:getOwnerNotificationSetting", args, GetOwnerNotificationSettingResultOutput{}, options).(GetOwnerNotificationSettingResultOutput), nil
-		}).(GetOwnerNotificationSettingResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("render:notification-settings:getOwnerNotificationSetting", args, GetOwnerNotificationSettingResultOutput{}, options).(GetOwnerNotificationSettingResultOutput)
 }
 
 type GetOwnerNotificationSettingOutputArgs struct {

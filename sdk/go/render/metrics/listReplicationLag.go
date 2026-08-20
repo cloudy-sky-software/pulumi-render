@@ -29,12 +29,8 @@ type ListReplicationLagResult struct {
 }
 
 func ListReplicationLagOutput(ctx *pulumi.Context, args ListReplicationLagOutputArgs, opts ...pulumi.InvokeOption) ListReplicationLagResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (ListReplicationLagResultOutput, error) {
-			args := v.(ListReplicationLagArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("render:metrics:listReplicationLag", args, ListReplicationLagResultOutput{}, options).(ListReplicationLagResultOutput), nil
-		}).(ListReplicationLagResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("render:metrics:listReplicationLag", args, ListReplicationLagResultOutput{}, options).(ListReplicationLagResultOutput)
 }
 
 type ListReplicationLagOutputArgs struct {

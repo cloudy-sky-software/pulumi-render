@@ -33,12 +33,8 @@ type GetServiceNotificationOverrideResult struct {
 }
 
 func GetServiceNotificationOverrideOutput(ctx *pulumi.Context, args GetServiceNotificationOverrideOutputArgs, opts ...pulumi.InvokeOption) GetServiceNotificationOverrideResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetServiceNotificationOverrideResultOutput, error) {
-			args := v.(GetServiceNotificationOverrideArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("render:notification-settings:getServiceNotificationOverride", args, GetServiceNotificationOverrideResultOutput{}, options).(GetServiceNotificationOverrideResultOutput), nil
-		}).(GetServiceNotificationOverrideResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("render:notification-settings:getServiceNotificationOverride", args, GetServiceNotificationOverrideResultOutput{}, options).(GetServiceNotificationOverrideResultOutput)
 }
 
 type GetServiceNotificationOverrideOutputArgs struct {

@@ -29,12 +29,8 @@ type ListActiveConnectionsResult struct {
 }
 
 func ListActiveConnectionsOutput(ctx *pulumi.Context, args ListActiveConnectionsOutputArgs, opts ...pulumi.InvokeOption) ListActiveConnectionsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (ListActiveConnectionsResultOutput, error) {
-			args := v.(ListActiveConnectionsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("render:metrics:listActiveConnections", args, ListActiveConnectionsResultOutput{}, options).(ListActiveConnectionsResultOutput), nil
-		}).(ListActiveConnectionsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("render:metrics:listActiveConnections", args, ListActiveConnectionsResultOutput{}, options).(ListActiveConnectionsResultOutput)
 }
 
 type ListActiveConnectionsOutputArgs struct {

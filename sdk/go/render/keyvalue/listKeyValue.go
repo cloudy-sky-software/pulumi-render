@@ -29,12 +29,8 @@ type ListKeyValueResult struct {
 }
 
 func ListKeyValueOutput(ctx *pulumi.Context, args ListKeyValueOutputArgs, opts ...pulumi.InvokeOption) ListKeyValueResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (ListKeyValueResultOutput, error) {
-			args := v.(ListKeyValueArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("render:key-value:listKeyValue", args, ListKeyValueResultOutput{}, options).(ListKeyValueResultOutput), nil
-		}).(ListKeyValueResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("render:key-value:listKeyValue", args, ListKeyValueResultOutput{}, options).(ListKeyValueResultOutput)
 }
 
 type ListKeyValueOutputArgs struct {

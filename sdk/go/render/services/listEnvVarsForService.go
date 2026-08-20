@@ -31,12 +31,8 @@ type ListEnvVarsForServiceResult struct {
 }
 
 func ListEnvVarsForServiceOutput(ctx *pulumi.Context, args ListEnvVarsForServiceOutputArgs, opts ...pulumi.InvokeOption) ListEnvVarsForServiceResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (ListEnvVarsForServiceResultOutput, error) {
-			args := v.(ListEnvVarsForServiceArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("render:services:listEnvVarsForService", args, ListEnvVarsForServiceResultOutput{}, options).(ListEnvVarsForServiceResultOutput), nil
-		}).(ListEnvVarsForServiceResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("render:services:listEnvVarsForService", args, ListEnvVarsForServiceResultOutput{}, options).(ListEnvVarsForServiceResultOutput)
 }
 
 type ListEnvVarsForServiceOutputArgs struct {

@@ -31,12 +31,8 @@ type ListBlueprintSyncsResult struct {
 }
 
 func ListBlueprintSyncsOutput(ctx *pulumi.Context, args ListBlueprintSyncsOutputArgs, opts ...pulumi.InvokeOption) ListBlueprintSyncsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (ListBlueprintSyncsResultOutput, error) {
-			args := v.(ListBlueprintSyncsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("render:blueprints:listBlueprintSyncs", args, ListBlueprintSyncsResultOutput{}, options).(ListBlueprintSyncsResultOutput), nil
-		}).(ListBlueprintSyncsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("render:blueprints:listBlueprintSyncs", args, ListBlueprintSyncsResultOutput{}, options).(ListBlueprintSyncsResultOutput)
 }
 
 type ListBlueprintSyncsOutputArgs struct {

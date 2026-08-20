@@ -29,12 +29,8 @@ type ListWebhooksResult struct {
 }
 
 func ListWebhooksOutput(ctx *pulumi.Context, args ListWebhooksOutputArgs, opts ...pulumi.InvokeOption) ListWebhooksResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (ListWebhooksResultOutput, error) {
-			args := v.(ListWebhooksArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("render:webhooks:listWebhooks", args, ListWebhooksResultOutput{}, options).(ListWebhooksResultOutput), nil
-		}).(ListWebhooksResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("render:webhooks:listWebhooks", args, ListWebhooksResultOutput{}, options).(ListWebhooksResultOutput)
 }
 
 type ListWebhooksOutputArgs struct {

@@ -67,12 +67,8 @@ func (val *LookupPostgresResult) Defaults() *LookupPostgresResult {
 	return &tmp
 }
 func LookupPostgresOutput(ctx *pulumi.Context, args LookupPostgresOutputArgs, opts ...pulumi.InvokeOption) LookupPostgresResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupPostgresResultOutput, error) {
-			args := v.(LookupPostgresArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("render:postgres:getPostgres", args, LookupPostgresResultOutput{}, options).(LookupPostgresResultOutput), nil
-		}).(LookupPostgresResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("render:postgres:getPostgres", args, LookupPostgresResultOutput{}, options).(LookupPostgresResultOutput)
 }
 
 type LookupPostgresOutputArgs struct {

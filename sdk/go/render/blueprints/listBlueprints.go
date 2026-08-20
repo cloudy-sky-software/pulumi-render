@@ -29,12 +29,8 @@ type ListBlueprintsResult struct {
 }
 
 func ListBlueprintsOutput(ctx *pulumi.Context, args ListBlueprintsOutputArgs, opts ...pulumi.InvokeOption) ListBlueprintsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (ListBlueprintsResultOutput, error) {
-			args := v.(ListBlueprintsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("render:blueprints:listBlueprints", args, ListBlueprintsResultOutput{}, options).(ListBlueprintsResultOutput), nil
-		}).(ListBlueprintsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("render:blueprints:listBlueprints", args, ListBlueprintsResultOutput{}, options).(ListBlueprintsResultOutput)
 }
 
 type ListBlueprintsOutputArgs struct {

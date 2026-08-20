@@ -31,12 +31,8 @@ type ListSecretFilesForServiceResult struct {
 }
 
 func ListSecretFilesForServiceOutput(ctx *pulumi.Context, args ListSecretFilesForServiceOutputArgs, opts ...pulumi.InvokeOption) ListSecretFilesForServiceResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (ListSecretFilesForServiceResultOutput, error) {
-			args := v.(ListSecretFilesForServiceArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("render:services:listSecretFilesForService", args, ListSecretFilesForServiceResultOutput{}, options).(ListSecretFilesForServiceResultOutput), nil
-		}).(ListSecretFilesForServiceResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("render:services:listSecretFilesForService", args, ListSecretFilesForServiceResultOutput{}, options).(ListSecretFilesForServiceResultOutput)
 }
 
 type ListSecretFilesForServiceOutputArgs struct {

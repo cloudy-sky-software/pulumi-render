@@ -3,9 +3,9 @@ module github.com/cloudy-sky-software/pulumi-render/provider
 go 1.26
 
 require (
-	github.com/cloudy-sky-software/pulschema v0.0.0-20260826170659-b3d98118d563
-	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20260826232924-1fbaa98d9e35
-	github.com/getkin/kin-openapi v0.147.0
+	github.com/cloudy-sky-software/pulschema v0.0.0-20260827171005-10b9e8e9a590
+	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20260827181612-a33f42a50ca1
+	github.com/getkin/kin-openapi v0.148.0
 	github.com/pulumi/pulumi/pkg/v3 v3.259.0
 	github.com/pulumi/pulumi/sdk/v3 v3.259.0
 )
@@ -97,7 +97,7 @@ require (
 	github.com/rogpeppe/go-internal v1.14.1 // indirect
 	github.com/sabhiram/go-gitignore v0.0.0-20210923224102-525f6e181f06 // indirect
 	github.com/santhosh-tekuri/jsonschema/v5 v5.3.1 // indirect
-	github.com/santhosh-tekuri/jsonschema/v6 v6.0.2 // indirect
+	github.com/santhosh-tekuri/jsonschema/v6 v6.0.3 // indirect
 	github.com/segmentio/asm v1.2.0 // indirect
 	github.com/segmentio/encoding v0.4.1 // indirect
 	github.com/sergi/go-diff v1.4.0 // indirect

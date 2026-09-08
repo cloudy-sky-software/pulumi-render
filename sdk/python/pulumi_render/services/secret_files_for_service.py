@@ -61,7 +61,7 @@ class SecretFilesForService(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 secret_files: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretFileInputArgs', 'SecretFileInputArgsDict']]]]] = None,
+                 secret_files: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretFileInputArgs', 'SecretFileInputArgsDict', 'outputs.SecretFileInput']]]]] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -95,7 +95,7 @@ class SecretFilesForService(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 secret_files: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretFileInputArgs', 'SecretFileInputArgsDict']]]]] = None,
+                 secret_files: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretFileInputArgs', 'SecretFileInputArgsDict', 'outputs.SecretFileInput']]]]] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)

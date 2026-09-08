@@ -80,7 +80,7 @@ class Project(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 environments: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectCreateEnvironmentInputArgs', 'ProjectCreateEnvironmentInputArgsDict']]]]] = None,
+                 environments: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectCreateEnvironmentInputArgs', 'ProjectCreateEnvironmentInputArgsDict', 'outputs.ProjectCreateEnvironmentInput']]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  owner_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -89,7 +89,7 @@ class Project(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ProjectCreateEnvironmentInputArgs', 'ProjectCreateEnvironmentInputArgsDict']]]] environments: The environments to create when creating the project
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ProjectCreateEnvironmentInputArgs', 'ProjectCreateEnvironmentInputArgsDict', 'outputs.ProjectCreateEnvironmentInput']]]] environments: The environments to create when creating the project
         :param pulumi.Input[_builtins.str] name: The name of the project
         :param pulumi.Input[_builtins.str] owner_id: The ID of the owner that the project belongs to
         """
@@ -117,7 +117,7 @@ class Project(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 environments: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectCreateEnvironmentInputArgs', 'ProjectCreateEnvironmentInputArgsDict']]]]] = None,
+                 environments: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectCreateEnvironmentInputArgs', 'ProjectCreateEnvironmentInputArgsDict', 'outputs.ProjectCreateEnvironmentInput']]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  owner_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):

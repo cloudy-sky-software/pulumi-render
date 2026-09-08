@@ -21,7 +21,11 @@ import (
 	"github.com/cloudy-sky-software/pulumi-render/provider/pkg/gen/examples"
 )
 
-const packageName = "render"
+const (
+	packageName = "render"
+	csharp      = "csharp"
+	name        = "name"
+)
 
 // PulumiSchema will generate a Pulumi schema for the given k8s schema.
 func PulumiSchema(openAPIDoc openapi3.T) (pschema.PackageSpec, openapigen.ProviderMetadata, openapi3.T) {
@@ -46,8 +50,8 @@ func PulumiSchema(openAPIDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 					Description: "The Render API key",
 					TypeSpec:    pschema.TypeSpec{Type: "string"},
 					Language: map[string]pschema.RawMessage{
-						"csharp": rawMessage(map[string]interface{}{
-							"name": "ApiKey",
+						csharp: rawMessage(map[string]interface{}{
+							name: "ApiKey",
 						}),
 					},
 					Secret: true,
@@ -56,8 +60,8 @@ func PulumiSchema(openAPIDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 					Description: "When a service is updated, a deployment is automatically triggered. This variable controls whether or not the service cache should be cleared upon deployment.",
 					TypeSpec:    pschema.TypeSpec{Ref: "#/types/render:services:ClearCache"},
 					Language: map[string]pschema.RawMessage{
-						"csharp": rawMessage(map[string]interface{}{
-							"name": "ClearCacheOnServiceUpdateDeployments",
+						csharp: rawMessage(map[string]interface{}{
+							name: "ClearCacheOnServiceUpdateDeployments",
 						}),
 					},
 				},
@@ -79,8 +83,8 @@ func PulumiSchema(openAPIDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 					Description: "The Render API key.",
 					TypeSpec:    pschema.TypeSpec{Type: "string"},
 					Language: map[string]pschema.RawMessage{
-						"csharp": rawMessage(map[string]interface{}{
-							"name": "ApiKey",
+						csharp: rawMessage(map[string]interface{}{
+							name: "ApiKey",
 						}),
 					},
 					Secret: true,

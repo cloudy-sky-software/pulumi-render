@@ -61,7 +61,7 @@ class EnvVarsForService(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 env_vars: pulumi.Input[Optional[Sequence[pulumi.Input[Union['EnvVarInputArgs', 'EnvVarInputArgsDict']]]]] = None,
+                 env_vars: pulumi.Input[Optional[Sequence[pulumi.Input[Union['EnvVarInputArgs', 'EnvVarInputArgsDict', 'outputs.EnvVarInput']]]]] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -95,7 +95,7 @@ class EnvVarsForService(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 env_vars: pulumi.Input[Optional[Sequence[pulumi.Input[Union['EnvVarInputArgs', 'EnvVarInputArgsDict']]]]] = None,
+                 env_vars: pulumi.Input[Optional[Sequence[pulumi.Input[Union['EnvVarInputArgs', 'EnvVarInputArgsDict', 'outputs.EnvVarInput']]]]] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)

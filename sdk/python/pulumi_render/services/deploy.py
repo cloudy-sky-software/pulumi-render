@@ -15,6 +15,7 @@ else:
 from .. import _utilities
 from . import outputs
 from ._enums import *
+from ._inputs import *
 
 __all__ = ['DeployArgs', 'Deploy']
 
@@ -24,6 +25,7 @@ class DeployArgs:
                  clear_cache: pulumi.Input[Optional['ClearCache']] = None,
                  commit_id: pulumi.Input[Optional[_builtins.str]] = None,
                  image_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional['DeployQueryParamsArgs']] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Deploy resource.
@@ -39,6 +41,7 @@ class DeployArgs:
         :param pulumi.Input[_builtins.str] image_url: The URL of the image to deploy for an image-backed service.
                
                The host, repository, and image name all must match the currently configured image for the service.
+        :param pulumi.Input['DeployQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
         """
         if clear_cache is None:
@@ -49,6 +52,8 @@ class DeployArgs:
             pulumi.set(__self__, "commit_id", commit_id)
         if image_url is not None:
             pulumi.set(__self__, "image_url", image_url)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
         if service_id is not None:
             pulumi.set(__self__, "service_id", service_id)
 
@@ -97,6 +102,18 @@ class DeployArgs:
         pulumi.set(self, "image_url", value)
 
     @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['DeployQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['DeployQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
+
+    @_builtins.property
     @pulumi.getter(name="serviceId")
     def service_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -118,6 +135,7 @@ class Deploy(pulumi.CustomResource):
                  clear_cache: pulumi.Input[Optional['ClearCache']] = None,
                  commit_id: pulumi.Input[Optional[_builtins.str]] = None,
                  image_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['DeployQueryParamsArgs', 'DeployQueryParamsArgsDict', 'outputs.DeployQueryParams']]] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -136,6 +154,7 @@ class Deploy(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] image_url: The URL of the image to deploy for an image-backed service.
                
                The host, repository, and image name all must match the currently configured image for the service.
+        :param pulumi.Input[Union['DeployQueryParamsArgs', 'DeployQueryParamsArgsDict', 'outputs.DeployQueryParams']] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
         """
         ...
@@ -165,6 +184,7 @@ class Deploy(pulumi.CustomResource):
                  clear_cache: pulumi.Input[Optional['ClearCache']] = None,
                  commit_id: pulumi.Input[Optional[_builtins.str]] = None,
                  image_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['DeployQueryParamsArgs', 'DeployQueryParamsArgsDict', 'outputs.DeployQueryParams']]] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -180,6 +200,7 @@ class Deploy(pulumi.CustomResource):
             __props__.__dict__["clear_cache"] = clear_cache
             __props__.__dict__["commit_id"] = commit_id
             __props__.__dict__["image_url"] = image_url
+            __props__.__dict__["query_params"] = query_params
             __props__.__dict__["service_id"] = service_id
             __props__.__dict__["commit"] = None
             __props__.__dict__["created_at"] = None
@@ -218,6 +239,7 @@ class Deploy(pulumi.CustomResource):
         __props__.__dict__["finished_at"] = None
         __props__.__dict__["image"] = None
         __props__.__dict__["image_url"] = None
+        __props__.__dict__["query_params"] = None
         __props__.__dict__["started_at"] = None
         __props__.__dict__["status"] = None
         __props__.__dict__["trigger"] = None
@@ -278,6 +300,14 @@ class Deploy(pulumi.CustomResource):
         The host, repository, and image name all must match the currently configured image for the service.
         """
         return pulumi.get(self, "image_url")
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.DeployQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 
     @_builtins.property
     @pulumi.getter(name="startedAt")

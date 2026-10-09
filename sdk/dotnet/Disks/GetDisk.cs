@@ -30,6 +30,12 @@ namespace Pulumi.Render.Disks
         [Input("diskId", required: true)]
         public string DiskId { get; set; } = null!;
 
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Inputs.GetDiskQueryParams? QueryParams { get; set; }
+
         public GetDiskArgs()
         {
         }
@@ -43,6 +49,12 @@ namespace Pulumi.Render.Disks
         /// </summary>
         [Input("diskId", required: true)]
         public Input<string> DiskId { get; set; } = null!;
+
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.GetDiskQueryParamsArgs>? QueryParams { get; set; }
 
         public GetDiskInvokeArgs()
         {

@@ -31,6 +31,12 @@ namespace Pulumi.Render.Services
         public string CustomDomainIdOrName { get; set; } = null!;
 
         /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Inputs.GetCustomDomainQueryParams? QueryParams { get; set; }
+
+        /// <summary>
         /// The ID of the service
         /// </summary>
         [Input("serviceId", required: true)]
@@ -49,6 +55,12 @@ namespace Pulumi.Render.Services
         /// </summary>
         [Input("customDomainIdOrName", required: true)]
         public Input<string> CustomDomainIdOrName { get; set; } = null!;
+
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.GetCustomDomainQueryParamsArgs>? QueryParams { get; set; }
 
         /// <summary>
         /// The ID of the service

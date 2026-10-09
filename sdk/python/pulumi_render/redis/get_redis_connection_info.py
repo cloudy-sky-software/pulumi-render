@@ -13,6 +13,7 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from ._inputs import *
 
 __all__ = [
     'GetRedisConnectionInfoResult',
@@ -73,12 +74,16 @@ class AwaitableGetRedisConnectionInfoResult(GetRedisConnectionInfoResult):
             redis_cli_command=self.redis_cli_command)
 
 
-def get_redis_connection_info(redis_id: Optional[_builtins.str] = None,
+def get_redis_connection_info(query_params: Optional[Union['GetRedisConnectionInfoQueryParams', 'GetRedisConnectionInfoQueryParamsDict']] = None,
+                              redis_id: Optional[_builtins.str] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRedisConnectionInfoResult:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['GetRedisConnectionInfoQueryParams', 'GetRedisConnectionInfoQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     __args__['redisId'] = redis_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:redis:getRedisConnectionInfo', __args__, opts=opts, typ=GetRedisConnectionInfoResult).value
@@ -87,12 +92,16 @@ def get_redis_connection_info(redis_id: Optional[_builtins.str] = None,
         external_connection_string=pulumi.get(__ret__, 'external_connection_string'),
         internal_connection_string=pulumi.get(__ret__, 'internal_connection_string'),
         redis_cli_command=pulumi.get(__ret__, 'redis_cli_command'))
-def get_redis_connection_info_output(redis_id: pulumi.Input[Optional[_builtins.str]] = None,
+def get_redis_connection_info_output(query_params: pulumi.Input[Optional[Optional[Union['GetRedisConnectionInfoQueryParams', 'GetRedisConnectionInfoQueryParamsDict']]]] = None,
+                                     redis_id: pulumi.Input[Optional[_builtins.str]] = None,
                                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRedisConnectionInfoResult]:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['GetRedisConnectionInfoQueryParams', 'GetRedisConnectionInfoQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     __args__['redisId'] = redis_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:redis:getRedisConnectionInfo', __args__, opts=opts, typ=GetRedisConnectionInfoResult)

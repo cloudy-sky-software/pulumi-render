@@ -42,6 +42,12 @@ namespace Pulumi.Render.Projects
         [Output("ownerId")]
         public Output<string> OwnerId { get; private set; } = null!;
 
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Output("queryParams")]
+        public Output<Outputs.ProjectQueryParams?> QueryParams { get; private set; } = null!;
+
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
 
@@ -114,6 +120,12 @@ namespace Pulumi.Render.Projects
         /// </summary>
         [Input("ownerId", required: true)]
         public Input<string> OwnerId { get; set; } = null!;
+
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.ProjectQueryParamsArgs>? QueryParams { get; set; }
 
         public ProjectArgs()
         {

@@ -39,7 +39,9 @@ type Postgres struct {
 	OwnerId           pulumi.StringOutput    `pulumi:"ownerId"`
 	Plan              PlanOutput             `pulumi:"plan"`
 	PrimaryPostgresID pulumi.StringPtrOutput `pulumi:"primaryPostgresID"`
-	ReadReplicas      ReadReplicaArrayOutput `pulumi:"readReplicas"`
+	// Query params to send with the API requests for this resource.
+	QueryParams  PostgresQueryParamsPtrOutput `pulumi:"queryParams"`
+	ReadReplicas ReadReplicaArrayOutput       `pulumi:"readReplicas"`
 	// Defaults to "oregon"
 	Region     RegionOutput              `pulumi:"region"`
 	Role       RoleOutput                `pulumi:"role"`
@@ -123,8 +125,10 @@ type postgresArgs struct {
 	// The name of the database as it will appear in the Render Dashboard
 	Name *string `pulumi:"name"`
 	// The ID of the workspace to create the database for
-	OwnerId      string                 `pulumi:"ownerId"`
-	Plan         Plan                   `pulumi:"plan"`
+	OwnerId string `pulumi:"ownerId"`
+	Plan    Plan   `pulumi:"plan"`
+	// Query params to send with the API requests for this resource.
+	QueryParams  *PostgresQueryParams   `pulumi:"queryParams"`
 	ReadReplicas []ReadReplicaInputType `pulumi:"readReplicas"`
 	Region       *string                `pulumi:"region"`
 	// The PostgreSQL version
@@ -147,8 +151,10 @@ type PostgresArgs struct {
 	// The name of the database as it will appear in the Render Dashboard
 	Name pulumi.StringPtrInput
 	// The ID of the workspace to create the database for
-	OwnerId      pulumi.StringInput
-	Plan         PlanInput
+	OwnerId pulumi.StringInput
+	Plan    PlanInput
+	// Query params to send with the API requests for this resource.
+	QueryParams  PostgresQueryParamsPtrInput
 	ReadReplicas ReadReplicaInputTypeArrayInput
 	Region       pulumi.StringPtrInput
 	// The PostgreSQL version
@@ -267,6 +273,11 @@ func (o PostgresOutput) Plan() PlanOutput {
 
 func (o PostgresOutput) PrimaryPostgresID() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Postgres) pulumi.StringPtrOutput { return v.PrimaryPostgresID }).(pulumi.StringPtrOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o PostgresOutput) QueryParams() PostgresQueryParamsPtrOutput {
+	return o.ApplyT(func(v *Postgres) PostgresQueryParamsPtrOutput { return v.QueryParams }).(PostgresQueryParamsPtrOutput)
 }
 
 func (o PostgresOutput) ReadReplicas() ReadReplicaArrayOutput {

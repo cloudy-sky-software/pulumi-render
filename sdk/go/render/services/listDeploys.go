@@ -14,7 +14,7 @@ import (
 func ListDeploys(ctx *pulumi.Context, args *ListDeploysArgs, opts ...pulumi.InvokeOption) (*ListDeploysResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListDeploysResult
-	err := ctx.Invoke("render:services:listDeploys", args, &rv, opts...)
+	err := ctx.Invoke("render:services:listDeploys", args.Defaults(), &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -22,8 +22,21 @@ func ListDeploys(ctx *pulumi.Context, args *ListDeploysArgs, opts ...pulumi.Invo
 }
 
 type ListDeploysArgs struct {
+	// Query params to send with the API request.
+	QueryParams *ListDeploysQueryParams `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId string `pulumi:"serviceId"`
+}
+
+// Defaults sets the appropriate defaults for ListDeploysArgs
+func (val *ListDeploysArgs) Defaults() *ListDeploysArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	tmp.QueryParams = tmp.QueryParams.Defaults()
+
+	return &tmp
 }
 
 type ListDeploysResult struct {
@@ -31,11 +44,18 @@ type ListDeploysResult struct {
 }
 
 func ListDeploysOutput(ctx *pulumi.Context, args ListDeploysOutputArgs, opts ...pulumi.InvokeOption) ListDeploysResultOutput {
+	outputArgs := pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) *ListDeploysArgs {
+			args := v.(ListDeploysArgs)
+			return args.Defaults()
+		})
 	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-	return ctx.InvokeOutput("render:services:listDeploys", args, ListDeploysResultOutput{}, options).(ListDeploysResultOutput)
+	return ctx.InvokeOutput("render:services:listDeploys", outputArgs, ListDeploysResultOutput{}, options).(ListDeploysResultOutput)
 }
 
 type ListDeploysOutputArgs struct {
+	// Query params to send with the API request.
+	QueryParams ListDeploysQueryParamsPtrInput `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }

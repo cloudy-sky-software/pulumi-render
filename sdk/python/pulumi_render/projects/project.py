@@ -24,18 +24,22 @@ class ProjectArgs:
     def __init__(__self__, *,
                  environments: pulumi.Input[Sequence[pulumi.Input['ProjectCreateEnvironmentInputArgs']]],
                  owner_id: pulumi.Input[_builtins.str],
-                 name: pulumi.Input[Optional[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional['ProjectQueryParamsArgs']] = None):
         """
         The set of arguments for constructing a Project resource.
 
         :param pulumi.Input[Sequence[pulumi.Input['ProjectCreateEnvironmentInputArgs']]] environments: The environments to create when creating the project
         :param pulumi.Input[_builtins.str] owner_id: The ID of the owner that the project belongs to
         :param pulumi.Input[_builtins.str] name: The name of the project
+        :param pulumi.Input['ProjectQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         """
         pulumi.set(__self__, "environments", environments)
         pulumi.set(__self__, "owner_id", owner_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
 
     @_builtins.property
     @pulumi.getter
@@ -73,6 +77,18 @@ class ProjectArgs:
     def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['ProjectQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['ProjectQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
+
 
 @pulumi.type_token("render:projects:Project")
 class Project(pulumi.CustomResource):
@@ -83,6 +99,7 @@ class Project(pulumi.CustomResource):
                  environments: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectCreateEnvironmentInputArgs', 'ProjectCreateEnvironmentInputArgsDict', 'outputs.ProjectCreateEnvironmentInput']]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  owner_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['ProjectQueryParamsArgs', 'ProjectQueryParamsArgsDict', 'outputs.ProjectQueryParams']]] = None,
                  __props__=None):
         """
         Create a Project resource with the given unique name, props, and options.
@@ -92,6 +109,7 @@ class Project(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['ProjectCreateEnvironmentInputArgs', 'ProjectCreateEnvironmentInputArgsDict', 'outputs.ProjectCreateEnvironmentInput']]]] environments: The environments to create when creating the project
         :param pulumi.Input[_builtins.str] name: The name of the project
         :param pulumi.Input[_builtins.str] owner_id: The ID of the owner that the project belongs to
+        :param pulumi.Input[Union['ProjectQueryParamsArgs', 'ProjectQueryParamsArgsDict', 'outputs.ProjectQueryParams']] query_params: Query params to send with the API requests for this resource.
         """
         ...
     @overload
@@ -120,6 +138,7 @@ class Project(pulumi.CustomResource):
                  environments: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectCreateEnvironmentInputArgs', 'ProjectCreateEnvironmentInputArgsDict', 'outputs.ProjectCreateEnvironmentInput']]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  owner_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['ProjectQueryParamsArgs', 'ProjectQueryParamsArgsDict', 'outputs.ProjectQueryParams']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -136,6 +155,7 @@ class Project(pulumi.CustomResource):
             if owner_id is None and not opts.urn:
                 raise TypeError("Missing required property 'owner_id'")
             __props__.__dict__["owner_id"] = owner_id
+            __props__.__dict__["query_params"] = query_params
             __props__.__dict__["created_at"] = None
             __props__.__dict__["environment_ids"] = None
             __props__.__dict__["owner"] = None
@@ -168,6 +188,7 @@ class Project(pulumi.CustomResource):
         __props__.__dict__["name"] = None
         __props__.__dict__["owner"] = None
         __props__.__dict__["owner_id"] = None
+        __props__.__dict__["query_params"] = None
         __props__.__dict__["updated_at"] = None
         return Project(resource_name, opts=opts, __props__=__props__)
 
@@ -212,6 +233,14 @@ class Project(pulumi.CustomResource):
         The ID of the owner that the project belongs to
         """
         return pulumi.get(self, "owner_id")
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.ProjectQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")

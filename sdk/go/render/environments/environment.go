@@ -22,9 +22,11 @@ type Environment struct {
 	NetworkIsolationEnabled pulumi.BoolOutput   `pulumi:"networkIsolationEnabled"`
 	ProjectId               pulumi.StringOutput `pulumi:"projectId"`
 	// Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
-	ProtectedStatus ProtectedStatusOutput    `pulumi:"protectedStatus"`
-	RedisIds        pulumi.StringArrayOutput `pulumi:"redisIds"`
-	ServiceIds      pulumi.StringArrayOutput `pulumi:"serviceIds"`
+	ProtectedStatus ProtectedStatusOutput `pulumi:"protectedStatus"`
+	// Query params to send with the API requests for this resource.
+	QueryParams EnvironmentQueryParamsPtrOutput `pulumi:"queryParams"`
+	RedisIds    pulumi.StringArrayOutput        `pulumi:"redisIds"`
+	ServiceIds  pulumi.StringArrayOutput        `pulumi:"serviceIds"`
 }
 
 // NewEnvironment registers a new resource with the given unique name, arguments, and options.
@@ -76,6 +78,8 @@ type environmentArgs struct {
 	ProjectId               string `pulumi:"projectId"`
 	// Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
 	ProtectedStatus *ProtectedStatus `pulumi:"protectedStatus"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *EnvironmentQueryParams `pulumi:"queryParams"`
 }
 
 // The set of arguments for constructing a Environment resource.
@@ -86,6 +90,8 @@ type EnvironmentArgs struct {
 	ProjectId               pulumi.StringInput
 	// Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
 	ProtectedStatus ProtectedStatusPtrInput
+	// Query params to send with the API requests for this resource.
+	QueryParams EnvironmentQueryParamsPtrInput
 }
 
 func (EnvironmentArgs) ElementType() reflect.Type {
@@ -149,6 +155,11 @@ func (o EnvironmentOutput) ProjectId() pulumi.StringOutput {
 // Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
 func (o EnvironmentOutput) ProtectedStatus() ProtectedStatusOutput {
 	return o.ApplyT(func(v *Environment) ProtectedStatusOutput { return v.ProtectedStatus }).(ProtectedStatusOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o EnvironmentOutput) QueryParams() EnvironmentQueryParamsPtrOutput {
+	return o.ApplyT(func(v *Environment) EnvironmentQueryParamsPtrOutput { return v.QueryParams }).(EnvironmentQueryParamsPtrOutput)
 }
 
 func (o EnvironmentOutput) RedisIds() pulumi.StringArrayOutput {

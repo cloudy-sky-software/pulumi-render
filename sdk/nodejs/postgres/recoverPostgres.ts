@@ -62,6 +62,10 @@ export class RecoverPostgres extends pulumi.CustomResource {
     declare public /*out*/ readonly owner: pulumi.Output<outputs.postgres.Owner>;
     declare public readonly plan: pulumi.Output<enums.postgres.Plan>;
     declare public /*out*/ readonly primaryPostgresID: pulumi.Output<string | undefined>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.postgres.RecoverPostgresQueryParams | undefined>;
     declare public /*out*/ readonly readReplicas: pulumi.Output<outputs.postgres.ReadReplica[]>;
     /**
      * Defaults to "oregon"
@@ -104,6 +108,7 @@ export class RecoverPostgres extends pulumi.CustomResource {
             resourceInputs["environmentId"] = args?.environmentId;
             resourceInputs["plan"] = args?.plan;
             resourceInputs["postgresId"] = args?.postgresId;
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["restoreName"] = args?.restoreName;
             resourceInputs["restoreTime"] = args?.restoreTime;
             resourceInputs["createdAt"] = undefined /*out*/;
@@ -143,6 +148,7 @@ export class RecoverPostgres extends pulumi.CustomResource {
             resourceInputs["owner"] = undefined /*out*/;
             resourceInputs["plan"] = undefined /*out*/;
             resourceInputs["primaryPostgresID"] = undefined /*out*/;
+            resourceInputs["queryParams"] = undefined /*out*/;
             resourceInputs["readReplicas"] = undefined /*out*/;
             resourceInputs["region"] = undefined /*out*/;
             resourceInputs["restoreName"] = undefined /*out*/;
@@ -180,6 +186,10 @@ export interface RecoverPostgresArgs {
      */
     plan?: pulumi.Input<string | undefined>;
     postgresId?: pulumi.Input<string | undefined>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.postgres.RecoverPostgresQueryParamsArgs | undefined>;
     /**
      * Name of the new database.
      */

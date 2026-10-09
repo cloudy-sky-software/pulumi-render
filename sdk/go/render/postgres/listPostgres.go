@@ -14,7 +14,7 @@ import (
 func ListPostgres(ctx *pulumi.Context, args *ListPostgresArgs, opts ...pulumi.InvokeOption) (*ListPostgresResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListPostgresResult
-	err := ctx.Invoke("render:postgres:listPostgres", args, &rv, opts...)
+	err := ctx.Invoke("render:postgres:listPostgres", args.Defaults(), &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -22,6 +22,19 @@ func ListPostgres(ctx *pulumi.Context, args *ListPostgresArgs, opts ...pulumi.In
 }
 
 type ListPostgresArgs struct {
+	// Query params to send with the API request.
+	QueryParams *ListPostgresQueryParams `pulumi:"queryParams"`
+}
+
+// Defaults sets the appropriate defaults for ListPostgresArgs
+func (val *ListPostgresArgs) Defaults() *ListPostgresArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	tmp.QueryParams = tmp.QueryParams.Defaults()
+
+	return &tmp
 }
 
 type ListPostgresResult struct {
@@ -29,11 +42,18 @@ type ListPostgresResult struct {
 }
 
 func ListPostgresOutput(ctx *pulumi.Context, args ListPostgresOutputArgs, opts ...pulumi.InvokeOption) ListPostgresResultOutput {
+	outputArgs := pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) *ListPostgresArgs {
+			args := v.(ListPostgresArgs)
+			return args.Defaults()
+		})
 	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-	return ctx.InvokeOutput("render:postgres:listPostgres", args, ListPostgresResultOutput{}, options).(ListPostgresResultOutput)
+	return ctx.InvokeOutput("render:postgres:listPostgres", outputArgs, ListPostgresResultOutput{}, options).(ListPostgresResultOutput)
 }
 
 type ListPostgresOutputArgs struct {
+	// Query params to send with the API request.
+	QueryParams ListPostgresQueryParamsPtrInput `pulumi:"queryParams"`
 }
 
 func (ListPostgresOutputArgs) ElementType() reflect.Type {

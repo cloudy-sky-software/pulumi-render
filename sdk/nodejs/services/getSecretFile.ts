@@ -2,17 +2,25 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export function getSecretFile(args: GetSecretFileArgs, opts?: pulumi.InvokeOptions): Promise<GetSecretFileResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:getSecretFile", {
+        "queryParams": args.queryParams,
         "secretFileName": args.secretFileName,
         "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface GetSecretFileArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.services.GetSecretFileQueryParams;
     /**
      * The file name of the secret file
      */
@@ -30,12 +38,17 @@ export interface GetSecretFileResult {
 export function getSecretFileOutput(args: GetSecretFileOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSecretFileResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:services:getSecretFile", {
+        "queryParams": args.queryParams,
         "secretFileName": args.secretFileName,
         "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface GetSecretFileOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.services.GetSecretFileQueryParamsArgs | undefined>;
     /**
      * The file name of the secret file
      */

@@ -7,6 +7,40 @@ using Pulumi;
 
 namespace Pulumi.Render.Redis
 {
+    /// <summary>
+    /// Defaults to "oregon"
+    /// </summary>
+    [EnumType]
+    public readonly struct ListRedisQueryParamsRegionItem : IEquatable<ListRedisQueryParamsRegionItem>
+    {
+        private readonly string _value;
+
+        private ListRedisQueryParamsRegionItem(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static ListRedisQueryParamsRegionItem Frankfurt { get; } = new ListRedisQueryParamsRegionItem("frankfurt");
+        public static ListRedisQueryParamsRegionItem Oregon { get; } = new ListRedisQueryParamsRegionItem("oregon");
+        public static ListRedisQueryParamsRegionItem Ohio { get; } = new ListRedisQueryParamsRegionItem("ohio");
+        public static ListRedisQueryParamsRegionItem Singapore { get; } = new ListRedisQueryParamsRegionItem("singapore");
+        public static ListRedisQueryParamsRegionItem Virginia { get; } = new ListRedisQueryParamsRegionItem("virginia");
+
+        public static bool operator ==(ListRedisQueryParamsRegionItem left, ListRedisQueryParamsRegionItem right) => left.Equals(right);
+        public static bool operator !=(ListRedisQueryParamsRegionItem left, ListRedisQueryParamsRegionItem right) => !left.Equals(right);
+
+        public static explicit operator string(ListRedisQueryParamsRegionItem value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is ListRedisQueryParamsRegionItem other && Equals(other);
+        public bool Equals(ListRedisQueryParamsRegionItem other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
     [EnumType]
     public readonly struct MaintenancePropertiesState : IEquatable<MaintenancePropertiesState>
     {

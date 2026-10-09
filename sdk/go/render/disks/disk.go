@@ -18,9 +18,11 @@ type Disk struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	MountPath pulumi.StringOutput `pulumi:"mountPath"`
 	Name      pulumi.StringOutput `pulumi:"name"`
-	ServiceId pulumi.StringOutput `pulumi:"serviceId"`
-	SizeGB    pulumi.IntOutput    `pulumi:"sizeGB"`
-	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
+	// Query params to send with the API requests for this resource.
+	QueryParams DiskQueryParamsPtrOutput `pulumi:"queryParams"`
+	ServiceId   pulumi.StringOutput      `pulumi:"serviceId"`
+	SizeGB      pulumi.IntOutput         `pulumi:"sizeGB"`
+	UpdatedAt   pulumi.StringOutput      `pulumi:"updatedAt"`
 }
 
 // NewDisk registers a new resource with the given unique name, arguments, and options.
@@ -74,16 +76,20 @@ func (DiskState) ElementType() reflect.Type {
 type diskArgs struct {
 	MountPath string  `pulumi:"mountPath"`
 	Name      *string `pulumi:"name"`
-	ServiceId string  `pulumi:"serviceId"`
-	SizeGB    int     `pulumi:"sizeGB"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *DiskQueryParams `pulumi:"queryParams"`
+	ServiceId   string           `pulumi:"serviceId"`
+	SizeGB      int              `pulumi:"sizeGB"`
 }
 
 // The set of arguments for constructing a Disk resource.
 type DiskArgs struct {
 	MountPath pulumi.StringInput
 	Name      pulumi.StringPtrInput
-	ServiceId pulumi.StringInput
-	SizeGB    pulumi.IntInput
+	// Query params to send with the API requests for this resource.
+	QueryParams DiskQueryParamsPtrInput
+	ServiceId   pulumi.StringInput
+	SizeGB      pulumi.IntInput
 }
 
 func (DiskArgs) ElementType() reflect.Type {
@@ -133,6 +139,11 @@ func (o DiskOutput) MountPath() pulumi.StringOutput {
 
 func (o DiskOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Disk) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o DiskOutput) QueryParams() DiskQueryParamsPtrOutput {
+	return o.ApplyT(func(v *Disk) DiskQueryParamsPtrOutput { return v.QueryParams }).(DiskQueryParamsPtrOutput)
 }
 
 func (o DiskOutput) ServiceId() pulumi.StringOutput {

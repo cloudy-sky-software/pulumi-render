@@ -25,6 +25,12 @@ namespace Pulumi.Render.RegistryCredentials
         public Output<string> OwnerId { get; private set; } = null!;
 
         /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Output("queryParams")]
+        public Output<Outputs.RegistryCredentialQueryParams?> QueryParams { get; private set; } = null!;
+
+        /// <summary>
         /// The registry to use this credential with
         /// </summary>
         [Output("registry")]
@@ -96,6 +102,12 @@ namespace Pulumi.Render.RegistryCredentials
 
         [Input("ownerId", required: true)]
         public Input<string> OwnerId { get; set; } = null!;
+
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.RegistryCredentialQueryParamsArgs>? QueryParams { get; set; }
 
         /// <summary>
         /// The registry to use this credential with

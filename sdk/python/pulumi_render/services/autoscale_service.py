@@ -25,12 +25,14 @@ class AutoscaleServiceArgs:
                  enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  max: pulumi.Input[_builtins.int],
                  min: pulumi.Input[_builtins.int],
+                 query_params: pulumi.Input[Optional['AutoscaleServiceQueryParamsArgs']] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a AutoscaleService resource.
 
         :param pulumi.Input[_builtins.int] max: The maximum number of instances for the service
         :param pulumi.Input[_builtins.int] min: The minimum number of instances for the service
+        :param pulumi.Input['AutoscaleServiceQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
         """
         pulumi.set(__self__, "criteria", criteria)
@@ -39,6 +41,8 @@ class AutoscaleServiceArgs:
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "max", max)
         pulumi.set(__self__, "min", min)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
         if service_id is not None:
             pulumi.set(__self__, "service_id", service_id)
 
@@ -85,6 +89,18 @@ class AutoscaleServiceArgs:
         pulumi.set(self, "min", value)
 
     @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['AutoscaleServiceQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['AutoscaleServiceQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
+
+    @_builtins.property
     @pulumi.getter(name="serviceId")
     def service_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -107,6 +123,7 @@ class AutoscaleService(pulumi.CustomResource):
                  enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  max: pulumi.Input[Optional[_builtins.int]] = None,
                  min: pulumi.Input[Optional[_builtins.int]] = None,
+                 query_params: pulumi.Input[Optional[Union['AutoscaleServiceQueryParamsArgs', 'AutoscaleServiceQueryParamsArgsDict', 'outputs.AutoscaleServiceQueryParams']]] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -116,6 +133,7 @@ class AutoscaleService(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] max: The maximum number of instances for the service
         :param pulumi.Input[_builtins.int] min: The minimum number of instances for the service
+        :param pulumi.Input[Union['AutoscaleServiceQueryParamsArgs', 'AutoscaleServiceQueryParamsArgsDict', 'outputs.AutoscaleServiceQueryParams']] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
         """
         ...
@@ -146,6 +164,7 @@ class AutoscaleService(pulumi.CustomResource):
                  enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  max: pulumi.Input[Optional[_builtins.int]] = None,
                  min: pulumi.Input[Optional[_builtins.int]] = None,
+                 query_params: pulumi.Input[Optional[Union['AutoscaleServiceQueryParamsArgs', 'AutoscaleServiceQueryParamsArgsDict', 'outputs.AutoscaleServiceQueryParams']]] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -170,6 +189,7 @@ class AutoscaleService(pulumi.CustomResource):
             if min is None and not opts.urn:
                 raise TypeError("Missing required property 'min'")
             __props__.__dict__["min"] = min
+            __props__.__dict__["query_params"] = query_params
             __props__.__dict__["service_id"] = service_id
         super(AutoscaleService, __self__).__init__(
             'render:services:AutoscaleService',
@@ -197,6 +217,7 @@ class AutoscaleService(pulumi.CustomResource):
         __props__.__dict__["enabled"] = None
         __props__.__dict__["max"] = None
         __props__.__dict__["min"] = None
+        __props__.__dict__["query_params"] = None
         return AutoscaleService(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
@@ -224,4 +245,12 @@ class AutoscaleService(pulumi.CustomResource):
         The minimum number of instances for the service
         """
         return pulumi.get(self, "min")
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.AutoscaleServiceQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 

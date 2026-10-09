@@ -11,6 +11,7 @@ export function getCustomDomain(args: GetCustomDomainArgs, opts?: pulumi.InvokeO
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:getCustomDomain", {
         "customDomainIdOrName": args.customDomainIdOrName,
+        "queryParams": args.queryParams,
         "serviceId": args.serviceId,
     }, opts);
 }
@@ -20,6 +21,10 @@ export interface GetCustomDomainArgs {
      * The ID or name of the custom domain
      */
     customDomainIdOrName: string;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.services.GetCustomDomainQueryParams;
     /**
      * The ID of the service
      */
@@ -40,6 +45,7 @@ export function getCustomDomainOutput(args: GetCustomDomainOutputArgs, opts?: pu
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:services:getCustomDomain", {
         "customDomainIdOrName": args.customDomainIdOrName,
+        "queryParams": args.queryParams,
         "serviceId": args.serviceId,
     }, opts);
 }
@@ -49,6 +55,10 @@ export interface GetCustomDomainOutputArgs {
      * The ID or name of the custom domain
      */
     customDomainIdOrName: pulumi.Input<string>;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.services.GetCustomDomainQueryParamsArgs | undefined>;
     /**
      * The ID of the service
      */

@@ -15,6 +15,8 @@ type CustomDomain struct {
 	pulumi.CustomResourceState
 
 	Name pulumi.StringOutput `pulumi:"name"`
+	// Query params to send with the API requests for this resource.
+	QueryParams CustomDomainQueryParamsPtrOutput `pulumi:"queryParams"`
 }
 
 // NewCustomDomain registers a new resource with the given unique name, arguments, and options.
@@ -58,6 +60,8 @@ func (CustomDomainState) ElementType() reflect.Type {
 
 type customDomainArgs struct {
 	Name *string `pulumi:"name"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *CustomDomainQueryParams `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId *string `pulumi:"serviceId"`
 }
@@ -65,6 +69,8 @@ type customDomainArgs struct {
 // The set of arguments for constructing a CustomDomain resource.
 type CustomDomainArgs struct {
 	Name pulumi.StringPtrInput
+	// Query params to send with the API requests for this resource.
+	QueryParams CustomDomainQueryParamsPtrInput
 	// The ID of the service
 	ServiceId pulumi.StringPtrInput
 }
@@ -108,6 +114,11 @@ func (o CustomDomainOutput) ToCustomDomainOutputWithContext(ctx context.Context)
 
 func (o CustomDomainOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *CustomDomain) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o CustomDomainOutput) QueryParams() CustomDomainQueryParamsPtrOutput {
+	return o.ApplyT(func(v *CustomDomain) CustomDomainQueryParamsPtrOutput { return v.QueryParams }).(CustomDomainQueryParamsPtrOutput)
 }
 
 func init() {

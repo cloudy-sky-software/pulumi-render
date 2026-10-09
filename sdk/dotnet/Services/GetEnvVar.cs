@@ -31,6 +31,12 @@ namespace Pulumi.Render.Services
         public string EnvVarKey { get; set; } = null!;
 
         /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Inputs.GetEnvVarQueryParams? QueryParams { get; set; }
+
+        /// <summary>
         /// The ID of the service
         /// </summary>
         [Input("serviceId", required: true)]
@@ -49,6 +55,12 @@ namespace Pulumi.Render.Services
         /// </summary>
         [Input("envVarKey", required: true)]
         public Input<string> EnvVarKey { get; set; } = null!;
+
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.GetEnvVarQueryParamsArgs>? QueryParams { get; set; }
 
         /// <summary>
         /// The ID of the service

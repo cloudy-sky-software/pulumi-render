@@ -11,18 +11,31 @@ export function listBlueprints(args?: ListBlueprintsArgs, opts?: pulumi.InvokeOp
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:blueprints:listBlueprints", {
+        "queryParams": args.queryParams ? inputs.blueprints.listBlueprintsQueryParamsProvideDefaults(args.queryParams) : undefined,
     }, opts);
 }
 
 export interface ListBlueprintsArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.blueprints.ListBlueprintsQueryParams;
 }
 
 export interface ListBlueprintsResult {
     readonly items: outputs.blueprints.BlueprintWithCursor[];
 }
-export function listBlueprintsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListBlueprintsResult> {
+export function listBlueprintsOutput(args?: ListBlueprintsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListBlueprintsResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:blueprints:listBlueprints", {
+        "queryParams": pulumi.output(args.queryParams).apply(v => v === undefined ? undefined : inputs.blueprints.listBlueprintsQueryParamsProvideDefaults(v)),
     }, opts);
 }
 
+export interface ListBlueprintsOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.blueprints.ListBlueprintsQueryParamsArgs | undefined>;
+}

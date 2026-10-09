@@ -10,11 +10,16 @@ import * as utilities from "../utilities";
 export function listCustomDomains(args: ListCustomDomainsArgs, opts?: pulumi.InvokeOptions): Promise<ListCustomDomainsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:listCustomDomains", {
+        "queryParams": args.queryParams ? inputs.services.listCustomDomainsQueryParamsProvideDefaults(args.queryParams) : undefined,
         "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface ListCustomDomainsArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.services.ListCustomDomainsQueryParams;
     /**
      * The ID of the service
      */
@@ -27,11 +32,16 @@ export interface ListCustomDomainsResult {
 export function listCustomDomainsOutput(args: ListCustomDomainsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListCustomDomainsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:services:listCustomDomains", {
+        "queryParams": pulumi.output(args.queryParams).apply(v => v === undefined ? undefined : inputs.services.listCustomDomainsQueryParamsProvideDefaults(v)),
         "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface ListCustomDomainsOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.services.ListCustomDomainsQueryParamsArgs | undefined>;
     /**
      * The ID of the service
      */

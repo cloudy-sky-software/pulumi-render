@@ -13,6 +13,9 @@ import (
 
 type ResumePostgres struct {
 	pulumi.CustomResourceState
+
+	// Query params to send with the API requests for this resource.
+	QueryParams ResumePostgresQueryParamsPtrOutput `pulumi:"queryParams"`
 }
 
 // NewResumePostgres registers a new resource with the given unique name, arguments, and options.
@@ -56,11 +59,15 @@ func (ResumePostgresState) ElementType() reflect.Type {
 
 type resumePostgresArgs struct {
 	PostgresId *string `pulumi:"postgresId"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *ResumePostgresQueryParams `pulumi:"queryParams"`
 }
 
 // The set of arguments for constructing a ResumePostgres resource.
 type ResumePostgresArgs struct {
 	PostgresId pulumi.StringPtrInput
+	// Query params to send with the API requests for this resource.
+	QueryParams ResumePostgresQueryParamsPtrInput
 }
 
 func (ResumePostgresArgs) ElementType() reflect.Type {
@@ -98,6 +105,11 @@ func (o ResumePostgresOutput) ToResumePostgresOutput() ResumePostgresOutput {
 
 func (o ResumePostgresOutput) ToResumePostgresOutputWithContext(ctx context.Context) ResumePostgresOutput {
 	return o
+}
+
+// Query params to send with the API requests for this resource.
+func (o ResumePostgresOutput) QueryParams() ResumePostgresQueryParamsPtrOutput {
+	return o.ApplyT(func(v *ResumePostgres) ResumePostgresQueryParamsPtrOutput { return v.QueryParams }).(ResumePostgresQueryParamsPtrOutput)
 }
 
 func init() {

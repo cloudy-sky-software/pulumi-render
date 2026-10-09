@@ -15,6 +15,7 @@ else:
 from .. import _utilities
 from . import outputs
 from ._enums import *
+from ._inputs import *
 
 __all__ = [
     'GetRedisResult',
@@ -183,12 +184,16 @@ class AwaitableGetRedisResult(GetRedisResult):
             version=self.version)
 
 
-def get_redis(redis_id: Optional[_builtins.str] = None,
+def get_redis(query_params: Optional[Union['GetRedisQueryParams', 'GetRedisQueryParamsDict']] = None,
+              redis_id: Optional[_builtins.str] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRedisResult:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['GetRedisQueryParams', 'GetRedisQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     __args__['redisId'] = redis_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:redis:getRedis', __args__, opts=opts, typ=GetRedisResult).value
@@ -207,12 +212,16 @@ def get_redis(redis_id: Optional[_builtins.str] = None,
         status=pulumi.get(__ret__, 'status'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         version=pulumi.get(__ret__, 'version'))
-def get_redis_output(redis_id: pulumi.Input[Optional[_builtins.str]] = None,
+def get_redis_output(query_params: pulumi.Input[Optional[Optional[Union['GetRedisQueryParams', 'GetRedisQueryParamsDict']]]] = None,
+                     redis_id: pulumi.Input[Optional[_builtins.str]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRedisResult]:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['GetRedisQueryParams', 'GetRedisQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     __args__['redisId'] = redis_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:redis:getRedis', __args__, opts=opts, typ=GetRedisResult)

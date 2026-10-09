@@ -15,7 +15,7 @@ export const getEnvironment: typeof import("./getEnvironment").getEnvironment = 
 export const getEnvironmentOutput: typeof import("./getEnvironment").getEnvironmentOutput = null as any;
 utilities.lazyLoad(exports, ["getEnvironment","getEnvironmentOutput"], () => require("./getEnvironment"));
 
-export { ListEnvironmentsArgs, ListEnvironmentsResult } from "./listEnvironments";
+export { ListEnvironmentsArgs, ListEnvironmentsResult, ListEnvironmentsOutputArgs } from "./listEnvironments";
 export const listEnvironments: typeof import("./listEnvironments").listEnvironments = null as any;
 export const listEnvironmentsOutput: typeof import("./listEnvironments").listEnvironmentsOutput = null as any;
 utilities.lazyLoad(exports, ["listEnvironments","listEnvironmentsOutput"], () => require("./listEnvironments"));

@@ -14,20 +14,40 @@ namespace Pulumi.Render.RegistryCredentials
         public static Task<ListRegistryCredentialsResult> InvokeAsync(ListRegistryCredentialsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ListRegistryCredentialsResult>("render:registrycredentials:listRegistryCredentials", args ?? new ListRegistryCredentialsArgs(), options.WithDefaults());
 
-        public static Output<ListRegistryCredentialsResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<ListRegistryCredentialsResult>("render:registrycredentials:listRegistryCredentials", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<ListRegistryCredentialsResult> Invoke(ListRegistryCredentialsInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<ListRegistryCredentialsResult>("render:registrycredentials:listRegistryCredentials", args ?? new ListRegistryCredentialsInvokeArgs(), options.WithDefaults());
 
-        public static Output<ListRegistryCredentialsResult> Invoke(InvokeOutputOptions options)
-            => global::Pulumi.Deployment.Instance.Invoke<ListRegistryCredentialsResult>("render:registrycredentials:listRegistryCredentials", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<ListRegistryCredentialsResult> Invoke(ListRegistryCredentialsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<ListRegistryCredentialsResult>("render:registrycredentials:listRegistryCredentials", args ?? new ListRegistryCredentialsInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class ListRegistryCredentialsArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Inputs.ListRegistryCredentialsQueryParams? QueryParams { get; set; }
+
         public ListRegistryCredentialsArgs()
         {
         }
         public static new ListRegistryCredentialsArgs Empty => new ListRegistryCredentialsArgs();
+    }
+
+    public sealed class ListRegistryCredentialsInvokeArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.ListRegistryCredentialsQueryParamsArgs>? QueryParams { get; set; }
+
+        public ListRegistryCredentialsInvokeArgs()
+        {
+        }
+        public static new ListRegistryCredentialsInvokeArgs Empty => new ListRegistryCredentialsInvokeArgs();
     }
 
 

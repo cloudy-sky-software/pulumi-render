@@ -24,6 +24,8 @@ func LookupJob(ctx *pulumi.Context, args *LookupJobArgs, opts ...pulumi.InvokeOp
 type LookupJobArgs struct {
 	// The ID of the job
 	JobId string `pulumi:"jobId"`
+	// Query params to send with the API request.
+	QueryParams *GetJobQueryParams `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId string `pulumi:"serviceId"`
 }
@@ -47,6 +49,8 @@ func LookupJobOutput(ctx *pulumi.Context, args LookupJobOutputArgs, opts ...pulu
 type LookupJobOutputArgs struct {
 	// The ID of the job
 	JobId pulumi.StringInput `pulumi:"jobId"`
+	// Query params to send with the API request.
+	QueryParams GetJobQueryParamsPtrInput `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }

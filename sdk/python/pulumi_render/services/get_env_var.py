@@ -13,6 +13,7 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from ._inputs import *
 
 __all__ = [
     'GetEnvVarResult',
@@ -53,16 +54,19 @@ class AwaitableGetEnvVarResult(GetEnvVarResult):
 
 
 def get_env_var(env_var_key: Optional[_builtins.str] = None,
+                query_params: Optional[Union['GetEnvVarQueryParams', 'GetEnvVarQueryParamsDict']] = None,
                 service_id: Optional[_builtins.str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetEnvVarResult:
     """
     Use this data source to access information about an existing resource.
 
     :param _builtins.str env_var_key: The name of the environment variable
+    :param Union['GetEnvVarQueryParams', 'GetEnvVarQueryParamsDict'] query_params: Query params to send with the API request.
     :param _builtins.str service_id: The ID of the service
     """
     __args__ = dict()
     __args__['envVarKey'] = env_var_key
+    __args__['queryParams'] = query_params
     __args__['serviceId'] = service_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:services:getEnvVar', __args__, opts=opts, typ=GetEnvVarResult).value
@@ -71,16 +75,19 @@ def get_env_var(env_var_key: Optional[_builtins.str] = None,
         key=pulumi.get(__ret__, 'key'),
         value=pulumi.get(__ret__, 'value'))
 def get_env_var_output(env_var_key: pulumi.Input[Optional[_builtins.str]] = None,
+                       query_params: pulumi.Input[Optional[Optional[Union['GetEnvVarQueryParams', 'GetEnvVarQueryParamsDict']]]] = None,
                        service_id: pulumi.Input[Optional[_builtins.str]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetEnvVarResult]:
     """
     Use this data source to access information about an existing resource.
 
     :param _builtins.str env_var_key: The name of the environment variable
+    :param Union['GetEnvVarQueryParams', 'GetEnvVarQueryParamsDict'] query_params: Query params to send with the API request.
     :param _builtins.str service_id: The ID of the service
     """
     __args__ = dict()
     __args__['envVarKey'] = env_var_key
+    __args__['queryParams'] = query_params
     __args__['serviceId'] = service_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:services:getEnvVar', __args__, opts=opts, typ=GetEnvVarResult)

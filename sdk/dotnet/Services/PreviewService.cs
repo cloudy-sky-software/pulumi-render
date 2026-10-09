@@ -33,6 +33,12 @@ namespace Pulumi.Render.Services
         [Output("plan")]
         public Output<Pulumi.Render.Services.Plan?> Plan { get; private set; } = null!;
 
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Output("queryParams")]
+        public Output<Outputs.PreviewServiceQueryParams?> QueryParams { get; private set; } = null!;
+
         [Output("service")]
         public Output<Outputs.Service?> Service { get; private set; } = null!;
 
@@ -99,6 +105,12 @@ namespace Pulumi.Render.Services
         /// </summary>
         [Input("plan")]
         public Input<Pulumi.Render.Services.Plan>? Plan { get; set; }
+
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.PreviewServiceQueryParamsArgs>? QueryParams { get; set; }
 
         /// <summary>
         /// The ID of the service

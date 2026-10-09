@@ -21,6 +21,12 @@ namespace Pulumi.Render.CronJobs
         [Output("finishedAt")]
         public Output<string?> FinishedAt { get; private set; } = null!;
 
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Output("queryParams")]
+        public Output<Outputs.RunCronJobQueryParams?> QueryParams { get; private set; } = null!;
+
         [Output("startedAt")]
         public Output<string?> StartedAt { get; private set; } = null!;
 
@@ -84,6 +90,12 @@ namespace Pulumi.Render.CronJobs
         /// </summary>
         [Input("cronJobId")]
         public Input<string>? CronJobId { get; set; }
+
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.RunCronJobQueryParamsArgs>? QueryParams { get; set; }
 
         public RunCronJobArgs()
         {

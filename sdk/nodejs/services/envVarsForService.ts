@@ -35,6 +35,10 @@ export class EnvVarsForService extends pulumi.CustomResource {
     }
 
     declare public readonly envVars: pulumi.Output<outputs.services.EnvVarInput[] | undefined>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.services.EnvVarsForServiceQueryParams | undefined>;
 
     /**
      * Create a EnvVarsForService resource with the given unique name, arguments, and options.
@@ -48,9 +52,11 @@ export class EnvVarsForService extends pulumi.CustomResource {
         opts = opts || {};
         if (!opts.id) {
             resourceInputs["envVars"] = args?.envVars;
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["serviceId"] = args?.serviceId;
         } else {
             resourceInputs["envVars"] = undefined /*out*/;
+            resourceInputs["queryParams"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(EnvVarsForService.__pulumiType, name, resourceInputs, opts);
@@ -62,6 +68,10 @@ export class EnvVarsForService extends pulumi.CustomResource {
  */
 export interface EnvVarsForServiceArgs {
     envVars?: pulumi.Input<pulumi.Input<inputs.services.EnvVarInputArgs>[] | undefined>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.services.EnvVarsForServiceQueryParamsArgs | undefined>;
     /**
      * The ID of the service
      */

@@ -20,7 +20,9 @@ type EnvGroupEnvVar struct {
 	GenerateValue pulumi.BoolPtrOutput   `pulumi:"generateValue"`
 	Name          pulumi.StringPtrOutput `pulumi:"name"`
 	OwnerId       pulumi.StringPtrOutput `pulumi:"ownerId"`
-	SecretFiles   SecretFileArrayOutput  `pulumi:"secretFiles"`
+	// Query params to send with the API requests for this resource.
+	QueryParams EnvGroupEnvVarQueryParamsPtrOutput `pulumi:"queryParams"`
+	SecretFiles SecretFileArrayOutput              `pulumi:"secretFiles"`
 	// List of serviceIds linked to the envGroup
 	ServiceLinks EnvGroupLinkArrayOutput `pulumi:"serviceLinks"`
 	UpdatedAt    pulumi.StringPtrOutput  `pulumi:"updatedAt"`
@@ -72,7 +74,9 @@ type envGroupEnvVarArgs struct {
 	// The name of the environment variable
 	EnvVarKey     *string `pulumi:"envVarKey"`
 	GenerateValue *bool   `pulumi:"generateValue"`
-	Value         *string `pulumi:"value"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *EnvGroupEnvVarQueryParams `pulumi:"queryParams"`
+	Value       *string                    `pulumi:"value"`
 }
 
 // The set of arguments for constructing a EnvGroupEnvVar resource.
@@ -82,7 +86,9 @@ type EnvGroupEnvVarArgs struct {
 	// The name of the environment variable
 	EnvVarKey     pulumi.StringPtrInput
 	GenerateValue pulumi.BoolPtrInput
-	Value         pulumi.StringPtrInput
+	// Query params to send with the API requests for this resource.
+	QueryParams EnvGroupEnvVarQueryParamsPtrInput
+	Value       pulumi.StringPtrInput
 }
 
 func (EnvGroupEnvVarArgs) ElementType() reflect.Type {
@@ -144,6 +150,11 @@ func (o EnvGroupEnvVarOutput) Name() pulumi.StringPtrOutput {
 
 func (o EnvGroupEnvVarOutput) OwnerId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *EnvGroupEnvVar) pulumi.StringPtrOutput { return v.OwnerId }).(pulumi.StringPtrOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o EnvGroupEnvVarOutput) QueryParams() EnvGroupEnvVarQueryParamsPtrOutput {
+	return o.ApplyT(func(v *EnvGroupEnvVar) EnvGroupEnvVarQueryParamsPtrOutput { return v.QueryParams }).(EnvGroupEnvVarQueryParamsPtrOutput)
 }
 
 func (o EnvGroupEnvVarOutput) SecretFiles() SecretFileArrayOutput {

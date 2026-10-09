@@ -21,6 +21,12 @@ namespace Pulumi.Render.Services
         [Output("planId")]
         public Output<string> PlanId { get; private set; } = null!;
 
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Output("queryParams")]
+        public Output<Outputs.JobQueryParams?> QueryParams { get; private set; } = null!;
+
         [Output("serviceId")]
         public Output<string> ServiceId { get; private set; } = null!;
 
@@ -81,6 +87,12 @@ namespace Pulumi.Render.Services
     {
         [Input("planId")]
         public Input<string>? PlanId { get; set; }
+
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.JobQueryParamsArgs>? QueryParams { get; set; }
 
         /// <summary>
         /// The ID of the service

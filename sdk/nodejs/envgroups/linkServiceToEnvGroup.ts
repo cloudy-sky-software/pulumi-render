@@ -39,6 +39,10 @@ export class LinkServiceToEnvGroup extends pulumi.CustomResource {
     declare public /*out*/ readonly environmentId: pulumi.Output<string | undefined>;
     declare public /*out*/ readonly name: pulumi.Output<string | undefined>;
     declare public /*out*/ readonly ownerId: pulumi.Output<string | undefined>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.envgroups.LinkServiceToEnvGroupQueryParams | undefined>;
     declare public /*out*/ readonly secretFiles: pulumi.Output<outputs.envgroups.SecretFile[] | undefined>;
     /**
      * List of serviceIds linked to the envGroup
@@ -58,6 +62,7 @@ export class LinkServiceToEnvGroup extends pulumi.CustomResource {
         opts = opts || {};
         if (!opts.id) {
             resourceInputs["envGroupId"] = args?.envGroupId;
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["serviceId"] = args?.serviceId;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["envVars"] = undefined /*out*/;
@@ -73,6 +78,7 @@ export class LinkServiceToEnvGroup extends pulumi.CustomResource {
             resourceInputs["environmentId"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;
             resourceInputs["ownerId"] = undefined /*out*/;
+            resourceInputs["queryParams"] = undefined /*out*/;
             resourceInputs["secretFiles"] = undefined /*out*/;
             resourceInputs["serviceLinks"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
@@ -90,6 +96,10 @@ export interface LinkServiceToEnvGroupArgs {
      * Filter for resources that belong to an environment group
      */
     envGroupId?: pulumi.Input<string | undefined>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.envgroups.LinkServiceToEnvGroupQueryParamsArgs | undefined>;
     /**
      * The ID of the service
      */

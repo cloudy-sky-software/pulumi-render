@@ -11,18 +11,31 @@ export function listWebhooks(args?: ListWebhooksArgs, opts?: pulumi.InvokeOption
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:webhooks:listWebhooks", {
+        "queryParams": args.queryParams ? inputs.webhooks.listWebhooksQueryParamsProvideDefaults(args.queryParams) : undefined,
     }, opts);
 }
 
 export interface ListWebhooksArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.webhooks.ListWebhooksQueryParams;
 }
 
 export interface ListWebhooksResult {
     readonly items: outputs.webhooks.WebhookWithCursor[];
 }
-export function listWebhooksOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListWebhooksResult> {
+export function listWebhooksOutput(args?: ListWebhooksOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListWebhooksResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:webhooks:listWebhooks", {
+        "queryParams": pulumi.output(args.queryParams).apply(v => v === undefined ? undefined : inputs.webhooks.listWebhooksQueryParamsProvideDefaults(v)),
     }, opts);
 }
 
+export interface ListWebhooksOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.webhooks.ListWebhooksQueryParamsArgs | undefined>;
+}

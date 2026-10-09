@@ -11,6 +11,7 @@ export function getBlueprint(args: GetBlueprintArgs, opts?: pulumi.InvokeOptions
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:blueprints:getBlueprint", {
         "blueprintId": args.blueprintId,
+        "queryParams": args.queryParams,
     }, opts);
 }
 
@@ -19,6 +20,10 @@ export interface GetBlueprintArgs {
      * The ID of the Blueprint
      */
     blueprintId: string;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.blueprints.GetBlueprintQueryParams;
 }
 
 export interface GetBlueprintResult {
@@ -38,6 +43,7 @@ export function getBlueprintOutput(args: GetBlueprintOutputArgs, opts?: pulumi.I
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:blueprints:getBlueprint", {
         "blueprintId": args.blueprintId,
+        "queryParams": args.queryParams,
     }, opts);
 }
 
@@ -46,4 +52,8 @@ export interface GetBlueprintOutputArgs {
      * The ID of the Blueprint
      */
     blueprintId: pulumi.Input<string>;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.blueprints.GetBlueprintQueryParamsArgs | undefined>;
 }

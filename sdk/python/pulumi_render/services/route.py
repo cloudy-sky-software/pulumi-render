@@ -13,7 +13,9 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
 from ._enums import *
+from ._inputs import *
 
 __all__ = ['RouteArgs', 'Route']
 
@@ -24,11 +26,13 @@ class RouteArgs:
                  source: pulumi.Input[_builtins.str],
                  type: pulumi.Input['Type'],
                  priority: pulumi.Input[Optional[_builtins.int]] = None,
+                 query_params: pulumi.Input[Optional['RouteQueryParamsArgs']] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Route resource.
 
         :param pulumi.Input[_builtins.int] priority: Redirect and Rewrite Rules are applied in priority order starting at 0. Defaults to last in the priority list.
+        :param pulumi.Input['RouteQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
         """
         pulumi.set(__self__, "destination", destination)
@@ -36,6 +40,8 @@ class RouteArgs:
         pulumi.set(__self__, "type", type)
         if priority is not None:
             pulumi.set(__self__, "priority", priority)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
         if service_id is not None:
             pulumi.set(__self__, "service_id", service_id)
 
@@ -79,6 +85,18 @@ class RouteArgs:
         pulumi.set(self, "priority", value)
 
     @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['RouteQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['RouteQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
+
+    @_builtins.property
     @pulumi.getter(name="serviceId")
     def service_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -99,6 +117,7 @@ class Route(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  destination: pulumi.Input[Optional[_builtins.str]] = None,
                  priority: pulumi.Input[Optional[_builtins.int]] = None,
+                 query_params: pulumi.Input[Optional[Union['RouteQueryParamsArgs', 'RouteQueryParamsArgsDict', 'outputs.RouteQueryParams']]] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  source: pulumi.Input[Optional[_builtins.str]] = None,
                  type: pulumi.Input[Optional['Type']] = None,
@@ -109,6 +128,7 @@ class Route(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] priority: Redirect and Rewrite Rules are applied in priority order starting at 0. Defaults to last in the priority list.
+        :param pulumi.Input[Union['RouteQueryParamsArgs', 'RouteQueryParamsArgsDict', 'outputs.RouteQueryParams']] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
         """
         ...
@@ -137,6 +157,7 @@ class Route(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  destination: pulumi.Input[Optional[_builtins.str]] = None,
                  priority: pulumi.Input[Optional[_builtins.int]] = None,
+                 query_params: pulumi.Input[Optional[Union['RouteQueryParamsArgs', 'RouteQueryParamsArgsDict', 'outputs.RouteQueryParams']]] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  source: pulumi.Input[Optional[_builtins.str]] = None,
                  type: pulumi.Input[Optional['Type']] = None,
@@ -153,6 +174,7 @@ class Route(pulumi.CustomResource):
                 raise TypeError("Missing required property 'destination'")
             __props__.__dict__["destination"] = destination
             __props__.__dict__["priority"] = priority
+            __props__.__dict__["query_params"] = query_params
             __props__.__dict__["service_id"] = service_id
             if source is None and not opts.urn:
                 raise TypeError("Missing required property 'source'")
@@ -184,6 +206,7 @@ class Route(pulumi.CustomResource):
 
         __props__.__dict__["destination"] = None
         __props__.__dict__["priority"] = None
+        __props__.__dict__["query_params"] = None
         __props__.__dict__["source"] = None
         __props__.__dict__["type"] = None
         return Route(resource_name, opts=opts, __props__=__props__)
@@ -200,6 +223,14 @@ class Route(pulumi.CustomResource):
         Redirect and Rewrite Rules are applied in priority order starting at 0
         """
         return pulumi.get(self, "priority")
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.RouteQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 
     @_builtins.property
     @pulumi.getter

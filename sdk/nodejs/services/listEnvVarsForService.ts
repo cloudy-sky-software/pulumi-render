@@ -10,11 +10,16 @@ import * as utilities from "../utilities";
 export function listEnvVarsForService(args: ListEnvVarsForServiceArgs, opts?: pulumi.InvokeOptions): Promise<ListEnvVarsForServiceResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:listEnvVarsForService", {
+        "queryParams": args.queryParams ? inputs.services.listEnvVarsForServiceQueryParamsProvideDefaults(args.queryParams) : undefined,
         "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface ListEnvVarsForServiceArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.services.ListEnvVarsForServiceQueryParams;
     /**
      * The ID of the service
      */
@@ -27,11 +32,16 @@ export interface ListEnvVarsForServiceResult {
 export function listEnvVarsForServiceOutput(args: ListEnvVarsForServiceOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListEnvVarsForServiceResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:services:listEnvVarsForService", {
+        "queryParams": pulumi.output(args.queryParams).apply(v => v === undefined ? undefined : inputs.services.listEnvVarsForServiceQueryParamsProvideDefaults(v)),
         "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface ListEnvVarsForServiceOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.services.ListEnvVarsForServiceQueryParamsArgs | undefined>;
     /**
      * The ID of the service
      */

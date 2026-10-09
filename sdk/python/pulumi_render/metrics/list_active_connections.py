@@ -14,6 +14,7 @@ else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'ListActiveConnectionsResult',
@@ -44,21 +45,29 @@ class AwaitableListActiveConnectionsResult(ListActiveConnectionsResult):
             items=self.items)
 
 
-def list_active_connections(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListActiveConnectionsResult:
+def list_active_connections(query_params: Optional[Union['ListActiveConnectionsQueryParams', 'ListActiveConnectionsQueryParamsDict']] = None,
+                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListActiveConnectionsResult:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['ListActiveConnectionsQueryParams', 'ListActiveConnectionsQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:metrics:listActiveConnections', __args__, opts=opts, typ=ListActiveConnectionsResult).value
 
     return AwaitableListActiveConnectionsResult(
         items=pulumi.get(__ret__, 'items'))
-def list_active_connections_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListActiveConnectionsResult]:
+def list_active_connections_output(query_params: pulumi.Input[Optional[Optional[Union['ListActiveConnectionsQueryParams', 'ListActiveConnectionsQueryParamsDict']]]] = None,
+                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListActiveConnectionsResult]:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['ListActiveConnectionsQueryParams', 'ListActiveConnectionsQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:metrics:listActiveConnections', __args__, opts=opts, typ=ListActiveConnectionsResult)
     return __ret__.apply(lambda __response__: ListActiveConnectionsResult(

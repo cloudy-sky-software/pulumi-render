@@ -24,6 +24,8 @@ func ListOwnerMembers(ctx *pulumi.Context, args *ListOwnerMembersArgs, opts ...p
 type ListOwnerMembersArgs struct {
 	// The ID of the team
 	OwnerId string `pulumi:"ownerId"`
+	// Query params to send with the API request.
+	QueryParams *ListOwnerMembersQueryParams `pulumi:"queryParams"`
 }
 
 type ListOwnerMembersResult struct {
@@ -38,6 +40,8 @@ func ListOwnerMembersOutput(ctx *pulumi.Context, args ListOwnerMembersOutputArgs
 type ListOwnerMembersOutputArgs struct {
 	// The ID of the team
 	OwnerId pulumi.StringInput `pulumi:"ownerId"`
+	// Query params to send with the API request.
+	QueryParams ListOwnerMembersQueryParamsPtrInput `pulumi:"queryParams"`
 }
 
 func (ListOwnerMembersOutputArgs) ElementType() reflect.Type {

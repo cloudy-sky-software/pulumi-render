@@ -14,7 +14,7 @@ import (
 func ListRoutes(ctx *pulumi.Context, args *ListRoutesArgs, opts ...pulumi.InvokeOption) (*ListRoutesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListRoutesResult
-	err := ctx.Invoke("render:services:listRoutes", args, &rv, opts...)
+	err := ctx.Invoke("render:services:listRoutes", args.Defaults(), &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -22,8 +22,21 @@ func ListRoutes(ctx *pulumi.Context, args *ListRoutesArgs, opts ...pulumi.Invoke
 }
 
 type ListRoutesArgs struct {
+	// Query params to send with the API request.
+	QueryParams *ListRoutesQueryParams `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId string `pulumi:"serviceId"`
+}
+
+// Defaults sets the appropriate defaults for ListRoutesArgs
+func (val *ListRoutesArgs) Defaults() *ListRoutesArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	tmp.QueryParams = tmp.QueryParams.Defaults()
+
+	return &tmp
 }
 
 type ListRoutesResult struct {
@@ -31,11 +44,18 @@ type ListRoutesResult struct {
 }
 
 func ListRoutesOutput(ctx *pulumi.Context, args ListRoutesOutputArgs, opts ...pulumi.InvokeOption) ListRoutesResultOutput {
+	outputArgs := pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) *ListRoutesArgs {
+			args := v.(ListRoutesArgs)
+			return args.Defaults()
+		})
 	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-	return ctx.InvokeOutput("render:services:listRoutes", args, ListRoutesResultOutput{}, options).(ListRoutesResultOutput)
+	return ctx.InvokeOutput("render:services:listRoutes", outputArgs, ListRoutesResultOutput{}, options).(ListRoutesResultOutput)
 }
 
 type ListRoutesOutputArgs struct {
+	// Query params to send with the API request.
+	QueryParams ListRoutesQueryParamsPtrInput `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }

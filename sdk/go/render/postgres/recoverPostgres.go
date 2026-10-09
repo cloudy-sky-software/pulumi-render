@@ -35,7 +35,9 @@ type RecoverPostgres struct {
 	Owner                   OwnerOutput                               `pulumi:"owner"`
 	Plan                    PlanOutput                                `pulumi:"plan"`
 	PrimaryPostgresID       pulumi.StringPtrOutput                    `pulumi:"primaryPostgresID"`
-	ReadReplicas            ReadReplicaArrayOutput                    `pulumi:"readReplicas"`
+	// Query params to send with the API requests for this resource.
+	QueryParams  RecoverPostgresQueryParamsPtrOutput `pulumi:"queryParams"`
+	ReadReplicas ReadReplicaArrayOutput              `pulumi:"readReplicas"`
 	// Defaults to "oregon"
 	Region RegionOutput `pulumi:"region"`
 	// Name of the new database.
@@ -103,6 +105,8 @@ type recoverPostgresArgs struct {
 	// The plan to use for the new database. Defaults to the same plan as the original database. Cannot be a lower tier plan than the original database.
 	Plan       *string `pulumi:"plan"`
 	PostgresId *string `pulumi:"postgresId"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *RecoverPostgresQueryParams `pulumi:"queryParams"`
 	// Name of the new database.
 	RestoreName *string `pulumi:"restoreName"`
 	// The point in time to restore the database to. See `/recovery-info` for restore availability
@@ -120,6 +124,8 @@ type RecoverPostgresArgs struct {
 	// The plan to use for the new database. Defaults to the same plan as the original database. Cannot be a lower tier plan than the original database.
 	Plan       pulumi.StringPtrInput
 	PostgresId pulumi.StringPtrInput
+	// Query params to send with the API requests for this resource.
+	QueryParams RecoverPostgresQueryParamsPtrInput
 	// Name of the new database.
 	RestoreName pulumi.StringPtrInput
 	// The point in time to restore the database to. See `/recovery-info` for restore availability
@@ -229,6 +235,11 @@ func (o RecoverPostgresOutput) Plan() PlanOutput {
 
 func (o RecoverPostgresOutput) PrimaryPostgresID() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RecoverPostgres) pulumi.StringPtrOutput { return v.PrimaryPostgresID }).(pulumi.StringPtrOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o RecoverPostgresOutput) QueryParams() RecoverPostgresQueryParamsPtrOutput {
+	return o.ApplyT(func(v *RecoverPostgres) RecoverPostgresQueryParamsPtrOutput { return v.QueryParams }).(RecoverPostgresQueryParamsPtrOutput)
 }
 
 func (o RecoverPostgresOutput) ReadReplicas() ReadReplicaArrayOutput {

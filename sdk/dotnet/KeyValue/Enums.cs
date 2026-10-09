@@ -214,6 +214,40 @@ namespace Pulumi.Render.KeyValue
     }
 
     /// <summary>
+    /// Defaults to "oregon"
+    /// </summary>
+    [EnumType]
+    public readonly struct ListKeyValueQueryParamsRegionItem : IEquatable<ListKeyValueQueryParamsRegionItem>
+    {
+        private readonly string _value;
+
+        private ListKeyValueQueryParamsRegionItem(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static ListKeyValueQueryParamsRegionItem Frankfurt { get; } = new ListKeyValueQueryParamsRegionItem("frankfurt");
+        public static ListKeyValueQueryParamsRegionItem Oregon { get; } = new ListKeyValueQueryParamsRegionItem("oregon");
+        public static ListKeyValueQueryParamsRegionItem Ohio { get; } = new ListKeyValueQueryParamsRegionItem("ohio");
+        public static ListKeyValueQueryParamsRegionItem Singapore { get; } = new ListKeyValueQueryParamsRegionItem("singapore");
+        public static ListKeyValueQueryParamsRegionItem Virginia { get; } = new ListKeyValueQueryParamsRegionItem("virginia");
+
+        public static bool operator ==(ListKeyValueQueryParamsRegionItem left, ListKeyValueQueryParamsRegionItem right) => left.Equals(right);
+        public static bool operator !=(ListKeyValueQueryParamsRegionItem left, ListKeyValueQueryParamsRegionItem right) => !left.Equals(right);
+
+        public static explicit operator string(ListKeyValueQueryParamsRegionItem value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is ListKeyValueQueryParamsRegionItem other && Equals(other);
+        public bool Equals(ListKeyValueQueryParamsRegionItem other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    /// <summary>
     /// The eviction policy for the Key Value instance
     /// </summary>
     [EnumType]

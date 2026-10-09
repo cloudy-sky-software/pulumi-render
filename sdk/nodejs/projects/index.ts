@@ -10,7 +10,7 @@ export const getProject: typeof import("./getProject").getProject = null as any;
 export const getProjectOutput: typeof import("./getProject").getProjectOutput = null as any;
 utilities.lazyLoad(exports, ["getProject","getProjectOutput"], () => require("./getProject"));
 
-export { ListProjectsArgs, ListProjectsResult } from "./listProjects";
+export { ListProjectsArgs, ListProjectsResult, ListProjectsOutputArgs } from "./listProjects";
 export const listProjects: typeof import("./listProjects").listProjects = null as any;
 export const listProjectsOutput: typeof import("./listProjects").listProjectsOutput = null as any;
 utilities.lazyLoad(exports, ["listProjects","listProjectsOutput"], () => require("./listProjects"));

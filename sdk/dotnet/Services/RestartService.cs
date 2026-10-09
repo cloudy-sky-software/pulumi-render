@@ -13,6 +13,13 @@ namespace Pulumi.Render.Services
     public partial class RestartService : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Output("queryParams")]
+        public Output<Outputs.RestartServiceQueryParams?> QueryParams { get; private set; } = null!;
+
+
+        /// <summary>
         /// Create a RestartService resource with the given unique name, arguments, and options.
         /// </summary>
         ///
@@ -57,6 +64,12 @@ namespace Pulumi.Render.Services
 
     public sealed class RestartServiceArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.RestartServiceQueryParamsArgs>? QueryParams { get; set; }
+
         /// <summary>
         /// The ID of the service
         /// </summary>

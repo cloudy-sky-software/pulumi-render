@@ -11,18 +11,31 @@ export function getBandwidthSource(args?: GetBandwidthSourceArgs, opts?: pulumi.
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:metrics:getBandwidthSource", {
+        "queryParams": args.queryParams,
     }, opts);
 }
 
 export interface GetBandwidthSourceArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.metrics.GetBandwidthSourceQueryParams;
 }
 
 export interface GetBandwidthSourceResult {
     readonly data?: outputs.metrics.GetBandwidthSourcePropertiesDataItemProperties[];
 }
-export function getBandwidthSourceOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetBandwidthSourceResult> {
+export function getBandwidthSourceOutput(args?: GetBandwidthSourceOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetBandwidthSourceResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:metrics:getBandwidthSource", {
+        "queryParams": args.queryParams,
     }, opts);
 }
 
+export interface GetBandwidthSourceOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.metrics.GetBandwidthSourceQueryParamsArgs | undefined>;
+}

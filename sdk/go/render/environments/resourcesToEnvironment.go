@@ -22,10 +22,12 @@ type ResourcesToEnvironment struct {
 	NetworkIsolationEnabled pulumi.BoolOutput   `pulumi:"networkIsolationEnabled"`
 	ProjectId               pulumi.StringOutput `pulumi:"projectId"`
 	// Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
-	ProtectedStatus ProtectedStatusOutput    `pulumi:"protectedStatus"`
-	RedisIds        pulumi.StringArrayOutput `pulumi:"redisIds"`
-	ResourceIds     pulumi.StringArrayOutput `pulumi:"resourceIds"`
-	ServiceIds      pulumi.StringArrayOutput `pulumi:"serviceIds"`
+	ProtectedStatus ProtectedStatusOutput `pulumi:"protectedStatus"`
+	// Query params to send with the API requests for this resource.
+	QueryParams ResourcesToEnvironmentQueryParamsPtrOutput `pulumi:"queryParams"`
+	RedisIds    pulumi.StringArrayOutput                   `pulumi:"redisIds"`
+	ResourceIds pulumi.StringArrayOutput                   `pulumi:"resourceIds"`
+	ServiceIds  pulumi.StringArrayOutput                   `pulumi:"serviceIds"`
 }
 
 // NewResourcesToEnvironment registers a new resource with the given unique name, arguments, and options.
@@ -71,14 +73,18 @@ func (ResourcesToEnvironmentState) ElementType() reflect.Type {
 }
 
 type resourcesToEnvironmentArgs struct {
-	EnvironmentId *string  `pulumi:"environmentId"`
-	ResourceIds   []string `pulumi:"resourceIds"`
+	EnvironmentId *string `pulumi:"environmentId"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *ResourcesToEnvironmentQueryParams `pulumi:"queryParams"`
+	ResourceIds []string                           `pulumi:"resourceIds"`
 }
 
 // The set of arguments for constructing a ResourcesToEnvironment resource.
 type ResourcesToEnvironmentArgs struct {
 	EnvironmentId pulumi.StringPtrInput
-	ResourceIds   pulumi.StringArrayInput
+	// Query params to send with the API requests for this resource.
+	QueryParams ResourcesToEnvironmentQueryParamsPtrInput
+	ResourceIds pulumi.StringArrayInput
 }
 
 func (ResourcesToEnvironmentArgs) ElementType() reflect.Type {
@@ -142,6 +148,11 @@ func (o ResourcesToEnvironmentOutput) ProjectId() pulumi.StringOutput {
 // Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
 func (o ResourcesToEnvironmentOutput) ProtectedStatus() ProtectedStatusOutput {
 	return o.ApplyT(func(v *ResourcesToEnvironment) ProtectedStatusOutput { return v.ProtectedStatus }).(ProtectedStatusOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o ResourcesToEnvironmentOutput) QueryParams() ResourcesToEnvironmentQueryParamsPtrOutput {
+	return o.ApplyT(func(v *ResourcesToEnvironment) ResourcesToEnvironmentQueryParamsPtrOutput { return v.QueryParams }).(ResourcesToEnvironmentQueryParamsPtrOutput)
 }
 
 func (o ResourcesToEnvironmentOutput) RedisIds() pulumi.StringArrayOutput {

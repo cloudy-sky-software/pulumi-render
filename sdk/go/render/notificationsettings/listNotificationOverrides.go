@@ -14,7 +14,7 @@ import (
 func ListNotificationOverrides(ctx *pulumi.Context, args *ListNotificationOverridesArgs, opts ...pulumi.InvokeOption) (*ListNotificationOverridesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListNotificationOverridesResult
-	err := ctx.Invoke("render:notification-settings:listNotificationOverrides", args, &rv, opts...)
+	err := ctx.Invoke("render:notification-settings:listNotificationOverrides", args.Defaults(), &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -22,6 +22,19 @@ func ListNotificationOverrides(ctx *pulumi.Context, args *ListNotificationOverri
 }
 
 type ListNotificationOverridesArgs struct {
+	// Query params to send with the API request.
+	QueryParams *ListNotificationOverridesQueryParams `pulumi:"queryParams"`
+}
+
+// Defaults sets the appropriate defaults for ListNotificationOverridesArgs
+func (val *ListNotificationOverridesArgs) Defaults() *ListNotificationOverridesArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	tmp.QueryParams = tmp.QueryParams.Defaults()
+
+	return &tmp
 }
 
 type ListNotificationOverridesResult struct {
@@ -29,11 +42,18 @@ type ListNotificationOverridesResult struct {
 }
 
 func ListNotificationOverridesOutput(ctx *pulumi.Context, args ListNotificationOverridesOutputArgs, opts ...pulumi.InvokeOption) ListNotificationOverridesResultOutput {
+	outputArgs := pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) *ListNotificationOverridesArgs {
+			args := v.(ListNotificationOverridesArgs)
+			return args.Defaults()
+		})
 	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-	return ctx.InvokeOutput("render:notification-settings:listNotificationOverrides", args, ListNotificationOverridesResultOutput{}, options).(ListNotificationOverridesResultOutput)
+	return ctx.InvokeOutput("render:notification-settings:listNotificationOverrides", outputArgs, ListNotificationOverridesResultOutput{}, options).(ListNotificationOverridesResultOutput)
 }
 
 type ListNotificationOverridesOutputArgs struct {
+	// Query params to send with the API request.
+	QueryParams ListNotificationOverridesQueryParamsPtrInput `pulumi:"queryParams"`
 }
 
 func (ListNotificationOverridesOutputArgs) ElementType() reflect.Type {

@@ -14,13 +14,15 @@ import (
 type CancelJob struct {
 	pulumi.CustomResourceState
 
-	CreatedAt    pulumi.StringOutput      `pulumi:"createdAt"`
-	FinishedAt   pulumi.StringPtrOutput   `pulumi:"finishedAt"`
-	PlanId       pulumi.StringOutput      `pulumi:"planId"`
-	ServiceId    pulumi.StringOutput      `pulumi:"serviceId"`
-	StartCommand pulumi.StringOutput      `pulumi:"startCommand"`
-	StartedAt    pulumi.StringPtrOutput   `pulumi:"startedAt"`
-	Status       CancelJobStatusPtrOutput `pulumi:"status"`
+	CreatedAt  pulumi.StringOutput    `pulumi:"createdAt"`
+	FinishedAt pulumi.StringPtrOutput `pulumi:"finishedAt"`
+	PlanId     pulumi.StringOutput    `pulumi:"planId"`
+	// Query params to send with the API requests for this resource.
+	QueryParams  CancelJobQueryParamsPtrOutput `pulumi:"queryParams"`
+	ServiceId    pulumi.StringOutput           `pulumi:"serviceId"`
+	StartCommand pulumi.StringOutput           `pulumi:"startCommand"`
+	StartedAt    pulumi.StringPtrOutput        `pulumi:"startedAt"`
+	Status       CancelJobStatusPtrOutput      `pulumi:"status"`
 }
 
 // NewCancelJob registers a new resource with the given unique name, arguments, and options.
@@ -65,6 +67,8 @@ func (CancelJobState) ElementType() reflect.Type {
 type cancelJobArgs struct {
 	// The ID of the job
 	JobId *string `pulumi:"jobId"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *CancelJobQueryParams `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId *string `pulumi:"serviceId"`
 }
@@ -73,6 +77,8 @@ type cancelJobArgs struct {
 type CancelJobArgs struct {
 	// The ID of the job
 	JobId pulumi.StringPtrInput
+	// Query params to send with the API requests for this resource.
+	QueryParams CancelJobQueryParamsPtrInput
 	// The ID of the service
 	ServiceId pulumi.StringPtrInput
 }
@@ -124,6 +130,11 @@ func (o CancelJobOutput) FinishedAt() pulumi.StringPtrOutput {
 
 func (o CancelJobOutput) PlanId() pulumi.StringOutput {
 	return o.ApplyT(func(v *CancelJob) pulumi.StringOutput { return v.PlanId }).(pulumi.StringOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o CancelJobOutput) QueryParams() CancelJobQueryParamsPtrOutput {
+	return o.ApplyT(func(v *CancelJob) CancelJobQueryParamsPtrOutput { return v.QueryParams }).(CancelJobQueryParamsPtrOutput)
 }
 
 func (o CancelJobOutput) ServiceId() pulumi.StringOutput {

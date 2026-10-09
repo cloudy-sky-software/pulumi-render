@@ -10,4 +10,5 @@ from .disk import *
 from .get_disk import *
 from .list_disks import *
 from .restore_snapshot import *
+from ._inputs import *
 from . import outputs

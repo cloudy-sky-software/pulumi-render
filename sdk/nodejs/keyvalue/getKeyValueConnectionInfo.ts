@@ -2,17 +2,25 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export function getKeyValueConnectionInfo(args: GetKeyValueConnectionInfoArgs, opts?: pulumi.InvokeOptions): Promise<GetKeyValueConnectionInfoResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:key-value:getKeyValueConnectionInfo", {
         "keyValueId": args.keyValueId,
+        "queryParams": args.queryParams,
     }, opts);
 }
 
 export interface GetKeyValueConnectionInfoArgs {
     keyValueId: string;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.keyvalue.GetKeyValueConnectionInfoQueryParams;
 }
 
 /**
@@ -36,9 +44,14 @@ export function getKeyValueConnectionInfoOutput(args: GetKeyValueConnectionInfoO
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:key-value:getKeyValueConnectionInfo", {
         "keyValueId": args.keyValueId,
+        "queryParams": args.queryParams,
     }, opts);
 }
 
 export interface GetKeyValueConnectionInfoOutputArgs {
     keyValueId: pulumi.Input<string>;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.keyvalue.GetKeyValueConnectionInfoQueryParamsArgs | undefined>;
 }

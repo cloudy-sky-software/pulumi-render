@@ -14,6 +14,7 @@ else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from ._enums import *
+from ._inputs import *
 
 __all__ = [
     'GetJobResult',
@@ -108,16 +109,19 @@ class AwaitableGetJobResult(GetJobResult):
 
 
 def get_job(job_id: Optional[_builtins.str] = None,
+            query_params: Optional[Union['GetJobQueryParams', 'GetJobQueryParamsDict']] = None,
             service_id: Optional[_builtins.str] = None,
             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetJobResult:
     """
     Use this data source to access information about an existing resource.
 
     :param _builtins.str job_id: The ID of the job
+    :param Union['GetJobQueryParams', 'GetJobQueryParamsDict'] query_params: Query params to send with the API request.
     :param _builtins.str service_id: The ID of the service
     """
     __args__ = dict()
     __args__['jobId'] = job_id
+    __args__['queryParams'] = query_params
     __args__['serviceId'] = service_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:services:getJob', __args__, opts=opts, typ=GetJobResult).value
@@ -132,16 +136,19 @@ def get_job(job_id: Optional[_builtins.str] = None,
         started_at=pulumi.get(__ret__, 'started_at'),
         status=pulumi.get(__ret__, 'status'))
 def get_job_output(job_id: pulumi.Input[Optional[_builtins.str]] = None,
+                   query_params: pulumi.Input[Optional[Optional[Union['GetJobQueryParams', 'GetJobQueryParamsDict']]]] = None,
                    service_id: pulumi.Input[Optional[_builtins.str]] = None,
                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetJobResult]:
     """
     Use this data source to access information about an existing resource.
 
     :param _builtins.str job_id: The ID of the job
+    :param Union['GetJobQueryParams', 'GetJobQueryParamsDict'] query_params: Query params to send with the API request.
     :param _builtins.str service_id: The ID of the service
     """
     __args__ = dict()
     __args__['jobId'] = job_id
+    __args__['queryParams'] = query_params
     __args__['serviceId'] = service_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:services:getJob', __args__, opts=opts, typ=GetJobResult)

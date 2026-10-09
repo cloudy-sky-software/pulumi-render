@@ -10,11 +10,16 @@ import * as utilities from "../utilities";
 export function getCronJob(args: GetCronJobArgs, opts?: pulumi.InvokeOptions): Promise<GetCronJobResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:getCronJob", {
+        "queryParams": args.queryParams,
         "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface GetCronJobArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.services.GetCronJobQueryParams;
     /**
      * The ID of the service
      */
@@ -49,11 +54,16 @@ export interface GetCronJobResult {
 export function getCronJobOutput(args: GetCronJobOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetCronJobResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:services:getCronJob", {
+        "queryParams": args.queryParams,
         "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface GetCronJobOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.services.GetCronJobQueryParamsArgs | undefined>;
     /**
      * The ID of the service
      */

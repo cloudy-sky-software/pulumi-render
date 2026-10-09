@@ -10,11 +10,16 @@ import * as utilities from "../utilities";
 export function getRegistryCredential(args: GetRegistryCredentialArgs, opts?: pulumi.InvokeOptions): Promise<GetRegistryCredentialResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:registrycredentials:getRegistryCredential", {
+        "queryParams": args.queryParams,
         "registryCredentialId": args.registryCredentialId,
     }, opts);
 }
 
 export interface GetRegistryCredentialArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.registrycredentials.GetRegistryCredentialQueryParams;
     /**
      * The ID of the registry credential
      */
@@ -46,11 +51,16 @@ export interface GetRegistryCredentialResult {
 export function getRegistryCredentialOutput(args: GetRegistryCredentialOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetRegistryCredentialResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:registrycredentials:getRegistryCredential", {
+        "queryParams": args.queryParams,
         "registryCredentialId": args.registryCredentialId,
     }, opts);
 }
 
 export interface GetRegistryCredentialOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.registrycredentials.GetRegistryCredentialQueryParamsArgs | undefined>;
     /**
      * The ID of the registry credential
      */

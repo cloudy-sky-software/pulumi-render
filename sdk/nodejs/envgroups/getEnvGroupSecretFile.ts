@@ -2,12 +2,16 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export function getEnvGroupSecretFile(args: GetEnvGroupSecretFileArgs, opts?: pulumi.InvokeOptions): Promise<GetEnvGroupSecretFileResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:env-groups:getEnvGroupSecretFile", {
         "envGroupId": args.envGroupId,
+        "queryParams": args.queryParams,
         "secretFileName": args.secretFileName,
     }, opts);
 }
@@ -17,6 +21,10 @@ export interface GetEnvGroupSecretFileArgs {
      * Filter for resources that belong to an environment group
      */
     envGroupId: string;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.envgroups.GetEnvGroupSecretFileQueryParams;
     /**
      * The name of the secret file
      */
@@ -31,6 +39,7 @@ export function getEnvGroupSecretFileOutput(args: GetEnvGroupSecretFileOutputArg
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:env-groups:getEnvGroupSecretFile", {
         "envGroupId": args.envGroupId,
+        "queryParams": args.queryParams,
         "secretFileName": args.secretFileName,
     }, opts);
 }
@@ -40,6 +49,10 @@ export interface GetEnvGroupSecretFileOutputArgs {
      * Filter for resources that belong to an environment group
      */
     envGroupId: pulumi.Input<string>;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.envgroups.GetEnvGroupSecretFileQueryParamsArgs | undefined>;
     /**
      * The name of the secret file
      */

@@ -11,11 +11,16 @@ export function getPostgres(args: GetPostgresArgs, opts?: pulumi.InvokeOptions):
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:postgres:getPostgres", {
         "postgresId": args.postgresId,
+        "queryParams": args.queryParams,
     }, opts);
 }
 
 export interface GetPostgresArgs {
     postgresId: string;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.postgres.GetPostgresQueryParams;
 }
 
 export interface GetPostgresResult {
@@ -59,9 +64,14 @@ export function getPostgresOutput(args: GetPostgresOutputArgs, opts?: pulumi.Inv
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:postgres:getPostgres", {
         "postgresId": args.postgresId,
+        "queryParams": args.queryParams,
     }, opts);
 }
 
 export interface GetPostgresOutputArgs {
     postgresId: pulumi.Input<string>;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.postgres.GetPostgresQueryParamsArgs | undefined>;
 }

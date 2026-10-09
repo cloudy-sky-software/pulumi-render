@@ -45,6 +45,10 @@ export class RollbackDeploy extends pulumi.CustomResource {
      * Image information used when creating the deploy. Not present for Git-backed deploys
      */
     declare public /*out*/ readonly image: pulumi.Output<outputs.services.ImageProperties | undefined>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.services.RollbackDeployQueryParams | undefined>;
     declare public /*out*/ readonly startedAt: pulumi.Output<string | undefined>;
     declare public /*out*/ readonly status: pulumi.Output<enums.services.Status | undefined>;
     declare public /*out*/ readonly trigger: pulumi.Output<enums.services.Trigger | undefined>;
@@ -65,6 +69,7 @@ export class RollbackDeploy extends pulumi.CustomResource {
                 throw new Error("Missing required property 'deployId'");
             }
             resourceInputs["deployId"] = args?.deployId;
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["serviceId"] = args?.serviceId;
             resourceInputs["commit"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
@@ -80,6 +85,7 @@ export class RollbackDeploy extends pulumi.CustomResource {
             resourceInputs["deployId"] = undefined /*out*/;
             resourceInputs["finishedAt"] = undefined /*out*/;
             resourceInputs["image"] = undefined /*out*/;
+            resourceInputs["queryParams"] = undefined /*out*/;
             resourceInputs["startedAt"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["trigger"] = undefined /*out*/;
@@ -98,6 +104,10 @@ export interface RollbackDeployArgs {
      * The ID of the deploy to roll back to
      */
     deployId: pulumi.Input<string>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.services.RollbackDeployQueryParamsArgs | undefined>;
     /**
      * The ID of the service
      */

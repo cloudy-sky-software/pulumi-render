@@ -23,6 +23,8 @@ func LookupKeyValue(ctx *pulumi.Context, args *LookupKeyValueArgs, opts ...pulum
 
 type LookupKeyValueArgs struct {
 	KeyValueId string `pulumi:"keyValueId"`
+	// Query params to send with the API request.
+	QueryParams *GetKeyValueQueryParams `pulumi:"queryParams"`
 }
 
 // A Key Value instance
@@ -69,6 +71,8 @@ func LookupKeyValueOutput(ctx *pulumi.Context, args LookupKeyValueOutputArgs, op
 
 type LookupKeyValueOutputArgs struct {
 	KeyValueId pulumi.StringInput `pulumi:"keyValueId"`
+	// Query params to send with the API request.
+	QueryParams GetKeyValueQueryParamsPtrInput `pulumi:"queryParams"`
 }
 
 func (LookupKeyValueOutputArgs) ElementType() reflect.Type {

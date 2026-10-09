@@ -11,23 +11,43 @@ namespace Pulumi.Render.Environments
 {
     public static class ListEnvironments
     {
-        public static Task<ListEnvironmentsResult> InvokeAsync(ListEnvironmentsArgs? args = null, InvokeOptions? options = null)
+        public static Task<ListEnvironmentsResult> InvokeAsync(ListEnvironmentsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ListEnvironmentsResult>("render:environments:listEnvironments", args ?? new ListEnvironmentsArgs(), options.WithDefaults());
 
-        public static Output<ListEnvironmentsResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<ListEnvironmentsResult>("render:environments:listEnvironments", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<ListEnvironmentsResult> Invoke(ListEnvironmentsInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<ListEnvironmentsResult>("render:environments:listEnvironments", args ?? new ListEnvironmentsInvokeArgs(), options.WithDefaults());
 
-        public static Output<ListEnvironmentsResult> Invoke(InvokeOutputOptions options)
-            => global::Pulumi.Deployment.Instance.Invoke<ListEnvironmentsResult>("render:environments:listEnvironments", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<ListEnvironmentsResult> Invoke(ListEnvironmentsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<ListEnvironmentsResult>("render:environments:listEnvironments", args ?? new ListEnvironmentsInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class ListEnvironmentsArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams", required: true)]
+        public Inputs.ListEnvironmentsQueryParams QueryParams { get; set; } = null!;
+
         public ListEnvironmentsArgs()
         {
         }
         public static new ListEnvironmentsArgs Empty => new ListEnvironmentsArgs();
+    }
+
+    public sealed class ListEnvironmentsInvokeArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams", required: true)]
+        public Input<Inputs.ListEnvironmentsQueryParamsArgs> QueryParams { get; set; } = null!;
+
+        public ListEnvironmentsInvokeArgs()
+        {
+        }
+        public static new ListEnvironmentsInvokeArgs Empty => new ListEnvironmentsInvokeArgs();
     }
 
 

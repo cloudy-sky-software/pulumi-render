@@ -31,6 +31,12 @@ namespace Pulumi.Render.EnvGroups
         public string EnvGroupId { get; set; } = null!;
 
         /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Inputs.GetEnvGroupSecretFileQueryParams? QueryParams { get; set; }
+
+        /// <summary>
         /// The name of the secret file
         /// </summary>
         [Input("secretFileName", required: true)]
@@ -49,6 +55,12 @@ namespace Pulumi.Render.EnvGroups
         /// </summary>
         [Input("envGroupId", required: true)]
         public Input<string> EnvGroupId { get; set; } = null!;
+
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.GetEnvGroupSecretFileQueryParamsArgs>? QueryParams { get; set; }
 
         /// <summary>
         /// The name of the secret file

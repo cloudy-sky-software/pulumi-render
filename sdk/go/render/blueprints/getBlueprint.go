@@ -24,6 +24,8 @@ func GetBlueprint(ctx *pulumi.Context, args *GetBlueprintArgs, opts ...pulumi.In
 type GetBlueprintArgs struct {
 	// The ID of the Blueprint
 	BlueprintId string `pulumi:"blueprintId"`
+	// Query params to send with the API request.
+	QueryParams *GetBlueprintQueryParams `pulumi:"queryParams"`
 }
 
 type GetBlueprintResult struct {
@@ -46,6 +48,8 @@ func GetBlueprintOutput(ctx *pulumi.Context, args GetBlueprintOutputArgs, opts .
 type GetBlueprintOutputArgs struct {
 	// The ID of the Blueprint
 	BlueprintId pulumi.StringInput `pulumi:"blueprintId"`
+	// Query params to send with the API request.
+	QueryParams GetBlueprintQueryParamsPtrInput `pulumi:"queryParams"`
 }
 
 func (GetBlueprintOutputArgs) ElementType() reflect.Type {

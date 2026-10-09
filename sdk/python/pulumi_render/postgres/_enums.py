@@ -8,6 +8,8 @@ from enum import Enum
 
 __all__ = [
     'GetPostgresRecoveryInfoPropertiesRecoveryStatus',
+    'ListPostgresQueryParamsRegionItem',
+    'ListPostgresQueryParamsSuspendedItem',
     'OwnerType',
     'Plan',
     'PostgresDetailPlan',
@@ -43,6 +45,24 @@ class GetPostgresRecoveryInfoPropertiesRecoveryStatus(_builtins.str, Enum):
     AVAILABLE = "AVAILABLE"
     BACKUP_NOT_READY = "BACKUP_NOT_READY"
     NOT_AVAILABLE = "NOT_AVAILABLE"
+
+
+@pulumi.type_token("render:postgres:ListPostgresQueryParamsRegionItem")
+class ListPostgresQueryParamsRegionItem(_builtins.str, Enum):
+    """
+    Defaults to "oregon"
+    """
+    FRANKFURT = "frankfurt"
+    OREGON = "oregon"
+    OHIO = "ohio"
+    SINGAPORE = "singapore"
+    VIRGINIA = "virginia"
+
+
+@pulumi.type_token("render:postgres:ListPostgresQueryParamsSuspendedItem")
+class ListPostgresQueryParamsSuspendedItem(_builtins.str, Enum):
+    SUSPENDED = "suspended"
+    NOT_SUSPENDED = "not_suspended"
 
 
 @pulumi.type_token("render:postgres:OwnerType")

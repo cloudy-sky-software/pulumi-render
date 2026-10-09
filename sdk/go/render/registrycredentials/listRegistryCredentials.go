@@ -14,7 +14,7 @@ import (
 func ListRegistryCredentials(ctx *pulumi.Context, args *ListRegistryCredentialsArgs, opts ...pulumi.InvokeOption) (*ListRegistryCredentialsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListRegistryCredentialsResult
-	err := ctx.Invoke("render:registrycredentials:listRegistryCredentials", args, &rv, opts...)
+	err := ctx.Invoke("render:registrycredentials:listRegistryCredentials", args.Defaults(), &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -22,6 +22,19 @@ func ListRegistryCredentials(ctx *pulumi.Context, args *ListRegistryCredentialsA
 }
 
 type ListRegistryCredentialsArgs struct {
+	// Query params to send with the API request.
+	QueryParams *ListRegistryCredentialsQueryParams `pulumi:"queryParams"`
+}
+
+// Defaults sets the appropriate defaults for ListRegistryCredentialsArgs
+func (val *ListRegistryCredentialsArgs) Defaults() *ListRegistryCredentialsArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	tmp.QueryParams = tmp.QueryParams.Defaults()
+
+	return &tmp
 }
 
 type ListRegistryCredentialsResult struct {
@@ -29,11 +42,18 @@ type ListRegistryCredentialsResult struct {
 }
 
 func ListRegistryCredentialsOutput(ctx *pulumi.Context, args ListRegistryCredentialsOutputArgs, opts ...pulumi.InvokeOption) ListRegistryCredentialsResultOutput {
+	outputArgs := pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) *ListRegistryCredentialsArgs {
+			args := v.(ListRegistryCredentialsArgs)
+			return args.Defaults()
+		})
 	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-	return ctx.InvokeOutput("render:registrycredentials:listRegistryCredentials", args, ListRegistryCredentialsResultOutput{}, options).(ListRegistryCredentialsResultOutput)
+	return ctx.InvokeOutput("render:registrycredentials:listRegistryCredentials", outputArgs, ListRegistryCredentialsResultOutput{}, options).(ListRegistryCredentialsResultOutput)
 }
 
 type ListRegistryCredentialsOutputArgs struct {
+	// Query params to send with the API request.
+	QueryParams ListRegistryCredentialsQueryParamsPtrInput `pulumi:"queryParams"`
 }
 
 func (ListRegistryCredentialsOutputArgs) ElementType() reflect.Type {

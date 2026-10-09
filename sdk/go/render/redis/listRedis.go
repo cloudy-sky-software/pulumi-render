@@ -14,7 +14,7 @@ import (
 func ListRedis(ctx *pulumi.Context, args *ListRedisArgs, opts ...pulumi.InvokeOption) (*ListRedisResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListRedisResult
-	err := ctx.Invoke("render:redis:listRedis", args, &rv, opts...)
+	err := ctx.Invoke("render:redis:listRedis", args.Defaults(), &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -22,6 +22,19 @@ func ListRedis(ctx *pulumi.Context, args *ListRedisArgs, opts ...pulumi.InvokeOp
 }
 
 type ListRedisArgs struct {
+	// Query params to send with the API request.
+	QueryParams *ListRedisQueryParams `pulumi:"queryParams"`
+}
+
+// Defaults sets the appropriate defaults for ListRedisArgs
+func (val *ListRedisArgs) Defaults() *ListRedisArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	tmp.QueryParams = tmp.QueryParams.Defaults()
+
+	return &tmp
 }
 
 type ListRedisResult struct {
@@ -29,11 +42,18 @@ type ListRedisResult struct {
 }
 
 func ListRedisOutput(ctx *pulumi.Context, args ListRedisOutputArgs, opts ...pulumi.InvokeOption) ListRedisResultOutput {
+	outputArgs := pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) *ListRedisArgs {
+			args := v.(ListRedisArgs)
+			return args.Defaults()
+		})
 	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-	return ctx.InvokeOutput("render:redis:listRedis", args, ListRedisResultOutput{}, options).(ListRedisResultOutput)
+	return ctx.InvokeOutput("render:redis:listRedis", outputArgs, ListRedisResultOutput{}, options).(ListRedisResultOutput)
 }
 
 type ListRedisOutputArgs struct {
+	// Query params to send with the API request.
+	QueryParams ListRedisQueryParamsPtrInput `pulumi:"queryParams"`
 }
 
 func (ListRedisOutputArgs) ElementType() reflect.Type {

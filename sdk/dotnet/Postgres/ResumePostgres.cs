@@ -13,6 +13,13 @@ namespace Pulumi.Render.Postgres
     public partial class ResumePostgres : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Output("queryParams")]
+        public Output<Outputs.ResumePostgresQueryParams?> QueryParams { get; private set; } = null!;
+
+
+        /// <summary>
         /// Create a ResumePostgres resource with the given unique name, arguments, and options.
         /// </summary>
         ///
@@ -59,6 +66,12 @@ namespace Pulumi.Render.Postgres
     {
         [Input("postgresId")]
         public Input<string>? PostgresId { get; set; }
+
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.ResumePostgresQueryParamsArgs>? QueryParams { get; set; }
 
         public ResumePostgresArgs()
         {

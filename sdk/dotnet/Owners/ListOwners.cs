@@ -14,20 +14,40 @@ namespace Pulumi.Render.Owners
         public static Task<ListOwnersResult> InvokeAsync(ListOwnersArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ListOwnersResult>("render:owners:listOwners", args ?? new ListOwnersArgs(), options.WithDefaults());
 
-        public static Output<ListOwnersResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<ListOwnersResult>("render:owners:listOwners", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<ListOwnersResult> Invoke(ListOwnersInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<ListOwnersResult>("render:owners:listOwners", args ?? new ListOwnersInvokeArgs(), options.WithDefaults());
 
-        public static Output<ListOwnersResult> Invoke(InvokeOutputOptions options)
-            => global::Pulumi.Deployment.Instance.Invoke<ListOwnersResult>("render:owners:listOwners", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<ListOwnersResult> Invoke(ListOwnersInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<ListOwnersResult>("render:owners:listOwners", args ?? new ListOwnersInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class ListOwnersArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Inputs.ListOwnersQueryParams? QueryParams { get; set; }
+
         public ListOwnersArgs()
         {
         }
         public static new ListOwnersArgs Empty => new ListOwnersArgs();
+    }
+
+    public sealed class ListOwnersInvokeArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.ListOwnersQueryParamsArgs>? QueryParams { get; set; }
+
+        public ListOwnersInvokeArgs()
+        {
+        }
+        public static new ListOwnersInvokeArgs Empty => new ListOwnersInvokeArgs();
     }
 
 

@@ -13,21 +13,27 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
 from ._enums import *
+from ._inputs import *
 
 __all__ = ['RunCronJobArgs', 'RunCronJob']
 
 @pulumi.input_type
 class RunCronJobArgs:
     def __init__(__self__, *,
-                 cron_job_id: pulumi.Input[Optional[_builtins.str]] = None):
+                 cron_job_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional['RunCronJobQueryParamsArgs']] = None):
         """
         The set of arguments for constructing a RunCronJob resource.
 
         :param pulumi.Input[_builtins.str] cron_job_id: The ID of the cron job
+        :param pulumi.Input['RunCronJobQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         """
         if cron_job_id is not None:
             pulumi.set(__self__, "cron_job_id", cron_job_id)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
 
     @_builtins.property
     @pulumi.getter(name="cronJobId")
@@ -41,6 +47,18 @@ class RunCronJobArgs:
     def cron_job_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cron_job_id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['RunCronJobQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['RunCronJobQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
+
 
 @pulumi.type_token("render:cron-jobs:RunCronJob")
 class RunCronJob(pulumi.CustomResource):
@@ -49,6 +67,7 @@ class RunCronJob(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cron_job_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['RunCronJobQueryParamsArgs', 'RunCronJobQueryParamsArgsDict', 'outputs.RunCronJobQueryParams']]] = None,
                  __props__=None):
         """
         Create a RunCronJob resource with the given unique name, props, and options.
@@ -56,6 +75,7 @@ class RunCronJob(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cron_job_id: The ID of the cron job
+        :param pulumi.Input[Union['RunCronJobQueryParamsArgs', 'RunCronJobQueryParamsArgsDict', 'outputs.RunCronJobQueryParams']] query_params: Query params to send with the API requests for this resource.
         """
         ...
     @overload
@@ -82,6 +102,7 @@ class RunCronJob(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cron_job_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['RunCronJobQueryParamsArgs', 'RunCronJobQueryParamsArgsDict', 'outputs.RunCronJobQueryParams']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -92,6 +113,7 @@ class RunCronJob(pulumi.CustomResource):
             __props__ = RunCronJobArgs.__new__(RunCronJobArgs)
 
             __props__.__dict__["cron_job_id"] = cron_job_id
+            __props__.__dict__["query_params"] = query_params
             __props__.__dict__["canceled_by"] = None
             __props__.__dict__["finished_at"] = None
             __props__.__dict__["started_at"] = None
@@ -121,6 +143,7 @@ class RunCronJob(pulumi.CustomResource):
 
         __props__.__dict__["canceled_by"] = None
         __props__.__dict__["finished_at"] = None
+        __props__.__dict__["query_params"] = None
         __props__.__dict__["started_at"] = None
         __props__.__dict__["status"] = None
         __props__.__dict__["triggered_by"] = None
@@ -138,6 +161,14 @@ class RunCronJob(pulumi.CustomResource):
     @pulumi.getter(name="finishedAt")
     def finished_at(self) -> pulumi.Output[Optional[_builtins.str]]:
         return pulumi.get(self, "finished_at")
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.RunCronJobQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 
     @_builtins.property
     @pulumi.getter(name="startedAt")

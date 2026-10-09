@@ -13,6 +13,500 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+// Query params for the API request.
+type GetRegistryCredentialQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// GetRegistryCredentialQueryParamsInput is an input type that accepts GetRegistryCredentialQueryParamsArgs and GetRegistryCredentialQueryParamsOutput values.
+// You can construct a concrete instance of `GetRegistryCredentialQueryParamsInput` via:
+//
+//	GetRegistryCredentialQueryParamsArgs{...}
+type GetRegistryCredentialQueryParamsInput interface {
+	pulumi.Input
+
+	ToGetRegistryCredentialQueryParamsOutput() GetRegistryCredentialQueryParamsOutput
+	ToGetRegistryCredentialQueryParamsOutputWithContext(context.Context) GetRegistryCredentialQueryParamsOutput
+}
+
+// Query params for the API request.
+type GetRegistryCredentialQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (GetRegistryCredentialQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistryCredentialQueryParams)(nil)).Elem()
+}
+
+func (i GetRegistryCredentialQueryParamsArgs) ToGetRegistryCredentialQueryParamsOutput() GetRegistryCredentialQueryParamsOutput {
+	return i.ToGetRegistryCredentialQueryParamsOutputWithContext(context.Background())
+}
+
+func (i GetRegistryCredentialQueryParamsArgs) ToGetRegistryCredentialQueryParamsOutputWithContext(ctx context.Context) GetRegistryCredentialQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistryCredentialQueryParamsOutput)
+}
+
+func (i GetRegistryCredentialQueryParamsArgs) ToGetRegistryCredentialQueryParamsPtrOutput() GetRegistryCredentialQueryParamsPtrOutput {
+	return i.ToGetRegistryCredentialQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i GetRegistryCredentialQueryParamsArgs) ToGetRegistryCredentialQueryParamsPtrOutputWithContext(ctx context.Context) GetRegistryCredentialQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistryCredentialQueryParamsOutput).ToGetRegistryCredentialQueryParamsPtrOutputWithContext(ctx)
+}
+
+// GetRegistryCredentialQueryParamsPtrInput is an input type that accepts GetRegistryCredentialQueryParamsArgs, GetRegistryCredentialQueryParamsPtr and GetRegistryCredentialQueryParamsPtrOutput values.
+// You can construct a concrete instance of `GetRegistryCredentialQueryParamsPtrInput` via:
+//
+//	        GetRegistryCredentialQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetRegistryCredentialQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToGetRegistryCredentialQueryParamsPtrOutput() GetRegistryCredentialQueryParamsPtrOutput
+	ToGetRegistryCredentialQueryParamsPtrOutputWithContext(context.Context) GetRegistryCredentialQueryParamsPtrOutput
+}
+
+type getRegistryCredentialQueryParamsPtrType GetRegistryCredentialQueryParamsArgs
+
+func GetRegistryCredentialQueryParamsPtr(v *GetRegistryCredentialQueryParamsArgs) GetRegistryCredentialQueryParamsPtrInput {
+	return (*getRegistryCredentialQueryParamsPtrType)(v)
+}
+
+func (*getRegistryCredentialQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetRegistryCredentialQueryParams)(nil)).Elem()
+}
+
+func (i *getRegistryCredentialQueryParamsPtrType) ToGetRegistryCredentialQueryParamsPtrOutput() GetRegistryCredentialQueryParamsPtrOutput {
+	return i.ToGetRegistryCredentialQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *getRegistryCredentialQueryParamsPtrType) ToGetRegistryCredentialQueryParamsPtrOutputWithContext(ctx context.Context) GetRegistryCredentialQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistryCredentialQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type GetRegistryCredentialQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (GetRegistryCredentialQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistryCredentialQueryParams)(nil)).Elem()
+}
+
+func (o GetRegistryCredentialQueryParamsOutput) ToGetRegistryCredentialQueryParamsOutput() GetRegistryCredentialQueryParamsOutput {
+	return o
+}
+
+func (o GetRegistryCredentialQueryParamsOutput) ToGetRegistryCredentialQueryParamsOutputWithContext(ctx context.Context) GetRegistryCredentialQueryParamsOutput {
+	return o
+}
+
+func (o GetRegistryCredentialQueryParamsOutput) ToGetRegistryCredentialQueryParamsPtrOutput() GetRegistryCredentialQueryParamsPtrOutput {
+	return o.ToGetRegistryCredentialQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o GetRegistryCredentialQueryParamsOutput) ToGetRegistryCredentialQueryParamsPtrOutputWithContext(ctx context.Context) GetRegistryCredentialQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetRegistryCredentialQueryParams) *GetRegistryCredentialQueryParams {
+		return &v
+	}).(GetRegistryCredentialQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetRegistryCredentialQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetRegistryCredentialQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type GetRegistryCredentialQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetRegistryCredentialQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetRegistryCredentialQueryParams)(nil)).Elem()
+}
+
+func (o GetRegistryCredentialQueryParamsPtrOutput) ToGetRegistryCredentialQueryParamsPtrOutput() GetRegistryCredentialQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetRegistryCredentialQueryParamsPtrOutput) ToGetRegistryCredentialQueryParamsPtrOutputWithContext(ctx context.Context) GetRegistryCredentialQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetRegistryCredentialQueryParamsPtrOutput) Elem() GetRegistryCredentialQueryParamsOutput {
+	return o.ApplyT(func(v *GetRegistryCredentialQueryParams) GetRegistryCredentialQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret GetRegistryCredentialQueryParams
+		return ret
+	}).(GetRegistryCredentialQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetRegistryCredentialQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetRegistryCredentialQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type ListRegistryCredentialsQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+	// Filter for services created after a certain time (specified as an ISO 8601 timestamp)
+	CreatedAfter *string `pulumi:"createdAfter"`
+	// Filter for services created before a certain time (specified as an ISO 8601 timestamp)
+	CreatedBefore *string `pulumi:"createdBefore"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor *string `pulumi:"cursor"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit *int `pulumi:"limit"`
+	// Filter for the name of a credential
+	Name []string `pulumi:"name"`
+	// The ID of the workspaces to return resources for
+	OwnerId []string `pulumi:"ownerId"`
+	// Filter for the registry type for the credential
+	Type []ListRegistryCredentialsQueryParamsTypeItem `pulumi:"type"`
+	// Filter for services updated after a certain time (specified as an ISO 8601 timestamp)
+	UpdatedAfter *string `pulumi:"updatedAfter"`
+	// Filter for services updated before a certain time (specified as an ISO 8601 timestamp)
+	UpdatedBefore *string `pulumi:"updatedBefore"`
+	// Filter for the username of a credential
+	Username []string `pulumi:"username"`
+}
+
+// Defaults sets the appropriate defaults for ListRegistryCredentialsQueryParams
+func (val *ListRegistryCredentialsQueryParams) Defaults() *ListRegistryCredentialsQueryParams {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Limit == nil {
+		limit_ := 20
+		tmp.Limit = &limit_
+	}
+	return &tmp
+}
+
+// ListRegistryCredentialsQueryParamsInput is an input type that accepts ListRegistryCredentialsQueryParamsArgs and ListRegistryCredentialsQueryParamsOutput values.
+// You can construct a concrete instance of `ListRegistryCredentialsQueryParamsInput` via:
+//
+//	ListRegistryCredentialsQueryParamsArgs{...}
+type ListRegistryCredentialsQueryParamsInput interface {
+	pulumi.Input
+
+	ToListRegistryCredentialsQueryParamsOutput() ListRegistryCredentialsQueryParamsOutput
+	ToListRegistryCredentialsQueryParamsOutputWithContext(context.Context) ListRegistryCredentialsQueryParamsOutput
+}
+
+// Query params for the API request.
+type ListRegistryCredentialsQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+	// Filter for services created after a certain time (specified as an ISO 8601 timestamp)
+	CreatedAfter pulumi.StringPtrInput `pulumi:"createdAfter"`
+	// Filter for services created before a certain time (specified as an ISO 8601 timestamp)
+	CreatedBefore pulumi.StringPtrInput `pulumi:"createdBefore"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor pulumi.StringPtrInput `pulumi:"cursor"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit pulumi.IntPtrInput `pulumi:"limit"`
+	// Filter for the name of a credential
+	Name pulumi.StringArrayInput `pulumi:"name"`
+	// The ID of the workspaces to return resources for
+	OwnerId pulumi.StringArrayInput `pulumi:"ownerId"`
+	// Filter for the registry type for the credential
+	Type ListRegistryCredentialsQueryParamsTypeItemArrayInput `pulumi:"type"`
+	// Filter for services updated after a certain time (specified as an ISO 8601 timestamp)
+	UpdatedAfter pulumi.StringPtrInput `pulumi:"updatedAfter"`
+	// Filter for services updated before a certain time (specified as an ISO 8601 timestamp)
+	UpdatedBefore pulumi.StringPtrInput `pulumi:"updatedBefore"`
+	// Filter for the username of a credential
+	Username pulumi.StringArrayInput `pulumi:"username"`
+}
+
+// Defaults sets the appropriate defaults for ListRegistryCredentialsQueryParamsArgs
+func (val *ListRegistryCredentialsQueryParamsArgs) Defaults() *ListRegistryCredentialsQueryParamsArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Limit == nil {
+		tmp.Limit = pulumi.IntPtr(20)
+	}
+	return &tmp
+}
+func (ListRegistryCredentialsQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListRegistryCredentialsQueryParams)(nil)).Elem()
+}
+
+func (i ListRegistryCredentialsQueryParamsArgs) ToListRegistryCredentialsQueryParamsOutput() ListRegistryCredentialsQueryParamsOutput {
+	return i.ToListRegistryCredentialsQueryParamsOutputWithContext(context.Background())
+}
+
+func (i ListRegistryCredentialsQueryParamsArgs) ToListRegistryCredentialsQueryParamsOutputWithContext(ctx context.Context) ListRegistryCredentialsQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListRegistryCredentialsQueryParamsOutput)
+}
+
+func (i ListRegistryCredentialsQueryParamsArgs) ToListRegistryCredentialsQueryParamsPtrOutput() ListRegistryCredentialsQueryParamsPtrOutput {
+	return i.ToListRegistryCredentialsQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i ListRegistryCredentialsQueryParamsArgs) ToListRegistryCredentialsQueryParamsPtrOutputWithContext(ctx context.Context) ListRegistryCredentialsQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListRegistryCredentialsQueryParamsOutput).ToListRegistryCredentialsQueryParamsPtrOutputWithContext(ctx)
+}
+
+// ListRegistryCredentialsQueryParamsPtrInput is an input type that accepts ListRegistryCredentialsQueryParamsArgs, ListRegistryCredentialsQueryParamsPtr and ListRegistryCredentialsQueryParamsPtrOutput values.
+// You can construct a concrete instance of `ListRegistryCredentialsQueryParamsPtrInput` via:
+//
+//	        ListRegistryCredentialsQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ListRegistryCredentialsQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToListRegistryCredentialsQueryParamsPtrOutput() ListRegistryCredentialsQueryParamsPtrOutput
+	ToListRegistryCredentialsQueryParamsPtrOutputWithContext(context.Context) ListRegistryCredentialsQueryParamsPtrOutput
+}
+
+type listRegistryCredentialsQueryParamsPtrType ListRegistryCredentialsQueryParamsArgs
+
+func ListRegistryCredentialsQueryParamsPtr(v *ListRegistryCredentialsQueryParamsArgs) ListRegistryCredentialsQueryParamsPtrInput {
+	return (*listRegistryCredentialsQueryParamsPtrType)(v)
+}
+
+func (*listRegistryCredentialsQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListRegistryCredentialsQueryParams)(nil)).Elem()
+}
+
+func (i *listRegistryCredentialsQueryParamsPtrType) ToListRegistryCredentialsQueryParamsPtrOutput() ListRegistryCredentialsQueryParamsPtrOutput {
+	return i.ToListRegistryCredentialsQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *listRegistryCredentialsQueryParamsPtrType) ToListRegistryCredentialsQueryParamsPtrOutputWithContext(ctx context.Context) ListRegistryCredentialsQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListRegistryCredentialsQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type ListRegistryCredentialsQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (ListRegistryCredentialsQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListRegistryCredentialsQueryParams)(nil)).Elem()
+}
+
+func (o ListRegistryCredentialsQueryParamsOutput) ToListRegistryCredentialsQueryParamsOutput() ListRegistryCredentialsQueryParamsOutput {
+	return o
+}
+
+func (o ListRegistryCredentialsQueryParamsOutput) ToListRegistryCredentialsQueryParamsOutputWithContext(ctx context.Context) ListRegistryCredentialsQueryParamsOutput {
+	return o
+}
+
+func (o ListRegistryCredentialsQueryParamsOutput) ToListRegistryCredentialsQueryParamsPtrOutput() ListRegistryCredentialsQueryParamsPtrOutput {
+	return o.ToListRegistryCredentialsQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o ListRegistryCredentialsQueryParamsOutput) ToListRegistryCredentialsQueryParamsPtrOutputWithContext(ctx context.Context) ListRegistryCredentialsQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListRegistryCredentialsQueryParams) *ListRegistryCredentialsQueryParams {
+		return &v
+	}).(ListRegistryCredentialsQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListRegistryCredentialsQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ListRegistryCredentialsQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+// Filter for services created after a certain time (specified as an ISO 8601 timestamp)
+func (o ListRegistryCredentialsQueryParamsOutput) CreatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListRegistryCredentialsQueryParams) *string { return v.CreatedAfter }).(pulumi.StringPtrOutput)
+}
+
+// Filter for services created before a certain time (specified as an ISO 8601 timestamp)
+func (o ListRegistryCredentialsQueryParamsOutput) CreatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListRegistryCredentialsQueryParams) *string { return v.CreatedBefore }).(pulumi.StringPtrOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListRegistryCredentialsQueryParamsOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListRegistryCredentialsQueryParams) *string { return v.Cursor }).(pulumi.StringPtrOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListRegistryCredentialsQueryParamsOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ListRegistryCredentialsQueryParams) *int { return v.Limit }).(pulumi.IntPtrOutput)
+}
+
+// Filter for the name of a credential
+func (o ListRegistryCredentialsQueryParamsOutput) Name() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListRegistryCredentialsQueryParams) []string { return v.Name }).(pulumi.StringArrayOutput)
+}
+
+// The ID of the workspaces to return resources for
+func (o ListRegistryCredentialsQueryParamsOutput) OwnerId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListRegistryCredentialsQueryParams) []string { return v.OwnerId }).(pulumi.StringArrayOutput)
+}
+
+// Filter for the registry type for the credential
+func (o ListRegistryCredentialsQueryParamsOutput) Type() ListRegistryCredentialsQueryParamsTypeItemArrayOutput {
+	return o.ApplyT(func(v ListRegistryCredentialsQueryParams) []ListRegistryCredentialsQueryParamsTypeItem { return v.Type }).(ListRegistryCredentialsQueryParamsTypeItemArrayOutput)
+}
+
+// Filter for services updated after a certain time (specified as an ISO 8601 timestamp)
+func (o ListRegistryCredentialsQueryParamsOutput) UpdatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListRegistryCredentialsQueryParams) *string { return v.UpdatedAfter }).(pulumi.StringPtrOutput)
+}
+
+// Filter for services updated before a certain time (specified as an ISO 8601 timestamp)
+func (o ListRegistryCredentialsQueryParamsOutput) UpdatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListRegistryCredentialsQueryParams) *string { return v.UpdatedBefore }).(pulumi.StringPtrOutput)
+}
+
+// Filter for the username of a credential
+func (o ListRegistryCredentialsQueryParamsOutput) Username() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListRegistryCredentialsQueryParams) []string { return v.Username }).(pulumi.StringArrayOutput)
+}
+
+type ListRegistryCredentialsQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (ListRegistryCredentialsQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListRegistryCredentialsQueryParams)(nil)).Elem()
+}
+
+func (o ListRegistryCredentialsQueryParamsPtrOutput) ToListRegistryCredentialsQueryParamsPtrOutput() ListRegistryCredentialsQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListRegistryCredentialsQueryParamsPtrOutput) ToListRegistryCredentialsQueryParamsPtrOutputWithContext(ctx context.Context) ListRegistryCredentialsQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListRegistryCredentialsQueryParamsPtrOutput) Elem() ListRegistryCredentialsQueryParamsOutput {
+	return o.ApplyT(func(v *ListRegistryCredentialsQueryParams) ListRegistryCredentialsQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret ListRegistryCredentialsQueryParams
+		return ret
+	}).(ListRegistryCredentialsQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListRegistryCredentialsQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ListRegistryCredentialsQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Filter for services created after a certain time (specified as an ISO 8601 timestamp)
+func (o ListRegistryCredentialsQueryParamsPtrOutput) CreatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListRegistryCredentialsQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedAfter
+	}).(pulumi.StringPtrOutput)
+}
+
+// Filter for services created before a certain time (specified as an ISO 8601 timestamp)
+func (o ListRegistryCredentialsQueryParamsPtrOutput) CreatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListRegistryCredentialsQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedBefore
+	}).(pulumi.StringPtrOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListRegistryCredentialsQueryParamsPtrOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListRegistryCredentialsQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Cursor
+	}).(pulumi.StringPtrOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListRegistryCredentialsQueryParamsPtrOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ListRegistryCredentialsQueryParams) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Limit
+	}).(pulumi.IntPtrOutput)
+}
+
+// Filter for the name of a credential
+func (o ListRegistryCredentialsQueryParamsPtrOutput) Name() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ListRegistryCredentialsQueryParams) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringArrayOutput)
+}
+
+// The ID of the workspaces to return resources for
+func (o ListRegistryCredentialsQueryParamsPtrOutput) OwnerId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ListRegistryCredentialsQueryParams) []string {
+		if v == nil {
+			return nil
+		}
+		return v.OwnerId
+	}).(pulumi.StringArrayOutput)
+}
+
+// Filter for the registry type for the credential
+func (o ListRegistryCredentialsQueryParamsPtrOutput) Type() ListRegistryCredentialsQueryParamsTypeItemArrayOutput {
+	return o.ApplyT(func(v *ListRegistryCredentialsQueryParams) []ListRegistryCredentialsQueryParamsTypeItem {
+		if v == nil {
+			return nil
+		}
+		return v.Type
+	}).(ListRegistryCredentialsQueryParamsTypeItemArrayOutput)
+}
+
+// Filter for services updated after a certain time (specified as an ISO 8601 timestamp)
+func (o ListRegistryCredentialsQueryParamsPtrOutput) UpdatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListRegistryCredentialsQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UpdatedAfter
+	}).(pulumi.StringPtrOutput)
+}
+
+// Filter for services updated before a certain time (specified as an ISO 8601 timestamp)
+func (o ListRegistryCredentialsQueryParamsPtrOutput) UpdatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListRegistryCredentialsQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UpdatedBefore
+	}).(pulumi.StringPtrOutput)
+}
+
+// Filter for the username of a credential
+func (o ListRegistryCredentialsQueryParamsPtrOutput) Username() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ListRegistryCredentialsQueryParams) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringArrayOutput)
+}
+
 type RegistryCredentialType struct {
 	// Unique identifier for this credential
 	Id string `pulumi:"id"`
@@ -85,7 +579,792 @@ func (o RegistryCredentialTypeArrayOutput) Index(i pulumi.IntInput) RegistryCred
 	}).(RegistryCredentialTypeOutput)
 }
 
+// Query params for the API request.
+type RegistryCredentialCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// RegistryCredentialCreateQueryParamsInput is an input type that accepts RegistryCredentialCreateQueryParamsArgs and RegistryCredentialCreateQueryParamsOutput values.
+// You can construct a concrete instance of `RegistryCredentialCreateQueryParamsInput` via:
+//
+//	RegistryCredentialCreateQueryParamsArgs{...}
+type RegistryCredentialCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToRegistryCredentialCreateQueryParamsOutput() RegistryCredentialCreateQueryParamsOutput
+	ToRegistryCredentialCreateQueryParamsOutputWithContext(context.Context) RegistryCredentialCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type RegistryCredentialCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (RegistryCredentialCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegistryCredentialCreateQueryParams)(nil)).Elem()
+}
+
+func (i RegistryCredentialCreateQueryParamsArgs) ToRegistryCredentialCreateQueryParamsOutput() RegistryCredentialCreateQueryParamsOutput {
+	return i.ToRegistryCredentialCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i RegistryCredentialCreateQueryParamsArgs) ToRegistryCredentialCreateQueryParamsOutputWithContext(ctx context.Context) RegistryCredentialCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistryCredentialCreateQueryParamsOutput)
+}
+
+func (i RegistryCredentialCreateQueryParamsArgs) ToRegistryCredentialCreateQueryParamsPtrOutput() RegistryCredentialCreateQueryParamsPtrOutput {
+	return i.ToRegistryCredentialCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i RegistryCredentialCreateQueryParamsArgs) ToRegistryCredentialCreateQueryParamsPtrOutputWithContext(ctx context.Context) RegistryCredentialCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistryCredentialCreateQueryParamsOutput).ToRegistryCredentialCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// RegistryCredentialCreateQueryParamsPtrInput is an input type that accepts RegistryCredentialCreateQueryParamsArgs, RegistryCredentialCreateQueryParamsPtr and RegistryCredentialCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `RegistryCredentialCreateQueryParamsPtrInput` via:
+//
+//	        RegistryCredentialCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type RegistryCredentialCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToRegistryCredentialCreateQueryParamsPtrOutput() RegistryCredentialCreateQueryParamsPtrOutput
+	ToRegistryCredentialCreateQueryParamsPtrOutputWithContext(context.Context) RegistryCredentialCreateQueryParamsPtrOutput
+}
+
+type registryCredentialCreateQueryParamsPtrType RegistryCredentialCreateQueryParamsArgs
+
+func RegistryCredentialCreateQueryParamsPtr(v *RegistryCredentialCreateQueryParamsArgs) RegistryCredentialCreateQueryParamsPtrInput {
+	return (*registryCredentialCreateQueryParamsPtrType)(v)
+}
+
+func (*registryCredentialCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RegistryCredentialCreateQueryParams)(nil)).Elem()
+}
+
+func (i *registryCredentialCreateQueryParamsPtrType) ToRegistryCredentialCreateQueryParamsPtrOutput() RegistryCredentialCreateQueryParamsPtrOutput {
+	return i.ToRegistryCredentialCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *registryCredentialCreateQueryParamsPtrType) ToRegistryCredentialCreateQueryParamsPtrOutputWithContext(ctx context.Context) RegistryCredentialCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistryCredentialCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type RegistryCredentialCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (RegistryCredentialCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegistryCredentialCreateQueryParams)(nil)).Elem()
+}
+
+func (o RegistryCredentialCreateQueryParamsOutput) ToRegistryCredentialCreateQueryParamsOutput() RegistryCredentialCreateQueryParamsOutput {
+	return o
+}
+
+func (o RegistryCredentialCreateQueryParamsOutput) ToRegistryCredentialCreateQueryParamsOutputWithContext(ctx context.Context) RegistryCredentialCreateQueryParamsOutput {
+	return o
+}
+
+func (o RegistryCredentialCreateQueryParamsOutput) ToRegistryCredentialCreateQueryParamsPtrOutput() RegistryCredentialCreateQueryParamsPtrOutput {
+	return o.ToRegistryCredentialCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o RegistryCredentialCreateQueryParamsOutput) ToRegistryCredentialCreateQueryParamsPtrOutputWithContext(ctx context.Context) RegistryCredentialCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RegistryCredentialCreateQueryParams) *RegistryCredentialCreateQueryParams {
+		return &v
+	}).(RegistryCredentialCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o RegistryCredentialCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v RegistryCredentialCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type RegistryCredentialCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (RegistryCredentialCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RegistryCredentialCreateQueryParams)(nil)).Elem()
+}
+
+func (o RegistryCredentialCreateQueryParamsPtrOutput) ToRegistryCredentialCreateQueryParamsPtrOutput() RegistryCredentialCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o RegistryCredentialCreateQueryParamsPtrOutput) ToRegistryCredentialCreateQueryParamsPtrOutputWithContext(ctx context.Context) RegistryCredentialCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o RegistryCredentialCreateQueryParamsPtrOutput) Elem() RegistryCredentialCreateQueryParamsOutput {
+	return o.ApplyT(func(v *RegistryCredentialCreateQueryParams) RegistryCredentialCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret RegistryCredentialCreateQueryParams
+		return ret
+	}).(RegistryCredentialCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o RegistryCredentialCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *RegistryCredentialCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type RegistryCredentialDeleteQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// RegistryCredentialDeleteQueryParamsInput is an input type that accepts RegistryCredentialDeleteQueryParamsArgs and RegistryCredentialDeleteQueryParamsOutput values.
+// You can construct a concrete instance of `RegistryCredentialDeleteQueryParamsInput` via:
+//
+//	RegistryCredentialDeleteQueryParamsArgs{...}
+type RegistryCredentialDeleteQueryParamsInput interface {
+	pulumi.Input
+
+	ToRegistryCredentialDeleteQueryParamsOutput() RegistryCredentialDeleteQueryParamsOutput
+	ToRegistryCredentialDeleteQueryParamsOutputWithContext(context.Context) RegistryCredentialDeleteQueryParamsOutput
+}
+
+// Query params for the API request.
+type RegistryCredentialDeleteQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (RegistryCredentialDeleteQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegistryCredentialDeleteQueryParams)(nil)).Elem()
+}
+
+func (i RegistryCredentialDeleteQueryParamsArgs) ToRegistryCredentialDeleteQueryParamsOutput() RegistryCredentialDeleteQueryParamsOutput {
+	return i.ToRegistryCredentialDeleteQueryParamsOutputWithContext(context.Background())
+}
+
+func (i RegistryCredentialDeleteQueryParamsArgs) ToRegistryCredentialDeleteQueryParamsOutputWithContext(ctx context.Context) RegistryCredentialDeleteQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistryCredentialDeleteQueryParamsOutput)
+}
+
+func (i RegistryCredentialDeleteQueryParamsArgs) ToRegistryCredentialDeleteQueryParamsPtrOutput() RegistryCredentialDeleteQueryParamsPtrOutput {
+	return i.ToRegistryCredentialDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i RegistryCredentialDeleteQueryParamsArgs) ToRegistryCredentialDeleteQueryParamsPtrOutputWithContext(ctx context.Context) RegistryCredentialDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistryCredentialDeleteQueryParamsOutput).ToRegistryCredentialDeleteQueryParamsPtrOutputWithContext(ctx)
+}
+
+// RegistryCredentialDeleteQueryParamsPtrInput is an input type that accepts RegistryCredentialDeleteQueryParamsArgs, RegistryCredentialDeleteQueryParamsPtr and RegistryCredentialDeleteQueryParamsPtrOutput values.
+// You can construct a concrete instance of `RegistryCredentialDeleteQueryParamsPtrInput` via:
+//
+//	        RegistryCredentialDeleteQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type RegistryCredentialDeleteQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToRegistryCredentialDeleteQueryParamsPtrOutput() RegistryCredentialDeleteQueryParamsPtrOutput
+	ToRegistryCredentialDeleteQueryParamsPtrOutputWithContext(context.Context) RegistryCredentialDeleteQueryParamsPtrOutput
+}
+
+type registryCredentialDeleteQueryParamsPtrType RegistryCredentialDeleteQueryParamsArgs
+
+func RegistryCredentialDeleteQueryParamsPtr(v *RegistryCredentialDeleteQueryParamsArgs) RegistryCredentialDeleteQueryParamsPtrInput {
+	return (*registryCredentialDeleteQueryParamsPtrType)(v)
+}
+
+func (*registryCredentialDeleteQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RegistryCredentialDeleteQueryParams)(nil)).Elem()
+}
+
+func (i *registryCredentialDeleteQueryParamsPtrType) ToRegistryCredentialDeleteQueryParamsPtrOutput() RegistryCredentialDeleteQueryParamsPtrOutput {
+	return i.ToRegistryCredentialDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *registryCredentialDeleteQueryParamsPtrType) ToRegistryCredentialDeleteQueryParamsPtrOutputWithContext(ctx context.Context) RegistryCredentialDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistryCredentialDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type RegistryCredentialDeleteQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (RegistryCredentialDeleteQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegistryCredentialDeleteQueryParams)(nil)).Elem()
+}
+
+func (o RegistryCredentialDeleteQueryParamsOutput) ToRegistryCredentialDeleteQueryParamsOutput() RegistryCredentialDeleteQueryParamsOutput {
+	return o
+}
+
+func (o RegistryCredentialDeleteQueryParamsOutput) ToRegistryCredentialDeleteQueryParamsOutputWithContext(ctx context.Context) RegistryCredentialDeleteQueryParamsOutput {
+	return o
+}
+
+func (o RegistryCredentialDeleteQueryParamsOutput) ToRegistryCredentialDeleteQueryParamsPtrOutput() RegistryCredentialDeleteQueryParamsPtrOutput {
+	return o.ToRegistryCredentialDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o RegistryCredentialDeleteQueryParamsOutput) ToRegistryCredentialDeleteQueryParamsPtrOutputWithContext(ctx context.Context) RegistryCredentialDeleteQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RegistryCredentialDeleteQueryParams) *RegistryCredentialDeleteQueryParams {
+		return &v
+	}).(RegistryCredentialDeleteQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o RegistryCredentialDeleteQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v RegistryCredentialDeleteQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type RegistryCredentialDeleteQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (RegistryCredentialDeleteQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RegistryCredentialDeleteQueryParams)(nil)).Elem()
+}
+
+func (o RegistryCredentialDeleteQueryParamsPtrOutput) ToRegistryCredentialDeleteQueryParamsPtrOutput() RegistryCredentialDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o RegistryCredentialDeleteQueryParamsPtrOutput) ToRegistryCredentialDeleteQueryParamsPtrOutputWithContext(ctx context.Context) RegistryCredentialDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o RegistryCredentialDeleteQueryParamsPtrOutput) Elem() RegistryCredentialDeleteQueryParamsOutput {
+	return o.ApplyT(func(v *RegistryCredentialDeleteQueryParams) RegistryCredentialDeleteQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret RegistryCredentialDeleteQueryParams
+		return ret
+	}).(RegistryCredentialDeleteQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o RegistryCredentialDeleteQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *RegistryCredentialDeleteQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for each of the operations of the resource.
+type RegistryCredentialQueryParams struct {
+	// Query params for the create operation.
+	Create *RegistryCredentialCreateQueryParams `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete *RegistryCredentialDeleteQueryParams `pulumi:"delete"`
+	// Query params for the read operation.
+	Read *RegistryCredentialReadQueryParams `pulumi:"read"`
+	// Query params for the update operation.
+	Update *RegistryCredentialUpdateQueryParams `pulumi:"update"`
+}
+
+// RegistryCredentialQueryParamsInput is an input type that accepts RegistryCredentialQueryParamsArgs and RegistryCredentialQueryParamsOutput values.
+// You can construct a concrete instance of `RegistryCredentialQueryParamsInput` via:
+//
+//	RegistryCredentialQueryParamsArgs{...}
+type RegistryCredentialQueryParamsInput interface {
+	pulumi.Input
+
+	ToRegistryCredentialQueryParamsOutput() RegistryCredentialQueryParamsOutput
+	ToRegistryCredentialQueryParamsOutputWithContext(context.Context) RegistryCredentialQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type RegistryCredentialQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create RegistryCredentialCreateQueryParamsPtrInput `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete RegistryCredentialDeleteQueryParamsPtrInput `pulumi:"delete"`
+	// Query params for the read operation.
+	Read RegistryCredentialReadQueryParamsPtrInput `pulumi:"read"`
+	// Query params for the update operation.
+	Update RegistryCredentialUpdateQueryParamsPtrInput `pulumi:"update"`
+}
+
+func (RegistryCredentialQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegistryCredentialQueryParams)(nil)).Elem()
+}
+
+func (i RegistryCredentialQueryParamsArgs) ToRegistryCredentialQueryParamsOutput() RegistryCredentialQueryParamsOutput {
+	return i.ToRegistryCredentialQueryParamsOutputWithContext(context.Background())
+}
+
+func (i RegistryCredentialQueryParamsArgs) ToRegistryCredentialQueryParamsOutputWithContext(ctx context.Context) RegistryCredentialQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistryCredentialQueryParamsOutput)
+}
+
+func (i RegistryCredentialQueryParamsArgs) ToRegistryCredentialQueryParamsPtrOutput() RegistryCredentialQueryParamsPtrOutput {
+	return i.ToRegistryCredentialQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i RegistryCredentialQueryParamsArgs) ToRegistryCredentialQueryParamsPtrOutputWithContext(ctx context.Context) RegistryCredentialQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistryCredentialQueryParamsOutput).ToRegistryCredentialQueryParamsPtrOutputWithContext(ctx)
+}
+
+// RegistryCredentialQueryParamsPtrInput is an input type that accepts RegistryCredentialQueryParamsArgs, RegistryCredentialQueryParamsPtr and RegistryCredentialQueryParamsPtrOutput values.
+// You can construct a concrete instance of `RegistryCredentialQueryParamsPtrInput` via:
+//
+//	        RegistryCredentialQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type RegistryCredentialQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToRegistryCredentialQueryParamsPtrOutput() RegistryCredentialQueryParamsPtrOutput
+	ToRegistryCredentialQueryParamsPtrOutputWithContext(context.Context) RegistryCredentialQueryParamsPtrOutput
+}
+
+type registryCredentialQueryParamsPtrType RegistryCredentialQueryParamsArgs
+
+func RegistryCredentialQueryParamsPtr(v *RegistryCredentialQueryParamsArgs) RegistryCredentialQueryParamsPtrInput {
+	return (*registryCredentialQueryParamsPtrType)(v)
+}
+
+func (*registryCredentialQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RegistryCredentialQueryParams)(nil)).Elem()
+}
+
+func (i *registryCredentialQueryParamsPtrType) ToRegistryCredentialQueryParamsPtrOutput() RegistryCredentialQueryParamsPtrOutput {
+	return i.ToRegistryCredentialQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *registryCredentialQueryParamsPtrType) ToRegistryCredentialQueryParamsPtrOutputWithContext(ctx context.Context) RegistryCredentialQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistryCredentialQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type RegistryCredentialQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (RegistryCredentialQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegistryCredentialQueryParams)(nil)).Elem()
+}
+
+func (o RegistryCredentialQueryParamsOutput) ToRegistryCredentialQueryParamsOutput() RegistryCredentialQueryParamsOutput {
+	return o
+}
+
+func (o RegistryCredentialQueryParamsOutput) ToRegistryCredentialQueryParamsOutputWithContext(ctx context.Context) RegistryCredentialQueryParamsOutput {
+	return o
+}
+
+func (o RegistryCredentialQueryParamsOutput) ToRegistryCredentialQueryParamsPtrOutput() RegistryCredentialQueryParamsPtrOutput {
+	return o.ToRegistryCredentialQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o RegistryCredentialQueryParamsOutput) ToRegistryCredentialQueryParamsPtrOutputWithContext(ctx context.Context) RegistryCredentialQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RegistryCredentialQueryParams) *RegistryCredentialQueryParams {
+		return &v
+	}).(RegistryCredentialQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o RegistryCredentialQueryParamsOutput) Create() RegistryCredentialCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v RegistryCredentialQueryParams) *RegistryCredentialCreateQueryParams { return v.Create }).(RegistryCredentialCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o RegistryCredentialQueryParamsOutput) Delete() RegistryCredentialDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v RegistryCredentialQueryParams) *RegistryCredentialDeleteQueryParams { return v.Delete }).(RegistryCredentialDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o RegistryCredentialQueryParamsOutput) Read() RegistryCredentialReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v RegistryCredentialQueryParams) *RegistryCredentialReadQueryParams { return v.Read }).(RegistryCredentialReadQueryParamsPtrOutput)
+}
+
+// Query params for the update operation.
+func (o RegistryCredentialQueryParamsOutput) Update() RegistryCredentialUpdateQueryParamsPtrOutput {
+	return o.ApplyT(func(v RegistryCredentialQueryParams) *RegistryCredentialUpdateQueryParams { return v.Update }).(RegistryCredentialUpdateQueryParamsPtrOutput)
+}
+
+type RegistryCredentialQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (RegistryCredentialQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RegistryCredentialQueryParams)(nil)).Elem()
+}
+
+func (o RegistryCredentialQueryParamsPtrOutput) ToRegistryCredentialQueryParamsPtrOutput() RegistryCredentialQueryParamsPtrOutput {
+	return o
+}
+
+func (o RegistryCredentialQueryParamsPtrOutput) ToRegistryCredentialQueryParamsPtrOutputWithContext(ctx context.Context) RegistryCredentialQueryParamsPtrOutput {
+	return o
+}
+
+func (o RegistryCredentialQueryParamsPtrOutput) Elem() RegistryCredentialQueryParamsOutput {
+	return o.ApplyT(func(v *RegistryCredentialQueryParams) RegistryCredentialQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret RegistryCredentialQueryParams
+		return ret
+	}).(RegistryCredentialQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o RegistryCredentialQueryParamsPtrOutput) Create() RegistryCredentialCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *RegistryCredentialQueryParams) *RegistryCredentialCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(RegistryCredentialCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o RegistryCredentialQueryParamsPtrOutput) Delete() RegistryCredentialDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v *RegistryCredentialQueryParams) *RegistryCredentialDeleteQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Delete
+	}).(RegistryCredentialDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o RegistryCredentialQueryParamsPtrOutput) Read() RegistryCredentialReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v *RegistryCredentialQueryParams) *RegistryCredentialReadQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Read
+	}).(RegistryCredentialReadQueryParamsPtrOutput)
+}
+
+// Query params for the update operation.
+func (o RegistryCredentialQueryParamsPtrOutput) Update() RegistryCredentialUpdateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *RegistryCredentialQueryParams) *RegistryCredentialUpdateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Update
+	}).(RegistryCredentialUpdateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type RegistryCredentialReadQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// RegistryCredentialReadQueryParamsInput is an input type that accepts RegistryCredentialReadQueryParamsArgs and RegistryCredentialReadQueryParamsOutput values.
+// You can construct a concrete instance of `RegistryCredentialReadQueryParamsInput` via:
+//
+//	RegistryCredentialReadQueryParamsArgs{...}
+type RegistryCredentialReadQueryParamsInput interface {
+	pulumi.Input
+
+	ToRegistryCredentialReadQueryParamsOutput() RegistryCredentialReadQueryParamsOutput
+	ToRegistryCredentialReadQueryParamsOutputWithContext(context.Context) RegistryCredentialReadQueryParamsOutput
+}
+
+// Query params for the API request.
+type RegistryCredentialReadQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (RegistryCredentialReadQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegistryCredentialReadQueryParams)(nil)).Elem()
+}
+
+func (i RegistryCredentialReadQueryParamsArgs) ToRegistryCredentialReadQueryParamsOutput() RegistryCredentialReadQueryParamsOutput {
+	return i.ToRegistryCredentialReadQueryParamsOutputWithContext(context.Background())
+}
+
+func (i RegistryCredentialReadQueryParamsArgs) ToRegistryCredentialReadQueryParamsOutputWithContext(ctx context.Context) RegistryCredentialReadQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistryCredentialReadQueryParamsOutput)
+}
+
+func (i RegistryCredentialReadQueryParamsArgs) ToRegistryCredentialReadQueryParamsPtrOutput() RegistryCredentialReadQueryParamsPtrOutput {
+	return i.ToRegistryCredentialReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i RegistryCredentialReadQueryParamsArgs) ToRegistryCredentialReadQueryParamsPtrOutputWithContext(ctx context.Context) RegistryCredentialReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistryCredentialReadQueryParamsOutput).ToRegistryCredentialReadQueryParamsPtrOutputWithContext(ctx)
+}
+
+// RegistryCredentialReadQueryParamsPtrInput is an input type that accepts RegistryCredentialReadQueryParamsArgs, RegistryCredentialReadQueryParamsPtr and RegistryCredentialReadQueryParamsPtrOutput values.
+// You can construct a concrete instance of `RegistryCredentialReadQueryParamsPtrInput` via:
+//
+//	        RegistryCredentialReadQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type RegistryCredentialReadQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToRegistryCredentialReadQueryParamsPtrOutput() RegistryCredentialReadQueryParamsPtrOutput
+	ToRegistryCredentialReadQueryParamsPtrOutputWithContext(context.Context) RegistryCredentialReadQueryParamsPtrOutput
+}
+
+type registryCredentialReadQueryParamsPtrType RegistryCredentialReadQueryParamsArgs
+
+func RegistryCredentialReadQueryParamsPtr(v *RegistryCredentialReadQueryParamsArgs) RegistryCredentialReadQueryParamsPtrInput {
+	return (*registryCredentialReadQueryParamsPtrType)(v)
+}
+
+func (*registryCredentialReadQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RegistryCredentialReadQueryParams)(nil)).Elem()
+}
+
+func (i *registryCredentialReadQueryParamsPtrType) ToRegistryCredentialReadQueryParamsPtrOutput() RegistryCredentialReadQueryParamsPtrOutput {
+	return i.ToRegistryCredentialReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *registryCredentialReadQueryParamsPtrType) ToRegistryCredentialReadQueryParamsPtrOutputWithContext(ctx context.Context) RegistryCredentialReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistryCredentialReadQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type RegistryCredentialReadQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (RegistryCredentialReadQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegistryCredentialReadQueryParams)(nil)).Elem()
+}
+
+func (o RegistryCredentialReadQueryParamsOutput) ToRegistryCredentialReadQueryParamsOutput() RegistryCredentialReadQueryParamsOutput {
+	return o
+}
+
+func (o RegistryCredentialReadQueryParamsOutput) ToRegistryCredentialReadQueryParamsOutputWithContext(ctx context.Context) RegistryCredentialReadQueryParamsOutput {
+	return o
+}
+
+func (o RegistryCredentialReadQueryParamsOutput) ToRegistryCredentialReadQueryParamsPtrOutput() RegistryCredentialReadQueryParamsPtrOutput {
+	return o.ToRegistryCredentialReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o RegistryCredentialReadQueryParamsOutput) ToRegistryCredentialReadQueryParamsPtrOutputWithContext(ctx context.Context) RegistryCredentialReadQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RegistryCredentialReadQueryParams) *RegistryCredentialReadQueryParams {
+		return &v
+	}).(RegistryCredentialReadQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o RegistryCredentialReadQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v RegistryCredentialReadQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type RegistryCredentialReadQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (RegistryCredentialReadQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RegistryCredentialReadQueryParams)(nil)).Elem()
+}
+
+func (o RegistryCredentialReadQueryParamsPtrOutput) ToRegistryCredentialReadQueryParamsPtrOutput() RegistryCredentialReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o RegistryCredentialReadQueryParamsPtrOutput) ToRegistryCredentialReadQueryParamsPtrOutputWithContext(ctx context.Context) RegistryCredentialReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o RegistryCredentialReadQueryParamsPtrOutput) Elem() RegistryCredentialReadQueryParamsOutput {
+	return o.ApplyT(func(v *RegistryCredentialReadQueryParams) RegistryCredentialReadQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret RegistryCredentialReadQueryParams
+		return ret
+	}).(RegistryCredentialReadQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o RegistryCredentialReadQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *RegistryCredentialReadQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type RegistryCredentialUpdateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// RegistryCredentialUpdateQueryParamsInput is an input type that accepts RegistryCredentialUpdateQueryParamsArgs and RegistryCredentialUpdateQueryParamsOutput values.
+// You can construct a concrete instance of `RegistryCredentialUpdateQueryParamsInput` via:
+//
+//	RegistryCredentialUpdateQueryParamsArgs{...}
+type RegistryCredentialUpdateQueryParamsInput interface {
+	pulumi.Input
+
+	ToRegistryCredentialUpdateQueryParamsOutput() RegistryCredentialUpdateQueryParamsOutput
+	ToRegistryCredentialUpdateQueryParamsOutputWithContext(context.Context) RegistryCredentialUpdateQueryParamsOutput
+}
+
+// Query params for the API request.
+type RegistryCredentialUpdateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (RegistryCredentialUpdateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegistryCredentialUpdateQueryParams)(nil)).Elem()
+}
+
+func (i RegistryCredentialUpdateQueryParamsArgs) ToRegistryCredentialUpdateQueryParamsOutput() RegistryCredentialUpdateQueryParamsOutput {
+	return i.ToRegistryCredentialUpdateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i RegistryCredentialUpdateQueryParamsArgs) ToRegistryCredentialUpdateQueryParamsOutputWithContext(ctx context.Context) RegistryCredentialUpdateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistryCredentialUpdateQueryParamsOutput)
+}
+
+func (i RegistryCredentialUpdateQueryParamsArgs) ToRegistryCredentialUpdateQueryParamsPtrOutput() RegistryCredentialUpdateQueryParamsPtrOutput {
+	return i.ToRegistryCredentialUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i RegistryCredentialUpdateQueryParamsArgs) ToRegistryCredentialUpdateQueryParamsPtrOutputWithContext(ctx context.Context) RegistryCredentialUpdateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistryCredentialUpdateQueryParamsOutput).ToRegistryCredentialUpdateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// RegistryCredentialUpdateQueryParamsPtrInput is an input type that accepts RegistryCredentialUpdateQueryParamsArgs, RegistryCredentialUpdateQueryParamsPtr and RegistryCredentialUpdateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `RegistryCredentialUpdateQueryParamsPtrInput` via:
+//
+//	        RegistryCredentialUpdateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type RegistryCredentialUpdateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToRegistryCredentialUpdateQueryParamsPtrOutput() RegistryCredentialUpdateQueryParamsPtrOutput
+	ToRegistryCredentialUpdateQueryParamsPtrOutputWithContext(context.Context) RegistryCredentialUpdateQueryParamsPtrOutput
+}
+
+type registryCredentialUpdateQueryParamsPtrType RegistryCredentialUpdateQueryParamsArgs
+
+func RegistryCredentialUpdateQueryParamsPtr(v *RegistryCredentialUpdateQueryParamsArgs) RegistryCredentialUpdateQueryParamsPtrInput {
+	return (*registryCredentialUpdateQueryParamsPtrType)(v)
+}
+
+func (*registryCredentialUpdateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RegistryCredentialUpdateQueryParams)(nil)).Elem()
+}
+
+func (i *registryCredentialUpdateQueryParamsPtrType) ToRegistryCredentialUpdateQueryParamsPtrOutput() RegistryCredentialUpdateQueryParamsPtrOutput {
+	return i.ToRegistryCredentialUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *registryCredentialUpdateQueryParamsPtrType) ToRegistryCredentialUpdateQueryParamsPtrOutputWithContext(ctx context.Context) RegistryCredentialUpdateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistryCredentialUpdateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type RegistryCredentialUpdateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (RegistryCredentialUpdateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegistryCredentialUpdateQueryParams)(nil)).Elem()
+}
+
+func (o RegistryCredentialUpdateQueryParamsOutput) ToRegistryCredentialUpdateQueryParamsOutput() RegistryCredentialUpdateQueryParamsOutput {
+	return o
+}
+
+func (o RegistryCredentialUpdateQueryParamsOutput) ToRegistryCredentialUpdateQueryParamsOutputWithContext(ctx context.Context) RegistryCredentialUpdateQueryParamsOutput {
+	return o
+}
+
+func (o RegistryCredentialUpdateQueryParamsOutput) ToRegistryCredentialUpdateQueryParamsPtrOutput() RegistryCredentialUpdateQueryParamsPtrOutput {
+	return o.ToRegistryCredentialUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o RegistryCredentialUpdateQueryParamsOutput) ToRegistryCredentialUpdateQueryParamsPtrOutputWithContext(ctx context.Context) RegistryCredentialUpdateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RegistryCredentialUpdateQueryParams) *RegistryCredentialUpdateQueryParams {
+		return &v
+	}).(RegistryCredentialUpdateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o RegistryCredentialUpdateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v RegistryCredentialUpdateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type RegistryCredentialUpdateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (RegistryCredentialUpdateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RegistryCredentialUpdateQueryParams)(nil)).Elem()
+}
+
+func (o RegistryCredentialUpdateQueryParamsPtrOutput) ToRegistryCredentialUpdateQueryParamsPtrOutput() RegistryCredentialUpdateQueryParamsPtrOutput {
+	return o
+}
+
+func (o RegistryCredentialUpdateQueryParamsPtrOutput) ToRegistryCredentialUpdateQueryParamsPtrOutputWithContext(ctx context.Context) RegistryCredentialUpdateQueryParamsPtrOutput {
+	return o
+}
+
+func (o RegistryCredentialUpdateQueryParamsPtrOutput) Elem() RegistryCredentialUpdateQueryParamsOutput {
+	return o.ApplyT(func(v *RegistryCredentialUpdateQueryParams) RegistryCredentialUpdateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret RegistryCredentialUpdateQueryParams
+		return ret
+	}).(RegistryCredentialUpdateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o RegistryCredentialUpdateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *RegistryCredentialUpdateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistryCredentialQueryParamsInput)(nil)).Elem(), GetRegistryCredentialQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistryCredentialQueryParamsPtrInput)(nil)).Elem(), GetRegistryCredentialQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListRegistryCredentialsQueryParamsInput)(nil)).Elem(), ListRegistryCredentialsQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListRegistryCredentialsQueryParamsPtrInput)(nil)).Elem(), ListRegistryCredentialsQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RegistryCredentialCreateQueryParamsInput)(nil)).Elem(), RegistryCredentialCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RegistryCredentialCreateQueryParamsPtrInput)(nil)).Elem(), RegistryCredentialCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RegistryCredentialDeleteQueryParamsInput)(nil)).Elem(), RegistryCredentialDeleteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RegistryCredentialDeleteQueryParamsPtrInput)(nil)).Elem(), RegistryCredentialDeleteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RegistryCredentialQueryParamsInput)(nil)).Elem(), RegistryCredentialQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RegistryCredentialQueryParamsPtrInput)(nil)).Elem(), RegistryCredentialQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RegistryCredentialReadQueryParamsInput)(nil)).Elem(), RegistryCredentialReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RegistryCredentialReadQueryParamsPtrInput)(nil)).Elem(), RegistryCredentialReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RegistryCredentialUpdateQueryParamsInput)(nil)).Elem(), RegistryCredentialUpdateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RegistryCredentialUpdateQueryParamsPtrInput)(nil)).Elem(), RegistryCredentialUpdateQueryParamsArgs{})
+	pulumi.RegisterOutputType(GetRegistryCredentialQueryParamsOutput{})
+	pulumi.RegisterOutputType(GetRegistryCredentialQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(ListRegistryCredentialsQueryParamsOutput{})
+	pulumi.RegisterOutputType(ListRegistryCredentialsQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(RegistryCredentialTypeOutput{})
 	pulumi.RegisterOutputType(RegistryCredentialTypeArrayOutput{})
+	pulumi.RegisterOutputType(RegistryCredentialCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(RegistryCredentialCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(RegistryCredentialDeleteQueryParamsOutput{})
+	pulumi.RegisterOutputType(RegistryCredentialDeleteQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(RegistryCredentialQueryParamsOutput{})
+	pulumi.RegisterOutputType(RegistryCredentialQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(RegistryCredentialReadQueryParamsOutput{})
+	pulumi.RegisterOutputType(RegistryCredentialReadQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(RegistryCredentialUpdateQueryParamsOutput{})
+	pulumi.RegisterOutputType(RegistryCredentialUpdateQueryParamsPtrOutput{})
 }

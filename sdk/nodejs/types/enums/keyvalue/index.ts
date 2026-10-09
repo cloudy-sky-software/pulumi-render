@@ -82,6 +82,19 @@ export const KeyValueStatus = {
 
 export type KeyValueStatus = (typeof KeyValueStatus)[keyof typeof KeyValueStatus];
 
+export const ListKeyValueQueryParamsRegionItem = {
+    Frankfurt: "frankfurt",
+    Oregon: "oregon",
+    Ohio: "ohio",
+    Singapore: "singapore",
+    Virginia: "virginia",
+} as const;
+
+/**
+ * Defaults to "oregon"
+ */
+export type ListKeyValueQueryParamsRegionItem = (typeof ListKeyValueQueryParamsRegionItem)[keyof typeof ListKeyValueQueryParamsRegionItem];
+
 export const MaxmemoryPolicy = {
     Noeviction: "noeviction",
     AllkeysLfu: "allkeys_lfu",

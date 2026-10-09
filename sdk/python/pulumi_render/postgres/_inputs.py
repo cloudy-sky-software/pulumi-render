@@ -18,8 +18,52 @@ from ._enums import *
 __all__ = [
     'CidrBlockAndDescriptionArgs',
     'CidrBlockAndDescriptionArgsDict',
+    'FailoverPostgresCreateQueryParamsArgs',
+    'FailoverPostgresCreateQueryParamsArgsDict',
+    'FailoverPostgresQueryParamsArgs',
+    'FailoverPostgresQueryParamsArgsDict',
+    'GetPostgresConnectionInfoQueryParams',
+    'GetPostgresConnectionInfoQueryParamsDict',
+    'GetPostgresQueryParams',
+    'GetPostgresQueryParamsDict',
+    'GetPostgresRecoveryInfoQueryParams',
+    'GetPostgresRecoveryInfoQueryParamsDict',
+    'ListPostgresExportQueryParams',
+    'ListPostgresExportQueryParamsDict',
+    'ListPostgresQueryParams',
+    'ListPostgresQueryParamsDict',
+    'PostgresCreateQueryParamsArgs',
+    'PostgresCreateQueryParamsArgsDict',
+    'PostgresDeleteQueryParamsArgs',
+    'PostgresDeleteQueryParamsArgsDict',
+    'PostgresExportCreateQueryParamsArgs',
+    'PostgresExportCreateQueryParamsArgsDict',
+    'PostgresExportQueryParamsArgs',
+    'PostgresExportQueryParamsArgsDict',
+    'PostgresQueryParamsArgs',
+    'PostgresQueryParamsArgsDict',
+    'PostgresReadQueryParamsArgs',
+    'PostgresReadQueryParamsArgsDict',
+    'PostgresUpdateQueryParamsArgs',
+    'PostgresUpdateQueryParamsArgsDict',
     'ReadReplicaInputArgs',
     'ReadReplicaInputArgsDict',
+    'RecoverPostgresCreateQueryParamsArgs',
+    'RecoverPostgresCreateQueryParamsArgsDict',
+    'RecoverPostgresQueryParamsArgs',
+    'RecoverPostgresQueryParamsArgsDict',
+    'RestartPostgresCreateQueryParamsArgs',
+    'RestartPostgresCreateQueryParamsArgsDict',
+    'RestartPostgresQueryParamsArgs',
+    'RestartPostgresQueryParamsArgsDict',
+    'ResumePostgresCreateQueryParamsArgs',
+    'ResumePostgresCreateQueryParamsArgsDict',
+    'ResumePostgresQueryParamsArgs',
+    'ResumePostgresQueryParamsArgsDict',
+    'SuspendPostgresCreateQueryParamsArgs',
+    'SuspendPostgresCreateQueryParamsArgsDict',
+    'SuspendPostgresQueryParamsArgs',
+    'SuspendPostgresQueryParamsArgsDict',
 ]
 
 class CidrBlockAndDescriptionArgsDict(TypedDict):
@@ -62,6 +106,786 @@ class CidrBlockAndDescriptionArgs:
         pulumi.set(self, "description", value)
 
 
+class FailoverPostgresCreateQueryParamsArgsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+
+@pulumi.input_type
+class FailoverPostgresCreateQueryParamsArgs:
+    def __init__(__self__, *,
+                 additional_params: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        """
+        Query params for the API request.
+
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "additional_params", value)
+
+
+class FailoverPostgresQueryParamsArgsDict(TypedDict):
+    """
+    Query params for each of the operations of the resource.
+    """
+    create: NotRequired[pulumi.Input[Optional['FailoverPostgresCreateQueryParamsArgsDict']]]
+    """
+    Query params for the create operation.
+    """
+
+@pulumi.input_type
+class FailoverPostgresQueryParamsArgs:
+    def __init__(__self__, *,
+                 create: pulumi.Input[Optional['FailoverPostgresCreateQueryParamsArgs']] = None):
+        """
+        Query params for each of the operations of the resource.
+
+        :param pulumi.Input['FailoverPostgresCreateQueryParamsArgs'] create: Query params for the create operation.
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> pulumi.Input[Optional['FailoverPostgresCreateQueryParamsArgs']]:
+        """
+        Query params for the create operation.
+        """
+        return pulumi.get(self, "create")
+
+    @create.setter
+    def create(self, value: pulumi.Input[Optional['FailoverPostgresCreateQueryParamsArgs']]):
+        pulumi.set(self, "create", value)
+
+
+class GetPostgresConnectionInfoQueryParamsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[Mapping[str, _builtins.str]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+
+@pulumi.input_type
+class GetPostgresConnectionInfoQueryParams:
+    def __init__(__self__, *,
+                 additional_params: Optional[Mapping[str, _builtins.str]] = None):
+        """
+        Query params for the API request.
+
+        :param Mapping[str, _builtins.str] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: Optional[Mapping[str, _builtins.str]]):
+        pulumi.set(self, "additional_params", value)
+
+
+class GetPostgresQueryParamsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[Mapping[str, _builtins.str]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+
+@pulumi.input_type
+class GetPostgresQueryParams:
+    def __init__(__self__, *,
+                 additional_params: Optional[Mapping[str, _builtins.str]] = None):
+        """
+        Query params for the API request.
+
+        :param Mapping[str, _builtins.str] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: Optional[Mapping[str, _builtins.str]]):
+        pulumi.set(self, "additional_params", value)
+
+
+class GetPostgresRecoveryInfoQueryParamsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[Mapping[str, _builtins.str]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+
+@pulumi.input_type
+class GetPostgresRecoveryInfoQueryParams:
+    def __init__(__self__, *,
+                 additional_params: Optional[Mapping[str, _builtins.str]] = None):
+        """
+        Query params for the API request.
+
+        :param Mapping[str, _builtins.str] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: Optional[Mapping[str, _builtins.str]]):
+        pulumi.set(self, "additional_params", value)
+
+
+class ListPostgresExportQueryParamsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[Mapping[str, _builtins.str]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+
+@pulumi.input_type
+class ListPostgresExportQueryParams:
+    def __init__(__self__, *,
+                 additional_params: Optional[Mapping[str, _builtins.str]] = None):
+        """
+        Query params for the API request.
+
+        :param Mapping[str, _builtins.str] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: Optional[Mapping[str, _builtins.str]]):
+        pulumi.set(self, "additional_params", value)
+
+
+class ListPostgresQueryParamsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[Mapping[str, _builtins.str]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+    created_after: NotRequired[_builtins.str]
+    """
+    Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+    """
+    created_before: NotRequired[_builtins.str]
+    """
+    Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+    """
+    cursor: NotRequired[_builtins.str]
+    """
+    The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+    """
+    environment_id: NotRequired[Sequence[_builtins.str]]
+    """
+    Filter for resources that belong to an environment
+    """
+    include_replicas: NotRequired[_builtins.bool]
+    """
+    Include replicas in the response
+    """
+    limit: NotRequired[_builtins.int]
+    """
+    The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+    """
+    name: NotRequired[Sequence[_builtins.str]]
+    """
+    Filter by name
+    """
+    owner_id: NotRequired[Sequence[_builtins.str]]
+    """
+    The ID of the workspaces to return resources for
+    """
+    region: NotRequired[Sequence['ListPostgresQueryParamsRegionItem']]
+    """
+    Filter by resource region
+    """
+    suspended: NotRequired[Sequence['ListPostgresQueryParamsSuspendedItem']]
+    """
+    Filter resources based on whether they're suspended or not suspended
+    """
+    updated_after: NotRequired[_builtins.str]
+    """
+    Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+    """
+    updated_before: NotRequired[_builtins.str]
+    """
+    Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+    """
+
+@pulumi.input_type
+class ListPostgresQueryParams:
+    def __init__(__self__, *,
+                 additional_params: Optional[Mapping[str, _builtins.str]] = None,
+                 created_after: Optional[_builtins.str] = None,
+                 created_before: Optional[_builtins.str] = None,
+                 cursor: Optional[_builtins.str] = None,
+                 environment_id: Optional[Sequence[_builtins.str]] = None,
+                 include_replicas: Optional[_builtins.bool] = None,
+                 limit: Optional[_builtins.int] = None,
+                 name: Optional[Sequence[_builtins.str]] = None,
+                 owner_id: Optional[Sequence[_builtins.str]] = None,
+                 region: Optional[Sequence['ListPostgresQueryParamsRegionItem']] = None,
+                 suspended: Optional[Sequence['ListPostgresQueryParamsSuspendedItem']] = None,
+                 updated_after: Optional[_builtins.str] = None,
+                 updated_before: Optional[_builtins.str] = None):
+        """
+        Query params for the API request.
+
+        :param Mapping[str, _builtins.str] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        :param _builtins.str created_after: Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+        :param _builtins.str created_before: Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+        :param _builtins.str cursor: The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+        :param Sequence[_builtins.str] environment_id: Filter for resources that belong to an environment
+        :param _builtins.bool include_replicas: Include replicas in the response
+        :param _builtins.int limit: The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+        :param Sequence[_builtins.str] name: Filter by name
+        :param Sequence[_builtins.str] owner_id: The ID of the workspaces to return resources for
+        :param Sequence['ListPostgresQueryParamsRegionItem'] region: Filter by resource region
+        :param Sequence['ListPostgresQueryParamsSuspendedItem'] suspended: Filter resources based on whether they're suspended or not suspended
+        :param _builtins.str updated_after: Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+        :param _builtins.str updated_before: Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+        if created_after is not None:
+            pulumi.set(__self__, "created_after", created_after)
+        if created_before is not None:
+            pulumi.set(__self__, "created_before", created_before)
+        if cursor is not None:
+            pulumi.set(__self__, "cursor", cursor)
+        if environment_id is not None:
+            pulumi.set(__self__, "environment_id", environment_id)
+        if include_replicas is None:
+            include_replicas = True
+        if include_replicas is not None:
+            pulumi.set(__self__, "include_replicas", include_replicas)
+        if limit is None:
+            limit = 20
+        if limit is not None:
+            pulumi.set(__self__, "limit", limit)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if owner_id is not None:
+            pulumi.set(__self__, "owner_id", owner_id)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+        if suspended is not None:
+            pulumi.set(__self__, "suspended", suspended)
+        if updated_after is not None:
+            pulumi.set(__self__, "updated_after", updated_after)
+        if updated_before is not None:
+            pulumi.set(__self__, "updated_before", updated_before)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: Optional[Mapping[str, _builtins.str]]):
+        pulumi.set(self, "additional_params", value)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAfter")
+    def created_after(self) -> Optional[_builtins.str]:
+        """
+        Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+        """
+        return pulumi.get(self, "created_after")
+
+    @created_after.setter
+    def created_after(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "created_after", value)
+
+    @_builtins.property
+    @pulumi.getter(name="createdBefore")
+    def created_before(self) -> Optional[_builtins.str]:
+        """
+        Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+        """
+        return pulumi.get(self, "created_before")
+
+    @created_before.setter
+    def created_before(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "created_before", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def cursor(self) -> Optional[_builtins.str]:
+        """
+        The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+        """
+        return pulumi.get(self, "cursor")
+
+    @cursor.setter
+    def cursor(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "cursor", value)
+
+    @_builtins.property
+    @pulumi.getter(name="environmentId")
+    def environment_id(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Filter for resources that belong to an environment
+        """
+        return pulumi.get(self, "environment_id")
+
+    @environment_id.setter
+    def environment_id(self, value: Optional[Sequence[_builtins.str]]):
+        pulumi.set(self, "environment_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="includeReplicas")
+    def include_replicas(self) -> Optional[_builtins.bool]:
+        """
+        Include replicas in the response
+        """
+        return pulumi.get(self, "include_replicas")
+
+    @include_replicas.setter
+    def include_replicas(self, value: Optional[_builtins.bool]):
+        pulumi.set(self, "include_replicas", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def limit(self) -> Optional[_builtins.int]:
+        """
+        The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+        """
+        return pulumi.get(self, "limit")
+
+    @limit.setter
+    def limit(self, value: Optional[_builtins.int]):
+        pulumi.set(self, "limit", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Filter by name
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[Sequence[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        The ID of the workspaces to return resources for
+        """
+        return pulumi.get(self, "owner_id")
+
+    @owner_id.setter
+    def owner_id(self, value: Optional[Sequence[_builtins.str]]):
+        pulumi.set(self, "owner_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> Optional[Sequence['ListPostgresQueryParamsRegionItem']]:
+        """
+        Filter by resource region
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[Sequence['ListPostgresQueryParamsRegionItem']]):
+        pulumi.set(self, "region", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def suspended(self) -> Optional[Sequence['ListPostgresQueryParamsSuspendedItem']]:
+        """
+        Filter resources based on whether they're suspended or not suspended
+        """
+        return pulumi.get(self, "suspended")
+
+    @suspended.setter
+    def suspended(self, value: Optional[Sequence['ListPostgresQueryParamsSuspendedItem']]):
+        pulumi.set(self, "suspended", value)
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAfter")
+    def updated_after(self) -> Optional[_builtins.str]:
+        """
+        Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+        """
+        return pulumi.get(self, "updated_after")
+
+    @updated_after.setter
+    def updated_after(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "updated_after", value)
+
+    @_builtins.property
+    @pulumi.getter(name="updatedBefore")
+    def updated_before(self) -> Optional[_builtins.str]:
+        """
+        Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+        """
+        return pulumi.get(self, "updated_before")
+
+    @updated_before.setter
+    def updated_before(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "updated_before", value)
+
+
+class PostgresCreateQueryParamsArgsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+
+@pulumi.input_type
+class PostgresCreateQueryParamsArgs:
+    def __init__(__self__, *,
+                 additional_params: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        """
+        Query params for the API request.
+
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "additional_params", value)
+
+
+class PostgresDeleteQueryParamsArgsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+
+@pulumi.input_type
+class PostgresDeleteQueryParamsArgs:
+    def __init__(__self__, *,
+                 additional_params: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        """
+        Query params for the API request.
+
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "additional_params", value)
+
+
+class PostgresExportCreateQueryParamsArgsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+
+@pulumi.input_type
+class PostgresExportCreateQueryParamsArgs:
+    def __init__(__self__, *,
+                 additional_params: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        """
+        Query params for the API request.
+
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "additional_params", value)
+
+
+class PostgresExportQueryParamsArgsDict(TypedDict):
+    """
+    Query params for each of the operations of the resource.
+    """
+    create: NotRequired[pulumi.Input[Optional['PostgresExportCreateQueryParamsArgsDict']]]
+    """
+    Query params for the create operation.
+    """
+
+@pulumi.input_type
+class PostgresExportQueryParamsArgs:
+    def __init__(__self__, *,
+                 create: pulumi.Input[Optional['PostgresExportCreateQueryParamsArgs']] = None):
+        """
+        Query params for each of the operations of the resource.
+
+        :param pulumi.Input['PostgresExportCreateQueryParamsArgs'] create: Query params for the create operation.
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> pulumi.Input[Optional['PostgresExportCreateQueryParamsArgs']]:
+        """
+        Query params for the create operation.
+        """
+        return pulumi.get(self, "create")
+
+    @create.setter
+    def create(self, value: pulumi.Input[Optional['PostgresExportCreateQueryParamsArgs']]):
+        pulumi.set(self, "create", value)
+
+
+class PostgresQueryParamsArgsDict(TypedDict):
+    """
+    Query params for each of the operations of the resource.
+    """
+    create: NotRequired[pulumi.Input[Optional['PostgresCreateQueryParamsArgsDict']]]
+    """
+    Query params for the create operation.
+    """
+    delete: NotRequired[pulumi.Input[Optional['PostgresDeleteQueryParamsArgsDict']]]
+    """
+    Query params for the delete operation.
+    """
+    read: NotRequired[pulumi.Input[Optional['PostgresReadQueryParamsArgsDict']]]
+    """
+    Query params for the read operation.
+    """
+    update: NotRequired[pulumi.Input[Optional['PostgresUpdateQueryParamsArgsDict']]]
+    """
+    Query params for the update operation.
+    """
+
+@pulumi.input_type
+class PostgresQueryParamsArgs:
+    def __init__(__self__, *,
+                 create: pulumi.Input[Optional['PostgresCreateQueryParamsArgs']] = None,
+                 delete: pulumi.Input[Optional['PostgresDeleteQueryParamsArgs']] = None,
+                 read: pulumi.Input[Optional['PostgresReadQueryParamsArgs']] = None,
+                 update: pulumi.Input[Optional['PostgresUpdateQueryParamsArgs']] = None):
+        """
+        Query params for each of the operations of the resource.
+
+        :param pulumi.Input['PostgresCreateQueryParamsArgs'] create: Query params for the create operation.
+        :param pulumi.Input['PostgresDeleteQueryParamsArgs'] delete: Query params for the delete operation.
+        :param pulumi.Input['PostgresReadQueryParamsArgs'] read: Query params for the read operation.
+        :param pulumi.Input['PostgresUpdateQueryParamsArgs'] update: Query params for the update operation.
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+        if delete is not None:
+            pulumi.set(__self__, "delete", delete)
+        if read is not None:
+            pulumi.set(__self__, "read", read)
+        if update is not None:
+            pulumi.set(__self__, "update", update)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> pulumi.Input[Optional['PostgresCreateQueryParamsArgs']]:
+        """
+        Query params for the create operation.
+        """
+        return pulumi.get(self, "create")
+
+    @create.setter
+    def create(self, value: pulumi.Input[Optional['PostgresCreateQueryParamsArgs']]):
+        pulumi.set(self, "create", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def delete(self) -> pulumi.Input[Optional['PostgresDeleteQueryParamsArgs']]:
+        """
+        Query params for the delete operation.
+        """
+        return pulumi.get(self, "delete")
+
+    @delete.setter
+    def delete(self, value: pulumi.Input[Optional['PostgresDeleteQueryParamsArgs']]):
+        pulumi.set(self, "delete", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def read(self) -> pulumi.Input[Optional['PostgresReadQueryParamsArgs']]:
+        """
+        Query params for the read operation.
+        """
+        return pulumi.get(self, "read")
+
+    @read.setter
+    def read(self, value: pulumi.Input[Optional['PostgresReadQueryParamsArgs']]):
+        pulumi.set(self, "read", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def update(self) -> pulumi.Input[Optional['PostgresUpdateQueryParamsArgs']]:
+        """
+        Query params for the update operation.
+        """
+        return pulumi.get(self, "update")
+
+    @update.setter
+    def update(self, value: pulumi.Input[Optional['PostgresUpdateQueryParamsArgs']]):
+        pulumi.set(self, "update", value)
+
+
+class PostgresReadQueryParamsArgsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+
+@pulumi.input_type
+class PostgresReadQueryParamsArgs:
+    def __init__(__self__, *,
+                 additional_params: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        """
+        Query params for the API request.
+
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "additional_params", value)
+
+
+class PostgresUpdateQueryParamsArgsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+
+@pulumi.input_type
+class PostgresUpdateQueryParamsArgs:
+    def __init__(__self__, *,
+                 additional_params: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        """
+        Query params for the API request.
+
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "additional_params", value)
+
+
 class ReadReplicaInputArgsDict(TypedDict):
     name: pulumi.Input[_builtins.str]
     """
@@ -88,5 +912,277 @@ class ReadReplicaInputArgs:
     @name.setter
     def name(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "name", value)
+
+
+class RecoverPostgresCreateQueryParamsArgsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+
+@pulumi.input_type
+class RecoverPostgresCreateQueryParamsArgs:
+    def __init__(__self__, *,
+                 additional_params: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        """
+        Query params for the API request.
+
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "additional_params", value)
+
+
+class RecoverPostgresQueryParamsArgsDict(TypedDict):
+    """
+    Query params for each of the operations of the resource.
+    """
+    create: NotRequired[pulumi.Input[Optional['RecoverPostgresCreateQueryParamsArgsDict']]]
+    """
+    Query params for the create operation.
+    """
+
+@pulumi.input_type
+class RecoverPostgresQueryParamsArgs:
+    def __init__(__self__, *,
+                 create: pulumi.Input[Optional['RecoverPostgresCreateQueryParamsArgs']] = None):
+        """
+        Query params for each of the operations of the resource.
+
+        :param pulumi.Input['RecoverPostgresCreateQueryParamsArgs'] create: Query params for the create operation.
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> pulumi.Input[Optional['RecoverPostgresCreateQueryParamsArgs']]:
+        """
+        Query params for the create operation.
+        """
+        return pulumi.get(self, "create")
+
+    @create.setter
+    def create(self, value: pulumi.Input[Optional['RecoverPostgresCreateQueryParamsArgs']]):
+        pulumi.set(self, "create", value)
+
+
+class RestartPostgresCreateQueryParamsArgsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+
+@pulumi.input_type
+class RestartPostgresCreateQueryParamsArgs:
+    def __init__(__self__, *,
+                 additional_params: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        """
+        Query params for the API request.
+
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "additional_params", value)
+
+
+class RestartPostgresQueryParamsArgsDict(TypedDict):
+    """
+    Query params for each of the operations of the resource.
+    """
+    create: NotRequired[pulumi.Input[Optional['RestartPostgresCreateQueryParamsArgsDict']]]
+    """
+    Query params for the create operation.
+    """
+
+@pulumi.input_type
+class RestartPostgresQueryParamsArgs:
+    def __init__(__self__, *,
+                 create: pulumi.Input[Optional['RestartPostgresCreateQueryParamsArgs']] = None):
+        """
+        Query params for each of the operations of the resource.
+
+        :param pulumi.Input['RestartPostgresCreateQueryParamsArgs'] create: Query params for the create operation.
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> pulumi.Input[Optional['RestartPostgresCreateQueryParamsArgs']]:
+        """
+        Query params for the create operation.
+        """
+        return pulumi.get(self, "create")
+
+    @create.setter
+    def create(self, value: pulumi.Input[Optional['RestartPostgresCreateQueryParamsArgs']]):
+        pulumi.set(self, "create", value)
+
+
+class ResumePostgresCreateQueryParamsArgsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+
+@pulumi.input_type
+class ResumePostgresCreateQueryParamsArgs:
+    def __init__(__self__, *,
+                 additional_params: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        """
+        Query params for the API request.
+
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "additional_params", value)
+
+
+class ResumePostgresQueryParamsArgsDict(TypedDict):
+    """
+    Query params for each of the operations of the resource.
+    """
+    create: NotRequired[pulumi.Input[Optional['ResumePostgresCreateQueryParamsArgsDict']]]
+    """
+    Query params for the create operation.
+    """
+
+@pulumi.input_type
+class ResumePostgresQueryParamsArgs:
+    def __init__(__self__, *,
+                 create: pulumi.Input[Optional['ResumePostgresCreateQueryParamsArgs']] = None):
+        """
+        Query params for each of the operations of the resource.
+
+        :param pulumi.Input['ResumePostgresCreateQueryParamsArgs'] create: Query params for the create operation.
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> pulumi.Input[Optional['ResumePostgresCreateQueryParamsArgs']]:
+        """
+        Query params for the create operation.
+        """
+        return pulumi.get(self, "create")
+
+    @create.setter
+    def create(self, value: pulumi.Input[Optional['ResumePostgresCreateQueryParamsArgs']]):
+        pulumi.set(self, "create", value)
+
+
+class SuspendPostgresCreateQueryParamsArgsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+
+@pulumi.input_type
+class SuspendPostgresCreateQueryParamsArgs:
+    def __init__(__self__, *,
+                 additional_params: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        """
+        Query params for the API request.
+
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "additional_params", value)
+
+
+class SuspendPostgresQueryParamsArgsDict(TypedDict):
+    """
+    Query params for each of the operations of the resource.
+    """
+    create: NotRequired[pulumi.Input[Optional['SuspendPostgresCreateQueryParamsArgsDict']]]
+    """
+    Query params for the create operation.
+    """
+
+@pulumi.input_type
+class SuspendPostgresQueryParamsArgs:
+    def __init__(__self__, *,
+                 create: pulumi.Input[Optional['SuspendPostgresCreateQueryParamsArgs']] = None):
+        """
+        Query params for each of the operations of the resource.
+
+        :param pulumi.Input['SuspendPostgresCreateQueryParamsArgs'] create: Query params for the create operation.
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> pulumi.Input[Optional['SuspendPostgresCreateQueryParamsArgs']]:
+        """
+        Query params for the create operation.
+        """
+        return pulumi.get(self, "create")
+
+    @create.setter
+    def create(self, value: pulumi.Input[Optional['SuspendPostgresCreateQueryParamsArgs']]):
+        pulumi.set(self, "create", value)
 
 

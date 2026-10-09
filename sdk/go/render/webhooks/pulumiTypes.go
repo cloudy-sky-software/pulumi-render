@@ -13,6 +13,1124 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+// Query params for the API request.
+type GetWebhookQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// GetWebhookQueryParamsInput is an input type that accepts GetWebhookQueryParamsArgs and GetWebhookQueryParamsOutput values.
+// You can construct a concrete instance of `GetWebhookQueryParamsInput` via:
+//
+//	GetWebhookQueryParamsArgs{...}
+type GetWebhookQueryParamsInput interface {
+	pulumi.Input
+
+	ToGetWebhookQueryParamsOutput() GetWebhookQueryParamsOutput
+	ToGetWebhookQueryParamsOutputWithContext(context.Context) GetWebhookQueryParamsOutput
+}
+
+// Query params for the API request.
+type GetWebhookQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (GetWebhookQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWebhookQueryParams)(nil)).Elem()
+}
+
+func (i GetWebhookQueryParamsArgs) ToGetWebhookQueryParamsOutput() GetWebhookQueryParamsOutput {
+	return i.ToGetWebhookQueryParamsOutputWithContext(context.Background())
+}
+
+func (i GetWebhookQueryParamsArgs) ToGetWebhookQueryParamsOutputWithContext(ctx context.Context) GetWebhookQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWebhookQueryParamsOutput)
+}
+
+func (i GetWebhookQueryParamsArgs) ToGetWebhookQueryParamsPtrOutput() GetWebhookQueryParamsPtrOutput {
+	return i.ToGetWebhookQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i GetWebhookQueryParamsArgs) ToGetWebhookQueryParamsPtrOutputWithContext(ctx context.Context) GetWebhookQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWebhookQueryParamsOutput).ToGetWebhookQueryParamsPtrOutputWithContext(ctx)
+}
+
+// GetWebhookQueryParamsPtrInput is an input type that accepts GetWebhookQueryParamsArgs, GetWebhookQueryParamsPtr and GetWebhookQueryParamsPtrOutput values.
+// You can construct a concrete instance of `GetWebhookQueryParamsPtrInput` via:
+//
+//	        GetWebhookQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetWebhookQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToGetWebhookQueryParamsPtrOutput() GetWebhookQueryParamsPtrOutput
+	ToGetWebhookQueryParamsPtrOutputWithContext(context.Context) GetWebhookQueryParamsPtrOutput
+}
+
+type getWebhookQueryParamsPtrType GetWebhookQueryParamsArgs
+
+func GetWebhookQueryParamsPtr(v *GetWebhookQueryParamsArgs) GetWebhookQueryParamsPtrInput {
+	return (*getWebhookQueryParamsPtrType)(v)
+}
+
+func (*getWebhookQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetWebhookQueryParams)(nil)).Elem()
+}
+
+func (i *getWebhookQueryParamsPtrType) ToGetWebhookQueryParamsPtrOutput() GetWebhookQueryParamsPtrOutput {
+	return i.ToGetWebhookQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *getWebhookQueryParamsPtrType) ToGetWebhookQueryParamsPtrOutputWithContext(ctx context.Context) GetWebhookQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWebhookQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type GetWebhookQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (GetWebhookQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWebhookQueryParams)(nil)).Elem()
+}
+
+func (o GetWebhookQueryParamsOutput) ToGetWebhookQueryParamsOutput() GetWebhookQueryParamsOutput {
+	return o
+}
+
+func (o GetWebhookQueryParamsOutput) ToGetWebhookQueryParamsOutputWithContext(ctx context.Context) GetWebhookQueryParamsOutput {
+	return o
+}
+
+func (o GetWebhookQueryParamsOutput) ToGetWebhookQueryParamsPtrOutput() GetWebhookQueryParamsPtrOutput {
+	return o.ToGetWebhookQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o GetWebhookQueryParamsOutput) ToGetWebhookQueryParamsPtrOutputWithContext(ctx context.Context) GetWebhookQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetWebhookQueryParams) *GetWebhookQueryParams {
+		return &v
+	}).(GetWebhookQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetWebhookQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetWebhookQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type GetWebhookQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetWebhookQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetWebhookQueryParams)(nil)).Elem()
+}
+
+func (o GetWebhookQueryParamsPtrOutput) ToGetWebhookQueryParamsPtrOutput() GetWebhookQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetWebhookQueryParamsPtrOutput) ToGetWebhookQueryParamsPtrOutputWithContext(ctx context.Context) GetWebhookQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetWebhookQueryParamsPtrOutput) Elem() GetWebhookQueryParamsOutput {
+	return o.ApplyT(func(v *GetWebhookQueryParams) GetWebhookQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret GetWebhookQueryParams
+		return ret
+	}).(GetWebhookQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetWebhookQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetWebhookQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type ListWebhooksQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor *string `pulumi:"cursor"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit *int `pulumi:"limit"`
+	// The ID of the workspaces to return resources for
+	OwnerId []string `pulumi:"ownerId"`
+}
+
+// Defaults sets the appropriate defaults for ListWebhooksQueryParams
+func (val *ListWebhooksQueryParams) Defaults() *ListWebhooksQueryParams {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Limit == nil {
+		limit_ := 20
+		tmp.Limit = &limit_
+	}
+	return &tmp
+}
+
+// ListWebhooksQueryParamsInput is an input type that accepts ListWebhooksQueryParamsArgs and ListWebhooksQueryParamsOutput values.
+// You can construct a concrete instance of `ListWebhooksQueryParamsInput` via:
+//
+//	ListWebhooksQueryParamsArgs{...}
+type ListWebhooksQueryParamsInput interface {
+	pulumi.Input
+
+	ToListWebhooksQueryParamsOutput() ListWebhooksQueryParamsOutput
+	ToListWebhooksQueryParamsOutputWithContext(context.Context) ListWebhooksQueryParamsOutput
+}
+
+// Query params for the API request.
+type ListWebhooksQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor pulumi.StringPtrInput `pulumi:"cursor"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit pulumi.IntPtrInput `pulumi:"limit"`
+	// The ID of the workspaces to return resources for
+	OwnerId pulumi.StringArrayInput `pulumi:"ownerId"`
+}
+
+// Defaults sets the appropriate defaults for ListWebhooksQueryParamsArgs
+func (val *ListWebhooksQueryParamsArgs) Defaults() *ListWebhooksQueryParamsArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Limit == nil {
+		tmp.Limit = pulumi.IntPtr(20)
+	}
+	return &tmp
+}
+func (ListWebhooksQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListWebhooksQueryParams)(nil)).Elem()
+}
+
+func (i ListWebhooksQueryParamsArgs) ToListWebhooksQueryParamsOutput() ListWebhooksQueryParamsOutput {
+	return i.ToListWebhooksQueryParamsOutputWithContext(context.Background())
+}
+
+func (i ListWebhooksQueryParamsArgs) ToListWebhooksQueryParamsOutputWithContext(ctx context.Context) ListWebhooksQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListWebhooksQueryParamsOutput)
+}
+
+func (i ListWebhooksQueryParamsArgs) ToListWebhooksQueryParamsPtrOutput() ListWebhooksQueryParamsPtrOutput {
+	return i.ToListWebhooksQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i ListWebhooksQueryParamsArgs) ToListWebhooksQueryParamsPtrOutputWithContext(ctx context.Context) ListWebhooksQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListWebhooksQueryParamsOutput).ToListWebhooksQueryParamsPtrOutputWithContext(ctx)
+}
+
+// ListWebhooksQueryParamsPtrInput is an input type that accepts ListWebhooksQueryParamsArgs, ListWebhooksQueryParamsPtr and ListWebhooksQueryParamsPtrOutput values.
+// You can construct a concrete instance of `ListWebhooksQueryParamsPtrInput` via:
+//
+//	        ListWebhooksQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ListWebhooksQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToListWebhooksQueryParamsPtrOutput() ListWebhooksQueryParamsPtrOutput
+	ToListWebhooksQueryParamsPtrOutputWithContext(context.Context) ListWebhooksQueryParamsPtrOutput
+}
+
+type listWebhooksQueryParamsPtrType ListWebhooksQueryParamsArgs
+
+func ListWebhooksQueryParamsPtr(v *ListWebhooksQueryParamsArgs) ListWebhooksQueryParamsPtrInput {
+	return (*listWebhooksQueryParamsPtrType)(v)
+}
+
+func (*listWebhooksQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListWebhooksQueryParams)(nil)).Elem()
+}
+
+func (i *listWebhooksQueryParamsPtrType) ToListWebhooksQueryParamsPtrOutput() ListWebhooksQueryParamsPtrOutput {
+	return i.ToListWebhooksQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *listWebhooksQueryParamsPtrType) ToListWebhooksQueryParamsPtrOutputWithContext(ctx context.Context) ListWebhooksQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListWebhooksQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type ListWebhooksQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (ListWebhooksQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListWebhooksQueryParams)(nil)).Elem()
+}
+
+func (o ListWebhooksQueryParamsOutput) ToListWebhooksQueryParamsOutput() ListWebhooksQueryParamsOutput {
+	return o
+}
+
+func (o ListWebhooksQueryParamsOutput) ToListWebhooksQueryParamsOutputWithContext(ctx context.Context) ListWebhooksQueryParamsOutput {
+	return o
+}
+
+func (o ListWebhooksQueryParamsOutput) ToListWebhooksQueryParamsPtrOutput() ListWebhooksQueryParamsPtrOutput {
+	return o.ToListWebhooksQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o ListWebhooksQueryParamsOutput) ToListWebhooksQueryParamsPtrOutputWithContext(ctx context.Context) ListWebhooksQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListWebhooksQueryParams) *ListWebhooksQueryParams {
+		return &v
+	}).(ListWebhooksQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListWebhooksQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ListWebhooksQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListWebhooksQueryParamsOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListWebhooksQueryParams) *string { return v.Cursor }).(pulumi.StringPtrOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListWebhooksQueryParamsOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ListWebhooksQueryParams) *int { return v.Limit }).(pulumi.IntPtrOutput)
+}
+
+// The ID of the workspaces to return resources for
+func (o ListWebhooksQueryParamsOutput) OwnerId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListWebhooksQueryParams) []string { return v.OwnerId }).(pulumi.StringArrayOutput)
+}
+
+type ListWebhooksQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (ListWebhooksQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListWebhooksQueryParams)(nil)).Elem()
+}
+
+func (o ListWebhooksQueryParamsPtrOutput) ToListWebhooksQueryParamsPtrOutput() ListWebhooksQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListWebhooksQueryParamsPtrOutput) ToListWebhooksQueryParamsPtrOutputWithContext(ctx context.Context) ListWebhooksQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListWebhooksQueryParamsPtrOutput) Elem() ListWebhooksQueryParamsOutput {
+	return o.ApplyT(func(v *ListWebhooksQueryParams) ListWebhooksQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret ListWebhooksQueryParams
+		return ret
+	}).(ListWebhooksQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListWebhooksQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ListWebhooksQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListWebhooksQueryParamsPtrOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListWebhooksQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Cursor
+	}).(pulumi.StringPtrOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListWebhooksQueryParamsPtrOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ListWebhooksQueryParams) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Limit
+	}).(pulumi.IntPtrOutput)
+}
+
+// The ID of the workspaces to return resources for
+func (o ListWebhooksQueryParamsPtrOutput) OwnerId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ListWebhooksQueryParams) []string {
+		if v == nil {
+			return nil
+		}
+		return v.OwnerId
+	}).(pulumi.StringArrayOutput)
+}
+
+// Query params for the API request.
+type WebhookCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// WebhookCreateQueryParamsInput is an input type that accepts WebhookCreateQueryParamsArgs and WebhookCreateQueryParamsOutput values.
+// You can construct a concrete instance of `WebhookCreateQueryParamsInput` via:
+//
+//	WebhookCreateQueryParamsArgs{...}
+type WebhookCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToWebhookCreateQueryParamsOutput() WebhookCreateQueryParamsOutput
+	ToWebhookCreateQueryParamsOutputWithContext(context.Context) WebhookCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type WebhookCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (WebhookCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebhookCreateQueryParams)(nil)).Elem()
+}
+
+func (i WebhookCreateQueryParamsArgs) ToWebhookCreateQueryParamsOutput() WebhookCreateQueryParamsOutput {
+	return i.ToWebhookCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i WebhookCreateQueryParamsArgs) ToWebhookCreateQueryParamsOutputWithContext(ctx context.Context) WebhookCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebhookCreateQueryParamsOutput)
+}
+
+func (i WebhookCreateQueryParamsArgs) ToWebhookCreateQueryParamsPtrOutput() WebhookCreateQueryParamsPtrOutput {
+	return i.ToWebhookCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i WebhookCreateQueryParamsArgs) ToWebhookCreateQueryParamsPtrOutputWithContext(ctx context.Context) WebhookCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebhookCreateQueryParamsOutput).ToWebhookCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// WebhookCreateQueryParamsPtrInput is an input type that accepts WebhookCreateQueryParamsArgs, WebhookCreateQueryParamsPtr and WebhookCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `WebhookCreateQueryParamsPtrInput` via:
+//
+//	        WebhookCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type WebhookCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToWebhookCreateQueryParamsPtrOutput() WebhookCreateQueryParamsPtrOutput
+	ToWebhookCreateQueryParamsPtrOutputWithContext(context.Context) WebhookCreateQueryParamsPtrOutput
+}
+
+type webhookCreateQueryParamsPtrType WebhookCreateQueryParamsArgs
+
+func WebhookCreateQueryParamsPtr(v *WebhookCreateQueryParamsArgs) WebhookCreateQueryParamsPtrInput {
+	return (*webhookCreateQueryParamsPtrType)(v)
+}
+
+func (*webhookCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebhookCreateQueryParams)(nil)).Elem()
+}
+
+func (i *webhookCreateQueryParamsPtrType) ToWebhookCreateQueryParamsPtrOutput() WebhookCreateQueryParamsPtrOutput {
+	return i.ToWebhookCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *webhookCreateQueryParamsPtrType) ToWebhookCreateQueryParamsPtrOutputWithContext(ctx context.Context) WebhookCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebhookCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type WebhookCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (WebhookCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebhookCreateQueryParams)(nil)).Elem()
+}
+
+func (o WebhookCreateQueryParamsOutput) ToWebhookCreateQueryParamsOutput() WebhookCreateQueryParamsOutput {
+	return o
+}
+
+func (o WebhookCreateQueryParamsOutput) ToWebhookCreateQueryParamsOutputWithContext(ctx context.Context) WebhookCreateQueryParamsOutput {
+	return o
+}
+
+func (o WebhookCreateQueryParamsOutput) ToWebhookCreateQueryParamsPtrOutput() WebhookCreateQueryParamsPtrOutput {
+	return o.ToWebhookCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o WebhookCreateQueryParamsOutput) ToWebhookCreateQueryParamsPtrOutputWithContext(ctx context.Context) WebhookCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebhookCreateQueryParams) *WebhookCreateQueryParams {
+		return &v
+	}).(WebhookCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o WebhookCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v WebhookCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type WebhookCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (WebhookCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebhookCreateQueryParams)(nil)).Elem()
+}
+
+func (o WebhookCreateQueryParamsPtrOutput) ToWebhookCreateQueryParamsPtrOutput() WebhookCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o WebhookCreateQueryParamsPtrOutput) ToWebhookCreateQueryParamsPtrOutputWithContext(ctx context.Context) WebhookCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o WebhookCreateQueryParamsPtrOutput) Elem() WebhookCreateQueryParamsOutput {
+	return o.ApplyT(func(v *WebhookCreateQueryParams) WebhookCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret WebhookCreateQueryParams
+		return ret
+	}).(WebhookCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o WebhookCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *WebhookCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type WebhookDeleteQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// WebhookDeleteQueryParamsInput is an input type that accepts WebhookDeleteQueryParamsArgs and WebhookDeleteQueryParamsOutput values.
+// You can construct a concrete instance of `WebhookDeleteQueryParamsInput` via:
+//
+//	WebhookDeleteQueryParamsArgs{...}
+type WebhookDeleteQueryParamsInput interface {
+	pulumi.Input
+
+	ToWebhookDeleteQueryParamsOutput() WebhookDeleteQueryParamsOutput
+	ToWebhookDeleteQueryParamsOutputWithContext(context.Context) WebhookDeleteQueryParamsOutput
+}
+
+// Query params for the API request.
+type WebhookDeleteQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (WebhookDeleteQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebhookDeleteQueryParams)(nil)).Elem()
+}
+
+func (i WebhookDeleteQueryParamsArgs) ToWebhookDeleteQueryParamsOutput() WebhookDeleteQueryParamsOutput {
+	return i.ToWebhookDeleteQueryParamsOutputWithContext(context.Background())
+}
+
+func (i WebhookDeleteQueryParamsArgs) ToWebhookDeleteQueryParamsOutputWithContext(ctx context.Context) WebhookDeleteQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebhookDeleteQueryParamsOutput)
+}
+
+func (i WebhookDeleteQueryParamsArgs) ToWebhookDeleteQueryParamsPtrOutput() WebhookDeleteQueryParamsPtrOutput {
+	return i.ToWebhookDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i WebhookDeleteQueryParamsArgs) ToWebhookDeleteQueryParamsPtrOutputWithContext(ctx context.Context) WebhookDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebhookDeleteQueryParamsOutput).ToWebhookDeleteQueryParamsPtrOutputWithContext(ctx)
+}
+
+// WebhookDeleteQueryParamsPtrInput is an input type that accepts WebhookDeleteQueryParamsArgs, WebhookDeleteQueryParamsPtr and WebhookDeleteQueryParamsPtrOutput values.
+// You can construct a concrete instance of `WebhookDeleteQueryParamsPtrInput` via:
+//
+//	        WebhookDeleteQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type WebhookDeleteQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToWebhookDeleteQueryParamsPtrOutput() WebhookDeleteQueryParamsPtrOutput
+	ToWebhookDeleteQueryParamsPtrOutputWithContext(context.Context) WebhookDeleteQueryParamsPtrOutput
+}
+
+type webhookDeleteQueryParamsPtrType WebhookDeleteQueryParamsArgs
+
+func WebhookDeleteQueryParamsPtr(v *WebhookDeleteQueryParamsArgs) WebhookDeleteQueryParamsPtrInput {
+	return (*webhookDeleteQueryParamsPtrType)(v)
+}
+
+func (*webhookDeleteQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebhookDeleteQueryParams)(nil)).Elem()
+}
+
+func (i *webhookDeleteQueryParamsPtrType) ToWebhookDeleteQueryParamsPtrOutput() WebhookDeleteQueryParamsPtrOutput {
+	return i.ToWebhookDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *webhookDeleteQueryParamsPtrType) ToWebhookDeleteQueryParamsPtrOutputWithContext(ctx context.Context) WebhookDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebhookDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type WebhookDeleteQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (WebhookDeleteQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebhookDeleteQueryParams)(nil)).Elem()
+}
+
+func (o WebhookDeleteQueryParamsOutput) ToWebhookDeleteQueryParamsOutput() WebhookDeleteQueryParamsOutput {
+	return o
+}
+
+func (o WebhookDeleteQueryParamsOutput) ToWebhookDeleteQueryParamsOutputWithContext(ctx context.Context) WebhookDeleteQueryParamsOutput {
+	return o
+}
+
+func (o WebhookDeleteQueryParamsOutput) ToWebhookDeleteQueryParamsPtrOutput() WebhookDeleteQueryParamsPtrOutput {
+	return o.ToWebhookDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o WebhookDeleteQueryParamsOutput) ToWebhookDeleteQueryParamsPtrOutputWithContext(ctx context.Context) WebhookDeleteQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebhookDeleteQueryParams) *WebhookDeleteQueryParams {
+		return &v
+	}).(WebhookDeleteQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o WebhookDeleteQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v WebhookDeleteQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type WebhookDeleteQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (WebhookDeleteQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebhookDeleteQueryParams)(nil)).Elem()
+}
+
+func (o WebhookDeleteQueryParamsPtrOutput) ToWebhookDeleteQueryParamsPtrOutput() WebhookDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o WebhookDeleteQueryParamsPtrOutput) ToWebhookDeleteQueryParamsPtrOutputWithContext(ctx context.Context) WebhookDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o WebhookDeleteQueryParamsPtrOutput) Elem() WebhookDeleteQueryParamsOutput {
+	return o.ApplyT(func(v *WebhookDeleteQueryParams) WebhookDeleteQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret WebhookDeleteQueryParams
+		return ret
+	}).(WebhookDeleteQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o WebhookDeleteQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *WebhookDeleteQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for each of the operations of the resource.
+type WebhookQueryParams struct {
+	// Query params for the create operation.
+	Create *WebhookCreateQueryParams `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete *WebhookDeleteQueryParams `pulumi:"delete"`
+	// Query params for the read operation.
+	Read *WebhookReadQueryParams `pulumi:"read"`
+	// Query params for the update operation.
+	Update *WebhookUpdateQueryParams `pulumi:"update"`
+}
+
+// WebhookQueryParamsInput is an input type that accepts WebhookQueryParamsArgs and WebhookQueryParamsOutput values.
+// You can construct a concrete instance of `WebhookQueryParamsInput` via:
+//
+//	WebhookQueryParamsArgs{...}
+type WebhookQueryParamsInput interface {
+	pulumi.Input
+
+	ToWebhookQueryParamsOutput() WebhookQueryParamsOutput
+	ToWebhookQueryParamsOutputWithContext(context.Context) WebhookQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type WebhookQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create WebhookCreateQueryParamsPtrInput `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete WebhookDeleteQueryParamsPtrInput `pulumi:"delete"`
+	// Query params for the read operation.
+	Read WebhookReadQueryParamsPtrInput `pulumi:"read"`
+	// Query params for the update operation.
+	Update WebhookUpdateQueryParamsPtrInput `pulumi:"update"`
+}
+
+func (WebhookQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebhookQueryParams)(nil)).Elem()
+}
+
+func (i WebhookQueryParamsArgs) ToWebhookQueryParamsOutput() WebhookQueryParamsOutput {
+	return i.ToWebhookQueryParamsOutputWithContext(context.Background())
+}
+
+func (i WebhookQueryParamsArgs) ToWebhookQueryParamsOutputWithContext(ctx context.Context) WebhookQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebhookQueryParamsOutput)
+}
+
+func (i WebhookQueryParamsArgs) ToWebhookQueryParamsPtrOutput() WebhookQueryParamsPtrOutput {
+	return i.ToWebhookQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i WebhookQueryParamsArgs) ToWebhookQueryParamsPtrOutputWithContext(ctx context.Context) WebhookQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebhookQueryParamsOutput).ToWebhookQueryParamsPtrOutputWithContext(ctx)
+}
+
+// WebhookQueryParamsPtrInput is an input type that accepts WebhookQueryParamsArgs, WebhookQueryParamsPtr and WebhookQueryParamsPtrOutput values.
+// You can construct a concrete instance of `WebhookQueryParamsPtrInput` via:
+//
+//	        WebhookQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type WebhookQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToWebhookQueryParamsPtrOutput() WebhookQueryParamsPtrOutput
+	ToWebhookQueryParamsPtrOutputWithContext(context.Context) WebhookQueryParamsPtrOutput
+}
+
+type webhookQueryParamsPtrType WebhookQueryParamsArgs
+
+func WebhookQueryParamsPtr(v *WebhookQueryParamsArgs) WebhookQueryParamsPtrInput {
+	return (*webhookQueryParamsPtrType)(v)
+}
+
+func (*webhookQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebhookQueryParams)(nil)).Elem()
+}
+
+func (i *webhookQueryParamsPtrType) ToWebhookQueryParamsPtrOutput() WebhookQueryParamsPtrOutput {
+	return i.ToWebhookQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *webhookQueryParamsPtrType) ToWebhookQueryParamsPtrOutputWithContext(ctx context.Context) WebhookQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebhookQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type WebhookQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (WebhookQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebhookQueryParams)(nil)).Elem()
+}
+
+func (o WebhookQueryParamsOutput) ToWebhookQueryParamsOutput() WebhookQueryParamsOutput {
+	return o
+}
+
+func (o WebhookQueryParamsOutput) ToWebhookQueryParamsOutputWithContext(ctx context.Context) WebhookQueryParamsOutput {
+	return o
+}
+
+func (o WebhookQueryParamsOutput) ToWebhookQueryParamsPtrOutput() WebhookQueryParamsPtrOutput {
+	return o.ToWebhookQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o WebhookQueryParamsOutput) ToWebhookQueryParamsPtrOutputWithContext(ctx context.Context) WebhookQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebhookQueryParams) *WebhookQueryParams {
+		return &v
+	}).(WebhookQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o WebhookQueryParamsOutput) Create() WebhookCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v WebhookQueryParams) *WebhookCreateQueryParams { return v.Create }).(WebhookCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o WebhookQueryParamsOutput) Delete() WebhookDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v WebhookQueryParams) *WebhookDeleteQueryParams { return v.Delete }).(WebhookDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o WebhookQueryParamsOutput) Read() WebhookReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v WebhookQueryParams) *WebhookReadQueryParams { return v.Read }).(WebhookReadQueryParamsPtrOutput)
+}
+
+// Query params for the update operation.
+func (o WebhookQueryParamsOutput) Update() WebhookUpdateQueryParamsPtrOutput {
+	return o.ApplyT(func(v WebhookQueryParams) *WebhookUpdateQueryParams { return v.Update }).(WebhookUpdateQueryParamsPtrOutput)
+}
+
+type WebhookQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (WebhookQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebhookQueryParams)(nil)).Elem()
+}
+
+func (o WebhookQueryParamsPtrOutput) ToWebhookQueryParamsPtrOutput() WebhookQueryParamsPtrOutput {
+	return o
+}
+
+func (o WebhookQueryParamsPtrOutput) ToWebhookQueryParamsPtrOutputWithContext(ctx context.Context) WebhookQueryParamsPtrOutput {
+	return o
+}
+
+func (o WebhookQueryParamsPtrOutput) Elem() WebhookQueryParamsOutput {
+	return o.ApplyT(func(v *WebhookQueryParams) WebhookQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret WebhookQueryParams
+		return ret
+	}).(WebhookQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o WebhookQueryParamsPtrOutput) Create() WebhookCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *WebhookQueryParams) *WebhookCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(WebhookCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o WebhookQueryParamsPtrOutput) Delete() WebhookDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v *WebhookQueryParams) *WebhookDeleteQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Delete
+	}).(WebhookDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o WebhookQueryParamsPtrOutput) Read() WebhookReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v *WebhookQueryParams) *WebhookReadQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Read
+	}).(WebhookReadQueryParamsPtrOutput)
+}
+
+// Query params for the update operation.
+func (o WebhookQueryParamsPtrOutput) Update() WebhookUpdateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *WebhookQueryParams) *WebhookUpdateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Update
+	}).(WebhookUpdateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type WebhookReadQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// WebhookReadQueryParamsInput is an input type that accepts WebhookReadQueryParamsArgs and WebhookReadQueryParamsOutput values.
+// You can construct a concrete instance of `WebhookReadQueryParamsInput` via:
+//
+//	WebhookReadQueryParamsArgs{...}
+type WebhookReadQueryParamsInput interface {
+	pulumi.Input
+
+	ToWebhookReadQueryParamsOutput() WebhookReadQueryParamsOutput
+	ToWebhookReadQueryParamsOutputWithContext(context.Context) WebhookReadQueryParamsOutput
+}
+
+// Query params for the API request.
+type WebhookReadQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (WebhookReadQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebhookReadQueryParams)(nil)).Elem()
+}
+
+func (i WebhookReadQueryParamsArgs) ToWebhookReadQueryParamsOutput() WebhookReadQueryParamsOutput {
+	return i.ToWebhookReadQueryParamsOutputWithContext(context.Background())
+}
+
+func (i WebhookReadQueryParamsArgs) ToWebhookReadQueryParamsOutputWithContext(ctx context.Context) WebhookReadQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebhookReadQueryParamsOutput)
+}
+
+func (i WebhookReadQueryParamsArgs) ToWebhookReadQueryParamsPtrOutput() WebhookReadQueryParamsPtrOutput {
+	return i.ToWebhookReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i WebhookReadQueryParamsArgs) ToWebhookReadQueryParamsPtrOutputWithContext(ctx context.Context) WebhookReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebhookReadQueryParamsOutput).ToWebhookReadQueryParamsPtrOutputWithContext(ctx)
+}
+
+// WebhookReadQueryParamsPtrInput is an input type that accepts WebhookReadQueryParamsArgs, WebhookReadQueryParamsPtr and WebhookReadQueryParamsPtrOutput values.
+// You can construct a concrete instance of `WebhookReadQueryParamsPtrInput` via:
+//
+//	        WebhookReadQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type WebhookReadQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToWebhookReadQueryParamsPtrOutput() WebhookReadQueryParamsPtrOutput
+	ToWebhookReadQueryParamsPtrOutputWithContext(context.Context) WebhookReadQueryParamsPtrOutput
+}
+
+type webhookReadQueryParamsPtrType WebhookReadQueryParamsArgs
+
+func WebhookReadQueryParamsPtr(v *WebhookReadQueryParamsArgs) WebhookReadQueryParamsPtrInput {
+	return (*webhookReadQueryParamsPtrType)(v)
+}
+
+func (*webhookReadQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebhookReadQueryParams)(nil)).Elem()
+}
+
+func (i *webhookReadQueryParamsPtrType) ToWebhookReadQueryParamsPtrOutput() WebhookReadQueryParamsPtrOutput {
+	return i.ToWebhookReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *webhookReadQueryParamsPtrType) ToWebhookReadQueryParamsPtrOutputWithContext(ctx context.Context) WebhookReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebhookReadQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type WebhookReadQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (WebhookReadQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebhookReadQueryParams)(nil)).Elem()
+}
+
+func (o WebhookReadQueryParamsOutput) ToWebhookReadQueryParamsOutput() WebhookReadQueryParamsOutput {
+	return o
+}
+
+func (o WebhookReadQueryParamsOutput) ToWebhookReadQueryParamsOutputWithContext(ctx context.Context) WebhookReadQueryParamsOutput {
+	return o
+}
+
+func (o WebhookReadQueryParamsOutput) ToWebhookReadQueryParamsPtrOutput() WebhookReadQueryParamsPtrOutput {
+	return o.ToWebhookReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o WebhookReadQueryParamsOutput) ToWebhookReadQueryParamsPtrOutputWithContext(ctx context.Context) WebhookReadQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebhookReadQueryParams) *WebhookReadQueryParams {
+		return &v
+	}).(WebhookReadQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o WebhookReadQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v WebhookReadQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type WebhookReadQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (WebhookReadQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebhookReadQueryParams)(nil)).Elem()
+}
+
+func (o WebhookReadQueryParamsPtrOutput) ToWebhookReadQueryParamsPtrOutput() WebhookReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o WebhookReadQueryParamsPtrOutput) ToWebhookReadQueryParamsPtrOutputWithContext(ctx context.Context) WebhookReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o WebhookReadQueryParamsPtrOutput) Elem() WebhookReadQueryParamsOutput {
+	return o.ApplyT(func(v *WebhookReadQueryParams) WebhookReadQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret WebhookReadQueryParams
+		return ret
+	}).(WebhookReadQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o WebhookReadQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *WebhookReadQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type WebhookUpdateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// WebhookUpdateQueryParamsInput is an input type that accepts WebhookUpdateQueryParamsArgs and WebhookUpdateQueryParamsOutput values.
+// You can construct a concrete instance of `WebhookUpdateQueryParamsInput` via:
+//
+//	WebhookUpdateQueryParamsArgs{...}
+type WebhookUpdateQueryParamsInput interface {
+	pulumi.Input
+
+	ToWebhookUpdateQueryParamsOutput() WebhookUpdateQueryParamsOutput
+	ToWebhookUpdateQueryParamsOutputWithContext(context.Context) WebhookUpdateQueryParamsOutput
+}
+
+// Query params for the API request.
+type WebhookUpdateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (WebhookUpdateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebhookUpdateQueryParams)(nil)).Elem()
+}
+
+func (i WebhookUpdateQueryParamsArgs) ToWebhookUpdateQueryParamsOutput() WebhookUpdateQueryParamsOutput {
+	return i.ToWebhookUpdateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i WebhookUpdateQueryParamsArgs) ToWebhookUpdateQueryParamsOutputWithContext(ctx context.Context) WebhookUpdateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebhookUpdateQueryParamsOutput)
+}
+
+func (i WebhookUpdateQueryParamsArgs) ToWebhookUpdateQueryParamsPtrOutput() WebhookUpdateQueryParamsPtrOutput {
+	return i.ToWebhookUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i WebhookUpdateQueryParamsArgs) ToWebhookUpdateQueryParamsPtrOutputWithContext(ctx context.Context) WebhookUpdateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebhookUpdateQueryParamsOutput).ToWebhookUpdateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// WebhookUpdateQueryParamsPtrInput is an input type that accepts WebhookUpdateQueryParamsArgs, WebhookUpdateQueryParamsPtr and WebhookUpdateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `WebhookUpdateQueryParamsPtrInput` via:
+//
+//	        WebhookUpdateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type WebhookUpdateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToWebhookUpdateQueryParamsPtrOutput() WebhookUpdateQueryParamsPtrOutput
+	ToWebhookUpdateQueryParamsPtrOutputWithContext(context.Context) WebhookUpdateQueryParamsPtrOutput
+}
+
+type webhookUpdateQueryParamsPtrType WebhookUpdateQueryParamsArgs
+
+func WebhookUpdateQueryParamsPtr(v *WebhookUpdateQueryParamsArgs) WebhookUpdateQueryParamsPtrInput {
+	return (*webhookUpdateQueryParamsPtrType)(v)
+}
+
+func (*webhookUpdateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebhookUpdateQueryParams)(nil)).Elem()
+}
+
+func (i *webhookUpdateQueryParamsPtrType) ToWebhookUpdateQueryParamsPtrOutput() WebhookUpdateQueryParamsPtrOutput {
+	return i.ToWebhookUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *webhookUpdateQueryParamsPtrType) ToWebhookUpdateQueryParamsPtrOutputWithContext(ctx context.Context) WebhookUpdateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebhookUpdateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type WebhookUpdateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (WebhookUpdateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebhookUpdateQueryParams)(nil)).Elem()
+}
+
+func (o WebhookUpdateQueryParamsOutput) ToWebhookUpdateQueryParamsOutput() WebhookUpdateQueryParamsOutput {
+	return o
+}
+
+func (o WebhookUpdateQueryParamsOutput) ToWebhookUpdateQueryParamsOutputWithContext(ctx context.Context) WebhookUpdateQueryParamsOutput {
+	return o
+}
+
+func (o WebhookUpdateQueryParamsOutput) ToWebhookUpdateQueryParamsPtrOutput() WebhookUpdateQueryParamsPtrOutput {
+	return o.ToWebhookUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o WebhookUpdateQueryParamsOutput) ToWebhookUpdateQueryParamsPtrOutputWithContext(ctx context.Context) WebhookUpdateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebhookUpdateQueryParams) *WebhookUpdateQueryParams {
+		return &v
+	}).(WebhookUpdateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o WebhookUpdateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v WebhookUpdateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type WebhookUpdateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (WebhookUpdateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebhookUpdateQueryParams)(nil)).Elem()
+}
+
+func (o WebhookUpdateQueryParamsPtrOutput) ToWebhookUpdateQueryParamsPtrOutput() WebhookUpdateQueryParamsPtrOutput {
+	return o
+}
+
+func (o WebhookUpdateQueryParamsPtrOutput) ToWebhookUpdateQueryParamsPtrOutputWithContext(ctx context.Context) WebhookUpdateQueryParamsPtrOutput {
+	return o
+}
+
+func (o WebhookUpdateQueryParamsPtrOutput) Elem() WebhookUpdateQueryParamsOutput {
+	return o.ApplyT(func(v *WebhookUpdateQueryParams) WebhookUpdateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret WebhookUpdateQueryParams
+		return ret
+	}).(WebhookUpdateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o WebhookUpdateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *WebhookUpdateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
 type WebhookWithCursor struct {
 	Cursor  string                             `pulumi:"cursor"`
 	Webhook WebhookWithCursorWebhookProperties `pulumi:"webhook"`
@@ -122,6 +1240,34 @@ type WebhookWithCursorpropertieswebhook struct {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWebhookQueryParamsInput)(nil)).Elem(), GetWebhookQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWebhookQueryParamsPtrInput)(nil)).Elem(), GetWebhookQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListWebhooksQueryParamsInput)(nil)).Elem(), ListWebhooksQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListWebhooksQueryParamsPtrInput)(nil)).Elem(), ListWebhooksQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebhookCreateQueryParamsInput)(nil)).Elem(), WebhookCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebhookCreateQueryParamsPtrInput)(nil)).Elem(), WebhookCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebhookDeleteQueryParamsInput)(nil)).Elem(), WebhookDeleteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebhookDeleteQueryParamsPtrInput)(nil)).Elem(), WebhookDeleteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebhookQueryParamsInput)(nil)).Elem(), WebhookQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebhookQueryParamsPtrInput)(nil)).Elem(), WebhookQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebhookReadQueryParamsInput)(nil)).Elem(), WebhookReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebhookReadQueryParamsPtrInput)(nil)).Elem(), WebhookReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebhookUpdateQueryParamsInput)(nil)).Elem(), WebhookUpdateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebhookUpdateQueryParamsPtrInput)(nil)).Elem(), WebhookUpdateQueryParamsArgs{})
+	pulumi.RegisterOutputType(GetWebhookQueryParamsOutput{})
+	pulumi.RegisterOutputType(GetWebhookQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(ListWebhooksQueryParamsOutput{})
+	pulumi.RegisterOutputType(ListWebhooksQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(WebhookCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(WebhookCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(WebhookDeleteQueryParamsOutput{})
+	pulumi.RegisterOutputType(WebhookDeleteQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(WebhookQueryParamsOutput{})
+	pulumi.RegisterOutputType(WebhookQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(WebhookReadQueryParamsOutput{})
+	pulumi.RegisterOutputType(WebhookReadQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(WebhookUpdateQueryParamsOutput{})
+	pulumi.RegisterOutputType(WebhookUpdateQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(WebhookWithCursorOutput{})
 	pulumi.RegisterOutputType(WebhookWithCursorArrayOutput{})
 	pulumi.RegisterOutputType(WebhookWithCursorWebhookPropertiesOutput{})

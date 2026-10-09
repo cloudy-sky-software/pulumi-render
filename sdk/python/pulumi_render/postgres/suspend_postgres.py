@@ -13,18 +13,25 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['SuspendPostgresArgs', 'SuspendPostgres']
 
 @pulumi.input_type
 class SuspendPostgresArgs:
     def __init__(__self__, *,
-                 postgres_id: pulumi.Input[Optional[_builtins.str]] = None):
+                 postgres_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional['SuspendPostgresQueryParamsArgs']] = None):
         """
         The set of arguments for constructing a SuspendPostgres resource.
+
+        :param pulumi.Input['SuspendPostgresQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         """
         if postgres_id is not None:
             pulumi.set(__self__, "postgres_id", postgres_id)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
 
     @_builtins.property
     @pulumi.getter(name="postgresId")
@@ -35,6 +42,18 @@ class SuspendPostgresArgs:
     def postgres_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "postgres_id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['SuspendPostgresQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['SuspendPostgresQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
+
 
 @pulumi.type_token("render:postgres:SuspendPostgres")
 class SuspendPostgres(pulumi.CustomResource):
@@ -43,12 +62,14 @@ class SuspendPostgres(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  postgres_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['SuspendPostgresQueryParamsArgs', 'SuspendPostgresQueryParamsArgsDict', 'outputs.SuspendPostgresQueryParams']]] = None,
                  __props__=None):
         """
         Create a SuspendPostgres resource with the given unique name, props, and options.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['SuspendPostgresQueryParamsArgs', 'SuspendPostgresQueryParamsArgsDict', 'outputs.SuspendPostgresQueryParams']] query_params: Query params to send with the API requests for this resource.
         """
         ...
     @overload
@@ -75,6 +96,7 @@ class SuspendPostgres(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  postgres_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['SuspendPostgresQueryParamsArgs', 'SuspendPostgresQueryParamsArgsDict', 'outputs.SuspendPostgresQueryParams']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -85,6 +107,7 @@ class SuspendPostgres(pulumi.CustomResource):
             __props__ = SuspendPostgresArgs.__new__(SuspendPostgresArgs)
 
             __props__.__dict__["postgres_id"] = postgres_id
+            __props__.__dict__["query_params"] = query_params
         super(SuspendPostgres, __self__).__init__(
             'render:postgres:SuspendPostgres',
             resource_name,
@@ -107,5 +130,14 @@ class SuspendPostgres(pulumi.CustomResource):
 
         __props__ = SuspendPostgresArgs.__new__(SuspendPostgresArgs)
 
+        __props__.__dict__["query_params"] = None
         return SuspendPostgres(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.SuspendPostgresQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 

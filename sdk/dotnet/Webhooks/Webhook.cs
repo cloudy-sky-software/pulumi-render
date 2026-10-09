@@ -30,6 +30,12 @@ namespace Pulumi.Render.Webhooks
         [Output("ownerId")]
         public Output<string> OwnerId { get; private set; } = null!;
 
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Output("queryParams")]
+        public Output<Outputs.WebhookQueryParams?> QueryParams { get; private set; } = null!;
+
         [Output("secret")]
         public Output<string> Secret { get; private set; } = null!;
 
@@ -105,6 +111,12 @@ namespace Pulumi.Render.Webhooks
         /// </summary>
         [Input("ownerId", required: true)]
         public Input<string> OwnerId { get; set; } = null!;
+
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.WebhookQueryParamsArgs>? QueryParams { get; set; }
 
         [Input("url", required: true)]
         public Input<string> Url { get; set; } = null!;

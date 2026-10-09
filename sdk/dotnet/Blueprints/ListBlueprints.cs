@@ -14,20 +14,40 @@ namespace Pulumi.Render.Blueprints
         public static Task<ListBlueprintsResult> InvokeAsync(ListBlueprintsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ListBlueprintsResult>("render:blueprints:listBlueprints", args ?? new ListBlueprintsArgs(), options.WithDefaults());
 
-        public static Output<ListBlueprintsResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<ListBlueprintsResult>("render:blueprints:listBlueprints", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<ListBlueprintsResult> Invoke(ListBlueprintsInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<ListBlueprintsResult>("render:blueprints:listBlueprints", args ?? new ListBlueprintsInvokeArgs(), options.WithDefaults());
 
-        public static Output<ListBlueprintsResult> Invoke(InvokeOutputOptions options)
-            => global::Pulumi.Deployment.Instance.Invoke<ListBlueprintsResult>("render:blueprints:listBlueprints", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<ListBlueprintsResult> Invoke(ListBlueprintsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<ListBlueprintsResult>("render:blueprints:listBlueprints", args ?? new ListBlueprintsInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class ListBlueprintsArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Inputs.ListBlueprintsQueryParams? QueryParams { get; set; }
+
         public ListBlueprintsArgs()
         {
         }
         public static new ListBlueprintsArgs Empty => new ListBlueprintsArgs();
+    }
+
+    public sealed class ListBlueprintsInvokeArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.ListBlueprintsQueryParamsArgs>? QueryParams { get; set; }
+
+        public ListBlueprintsInvokeArgs()
+        {
+        }
+        public static new ListBlueprintsInvokeArgs Empty => new ListBlueprintsInvokeArgs();
     }
 
 

@@ -10,7 +10,7 @@ export const getRegistryCredential: typeof import("./getRegistryCredential").get
 export const getRegistryCredentialOutput: typeof import("./getRegistryCredential").getRegistryCredentialOutput = null as any;
 utilities.lazyLoad(exports, ["getRegistryCredential","getRegistryCredentialOutput"], () => require("./getRegistryCredential"));
 
-export { ListRegistryCredentialsArgs, ListRegistryCredentialsResult } from "./listRegistryCredentials";
+export { ListRegistryCredentialsArgs, ListRegistryCredentialsResult, ListRegistryCredentialsOutputArgs } from "./listRegistryCredentials";
 export const listRegistryCredentials: typeof import("./listRegistryCredentials").listRegistryCredentials = null as any;
 export const listRegistryCredentialsOutput: typeof import("./listRegistryCredentials").listRegistryCredentialsOutput = null as any;
 utilities.lazyLoad(exports, ["listRegistryCredentials","listRegistryCredentialsOutput"], () => require("./listRegistryCredentials"));

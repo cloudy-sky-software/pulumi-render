@@ -15,6 +15,7 @@ else:
 from .. import _utilities
 from . import outputs
 from ._enums import *
+from ._inputs import *
 
 __all__ = ['RollbackDeployArgs', 'RollbackDeploy']
 
@@ -22,14 +23,18 @@ __all__ = ['RollbackDeployArgs', 'RollbackDeploy']
 class RollbackDeployArgs:
     def __init__(__self__, *,
                  deploy_id: pulumi.Input[_builtins.str],
+                 query_params: pulumi.Input[Optional['RollbackDeployQueryParamsArgs']] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a RollbackDeploy resource.
 
         :param pulumi.Input[_builtins.str] deploy_id: The ID of the deploy to roll back to
+        :param pulumi.Input['RollbackDeployQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
         """
         pulumi.set(__self__, "deploy_id", deploy_id)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
         if service_id is not None:
             pulumi.set(__self__, "service_id", service_id)
 
@@ -44,6 +49,18 @@ class RollbackDeployArgs:
     @deploy_id.setter
     def deploy_id(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "deploy_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['RollbackDeployQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['RollbackDeployQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceId")
@@ -65,6 +82,7 @@ class RollbackDeploy(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  deploy_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['RollbackDeployQueryParamsArgs', 'RollbackDeployQueryParamsArgsDict', 'outputs.RollbackDeployQueryParams']]] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -73,6 +91,7 @@ class RollbackDeploy(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] deploy_id: The ID of the deploy to roll back to
+        :param pulumi.Input[Union['RollbackDeployQueryParamsArgs', 'RollbackDeployQueryParamsArgsDict', 'outputs.RollbackDeployQueryParams']] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
         """
         ...
@@ -100,6 +119,7 @@ class RollbackDeploy(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  deploy_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['RollbackDeployQueryParamsArgs', 'RollbackDeployQueryParamsArgsDict', 'outputs.RollbackDeployQueryParams']]] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -113,6 +133,7 @@ class RollbackDeploy(pulumi.CustomResource):
             if deploy_id is None and not opts.urn:
                 raise TypeError("Missing required property 'deploy_id'")
             __props__.__dict__["deploy_id"] = deploy_id
+            __props__.__dict__["query_params"] = query_params
             __props__.__dict__["service_id"] = service_id
             __props__.__dict__["commit"] = None
             __props__.__dict__["created_at"] = None
@@ -149,6 +170,7 @@ class RollbackDeploy(pulumi.CustomResource):
         __props__.__dict__["deploy_id"] = None
         __props__.__dict__["finished_at"] = None
         __props__.__dict__["image"] = None
+        __props__.__dict__["query_params"] = None
         __props__.__dict__["started_at"] = None
         __props__.__dict__["status"] = None
         __props__.__dict__["trigger"] = None
@@ -185,6 +207,14 @@ class RollbackDeploy(pulumi.CustomResource):
         Image information used when creating the deploy. Not present for Git-backed deploys
         """
         return pulumi.get(self, "image")
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.RollbackDeployQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 
     @_builtins.property
     @pulumi.getter(name="startedAt")

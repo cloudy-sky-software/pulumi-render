@@ -24,6 +24,12 @@ namespace Pulumi.Render.Redis
 
     public sealed class GetRedisConnectionInfoArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Inputs.GetRedisConnectionInfoQueryParams? QueryParams { get; set; }
+
         [Input("redisId", required: true)]
         public string RedisId { get; set; } = null!;
 
@@ -35,6 +41,12 @@ namespace Pulumi.Render.Redis
 
     public sealed class GetRedisConnectionInfoInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.GetRedisConnectionInfoQueryParamsArgs>? QueryParams { get; set; }
+
         [Input("redisId", required: true)]
         public Input<string> RedisId { get; set; } = null!;
 

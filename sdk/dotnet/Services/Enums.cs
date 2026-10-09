@@ -927,6 +927,288 @@ namespace Pulumi.Render.Services
         public override string ToString() => _value;
     }
 
+    [EnumType]
+    public readonly struct ListCustomDomainsQueryParamsDomainType : IEquatable<ListCustomDomainsQueryParamsDomainType>
+    {
+        private readonly string _value;
+
+        private ListCustomDomainsQueryParamsDomainType(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static ListCustomDomainsQueryParamsDomainType Apex { get; } = new ListCustomDomainsQueryParamsDomainType("apex");
+        public static ListCustomDomainsQueryParamsDomainType Subdomain { get; } = new ListCustomDomainsQueryParamsDomainType("subdomain");
+
+        public static bool operator ==(ListCustomDomainsQueryParamsDomainType left, ListCustomDomainsQueryParamsDomainType right) => left.Equals(right);
+        public static bool operator !=(ListCustomDomainsQueryParamsDomainType left, ListCustomDomainsQueryParamsDomainType right) => !left.Equals(right);
+
+        public static explicit operator string(ListCustomDomainsQueryParamsDomainType value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is ListCustomDomainsQueryParamsDomainType other && Equals(other);
+        public bool Equals(ListCustomDomainsQueryParamsDomainType other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    [EnumType]
+    public readonly struct ListCustomDomainsQueryParamsVerificationStatus : IEquatable<ListCustomDomainsQueryParamsVerificationStatus>
+    {
+        private readonly string _value;
+
+        private ListCustomDomainsQueryParamsVerificationStatus(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static ListCustomDomainsQueryParamsVerificationStatus Verified { get; } = new ListCustomDomainsQueryParamsVerificationStatus("verified");
+        public static ListCustomDomainsQueryParamsVerificationStatus Unverified { get; } = new ListCustomDomainsQueryParamsVerificationStatus("unverified");
+
+        public static bool operator ==(ListCustomDomainsQueryParamsVerificationStatus left, ListCustomDomainsQueryParamsVerificationStatus right) => left.Equals(right);
+        public static bool operator !=(ListCustomDomainsQueryParamsVerificationStatus left, ListCustomDomainsQueryParamsVerificationStatus right) => !left.Equals(right);
+
+        public static explicit operator string(ListCustomDomainsQueryParamsVerificationStatus value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is ListCustomDomainsQueryParamsVerificationStatus other && Equals(other);
+        public bool Equals(ListCustomDomainsQueryParamsVerificationStatus other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    [EnumType]
+    public readonly struct ListDeploysQueryParamsStatusItem : IEquatable<ListDeploysQueryParamsStatusItem>
+    {
+        private readonly string _value;
+
+        private ListDeploysQueryParamsStatusItem(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static ListDeploysQueryParamsStatusItem Created { get; } = new ListDeploysQueryParamsStatusItem("created");
+        public static ListDeploysQueryParamsStatusItem Queued { get; } = new ListDeploysQueryParamsStatusItem("queued");
+        public static ListDeploysQueryParamsStatusItem BuildInProgress { get; } = new ListDeploysQueryParamsStatusItem("build_in_progress");
+        public static ListDeploysQueryParamsStatusItem UpdateInProgress { get; } = new ListDeploysQueryParamsStatusItem("update_in_progress");
+        public static ListDeploysQueryParamsStatusItem Live { get; } = new ListDeploysQueryParamsStatusItem("live");
+        public static ListDeploysQueryParamsStatusItem Deactivated { get; } = new ListDeploysQueryParamsStatusItem("deactivated");
+        public static ListDeploysQueryParamsStatusItem BuildFailed { get; } = new ListDeploysQueryParamsStatusItem("build_failed");
+        public static ListDeploysQueryParamsStatusItem UpdateFailed { get; } = new ListDeploysQueryParamsStatusItem("update_failed");
+        public static ListDeploysQueryParamsStatusItem Canceled { get; } = new ListDeploysQueryParamsStatusItem("canceled");
+        public static ListDeploysQueryParamsStatusItem PreDeployInProgress { get; } = new ListDeploysQueryParamsStatusItem("pre_deploy_in_progress");
+        public static ListDeploysQueryParamsStatusItem PreDeployFailed { get; } = new ListDeploysQueryParamsStatusItem("pre_deploy_failed");
+
+        public static bool operator ==(ListDeploysQueryParamsStatusItem left, ListDeploysQueryParamsStatusItem right) => left.Equals(right);
+        public static bool operator !=(ListDeploysQueryParamsStatusItem left, ListDeploysQueryParamsStatusItem right) => !left.Equals(right);
+
+        public static explicit operator string(ListDeploysQueryParamsStatusItem value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is ListDeploysQueryParamsStatusItem other && Equals(other);
+        public bool Equals(ListDeploysQueryParamsStatusItem other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    [EnumType]
+    public readonly struct ListJobQueryParamsStatusItem : IEquatable<ListJobQueryParamsStatusItem>
+    {
+        private readonly string _value;
+
+        private ListJobQueryParamsStatusItem(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static ListJobQueryParamsStatusItem Pending { get; } = new ListJobQueryParamsStatusItem("pending");
+        public static ListJobQueryParamsStatusItem Running { get; } = new ListJobQueryParamsStatusItem("running");
+        public static ListJobQueryParamsStatusItem Succeeded { get; } = new ListJobQueryParamsStatusItem("succeeded");
+        public static ListJobQueryParamsStatusItem Failed { get; } = new ListJobQueryParamsStatusItem("failed");
+        public static ListJobQueryParamsStatusItem Canceled { get; } = new ListJobQueryParamsStatusItem("canceled");
+
+        public static bool operator ==(ListJobQueryParamsStatusItem left, ListJobQueryParamsStatusItem right) => left.Equals(right);
+        public static bool operator !=(ListJobQueryParamsStatusItem left, ListJobQueryParamsStatusItem right) => !left.Equals(right);
+
+        public static explicit operator string(ListJobQueryParamsStatusItem value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is ListJobQueryParamsStatusItem other && Equals(other);
+        public bool Equals(ListJobQueryParamsStatusItem other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    [EnumType]
+    public readonly struct ListRoutesQueryParamsTypeItem : IEquatable<ListRoutesQueryParamsTypeItem>
+    {
+        private readonly string _value;
+
+        private ListRoutesQueryParamsTypeItem(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static ListRoutesQueryParamsTypeItem Redirect { get; } = new ListRoutesQueryParamsTypeItem("redirect");
+        public static ListRoutesQueryParamsTypeItem Rewrite { get; } = new ListRoutesQueryParamsTypeItem("rewrite");
+
+        public static bool operator ==(ListRoutesQueryParamsTypeItem left, ListRoutesQueryParamsTypeItem right) => left.Equals(right);
+        public static bool operator !=(ListRoutesQueryParamsTypeItem left, ListRoutesQueryParamsTypeItem right) => !left.Equals(right);
+
+        public static explicit operator string(ListRoutesQueryParamsTypeItem value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is ListRoutesQueryParamsTypeItem other && Equals(other);
+        public bool Equals(ListRoutesQueryParamsTypeItem other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    /// <summary>
+    /// Runtime
+    /// </summary>
+    [EnumType]
+    public readonly struct ListServicesQueryParamsEnvItem : IEquatable<ListServicesQueryParamsEnvItem>
+    {
+        private readonly string _value;
+
+        private ListServicesQueryParamsEnvItem(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static ListServicesQueryParamsEnvItem Docker { get; } = new ListServicesQueryParamsEnvItem("docker");
+        public static ListServicesQueryParamsEnvItem Elixir { get; } = new ListServicesQueryParamsEnvItem("elixir");
+        public static ListServicesQueryParamsEnvItem Go { get; } = new ListServicesQueryParamsEnvItem("go");
+        public static ListServicesQueryParamsEnvItem Node { get; } = new ListServicesQueryParamsEnvItem("node");
+        public static ListServicesQueryParamsEnvItem Python { get; } = new ListServicesQueryParamsEnvItem("python");
+        public static ListServicesQueryParamsEnvItem Ruby { get; } = new ListServicesQueryParamsEnvItem("ruby");
+        public static ListServicesQueryParamsEnvItem Rust { get; } = new ListServicesQueryParamsEnvItem("rust");
+        public static ListServicesQueryParamsEnvItem Image { get; } = new ListServicesQueryParamsEnvItem("image");
+
+        public static bool operator ==(ListServicesQueryParamsEnvItem left, ListServicesQueryParamsEnvItem right) => left.Equals(right);
+        public static bool operator !=(ListServicesQueryParamsEnvItem left, ListServicesQueryParamsEnvItem right) => !left.Equals(right);
+
+        public static explicit operator string(ListServicesQueryParamsEnvItem value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is ListServicesQueryParamsEnvItem other && Equals(other);
+        public bool Equals(ListServicesQueryParamsEnvItem other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    /// <summary>
+    /// Defaults to "oregon"
+    /// </summary>
+    [EnumType]
+    public readonly struct ListServicesQueryParamsRegionItem : IEquatable<ListServicesQueryParamsRegionItem>
+    {
+        private readonly string _value;
+
+        private ListServicesQueryParamsRegionItem(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static ListServicesQueryParamsRegionItem Frankfurt { get; } = new ListServicesQueryParamsRegionItem("frankfurt");
+        public static ListServicesQueryParamsRegionItem Oregon { get; } = new ListServicesQueryParamsRegionItem("oregon");
+        public static ListServicesQueryParamsRegionItem Ohio { get; } = new ListServicesQueryParamsRegionItem("ohio");
+        public static ListServicesQueryParamsRegionItem Singapore { get; } = new ListServicesQueryParamsRegionItem("singapore");
+        public static ListServicesQueryParamsRegionItem Virginia { get; } = new ListServicesQueryParamsRegionItem("virginia");
+
+        public static bool operator ==(ListServicesQueryParamsRegionItem left, ListServicesQueryParamsRegionItem right) => left.Equals(right);
+        public static bool operator !=(ListServicesQueryParamsRegionItem left, ListServicesQueryParamsRegionItem right) => !left.Equals(right);
+
+        public static explicit operator string(ListServicesQueryParamsRegionItem value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is ListServicesQueryParamsRegionItem other && Equals(other);
+        public bool Equals(ListServicesQueryParamsRegionItem other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    [EnumType]
+    public readonly struct ListServicesQueryParamsSuspendedItem : IEquatable<ListServicesQueryParamsSuspendedItem>
+    {
+        private readonly string _value;
+
+        private ListServicesQueryParamsSuspendedItem(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static ListServicesQueryParamsSuspendedItem Suspended { get; } = new ListServicesQueryParamsSuspendedItem("suspended");
+        public static ListServicesQueryParamsSuspendedItem NotSuspended { get; } = new ListServicesQueryParamsSuspendedItem("not_suspended");
+
+        public static bool operator ==(ListServicesQueryParamsSuspendedItem left, ListServicesQueryParamsSuspendedItem right) => left.Equals(right);
+        public static bool operator !=(ListServicesQueryParamsSuspendedItem left, ListServicesQueryParamsSuspendedItem right) => !left.Equals(right);
+
+        public static explicit operator string(ListServicesQueryParamsSuspendedItem value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is ListServicesQueryParamsSuspendedItem other && Equals(other);
+        public bool Equals(ListServicesQueryParamsSuspendedItem other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    [EnumType]
+    public readonly struct ListServicesQueryParamsTypeItem : IEquatable<ListServicesQueryParamsTypeItem>
+    {
+        private readonly string _value;
+
+        private ListServicesQueryParamsTypeItem(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static ListServicesQueryParamsTypeItem StaticSite { get; } = new ListServicesQueryParamsTypeItem("static_site");
+        public static ListServicesQueryParamsTypeItem WebService { get; } = new ListServicesQueryParamsTypeItem("web_service");
+        public static ListServicesQueryParamsTypeItem PrivateService { get; } = new ListServicesQueryParamsTypeItem("private_service");
+        public static ListServicesQueryParamsTypeItem BackgroundWorker { get; } = new ListServicesQueryParamsTypeItem("background_worker");
+        public static ListServicesQueryParamsTypeItem CronJob { get; } = new ListServicesQueryParamsTypeItem("cron_job");
+
+        public static bool operator ==(ListServicesQueryParamsTypeItem left, ListServicesQueryParamsTypeItem right) => left.Equals(right);
+        public static bool operator !=(ListServicesQueryParamsTypeItem left, ListServicesQueryParamsTypeItem right) => !left.Equals(right);
+
+        public static explicit operator string(ListServicesQueryParamsTypeItem value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is ListServicesQueryParamsTypeItem other && Equals(other);
+        public bool Equals(ListServicesQueryParamsTypeItem other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
     /// <summary>
     /// The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
     /// </summary>

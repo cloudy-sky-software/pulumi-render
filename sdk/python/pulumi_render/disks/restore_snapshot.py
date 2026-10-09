@@ -13,6 +13,8 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['RestoreSnapshotArgs', 'RestoreSnapshot']
 
@@ -21,18 +23,22 @@ class RestoreSnapshotArgs:
     def __init__(__self__, *,
                  snapshot_key: pulumi.Input[_builtins.str],
                  disk_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 instance_id: pulumi.Input[Optional[_builtins.str]] = None):
+                 instance_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional['RestoreSnapshotQueryParamsArgs']] = None):
         """
         The set of arguments for constructing a RestoreSnapshot resource.
 
         :param pulumi.Input[_builtins.str] disk_id: The ID of the disk
         :param pulumi.Input[_builtins.str] instance_id: When a service with a disk is scaled, the instanceId is used to identify the instance that the disk is attached to. Each instance's disks get their own snapshots, and can be restored separately.
+        :param pulumi.Input['RestoreSnapshotQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         """
         pulumi.set(__self__, "snapshot_key", snapshot_key)
         if disk_id is not None:
             pulumi.set(__self__, "disk_id", disk_id)
         if instance_id is not None:
             pulumi.set(__self__, "instance_id", instance_id)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
 
     @_builtins.property
     @pulumi.getter(name="snapshotKey")
@@ -67,6 +73,18 @@ class RestoreSnapshotArgs:
     def instance_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "instance_id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['RestoreSnapshotQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['RestoreSnapshotQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
+
 
 @pulumi.type_token("render:disks:RestoreSnapshot")
 class RestoreSnapshot(pulumi.CustomResource):
@@ -76,6 +94,7 @@ class RestoreSnapshot(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  disk_id: pulumi.Input[Optional[_builtins.str]] = None,
                  instance_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['RestoreSnapshotQueryParamsArgs', 'RestoreSnapshotQueryParamsArgsDict', 'outputs.RestoreSnapshotQueryParams']]] = None,
                  snapshot_key: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -85,6 +104,7 @@ class RestoreSnapshot(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] disk_id: The ID of the disk
         :param pulumi.Input[_builtins.str] instance_id: When a service with a disk is scaled, the instanceId is used to identify the instance that the disk is attached to. Each instance's disks get their own snapshots, and can be restored separately.
+        :param pulumi.Input[Union['RestoreSnapshotQueryParamsArgs', 'RestoreSnapshotQueryParamsArgsDict', 'outputs.RestoreSnapshotQueryParams']] query_params: Query params to send with the API requests for this resource.
         """
         ...
     @overload
@@ -112,6 +132,7 @@ class RestoreSnapshot(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  disk_id: pulumi.Input[Optional[_builtins.str]] = None,
                  instance_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['RestoreSnapshotQueryParamsArgs', 'RestoreSnapshotQueryParamsArgsDict', 'outputs.RestoreSnapshotQueryParams']]] = None,
                  snapshot_key: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -124,6 +145,7 @@ class RestoreSnapshot(pulumi.CustomResource):
 
             __props__.__dict__["disk_id"] = disk_id
             __props__.__dict__["instance_id"] = instance_id
+            __props__.__dict__["query_params"] = query_params
             if snapshot_key is None and not opts.urn:
                 raise TypeError("Missing required property 'snapshot_key'")
             __props__.__dict__["snapshot_key"] = snapshot_key
@@ -159,6 +181,7 @@ class RestoreSnapshot(pulumi.CustomResource):
         __props__.__dict__["instance_id"] = None
         __props__.__dict__["mount_path"] = None
         __props__.__dict__["name"] = None
+        __props__.__dict__["query_params"] = None
         __props__.__dict__["service_id"] = None
         __props__.__dict__["size_gb"] = None
         __props__.__dict__["snapshot_key"] = None
@@ -187,6 +210,14 @@ class RestoreSnapshot(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
         return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.RestoreSnapshotQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 
     @_builtins.property
     @pulumi.getter(name="serviceId")

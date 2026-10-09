@@ -70,6 +70,10 @@ export class Postgres extends pulumi.CustomResource {
     declare public readonly ownerId: pulumi.Output<string>;
     declare public readonly plan: pulumi.Output<enums.postgres.Plan>;
     declare public /*out*/ readonly primaryPostgresID: pulumi.Output<string | undefined>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.postgres.PostgresQueryParams | undefined>;
     declare public readonly readReplicas: pulumi.Output<outputs.postgres.ReadReplica[]>;
     /**
      * Defaults to "oregon"
@@ -116,6 +120,7 @@ export class Postgres extends pulumi.CustomResource {
             resourceInputs["name"] = args?.name;
             resourceInputs["ownerId"] = args?.ownerId;
             resourceInputs["plan"] = args?.plan;
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["readReplicas"] = args?.readReplicas;
             resourceInputs["region"] = args?.region;
             resourceInputs["version"] = args?.version;
@@ -150,6 +155,7 @@ export class Postgres extends pulumi.CustomResource {
             resourceInputs["ownerId"] = undefined /*out*/;
             resourceInputs["plan"] = undefined /*out*/;
             resourceInputs["primaryPostgresID"] = undefined /*out*/;
+            resourceInputs["queryParams"] = undefined /*out*/;
             resourceInputs["readReplicas"] = undefined /*out*/;
             resourceInputs["region"] = undefined /*out*/;
             resourceInputs["role"] = undefined /*out*/;
@@ -194,6 +200,10 @@ export interface PostgresArgs {
      */
     ownerId: pulumi.Input<string>;
     plan: pulumi.Input<enums.postgres.Plan>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.postgres.PostgresQueryParamsArgs | undefined>;
     readReplicas?: pulumi.Input<pulumi.Input<inputs.postgres.ReadReplicaInputArgs>[] | undefined>;
     region?: pulumi.Input<string | undefined>;
     /**

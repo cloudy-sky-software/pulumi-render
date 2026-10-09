@@ -4,17 +4,17 @@
 import * as utilities from "../utilities";
 
 // Export members:
-export { GetBandwidthSourceArgs, GetBandwidthSourceResult } from "./getBandwidthSource";
+export { GetBandwidthSourceArgs, GetBandwidthSourceResult, GetBandwidthSourceOutputArgs } from "./getBandwidthSource";
 export const getBandwidthSource: typeof import("./getBandwidthSource").getBandwidthSource = null as any;
 export const getBandwidthSourceOutput: typeof import("./getBandwidthSource").getBandwidthSourceOutput = null as any;
 utilities.lazyLoad(exports, ["getBandwidthSource","getBandwidthSourceOutput"], () => require("./getBandwidthSource"));
 
-export { ListActiveConnectionsArgs, ListActiveConnectionsResult } from "./listActiveConnections";
+export { ListActiveConnectionsArgs, ListActiveConnectionsResult, ListActiveConnectionsOutputArgs } from "./listActiveConnections";
 export const listActiveConnections: typeof import("./listActiveConnections").listActiveConnections = null as any;
 export const listActiveConnectionsOutput: typeof import("./listActiveConnections").listActiveConnectionsOutput = null as any;
 utilities.lazyLoad(exports, ["listActiveConnections","listActiveConnectionsOutput"], () => require("./listActiveConnections"));
 
-export { ListReplicationLagArgs, ListReplicationLagResult } from "./listReplicationLag";
+export { ListReplicationLagArgs, ListReplicationLagResult, ListReplicationLagOutputArgs } from "./listReplicationLag";
 export const listReplicationLag: typeof import("./listReplicationLag").listReplicationLag = null as any;
 export const listReplicationLagOutput: typeof import("./listReplicationLag").listReplicationLagOutput = null as any;
 utilities.lazyLoad(exports, ["listReplicationLag","listReplicationLagOutput"], () => require("./listReplicationLag"));

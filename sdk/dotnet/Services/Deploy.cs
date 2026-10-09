@@ -53,6 +53,12 @@ namespace Pulumi.Render.Services
         [Output("imageUrl")]
         public Output<string?> ImageUrl { get; private set; } = null!;
 
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Output("queryParams")]
+        public Output<Outputs.DeployQueryParams?> QueryParams { get; private set; } = null!;
+
         [Output("startedAt")]
         public Output<string?> StartedAt { get; private set; } = null!;
 
@@ -136,6 +142,12 @@ namespace Pulumi.Render.Services
         /// </summary>
         [Input("imageUrl")]
         public Input<string>? ImageUrl { get; set; }
+
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.DeployQueryParamsArgs>? QueryParams { get; set; }
 
         /// <summary>
         /// The ID of the service

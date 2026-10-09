@@ -15,6 +15,7 @@ else:
 from .. import _utilities
 from . import outputs
 from ._enums import *
+from ._inputs import *
 
 __all__ = ['CancelDeployArgs', 'CancelDeploy']
 
@@ -22,15 +23,19 @@ __all__ = ['CancelDeployArgs', 'CancelDeploy']
 class CancelDeployArgs:
     def __init__(__self__, *,
                  deploy_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional['CancelDeployQueryParamsArgs']] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a CancelDeploy resource.
 
         :param pulumi.Input[_builtins.str] deploy_id: The ID of the deploy
+        :param pulumi.Input['CancelDeployQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
         """
         if deploy_id is not None:
             pulumi.set(__self__, "deploy_id", deploy_id)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
         if service_id is not None:
             pulumi.set(__self__, "service_id", service_id)
 
@@ -45,6 +50,18 @@ class CancelDeployArgs:
     @deploy_id.setter
     def deploy_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "deploy_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['CancelDeployQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['CancelDeployQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceId")
@@ -66,6 +83,7 @@ class CancelDeploy(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  deploy_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['CancelDeployQueryParamsArgs', 'CancelDeployQueryParamsArgsDict', 'outputs.CancelDeployQueryParams']]] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -74,6 +92,7 @@ class CancelDeploy(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] deploy_id: The ID of the deploy
+        :param pulumi.Input[Union['CancelDeployQueryParamsArgs', 'CancelDeployQueryParamsArgsDict', 'outputs.CancelDeployQueryParams']] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
         """
         ...
@@ -101,6 +120,7 @@ class CancelDeploy(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  deploy_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['CancelDeployQueryParamsArgs', 'CancelDeployQueryParamsArgsDict', 'outputs.CancelDeployQueryParams']]] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -112,6 +132,7 @@ class CancelDeploy(pulumi.CustomResource):
             __props__ = CancelDeployArgs.__new__(CancelDeployArgs)
 
             __props__.__dict__["deploy_id"] = deploy_id
+            __props__.__dict__["query_params"] = query_params
             __props__.__dict__["service_id"] = service_id
             __props__.__dict__["commit"] = None
             __props__.__dict__["created_at"] = None
@@ -147,6 +168,7 @@ class CancelDeploy(pulumi.CustomResource):
         __props__.__dict__["created_at"] = None
         __props__.__dict__["finished_at"] = None
         __props__.__dict__["image"] = None
+        __props__.__dict__["query_params"] = None
         __props__.__dict__["started_at"] = None
         __props__.__dict__["status"] = None
         __props__.__dict__["trigger"] = None
@@ -175,6 +197,14 @@ class CancelDeploy(pulumi.CustomResource):
         Image information used when creating the deploy. Not present for Git-backed deploys
         """
         return pulumi.get(self, "image")
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.CancelDeployQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 
     @_builtins.property
     @pulumi.getter(name="startedAt")

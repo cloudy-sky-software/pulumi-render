@@ -36,6 +36,12 @@ namespace Pulumi.Render.EnvGroups
         [Input("envVarKey", required: true)]
         public string EnvVarKey { get; set; } = null!;
 
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Inputs.GetEnvGroupEnvVarQueryParams? QueryParams { get; set; }
+
         public GetEnvGroupEnvVarArgs()
         {
         }
@@ -55,6 +61,12 @@ namespace Pulumi.Render.EnvGroups
         /// </summary>
         [Input("envVarKey", required: true)]
         public Input<string> EnvVarKey { get; set; } = null!;
+
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.GetEnvGroupEnvVarQueryParamsArgs>? QueryParams { get; set; }
 
         public GetEnvGroupEnvVarInvokeArgs()
         {

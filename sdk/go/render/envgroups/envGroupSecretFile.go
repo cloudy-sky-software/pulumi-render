@@ -20,7 +20,9 @@ type EnvGroupSecretFile struct {
 	EnvironmentId pulumi.StringPtrOutput `pulumi:"environmentId"`
 	Name          pulumi.StringPtrOutput `pulumi:"name"`
 	OwnerId       pulumi.StringPtrOutput `pulumi:"ownerId"`
-	SecretFiles   SecretFileArrayOutput  `pulumi:"secretFiles"`
+	// Query params to send with the API requests for this resource.
+	QueryParams EnvGroupSecretFileQueryParamsPtrOutput `pulumi:"queryParams"`
+	SecretFiles SecretFileArrayOutput                  `pulumi:"secretFiles"`
 	// List of serviceIds linked to the envGroup
 	ServiceLinks EnvGroupLinkArrayOutput `pulumi:"serviceLinks"`
 	UpdatedAt    pulumi.StringPtrOutput  `pulumi:"updatedAt"`
@@ -66,15 +68,19 @@ func (EnvGroupSecretFileState) ElementType() reflect.Type {
 }
 
 type envGroupSecretFileArgs struct {
-	Content        *string `pulumi:"content"`
-	EnvGroupId     *string `pulumi:"envGroupId"`
-	SecretFileName *string `pulumi:"secretFileName"`
+	Content    *string `pulumi:"content"`
+	EnvGroupId *string `pulumi:"envGroupId"`
+	// Query params to send with the API requests for this resource.
+	QueryParams    *EnvGroupSecretFileQueryParams `pulumi:"queryParams"`
+	SecretFileName *string                        `pulumi:"secretFileName"`
 }
 
 // The set of arguments for constructing a EnvGroupSecretFile resource.
 type EnvGroupSecretFileArgs struct {
-	Content        pulumi.StringPtrInput
-	EnvGroupId     pulumi.StringPtrInput
+	Content    pulumi.StringPtrInput
+	EnvGroupId pulumi.StringPtrInput
+	// Query params to send with the API requests for this resource.
+	QueryParams    EnvGroupSecretFileQueryParamsPtrInput
 	SecretFileName pulumi.StringPtrInput
 }
 
@@ -137,6 +143,11 @@ func (o EnvGroupSecretFileOutput) Name() pulumi.StringPtrOutput {
 
 func (o EnvGroupSecretFileOutput) OwnerId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *EnvGroupSecretFile) pulumi.StringPtrOutput { return v.OwnerId }).(pulumi.StringPtrOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o EnvGroupSecretFileOutput) QueryParams() EnvGroupSecretFileQueryParamsPtrOutput {
+	return o.ApplyT(func(v *EnvGroupSecretFile) EnvGroupSecretFileQueryParamsPtrOutput { return v.QueryParams }).(EnvGroupSecretFileQueryParamsPtrOutput)
 }
 
 func (o EnvGroupSecretFileOutput) SecretFiles() SecretFileArrayOutput {

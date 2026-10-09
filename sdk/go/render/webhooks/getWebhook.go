@@ -22,6 +22,8 @@ func LookupWebhook(ctx *pulumi.Context, args *LookupWebhookArgs, opts ...pulumi.
 }
 
 type LookupWebhookArgs struct {
+	// Query params to send with the API request.
+	QueryParams *GetWebhookQueryParams `pulumi:"queryParams"`
 	// Unique identifier for the webhook
 	WebhookId string `pulumi:"webhookId"`
 }
@@ -42,6 +44,8 @@ func LookupWebhookOutput(ctx *pulumi.Context, args LookupWebhookOutputArgs, opts
 }
 
 type LookupWebhookOutputArgs struct {
+	// Query params to send with the API request.
+	QueryParams GetWebhookQueryParamsPtrInput `pulumi:"queryParams"`
 	// Unique identifier for the webhook
 	WebhookId pulumi.StringInput `pulumi:"webhookId"`
 }

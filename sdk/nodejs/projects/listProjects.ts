@@ -11,18 +11,31 @@ export function listProjects(args?: ListProjectsArgs, opts?: pulumi.InvokeOption
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:projects:listProjects", {
+        "queryParams": args.queryParams ? inputs.projects.listProjectsQueryParamsProvideDefaults(args.queryParams) : undefined,
     }, opts);
 }
 
 export interface ListProjectsArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.projects.ListProjectsQueryParams;
 }
 
 export interface ListProjectsResult {
     readonly items: outputs.projects.ProjectWithCursor[];
 }
-export function listProjectsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListProjectsResult> {
+export function listProjectsOutput(args?: ListProjectsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListProjectsResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:projects:listProjects", {
+        "queryParams": pulumi.output(args.queryParams).apply(v => v === undefined ? undefined : inputs.projects.listProjectsQueryParamsProvideDefaults(v)),
     }, opts);
 }
 
+export interface ListProjectsOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.projects.ListProjectsQueryParamsArgs | undefined>;
+}

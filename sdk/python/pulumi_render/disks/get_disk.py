@@ -13,6 +13,7 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from ._inputs import *
 
 __all__ = [
     'GetDiskResult',
@@ -98,14 +99,17 @@ class AwaitableGetDiskResult(GetDiskResult):
 
 
 def get_disk(disk_id: Optional[_builtins.str] = None,
+             query_params: Optional[Union['GetDiskQueryParams', 'GetDiskQueryParamsDict']] = None,
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDiskResult:
     """
     Use this data source to access information about an existing resource.
 
     :param _builtins.str disk_id: The ID of the disk
+    :param Union['GetDiskQueryParams', 'GetDiskQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
     __args__['diskId'] = disk_id
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:disks:getDisk', __args__, opts=opts, typ=GetDiskResult).value
 
@@ -118,14 +122,17 @@ def get_disk(disk_id: Optional[_builtins.str] = None,
         size_gb=pulumi.get(__ret__, 'size_gb'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
 def get_disk_output(disk_id: pulumi.Input[Optional[_builtins.str]] = None,
+                    query_params: pulumi.Input[Optional[Optional[Union['GetDiskQueryParams', 'GetDiskQueryParamsDict']]]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDiskResult]:
     """
     Use this data source to access information about an existing resource.
 
     :param _builtins.str disk_id: The ID of the disk
+    :param Union['GetDiskQueryParams', 'GetDiskQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
     __args__['diskId'] = disk_id
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:disks:getDisk', __args__, opts=opts, typ=GetDiskResult)
     return __ret__.apply(lambda __response__: GetDiskResult(

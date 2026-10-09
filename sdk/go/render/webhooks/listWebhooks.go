@@ -14,7 +14,7 @@ import (
 func ListWebhooks(ctx *pulumi.Context, args *ListWebhooksArgs, opts ...pulumi.InvokeOption) (*ListWebhooksResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListWebhooksResult
-	err := ctx.Invoke("render:webhooks:listWebhooks", args, &rv, opts...)
+	err := ctx.Invoke("render:webhooks:listWebhooks", args.Defaults(), &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -22,6 +22,19 @@ func ListWebhooks(ctx *pulumi.Context, args *ListWebhooksArgs, opts ...pulumi.In
 }
 
 type ListWebhooksArgs struct {
+	// Query params to send with the API request.
+	QueryParams *ListWebhooksQueryParams `pulumi:"queryParams"`
+}
+
+// Defaults sets the appropriate defaults for ListWebhooksArgs
+func (val *ListWebhooksArgs) Defaults() *ListWebhooksArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	tmp.QueryParams = tmp.QueryParams.Defaults()
+
+	return &tmp
 }
 
 type ListWebhooksResult struct {
@@ -29,11 +42,18 @@ type ListWebhooksResult struct {
 }
 
 func ListWebhooksOutput(ctx *pulumi.Context, args ListWebhooksOutputArgs, opts ...pulumi.InvokeOption) ListWebhooksResultOutput {
+	outputArgs := pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) *ListWebhooksArgs {
+			args := v.(ListWebhooksArgs)
+			return args.Defaults()
+		})
 	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-	return ctx.InvokeOutput("render:webhooks:listWebhooks", args, ListWebhooksResultOutput{}, options).(ListWebhooksResultOutput)
+	return ctx.InvokeOutput("render:webhooks:listWebhooks", outputArgs, ListWebhooksResultOutput{}, options).(ListWebhooksResultOutput)
 }
 
 type ListWebhooksOutputArgs struct {
+	// Query params to send with the API request.
+	QueryParams ListWebhooksQueryParamsPtrInput `pulumi:"queryParams"`
 }
 
 func (ListWebhooksOutputArgs) ElementType() reflect.Type {

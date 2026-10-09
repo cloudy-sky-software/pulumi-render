@@ -2,6 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export class ScaleService extends pulumi.CustomResource {
@@ -32,6 +35,10 @@ export class ScaleService extends pulumi.CustomResource {
     }
 
     declare public readonly numInstances: pulumi.Output<number>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.services.ScaleServiceQueryParams | undefined>;
 
     /**
      * Create a ScaleService resource with the given unique name, arguments, and options.
@@ -48,9 +55,11 @@ export class ScaleService extends pulumi.CustomResource {
                 throw new Error("Missing required property 'numInstances'");
             }
             resourceInputs["numInstances"] = args?.numInstances;
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["serviceId"] = args?.serviceId;
         } else {
             resourceInputs["numInstances"] = undefined /*out*/;
+            resourceInputs["queryParams"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ScaleService.__pulumiType, name, resourceInputs, opts);
@@ -62,6 +71,10 @@ export class ScaleService extends pulumi.CustomResource {
  */
 export interface ScaleServiceArgs {
     numInstances: pulumi.Input<number>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.services.ScaleServiceQueryParamsArgs | undefined>;
     /**
      * The ID of the service
      */

@@ -14,7 +14,7 @@ import (
 func ListEnvVarsForService(ctx *pulumi.Context, args *ListEnvVarsForServiceArgs, opts ...pulumi.InvokeOption) (*ListEnvVarsForServiceResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListEnvVarsForServiceResult
-	err := ctx.Invoke("render:services:listEnvVarsForService", args, &rv, opts...)
+	err := ctx.Invoke("render:services:listEnvVarsForService", args.Defaults(), &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -22,8 +22,21 @@ func ListEnvVarsForService(ctx *pulumi.Context, args *ListEnvVarsForServiceArgs,
 }
 
 type ListEnvVarsForServiceArgs struct {
+	// Query params to send with the API request.
+	QueryParams *ListEnvVarsForServiceQueryParams `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId string `pulumi:"serviceId"`
+}
+
+// Defaults sets the appropriate defaults for ListEnvVarsForServiceArgs
+func (val *ListEnvVarsForServiceArgs) Defaults() *ListEnvVarsForServiceArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	tmp.QueryParams = tmp.QueryParams.Defaults()
+
+	return &tmp
 }
 
 type ListEnvVarsForServiceResult struct {
@@ -31,11 +44,18 @@ type ListEnvVarsForServiceResult struct {
 }
 
 func ListEnvVarsForServiceOutput(ctx *pulumi.Context, args ListEnvVarsForServiceOutputArgs, opts ...pulumi.InvokeOption) ListEnvVarsForServiceResultOutput {
+	outputArgs := pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) *ListEnvVarsForServiceArgs {
+			args := v.(ListEnvVarsForServiceArgs)
+			return args.Defaults()
+		})
 	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-	return ctx.InvokeOutput("render:services:listEnvVarsForService", args, ListEnvVarsForServiceResultOutput{}, options).(ListEnvVarsForServiceResultOutput)
+	return ctx.InvokeOutput("render:services:listEnvVarsForService", outputArgs, ListEnvVarsForServiceResultOutput{}, options).(ListEnvVarsForServiceResultOutput)
 }
 
 type ListEnvVarsForServiceOutputArgs struct {
+	// Query params to send with the API request.
+	QueryParams ListEnvVarsForServiceQueryParamsPtrInput `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }

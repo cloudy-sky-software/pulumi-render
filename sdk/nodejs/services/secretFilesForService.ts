@@ -34,6 +34,10 @@ export class SecretFilesForService extends pulumi.CustomResource {
         return obj['__pulumiType'] === SecretFilesForService.__pulumiType;
     }
 
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.services.SecretFilesForServiceQueryParams | undefined>;
     declare public readonly secretFiles: pulumi.Output<outputs.services.SecretFileInput[] | undefined>;
 
     /**
@@ -47,9 +51,11 @@ export class SecretFilesForService extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["secretFiles"] = args?.secretFiles;
             resourceInputs["serviceId"] = args?.serviceId;
         } else {
+            resourceInputs["queryParams"] = undefined /*out*/;
             resourceInputs["secretFiles"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -61,6 +67,10 @@ export class SecretFilesForService extends pulumi.CustomResource {
  * The set of arguments for constructing a SecretFilesForService resource.
  */
 export interface SecretFilesForServiceArgs {
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.services.SecretFilesForServiceQueryParamsArgs | undefined>;
     secretFiles?: pulumi.Input<pulumi.Input<inputs.services.SecretFileInputArgs>[] | undefined>;
     /**
      * The ID of the service

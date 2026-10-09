@@ -30,6 +30,12 @@ namespace Pulumi.Render.Owners
         [Input("ownerId", required: true)]
         public string OwnerId { get; set; } = null!;
 
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Inputs.GetOwnerQueryParams? QueryParams { get; set; }
+
         public GetOwnerArgs()
         {
         }
@@ -43,6 +49,12 @@ namespace Pulumi.Render.Owners
         /// </summary>
         [Input("ownerId", required: true)]
         public Input<string> OwnerId { get; set; } = null!;
+
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.GetOwnerQueryParamsArgs>? QueryParams { get; set; }
 
         public GetOwnerInvokeArgs()
         {

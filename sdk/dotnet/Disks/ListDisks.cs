@@ -14,20 +14,40 @@ namespace Pulumi.Render.Disks
         public static Task<ListDisksResult> InvokeAsync(ListDisksArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ListDisksResult>("render:disks:listDisks", args ?? new ListDisksArgs(), options.WithDefaults());
 
-        public static Output<ListDisksResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<ListDisksResult>("render:disks:listDisks", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<ListDisksResult> Invoke(ListDisksInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<ListDisksResult>("render:disks:listDisks", args ?? new ListDisksInvokeArgs(), options.WithDefaults());
 
-        public static Output<ListDisksResult> Invoke(InvokeOutputOptions options)
-            => global::Pulumi.Deployment.Instance.Invoke<ListDisksResult>("render:disks:listDisks", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<ListDisksResult> Invoke(ListDisksInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<ListDisksResult>("render:disks:listDisks", args ?? new ListDisksInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class ListDisksArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Inputs.ListDisksQueryParams? QueryParams { get; set; }
+
         public ListDisksArgs()
         {
         }
         public static new ListDisksArgs Empty => new ListDisksArgs();
+    }
+
+    public sealed class ListDisksInvokeArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.ListDisksQueryParamsArgs>? QueryParams { get; set; }
+
+        public ListDisksInvokeArgs()
+        {
+        }
+        public static new ListDisksInvokeArgs Empty => new ListDisksInvokeArgs();
     }
 
 

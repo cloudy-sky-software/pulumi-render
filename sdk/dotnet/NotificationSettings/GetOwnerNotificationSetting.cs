@@ -30,6 +30,12 @@ namespace Pulumi.Render.NotificationSettings
         [Input("ownerId", required: true)]
         public string OwnerId { get; set; } = null!;
 
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Inputs.GetOwnerNotificationSettingQueryParams? QueryParams { get; set; }
+
         public GetOwnerNotificationSettingArgs()
         {
         }
@@ -43,6 +49,12 @@ namespace Pulumi.Render.NotificationSettings
         /// </summary>
         [Input("ownerId", required: true)]
         public Input<string> OwnerId { get; set; } = null!;
+
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.GetOwnerNotificationSettingQueryParamsArgs>? QueryParams { get; set; }
 
         public GetOwnerNotificationSettingInvokeArgs()
         {

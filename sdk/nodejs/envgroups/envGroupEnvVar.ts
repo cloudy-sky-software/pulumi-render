@@ -40,6 +40,10 @@ export class EnvGroupEnvVar extends pulumi.CustomResource {
     declare public readonly generateValue: pulumi.Output<boolean | undefined>;
     declare public /*out*/ readonly name: pulumi.Output<string | undefined>;
     declare public /*out*/ readonly ownerId: pulumi.Output<string | undefined>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.envgroups.EnvGroupEnvVarQueryParams | undefined>;
     declare public /*out*/ readonly secretFiles: pulumi.Output<outputs.envgroups.SecretFile[] | undefined>;
     /**
      * List of serviceIds linked to the envGroup
@@ -62,6 +66,7 @@ export class EnvGroupEnvVar extends pulumi.CustomResource {
             resourceInputs["envGroupId"] = args?.envGroupId;
             resourceInputs["envVarKey"] = args?.envVarKey;
             resourceInputs["generateValue"] = args?.generateValue;
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["value"] = args?.value;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["envVars"] = undefined /*out*/;
@@ -78,6 +83,7 @@ export class EnvGroupEnvVar extends pulumi.CustomResource {
             resourceInputs["generateValue"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;
             resourceInputs["ownerId"] = undefined /*out*/;
+            resourceInputs["queryParams"] = undefined /*out*/;
             resourceInputs["secretFiles"] = undefined /*out*/;
             resourceInputs["serviceLinks"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
@@ -101,5 +107,9 @@ export interface EnvGroupEnvVarArgs {
      */
     envVarKey?: pulumi.Input<string | undefined>;
     generateValue?: pulumi.Input<boolean | undefined>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.envgroups.EnvGroupEnvVarQueryParamsArgs | undefined>;
     value?: pulumi.Input<string | undefined>;
 }

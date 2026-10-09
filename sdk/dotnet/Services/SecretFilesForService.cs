@@ -12,6 +12,12 @@ namespace Pulumi.Render.Services
     [RenderResourceType("render:services:SecretFilesForService")]
     public partial class SecretFilesForService : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Output("queryParams")]
+        public Output<Outputs.SecretFilesForServiceQueryParams?> QueryParams { get; private set; } = null!;
+
         [Output("secretFiles")]
         public Output<ImmutableArray<Outputs.SecretFileInput>> SecretFiles { get; private set; } = null!;
 
@@ -61,6 +67,12 @@ namespace Pulumi.Render.Services
 
     public sealed class SecretFilesForServiceArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.SecretFilesForServiceQueryParamsArgs>? QueryParams { get; set; }
+
         [Input("secretFiles")]
         private InputList<Inputs.SecretFileInputArgs>? _secretFiles;
         public InputList<Inputs.SecretFileInputArgs> SecretFiles

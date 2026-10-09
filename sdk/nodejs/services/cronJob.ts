@@ -49,6 +49,10 @@ export class CronJob extends pulumi.CustomResource {
     declare public readonly name: pulumi.Output<string | undefined>;
     declare public /*out*/ readonly notifyOnFail: pulumi.Output<enums.services.ServiceNotifyOnFail | undefined>;
     declare public readonly ownerId: pulumi.Output<string | undefined>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.services.CronJobQueryParams | undefined>;
     declare public /*out*/ readonly registryCredential: pulumi.Output<outputs.services.RegistryCredentialSummary | undefined>;
     declare public readonly repo: pulumi.Output<string | undefined>;
     declare public readonly rootDir: pulumi.Output<string | undefined>;
@@ -85,6 +89,7 @@ export class CronJob extends pulumi.CustomResource {
             resourceInputs["image"] = args?.image;
             resourceInputs["name"] = args?.name;
             resourceInputs["ownerId"] = args?.ownerId;
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["repo"] = args?.repo;
             resourceInputs["rootDir"] = args?.rootDir;
             resourceInputs["secretFiles"] = args?.secretFiles;
@@ -112,6 +117,7 @@ export class CronJob extends pulumi.CustomResource {
             resourceInputs["name"] = undefined /*out*/;
             resourceInputs["notifyOnFail"] = undefined /*out*/;
             resourceInputs["ownerId"] = undefined /*out*/;
+            resourceInputs["queryParams"] = undefined /*out*/;
             resourceInputs["registryCredential"] = undefined /*out*/;
             resourceInputs["repo"] = undefined /*out*/;
             resourceInputs["rootDir"] = undefined /*out*/;
@@ -146,6 +152,10 @@ export interface CronJobArgs {
     image?: pulumi.Input<inputs.services.ImageArgs | undefined>;
     name: pulumi.Input<string>;
     ownerId: pulumi.Input<string>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.services.CronJobQueryParamsArgs | undefined>;
     /**
      * Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
      */

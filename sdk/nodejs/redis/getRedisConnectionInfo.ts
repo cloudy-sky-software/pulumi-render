@@ -2,16 +2,24 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export function getRedisConnectionInfo(args: GetRedisConnectionInfoArgs, opts?: pulumi.InvokeOptions): Promise<GetRedisConnectionInfoResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:redis:getRedisConnectionInfo", {
+        "queryParams": args.queryParams,
         "redisId": args.redisId,
     }, opts);
 }
 
 export interface GetRedisConnectionInfoArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.redis.GetRedisConnectionInfoQueryParams;
     redisId: string;
 }
 
@@ -35,10 +43,15 @@ export interface GetRedisConnectionInfoResult {
 export function getRedisConnectionInfoOutput(args: GetRedisConnectionInfoOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetRedisConnectionInfoResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:redis:getRedisConnectionInfo", {
+        "queryParams": args.queryParams,
         "redisId": args.redisId,
     }, opts);
 }
 
 export interface GetRedisConnectionInfoOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.redis.GetRedisConnectionInfoQueryParamsArgs | undefined>;
     redisId: pulumi.Input<string>;
 }

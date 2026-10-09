@@ -25,6 +25,12 @@ namespace Pulumi.Render.Services
     public sealed class GetSecretFileArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Inputs.GetSecretFileQueryParams? QueryParams { get; set; }
+
+        /// <summary>
         /// The file name of the secret file
         /// </summary>
         [Input("secretFileName", required: true)]
@@ -44,6 +50,12 @@ namespace Pulumi.Render.Services
 
     public sealed class GetSecretFileInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.GetSecretFileQueryParamsArgs>? QueryParams { get; set; }
+
         /// <summary>
         /// The file name of the secret file
         /// </summary>

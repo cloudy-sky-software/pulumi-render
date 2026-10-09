@@ -44,6 +44,10 @@ export class Header extends pulumi.CustomResource {
      */
     declare public readonly path: pulumi.Output<string>;
     /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.services.HeaderQueryParams | undefined>;
+    /**
      * Header value
      */
     declare public readonly value: pulumi.Output<string>;
@@ -67,6 +71,7 @@ export class Header extends pulumi.CustomResource {
             }
             resourceInputs["name"] = args?.name;
             resourceInputs["path"] = args?.path;
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["serviceId"] = args?.serviceId;
             resourceInputs["value"] = args?.value;
             resourceInputs["headers"] = undefined /*out*/;
@@ -74,6 +79,7 @@ export class Header extends pulumi.CustomResource {
             resourceInputs["headers"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;
             resourceInputs["path"] = undefined /*out*/;
+            resourceInputs["queryParams"] = undefined /*out*/;
             resourceInputs["value"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -93,6 +99,10 @@ export interface HeaderArgs {
      * The request path to add the header to. Wildcards will cause headers to be applied to all matching paths.
      */
     path: pulumi.Input<string>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.services.HeaderQueryParamsArgs | undefined>;
     /**
      * The ID of the service
      */

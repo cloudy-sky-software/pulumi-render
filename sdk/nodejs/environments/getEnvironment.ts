@@ -11,11 +11,16 @@ export function getEnvironment(args: GetEnvironmentArgs, opts?: pulumi.InvokeOpt
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:environments:getEnvironment", {
         "environmentId": args.environmentId,
+        "queryParams": args.queryParams,
     }, opts);
 }
 
 export interface GetEnvironmentArgs {
     environmentId: string;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.environments.GetEnvironmentQueryParams;
 }
 
 export interface GetEnvironmentResult {
@@ -39,9 +44,14 @@ export function getEnvironmentOutput(args: GetEnvironmentOutputArgs, opts?: pulu
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:environments:getEnvironment", {
         "environmentId": args.environmentId,
+        "queryParams": args.queryParams,
     }, opts);
 }
 
 export interface GetEnvironmentOutputArgs {
     environmentId: pulumi.Input<string>;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.environments.GetEnvironmentQueryParamsArgs | undefined>;
 }

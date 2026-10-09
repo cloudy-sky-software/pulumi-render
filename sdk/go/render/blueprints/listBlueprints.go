@@ -14,7 +14,7 @@ import (
 func ListBlueprints(ctx *pulumi.Context, args *ListBlueprintsArgs, opts ...pulumi.InvokeOption) (*ListBlueprintsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListBlueprintsResult
-	err := ctx.Invoke("render:blueprints:listBlueprints", args, &rv, opts...)
+	err := ctx.Invoke("render:blueprints:listBlueprints", args.Defaults(), &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -22,6 +22,19 @@ func ListBlueprints(ctx *pulumi.Context, args *ListBlueprintsArgs, opts ...pulum
 }
 
 type ListBlueprintsArgs struct {
+	// Query params to send with the API request.
+	QueryParams *ListBlueprintsQueryParams `pulumi:"queryParams"`
+}
+
+// Defaults sets the appropriate defaults for ListBlueprintsArgs
+func (val *ListBlueprintsArgs) Defaults() *ListBlueprintsArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	tmp.QueryParams = tmp.QueryParams.Defaults()
+
+	return &tmp
 }
 
 type ListBlueprintsResult struct {
@@ -29,11 +42,18 @@ type ListBlueprintsResult struct {
 }
 
 func ListBlueprintsOutput(ctx *pulumi.Context, args ListBlueprintsOutputArgs, opts ...pulumi.InvokeOption) ListBlueprintsResultOutput {
+	outputArgs := pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) *ListBlueprintsArgs {
+			args := v.(ListBlueprintsArgs)
+			return args.Defaults()
+		})
 	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-	return ctx.InvokeOutput("render:blueprints:listBlueprints", args, ListBlueprintsResultOutput{}, options).(ListBlueprintsResultOutput)
+	return ctx.InvokeOutput("render:blueprints:listBlueprints", outputArgs, ListBlueprintsResultOutput{}, options).(ListBlueprintsResultOutput)
 }
 
 type ListBlueprintsOutputArgs struct {
+	// Query params to send with the API request.
+	QueryParams ListBlueprintsQueryParamsPtrInput `pulumi:"queryParams"`
 }
 
 func (ListBlueprintsOutputArgs) ElementType() reflect.Type {

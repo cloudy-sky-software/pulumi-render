@@ -16,6 +16,8 @@ type ScaleService struct {
 	pulumi.CustomResourceState
 
 	NumInstances pulumi.IntOutput `pulumi:"numInstances"`
+	// Query params to send with the API requests for this resource.
+	QueryParams ScaleServiceQueryParamsPtrOutput `pulumi:"queryParams"`
 }
 
 // NewScaleService registers a new resource with the given unique name, arguments, and options.
@@ -62,6 +64,8 @@ func (ScaleServiceState) ElementType() reflect.Type {
 
 type scaleServiceArgs struct {
 	NumInstances int `pulumi:"numInstances"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *ScaleServiceQueryParams `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId *string `pulumi:"serviceId"`
 }
@@ -69,6 +73,8 @@ type scaleServiceArgs struct {
 // The set of arguments for constructing a ScaleService resource.
 type ScaleServiceArgs struct {
 	NumInstances pulumi.IntInput
+	// Query params to send with the API requests for this resource.
+	QueryParams ScaleServiceQueryParamsPtrInput
 	// The ID of the service
 	ServiceId pulumi.StringPtrInput
 }
@@ -112,6 +118,11 @@ func (o ScaleServiceOutput) ToScaleServiceOutputWithContext(ctx context.Context)
 
 func (o ScaleServiceOutput) NumInstances() pulumi.IntOutput {
 	return o.ApplyT(func(v *ScaleService) pulumi.IntOutput { return v.NumInstances }).(pulumi.IntOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o ScaleServiceOutput) QueryParams() ScaleServiceQueryParamsPtrOutput {
+	return o.ApplyT(func(v *ScaleService) ScaleServiceQueryParamsPtrOutput { return v.QueryParams }).(ScaleServiceQueryParamsPtrOutput)
 }
 
 func init() {

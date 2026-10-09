@@ -14,20 +14,40 @@ namespace Pulumi.Render.Users
         public static Task<GetUserResult> InvokeAsync(GetUserArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetUserResult>("render:users:getUser", args ?? new GetUserArgs(), options.WithDefaults());
 
-        public static Output<GetUserResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetUserResult>("render:users:getUser", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<GetUserResult> Invoke(GetUserInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetUserResult>("render:users:getUser", args ?? new GetUserInvokeArgs(), options.WithDefaults());
 
-        public static Output<GetUserResult> Invoke(InvokeOutputOptions options)
-            => global::Pulumi.Deployment.Instance.Invoke<GetUserResult>("render:users:getUser", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<GetUserResult> Invoke(GetUserInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetUserResult>("render:users:getUser", args ?? new GetUserInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class GetUserArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Inputs.GetUserQueryParams? QueryParams { get; set; }
+
         public GetUserArgs()
         {
         }
         public static new GetUserArgs Empty => new GetUserArgs();
+    }
+
+    public sealed class GetUserInvokeArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.GetUserQueryParamsArgs>? QueryParams { get; set; }
+
+        public GetUserInvokeArgs()
+        {
+        }
+        public static new GetUserInvokeArgs Empty => new GetUserInvokeArgs();
     }
 
 

@@ -150,7 +150,7 @@ export const listSecretFilesForService: typeof import("./listSecretFilesForServi
 export const listSecretFilesForServiceOutput: typeof import("./listSecretFilesForService").listSecretFilesForServiceOutput = null as any;
 utilities.lazyLoad(exports, ["listSecretFilesForService","listSecretFilesForServiceOutput"], () => require("./listSecretFilesForService"));
 
-export { ListServicesArgs, ListServicesResult } from "./listServices";
+export { ListServicesArgs, ListServicesResult, ListServicesOutputArgs } from "./listServices";
 export const listServices: typeof import("./listServices").listServices = null as any;
 export const listServicesOutput: typeof import("./listServices").listServicesOutput = null as any;
 utilities.lazyLoad(exports, ["listServices","listServicesOutput"], () => require("./listServices"));

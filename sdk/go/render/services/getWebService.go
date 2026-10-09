@@ -22,6 +22,8 @@ func LookupWebService(ctx *pulumi.Context, args *LookupWebServiceArgs, opts ...p
 }
 
 type LookupWebServiceArgs struct {
+	// Query params to send with the API request.
+	QueryParams *GetWebServiceQueryParams `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId string `pulumi:"serviceId"`
 }
@@ -73,6 +75,8 @@ func LookupWebServiceOutput(ctx *pulumi.Context, args LookupWebServiceOutputArgs
 }
 
 type LookupWebServiceOutputArgs struct {
+	// Query params to send with the API request.
+	QueryParams GetWebServiceQueryParamsPtrInput `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }

@@ -22,6 +22,8 @@ func GetBandwidthSource(ctx *pulumi.Context, args *GetBandwidthSourceArgs, opts 
 }
 
 type GetBandwidthSourceArgs struct {
+	// Query params to send with the API request.
+	QueryParams *GetBandwidthSourceQueryParams `pulumi:"queryParams"`
 }
 
 type GetBandwidthSourceResult struct {
@@ -34,6 +36,8 @@ func GetBandwidthSourceOutput(ctx *pulumi.Context, args GetBandwidthSourceOutput
 }
 
 type GetBandwidthSourceOutputArgs struct {
+	// Query params to send with the API request.
+	QueryParams GetBandwidthSourceQueryParamsPtrInput `pulumi:"queryParams"`
 }
 
 func (GetBandwidthSourceOutputArgs) ElementType() reflect.Type {

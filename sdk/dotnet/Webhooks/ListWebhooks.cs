@@ -14,20 +14,40 @@ namespace Pulumi.Render.Webhooks
         public static Task<ListWebhooksResult> InvokeAsync(ListWebhooksArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ListWebhooksResult>("render:webhooks:listWebhooks", args ?? new ListWebhooksArgs(), options.WithDefaults());
 
-        public static Output<ListWebhooksResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<ListWebhooksResult>("render:webhooks:listWebhooks", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<ListWebhooksResult> Invoke(ListWebhooksInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<ListWebhooksResult>("render:webhooks:listWebhooks", args ?? new ListWebhooksInvokeArgs(), options.WithDefaults());
 
-        public static Output<ListWebhooksResult> Invoke(InvokeOutputOptions options)
-            => global::Pulumi.Deployment.Instance.Invoke<ListWebhooksResult>("render:webhooks:listWebhooks", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<ListWebhooksResult> Invoke(ListWebhooksInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<ListWebhooksResult>("render:webhooks:listWebhooks", args ?? new ListWebhooksInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class ListWebhooksArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Inputs.ListWebhooksQueryParams? QueryParams { get; set; }
+
         public ListWebhooksArgs()
         {
         }
         public static new ListWebhooksArgs Empty => new ListWebhooksArgs();
+    }
+
+    public sealed class ListWebhooksInvokeArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.ListWebhooksQueryParamsArgs>? QueryParams { get; set; }
+
+        public ListWebhooksInvokeArgs()
+        {
+        }
+        public static new ListWebhooksInvokeArgs Empty => new ListWebhooksInvokeArgs();
     }
 
 

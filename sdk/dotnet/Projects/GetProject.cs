@@ -27,6 +27,12 @@ namespace Pulumi.Render.Projects
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
 
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Inputs.GetProjectQueryParams? QueryParams { get; set; }
+
         public GetProjectArgs()
         {
         }
@@ -37,6 +43,12 @@ namespace Pulumi.Render.Projects
     {
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
+
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.GetProjectQueryParamsArgs>? QueryParams { get; set; }
 
         public GetProjectInvokeArgs()
         {

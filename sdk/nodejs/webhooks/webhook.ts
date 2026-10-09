@@ -44,6 +44,10 @@ export class Webhook extends pulumi.CustomResource {
      * The ID of the owner (team or personal user) whose resources should be returned
      */
     declare public readonly ownerId: pulumi.Output<string>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.webhooks.WebhookQueryParams | undefined>;
     declare public /*out*/ readonly secret: pulumi.Output<string>;
     declare public readonly url: pulumi.Output<string>;
 
@@ -74,6 +78,7 @@ export class Webhook extends pulumi.CustomResource {
             resourceInputs["eventFilter"] = args?.eventFilter;
             resourceInputs["name"] = args?.name;
             resourceInputs["ownerId"] = args?.ownerId;
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["url"] = args?.url;
             resourceInputs["secret"] = undefined /*out*/;
         } else {
@@ -81,6 +86,7 @@ export class Webhook extends pulumi.CustomResource {
             resourceInputs["eventFilter"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;
             resourceInputs["ownerId"] = undefined /*out*/;
+            resourceInputs["queryParams"] = undefined /*out*/;
             resourceInputs["secret"] = undefined /*out*/;
             resourceInputs["url"] = undefined /*out*/;
         }
@@ -103,5 +109,9 @@ export interface WebhookArgs {
      * The ID of the owner (team or personal user) whose resources should be returned
      */
     ownerId: pulumi.Input<string>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.webhooks.WebhookQueryParamsArgs | undefined>;
     url: pulumi.Input<string>;
 }

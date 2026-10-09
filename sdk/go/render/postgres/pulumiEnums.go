@@ -102,6 +102,433 @@ func (o GetPostgresRecoveryInfoPropertiesRecoveryStatusPtrOutput) ToStringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
+// Defaults to "oregon"
+type ListPostgresQueryParamsRegionItem string
+
+const (
+	ListPostgresQueryParamsRegionItemFrankfurt = ListPostgresQueryParamsRegionItem("frankfurt")
+	ListPostgresQueryParamsRegionItemOregon    = ListPostgresQueryParamsRegionItem("oregon")
+	ListPostgresQueryParamsRegionItemOhio      = ListPostgresQueryParamsRegionItem("ohio")
+	ListPostgresQueryParamsRegionItemSingapore = ListPostgresQueryParamsRegionItem("singapore")
+	ListPostgresQueryParamsRegionItemVirginia  = ListPostgresQueryParamsRegionItem("virginia")
+)
+
+func (ListPostgresQueryParamsRegionItem) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListPostgresQueryParamsRegionItem)(nil)).Elem()
+}
+
+func (e ListPostgresQueryParamsRegionItem) ToListPostgresQueryParamsRegionItemOutput() ListPostgresQueryParamsRegionItemOutput {
+	return pulumi.ToOutput(e).(ListPostgresQueryParamsRegionItemOutput)
+}
+
+func (e ListPostgresQueryParamsRegionItem) ToListPostgresQueryParamsRegionItemOutputWithContext(ctx context.Context) ListPostgresQueryParamsRegionItemOutput {
+	return pulumi.ToOutputWithContext(ctx, e).(ListPostgresQueryParamsRegionItemOutput)
+}
+
+func (e ListPostgresQueryParamsRegionItem) ToListPostgresQueryParamsRegionItemPtrOutput() ListPostgresQueryParamsRegionItemPtrOutput {
+	return e.ToListPostgresQueryParamsRegionItemPtrOutputWithContext(context.Background())
+}
+
+func (e ListPostgresQueryParamsRegionItem) ToListPostgresQueryParamsRegionItemPtrOutputWithContext(ctx context.Context) ListPostgresQueryParamsRegionItemPtrOutput {
+	return ListPostgresQueryParamsRegionItem(e).ToListPostgresQueryParamsRegionItemOutputWithContext(ctx).ToListPostgresQueryParamsRegionItemPtrOutputWithContext(ctx)
+}
+
+func (e ListPostgresQueryParamsRegionItem) ToStringOutput() pulumi.StringOutput {
+	return pulumi.ToOutput(pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e ListPostgresQueryParamsRegionItem) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return pulumi.ToOutputWithContext(ctx, pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e ListPostgresQueryParamsRegionItem) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringPtrOutputWithContext(context.Background())
+}
+
+func (e ListPostgresQueryParamsRegionItem) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
+}
+
+type ListPostgresQueryParamsRegionItemOutput struct{ *pulumi.OutputState }
+
+func (ListPostgresQueryParamsRegionItemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListPostgresQueryParamsRegionItem)(nil)).Elem()
+}
+
+func (o ListPostgresQueryParamsRegionItemOutput) ToListPostgresQueryParamsRegionItemOutput() ListPostgresQueryParamsRegionItemOutput {
+	return o
+}
+
+func (o ListPostgresQueryParamsRegionItemOutput) ToListPostgresQueryParamsRegionItemOutputWithContext(ctx context.Context) ListPostgresQueryParamsRegionItemOutput {
+	return o
+}
+
+func (o ListPostgresQueryParamsRegionItemOutput) ToListPostgresQueryParamsRegionItemPtrOutput() ListPostgresQueryParamsRegionItemPtrOutput {
+	return o.ToListPostgresQueryParamsRegionItemPtrOutputWithContext(context.Background())
+}
+
+func (o ListPostgresQueryParamsRegionItemOutput) ToListPostgresQueryParamsRegionItemPtrOutputWithContext(ctx context.Context) ListPostgresQueryParamsRegionItemPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListPostgresQueryParamsRegionItem) *ListPostgresQueryParamsRegionItem {
+		return &v
+	}).(ListPostgresQueryParamsRegionItemPtrOutput)
+}
+
+func (o ListPostgresQueryParamsRegionItemOutput) ToStringOutput() pulumi.StringOutput {
+	return o.ToStringOutputWithContext(context.Background())
+}
+
+func (o ListPostgresQueryParamsRegionItemOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e ListPostgresQueryParamsRegionItem) string {
+		return string(e)
+	}).(pulumi.StringOutput)
+}
+
+func (o ListPostgresQueryParamsRegionItemOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o ListPostgresQueryParamsRegionItemOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e ListPostgresQueryParamsRegionItem) *string {
+		v := string(e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+type ListPostgresQueryParamsRegionItemPtrOutput struct{ *pulumi.OutputState }
+
+func (ListPostgresQueryParamsRegionItemPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListPostgresQueryParamsRegionItem)(nil)).Elem()
+}
+
+func (o ListPostgresQueryParamsRegionItemPtrOutput) ToListPostgresQueryParamsRegionItemPtrOutput() ListPostgresQueryParamsRegionItemPtrOutput {
+	return o
+}
+
+func (o ListPostgresQueryParamsRegionItemPtrOutput) ToListPostgresQueryParamsRegionItemPtrOutputWithContext(ctx context.Context) ListPostgresQueryParamsRegionItemPtrOutput {
+	return o
+}
+
+func (o ListPostgresQueryParamsRegionItemPtrOutput) Elem() ListPostgresQueryParamsRegionItemOutput {
+	return o.ApplyT(func(v *ListPostgresQueryParamsRegionItem) ListPostgresQueryParamsRegionItem {
+		if v != nil {
+			return *v
+		}
+		var ret ListPostgresQueryParamsRegionItem
+		return ret
+	}).(ListPostgresQueryParamsRegionItemOutput)
+}
+
+func (o ListPostgresQueryParamsRegionItemPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o ListPostgresQueryParamsRegionItemPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *ListPostgresQueryParamsRegionItem) *string {
+		if e == nil {
+			return nil
+		}
+		v := string(*e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+// ListPostgresQueryParamsRegionItemInput is an input type that accepts values of the ListPostgresQueryParamsRegionItem enum
+// A concrete instance of `ListPostgresQueryParamsRegionItemInput` can be one of the following:
+//
+//	ListPostgresQueryParamsRegionItemFrankfurt
+//	ListPostgresQueryParamsRegionItemOregon
+//	ListPostgresQueryParamsRegionItemOhio
+//	ListPostgresQueryParamsRegionItemSingapore
+//	ListPostgresQueryParamsRegionItemVirginia
+type ListPostgresQueryParamsRegionItemInput interface {
+	pulumi.Input
+
+	ToListPostgresQueryParamsRegionItemOutput() ListPostgresQueryParamsRegionItemOutput
+	ToListPostgresQueryParamsRegionItemOutputWithContext(context.Context) ListPostgresQueryParamsRegionItemOutput
+}
+
+var listPostgresQueryParamsRegionItemPtrType = reflect.TypeOf((**ListPostgresQueryParamsRegionItem)(nil)).Elem()
+
+type ListPostgresQueryParamsRegionItemPtrInput interface {
+	pulumi.Input
+
+	ToListPostgresQueryParamsRegionItemPtrOutput() ListPostgresQueryParamsRegionItemPtrOutput
+	ToListPostgresQueryParamsRegionItemPtrOutputWithContext(context.Context) ListPostgresQueryParamsRegionItemPtrOutput
+}
+
+type listPostgresQueryParamsRegionItemPtr string
+
+func ListPostgresQueryParamsRegionItemPtr(v string) ListPostgresQueryParamsRegionItemPtrInput {
+	return (*listPostgresQueryParamsRegionItemPtr)(&v)
+}
+
+func (*listPostgresQueryParamsRegionItemPtr) ElementType() reflect.Type {
+	return listPostgresQueryParamsRegionItemPtrType
+}
+
+func (in *listPostgresQueryParamsRegionItemPtr) ToListPostgresQueryParamsRegionItemPtrOutput() ListPostgresQueryParamsRegionItemPtrOutput {
+	return pulumi.ToOutput(in).(ListPostgresQueryParamsRegionItemPtrOutput)
+}
+
+func (in *listPostgresQueryParamsRegionItemPtr) ToListPostgresQueryParamsRegionItemPtrOutputWithContext(ctx context.Context) ListPostgresQueryParamsRegionItemPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, in).(ListPostgresQueryParamsRegionItemPtrOutput)
+}
+
+// ListPostgresQueryParamsRegionItemArrayInput is an input type that accepts ListPostgresQueryParamsRegionItemArray and ListPostgresQueryParamsRegionItemArrayOutput values.
+// You can construct a concrete instance of `ListPostgresQueryParamsRegionItemArrayInput` via:
+//
+//	ListPostgresQueryParamsRegionItemArray{ ListPostgresQueryParamsRegionItemArgs{...} }
+type ListPostgresQueryParamsRegionItemArrayInput interface {
+	pulumi.Input
+
+	ToListPostgresQueryParamsRegionItemArrayOutput() ListPostgresQueryParamsRegionItemArrayOutput
+	ToListPostgresQueryParamsRegionItemArrayOutputWithContext(context.Context) ListPostgresQueryParamsRegionItemArrayOutput
+}
+
+type ListPostgresQueryParamsRegionItemArray []ListPostgresQueryParamsRegionItem
+
+func (ListPostgresQueryParamsRegionItemArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListPostgresQueryParamsRegionItem)(nil)).Elem()
+}
+
+func (i ListPostgresQueryParamsRegionItemArray) ToListPostgresQueryParamsRegionItemArrayOutput() ListPostgresQueryParamsRegionItemArrayOutput {
+	return i.ToListPostgresQueryParamsRegionItemArrayOutputWithContext(context.Background())
+}
+
+func (i ListPostgresQueryParamsRegionItemArray) ToListPostgresQueryParamsRegionItemArrayOutputWithContext(ctx context.Context) ListPostgresQueryParamsRegionItemArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListPostgresQueryParamsRegionItemArrayOutput)
+}
+
+type ListPostgresQueryParamsRegionItemArrayOutput struct{ *pulumi.OutputState }
+
+func (ListPostgresQueryParamsRegionItemArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListPostgresQueryParamsRegionItem)(nil)).Elem()
+}
+
+func (o ListPostgresQueryParamsRegionItemArrayOutput) ToListPostgresQueryParamsRegionItemArrayOutput() ListPostgresQueryParamsRegionItemArrayOutput {
+	return o
+}
+
+func (o ListPostgresQueryParamsRegionItemArrayOutput) ToListPostgresQueryParamsRegionItemArrayOutputWithContext(ctx context.Context) ListPostgresQueryParamsRegionItemArrayOutput {
+	return o
+}
+
+func (o ListPostgresQueryParamsRegionItemArrayOutput) Index(i pulumi.IntInput) ListPostgresQueryParamsRegionItemOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListPostgresQueryParamsRegionItem {
+		return vs[0].([]ListPostgresQueryParamsRegionItem)[vs[1].(int)]
+	}).(ListPostgresQueryParamsRegionItemOutput)
+}
+
+type ListPostgresQueryParamsSuspendedItem string
+
+const (
+	ListPostgresQueryParamsSuspendedItemSuspended    = ListPostgresQueryParamsSuspendedItem("suspended")
+	ListPostgresQueryParamsSuspendedItemNotSuspended = ListPostgresQueryParamsSuspendedItem("not_suspended")
+)
+
+func (ListPostgresQueryParamsSuspendedItem) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListPostgresQueryParamsSuspendedItem)(nil)).Elem()
+}
+
+func (e ListPostgresQueryParamsSuspendedItem) ToListPostgresQueryParamsSuspendedItemOutput() ListPostgresQueryParamsSuspendedItemOutput {
+	return pulumi.ToOutput(e).(ListPostgresQueryParamsSuspendedItemOutput)
+}
+
+func (e ListPostgresQueryParamsSuspendedItem) ToListPostgresQueryParamsSuspendedItemOutputWithContext(ctx context.Context) ListPostgresQueryParamsSuspendedItemOutput {
+	return pulumi.ToOutputWithContext(ctx, e).(ListPostgresQueryParamsSuspendedItemOutput)
+}
+
+func (e ListPostgresQueryParamsSuspendedItem) ToListPostgresQueryParamsSuspendedItemPtrOutput() ListPostgresQueryParamsSuspendedItemPtrOutput {
+	return e.ToListPostgresQueryParamsSuspendedItemPtrOutputWithContext(context.Background())
+}
+
+func (e ListPostgresQueryParamsSuspendedItem) ToListPostgresQueryParamsSuspendedItemPtrOutputWithContext(ctx context.Context) ListPostgresQueryParamsSuspendedItemPtrOutput {
+	return ListPostgresQueryParamsSuspendedItem(e).ToListPostgresQueryParamsSuspendedItemOutputWithContext(ctx).ToListPostgresQueryParamsSuspendedItemPtrOutputWithContext(ctx)
+}
+
+func (e ListPostgresQueryParamsSuspendedItem) ToStringOutput() pulumi.StringOutput {
+	return pulumi.ToOutput(pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e ListPostgresQueryParamsSuspendedItem) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return pulumi.ToOutputWithContext(ctx, pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e ListPostgresQueryParamsSuspendedItem) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringPtrOutputWithContext(context.Background())
+}
+
+func (e ListPostgresQueryParamsSuspendedItem) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
+}
+
+type ListPostgresQueryParamsSuspendedItemOutput struct{ *pulumi.OutputState }
+
+func (ListPostgresQueryParamsSuspendedItemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListPostgresQueryParamsSuspendedItem)(nil)).Elem()
+}
+
+func (o ListPostgresQueryParamsSuspendedItemOutput) ToListPostgresQueryParamsSuspendedItemOutput() ListPostgresQueryParamsSuspendedItemOutput {
+	return o
+}
+
+func (o ListPostgresQueryParamsSuspendedItemOutput) ToListPostgresQueryParamsSuspendedItemOutputWithContext(ctx context.Context) ListPostgresQueryParamsSuspendedItemOutput {
+	return o
+}
+
+func (o ListPostgresQueryParamsSuspendedItemOutput) ToListPostgresQueryParamsSuspendedItemPtrOutput() ListPostgresQueryParamsSuspendedItemPtrOutput {
+	return o.ToListPostgresQueryParamsSuspendedItemPtrOutputWithContext(context.Background())
+}
+
+func (o ListPostgresQueryParamsSuspendedItemOutput) ToListPostgresQueryParamsSuspendedItemPtrOutputWithContext(ctx context.Context) ListPostgresQueryParamsSuspendedItemPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListPostgresQueryParamsSuspendedItem) *ListPostgresQueryParamsSuspendedItem {
+		return &v
+	}).(ListPostgresQueryParamsSuspendedItemPtrOutput)
+}
+
+func (o ListPostgresQueryParamsSuspendedItemOutput) ToStringOutput() pulumi.StringOutput {
+	return o.ToStringOutputWithContext(context.Background())
+}
+
+func (o ListPostgresQueryParamsSuspendedItemOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e ListPostgresQueryParamsSuspendedItem) string {
+		return string(e)
+	}).(pulumi.StringOutput)
+}
+
+func (o ListPostgresQueryParamsSuspendedItemOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o ListPostgresQueryParamsSuspendedItemOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e ListPostgresQueryParamsSuspendedItem) *string {
+		v := string(e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+type ListPostgresQueryParamsSuspendedItemPtrOutput struct{ *pulumi.OutputState }
+
+func (ListPostgresQueryParamsSuspendedItemPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListPostgresQueryParamsSuspendedItem)(nil)).Elem()
+}
+
+func (o ListPostgresQueryParamsSuspendedItemPtrOutput) ToListPostgresQueryParamsSuspendedItemPtrOutput() ListPostgresQueryParamsSuspendedItemPtrOutput {
+	return o
+}
+
+func (o ListPostgresQueryParamsSuspendedItemPtrOutput) ToListPostgresQueryParamsSuspendedItemPtrOutputWithContext(ctx context.Context) ListPostgresQueryParamsSuspendedItemPtrOutput {
+	return o
+}
+
+func (o ListPostgresQueryParamsSuspendedItemPtrOutput) Elem() ListPostgresQueryParamsSuspendedItemOutput {
+	return o.ApplyT(func(v *ListPostgresQueryParamsSuspendedItem) ListPostgresQueryParamsSuspendedItem {
+		if v != nil {
+			return *v
+		}
+		var ret ListPostgresQueryParamsSuspendedItem
+		return ret
+	}).(ListPostgresQueryParamsSuspendedItemOutput)
+}
+
+func (o ListPostgresQueryParamsSuspendedItemPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o ListPostgresQueryParamsSuspendedItemPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *ListPostgresQueryParamsSuspendedItem) *string {
+		if e == nil {
+			return nil
+		}
+		v := string(*e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+// ListPostgresQueryParamsSuspendedItemInput is an input type that accepts values of the ListPostgresQueryParamsSuspendedItem enum
+// A concrete instance of `ListPostgresQueryParamsSuspendedItemInput` can be one of the following:
+//
+//	ListPostgresQueryParamsSuspendedItemSuspended
+//	ListPostgresQueryParamsSuspendedItemNotSuspended
+type ListPostgresQueryParamsSuspendedItemInput interface {
+	pulumi.Input
+
+	ToListPostgresQueryParamsSuspendedItemOutput() ListPostgresQueryParamsSuspendedItemOutput
+	ToListPostgresQueryParamsSuspendedItemOutputWithContext(context.Context) ListPostgresQueryParamsSuspendedItemOutput
+}
+
+var listPostgresQueryParamsSuspendedItemPtrType = reflect.TypeOf((**ListPostgresQueryParamsSuspendedItem)(nil)).Elem()
+
+type ListPostgresQueryParamsSuspendedItemPtrInput interface {
+	pulumi.Input
+
+	ToListPostgresQueryParamsSuspendedItemPtrOutput() ListPostgresQueryParamsSuspendedItemPtrOutput
+	ToListPostgresQueryParamsSuspendedItemPtrOutputWithContext(context.Context) ListPostgresQueryParamsSuspendedItemPtrOutput
+}
+
+type listPostgresQueryParamsSuspendedItemPtr string
+
+func ListPostgresQueryParamsSuspendedItemPtr(v string) ListPostgresQueryParamsSuspendedItemPtrInput {
+	return (*listPostgresQueryParamsSuspendedItemPtr)(&v)
+}
+
+func (*listPostgresQueryParamsSuspendedItemPtr) ElementType() reflect.Type {
+	return listPostgresQueryParamsSuspendedItemPtrType
+}
+
+func (in *listPostgresQueryParamsSuspendedItemPtr) ToListPostgresQueryParamsSuspendedItemPtrOutput() ListPostgresQueryParamsSuspendedItemPtrOutput {
+	return pulumi.ToOutput(in).(ListPostgresQueryParamsSuspendedItemPtrOutput)
+}
+
+func (in *listPostgresQueryParamsSuspendedItemPtr) ToListPostgresQueryParamsSuspendedItemPtrOutputWithContext(ctx context.Context) ListPostgresQueryParamsSuspendedItemPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, in).(ListPostgresQueryParamsSuspendedItemPtrOutput)
+}
+
+// ListPostgresQueryParamsSuspendedItemArrayInput is an input type that accepts ListPostgresQueryParamsSuspendedItemArray and ListPostgresQueryParamsSuspendedItemArrayOutput values.
+// You can construct a concrete instance of `ListPostgresQueryParamsSuspendedItemArrayInput` via:
+//
+//	ListPostgresQueryParamsSuspendedItemArray{ ListPostgresQueryParamsSuspendedItemArgs{...} }
+type ListPostgresQueryParamsSuspendedItemArrayInput interface {
+	pulumi.Input
+
+	ToListPostgresQueryParamsSuspendedItemArrayOutput() ListPostgresQueryParamsSuspendedItemArrayOutput
+	ToListPostgresQueryParamsSuspendedItemArrayOutputWithContext(context.Context) ListPostgresQueryParamsSuspendedItemArrayOutput
+}
+
+type ListPostgresQueryParamsSuspendedItemArray []ListPostgresQueryParamsSuspendedItem
+
+func (ListPostgresQueryParamsSuspendedItemArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListPostgresQueryParamsSuspendedItem)(nil)).Elem()
+}
+
+func (i ListPostgresQueryParamsSuspendedItemArray) ToListPostgresQueryParamsSuspendedItemArrayOutput() ListPostgresQueryParamsSuspendedItemArrayOutput {
+	return i.ToListPostgresQueryParamsSuspendedItemArrayOutputWithContext(context.Background())
+}
+
+func (i ListPostgresQueryParamsSuspendedItemArray) ToListPostgresQueryParamsSuspendedItemArrayOutputWithContext(ctx context.Context) ListPostgresQueryParamsSuspendedItemArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListPostgresQueryParamsSuspendedItemArrayOutput)
+}
+
+type ListPostgresQueryParamsSuspendedItemArrayOutput struct{ *pulumi.OutputState }
+
+func (ListPostgresQueryParamsSuspendedItemArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListPostgresQueryParamsSuspendedItem)(nil)).Elem()
+}
+
+func (o ListPostgresQueryParamsSuspendedItemArrayOutput) ToListPostgresQueryParamsSuspendedItemArrayOutput() ListPostgresQueryParamsSuspendedItemArrayOutput {
+	return o
+}
+
+func (o ListPostgresQueryParamsSuspendedItemArrayOutput) ToListPostgresQueryParamsSuspendedItemArrayOutputWithContext(ctx context.Context) ListPostgresQueryParamsSuspendedItemArrayOutput {
+	return o
+}
+
+func (o ListPostgresQueryParamsSuspendedItemArrayOutput) Index(i pulumi.IntInput) ListPostgresQueryParamsSuspendedItemOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListPostgresQueryParamsSuspendedItem {
+		return vs[0].([]ListPostgresQueryParamsSuspendedItem)[vs[1].(int)]
+	}).(ListPostgresQueryParamsSuspendedItemOutput)
+}
+
 type OwnerType string
 
 const (
@@ -2658,12 +3085,24 @@ func (in *versionPtr) ToVersionPtrOutputWithContext(ctx context.Context) Version
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ListPostgresQueryParamsRegionItemInput)(nil)).Elem(), ListPostgresQueryParamsRegionItem("frankfurt"))
+	pulumi.RegisterInputType(reflect.TypeOf((*ListPostgresQueryParamsRegionItemPtrInput)(nil)).Elem(), ListPostgresQueryParamsRegionItem("frankfurt"))
+	pulumi.RegisterInputType(reflect.TypeOf((*ListPostgresQueryParamsRegionItemArrayInput)(nil)).Elem(), ListPostgresQueryParamsRegionItemArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListPostgresQueryParamsSuspendedItemInput)(nil)).Elem(), ListPostgresQueryParamsSuspendedItem("suspended"))
+	pulumi.RegisterInputType(reflect.TypeOf((*ListPostgresQueryParamsSuspendedItemPtrInput)(nil)).Elem(), ListPostgresQueryParamsSuspendedItem("suspended"))
+	pulumi.RegisterInputType(reflect.TypeOf((*ListPostgresQueryParamsSuspendedItemArrayInput)(nil)).Elem(), ListPostgresQueryParamsSuspendedItemArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PlanInput)(nil)).Elem(), Plan("free"))
 	pulumi.RegisterInputType(reflect.TypeOf((*PlanPtrInput)(nil)).Elem(), Plan("free"))
 	pulumi.RegisterInputType(reflect.TypeOf((*VersionInput)(nil)).Elem(), Version("11"))
 	pulumi.RegisterInputType(reflect.TypeOf((*VersionPtrInput)(nil)).Elem(), Version("11"))
 	pulumi.RegisterOutputType(GetPostgresRecoveryInfoPropertiesRecoveryStatusOutput{})
 	pulumi.RegisterOutputType(GetPostgresRecoveryInfoPropertiesRecoveryStatusPtrOutput{})
+	pulumi.RegisterOutputType(ListPostgresQueryParamsRegionItemOutput{})
+	pulumi.RegisterOutputType(ListPostgresQueryParamsRegionItemPtrOutput{})
+	pulumi.RegisterOutputType(ListPostgresQueryParamsRegionItemArrayOutput{})
+	pulumi.RegisterOutputType(ListPostgresQueryParamsSuspendedItemOutput{})
+	pulumi.RegisterOutputType(ListPostgresQueryParamsSuspendedItemPtrOutput{})
+	pulumi.RegisterOutputType(ListPostgresQueryParamsSuspendedItemArrayOutput{})
 	pulumi.RegisterOutputType(OwnerTypeOutput{})
 	pulumi.RegisterOutputType(OwnerTypePtrOutput{})
 	pulumi.RegisterOutputType(PlanOutput{})

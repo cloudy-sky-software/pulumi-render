@@ -11,18 +11,31 @@ export function listActiveConnections(args?: ListActiveConnectionsArgs, opts?: p
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:metrics:listActiveConnections", {
+        "queryParams": args.queryParams ? inputs.metrics.listActiveConnectionsQueryParamsProvideDefaults(args.queryParams) : undefined,
     }, opts);
 }
 
 export interface ListActiveConnectionsArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.metrics.ListActiveConnectionsQueryParams;
 }
 
 export interface ListActiveConnectionsResult {
     readonly items: outputs.metrics.ListActiveConnectionsItemProperties[];
 }
-export function listActiveConnectionsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListActiveConnectionsResult> {
+export function listActiveConnectionsOutput(args?: ListActiveConnectionsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListActiveConnectionsResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:metrics:listActiveConnections", {
+        "queryParams": pulumi.output(args.queryParams).apply(v => v === undefined ? undefined : inputs.metrics.listActiveConnectionsQueryParamsProvideDefaults(v)),
     }, opts);
 }
 
+export interface ListActiveConnectionsOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.metrics.ListActiveConnectionsQueryParamsArgs | undefined>;
+}

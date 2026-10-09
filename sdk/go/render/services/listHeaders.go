@@ -14,7 +14,7 @@ import (
 func ListHeaders(ctx *pulumi.Context, args *ListHeadersArgs, opts ...pulumi.InvokeOption) (*ListHeadersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListHeadersResult
-	err := ctx.Invoke("render:services:listHeaders", args, &rv, opts...)
+	err := ctx.Invoke("render:services:listHeaders", args.Defaults(), &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -22,8 +22,21 @@ func ListHeaders(ctx *pulumi.Context, args *ListHeadersArgs, opts ...pulumi.Invo
 }
 
 type ListHeadersArgs struct {
+	// Query params to send with the API request.
+	QueryParams *ListHeadersQueryParams `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId string `pulumi:"serviceId"`
+}
+
+// Defaults sets the appropriate defaults for ListHeadersArgs
+func (val *ListHeadersArgs) Defaults() *ListHeadersArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	tmp.QueryParams = tmp.QueryParams.Defaults()
+
+	return &tmp
 }
 
 type ListHeadersResult struct {
@@ -31,11 +44,18 @@ type ListHeadersResult struct {
 }
 
 func ListHeadersOutput(ctx *pulumi.Context, args ListHeadersOutputArgs, opts ...pulumi.InvokeOption) ListHeadersResultOutput {
+	outputArgs := pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) *ListHeadersArgs {
+			args := v.(ListHeadersArgs)
+			return args.Defaults()
+		})
 	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-	return ctx.InvokeOutput("render:services:listHeaders", args, ListHeadersResultOutput{}, options).(ListHeadersResultOutput)
+	return ctx.InvokeOutput("render:services:listHeaders", outputArgs, ListHeadersResultOutput{}, options).(ListHeadersResultOutput)
 }
 
 type ListHeadersOutputArgs struct {
+	// Query params to send with the API request.
+	QueryParams ListHeadersQueryParamsPtrInput `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }

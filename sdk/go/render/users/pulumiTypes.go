@@ -4,10 +4,154 @@
 package users
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/cloudy-sky-software/pulumi-render/sdk/go/render/internal"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 var _ = internal.GetEnvOrDefault
+
+// Query params for the API request.
+type GetUserQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// GetUserQueryParamsInput is an input type that accepts GetUserQueryParamsArgs and GetUserQueryParamsOutput values.
+// You can construct a concrete instance of `GetUserQueryParamsInput` via:
+//
+//	GetUserQueryParamsArgs{...}
+type GetUserQueryParamsInput interface {
+	pulumi.Input
+
+	ToGetUserQueryParamsOutput() GetUserQueryParamsOutput
+	ToGetUserQueryParamsOutputWithContext(context.Context) GetUserQueryParamsOutput
+}
+
+// Query params for the API request.
+type GetUserQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (GetUserQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUserQueryParams)(nil)).Elem()
+}
+
+func (i GetUserQueryParamsArgs) ToGetUserQueryParamsOutput() GetUserQueryParamsOutput {
+	return i.ToGetUserQueryParamsOutputWithContext(context.Background())
+}
+
+func (i GetUserQueryParamsArgs) ToGetUserQueryParamsOutputWithContext(ctx context.Context) GetUserQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUserQueryParamsOutput)
+}
+
+func (i GetUserQueryParamsArgs) ToGetUserQueryParamsPtrOutput() GetUserQueryParamsPtrOutput {
+	return i.ToGetUserQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i GetUserQueryParamsArgs) ToGetUserQueryParamsPtrOutputWithContext(ctx context.Context) GetUserQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUserQueryParamsOutput).ToGetUserQueryParamsPtrOutputWithContext(ctx)
+}
+
+// GetUserQueryParamsPtrInput is an input type that accepts GetUserQueryParamsArgs, GetUserQueryParamsPtr and GetUserQueryParamsPtrOutput values.
+// You can construct a concrete instance of `GetUserQueryParamsPtrInput` via:
+//
+//	        GetUserQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetUserQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToGetUserQueryParamsPtrOutput() GetUserQueryParamsPtrOutput
+	ToGetUserQueryParamsPtrOutputWithContext(context.Context) GetUserQueryParamsPtrOutput
+}
+
+type getUserQueryParamsPtrType GetUserQueryParamsArgs
+
+func GetUserQueryParamsPtr(v *GetUserQueryParamsArgs) GetUserQueryParamsPtrInput {
+	return (*getUserQueryParamsPtrType)(v)
+}
+
+func (*getUserQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetUserQueryParams)(nil)).Elem()
+}
+
+func (i *getUserQueryParamsPtrType) ToGetUserQueryParamsPtrOutput() GetUserQueryParamsPtrOutput {
+	return i.ToGetUserQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *getUserQueryParamsPtrType) ToGetUserQueryParamsPtrOutputWithContext(ctx context.Context) GetUserQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUserQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type GetUserQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (GetUserQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUserQueryParams)(nil)).Elem()
+}
+
+func (o GetUserQueryParamsOutput) ToGetUserQueryParamsOutput() GetUserQueryParamsOutput {
+	return o
+}
+
+func (o GetUserQueryParamsOutput) ToGetUserQueryParamsOutputWithContext(ctx context.Context) GetUserQueryParamsOutput {
+	return o
+}
+
+func (o GetUserQueryParamsOutput) ToGetUserQueryParamsPtrOutput() GetUserQueryParamsPtrOutput {
+	return o.ToGetUserQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o GetUserQueryParamsOutput) ToGetUserQueryParamsPtrOutputWithContext(ctx context.Context) GetUserQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetUserQueryParams) *GetUserQueryParams {
+		return &v
+	}).(GetUserQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetUserQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetUserQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type GetUserQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetUserQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetUserQueryParams)(nil)).Elem()
+}
+
+func (o GetUserQueryParamsPtrOutput) ToGetUserQueryParamsPtrOutput() GetUserQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetUserQueryParamsPtrOutput) ToGetUserQueryParamsPtrOutputWithContext(ctx context.Context) GetUserQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetUserQueryParamsPtrOutput) Elem() GetUserQueryParamsOutput {
+	return o.ApplyT(func(v *GetUserQueryParams) GetUserQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret GetUserQueryParams
+		return ret
+	}).(GetUserQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetUserQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetUserQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
 
 type User struct {
 	Email string `pulumi:"email"`
@@ -15,4 +159,8 @@ type User struct {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUserQueryParamsInput)(nil)).Elem(), GetUserQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUserQueryParamsPtrInput)(nil)).Elem(), GetUserQueryParamsArgs{})
+	pulumi.RegisterOutputType(GetUserQueryParamsOutput{})
+	pulumi.RegisterOutputType(GetUserQueryParamsPtrOutput{})
 }

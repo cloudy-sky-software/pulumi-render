@@ -2,6 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export class Disk extends pulumi.CustomResource {
@@ -34,6 +37,10 @@ export class Disk extends pulumi.CustomResource {
     declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     declare public readonly mountPath: pulumi.Output<string>;
     declare public readonly name: pulumi.Output<string>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.disks.DiskQueryParams | undefined>;
     declare public readonly serviceId: pulumi.Output<string>;
     declare public readonly sizeGB: pulumi.Output<number>;
     declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
@@ -60,6 +67,7 @@ export class Disk extends pulumi.CustomResource {
             }
             resourceInputs["mountPath"] = args?.mountPath;
             resourceInputs["name"] = args?.name;
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["serviceId"] = args?.serviceId;
             resourceInputs["sizeGB"] = args?.sizeGB;
             resourceInputs["createdAt"] = undefined /*out*/;
@@ -68,6 +76,7 @@ export class Disk extends pulumi.CustomResource {
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["mountPath"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;
+            resourceInputs["queryParams"] = undefined /*out*/;
             resourceInputs["serviceId"] = undefined /*out*/;
             resourceInputs["sizeGB"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
@@ -83,6 +92,10 @@ export class Disk extends pulumi.CustomResource {
 export interface DiskArgs {
     mountPath: pulumi.Input<string>;
     name?: pulumi.Input<string | undefined>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.disks.DiskQueryParamsArgs | undefined>;
     serviceId: pulumi.Input<string>;
     sizeGB: pulumi.Input<number>;
 }

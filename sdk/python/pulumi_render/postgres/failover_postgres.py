@@ -13,18 +13,25 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['FailoverPostgresArgs', 'FailoverPostgres']
 
 @pulumi.input_type
 class FailoverPostgresArgs:
     def __init__(__self__, *,
-                 postgres_id: pulumi.Input[Optional[_builtins.str]] = None):
+                 postgres_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional['FailoverPostgresQueryParamsArgs']] = None):
         """
         The set of arguments for constructing a FailoverPostgres resource.
+
+        :param pulumi.Input['FailoverPostgresQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         """
         if postgres_id is not None:
             pulumi.set(__self__, "postgres_id", postgres_id)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
 
     @_builtins.property
     @pulumi.getter(name="postgresId")
@@ -35,6 +42,18 @@ class FailoverPostgresArgs:
     def postgres_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "postgres_id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['FailoverPostgresQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['FailoverPostgresQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
+
 
 @pulumi.type_token("render:postgres:FailoverPostgres")
 class FailoverPostgres(pulumi.CustomResource):
@@ -43,12 +62,14 @@ class FailoverPostgres(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  postgres_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['FailoverPostgresQueryParamsArgs', 'FailoverPostgresQueryParamsArgsDict', 'outputs.FailoverPostgresQueryParams']]] = None,
                  __props__=None):
         """
         Create a FailoverPostgres resource with the given unique name, props, and options.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['FailoverPostgresQueryParamsArgs', 'FailoverPostgresQueryParamsArgsDict', 'outputs.FailoverPostgresQueryParams']] query_params: Query params to send with the API requests for this resource.
         """
         ...
     @overload
@@ -75,6 +96,7 @@ class FailoverPostgres(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  postgres_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['FailoverPostgresQueryParamsArgs', 'FailoverPostgresQueryParamsArgsDict', 'outputs.FailoverPostgresQueryParams']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -85,6 +107,7 @@ class FailoverPostgres(pulumi.CustomResource):
             __props__ = FailoverPostgresArgs.__new__(FailoverPostgresArgs)
 
             __props__.__dict__["postgres_id"] = postgres_id
+            __props__.__dict__["query_params"] = query_params
         super(FailoverPostgres, __self__).__init__(
             'render:postgres:FailoverPostgres',
             resource_name,
@@ -107,5 +130,14 @@ class FailoverPostgres(pulumi.CustomResource):
 
         __props__ = FailoverPostgresArgs.__new__(FailoverPostgresArgs)
 
+        __props__.__dict__["query_params"] = None
         return FailoverPostgres(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.FailoverPostgresQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 

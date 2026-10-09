@@ -15,6 +15,7 @@ else:
 from .. import _utilities
 from . import outputs
 from ._enums import *
+from ._inputs import *
 
 __all__ = [
     'ListProjectsResult',
@@ -45,21 +46,29 @@ class AwaitableListProjectsResult(ListProjectsResult):
             items=self.items)
 
 
-def list_projects(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListProjectsResult:
+def list_projects(query_params: Optional[Union['ListProjectsQueryParams', 'ListProjectsQueryParamsDict']] = None,
+                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListProjectsResult:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['ListProjectsQueryParams', 'ListProjectsQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:projects:listProjects', __args__, opts=opts, typ=ListProjectsResult).value
 
     return AwaitableListProjectsResult(
         items=pulumi.get(__ret__, 'items'))
-def list_projects_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListProjectsResult]:
+def list_projects_output(query_params: pulumi.Input[Optional[Optional[Union['ListProjectsQueryParams', 'ListProjectsQueryParamsDict']]]] = None,
+                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListProjectsResult]:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['ListProjectsQueryParams', 'ListProjectsQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:projects:listProjects', __args__, opts=opts, typ=ListProjectsResult)
     return __ret__.apply(lambda __response__: ListProjectsResult(

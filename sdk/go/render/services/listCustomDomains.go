@@ -14,7 +14,7 @@ import (
 func ListCustomDomains(ctx *pulumi.Context, args *ListCustomDomainsArgs, opts ...pulumi.InvokeOption) (*ListCustomDomainsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListCustomDomainsResult
-	err := ctx.Invoke("render:services:listCustomDomains", args, &rv, opts...)
+	err := ctx.Invoke("render:services:listCustomDomains", args.Defaults(), &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -22,8 +22,21 @@ func ListCustomDomains(ctx *pulumi.Context, args *ListCustomDomainsArgs, opts ..
 }
 
 type ListCustomDomainsArgs struct {
+	// Query params to send with the API request.
+	QueryParams *ListCustomDomainsQueryParams `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId string `pulumi:"serviceId"`
+}
+
+// Defaults sets the appropriate defaults for ListCustomDomainsArgs
+func (val *ListCustomDomainsArgs) Defaults() *ListCustomDomainsArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	tmp.QueryParams = tmp.QueryParams.Defaults()
+
+	return &tmp
 }
 
 type ListCustomDomainsResult struct {
@@ -31,11 +44,18 @@ type ListCustomDomainsResult struct {
 }
 
 func ListCustomDomainsOutput(ctx *pulumi.Context, args ListCustomDomainsOutputArgs, opts ...pulumi.InvokeOption) ListCustomDomainsResultOutput {
+	outputArgs := pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) *ListCustomDomainsArgs {
+			args := v.(ListCustomDomainsArgs)
+			return args.Defaults()
+		})
 	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-	return ctx.InvokeOutput("render:services:listCustomDomains", args, ListCustomDomainsResultOutput{}, options).(ListCustomDomainsResultOutput)
+	return ctx.InvokeOutput("render:services:listCustomDomains", outputArgs, ListCustomDomainsResultOutput{}, options).(ListCustomDomainsResultOutput)
 }
 
 type ListCustomDomainsOutputArgs struct {
+	// Query params to send with the API request.
+	QueryParams ListCustomDomainsQueryParamsPtrInput `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }

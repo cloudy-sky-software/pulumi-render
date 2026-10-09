@@ -10,11 +10,16 @@ import * as utilities from "../utilities";
 export function listHeaders(args: ListHeadersArgs, opts?: pulumi.InvokeOptions): Promise<ListHeadersResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:listHeaders", {
+        "queryParams": args.queryParams ? inputs.services.listHeadersQueryParamsProvideDefaults(args.queryParams) : undefined,
         "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface ListHeadersArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.services.ListHeadersQueryParams;
     /**
      * The ID of the service
      */
@@ -27,11 +32,16 @@ export interface ListHeadersResult {
 export function listHeadersOutput(args: ListHeadersOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListHeadersResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:services:listHeaders", {
+        "queryParams": pulumi.output(args.queryParams).apply(v => v === undefined ? undefined : inputs.services.listHeadersQueryParamsProvideDefaults(v)),
         "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface ListHeadersOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.services.ListHeadersQueryParamsArgs | undefined>;
     /**
      * The ID of the service
      */

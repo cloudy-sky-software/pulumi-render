@@ -11,4 +11,5 @@ from .environment import *
 from .get_environment import *
 from .list_environments import *
 from .resources_to_environment import *
+from ._inputs import *
 from . import outputs

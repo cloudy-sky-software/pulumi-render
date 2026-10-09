@@ -22,6 +22,8 @@ func LookupRegistryCredential(ctx *pulumi.Context, args *LookupRegistryCredentia
 }
 
 type LookupRegistryCredentialArgs struct {
+	// Query params to send with the API request.
+	QueryParams *GetRegistryCredentialQueryParams `pulumi:"queryParams"`
 	// The ID of the registry credential
 	RegistryCredentialId string `pulumi:"registryCredentialId"`
 }
@@ -45,6 +47,8 @@ func LookupRegistryCredentialOutput(ctx *pulumi.Context, args LookupRegistryCred
 }
 
 type LookupRegistryCredentialOutputArgs struct {
+	// Query params to send with the API request.
+	QueryParams GetRegistryCredentialQueryParamsPtrInput `pulumi:"queryParams"`
 	// The ID of the registry credential
 	RegistryCredentialId pulumi.StringInput `pulumi:"registryCredentialId"`
 }

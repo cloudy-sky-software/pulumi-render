@@ -13,6 +13,8 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['ScaleServiceArgs', 'ScaleService']
 
@@ -20,13 +22,17 @@ __all__ = ['ScaleServiceArgs', 'ScaleService']
 class ScaleServiceArgs:
     def __init__(__self__, *,
                  num_instances: pulumi.Input[_builtins.int],
+                 query_params: pulumi.Input[Optional['ScaleServiceQueryParamsArgs']] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a ScaleService resource.
 
+        :param pulumi.Input['ScaleServiceQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
         """
         pulumi.set(__self__, "num_instances", num_instances)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
         if service_id is not None:
             pulumi.set(__self__, "service_id", service_id)
 
@@ -38,6 +44,18 @@ class ScaleServiceArgs:
     @num_instances.setter
     def num_instances(self, value: pulumi.Input[_builtins.int]):
         pulumi.set(self, "num_instances", value)
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['ScaleServiceQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['ScaleServiceQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceId")
@@ -59,6 +77,7 @@ class ScaleService(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  num_instances: pulumi.Input[Optional[_builtins.int]] = None,
+                 query_params: pulumi.Input[Optional[Union['ScaleServiceQueryParamsArgs', 'ScaleServiceQueryParamsArgsDict', 'outputs.ScaleServiceQueryParams']]] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -66,6 +85,7 @@ class ScaleService(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['ScaleServiceQueryParamsArgs', 'ScaleServiceQueryParamsArgsDict', 'outputs.ScaleServiceQueryParams']] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
         """
         ...
@@ -93,6 +113,7 @@ class ScaleService(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  num_instances: pulumi.Input[Optional[_builtins.int]] = None,
+                 query_params: pulumi.Input[Optional[Union['ScaleServiceQueryParamsArgs', 'ScaleServiceQueryParamsArgsDict', 'outputs.ScaleServiceQueryParams']]] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -106,6 +127,7 @@ class ScaleService(pulumi.CustomResource):
             if num_instances is None and not opts.urn:
                 raise TypeError("Missing required property 'num_instances'")
             __props__.__dict__["num_instances"] = num_instances
+            __props__.__dict__["query_params"] = query_params
             __props__.__dict__["service_id"] = service_id
         super(ScaleService, __self__).__init__(
             'render:services:ScaleService',
@@ -130,10 +152,19 @@ class ScaleService(pulumi.CustomResource):
         __props__ = ScaleServiceArgs.__new__(ScaleServiceArgs)
 
         __props__.__dict__["num_instances"] = None
+        __props__.__dict__["query_params"] = None
         return ScaleService(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
     @pulumi.getter(name="numInstances")
     def num_instances(self) -> pulumi.Output[_builtins.int]:
         return pulumi.get(self, "num_instances")
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.ScaleServiceQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 

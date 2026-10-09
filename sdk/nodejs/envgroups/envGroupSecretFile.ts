@@ -40,6 +40,10 @@ export class EnvGroupSecretFile extends pulumi.CustomResource {
     declare public /*out*/ readonly environmentId: pulumi.Output<string | undefined>;
     declare public /*out*/ readonly name: pulumi.Output<string | undefined>;
     declare public /*out*/ readonly ownerId: pulumi.Output<string | undefined>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.envgroups.EnvGroupSecretFileQueryParams | undefined>;
     declare public /*out*/ readonly secretFiles: pulumi.Output<outputs.envgroups.SecretFile[] | undefined>;
     /**
      * List of serviceIds linked to the envGroup
@@ -60,6 +64,7 @@ export class EnvGroupSecretFile extends pulumi.CustomResource {
         if (!opts.id) {
             resourceInputs["content"] = args?.content;
             resourceInputs["envGroupId"] = args?.envGroupId;
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["secretFileName"] = args?.secretFileName;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["envVars"] = undefined /*out*/;
@@ -76,6 +81,7 @@ export class EnvGroupSecretFile extends pulumi.CustomResource {
             resourceInputs["environmentId"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;
             resourceInputs["ownerId"] = undefined /*out*/;
+            resourceInputs["queryParams"] = undefined /*out*/;
             resourceInputs["secretFiles"] = undefined /*out*/;
             resourceInputs["serviceLinks"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
@@ -91,5 +97,9 @@ export class EnvGroupSecretFile extends pulumi.CustomResource {
 export interface EnvGroupSecretFileArgs {
     content?: pulumi.Input<string | undefined>;
     envGroupId?: pulumi.Input<string | undefined>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.envgroups.EnvGroupSecretFileQueryParamsArgs | undefined>;
     secretFileName?: pulumi.Input<string | undefined>;
 }

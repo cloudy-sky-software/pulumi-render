@@ -31,6 +31,12 @@ namespace Pulumi.Render.Services
         public string DeployId { get; set; } = null!;
 
         /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Inputs.GetDeployQueryParams? QueryParams { get; set; }
+
+        /// <summary>
         /// The ID of the service
         /// </summary>
         [Input("serviceId", required: true)]
@@ -49,6 +55,12 @@ namespace Pulumi.Render.Services
         /// </summary>
         [Input("deployId", required: true)]
         public Input<string> DeployId { get; set; } = null!;
+
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.GetDeployQueryParamsArgs>? QueryParams { get; set; }
 
         /// <summary>
         /// The ID of the service

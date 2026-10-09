@@ -17,9 +17,11 @@ type Route struct {
 
 	Destination pulumi.StringOutput `pulumi:"destination"`
 	// Redirect and Rewrite Rules are applied in priority order starting at 0
-	Priority pulumi.IntOutput    `pulumi:"priority"`
-	Source   pulumi.StringOutput `pulumi:"source"`
-	Type     TypeOutput          `pulumi:"type"`
+	Priority pulumi.IntOutput `pulumi:"priority"`
+	// Query params to send with the API requests for this resource.
+	QueryParams RouteQueryParamsPtrOutput `pulumi:"queryParams"`
+	Source      pulumi.StringOutput       `pulumi:"source"`
+	Type        TypeOutput                `pulumi:"type"`
 }
 
 // NewRoute registers a new resource with the given unique name, arguments, and options.
@@ -74,6 +76,8 @@ type routeArgs struct {
 	Destination string `pulumi:"destination"`
 	// Redirect and Rewrite Rules are applied in priority order starting at 0. Defaults to last in the priority list.
 	Priority *int `pulumi:"priority"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *RouteQueryParams `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId *string `pulumi:"serviceId"`
 	Source    string  `pulumi:"source"`
@@ -85,6 +89,8 @@ type RouteArgs struct {
 	Destination pulumi.StringInput
 	// Redirect and Rewrite Rules are applied in priority order starting at 0. Defaults to last in the priority list.
 	Priority pulumi.IntPtrInput
+	// Query params to send with the API requests for this resource.
+	QueryParams RouteQueryParamsPtrInput
 	// The ID of the service
 	ServiceId pulumi.StringPtrInput
 	Source    pulumi.StringInput
@@ -135,6 +141,11 @@ func (o RouteOutput) Destination() pulumi.StringOutput {
 // Redirect and Rewrite Rules are applied in priority order starting at 0
 func (o RouteOutput) Priority() pulumi.IntOutput {
 	return o.ApplyT(func(v *Route) pulumi.IntOutput { return v.Priority }).(pulumi.IntOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o RouteOutput) QueryParams() RouteQueryParamsPtrOutput {
+	return o.ApplyT(func(v *Route) RouteQueryParamsPtrOutput { return v.QueryParams }).(RouteQueryParamsPtrOutput)
 }
 
 func (o RouteOutput) Source() pulumi.StringOutput {

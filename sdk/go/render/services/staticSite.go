@@ -21,14 +21,16 @@ type StaticSite struct {
 	BuildFilter BuildFilterPtrOutput       `pulumi:"buildFilter"`
 	CreatedAt   pulumi.StringPtrOutput     `pulumi:"createdAt"`
 	// The URL to view the service in the Render Dashboard
-	DashboardUrl       pulumi.StringPtrOutput             `pulumi:"dashboardUrl"`
-	EnvVars            EnvVarInputTypeArrayOutput         `pulumi:"envVars"`
-	EnvironmentId      pulumi.StringPtrOutput             `pulumi:"environmentId"`
-	Image              ImagePtrOutput                     `pulumi:"image"`
-	ImagePath          pulumi.StringPtrOutput             `pulumi:"imagePath"`
-	Name               pulumi.StringPtrOutput             `pulumi:"name"`
-	NotifyOnFail       ServiceNotifyOnFailPtrOutput       `pulumi:"notifyOnFail"`
-	OwnerId            pulumi.StringPtrOutput             `pulumi:"ownerId"`
+	DashboardUrl  pulumi.StringPtrOutput       `pulumi:"dashboardUrl"`
+	EnvVars       EnvVarInputTypeArrayOutput   `pulumi:"envVars"`
+	EnvironmentId pulumi.StringPtrOutput       `pulumi:"environmentId"`
+	Image         ImagePtrOutput               `pulumi:"image"`
+	ImagePath     pulumi.StringPtrOutput       `pulumi:"imagePath"`
+	Name          pulumi.StringPtrOutput       `pulumi:"name"`
+	NotifyOnFail  ServiceNotifyOnFailPtrOutput `pulumi:"notifyOnFail"`
+	OwnerId       pulumi.StringPtrOutput       `pulumi:"ownerId"`
+	// Query params to send with the API requests for this resource.
+	QueryParams        StaticSiteQueryParamsPtrOutput     `pulumi:"queryParams"`
 	RegistryCredential RegistryCredentialSummaryPtrOutput `pulumi:"registryCredential"`
 	Repo               pulumi.StringPtrOutput             `pulumi:"repo"`
 	RootDir            pulumi.StringPtrOutput             `pulumi:"rootDir"`
@@ -106,6 +108,8 @@ type staticSiteArgs struct {
 	Image         *Image  `pulumi:"image"`
 	Name          string  `pulumi:"name"`
 	OwnerId       string  `pulumi:"ownerId"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *StaticSiteQueryParams `pulumi:"queryParams"`
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
 	Repo           *string                  `pulumi:"repo"`
 	RootDir        *string                  `pulumi:"rootDir"`
@@ -126,6 +130,8 @@ type StaticSiteArgs struct {
 	Image         ImagePtrInput
 	Name          pulumi.StringInput
 	OwnerId       pulumi.StringInput
+	// Query params to send with the API requests for this resource.
+	QueryParams StaticSiteQueryParamsPtrInput
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
 	Repo           pulumi.StringPtrInput
 	RootDir        pulumi.StringPtrInput
@@ -218,6 +224,11 @@ func (o StaticSiteOutput) NotifyOnFail() ServiceNotifyOnFailPtrOutput {
 
 func (o StaticSiteOutput) OwnerId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StaticSite) pulumi.StringPtrOutput { return v.OwnerId }).(pulumi.StringPtrOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o StaticSiteOutput) QueryParams() StaticSiteQueryParamsPtrOutput {
+	return o.ApplyT(func(v *StaticSite) StaticSiteQueryParamsPtrOutput { return v.QueryParams }).(StaticSiteQueryParamsPtrOutput)
 }
 
 func (o StaticSiteOutput) RegistryCredential() RegistryCredentialSummaryPtrOutput {

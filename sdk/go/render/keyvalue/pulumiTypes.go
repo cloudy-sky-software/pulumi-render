@@ -116,6 +116,286 @@ func (o CidrBlockAndDescriptionArrayOutput) Index(i pulumi.IntInput) CidrBlockAn
 	}).(CidrBlockAndDescriptionOutput)
 }
 
+// Query params for the API request.
+type GetKeyValueConnectionInfoQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// GetKeyValueConnectionInfoQueryParamsInput is an input type that accepts GetKeyValueConnectionInfoQueryParamsArgs and GetKeyValueConnectionInfoQueryParamsOutput values.
+// You can construct a concrete instance of `GetKeyValueConnectionInfoQueryParamsInput` via:
+//
+//	GetKeyValueConnectionInfoQueryParamsArgs{...}
+type GetKeyValueConnectionInfoQueryParamsInput interface {
+	pulumi.Input
+
+	ToGetKeyValueConnectionInfoQueryParamsOutput() GetKeyValueConnectionInfoQueryParamsOutput
+	ToGetKeyValueConnectionInfoQueryParamsOutputWithContext(context.Context) GetKeyValueConnectionInfoQueryParamsOutput
+}
+
+// Query params for the API request.
+type GetKeyValueConnectionInfoQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (GetKeyValueConnectionInfoQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKeyValueConnectionInfoQueryParams)(nil)).Elem()
+}
+
+func (i GetKeyValueConnectionInfoQueryParamsArgs) ToGetKeyValueConnectionInfoQueryParamsOutput() GetKeyValueConnectionInfoQueryParamsOutput {
+	return i.ToGetKeyValueConnectionInfoQueryParamsOutputWithContext(context.Background())
+}
+
+func (i GetKeyValueConnectionInfoQueryParamsArgs) ToGetKeyValueConnectionInfoQueryParamsOutputWithContext(ctx context.Context) GetKeyValueConnectionInfoQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKeyValueConnectionInfoQueryParamsOutput)
+}
+
+func (i GetKeyValueConnectionInfoQueryParamsArgs) ToGetKeyValueConnectionInfoQueryParamsPtrOutput() GetKeyValueConnectionInfoQueryParamsPtrOutput {
+	return i.ToGetKeyValueConnectionInfoQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i GetKeyValueConnectionInfoQueryParamsArgs) ToGetKeyValueConnectionInfoQueryParamsPtrOutputWithContext(ctx context.Context) GetKeyValueConnectionInfoQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKeyValueConnectionInfoQueryParamsOutput).ToGetKeyValueConnectionInfoQueryParamsPtrOutputWithContext(ctx)
+}
+
+// GetKeyValueConnectionInfoQueryParamsPtrInput is an input type that accepts GetKeyValueConnectionInfoQueryParamsArgs, GetKeyValueConnectionInfoQueryParamsPtr and GetKeyValueConnectionInfoQueryParamsPtrOutput values.
+// You can construct a concrete instance of `GetKeyValueConnectionInfoQueryParamsPtrInput` via:
+//
+//	        GetKeyValueConnectionInfoQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetKeyValueConnectionInfoQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToGetKeyValueConnectionInfoQueryParamsPtrOutput() GetKeyValueConnectionInfoQueryParamsPtrOutput
+	ToGetKeyValueConnectionInfoQueryParamsPtrOutputWithContext(context.Context) GetKeyValueConnectionInfoQueryParamsPtrOutput
+}
+
+type getKeyValueConnectionInfoQueryParamsPtrType GetKeyValueConnectionInfoQueryParamsArgs
+
+func GetKeyValueConnectionInfoQueryParamsPtr(v *GetKeyValueConnectionInfoQueryParamsArgs) GetKeyValueConnectionInfoQueryParamsPtrInput {
+	return (*getKeyValueConnectionInfoQueryParamsPtrType)(v)
+}
+
+func (*getKeyValueConnectionInfoQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetKeyValueConnectionInfoQueryParams)(nil)).Elem()
+}
+
+func (i *getKeyValueConnectionInfoQueryParamsPtrType) ToGetKeyValueConnectionInfoQueryParamsPtrOutput() GetKeyValueConnectionInfoQueryParamsPtrOutput {
+	return i.ToGetKeyValueConnectionInfoQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *getKeyValueConnectionInfoQueryParamsPtrType) ToGetKeyValueConnectionInfoQueryParamsPtrOutputWithContext(ctx context.Context) GetKeyValueConnectionInfoQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKeyValueConnectionInfoQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type GetKeyValueConnectionInfoQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (GetKeyValueConnectionInfoQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKeyValueConnectionInfoQueryParams)(nil)).Elem()
+}
+
+func (o GetKeyValueConnectionInfoQueryParamsOutput) ToGetKeyValueConnectionInfoQueryParamsOutput() GetKeyValueConnectionInfoQueryParamsOutput {
+	return o
+}
+
+func (o GetKeyValueConnectionInfoQueryParamsOutput) ToGetKeyValueConnectionInfoQueryParamsOutputWithContext(ctx context.Context) GetKeyValueConnectionInfoQueryParamsOutput {
+	return o
+}
+
+func (o GetKeyValueConnectionInfoQueryParamsOutput) ToGetKeyValueConnectionInfoQueryParamsPtrOutput() GetKeyValueConnectionInfoQueryParamsPtrOutput {
+	return o.ToGetKeyValueConnectionInfoQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o GetKeyValueConnectionInfoQueryParamsOutput) ToGetKeyValueConnectionInfoQueryParamsPtrOutputWithContext(ctx context.Context) GetKeyValueConnectionInfoQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetKeyValueConnectionInfoQueryParams) *GetKeyValueConnectionInfoQueryParams {
+		return &v
+	}).(GetKeyValueConnectionInfoQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetKeyValueConnectionInfoQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetKeyValueConnectionInfoQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type GetKeyValueConnectionInfoQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetKeyValueConnectionInfoQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetKeyValueConnectionInfoQueryParams)(nil)).Elem()
+}
+
+func (o GetKeyValueConnectionInfoQueryParamsPtrOutput) ToGetKeyValueConnectionInfoQueryParamsPtrOutput() GetKeyValueConnectionInfoQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetKeyValueConnectionInfoQueryParamsPtrOutput) ToGetKeyValueConnectionInfoQueryParamsPtrOutputWithContext(ctx context.Context) GetKeyValueConnectionInfoQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetKeyValueConnectionInfoQueryParamsPtrOutput) Elem() GetKeyValueConnectionInfoQueryParamsOutput {
+	return o.ApplyT(func(v *GetKeyValueConnectionInfoQueryParams) GetKeyValueConnectionInfoQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret GetKeyValueConnectionInfoQueryParams
+		return ret
+	}).(GetKeyValueConnectionInfoQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetKeyValueConnectionInfoQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetKeyValueConnectionInfoQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type GetKeyValueQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// GetKeyValueQueryParamsInput is an input type that accepts GetKeyValueQueryParamsArgs and GetKeyValueQueryParamsOutput values.
+// You can construct a concrete instance of `GetKeyValueQueryParamsInput` via:
+//
+//	GetKeyValueQueryParamsArgs{...}
+type GetKeyValueQueryParamsInput interface {
+	pulumi.Input
+
+	ToGetKeyValueQueryParamsOutput() GetKeyValueQueryParamsOutput
+	ToGetKeyValueQueryParamsOutputWithContext(context.Context) GetKeyValueQueryParamsOutput
+}
+
+// Query params for the API request.
+type GetKeyValueQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (GetKeyValueQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKeyValueQueryParams)(nil)).Elem()
+}
+
+func (i GetKeyValueQueryParamsArgs) ToGetKeyValueQueryParamsOutput() GetKeyValueQueryParamsOutput {
+	return i.ToGetKeyValueQueryParamsOutputWithContext(context.Background())
+}
+
+func (i GetKeyValueQueryParamsArgs) ToGetKeyValueQueryParamsOutputWithContext(ctx context.Context) GetKeyValueQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKeyValueQueryParamsOutput)
+}
+
+func (i GetKeyValueQueryParamsArgs) ToGetKeyValueQueryParamsPtrOutput() GetKeyValueQueryParamsPtrOutput {
+	return i.ToGetKeyValueQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i GetKeyValueQueryParamsArgs) ToGetKeyValueQueryParamsPtrOutputWithContext(ctx context.Context) GetKeyValueQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKeyValueQueryParamsOutput).ToGetKeyValueQueryParamsPtrOutputWithContext(ctx)
+}
+
+// GetKeyValueQueryParamsPtrInput is an input type that accepts GetKeyValueQueryParamsArgs, GetKeyValueQueryParamsPtr and GetKeyValueQueryParamsPtrOutput values.
+// You can construct a concrete instance of `GetKeyValueQueryParamsPtrInput` via:
+//
+//	        GetKeyValueQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetKeyValueQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToGetKeyValueQueryParamsPtrOutput() GetKeyValueQueryParamsPtrOutput
+	ToGetKeyValueQueryParamsPtrOutputWithContext(context.Context) GetKeyValueQueryParamsPtrOutput
+}
+
+type getKeyValueQueryParamsPtrType GetKeyValueQueryParamsArgs
+
+func GetKeyValueQueryParamsPtr(v *GetKeyValueQueryParamsArgs) GetKeyValueQueryParamsPtrInput {
+	return (*getKeyValueQueryParamsPtrType)(v)
+}
+
+func (*getKeyValueQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetKeyValueQueryParams)(nil)).Elem()
+}
+
+func (i *getKeyValueQueryParamsPtrType) ToGetKeyValueQueryParamsPtrOutput() GetKeyValueQueryParamsPtrOutput {
+	return i.ToGetKeyValueQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *getKeyValueQueryParamsPtrType) ToGetKeyValueQueryParamsPtrOutputWithContext(ctx context.Context) GetKeyValueQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKeyValueQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type GetKeyValueQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (GetKeyValueQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKeyValueQueryParams)(nil)).Elem()
+}
+
+func (o GetKeyValueQueryParamsOutput) ToGetKeyValueQueryParamsOutput() GetKeyValueQueryParamsOutput {
+	return o
+}
+
+func (o GetKeyValueQueryParamsOutput) ToGetKeyValueQueryParamsOutputWithContext(ctx context.Context) GetKeyValueQueryParamsOutput {
+	return o
+}
+
+func (o GetKeyValueQueryParamsOutput) ToGetKeyValueQueryParamsPtrOutput() GetKeyValueQueryParamsPtrOutput {
+	return o.ToGetKeyValueQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o GetKeyValueQueryParamsOutput) ToGetKeyValueQueryParamsPtrOutputWithContext(ctx context.Context) GetKeyValueQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetKeyValueQueryParams) *GetKeyValueQueryParams {
+		return &v
+	}).(GetKeyValueQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetKeyValueQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetKeyValueQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type GetKeyValueQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetKeyValueQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetKeyValueQueryParams)(nil)).Elem()
+}
+
+func (o GetKeyValueQueryParamsPtrOutput) ToGetKeyValueQueryParamsPtrOutput() GetKeyValueQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetKeyValueQueryParamsPtrOutput) ToGetKeyValueQueryParamsPtrOutputWithContext(ctx context.Context) GetKeyValueQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetKeyValueQueryParamsPtrOutput) Elem() GetKeyValueQueryParamsOutput {
+	return o.ApplyT(func(v *GetKeyValueQueryParams) GetKeyValueQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret GetKeyValueQueryParams
+		return ret
+	}).(GetKeyValueQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetKeyValueQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetKeyValueQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
 // A Key Value instance
 type KeyValueType struct {
 	// The creation time of the Key Value instance
@@ -242,6 +522,286 @@ type KeyValueConnectionInfo struct {
 	InternalConnectionString string `pulumi:"internalConnectionString"`
 }
 
+// Query params for the API request.
+type KeyValueCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// KeyValueCreateQueryParamsInput is an input type that accepts KeyValueCreateQueryParamsArgs and KeyValueCreateQueryParamsOutput values.
+// You can construct a concrete instance of `KeyValueCreateQueryParamsInput` via:
+//
+//	KeyValueCreateQueryParamsArgs{...}
+type KeyValueCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToKeyValueCreateQueryParamsOutput() KeyValueCreateQueryParamsOutput
+	ToKeyValueCreateQueryParamsOutputWithContext(context.Context) KeyValueCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type KeyValueCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (KeyValueCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeyValueCreateQueryParams)(nil)).Elem()
+}
+
+func (i KeyValueCreateQueryParamsArgs) ToKeyValueCreateQueryParamsOutput() KeyValueCreateQueryParamsOutput {
+	return i.ToKeyValueCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i KeyValueCreateQueryParamsArgs) ToKeyValueCreateQueryParamsOutputWithContext(ctx context.Context) KeyValueCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyValueCreateQueryParamsOutput)
+}
+
+func (i KeyValueCreateQueryParamsArgs) ToKeyValueCreateQueryParamsPtrOutput() KeyValueCreateQueryParamsPtrOutput {
+	return i.ToKeyValueCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i KeyValueCreateQueryParamsArgs) ToKeyValueCreateQueryParamsPtrOutputWithContext(ctx context.Context) KeyValueCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyValueCreateQueryParamsOutput).ToKeyValueCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// KeyValueCreateQueryParamsPtrInput is an input type that accepts KeyValueCreateQueryParamsArgs, KeyValueCreateQueryParamsPtr and KeyValueCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `KeyValueCreateQueryParamsPtrInput` via:
+//
+//	        KeyValueCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type KeyValueCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToKeyValueCreateQueryParamsPtrOutput() KeyValueCreateQueryParamsPtrOutput
+	ToKeyValueCreateQueryParamsPtrOutputWithContext(context.Context) KeyValueCreateQueryParamsPtrOutput
+}
+
+type keyValueCreateQueryParamsPtrType KeyValueCreateQueryParamsArgs
+
+func KeyValueCreateQueryParamsPtr(v *KeyValueCreateQueryParamsArgs) KeyValueCreateQueryParamsPtrInput {
+	return (*keyValueCreateQueryParamsPtrType)(v)
+}
+
+func (*keyValueCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**KeyValueCreateQueryParams)(nil)).Elem()
+}
+
+func (i *keyValueCreateQueryParamsPtrType) ToKeyValueCreateQueryParamsPtrOutput() KeyValueCreateQueryParamsPtrOutput {
+	return i.ToKeyValueCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *keyValueCreateQueryParamsPtrType) ToKeyValueCreateQueryParamsPtrOutputWithContext(ctx context.Context) KeyValueCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyValueCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type KeyValueCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (KeyValueCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeyValueCreateQueryParams)(nil)).Elem()
+}
+
+func (o KeyValueCreateQueryParamsOutput) ToKeyValueCreateQueryParamsOutput() KeyValueCreateQueryParamsOutput {
+	return o
+}
+
+func (o KeyValueCreateQueryParamsOutput) ToKeyValueCreateQueryParamsOutputWithContext(ctx context.Context) KeyValueCreateQueryParamsOutput {
+	return o
+}
+
+func (o KeyValueCreateQueryParamsOutput) ToKeyValueCreateQueryParamsPtrOutput() KeyValueCreateQueryParamsPtrOutput {
+	return o.ToKeyValueCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o KeyValueCreateQueryParamsOutput) ToKeyValueCreateQueryParamsPtrOutputWithContext(ctx context.Context) KeyValueCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v KeyValueCreateQueryParams) *KeyValueCreateQueryParams {
+		return &v
+	}).(KeyValueCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o KeyValueCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v KeyValueCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type KeyValueCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (KeyValueCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**KeyValueCreateQueryParams)(nil)).Elem()
+}
+
+func (o KeyValueCreateQueryParamsPtrOutput) ToKeyValueCreateQueryParamsPtrOutput() KeyValueCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o KeyValueCreateQueryParamsPtrOutput) ToKeyValueCreateQueryParamsPtrOutputWithContext(ctx context.Context) KeyValueCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o KeyValueCreateQueryParamsPtrOutput) Elem() KeyValueCreateQueryParamsOutput {
+	return o.ApplyT(func(v *KeyValueCreateQueryParams) KeyValueCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret KeyValueCreateQueryParams
+		return ret
+	}).(KeyValueCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o KeyValueCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *KeyValueCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type KeyValueDeleteQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// KeyValueDeleteQueryParamsInput is an input type that accepts KeyValueDeleteQueryParamsArgs and KeyValueDeleteQueryParamsOutput values.
+// You can construct a concrete instance of `KeyValueDeleteQueryParamsInput` via:
+//
+//	KeyValueDeleteQueryParamsArgs{...}
+type KeyValueDeleteQueryParamsInput interface {
+	pulumi.Input
+
+	ToKeyValueDeleteQueryParamsOutput() KeyValueDeleteQueryParamsOutput
+	ToKeyValueDeleteQueryParamsOutputWithContext(context.Context) KeyValueDeleteQueryParamsOutput
+}
+
+// Query params for the API request.
+type KeyValueDeleteQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (KeyValueDeleteQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeyValueDeleteQueryParams)(nil)).Elem()
+}
+
+func (i KeyValueDeleteQueryParamsArgs) ToKeyValueDeleteQueryParamsOutput() KeyValueDeleteQueryParamsOutput {
+	return i.ToKeyValueDeleteQueryParamsOutputWithContext(context.Background())
+}
+
+func (i KeyValueDeleteQueryParamsArgs) ToKeyValueDeleteQueryParamsOutputWithContext(ctx context.Context) KeyValueDeleteQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyValueDeleteQueryParamsOutput)
+}
+
+func (i KeyValueDeleteQueryParamsArgs) ToKeyValueDeleteQueryParamsPtrOutput() KeyValueDeleteQueryParamsPtrOutput {
+	return i.ToKeyValueDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i KeyValueDeleteQueryParamsArgs) ToKeyValueDeleteQueryParamsPtrOutputWithContext(ctx context.Context) KeyValueDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyValueDeleteQueryParamsOutput).ToKeyValueDeleteQueryParamsPtrOutputWithContext(ctx)
+}
+
+// KeyValueDeleteQueryParamsPtrInput is an input type that accepts KeyValueDeleteQueryParamsArgs, KeyValueDeleteQueryParamsPtr and KeyValueDeleteQueryParamsPtrOutput values.
+// You can construct a concrete instance of `KeyValueDeleteQueryParamsPtrInput` via:
+//
+//	        KeyValueDeleteQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type KeyValueDeleteQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToKeyValueDeleteQueryParamsPtrOutput() KeyValueDeleteQueryParamsPtrOutput
+	ToKeyValueDeleteQueryParamsPtrOutputWithContext(context.Context) KeyValueDeleteQueryParamsPtrOutput
+}
+
+type keyValueDeleteQueryParamsPtrType KeyValueDeleteQueryParamsArgs
+
+func KeyValueDeleteQueryParamsPtr(v *KeyValueDeleteQueryParamsArgs) KeyValueDeleteQueryParamsPtrInput {
+	return (*keyValueDeleteQueryParamsPtrType)(v)
+}
+
+func (*keyValueDeleteQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**KeyValueDeleteQueryParams)(nil)).Elem()
+}
+
+func (i *keyValueDeleteQueryParamsPtrType) ToKeyValueDeleteQueryParamsPtrOutput() KeyValueDeleteQueryParamsPtrOutput {
+	return i.ToKeyValueDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *keyValueDeleteQueryParamsPtrType) ToKeyValueDeleteQueryParamsPtrOutputWithContext(ctx context.Context) KeyValueDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyValueDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type KeyValueDeleteQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (KeyValueDeleteQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeyValueDeleteQueryParams)(nil)).Elem()
+}
+
+func (o KeyValueDeleteQueryParamsOutput) ToKeyValueDeleteQueryParamsOutput() KeyValueDeleteQueryParamsOutput {
+	return o
+}
+
+func (o KeyValueDeleteQueryParamsOutput) ToKeyValueDeleteQueryParamsOutputWithContext(ctx context.Context) KeyValueDeleteQueryParamsOutput {
+	return o
+}
+
+func (o KeyValueDeleteQueryParamsOutput) ToKeyValueDeleteQueryParamsPtrOutput() KeyValueDeleteQueryParamsPtrOutput {
+	return o.ToKeyValueDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o KeyValueDeleteQueryParamsOutput) ToKeyValueDeleteQueryParamsPtrOutputWithContext(ctx context.Context) KeyValueDeleteQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v KeyValueDeleteQueryParams) *KeyValueDeleteQueryParams {
+		return &v
+	}).(KeyValueDeleteQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o KeyValueDeleteQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v KeyValueDeleteQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type KeyValueDeleteQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (KeyValueDeleteQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**KeyValueDeleteQueryParams)(nil)).Elem()
+}
+
+func (o KeyValueDeleteQueryParamsPtrOutput) ToKeyValueDeleteQueryParamsPtrOutput() KeyValueDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o KeyValueDeleteQueryParamsPtrOutput) ToKeyValueDeleteQueryParamsPtrOutputWithContext(ctx context.Context) KeyValueDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o KeyValueDeleteQueryParamsPtrOutput) Elem() KeyValueDeleteQueryParamsOutput {
+	return o.ApplyT(func(v *KeyValueDeleteQueryParams) KeyValueDeleteQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret KeyValueDeleteQueryParams
+		return ret
+	}).(KeyValueDeleteQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o KeyValueDeleteQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *KeyValueDeleteQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
 // A Key Value instance
 type KeyValueDetail struct {
 	// The creation time of the Key Value instance
@@ -304,6 +864,483 @@ func (o KeyValueOptionsOutput) MaxmemoryPolicy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KeyValueOptions) *string { return v.MaxmemoryPolicy }).(pulumi.StringPtrOutput)
 }
 
+// Query params for each of the operations of the resource.
+type KeyValueQueryParams struct {
+	// Query params for the create operation.
+	Create *KeyValueCreateQueryParams `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete *KeyValueDeleteQueryParams `pulumi:"delete"`
+	// Query params for the read operation.
+	Read *KeyValueReadQueryParams `pulumi:"read"`
+	// Query params for the update operation.
+	Update *KeyValueUpdateQueryParams `pulumi:"update"`
+}
+
+// KeyValueQueryParamsInput is an input type that accepts KeyValueQueryParamsArgs and KeyValueQueryParamsOutput values.
+// You can construct a concrete instance of `KeyValueQueryParamsInput` via:
+//
+//	KeyValueQueryParamsArgs{...}
+type KeyValueQueryParamsInput interface {
+	pulumi.Input
+
+	ToKeyValueQueryParamsOutput() KeyValueQueryParamsOutput
+	ToKeyValueQueryParamsOutputWithContext(context.Context) KeyValueQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type KeyValueQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create KeyValueCreateQueryParamsPtrInput `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete KeyValueDeleteQueryParamsPtrInput `pulumi:"delete"`
+	// Query params for the read operation.
+	Read KeyValueReadQueryParamsPtrInput `pulumi:"read"`
+	// Query params for the update operation.
+	Update KeyValueUpdateQueryParamsPtrInput `pulumi:"update"`
+}
+
+func (KeyValueQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeyValueQueryParams)(nil)).Elem()
+}
+
+func (i KeyValueQueryParamsArgs) ToKeyValueQueryParamsOutput() KeyValueQueryParamsOutput {
+	return i.ToKeyValueQueryParamsOutputWithContext(context.Background())
+}
+
+func (i KeyValueQueryParamsArgs) ToKeyValueQueryParamsOutputWithContext(ctx context.Context) KeyValueQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyValueQueryParamsOutput)
+}
+
+func (i KeyValueQueryParamsArgs) ToKeyValueQueryParamsPtrOutput() KeyValueQueryParamsPtrOutput {
+	return i.ToKeyValueQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i KeyValueQueryParamsArgs) ToKeyValueQueryParamsPtrOutputWithContext(ctx context.Context) KeyValueQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyValueQueryParamsOutput).ToKeyValueQueryParamsPtrOutputWithContext(ctx)
+}
+
+// KeyValueQueryParamsPtrInput is an input type that accepts KeyValueQueryParamsArgs, KeyValueQueryParamsPtr and KeyValueQueryParamsPtrOutput values.
+// You can construct a concrete instance of `KeyValueQueryParamsPtrInput` via:
+//
+//	        KeyValueQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type KeyValueQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToKeyValueQueryParamsPtrOutput() KeyValueQueryParamsPtrOutput
+	ToKeyValueQueryParamsPtrOutputWithContext(context.Context) KeyValueQueryParamsPtrOutput
+}
+
+type keyValueQueryParamsPtrType KeyValueQueryParamsArgs
+
+func KeyValueQueryParamsPtr(v *KeyValueQueryParamsArgs) KeyValueQueryParamsPtrInput {
+	return (*keyValueQueryParamsPtrType)(v)
+}
+
+func (*keyValueQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**KeyValueQueryParams)(nil)).Elem()
+}
+
+func (i *keyValueQueryParamsPtrType) ToKeyValueQueryParamsPtrOutput() KeyValueQueryParamsPtrOutput {
+	return i.ToKeyValueQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *keyValueQueryParamsPtrType) ToKeyValueQueryParamsPtrOutputWithContext(ctx context.Context) KeyValueQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyValueQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type KeyValueQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (KeyValueQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeyValueQueryParams)(nil)).Elem()
+}
+
+func (o KeyValueQueryParamsOutput) ToKeyValueQueryParamsOutput() KeyValueQueryParamsOutput {
+	return o
+}
+
+func (o KeyValueQueryParamsOutput) ToKeyValueQueryParamsOutputWithContext(ctx context.Context) KeyValueQueryParamsOutput {
+	return o
+}
+
+func (o KeyValueQueryParamsOutput) ToKeyValueQueryParamsPtrOutput() KeyValueQueryParamsPtrOutput {
+	return o.ToKeyValueQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o KeyValueQueryParamsOutput) ToKeyValueQueryParamsPtrOutputWithContext(ctx context.Context) KeyValueQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v KeyValueQueryParams) *KeyValueQueryParams {
+		return &v
+	}).(KeyValueQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o KeyValueQueryParamsOutput) Create() KeyValueCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v KeyValueQueryParams) *KeyValueCreateQueryParams { return v.Create }).(KeyValueCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o KeyValueQueryParamsOutput) Delete() KeyValueDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v KeyValueQueryParams) *KeyValueDeleteQueryParams { return v.Delete }).(KeyValueDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o KeyValueQueryParamsOutput) Read() KeyValueReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v KeyValueQueryParams) *KeyValueReadQueryParams { return v.Read }).(KeyValueReadQueryParamsPtrOutput)
+}
+
+// Query params for the update operation.
+func (o KeyValueQueryParamsOutput) Update() KeyValueUpdateQueryParamsPtrOutput {
+	return o.ApplyT(func(v KeyValueQueryParams) *KeyValueUpdateQueryParams { return v.Update }).(KeyValueUpdateQueryParamsPtrOutput)
+}
+
+type KeyValueQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (KeyValueQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**KeyValueQueryParams)(nil)).Elem()
+}
+
+func (o KeyValueQueryParamsPtrOutput) ToKeyValueQueryParamsPtrOutput() KeyValueQueryParamsPtrOutput {
+	return o
+}
+
+func (o KeyValueQueryParamsPtrOutput) ToKeyValueQueryParamsPtrOutputWithContext(ctx context.Context) KeyValueQueryParamsPtrOutput {
+	return o
+}
+
+func (o KeyValueQueryParamsPtrOutput) Elem() KeyValueQueryParamsOutput {
+	return o.ApplyT(func(v *KeyValueQueryParams) KeyValueQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret KeyValueQueryParams
+		return ret
+	}).(KeyValueQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o KeyValueQueryParamsPtrOutput) Create() KeyValueCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *KeyValueQueryParams) *KeyValueCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(KeyValueCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o KeyValueQueryParamsPtrOutput) Delete() KeyValueDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v *KeyValueQueryParams) *KeyValueDeleteQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Delete
+	}).(KeyValueDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o KeyValueQueryParamsPtrOutput) Read() KeyValueReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v *KeyValueQueryParams) *KeyValueReadQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Read
+	}).(KeyValueReadQueryParamsPtrOutput)
+}
+
+// Query params for the update operation.
+func (o KeyValueQueryParamsPtrOutput) Update() KeyValueUpdateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *KeyValueQueryParams) *KeyValueUpdateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Update
+	}).(KeyValueUpdateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type KeyValueReadQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// KeyValueReadQueryParamsInput is an input type that accepts KeyValueReadQueryParamsArgs and KeyValueReadQueryParamsOutput values.
+// You can construct a concrete instance of `KeyValueReadQueryParamsInput` via:
+//
+//	KeyValueReadQueryParamsArgs{...}
+type KeyValueReadQueryParamsInput interface {
+	pulumi.Input
+
+	ToKeyValueReadQueryParamsOutput() KeyValueReadQueryParamsOutput
+	ToKeyValueReadQueryParamsOutputWithContext(context.Context) KeyValueReadQueryParamsOutput
+}
+
+// Query params for the API request.
+type KeyValueReadQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (KeyValueReadQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeyValueReadQueryParams)(nil)).Elem()
+}
+
+func (i KeyValueReadQueryParamsArgs) ToKeyValueReadQueryParamsOutput() KeyValueReadQueryParamsOutput {
+	return i.ToKeyValueReadQueryParamsOutputWithContext(context.Background())
+}
+
+func (i KeyValueReadQueryParamsArgs) ToKeyValueReadQueryParamsOutputWithContext(ctx context.Context) KeyValueReadQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyValueReadQueryParamsOutput)
+}
+
+func (i KeyValueReadQueryParamsArgs) ToKeyValueReadQueryParamsPtrOutput() KeyValueReadQueryParamsPtrOutput {
+	return i.ToKeyValueReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i KeyValueReadQueryParamsArgs) ToKeyValueReadQueryParamsPtrOutputWithContext(ctx context.Context) KeyValueReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyValueReadQueryParamsOutput).ToKeyValueReadQueryParamsPtrOutputWithContext(ctx)
+}
+
+// KeyValueReadQueryParamsPtrInput is an input type that accepts KeyValueReadQueryParamsArgs, KeyValueReadQueryParamsPtr and KeyValueReadQueryParamsPtrOutput values.
+// You can construct a concrete instance of `KeyValueReadQueryParamsPtrInput` via:
+//
+//	        KeyValueReadQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type KeyValueReadQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToKeyValueReadQueryParamsPtrOutput() KeyValueReadQueryParamsPtrOutput
+	ToKeyValueReadQueryParamsPtrOutputWithContext(context.Context) KeyValueReadQueryParamsPtrOutput
+}
+
+type keyValueReadQueryParamsPtrType KeyValueReadQueryParamsArgs
+
+func KeyValueReadQueryParamsPtr(v *KeyValueReadQueryParamsArgs) KeyValueReadQueryParamsPtrInput {
+	return (*keyValueReadQueryParamsPtrType)(v)
+}
+
+func (*keyValueReadQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**KeyValueReadQueryParams)(nil)).Elem()
+}
+
+func (i *keyValueReadQueryParamsPtrType) ToKeyValueReadQueryParamsPtrOutput() KeyValueReadQueryParamsPtrOutput {
+	return i.ToKeyValueReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *keyValueReadQueryParamsPtrType) ToKeyValueReadQueryParamsPtrOutputWithContext(ctx context.Context) KeyValueReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyValueReadQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type KeyValueReadQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (KeyValueReadQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeyValueReadQueryParams)(nil)).Elem()
+}
+
+func (o KeyValueReadQueryParamsOutput) ToKeyValueReadQueryParamsOutput() KeyValueReadQueryParamsOutput {
+	return o
+}
+
+func (o KeyValueReadQueryParamsOutput) ToKeyValueReadQueryParamsOutputWithContext(ctx context.Context) KeyValueReadQueryParamsOutput {
+	return o
+}
+
+func (o KeyValueReadQueryParamsOutput) ToKeyValueReadQueryParamsPtrOutput() KeyValueReadQueryParamsPtrOutput {
+	return o.ToKeyValueReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o KeyValueReadQueryParamsOutput) ToKeyValueReadQueryParamsPtrOutputWithContext(ctx context.Context) KeyValueReadQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v KeyValueReadQueryParams) *KeyValueReadQueryParams {
+		return &v
+	}).(KeyValueReadQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o KeyValueReadQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v KeyValueReadQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type KeyValueReadQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (KeyValueReadQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**KeyValueReadQueryParams)(nil)).Elem()
+}
+
+func (o KeyValueReadQueryParamsPtrOutput) ToKeyValueReadQueryParamsPtrOutput() KeyValueReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o KeyValueReadQueryParamsPtrOutput) ToKeyValueReadQueryParamsPtrOutputWithContext(ctx context.Context) KeyValueReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o KeyValueReadQueryParamsPtrOutput) Elem() KeyValueReadQueryParamsOutput {
+	return o.ApplyT(func(v *KeyValueReadQueryParams) KeyValueReadQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret KeyValueReadQueryParams
+		return ret
+	}).(KeyValueReadQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o KeyValueReadQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *KeyValueReadQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type KeyValueUpdateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// KeyValueUpdateQueryParamsInput is an input type that accepts KeyValueUpdateQueryParamsArgs and KeyValueUpdateQueryParamsOutput values.
+// You can construct a concrete instance of `KeyValueUpdateQueryParamsInput` via:
+//
+//	KeyValueUpdateQueryParamsArgs{...}
+type KeyValueUpdateQueryParamsInput interface {
+	pulumi.Input
+
+	ToKeyValueUpdateQueryParamsOutput() KeyValueUpdateQueryParamsOutput
+	ToKeyValueUpdateQueryParamsOutputWithContext(context.Context) KeyValueUpdateQueryParamsOutput
+}
+
+// Query params for the API request.
+type KeyValueUpdateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (KeyValueUpdateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeyValueUpdateQueryParams)(nil)).Elem()
+}
+
+func (i KeyValueUpdateQueryParamsArgs) ToKeyValueUpdateQueryParamsOutput() KeyValueUpdateQueryParamsOutput {
+	return i.ToKeyValueUpdateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i KeyValueUpdateQueryParamsArgs) ToKeyValueUpdateQueryParamsOutputWithContext(ctx context.Context) KeyValueUpdateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyValueUpdateQueryParamsOutput)
+}
+
+func (i KeyValueUpdateQueryParamsArgs) ToKeyValueUpdateQueryParamsPtrOutput() KeyValueUpdateQueryParamsPtrOutput {
+	return i.ToKeyValueUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i KeyValueUpdateQueryParamsArgs) ToKeyValueUpdateQueryParamsPtrOutputWithContext(ctx context.Context) KeyValueUpdateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyValueUpdateQueryParamsOutput).ToKeyValueUpdateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// KeyValueUpdateQueryParamsPtrInput is an input type that accepts KeyValueUpdateQueryParamsArgs, KeyValueUpdateQueryParamsPtr and KeyValueUpdateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `KeyValueUpdateQueryParamsPtrInput` via:
+//
+//	        KeyValueUpdateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type KeyValueUpdateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToKeyValueUpdateQueryParamsPtrOutput() KeyValueUpdateQueryParamsPtrOutput
+	ToKeyValueUpdateQueryParamsPtrOutputWithContext(context.Context) KeyValueUpdateQueryParamsPtrOutput
+}
+
+type keyValueUpdateQueryParamsPtrType KeyValueUpdateQueryParamsArgs
+
+func KeyValueUpdateQueryParamsPtr(v *KeyValueUpdateQueryParamsArgs) KeyValueUpdateQueryParamsPtrInput {
+	return (*keyValueUpdateQueryParamsPtrType)(v)
+}
+
+func (*keyValueUpdateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**KeyValueUpdateQueryParams)(nil)).Elem()
+}
+
+func (i *keyValueUpdateQueryParamsPtrType) ToKeyValueUpdateQueryParamsPtrOutput() KeyValueUpdateQueryParamsPtrOutput {
+	return i.ToKeyValueUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *keyValueUpdateQueryParamsPtrType) ToKeyValueUpdateQueryParamsPtrOutputWithContext(ctx context.Context) KeyValueUpdateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyValueUpdateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type KeyValueUpdateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (KeyValueUpdateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeyValueUpdateQueryParams)(nil)).Elem()
+}
+
+func (o KeyValueUpdateQueryParamsOutput) ToKeyValueUpdateQueryParamsOutput() KeyValueUpdateQueryParamsOutput {
+	return o
+}
+
+func (o KeyValueUpdateQueryParamsOutput) ToKeyValueUpdateQueryParamsOutputWithContext(ctx context.Context) KeyValueUpdateQueryParamsOutput {
+	return o
+}
+
+func (o KeyValueUpdateQueryParamsOutput) ToKeyValueUpdateQueryParamsPtrOutput() KeyValueUpdateQueryParamsPtrOutput {
+	return o.ToKeyValueUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o KeyValueUpdateQueryParamsOutput) ToKeyValueUpdateQueryParamsPtrOutputWithContext(ctx context.Context) KeyValueUpdateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v KeyValueUpdateQueryParams) *KeyValueUpdateQueryParams {
+		return &v
+	}).(KeyValueUpdateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o KeyValueUpdateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v KeyValueUpdateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type KeyValueUpdateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (KeyValueUpdateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**KeyValueUpdateQueryParams)(nil)).Elem()
+}
+
+func (o KeyValueUpdateQueryParamsPtrOutput) ToKeyValueUpdateQueryParamsPtrOutput() KeyValueUpdateQueryParamsPtrOutput {
+	return o
+}
+
+func (o KeyValueUpdateQueryParamsPtrOutput) ToKeyValueUpdateQueryParamsPtrOutputWithContext(ctx context.Context) KeyValueUpdateQueryParamsPtrOutput {
+	return o
+}
+
+func (o KeyValueUpdateQueryParamsPtrOutput) Elem() KeyValueUpdateQueryParamsOutput {
+	return o.ApplyT(func(v *KeyValueUpdateQueryParams) KeyValueUpdateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret KeyValueUpdateQueryParams
+		return ret
+	}).(KeyValueUpdateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o KeyValueUpdateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *KeyValueUpdateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
 type KeyValueWithCursor struct {
 	Cursor string `pulumi:"cursor"`
 	// A Key Value instance
@@ -362,6 +1399,360 @@ func (o KeyValueWithCursorArrayOutput) Index(i pulumi.IntInput) KeyValueWithCurs
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) KeyValueWithCursor {
 		return vs[0].([]KeyValueWithCursor)[vs[1].(int)]
 	}).(KeyValueWithCursorOutput)
+}
+
+// Query params for the API request.
+type ListKeyValueQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+	// Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+	CreatedAfter *string `pulumi:"createdAfter"`
+	// Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+	CreatedBefore *string `pulumi:"createdBefore"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor *string `pulumi:"cursor"`
+	// Filter for resources that belong to an environment
+	EnvironmentId []string `pulumi:"environmentId"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit *int `pulumi:"limit"`
+	// Filter by name
+	Name []string `pulumi:"name"`
+	// The ID of the workspaces to return resources for
+	OwnerId []string `pulumi:"ownerId"`
+	// Filter by resource region
+	Region []ListKeyValueQueryParamsRegionItem `pulumi:"region"`
+	// Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+	UpdatedAfter *string `pulumi:"updatedAfter"`
+	// Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+	UpdatedBefore *string `pulumi:"updatedBefore"`
+}
+
+// Defaults sets the appropriate defaults for ListKeyValueQueryParams
+func (val *ListKeyValueQueryParams) Defaults() *ListKeyValueQueryParams {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Limit == nil {
+		limit_ := 20
+		tmp.Limit = &limit_
+	}
+	return &tmp
+}
+
+// ListKeyValueQueryParamsInput is an input type that accepts ListKeyValueQueryParamsArgs and ListKeyValueQueryParamsOutput values.
+// You can construct a concrete instance of `ListKeyValueQueryParamsInput` via:
+//
+//	ListKeyValueQueryParamsArgs{...}
+type ListKeyValueQueryParamsInput interface {
+	pulumi.Input
+
+	ToListKeyValueQueryParamsOutput() ListKeyValueQueryParamsOutput
+	ToListKeyValueQueryParamsOutputWithContext(context.Context) ListKeyValueQueryParamsOutput
+}
+
+// Query params for the API request.
+type ListKeyValueQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+	// Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+	CreatedAfter pulumi.StringPtrInput `pulumi:"createdAfter"`
+	// Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+	CreatedBefore pulumi.StringPtrInput `pulumi:"createdBefore"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor pulumi.StringPtrInput `pulumi:"cursor"`
+	// Filter for resources that belong to an environment
+	EnvironmentId pulumi.StringArrayInput `pulumi:"environmentId"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit pulumi.IntPtrInput `pulumi:"limit"`
+	// Filter by name
+	Name pulumi.StringArrayInput `pulumi:"name"`
+	// The ID of the workspaces to return resources for
+	OwnerId pulumi.StringArrayInput `pulumi:"ownerId"`
+	// Filter by resource region
+	Region ListKeyValueQueryParamsRegionItemArrayInput `pulumi:"region"`
+	// Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+	UpdatedAfter pulumi.StringPtrInput `pulumi:"updatedAfter"`
+	// Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+	UpdatedBefore pulumi.StringPtrInput `pulumi:"updatedBefore"`
+}
+
+// Defaults sets the appropriate defaults for ListKeyValueQueryParamsArgs
+func (val *ListKeyValueQueryParamsArgs) Defaults() *ListKeyValueQueryParamsArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Limit == nil {
+		tmp.Limit = pulumi.IntPtr(20)
+	}
+	return &tmp
+}
+func (ListKeyValueQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListKeyValueQueryParams)(nil)).Elem()
+}
+
+func (i ListKeyValueQueryParamsArgs) ToListKeyValueQueryParamsOutput() ListKeyValueQueryParamsOutput {
+	return i.ToListKeyValueQueryParamsOutputWithContext(context.Background())
+}
+
+func (i ListKeyValueQueryParamsArgs) ToListKeyValueQueryParamsOutputWithContext(ctx context.Context) ListKeyValueQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListKeyValueQueryParamsOutput)
+}
+
+func (i ListKeyValueQueryParamsArgs) ToListKeyValueQueryParamsPtrOutput() ListKeyValueQueryParamsPtrOutput {
+	return i.ToListKeyValueQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i ListKeyValueQueryParamsArgs) ToListKeyValueQueryParamsPtrOutputWithContext(ctx context.Context) ListKeyValueQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListKeyValueQueryParamsOutput).ToListKeyValueQueryParamsPtrOutputWithContext(ctx)
+}
+
+// ListKeyValueQueryParamsPtrInput is an input type that accepts ListKeyValueQueryParamsArgs, ListKeyValueQueryParamsPtr and ListKeyValueQueryParamsPtrOutput values.
+// You can construct a concrete instance of `ListKeyValueQueryParamsPtrInput` via:
+//
+//	        ListKeyValueQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ListKeyValueQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToListKeyValueQueryParamsPtrOutput() ListKeyValueQueryParamsPtrOutput
+	ToListKeyValueQueryParamsPtrOutputWithContext(context.Context) ListKeyValueQueryParamsPtrOutput
+}
+
+type listKeyValueQueryParamsPtrType ListKeyValueQueryParamsArgs
+
+func ListKeyValueQueryParamsPtr(v *ListKeyValueQueryParamsArgs) ListKeyValueQueryParamsPtrInput {
+	return (*listKeyValueQueryParamsPtrType)(v)
+}
+
+func (*listKeyValueQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListKeyValueQueryParams)(nil)).Elem()
+}
+
+func (i *listKeyValueQueryParamsPtrType) ToListKeyValueQueryParamsPtrOutput() ListKeyValueQueryParamsPtrOutput {
+	return i.ToListKeyValueQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *listKeyValueQueryParamsPtrType) ToListKeyValueQueryParamsPtrOutputWithContext(ctx context.Context) ListKeyValueQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListKeyValueQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type ListKeyValueQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (ListKeyValueQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListKeyValueQueryParams)(nil)).Elem()
+}
+
+func (o ListKeyValueQueryParamsOutput) ToListKeyValueQueryParamsOutput() ListKeyValueQueryParamsOutput {
+	return o
+}
+
+func (o ListKeyValueQueryParamsOutput) ToListKeyValueQueryParamsOutputWithContext(ctx context.Context) ListKeyValueQueryParamsOutput {
+	return o
+}
+
+func (o ListKeyValueQueryParamsOutput) ToListKeyValueQueryParamsPtrOutput() ListKeyValueQueryParamsPtrOutput {
+	return o.ToListKeyValueQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o ListKeyValueQueryParamsOutput) ToListKeyValueQueryParamsPtrOutputWithContext(ctx context.Context) ListKeyValueQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListKeyValueQueryParams) *ListKeyValueQueryParams {
+		return &v
+	}).(ListKeyValueQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListKeyValueQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ListKeyValueQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+// Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+func (o ListKeyValueQueryParamsOutput) CreatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListKeyValueQueryParams) *string { return v.CreatedAfter }).(pulumi.StringPtrOutput)
+}
+
+// Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+func (o ListKeyValueQueryParamsOutput) CreatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListKeyValueQueryParams) *string { return v.CreatedBefore }).(pulumi.StringPtrOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListKeyValueQueryParamsOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListKeyValueQueryParams) *string { return v.Cursor }).(pulumi.StringPtrOutput)
+}
+
+// Filter for resources that belong to an environment
+func (o ListKeyValueQueryParamsOutput) EnvironmentId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListKeyValueQueryParams) []string { return v.EnvironmentId }).(pulumi.StringArrayOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListKeyValueQueryParamsOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ListKeyValueQueryParams) *int { return v.Limit }).(pulumi.IntPtrOutput)
+}
+
+// Filter by name
+func (o ListKeyValueQueryParamsOutput) Name() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListKeyValueQueryParams) []string { return v.Name }).(pulumi.StringArrayOutput)
+}
+
+// The ID of the workspaces to return resources for
+func (o ListKeyValueQueryParamsOutput) OwnerId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListKeyValueQueryParams) []string { return v.OwnerId }).(pulumi.StringArrayOutput)
+}
+
+// Filter by resource region
+func (o ListKeyValueQueryParamsOutput) Region() ListKeyValueQueryParamsRegionItemArrayOutput {
+	return o.ApplyT(func(v ListKeyValueQueryParams) []ListKeyValueQueryParamsRegionItem { return v.Region }).(ListKeyValueQueryParamsRegionItemArrayOutput)
+}
+
+// Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+func (o ListKeyValueQueryParamsOutput) UpdatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListKeyValueQueryParams) *string { return v.UpdatedAfter }).(pulumi.StringPtrOutput)
+}
+
+// Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+func (o ListKeyValueQueryParamsOutput) UpdatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListKeyValueQueryParams) *string { return v.UpdatedBefore }).(pulumi.StringPtrOutput)
+}
+
+type ListKeyValueQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (ListKeyValueQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListKeyValueQueryParams)(nil)).Elem()
+}
+
+func (o ListKeyValueQueryParamsPtrOutput) ToListKeyValueQueryParamsPtrOutput() ListKeyValueQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListKeyValueQueryParamsPtrOutput) ToListKeyValueQueryParamsPtrOutputWithContext(ctx context.Context) ListKeyValueQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListKeyValueQueryParamsPtrOutput) Elem() ListKeyValueQueryParamsOutput {
+	return o.ApplyT(func(v *ListKeyValueQueryParams) ListKeyValueQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret ListKeyValueQueryParams
+		return ret
+	}).(ListKeyValueQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListKeyValueQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ListKeyValueQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+func (o ListKeyValueQueryParamsPtrOutput) CreatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListKeyValueQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedAfter
+	}).(pulumi.StringPtrOutput)
+}
+
+// Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+func (o ListKeyValueQueryParamsPtrOutput) CreatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListKeyValueQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedBefore
+	}).(pulumi.StringPtrOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListKeyValueQueryParamsPtrOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListKeyValueQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Cursor
+	}).(pulumi.StringPtrOutput)
+}
+
+// Filter for resources that belong to an environment
+func (o ListKeyValueQueryParamsPtrOutput) EnvironmentId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ListKeyValueQueryParams) []string {
+		if v == nil {
+			return nil
+		}
+		return v.EnvironmentId
+	}).(pulumi.StringArrayOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListKeyValueQueryParamsPtrOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ListKeyValueQueryParams) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Limit
+	}).(pulumi.IntPtrOutput)
+}
+
+// Filter by name
+func (o ListKeyValueQueryParamsPtrOutput) Name() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ListKeyValueQueryParams) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringArrayOutput)
+}
+
+// The ID of the workspaces to return resources for
+func (o ListKeyValueQueryParamsPtrOutput) OwnerId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ListKeyValueQueryParams) []string {
+		if v == nil {
+			return nil
+		}
+		return v.OwnerId
+	}).(pulumi.StringArrayOutput)
+}
+
+// Filter by resource region
+func (o ListKeyValueQueryParamsPtrOutput) Region() ListKeyValueQueryParamsRegionItemArrayOutput {
+	return o.ApplyT(func(v *ListKeyValueQueryParams) []ListKeyValueQueryParamsRegionItem {
+		if v == nil {
+			return nil
+		}
+		return v.Region
+	}).(ListKeyValueQueryParamsRegionItemArrayOutput)
+}
+
+// Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+func (o ListKeyValueQueryParamsPtrOutput) UpdatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListKeyValueQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UpdatedAfter
+	}).(pulumi.StringPtrOutput)
+}
+
+// Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+func (o ListKeyValueQueryParamsPtrOutput) UpdatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListKeyValueQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UpdatedBefore
+	}).(pulumi.StringPtrOutput)
 }
 
 type Owner struct {
@@ -525,12 +1916,44 @@ func (o RedisDetailpropertiesmaintenancePtrOutput) Type() pulumi.StringPtrOutput
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CidrBlockAndDescriptionInput)(nil)).Elem(), CidrBlockAndDescriptionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CidrBlockAndDescriptionArrayInput)(nil)).Elem(), CidrBlockAndDescriptionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKeyValueConnectionInfoQueryParamsInput)(nil)).Elem(), GetKeyValueConnectionInfoQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKeyValueConnectionInfoQueryParamsPtrInput)(nil)).Elem(), GetKeyValueConnectionInfoQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKeyValueQueryParamsInput)(nil)).Elem(), GetKeyValueQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKeyValueQueryParamsPtrInput)(nil)).Elem(), GetKeyValueQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KeyValueCreateQueryParamsInput)(nil)).Elem(), KeyValueCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KeyValueCreateQueryParamsPtrInput)(nil)).Elem(), KeyValueCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KeyValueDeleteQueryParamsInput)(nil)).Elem(), KeyValueDeleteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KeyValueDeleteQueryParamsPtrInput)(nil)).Elem(), KeyValueDeleteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KeyValueQueryParamsInput)(nil)).Elem(), KeyValueQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KeyValueQueryParamsPtrInput)(nil)).Elem(), KeyValueQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KeyValueReadQueryParamsInput)(nil)).Elem(), KeyValueReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KeyValueReadQueryParamsPtrInput)(nil)).Elem(), KeyValueReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KeyValueUpdateQueryParamsInput)(nil)).Elem(), KeyValueUpdateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KeyValueUpdateQueryParamsPtrInput)(nil)).Elem(), KeyValueUpdateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListKeyValueQueryParamsInput)(nil)).Elem(), ListKeyValueQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListKeyValueQueryParamsPtrInput)(nil)).Elem(), ListKeyValueQueryParamsArgs{})
 	pulumi.RegisterOutputType(CidrBlockAndDescriptionOutput{})
 	pulumi.RegisterOutputType(CidrBlockAndDescriptionArrayOutput{})
+	pulumi.RegisterOutputType(GetKeyValueConnectionInfoQueryParamsOutput{})
+	pulumi.RegisterOutputType(GetKeyValueConnectionInfoQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(GetKeyValueQueryParamsOutput{})
+	pulumi.RegisterOutputType(GetKeyValueQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(KeyValueTypeOutput{})
+	pulumi.RegisterOutputType(KeyValueCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(KeyValueCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(KeyValueDeleteQueryParamsOutput{})
+	pulumi.RegisterOutputType(KeyValueDeleteQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(KeyValueOptionsOutput{})
+	pulumi.RegisterOutputType(KeyValueQueryParamsOutput{})
+	pulumi.RegisterOutputType(KeyValueQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(KeyValueReadQueryParamsOutput{})
+	pulumi.RegisterOutputType(KeyValueReadQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(KeyValueUpdateQueryParamsOutput{})
+	pulumi.RegisterOutputType(KeyValueUpdateQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(KeyValueWithCursorOutput{})
 	pulumi.RegisterOutputType(KeyValueWithCursorArrayOutput{})
+	pulumi.RegisterOutputType(ListKeyValueQueryParamsOutput{})
+	pulumi.RegisterOutputType(ListKeyValueQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(OwnerOutput{})
 	pulumi.RegisterOutputType(RedisDetailpropertiesmaintenanceOutput{})
 	pulumi.RegisterOutputType(RedisDetailpropertiesmaintenancePtrOutput{})

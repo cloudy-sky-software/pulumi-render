@@ -11,18 +11,31 @@ export function listServices(args?: ListServicesArgs, opts?: pulumi.InvokeOption
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:listServices", {
+        "queryParams": args.queryParams ? inputs.services.listServicesQueryParamsProvideDefaults(args.queryParams) : undefined,
     }, opts);
 }
 
 export interface ListServicesArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.services.ListServicesQueryParams;
 }
 
 export interface ListServicesResult {
     readonly items: outputs.services.ListServicesResponse[];
 }
-export function listServicesOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListServicesResult> {
+export function listServicesOutput(args?: ListServicesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListServicesResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:services:listServices", {
+        "queryParams": pulumi.output(args.queryParams).apply(v => v === undefined ? undefined : inputs.services.listServicesQueryParamsProvideDefaults(v)),
     }, opts);
 }
 
+export interface ListServicesOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.services.ListServicesQueryParamsArgs | undefined>;
+}

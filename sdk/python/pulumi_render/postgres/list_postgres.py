@@ -15,6 +15,7 @@ else:
 from .. import _utilities
 from . import outputs
 from ._enums import *
+from ._inputs import *
 
 __all__ = [
     'ListPostgresResult',
@@ -45,21 +46,29 @@ class AwaitableListPostgresResult(ListPostgresResult):
             items=self.items)
 
 
-def list_postgres(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListPostgresResult:
+def list_postgres(query_params: Optional[Union['ListPostgresQueryParams', 'ListPostgresQueryParamsDict']] = None,
+                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListPostgresResult:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['ListPostgresQueryParams', 'ListPostgresQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:postgres:listPostgres', __args__, opts=opts, typ=ListPostgresResult).value
 
     return AwaitableListPostgresResult(
         items=pulumi.get(__ret__, 'items'))
-def list_postgres_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListPostgresResult]:
+def list_postgres_output(query_params: pulumi.Input[Optional[Optional[Union['ListPostgresQueryParams', 'ListPostgresQueryParamsDict']]]] = None,
+                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListPostgresResult]:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['ListPostgresQueryParams', 'ListPostgresQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:postgres:listPostgres', __args__, opts=opts, typ=ListPostgresResult)
     return __ret__.apply(lambda __response__: ListPostgresResult(

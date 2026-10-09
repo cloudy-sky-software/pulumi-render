@@ -11,18 +11,31 @@ export function listOwners(args?: ListOwnersArgs, opts?: pulumi.InvokeOptions): 
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:owners:listOwners", {
+        "queryParams": args.queryParams ? inputs.owners.listOwnersQueryParamsProvideDefaults(args.queryParams) : undefined,
     }, opts);
 }
 
 export interface ListOwnersArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.owners.ListOwnersQueryParams;
 }
 
 export interface ListOwnersResult {
     readonly items: outputs.owners.OwnerWithCursor[];
 }
-export function listOwnersOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListOwnersResult> {
+export function listOwnersOutput(args?: ListOwnersOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListOwnersResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:owners:listOwners", {
+        "queryParams": pulumi.output(args.queryParams).apply(v => v === undefined ? undefined : inputs.owners.listOwnersQueryParamsProvideDefaults(v)),
     }, opts);
 }
 
+export interface ListOwnersOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.owners.ListOwnersQueryParamsArgs | undefined>;
+}

@@ -30,6 +30,12 @@ namespace Pulumi.Render.Blueprints
         [Input("blueprintId", required: true)]
         public string BlueprintId { get; set; } = null!;
 
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Inputs.ListBlueprintSyncsQueryParams? QueryParams { get; set; }
+
         public ListBlueprintSyncsArgs()
         {
         }
@@ -43,6 +49,12 @@ namespace Pulumi.Render.Blueprints
         /// </summary>
         [Input("blueprintId", required: true)]
         public Input<string> BlueprintId { get; set; } = null!;
+
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.ListBlueprintSyncsQueryParamsArgs>? QueryParams { get; set; }
 
         public ListBlueprintSyncsInvokeArgs()
         {

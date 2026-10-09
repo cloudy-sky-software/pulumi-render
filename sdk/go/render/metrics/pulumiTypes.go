@@ -186,6 +186,222 @@ func (o GetBandwidthSourcePropertiesDataItemPropertiesValuesItemPropertiesArrayO
 	}).(GetBandwidthSourcePropertiesDataItemPropertiesValuesItemPropertiesOutput)
 }
 
+// Query params for the API request.
+type GetBandwidthSourceQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+	// Epoch/Unix timestamp of end of time range to return. Defaults to `now()`.
+	EndTime *string `pulumi:"endTime"`
+	// Service ID to query. When multiple service ids are provided, they are ORed together
+	Resource *string `pulumi:"resource"`
+	// This parameter is deprecated. Please use `resource` instead
+	Service *string `pulumi:"service"`
+	// Epoch/Unix timestamp of start of time range to return. Defaults to `now() - 1 hour`.
+	StartTime *string `pulumi:"startTime"`
+}
+
+// GetBandwidthSourceQueryParamsInput is an input type that accepts GetBandwidthSourceQueryParamsArgs and GetBandwidthSourceQueryParamsOutput values.
+// You can construct a concrete instance of `GetBandwidthSourceQueryParamsInput` via:
+//
+//	GetBandwidthSourceQueryParamsArgs{...}
+type GetBandwidthSourceQueryParamsInput interface {
+	pulumi.Input
+
+	ToGetBandwidthSourceQueryParamsOutput() GetBandwidthSourceQueryParamsOutput
+	ToGetBandwidthSourceQueryParamsOutputWithContext(context.Context) GetBandwidthSourceQueryParamsOutput
+}
+
+// Query params for the API request.
+type GetBandwidthSourceQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+	// Epoch/Unix timestamp of end of time range to return. Defaults to `now()`.
+	EndTime pulumi.StringPtrInput `pulumi:"endTime"`
+	// Service ID to query. When multiple service ids are provided, they are ORed together
+	Resource pulumi.StringPtrInput `pulumi:"resource"`
+	// This parameter is deprecated. Please use `resource` instead
+	Service pulumi.StringPtrInput `pulumi:"service"`
+	// Epoch/Unix timestamp of start of time range to return. Defaults to `now() - 1 hour`.
+	StartTime pulumi.StringPtrInput `pulumi:"startTime"`
+}
+
+func (GetBandwidthSourceQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBandwidthSourceQueryParams)(nil)).Elem()
+}
+
+func (i GetBandwidthSourceQueryParamsArgs) ToGetBandwidthSourceQueryParamsOutput() GetBandwidthSourceQueryParamsOutput {
+	return i.ToGetBandwidthSourceQueryParamsOutputWithContext(context.Background())
+}
+
+func (i GetBandwidthSourceQueryParamsArgs) ToGetBandwidthSourceQueryParamsOutputWithContext(ctx context.Context) GetBandwidthSourceQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBandwidthSourceQueryParamsOutput)
+}
+
+func (i GetBandwidthSourceQueryParamsArgs) ToGetBandwidthSourceQueryParamsPtrOutput() GetBandwidthSourceQueryParamsPtrOutput {
+	return i.ToGetBandwidthSourceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i GetBandwidthSourceQueryParamsArgs) ToGetBandwidthSourceQueryParamsPtrOutputWithContext(ctx context.Context) GetBandwidthSourceQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBandwidthSourceQueryParamsOutput).ToGetBandwidthSourceQueryParamsPtrOutputWithContext(ctx)
+}
+
+// GetBandwidthSourceQueryParamsPtrInput is an input type that accepts GetBandwidthSourceQueryParamsArgs, GetBandwidthSourceQueryParamsPtr and GetBandwidthSourceQueryParamsPtrOutput values.
+// You can construct a concrete instance of `GetBandwidthSourceQueryParamsPtrInput` via:
+//
+//	        GetBandwidthSourceQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetBandwidthSourceQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToGetBandwidthSourceQueryParamsPtrOutput() GetBandwidthSourceQueryParamsPtrOutput
+	ToGetBandwidthSourceQueryParamsPtrOutputWithContext(context.Context) GetBandwidthSourceQueryParamsPtrOutput
+}
+
+type getBandwidthSourceQueryParamsPtrType GetBandwidthSourceQueryParamsArgs
+
+func GetBandwidthSourceQueryParamsPtr(v *GetBandwidthSourceQueryParamsArgs) GetBandwidthSourceQueryParamsPtrInput {
+	return (*getBandwidthSourceQueryParamsPtrType)(v)
+}
+
+func (*getBandwidthSourceQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetBandwidthSourceQueryParams)(nil)).Elem()
+}
+
+func (i *getBandwidthSourceQueryParamsPtrType) ToGetBandwidthSourceQueryParamsPtrOutput() GetBandwidthSourceQueryParamsPtrOutput {
+	return i.ToGetBandwidthSourceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *getBandwidthSourceQueryParamsPtrType) ToGetBandwidthSourceQueryParamsPtrOutputWithContext(ctx context.Context) GetBandwidthSourceQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBandwidthSourceQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type GetBandwidthSourceQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (GetBandwidthSourceQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBandwidthSourceQueryParams)(nil)).Elem()
+}
+
+func (o GetBandwidthSourceQueryParamsOutput) ToGetBandwidthSourceQueryParamsOutput() GetBandwidthSourceQueryParamsOutput {
+	return o
+}
+
+func (o GetBandwidthSourceQueryParamsOutput) ToGetBandwidthSourceQueryParamsOutputWithContext(ctx context.Context) GetBandwidthSourceQueryParamsOutput {
+	return o
+}
+
+func (o GetBandwidthSourceQueryParamsOutput) ToGetBandwidthSourceQueryParamsPtrOutput() GetBandwidthSourceQueryParamsPtrOutput {
+	return o.ToGetBandwidthSourceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o GetBandwidthSourceQueryParamsOutput) ToGetBandwidthSourceQueryParamsPtrOutputWithContext(ctx context.Context) GetBandwidthSourceQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetBandwidthSourceQueryParams) *GetBandwidthSourceQueryParams {
+		return &v
+	}).(GetBandwidthSourceQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetBandwidthSourceQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetBandwidthSourceQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+// Epoch/Unix timestamp of end of time range to return. Defaults to `now()`.
+func (o GetBandwidthSourceQueryParamsOutput) EndTime() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetBandwidthSourceQueryParams) *string { return v.EndTime }).(pulumi.StringPtrOutput)
+}
+
+// Service ID to query. When multiple service ids are provided, they are ORed together
+func (o GetBandwidthSourceQueryParamsOutput) Resource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetBandwidthSourceQueryParams) *string { return v.Resource }).(pulumi.StringPtrOutput)
+}
+
+// This parameter is deprecated. Please use `resource` instead
+func (o GetBandwidthSourceQueryParamsOutput) Service() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetBandwidthSourceQueryParams) *string { return v.Service }).(pulumi.StringPtrOutput)
+}
+
+// Epoch/Unix timestamp of start of time range to return. Defaults to `now() - 1 hour`.
+func (o GetBandwidthSourceQueryParamsOutput) StartTime() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetBandwidthSourceQueryParams) *string { return v.StartTime }).(pulumi.StringPtrOutput)
+}
+
+type GetBandwidthSourceQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetBandwidthSourceQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetBandwidthSourceQueryParams)(nil)).Elem()
+}
+
+func (o GetBandwidthSourceQueryParamsPtrOutput) ToGetBandwidthSourceQueryParamsPtrOutput() GetBandwidthSourceQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetBandwidthSourceQueryParamsPtrOutput) ToGetBandwidthSourceQueryParamsPtrOutputWithContext(ctx context.Context) GetBandwidthSourceQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetBandwidthSourceQueryParamsPtrOutput) Elem() GetBandwidthSourceQueryParamsOutput {
+	return o.ApplyT(func(v *GetBandwidthSourceQueryParams) GetBandwidthSourceQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret GetBandwidthSourceQueryParams
+		return ret
+	}).(GetBandwidthSourceQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetBandwidthSourceQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetBandwidthSourceQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Epoch/Unix timestamp of end of time range to return. Defaults to `now()`.
+func (o GetBandwidthSourceQueryParamsPtrOutput) EndTime() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetBandwidthSourceQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.EndTime
+	}).(pulumi.StringPtrOutput)
+}
+
+// Service ID to query. When multiple service ids are provided, they are ORed together
+func (o GetBandwidthSourceQueryParamsPtrOutput) Resource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetBandwidthSourceQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Resource
+	}).(pulumi.StringPtrOutput)
+}
+
+// This parameter is deprecated. Please use `resource` instead
+func (o GetBandwidthSourceQueryParamsPtrOutput) Service() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetBandwidthSourceQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Service
+	}).(pulumi.StringPtrOutput)
+}
+
+// Epoch/Unix timestamp of start of time range to return. Defaults to `now() - 1 hour`.
+func (o GetBandwidthSourceQueryParamsPtrOutput) StartTime() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetBandwidthSourceQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.StartTime
+	}).(pulumi.StringPtrOutput)
+}
+
 // A time series data point
 type ListActiveConnectionsItemProperties struct {
 	// List of labels describing the time series
@@ -344,6 +560,246 @@ func (o ListActiveConnectionsItemPropertiesValuesItemPropertiesArrayOutput) Inde
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListActiveConnectionsItemPropertiesValuesItemProperties {
 		return vs[0].([]ListActiveConnectionsItemPropertiesValuesItemProperties)[vs[1].(int)]
 	}).(ListActiveConnectionsItemPropertiesValuesItemPropertiesOutput)
+}
+
+// Query params for the API request.
+type ListActiveConnectionsQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+	// Epoch/Unix timestamp of end of time range to return. Defaults to `now()`.
+	EndTime *string `pulumi:"endTime"`
+	// The resolution of the returned data
+	ResolutionSeconds *float64 `pulumi:"resolutionSeconds"`
+	// Resource ID to query. When multiple resource query params are provided, they are ORed together. Resources Postgres ids or Redis ids
+	Resource *string `pulumi:"resource"`
+	// Epoch/Unix timestamp of start of time range to return. Defaults to `now() - 1 hour`.
+	StartTime *string `pulumi:"startTime"`
+}
+
+// Defaults sets the appropriate defaults for ListActiveConnectionsQueryParams
+func (val *ListActiveConnectionsQueryParams) Defaults() *ListActiveConnectionsQueryParams {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.ResolutionSeconds == nil {
+		resolutionSeconds_ := 60.0
+		tmp.ResolutionSeconds = &resolutionSeconds_
+	}
+	return &tmp
+}
+
+// ListActiveConnectionsQueryParamsInput is an input type that accepts ListActiveConnectionsQueryParamsArgs and ListActiveConnectionsQueryParamsOutput values.
+// You can construct a concrete instance of `ListActiveConnectionsQueryParamsInput` via:
+//
+//	ListActiveConnectionsQueryParamsArgs{...}
+type ListActiveConnectionsQueryParamsInput interface {
+	pulumi.Input
+
+	ToListActiveConnectionsQueryParamsOutput() ListActiveConnectionsQueryParamsOutput
+	ToListActiveConnectionsQueryParamsOutputWithContext(context.Context) ListActiveConnectionsQueryParamsOutput
+}
+
+// Query params for the API request.
+type ListActiveConnectionsQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+	// Epoch/Unix timestamp of end of time range to return. Defaults to `now()`.
+	EndTime pulumi.StringPtrInput `pulumi:"endTime"`
+	// The resolution of the returned data
+	ResolutionSeconds pulumi.Float64PtrInput `pulumi:"resolutionSeconds"`
+	// Resource ID to query. When multiple resource query params are provided, they are ORed together. Resources Postgres ids or Redis ids
+	Resource pulumi.StringPtrInput `pulumi:"resource"`
+	// Epoch/Unix timestamp of start of time range to return. Defaults to `now() - 1 hour`.
+	StartTime pulumi.StringPtrInput `pulumi:"startTime"`
+}
+
+// Defaults sets the appropriate defaults for ListActiveConnectionsQueryParamsArgs
+func (val *ListActiveConnectionsQueryParamsArgs) Defaults() *ListActiveConnectionsQueryParamsArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.ResolutionSeconds == nil {
+		tmp.ResolutionSeconds = pulumi.Float64Ptr(60.0)
+	}
+	return &tmp
+}
+func (ListActiveConnectionsQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListActiveConnectionsQueryParams)(nil)).Elem()
+}
+
+func (i ListActiveConnectionsQueryParamsArgs) ToListActiveConnectionsQueryParamsOutput() ListActiveConnectionsQueryParamsOutput {
+	return i.ToListActiveConnectionsQueryParamsOutputWithContext(context.Background())
+}
+
+func (i ListActiveConnectionsQueryParamsArgs) ToListActiveConnectionsQueryParamsOutputWithContext(ctx context.Context) ListActiveConnectionsQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListActiveConnectionsQueryParamsOutput)
+}
+
+func (i ListActiveConnectionsQueryParamsArgs) ToListActiveConnectionsQueryParamsPtrOutput() ListActiveConnectionsQueryParamsPtrOutput {
+	return i.ToListActiveConnectionsQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i ListActiveConnectionsQueryParamsArgs) ToListActiveConnectionsQueryParamsPtrOutputWithContext(ctx context.Context) ListActiveConnectionsQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListActiveConnectionsQueryParamsOutput).ToListActiveConnectionsQueryParamsPtrOutputWithContext(ctx)
+}
+
+// ListActiveConnectionsQueryParamsPtrInput is an input type that accepts ListActiveConnectionsQueryParamsArgs, ListActiveConnectionsQueryParamsPtr and ListActiveConnectionsQueryParamsPtrOutput values.
+// You can construct a concrete instance of `ListActiveConnectionsQueryParamsPtrInput` via:
+//
+//	        ListActiveConnectionsQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ListActiveConnectionsQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToListActiveConnectionsQueryParamsPtrOutput() ListActiveConnectionsQueryParamsPtrOutput
+	ToListActiveConnectionsQueryParamsPtrOutputWithContext(context.Context) ListActiveConnectionsQueryParamsPtrOutput
+}
+
+type listActiveConnectionsQueryParamsPtrType ListActiveConnectionsQueryParamsArgs
+
+func ListActiveConnectionsQueryParamsPtr(v *ListActiveConnectionsQueryParamsArgs) ListActiveConnectionsQueryParamsPtrInput {
+	return (*listActiveConnectionsQueryParamsPtrType)(v)
+}
+
+func (*listActiveConnectionsQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListActiveConnectionsQueryParams)(nil)).Elem()
+}
+
+func (i *listActiveConnectionsQueryParamsPtrType) ToListActiveConnectionsQueryParamsPtrOutput() ListActiveConnectionsQueryParamsPtrOutput {
+	return i.ToListActiveConnectionsQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *listActiveConnectionsQueryParamsPtrType) ToListActiveConnectionsQueryParamsPtrOutputWithContext(ctx context.Context) ListActiveConnectionsQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListActiveConnectionsQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type ListActiveConnectionsQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (ListActiveConnectionsQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListActiveConnectionsQueryParams)(nil)).Elem()
+}
+
+func (o ListActiveConnectionsQueryParamsOutput) ToListActiveConnectionsQueryParamsOutput() ListActiveConnectionsQueryParamsOutput {
+	return o
+}
+
+func (o ListActiveConnectionsQueryParamsOutput) ToListActiveConnectionsQueryParamsOutputWithContext(ctx context.Context) ListActiveConnectionsQueryParamsOutput {
+	return o
+}
+
+func (o ListActiveConnectionsQueryParamsOutput) ToListActiveConnectionsQueryParamsPtrOutput() ListActiveConnectionsQueryParamsPtrOutput {
+	return o.ToListActiveConnectionsQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o ListActiveConnectionsQueryParamsOutput) ToListActiveConnectionsQueryParamsPtrOutputWithContext(ctx context.Context) ListActiveConnectionsQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListActiveConnectionsQueryParams) *ListActiveConnectionsQueryParams {
+		return &v
+	}).(ListActiveConnectionsQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListActiveConnectionsQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ListActiveConnectionsQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+// Epoch/Unix timestamp of end of time range to return. Defaults to `now()`.
+func (o ListActiveConnectionsQueryParamsOutput) EndTime() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListActiveConnectionsQueryParams) *string { return v.EndTime }).(pulumi.StringPtrOutput)
+}
+
+// The resolution of the returned data
+func (o ListActiveConnectionsQueryParamsOutput) ResolutionSeconds() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ListActiveConnectionsQueryParams) *float64 { return v.ResolutionSeconds }).(pulumi.Float64PtrOutput)
+}
+
+// Resource ID to query. When multiple resource query params are provided, they are ORed together. Resources Postgres ids or Redis ids
+func (o ListActiveConnectionsQueryParamsOutput) Resource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListActiveConnectionsQueryParams) *string { return v.Resource }).(pulumi.StringPtrOutput)
+}
+
+// Epoch/Unix timestamp of start of time range to return. Defaults to `now() - 1 hour`.
+func (o ListActiveConnectionsQueryParamsOutput) StartTime() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListActiveConnectionsQueryParams) *string { return v.StartTime }).(pulumi.StringPtrOutput)
+}
+
+type ListActiveConnectionsQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (ListActiveConnectionsQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListActiveConnectionsQueryParams)(nil)).Elem()
+}
+
+func (o ListActiveConnectionsQueryParamsPtrOutput) ToListActiveConnectionsQueryParamsPtrOutput() ListActiveConnectionsQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListActiveConnectionsQueryParamsPtrOutput) ToListActiveConnectionsQueryParamsPtrOutputWithContext(ctx context.Context) ListActiveConnectionsQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListActiveConnectionsQueryParamsPtrOutput) Elem() ListActiveConnectionsQueryParamsOutput {
+	return o.ApplyT(func(v *ListActiveConnectionsQueryParams) ListActiveConnectionsQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret ListActiveConnectionsQueryParams
+		return ret
+	}).(ListActiveConnectionsQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListActiveConnectionsQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ListActiveConnectionsQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Epoch/Unix timestamp of end of time range to return. Defaults to `now()`.
+func (o ListActiveConnectionsQueryParamsPtrOutput) EndTime() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListActiveConnectionsQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.EndTime
+	}).(pulumi.StringPtrOutput)
+}
+
+// The resolution of the returned data
+func (o ListActiveConnectionsQueryParamsPtrOutput) ResolutionSeconds() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ListActiveConnectionsQueryParams) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.ResolutionSeconds
+	}).(pulumi.Float64PtrOutput)
+}
+
+// Resource ID to query. When multiple resource query params are provided, they are ORed together. Resources Postgres ids or Redis ids
+func (o ListActiveConnectionsQueryParamsPtrOutput) Resource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListActiveConnectionsQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Resource
+	}).(pulumi.StringPtrOutput)
+}
+
+// Epoch/Unix timestamp of start of time range to return. Defaults to `now() - 1 hour`.
+func (o ListActiveConnectionsQueryParamsPtrOutput) StartTime() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListActiveConnectionsQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.StartTime
+	}).(pulumi.StringPtrOutput)
 }
 
 // A time series data point
@@ -506,23 +962,275 @@ func (o ListReplicationLagItemPropertiesValuesItemPropertiesArrayOutput) Index(i
 	}).(ListReplicationLagItemPropertiesValuesItemPropertiesOutput)
 }
 
+// Query params for the API request.
+type ListReplicationLagQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+	// Epoch/Unix timestamp of end of time range to return. Defaults to `now()`.
+	EndTime *string `pulumi:"endTime"`
+	// The resolution of the returned data
+	ResolutionSeconds *float64 `pulumi:"resolutionSeconds"`
+	// Postgres ID to query. When multiple resource query params are provided, they are ORed together
+	Resource *string `pulumi:"resource"`
+	// Epoch/Unix timestamp of start of time range to return. Defaults to `now() - 1 hour`.
+	StartTime *string `pulumi:"startTime"`
+}
+
+// Defaults sets the appropriate defaults for ListReplicationLagQueryParams
+func (val *ListReplicationLagQueryParams) Defaults() *ListReplicationLagQueryParams {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.ResolutionSeconds == nil {
+		resolutionSeconds_ := 60.0
+		tmp.ResolutionSeconds = &resolutionSeconds_
+	}
+	return &tmp
+}
+
+// ListReplicationLagQueryParamsInput is an input type that accepts ListReplicationLagQueryParamsArgs and ListReplicationLagQueryParamsOutput values.
+// You can construct a concrete instance of `ListReplicationLagQueryParamsInput` via:
+//
+//	ListReplicationLagQueryParamsArgs{...}
+type ListReplicationLagQueryParamsInput interface {
+	pulumi.Input
+
+	ToListReplicationLagQueryParamsOutput() ListReplicationLagQueryParamsOutput
+	ToListReplicationLagQueryParamsOutputWithContext(context.Context) ListReplicationLagQueryParamsOutput
+}
+
+// Query params for the API request.
+type ListReplicationLagQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+	// Epoch/Unix timestamp of end of time range to return. Defaults to `now()`.
+	EndTime pulumi.StringPtrInput `pulumi:"endTime"`
+	// The resolution of the returned data
+	ResolutionSeconds pulumi.Float64PtrInput `pulumi:"resolutionSeconds"`
+	// Postgres ID to query. When multiple resource query params are provided, they are ORed together
+	Resource pulumi.StringPtrInput `pulumi:"resource"`
+	// Epoch/Unix timestamp of start of time range to return. Defaults to `now() - 1 hour`.
+	StartTime pulumi.StringPtrInput `pulumi:"startTime"`
+}
+
+// Defaults sets the appropriate defaults for ListReplicationLagQueryParamsArgs
+func (val *ListReplicationLagQueryParamsArgs) Defaults() *ListReplicationLagQueryParamsArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.ResolutionSeconds == nil {
+		tmp.ResolutionSeconds = pulumi.Float64Ptr(60.0)
+	}
+	return &tmp
+}
+func (ListReplicationLagQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListReplicationLagQueryParams)(nil)).Elem()
+}
+
+func (i ListReplicationLagQueryParamsArgs) ToListReplicationLagQueryParamsOutput() ListReplicationLagQueryParamsOutput {
+	return i.ToListReplicationLagQueryParamsOutputWithContext(context.Background())
+}
+
+func (i ListReplicationLagQueryParamsArgs) ToListReplicationLagQueryParamsOutputWithContext(ctx context.Context) ListReplicationLagQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListReplicationLagQueryParamsOutput)
+}
+
+func (i ListReplicationLagQueryParamsArgs) ToListReplicationLagQueryParamsPtrOutput() ListReplicationLagQueryParamsPtrOutput {
+	return i.ToListReplicationLagQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i ListReplicationLagQueryParamsArgs) ToListReplicationLagQueryParamsPtrOutputWithContext(ctx context.Context) ListReplicationLagQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListReplicationLagQueryParamsOutput).ToListReplicationLagQueryParamsPtrOutputWithContext(ctx)
+}
+
+// ListReplicationLagQueryParamsPtrInput is an input type that accepts ListReplicationLagQueryParamsArgs, ListReplicationLagQueryParamsPtr and ListReplicationLagQueryParamsPtrOutput values.
+// You can construct a concrete instance of `ListReplicationLagQueryParamsPtrInput` via:
+//
+//	        ListReplicationLagQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ListReplicationLagQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToListReplicationLagQueryParamsPtrOutput() ListReplicationLagQueryParamsPtrOutput
+	ToListReplicationLagQueryParamsPtrOutputWithContext(context.Context) ListReplicationLagQueryParamsPtrOutput
+}
+
+type listReplicationLagQueryParamsPtrType ListReplicationLagQueryParamsArgs
+
+func ListReplicationLagQueryParamsPtr(v *ListReplicationLagQueryParamsArgs) ListReplicationLagQueryParamsPtrInput {
+	return (*listReplicationLagQueryParamsPtrType)(v)
+}
+
+func (*listReplicationLagQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListReplicationLagQueryParams)(nil)).Elem()
+}
+
+func (i *listReplicationLagQueryParamsPtrType) ToListReplicationLagQueryParamsPtrOutput() ListReplicationLagQueryParamsPtrOutput {
+	return i.ToListReplicationLagQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *listReplicationLagQueryParamsPtrType) ToListReplicationLagQueryParamsPtrOutputWithContext(ctx context.Context) ListReplicationLagQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListReplicationLagQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type ListReplicationLagQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (ListReplicationLagQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListReplicationLagQueryParams)(nil)).Elem()
+}
+
+func (o ListReplicationLagQueryParamsOutput) ToListReplicationLagQueryParamsOutput() ListReplicationLagQueryParamsOutput {
+	return o
+}
+
+func (o ListReplicationLagQueryParamsOutput) ToListReplicationLagQueryParamsOutputWithContext(ctx context.Context) ListReplicationLagQueryParamsOutput {
+	return o
+}
+
+func (o ListReplicationLagQueryParamsOutput) ToListReplicationLagQueryParamsPtrOutput() ListReplicationLagQueryParamsPtrOutput {
+	return o.ToListReplicationLagQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o ListReplicationLagQueryParamsOutput) ToListReplicationLagQueryParamsPtrOutputWithContext(ctx context.Context) ListReplicationLagQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListReplicationLagQueryParams) *ListReplicationLagQueryParams {
+		return &v
+	}).(ListReplicationLagQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListReplicationLagQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ListReplicationLagQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+// Epoch/Unix timestamp of end of time range to return. Defaults to `now()`.
+func (o ListReplicationLagQueryParamsOutput) EndTime() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListReplicationLagQueryParams) *string { return v.EndTime }).(pulumi.StringPtrOutput)
+}
+
+// The resolution of the returned data
+func (o ListReplicationLagQueryParamsOutput) ResolutionSeconds() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v ListReplicationLagQueryParams) *float64 { return v.ResolutionSeconds }).(pulumi.Float64PtrOutput)
+}
+
+// Postgres ID to query. When multiple resource query params are provided, they are ORed together
+func (o ListReplicationLagQueryParamsOutput) Resource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListReplicationLagQueryParams) *string { return v.Resource }).(pulumi.StringPtrOutput)
+}
+
+// Epoch/Unix timestamp of start of time range to return. Defaults to `now() - 1 hour`.
+func (o ListReplicationLagQueryParamsOutput) StartTime() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListReplicationLagQueryParams) *string { return v.StartTime }).(pulumi.StringPtrOutput)
+}
+
+type ListReplicationLagQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (ListReplicationLagQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListReplicationLagQueryParams)(nil)).Elem()
+}
+
+func (o ListReplicationLagQueryParamsPtrOutput) ToListReplicationLagQueryParamsPtrOutput() ListReplicationLagQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListReplicationLagQueryParamsPtrOutput) ToListReplicationLagQueryParamsPtrOutputWithContext(ctx context.Context) ListReplicationLagQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListReplicationLagQueryParamsPtrOutput) Elem() ListReplicationLagQueryParamsOutput {
+	return o.ApplyT(func(v *ListReplicationLagQueryParams) ListReplicationLagQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret ListReplicationLagQueryParams
+		return ret
+	}).(ListReplicationLagQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListReplicationLagQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ListReplicationLagQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Epoch/Unix timestamp of end of time range to return. Defaults to `now()`.
+func (o ListReplicationLagQueryParamsPtrOutput) EndTime() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListReplicationLagQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.EndTime
+	}).(pulumi.StringPtrOutput)
+}
+
+// The resolution of the returned data
+func (o ListReplicationLagQueryParamsPtrOutput) ResolutionSeconds() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *ListReplicationLagQueryParams) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.ResolutionSeconds
+	}).(pulumi.Float64PtrOutput)
+}
+
+// Postgres ID to query. When multiple resource query params are provided, they are ORed together
+func (o ListReplicationLagQueryParamsPtrOutput) Resource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListReplicationLagQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Resource
+	}).(pulumi.StringPtrOutput)
+}
+
+// Epoch/Unix timestamp of start of time range to return. Defaults to `now() - 1 hour`.
+func (o ListReplicationLagQueryParamsPtrOutput) StartTime() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListReplicationLagQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.StartTime
+	}).(pulumi.StringPtrOutput)
+}
+
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBandwidthSourceQueryParamsInput)(nil)).Elem(), GetBandwidthSourceQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBandwidthSourceQueryParamsPtrInput)(nil)).Elem(), GetBandwidthSourceQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListActiveConnectionsQueryParamsInput)(nil)).Elem(), ListActiveConnectionsQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListActiveConnectionsQueryParamsPtrInput)(nil)).Elem(), ListActiveConnectionsQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListReplicationLagQueryParamsInput)(nil)).Elem(), ListReplicationLagQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListReplicationLagQueryParamsPtrInput)(nil)).Elem(), ListReplicationLagQueryParamsArgs{})
 	pulumi.RegisterOutputType(GetBandwidthSourcePropertiesDataItemPropertiesOutput{})
 	pulumi.RegisterOutputType(GetBandwidthSourcePropertiesDataItemPropertiesArrayOutput{})
 	pulumi.RegisterOutputType(GetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesOutput{})
 	pulumi.RegisterOutputType(GetBandwidthSourcePropertiesDataItemPropertiesLabelsPropertiesPtrOutput{})
 	pulumi.RegisterOutputType(GetBandwidthSourcePropertiesDataItemPropertiesValuesItemPropertiesOutput{})
 	pulumi.RegisterOutputType(GetBandwidthSourcePropertiesDataItemPropertiesValuesItemPropertiesArrayOutput{})
+	pulumi.RegisterOutputType(GetBandwidthSourceQueryParamsOutput{})
+	pulumi.RegisterOutputType(GetBandwidthSourceQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(ListActiveConnectionsItemPropertiesOutput{})
 	pulumi.RegisterOutputType(ListActiveConnectionsItemPropertiesArrayOutput{})
 	pulumi.RegisterOutputType(ListActiveConnectionsItemPropertiesLabelsItemPropertiesOutput{})
 	pulumi.RegisterOutputType(ListActiveConnectionsItemPropertiesLabelsItemPropertiesArrayOutput{})
 	pulumi.RegisterOutputType(ListActiveConnectionsItemPropertiesValuesItemPropertiesOutput{})
 	pulumi.RegisterOutputType(ListActiveConnectionsItemPropertiesValuesItemPropertiesArrayOutput{})
+	pulumi.RegisterOutputType(ListActiveConnectionsQueryParamsOutput{})
+	pulumi.RegisterOutputType(ListActiveConnectionsQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(ListReplicationLagItemPropertiesOutput{})
 	pulumi.RegisterOutputType(ListReplicationLagItemPropertiesArrayOutput{})
 	pulumi.RegisterOutputType(ListReplicationLagItemPropertiesLabelsItemPropertiesOutput{})
 	pulumi.RegisterOutputType(ListReplicationLagItemPropertiesLabelsItemPropertiesArrayOutput{})
 	pulumi.RegisterOutputType(ListReplicationLagItemPropertiesValuesItemPropertiesOutput{})
 	pulumi.RegisterOutputType(ListReplicationLagItemPropertiesValuesItemPropertiesArrayOutput{})
+	pulumi.RegisterOutputType(ListReplicationLagQueryParamsOutput{})
+	pulumi.RegisterOutputType(ListReplicationLagQueryParamsPtrOutput{})
 }

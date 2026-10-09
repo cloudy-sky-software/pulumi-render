@@ -13,6 +13,9 @@ import (
 
 type RestartPostgres struct {
 	pulumi.CustomResourceState
+
+	// Query params to send with the API requests for this resource.
+	QueryParams RestartPostgresQueryParamsPtrOutput `pulumi:"queryParams"`
 }
 
 // NewRestartPostgres registers a new resource with the given unique name, arguments, and options.
@@ -56,11 +59,15 @@ func (RestartPostgresState) ElementType() reflect.Type {
 
 type restartPostgresArgs struct {
 	PostgresId *string `pulumi:"postgresId"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *RestartPostgresQueryParams `pulumi:"queryParams"`
 }
 
 // The set of arguments for constructing a RestartPostgres resource.
 type RestartPostgresArgs struct {
 	PostgresId pulumi.StringPtrInput
+	// Query params to send with the API requests for this resource.
+	QueryParams RestartPostgresQueryParamsPtrInput
 }
 
 func (RestartPostgresArgs) ElementType() reflect.Type {
@@ -98,6 +105,11 @@ func (o RestartPostgresOutput) ToRestartPostgresOutput() RestartPostgresOutput {
 
 func (o RestartPostgresOutput) ToRestartPostgresOutputWithContext(ctx context.Context) RestartPostgresOutput {
 	return o
+}
+
+// Query params to send with the API requests for this resource.
+func (o RestartPostgresOutput) QueryParams() RestartPostgresQueryParamsPtrOutput {
+	return o.ApplyT(func(v *RestartPostgres) RestartPostgresQueryParamsPtrOutput { return v.QueryParams }).(RestartPostgresQueryParamsPtrOutput)
 }
 
 func init() {

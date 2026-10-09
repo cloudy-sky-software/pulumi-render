@@ -15,6 +15,7 @@ else:
 from .. import _utilities
 from . import outputs
 from ._enums import *
+from ._inputs import *
 
 __all__ = [
     'GetProjectResult',
@@ -103,12 +104,16 @@ class AwaitableGetProjectResult(GetProjectResult):
 
 
 def get_project(project_id: Optional[_builtins.str] = None,
+                query_params: Optional[Union['GetProjectQueryParams', 'GetProjectQueryParamsDict']] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetProjectResult:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['GetProjectQueryParams', 'GetProjectQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
     __args__['projectId'] = project_id
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:projects:getProject', __args__, opts=opts, typ=GetProjectResult).value
 
@@ -120,12 +125,16 @@ def get_project(project_id: Optional[_builtins.str] = None,
         owner=pulumi.get(__ret__, 'owner'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
 def get_project_output(project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                       query_params: pulumi.Input[Optional[Optional[Union['GetProjectQueryParams', 'GetProjectQueryParamsDict']]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProjectResult]:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['GetProjectQueryParams', 'GetProjectQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
     __args__['projectId'] = project_id
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:projects:getProject', __args__, opts=opts, typ=GetProjectResult)
     return __ret__.apply(lambda __response__: GetProjectResult(

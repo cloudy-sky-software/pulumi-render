@@ -14,7 +14,7 @@ export const listOwnerMembers: typeof import("./listOwnerMembers").listOwnerMemb
 export const listOwnerMembersOutput: typeof import("./listOwnerMembers").listOwnerMembersOutput = null as any;
 utilities.lazyLoad(exports, ["listOwnerMembers","listOwnerMembersOutput"], () => require("./listOwnerMembers"));
 
-export { ListOwnersArgs, ListOwnersResult } from "./listOwners";
+export { ListOwnersArgs, ListOwnersResult, ListOwnersOutputArgs } from "./listOwners";
 export const listOwners: typeof import("./listOwners").listOwners = null as any;
 export const listOwnersOutput: typeof import("./listOwners").listOwnersOutput = null as any;
 utilities.lazyLoad(exports, ["listOwners","listOwnersOutput"], () => require("./listOwners"));

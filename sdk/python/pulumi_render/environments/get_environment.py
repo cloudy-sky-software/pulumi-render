@@ -14,6 +14,7 @@ else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from ._enums import *
+from ._inputs import *
 
 __all__ = [
     'GetEnvironmentResult',
@@ -123,12 +124,16 @@ class AwaitableGetEnvironmentResult(GetEnvironmentResult):
 
 
 def get_environment(environment_id: Optional[_builtins.str] = None,
+                    query_params: Optional[Union['GetEnvironmentQueryParams', 'GetEnvironmentQueryParamsDict']] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetEnvironmentResult:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['GetEnvironmentQueryParams', 'GetEnvironmentQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
     __args__['environmentId'] = environment_id
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:environments:getEnvironment', __args__, opts=opts, typ=GetEnvironmentResult).value
 
@@ -143,12 +148,16 @@ def get_environment(environment_id: Optional[_builtins.str] = None,
         redis_ids=pulumi.get(__ret__, 'redis_ids'),
         service_ids=pulumi.get(__ret__, 'service_ids'))
 def get_environment_output(environment_id: pulumi.Input[Optional[_builtins.str]] = None,
+                           query_params: pulumi.Input[Optional[Optional[Union['GetEnvironmentQueryParams', 'GetEnvironmentQueryParamsDict']]]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetEnvironmentResult]:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['GetEnvironmentQueryParams', 'GetEnvironmentQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
     __args__['environmentId'] = environment_id
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:environments:getEnvironment', __args__, opts=opts, typ=GetEnvironmentResult)
     return __ret__.apply(lambda __response__: GetEnvironmentResult(

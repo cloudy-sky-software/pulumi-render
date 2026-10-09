@@ -7,9 +7,22 @@ import pulumi
 from enum import Enum
 
 __all__ = [
+    'ListRegistryCredentialsQueryParamsTypeItem',
     'Registry',
     'RegistryCredentialRegistry',
 ]
+
+
+@pulumi.type_token("render:registrycredentials:ListRegistryCredentialsQueryParamsTypeItem")
+class ListRegistryCredentialsQueryParamsTypeItem(_builtins.str, Enum):
+    """
+    The registry to use this credential with
+    """
+    GITHUB = "GITHUB"
+    GITLAB = "GITLAB"
+    DOCKER = "DOCKER"
+    GOOGLE_ARTIFACT = "GOOGLE_ARTIFACT"
+    AWS_ECR = "AWS_ECR"
 
 
 @pulumi.type_token("render:registrycredentials:Registry")

@@ -27,6 +27,12 @@ namespace Pulumi.Render.Postgres
         [Input("postgresId", required: true)]
         public string PostgresId { get; set; } = null!;
 
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Inputs.GetPostgresConnectionInfoQueryParams? QueryParams { get; set; }
+
         public GetPostgresConnectionInfoArgs()
         {
         }
@@ -37,6 +43,12 @@ namespace Pulumi.Render.Postgres
     {
         [Input("postgresId", required: true)]
         public Input<string> PostgresId { get; set; } = null!;
+
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.GetPostgresConnectionInfoQueryParamsArgs>? QueryParams { get; set; }
 
         public GetPostgresConnectionInfoInvokeArgs()
         {

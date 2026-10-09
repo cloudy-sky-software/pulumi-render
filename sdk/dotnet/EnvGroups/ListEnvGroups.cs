@@ -14,20 +14,40 @@ namespace Pulumi.Render.EnvGroups
         public static Task<ListEnvGroupsResult> InvokeAsync(ListEnvGroupsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ListEnvGroupsResult>("render:env-groups:listEnvGroups", args ?? new ListEnvGroupsArgs(), options.WithDefaults());
 
-        public static Output<ListEnvGroupsResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<ListEnvGroupsResult>("render:env-groups:listEnvGroups", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<ListEnvGroupsResult> Invoke(ListEnvGroupsInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<ListEnvGroupsResult>("render:env-groups:listEnvGroups", args ?? new ListEnvGroupsInvokeArgs(), options.WithDefaults());
 
-        public static Output<ListEnvGroupsResult> Invoke(InvokeOutputOptions options)
-            => global::Pulumi.Deployment.Instance.Invoke<ListEnvGroupsResult>("render:env-groups:listEnvGroups", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<ListEnvGroupsResult> Invoke(ListEnvGroupsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<ListEnvGroupsResult>("render:env-groups:listEnvGroups", args ?? new ListEnvGroupsInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class ListEnvGroupsArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Inputs.ListEnvGroupsQueryParams? QueryParams { get; set; }
+
         public ListEnvGroupsArgs()
         {
         }
         public static new ListEnvGroupsArgs Empty => new ListEnvGroupsArgs();
+    }
+
+    public sealed class ListEnvGroupsInvokeArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.ListEnvGroupsQueryParamsArgs>? QueryParams { get; set; }
+
+        public ListEnvGroupsInvokeArgs()
+        {
+        }
+        public static new ListEnvGroupsInvokeArgs Empty => new ListEnvGroupsInvokeArgs();
     }
 
 

@@ -11,6 +11,7 @@ export function listOwnerMembers(args: ListOwnerMembersArgs, opts?: pulumi.Invok
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:owners:listOwnerMembers", {
         "ownerId": args.ownerId,
+        "queryParams": args.queryParams,
     }, opts);
 }
 
@@ -19,6 +20,10 @@ export interface ListOwnerMembersArgs {
      * The ID of the team
      */
     ownerId: string;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.owners.ListOwnerMembersQueryParams;
 }
 
 export interface ListOwnerMembersResult {
@@ -28,6 +33,7 @@ export function listOwnerMembersOutput(args: ListOwnerMembersOutputArgs, opts?: 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:owners:listOwnerMembers", {
         "ownerId": args.ownerId,
+        "queryParams": args.queryParams,
     }, opts);
 }
 
@@ -36,4 +42,8 @@ export interface ListOwnerMembersOutputArgs {
      * The ID of the team
      */
     ownerId: pulumi.Input<string>;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.owners.ListOwnerMembersQueryParamsArgs | undefined>;
 }

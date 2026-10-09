@@ -19,7 +19,9 @@ type LinkServiceToEnvGroup struct {
 	EnvironmentId pulumi.StringPtrOutput `pulumi:"environmentId"`
 	Name          pulumi.StringPtrOutput `pulumi:"name"`
 	OwnerId       pulumi.StringPtrOutput `pulumi:"ownerId"`
-	SecretFiles   SecretFileArrayOutput  `pulumi:"secretFiles"`
+	// Query params to send with the API requests for this resource.
+	QueryParams LinkServiceToEnvGroupQueryParamsPtrOutput `pulumi:"queryParams"`
+	SecretFiles SecretFileArrayOutput                     `pulumi:"secretFiles"`
 	// List of serviceIds linked to the envGroup
 	ServiceLinks EnvGroupLinkArrayOutput `pulumi:"serviceLinks"`
 	UpdatedAt    pulumi.StringPtrOutput  `pulumi:"updatedAt"`
@@ -67,6 +69,8 @@ func (LinkServiceToEnvGroupState) ElementType() reflect.Type {
 type linkServiceToEnvGroupArgs struct {
 	// Filter for resources that belong to an environment group
 	EnvGroupId *string `pulumi:"envGroupId"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *LinkServiceToEnvGroupQueryParams `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId *string `pulumi:"serviceId"`
 }
@@ -75,6 +79,8 @@ type linkServiceToEnvGroupArgs struct {
 type LinkServiceToEnvGroupArgs struct {
 	// Filter for resources that belong to an environment group
 	EnvGroupId pulumi.StringPtrInput
+	// Query params to send with the API requests for this resource.
+	QueryParams LinkServiceToEnvGroupQueryParamsPtrInput
 	// The ID of the service
 	ServiceId pulumi.StringPtrInput
 }
@@ -134,6 +140,11 @@ func (o LinkServiceToEnvGroupOutput) Name() pulumi.StringPtrOutput {
 
 func (o LinkServiceToEnvGroupOutput) OwnerId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LinkServiceToEnvGroup) pulumi.StringPtrOutput { return v.OwnerId }).(pulumi.StringPtrOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o LinkServiceToEnvGroupOutput) QueryParams() LinkServiceToEnvGroupQueryParamsPtrOutput {
+	return o.ApplyT(func(v *LinkServiceToEnvGroup) LinkServiceToEnvGroupQueryParamsPtrOutput { return v.QueryParams }).(LinkServiceToEnvGroupQueryParamsPtrOutput)
 }
 
 func (o LinkServiceToEnvGroupOutput) SecretFiles() SecretFileArrayOutput {

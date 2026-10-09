@@ -24,6 +24,8 @@ func LookupEnvVar(ctx *pulumi.Context, args *LookupEnvVarArgs, opts ...pulumi.In
 type LookupEnvVarArgs struct {
 	// The name of the environment variable
 	EnvVarKey string `pulumi:"envVarKey"`
+	// Query params to send with the API request.
+	QueryParams *GetEnvVarQueryParams `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId string `pulumi:"serviceId"`
 }
@@ -41,6 +43,8 @@ func LookupEnvVarOutput(ctx *pulumi.Context, args LookupEnvVarOutputArgs, opts .
 type LookupEnvVarOutputArgs struct {
 	// The name of the environment variable
 	EnvVarKey pulumi.StringInput `pulumi:"envVarKey"`
+	// Query params to send with the API request.
+	QueryParams GetEnvVarQueryParamsPtrInput `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }

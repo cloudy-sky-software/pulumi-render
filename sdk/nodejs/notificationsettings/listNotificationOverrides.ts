@@ -11,18 +11,31 @@ export function listNotificationOverrides(args?: ListNotificationOverridesArgs, 
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:notification-settings:listNotificationOverrides", {
+        "queryParams": args.queryParams ? inputs.notificationsettings.listNotificationOverridesQueryParamsProvideDefaults(args.queryParams) : undefined,
     }, opts);
 }
 
 export interface ListNotificationOverridesArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.notificationsettings.ListNotificationOverridesQueryParams;
 }
 
 export interface ListNotificationOverridesResult {
     readonly items: outputs.notificationsettings.NotificationOverrideWithCursor[];
 }
-export function listNotificationOverridesOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListNotificationOverridesResult> {
+export function listNotificationOverridesOutput(args?: ListNotificationOverridesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListNotificationOverridesResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:notification-settings:listNotificationOverrides", {
+        "queryParams": pulumi.output(args.queryParams).apply(v => v === undefined ? undefined : inputs.notificationsettings.listNotificationOverridesQueryParamsProvideDefaults(v)),
     }, opts);
 }
 
+export interface ListNotificationOverridesOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.notificationsettings.ListNotificationOverridesQueryParamsArgs | undefined>;
+}

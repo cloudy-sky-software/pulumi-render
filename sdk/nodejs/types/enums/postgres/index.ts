@@ -13,6 +13,26 @@ export const GetPostgresRecoveryInfoPropertiesRecoveryStatus = {
  */
 export type GetPostgresRecoveryInfoPropertiesRecoveryStatus = (typeof GetPostgresRecoveryInfoPropertiesRecoveryStatus)[keyof typeof GetPostgresRecoveryInfoPropertiesRecoveryStatus];
 
+export const ListPostgresQueryParamsRegionItem = {
+    Frankfurt: "frankfurt",
+    Oregon: "oregon",
+    Ohio: "ohio",
+    Singapore: "singapore",
+    Virginia: "virginia",
+} as const;
+
+/**
+ * Defaults to "oregon"
+ */
+export type ListPostgresQueryParamsRegionItem = (typeof ListPostgresQueryParamsRegionItem)[keyof typeof ListPostgresQueryParamsRegionItem];
+
+export const ListPostgresQueryParamsSuspendedItem = {
+    Suspended: "suspended",
+    NotSuspended: "not_suspended",
+} as const;
+
+export type ListPostgresQueryParamsSuspendedItem = (typeof ListPostgresQueryParamsSuspendedItem)[keyof typeof ListPostgresQueryParamsSuspendedItem];
+
 export const OwnerType = {
     User: "user",
     Team: "team",

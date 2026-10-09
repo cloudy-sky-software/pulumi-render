@@ -13,6 +13,9 @@ import (
 
 type PostgresExport struct {
 	pulumi.CustomResourceState
+
+	// Query params to send with the API requests for this resource.
+	QueryParams PostgresExportQueryParamsPtrOutput `pulumi:"queryParams"`
 }
 
 // NewPostgresExport registers a new resource with the given unique name, arguments, and options.
@@ -56,11 +59,15 @@ func (PostgresExportState) ElementType() reflect.Type {
 
 type postgresExportArgs struct {
 	PostgresId *string `pulumi:"postgresId"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *PostgresExportQueryParams `pulumi:"queryParams"`
 }
 
 // The set of arguments for constructing a PostgresExport resource.
 type PostgresExportArgs struct {
 	PostgresId pulumi.StringPtrInput
+	// Query params to send with the API requests for this resource.
+	QueryParams PostgresExportQueryParamsPtrInput
 }
 
 func (PostgresExportArgs) ElementType() reflect.Type {
@@ -98,6 +105,11 @@ func (o PostgresExportOutput) ToPostgresExportOutput() PostgresExportOutput {
 
 func (o PostgresExportOutput) ToPostgresExportOutputWithContext(ctx context.Context) PostgresExportOutput {
 	return o
+}
+
+// Query params to send with the API requests for this resource.
+func (o PostgresExportOutput) QueryParams() PostgresExportQueryParamsPtrOutput {
+	return o.ApplyT(func(v *PostgresExport) PostgresExportQueryParamsPtrOutput { return v.QueryParams }).(PostgresExportQueryParamsPtrOutput)
 }
 
 func init() {

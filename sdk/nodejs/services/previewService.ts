@@ -47,6 +47,10 @@ export class PreviewService extends pulumi.CustomResource {
      * The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
      */
     declare public readonly plan: pulumi.Output<enums.services.Plan | undefined>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.services.PreviewServiceQueryParams | undefined>;
     declare public /*out*/ readonly service: pulumi.Output<outputs.services.Service | undefined>;
 
     /**
@@ -66,6 +70,7 @@ export class PreviewService extends pulumi.CustomResource {
             resourceInputs["imagePath"] = args?.imagePath;
             resourceInputs["name"] = args?.name;
             resourceInputs["plan"] = args?.plan;
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["serviceId"] = args?.serviceId;
             resourceInputs["deployId"] = undefined /*out*/;
             resourceInputs["service"] = undefined /*out*/;
@@ -74,6 +79,7 @@ export class PreviewService extends pulumi.CustomResource {
             resourceInputs["imagePath"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;
             resourceInputs["plan"] = undefined /*out*/;
+            resourceInputs["queryParams"] = undefined /*out*/;
             resourceInputs["service"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -97,6 +103,10 @@ export interface PreviewServiceArgs {
      * The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
      */
     plan?: pulumi.Input<enums.services.Plan | undefined>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.services.PreviewServiceQueryParamsArgs | undefined>;
     /**
      * The ID of the service
      */

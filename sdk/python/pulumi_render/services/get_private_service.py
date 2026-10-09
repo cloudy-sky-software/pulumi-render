@@ -15,6 +15,7 @@ else:
 from .. import _utilities
 from . import outputs
 from ._enums import *
+from ._inputs import *
 
 __all__ = [
     'GetPrivateServiceResult',
@@ -219,14 +220,17 @@ class AwaitableGetPrivateServiceResult(GetPrivateServiceResult):
             updated_at=self.updated_at)
 
 
-def get_private_service(service_id: Optional[_builtins.str] = None,
+def get_private_service(query_params: Optional[Union['GetPrivateServiceQueryParams', 'GetPrivateServiceQueryParamsDict']] = None,
+                        service_id: Optional[_builtins.str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPrivateServiceResult:
     """
     Use this data source to access information about an existing resource.
 
+    :param Union['GetPrivateServiceQueryParams', 'GetPrivateServiceQueryParamsDict'] query_params: Query params to send with the API request.
     :param _builtins.str service_id: The ID of the service
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     __args__['serviceId'] = service_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:services:getPrivateService', __args__, opts=opts, typ=GetPrivateServiceResult).value
@@ -252,14 +256,17 @@ def get_private_service(service_id: Optional[_builtins.str] = None,
         suspenders=pulumi.get(__ret__, 'suspenders'),
         type=pulumi.get(__ret__, 'type'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
-def get_private_service_output(service_id: pulumi.Input[Optional[_builtins.str]] = None,
+def get_private_service_output(query_params: pulumi.Input[Optional[Optional[Union['GetPrivateServiceQueryParams', 'GetPrivateServiceQueryParamsDict']]]] = None,
+                               service_id: pulumi.Input[Optional[_builtins.str]] = None,
                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPrivateServiceResult]:
     """
     Use this data source to access information about an existing resource.
 
+    :param Union['GetPrivateServiceQueryParams', 'GetPrivateServiceQueryParamsDict'] query_params: Query params to send with the API request.
     :param _builtins.str service_id: The ID of the service
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     __args__['serviceId'] = service_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:services:getPrivateService', __args__, opts=opts, typ=GetPrivateServiceResult)

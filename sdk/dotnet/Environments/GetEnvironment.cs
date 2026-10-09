@@ -27,6 +27,12 @@ namespace Pulumi.Render.Environments
         [Input("environmentId", required: true)]
         public string EnvironmentId { get; set; } = null!;
 
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Inputs.GetEnvironmentQueryParams? QueryParams { get; set; }
+
         public GetEnvironmentArgs()
         {
         }
@@ -37,6 +43,12 @@ namespace Pulumi.Render.Environments
     {
         [Input("environmentId", required: true)]
         public Input<string> EnvironmentId { get; set; } = null!;
+
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.GetEnvironmentQueryParamsArgs>? QueryParams { get; set; }
 
         public GetEnvironmentInvokeArgs()
         {

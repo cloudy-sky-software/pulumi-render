@@ -14,6 +14,7 @@ else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'ListReplicationLagResult',
@@ -44,21 +45,29 @@ class AwaitableListReplicationLagResult(ListReplicationLagResult):
             items=self.items)
 
 
-def list_replication_lag(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListReplicationLagResult:
+def list_replication_lag(query_params: Optional[Union['ListReplicationLagQueryParams', 'ListReplicationLagQueryParamsDict']] = None,
+                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListReplicationLagResult:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['ListReplicationLagQueryParams', 'ListReplicationLagQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:metrics:listReplicationLag', __args__, opts=opts, typ=ListReplicationLagResult).value
 
     return AwaitableListReplicationLagResult(
         items=pulumi.get(__ret__, 'items'))
-def list_replication_lag_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListReplicationLagResult]:
+def list_replication_lag_output(query_params: pulumi.Input[Optional[Optional[Union['ListReplicationLagQueryParams', 'ListReplicationLagQueryParamsDict']]]] = None,
+                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListReplicationLagResult]:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['ListReplicationLagQueryParams', 'ListReplicationLagQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:metrics:listReplicationLag', __args__, opts=opts, typ=ListReplicationLagResult)
     return __ret__.apply(lambda __response__: ListReplicationLagResult(

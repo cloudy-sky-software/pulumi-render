@@ -61,6 +61,10 @@ export class Deploy extends pulumi.CustomResource {
      * The host, repository, and image name all must match the currently configured image for the service.
      */
     declare public readonly imageUrl: pulumi.Output<string | undefined>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.services.DeployQueryParams | undefined>;
     declare public /*out*/ readonly startedAt: pulumi.Output<string | undefined>;
     declare public /*out*/ readonly status: pulumi.Output<enums.services.Status | undefined>;
     declare public /*out*/ readonly trigger: pulumi.Output<enums.services.Trigger | undefined>;
@@ -80,6 +84,7 @@ export class Deploy extends pulumi.CustomResource {
             resourceInputs["clearCache"] = (args?.clearCache) ?? "do_not_clear";
             resourceInputs["commitId"] = args?.commitId;
             resourceInputs["imageUrl"] = args?.imageUrl;
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["serviceId"] = args?.serviceId;
             resourceInputs["commit"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
@@ -97,6 +102,7 @@ export class Deploy extends pulumi.CustomResource {
             resourceInputs["finishedAt"] = undefined /*out*/;
             resourceInputs["image"] = undefined /*out*/;
             resourceInputs["imageUrl"] = undefined /*out*/;
+            resourceInputs["queryParams"] = undefined /*out*/;
             resourceInputs["startedAt"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["trigger"] = undefined /*out*/;
@@ -131,6 +137,10 @@ export interface DeployArgs {
      * The host, repository, and image name all must match the currently configured image for the service.
      */
     imageUrl?: pulumi.Input<string | undefined>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.services.DeployQueryParamsArgs | undefined>;
     /**
      * The ID of the service
      */

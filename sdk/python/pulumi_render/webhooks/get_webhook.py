@@ -14,6 +14,7 @@ else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from ._enums import *
+from ._inputs import *
 
 __all__ = [
     'GetWebhookResult',
@@ -92,14 +93,17 @@ class AwaitableGetWebhookResult(GetWebhookResult):
             url=self.url)
 
 
-def get_webhook(webhook_id: Optional[_builtins.str] = None,
+def get_webhook(query_params: Optional[Union['GetWebhookQueryParams', 'GetWebhookQueryParamsDict']] = None,
+                webhook_id: Optional[_builtins.str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetWebhookResult:
     """
     Use this data source to access information about an existing resource.
 
+    :param Union['GetWebhookQueryParams', 'GetWebhookQueryParamsDict'] query_params: Query params to send with the API request.
     :param _builtins.str webhook_id: Unique identifier for the webhook
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     __args__['webhookId'] = webhook_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:webhooks:getWebhook', __args__, opts=opts, typ=GetWebhookResult).value
@@ -111,14 +115,17 @@ def get_webhook(webhook_id: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         secret=pulumi.get(__ret__, 'secret'),
         url=pulumi.get(__ret__, 'url'))
-def get_webhook_output(webhook_id: pulumi.Input[Optional[_builtins.str]] = None,
+def get_webhook_output(query_params: pulumi.Input[Optional[Optional[Union['GetWebhookQueryParams', 'GetWebhookQueryParamsDict']]]] = None,
+                       webhook_id: pulumi.Input[Optional[_builtins.str]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetWebhookResult]:
     """
     Use this data source to access information about an existing resource.
 
+    :param Union['GetWebhookQueryParams', 'GetWebhookQueryParamsDict'] query_params: Query params to send with the API request.
     :param _builtins.str webhook_id: Unique identifier for the webhook
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     __args__['webhookId'] = webhook_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:webhooks:getWebhook', __args__, opts=opts, typ=GetWebhookResult)

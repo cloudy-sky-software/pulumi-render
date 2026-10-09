@@ -14,6 +14,7 @@ else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from ._enums import *
+from ._inputs import *
 
 __all__ = [
     'GetRegistryCredentialResult',
@@ -95,14 +96,17 @@ class AwaitableGetRegistryCredentialResult(GetRegistryCredentialResult):
             username=self.username)
 
 
-def get_registry_credential(registry_credential_id: Optional[_builtins.str] = None,
+def get_registry_credential(query_params: Optional[Union['GetRegistryCredentialQueryParams', 'GetRegistryCredentialQueryParamsDict']] = None,
+                            registry_credential_id: Optional[_builtins.str] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRegistryCredentialResult:
     """
     Use this data source to access information about an existing resource.
 
+    :param Union['GetRegistryCredentialQueryParams', 'GetRegistryCredentialQueryParamsDict'] query_params: Query params to send with the API request.
     :param _builtins.str registry_credential_id: The ID of the registry credential
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     __args__['registryCredentialId'] = registry_credential_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:registrycredentials:getRegistryCredential', __args__, opts=opts, typ=GetRegistryCredentialResult).value
@@ -113,14 +117,17 @@ def get_registry_credential(registry_credential_id: Optional[_builtins.str] = No
         registry=pulumi.get(__ret__, 'registry'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         username=pulumi.get(__ret__, 'username'))
-def get_registry_credential_output(registry_credential_id: pulumi.Input[Optional[_builtins.str]] = None,
+def get_registry_credential_output(query_params: pulumi.Input[Optional[Optional[Union['GetRegistryCredentialQueryParams', 'GetRegistryCredentialQueryParamsDict']]]] = None,
+                                   registry_credential_id: pulumi.Input[Optional[_builtins.str]] = None,
                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRegistryCredentialResult]:
     """
     Use this data source to access information about an existing resource.
 
+    :param Union['GetRegistryCredentialQueryParams', 'GetRegistryCredentialQueryParamsDict'] query_params: Query params to send with the API request.
     :param _builtins.str registry_credential_id: The ID of the registry credential
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     __args__['registryCredentialId'] = registry_credential_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:registrycredentials:getRegistryCredential', __args__, opts=opts, typ=GetRegistryCredentialResult)

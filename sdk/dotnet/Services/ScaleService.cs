@@ -15,6 +15,12 @@ namespace Pulumi.Render.Services
         [Output("numInstances")]
         public Output<int> NumInstances { get; private set; } = null!;
 
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Output("queryParams")]
+        public Output<Outputs.ScaleServiceQueryParams?> QueryParams { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a ScaleService resource with the given unique name, arguments, and options.
@@ -63,6 +69,12 @@ namespace Pulumi.Render.Services
     {
         [Input("numInstances", required: true)]
         public Input<int> NumInstances { get; set; } = null!;
+
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.ScaleServiceQueryParamsArgs>? QueryParams { get; set; }
 
         /// <summary>
         /// The ID of the service

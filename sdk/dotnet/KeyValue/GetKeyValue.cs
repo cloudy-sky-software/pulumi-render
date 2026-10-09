@@ -27,6 +27,12 @@ namespace Pulumi.Render.KeyValue
         [Input("keyValueId", required: true)]
         public string KeyValueId { get; set; } = null!;
 
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Inputs.GetKeyValueQueryParams? QueryParams { get; set; }
+
         public GetKeyValueArgs()
         {
         }
@@ -37,6 +43,12 @@ namespace Pulumi.Render.KeyValue
     {
         [Input("keyValueId", required: true)]
         public Input<string> KeyValueId { get; set; } = null!;
+
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.GetKeyValueQueryParamsArgs>? QueryParams { get; set; }
 
         public GetKeyValueInvokeArgs()
         {

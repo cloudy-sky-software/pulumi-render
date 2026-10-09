@@ -14,7 +14,7 @@ import (
 func ListProjects(ctx *pulumi.Context, args *ListProjectsArgs, opts ...pulumi.InvokeOption) (*ListProjectsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListProjectsResult
-	err := ctx.Invoke("render:projects:listProjects", args, &rv, opts...)
+	err := ctx.Invoke("render:projects:listProjects", args.Defaults(), &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -22,6 +22,19 @@ func ListProjects(ctx *pulumi.Context, args *ListProjectsArgs, opts ...pulumi.In
 }
 
 type ListProjectsArgs struct {
+	// Query params to send with the API request.
+	QueryParams *ListProjectsQueryParams `pulumi:"queryParams"`
+}
+
+// Defaults sets the appropriate defaults for ListProjectsArgs
+func (val *ListProjectsArgs) Defaults() *ListProjectsArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	tmp.QueryParams = tmp.QueryParams.Defaults()
+
+	return &tmp
 }
 
 type ListProjectsResult struct {
@@ -29,11 +42,18 @@ type ListProjectsResult struct {
 }
 
 func ListProjectsOutput(ctx *pulumi.Context, args ListProjectsOutputArgs, opts ...pulumi.InvokeOption) ListProjectsResultOutput {
+	outputArgs := pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) *ListProjectsArgs {
+			args := v.(ListProjectsArgs)
+			return args.Defaults()
+		})
 	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-	return ctx.InvokeOutput("render:projects:listProjects", args, ListProjectsResultOutput{}, options).(ListProjectsResultOutput)
+	return ctx.InvokeOutput("render:projects:listProjects", outputArgs, ListProjectsResultOutput{}, options).(ListProjectsResultOutput)
 }
 
 type ListProjectsOutputArgs struct {
+	// Query params to send with the API request.
+	QueryParams ListProjectsQueryParamsPtrInput `pulumi:"queryParams"`
 }
 
 func (ListProjectsOutputArgs) ElementType() reflect.Type {

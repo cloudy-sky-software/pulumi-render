@@ -14,20 +14,40 @@ namespace Pulumi.Render.NotificationSettings
         public static Task<ListNotificationOverridesResult> InvokeAsync(ListNotificationOverridesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ListNotificationOverridesResult>("render:notification-settings:listNotificationOverrides", args ?? new ListNotificationOverridesArgs(), options.WithDefaults());
 
-        public static Output<ListNotificationOverridesResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<ListNotificationOverridesResult>("render:notification-settings:listNotificationOverrides", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<ListNotificationOverridesResult> Invoke(ListNotificationOverridesInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<ListNotificationOverridesResult>("render:notification-settings:listNotificationOverrides", args ?? new ListNotificationOverridesInvokeArgs(), options.WithDefaults());
 
-        public static Output<ListNotificationOverridesResult> Invoke(InvokeOutputOptions options)
-            => global::Pulumi.Deployment.Instance.Invoke<ListNotificationOverridesResult>("render:notification-settings:listNotificationOverrides", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<ListNotificationOverridesResult> Invoke(ListNotificationOverridesInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<ListNotificationOverridesResult>("render:notification-settings:listNotificationOverrides", args ?? new ListNotificationOverridesInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class ListNotificationOverridesArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Inputs.ListNotificationOverridesQueryParams? QueryParams { get; set; }
+
         public ListNotificationOverridesArgs()
         {
         }
         public static new ListNotificationOverridesArgs Empty => new ListNotificationOverridesArgs();
+    }
+
+    public sealed class ListNotificationOverridesInvokeArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.ListNotificationOverridesQueryParamsArgs>? QueryParams { get; set; }
+
+        public ListNotificationOverridesInvokeArgs()
+        {
+        }
+        public static new ListNotificationOverridesInvokeArgs Empty => new ListNotificationOverridesInvokeArgs();
     }
 
 

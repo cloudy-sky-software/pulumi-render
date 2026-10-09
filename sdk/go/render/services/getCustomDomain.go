@@ -24,6 +24,8 @@ func LookupCustomDomain(ctx *pulumi.Context, args *LookupCustomDomainArgs, opts 
 type LookupCustomDomainArgs struct {
 	// The ID or name of the custom domain
 	CustomDomainIdOrName string `pulumi:"customDomainIdOrName"`
+	// Query params to send with the API request.
+	QueryParams *GetCustomDomainQueryParams `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId string `pulumi:"serviceId"`
 }
@@ -47,6 +49,8 @@ func LookupCustomDomainOutput(ctx *pulumi.Context, args LookupCustomDomainOutput
 type LookupCustomDomainOutputArgs struct {
 	// The ID or name of the custom domain
 	CustomDomainIdOrName pulumi.StringInput `pulumi:"customDomainIdOrName"`
+	// Query params to send with the API request.
+	QueryParams GetCustomDomainQueryParamsPtrInput `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }

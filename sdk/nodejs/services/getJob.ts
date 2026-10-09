@@ -11,6 +11,7 @@ export function getJob(args: GetJobArgs, opts?: pulumi.InvokeOptions): Promise<G
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:getJob", {
         "jobId": args.jobId,
+        "queryParams": args.queryParams,
         "serviceId": args.serviceId,
     }, opts);
 }
@@ -20,6 +21,10 @@ export interface GetJobArgs {
      * The ID of the job
      */
     jobId: string;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.services.GetJobQueryParams;
     /**
      * The ID of the service
      */
@@ -40,6 +45,7 @@ export function getJobOutput(args: GetJobOutputArgs, opts?: pulumi.InvokeOutputO
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:services:getJob", {
         "jobId": args.jobId,
+        "queryParams": args.queryParams,
         "serviceId": args.serviceId,
     }, opts);
 }
@@ -49,6 +55,10 @@ export interface GetJobOutputArgs {
      * The ID of the job
      */
     jobId: pulumi.Input<string>;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.services.GetJobQueryParamsArgs | undefined>;
     /**
      * The ID of the service
      */

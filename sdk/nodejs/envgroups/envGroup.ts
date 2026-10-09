@@ -39,6 +39,10 @@ export class EnvGroup extends pulumi.CustomResource {
     declare public readonly environmentId: pulumi.Output<string | undefined>;
     declare public readonly name: pulumi.Output<string>;
     declare public readonly ownerId: pulumi.Output<string>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.envgroups.EnvGroupQueryParams | undefined>;
     declare public readonly secretFiles: pulumi.Output<outputs.envgroups.SecretFile[] | undefined>;
     declare public readonly serviceIds: pulumi.Output<string[] | undefined>;
     /**
@@ -68,6 +72,7 @@ export class EnvGroup extends pulumi.CustomResource {
             resourceInputs["environmentId"] = args?.environmentId;
             resourceInputs["name"] = args?.name;
             resourceInputs["ownerId"] = args?.ownerId;
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["secretFiles"] = args?.secretFiles;
             resourceInputs["serviceIds"] = args?.serviceIds;
             resourceInputs["createdAt"] = undefined /*out*/;
@@ -79,6 +84,7 @@ export class EnvGroup extends pulumi.CustomResource {
             resourceInputs["environmentId"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;
             resourceInputs["ownerId"] = undefined /*out*/;
+            resourceInputs["queryParams"] = undefined /*out*/;
             resourceInputs["secretFiles"] = undefined /*out*/;
             resourceInputs["serviceIds"] = undefined /*out*/;
             resourceInputs["serviceLinks"] = undefined /*out*/;
@@ -97,6 +103,10 @@ export interface EnvGroupArgs {
     environmentId?: pulumi.Input<string | undefined>;
     name?: pulumi.Input<string | undefined>;
     ownerId: pulumi.Input<string>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.envgroups.EnvGroupQueryParamsArgs | undefined>;
     secretFiles?: pulumi.Input<pulumi.Input<inputs.envgroups.SecretFileInputArgs>[] | undefined>;
     serviceIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

@@ -15,6 +15,7 @@ else:
 from .. import _utilities
 from . import outputs
 from ._enums import *
+from ._inputs import *
 
 __all__ = [
     'GetBandwidthSourceResult',
@@ -45,21 +46,29 @@ class AwaitableGetBandwidthSourceResult(GetBandwidthSourceResult):
             data=self.data)
 
 
-def get_bandwidth_source(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBandwidthSourceResult:
+def get_bandwidth_source(query_params: Optional[Union['GetBandwidthSourceQueryParams', 'GetBandwidthSourceQueryParamsDict']] = None,
+                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBandwidthSourceResult:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['GetBandwidthSourceQueryParams', 'GetBandwidthSourceQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:metrics:getBandwidthSource', __args__, opts=opts, typ=GetBandwidthSourceResult).value
 
     return AwaitableGetBandwidthSourceResult(
         data=pulumi.get(__ret__, 'data'))
-def get_bandwidth_source_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBandwidthSourceResult]:
+def get_bandwidth_source_output(query_params: pulumi.Input[Optional[Optional[Union['GetBandwidthSourceQueryParams', 'GetBandwidthSourceQueryParamsDict']]]] = None,
+                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBandwidthSourceResult]:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['GetBandwidthSourceQueryParams', 'GetBandwidthSourceQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:metrics:getBandwidthSource', __args__, opts=opts, typ=GetBandwidthSourceResult)
     return __ret__.apply(lambda __response__: GetBandwidthSourceResult(

@@ -13,6 +13,9 @@ import (
 
 type SuspendPostgres struct {
 	pulumi.CustomResourceState
+
+	// Query params to send with the API requests for this resource.
+	QueryParams SuspendPostgresQueryParamsPtrOutput `pulumi:"queryParams"`
 }
 
 // NewSuspendPostgres registers a new resource with the given unique name, arguments, and options.
@@ -56,11 +59,15 @@ func (SuspendPostgresState) ElementType() reflect.Type {
 
 type suspendPostgresArgs struct {
 	PostgresId *string `pulumi:"postgresId"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *SuspendPostgresQueryParams `pulumi:"queryParams"`
 }
 
 // The set of arguments for constructing a SuspendPostgres resource.
 type SuspendPostgresArgs struct {
 	PostgresId pulumi.StringPtrInput
+	// Query params to send with the API requests for this resource.
+	QueryParams SuspendPostgresQueryParamsPtrInput
 }
 
 func (SuspendPostgresArgs) ElementType() reflect.Type {
@@ -98,6 +105,11 @@ func (o SuspendPostgresOutput) ToSuspendPostgresOutput() SuspendPostgresOutput {
 
 func (o SuspendPostgresOutput) ToSuspendPostgresOutputWithContext(ctx context.Context) SuspendPostgresOutput {
 	return o
+}
+
+// Query params to send with the API requests for this resource.
+func (o SuspendPostgresOutput) QueryParams() SuspendPostgresQueryParamsPtrOutput {
+	return o.ApplyT(func(v *SuspendPostgres) SuspendPostgresQueryParamsPtrOutput { return v.QueryParams }).(SuspendPostgresQueryParamsPtrOutput)
 }
 
 func init() {

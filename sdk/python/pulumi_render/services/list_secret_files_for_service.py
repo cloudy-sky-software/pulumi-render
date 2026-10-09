@@ -14,6 +14,7 @@ else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'ListSecretFilesForServiceResult',
@@ -44,28 +45,34 @@ class AwaitableListSecretFilesForServiceResult(ListSecretFilesForServiceResult):
             items=self.items)
 
 
-def list_secret_files_for_service(service_id: Optional[_builtins.str] = None,
+def list_secret_files_for_service(query_params: Optional[Union['ListSecretFilesForServiceQueryParams', 'ListSecretFilesForServiceQueryParamsDict']] = None,
+                                  service_id: Optional[_builtins.str] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListSecretFilesForServiceResult:
     """
     Use this data source to access information about an existing resource.
 
+    :param Union['ListSecretFilesForServiceQueryParams', 'ListSecretFilesForServiceQueryParamsDict'] query_params: Query params to send with the API request.
     :param _builtins.str service_id: The ID of the service
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     __args__['serviceId'] = service_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:services:listSecretFilesForService', __args__, opts=opts, typ=ListSecretFilesForServiceResult).value
 
     return AwaitableListSecretFilesForServiceResult(
         items=pulumi.get(__ret__, 'items'))
-def list_secret_files_for_service_output(service_id: pulumi.Input[Optional[_builtins.str]] = None,
+def list_secret_files_for_service_output(query_params: pulumi.Input[Optional[Optional[Union['ListSecretFilesForServiceQueryParams', 'ListSecretFilesForServiceQueryParamsDict']]]] = None,
+                                         service_id: pulumi.Input[Optional[_builtins.str]] = None,
                                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListSecretFilesForServiceResult]:
     """
     Use this data source to access information about an existing resource.
 
+    :param Union['ListSecretFilesForServiceQueryParams', 'ListSecretFilesForServiceQueryParamsDict'] query_params: Query params to send with the API request.
     :param _builtins.str service_id: The ID of the service
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     __args__['serviceId'] = service_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:services:listSecretFilesForService', __args__, opts=opts, typ=ListSecretFilesForServiceResult)

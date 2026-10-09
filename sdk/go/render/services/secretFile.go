@@ -16,6 +16,8 @@ type SecretFile struct {
 
 	Content pulumi.StringOutput `pulumi:"content"`
 	Name    pulumi.StringOutput `pulumi:"name"`
+	// Query params to send with the API requests for this resource.
+	QueryParams SecretFileQueryParamsPtrOutput `pulumi:"queryParams"`
 }
 
 // NewSecretFile registers a new resource with the given unique name, arguments, and options.
@@ -59,6 +61,8 @@ func (SecretFileState) ElementType() reflect.Type {
 
 type secretFileArgs struct {
 	Content *string `pulumi:"content"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *SecretFileQueryParams `pulumi:"queryParams"`
 	// The file name of the secret file
 	SecretFileName *string `pulumi:"secretFileName"`
 	// The ID of the service
@@ -68,6 +72,8 @@ type secretFileArgs struct {
 // The set of arguments for constructing a SecretFile resource.
 type SecretFileArgs struct {
 	Content pulumi.StringPtrInput
+	// Query params to send with the API requests for this resource.
+	QueryParams SecretFileQueryParamsPtrInput
 	// The file name of the secret file
 	SecretFileName pulumi.StringPtrInput
 	// The ID of the service
@@ -117,6 +123,11 @@ func (o SecretFileOutput) Content() pulumi.StringOutput {
 
 func (o SecretFileOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretFile) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o SecretFileOutput) QueryParams() SecretFileQueryParamsPtrOutput {
+	return o.ApplyT(func(v *SecretFile) SecretFileQueryParamsPtrOutput { return v.QueryParams }).(SecretFileQueryParamsPtrOutput)
 }
 
 func init() {

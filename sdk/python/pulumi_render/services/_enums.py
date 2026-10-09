@@ -34,6 +34,15 @@ __all__ = [
     'DeployStatus',
     'DeployTrigger',
     'JobStatus',
+    'ListCustomDomainsQueryParamsDomainType',
+    'ListCustomDomainsQueryParamsVerificationStatus',
+    'ListDeploysQueryParamsStatusItem',
+    'ListJobQueryParamsStatusItem',
+    'ListRoutesQueryParamsTypeItem',
+    'ListServicesQueryParamsEnvItem',
+    'ListServicesQueryParamsRegionItem',
+    'ListServicesQueryParamsSuspendedItem',
+    'ListServicesQueryParamsTypeItem',
     'Plan',
     'PreviewsGeneration',
     'PrivateServiceDetailsCreateEnv',
@@ -404,6 +413,90 @@ class JobStatus(_builtins.str, Enum):
     SUCCEEDED = "succeeded"
     FAILED = "failed"
     CANCELED = "canceled"
+
+
+@pulumi.type_token("render:services:ListCustomDomainsQueryParamsDomainType")
+class ListCustomDomainsQueryParamsDomainType(_builtins.str, Enum):
+    APEX = "apex"
+    SUBDOMAIN = "subdomain"
+
+
+@pulumi.type_token("render:services:ListCustomDomainsQueryParamsVerificationStatus")
+class ListCustomDomainsQueryParamsVerificationStatus(_builtins.str, Enum):
+    VERIFIED = "verified"
+    UNVERIFIED = "unverified"
+
+
+@pulumi.type_token("render:services:ListDeploysQueryParamsStatusItem")
+class ListDeploysQueryParamsStatusItem(_builtins.str, Enum):
+    CREATED = "created"
+    QUEUED = "queued"
+    BUILD_IN_PROGRESS = "build_in_progress"
+    UPDATE_IN_PROGRESS = "update_in_progress"
+    LIVE = "live"
+    DEACTIVATED = "deactivated"
+    BUILD_FAILED = "build_failed"
+    UPDATE_FAILED = "update_failed"
+    CANCELED = "canceled"
+    PRE_DEPLOY_IN_PROGRESS = "pre_deploy_in_progress"
+    PRE_DEPLOY_FAILED = "pre_deploy_failed"
+
+
+@pulumi.type_token("render:services:ListJobQueryParamsStatusItem")
+class ListJobQueryParamsStatusItem(_builtins.str, Enum):
+    PENDING = "pending"
+    RUNNING = "running"
+    SUCCEEDED = "succeeded"
+    FAILED = "failed"
+    CANCELED = "canceled"
+
+
+@pulumi.type_token("render:services:ListRoutesQueryParamsTypeItem")
+class ListRoutesQueryParamsTypeItem(_builtins.str, Enum):
+    REDIRECT = "redirect"
+    REWRITE = "rewrite"
+
+
+@pulumi.type_token("render:services:ListServicesQueryParamsEnvItem")
+class ListServicesQueryParamsEnvItem(_builtins.str, Enum):
+    """
+    Runtime
+    """
+    DOCKER = "docker"
+    ELIXIR = "elixir"
+    GO = "go"
+    NODE = "node"
+    PYTHON = "python"
+    RUBY = "ruby"
+    RUST = "rust"
+    IMAGE = "image"
+
+
+@pulumi.type_token("render:services:ListServicesQueryParamsRegionItem")
+class ListServicesQueryParamsRegionItem(_builtins.str, Enum):
+    """
+    Defaults to "oregon"
+    """
+    FRANKFURT = "frankfurt"
+    OREGON = "oregon"
+    OHIO = "ohio"
+    SINGAPORE = "singapore"
+    VIRGINIA = "virginia"
+
+
+@pulumi.type_token("render:services:ListServicesQueryParamsSuspendedItem")
+class ListServicesQueryParamsSuspendedItem(_builtins.str, Enum):
+    SUSPENDED = "suspended"
+    NOT_SUSPENDED = "not_suspended"
+
+
+@pulumi.type_token("render:services:ListServicesQueryParamsTypeItem")
+class ListServicesQueryParamsTypeItem(_builtins.str, Enum):
+    STATIC_SITE = "static_site"
+    WEB_SERVICE = "web_service"
+    PRIVATE_SERVICE = "private_service"
+    BACKGROUND_WORKER = "background_worker"
+    CRON_JOB = "cron_job"
 
 
 @pulumi.type_token("render:services:Plan")

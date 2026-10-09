@@ -37,6 +37,10 @@ export class Job extends pulumi.CustomResource {
     declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     declare public /*out*/ readonly finishedAt: pulumi.Output<string | undefined>;
     declare public readonly planId: pulumi.Output<string>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.services.JobQueryParams | undefined>;
     declare public readonly serviceId: pulumi.Output<string>;
     declare public readonly startCommand: pulumi.Output<string>;
     declare public /*out*/ readonly startedAt: pulumi.Output<string | undefined>;
@@ -57,6 +61,7 @@ export class Job extends pulumi.CustomResource {
                 throw new Error("Missing required property 'startCommand'");
             }
             resourceInputs["planId"] = args?.planId;
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["serviceId"] = args?.serviceId;
             resourceInputs["startCommand"] = args?.startCommand;
             resourceInputs["createdAt"] = undefined /*out*/;
@@ -67,6 +72,7 @@ export class Job extends pulumi.CustomResource {
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["finishedAt"] = undefined /*out*/;
             resourceInputs["planId"] = undefined /*out*/;
+            resourceInputs["queryParams"] = undefined /*out*/;
             resourceInputs["serviceId"] = undefined /*out*/;
             resourceInputs["startCommand"] = undefined /*out*/;
             resourceInputs["startedAt"] = undefined /*out*/;
@@ -82,6 +88,10 @@ export class Job extends pulumi.CustomResource {
  */
 export interface JobArgs {
     planId?: pulumi.Input<string | undefined>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.services.JobQueryParamsArgs | undefined>;
     /**
      * The ID of the service
      */

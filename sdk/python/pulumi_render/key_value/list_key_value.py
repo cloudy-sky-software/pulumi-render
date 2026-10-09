@@ -15,6 +15,7 @@ else:
 from .. import _utilities
 from . import outputs
 from ._enums import *
+from ._inputs import *
 
 __all__ = [
     'ListKeyValueResult',
@@ -45,21 +46,29 @@ class AwaitableListKeyValueResult(ListKeyValueResult):
             items=self.items)
 
 
-def list_key_value(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListKeyValueResult:
+def list_key_value(query_params: Optional[Union['ListKeyValueQueryParams', 'ListKeyValueQueryParamsDict']] = None,
+                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListKeyValueResult:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['ListKeyValueQueryParams', 'ListKeyValueQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:key-value:listKeyValue', __args__, opts=opts, typ=ListKeyValueResult).value
 
     return AwaitableListKeyValueResult(
         items=pulumi.get(__ret__, 'items'))
-def list_key_value_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListKeyValueResult]:
+def list_key_value_output(query_params: pulumi.Input[Optional[Optional[Union['ListKeyValueQueryParams', 'ListKeyValueQueryParamsDict']]]] = None,
+                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListKeyValueResult]:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['ListKeyValueQueryParams', 'ListKeyValueQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:key-value:listKeyValue', __args__, opts=opts, typ=ListKeyValueResult)
     return __ret__.apply(lambda __response__: ListKeyValueResult(

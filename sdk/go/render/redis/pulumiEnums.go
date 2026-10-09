@@ -10,6 +10,223 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Defaults to "oregon"
+type ListRedisQueryParamsRegionItem string
+
+const (
+	ListRedisQueryParamsRegionItemFrankfurt = ListRedisQueryParamsRegionItem("frankfurt")
+	ListRedisQueryParamsRegionItemOregon    = ListRedisQueryParamsRegionItem("oregon")
+	ListRedisQueryParamsRegionItemOhio      = ListRedisQueryParamsRegionItem("ohio")
+	ListRedisQueryParamsRegionItemSingapore = ListRedisQueryParamsRegionItem("singapore")
+	ListRedisQueryParamsRegionItemVirginia  = ListRedisQueryParamsRegionItem("virginia")
+)
+
+func (ListRedisQueryParamsRegionItem) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListRedisQueryParamsRegionItem)(nil)).Elem()
+}
+
+func (e ListRedisQueryParamsRegionItem) ToListRedisQueryParamsRegionItemOutput() ListRedisQueryParamsRegionItemOutput {
+	return pulumi.ToOutput(e).(ListRedisQueryParamsRegionItemOutput)
+}
+
+func (e ListRedisQueryParamsRegionItem) ToListRedisQueryParamsRegionItemOutputWithContext(ctx context.Context) ListRedisQueryParamsRegionItemOutput {
+	return pulumi.ToOutputWithContext(ctx, e).(ListRedisQueryParamsRegionItemOutput)
+}
+
+func (e ListRedisQueryParamsRegionItem) ToListRedisQueryParamsRegionItemPtrOutput() ListRedisQueryParamsRegionItemPtrOutput {
+	return e.ToListRedisQueryParamsRegionItemPtrOutputWithContext(context.Background())
+}
+
+func (e ListRedisQueryParamsRegionItem) ToListRedisQueryParamsRegionItemPtrOutputWithContext(ctx context.Context) ListRedisQueryParamsRegionItemPtrOutput {
+	return ListRedisQueryParamsRegionItem(e).ToListRedisQueryParamsRegionItemOutputWithContext(ctx).ToListRedisQueryParamsRegionItemPtrOutputWithContext(ctx)
+}
+
+func (e ListRedisQueryParamsRegionItem) ToStringOutput() pulumi.StringOutput {
+	return pulumi.ToOutput(pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e ListRedisQueryParamsRegionItem) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return pulumi.ToOutputWithContext(ctx, pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e ListRedisQueryParamsRegionItem) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringPtrOutputWithContext(context.Background())
+}
+
+func (e ListRedisQueryParamsRegionItem) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
+}
+
+type ListRedisQueryParamsRegionItemOutput struct{ *pulumi.OutputState }
+
+func (ListRedisQueryParamsRegionItemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListRedisQueryParamsRegionItem)(nil)).Elem()
+}
+
+func (o ListRedisQueryParamsRegionItemOutput) ToListRedisQueryParamsRegionItemOutput() ListRedisQueryParamsRegionItemOutput {
+	return o
+}
+
+func (o ListRedisQueryParamsRegionItemOutput) ToListRedisQueryParamsRegionItemOutputWithContext(ctx context.Context) ListRedisQueryParamsRegionItemOutput {
+	return o
+}
+
+func (o ListRedisQueryParamsRegionItemOutput) ToListRedisQueryParamsRegionItemPtrOutput() ListRedisQueryParamsRegionItemPtrOutput {
+	return o.ToListRedisQueryParamsRegionItemPtrOutputWithContext(context.Background())
+}
+
+func (o ListRedisQueryParamsRegionItemOutput) ToListRedisQueryParamsRegionItemPtrOutputWithContext(ctx context.Context) ListRedisQueryParamsRegionItemPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListRedisQueryParamsRegionItem) *ListRedisQueryParamsRegionItem {
+		return &v
+	}).(ListRedisQueryParamsRegionItemPtrOutput)
+}
+
+func (o ListRedisQueryParamsRegionItemOutput) ToStringOutput() pulumi.StringOutput {
+	return o.ToStringOutputWithContext(context.Background())
+}
+
+func (o ListRedisQueryParamsRegionItemOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e ListRedisQueryParamsRegionItem) string {
+		return string(e)
+	}).(pulumi.StringOutput)
+}
+
+func (o ListRedisQueryParamsRegionItemOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o ListRedisQueryParamsRegionItemOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e ListRedisQueryParamsRegionItem) *string {
+		v := string(e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+type ListRedisQueryParamsRegionItemPtrOutput struct{ *pulumi.OutputState }
+
+func (ListRedisQueryParamsRegionItemPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListRedisQueryParamsRegionItem)(nil)).Elem()
+}
+
+func (o ListRedisQueryParamsRegionItemPtrOutput) ToListRedisQueryParamsRegionItemPtrOutput() ListRedisQueryParamsRegionItemPtrOutput {
+	return o
+}
+
+func (o ListRedisQueryParamsRegionItemPtrOutput) ToListRedisQueryParamsRegionItemPtrOutputWithContext(ctx context.Context) ListRedisQueryParamsRegionItemPtrOutput {
+	return o
+}
+
+func (o ListRedisQueryParamsRegionItemPtrOutput) Elem() ListRedisQueryParamsRegionItemOutput {
+	return o.ApplyT(func(v *ListRedisQueryParamsRegionItem) ListRedisQueryParamsRegionItem {
+		if v != nil {
+			return *v
+		}
+		var ret ListRedisQueryParamsRegionItem
+		return ret
+	}).(ListRedisQueryParamsRegionItemOutput)
+}
+
+func (o ListRedisQueryParamsRegionItemPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o ListRedisQueryParamsRegionItemPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *ListRedisQueryParamsRegionItem) *string {
+		if e == nil {
+			return nil
+		}
+		v := string(*e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+// ListRedisQueryParamsRegionItemInput is an input type that accepts values of the ListRedisQueryParamsRegionItem enum
+// A concrete instance of `ListRedisQueryParamsRegionItemInput` can be one of the following:
+//
+//	ListRedisQueryParamsRegionItemFrankfurt
+//	ListRedisQueryParamsRegionItemOregon
+//	ListRedisQueryParamsRegionItemOhio
+//	ListRedisQueryParamsRegionItemSingapore
+//	ListRedisQueryParamsRegionItemVirginia
+type ListRedisQueryParamsRegionItemInput interface {
+	pulumi.Input
+
+	ToListRedisQueryParamsRegionItemOutput() ListRedisQueryParamsRegionItemOutput
+	ToListRedisQueryParamsRegionItemOutputWithContext(context.Context) ListRedisQueryParamsRegionItemOutput
+}
+
+var listRedisQueryParamsRegionItemPtrType = reflect.TypeOf((**ListRedisQueryParamsRegionItem)(nil)).Elem()
+
+type ListRedisQueryParamsRegionItemPtrInput interface {
+	pulumi.Input
+
+	ToListRedisQueryParamsRegionItemPtrOutput() ListRedisQueryParamsRegionItemPtrOutput
+	ToListRedisQueryParamsRegionItemPtrOutputWithContext(context.Context) ListRedisQueryParamsRegionItemPtrOutput
+}
+
+type listRedisQueryParamsRegionItemPtr string
+
+func ListRedisQueryParamsRegionItemPtr(v string) ListRedisQueryParamsRegionItemPtrInput {
+	return (*listRedisQueryParamsRegionItemPtr)(&v)
+}
+
+func (*listRedisQueryParamsRegionItemPtr) ElementType() reflect.Type {
+	return listRedisQueryParamsRegionItemPtrType
+}
+
+func (in *listRedisQueryParamsRegionItemPtr) ToListRedisQueryParamsRegionItemPtrOutput() ListRedisQueryParamsRegionItemPtrOutput {
+	return pulumi.ToOutput(in).(ListRedisQueryParamsRegionItemPtrOutput)
+}
+
+func (in *listRedisQueryParamsRegionItemPtr) ToListRedisQueryParamsRegionItemPtrOutputWithContext(ctx context.Context) ListRedisQueryParamsRegionItemPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, in).(ListRedisQueryParamsRegionItemPtrOutput)
+}
+
+// ListRedisQueryParamsRegionItemArrayInput is an input type that accepts ListRedisQueryParamsRegionItemArray and ListRedisQueryParamsRegionItemArrayOutput values.
+// You can construct a concrete instance of `ListRedisQueryParamsRegionItemArrayInput` via:
+//
+//	ListRedisQueryParamsRegionItemArray{ ListRedisQueryParamsRegionItemArgs{...} }
+type ListRedisQueryParamsRegionItemArrayInput interface {
+	pulumi.Input
+
+	ToListRedisQueryParamsRegionItemArrayOutput() ListRedisQueryParamsRegionItemArrayOutput
+	ToListRedisQueryParamsRegionItemArrayOutputWithContext(context.Context) ListRedisQueryParamsRegionItemArrayOutput
+}
+
+type ListRedisQueryParamsRegionItemArray []ListRedisQueryParamsRegionItem
+
+func (ListRedisQueryParamsRegionItemArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListRedisQueryParamsRegionItem)(nil)).Elem()
+}
+
+func (i ListRedisQueryParamsRegionItemArray) ToListRedisQueryParamsRegionItemArrayOutput() ListRedisQueryParamsRegionItemArrayOutput {
+	return i.ToListRedisQueryParamsRegionItemArrayOutputWithContext(context.Background())
+}
+
+func (i ListRedisQueryParamsRegionItemArray) ToListRedisQueryParamsRegionItemArrayOutputWithContext(ctx context.Context) ListRedisQueryParamsRegionItemArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListRedisQueryParamsRegionItemArrayOutput)
+}
+
+type ListRedisQueryParamsRegionItemArrayOutput struct{ *pulumi.OutputState }
+
+func (ListRedisQueryParamsRegionItemArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListRedisQueryParamsRegionItem)(nil)).Elem()
+}
+
+func (o ListRedisQueryParamsRegionItemArrayOutput) ToListRedisQueryParamsRegionItemArrayOutput() ListRedisQueryParamsRegionItemArrayOutput {
+	return o
+}
+
+func (o ListRedisQueryParamsRegionItemArrayOutput) ToListRedisQueryParamsRegionItemArrayOutputWithContext(ctx context.Context) ListRedisQueryParamsRegionItemArrayOutput {
+	return o
+}
+
+func (o ListRedisQueryParamsRegionItemArrayOutput) Index(i pulumi.IntInput) ListRedisQueryParamsRegionItemOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListRedisQueryParamsRegionItem {
+		return vs[0].([]ListRedisQueryParamsRegionItem)[vs[1].(int)]
+	}).(ListRedisQueryParamsRegionItemOutput)
+}
+
 type MaintenancePropertiesState string
 
 const (
@@ -1407,10 +1624,16 @@ func (o StatusPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulum
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ListRedisQueryParamsRegionItemInput)(nil)).Elem(), ListRedisQueryParamsRegionItem("frankfurt"))
+	pulumi.RegisterInputType(reflect.TypeOf((*ListRedisQueryParamsRegionItemPtrInput)(nil)).Elem(), ListRedisQueryParamsRegionItem("frankfurt"))
+	pulumi.RegisterInputType(reflect.TypeOf((*ListRedisQueryParamsRegionItemArrayInput)(nil)).Elem(), ListRedisQueryParamsRegionItemArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MaxmemoryPolicyInput)(nil)).Elem(), MaxmemoryPolicy("noeviction"))
 	pulumi.RegisterInputType(reflect.TypeOf((*MaxmemoryPolicyPtrInput)(nil)).Elem(), MaxmemoryPolicy("noeviction"))
 	pulumi.RegisterInputType(reflect.TypeOf((*PlanInput)(nil)).Elem(), Plan("free"))
 	pulumi.RegisterInputType(reflect.TypeOf((*PlanPtrInput)(nil)).Elem(), Plan("free"))
+	pulumi.RegisterOutputType(ListRedisQueryParamsRegionItemOutput{})
+	pulumi.RegisterOutputType(ListRedisQueryParamsRegionItemPtrOutput{})
+	pulumi.RegisterOutputType(ListRedisQueryParamsRegionItemArrayOutput{})
 	pulumi.RegisterOutputType(MaintenancePropertiesStateOutput{})
 	pulumi.RegisterOutputType(MaintenancePropertiesStatePtrOutput{})
 	pulumi.RegisterOutputType(MaxmemoryPolicyOutput{})

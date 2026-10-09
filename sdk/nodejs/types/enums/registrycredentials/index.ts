@@ -2,6 +2,19 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 
+export const ListRegistryCredentialsQueryParamsTypeItem = {
+    Github: "GITHUB",
+    Gitlab: "GITLAB",
+    Docker: "DOCKER",
+    GoogleArtifact: "GOOGLE_ARTIFACT",
+    AwsEcr: "AWS_ECR",
+} as const;
+
+/**
+ * The registry to use this credential with
+ */
+export type ListRegistryCredentialsQueryParamsTypeItem = (typeof ListRegistryCredentialsQueryParamsTypeItem)[keyof typeof ListRegistryCredentialsQueryParamsTypeItem];
+
 export const Registry = {
     Github: "GITHUB",
     Gitlab: "GITLAB",

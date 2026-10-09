@@ -33,6 +33,8 @@ type Redis struct {
 	// The ID of the owner of the Redis instance
 	OwnerId pulumi.StringOutput `pulumi:"ownerId"`
 	Plan    PlanOutput          `pulumi:"plan"`
+	// Query params to send with the API requests for this resource.
+	QueryParams RedisQueryParamsPtrOutput `pulumi:"queryParams"`
 	// Defaults to "oregon"
 	Region RegionOutput `pulumi:"region"`
 	Status StatusOutput `pulumi:"status"`
@@ -97,6 +99,8 @@ type redisArgs struct {
 	// The ID of the owner of the Redis instance
 	OwnerId string `pulumi:"ownerId"`
 	Plan    Plan   `pulumi:"plan"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *RedisQueryParams `pulumi:"queryParams"`
 	// The region where the Redis instance is located
 	Region *string `pulumi:"region"`
 }
@@ -112,6 +116,8 @@ type RedisArgs struct {
 	// The ID of the owner of the Redis instance
 	OwnerId pulumi.StringInput
 	Plan    PlanInput
+	// Query params to send with the API requests for this resource.
+	QueryParams RedisQueryParamsPtrInput
 	// The region where the Redis instance is located
 	Region pulumi.StringPtrInput
 }
@@ -198,6 +204,11 @@ func (o RedisOutput) OwnerId() pulumi.StringOutput {
 
 func (o RedisOutput) Plan() PlanOutput {
 	return o.ApplyT(func(v *Redis) PlanOutput { return v.Plan }).(PlanOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o RedisOutput) QueryParams() RedisQueryParamsPtrOutput {
+	return o.ApplyT(func(v *Redis) RedisQueryParamsPtrOutput { return v.QueryParams }).(RedisQueryParamsPtrOutput)
 }
 
 // Defaults to "oregon"

@@ -28,6 +28,7 @@ class KeyValueArgs:
                  ip_allow_list: pulumi.Input[Optional[Sequence[pulumi.Input['CidrBlockAndDescriptionArgs']]]] = None,
                  maxmemory_policy: pulumi.Input[Optional['MaxmemoryPolicy']] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional['KeyValueQueryParamsArgs']] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a KeyValue resource.
@@ -35,6 +36,7 @@ class KeyValueArgs:
         :param pulumi.Input[_builtins.str] owner_id: The ID of the owner of the Key Value instance
         :param pulumi.Input['MaxmemoryPolicy'] maxmemory_policy: The eviction policy for the Key Value instance
         :param pulumi.Input[_builtins.str] name: The name of the Key Value instance
+        :param pulumi.Input['KeyValueQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] region: The region where the Key Value instance is located
         """
         pulumi.set(__self__, "owner_id", owner_id)
@@ -47,6 +49,8 @@ class KeyValueArgs:
             pulumi.set(__self__, "maxmemory_policy", maxmemory_policy)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
         if region is not None:
             pulumi.set(__self__, "region", region)
 
@@ -114,6 +118,18 @@ class KeyValueArgs:
         pulumi.set(self, "name", value)
 
     @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['KeyValueQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['KeyValueQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
+
+    @_builtins.property
     @pulumi.getter
     def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -138,6 +154,7 @@ class KeyValue(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  owner_id: pulumi.Input[Optional[_builtins.str]] = None,
                  plan: pulumi.Input[Optional['Plan']] = None,
+                 query_params: pulumi.Input[Optional[Union['KeyValueQueryParamsArgs', 'KeyValueQueryParamsArgsDict', 'outputs.KeyValueQueryParams']]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -148,6 +165,7 @@ class KeyValue(pulumi.CustomResource):
         :param pulumi.Input['MaxmemoryPolicy'] maxmemory_policy: The eviction policy for the Key Value instance
         :param pulumi.Input[_builtins.str] name: The name of the Key Value instance
         :param pulumi.Input[_builtins.str] owner_id: The ID of the owner of the Key Value instance
+        :param pulumi.Input[Union['KeyValueQueryParamsArgs', 'KeyValueQueryParamsArgsDict', 'outputs.KeyValueQueryParams']] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] region: The region where the Key Value instance is located
         """
         ...
@@ -180,6 +198,7 @@ class KeyValue(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  owner_id: pulumi.Input[Optional[_builtins.str]] = None,
                  plan: pulumi.Input[Optional['Plan']] = None,
+                 query_params: pulumi.Input[Optional[Union['KeyValueQueryParamsArgs', 'KeyValueQueryParamsArgsDict', 'outputs.KeyValueQueryParams']]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -200,6 +219,7 @@ class KeyValue(pulumi.CustomResource):
             if plan is None and not opts.urn:
                 raise TypeError("Missing required property 'plan'")
             __props__.__dict__["plan"] = plan
+            __props__.__dict__["query_params"] = query_params
             __props__.__dict__["region"] = region
             __props__.__dict__["created_at"] = None
             __props__.__dict__["maintenance"] = None
@@ -240,6 +260,7 @@ class KeyValue(pulumi.CustomResource):
         __props__.__dict__["owner"] = None
         __props__.__dict__["owner_id"] = None
         __props__.__dict__["plan"] = None
+        __props__.__dict__["query_params"] = None
         __props__.__dict__["region"] = None
         __props__.__dict__["status"] = None
         __props__.__dict__["updated_at"] = None
@@ -316,6 +337,14 @@ class KeyValue(pulumi.CustomResource):
     @pulumi.getter
     def plan(self) -> pulumi.Output['Plan']:
         return pulumi.get(self, "plan")
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.KeyValueQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 
     @_builtins.property
     @pulumi.getter

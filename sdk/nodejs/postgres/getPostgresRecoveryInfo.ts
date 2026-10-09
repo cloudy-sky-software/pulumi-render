@@ -11,11 +11,16 @@ export function getPostgresRecoveryInfo(args: GetPostgresRecoveryInfoArgs, opts?
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:postgres:getPostgresRecoveryInfo", {
         "postgresId": args.postgresId,
+        "queryParams": args.queryParams,
     }, opts);
 }
 
 export interface GetPostgresRecoveryInfoArgs {
     postgresId: string;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.postgres.GetPostgresRecoveryInfoQueryParams;
 }
 
 export interface GetPostgresRecoveryInfoResult {
@@ -29,9 +34,14 @@ export function getPostgresRecoveryInfoOutput(args: GetPostgresRecoveryInfoOutpu
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:postgres:getPostgresRecoveryInfo", {
         "postgresId": args.postgresId,
+        "queryParams": args.queryParams,
     }, opts);
 }
 
 export interface GetPostgresRecoveryInfoOutputArgs {
     postgresId: pulumi.Input<string>;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.postgres.GetPostgresRecoveryInfoQueryParamsArgs | undefined>;
 }

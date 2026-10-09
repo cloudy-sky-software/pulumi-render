@@ -20,7 +20,7 @@ export type KeyValue = import("./keyValue").KeyValue;
 export const KeyValue: typeof import("./keyValue").KeyValue = null as any;
 utilities.lazyLoad(exports, ["KeyValue"], () => require("./keyValue"));
 
-export { ListKeyValueArgs, ListKeyValueResult } from "./listKeyValue";
+export { ListKeyValueArgs, ListKeyValueResult, ListKeyValueOutputArgs } from "./listKeyValue";
 export const listKeyValue: typeof import("./listKeyValue").listKeyValue = null as any;
 export const listKeyValueOutput: typeof import("./listKeyValue").listKeyValueOutput = null as any;
 utilities.lazyLoad(exports, ["listKeyValue","listKeyValueOutput"], () => require("./listKeyValue"));

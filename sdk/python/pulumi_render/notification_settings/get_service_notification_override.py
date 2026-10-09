@@ -14,6 +14,7 @@ else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from ._enums import *
+from ._inputs import *
 
 __all__ = [
     'GetServiceNotificationOverrideResult',
@@ -62,14 +63,17 @@ class AwaitableGetServiceNotificationOverrideResult(GetServiceNotificationOverri
             service_id=self.service_id)
 
 
-def get_service_notification_override(service_id: Optional[_builtins.str] = None,
+def get_service_notification_override(query_params: Optional[Union['GetServiceNotificationOverrideQueryParams', 'GetServiceNotificationOverrideQueryParamsDict']] = None,
+                                      service_id: Optional[_builtins.str] = None,
                                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServiceNotificationOverrideResult:
     """
     Use this data source to access information about an existing resource.
 
+    :param Union['GetServiceNotificationOverrideQueryParams', 'GetServiceNotificationOverrideQueryParamsDict'] query_params: Query params to send with the API request.
     :param _builtins.str service_id: The ID of the service
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     __args__['serviceId'] = service_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:notification-settings:getServiceNotificationOverride', __args__, opts=opts, typ=GetServiceNotificationOverrideResult).value
@@ -78,14 +82,17 @@ def get_service_notification_override(service_id: Optional[_builtins.str] = None
         notifications_to_send=pulumi.get(__ret__, 'notifications_to_send'),
         preview_notifications_enabled=pulumi.get(__ret__, 'preview_notifications_enabled'),
         service_id=pulumi.get(__ret__, 'service_id'))
-def get_service_notification_override_output(service_id: pulumi.Input[Optional[_builtins.str]] = None,
+def get_service_notification_override_output(query_params: pulumi.Input[Optional[Optional[Union['GetServiceNotificationOverrideQueryParams', 'GetServiceNotificationOverrideQueryParamsDict']]]] = None,
+                                             service_id: pulumi.Input[Optional[_builtins.str]] = None,
                                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetServiceNotificationOverrideResult]:
     """
     Use this data source to access information about an existing resource.
 
+    :param Union['GetServiceNotificationOverrideQueryParams', 'GetServiceNotificationOverrideQueryParamsDict'] query_params: Query params to send with the API request.
     :param _builtins.str service_id: The ID of the service
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     __args__['serviceId'] = service_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:notification-settings:getServiceNotificationOverride', __args__, opts=opts, typ=GetServiceNotificationOverrideResult)

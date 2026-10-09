@@ -13,6 +13,9 @@ import (
 
 type RefreshCustomDomain struct {
 	pulumi.CustomResourceState
+
+	// Query params to send with the API requests for this resource.
+	QueryParams RefreshCustomDomainQueryParamsPtrOutput `pulumi:"queryParams"`
 }
 
 // NewRefreshCustomDomain registers a new resource with the given unique name, arguments, and options.
@@ -57,6 +60,8 @@ func (RefreshCustomDomainState) ElementType() reflect.Type {
 type refreshCustomDomainArgs struct {
 	// The ID or name of the custom domain
 	CustomDomainIdOrName *string `pulumi:"customDomainIdOrName"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *RefreshCustomDomainQueryParams `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId *string `pulumi:"serviceId"`
 }
@@ -65,6 +70,8 @@ type refreshCustomDomainArgs struct {
 type RefreshCustomDomainArgs struct {
 	// The ID or name of the custom domain
 	CustomDomainIdOrName pulumi.StringPtrInput
+	// Query params to send with the API requests for this resource.
+	QueryParams RefreshCustomDomainQueryParamsPtrInput
 	// The ID of the service
 	ServiceId pulumi.StringPtrInput
 }
@@ -104,6 +111,11 @@ func (o RefreshCustomDomainOutput) ToRefreshCustomDomainOutput() RefreshCustomDo
 
 func (o RefreshCustomDomainOutput) ToRefreshCustomDomainOutputWithContext(ctx context.Context) RefreshCustomDomainOutput {
 	return o
+}
+
+// Query params to send with the API requests for this resource.
+func (o RefreshCustomDomainOutput) QueryParams() RefreshCustomDomainQueryParamsPtrOutput {
+	return o.ApplyT(func(v *RefreshCustomDomain) RefreshCustomDomainQueryParamsPtrOutput { return v.QueryParams }).(RefreshCustomDomainQueryParamsPtrOutput)
 }
 
 func init() {

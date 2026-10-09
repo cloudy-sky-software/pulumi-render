@@ -22,6 +22,8 @@ func LookupPrivateService(ctx *pulumi.Context, args *LookupPrivateServiceArgs, o
 }
 
 type LookupPrivateServiceArgs struct {
+	// Query params to send with the API request.
+	QueryParams *GetPrivateServiceQueryParams `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId string `pulumi:"serviceId"`
 }
@@ -73,6 +75,8 @@ func LookupPrivateServiceOutput(ctx *pulumi.Context, args LookupPrivateServiceOu
 }
 
 type LookupPrivateServiceOutputArgs struct {
+	// Query params to send with the API request.
+	QueryParams GetPrivateServiceQueryParamsPtrInput `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }

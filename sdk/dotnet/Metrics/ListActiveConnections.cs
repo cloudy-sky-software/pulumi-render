@@ -14,20 +14,40 @@ namespace Pulumi.Render.Metrics
         public static Task<ListActiveConnectionsResult> InvokeAsync(ListActiveConnectionsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ListActiveConnectionsResult>("render:metrics:listActiveConnections", args ?? new ListActiveConnectionsArgs(), options.WithDefaults());
 
-        public static Output<ListActiveConnectionsResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<ListActiveConnectionsResult>("render:metrics:listActiveConnections", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<ListActiveConnectionsResult> Invoke(ListActiveConnectionsInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<ListActiveConnectionsResult>("render:metrics:listActiveConnections", args ?? new ListActiveConnectionsInvokeArgs(), options.WithDefaults());
 
-        public static Output<ListActiveConnectionsResult> Invoke(InvokeOutputOptions options)
-            => global::Pulumi.Deployment.Instance.Invoke<ListActiveConnectionsResult>("render:metrics:listActiveConnections", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<ListActiveConnectionsResult> Invoke(ListActiveConnectionsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<ListActiveConnectionsResult>("render:metrics:listActiveConnections", args ?? new ListActiveConnectionsInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class ListActiveConnectionsArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Inputs.ListActiveConnectionsQueryParams? QueryParams { get; set; }
+
         public ListActiveConnectionsArgs()
         {
         }
         public static new ListActiveConnectionsArgs Empty => new ListActiveConnectionsArgs();
+    }
+
+    public sealed class ListActiveConnectionsInvokeArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.ListActiveConnectionsQueryParamsArgs>? QueryParams { get; set; }
+
+        public ListActiveConnectionsInvokeArgs()
+        {
+        }
+        public static new ListActiveConnectionsInvokeArgs Empty => new ListActiveConnectionsInvokeArgs();
     }
 
 

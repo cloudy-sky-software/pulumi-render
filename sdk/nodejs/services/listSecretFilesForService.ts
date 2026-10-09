@@ -10,11 +10,16 @@ import * as utilities from "../utilities";
 export function listSecretFilesForService(args: ListSecretFilesForServiceArgs, opts?: pulumi.InvokeOptions): Promise<ListSecretFilesForServiceResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:listSecretFilesForService", {
+        "queryParams": args.queryParams ? inputs.services.listSecretFilesForServiceQueryParamsProvideDefaults(args.queryParams) : undefined,
         "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface ListSecretFilesForServiceArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.services.ListSecretFilesForServiceQueryParams;
     /**
      * The ID of the service
      */
@@ -27,11 +32,16 @@ export interface ListSecretFilesForServiceResult {
 export function listSecretFilesForServiceOutput(args: ListSecretFilesForServiceOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListSecretFilesForServiceResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:services:listSecretFilesForService", {
+        "queryParams": pulumi.output(args.queryParams).apply(v => v === undefined ? undefined : inputs.services.listSecretFilesForServiceQueryParamsProvideDefaults(v)),
         "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface ListSecretFilesForServiceOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.services.ListSecretFilesForServiceQueryParamsArgs | undefined>;
     /**
      * The ID of the service
      */

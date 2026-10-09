@@ -14,6 +14,7 @@ else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'ListDisksResult',
@@ -44,21 +45,29 @@ class AwaitableListDisksResult(ListDisksResult):
             items=self.items)
 
 
-def list_disks(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListDisksResult:
+def list_disks(query_params: Optional[Union['ListDisksQueryParams', 'ListDisksQueryParamsDict']] = None,
+               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListDisksResult:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['ListDisksQueryParams', 'ListDisksQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:disks:listDisks', __args__, opts=opts, typ=ListDisksResult).value
 
     return AwaitableListDisksResult(
         items=pulumi.get(__ret__, 'items'))
-def list_disks_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListDisksResult]:
+def list_disks_output(query_params: pulumi.Input[Optional[Optional[Union['ListDisksQueryParams', 'ListDisksQueryParamsDict']]]] = None,
+                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListDisksResult]:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['ListDisksQueryParams', 'ListDisksQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:disks:listDisks', __args__, opts=opts, typ=ListDisksResult)
     return __ret__.apply(lambda __response__: ListDisksResult(

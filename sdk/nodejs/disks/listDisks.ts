@@ -11,18 +11,31 @@ export function listDisks(args?: ListDisksArgs, opts?: pulumi.InvokeOptions): Pr
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:disks:listDisks", {
+        "queryParams": args.queryParams ? inputs.disks.listDisksQueryParamsProvideDefaults(args.queryParams) : undefined,
     }, opts);
 }
 
 export interface ListDisksArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.disks.ListDisksQueryParams;
 }
 
 export interface ListDisksResult {
     readonly items: outputs.disks.DiskWithCursor[];
 }
-export function listDisksOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListDisksResult> {
+export function listDisksOutput(args?: ListDisksOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListDisksResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:disks:listDisks", {
+        "queryParams": pulumi.output(args.queryParams).apply(v => v === undefined ? undefined : inputs.disks.listDisksQueryParamsProvideDefaults(v)),
     }, opts);
 }
 
+export interface ListDisksOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.disks.ListDisksQueryParamsArgs | undefined>;
+}

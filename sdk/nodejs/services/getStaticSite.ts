@@ -10,11 +10,16 @@ import * as utilities from "../utilities";
 export function getStaticSite(args: GetStaticSiteArgs, opts?: pulumi.InvokeOptions): Promise<GetStaticSiteResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:getStaticSite", {
+        "queryParams": args.queryParams,
         "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface GetStaticSiteArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.services.GetStaticSiteQueryParams;
     /**
      * The ID of the service
      */
@@ -49,11 +54,16 @@ export interface GetStaticSiteResult {
 export function getStaticSiteOutput(args: GetStaticSiteOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetStaticSiteResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:services:getStaticSite", {
+        "queryParams": args.queryParams,
         "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface GetStaticSiteOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.services.GetStaticSiteQueryParamsArgs | undefined>;
     /**
      * The ID of the service
      */

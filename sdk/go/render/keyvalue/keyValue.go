@@ -33,6 +33,8 @@ type KeyValue struct {
 	// The ID of the owner of the Key Value instance
 	OwnerId pulumi.StringOutput `pulumi:"ownerId"`
 	Plan    PlanOutput          `pulumi:"plan"`
+	// Query params to send with the API requests for this resource.
+	QueryParams KeyValueQueryParamsPtrOutput `pulumi:"queryParams"`
 	// Defaults to "oregon"
 	Region RegionOutput `pulumi:"region"`
 	Status StatusOutput `pulumi:"status"`
@@ -97,6 +99,8 @@ type keyValueArgs struct {
 	// The ID of the owner of the Key Value instance
 	OwnerId string `pulumi:"ownerId"`
 	Plan    Plan   `pulumi:"plan"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *KeyValueQueryParams `pulumi:"queryParams"`
 	// The region where the Key Value instance is located
 	Region *string `pulumi:"region"`
 }
@@ -112,6 +116,8 @@ type KeyValueArgs struct {
 	// The ID of the owner of the Key Value instance
 	OwnerId pulumi.StringInput
 	Plan    PlanInput
+	// Query params to send with the API requests for this resource.
+	QueryParams KeyValueQueryParamsPtrInput
 	// The region where the Key Value instance is located
 	Region pulumi.StringPtrInput
 }
@@ -198,6 +204,11 @@ func (o KeyValueOutput) OwnerId() pulumi.StringOutput {
 
 func (o KeyValueOutput) Plan() PlanOutput {
 	return o.ApplyT(func(v *KeyValue) PlanOutput { return v.Plan }).(PlanOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o KeyValueOutput) QueryParams() KeyValueQueryParamsPtrOutput {
+	return o.ApplyT(func(v *KeyValue) KeyValueQueryParamsPtrOutput { return v.QueryParams }).(KeyValueQueryParamsPtrOutput)
 }
 
 // Defaults to "oregon"

@@ -27,6 +27,12 @@ namespace Pulumi.Render.EnvGroups
         [Output("ownerId")]
         public Output<string> OwnerId { get; private set; } = null!;
 
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Output("queryParams")]
+        public Output<Outputs.EnvGroupQueryParams?> QueryParams { get; private set; } = null!;
+
         [Output("secretFiles")]
         public Output<ImmutableArray<Outputs.SecretFile>> SecretFiles { get; private set; } = null!;
 
@@ -104,6 +110,12 @@ namespace Pulumi.Render.EnvGroups
 
         [Input("ownerId", required: true)]
         public Input<string> OwnerId { get; set; } = null!;
+
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.EnvGroupQueryParamsArgs>? QueryParams { get; set; }
 
         [Input("secretFiles")]
         private InputList<Inputs.SecretFileInputArgs>? _secretFiles;

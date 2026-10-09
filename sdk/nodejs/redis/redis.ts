@@ -69,6 +69,10 @@ export class Redis extends pulumi.CustomResource {
     declare public readonly ownerId: pulumi.Output<string>;
     declare public readonly plan: pulumi.Output<enums.redis.Plan>;
     /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.redis.RedisQueryParams | undefined>;
+    /**
      * Defaults to "oregon"
      */
     declare public readonly region: pulumi.Output<enums.redis.Region>;
@@ -105,6 +109,7 @@ export class Redis extends pulumi.CustomResource {
             resourceInputs["name"] = args?.name;
             resourceInputs["ownerId"] = args?.ownerId;
             resourceInputs["plan"] = args?.plan;
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["region"] = args?.region;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["maintenance"] = undefined /*out*/;
@@ -124,6 +129,7 @@ export class Redis extends pulumi.CustomResource {
             resourceInputs["owner"] = undefined /*out*/;
             resourceInputs["ownerId"] = undefined /*out*/;
             resourceInputs["plan"] = undefined /*out*/;
+            resourceInputs["queryParams"] = undefined /*out*/;
             resourceInputs["region"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
@@ -153,6 +159,10 @@ export interface RedisArgs {
      */
     ownerId: pulumi.Input<string>;
     plan: pulumi.Input<enums.redis.Plan>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.redis.RedisQueryParamsArgs | undefined>;
     /**
      * The region where the Redis instance is located
      */

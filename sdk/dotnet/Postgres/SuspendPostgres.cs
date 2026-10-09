@@ -13,6 +13,13 @@ namespace Pulumi.Render.Postgres
     public partial class SuspendPostgres : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Output("queryParams")]
+        public Output<Outputs.SuspendPostgresQueryParams?> QueryParams { get; private set; } = null!;
+
+
+        /// <summary>
         /// Create a SuspendPostgres resource with the given unique name, arguments, and options.
         /// </summary>
         ///
@@ -59,6 +66,12 @@ namespace Pulumi.Render.Postgres
     {
         [Input("postgresId")]
         public Input<string>? PostgresId { get; set; }
+
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.SuspendPostgresQueryParamsArgs>? QueryParams { get; set; }
 
         public SuspendPostgresArgs()
         {

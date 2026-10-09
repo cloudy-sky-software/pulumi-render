@@ -22,6 +22,8 @@ func ListInstances(ctx *pulumi.Context, args *ListInstancesArgs, opts ...pulumi.
 }
 
 type ListInstancesArgs struct {
+	// Query params to send with the API request.
+	QueryParams *ListInstancesQueryParams `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId string `pulumi:"serviceId"`
 }
@@ -36,6 +38,8 @@ func ListInstancesOutput(ctx *pulumi.Context, args ListInstancesOutputArgs, opts
 }
 
 type ListInstancesOutputArgs struct {
+	// Query params to send with the API request.
+	QueryParams ListInstancesQueryParamsPtrInput `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }

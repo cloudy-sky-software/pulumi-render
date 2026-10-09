@@ -24,8 +24,10 @@ type Project struct {
 	Name  pulumi.StringOutput `pulumi:"name"`
 	Owner OwnerOutput         `pulumi:"owner"`
 	// The ID of the owner that the project belongs to
-	OwnerId   pulumi.StringOutput `pulumi:"ownerId"`
-	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
+	OwnerId pulumi.StringOutput `pulumi:"ownerId"`
+	// Query params to send with the API requests for this resource.
+	QueryParams ProjectQueryParamsPtrOutput `pulumi:"queryParams"`
+	UpdatedAt   pulumi.StringOutput         `pulumi:"updatedAt"`
 }
 
 // NewProject registers a new resource with the given unique name, arguments, and options.
@@ -80,6 +82,8 @@ type projectArgs struct {
 	Name *string `pulumi:"name"`
 	// The ID of the owner that the project belongs to
 	OwnerId string `pulumi:"ownerId"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *ProjectQueryParams `pulumi:"queryParams"`
 }
 
 // The set of arguments for constructing a Project resource.
@@ -90,6 +94,8 @@ type ProjectArgs struct {
 	Name pulumi.StringPtrInput
 	// The ID of the owner that the project belongs to
 	OwnerId pulumi.StringInput
+	// Query params to send with the API requests for this resource.
+	QueryParams ProjectQueryParamsPtrInput
 }
 
 func (ProjectArgs) ElementType() reflect.Type {
@@ -155,6 +161,11 @@ func (o ProjectOutput) Owner() OwnerOutput {
 // The ID of the owner that the project belongs to
 func (o ProjectOutput) OwnerId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Project) pulumi.StringOutput { return v.OwnerId }).(pulumi.StringOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o ProjectOutput) QueryParams() ProjectQueryParamsPtrOutput {
+	return o.ApplyT(func(v *Project) ProjectQueryParamsPtrOutput { return v.QueryParams }).(ProjectQueryParamsPtrOutput)
 }
 
 func (o ProjectOutput) UpdatedAt() pulumi.StringOutput {

@@ -10,11 +10,16 @@ import * as utilities from "../utilities";
 export function listInstances(args: ListInstancesArgs, opts?: pulumi.InvokeOptions): Promise<ListInstancesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:listInstances", {
+        "queryParams": args.queryParams,
         "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface ListInstancesArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.services.ListInstancesQueryParams;
     /**
      * The ID of the service
      */
@@ -27,11 +32,16 @@ export interface ListInstancesResult {
 export function listInstancesOutput(args: ListInstancesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListInstancesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:services:listInstances", {
+        "queryParams": args.queryParams,
         "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface ListInstancesOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.services.ListInstancesQueryParamsArgs | undefined>;
     /**
      * The ID of the service
      */

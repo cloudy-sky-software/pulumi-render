@@ -33,7 +33,7 @@ jobs:
 
       # Use a commit hash from https://github.com/golangci/golangci-lint/commits/main.
       - run: |
-          go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@238321a824bd20040b6c05b6b852ca8ac1e89b04
+          go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@5e7d0c42ef205fc7a738753a8126511290b42d66
           make lint
 
       - name: Test
